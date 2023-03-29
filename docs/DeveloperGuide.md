@@ -66,13 +66,14 @@ illustrate a 'delete' command, e.g. `delete 1`.
 
 #### Design considerations
 
-- To prevent slow processing of the program when there are many entries, a Hash Table is used.
-- An additional storage was specifically created as we believe that the Set Budget feature will be commonly
-  used as it is 1 of the key aspects a Financial Tracker. Hence, it would be more feasible to implement indexing such
-  that
-  add operations and retrieval of information to be done in Amortised O(1).
-- The Key used is the number of months from the Year 0000, or more precisely calculated by (Year * 12 + Month). This is
-  to allow fast processing and collision-free information collection.
+- To prevent slow processing of the program when there are many entries, a Hash Table is used to keep track of the
+  expenditures for the month.
+  - We believe that the "Set Budget" feature will be commonly used as it is 1 of the key aspects of a Financial Tracker. 
+    Hence, it would be feasible to implement an additional storage 
+    such that common addition operations and retrieval of information can be done in Amortised O(1).
+  - The Key used is the number of months from the Year 0000, or more precisely calculated by (Year * 12 + Month). 
+    This is to allow for fast processing and collision-free information collection.
+
 
 ### Command component
 
@@ -224,16 +225,35 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 ### Viewing your data `view`
 
 - The command `view` is used to view all statements, and a ViewCommand object will be created.
-    - Any other characters after `view` are automatically ignored
-- RainyDay will then call Command.execute(), where every entry in the financial report will be printed.
-- Information will be presented in a table format to help improve clarity for users.
+    - The format for the command is `view TIMESPAN -sort`
+    - Any other characters after any valid view command are automatically ignored
+- Information is presented in a table format to help improve clarity for users.
+    - The table includes information in the summary such as whether it is sorted and the amount of history shown. 
+    - This was deliberate as presenting this information at the bottom makes it easier for users to spot, 
+      as placing them at the top may cause users to miss it if they have a large table
+
+![ViewCommandSequenceDiagram.png](images\DeveloperGuide\ViewCommandSequenceDiagram.png)
+
+### Design considerations
+- The limit for the timespans are deliberately set to cover common timespans
+    - One can view up to 31 days / 4 weeks, as they each make up a month
+    - Similarly, one can view up to 12 months, as they make up a year
+    - In line with the average user of the target audience, the limit for 10 years was set as a soft limit
+- The setting of hiding the value of transactions that are ignored is deliberate, as it is the most prominent and
+  direct way for users to see this.
+    - In line with the purpose of the Ignore Command, -all flag will also not show this. Instead, users can view the
+      value via the export command, as elaborated below
 
 ### Setting your monthly Budget Goal `setbudget`
 
 - The command `setbudget` is used to set the user's monthly budget goal
+    - Format: `setbudget VALUE` 
+    - Users can also turn off the feature at any time by setting `VALUE` to 0
 - Once a goal is present, user's will be reminded of how close they are to sticking to their budget, or how
-  much they have exceeded it by
+  much they have exceeded it by.
 - This can be seen at start-up and when the user makes any changes to their expenses for the month.
+
+![SetBudgetCommandSequenceDiagram.png](images\DeveloperGuide\SetBudgetCommandSequenceDiagram.png)
 
 ### Editing an entry `edit`
 

@@ -35,9 +35,4 @@ loop sizeOfArrayList
 ViewCommand -->[ : null
 deactivate ViewCommand
 
-
-
-
-
-
 @enduml
