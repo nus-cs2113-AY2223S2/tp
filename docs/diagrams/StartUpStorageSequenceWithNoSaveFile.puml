@@ -14,7 +14,7 @@ participant ":Storage" as Storage COLOR_STORAGE
 end box
 
 box TaskList COLOR_TASK_LIST_LIGHT
-participant ":TaskList" as TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
 end box
 
 box Ui COLOR_UI_LIGHT
