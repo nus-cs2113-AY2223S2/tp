@@ -37,7 +37,8 @@ public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
     private static final String validDescriptionRegex = "[a-zA-Z0-9\\s]*";
     private static final String validPriceRegex = "[0-9.]*";
-    private static final Pattern descriptionPattern = Pattern.compile("(-d)\\s+(.*?)(\\s+-c|-p|$)");
+    private static final Pattern descriptionPattern = Pattern.compile("(-d|-description)\\s+(.*?)" +
+            "(\\s+-c|-p|-category|-price|$)");
     private static final Pattern categoryPattern = Pattern.compile("(-c|-category)\\s+(\\S+)");
     private static final Pattern pricePattern = Pattern.compile("(-p|-price)\\s+(\\S+)");
     private static final Pattern idPattern = Pattern.compile("(\\s+)?(\\S+)");

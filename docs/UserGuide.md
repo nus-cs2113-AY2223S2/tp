@@ -1,24 +1,29 @@
 <!-- omit in toc -->
+
 # User Guide
 
 <!-- omit in toc -->
+
 ## Table of Contents
+
 - [Getting Started](#getting-started)
 - [Features](#features)
-  - [Adding an expense: `/add` {#add}](#adding-an-expense-add-add)
-  - [Deleting an expense: `/delete` {#delete}](#deleting-an-expense-delete-delete)
-  - [Edit an expense: `/edit` {#edit}](#edit-an-expense-edit-edit)
-  - [View an expense: `/view`](#view-an-expense-view)
-  - [Show help menu: `/help`](#show-help-menu-help)
-  - [Exit Program: `/bye`](#exit-program-bye)
-  - [Supported Categories {#categories}](#supported-categories-categories)
+    - [Adding an expense: `/add` {#add}](#adding-an-expense-add-add)
+    - [Deleting an expense: `/delete` {#delete}](#deleting-an-expense-delete-delete)
+    - [Edit an expense: `/edit` {#edit}](#edit-an-expense-edit-edit)
+    - [View an expense: `/view`](#view-an-expense-view)
+    - [Show help menu: `/help`](#show-help-menu-help)
+    - [Exit Program: `/bye`](#exit-program-bye)
+    - [Supported Categories {#categories}](#supported-categories-categories)
 - [Command Summary](#command-summary)
 
 ## Getting Started
 
-- Ensure that you have Java `11` and above installed [(Installation Guide)](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
+- Ensure that you have Java `11` and above
+  installed [(Installation Guide)](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
 - Download our latest release of `PocketPal` [here](https://github.com/AY2223S2-CS2113-W15-2/tp/releases)
-- Run the application with `java -jar PocketPal.jar` [(Running JAR Guide)](https://se-education.org/guides/tutorials/jar.html#running-jar-files)
+- Run the application
+  with `java -jar PocketPal.jar` [(Running JAR Guide)](https://se-education.org/guides/tutorials/jar.html#running-jar-files)
 - You should see the following welcome screen
    ```
    Welcome to
@@ -39,12 +44,12 @@
 The table below provides a summary of all the currently supported features in PocketPal.
 More detailed explanations on the usage of the commands are provided as well.
 
-## Features 
+## Features
 
 If you face any problems, do visit the [FAQ](../faq) segment!
 
 | Command            |                      Function                       |
-| ------------------ | :-------------------------------------------------: |
+|--------------------|:---------------------------------------------------:|
 | [/add](#add)       |                   Adds an expense                   |
 | [/delete](#delete) |                 Deletes an expense                  |
 | [/edit](#edit)     |                  Edits an expense                   |
@@ -56,19 +61,22 @@ If you face any problems, do visit the [FAQ](../faq) segment!
 
 Adds an expense to your current expenditure.
 
-Format: `/add <DESCRIPTION> <-c | -category CATEGORY> <-p | -price PRICE>`
+Format: `/add <-d | -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c | -category CATEGORY> <-p | -price PRICE>`
 
-- The `DESCRIPTION` and `CATEGORY` can be in a natural language format.
-- The `PRICE` can be in numeric or decimal format.
-- The flags can be used in any order, but they are both **required**.
+- `DESCRIPTION`, `EXTRA_DESCRIPTION` can only contain alphabets, digits or spaces.
+- `CATEGORY` must be currently support in PocketPal.
+- `PRICE` can be in numeric or decimal format.
+- Flags can be used in any order, but they are all **required**.
 
 Here is a [list](#categories) of categories currently supported in PocketPal.
 
 Example of usage:
 
-`/add Lunch at McDonalds -category Food -price 19.9`
+`/add -d Lunch at McDonalds -category Food -price 19.9`
 
-`/add Apple Macbook Air -p 1300 -c Personal`
+`/add -d Apple Macbook Air -p 1300 -c Personal`
+
+`/add -p 1300 -c Personal -d Apple Macbook Air`
 
 ### Deleting an expense: `/delete` {#delete}
 
@@ -86,14 +94,15 @@ Example of usage:
 
 ### Edit an expense: `/edit` {#edit}
 
-Edits a specified expense in your current expenditure.
+Edits a specified expense in your current expenditure with the given flag(s).
 
-Format: `/edit <EXPENSE_ID> [FLAG...]`
+Format: `/edit <EXPENSE_ID> [-c | -category NEW_CATEGORY] [-p | -price NEW_PRICE] [-d | -description NEW_DESC]`
 
 - `EXPENSE_ID` must be a whole number.
 - Flags can be specified in any order. If none are specified, the expense remains unmodified.
+- `NEW_CATEGORY`, `NEW_PRICE`, `NEW_DESC` must follow the required format as per the corresponding flag.
 
-__FLAGS__
+__Available flags__
 
 - `-d | -description DESCRIPTION`
     - Replaces the current description of the expense with `DESCRIPTION`
@@ -115,15 +124,15 @@ Example of usage:
 Displays a list of your current expenditure.
 
 Format: `/view [COUNT] [-c | -category CATEGORY] [-p | -price PRICE_MIN] [-p | -price PRICE_MAX]
-[-sd | -startdate dd/MM/yy] [-ed | -enddate dd/MM/yy]`
+[<-sd | -startdate START_DATE -ed | -enddate END_DATE>]`
 
 - `COUNT` must be a whole number. If not specified, all the expenditures will be listed.
 - `CATEGORY` must be a supported category. If not specified, expenditures from all categories will be listed.
-- `PRICE` must be more than 0. If max price not specified, all entries with higher price than min price will be displayed.
-The first price entered (starting from the left) must be less than that on the right. ie. **MIN_PRICE should be entered
-before MAX_PRICE.**
-- `DATES` this filter only works if BOTH dates are entered. Both dates should be valid dates and start date should be 
-earlier than end date.
+- `PRICE_MIN`, `PRICE_MAX` must be more than 0. If `PRICE_MAX` is not specified, all expenses with a higher price than
+  `PRICE_MIN` price will be displayed. The first price entered must be less than that on the
+  right. i.e. **MIN_PRICE should be entered before MAX_PRICE.**
+- `START_DATE`, `END_DATE` must be in `dd/MM/yy` format. **Both flags are required if user wishes to use this
+  filter feature.**
 
 Example of usage:
 
@@ -155,12 +164,12 @@ These are the categories currently supported by PocketPal:
 
 ## Command Summary
 
-| Command | Format                                                                                       |
-| ------: | -------------------------------------------------------------------------------------------- |
-|    /add | `/add <DESCRIPTION> <-c,-category CATEGORY> <-p,-price PRICE>`                               |
-|   /view | `/view <COUNT> <-c,-category CATEGORY> <-p, -price PRICE> <-p, -price PRICE>`                |
-|   /edit | `/edit <EXPENSE_ID> <-d,-description DESCRIPTION> <-c,-category CATEGORY> <-p,-price PRICE>` |
-| /delete | `/delete <EXPENSE_ID>`                                                                       |
-|   /help | `/help`                                                                                      |
+| Command | Format                                                                                                                                                                     |
+|--------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    /add | `/add <-d &#124; -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c &#124; -category CATEGORY> <-p &#124; -price PRICE>`                                                 |
+|   /view | `/view [COUNT] [-c &#124; -category CATEGORY] [-p &#124; -price PRICE_MIN] [-p &#124; -price PRICE_MAX] [<-sd &#124; -startdate START_DATE -ed &#124; -enddate END_DATE>]` |
+|   /edit | `/edit <EXPENSE_ID> [-c &#124; -category NEW_CATEGORY] [-p &#124; -price NEW_PRICE] [-d &#124; -description NEW_DESC]`                                                     |
+| /delete | `/delete <EXPENSE_ID>`                                                                                                                                                     |
+|   /help | `/help`                                                                                                                                                                    |
 
 <!-- @@author -->
