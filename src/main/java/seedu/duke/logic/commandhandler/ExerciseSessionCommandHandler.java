@@ -1,5 +1,6 @@
 package seedu.duke.logic.commandhandler;
 
+import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.commons.exceptions.DukeError;
 
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
@@ -59,7 +60,8 @@ public class ExerciseSessionCommandHandler implements CommandList {
 
     public void handleExerciseSessionUserCommands (String[] userCommands, Ui ui,
                                                    UserCareerData userCareerData,
-                                                   ExerciseStateHandler exerciseStateHandler) {
+                                                   ExerciseStateHandler exerciseStateHandler,
+                                                   AchievementListHandler achievementListHandler) {
         //additional error check for whether there's additional description behind single
         //word commands
         String additionalDescription = "";
@@ -104,23 +106,31 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 }
                 break;
             case FINISH_COMMAND:
+                exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData,
+                        achievementListHandler);
                 if (additionalDescription.length() != 0) {
                     ui.unknownCommand();
                 } else {
-                    exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData);
+                    exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData, achievementListHandler);
                 }
                 break;
             case CANCEL_COMMAND:
+                exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData,
+                        achievementListHandler);
                 if (additionalDescription.length() != 0) {
                     ui.unknownCommand();
                 } else {
-                    exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
+                    exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData, achievementListHandler);
                 }
                 break;
             case HISTORY_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HISTORY_COMMAND.toString());
             case EXERCISE_DATA_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_DATA_COMMAND.toString());
+            case ACHIEVEMENTS:
+                achievementListHandler.printAchievements();
+                break;
+
             default:
                 ui.unknownCommand();
                 break;

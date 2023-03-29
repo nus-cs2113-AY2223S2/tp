@@ -23,5 +23,6 @@ public interface CommandList {
     String DELETE_PLAN_COMMAND = "delete";
     String ADD_PLAN_COMMAND = "add";
     String EXERCISE_DATA_COMMAND = "data";
+    String ACHIEVEMENTS = "achievements";
 
 }
