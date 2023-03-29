@@ -1,11 +1,14 @@
 package seedu.duke;
 
 import command.CommandAdd;
+import command.CommandCategory;
 import command.CommandDelete;
 import command.CommandList;
-import command.CommandTotal;
 import command.CommandSort;
+import command.CommandTotal;
+import command.overview.CommandOverview;
 import command.CommandCategory;
+import command.CommandFind;
 import data.ExpenseList;
 import data.Currency;
 import parser.Parser;
@@ -68,14 +71,20 @@ public class Duke {
             case "category":
                 new CommandCategory(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
+            case "overview":
+                new CommandOverview(expenseList.getExpenseList(),
+                        parser.extractMonth(input), parser.extractYear(input)).execute();
+                break;
+            case "find":
+                // Use the same parser function as category as it also need the input string from user
+                new CommandFind(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
+                break;
             default:
                 System.out.println("Unknown command.");
                 break;
             }
             storage.saveExpenseList();
-            if (in.hasNextLine()) {
-                input = in.nextLine();
-            }
+            input = in.nextLine();
         }
         in.close();
     }
