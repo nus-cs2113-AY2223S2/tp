@@ -71,7 +71,7 @@ public class MakeCommand extends RecipeCommand {
             int recipeIndex = Integer.parseInt(recipeNumber) - 1;
             Recipe recipe = recipes.getRecipe(recipeIndex);
             IngredientList fridgeIngredients = mealCompanionSession.getIngredients();
-            if (canMakeRecipe(recipe, fridgeIngredients)) {
+            if (canMakeRecipe(recipe, fridgeIngredients, mealCompanionSession.getAllergens())) {
                 makeRecipe(mealCompanionSession, recipe);
             } else {
                 throw new MealCompanionException("Ingredients in inventory is insufficient");

@@ -2,11 +2,15 @@ package seedu.mealcompanion.command.misc;
 
 import org.junit.jupiter.api.Test;
 import seedu.mealcompanion.MealCompanionException;
+import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.recipe.RecipePossibleCommand;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
+import seedu.mealcompanion.recipe.IngredientDatabase;
 import seedu.mealcompanion.recipe.InstructionList;
 import seedu.mealcompanion.recipe.Recipe;
+
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -23,7 +27,38 @@ class RecipePossibleCommandTest {
         assertEquals(true, command.hasEnoughIngredient(water, ingredients));
     }
 
+
     @Test
+    public void recipePossibleAndRecipeNotPossible() throws MealCompanionException {
+        MealCompanionSession mealCompanionSession = new MealCompanionSession();
+        IngredientDatabase db = IngredientDatabase.getDbInstance();
+        // add allergens to mealCompanionSession
+        mealCompanionSession.setAllergens(Arrays.asList(
+                db.getKnownIngredients().get("milk"), db.getKnownIngredients().get("eggs")));
+
+        // Add ingredients to mealCompanionSession's ingredients
+        mealCompanionSession.getIngredients().add(new Ingredient("bread", 2.0));
+        mealCompanionSession.getIngredients().add(new Ingredient("ham", 1.0));
+
+        // Add hamSandwich recipe to mealCompanionSession
+        // hamSandwich is possible
+        IngredientList hamSandwichIngredients = new IngredientList();
+        hamSandwichIngredients.add(new Ingredient("bread", 2.0));
+        hamSandwichIngredients.add(new Ingredient("ham", 1.0));
+        Recipe hamSandwich = new Recipe("ham sandwich", 200, 30, 10,
+                hamSandwichIngredients, new InstructionList());
+        mealCompanionSession.getRecipes().add(hamSandwich);
+
+        // Add eggSandwich recipe to mealCompanionSession.
+        // eggSandwich is not possible.
+        IngredientList eggSandwichIngredients = new IngredientList();
+        eggSandwichIngredients.add(new Ingredient("bread", 2.0));
+        eggSandwichIngredients.add(new Ingredient("egg", 1.0));
+        Recipe eggSandwich = new Recipe("egg sandwich", 200, 30, 10,
+                eggSandwichIngredients, new InstructionList());
+        mealCompanionSession.getRecipes().add(eggSandwich);
+    }
+
     public void testHasEnoughIngredient_notEnough() throws MealCompanionException {
         RecipePossibleCommand command = new RecipePossibleCommand();
         Ingredient chicken = new Ingredient("chicken", 100.00);
@@ -52,7 +87,7 @@ class RecipePossibleCommandTest {
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("water", 100.00));
         fridgeIngredients.add(new Ingredient("chicken", 5.00));
-        assertEquals(true, command.canMakeRecipe(cupOfWater, fridgeIngredients));
+        assertEquals(true, command.canMakeRecipe(cupOfWater, fridgeIngredients, Arrays.asList()));
     }
 
     @Test
@@ -64,7 +99,7 @@ class RecipePossibleCommandTest {
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("water", 90.00));
         fridgeIngredients.add(new Ingredient("chicken", 5.00));
-        assertEquals(false, command.canMakeRecipe(cupOfWater, fridgeIngredients));
+        assertEquals(false, command.canMakeRecipe(cupOfWater, fridgeIngredients, Arrays.asList()));
     }
 
     @Test
@@ -76,7 +111,7 @@ class RecipePossibleCommandTest {
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("apple", 9.00));
         fridgeIngredients.add(new Ingredient("chicken", 5.00));
-        assertEquals(false, command.canMakeRecipe(cupOfWater, fridgeIngredients));
+        assertEquals(false, command.canMakeRecipe(cupOfWater, fridgeIngredients, Arrays.asList()));
     }
 }
 

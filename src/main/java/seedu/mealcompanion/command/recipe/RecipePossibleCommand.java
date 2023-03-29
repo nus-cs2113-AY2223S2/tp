@@ -24,7 +24,7 @@ public class RecipePossibleCommand extends RecipeCommand {
             RecipeList recipes = mealCompanionSession.getRecipes();
             RecipeList possibleRecipes = new RecipeList();
             for (Recipe recipe : recipes.getRecipes()) {
-                if (canMakeRecipe(recipe, fridgeIngredients)) {
+                if (canMakeRecipe(recipe, fridgeIngredients, mealCompanionSession.getAllergens())) {
                     possibleRecipes.add(recipe);
                 }
             }
