@@ -1,0 +1,85 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant "<<Class>> :Clanki" as Main
+participant ":Ui" as Ui
+participant ":Parser" as Parser
+participant ":Review Command" as ReviewCommand
+participant ":Flashcard List" as FlashcardList
+participant ":Flashcard" as Flashcard
+
+activate Main
+Main -> Ui : User input
+activate Ui
+
+Ui -> Main : userInput : String
+
+Main -> Parser : parseInput(userInput)
+activate Parser
+
+create ReviewCommand
+Parser -> ReviewCommand : ReviewCommand()
+activate ReviewCommand
+
+ReviewCommand --> Parser
+deactivate ReviewCommand
+
+Parser --> Main : command : ReviewCommand
+deactivate Parser
+
+Main -> ReviewCommand : execute()
+activate ReviewCommand
+
+ReviewCommand -> FlashcardList : getFlashCards()
+activate FlashcardList
+
+FlashcardList --> ReviewCommand : fullFlashcardList : ArrayList<Flashcard>
+activate fullFlashcardList
+deactivate FlashcardList
+
+loop until fullFlashcardList has been fully iterated
+    ReviewCommand -> Flashcard : isDueBeforeToday()
+    activate Flashcard
+    opt ReviewCommand -> Flashcard : isDueBeforeToday() == True
+        Flashcard -> ReviewCommand : reviewCurrentFlashcard(display, flashcard)
+        loop while !isCurrentCardPassed
+            ReviewCommand -> Ui : printlnSeveralStrings("Question for the current flashcard is:", flashcard.getQuestion())
+            Ui -> Flashcard : getQuestion
+            Flashcard --> Ui
+            Ui --> ReviewCommand
+            ReviewCommand -> Ui : getUserCommand()
+            Ui --> ReviewCommand
+            ReviewCommand -> Ui : printlnSeveralStrings(flashcard.getAnswer(), "Have you got this correct?");
+            Ui -> Flashcard : getAnswer()
+            Flashcard --> Ui
+            Ui --> ReviewCommand
+            ReviewCommand -> Ui : getUserCommand()
+            Ui --> ReviewCommand : answerIfCorrect : String
+            alt answerIfCorrect.equals("yes") || answerIfCorrect.equals("y")
+                ReviewCommand -> Ui :printlnSeveralStrings("Great, you got it right!")
+                Ui --> ReviewCommand
+                ReviewCommand -> Flashcard : updateDueDateAfterCorrectAnswer()
+                Flashcard --> ReviewCommand
+                ReviewCommand -> ReviewCommand : isCurrentCardPassed = true
+            else answerIfCorrect.equals("n")
+                ReviewCommand -> Ui : printlnSeveralStrings("No worries, we will try it next time.")
+                Ui --> ReviewCommand
+                ReviewCommand -> Flashcard : updateDueDateAfterIncorrectAnswer()
+                Flashcard --> ReviewCommand
+                ReviewCommand -> ReviewCommand : isCurrentCardPassed = true
+            else
+                ReviewCommand -> Ui : printInvalidInput()
+                Ui --> ReviewCommand
+        end
+    deactivate Flashcard
+    end
+destroy fullFlashcardList
+end
+
+ReviewCommand -> Ui : printlnSeveralStrings("Congrats! You have reviewed all the flashcards due today!")
+Ui --> ReviewCommand
+deactivate Ui
+ReviewCommand -> Main
+deactivate ReviewCommand
+
+@enduml
