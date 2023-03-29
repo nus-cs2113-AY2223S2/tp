@@ -143,6 +143,23 @@ Okay, I have edited the tags of this task to [later difficult]:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
 ```
 
+### View all tasks in To-Do list `list`
+
+Display all tasks stored in the To-Do List.
+
+Format: `list`
+- Tasks found will be displayed in ascending order, sorted by deadline.
+- Tasks without deadline will be placed at the bottom.
+
+Example of usage:
+
+`list`
+```
+Okay, here is your task list, with 3 tasks
+[ID:2]	[ ][assignment][Due: 23 Mar 2023 18:00]
+[ID:3]	[ ][coursemology homework][Due: 24 Mar 2023 13:00]
+[ID:1]	[ ][homework]
+
 ### Edit/delete deadline `due`
 
 Edits or deletes the deadline of a task with a given id in the To-Do List.
@@ -241,3 +258,4 @@ Progress: |================----------------------------------|
 | Delete email from a task    | `email ID -del`                                                                                     |
 | Add/edit tags to a task     | `tags ID -edit LIST_OF_TAGS`                                                                        |
 | Delete all tags from a task | `tags ID -del`                                                                                      |
+| List all tasks              | `list`                                                                                              |
