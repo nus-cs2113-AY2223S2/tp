@@ -127,10 +127,10 @@ public class UI {
         }
     }
     public void showSave() {
-        System.out.println(RECIPE_SAVED);
+        System.out.println(StringLib.RECIPE_SAVED);
     }
     public void showLoad() {
-        System.out.println(RECIPE_LOADED);
+        System.out.println(StringLib.RECIPE_LOADED);
     }
     public void showInvalidStepMessage() {
         System.out.println(INVALID_STEP);
