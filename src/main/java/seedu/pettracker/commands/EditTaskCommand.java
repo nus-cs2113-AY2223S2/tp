@@ -8,13 +8,21 @@ public class EditTaskCommand extends Command {
 
     protected int taskNumber;
     protected String newDescription;
+    protected String newTime;
 
 
     public EditTaskCommand(String commandArgs) {
         super();
-        assert parseArgs(commandArgs).length > 0 : "no arguments";
-        this.taskNumber = Integer.parseInt(parseArgs(commandArgs)[0]);
-        this.newDescription = parseArgs(commandArgs)[1];
+        String[] parsed = parseArgs(commandArgs);
+        assert parsed.length > 0 : "no arguments";
+        this.taskNumber = Integer.parseInt(parsed[0]);
+        this.newDescription = parsed[1];
+        if(parsed.length > 2) {
+            this.newTime = parsed[2];
+        }
+        else {
+            this.newTime = "";
+        }
     }
 
     // TODO: Implement this method
@@ -26,7 +34,7 @@ public class EditTaskCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        TaskList.editTask(taskNumber, newDescription);
+        TaskList.editTask(taskNumber, newDescription, newTime);
         TaskList.saveTasksToStorage(storage, ui);
         ui.editTaskCommandMessage(taskNumber, newDescription);
     }
@@ -39,7 +47,7 @@ public class EditTaskCommand extends Command {
      */
     @Override
     public String[] parseArgs(String commandArgs) {
-        return commandArgs.split(" ", 2);
+        return commandArgs.split(" ", 3);
     }
 
     /**
