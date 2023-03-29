@@ -1,5 +1,6 @@
 package seedu.duke.logic.commandhandler;
 
+import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.GenerateFilterCommand;
@@ -33,7 +34,8 @@ public class GeneralCommandHandler implements CommandList {
     // addition of user exercise history
     public void handleGeneralUserCommands (String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
                                            UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
-                                           Storage storage, UserPlan planner) {
+                                           Storage storage, UserPlan planner,
+                                           AchievementListHandler achievementListHandler) {
         Command command = null;
         boolean errorExists = false;
         try {
@@ -80,6 +82,9 @@ public class GeneralCommandHandler implements CommandList {
                 HashMap<String, Integer> userExerciseDataMap = UserExerciseData
                     .addUserExerciseHistory(userCareerData);
                 ui.printUserExerciseHistory(userExerciseDataMap);
+                break;
+            case ACHIEVEMENTS:
+                achievementListHandler.printAchievements();
                 break;
             default:
                 ui.unknownCommand();

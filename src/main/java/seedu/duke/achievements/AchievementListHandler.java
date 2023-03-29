@@ -2,41 +2,52 @@ package seedu.duke.achievements;
 
 //import org.w3c.dom.Text;
 //import seedu.duke.Duke;
+import seedu.duke.achievements.types.AchievementBodyPart;
+import seedu.duke.achievements.types.AchievementGymStatic;
+import seedu.duke.achievements.types.AchievementLevel;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.storage.TextDataUtility;
 import seedu.duke.ui.ErrorMessages;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-//import java.io.FileWriter;
-//import java.io.IOException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//@@author: ChubbsBunns
 public class AchievementListHandler extends TextDataUtility {
     private static final String ACHIEVEMENT_LIST_FILE_LOCATION = "allAchievements.txt";
-    private static final int NUM_PARAMS_ACHIEVEMENT = 4;
+    private static final int NUM_PARAMS_ACHIEVEMENT = 7;
     private static final int NAME_INDEX = 0;
     private static final int REQUIREMENT_INDEX = 1;
     private static final int COMPLETED_INDEX = 2;
     private static final int DIFFICULTY_INDEX = 3;
+    private static final int TYPE_INDEX = 4;
+    private static final int COUNT_CURRENT_INDEX = 5;
+    private static final int COUNT_TO_COMPLETE_INDEX = 6;
     private static final String COMPLETED = "1";
     private static final String NOT_COMPLETED = "0";
     private static final String EASY_PREFIX = "E";
     private static final String MEDIUM_PREFIX = "M";
     private static final String HARD_PREFIX = "H";
     private static final String SPLIT_CHAR = ":";
+    private static final String BRACKET = ") ";
+    private static final String BLANK = " ";
+    private static final String EMPTY = "";
     private static ArrayList<Achievement> achievementList = new ArrayList<>();
 
-    public void loadListFromMessage(ArrayList<Achievement> achievementList) {
-        File achievementtextfile = new File(ACHIEVEMENT_LIST_FILE_LOCATION);
-        super.checkForListData(achievementtextfile);
+    public void loadAchievementsFromFile() {
+        File achievementTextFile = new File(ACHIEVEMENT_LIST_FILE_LOCATION);
+        super.checkForListData(achievementTextFile);
         try {
-            pushDataToAchievementList(achievementList, achievementtextfile);
+            pushDataToAchievementList(achievementList, achievementTextFile);
         } catch (DukeError e) {
             System.out.println(e.getMessage());
         }
     }
+
 
     private void pushDataToAchievementList(ArrayList<Achievement> achievementList,
                                            File achievementListData) throws DukeError {
@@ -61,11 +72,45 @@ public class AchievementListHandler extends TextDataUtility {
         }
     }
 
-    private Achievement parseAchivement(String achievementInput) throws DukeError {
+    public void printAchievements () {
+        System.out.println("Here are all the achievements");
+        for (int i = 0; i < achievementList.size(); i++) {
+            System.out.print((i + 1) + BRACKET + BLANK);
+            System.out.println(achievementList.get(i).toString());
+        }
+    }
+
+    public void printCompletedAchievements () {
+        System.out.println("Here are all the completed achievements");
+        int count = 1;
+        for (int i = 0; i < achievementList.size(); i++) {
+            if (achievementList.get(i).isCompleted()) {
+                System.out.print(count + BRACKET + BLANK);
+                System.out.println(achievementList.get(i).toString());
+                count += 1;
+            }
+        }
+    }
+
+
+    /**
+     * This parses data from the text file and ensures that it is loaded correctly
+     * Each achievement is saved line by line in the following format:
+     * <NAME>:<REQUIREMENT>:<COMPLETED_OR_NOT>:<DIFFICULTY_INDEX>:<TYPE>:<CURRENT_COUNT>:<COUNT_TO_COMPLETE>
+     * @param achievementInput This refers to each line of the saved text file
+     * @return Returns an achievement to be stored by the system and whether
+     *         it is completed or not
+     * @throws DukeError Whenever a specific achievment is not saved correctly,
+     *         it is deemed corrupt and will not be loaded in correctly.
+     */
+    private Achievement parseAchivement(String achievementInput) throws DukeError, NumberFormatException {
         String name;
         String requirement;
         boolean completed;
         AchievementDifficulty difficulty;
+        String type;
+        int countCurr;
+        int countToComplete;
 
         String[] parsedString = achievementInput.split(SPLIT_CHAR);
         if (parsedString.length != NUM_PARAMS_ACHIEVEMENT) {
@@ -73,8 +118,25 @@ public class AchievementListHandler extends TextDataUtility {
         }
         name = parsedString[NAME_INDEX];
         requirement = parsedString[REQUIREMENT_INDEX];
-        if (parsedString[COMPLETED_INDEX].equals(NOT_COMPLETED) || parsedString[COMPLETED_INDEX].equals(COMPLETED)) {
-            int thisCompleted = Integer.parseInt(parsedString[COMPLETED_INDEX]);
+        completed = getCompleteValue(parsedString[COMPLETED_INDEX]);
+        difficulty = getDifficultyValue(parsedString[DIFFICULTY_INDEX]);
+        type = parsedString[TYPE_INDEX];
+        countCurr = Integer.parseInt(parsedString[COUNT_CURRENT_INDEX]);
+        countToComplete = Integer.parseInt(parsedString[COUNT_TO_COMPLETE_INDEX]);
+        Achievement achievement = createAchievement(name,
+                requirement,
+                completed,
+                difficulty,
+                type,
+                countCurr,
+                countToComplete);
+        return achievement;
+    }
+
+    private boolean getCompleteValue (String input) throws DukeError {
+        boolean completed;
+        if (input.equals(NOT_COMPLETED) || input.equals(COMPLETED)) {
+            int thisCompleted = Integer.parseInt(input);
             if (thisCompleted == 1) {
                 completed = true;
             } else if (thisCompleted == 0) {
@@ -85,21 +147,77 @@ public class AchievementListHandler extends TextDataUtility {
         } else {
             throw new DukeError(ErrorMessages.ERROR_LOAD_CORRUPT_ACHIEVEMENT_DATA.toString());
         }
+        return completed;
+    }
 
-        if (parsedString[DIFFICULTY_INDEX].equals(EASY_PREFIX)) {
-            difficulty = AchievementDifficulty.EASY;
-        } else if (parsedString[DIFFICULTY_INDEX].equals(MEDIUM_PREFIX)) {
-            difficulty = AchievementDifficulty.MEDIUM;
-        } else if (parsedString[DIFFICULTY_INDEX].equals(HARD_PREFIX)) {
-            difficulty = AchievementDifficulty.HARD;
+    private AchievementDifficulty getDifficultyValue(String input) throws DukeError {
+        AchievementDifficulty achievementDifficulty;
+        if (input.equals(EASY_PREFIX)) {
+            achievementDifficulty = AchievementDifficulty.EASY;
+        } else if (input.equals(MEDIUM_PREFIX)) {
+            achievementDifficulty = AchievementDifficulty.MEDIUM;
+        } else if (input.equals(HARD_PREFIX)) {
+            achievementDifficulty = AchievementDifficulty.HARD;
         } else {
             throw new DukeError(ErrorMessages.ERROR_LOAD_CORRUPT_ACHIEVEMENT_DATA.toString());
         }
-        Achievement achievement = new Achievement(name, requirement, completed, difficulty);
-        return achievement;
-
+        return achievementDifficulty;
     }
 
+    private Achievement createAchievement(String name, String requirement,
+                                          boolean completed,
+                                          AchievementDifficulty difficulty ,
+                                          String achievementType, int currCount, int totalCountToComplete) throws DukeError{
+        switch (achievementType.toLowerCase()) {
+        case "easy":
+        case "medium":
+        case "hard":
+            return new AchievementLevel(name, requirement, completed, difficulty, achievementType.toLowerCase(), currCount, totalCountToComplete);
+        case "upper":
+        case "core":
+        case "legs":
+            return new AchievementBodyPart(name, requirement, completed, difficulty, achievementType.toLowerCase(), currCount, totalCountToComplete);
+        case "gym":
+        case "static":
+            return new AchievementGymStatic(name, requirement, completed, difficulty, achievementType.toLowerCase(), currCount, totalCountToComplete);
+        default:
+            throw new DukeError(ErrorMessages.ERROR_LOAD_CORRUPT_ACHIEVEMENT_DATA.toString());
+        }
+    }
+
+    public ArrayList<Achievement> getAchievementList() {
+        return achievementList;
+    }
+
+    public void saveAchievementList() {
+        try {
+            clearFile();
+        } catch (IOException e) {
+            System.out.println(ErrorMessages.ERROR_DELETE_CONTENT_ERROR_TEXT);
+        }
+
+        for (int i = 0; i < achievementList.size(); i++) {
+            String achievementSaveData = achievementList.get(i).parseDataForSaving();
+            try {
+                appendToFile(achievementSaveData);
+            } catch (IOException e) {
+                System.out.println(ErrorMessages.ERROR_UNABLE_TO_WRITE_TO_FILE);
+            }
+        }
+    }
+
+    private static void clearFile() throws IOException {
+        FileWriter fw = new FileWriter(ACHIEVEMENT_LIST_FILE_LOCATION);
+        fw.write(EMPTY);
+        fw.close();
+    }
+
+    private static void appendToFile(String textToAppend) throws IOException {
+        // create a FileWriter in append mode
+        FileWriter fw = new FileWriter(ACHIEVEMENT_LIST_FILE_LOCATION, true);
+        fw.write(textToAppend);
+        fw.close();
+    }
 
 }
 

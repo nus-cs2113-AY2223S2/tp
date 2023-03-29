@@ -1,5 +1,11 @@
 package seedu.duke.logic.commandhandler.states;
 
+import seedu.duke.achievements.Achievement;
+import seedu.duke.achievements.AchievementListHandler;
+import seedu.duke.achievements.AchievementType;
+import seedu.duke.achievements.types.AchievementBodyPart;
+import seedu.duke.achievements.types.AchievementGymStatic;
+import seedu.duke.achievements.types.AchievementLevel;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.storage.Storage;
@@ -8,6 +14,7 @@ import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.Session;
 
+import java.io.File;
 import java.util.ArrayList;
 //@@author ChubbsBunns
 
@@ -74,16 +81,57 @@ public class ExerciseStateHandler {
      * @param workoutCompleted Will add current session to saved sessions if true
      * @param userCareerData Stores and contains user data
      */
-    public void endWorkout (boolean workoutCompleted, UserCareerData userCareerData) throws DukeError {
+    public void endWorkout (boolean workoutCompleted, UserCareerData userCareerData,
+                            AchievementListHandler achievementListHandler) throws DukeError {
         assert userCareerData != null;
         workoutOngoing = false;
         if (workoutCompleted) {
             saveWorkoutSession(currentSessionWorkout, userCareerData);
+            updateWorkoutAchievements(currentSessionWorkout, achievementListHandler);
         } else {
             printCancelWorkoutSessionMessage();
         }
         currentSessionWorkout = null;
     }
+
+    private void updateWorkoutAchievements(Session session, AchievementListHandler achievementListHandler) {
+        ArrayList<Achievement> completedAchievements = new ArrayList<>();
+        ArrayList<Achievement> loggedAchievements = achievementListHandler.getAchievementList();
+        ArrayList<ExerciseData> exercises = session.getSessionExercises();
+        for (int i = 0; i < loggedAchievements.size(); i++) {
+            for (int j = 0; j < exercises.size(); j++) {
+                ExerciseData exerciseData = exercises.get(j);
+                if (loggedAchievements.get(i) instanceof AchievementGymStatic) {
+                    AchievementGymStatic achievementGymStatic = (AchievementGymStatic) loggedAchievements.get(i);
+                    if (achievementGymStatic.updateIndex(exerciseData)) {
+                        completedAchievements.add(achievementGymStatic);
+                    }
+                } if (loggedAchievements.get(i) instanceof AchievementLevel) {
+                    AchievementLevel achievementLevel = (AchievementLevel) loggedAchievements.get(i);
+                    if (achievementLevel.updateIndex(exerciseData)) {
+                        completedAchievements.add(achievementLevel);
+                    }
+                } if (loggedAchievements.get(i) instanceof AchievementBodyPart) {
+                    AchievementBodyPart achievementBodyPart = (AchievementBodyPart) loggedAchievements.get(i);
+                    if (achievementBodyPart.updateIndex(exerciseData)) {
+                        completedAchievements.add(achievementBodyPart);
+                    }
+                }
+            }
+        }
+
+        achievementListHandler.saveAchievementList();
+
+        if (completedAchievements.size() != 0) {
+            System.out.println("Congradulations! You have achieved the following achievements:");
+            for (int i = 0; i < completedAchievements.size(); i++) {
+                System.out.println((i + 1) + ") " + completedAchievements.get(i).getName() + ": " +
+                        completedAchievements.get(i).getRequirement());
+            }
+            System.out.println("Keep on working out with Fitness Duke!");
+        }
+    }
+
 
     /**
      * Prints congratulation message and saves the completed session
@@ -96,7 +144,6 @@ public class ExerciseStateHandler {
         System.out.println("Workout completed! Congratulations on your hard work!");
         userCareerData.addWorkoutSession(completedWorkout);
         storage.writeToJson(userCareerData);
-        // complete workout
     }
 
 }

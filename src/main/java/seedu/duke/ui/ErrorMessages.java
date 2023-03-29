@@ -23,7 +23,6 @@ public enum ErrorMessages {
             "You can look and feel good about your previous workout sessions " +
             "later!"),
     ERROR_ONGOING_EXERCISE_START_COMMAND("Exercise already in progress! Unable to start another exercise!"),
-    ERROR_ONGOING_EXERCISE_TEST_SAMPLE("Finish your exercise! Testing of our features can come after that :)"),
     ERROR_FILTER_INPUT("Unknown filter input!"),
     ERROR_EMPTY_KEYWORD("Please key in a keyword for Fitness Duke to search!"),
     ERROR_INVALID_PLAN_ADDITION("Invalid add command!"),
@@ -32,7 +31,9 @@ public enum ErrorMessages {
     ERROR_INVALID_DELETE_COMMAND("Invalid delete command!"),
     ERROR_NUM_ACHIEVEMENT_NOT_FOUND("The number of achievements seem to be lost. Achievements might not"),
     ERROR_LOAD_CORRUPT_ACHIEVEMENT_DATA("This particular achievement entry is corrupt, not loading this achievement"),
-    ERROR_INVALID_PLAN("No such plan found!");
+    ERROR_INVALID_PLAN("No such plan found!"),
+    ERROR_UNABLE_TO_WRITE_TO_FILE("Unable to append to file"),
+    ERROR_DELETE_CONTENT_ERROR_TEXT("For some reason I cant delete the content of the folder");
 
     public final String message;
     /**

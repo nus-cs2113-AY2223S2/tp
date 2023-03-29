@@ -1,15 +1,26 @@
 package seedu.duke.achievements;
 
-public class Achievement {
+import seedu.duke.achievements.types.AchievementBodyPart;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public abstract class Achievement {
     private static final String BLANK = " ";
     private static final String COLON = ":";
     private static final String nextLine = "\n";
     private static final String COMPLETED = "ACHIEVED! Congratulations :)";
     private static final String UNCOMPLETED = "Not Achieved :(";
+    private static final String COUNT_PREFIX = "Current Count: ";
     private String name;
     private String requirement;
     private boolean completed;
-    private AchievementDifficulty difficulty;
+    private final AchievementDifficulty difficulty;
+    private String AchievementType;
+    public int countCurrent;
+    public int countToComplete;
 
 
     //@@ChubbsBunns
@@ -24,23 +35,15 @@ public class Achievement {
      * @param difficulty  A string passed that decides whether
      */
     public Achievement(String name, String requirement,
-                       boolean completed, AchievementDifficulty difficulty) {
+                       boolean completed, AchievementDifficulty difficulty,
+                       String AchievementType, int countCurrent, int countComplete) {
         this.name = name;
         this.requirement = requirement;
         this.completed = completed;
         this.difficulty = difficulty;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public boolean isCompleted() {
-        return this.completed;
-    }
-
-    public String getDifficulty() {
-        return this.difficulty.toString();
+        this.AchievementType = AchievementType;
+        this.countCurrent = countCurrent;
+        this.countToComplete = countComplete;
     }
 
     @Override
@@ -53,13 +56,49 @@ public class Achievement {
         }
 
         return (name + COLON + BLANK + requirement +
+                nextLine + difficulty.toString() +
                 nextLine + completed +
-                nextLine + requirement
-            );
+                nextLine + COUNT_PREFIX +
+                countCurrent + nextLine
+        );
+    }
+
+    public String getName() {
+        return this.name;
+    }
+    public String getRequirement() {
+        return this.requirement;
+    }
+
+    public boolean isCompleted() {
+        return this.completed;
+    }
+
+    public String getDifficulty() {
+        return this.difficulty.toString();
     }
 
     public void complete() {
         this.completed = true;
     }
+
+    public String parseDataForSaving() {
+        String completedNum;
+        if (completed == true) {
+            completedNum = "1";
+        } else {
+            completedNum = "0";
+        }
+        return  name + COLON +
+                requirement + COLON +
+                completedNum + COLON +
+                difficulty.parseDifficultyForSaving() + COLON +
+                AchievementType.toString() + COLON +
+                countCurrent + COLON +
+                countToComplete + COLON +
+                System.lineSeparator();
+    }
+
+
 
 }
