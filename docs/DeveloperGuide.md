@@ -8,7 +8,7 @@ for some reused skeleton code and inspiration on OOP implementation.
 
 ## Design 
 ### Architecture
-![Architecture_Diagram](uml/images/DinerDirectorArchitectureDiagram.png)
+![Architecture_Diagram](uml/images/DinerDirectorArchitectureDiagram.png)  
 The **Architecture Diagram** given above explains the high-level design of DinerDirector. 
 Given below is a quick overview of main components and how they interact with each other. 
 
