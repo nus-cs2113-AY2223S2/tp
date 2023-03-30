@@ -110,10 +110,10 @@ public abstract class KeywordParser {
             for (Object obj : e.getMissingOptions()) {
                 if (obj instanceof String) {
                     missingOptions.add((String) obj);
-                }
-                else if (obj instanceof OptionGroup) {
+                } else if (obj instanceof OptionGroup) {
                     OptionGroup optionGroup = (OptionGroup) obj;
-                    String optionsInGroup = optionGroup.getOptions().stream().map(option -> "-" + option.getOpt()).collect(Collectors.joining("/"));
+                    String optionsInGroup = optionGroup.getOptions().stream().map(option -> "-" + option.getOpt())
+                            .collect(Collectors.joining("/"));
                     missingOptions.add(optionsInGroup);
                 }
             }

@@ -74,8 +74,12 @@ public class CardList {
     public Card findCard(CardSelector cardSelector) throws CardNotFoundException {
         if (cardSelector.getIndex().isPresent()) {
             // Index from user input is 1-indexed
-            return cards.get(cardSelector.getIndex().get() - 1);
-        } else if (cardSelector.getUuid().isPresent()){
+            try {
+                return cards.get(cardSelector.getIndex().get() - 1);
+            } catch (IndexOutOfBoundsException e) {
+                throw new CardNotFoundException();
+            }
+        } else if (cardSelector.getUuid().isPresent()) {
             return findCardFromUUID(cardSelector.getUuid().get());
         }
 

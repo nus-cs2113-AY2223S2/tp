@@ -23,7 +23,7 @@ public class AddCardToDeckCommand extends Command {
         this.cardSelector = cardSelector;
     }
 
-    private void addCardToDeck(DeckList deckList, Card cardToAdd, UserInterface ui) {
+    private void addCardToDeck(DeckList deckList, Card cardToAdd, UserInterface ui) throws CardInDeckException {
         //find the corresponding Deck and Card based on its deckName and card uuid
         Deck deckToAdd = deckList.findDeckFromName(deckName);
 
@@ -31,7 +31,7 @@ public class AddCardToDeckCommand extends Command {
             ui.printDeckCreationSuccess();
             deckToAdd = new Deck(deckName, cardToAdd.getUuid());
             deckList.addDeck(deckToAdd);
-        } else if(deckToAdd.cardIsInDeck(cardUUID)) {
+        } else if (deckToAdd.cardIsInDeck(cardToAdd.getUuid())) {
             throw new CardInDeckException();
         } else {
             deckToAdd.addCard(cardToAdd.getUuid());

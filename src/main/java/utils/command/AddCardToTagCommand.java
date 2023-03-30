@@ -33,9 +33,8 @@ public class AddCardToTagCommand extends Command {
      * @param tagList   The tagList into which to add the tag that has been created
      * @param cardToAdd The card to add to tag
      * @param ui        The userInterface to print the success of the tag creation
-     * @throws InkaException
      */
-    private void addCardToTag(TagList tagList, Card cardToAdd, UserInterface ui) {
+    private void addCardToTag(TagList tagList, Card cardToAdd, UserInterface ui) throws CardInTagException {
         //find the corresponding Tag and Card based on its tagName and card uuid
         Tag tagToAdd = tagList.findTagFromName(tagName);
 
@@ -43,7 +42,7 @@ public class AddCardToTagCommand extends Command {
             ui.printTagCreationSuccess(tagName);
             tagToAdd = new Tag(tagName, cardToAdd.getUuid());
             tagList.addTag(tagToAdd);
-        } else if(tagToAdd.cardIsInTag(cardUUID)) {
+        } else if (tagToAdd.cardIsInTag(cardToAdd.getUuid())) {
             throw new CardInTagException();
         } else {
             tagToAdd.addCard(cardToAdd.getUuid());
