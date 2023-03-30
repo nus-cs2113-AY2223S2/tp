@@ -261,6 +261,7 @@ It is implemented through the following step:
    `recipe` to `parseRandomRecipe()`.
 
 The sequence diagram below shows how this feature works:
+
 ![](../docs/UML/Implementation/RandomFunction/RandomFunction.png)
 ---
 ## Appendix: Requirements
@@ -297,6 +298,7 @@ driven app.
 | v2.0    | user     | delete meals I plan to make for the week          | remove some meals from the weekly plan if I change my mind        |
 | v2.0    | user     | categorise recipes using tags                     | group recipes with similar theme together                         |
 | v2.0    | user     | list the recipes by tag                           | list recipes that are under the specific category                 |
+| v2.0    | user     | random a recipe                                   | have a suggestion when do not know what to cook                   |
 
 ### Non-Functional Requirements
 

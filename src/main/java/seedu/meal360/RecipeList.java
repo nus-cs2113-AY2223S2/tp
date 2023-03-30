@@ -111,9 +111,10 @@ public class RecipeList extends ArrayList<Recipe> {
             if (hasNoRecipeToReturn) {
                 return filteredRecipeList;
             }
-            for (Recipe recipe : filteredRecipeList) {
-                if (!tagRecipes.containsKey(recipe)) {
-                    filteredRecipeList.remove(recipe);
+            for (int index = filteredRecipeList.size() - 1; index >= 0; index--) {
+                Recipe currentRecipe = filteredRecipeList.get(index);
+                if (!tagRecipes.containsKey(currentRecipe)) {
+                    filteredRecipeList.remove(currentRecipe);
                 }
             }
         }
