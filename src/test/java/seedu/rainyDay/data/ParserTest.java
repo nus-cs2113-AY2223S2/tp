@@ -3,9 +3,7 @@ package seedu.rainyDay.data;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.exceptions.ErrorMessage;
-import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Parser;
 
 import java.time.LocalDate;

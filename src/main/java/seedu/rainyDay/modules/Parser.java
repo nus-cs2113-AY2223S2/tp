@@ -95,7 +95,8 @@ public class Parser {
         }
     }
 
-    private Command addStatement(String addInput) throws RainyDayException { // example: add -<in/out> <description> $value -c -date
+    private Command addStatement(String addInput) throws RainyDayException { // example: add -<in/out> <description>
+        // $value -c -date
         try {
             this.category = "miscellaneous";
             this.date = LocalDate.now();
@@ -193,6 +194,9 @@ public class Parser {
             } catch (DateTimeParseException e) {
                 logger.warning("add command given by user in the wrong format");
                 throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            }
+            if (this.date.getYear() < 1800 || this.date.isAfter(LocalDate.now())) {
+                throw new RainyDayException(ErrorMessage.UNSUPPORTED_DATE.toString());
             }
         } else {
             logger.warning("add command given by user in the wrong format");

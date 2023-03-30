@@ -257,13 +257,15 @@ After requesting to view the transactions from rainyDay, the following is shown 
 
 Suppose you want to find out transactions related to chicken, you can use this command:
 
-- `filter -d chicken`
-  ![filterChicken.png](images/UserGuide/filterChicken.png)
+`filter -d chicken`
+
+![filterChicken.png](images/UserGuide/filterChicken.png)
 
 Suppose you want to check your outflows only, you can use this command:
 
-- `filter -out`
-  ![filterOutflow.png](images/UserGuide/filterOutflow.png)
+`filter -out`
+
+![filterOutflow.png](images/UserGuide/filterOutflow.png)
 
 > 💡**Tip:** Multiple flags may be used at once but must be in this order:
 >
@@ -286,7 +288,7 @@ Format : `edit [INDEX] [FLAG] {NEWFIELD}`
     * `-d` to edit the description
     * `-c` to edit the category
     * `-v` to edit the value
-    * `date` to edit the date
+    * `-date` to edit the date
     * `-in` to change direction to inflow
     * `-out` to change direction to outflow
 
@@ -295,21 +297,24 @@ Format : `edit [INDEX] [FLAG] {NEWFIELD}`
 Example of usage:
 
 After requesting to view the transactions from rainyDay, the following is shown to you:
+
 ![viewForFilter.png](images/UserGuide/viewForFilter.png)
 
-For example, you realised you made a mistake in the category of entry 1 and want to replace the category of entry 1 with
+Suppose you realised you made a mistake in the category of entry 1 and want to replace the category of entry 1 with
 'Food and Drinks' instead of 'Food', you can use this command:
 `edit 1 -c Food and Drinks`
-![EditCategory.png](images/UserGuide/EditCategory.png)
 
-However, if you want to edit multiple fields of an entry, and instead of deleting and adding a new entry, you can use
-this command:
-`edit 2 add -out Beef noodles $15 -c Food -date 22/03/2023`
-![EditMultipleEntries.png](images/UserGuide/EditMultipleEntries.png)
+![EditCategory.png](images/UserGuide/EditCategory.png)
 
 > 💡**Tip:** Multiple flags may be used at once but must be in this order:
 >
 > `-in` or `out` -> `-d` -> `-v` -> `-c` -> `-date`
+>
+Suppose you want to edit multiple fields of an entry, and instead of deleting and adding a new entry, you can use
+this command:
+`edit 2 -out Beef noodles $15 -c Food -date 22/03/2023`
+
+![EditMultipleEntries.png](images/UserGuide/EditMultipleEntries.png)
 
 ### Setting a Monthly Budget
 
@@ -351,6 +356,7 @@ command in full, you could configure the shortcut as follows.
 
 `shortcut FavLunch -maps add -out noodles $4 -c food`
 
+>⚠️ Avoid adding a shortcut with the same name as an actual command. The actual command will take priority over your configured shortcut.
 ### Using a shortcut
 
 After configuring your shortcuts, you may want to use the shortcut to save yourself the trouble of typing the
@@ -488,7 +494,7 @@ that "rainyDay.jar" is going to be stored in
 | View            | `view TIMESPAN -sort`                                                                                                                                                                                                                                                                                                                                                       |
 | Help            | `help` or `help COMMAND`                                                                                                                                                                                                                                                                                                                                                    |
 | Filter          | `filter FLAG FIELD` <br><br> **Example:** <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                                                                                                                                             |
-| Edit            | `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -add -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                                                                 |
+| Edit            | `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                                                                                                                                      |
 | Set Budget      | `setbudget VALUE`                                                                                                                                                                                                                                                                                                                                                           |   
 | Add Shortcut    | `shortcut SHORTCUTCOMMAND -maps ACTUALCOMMAND`<br><br> **Example:** <br> `shortcut myshortcut -maps add -out noodles $4`                                                                                                                                                                                                                                                    |   
 | Use Shortcut    | `SHORTCUTCOMMAND`                                                                                                                                                                                                                                                                                                                                                           |

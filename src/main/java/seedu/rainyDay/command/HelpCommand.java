@@ -13,7 +13,6 @@ public class HelpCommand extends Command {
             "|View entries     |view     |{TIME} {-sort}                                                          |\n" +
             "|Filter entries   |filter   |{-in} {-out} {-d DESCRIPTION} {-c CATEGORY} {-date DATE}                |\n" +
             "|Edit an entry    |edit     |[INDEX] [-in/ -out/ -d DESCRIPTION/ -v $VALUE/ -c CATEGORY/ -date DATE] |\n" +
-            "|                 |         |[INDEX] [VALID ADD COMMAND]                                             |\n" +
             "|Create Shortcuts |shortcut |[SHORTCUT COMMAND -maps VALID COMMAND]                                  |\n" +
             "|Ignore entry     |ignore   |[INDEX]                                                                 |\n" +
             "|Unignore entry   |unignore |[INDEX]                                                                 |\n" +
@@ -101,6 +100,10 @@ public class HelpCommand extends Command {
             "| -d <DESC>     | Optional    | Used to filter for descriptions with a matching substring            |\n" +
             "| -c <CATEGORY> | Optional    | Used to filter for categories with a matching substring              |\n" +
             "| -date <DATE>  | Optional    | Used to filter for entries with the specific date                    |\n" +
+            "+---------------+-------------+----------------------------------------------------------------------+\n" +
+            "| Note: Multiple flags are allowed but must be in the following order:                               |\n" +
+            "|        `-in` or `out` -> `-d` -> `-c` -> `-date`                                                   |\n" +
+            "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
@@ -124,17 +127,19 @@ public class HelpCommand extends Command {
             "| -c <CATEGORY> | Optional    | Used to change the category of an entry                              |\n" +
             "| -date <DATE>  | Optional    | Used to change the date of an entry                                  |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
-            "| Note: Only 1 Optional flag is allowed. For multiple edits to the same entry, refer below           |\n" +
+            "| Note: Multiple flags are allowed but must be in the following order:                               |\n" +
+            "|        `-in` or `out` -> `-d` -> `-c` -> `-date`                                                   |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| filter -in                  | View all inflows                                                     |\n" +
-            "| filter -c Food              | View all entries with the category: Food                             |\n" +
-            "| filter -date 22/03/2022     | View all entries with the date: 22/03/2022                           |\n" +
-            "| filter -d Bubble Tea        | View all entries containing the phrase: Bubble Tea                   |\n" +
-            "| filter -out -c Transfers    | View all outflows with the category: Transfers                       |\n" +
-            "| filter -out -d Shark -c Toys| View all outflows containing the word: Shark and the category: Toys  |\n" +
+            "| edit 1 -in                  | Change flow direction of entry 1 to inflow                           |\n" +
+            "| edit 3 -c Food              | Change category of entry 3 to Food                                   |\n" +
+            "| edit 7 -date 22/03/2022     | Change date of entry 7 to 22/03/2022                                 |\n" +
+            "| edit 2 -d Bubble Tea        | Change description of entry 2 to Bubble Tea                          |\n" +
+            "| edit 4 -out -c Transfers    | Change flow direction of entry 4 to outflow and category to Transfers|\n" +
+            "| edit 5 -out -d Shark -c Toys| Change flow direction of entry 5 to outflow, description to Shark,   |\n" +
+            "| -date 22/03/2023            | category to Toys and date to 22/03/2023                              |\n" +
             "+====================================================================================================+\n";
     private static final String HELP_EXPORT_COMMAND = "" +
             "+====================================================================================================+\n" +
@@ -179,9 +184,9 @@ public class HelpCommand extends Command {
             "| shortcut salary -maps add   | Creates a shortcut: salary ,which runs add -in $10000 salary         |\n" +
             "| -in $10000 salary           |                                                                      |\n" +
             "|                             |                                                                      |\n" +
-            "| view_shortcut               | Views all shortcuts created and what they are mapped to              |\n" +
+            "| shortcut_view               | Views all shortcuts created and what they are mapped to              |\n" +
             "|                             |                                                                      |\n" +
-            "| delete_shortcut salary      | Remove the shortcut: salary                                          |\n" +
+            "| shortcut_delete salary      | Remove the shortcut: salary                                          |\n" +
             "+====================================================================================================+\n";
 
     private static final String HELP_IGNORE_COMMAND = "" +
