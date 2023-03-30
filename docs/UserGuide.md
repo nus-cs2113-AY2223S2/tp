@@ -74,7 +74,7 @@ Meal Companion uses a Command Line Interface (CLI), as the current version is ju
 
 
 # Features
-This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and recipe functions. 
+This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and Recipe functions. 
 
 
 ## Ingredients
@@ -86,7 +86,7 @@ To add an ingredient of a certain quantity to Meal Companion's storage, use the 
 The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command. 
 For example, `add ground chicken /qty 300`.
 
-Note that the ingredient you add must be in the list of known ingredient names. If you're not sure what an ingredient is called, you can utilize the [`ingredient search`](#search-ingredients) comnmand to figure it out.
+Note that the ingredient you add must be in the list of known ingredient names. If you're not sure what an ingredient is called, you can utilize the [`ingredient search`](#search-ingredients) command to figure it out.
 
 ![add1.png](images/add1.png)  
 <sub>Fig 3: Sample of Add Ingredients command with user input highlighted.</sub>
