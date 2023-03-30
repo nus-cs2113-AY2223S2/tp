@@ -229,11 +229,12 @@ Please add a description of the bug found under our [Issue Tracker](https://gith
 
 
 **Command | Description**
-* `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE` | Add event
+* `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` | Add event
+* `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 * `delete –s 1` | Delete a single event
 * `delete -all` | Delete all events
 * `list` | List all events
-* `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE` | Edit event
+* `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` | Edit event
 
 
 

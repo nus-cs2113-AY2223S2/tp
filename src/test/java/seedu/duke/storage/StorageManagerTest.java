@@ -61,4 +61,33 @@ class StorageManagerTest {
         System.out.println(cg2023.getFaculty());
         System.out.println(cg2023.getLesson(2,"lecture", "02"));
     }
+
+    @Test
+    void loadEventTypes() throws NPExceptions {
+        EventList original = new EventList();
+        original.addEvent("testing", "10:00", "2023/03/20",
+                "10:00", "2023/03/21"); //Normal Start and EndTime
+        original.addEvent("testing1", "10:00", "2023/03/20", "12:00",
+                "2023/03/21", "1 W"); //Normal with Recur Time
+        original.addEvent("testing2", "10:00", "2023/03/20", "12:00",
+                "2023/03/21", "1 W"); //Normal
+        original.addEvent("testing3", "10:00", "2023/03/20"); //Only Start Time
+        original.addEvent("testing4", "10:00", "2023/03/20", "1 W"); //recurring
+        //only start time.
+        storage.saveToFile(original);
+        EventList testListCheck = new EventList();
+        testListCheck.addEvent("testing", "10:00", "2023/03/20",
+                "10:00", "2023/03/21"); //Normal Start and EndTime
+        testListCheck.addEvent("testing1", "10:00", "2023/03/20", "12:00",
+                "2023/03/21", "1 W"); //Normal with Recur Time
+        testListCheck.addEvent("testing2", "10:00", "2023/03/20", "12:00",
+                "2023/03/21", "1 W"); //Normal
+        testListCheck.addEvent("testing3", "10:00", "2023/03/20"); //Only Start Time
+        testListCheck.addEvent("testing4", "10:00", "2023/03/20", "1 W"); //recurring
+        EventList testList = new EventList(storage.loadEvents());
+        String a = testListCheck.getFullList().toString();
+        String b = testList.getFullList().toString();
+        assert(a.equals(b));
+        saveFile.delete();
+    }
 }
