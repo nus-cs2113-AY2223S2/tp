@@ -1,6 +1,6 @@
 package seedu.duke;
 
-import java.time.LocalDate;
+// import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class Schedule {
         this.hasLocation = false;
         this.location = "";
     }
-        
+
     public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation) {
         this.startTime = start;
         this.hasEndTime = false;
@@ -78,7 +78,7 @@ public class Schedule {
         this.location = location;
     }
 
-    public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation, 
+    public Schedule(LocalDateTime start, String location, boolean hasSt, boolean hasLocation,
             String recurringTime) {
         this.startTime = start;
         this.hasEndTime = false;
@@ -90,7 +90,7 @@ public class Schedule {
         this.location = location;
     }
 
-    public Schedule(LocalDateTime start, LocalDateTime end, String location, boolean hasSt, boolean hasEd, 
+    public Schedule(LocalDateTime start, LocalDateTime end, String location, boolean hasSt, boolean hasEd,
             boolean hasLocation) {
         this.startTime = start;
         this.endTime = end;
@@ -122,32 +122,35 @@ public class Schedule {
         }
         return formatter.format(timeInfo);
     }
-    public boolean isRecur() {
+
+    public boolean isRecurring() {
         return isRecurring;
     }
+
     public String getTime() {
         String recur = " not recurring";
-        if(isRecurring) {
+        if (isRecurring) {
             String[] details = timeInterval.split(" ");
             String interval = "";
-            switch(details[1].trim()) {
-            case("D"):
+            switch (details[1].trim()) {
+            case ("D"):
                 interval = "Day(s)";
                 break;
-            case("W"):
+            case ("W"):
                 interval = "Week(s)";
-                break;                
-            case("M"):
+                break;
+            case ("M"):
                 interval = "Month(s)";
                 break;
             default:
                 break;
             }
-            recur = " | recurring, time interval: " + details[0]+ " " +interval;
+            recur = " | recurring, time interval: " + details[0] + " " + interval;
         }
 
         if (hasEndInfo) {
-            return getOutputFormat(startTime, hasStartTime) + " to " + getOutputFormat(endTime, hasEndTime) + recur;
+            return getOutputFormat(startTime, hasStartTime) + " to " + getOutputFormat(endTime, hasEndTime)
+                    + recur;
         } else {
             return getOutputFormat(startTime, hasStartTime) + recur;
         }
@@ -172,15 +175,15 @@ public class Schedule {
         String[] details = this.timeInterval.split(" ");
 
         int actualDays = 0;
-        switch(details[1].trim()) {
-            case("D"):
-                actualDays = Integer.parseInt(details[0].trim());
-                break;
-            case("W"):
-                actualDays = Integer.parseInt(details[0].trim()) *7;
-                break;                
-            default:
-                break;
+        switch (details[1].trim()) {
+        case ("D"):
+            actualDays = Integer.parseInt(details[0].trim());
+            break;
+        case ("W"):
+            actualDays = Integer.parseInt(details[0].trim()) * 7;
+            break;
+        default:
+            break;
         }
         return actualDays;
     }
@@ -189,30 +192,18 @@ public class Schedule {
     public ArrayList<Schedule> getNextNTimes(int n) {
         ArrayList<Schedule> list = new ArrayList<>();
         int actualDays = getActualInterval();
-        
+
         LocalDateTime stTime = startTime;
         LocalDateTime edTime = endTime;
 
-        for(int i =0; i <n; i++) {
-            stTime =  stTime.plusDays(actualDays);
+        for (int i = 0; i < n; i++) {
+            stTime = stTime.plusDays(actualDays);
             edTime = edTime.plusDays(actualDays);
-            
-            list.add(new Schedule(stTime,edTime,true,true,timeInterval));
+
+            list.add(new Schedule(stTime, edTime, true, true, timeInterval));
         }
-        
+
         return list;
-    }
-
-    public ArrayList<Schedule> schedulesInThisWeek(LocalDate weekStartDate, LocalDate weekEndDate) {
-        ArrayList<Schedule> events = new ArrayList<Schedule>();
-        
-        long timeToStart = weekStartDate.toEpochDay() - startTime.toLocalDate().toEpochDay();
-        int recurTime = getActualInterval();
-        int weeks = (int)timeToStart / recurTime;
-        int remdays = (int)timeToStart % recurTime;
-
-        
-        return events;
     }
 
     // need exception
@@ -229,7 +220,7 @@ public class Schedule {
     }
 
     public void changeLocation(String location) {
-        if(!location.equals("")) {
+        if (!location.equals("")) {
             hasLocation = true;
         }
         this.location = location;
