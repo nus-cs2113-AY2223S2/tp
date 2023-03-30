@@ -10,34 +10,32 @@ If you can type fast, BrokeMan can get your expenses and income management tasks
 
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `Duke` from [here](http://link.to/duke).
-3. Copy the file to the folder you want to use as the home folder foOpenr your BrokeMan.
+2. Download the latest version of `BrokeMan` from [here](http://link.to/duke).
+3. Copy the file to the folder you want to use as the home folder for your BrokeMan.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar brokeman.jar` command to run the application.
 
-    A welcoming message and command instructions should appear.
+    A welcoming message should appear.
 5. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the Features below for details of each command.
 
 
-## Features 
+## Features
 
-{Give detailed description of each feature}
-
-### Adding an expense entry: `addExpense`
+### Adding an expense: `addExpense`
 Format: `addExpense a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new expense to the list of expenses.
 
 * The `amount` should be double.
 * The `description` can be in a natural language format.
 * The `time` should follow `YYYY MM HH mm` format.  
-* The `category` should be one the tags in the category list.
+* The `category` should be one of the tags in the category list.
 
 Example of usage: 
 
 `addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD`
 
-### Adding an income entry: `addIncome`
+### Adding an income: `addIncome`
 Format: `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new expense to the list of expenses.
 
@@ -48,7 +46,7 @@ Adds a new expense to the list of expenses.
 
 Example of usage:
 
-`addIncome a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD`
+`addIncome a/ 400 d/ salary t/ 2023 03 12 15 01 c/ SALARY`
 
 ### Listing all expenses: `listExpense'
 Format: `listExpense`
@@ -100,7 +98,7 @@ Format: `deleteExpense <index>`
 
 Example of usage:
 
-`delete 2` deletes the 2nd expense in the list of expense.
+`deleteExpense 2` deletes the 2nd expense in the list of expense.
 
 ### Deleting an income: `deleteIncome'
 Format: `deleteIncome <index>`
@@ -110,7 +108,7 @@ Format: `deleteIncome <index>`
 
 Example of usage:
 
-`delete 2` deletes the 2nd income in the list of income.
+`deleteIncome 2` deletes the 2nd income in the list of income.
 
 ### Set budget: `setBudget`
 Format:  `setBudget <amount> [t/ time]`
@@ -119,11 +117,19 @@ Format:  `setBudget <amount> [t/ time]`
 * The time parameter is optional. 
 If you add this optional parameter, the budget will only take expenses within the indicated month into consideration.
 
+Example of usage:
+
+`setBudget 2000 t/ 2023/04` sets the budget of 2023/04 at 2000.
+
 ### View budget: 'viewBudget'
 Format: `viewBudget [t/ time]`
 * The `time` should follow `YYYY/MM` format.
 * The time parameter is optional.
 If you add this optional parameter, it shows the budget of the indicated month.
+
+Example of usage:
+
+`viewBudget t/ 2023/02` shows the budget in 2023/02.
 
 ### Exiting the program: `exit`
 Exits the program.
@@ -148,6 +154,14 @@ There is no need to save manually.
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
+Action | Format, Examples
+--------|------------------
+**Add** | `addExpense a/ <amount> d/ <description> t/ <time> c/ <category>` <br> e.g., `addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD` <br> `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>` <br> eg., `addIncome a/ 400 d/ salary t/ 2023 03 12 15 01 c/ SALARY`
+**List** | `listExpense` <br> `listIncome`
+**Edit** | `editExpense i/ <index> t/ <type> n/ <newEntry>` <br> e.g., `editExpense i/ 1 t/ amount n/ 7` <br> `editIncome i/ <index> t/ <type> n/ <newEntry>` <br> e.g., `editIncome i/ 1 t/ info n/ pay`
+**Sort** | `sortExpenseByAmount` <br> `sortExpenseByTime` <br> `sortIncomeByAmount` <br> `sortExpenseByAmount`
+**Delete** | `deleteExpense <index>` <br> e.g., `deleteExpense 2` <br> `deleteIncome <index>` <br> e.g., `deleteIncome 2`
+**Set Budget** | `setBudget <amount> [t/ time]` <br> e.g., `setBudget 2000 t/ 2023/04` 
+**View Budget** | `viewBudget [t/ time]` <br> e.g., `viewBudget t/ 2023/02`
+**Exit** | `exit`
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
