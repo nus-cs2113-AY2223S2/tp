@@ -72,13 +72,10 @@ public class Parser {
                     Ui.printHighPriority(tasks);
                     break;
                 case "list_classes":
-                    Ui.listClasses(classes);
+                    Ui.listClasses(classes, tasks);
                     break;
                 case "help":
                     Ui.help();
-                    break;
-                case "refresh":
-                    TaskList.refresh(tasks, classes);
                     break;
                 case "upcoming_class":
                     Ui.displayNextUpcomingClass(classes);
@@ -108,7 +105,7 @@ public class Parser {
                     }
                     break;
                 case "remove":
-                    if (words.length == 2 && words[1].equals("class")) {
+                    if (words[1].equals("class")) {
                         TaskList.tryDeleteClass(classes, line);
                         Storage.trySave(tasks, classes);
                     } else {

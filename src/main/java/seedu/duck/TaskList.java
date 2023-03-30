@@ -420,7 +420,6 @@ public class TaskList {
         Task.clearCount();
         classes.clear();
         Storage.tryLoad(tasks, classes);
-        Ui.refreshedMessage();
     }
 
     static void purge(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) {

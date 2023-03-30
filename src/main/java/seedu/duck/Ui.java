@@ -57,7 +57,8 @@ public class Ui {
         borderLine();
     }
 
-    static void listClasses(PriorityQueue<SchoolClass> classes) {
+    static void listClasses(PriorityQueue<SchoolClass> classes, ArrayList<Task> tasks) {
+        TaskList.refresh(tasks, classes);
         Iterator<SchoolClass> iterator = classes.iterator();
         borderLine();
         System.out.println("\t Here is your class schedule:\n");
@@ -452,7 +453,6 @@ public class Ui {
         System.out.println("\t - list <number_of_days>: I'll list out all the tasks in that number of days.");
         System.out.println("\t - list classes: I'll list out the classes you have on your schedule.");
         System.out.println("\t - list today: I'll list out all the classes, deadlines and events you have today.");
-        System.out.println("\t - refresh: I'll refresh your task list and class schedule.");
         System.out.println("\t - priority_list: " +
                 "I'll list out all the tasks you have recorded arranged by their priority.");
         System.out.println("\t - low_priority: I'll list out all the tasks you have that are low in priority.");
@@ -464,10 +464,11 @@ public class Ui {
         System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
         System.out.println("\t - remove class /class <class_name> /description <description> " +
                 "/day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>");
+        System.out.println("\t   (/description can be followed by whitespace if the class has no description.");
+        System.out.println("\t   : I'll remove this class from your class schedule.");
         System.out.println("\t - add_note <task_number>: I'll add an additional note to that task!" );
         System.out.println("\t - delete_note <task_number> <note_number>: I'll delete additional note to that task!" );
         System.out.println("\t - notes <task_number>: I'll print the additional notes for that task!" );
-        System.out.println("\t   : I'll remove this class from your class schedule.");
         System.out.println("\t - purge: I'll delete all expired tasks from your list after a confirmation.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
         System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
@@ -485,9 +486,9 @@ public class Ui {
         System.out.println("\t            (eg. /re Meeting /from 2015 /to 2215 /day MONDAY)");
         System.out.println("\t Todo     : <description>");
         System.out.println("\t            (eg. Water the plants)");
-        System.out.println("\t Classes  : <description> /class <class_name> /day <DAY_OF_WEEK>" +
-                "/from <HHmm> /to <HHmm> \n");
-        System.out.println("\t            (eg. Bring laptop /class CS2113 /day TUESDAY /from 1100 /to 1200)");
+        System.out.println("\t Classes  : <description> /class <class_name> /day <DAY_OF_WEEK> " +
+                "/from <HHmm> /to <HHmm>");
+        System.out.println("\t            (eg. Bring laptop /class CS2113 /day TUESDAY /from 1100 /to 1200) \n");
         System.out.println("\t How else may I assist you today, human?");
         borderLine();
     }
