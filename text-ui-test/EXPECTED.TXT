@@ -163,8 +163,14 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have set your budget as $1800.00 for 2023/MARCH.
-|  The amount of budget left is $1800.00
+|  Enter command: |  You have not set your budget.
+|
+|  setBudget: sets your budget for current month.
+|  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
+|  Compulsory Parameter: <amount>
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: setBudget 500
+|  Example: setBudget 500 t/ 2023/03
 |
 |  -----------------------------------------------------------------------
 |
@@ -235,8 +241,7 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have set your budget as $1600.00 for 2023/FEBRUARY.
-|  The amount of budget left is $1600.00
+|  Enter command: |  Budget information for the given month does not exist!
 |
 |  -----------------------------------------------------------------------
 |
