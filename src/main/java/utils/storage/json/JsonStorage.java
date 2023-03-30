@@ -167,6 +167,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import com.google.gson.Gson;
@@ -174,6 +175,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -183,6 +185,7 @@ import model.Card;
 import model.CardList;
 import model.CardUUID;
 import model.TagUUID;
+import model.DeckUUID;
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageCorrupted;
 import utils.exceptions.StorageLoadFailure;
@@ -220,17 +223,58 @@ public class JsonStorage extends Storage {
         boolean useBackup = false;
         try {
             FileReader fileReader = new FileReader(saveFile);
-
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+
             gsonBuilder.setLenient();
             JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
             JsonObject jsonObject = jsonElement.getAsJsonObject();
-            String deckName = jsonObject.get("deckName").getAsString();
+
             JsonArray jsonArray = jsonObject.getAsJsonArray("cards");
-            Type cardListType = new TypeToken<ArrayList<Card>>() {
-            }.getType();
-            ArrayList<Card> cards = gsonBuilder.create().fromJson(jsonArray, cardListType);
+            ArrayList<Card> cards = new ArrayList<>();
+
+            for (JsonElement jsonCard : jsonArray) {
+                JsonObject cardObject = jsonCard.getAsJsonObject();
+
+                // Extract the UUID string from the nested UUID object
+                JsonObject uuidObject = cardObject.getAsJsonObject("uuid");
+                String uuidString = uuidObject.get("uuid").getAsString();
+
+                // Extract the other properties from the JSON object
+                String question = cardObject.get("question").getAsString();
+                String answer = cardObject.get("answer").getAsString();
+
+
+
+                // Create a new Card object from the extracted values
+                Card card = Card.createCardWithUUID(question, answer, uuidString);
+//                ArrayList<TagUUID> tags = new ArrayList<>();
+//                ArrayList<DeckUUID> decks = new ArrayList<>();
+
+                JsonArray tagsArray = cardObject.getAsJsonArray("tags");
+                JsonArray decksArray = cardObject.getAsJsonArray("decks");
+
+
+                for (JsonElement tagListElement : tagsArray) {
+                    JsonObject tagUuidObject = tagListElement.getAsJsonObject();
+                    String tagUuidString = tagUuidObject.get("uuid").getAsString();
+                    card.addTag(new TagUUID(UUID.fromString(tagUuidString)));
+
+                }
+
+                for (JsonElement deckListElement : decksArray) {
+                    JsonObject deckUuidObject = deckListElement.getAsJsonObject();
+                    String deckUuidString = deckUuidObject.get("uuid").getAsString();
+                    card.addDeck(new DeckUUID(UUID.fromString(deckUuidString)));
+
+                }
+
+                // Add the Card object to the ArrayList
+                cards.add(card);
+            }
+
+// Create a new CardList object from the ArrayList
             cardList = new CardList(cards);
+
         } catch (IOException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Failed to load file from " + absolutePath, e);
@@ -239,7 +283,7 @@ public class JsonStorage extends Storage {
         } catch (NullPointerException | JsonSyntaxException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Corrupted save file: " + absolutePath, e);
-            useBackup = true;
+            //useBackup = true;
             throw new StorageCorrupted(absolutePath);
         }
 
@@ -272,17 +316,16 @@ public class JsonStorage extends Storage {
     public void save(CardList cardList) throws StorageSaveFailure {
 
         JsonObject exportData = new JsonObject();
-        exportData.addProperty("deckName", "lky deck");
-        exportData.addProperty("numCards", cardList.size());
-
+        Gson gson = new Gson();
         // Serialize cards
         JsonArray cardData = new JsonArray();
         for (int i = 0; i < cardList.size(); i++) {
+            // Convert the card object to a JsonObject using Gson
             Card card = cardList.get(i);
-            JsonObject cardObject = new JsonObject();
-            cardObject.addProperty("uuid", card.getUuid().toString());
-            cardObject.addProperty("question", card.getQuestion());
-            cardObject.addProperty("answer", card.getAnswer());
+
+            JsonObject cardObject = gson.toJsonTree(card).getAsJsonObject();
+
+            // Add the card object to the cardData array
             cardData.add(cardObject);
         }
         exportData.add("cards", cardData);
