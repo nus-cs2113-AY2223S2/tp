@@ -11,6 +11,8 @@
   - [Deadlines](#deadlines)
   - [Dish](#dish)
   - [Staffs](#staffs)
+  - [Exit](#exit)
+  - [Storage](#storage)
 - [FAQ](#faq)
   
 ## Introduction
