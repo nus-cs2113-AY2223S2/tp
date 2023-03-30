@@ -1,6 +1,7 @@
 package seedu.duke.commons;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -13,12 +14,14 @@ public class LogMaster {
     private static FileHandler fileHandler;
     private static final Logger logger = LogMaster.getLogger(LogMaster.class);
 
-    public static Logger getLogger(String name) {
+    public static Logger getLogger (String name) {
         Logger logger = Logger.getLogger(name);
+        logger.setUseParentHandlers(false);
+        removeHandlers(logger);
         if (consoleHandler == null) {
             consoleHandler = createConsoleHandler();
-            logger.addHandler(consoleHandler);
         }
+        logger.addHandler(consoleHandler);
         try {
             if (fileHandler == null) {
                 fileHandler = createFileHandler();
@@ -30,23 +33,28 @@ public class LogMaster {
         return Logger.getLogger(name);
     }
 
-    public static <T> Logger getLogger(Class<T> myClass) {
+    public static <T> Logger getLogger (Class<T> myClass) {
         if (myClass == null) {
             return Logger.getLogger("");
         }
         return getLogger(myClass.getSimpleName());
     }
 
-    private static FileHandler createFileHandler() throws IOException {
+    private static void removeHandlers (Logger logger) {
+        Arrays.stream(logger.getHandlers())
+              .forEach(logger::removeHandler);
+    }
+
+    private static FileHandler createFileHandler () throws IOException {
         FileHandler fileHandler = new FileHandler(LOG_FILE, true);
         fileHandler.setFormatter(new SimpleFormatter());
-        fileHandler.setLevel(Level.OFF);
+        fileHandler.setLevel(Level.WARNING);
         return fileHandler;
     }
 
-    private static ConsoleHandler createConsoleHandler() {
+    private static ConsoleHandler createConsoleHandler () {
         ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.OFF);
+        consoleHandler.setLevel(Level.WARNING);
         return consoleHandler;
     }
 
