@@ -160,7 +160,9 @@ It is necessary to have a list which contains all the current event/class so tha
 | v2.0    | As a user    | Save the location of an event             | Remember where I need to go for the next event                |
 
 ## Non-Functional Requirements
-
+1. The program should be able to run on any computer regardless of OS.
+2. The program should be able to handle data corruption
+3. The program is not required to return an accurate timetable for modules that only have one or two lectures in the whole semester.
 {Give non-functional requirements}
 
 ## Glossary
