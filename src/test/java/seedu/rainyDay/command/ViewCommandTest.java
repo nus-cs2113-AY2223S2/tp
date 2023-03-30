@@ -21,7 +21,7 @@ public class ViewCommandTest {
     @Test
     public void execute_emptyReport_emptyReportStatement() {
         LocalDate startDate = LocalDate.now().minusYears(10);
-        ViewCommand viewList = new ViewCommand(startDate, false); //todo fix this with -all flag. Temp set to maximum
+        ViewCommand viewList = new ViewCommand(startDate, LocalDate.now(), false, true);
         viewList.setData(userData);
         String expectedReport = "Your financial report is empty";
         assertEquals(expectedReport, viewList.execute().output);
