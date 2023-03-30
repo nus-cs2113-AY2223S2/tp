@@ -76,11 +76,16 @@ public class Storage {
             String categoryString = lineArray[2];
             String dateTimeString = lineArray[3];
             double amount = decimalFormat.parse(
-                amountString
+                String.format(
+                    "%.2f", 
+                    Double.parseDouble(
+                        amountString
+                    )
+                )
             ).doubleValue();
             Category category = CategoryUtil.convertStringToCategory(
                 categoryString
-                );
+            );
             LocalDateTime dateTime = DateTimeUtil.convertStringToLocalDateTime(
                 dateTimeString
             );
