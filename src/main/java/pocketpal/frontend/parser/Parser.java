@@ -47,17 +47,20 @@ public class Parser {
 
 
     
-    /** 
-     * Returns a Command object that is to be executed by the backend
+    /**
+     * Returns a Command object that is to be executed by the backend. If any input
+     * requirements are not met, the respective exceptions will be thrown and error
+     * messages will be displayed to the user
+     * via the UI.
      * 
      * @param userInput Entire user input string
      * @return Command Command object to be executed
-     * @throws InvalidCommandException If command entered is invalid
+     * @throws InvalidCommandException   If command entered is invalid
      * @throws InvalidArgumentsException If arguments entered are in wrong format
      * @throws MissingArgumentsException If required arguments are missing
-     * @throws InvalidCategoryException If category entered is invalid
-     * @throws MissingDateException If required date is missing
-     * @throws InvalidDateException If date entered is invalid
+     * @throws InvalidCategoryException  If category entered is invalid
+     * @throws MissingDateException      If required date is missing
+     * @throws InvalidDateException      If date entered is invalid
      */
     public Command parseUserInput(String userInput) throws
             InvalidCommandException, InvalidArgumentsException,
@@ -103,10 +106,12 @@ public class Parser {
 
     /**
      * Returns a string array of length 3, containing the description, category and
-     * price respectively.
+     * price respectively. If any of the fields are missing, an empty string is
+     * returned for that field and an error will be raised 
      *
      * @param arguments User arguments entered after the add command.
-     * @return String[] Array containing description, category and price respectively.
+     * @return String[] Array containing description, category and price
+     *         respectively.
      */
     private String[] parseAddArguments(String arguments) throws MissingArgumentsException, InvalidArgumentsException {
         logger.entering(Parser.class.getName(), "parseAddArguments()");
@@ -138,14 +143,15 @@ public class Parser {
 
 
     
-    /** 
-     * Returns a AddCommand object to be executed by the backend.
+    /**
+     * Returns an AddCommand object to be executed by the backend. The AddCommand
+     * contains the parameters of the expenses to be added to the expense list.
      * 
      * @param arguments User input entered after add command.
-     * @return Command Command object to be executed.
+     * @return Command AddCommand object to be executed.
      * @throws MissingArgumentsException If required arguments are missing.
      * @throws InvalidArgumentsException If required arguments are in wrong format.
-     * @throws InvalidCategoryException If category entered is invalid.
+     * @throws InvalidCategoryException  If category entered is invalid.
      */
     private Command parseAddCommand(String arguments)
             throws MissingArgumentsException, InvalidArgumentsException, InvalidCategoryException {
@@ -170,6 +176,13 @@ public class Parser {
         return new AddCommand(description, priceDouble, category);
     }
 
+    
+    /**
+     * Returns an ExitCommand object to be executed by the backend. The ExitCommand
+     * will terminate the program.
+     * 
+     * @return Command ExitCommand object to be executed.
+     */
     private Command parseByeCommand() {
         // Print bye message
         logger.entering(Parser.class.getName(), "parseByeCommand()");
@@ -178,11 +191,16 @@ public class Parser {
         return new ExitCommand();
     }
 
+    
+    
     /**
-     * @param arguments User arguments entered after the command.
-     * @throws InvalidArgumentsException If ID entered is out of range, or not in
-     *                                   integer format.
-     * @throws MissingArgumentsException If required ID is not entered.
+     * Returns an DeleteCommand object to be executed by the backend. The
+     * DeleteCommand takes in an integer index of the expense to be deleted.
+     * 
+     * @param arguments User input after the delete command.
+     * @return Command DeleteCommand object to be executed.
+     * @throws InvalidArgumentsException If entered expense ID does not exist.
+     * @throws MissingArgumentsException If required expense ID is not entered.
      */
     private Command parseDeleteCommand(String arguments)
             throws InvalidArgumentsException, MissingArgumentsException {
@@ -215,6 +233,13 @@ public class Parser {
         return new DeleteCommand(expenseIds);
     }
 
+    
+    /**
+     * Returns a HelpCommand object to be executed by the backend. The help menu is
+     * displayed to the user when this command is executed
+     * 
+     * @return Command HelpCommand to be executed.
+     */
     private Command parseHelpCommand() {
         // Print help message
         logger.entering(Parser.class.getName(), "parseHelpCommand()");
@@ -223,9 +248,11 @@ public class Parser {
         return new HelpCommand();
     }
 
-    /**
-     * @param arguments User arguments entered after the edit command
-     * @return String[] Array containing expense ID, description, category and price respectively.
+    
+    
+    /** 
+     * @param arguments
+     * @return String[]
      */
     private String[] parseEditArguments(String arguments) {
         logger.entering(Parser.class.getName(), "parseEditArguments()");
@@ -246,11 +273,12 @@ public class Parser {
         return argumentsArray;
     }
 
-    /**
-     * @param arguments User arguments entered after the command.
-     * @throws MissingArgumentsException If required ID is not entered.
-     * @throws InvalidArgumentsException If ID entered is out of range, or not in
-     *                                   integer format.
+    
+    /** 
+     * @param arguments
+     * @return Command
+     * @throws MissingArgumentsException
+     * @throws InvalidArgumentsException
      */
     private Command parseEditCommand(String arguments) throws MissingArgumentsException, InvalidArgumentsException {
         logger.entering(Parser.class.getName(), "parseEditCommand()");
@@ -291,10 +319,15 @@ public class Parser {
         return new EditCommand(expenseId, description, category, price);
     }
 
-    /**
-     * @param arguments User arguments entered after the command.
-     * @throws InvalidArgumentsException If user specified a non-integer for expense
-     *                                   ID.
+  
+    
+    /** 
+     * @param arguments
+     * @return Command
+     * @throws InvalidArgumentsException
+     * @throws InvalidCategoryException
+     * @throws InvalidDateException
+     * @throws MissingDateException
      */
     private Command parseViewCommand(String arguments) throws InvalidArgumentsException, InvalidCategoryException,
             InvalidDateException, MissingDateException {
@@ -326,6 +359,12 @@ public class Parser {
         return new ViewCommand(viewCountInt, category, priceMinDouble, priceMaxDouble, startDateString, endDateString);
     }
 
+    
+    /** 
+     * @param arguments
+     * @return Integer
+     * @throws InvalidArgumentsException
+     */
     private Integer extractViewCount(String arguments) throws InvalidArgumentsException {
         String viewCount = extractDetail(arguments, idPattern); //detail extracted is either view count or an
         // optional flag indicated by user
@@ -346,6 +385,12 @@ public class Parser {
         return viewCountInt;
     }
 
+    
+    /** 
+     * @param arguments
+     * @return Double[]
+     * @throws InvalidArgumentsException
+     */
     private Double[] extractPrices(String arguments) throws InvalidArgumentsException {
         Double[] prices = new Double[2];
         String priceMinStr = extractDetail(arguments, pricePattern);
@@ -371,6 +416,13 @@ public class Parser {
         return prices;
     }
 
+    
+    /** 
+     * @param arguments
+     * @return String[]
+     * @throws InvalidDateException
+     * @throws MissingDateException
+     */
     private String[] extractDates(String arguments) throws InvalidDateException, MissingDateException {
         String[] dates = new String[2];
         String startDateString = extractDetail(arguments, startDatePattern);
@@ -396,6 +448,12 @@ public class Parser {
         return dates;
     }
 
+    
+    /** 
+     * @param string
+     * @param detail
+     * @return String
+     */
     private String extractDetail(String string, Pattern detail) {
         String detailToExtract;
         Matcher matcher = detail.matcher(string);
@@ -407,6 +465,11 @@ public class Parser {
         return detailToExtract;
     }
 
+    
+    /** 
+     * @param description
+     * @throws InvalidArgumentsException
+     */
     private void checkIfDescriptionValid(String description) throws InvalidArgumentsException {
         boolean isValid = description.matches(validDescriptionRegex);
         if (!isValid) {
@@ -414,6 +477,11 @@ public class Parser {
         }
     }
 
+    
+    /** 
+     * @param price
+     * @throws InvalidArgumentsException
+     */
     private void checkIfPriceValid(String price) throws InvalidArgumentsException {
         boolean isValid = price.matches(validPriceRegex);
         if (!isValid) {
@@ -421,6 +489,11 @@ public class Parser {
         }
     }
 
+    
+    /** 
+     * @param dateString
+     * @throws InvalidDateException
+     */
     private void isValidDate(String dateString) throws InvalidDateException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yy");
         try {
