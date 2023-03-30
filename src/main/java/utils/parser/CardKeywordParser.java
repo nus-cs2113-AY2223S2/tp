@@ -2,6 +2,7 @@ package utils.parser;
 
 import java.util.List;
 import model.Card;
+import model.CardSelector;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
@@ -49,18 +50,14 @@ public class CardKeywordParser extends KeywordParser {
 
     private static Options buildDeleteOptions() {
         Options options = new Options();
-
-        Option indexOption = new Option("i", "index", true, "card index");
-        indexOption.setRequired(true);
-        indexOption.setType(Number.class);
-        options.addOption(indexOption);
+        options.addOptionGroup(buildCardSelectOption());
 
         return options;
     }
 
     private static Options buildTagOptions() {
         Options options = new Options();
-        options.addRequiredOption("c", "card", true, "card UUID");
+        options.addOptionGroup(buildCardSelectOption());
 
         Option tag = buildMultipleTokenOption("t", "tag", true, "tag name", true);
         options.addOption(tag);
@@ -70,7 +67,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private static Options buildDeckOptions() {
         Options options = new Options();
-        options.addRequiredOption("c", "card", true, "card UUID");
+        options.addOptionGroup(buildCardSelectOption());
         options.addRequiredOption("d", "deck", true, "deck name");
 
         return options;
@@ -78,7 +75,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private static Options buildViewOptions() {
         Options options = new Options();
-        options.addRequiredOption("c", "card", true, "card UUID");
+        options.addOptionGroup(buildCardSelectOption());
 
         return options;
     }
@@ -119,10 +116,9 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleDelete(List<String> tokens) throws ParseException {
         CommandLine cmd = parser.parse(buildDeleteOptions(), tokens.toArray(new String[0]));
+        CardSelector cardSelector = getSelectedCard(cmd);
 
-        int deleteIndex = ((Number) cmd.getParsedOptionValue("i")).intValue();
-
-        return new DeleteCardCommand(deleteIndex);
+        return new DeleteCardCommand(cardSelector);
     }
 
     //TODO: Fix issue here
@@ -143,32 +139,32 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleTag(List<String> tokens) throws ParseException, InkaException {
         CommandLine cmd = parser.parse(buildTagOptions(), tokens.toArray(new String[0]));
+        CardSelector cardSelector = getSelectedCard(cmd);
 
-        String cardUUID = cmd.getOptionValue("c");
         String[] tagNameTokens = cmd.getOptionValues("t");
         if (tagNameTokens.length > 1) {
             // Notify user
             String tagName = String.join("-", tagNameTokens);
-            return new AddCardToTagCommand(tagName, cardUUID);
+            return new AddCardToTagCommand(tagName, cardSelector);
         }
         else {
-            return new AddCardToTagCommand(tagNameTokens[0], cardUUID);
+            return new AddCardToTagCommand(tagNameTokens[0], cardSelector);
         }
     }
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
         CommandLine cmd = parser.parse(buildDeckOptions(), tokens.toArray(new String[0]));
 
-        String cardUUID = cmd.getOptionValue("c");
+        CardSelector cardSelector = getSelectedCard(cmd);
         String deckName = cmd.getOptionValue("d");
 
-        return new AddCardToDeckCommand(deckName, cardUUID);
+        return new AddCardToDeckCommand(deckName, cardSelector);
     }
 
     private Command handleView(List<String> tokens) throws ParseException, InkaException {
         CommandLine cmd = parser.parse(buildViewOptions(), tokens.toArray(new String[0]));
+        CardSelector cardSelector = getSelectedCard(cmd);
 
-        String cardUUID = cmd.getOptionValue("c");
-        return new ViewCardCommand(cardUUID);
+        return new ViewCardCommand(cardSelector);
     }
 }

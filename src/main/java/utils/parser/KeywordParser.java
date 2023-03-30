@@ -2,12 +2,16 @@ package utils.parser;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import model.CardSelector;
+import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.MissingArgumentException;
 import org.apache.commons.cli.MissingOptionException;
 import org.apache.commons.cli.Option;
+import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import utils.command.Command;
@@ -19,6 +23,11 @@ import utils.exceptions.UnrecognizedCommandException;
  * Abstract class for parsing keyword-specific commands
  */
 public abstract class KeywordParser {
+
+    protected static final String FLAG_CARD_UUID = "c";
+    protected static final String FLAG_LONG_CARD_UUID = "card";
+    protected static final String FLAG_CARD_INDEX = "i";
+    protected static final String FLAG_LONG_CARD_INDEX = "index";
 
     protected static final int FORMAT_HELP_WIDTH = 200;
     protected static final int FORMAT_HELP_LEFT_PAD = 0;
@@ -46,6 +55,41 @@ public abstract class KeywordParser {
         return opt;
     }
 
+    /**
+     * Build an {@link Option} for selecting Card based on either {@link model.CardUUID} or card index from list
+     *
+     * @return Configured OptionGroup
+     */
+    protected static OptionGroup buildCardSelectOption() {
+        // Mutually exclusive options
+        OptionGroup optionGroup = new OptionGroup();
+        optionGroup.setRequired(true);
+
+        Option cardUuidOption = new Option(FLAG_CARD_UUID, FLAG_LONG_CARD_UUID, true, "card UUID");
+        optionGroup.addOption(cardUuidOption);
+
+        Option cardIndexOption = new Option(FLAG_CARD_INDEX, FLAG_LONG_CARD_INDEX, true, "card index");
+        cardIndexOption.setType(Number.class);
+        optionGroup.addOption(cardIndexOption);
+
+        return optionGroup;
+    }
+
+    protected static CardSelector getSelectedCard(CommandLine cmd) throws ParseException {
+
+        if (cmd.hasOption(FLAG_CARD_UUID)) {
+            String cardUUID = cmd.getOptionValue(FLAG_CARD_UUID);
+            return new CardSelector(cardUUID);
+        } else if (cmd.hasOption(FLAG_CARD_INDEX)) {
+            int index = ((Long) cmd.getParsedOptionValue(FLAG_CARD_INDEX)).intValue();
+            return new CardSelector(index);
+        }
+
+        // Shouldn't be called
+        assert false;
+        return null;
+    }
+
     @SuppressWarnings("unchecked") // Safe, CLI library just returns List instead of List<String>
     public Command parseTokens(List<String> tokens) throws InkaException {
         if (tokens.size() == 0) {
@@ -61,9 +105,21 @@ public abstract class KeywordParser {
             String missingArgumentOption = e.getOption().getArgName();
             throw InvalidSyntaxException.buildMissingArgumentMessage(missingArgumentOption);
         } catch (MissingOptionException e) {
-            List<String> opts = e.getMissingOptions();
-            String missingOptions = opts.stream().map(str -> "-" + str).collect(Collectors.joining(", "));
-            throw InvalidSyntaxException.buildMissingOptionMessage(missingOptions);
+            // Apache will return a List containing either String or OptionGroup
+            List<String> missingOptions = new ArrayList<>();
+            for (Object obj : e.getMissingOptions()) {
+                if (obj instanceof String) {
+                    missingOptions.add((String) obj);
+                }
+                else if (obj instanceof OptionGroup) {
+                    OptionGroup optionGroup = (OptionGroup) obj;
+                    String optionsInGroup = optionGroup.getOptions().stream().map(option -> "-" + option.getOpt()).collect(Collectors.joining("/"));
+                    missingOptions.add(optionsInGroup);
+                }
+            }
+
+            String missingOptionsStr = String.join(", ", missingOptions);
+            throw InvalidSyntaxException.buildMissingOptionMessage(missingOptionsStr);
         } catch (ParseException e) {
             throw InvalidSyntaxException.buildGenericMessage();
         }

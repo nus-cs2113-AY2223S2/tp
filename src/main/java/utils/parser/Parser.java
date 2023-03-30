@@ -21,7 +21,6 @@ public class Parser {
     // Keyword-specific parsers
     private final CardKeywordParser cardKeywordParser = new CardKeywordParser();
     private final TagKeywordParser tagKeywordParser = new TagKeywordParser();
-
     private final DeckKeywordParser deckKeywordParser = new DeckKeywordParser();
 
     private boolean isExecuting;
