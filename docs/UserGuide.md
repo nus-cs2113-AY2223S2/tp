@@ -1,65 +1,38 @@
 # rainyDay User Guide
 
+Thank you for choosing rainyDay!
+
 ## Introduction
 
 rainyDay is a desktop application for managing your finances that runs on a Command Line Interface (CLI). rainyDay aims
-to provide a simple solution for young working adults to track your finances and achieve your financial goals. 
+to provide a simple solution for young working adults to track your finances and achieve your financial goals.
 
 This user guide provides an in-depth documentation on how to install and use rainyDay. This guide caters to all users of
 rainyDay, from people who are just starting out to advanced users looking for extra features they were unaware of.
 
-Thank you for choosing rainyDay! We sincerely hope that rainyDay has made it easier for you to track your finances.
+We sincerely hope that rainyDay has made it easier for you to track your finances.
 Should you have any feedback or enquiries, please do not hesitate to drop us an at rainydayfinancialtracker@gmail.com
 
 ## Content Page
 
 <!-- TOC -->
-* [rainyDay User Guide](#rainyday-user-guide)
-  * [Introduction](#introduction)
-  * [Content Page](#content-page)
-  * [How to use the user guide](#how-to-use-the-user-guide)
-  * [Quick Start](#quick-start)
-  * [Features Overview](#features-overview)
-  * <details> 
-    <summary>
-    <a href = #feature>Features</a> 
-    </summary>
 
-    * [Viewing help](#viewing-help)
-    * [Adding a transaction](#adding-a-transaction)
-    * [Viewing the transactions](#viewing-the-transactions)
-    * [Deleting a transaction](#deleting-a-transaction)
-    * [Filter statements](#filter-statements)
-    * [Editing a transaction](#editing-a-transaction)
-    * [Setting a Monthly Budget](#setting-a-monthly-budget)
-    * [Shortcuts](#shortcuts)
-      * [Adding a shortcut](#adding-a-shortcut)
-      * [Using a shortcut](#using-a-shortcut)
-      * [Viewing a shortcut](#viewing-a-shortcut)
-      * [Deleting a shortcut](#deleting-a-shortcut)
-    * [Ignoring an entry](#ignoring-an-entry)
-    * [Saving the data](#saving-the-data)
-      * [Where is my saved file located?](#where-is-my-saved-file-located)
-      * [Loading saved data](#loading-saved-data)
-    * [Exporting to CSV](#exporting-to-csv)
-      * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
-      * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
-    * [Exiting the application](#exiting-the-application)
-    
-    </details>
-  * [FAQ](#faq)
-  * [Command Summary](#command-summary)
-  * [Glossary](#glossary)
+* [rainyDay User Guide](#rainyday-user-guide)
+    * [Introduction](#introduction)
+    * [Content Page](#content-page)
+    * [How to use the user guide](#how-to-use-the-user-guide)
+    * [Quick Start](#quick-start)
+    * [Features Overview](#features-overview)
+    * [FAQ](#faq)
+    * [Command Summary](#command-summary)
+    * [Glossary](#glossary)
+
 <!-- TOC -->
 
 ## How to use the user guide
 
 This section assumes that you are a new user of rainyDay and are interested in learning more about the basic features
 provided by rainyDay.
-
-Some functions provided by rainyDays offer [simple usage](#glossary) and [advanced usage](#glossary) methods. New users
-are recommend to start off with "simple usage", while more advanced users are encouraged to refer to
-sections marked with "advanced usage" to enjoy the full capabilities of rainyDay.
 
 Please note the following about the format of commands given under each [feature](#features).
 
@@ -82,7 +55,7 @@ Please note the following about the format of commands given under each [feature
        [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
        for the guide on installing Java 11
 2. Download the latest version of "rainyDay"
-   from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v1.0/rainyDay.jar) by clicking on 
+   from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v1.0/rainyDay.jar) by clicking on
    "rainyDay.jar".
 3. Move the "rainyDay.jar" file to the folder of your choice by doing the following steps:
     1. Locate the "rainyDay.jar" file in your "Downloads" folder
@@ -108,14 +81,18 @@ Please note the following about the format of commands given under each [feature
 * [Filter statements](#filter-statements)
 * [Editing a transaction](#editing-a-transaction)
 * [Setting a Monthly Budget](#setting-a-monthly-budget)
-* [Adding a shortcut](#adding-a-shortcut)
-* [Using a shortcut](#using-a-shortcut)
-* [Viewing a shortcut](#viewing-a-shortcut)
-* [Deleting a shortcut](#deleting-a-shortcut)
+* [Shortcuts](#shortcuts)
+    * [Adding a shortcut](#adding-a-shortcut)
+    * [Using a shortcut](#using-a-shortcut)
+    * [Viewing a shortcut](#viewing-a-shortcut)
+    * [Deleting a shortcut](#deleting-a-shortcut)
 * [Ignoring an entry](#ignoring-an-entry)
 * [Saving the data](#saving-the-data)
-* [Loading saved data](#loading-saved-data)
+* [Where is my saved file located?](#where-is-my-saved-file-located)
+    * [Loading saved data](#loading-saved-data)
 * [Exporting to CSV](#exporting-to-csv)
+    * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
+    * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
 * [Exiting the application](#exiting-the-application)
 
 ## Features
@@ -209,21 +186,21 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
 * `DATE` is a field representing the date to be tagged with the transaction, where date needs to be in the format
   of `DD/MM/YYYY`, with `-date` appended before the date
 
-> 💡**Tip:**:
+> 💡**Tip:**
 >    * `DD` is a two-digit number representing the day
 >    * `MM` is a two-digit number representing the month
 >    * `YYYY` is a four-digit number representing the year
 
 Example of usage:
 
-You received a gift of $500 from your mother. To add it to rainyDay, the following command can be provided to rainyDay:
+You dine at Haidilao for $500. To add it to rainyDay, the following command can be provided to rainyDay:
 
 ```
 > add -out Haidilao $500
 Done! Added: out for Haidilao, -$500.00
 ```
 
-You had lunch at a hawker centre for $6.80 on 10/03/2023. To add it to rainyDay, the following command can be provided
+You received an allowance of $20 on 01/03/2023. To add it to rainyDay, the following command can be provided
 to rainyDay:
 
 ```
@@ -238,15 +215,15 @@ Done! Added: in for Allowance, +$20.00
 
 Example of usage:
 
-You received your monthly income of $2000 on 05/03/2023. To add it to rainyDay, the following command can be provided to
+You had beef noodles for $12. To add it to rainyDay, the following command can be provided to
 rainyDay:
 
 ```
-> add -out beef noodles $12 -c Food and Drinks <br>
+> add -out beef noodles $12 -c Food and Drinks
 Done! Added: out for beef noodles, -$12.00
 ```
 
-You paid for your school fees of $1000.50. To add it to rainyDay, the following command can be provided to rainyDay:
+You received you pay of $50000 on 26/03/2023. To add it to rainyDay, the following command can be provided to rainyDay:
 
 ```
 > add -in pay $50000 -date 26/03/2023
@@ -301,7 +278,7 @@ Format: `delete [INDEX]`
     * The transaction number can be obtained from [viewing the transactions](#viewing-the-transactions)
 
 Example of usage:
-Your current financial report is at the state in the example given in the 
+Your current financial report is at the state in the example given in the
 [viewing the transactions](#viewing-the-transactions) section.
 To delete the transaction with the description "beef noodles", you can use the command:
 
@@ -309,6 +286,7 @@ To delete the transaction with the description "beef noodles", you can use the c
 
 The transaction with the description "beef noodles" will be deleted, and the transactions shown to you
 subsequently after requesting to view the transactions will be as such: <br>
+
 ```
 > delete 3
 Done, deleted "beef noodles" from the financial report
@@ -348,6 +326,7 @@ Format : `filter [FLAG] {FIELD}`
 Example of usage:
 
 After requesting to view the transactions from rainyDay, the following is shown to you:
+
 ```
 > view
 +====================================================================================================+
@@ -400,6 +379,7 @@ Suppose you want to check your outflows only, you can use this command:
 |000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
 +------+---------------------------------------------+--------------+---------------------+----------+
 ```
+
 > 💡**Tip:** Multiple flags may be used at once but must be in this order:
 >
 > `-in` or `out` -> `-d` -> `-c` -> `-date`
@@ -535,10 +515,12 @@ Format : `setbudget GOAL`
 
 For example, if you would like to set a monthly budget goal of $1000, use the command below:<br>
 `setbudget 1000`
+
 ```
 > setbudget 1000
 Monthly Budget Goal set to $1,000.00!
 ```
+
 An additional message will accompany new expenses on how much you have spent for the month!
 
 ```
@@ -549,6 +531,7 @@ You have spent $544.00/$1000.00, Keep it up!
 
 If at any point of time you would like to remove this feature, simply set the goal to $0<br>
 `setbudget 0`
+
 ```
 > setbudget 0
 Monthly Budget Goal removed!
@@ -596,6 +579,7 @@ You have configured the shortcut according to the example in the [adding a short
 all you have to do is input the name of your configured shortcut command.
 
 `FavLunch`
+
 ```
 > FavLunch
 Done! Added: out for noodles, -$4.00
@@ -639,7 +623,7 @@ Example of Usage:
 You have configured the shortcut according to the example in the [adding a shortcut section](#adding-a-shortcut).
 Unfortunately, your favourite coffee shop has closed down, and you are no longer able to enjoy your favourite noodle
 dish. Now the shortcut you previously configured is no longer useful. All you have to do is delete the shortcut with the
-command below: 
+command below:
 
 `shortcut_delete FavLunch`
 
@@ -678,6 +662,7 @@ view
 |Remaining value: $-17.00                                                                            |
 +====================================================================================================+
 ```
+
 You can then execute the following command to ignore the entry:
 
 `ignore 4`
@@ -791,56 +776,6 @@ that "rainyDay.jar" is going to be stored in
 
 ## Glossary
 
-Advanced usage
-
-- A thorough usage method for a given function provided by rainyDay, suitable for more advanced users who are already
-  familiar with the basic functions of rainyDay. Highly recommended to get the full potential that rainyDay has to
-  offer. Such as allowing for greater control and flexibility in using rainyDay to fit specific needs and preferences.
-
-Command Line Interface
-
-- An interface that uses text as the mode of interaction between the user and the program.
-
-CSV
-
-- Stands for Comma Separated Value, a type of file format that can be imported to other statistical software such as
-  Microsoft Excel, R Commander or Google Sheets.
-
-Filter
-
-- A function to narrow down the range of items to be shown.
-
-Financial Statement
-
-- Represents a transaction.
-
-Financial Report
-
-- Represents a compilation of financial statements.
-
-Flags
-
-- Has a "-" appended to the front of a symbol, example: "-d", "-date", "-c", etc.
-
-Inflow
-
-- Signify an increment of money on your side, such as deposits into your wallet.
-
-Outflow
-
-- Signify a decrement of money on your side, such as payments from your wallet.
-
-Simple usage
-
-- A less overwhelming usage method for a given function provided by rainyDay for a more user-friendly experience. Highly
-  recommended for new users who are just starting to learn how to use the basic functions.
-
-Transaction
-
-- An activity relating to transferring of money.
-
-[Jump back to Table of Contents](#content-page)
-
 | Term                   | Explanation                                                                                                                                                      |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command Line Interface | An interface that uses text as the mode of interaction between the user and the program                                                                          |
@@ -852,3 +787,5 @@ Transaction
 | Inflow                 | Signify an increment of money on your side, such as deposits into your wallet                                                                                    |
 | Outflow                | Signify a decrement of money on your side, such as payments from your wallet                                                                                     |
 | Transaction            | An activity relating to transferring of money                                                                                                                    |
+
+[Jump back to Table of Contents](#content-page)
