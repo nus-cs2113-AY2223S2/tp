@@ -1,7 +1,7 @@
-<!-- ---
+---
 layout: page
 title: User Guide
---- -->
+---
 <h1> User Guide </h1>
 <h2> Introduction </h2>
 RM(recipe manager) is a <strong>desktop recipe manager application for managing recipes, optimized for use via a Command Line Interface</strong>(CLI). 
@@ -21,13 +21,6 @@ RM(recipe manager) is a <strong>desktop recipe manager application for managing 
     * **[Exiting the program: `exit`](#exiting-the-program-exit)**
     * **[Saving the data](#save-data)**
     * **[Editing the data file](#edit-data)**
-    <!-- * **[Editing the data file](#edit-data)** -->
-<!-- * **[Upcoming features(v2.0)](#upcoming-features)**
-    * **[Using a recipe: `use`](#using-a-recipe-use)**
-        * **[Moving to next step: `next`](#moving-to-next-step-next)**
-        * **[Moving to previous step: `prev`](#moving-to-previous-step-prev)**
-        * **[Moving to a specific step: `goto`](#moving-to-a-specific-step-goto)**
-        * **[Marking a step as done: `done`](#marking-a-step-as-done-done)** -->
 * **[FAQ](#faq)**
 * **[Command Summary](#command-summary)**
 <h2 id="quick-start"> Quick Start</h2>
@@ -59,9 +52,6 @@ APP accept the <strong>same name for different recipes</strong>. For example, yo
 
 Shows a message explaining how to access the help page.<br>
 Format: `help`<br>
-<!-- Examples:
-```
-``` -->
 
 <h2 id="adding-a-recipe-add"> Adding a recipe: <code class="language-plaintext highlighter-rouge">add</code></h2>
 
@@ -278,43 +268,6 @@ The first line is the name of the dish. And the second line is the tag of the di
 ***warning***:
 * Do **NOT** modify the save data easily.
 If you change the data file **in a wrong way**, the recipe manager will not start up correctly.
-
-
-<!-- <h2 id="upcoming-features"> Upcoming Features </h2>
-
-!!! hint
-    The following features are planned for the next release of the recipe manager. -->
-
-<!-- <h2 id="using-a-recipe-use"> Using a recipe: <code class="language-plaintext highlighter-rouge">use</code></h2>
-<p> 
-This set of features allow you to see a step by step follow along of the steps to cook a particular dish. Once the command is triggered the command line will print the first two steps of the recipe and will keep them unchecked initially. Users may navigate from one step to the next and back using ‘w’ and ‘s’ keys. With every new step, users will be able to view the immediate upcoming step and a progress bar of how many steps are left.
-</p>
-
-Format: `use n/NAME` or `use INDEX`
-Examples:
-* `use n/Hotpot`
-* `use 1`
-
-<ul>
-    <li>
-        <h3 id="moving-to-next-step-next"> Moving to next step: <code class="language-plaintext highlighter-rouge">next</code></h3>
-        <p>
-            Command marks the current step as done and prints an additional step of the recipe.
-        </p>
-    </li>
-    <li>
-        <h3 id="moving-to-previous-step-prev"> Moving to previous step: <code class="language-plaintext highlighter-rouge">prev</code></h3>
-        <p>
-            Command unmarked the previous step from done and prints one less step of the recipe.
-        </p>
-    </li>
-    <li>
-        <h3 id="moving-to-a-specific-step-goto"> Moving to a specific step: <code class="language-plaintext highlighter-rouge">goto</code></h3>
-    </li>
-    <li>
-        <h3 id="marking-a-step-as-done-done"> Marking a step as done: <code class="language-plaintext highlighter-rouge">done</code></h3>
-    </li>
-</ul> -->
 
 <h2 id='faq'> FAQ </h2>
 <strong>Q:</strong> What happens if I don't format the parameter correctly?<br>
