@@ -24,9 +24,10 @@ public class ListWorkoutCommand extends Command {
      * Show the list of date of the workout by calling the method in workoutList
      */
     //@@ author ZIZI-czh
-    @Override
+    /*@Override
     public String execute() {
         workoutArrayList = workoutList.getWorkoutArrayList();
+
         if (workoutArrayList.size() == EMPTY) {
             return EMPTY_WORKOUT_LIST_MESSAGE;
         }
@@ -37,6 +38,11 @@ public class ListWorkoutCommand extends Command {
         }
         return LINE_SEPARATOR;
         // return workoutList.toString();
+    }*/
+
+    @Override
+    public String execute() {
+        return workoutList.toString();
     }
 }
 
