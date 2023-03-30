@@ -286,6 +286,8 @@ Please see the below table for the list of available commands.
 | Randomly choose a recipe from the stored list | `recipe random` | `recipe random` |
 | Check if current list of ingredients is sufficient to cook a recipe | `recipe need <index_number>` | `recipe need 1` (recipe for Beef Burger) |
 | See which recipe is lacking the fewest ingredients to complete | `recipe almost` | `recipe almost` |
+| Remove all the ingredients that you used to cook a recipe | `make <index_number>` | `make 1` (recipe for Beef Burger) |
+| Terminate the program | `bye` | `bye` |
 
 ##### [Back to table of contents](#table-of-contents)
 
