@@ -6,6 +6,8 @@ This developer guide will help you to get started with our product, badMaths!
 1. [Acknowledgements](#acknowledgements) 
 2. [Design & implementation](#design--implementation)
    - [Solving Quadratic Equations](#solving-quadratic-equations) 
+   - [Notes](#notes)
+   - [Help](#help)
    - [Graph](#graph)
    - [Matrix](#matrix)
 2. [Product Scope](#product-scope)
