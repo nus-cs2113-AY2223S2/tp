@@ -68,11 +68,20 @@ public class JsonEventListStorage implements EventListStorage{
             savedList = gson.fromJson(fileReader, ArrayList.class); //Placeholder.
         } catch (Exception e) {
             Ui.printErrorMsg("IOException occured while reading from save.json. It is likely corrupted");
+            JsonEventListStorage.wipeFile();
         }
         return savedList;
     }
     public static void wipeFile(){
         File saveFile = new File(fileLocation);
-        saveFile.delete();
+        try {
+            FileWriter taskWriter;
+            taskWriter = new FileWriter(saveFile.getAbsoluteFile(), false);
+            taskWriter.write("[]");
+            taskWriter.close();
+        } catch (IOException e) {
+            Ui.printErrorMsg("IOException occurred while writing to file");
+        }
+
     }
 }

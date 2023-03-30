@@ -134,71 +134,68 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
         String timeInterval = null;
         String location = null;
 
-        try {
-            reader.beginObject();
-            while (reader.hasNext()) {
-                String name = reader.nextName();
-                if (name.equals("description")) {
-                    description = reader.nextString();
-                } else if (name.equals("startTime")) {
-                    String date = null;
-                    String time = null;
-                    reader.beginObject();
-                    while (reader.hasNext()) {
-                        String startName = reader.nextName();
-                        if (startName.equals("date")) {
-                            date = readDate(reader);
-                        } else if (startName.equals("time")) {
-                            time = readTime(reader);
-                        }
-                    }
-                    if ((date == null) || (time == null)) { //checks that date and time fields were not abused.
-                        throw new NPExceptions("Event Corrupted");
-                    }
-                    reader.endObject();
-                    String combination = date + " " + time;
-                    startTime = LocalDateTime.parse(combination, dfWithTime);
-                } else if (name.equals("endTime")) {
-                    String date = null;
-                    String time = null;
-                    reader.beginObject();
-                    while (reader.hasNext()) {
-                        String startName = reader.nextName();
-                        if (startName.equals("date")) {
-                            date = readDate(reader);
-                        } else if (startName.equals("time")) {
-                            time = readTime(reader);
-                        }
-                    }
-                    if ((date == null) || (time == null)) { //checks that date and time fields were not abused.
-                        throw new NPExceptions("Event Corrupted");
-                    }
-                    reader.endObject();
-                    String combination = date + " " + time;
-                    endTime = LocalDateTime.parse(combination, dfWithTime);
-                } else if (name.equals("hasEndInfo")) {
-                    hasEndInfo = reader.nextBoolean();
-                } else if (name.equals("hasStartTime")) {
-                    hasStartTime = reader.nextBoolean();
-                } else if (name.equals("hasEndTime")) {
-                    hasEndTime = reader.nextBoolean();
-                } else if (name.equals("hasLocation")) {
-                    hasLocation = reader.nextBoolean();
-                } else if (name.equals("isRecurring")) {
-                    isRecurring = reader.nextBoolean();
-                } else if (name.equals("timeInterval")) {
-                    timeInterval = reader.nextString();
-                } else if (name.equals("location")) {
-                    location = reader.nextString();
-                } else {
-                    throw new NPExceptions("File Corrupted"); //catches un-parsable modifications to fields.
-                }
-            }
 
-            reader.endObject();
-        } catch (NPExceptions e){
-            throw new NPExceptions("File Corrupt");
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            if (name.equals("description")) {
+                description = reader.nextString();
+            } else if (name.equals("startTime")) {
+                String date = null;
+                String time = null;
+                reader.beginObject();
+                while (reader.hasNext()) {
+                    String startName = reader.nextName();
+                    if (startName.equals("date")) {
+                        date = readDate(reader);
+                    } else if (startName.equals("time")) {
+                        time = readTime(reader);
+                    }
+                }
+                if ((date == null) || (time == null)) { //checks that date and time fields were not abused.
+                    throw new NPExceptions("Event Corrupted");
+                }
+                reader.endObject();
+                String combination = date + " " + time;
+                startTime = LocalDateTime.parse(combination, dfWithTime);
+            } else if (name.equals("endTime")) {
+                String date = null;
+                String time = null;
+                reader.beginObject();
+                while (reader.hasNext()) {
+                    String startName = reader.nextName();
+                    if (startName.equals("date")) {
+                        date = readDate(reader);
+                    } else if (startName.equals("time")) {
+                        time = readTime(reader);
+                    }
+                }
+                if ((date == null) || (time == null)) { //checks that date and time fields were not abused.
+                    throw new NPExceptions("Event Corrupted");
+                }
+                reader.endObject();
+                String combination = date + " " + time;
+                endTime = LocalDateTime.parse(combination, dfWithTime);
+            } else if (name.equals("hasEndInfo")) {
+                hasEndInfo = reader.nextBoolean();
+            } else if (name.equals("hasStartTime")) {
+                hasStartTime = reader.nextBoolean();
+            } else if (name.equals("hasEndTime")) {
+                hasEndTime = reader.nextBoolean();
+            } else if (name.equals("hasLocation")) {
+                hasLocation = reader.nextBoolean();
+            } else if (name.equals("isRecurring")) {
+                isRecurring = reader.nextBoolean();
+            } else if (name.equals("timeInterval")) {
+                timeInterval = reader.nextString();
+            } else if (name.equals("location")) {
+                location = reader.nextString();
+            } else {
+                throw new NPExceptions("File Corrupted"); //catches un-parsable modifications to fields.
+            }
         }
+        reader.endObject();
+
         return createEvent(description, startTime, endTime, hasStartTime, hasEndTime, hasLocation,
                 isRecurring, timeInterval, location);
     }
