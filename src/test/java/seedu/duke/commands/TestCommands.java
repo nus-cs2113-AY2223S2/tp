@@ -5,7 +5,6 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.userplan.UserPlan;
-import seedu.duke.ui.UiManager;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

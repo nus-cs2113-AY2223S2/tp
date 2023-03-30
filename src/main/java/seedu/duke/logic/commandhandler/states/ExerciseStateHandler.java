@@ -10,8 +10,8 @@ import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.storage.Storage;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.ErrorMessages;
-import seedu.duke.ui.UiManager;
 import seedu.duke.data.userdata.Session;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 //@@author ChubbsBunns
@@ -78,8 +78,8 @@ public class ExerciseStateHandler {
         if (!workoutOngoing) {
             throw new DukeError(ErrorMessages.ERROR_NO_ONGOING_EXERCISE.toString());
         }
-        UiManager uiManager = new UiManager();
-        uiManager.printExerciseFromList(currentSessionWorkout.getSessionExercises());
+        Ui ui = new Ui();
+        ui.printExerciseFromList(currentSessionWorkout.getSessionExercises());
     }
 
     /**

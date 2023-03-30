@@ -7,7 +7,6 @@ import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
-import seedu.duke.ui.UiManager;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;

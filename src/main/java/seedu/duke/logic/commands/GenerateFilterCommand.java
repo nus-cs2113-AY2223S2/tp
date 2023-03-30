@@ -4,7 +4,7 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.ui.ErrorMessages;
-import seedu.duke.ui.UiManager;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 
@@ -53,11 +53,11 @@ public class GenerateFilterCommand extends Command {
      * Filters the whole list of available exercises based off the
      * input from the user.
      *
-     * @param uiManager Prints out the respective exercises for a given input
+     * @param ui Prints out the respective exercises for a given input
      * @param exerciseGenerator Generates Exercises
      * @throws DukeError duke error
      */
-    public void executeCommand (UiManager uiManager, GenerateExercise exerciseGenerator) throws DukeError {
+    public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
         assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())
             : "Do not modify the ArrayList of GenerateExercise";
@@ -91,7 +91,7 @@ public class GenerateFilterCommand extends Command {
             exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
         }
         exerciseListGenerated = exercises;
-        uiManager.printExerciseFromList(exercises);
+        ui.printExerciseFromList(exercises);
     }
     //@author
 

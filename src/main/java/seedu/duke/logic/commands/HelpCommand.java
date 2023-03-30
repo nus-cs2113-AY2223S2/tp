@@ -1,11 +1,11 @@
 package seedu.duke.logic.commands;
 
 import seedu.duke.data.exercisegenerator.GenerateExercise;
-import seedu.duke.ui.UiManager;
+import seedu.duke.ui.Ui;
 
 public class HelpCommand extends Command {
-    public void executeCommand (UiManager uiManager, GenerateExercise generateExercise) {
-        uiManager.printHelp();
+    public void executeCommand (Ui ui, GenerateExercise generateExercise) {
+        ui.printHelp();
     }
 
 }
