@@ -3,6 +3,7 @@ package pocketpal.data.entry;
 import pocketpal.data.parsing.EntryParser;
 import pocketpal.communication.Serialisable;
 import pocketpal.frontend.constants.EntryConstants;
+import pocketpal.backend.constants.MiscellaneousConstants;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +28,16 @@ public class Entry implements Serialisable {
         this.amount = amount;
         this.category = category;
         this.dateTime = LocalDateTime.now();
+    }
+
+    public Entry(String description, double amount, Category category, LocalDateTime dateTime) {
+        assert amount >= 0 : "Entry amount must be non-negative!";
+        assert category != null : "Entry category cannot be null";
+        assert !description.isEmpty() : "Entry description cannot be empty";
+        this.description = description;
+        this.amount = amount;
+        this.category = category;
+        this.dateTime = dateTime;
     }
 
     /**
@@ -63,7 +74,11 @@ public class Entry implements Serialisable {
     }
 
     public String getDateTimeString() {
-        return dateTime.format(DateTimeFormatter.ofPattern("d MMM uuuu, HH:mm"));
+        return dateTime.format(
+            DateTimeFormatter.ofPattern(
+                MiscellaneousConstants.DATETIME_PATTERN
+            )
+        );
     }
 
     public LocalDateTime getDateTime() {

@@ -10,11 +10,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.time.LocalDateTime;
+
 import pocketpal.backend.constants.Config;
+import pocketpal.backend.constants.MiscellaneousConstants;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
-import pocketpal.frontend.exceptions.InvalidCategoryException;
 import pocketpal.frontend.util.CategoryUtil;
+import pocketpal.frontend.util.DateTimeUtil;
+import pocketpal.frontend.exceptions.InvalidCategoryException;
+import pocketpal.frontend.exceptions.InvalidDateException;
 import pocketpal.backend.exceptions.InvalidReadFileException;
 
 public class Storage {
@@ -58,26 +63,47 @@ public class Storage {
      */
     private Entry readEntryLine(String line) throws InvalidReadFileException {
         try {
+            assert !line.isEmpty() : "Line to be read cannot be empty";
             String[] lineArray = line.split(this.delimiter);
             String description = lineArray[0];
             String amountString = lineArray[1];
             String categoryString = lineArray[2];
+            String dateTimeString = lineArray[3];
             double amount = Double.parseDouble(amountString);
             Category category = CategoryUtil.convertStringToCategory(
-                    categoryString
+                categoryString
+                );
+            LocalDateTime dateTime = DateTimeUtil.convertStringToLocalDateTime(
+                dateTimeString
             );
-            return new Entry(description, amount, category);
+            return new Entry(description, amount, category, dateTime);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidReadFileException(
-                    String.format("Error reading data from line: %s", line)
+                String.format("%s%s",
+                    MiscellaneousConstants.GENERAL_STORAGE_ERROR_MESSAGE,
+                    line
+                )
             );
         } catch (NumberFormatException e) {
             throw new InvalidReadFileException(
-                    String.format("Amount is not valid for line: %s", line)
+                String.format("%s%s", 
+                    MiscellaneousConstants.INVALID_AMOUNT_ERROR_MESSAGE,
+                    line
+                )
             );
         } catch (InvalidCategoryException e) {
             throw new InvalidReadFileException(
-                    String.format("Category is not valid for line: %s", line)
+                String.format("%s%s",
+                    MiscellaneousConstants.INVALID_CATEGORY_ERROR_MESSAGE,
+                    line
+                )
+            );
+        } catch (InvalidDateException e) {
+            throw new InvalidReadFileException(
+                String.format("%s%s", 
+                    MiscellaneousConstants.INVALID_DATE_ERROR_MESSAGE,
+                    line
+                )
             );
         }
     }
@@ -131,11 +157,13 @@ public class Storage {
         String description = entry.getDescription();
         String amountString = Double.toString(entry.getAmount());
         String categoryString = entry.getCategoryString();
+        String dateTimeString = entry.getDateTimeString();
         String returnString = String.join(
                 this.delimiter,
                 description,
                 amountString,
-                categoryString
+                categoryString,
+                dateTimeString
         );
         returnString += System.lineSeparator();
         return returnString;

@@ -12,6 +12,7 @@ import pocketpal.data.entrylog.EntryLog;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
 import pocketpal.frontend.constants.EntryConstants;
+import pocketpal.backend.constants.MiscellaneousConstants;
 import pocketpal.backend.exceptions.InvalidReadFileException;
 
 import java.util.List;
@@ -102,9 +103,11 @@ public class StorageTest {
         private static final String TEST_DESCRIPTION = "Mango Juice";
         private static final String TEST_AMOUNT_STRING = "4";
         private static final String TEST_CATEGORY_STRING = EntryConstants.FOOD;
+        private static final String TEST_DATE_STRING = "29 Mar 2023; 18:36";
         private static final String INVALID_DELIMITER = ";";
         private static final String INVALID_AMOUNT_STRING = "ABC123";
         private static final String INVALID_CATEGORY_STRING = "ABC123";
+        private static final String INVALID_DATE_STRING = "ABC123";
         FileWriter writer;
 
         @BeforeEach
@@ -136,7 +139,7 @@ public class StorageTest {
 
             Storage storage = new Storage(PATH_STRING);
             Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
-            String expectedMessage = "Error reading data from line:";
+            String expectedMessage = MiscellaneousConstants.GENERAL_STORAGE_ERROR_MESSAGE;
             String actualMessage = exception.getMessage();
 
             assertTrue(actualMessage.contains(expectedMessage));
@@ -149,14 +152,15 @@ public class StorageTest {
                     TEST_DELIMITER,
                     TEST_DESCRIPTION,
                     INVALID_AMOUNT_STRING,
-                    TEST_CATEGORY_STRING
+                    TEST_CATEGORY_STRING,
+                    TEST_DATE_STRING
             );
             assertDoesNotThrow(() -> writer.append(writeString));
             assertDoesNotThrow(() -> writer.close());
 
             Storage storage = new Storage(PATH_STRING);
             Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
-            String expectedMessage = "Amount is not valid for line:";
+            String expectedMessage = MiscellaneousConstants.INVALID_AMOUNT_ERROR_MESSAGE;
             String actualMessage = exception.getMessage();
 
             assertTrue(actualMessage.contains(expectedMessage));
@@ -169,14 +173,36 @@ public class StorageTest {
                     TEST_DELIMITER,
                     TEST_DESCRIPTION,
                     TEST_AMOUNT_STRING,
-                    INVALID_CATEGORY_STRING
+                    INVALID_CATEGORY_STRING,
+                    TEST_DATE_STRING
             );
             assertDoesNotThrow(() -> writer.append(writeString));
             assertDoesNotThrow(() -> writer.close());
 
             Storage storage = new Storage(PATH_STRING);
             Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
-            String expectedMessage = "Category is not valid for line:";
+            String expectedMessage = MiscellaneousConstants.INVALID_CATEGORY_ERROR_MESSAGE;
+            String actualMessage = exception.getMessage();
+
+            assertTrue(actualMessage.contains(expectedMessage));
+        }
+        
+        @Test
+        public void testInvalidDate() {
+            writer = assertDoesNotThrow(() -> new FileWriter(PATH_STRING));
+            String writeString = String.join(
+                    TEST_DELIMITER,
+                    TEST_DESCRIPTION,
+                    TEST_AMOUNT_STRING,
+                    TEST_CATEGORY_STRING,
+                    INVALID_DATE_STRING
+            );
+            assertDoesNotThrow(() -> writer.append(writeString));
+            assertDoesNotThrow(() -> writer.close());
+
+            Storage storage = new Storage(PATH_STRING);
+            Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
+            String expectedMessage = MiscellaneousConstants.INVALID_DATE_ERROR_MESSAGE;
             String actualMessage = exception.getMessage();
 
             assertTrue(actualMessage.contains(expectedMessage));
@@ -195,7 +221,7 @@ public class StorageTest {
 
             Storage storage = new Storage(PATH_STRING);
             Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
-            String expectedMessage = "Error reading data from line:";
+            String expectedMessage = MiscellaneousConstants.GENERAL_STORAGE_ERROR_MESSAGE;
             String actualMessage = exception.getMessage();
 
             assertTrue(actualMessage.contains(expectedMessage));

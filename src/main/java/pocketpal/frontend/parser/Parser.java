@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import pocketpal.data.entry.Category;
+import pocketpal.frontend.constants.EntryConstants;
 import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.commands.AddCommand;
@@ -461,13 +462,15 @@ public class Parser {
             logger.info("start date identified as: " + startDateString);
             isValidDate(startDateString);
             logger.info("start date verified");
-            startDateString += " 00:00";
+            arguments = arguments.replaceFirst(matcher.group(), "").trim();
+            startDateString = startDateString + EntryConstants.EARLIEST_TIME;
         }
         if (!endDateString.isEmpty()) {
             logger.info("end date identified as: " + endDateString);
             isValidDate(endDateString);
             logger.info("end date verified");
-            endDateString += " 23:59";
+            arguments = arguments.replaceFirst(matcher.group(), "").trim();
+            endDateString = endDateString + EntryConstants.LATEST_TIME;
         }
         if (startDateString.isEmpty() ^ endDateString.isEmpty()) {
             logger.info("Missing at least one date as view command request parameter");
