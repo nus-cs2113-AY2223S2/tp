@@ -208,17 +208,21 @@ public class Parser {
             }
             return new AddCommand(new Item(itemQuantity, itemDescription));
         } catch (InvalidVariablesException e) {
-            return new IncorrectCommand("Invalid Item Name",
-                    "try to input a name (word(s)) to be added into the list");
+            return new IncorrectCommand("Invalid input format",
+                    AddCommand.HELP_MSG);
         } catch (NumberFormatException e) {
             return new IncorrectCommand("Invalid Item Index",
-                    "try to input an integer number between 1 and " + PackingList.getItemList().size());
+                    "for item quantity, try to input a positive integer number");
         }
     }
 
-    public static String[] getAddVariables() {
+    public static String[] getAddVariables() throws InvalidVariablesException{
         String[] inputStringList = fullInput.trim().split(" ", 2);
-        return inputStringList[1].trim().split("\\s+/of\\s+");
+        String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
+        if(inputVariables.length != 2){
+            throw new InvalidVariablesException();
+        }
+        return inputVariables;
     }
 
     /**
