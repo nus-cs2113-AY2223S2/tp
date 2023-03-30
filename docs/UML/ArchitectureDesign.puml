@@ -1,0 +1,44 @@
+@startuml
+hide circle
+hide footbox
+hide members
+allowmixing
+
+
+!define UI_COLOR #1D8900
+!define STORAGE_COLOR #A38300
+!define PARSER_COLOR #9D0012
+!define DUKE_COLOR #FF6A14
+!define EVENTLIST_COLOR #82DE09
+!define USER_COLOR #000000
+skinparam MinClassWidth 60
+skinparam actorStyle awesome
+skinparam packageStyle Rectangle
+skinparam DefaultTextAlignment center
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+package NUSPlanner{
+    class UI UI_COLOR
+    class Parser PARSER_COLOR
+    class Storage STORAGE_COLOR
+    class Duke DUKE_COLOR
+    class EventList EVENTLIST_COLOR
+}
+
+actor :user:
+file SaveFile
+user .down.> UI
+UI -right-> Parser
+Duke -> UI
+Duke ----> Storage
+Parser -down-> EventList
+EventList ..> Storage
+Storage .> SaveFile
+Storage ..> EventList
+@enduml
