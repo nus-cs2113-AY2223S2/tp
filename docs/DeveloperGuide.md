@@ -19,8 +19,8 @@ This developer guide will help you to get started with our product, badMaths!
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-
 ## Design & implementation
+
 ### Solving Quadratic Equations
 The Quadratic equation solver allows user to find the value of `x` in a simple quadratic equation.
 The function is started when `solveQuadratic()` is called.
@@ -36,25 +36,88 @@ would identify a, b and c from toDo.
 
 Step 3. To solve the quadratic equation, a, b and c are put into the formula `x = (-b±√(b^2-4ac))/2a`.
 
-### Store and Display Notes
-The Store and Display Notes functionality allows users to input notes 
-which will be stored in a list, and to display a list of all notes
-stored by users. This functionality is achieved through the `Store.` and `List.` commands.
+### Notes
+The Notes feature allows users to input their notes for storage purposes 
+and to keep track of their notes.
+
+This feature is implemented by storing the notes input from users into
+the data/notes.txt file, and users are able to keep track
+of their notes by reading the content from the data/notes.txt file/.
+
+#### Notes Text:
+The `notes.txt` is a text file that contains the list of Notes stored by users while using BadMaths.
+It is located in the `data` directory of the project.
+The purpose of this file is to allow users to keep a list of their notes stored 
+and to display their notes item stored as and when is needed for their educational purposes.
+
+#### Command class:
+Step 1. Define the `Command` class: The `Command` class takes in a command takes in a `command` and a `toDo` item and
+based on both of these inputs, the `Command` class then identifies the relevant functions
+to be executed.
+
+Step 2. The `executeCommand` method does the executing of the relevant functions depending on the `command` that
+was input by users. There are several functionalities provided in the `executeCommand` for users, including but
+not limited to the Storing and Deleting of Notes, Marking and Unmarking of notes items as completed or incomplete, and
+the searching for notes based through keywords or priorities of the notes. 
+
+#### Ui class:
+Step 1. Define the `Ui` class: The `Ui` class consists of several static methods which are used
+for the purposes of printing the user interface messages when users are performing the
+operations of BadMaths such as the notes and calculation operations and functionalities.
+
+The methods that are in the Ui class are as follows:
+`printIncorrectFormatEnteredelevant ()`: prints out a warning message to alert the 
+user that an incorrect command format for badMaths has been entered.
+
+`printNegativeAmplitudeEntered()`: prints out a warning message to alert that the user has input a negative amplitude.
+
+`printAmplitude(double amplitude)`: prints out the amplitude of the Mathematical function provided by the user.
+
+`printPhase(double phase)`: prints out the phase angle of the Mathematical function provided by the user.
+
+`printVerticalShift(double verticalShift)`: prints out the vertical shift of the Mathematical function provided by the user.
+
+`printFrequency(Double freq)`: prints out the frequency of the Mathematical function provided by the user.
+
+`printMark(String text)`: prints out a message indicating that a note has been marked as done by the user.
+
+`printUnmark(String text)`: prints out a message indicating that a note has been unmarked as incomplete by the user.
+
+`printAddNote(String text, int size)`: prints out a message indicating that a note has been added by the user
+and displays to the user the total current number of notes stored in the list.
+
+`printDelete(String text, int size)`: prints out a message indicating that a note has been removed by the user
+and displays to the user the total current number of notes stored in the list.
+
+`printNotes(ArrayList<Note> notes)`: prints out all the notes currently stored in the list by the user.
+
+`printSpecificNote(int index, ArrayList<Note> notes)`: prints out a specific note in the list based on 
+its index provided by user.
+
+`printFindNotes(ArrayList<Note> notes)`: prints out all the notes in the list
+that matches the keyword provided by the user.
+
+`printPriority(int index, ArrayList<Note> notes)`: prints out a message indicating to the user that the 
+priority of a note item has been changed based on the user's preference.
+
+`printNotesByReviewCount(ArrayList<Note> notes)`: prints out all the notes sorted based on the number of
+review counts for each note item in a list format.
+
+`printNotesByPriority(ArrayList<Note> notes)`: prints out all the notes sorted based on the
+priority (high, medium, low) of the note items in a list format.
+
+#### NotesPriority class:
+The `NotePriority` class is utilised to set the priority level (LOW, MEDIUM, HIGH)
+of the notes stored in the Notes List by users.
+
+<details>
+<summary>See the Sequence Diagram for Notes</summary>
+<div markdown="1">
 
 ![img_2.png](img_2.png)
 
-The syntax for the commands of this functionality is as follows:
-1. `Store. <item>` For storing of notes into the list, where `<item>` represents the note that 
-users would like to store. 
-   Example: `Store. addition`
-2. `List.` For displaying of a list of all notes stored by users.
-   Example: `List.`
-
-Below is an illustration of how the `Store.` and `List.` are used to allow
-users to input notes to a list and to display a list of all notes that are
-stored inside the list.
-1. This is step 1.
-2. This is step 2.
+</div>
+</details>
 
 ### Help
 The Help feature allows users to view possible options by calling `Help.` which reads the content stored in the HelpManual.txt.

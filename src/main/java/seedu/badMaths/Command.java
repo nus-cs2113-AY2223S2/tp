@@ -50,7 +50,6 @@ public class Command {
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
         Calculator calculator = new Calculator();
         Quadratic quadratic = new Quadratic(toDo);
-
         try {
             switch (command) {
             case "Bye":
@@ -61,7 +60,7 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Store":
-                if (!isInvalidTodo(toDo)) {
+                if (isInvalidTodo(toDo)) {
                     throw new IllegalTodoException();
                 }
                 notes.add(toDo);
