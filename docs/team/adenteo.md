@@ -6,7 +6,7 @@ PocketPal is a user-friendly money-management app that makes it easy to track ex
 
 Given below are my contributions to the project. 
 
-- __Parser__: The fundamental logic for parsing of user inputs.
+- **Core Functionality**: Added the fundamental logic for parsing of user inputs.
     - **What it does**: Accurately and efficiently process user commands and carry out the requested actions.
     - **Justification**: This logic is crucial for interpreting user inputs and allowing the application to seamlessly handle a wide range of commands, hence providing a smooth user experience.
     - **Highlights**: This logic had to be constantly refined as we introduced additional features into PocketPal, and also when bugs were gradually being discovered. It was also challenging to provide a smooth experience where users were able to provide minimal flags but yet achieve a wide range of functionality.
@@ -14,3 +14,9 @@ Given below are my contributions to the project.
 
 
 
+- Code contributed
+- Project Management
+- Enhancements to existing features
+- Documentation
+- Community
+- Tools
