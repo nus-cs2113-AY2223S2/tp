@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 public class Parser {
     public static final Map<Integer, LocalDate> SEMESTER_START_DATES = Map.of(
@@ -86,9 +87,11 @@ public class Parser {
             String deletedTask = eventList.getDetails(index);
             eventList.deleteThisTask(index);
             // TODO: Show successful add on UI. (For all cases)
+            Duke.LOGGER.log(Level.INFO, "User deleted event in event list.");
             Ui.deleteSuccessMsg(deletedTask);
         } else if (details[1].substring(0, 3).trim().equals("all")) {
             eventList.deleteAll();
+            Duke.LOGGER.log(Level.INFO, "User deleted all events in event list.");
             Ui.deleteAllSuccess();
         } else {
             throw new NPExceptions("please input a valid flag!");
@@ -202,12 +205,14 @@ public class Parser {
             // Fetch NusModule from module code
             NusModule nusModule = nusmods.get(moduleCode);
             if (nusModule == null) {
+                Duke.LOGGER.log(Level.INFO, "User selected module that does not exist.");
                 throw new NPExceptions("Module "+ moduleCode +" does not exist!");
             }
 
             // Fetch lessons from module
             List<Lesson> lessons = nusModule.getLesson(UserUtility.getUser().getSemester(), lectureType, classNumber);
             if (lessons == null || lessons.isEmpty()) {
+                Duke.LOGGER.log(Level.INFO, "User selected module that is unavailable for semester.");
                 Ui.printErrorMsg("Selected module is not available for semester " +
                         UserUtility.getUser().getSemester());
                 return;
@@ -237,7 +242,7 @@ public class Parser {
                     }
                 }
             }
-
+            Duke.LOGGER.log(Level.INFO, "User added module to event list.");
             Ui.addSuccessMsg("Added "+ count +" classes of Module: " + moduleCode);
 
         } else {
@@ -375,7 +380,7 @@ public class Parser {
         if (!information[5].equals("")) {
             eventList.reviseLocation(eventIndex, information[5]);
         }
-        
+        Duke.LOGGER.log(Level.INFO, "User edited time of event.");
         Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
     }
 
@@ -394,7 +399,7 @@ public class Parser {
         if (!information[5].equals("")) {
             eventList.reviseLocation(eventIndex, information[5]);
         }
-
+        Duke.LOGGER.log(Level.INFO, "User edited time of event.");
         Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
     }
 }
