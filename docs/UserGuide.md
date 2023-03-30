@@ -15,17 +15,18 @@
 
 {Give detailed description of each feature}
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### Adding a consultation appointment: `consultation`
+Adds a new consultation appointment to the appointment manager.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+* The `DATE` must be in *YYYY-MM-DD* format.
+* The `TIME` must be in *HH-MM* format.
 
 Example of usage: 
 
-`todo n/Write the rest of the User Guide d/next week`
+* `consultation at/Cat an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`
+* `consultation at/Dog an/Russ on/Sarah cn/92929292 cd/2023-10-15 ct/09:00`
 
 `todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
 
