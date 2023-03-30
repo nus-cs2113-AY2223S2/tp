@@ -1,0 +1,13 @@
+@startuml
+PlannerCommandHandler->UserPlan : addPlan()
+activate UserPlan
+UserPlan -> "newPlan:Plan" **
+activate "newPlan:Plan"
+"newPlan:Plan" --> UserPlan
+deactivate "newPlan:Plan"
+activate Storage
+UserPlan -> Storage : writeToJson()
+Storage --> UserPlan
+deactivate Storage
+deactivate UserPlan
+@enduml
