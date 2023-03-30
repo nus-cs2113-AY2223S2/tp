@@ -345,8 +345,8 @@ public class Parser {
         boolean isValidFormat = !information[0].equalsIgnoreCase("") && !information[2].equalsIgnoreCase("")
                 && !information[1].equalsIgnoreCase("");
 
-        String recurFlag = information[5].split(" ")[2].trim();
-        isValidFormat = isValidFormat && (recurFlag.equalsIgnoreCase("W") || recurFlag.equalsIgnoreCase("D"));
+        // String recurFlag = information[5].split(" ")[2].trim();
+        // isValidFormat = isValidFormat && (recurFlag.equalsIgnoreCase("W") || recurFlag.equalsIgnoreCase("D"));
 
         if (!isValidFormat) {
             throw new NPExceptions("Please use correct command format!");

@@ -17,6 +17,8 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 
 /src/main/java/seedu/duke/*.class
+log.txt
+.gitignore
 
 .gitignore
 save.json
