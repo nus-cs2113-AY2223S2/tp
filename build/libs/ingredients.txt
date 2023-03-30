@@ -1,0 +1,7 @@
+{"metadata":{"name":"water","units":"volume","unitLabel":"ml"},"quantity":450.0}
+{"metadata":{"name":"ground beef","units":"weight","unitLabel":"grams"},"quantity":450.0}
+{"metadata":{"name":"salt","units":"weight","unitLabel":"grams"},"quantity":2.0}
+{"metadata":{"name":"black pepper","units":"weight","unitLabel":"grams"},"quantity":1.0}
+{"metadata":{"name":"Worcestershire sauce","units":"weight","unitLabel":"grams"},"quantity":300.0}
+{"metadata":{"name":"garlic powder","units":"weight","unitLabel":"grams"},"quantity":2.0}
+{"metadata":{"name":"hamburger buns","units":"count"},"quantity":2.0}
