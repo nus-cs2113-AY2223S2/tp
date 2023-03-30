@@ -72,11 +72,13 @@ public class UserUtility {
 
                     if (startDateTime.toLocalTime().getMinute() > 0
                             && startDateTime.toLocalTime().getMinute() < 30) {
-                        startDateTime = LocalDateTime.of(startDateTime.toLocalDate(), LocalTime.of(startDateTime.getHour(), 0));
+                        startDateTime = LocalDateTime.of(startDateTime.toLocalDate(),
+                                LocalTime.of(startDateTime.getHour(), 0));
                     }
                     if (endDateTime.toLocalTime().getMinute() > 30
                             && startDateTime.toLocalTime().getMinute() <= 59) {
-                        endDateTime = LocalDateTime.of(endDateTime.toLocalDate(), LocalTime.of(endDateTime.getHour() + 1, 0));
+                        endDateTime = LocalDateTime.of(endDateTime.toLocalDate(),
+                                LocalTime.of(endDateTime.getHour() + 1, 0));
                     }
 
                     if (time.getDayOfWeek() == day && isValidInterval(time, startDateTime, endDateTime)
