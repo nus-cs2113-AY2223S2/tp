@@ -270,20 +270,24 @@ public class Parser {
             int itemQuantity = Integer.parseInt(quantityAndIndex[0]);
             int itemIndex = Integer.parseInt(quantityAndIndex[1]);
             return new PackCommand(itemQuantity, itemIndex);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | InvalidIndexException  e) {
             if (PackingList.getItemList().size() == 0) {
                 return new IncorrectCommand("Invalid Item Index",
                         "Your packing list is empty, there is nothing to pack");
             } else {
                 return new IncorrectCommand("Invalid Item Index",
-                        "Try to input an integer number between 1 and " + PackingList.getItemList().size());
+                        "Try to input an item index number between 1 and " + PackingList.getItemList().size());
             }
         }
     }
 
-    public static String[] getPackVariables() {
+    public static String[] getPackVariables() throws InvalidIndexException {
         String[] inputStringList = fullInput.trim().split(" ", 2);
-        return inputStringList[1].trim().split("\\s+/of\\s+");
+        String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
+        if(Integer.parseInt(inputVariables[1])<1 | Integer.parseInt(inputVariables[1])> PackingList.getItemList().size()){
+            throw new InvalidIndexException();
+        }
+        return inputVariables;
     }
 
 
@@ -299,13 +303,13 @@ public class Parser {
             int itemQuantity = Integer.parseInt(quantityAndIndex[0]);
             int itemIndex = Integer.parseInt(quantityAndIndex[1]);
             return new UnpackCommand(itemQuantity, itemIndex);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | InvalidIndexException  e) {
             if (PackingList.getItemList().size() == 0) {
                 return new IncorrectCommand("Invalid Item Index",
                         "Your packing list is empty, there is nothing to unpack");
             } else {
                 return new IncorrectCommand("Invalid Item Index",
-                        "Try to input an integer number between 1 and " + PackingList.getItemList().size());
+                        "Try to input an item index number between 1 and " + PackingList.getItemList().size());
             }
         }
     }
