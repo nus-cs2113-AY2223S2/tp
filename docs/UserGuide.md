@@ -164,9 +164,9 @@ Note that to `exit` the whole program from the edit window, you have to `quit` f
 
 <h2 id="deleting-a-recipe-delete"> Deleting a recipe: <code class="language-plaintext highlighter-rouge">delete</code></h2>
 
-Deletes a recipe from the recipe list.
-**Format**: `delete INDEX`
-**Examples**:
+Deletes a recipe from the recipe list.<br>
+**Format**: `delete INDEX`<br>
+**Examples**:<br>
 ```
 __________________________________________________________
 delete 1
@@ -226,21 +226,21 @@ __________________________________________________________
 
 <h2 id="listing-all-recipes-list"> Listing all recipes: <code class="language-plaintext highlighter-rouge">list</code></h2>
 
-This feature allows you to **list all recipes** you currently have. This feature is useful after using the add, edit and delete commands to make changes to the recipe list, as it shows you the updated list.
+This feature allows you to **list all recipes** you currently have. This feature is useful after using the add, edit and delete commands to make changes to the recipe list, as it shows you the updated list.<br>
 **Format**: `list`<br>
 **Examples**:<br>
 * `list`
 
 <h2 id="clearing-all-entries-clear"> Clearing all entries: <code class="language-plaintext highlighter-rouge">clear</code></h2>
 
-This feature allows you to **delete all recipes** that are currently stored on the recipe manager. Users may use this to clear all data when starting to use the app or when they wish to clear all data.
+This feature allows you to **delete all recipes** that are currently stored on the recipe manager. Users may use this to clear all data when starting to use the app or when they wish to clear all data.<br>
 **Format**: `clear`<br>
 **Examples**:<br>
 * `clear`
 
 <h2 id="exiting-the-program-exit"> Exiting the program: <code class="language-plaintext highlighter-rouge">exit</code></h2>
 
-Exits the program.
+Exits the program.<br>
 **Format**: `exit`<br>
 **Examples**:<br>
 * `exit`
