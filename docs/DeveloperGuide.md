@@ -52,6 +52,23 @@ When the user first starts the application:<br>
 When the program is running:<br>
 <img src="images\StorageRunSequenceDiagram.png" width="500"><p>
 
+### Data component
+
+**API**: `Category.java`, `CategoryList.java`, `Event.java`
+
+The data structure of MoneyMind follows a very simple design.
+
+`CategoryList`: It uses an ArrayList to store all the categories. 
+Each category is an object of `Category` class.
+
+`Category`: It uses an ArrayList to store all the events.
+Each event is an object of `Event` class.
+
+`Event`: It stores the information of each event.
+
+The details of the definition of `Category` and `Event` can be found
+in the [Glossary](#appendix-d--glossary) section.
+
 ### Commands component
 
 **API**: `Command.java`
