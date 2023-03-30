@@ -148,16 +148,15 @@ public class UITest {
             testEntries.addEntry(testEntries3);
 
             ui.printEntriesToBeViewed(testEntries);
-            double expectedTotalPrice = 0;
-            for (int index = 1; index <= testEntries.getSize(); index++) {
-                expectedTotalPrice += testEntries.getEntry(index).getAmount();
-            }
             StringBuilder expectedString = new StringBuilder();
             expectedString.append("These are the latest ")
                     .append(testEntries.getSize())
                     .append(" entries.")
                     .append(System.lineSeparator());
-            expectedString.append("Total expenditure: $" + expectedTotalPrice).append(System.lineSeparator());
+            expectedString.append("Total expenditure: $" + testEntries.getTotalExpenditure())
+                    .append(System.lineSeparator());
+            expectedString.append("Total income: $" + testEntries.getTotalIncome())
+                    .append(System.lineSeparator());
             for (int index = 1; index <= testEntries.getSize(); index++) {
                 String formattedEntry = ui.formatViewEntries(testEntries.getEntry(index), index);
                 expectedString.append(formattedEntry)

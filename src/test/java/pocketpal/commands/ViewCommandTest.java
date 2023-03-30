@@ -50,18 +50,21 @@ public class ViewCommandTest extends EntryTestUtil {
     void testViewByPriceRange(){
         try{
             ViewCommand testCommand =
-                    assertDoesNotThrow(() -> new ViewCommand(Integer.MAX_VALUE, null, 7.00, 10.50,"",""));
+                    assertDoesNotThrow(() -> new ViewCommand(Integer.MAX_VALUE, null,
+                            7.00, 10.50,"",""));
             testCommand.execute(TEST_UI, TEST_BACKEND);
-            double expectedTotalPrice = 0;
+            double expectedTotalExpenditure = 0;
             for (int index = 1; index <= 2; index++) {
-                expectedTotalPrice += testEntries.getEntry(index).getAmount();
+                expectedTotalExpenditure += testEntries.getEntry(index).getAmount();
             }
+            double expectedTotalIncome = 0;
             StringBuilder expectedString = new StringBuilder();
             expectedString.append("These are the latest ")
                     .append((testEntries.getSize()) - 1)
                     .append(" entries.")
                     .append(System.lineSeparator());
-            expectedString.append("Total expenditure: $" + expectedTotalPrice).append(System.lineSeparator());
+            expectedString.append("Total expenditure: $" + expectedTotalExpenditure).append(System.lineSeparator());
+            expectedString.append("Total income: $" + expectedTotalIncome).append(System.lineSeparator());
             for (int index = 1; index <= 2; index ++){
                 String formattedEntry = ui.formatViewEntries(testEntries.getEntry(index), index);
                 expectedString.append(formattedEntry).append(System.lineSeparator());
