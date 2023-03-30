@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import pocketpal.data.entry.Category;
+import pocketpal.frontend.constants.EntryConstants;
 import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.commands.AddCommand;
@@ -186,7 +187,7 @@ public class Parser {
         try {
             for (int i = 0; i < argumentsArray.length; i++) {
                 expenseIdInt = Integer.parseInt(argumentsArray[i]);
-                if(expenseIdInt < 1){
+                if (expenseIdInt < 1) {
                     throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
                 }
                 assert argumentsArray[i].matches("\\d+") : "Expense ID must be an integer";
@@ -360,7 +361,7 @@ public class Parser {
             isValidDate(startDateString);
             logger.info("start date verified");
             arguments = arguments.replaceFirst(matcher.group(), "").trim();
-            startDateString = startDateString + " 00:00";
+            startDateString = startDateString + EntryConstants.EARLIEST_TIME;
         }
         matcher = endDatePattern.matcher(arguments);
         if (matcher.find()) {
@@ -369,7 +370,7 @@ public class Parser {
             isValidDate(endDateString);
             logger.info("end date verified");
             arguments = arguments.replaceFirst(matcher.group(), "").trim();
-            endDateString = endDateString + " 23:59";
+            endDateString = endDateString + EntryConstants.LATEST_TIME;
         }
         if (startDateString.isEmpty() ^ endDateString.isEmpty()) {
             logger.info("Missing at least one date as view command request parameter");
@@ -377,7 +378,7 @@ public class Parser {
         }
         Pattern viewCountPattern = Pattern.compile("\\S+");
         matcher = viewCountPattern.matcher(arguments);
-        if(matcher.find()){
+        if (matcher.find()) {
             viewCount = matcher.group(0);
         }
         if (viewCount.isEmpty()) {
@@ -409,6 +410,7 @@ public class Parser {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
         }
     }
+
     private void isValidDate(String dateString) throws InvalidDateException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yy");
         try {
