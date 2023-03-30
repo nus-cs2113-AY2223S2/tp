@@ -10,11 +10,15 @@ import java.util.ArrayList;
 
 public class StaffManager {
     private static ArrayList<Staff> staffs = new ArrayList<>();
-
     public StaffManager(ArrayList<Staff> staffs) {
         StaffManager.staffs = staffs;
     }
 
+    /**
+     * Add a staff to the staffs array list inside of staff manager.
+     * @param staff Staff to be added.
+     * @param ui Ui object in if there is anything to be printed.
+     */
     public static void addStaff(Staff staff, TextUi ui) {
         staffs.add(staff);
         try {
@@ -25,6 +29,10 @@ public class StaffManager {
         }
     }
 
+    /**
+     * Format all staff into readable list of staffs.
+     * @return String representation of all staffs.
+     */
     public static String getStaffsString() {
         String staffsString = "";
         int counter = 1;
@@ -34,6 +42,11 @@ public class StaffManager {
         return staffsString;
     }
 
+    /**
+     * Delete a staff of a certain index.
+     * @param staffIndex Staff index to be deleted.
+     * @param ui Ui object in if there is anything to be printed.
+     */
     public static void deleteStaff(int staffIndex, TextUi ui) {
         if (staffIndex != -1) {
             staffs.remove(staffIndex);
@@ -46,8 +59,13 @@ public class StaffManager {
         }
     }
 
+    /**
+     * Find a staff based on its name.
+     * @param name The name of the staff to be found.
+     * @param ui Ui object in if there is anything to be printed.
+     */
     public static void findStaff(String name,TextUi ui) {
-        ArrayList<Staff> staffFound=new ArrayList<>();
+        ArrayList<Staff> staffFound = new ArrayList<>();
         for(Staff m:staffs){
             if( m.getName().contains(name)){
                 staffFound.add(m);
@@ -62,6 +80,11 @@ public class StaffManager {
             }
         }
     }
+
+    /**
+     * Get all staffs.
+     * @return An Array List of Staffs object.
+     */
     public static ArrayList<Staff> getStaffs() {
         return staffs;
     }
