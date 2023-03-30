@@ -6,7 +6,7 @@ public class Task {
     private String description;
     private int priority;
     private boolean isDone;
-    private final ArrayList<String> additionalNotes;
+    private ArrayList<String> additionalNotes;
 
     public Task(String description) {
         this.description = description;
@@ -53,9 +53,16 @@ public class Task {
     public ArrayList<String> getAdditionalNotes(){
         return this.additionalNotes;
     }
+    public String getNote(int index){
+        return this.additionalNotes.get(index);
+    };
 
     public void deleteNote(int indexToBeDeleted){
         this.additionalNotes.remove(indexToBeDeleted-1);
+    }
+
+    public void editNote(int indexToBeEdited, String editedNote){
+        this.additionalNotes.set(indexToBeEdited,editedNote);
     }
 
     public String getPriority() {

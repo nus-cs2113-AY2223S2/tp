@@ -134,23 +134,30 @@ public class Parser {
                     }
                     break;
                 case "add_note":
-                    if (words.length == 2 && isNumeric(words[1])) {
+                    if(words.length == 2 && isNumeric(words[1])){
                         TaskList.addNote(tasks, words);
-                    } else {
+                    }else{
                         Ui.unknownCommandMessage();
                     }
                     break;
                 case "delete_note":
-                    if (words.length == 3) {
-                        TaskList.deleteNote(tasks, words);
-                    } else {
+                    if(words.length == 3){
+                        TaskList.deleteNotes(tasks,words);
+                    } else{
                         Ui.unknownCommandMessage();
                     }
                     break;
                 case "notes":
-                    if (words.length == 2 && isNumeric(words[1])) {
+                    if(words.length == 2 && isNumeric(words[1])) {
                         Ui.printNotes(tasks, words);
-                    } else {
+                    }else{
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "edit_note":
+                    if(words.length == 3){
+                        TaskList.editNote(tasks, words);
+                    }else{
                         Ui.unknownCommandMessage();
                     }
                     break;

@@ -525,7 +525,7 @@ public class TaskList {
         Ui.borderLine();
     }
 
-    static void deleteNote(ArrayList<Task> tasks, String[] words){
+    static void deleteNotes(ArrayList<Task> tasks, String[] words){
         int index = Integer.parseInt(words[1]);
         int indexOfNoteToBeDeleted = Integer.parseInt(words[2]);
         Ui.borderLine();
@@ -536,4 +536,17 @@ public class TaskList {
         Ui.borderLine();
     }
 
+
+    static void editNote(ArrayList<Task> tasks, String[] words){
+        int index = Integer.parseInt(words[1]);
+        int indexOfNoteToBeEdited = Integer.parseInt(words[2]);
+        Scanner userInput = new Scanner(System.in);
+        Ui.borderLine();
+        System.out.println("\t What would you like to change the note to? ");
+        System.out.println("\t" + "\t" + tasks.get(index-1).getNote(indexOfNoteToBeEdited-1));
+        String editedNote = userInput.nextLine();
+        tasks.get(index-1).editNote(indexOfNoteToBeEdited-1,editedNote);
+        System.out.println("\t" + "The specified note has been edited!");
+        Ui.borderLine();
+    }
 }
