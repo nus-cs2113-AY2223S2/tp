@@ -757,7 +757,7 @@ Done, Entry 4 ignored from overview calculations
 
 Welcome to the data management section of our guide! Saving and loading your data is something you don't have to worry 
 as we have got it covered for you! In this section, we'll show you where to locate your saved files and 
-how to export your  data to a CSV file, which is a widely-used file format that can be opened in a variety of 
+how to export your data to a CSV file, which is a widely-used file format that can be opened in a variety of 
 software applications. We'll show you how to export and view the exported CSV file using Microsoft Excel, 
 which is a popular spreadsheet program used by many people around the world. Let's get started!
 
