@@ -25,6 +25,7 @@ public class Recipe {
         return name;
     }
 
+    /* @@author Jjzeng123 */
     public int getCalorieCount() {
         return calorieCount;
     }
