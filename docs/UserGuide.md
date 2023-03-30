@@ -144,7 +144,7 @@ The table below will be shown with the `help` command: <br>
 |[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |
 |{} :  Denotes optional fields. Can be ignored                                                       |
 |For more information on any command: type   < help {command} >   as shown above (e.g. help add)     |
-+====================================================================================================+```
++====================================================================================================+
 ```
 
 For more information on each individual command, the help command can also provide a more detailed guide, including
@@ -318,7 +318,7 @@ Done, deleted "beef noodles" from the financial report
 |Viewing all entries from 2023-02-28 till today                                                      |
 |Total Inflow: $50020.00                                                                             |
 |Total Outflow: $500.00                                                                              |
-|Remaining value: $49520.00                                                                            |
+|Remaining value: $49520.00                                                                          |
 +====================================================================================================+
 ```
 
@@ -482,6 +482,7 @@ Done, edited entry 1 from the financial report
 |Total Inflow: $52020.00                                                                             |
 |Total Outflow: $539.00                                                                              |
 |Remaining value: $51481.00                                                                          |
++====================================================================================================+
 ```
 
 > 💡**Tip:** Multiple flags may be used at once but must be in this order:
