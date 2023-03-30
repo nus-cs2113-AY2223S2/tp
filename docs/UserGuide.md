@@ -27,6 +27,7 @@ Meal Companion is designed by computing students, for computing students, especi
        - [Random Recipe](#random-recipe)
        - [Check Ingredients for Recipe](#check-ingredients-for-recipe)
        - [Almost Completed Recipe](#almost-completed-recipe)
+       - [Make Recipe](#make-recipe)
    5. [Saving Data](#saving-data)
        - [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
    6. [Help](#help)
@@ -226,6 +227,13 @@ If you would like to find out which recipes you are almost able to make with the
 
 ![recipealmost.png](images/recipealmost.png)  
 <sub>Fig 18: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
+
+
+### Make Recipe
+If you decide to cook one of the recipes and you have sufficient ingredients, you do not need to manually remove all the ingredients you used. Meal Companion provides you with the functionality to remove all those ingredients at once if they are used to cook a recipe. Simply use the command `make <index_number>` to do so. For example, `make 1` (Recipe for Beef Burger).
+
+![make.png](images/make.png)  
+<sub>Fig 19: Sample of Make command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
 
 
 ##### [Back to table of contents](#table-of-contents)
