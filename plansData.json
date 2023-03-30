@@ -6,14 +6,29 @@
           "legs",
           "static"
         ],
-        "planName": "home_leg_day",
+        "planName": "test",
+        "noOfExercise": 0
+      },
+      {
+        "exercisePlans": [
+          "legs"
+        ],
+        "planName": "test",
         "noOfExercise": 0
       }
     ],
     [],
     [],
     [],
-    [],
+    [
+      {
+        "exercisePlans": [
+          "legs"
+        ],
+        "planName": "legs",
+        "noOfExercise": 0
+      }
+    ],
     [],
     []
   ]

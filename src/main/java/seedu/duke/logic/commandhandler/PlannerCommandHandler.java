@@ -3,7 +3,7 @@ package seedu.duke.logic.commandhandler;
 import seedu.duke.commons.exceptions.DukeError;
 
 import seedu.duke.storage.Storage;
-import seedu.duke.ui.UiManager;
+import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.commons.util.StringSplitter;
 
@@ -11,10 +11,9 @@ import java.util.Scanner;
 
 //@@author Khulon
 public class PlannerCommandHandler implements CommandList {
-    public static void plannerCommandHandler (UiManager uiManager, UserPlan planner,
-                                              Storage storage) throws DukeError {
-        uiManager.printPlannerGreeting();
-        Scanner in = new Scanner(System.in);
+    public static void plannerCommandHandler (Ui ui, UserPlan planner,
+                                              Storage storage, Scanner in) throws DukeError {
+        ui.printPlannerGreeting();
 
         while (true) {
             String rawUserCommands = in.nextLine();
@@ -30,21 +29,21 @@ public class PlannerCommandHandler implements CommandList {
             switch (userCommands[0]) {
             case HELP_COMMAND:
                 if (additionalDescription.length() != 0) {
-                    uiManager.unknownCommand();
+                    ui.unknownCommand();
                 } else {
-                    uiManager.printPlannerHelp();
+                    ui.printPlannerHelp();
                 }
                 break;
             case VIEW_PLAN_COMMAND:
                 if (additionalDescription.length() != 0) {
-                    uiManager.unknownCommand();
+                    ui.unknownCommand();
                 } else {
-                    uiManager.showPlan(planner);
+                    ui.showPlan(planner);
                 }
                 break;
             case EXIT_COMMAND:
                 if (additionalDescription.length() != 0) {
-                    uiManager.unknownCommand();
+                    ui.unknownCommand();
                 } else {
                     System.out.println("Exited planner editor!");
                 }
@@ -54,17 +53,18 @@ public class PlannerCommandHandler implements CommandList {
                 break;
             case FILTERS_COMMAND:
                 if (additionalDescription.length() != 0) {
-                    uiManager.unknownCommand();
+                    ui.unknownCommand();
                 } else {
-                    uiManager.printFilters();
+                    ui.printFilters();
                 }
                 break;
             case DELETE_PLAN_COMMAND:
                 UserPlan.deletePlan(userCommands);
                 break;
             default:
-                uiManager.unknownCommand();
+                ui.unknownCommand();
             }
+            ui.plannerMode();
             storage.writeToJson(planner);
 
         }

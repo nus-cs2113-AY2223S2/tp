@@ -40,6 +40,15 @@ public class UserCareerData {
         totalUserCareerSessions.add(session);
     }
 
+
+    /**
+     * Deletes a workout session according to the number as input by the user.
+     * @param i the session number input by the user.
+     */
+    public void deleteWorkoutSession (int i) {
+        totalUserCareerSessions.remove(i-1);
+    }
+
     //@@author ChubbsBunns
     public void printAllFinishedWorkoutSessions () {
         PrintExercises exercisePrinter = new PrintExercises();

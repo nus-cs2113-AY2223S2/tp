@@ -1,0 +1,6 @@
+@startuml
+CommandHandler -> PlannerCommandHandler: plannerCommandHandler()
+activate PlannerCommandHandler
+PlannerCommandHandler-->CommandHandler: exit()
+deactivate PlannerCommandHandler
+@enduml
