@@ -75,7 +75,7 @@ Please note the following about the format of commands given under each [feature
 
 ## Quick Start
 
-1. Ensure that you have Java 11 or above installed on your computer
+1. Ensure that you have Java 11 installed on your computer
     1. Click [here](https://www.java.com/en/download/help/version_manual.html) for steps on how to check your Java
        version
     2. Click
@@ -132,21 +132,22 @@ The table below will be shown with the `help` command: <br>
 ```
 > help
 +====================================================================================================+
-|Welcome to RainyDay! Here is the overview of commands available                                     |
+| Welcome to RainyDay! Here is the overview of commands available                                    |
 +====================================================================================================+
-|Feature          |Command  |Additional Syntax                                                       |
-+-----+-----------+--------+-------------------------------------------------------------------------+
-|Add entry        |add      |[-in/-out] [DESCRIPTION] $[VALUE] {-c CATEGORY} {-date DATE}            |
-|Delete entry     |delete   |[INDEX]                                                                 |
-|View entries     |view     |{TIME} {-sort}                                                          |
-|Filter entries   |filter   |{-in} {-out} {-d DESCRIPTION} {-c CATEGORY} {-date DATE}                |
-|Edit an entry    |edit     |[INDEX] [-in/ -out/ -d DESCRIPTION/ -v $VALUE/ -c CATEGORY/ -date DATE] |
-|Create Shortcuts |shortcut |[SHORTCUT COMMAND -maps VALID COMMAND]                                  |
-|Ignore entry     |ignore   |[INDEX]                                                                 |
-|Unignore entry   |unignore |[INDEX]                                                                 |
-|Export to .csv   |export   |                                                                        |
-|Display a guide  |help     |{COMMAND}                                                               |
-+=====+==============================================================================================+
+| Feature            | Command   | Additional Syntax                                                 |
++--------------------+-----------+-------------------------------------------------------------------+
+| Add entry          | add       | [-in/-out] [DESCRIPTION] $[VALUE] {-c CATEGORY} {-date DATE}      |
+| Delete entry       | delete    | [INDEX]                                                           |
+| View entries       | view      | {TIME} {-sort}                                                    |
+| Filter entries     | filter    | {-in} {-out} {-d DESCRIPTION} {-c CATEGORY} {-date DATE}          |
+| Edit an entry      | edit      | [INDEX] [-in/-out/-d DESCRIPTION/-v $VALUE/-c CATEGORY/-date DATE]|
+| Set monthly budget | setbudget | [VALUE]                                                           |
+| Create shortcuts   | shortcut  | [SHORTCUT COMMAND -maps VALID COMMAND]                            |
+| Ignore entry       | ignore    | [INDEX]                                                           |
+| Unignore entry     | unignore  | [INDEX]                                                           |
+| Export to .csv     | export    |                                                                   |
+| Display a guide    | help      | {COMMAND}                                                         |
++====================================================================================================+
 |[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |
 |{} :  Denotes optional fields. Can be ignored                                                       |
 |For more information on any command: type   < help {command} >   as shown above (e.g. help add)     |
