@@ -9,13 +9,12 @@ public enum ErrorMessage {
             "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
             "Please refer to 'help' for more information!"),
     WRONG_FILTER_FORMAT("Sorry, your filter command is invalid. Filter format is as follows: \n" +
-            "filter {-in} {-out} {-d description} {-c category} {-date DD/MM/YYYY} \n" +
+            "filter {-in/-out} {-d description} {-c category} {-date DD/MM/YYYY} \n" +
             "Please refer to 'help' for more information!"),
     WRONG_VIEW_FORMAT("Sorry, your view command is invalid. View format is as follows: \n" +
             "view {time} {-sort} \n" +
             "Please refer to 'help' for more information!"),
     WRONG_EDIT_FORMAT("Sorry, your edit command is invalid. Edit format is as follows: \n" +
-            "edit [index] ADDCOMMAND\n" + "or\n" +
             "edit [index] {-in/ -out/ -d description/ -v $value/ -c category/ -date DD/MM/YYYY\n" +
             "Please refer to 'help' for more information!"),
     MISSING_DETAILS("Please include the necessary details for your command! Refer to 'help' for the " +
