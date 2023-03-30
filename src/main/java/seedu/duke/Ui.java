@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class Ui {
     private static final List<String> PERMITTED_SEMESTER_VALUES = Arrays.asList("1", "2", "3", "4");
@@ -160,6 +161,7 @@ public class Ui {
 
         if (cmd.equals("bye")) {
             printExit();
+            Duke.LOGGER.log(Level.INFO, "User input is 'bye', exiting NUSPlanner.");
             in.close();
             System.exit(0);
         } else {
