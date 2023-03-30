@@ -1,66 +1,66 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-participant SearchParser
+participant ":SearchParser"
 
 group sd [SearchCommand running]
-    SearchParser -> SearchCommand: run()
-    activate SearchCommand
-    participant SearchCommand
-    participant Ui
+    ":SearchParser" -> ":SearchCommand": run()
+    activate ":SearchCommand"
+    participant ":SearchCommand"
+    participant ":Ui"
     alt searchType == Types.SearchType.KEYWORD
-        SearchCommand -> SearchCommand: searchKeyword()
-        activate SearchCommand #cyan
-        ref over SearchCommand
+        ":SearchCommand" -> ":SearchCommand": searchKeyword()
+        activate ":SearchCommand" #cyan
+        ref over ":SearchCommand"
             search for keyword in internal trie
         end ref
         alt no keywords found
-            SearchCommand -> Ui: printEmptySearch()
-            activate Ui
-            ref over Ui
+            ":SearchCommand" -> ":Ui": printEmptySearch()
+            activate ":Ui"
+            ref over ":Ui"
                 print empty search message
             end ref
             return
-            SearchCommand --> SearchCommand: null
+            ":SearchCommand" --> ":SearchCommand": null
         end
-        ref over SearchCommand
-            place all items with the keyword in an ArrayList
+        ref over ":SearchCommand"
+            place all items with the keyword in resultItems
         end ref
-        return ArrayList<Item> resultItems
+        return resultItems
         alt resultItems is not null
-            SearchCommand -> Ui: printSearchItems()
-            activate Ui
-            ref over Ui
+            ":SearchCommand" -> ":Ui": printSearchItems()
+            activate ":Ui"
+            ref over ":Ui"
                 print items in table
             end ref
             return
         end
     else
-        SearchCommand -> SearchCommand: searchUPC()
-        activate SearchCommand #lightgreen
+        ":SearchCommand" -> ":SearchCommand": searchUPC()
+        activate ":SearchCommand" #lightgreen
         alt input not found in upcCodes
-            SearchCommand -> Ui: printEmptySearch()
-            activate Ui
-            ref over Ui
+            ":SearchCommand" -> ":Ui": printEmptySearch()
+            activate ":Ui"
+            ref over ":Ui"
                 print empty search message
             end ref
             return
-            SearchCommand --> SearchCommand: null
+            ":SearchCommand" --> ":SearchCommand": null
         end
-        ref over SearchCommand
+        ref over ":SearchCommand"
             return item from upcCodes
         end ref
         return searchResult
         alt searchResult is not null
-            SearchCommand -> Ui: printSearchUPCItem()
-            activate Ui
-            ref over Ui
+            ":SearchCommand" -> ":Ui": printSearchUPCItem()
+            activate ":Ui"
+            ref over ":Ui"
                 print items in table
             end ref
             return
         end
     end
     return
-    deactivate SearchCommand
-    destroy SearchCommand
+    deactivate ":SearchCommand"
+    destroy ":SearchCommand"
 end
 @enduml
