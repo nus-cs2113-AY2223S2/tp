@@ -69,10 +69,10 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 
 Meal Companion uses a Command Line Interface (CLI), as the current version is just a proof of concept. We have plans to further develop Meal Companion to include a Graphical User Interface (GUI), or even to a mobile application platform. However as we have not yet reached that stage in our development, the CLI will suffice as the input method to operate Meal Companion. We apologize for any inconvenience caused.
 
-##### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)  
 
-  
-  
+
+
 # Features
 This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and Recipe functions. 
 
