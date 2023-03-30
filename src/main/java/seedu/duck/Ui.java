@@ -447,7 +447,7 @@ public class Ui {
 
     static void help() {
         borderLine();
-        System.out.println("\t （`･v･´ ）: Here are the commands you can give me:");
+        System.out.println("\t   Quack! Here are the commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
         System.out.println("\t - list <number_of_days>: I'll list out all the tasks in that number of days.");
         System.out.println("\t - list classes: I'll list out the classes you have on your schedule.");
@@ -472,6 +472,7 @@ public class Ui {
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
         System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
         System.out.println("\t                                   1:Low, 2:Medium and 3:High.");
+        System.out.println("\t                                   Default: LOW priority.");
         System.out.println("\t - bye: I will shut down my program.\n");
         System.out.println("\t Here are the following ways to input tasks/classes:");
         System.out.println("\t Deadlines: <description> /by <yyyy-MM-dd HHmm>");
@@ -487,7 +488,7 @@ public class Ui {
         System.out.println("\t Classes  : <description> /class <class_name> /day <DAY_OF_WEEK>" +
                 "/from <HHmm> /to <HHmm> \n");
         System.out.println("\t            (eg. Bring laptop /class CS2113 /day TUESDAY /from 1100 /to 1200)");
-        System.out.println("\t （`･v･´ ）: How else may I assist you today, human?");
+        System.out.println("\t How else may I assist you today, human?");
         borderLine();
     }
 
@@ -540,6 +541,12 @@ public class Ui {
     static void todoErrorMessage() {
         borderLine();
         System.out.println("\t Error. Please enter a valid description.");
+        borderLine();
+    }
+
+    static void unknownCommandMessage() {
+        borderLine();
+        System.out.println("\t Error. Please check that the command has been entered correctly.");
         borderLine();
     }
 
@@ -610,12 +617,12 @@ public class Ui {
         printDuck();
         borderLine();
         borderLine();
-        System.out.println("\t （`･v･´ ）: Quack. Nice to meet you human. As you can see,  I'm a Duck.");
-        System.out.println("\t （´˘v˘´ ）: As a Duck, I can only understand simple commands. Quack. " +
+        System.out.println("\t Quack! Nice to meet you human. As you can see,  I'm a Duck.");
+        System.out.println("\t As a Duck, I can only understand simple commands. Quack. " +
                 "Human speech is so confusing!");
-        System.out.println("\t （´˘v˘´ ）: That being said, I am a smart Duck. " +
+        System.out.println("\t That being said, I am a smart Duck. " +
                 "If you wish to know what I understand, just enter 'help'.");
-        System.out.println("\t （`･v･´ ）: How may I assist you today, human?");
+        System.out.println("\t How may I assist you today, human?");
     }
     static void printNotes(ArrayList<Task> tasks, String []words) {
         int index = Integer.parseInt(words[1]);

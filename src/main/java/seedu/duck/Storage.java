@@ -50,6 +50,10 @@ public class Storage {
             Task.incrementCount();
         }
     }
+
+    /**
+     * Deletes the existing savedata file then recreates a new blank slate.
+     */
     static void clearTask() throws IOException {
         {
             try {

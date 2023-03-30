@@ -39,97 +39,145 @@ public class Parser {
      * @param line The line of user input
      * @param in The input from scanner
      */
-    static void processCommand(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes, String line, Scanner in)
-            throws IOException {
-        while (!line.trim().equals("bye")) { // Exits the program if input is "bye"
+    static void processCommand(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes, String line, Scanner in) throws IOException {
+        while (!line.trim().equals("bye")) {
             String[] words = line.split(" ");
             line = line.trim();
             if (line.isBlank()) {
                 Ui.emptyCommandMessage();
-            } else if (line.equals("list")) {
-                // List out all the tasks added
-                Ui.list(tasks);
-            } else if (line.equals("list today")) {
-                //list out all classes and tasks today
-                Ui.listToday(tasks, classes);
-            } else if (line.equals("priority_list")){
-                // Lists out all the tasks by priority
-                Ui.printPriorityList(tasks);
-            } else if (line.equals("low_priority")){
-                // Lists out all the tasks that are low in priority
-                Ui.printLowPriority(tasks);
-            } else if (line.equals("medium_priority")){
-                // Lists out all the tasks that are medium in priority
-                Ui.printMediumPriority(tasks);
-            } else if (line.equals("high_priority")){
-                // Lists out all the tasks that are high in priority
-                Ui.printHighPriority(tasks);
-            } else if (line.equals("list classes")) {
-                Ui.listClasses(classes);
-            } else if (line.equals("help")) {
-                // List out all the tasks added
-                Ui.help();
-            } else if (line.equals("refresh")) {
-                // Refresh the task list and class schedule
-                TaskList.refresh(tasks, classes);
-            } else if (words[0].equals("list") && (words.length == 2) && (isNumeric(words[1]))) {
-                //list out all tasks in x days in the future specified by the user
-                Ui.printUpcomingTasks(tasks, words[1]);
-            } else if (line.equals("upcoming class")) {
-                Ui.displayNextUpcomingClass(classes);
-            } else if (words[0].equals("unmark") && (words.length == 2) && (isNumeric(words[1]))) {
-                // Mark a task as not done
-                TaskList.unmarkTask(tasks, words);
-                Storage.trySave(tasks, classes);
-            } else if (words[0].equals("mark") && (words.length == 2) && (isNumeric(words[1]))) {
-                // Mark a task as done
-                TaskList.markTask(tasks, words);
-                Storage.trySave(tasks, classes);
-            } else if (words[0].equals("delete") && (words.length == 2) && (isNumeric(words[1]))) {
-                // Delete a task
-                TaskList.deleteTask(tasks, words);
-                Storage.trySave(tasks, classes);
-            } else if (words[0].equals("remove") && words[1].equals("class")) {
-                // Remove a class from class list
-                TaskList.tryDeleteClass(classes, line);
-                Storage.trySave(tasks, classes);
-            } else if (words[0].equals("find") && (words.length > 1)) {
-                // Find tasks that contain a keyword
-                Ui.find(tasks, words);
-            } else if (words[0].equals("purge")){
-                // Find tasks that contain a keyword
-                TaskList.purge(tasks, classes);
-            } else if (words[0].equals("priority") && (words.length == 3)) {
-                // Find tasks that contain a keyword
-                TaskList.setPriority(tasks,words);
-                Storage.trySave(tasks, classes);
-            } else if (words[0].equals("add_note") && (words.length == 2) && (isNumeric(words[1]))){
-                TaskList.addNote(tasks,words);
-            } else if (words[0].equals("delete_note") && (words.length == 3)){
-                TaskList.deleteNote(tasks, words);
-            }else if (words[0].equals("notes") && (words.length == 2) && (isNumeric(words[1]))){
-                Ui.printNotes(tasks,words);
-            }else if (words[0].equals("clear")) {
-                if (Ui.doubleCheck()) {
-                    // Find tasks that contain a keyword
-                    tasks.clear();
-                    Task.clearCount();
-                    classes.clear();
-                    Ui.borderLine();
-                    System.out.println("\t Got it, all tasks have been cleared.");
-                    Ui.borderLine();
-                    Storage.clearTask();
-                } else {
-                    Ui.borderLine();
-                    System.out.println("\t Quack! Process cancelled.");
-                    Ui.borderLine();
-                }
             } else {
-                // Adding a task to the list
-                TaskList.addTask(line, tasks, classes);
-                Storage.trySave(tasks, classes);
+                switch (words[0]) {
+                case "list":
+                    if (words.length == 1) {
+                        Ui.list(tasks);
+                    } else if (words.length == 2 && isNumeric(words[1])) {
+                        Ui.printUpcomingTasks(tasks, words[1]);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "list_today":
+                    Ui.listToday(tasks, classes);
+                    break;
+                case "priority_list":
+                    Ui.printPriorityList(tasks);
+                    break;
+                case "low_priority":
+                    Ui.printLowPriority(tasks);
+                    break;
+                case "medium_priority":
+                    Ui.printMediumPriority(tasks);
+                    break;
+                case "high_priority":
+                    Ui.printHighPriority(tasks);
+                    break;
+                case "list_classes":
+                    Ui.listClasses(classes);
+                    break;
+                case "help":
+                    Ui.help();
+                    break;
+                case "refresh":
+                    TaskList.refresh(tasks, classes);
+                    break;
+                case "upcoming_class":
+                    Ui.displayNextUpcomingClass(classes);
+                    break;
+                case "unmark":
+                    if (words.length == 2 && isNumeric(words[1])) {
+                        TaskList.unmarkTask(tasks, words);
+                        Storage.trySave(tasks, classes);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "mark":
+                    if (words.length == 2 && isNumeric(words[1])) {
+                        TaskList.markTask(tasks, words);
+                        Storage.trySave(tasks, classes);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "delete":
+                    if (words.length == 2 && isNumeric(words[1])) {
+                        TaskList.deleteTask(tasks, words);
+                        Storage.trySave(tasks, classes);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "remove":
+                    if (words.length == 2 && words[1].equals("class")) {
+                        TaskList.tryDeleteClass(classes, line);
+                        Storage.trySave(tasks, classes);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "find":
+                    if (words.length > 1) {
+                        Ui.find(tasks, words);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "purge":
+                    TaskList.purge(tasks, classes);
+                    break;
+                case "priority":
+                    if (words.length == 3) {
+                        TaskList.setPriority(tasks, words);
+                        Storage.trySave(tasks, classes);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "add_note":
+                    if (words.length == 2 && isNumeric(words[1])) {
+                        TaskList.addNote(tasks, words);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "delete_note":
+                    if (words.length == 3) {
+                        TaskList.deleteNote(tasks, words);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "notes":
+                    if (words.length == 2 && isNumeric(words[1])) {
+                        Ui.printNotes(tasks, words);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "clear":
+                    if (Ui.doubleCheck()) {
+                        // Find tasks that contain a keyword
+                        tasks.clear();
+                        Task.clearCount();
+                        classes.clear();
+                        Ui.borderLine();
+                        System.out.println("\t Got it, all tasks have been cleared.");
+                        Ui.borderLine();
+                        Storage.clearTask();
+                        break;
+                    } else {
+                        Ui.borderLine();
+                        System.out.println("\t Quack! Process cancelled.");
+                        Ui.borderLine();
+                        break;
+                    }
+                default:
+                    TaskList.addTask(line, tasks, classes);
+                    Storage.trySave(tasks, classes);
+
+                }
+                line = in.nextLine();
             }
-            line = in.nextLine();
         }
     }
 
