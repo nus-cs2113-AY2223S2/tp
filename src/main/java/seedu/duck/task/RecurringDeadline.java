@@ -13,6 +13,10 @@ public class RecurringDeadline extends Deadline{
         return this.day;
     }
 
+    public void setDay(DayOfWeek day) {
+        this.day = day;
+    }
+
     @Override
     public String toSaveString() {
         return getDoneConditionString() + " " + getDescription() + " /by " + getDeadline() + " <p>" +
