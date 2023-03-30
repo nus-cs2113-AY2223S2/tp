@@ -54,6 +54,10 @@ public class SniffTasks {
             }
             UIDS.add(uid);
             Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
+            assert newAppointment.uid == uid : "consultation uid should be " + uid;
+            assert newAppointment.isDone == false : "consultation isDone should be false when initialized.";
+            assert newAppointment.animal.type == animal.type : "consultation animal type should be " + animal.type;
+            assert newAppointment.animal.name == animal.name : "consultation animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
@@ -71,6 +75,10 @@ public class SniffTasks {
             }
             UIDS.add(uid);
             Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
+            assert newAppointment.uid == uid : "vaccination uid should be " + uid;
+            assert newAppointment.isDone == false : "vaccination isDone should be false when initialized.";
+            assert newAppointment.animal.type == animal.type : "vaccination animal type should be " + animal.type;
+            assert newAppointment.animal.name == animal.name : "vaccination animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;
@@ -90,6 +98,10 @@ public class SniffTasks {
             UIDS.add(uid);
             Appointment newAppointment = new Surgery(uid, animal, owner, priority, startDate, startTime, endDate,
                     endTime);
+            assert newAppointment.uid == uid : "surgery uid should be " + uid;
+            assert newAppointment.isDone == false : "surgery isDone should be false when initialized.";
+            assert newAppointment.animal.type == animal.type : "surgery animal type should be " + animal.type;
+            assert newAppointment.animal.name == animal.name : "surgery animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             appointmentCount++;

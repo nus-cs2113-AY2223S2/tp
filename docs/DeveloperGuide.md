@@ -98,6 +98,9 @@ Given below is an example usage scenario and how the remove mechanism behaves.
 3. If the user inputs omits any entry or adds any extra entry then an error message will be displayed. An error message will also be displayed if the input type is of the wrong the format.
 
 ##### UID Generation
+![img_20.png](img_20.png)<br>
+**Figure 10: UML Diagram of Uid Class**
+
 The UID is generated to produce a 10 character string representing the Appointment ID tagged to each appointment.
 The UID string generated consists of 3 substrings that are concatenated together:
 - The first substring is a one-character string that represents the appointment type the UID is generated to.  
