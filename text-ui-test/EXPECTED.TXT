@@ -62,8 +62,8 @@ delete monday Home_Leg_Day
 Exited planner editor!
 ________________________________________
 These are the plans we found: 
-1:test
-2:test
+test
+test
 
 Exercise ID: 0. 
 Name: 3/4 Sit-Up
