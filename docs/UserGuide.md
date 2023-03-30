@@ -10,8 +10,9 @@ to provide a simple solution for young working adults to track your finances and
 This user guide provides an in-depth documentation on how to install and use rainyDay. This guide caters to all users of
 rainyDay, from people who are just starting out to advanced users looking for extra features they were unaware of.
 
-We sincerely hope that rainyDay has made it easier for you to track your finances.
-Should you have any feedback or enquiries, please do not hesitate to drop us an at rainydayfinancialtracker@gmail.com
+We sincerely hope that rainyDay will make it easier for you to track your finances.
+Should you have any feedback or enquiries, please do not hesitate to drop us an 
+[email](mailto:rainydayfinancialtracker@gmail.com).
 
 ## Content Page
 
@@ -42,7 +43,7 @@ Please note the following about the format of commands given under each [feature
 
 * Words in *italics* format are related to buttons that can be found on the screen
 
-* Items surrounded by square brackets "[]" are mandatory fields, while the items in curly brackets "{}" are optional
+* Items surrounded by [square brackets] are mandatory fields, while the items in {curly brackets} are optional
 
 * Words in "double quotation marks" are the names of items
 
@@ -55,8 +56,7 @@ Please note the following about the format of commands given under each [feature
        [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
        for the guide on installing Java 11
 2. Download the latest version of "rainyDay"
-   from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v2.0/rainyDay.jar) by clicking on
-   "rainyDay.jar".
+   from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v2.0/rainyDay.jar).
 3. Move the "rainyDay.jar" file to the folder of your choice by doing the following steps:
     1. Locate the "rainyDay.jar" file in your "Downloads" folder
     2. Right-click the "rainyDay.jar" file and select cut from the table that appears <br>
@@ -64,12 +64,12 @@ Please note the following about the format of commands given under each [feature
     3. Go to the folder of your choice
     4. Right-click in the file window and select paste as seen below <br>
        ![paste.png](images/UserGuide/paste.png)
-4. In order to run "rainyDay.jar" on the command line, we have to do the following:
+4. To run "rainyDay.jar" on the command line, we have to do the following:
     1. Open the folder containing "rainyDay.jar" and click on the address bar <br>
        ![folderpath.png](images/UserGuide/folderpath.png)
     2. Type the words "cmd" in the folder path in the address bar <br>
        ![cmd.png](images/UserGuide/cmd.png)
-    3. Hit the "enter" key. Your Command Prompt should now be open in the folder containing "rainyDay.jar".
+    3. Press Enter. Your Command Prompt should now be open in the folder containing "rainyDay.jar".
 5. Type `java -jar rainyDay.jar` and press Enter on your keyboard to start the application
 
 ## Features Overview
@@ -182,9 +182,9 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
 * `AMOUNT` signifies the value of the transaction, needs to be a number more than or equal to 0, with `$` appended
   before the number
 * `CATEGORY` is a field representing the category to be tagged with the transaction, where category can contain any
-  characters and space, with `-c ` appended to the category
+  characters and space, with `-c` appended to the category
 * `DATE` is a field representing the date to be tagged with the transaction, where date needs to be in the format
-  of `DD/MM/YYYY`, with `-date` appended before the date
+  of `DD/MM/YYYY`, with <br>`-date` appended before the date
 
 > 💡**Tip:**
 >    * `DD` is a two-digit number representing the day
@@ -223,7 +223,7 @@ rainyDay:
 Done! Added: out for beef noodles, -$12.00
 ```
 
-You received you pay of $50000 on 26/03/2023. To add it to rainyDay, the following command can be provided to rainyDay:
+You received your pay of $50000 on 26/03/2023. To add it to rainyDay, the following command can be provided to rainyDay:
 
 ```
 > add -in pay $50000 -date 26/03/2023
@@ -249,6 +249,7 @@ Format: `view {TIMESPAN} {-sort}`
 > 💡**Tip:** To view all entries you can use -all in place of a specific time in TIMESPAN
 
 ```
+view
 +====================================================================================================+
 |Here is your financial report!                                                                      |
 +------+---------------------------------------------+--------------+---------------------+----------+
@@ -474,7 +475,7 @@ Done, edited entry 1 from the financial report
 > 💡**Tip:** Multiple flags may be used at once but must be in this order:
 >
 > `-in` or `out` -> `-d` -> `-v` -> `-c` -> `-date`
->
+
 Suppose you want to edit multiple fields of an entry, and instead of deleting and adding a new entry, you can use
 this command:
 `edit 2 -out Beef noodles $15 -c Food -date 22/03/2023`
