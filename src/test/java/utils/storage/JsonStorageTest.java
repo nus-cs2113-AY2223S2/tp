@@ -3,7 +3,6 @@ package utils.storage;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.nio.file.Path;
-import model.CardList;
 import model.Memory;
 import org.junit.jupiter.api.Test;
 import utils.exceptions.InkaException;
@@ -36,6 +35,5 @@ public class JsonStorageTest {
         Storage storage = new JsonStorage(VALID_FILE.toString());
         Memory memory = storage.load();
 
-       // assert cardList.size() == 2 : "Expected 2 Cards from save file";
     }
 }
