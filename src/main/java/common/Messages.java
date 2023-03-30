@@ -17,18 +17,23 @@ public class Messages {
             "exit - exits the program\n";
     public static final String MESSAGE_MEETING_COMMANDS = "add_meeting n/<name> t/<time>\n" +
             "delete_meeting n/<meeting>\n" +
-            "view_meetings\n";
+            "view_meetings\n" +
+            "find_meeting <keyword>\n";
     public static final String MESSAGE_DEADLINE_COMMANDS = "add_deadline n/<name> t/<time>\n" +
             "delete_deadline <integer>\n" +
-            "view_deadlines\n";
+            "view_deadlines\n + " +
+            "find_deadlines <keyword>\n";
     public static final String MESSAGE_RECIPE_COMMANDS = "add_dish n/<name> pc/<price in cents> " +
             "[<ingredient 1>;<ingredients 2>;<ingredient 3>; ... ]\n" +
             "delete_dish <integer>\n" +
-            "view_dish\n";
+            "view_dish\n" +
+            "find_dish <keyword>\n";
+
     public static final String MESSAGE_WORKER_COMMANDS =
             "add_staff n/<name> w/<working day> d/<date of birth> p/phone\n" +
-            "delete_staff n/<name>\n" +
-            "view_staff\n";
+            "delete_staff <staff index>\n" +
+            "view_staff\n" +
+            "find_staff <keyword>\n";
     public static final String MESSAGE_COMMAND_EXIT = "Thank you for using DinerDirector!";
     public static final String MESSAGE_DEADLINE_ADDED = "Got it! This deadline has been successfully added.\n";
     public static final String MESSAGE_DEADLINE_EMPTY_LIST = "Your deadline list is empty!";

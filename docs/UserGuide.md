@@ -233,32 +233,67 @@ Outcome:
 
 ### Staffs
 
-#### Add a worker:
+#### Add a staff:
 
-Add a worker to the workers list.
+Add a worker to the staffs list.
 
-Format: `add_worker n/<name> w/<working day> d/<date of birth> p/<phone>`
-
-Example: 
-```
-add_worker w/Weekdays Morning Shift n/Patrick Parker d/12 Aug 2002 p/9583 4832
-```
-
-#### View a worker:
-
-View the workers list.
-
-Format: `view_workers`
-
-#### Delete a worker:
-
-Delete a worker from the workers list.
-
-Format: `delete_worker n/<name>`
+Format: `add_staff n/<name> w/<working day> d/<date of birth> p/phone`
 
 Example: 
 ```
-delete_worker n/Patrick Parker
+add_staff n/John Doe w/Sunday d/09 March 2001 p/82802123
+```
+
+Outcome: 
+```
+John Doe, working in Sunday. Date of birth: 09 March 2001, phoneNumber: 82802123 added!
+```
+
+#### View a staff:
+
+View the staffs list.
+
+Format: `view_staff` 
+
+Outcome: 
+```
+1. john, working in thursday. Date of birth: 234, phoneNumber: 1234
+2. jane, working in thursday. Date of birth: 12356, phoneNumber: 1007
+3. name, working in thus. Date of birth: 1007, phoneNumber: 1235
+4. titi, working in 12. Date of birth: 12, phoneNumber: 12
+5. kristian, working in test. Date of birth: 12, phoneNumber: 12
+6. John Doe, working in Sunday. Date of birth: 09 March 2001, phoneNumber: 82802123
+```
+
+#### Delete a staff:
+
+Delete a worker from the staffs list.
+
+Format: `delete_worker <staff index>`
+
+Example: 
+```
+delete_worker 1
+```
+
+Outcome: 
+```
+1 john, working in thursday. Date of birth: 234, phoneNumber: 1234 removed
+```
+
+### Find a staff 
+
+Find a staff from staffs list  
+
+Format: `find_staff <keyword>`
+Example: 
+```
+find_staff titi
+```
+
+Outcome: 
+```
+titi, working in 12. Date of birth: 12, phoneNumber: 12
 ```
 
 ### Storage
@@ -274,20 +309,24 @@ The data stored in those files are in plaintext format and the user can copy out
 
 
 
-| Action          | Command                       |
-|-----------------|-------------------------------|
-| help            | help                          |
-| add_meeting     | add_meeting n/<name> t/<time> |
-| view_meetings   | view_meetings                 |
-| delete_meeting  | delete_meeting n/<name>       |
-| find_meeting    | find_meeting s/<string>       |
-| add_dish        | `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]` |
-| view_dish       | `view_dish`                    |
-| delete_dish     | `delete_dish <index_number>`    |
-| find_dish       | `find_dish <keyword>`           |
-| add_deadline     | add_deadline n/<name> t/<time> |
-| view_deadline    | view_deadline                  |
-| delete_deadline  | delete_deadline i/<index>      |
-| find_deadline    | find_deadline <keyword>        |
+| Action         | Command                                                                                                        |
+|----------------|----------------------------------------------------------------------------------------------------------------|
+| help           | help                                                                                                           |
+| add_meeting    | add_meeting n/<name> t/<time>                                                                                  |
+| view_meetings  | view_meetings                                                                                                  |
+| delete_meeting | delete_meeting n/<name>                                                                                        |
+| find_meeting   | find_meeting s/<string>                                                                                        |
+| add_dish       | `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]` |
+| view_dish      | `view_dish`                                                                                                    |
+| delete_dish    | `delete_dish <index_number>`                                                                                   |
+| find_dish      | `find_dish <keyword>`                                                                                          |
+| add_deadline   | add_deadline n/<name> t/<time>                                                                                 |
+| view_deadline  | view_deadline                                                                                                  |
+| delete_deadline | delete_deadline i/<index>                                                                                      |
+| find_deadline  | find_deadline <keyword>                                                                                        |
+| add_staff      | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                                   |
+| view_staff     | `view_staff`                                                                                                     |
+| delete_staff   | `delete_staff <staff index>`                                                                                     |
+| find_staff     | `find_staff <keyword>`                                                                                           |
 
 
