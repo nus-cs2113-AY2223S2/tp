@@ -43,7 +43,7 @@ public abstract class Command {
      *
      * @param packingList used to execute the command
      */
-    public void execute (PackingList packingList) {
+    public void execute(PackingList packingList) {
     }
 
 }

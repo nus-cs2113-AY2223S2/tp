@@ -19,25 +19,29 @@ public class Ui {
             + "|____/ \\__,_|\\__, |_|   \\__,_|\\___|_|\\_\\___|_|\n"
             + "              __/ |\n"
             + "             |___/\n";
+
     public static void printErrorLine() {
         System.out.println("/////////////////////////////////////////////////////////////");
     }
+
     public static void printLine() {
         System.out.println("____________________________________________________________");
     }
+
     /**
      * Prints initialising Message
      */
-    public static void initialMessage(){
+    public static void initialMessage() {
         printLine();
         System.out.println("Hi this is,\n" + logo);
         System.out.println("Enter \"help\" to find out how to use BagPacker");
         printLine();
     }
+
     /**
      * Prints goodbye Message
      */
-    public static void goodbyeMessage(){
+    public static void goodbyeMessage() {
         printLine();
         System.out.println("Bye thanks for using,\n" + logo);
         printLine();
@@ -46,7 +50,7 @@ public class Ui {
     /**
      * Prints Error Message with the type of error and a helping message
      *
-     * @param errorType the type of error (e.g. invalid integer input)
+     * @param errorType   the type of error (e.g. invalid integer input)
      * @param helpMessage a message to help the user (e.g. try to input a whole number digit)
      */
     public static void errorMessage(String errorType, String helpMessage) {
@@ -73,6 +77,7 @@ public class Ui {
 
     /**
      * Prints messages(s) to the user
+     *
      * @param message
      */
     public static void printToUser(String... message) {
