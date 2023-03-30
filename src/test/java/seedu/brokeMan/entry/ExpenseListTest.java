@@ -15,15 +15,18 @@ public class ExpenseListTest {
 
     @BeforeAll
     public static void setUp() {
-        Expense1 = new Expense(2000.0, "Food", LocalDateTime.of(2023, Month.APRIL, 1, 10, 0), Category.FOOD);
-        Expense2 = new Expense(500.0, "Book", LocalDateTime.of(2023, Month.APRIL, 15, 15, 30), Category.ENTERTAINMENT);
+        Expense1 = new Expense(2000.0, "Food", LocalDateTime.of(2023, Month.APRIL,
+                1, 10, 0), Category.FOOD);
+        Expense2 = new Expense(500.0, "Book", LocalDateTime.of(2023, Month.APRIL,
+                15, 15, 30), Category.ENTERTAINMENT);
         ExpenseList.addExpense(Expense1);
         ExpenseList.addExpense(Expense2);
     }
 
     @Test
     public void testAddExpense_validExpense_success() {
-        Expense Expense3 = new Expense(100.0, "Drink", LocalDateTime.of(2023, Month.APRIL, 25, 12, 0), Category.ENTERTAINMENT);
+        Expense Expense3 = new Expense(100.0, "Drink", LocalDateTime.of(2023, Month.APRIL,
+                25, 12, 0), Category.ENTERTAINMENT);
         ExpenseList.addExpense(Expense3);
         LinkedList<Expense> expectedExpenseList = new LinkedList<>();
         expectedExpenseList.add(Expense1);
