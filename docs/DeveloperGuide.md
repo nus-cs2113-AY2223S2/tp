@@ -159,7 +159,7 @@ Got it, all tasks have been cleared.
 
 **Implementation**
 
-The ```SchoolClass``` Class is implemented to facilitate the adding of students' classes to the task list. It extends the ```Task``` Class with additional String attributes to store the class name, start date/time, and end date/time. It also overrides the ```toString()``` method to have its own specialised output when being printed, as well as overriding the ```toSaveString()``` method to have correctly save its details to the save file. The ```SchoolClass``` Class will also facilitate the implementation of automatically recurring classes, which is a planned feature for milestone v2.0. ```SchoolClass``` Tasks will be added by default as recurring tasks to the task list, and will be automatically added back at their same set timing each week.
+The ```SchoolClass``` Class is implemented to facilitate the adding of students' classes to a separate schedule, which is a priority queue. It extends the ```Task``` Class with additional String attributes to store the class name, day of week, start time, and end time. It also overrides the ```toString()``` method to have its own specialised output when being printed, as well as overriding the ```toSaveString()``` method to correctly save its details to the save file. The ```SchoolClass``` Class will also facilitate the implementation of automatically recurring classes, which is a planned feature for milestone v2.0. ```SchoolClass``` Tasks will be added by default as recurring tasks to the task list, and will be automatically added back at their same set timing each week.
 
 The following are the new operations implemented.
 
