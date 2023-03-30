@@ -77,8 +77,8 @@ public class Meal360 {
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage =
-                        "Please enter a valid recipe number or name. You did not enter a recipe number or "
-                                + "name.";
+                        "Please enter a valid recipe number or name. You did not enter a recipe number "
+                                + "or " + "name.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
@@ -200,6 +200,11 @@ public class Meal360 {
                      IngredientNotFoundException e) {
                 ui.printMessage(e.getMessage());
             }
+        } else if (command[0].equals("available")) {
+            // list recipes with ingredients all in ingredient list
+            ui.printSeparator();
+            RecipeList availableRecipes = recipeList.availableRecipes();
+            ui.listAvailableRecipes(availableRecipes);
             ui.printSeparator();
         } else if (command[0].equals("weeklyingredients")) {
             ui.printSeparator();

@@ -3,6 +3,7 @@ package seedu.meal360;
 import java.time.LocalDate;
 
 public class Ingredient {
+
     private static final Parser parser = new Parser();
     public String ingredientName;
     public Integer ingredientCount;
