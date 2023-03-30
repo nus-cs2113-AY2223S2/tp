@@ -25,8 +25,8 @@ public class AddMeetingCommand extends Command {
     @Override
     public void execute(TextUi ui) {
         ui.printMessage(Messages.MESSAGE_MEETING_ADDED);
-        Meeting m = new Meeting(this.time, this.issue);
-        MeetingManager.addMeeting(m, ui);
+        Meeting meeting = new Meeting(this.issue, this.time);
+        MeetingManager.addMeeting(meeting, ui);
         ui.printMessage(issue + " at " + time);
     }
 }
