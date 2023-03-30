@@ -14,6 +14,10 @@ public class RecurringEvent extends Event {
         return this.day;
     }
 
+    public void setDay(DayOfWeek day) {
+        this.day = day;
+    }
+
     @Override
     public String toSaveString() {
         return getDoneConditionString() + " " + getDescription() + " /from " + getStart() + " /to " + getEnd() +

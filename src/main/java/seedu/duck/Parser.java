@@ -112,6 +112,14 @@ public class Parser {
                         Ui.unknownCommandMessage();
                     }
                     break;
+                case "edit":
+                    if (words.length == 2 && isNumeric(words[1])) {
+                        TaskList.tryEditTask(tasks, words);
+                        Storage.trySave(tasks, classes);
+                    } else {
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
                 case "find":
                     if (words.length > 1) {
                         Ui.find(tasks, words);

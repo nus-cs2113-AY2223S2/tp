@@ -320,9 +320,9 @@ public class Ui {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
         for (int i = 0; i < tasks.size(); i++) {
             String timeUntilTask = null;
-            if (tasks.get(i) instanceof Deadline) {
+            if (tasks.get(i) instanceof Deadline && !(tasks.get(i) instanceof RecurringDeadline)) {
                 timeUntilTask = ((Deadline) tasks.get(i)).getDeadline();
-            } else if (tasks.get(i) instanceof Event) {
+            } else if (tasks.get(i) instanceof Event && !(tasks.get(i) instanceof RecurringEvent)) {
                 timeUntilTask = ((Event) tasks.get(i)).getStart();
             } else if (tasks.get(i) instanceof SchoolClass) {
                 timeUntilTask = ((SchoolClass) tasks.get(i)).getStart();
@@ -446,6 +446,45 @@ public class Ui {
         return Objects.equals(line, "Y");
     }
 
+    static void editTodoMessage() {
+        borderLine();
+        System.out.println("\t Please enter a new Todo description:");
+    }
+
+    static void editDeadlineMessage() {
+        borderLine();
+        System.out.println("\t Please edit one of the following:");
+        System.out.println("\t For non-recurring deadlines: /description or /deadline");
+        System.out.println("\t For recurring deadlines: /description or /deadline or /day");
+        System.out.println("\t Please follow the format: ");
+        System.out.println("\t /description <new_description> or /deadline <new_deadline> or /day <NEW_DAY_OF_WEEK>");
+        System.out.println("\t e.g. /deadline 2023-06-30 1200 or /deadline 1200 (for recurring deadlines)");
+    }
+
+    static void editEventMessage() {
+        borderLine();
+        System.out.println("\t Please edit one of the following:");
+        System.out.println("\t For non-recurring events: /description or /from or /to");
+        System.out.println("\t For recurring deadlines: /description or /from or /to or /day");
+        System.out.println("\t Please follow the format: ");
+        System.out.println("\t /description <new_description> or /from <new_start_time> or /day <NEW_DAY_OF_WEEK>");
+        System.out.println("\t e.g. /from 2023-06-30 1200 or /from 1200 (for recurring events)");
+    }
+
+    static void printEditedTask(Task task) {
+        borderLine();
+        System.out.println("\t Quack!");
+        System.out.println("\t I have changed your task to:");
+        System.out.println("\t " + task);
+        borderLine();
+    }
+
+    static String askForEditMessage() {
+        Scanner in = new Scanner(System.in);
+        String line = in.nextLine();
+        return line;
+    }
+
     static void help() {
         borderLine();
         System.out.println("\t   Quack! Here are the commands you can give me:");
@@ -556,6 +595,12 @@ public class Ui {
         System.out.println("\t Quack! I know humans wish to undo their past mistakes, " +
                 "but the start date has already passed!");
         System.out.println("\t Please try again!");
+        borderLine();
+    }
+
+    static void enmptyDescriptionErrorMessage() {
+        borderLine();
+        System.out.println("\t Error. Description cannot be empty");
         borderLine();
     }
 
