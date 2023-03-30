@@ -93,16 +93,21 @@ public class Ui {
         printMessage("1. Add Recipe: add /r {recipe name}");
         printMessage("2. View Recipe: view {index number} or view /r {recipe name}");
         printMessage("3. Edit Recipe: edit {index number} or view /r {recipe name}");
-        printMessage("4. Delete Recipe: delete {index number} or view /r {recipe name}");
+        printMessage("4. Delete Recipe(s): delete {index number}, delete {range}, " + "delete r/ {recipe name}");
+        printMessage("   delete r/ {all} or view /r {recipe name}");
         printMessage("5. List All Recipes: list");
         printMessage("6. Add Single Recipe to Weekly Plan: add {recipe name} {quantity}");
         printMessage("7. Add Multiple Recipes to Weekly Plan: add /r {recipe name} /q {quantity}");
         printMessage("   /r {recipe name} /q {quantity} ...");
-        printMessage("8. Delete Single Recipe from Weekly Plan: delete {recipe name} {quantity}");
-        printMessage("9. Delete Multiple Recipes from Weekly Plan: delete /r {recipe name} /q");
+        printMessage("8. Delete Single Recipe from Weekly Plan: weekly /delete {recipe name}");
+        printMessage("9. Delete Multiple Recipes from Weekly Plan: weekly /multidelete /r {recipe name} /q");
         printMessage("   {quantity} /r {recipe name} /q {quantity} ...");
-        printMessage("10. View Weekly Plan: weeklyplan");
-        printMessage("11. Exit: bye");
+        printMessage("10. Clear Weekly Plan: weekly /clear");
+        printMessage("11. Tag recipes to categorize: tag label << [recipe name && recipe name && ...]");
+        printMessage("12. Randomly receive a recipe: random");
+        printMessage("13. View Weekly Plan: weeklyplan");
+        printMessage("14. View Weekly Ingredients: weeklyingredients");
+        printMessage("15. Exit: bye");
     }
 
     public void printUserIngredients(IngredientList userIngredients) {
