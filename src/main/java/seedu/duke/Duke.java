@@ -55,7 +55,7 @@ public class Duke {
         ui.greetUser();
         while (true) {
             commandHandler.handleUserCommands(in.nextLine(), ui, exerciseGenerator, userCareerData, exerciseHandler,
-                                              storage, planner, achievementListHandler);
+                                              storage, planner, achievementListHandler, in);
         }
     }
 

@@ -89,8 +89,9 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 } else {
                     boolean exit = confirmExitDuringWorkout();
                     if (exit) {
-                        ui.byeUser();
-                        System.exit(0);
+                        exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData, achievementListHandler);
+                        System.out.println("Back to main menu...");
+                        return;
                     } else {
                         System.out.println("You got this! Finish your exercise session!");
                     }
@@ -111,16 +112,14 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 } else {
                     exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData, achievementListHandler);
                 }
-                break;
+                return;
             case CANCEL_COMMAND:
-                exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData,
-                                                achievementListHandler);
                 if (additionalDescription.length() != 0) {
                     ui.unknownCommand();
                 } else {
                     exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData, achievementListHandler);
                 }
-                break;
+                return;
             case HISTORY_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HISTORY_COMMAND.toString());
             case EXERCISE_DATA_COMMAND:
@@ -128,11 +127,11 @@ public class ExerciseSessionCommandHandler implements CommandList {
             case ACHIEVEMENTS:
                 achievementListHandler.printAchievements();
                 break;
-
             default:
                 ui.unknownCommand();
                 break;
             }
+            ui.workoutMode();
         } catch (DukeError e) {
             System.out.println(e.getMessage());
         }
