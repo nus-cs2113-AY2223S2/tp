@@ -163,6 +163,7 @@ Okay, here is your task list, with 3 tasks
 [ID:3]	[ ][coursemology homework][Due: 24 Mar 2023 13:00]
 [ID:1]	[ ][homework]
 ```
+
 ### Edit/delete deadline `due`
 
 Edits or deletes the deadline of a task with a given id in the To-Do List.
@@ -253,14 +254,21 @@ Progress: |================----------------------------------|
 - Copy the `save.txt` to the other computer and place it in the same location as the jar file for the program before running it. 
 
 ## Command Summary
-| Action                      | Command                                                                                             |
-|-----------------------------|-----------------------------------------------------------------------------------------------------|
-| Add a task                  | `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-rep REPEAT_DURATION]` |
-| Mark task complete          | `mark ID`                                                                                           |
-| Mark task incomplete        | `unmark ID`                                                                                         |
-| Delete a task               | `delete ID`                                                                                         |
-| Add/edit email to a task    | `email ID -edit EMAIL_ADDRESS`                                                                      |
-| Delete email from a task    | `email ID -del`                                                                                     |
-| Add/edit tags to a task     | `tags ID -edit LIST_OF_TAGS`                                                                        |
-| Delete all tags from a task | `tags ID -del`                                                                                      |
-| List all tasks              | `list`                                                                                              |
+
+| Action                               | Command                                                                                             |
+|--------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Add a task                           | `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-rep REPEAT_DURATION]` |
+| Mark task complete                   | `mark ID`                                                                                           |
+| Mark task incomplete                 | `unmark ID`                                                                                         |
+| Delete a task                        | `delete ID`                                                                                         |
+| Add/edit deadline to a task          | `due ID -edit DEADLINE`                                                                             |
+| Delete deadline from a task          | `due ID -del`                                                                                       |
+| Add/edit email to a task             | `email ID -edit EMAIL_ADDRESS`                                                                      |
+| Delete email from a task             | `email ID -del`                                                                                     |
+| Add/edit tags to a task              | `tags ID -edit LIST_OF_TAGS`                                                                        |
+| Delete all tags from a task          | `tags ID -del`                                                                                      |
+| Add/edit repeat duration to a task   | `repeat ID -edit REPEAT DURATION`                                                                   |
+| Delete repeat duration from a task   | `repeat ID -del`                                                                                    |
+| List all tasks                       | `list`                                                                                              |
+| Change priority level of task        | `priority ID -edit PRIORITY_VALUE`                                                                  |
+| Check progress of current week tasks | `progress`                                                                                          |
