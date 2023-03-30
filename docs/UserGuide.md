@@ -119,7 +119,7 @@ The function will replace the specified step of a specified recipe with a new us
 First input the index of the recipe to edit, then input the step number you would like to edit.
 Following which, type in the description for the step.
 
-<p> Note that to `exit` the whole program from the edit window, you have to `quit` first then `exit` </p>
+Note that to `exit` the whole program from the edit window, you have to `quit` first then `exit`. 
 
 <h2 id="editing-a-recipe-ingredient-editingredient"> Editing a recipe's ingredients: <code class="language-plaintext highlighter-rouge">editingredient</code></h2>
 
@@ -155,12 +155,12 @@ Type 'quit' to exit the edit view
 quit
 __________________________________________________________
 ```
-</p>
+
 <p> The function will replace the specified ingredient of a specified recipe with a new user input.
 First input the index of the recipe to edit, then input the ingredient number you would like to edit.
 Following which, type in the description for the ingredient. </p>
 
-Note that to `exit` the whole program from the edit window, you have to `quit` first then `exit` 
+Note that to `exit` the whole program from the edit window, you have to `quit` first then `exit`. 
 
 <h2 id="deleting-a-recipe-delete"> Deleting a recipe: <code class="language-plaintext highlighter-rouge">delete</code></h2>
 
@@ -251,7 +251,7 @@ The recipe manager data are saved in the hard disk automatically after any comma
 <h2 id="edit-data"> Editing the data file </h2>
 
 The recipe data are saved as a text file `[JAR file location]/data/[INDEX-(dish name)].txt`. 
-Here is an example of a valid file, `data/Hotpot.txt`:
+Here is an example of a valid file, `data/1-Hotpot.txt`:
 ```
 Hotpot
 Chinese
