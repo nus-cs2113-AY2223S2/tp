@@ -187,13 +187,26 @@ The following are the new operations implemented.
 
 <br />
 
-### List Upcoming Tasks Feature
+### Recurring deadlines and events feature
 
 **Implementation**
 
-The ```Ui#printUpcomingTasks()``` was implemented to allow the user to view their upcoming tasks in ```ndays``` days where ```ndays``` is specified. 
+The `RecurringDeadline` and `RecurringEvent` classes are implemented to facilitate the adding of deadlines and events that happen every week to the `TaskList`. They extend `Deadline` and `Event` respectively with an additional `DayOfWeek` attribute `day` to indicate which day of the week the task recurs on. They both override the `toString()` and `toSaveString()` methods to return the correct `String` representation for output to the user and storage. `RecurringDeadline` and `RecurringEvent` also have a public method `getDay()` to return the private attribute `day`.
 
--   ```Ui#printUpcomingTasks()``` - navigates through the task list and compares the due time/starting time of that task and current time. prints all upcoming tasks in the number of days specified.
+**The following new operations are implemented. **
+
+-   `TaskList#addRecurrDeadline()` -- adds a `RecurringDeadline` object to the task list
+
+-   `Storage#loadRecurrDeadline()` -- loads a `RecurringDeadline` from the saved data file to the task list
+
+-   `TaskList#addRecurrEvent()` -- adds a `RecurringEvent` object to the task list
+
+-   `Storage#loadRecurrEvent()` -- loads a `RecurringEvent` from the saved data file to the task list
+
+Below is a class diagram for the implementation
+ 
+ <img width="859" alt="image" src="https://user-images.githubusercontent.com/88618401/228712251-dc8a6eb0-7483-4d01-b2f0-99f9c105aa9a.png">
+
  
  <br />
  
