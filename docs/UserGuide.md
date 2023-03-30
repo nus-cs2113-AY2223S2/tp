@@ -144,56 +144,54 @@ An integral feature of any budgeting application is to add transactions. The "ad
 to keep track of your inflows and outflows. The following explains how you can add different types of transactions
 to rainyDay.
 
-#### Simple Usage
-
-Format: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT]`
+Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
 
 * `DIRECTION` should be either:
-    * `in` signifying an inflow type of transaction, or
-    * `out` signifying an outflow type of transaction
-* `DESCRIPTION` signifies the description of the transaction, consisting of words
-* `AMOUNT` signifies the cost of transaction, needs to be a number more than or equal to 0
+    * `-in` signifying an inflow type of transaction, or
+    * `-out` signifying an outflow type of transaction
+* `DESCRIPTION` signifies the description of the transaction, consisting of any characters and space
+* `AMOUNT` signifies the value of the transaction, needs to be a number more than or equal to 0, with `$` appended
+  before the number
+* `CATEGORY` is a field representing the category to be tagged with the transaction, where category can contain any
+  characters and space, with `-c ` appended to the category
+* `DATE` is a field representing the date to be tagged with the transaction, where date needs to be in the format
+  of `DD/MM/YYYY`, with `-date` appended before the date
+
+> 💡**Tip:**:
+>    * `DD` is a two-digit number representing the day
+>    * `MM` is a two-digit number representing the month
+>    * `YYYY` is a four-digit number representing the year
 
 Example of usage:
 
 You received a gift of $500 from your mother. To add it to rainyDay, the following command can be provided to rainyDay:
 
-* `add -in gift from mom $500` - Signifies an inflow with the description "gift from mom" of value "$500"
+> > add -out Haidilao $500
+> Done! Added: out for Haidilao, -$500.00
 
-You paid for your school fees of $1000.50. To add it to rainyDay, the following command can be provided to rainyDay:
+You had lunch at a hawker centre for $6.80 on 10/03/2023. To add it to rainyDay, the following command can be provided
+to rainyDay:
 
-* `add -out school fees $1000.50` - Signifies an outflow with the description "school fees" of value "$1000.50"
+> > add -in Allowance $20 -c Allowance -date 01/03/2023
+> Done! Added: in for Allowance, +$20.00
 
-#### Advanced Usage
-
-Format: `add [-DIRECTION] [DESCRIPTION] [$AMOUNT] {-c CATEGORY} {-date DD/MM/YYYY}`
-
-* `DIRECTION`, `DESCRIPTION`, `AMOUNT` is as mentioned under [Simple Usage](#simple-usage)
-* `CATEGORY` can contain any characters and space
-* `DD/MM/YYYY` represents a valid date, where
-    * `DD` is a two-digit number representing the day
-    * `MM` is a two-digit number representing the month
-    * `YYYY` is a four-digit number representing the year
+> 💡**Tip:** The flags `-c` and `-date` can also be used exclusively. The following are also valid formats:
+>
+> * `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY`
+> * `add -DIRECTION DESCRIPTION $AMOUNT -date DD/MM/YYYY`
 
 Example of usage:
 
 You received your monthly income of $2000 on 05/03/2023. To add it to rainyDay, the following command can be provided to
 rainyDay:
 
-* `add -in income $2000 -c pay -date 05/03/2023` - Signifies an inflow with the description "income" of value "$2000",
-  under the category of "pay" with the date "05/03/2023"
+> > add -out beef noodles $12 -c Food and Drinks
+> Done! Added: out for beef noodles, -$12.00
 
-You had lunch at a hawker centre for $6.80 on 10/03/2023. To add it to rainyDay, the following command can be provided
-to rainyDay:
+You paid for your school fees of $1000.50. To add it to rainyDay, the following command can be provided to rainyDay:
 
-* `add -out lunch at hawker centre $6.80 -c food and drinks -date 10/03/2023` - Signifies an outflow with the
-  description
-  "lunch at hawker center" of value "$6.80", under the category of "food and drinks" and with the date "10/03/2023".
-
-> 💡**Tip:** The flags `-c` and `-date` can also be used exclusively. The following are also valid formats:
->
-> * `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY`
-> * `add -DIRECTION DESCRIPTION $AMOUNT -date DD/MM/YYYY`
+> > add -in pay $50000 -date 26/03/2023
+> Done! Added: in for pay, +$50000.00
 
 ### Viewing the transactions
 
@@ -243,11 +241,11 @@ will help you extract certain transactions based on a specific criteria
 Format : `filter [FLAG] {FIELD}`
 
 * The `FLAG` must be one of the following:
-  * `-in` to filter by inflows
-  * `-out` to filter by outflows
-  * `-d` to filter by description
-  * `-c` to filter by category
-  * `-date` to filter by date
+    * `-in` to filter by inflows
+    * `-out` to filter by outflows
+    * `-d` to filter by description
+    * `-c` to filter by category
+    * `-date` to filter by date
 * date `FIELD` must be in the form DD/MM/YYYY
 
 Example of usage:
@@ -356,7 +354,9 @@ command in full, you could configure the shortcut as follows.
 
 `shortcut FavLunch -maps add -out noodles $4 -c food`
 
->⚠️ Avoid adding a shortcut with the same name as an actual command. The actual command will take priority over your configured shortcut.
+> ⚠️ Avoid adding a shortcut with the same name as an actual command. The actual command will take priority over your
+> configured shortcut.
+
 ### Using a shortcut
 
 After configuring your shortcuts, you may want to use the shortcut to save yourself the trouble of typing the
@@ -485,6 +485,10 @@ Format: `bye`
 **A**: Copy the txt file named "rainyDay" that is in the same directory as rainyDay.jar to the new device and location
 that "rainyDay.jar" is going to be stored in
 
+**Q**: What if I am not able to start up rainyDay? {not able to load the data..?}
+
+**A**: {to be added}
+
 ## Command Summary
 
 | Action          | Format <br> Example input                                                                                                                                                                                                                                                                                                                                                   |
@@ -510,50 +514,14 @@ update when product is finalised}
 
 ## Glossary
 
-Advanced usage
-
-- A thorough usage method for a given function provided by rainyDay, suitable for more advanced users who are already
-  familiar with the basic functions of rainyDay. Highly recommended to get the full potential that rainyDay has to
-  offer. Such as allowing for greater control and flexibility in using rainyDay to fit specific needs and preferences.
-
-Command Line Interface
-
-- An interface that uses text as the mode of interaction between the user and the program.
-
-CSV
-
-- Stands for Comma Separated Value, a type of file format that can be imported to other statistical software such as
-  Microsoft Excel, R Commander or Google Sheets.
-
-Filter
-
-- A function to narrow down the range of items to be shown.
-
-Financial Statement
-
-- Represents a transaction.
-
-Financial Report
-
-- Represents a compilation of financial statements.
-
-Flags
-
-- Has a "-" appended to the front of a symbol, example: "-d", "-date", "-c", etc.
-
-Inflow
-
-- Signify an increment of money on your side, such as deposits into your wallet.
-
-Outflow
-
-- Signify a decrement of money on your side, such as payments from your wallet.
-
-Simple usage
-
-- A less overwhelming usage method for a given function provided by rainyDay for a more user-friendly experience. Highly
-  recommended for new users who are just starting to learn how to use the basic functions.
-
-Transaction
-
-- An activity relating to transferring of money.
+| Term                   | Explanation                                                                                                                                                      |
+|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command Line Interface | An interface that uses text as the mode of interaction between the user and the program                                                                          |
+| CSV                    | Stands for Comma Separated Value, a type of file format that can be imported to other statistical software such as Microsoft Excel, R Commander or Google Sheets |
+| Filter                 | A function to narrow down the range of items to be shown                                                                                                         |
+| Financial Statement    | Represents a transaction                                                                                                                                         |
+| Financial Report       | Represents a compilation of financial statements                                                                                                                 |
+| Flags                  | Has a "-" appended to the front of a symbol, example: "-d", "-date", "-c", etc                                                                                   |
+| Inflow                 | Signify an increment of money on your side, such as deposits into your wallet                                                                                    |
+| Outflow                | Signify a decrement of money on your side, such as payments from your wallet                                                                                     |
+| Transaction            | An activity relating to transferring of money                                                                                                                    |
