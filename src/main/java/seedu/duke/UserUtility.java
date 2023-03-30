@@ -26,7 +26,8 @@ public class UserUtility {
         System.out.println("Showing schedule for semester " +
                 UserUtility.getUser().getSemester() + " and week " + currentWeek);
 
-        Ui.listTask((ArrayList<Schedule>) events.stream().filter(e -> e.getEndTime() == null).collect(Collectors.toList()));
+        Ui.listTask((ArrayList<Schedule>) events.stream().filter(e -> e.getEndTime()
+                == null).collect(Collectors.toList()));
 
         events = events.stream().filter(e -> e.getEndTime() != null).collect(Collectors.toList());
 
@@ -69,17 +70,20 @@ public class UserUtility {
                     LocalDateTime startDateTime = event.getStartTime();
                     LocalDateTime endDateTime = event.getEndTime();
 
-                    if (startDateTime.toLocalTime().getMinute() > 0 && startDateTime.toLocalTime().getMinute() < 30) {
+                    if (startDateTime.toLocalTime().getMinute() > 0
+                            && startDateTime.toLocalTime().getMinute() < 30) {
                         startDateTime = LocalDateTime.of(startDateTime.toLocalDate(), LocalTime.of(startDateTime.getHour(), 0));
                     }
-                    if (endDateTime.toLocalTime().getMinute() > 30 && startDateTime.toLocalTime().getMinute() <= 59) {
+                    if (endDateTime.toLocalTime().getMinute() > 30
+                            && startDateTime.toLocalTime().getMinute() <= 59) {
                         endDateTime = LocalDateTime.of(endDateTime.toLocalDate(), LocalTime.of(endDateTime.getHour() + 1, 0));
                     }
 
                     if (time.getDayOfWeek() == day && isValidInterval(time, startDateTime, endDateTime)
                             && time.toLocalDate().isAfter(weekStartDate.minusDays(1))
                             && time.toLocalDate().isBefore(weekEndDate.plusDays(1))) {
-                        System.out.print(String.format("%-15s|", event.getDescription().substring(0, Math.min(event.getDescription().length(), 15))));
+                        System.out.print(String.format("%-15s|",
+                                event.getDescription().substring(0, Math.min(event.getDescription().length(), 15))));
                         found = true;
                         break;
                     }
