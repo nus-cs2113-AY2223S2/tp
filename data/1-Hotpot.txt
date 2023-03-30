@@ -1,10 +1,6 @@
 Hotpot
-Chinese
+aa
 Ingredient list
-Beef
-Potatoes
+Beef,Potatoes
 Carrots
 Step list
-chop beef
-add car
-eat food
