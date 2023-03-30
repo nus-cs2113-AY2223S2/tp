@@ -1,12 +1,20 @@
 package seedu.dukeofbooks.command;
 
-public class ExitCommand extends Command{
+
+import seedu.dukeofbooks.data.user.User;
+
+public class ExitCommand extends AccessCommand{
     public static final String COMMAND_WORD = "exit";
-    public static final String MESSAGE_EXIT_ACKNOWEDGEMENT = "Exiting DukeOfBooks as requested ...";
+    public static final String COMMAND_USAGE = COMMAND_WORD + ": exits the application";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting DukeOfBooks as requested ...";
+
+    public ExitCommand() {
+        super(null);
+    }
 
     @Override
-    public CommandResult execute() {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWEDGEMENT);
+    public User execute() {
+        return null;
     }
 
     public static boolean isExit(Command command) {

@@ -3,7 +3,7 @@ package seedu.dukeofbooks.command;
 import seedu.dukeofbooks.data.book.BorrowHistory;
 import seedu.dukeofbooks.data.person.Person;
 
-public class HistoryCommand extends Command {
+public class HistoryCommand extends UserCommand {
     public static final String COMMAND_WORD = "history";
     Person person;
 

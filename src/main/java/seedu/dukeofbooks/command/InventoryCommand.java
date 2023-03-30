@@ -5,7 +5,7 @@ import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.book.BorrowableItem;
 import seedu.dukeofbooks.data.exception.IllegalOperationException;
 
-public class InventoryCommand extends Command {
+public class InventoryCommand extends UserCommand {
     // librarian -title tester -topic python -author me -isbn 1567890 -action add
     // librarian -title tester -topic python -author me -isbn 1567890 -action delete
     public static final String COMMAND_WORD = "librarian";

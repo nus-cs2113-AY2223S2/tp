@@ -19,6 +19,8 @@ public class TextUi {
     private static final String LS = System.lineSeparator();
     private static final String DIVIDER = "===================================================";
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
+    private static final String LOGIN_PROMPT = "Welcome! Please login or signup.";
+    private static final String GREETINGS_FORMAT = "Welcome %s!";
 
     private final Scanner in;
     private final PrintStream out;
@@ -55,7 +57,15 @@ public class TextUi {
     }
 
     public void showWelcomeMessage(String version) {
-        showToUser(DIVIDER, WELCOME_STRING, version, DIVIDER);
+        showToUser(DIVIDER, WELCOME_STRING, version);
+    }
+
+    public void showLoginMessage() {
+        showToUser(DIVIDER, LOGIN_PROMPT, DIVIDER);
+    }
+
+    public void showGreetingMessage(String name) {
+        showToUser(DIVIDER, String.format(GREETINGS_FORMAT, name), DIVIDER);
     }
 
     public void showExitMessage() {

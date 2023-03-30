@@ -9,8 +9,8 @@ import java.util.Objects;
 
 public class Person {
     public static final int DEFAULT_PHONE_NUMBER = 10000000;
-    private PersonName name;
-    private Phone phone;
+    private final PersonName name;
+    private final Phone phone;
 
     private final ArrayList<Loan> borrowedItems = new ArrayList<>();
 
@@ -21,6 +21,7 @@ public class Person {
         this.name = name;
         this.phone = phone;
     }
+
     public Person(String name) throws IllegalValueException {
         this.name = new PersonName(name);
         this.phone = new Phone(DEFAULT_PHONE_NUMBER);

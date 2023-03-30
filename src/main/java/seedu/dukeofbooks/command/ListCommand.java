@@ -1,6 +1,6 @@
 package seedu.dukeofbooks.command;
 
-public class ListCommand extends Command {
+public class ListCommand extends UserCommand {
     public static final String COMMAND_WORD = "list";
 
     @Override

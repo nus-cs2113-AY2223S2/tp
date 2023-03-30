@@ -2,7 +2,7 @@ package seedu.dukeofbooks.command;
 
 import seedu.dukeofbooks.data.loan.LoanRecords;
 
-public abstract class LoanCommand extends Command {
+public abstract class LoanCommand extends UserCommand {
     protected final LoanRecords loanRecords;
 
     public LoanCommand(LoanRecords loanRecords) {
