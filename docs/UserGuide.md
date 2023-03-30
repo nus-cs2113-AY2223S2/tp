@@ -121,7 +121,7 @@ Note: The price of dishes will be shown in dollars.
 
 #### Delete a deadline:
 
-Format: `delete_deadline i/<index>`
+Format: `delete_deadline <index>`
 
 
 Example:
@@ -274,20 +274,20 @@ The data stored in those files are in plaintext format and the user can copy out
 
 
 
-| Action          | Command                       |
-|-----------------|-------------------------------|
-| help            | help                          |
-| add_meeting     | add_meeting n/<name> t/<time> |
-| view_meetings   | view_meetings                 |
-| delete_meeting  | delete_meeting n/<name>       |
-| find_meeting    | find_meeting s/<string>       |
+| Action          | Command                                                                                                        |
+|-----------------|----------------------------------------------------------------------------------------------------------------|
+| help            | help                                                                                                           |
+| add_meeting     | add_meeting n/<name> t/<time>                                                                                  |
+| view_meetings   | view_meetings                                                                                                  |
+| delete_meeting  | delete_meeting n/<name>                                                                                        |
+| find_meeting    | find_meeting s/<string>                                                                                        |
 | add_dish        | `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]` |
-| view_dish       | `view_dish`                    |
-| delete_dish     | `delete_dish <index_number>`    |
-| find_dish       | `find_dish <keyword>`           |
-| add_deadline     | add_deadline n/<name> t/<time> |
-| view_deadline    | view_deadline                  |
-| delete_deadline  | delete_deadline i/<index>      |
-| find_deadline    | find_deadline <keyword>        |
+| view_dish       | `view_dish`                                                                                                    |
+| delete_dish     | `delete_dish <index_number>`                                                                                   |
+| find_dish       | `find_dish <keyword>`                                                                                          |
+| add_deadline    | add_deadline n/<name> t/<time>                                                                                 |
+| view_deadline   | view_deadline                                                                                                  |
+| delete_deadline | delete_deadline <index>                                                                                        |
+| find_deadline   | find_deadline <keyword>                                                                                        |
 
 
