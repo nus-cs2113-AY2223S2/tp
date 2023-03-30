@@ -50,6 +50,9 @@ e.g. in <code class="language-plaintext highlighter-rouge">add DESCRIPTION</code
 
 e.g. if the command specifies <code class="language-plaintext highlighter-rouge">exit 123</code>, it will be interpreted as <code class="language-plaintext highlighter-rouge">exit</code>.
 </li>
+<li>
+APP accept the <strong>same name for different recipes</strong>. For example, you can have two recipes named <code class="language-plaintext highlighter-rouge">Hotpot</code>.
+</li>
 </ol>
 
 <h2 id="viewing-help-help"> Viewing help:<code class="language-plaintext highlighter-rouge">help</code></h2>
@@ -97,7 +100,7 @@ __________________________________________________________
 Edits a step for a recipe in the recipe manager.
 **Format**: `editstep INDEX`, then input the step number
 **Hint**: At the edit page, you can input `quit` if you decide not to edit.
-<p> Examples:
+**Examples**:
 
 ```
 editstep 2
@@ -131,10 +134,10 @@ Following which, type in the description for the step.
 <h2 id="editing-a-recipe-ingredient-editingredient"> Editing a recipe's ingredients: <code class="language-plaintext highlighter-rouge">editingredient</code></h2>
 
 <p>Edits an ingredient for a recipe in the recipe manager.
+
 **Format**: `editingredient INDEX`, then input the ingredient number
 **Hint**: At the edit page, you can input `quit` if you decide not to edit.
-</p>
-<p> Examples:
+**Examples**:
 
 ```
 editingredient 1
@@ -233,22 +236,22 @@ __________________________________________________________
 <h2 id="listing-all-recipes-list"> Listing all recipes: <code class="language-plaintext highlighter-rouge">list</code></h2>
 
 This feature allows you to **list all recipes** you currently have. This feature is useful after using the add, edit and delete commands to make changes to the recipe list, as it shows you the updated list.
-Format: `list`
-Examples:
+**Format**: `list`
+**Examples**:
 * `list`
 
 <h2 id="clearing-all-entries-clear"> Clearing all entries: <code class="language-plaintext highlighter-rouge">clear</code></h2>
 
 This feature allows you to **delete all recipes** that are currently stored on the recipe manager. Users may use this to clear all data when starting to use the app or when they wish to clear all data.
-Format: `clear`
-Examples:
+**Format**: `clear`
+**Examples**:
 * `clear`
 
 <h2 id="exiting-the-program-exit"> Exiting the program: <code class="language-plaintext highlighter-rouge">exit</code></h2>
 
 Exits the program.
-Format: `exit`
-Examples:
+**Format**: `exit`
+**Examples**:
 * `exit`
 
 <h2 id="save-data"> Saving the data </h2>
@@ -322,10 +325,14 @@ Examples:
 
 |  Action   | 	Format  | Example |
 |  ----  | ----  | ----  |
-| **help**  | [`help`](#viewing-help-help) | |
-| **add**  | [`add n/NAME i/INGREDIENTS t/TAG`](#adding-a-recipe-add)| `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese` |
-| **delete**  | [`delete n/NAME`](#deleting-a-recipe-delete)| `delete INDEX` |
-| **view**  | [`view INDEX`](#viewing-a-recipe-view) | `view 1`  |
-| **list**  | [`list`](#listing-all-recipes-list)| |
-| **clear**  | [`clear`](#clearing-all-entries-clear)| |
-| **exit**  | [`exit`](#exiting-the-program-exit)| |
+| [**help**](#viewing-help-help)  | `help` | |
+| [**add**](#adding-a-recipe-add) | `add n/NAME t/TAG i/INGREDIENT ... s/SUMOFSTEP [STEP]...` | `add n/Hotpot t/Chinese i/Beef i/Potatoes i/Carrots s/2` `add carrots` `cook 5 minutes` |
+| [**editingredient**](#editing-ingredients-editingredient)  | `editingredient INDEX` | |
+| [**editstep**](#editing-steps-editstep)  | `editstep INDEX` | |
+| [**delete**](#deleting-a-recipe-delete)  | `delete INDEX` | `delete 1` |
+| [**find**](#finding-recipes-by-name-find)  | `find KEYWORD ` | `find Hotpot` |
+| [**view**](#viewing-a-recipe-view)  | `view INDEX` | `view 1` |
+| [**list**](#listing-all-recipes-list)  | `list` | |
+| [**clear**](#clearing-all-entries-clear)  | `clear` | |
+| [**exit**](#exiting-the-program-exit)  | `exit` | |
+
