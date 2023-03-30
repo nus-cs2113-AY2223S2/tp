@@ -46,6 +46,16 @@ public class Task {
         return " ";
     }
 
+    public String savedNotes(){
+        String save = new String("");
+        for (int i = 0; i < additionalNotes.size(); i++){
+            save += this.additionalNotes.get(i);
+            if (!(i==additionalNotes.size()-1)) {
+                save += "||";
+            }
+        }
+        return save;
+    }
     public void addNotes(String noteToAdd){
             this.additionalNotes.add(noteToAdd);
     }

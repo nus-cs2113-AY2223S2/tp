@@ -522,7 +522,7 @@ public class TaskList {
      */
     static void addNote(ArrayList<Task> tasks, String[] words){
         int index = Integer.parseInt(words[1]);
-        if (index < tasks.size() && index >= 0) {
+        if (index-1 < tasks.size() && index >= 1) {
             System.out.println("\t What note would you like to add to the following task?");
             System.out.println(tasks.get(index - 1).toString());
             Ui.borderLine();
@@ -538,14 +538,15 @@ public class TaskList {
 
     /**
      * Takes in the task number and index of the note to be deleted and then deletes it
+     *
      * @param tasks The arraylist of tasks
      * @param words The array of strings from user input
      */
     static void deleteNotes(ArrayList<Task> tasks, String[] words) {
         int index = Integer.parseInt(words[1]);
         int indexOfNoteToBeDeleted = Integer.parseInt(words[2]);
-        if (index < tasks.size() && index >= 0) {
-            if (indexOfNoteToBeDeleted < tasks.get(index).numberOfNotes() && indexOfNoteToBeDeleted >= 0) {
+        if (index-1 < tasks.size() && index >= 1) {
+            if (indexOfNoteToBeDeleted-1 < tasks.get(index-1).numberOfNotes() && indexOfNoteToBeDeleted >= 1) {
                 Ui.borderLine();
                 System.out.println("\t Deleting note: ");
                 ArrayList<String> noteToBeDeleted = tasks.get(index - 1).getAdditionalNotes();
@@ -562,6 +563,7 @@ public class TaskList {
 
     /**
      * Takes in the task number and index of the note to be edited and then changes it
+     *
      * @param tasks The arraylist of tasks
      * @param words The array of strings from user input
      */
@@ -569,8 +571,8 @@ public class TaskList {
         int index = Integer.parseInt(words[1]);
         int indexOfNoteToBeEdited = Integer.parseInt(words[2]);
         Scanner userInput = new Scanner(System.in);
-        if (index < tasks.size() && index >= 0) {
-            if (indexOfNoteToBeEdited < tasks.get(index).numberOfNotes() && indexOfNoteToBeEdited >= 0) {
+        if (index-1 < tasks.size() && index >= 1) {
+            if (indexOfNoteToBeEdited-1 < tasks.get(index-1).numberOfNotes() && indexOfNoteToBeEdited >= 1) {
                 Ui.borderLine();
                 System.out.println("\t What would you like to change the note to? ");
                 System.out.println("\t" + "\t" + tasks.get(index - 1).getNote(indexOfNoteToBeEdited - 1));
