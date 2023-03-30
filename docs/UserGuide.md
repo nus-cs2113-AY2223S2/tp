@@ -3,8 +3,9 @@
 ## Introduction
 
 Sniff is an appointment manager that helps clinic deal with handling appointments of different types.
-Features such as appointment tracking via uid, date, and appointment type help improve
-efficiency in the workplace and reduce human errors.
+Features such as appointment tracking via uid, date, and appointment type help improve efficiency in the workplace 
+and reduce human errors.
+
 
 ## Quick Start
 
@@ -12,8 +13,8 @@ efficiency in the workplace and reduce human errors.
 2. Download the latest version of Sniff from [here](https://github.com/AY2223S2-CS2113-W12-1/tp/releases).
 3. Move the file to a location where you want to run Sniff from.
 4. Open a command terminal and navigate to the location where `sniff.jar` is.
-5Use the following command to run the program: `java -jar sniff.jar`
-6If Sniff runs successfully, you will see the following welcome message
+5. Use the following command to run the program: `java -jar sniff.jar`
+6. If Sniff runs successfully, you will see the following welcome message
 ```
 ______________________________________________________________________
  Hello! I'm Sniff, your personal appointment manager.
