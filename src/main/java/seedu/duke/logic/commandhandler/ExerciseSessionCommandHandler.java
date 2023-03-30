@@ -106,8 +106,6 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 }
                 break;
             case FINISH_COMMAND:
-                exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData,
-                        achievementListHandler);
                 if (additionalDescription.length() != 0) {
                     ui.unknownCommand();
                 } else {
@@ -115,8 +113,6 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 }
                 break;
             case CANCEL_COMMAND:
-                exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData,
-                        achievementListHandler);
                 if (additionalDescription.length() != 0) {
                     ui.unknownCommand();
                 } else {
