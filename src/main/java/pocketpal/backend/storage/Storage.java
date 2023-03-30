@@ -9,7 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 
 import pocketpal.backend.constants.Config;
@@ -25,6 +27,7 @@ import pocketpal.backend.exceptions.InvalidReadFileException;
 public class Storage {
     private final String filePath;
     private final String delimiter;
+    private final DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     public Storage() {
         this(Config.RELATIVE_FILE_NAME);
@@ -51,7 +54,10 @@ public class Storage {
         File file = new File(this.filePath);
         file.getParentFile().mkdirs();
         file.createNewFile();
-        new FileOutputStream(file, true).close();
+        new FileOutputStream(
+            file, 
+            true
+        ).close();
     }
 
     /**
@@ -69,39 +75,58 @@ public class Storage {
             String amountString = lineArray[1];
             String categoryString = lineArray[2];
             String dateTimeString = lineArray[3];
-            double amount = Double.parseDouble(amountString);
+            double amount = decimalFormat.parse(
+                amountString
+            ).doubleValue();
             Category category = CategoryUtil.convertStringToCategory(
                 categoryString
                 );
             LocalDateTime dateTime = DateTimeUtil.convertStringToLocalDateTime(
                 dateTimeString
             );
-            return new Entry(description, amount, category, dateTime);
+            return new Entry(
+                description, 
+                amount, 
+                category, 
+                dateTime
+            );
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidReadFileException(
-                String.format("%s%s",
+                String.format(
+                    "%s%s",
                     MiscellaneousConstants.GENERAL_STORAGE_ERROR_MESSAGE,
                     line
                 )
             );
         } catch (NumberFormatException e) {
             throw new InvalidReadFileException(
-                String.format("%s%s", 
+                String.format(
+                    "%s%s", 
                     MiscellaneousConstants.INVALID_AMOUNT_ERROR_MESSAGE,
                     line
                 )
             );
         } catch (InvalidCategoryException e) {
             throw new InvalidReadFileException(
-                String.format("%s%s",
+                String.format(
+                    "%s%s",
                     MiscellaneousConstants.INVALID_CATEGORY_ERROR_MESSAGE,
                     line
                 )
             );
         } catch (InvalidDateException e) {
             throw new InvalidReadFileException(
-                String.format("%s%s", 
+                String.format(
+                    "%s%s", 
                     MiscellaneousConstants.INVALID_DATE_ERROR_MESSAGE,
+                    line
+                )
+            );
+        } catch (ParseException e) {
+            throw new InvalidReadFileException(
+                String.format(
+                    "%s%s", 
+                    MiscellaneousConstants.INVALID_AMOUNT_ERROR_MESSAGE,
                     line
                 )
             );
@@ -125,7 +150,9 @@ public class Storage {
         try {
             String row;
             while ((row = csvReader.readLine()) != null) {
-                entries.add(readEntryLine(row));
+                entries.add(
+                    readEntryLine(row)
+                );
             }
         } finally {
             csvReader.close();
@@ -154,8 +181,11 @@ public class Storage {
      * @return A String that represents the Entry instance
      */
     private String writeEntryLine(Entry entry) {
+        decimalFormat.setRoundingMode(RoundingMode.DOWN);
         String description = entry.getDescription();
-        String amountString = Double.toString(entry.getAmount());
+        String amountString = decimalFormat.format(
+            entry.getAmount()
+        );
         String categoryString = entry.getCategoryString();
         String dateTimeString = entry.getDateTimeString();
         String returnString = String.join(
