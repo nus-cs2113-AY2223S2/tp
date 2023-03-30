@@ -1,4 +1,5 @@
 @startuml
+skinparam classAttributeIconSize 0
 object FilterParser{
     - rawInput = "f/price p/gt 23.50"
     - Inventory = inventory
