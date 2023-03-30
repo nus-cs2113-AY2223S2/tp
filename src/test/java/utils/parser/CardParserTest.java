@@ -14,7 +14,7 @@ import utils.command.AddCardToTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
 import utils.command.ViewCardCommand;
-import utils.exceptions.UnknownItem;
+import utils.exceptions.CardNotFoundException;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
 import utils.storage.FakeStorage;
@@ -46,7 +46,7 @@ public class CardParserTest {
     public void parse_card_add() throws InkaException {
         Command cmd = parser.parseCommand("card add -q QUESTION -a ANSWER");
         assert cmd instanceof AddCardCommand;
-        cmd.execute(cardList, tagList, deckList , ui, storage);
+        cmd.execute(cardList, tagList, deckList, ui, storage);
 
         Card card = cardList.get(0);
         assert card.getQuestion().equals("QUESTION") : "Unexpected question parsed";
@@ -57,7 +57,7 @@ public class CardParserTest {
     public void parse_card_addLongFlag() throws InkaException {
         Command cmd = parser.parseCommand("card add --question QUESTION --answer ANSWER");
         assert cmd instanceof AddCardCommand;
-        cmd.execute(cardList, tagList, deckList ,ui, storage);
+        cmd.execute(cardList, tagList, deckList, ui, storage);
 
         Card card = cardList.get(0);
         assert card.getQuestion().equals("QUESTION") : "Unexpected question parsed";
@@ -68,7 +68,7 @@ public class CardParserTest {
     public void parse_card_addWithWhitespaces() throws InkaException {
         Command cmd = parser.parseCommand("card add -q MULTI WORD QUESTION -a MULTI WORD ANSWER");
         assert cmd instanceof AddCardCommand;
-        cmd.execute(cardList, tagList, deckList ,ui, storage);
+        cmd.execute(cardList, tagList, deckList, ui, storage);
 
         Card card = cardList.get(0);
         assert card.getQuestion().equals("MULTI WORD QUESTION") : "Unexpected question parsed";
@@ -98,30 +98,36 @@ public class CardParserTest {
 
     @Test
     public void parse_card_delete() throws InkaException {
-        cardList.addCard(new Card("QUESTION", "ANSWER"));
+        String[] testInputs = {"card delete -i 1", "card delete -c 00000000-0000-0000-0000-000000000000"};
+        for (String testInput : testInputs) {
+            cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
 
-        Command cmd = parser.parseCommand("card delete -i 1");
-        assert cmd instanceof DeleteCardCommand;
-        cmd.execute(cardList, tagList, deckList, ui, storage);
+            Command cmd = parser.parseCommand(testInput);
+            assert cmd instanceof DeleteCardCommand;
+            cmd.execute(cardList, tagList, deckList, ui, storage);
 
-        assert cardList.isEmpty() : "Should have deleted Card";
+            assert cardList.isEmpty() : "Should have deleted Card";
+        }
     }
 
     @Test
     public void parse_card_deleteLongFlag() throws InkaException {
-        cardList.addCard(new Card("QUESTION", "ANSWER"));
+        String[] testInputs = {"card delete --index 1", "card delete --card 00000000-0000-0000-0000-000000000000"};
+        for (String testInput : testInputs) {
+            cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
 
-        Command cmd = parser.parseCommand("card delete --index 1");
-        assert cmd instanceof DeleteCardCommand;
-        cmd.execute(cardList, tagList, deckList,ui, storage);
+            Command cmd = parser.parseCommand(testInput);
+            assert cmd instanceof DeleteCardCommand;
+            cmd.execute(cardList, tagList, deckList, ui, storage);
 
-        assert cardList.isEmpty() : "Should have deleted Card";
+            assert cardList.isEmpty() : "Should have deleted Card";
+        }
     }
 
     @Test
     public void parse_card_deleteEmpty() throws InkaException {
         Command cmd = parser.parseCommand("card delete -i 1");
-        assertThrows(UnknownItem.class, () -> cmd.execute(cardList, tagList, deckList,ui, storage),
+        assertThrows(CardNotFoundException.class, () -> cmd.execute(cardList, tagList, deckList, ui, storage),
                 "Should fail to delete nothing");
     }
 
@@ -130,7 +136,7 @@ public class CardParserTest {
         cardList.addCard(new Card("QUESTION", "ANSWER"));
 
         Command cmd = parser.parseCommand("card delete -i 0");
-        assertThrows(UnknownItem.class, () -> cmd.execute(cardList, tagList, deckList,ui, storage),
+        assertThrows(CardNotFoundException.class, () -> cmd.execute(cardList, tagList, deckList, ui, storage),
                 "Should fail to delete nothing");
     }
 
@@ -179,7 +185,7 @@ public class CardParserTest {
         cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
         Command cmd = parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 -t tag name");
         assert cmd instanceof AddCardToTagCommand;
-        cmd.execute(cardList, tagList,deckList, ui, storage);
+        cmd.execute(cardList, tagList, deckList, ui, storage);
         assert tagList.findTagFromName("tag-name") != null;
     }
 
@@ -189,14 +195,26 @@ public class CardParserTest {
 
     @Test
     public void parse_card_view() throws InkaException {
-        Command cmd = parser.parseCommand("card view -c 00000000-0000-0000-0000-000000000000 ");
-        assert cmd instanceof ViewCardCommand;
+        String[] testInputs = {"card view -i 1", "card view -c 00000000-0000-0000-0000-000000000000"};
+        for (String testInput : testInputs) {
+            cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
+
+            Command cmd = parser.parseCommand(testInput);
+            assert cmd instanceof ViewCardCommand;
+            cmd.execute(cardList, tagList, deckList, ui, storage);
+        }
     }
 
     @Test
     public void parse_card_viewLongFlag() throws InkaException {
-        Command cmd = parser.parseCommand("card view --card 00000000-0000-0000-0000-000000000000");
-        assert cmd instanceof ViewCardCommand;
+        String[] testInputs = {"card view --index 1", "card view --card 00000000-0000-0000-0000-000000000000"};
+        for (String testInput : testInputs) {
+            cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
+
+            Command cmd = parser.parseCommand(testInput);
+            assert cmd instanceof ViewCardCommand;
+            cmd.execute(cardList, tagList, deckList, ui, storage);
+        }
     }
 
     @Test
