@@ -1,2 +1,9 @@
-This is BadMaths. You can type 'Help.' to learn what I can do for you :)
+
+____            _   __  __       _   _
+|  _ \          | | |  \/  |     | | | |
+| |_) | __ _  __| | | \  / | __ _| |_| |__  ___
+|  _ < / _` |/ _` | | |\/| |/ _` | __| '_ \/ __|
+| |_) | (_| | (_| | | |  | | (_| | |_| | | \__ \
+|____/ \__,_|\__,_| |_|  |_|\__,_|\__|_| |_|___/
+You can type 'Help.' to learn what I can do for you :)
 Goodbye!

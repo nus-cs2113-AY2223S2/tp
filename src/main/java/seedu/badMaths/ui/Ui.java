@@ -6,6 +6,22 @@ import seedu.badMaths.NotePriority;
 import java.util.ArrayList;
 
 public class Ui {
+
+    private static String logo = "\n" +
+            "____            _   __  __       _   _\n" +
+            "|  _ \\          | | |  \\/  |     | | | |\n" +
+            "| |_) | __ _  __| | | \\  / | __ _| |_| |__  ___\n" +
+            "|  _ < / _` |/ _` | | |\\/| |/ _` | __| '_ \\/ __|\n" +
+            "| |_) | (_| | (_| | | |  | | (_| | |_| | | \\__ \\\n" +
+            "|____/ \\__,_|\\__,_| |_|  |_|\\__,_|\\__|_| |_|___/";
+
+
+    public static void printWelcomeMessage() {
+        System.out.println(logo + "\nYou can type 'Help.' to learn what I can do for you :)");
+    }
+    public static void printLogo(){
+        System.out.println(logo);
+    }
     public static void printIncorrectFormatEntered() {
         System.out.println("Please enter the format as required.");
     }

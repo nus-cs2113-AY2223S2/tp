@@ -41,9 +41,8 @@ public class BadMaths {
     }
 
     public static void main(String[] args) {
-        System.out.println("This is BadMaths. You can type 'Help.' to learn what I can do for you :)");
         Command inputCommand = null;
-
+        Ui.printWelcomeMessage();
         notesCreator(path);
         NotesList notes = new NotesList(Storage.loadFile(path));
 
