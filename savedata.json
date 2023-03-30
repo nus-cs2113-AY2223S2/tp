@@ -1,21 +1,30 @@
 {
-  "deckName": "lky deck",
-  "numCards": 3,
   "cards": [
     {
-      "uuid": "98685c9e-91d5-43f6-8d94-e6c73a425f5f",
-      "question": "deck_test_card",
-      "answer": "nothing"
+      "uuid": {
+        "uuid": "c2c61475-df53-4656-94c4-c2e36933d359"
+      },
+      "question": "fdff",
+      "answer": "rerrr",
+      "tags": [],
+      "decks": []
     },
     {
-      "uuid": "b4ee4e97-21df-4459-8268-ac7f218cae7d",
-      "question": "tag_test_card",
-      "answer": "nothing"
-    },
-    {
-      "uuid": "463d973a-48d6-45fa-8db1-5aaf4ce19492",
-      "question": "deck_test_tag",
-      "answer": "nothing"
+      "uuid": {
+        "uuid": "3b86b31c-6289-4716-a5c6-5afd43b9bbd3"
+      },
+      "question": "fdf",
+      "answer": "ffffffffff",
+      "tags": [
+        {
+          "uuid": "d480b453-f900-471b-8f1d-9e74504d5cf7"
+        }
+      ],
+      "decks": [
+        {
+          "uuid": "ef2df71c-b645-4bcf-a8b7-c5d2a0349efa"
+        }
+      ]
     }
   ]
 }
