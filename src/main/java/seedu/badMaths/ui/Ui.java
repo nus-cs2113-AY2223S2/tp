@@ -22,6 +22,9 @@ public class Ui {
     public static void printLogo(){
         System.out.println(logo);
     }
+    public static void printTanHasNoAmplitude(){
+        System.out.println("Psss... Tangent graph has no amplitude");
+    }
     public static void printIncorrectFormatEntered() {
         System.out.println("Please enter the format as required.");
     }

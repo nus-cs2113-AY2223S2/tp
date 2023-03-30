@@ -38,7 +38,11 @@ public class TrigoGraph {
 
 
     public void printGraphDetails(){
-        Ui.printAmplitude(amplitude);
+        if(trig.equals("tan")){
+            Ui.printTanHasNoAmplitude();
+        }else{
+            Ui.printAmplitude(amplitude);
+        }
         Ui.printFrequency(frequency);
         Ui.printPhase(phase);
         Ui.printVerticalShift(verticalShift);

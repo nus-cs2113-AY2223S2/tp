@@ -109,7 +109,7 @@ public class TrigoGraphVisualiser extends JPanel {
         g.setColor(Color.RED);
         labelAmplitude(g,yScale);
         for (double x = xMin; x <= xMax; x += 0.01) {
-            double y = amplitude * Math.cos(freqInHz*x)+verticalShift;
+            double y = amplitude * Math.cos(freqInHz*x+phase)+verticalShift;
             int xPixel = (int) Math.round(x * xScale);
             int yPixel = (int) Math.round(-y * yScale);
             g.drawLine(xPixel - 1, yPixel, xPixel, yPixel);
@@ -120,7 +120,7 @@ public class TrigoGraphVisualiser extends JPanel {
     public void drawTanCurve(Graphics g, double xScale, double yScale) {
         g.setColor(Color.BLACK);
         for (double x = xMin; x <= xMax; x += 0.01) {
-            double y = amplitude * Math.tan(freqInHz*x)+verticalShift;
+            double y = amplitude * Math.tan(freqInHz*x+phase)+verticalShift;
             int xPixel = (int) Math.round(x * xScale);
             int yPixel = (int) Math.round(-y * yScale);
             g.drawLine(xPixel - 1, yPixel, xPixel, yPixel);
