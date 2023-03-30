@@ -537,7 +537,11 @@ public class Ui {
         System.out.println("\t Task " + taskNumber + " does not exist.");
         borderLine();
     }
-
+    static void exceedNoteNumberMessage(int noteNumber){
+        borderLine();
+        System.out.println("\t Note " + noteNumber + " does not exist for this task");
+        borderLine();
+    }
     static void todoErrorMessage() {
         borderLine();
         System.out.println("\t Error. Please enter a valid description.");

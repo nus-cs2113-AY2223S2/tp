@@ -65,6 +65,10 @@ public class Task {
         this.additionalNotes.set(indexToBeEdited,editedNote);
     }
 
+    public int numberOfNotes(){
+        return this.additionalNotes.size();
+    }
+
     public String getPriority() {
         if (priority == 1) {
             // Mark done task with X

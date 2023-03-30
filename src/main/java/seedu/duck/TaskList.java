@@ -127,7 +127,7 @@ public class TaskList {
     static void setPriority(ArrayList<Task> tasks, String[] words) {
         int taskNumber = Integer.parseInt(words[1]);
         int taskCount = Task.getTaskCount();
-        if (taskNumber > taskCount) {
+        if (taskNumber > taskCount || taskNumber < 0) {
             // Input task number exceeds the number of tasks in the list
             Ui.exceedTaskNumberMessage(taskNumber);
         } else {
@@ -275,7 +275,7 @@ public class TaskList {
     static void markTask(ArrayList<Task> tasks, String[] words) {
         int taskNumber = Integer.parseInt(words[1]);
         int taskCount = Task.getTaskCount();
-        if (taskNumber > taskCount) {
+        if (taskNumber > taskCount || taskNumber < 0) {
             // Input task number exceeds the number of tasks in the list
             Ui.exceedTaskNumberMessage(taskNumber);
         } else {
@@ -297,7 +297,7 @@ public class TaskList {
     static void unmarkTask(ArrayList<Task> tasks, String[] words) {
         int taskNumber = Integer.parseInt(words[1]);
         int taskCount = Task.getTaskCount();
-        if (taskNumber > taskCount) {
+        if (taskNumber > taskCount || taskNumber < 0) {
             // Input task number exceeds the number of tasks in the list
             Ui.exceedTaskNumberMessage(taskNumber);
         } else {
@@ -319,7 +319,7 @@ public class TaskList {
     static void deleteTask(ArrayList<Task> tasks, String[] words) {
         int taskNumber = Integer.parseInt(words[1]);
         int taskCount = Task.getTaskCount();
-        if (taskNumber > taskCount) {
+        if (taskNumber > taskCount || taskNumber < 0) {
             // Input task number exceeds the number of tasks in the list
             Ui.exceedTaskNumberMessage(taskNumber);
         } else {
@@ -513,40 +513,76 @@ public class TaskList {
             Ui.borderLine();
         }
     }
+
+    /**
+     * Takes in the task number and adds a note to the list of notes under that task
+     *
+     * @param tasks The arraylist of tasks
+     * @param words The array of strings from user input
+     */
     static void addNote(ArrayList<Task> tasks, String[] words){
         int index = Integer.parseInt(words[1]);
-        System.out.println("\t What note would you like to add to the following task?");
-        System.out.println(tasks.get(index-1).toString());
-        Ui.borderLine();
-        Scanner userInput = new Scanner(System.in);
-        String noteToAdd = userInput.nextLine();
-        tasks.get(index-1).addNotes(noteToAdd);
-        System.out.println("\t The note has been added!");
-        Ui.borderLine();
+        if (index < tasks.size() && index >= 0) {
+            System.out.println("\t What note would you like to add to the following task?");
+            System.out.println(tasks.get(index - 1).toString());
+            Ui.borderLine();
+            Scanner userInput = new Scanner(System.in);
+            String noteToAdd = userInput.nextLine();
+            tasks.get(index - 1).addNotes(noteToAdd);
+            System.out.println("\t The note has been added!");
+            Ui.borderLine();
+        } else {
+            Ui.exceedTaskNumberMessage(index);
+        }
     }
 
-    static void deleteNotes(ArrayList<Task> tasks, String[] words){
+    /**
+     * Takes in the task number and index of the note to be deleted and then deletes it
+     * @param tasks The arraylist of tasks
+     * @param words The array of strings from user input
+     */
+    static void deleteNotes(ArrayList<Task> tasks, String[] words) {
         int index = Integer.parseInt(words[1]);
         int indexOfNoteToBeDeleted = Integer.parseInt(words[2]);
-        Ui.borderLine();
-        System.out.println("\t Deleting note: ");
-        ArrayList<String> noteToBeDeleted = tasks.get(index-1).getAdditionalNotes();
-        System.out.println("\t \t" + noteToBeDeleted.get(indexOfNoteToBeDeleted-1));
-        tasks.get(index-1).deleteNote(indexOfNoteToBeDeleted);
-        Ui.borderLine();
+        if (index < tasks.size() && index >= 0) {
+            if (indexOfNoteToBeDeleted < tasks.get(index).numberOfNotes() && indexOfNoteToBeDeleted >= 0) {
+                Ui.borderLine();
+                System.out.println("\t Deleting note: ");
+                ArrayList<String> noteToBeDeleted = tasks.get(index - 1).getAdditionalNotes();
+                System.out.println("\t \t" + noteToBeDeleted.get(indexOfNoteToBeDeleted - 1));
+                tasks.get(index - 1).deleteNote(indexOfNoteToBeDeleted);
+                Ui.borderLine();
+            } else {
+                Ui.exceedNoteNumberMessage(indexOfNoteToBeDeleted);
+            }
+        } else {
+            Ui.exceedTaskNumberMessage(index);
+        }
     }
 
-
-    static void editNote(ArrayList<Task> tasks, String[] words){
+    /**
+     * Takes in the task number and index of the note to be edited and then changes it
+     * @param tasks The arraylist of tasks
+     * @param words The array of strings from user input
+     */
+    static void editNote(ArrayList<Task> tasks, String[] words) {
         int index = Integer.parseInt(words[1]);
         int indexOfNoteToBeEdited = Integer.parseInt(words[2]);
         Scanner userInput = new Scanner(System.in);
-        Ui.borderLine();
-        System.out.println("\t What would you like to change the note to? ");
-        System.out.println("\t" + "\t" + tasks.get(index-1).getNote(indexOfNoteToBeEdited-1));
-        String editedNote = userInput.nextLine();
-        tasks.get(index-1).editNote(indexOfNoteToBeEdited-1,editedNote);
-        System.out.println("\t" + "The specified note has been edited!");
-        Ui.borderLine();
+        if (index < tasks.size() && index >= 0) {
+            if (indexOfNoteToBeEdited < tasks.get(index).numberOfNotes() && indexOfNoteToBeEdited >= 0) {
+                Ui.borderLine();
+                System.out.println("\t What would you like to change the note to? ");
+                System.out.println("\t" + "\t" + tasks.get(index - 1).getNote(indexOfNoteToBeEdited - 1));
+                String editedNote = userInput.nextLine();
+                tasks.get(index - 1).editNote(indexOfNoteToBeEdited - 1, editedNote);
+                System.out.println("\t" + "The specified note has been edited!");
+                Ui.borderLine();
+            } else {
+                Ui.exceedNoteNumberMessage(indexOfNoteToBeEdited);
+            }
+        } else {
+            Ui.exceedTaskNumberMessage(index);
+        }
     }
 }
