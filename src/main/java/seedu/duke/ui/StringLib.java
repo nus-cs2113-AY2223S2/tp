@@ -132,4 +132,5 @@ public interface StringLib {
     String INPUT_INGREDIENTS_INDEX_EXCEEDED = "Input index exceeds the number of ingredients!";
     String INVALID_STEP = "\nThe step you have entered is invalid!\n" +
             "Please enter a valid step below:";
+    String SAVE_SUCCESS = "\nData saved successfully!";
 }

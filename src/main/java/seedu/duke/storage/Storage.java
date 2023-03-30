@@ -15,9 +15,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static seedu.duke.ui.StringLib.IMPORT_END_RECIPE;
-import static seedu.duke.ui.StringLib.INGREDIENT_LIST;
-import static seedu.duke.ui.StringLib.STEP_LIST;
+import static seedu.duke.ui.StringLib.*;
 
 
 /**
@@ -98,7 +96,6 @@ public class Storage {
             int dishIndex = 1;
             for (Recipe dish : RecipeList.getRecipeList()) {
                 saveFile = new File("data/" + dishIndex + "-" + dish.getName());
-                System.out.println(dish.getName());
                 saveWriter = new FileWriter("data/" + dishIndex + "-" + dish.getName() + ".txt");
                 saveWriter.write(dish.getName() + "\n");
                 saveWriter.write(dish.getTag() + "\n");
@@ -113,6 +110,7 @@ public class Storage {
                 saveWriter.close();
                 dishIndex++;
             }
+            System.out.println(SAVE_SUCCESS);
         } catch (IOException e) {
             System.out.println("Error in file writing:" + e.getMessage());
         }
