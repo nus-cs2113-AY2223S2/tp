@@ -10,7 +10,8 @@ public class DeleteCommand extends Command {
     public static final String MSG_SUCCESS_DELETE = "%s removed from the list";
 
     public static final String HELP_MSG = "delete : Deletes an item from the packing list.\n" +
-            "\tExample: delete 1";
+            "\tExample: delete 1\n" +
+            "\tMeaning: removes the first item in the packing list";
 
 
     public DeleteCommand(int targetIndex) {
