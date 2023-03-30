@@ -40,8 +40,7 @@ public class Sniff {
     private static String getPath() {
         String home = System.getProperty("user.home");
         java.nio.file.Path path = java.nio.file.Paths.get(home, "SniffAppointments.txt");
-        String absolutePath = path.toString();
-        return absolutePath;
+        return path.toString();
     }
 
     /**

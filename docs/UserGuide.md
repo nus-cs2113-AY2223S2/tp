@@ -55,6 +55,28 @@ Example of usage:
 * `surgery at/Cat an/Lulu on/Jon cn/91919191 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/L`
 * `surgery at/Dog an/Russ on/Sarah cn/92929292 sd/2023-10-15 st/09:00 ed/2023-12-15 et/20:00 p/M`
 
+### Listing appointments: `list`
+Retrieves all the tasks from Sniff Appointments ArrayList and displays it to the user.
+
+Format: `list`
+
+Example of usage: Displays the Sniff Task List.
+
+```
+______________________________________________________________________
+list
+______________________________________________________________________
+1.  UID: S67775112T [X] | Priority: HIGH
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+ Start Date: 2023-12-12 | Start Time: 19:00
+ End Date: 2023-12-12 | End Time: 20:00
+2.  UID: V34624451A [ ] | vaccine: covid
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+______________________________________________________________________
+```
 
 ## FAQ
 
