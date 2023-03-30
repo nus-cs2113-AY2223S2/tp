@@ -26,11 +26,11 @@ RM(recipe manager) is a <strong>desktop recipe manager application for managing 
 <h2 id="quick-start"> Quick Start</h2>
 
 1. Enusure you have `Java 11` installed on your Computer.
-2. Download the latest `RM.jar` from here.
+2. Download the latest `tp.main.jar` from here.
 3. Copy the file to the folder you want to use as home folder for the recipe manager.
 4. Use `Win+R` to open the command prompt and type `cmd` and press Enter.
 5. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`
-6. Type `java -jar RM.jar` and press Enter to start the program.
+6. Type `java -jar tp.main.jar` and press Enter to start the program.
 <h2 id="features"> Features</h2>
 <ol>
 <li>
