@@ -3,7 +3,10 @@ package parser;
 import data.Account;
 import java.util.Scanner;
 
+import static common.MessageList.COMMAND_LIST_MESSAGE;
+import static common.MessageList.MESSAGE_DIVIDER;
 import static data.Account.logout;
+import static data.ExpenseList.showToUser;
 
 
 public class ParserPassword {
@@ -15,6 +18,7 @@ public class ParserPassword {
         String password = scanner.nextLine();
         Account existingAccount = new Account(user, password);
         existingAccount.login();
+        showToUser(MESSAGE_DIVIDER, COMMAND_LIST_MESSAGE, MESSAGE_DIVIDER);
     }
 
     public static void caseSignUp() {

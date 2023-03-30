@@ -1,11 +1,14 @@
 package data;
 
-import java.io.FileNotFoundException;
+import command.CommandAdd;
+import parser.Parser;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -101,7 +104,6 @@ public class Account {
         System.out.println("Signup successful.");
     }
 
-
     public void login() {
         // Check if username and passwordHash match the ones stored in the "username.txt" file
         try {
@@ -117,15 +119,26 @@ public class Account {
                     break;
                 }
             }
+            while ((line = bufferedReader.readLine()) != null) {
+                String [] parts = line.split(",");
+                Parser parser = new Parser();
+                if (!(parts[0].equals(accountName)) && found) {
+                    new CommandAdd(expenseList.getExpenseList(),
+                            parser.extractAddParameters(parts[0]), new Currency()).executeLogIn();
+                }
+            }
 
             bufferedReader.close();
             reader.close();
 
             if (found) {
                 System.out.println("Login successful.");
+
             } else {
-                System.out.println("Invalid username or passwordHash.");
+                System.out.println("Invalid username or password.");
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("Sorry, there is no username found");
         } catch (IOException e) {
             System.out.println("An error occurred while logging in.");
             e.printStackTrace();
@@ -170,16 +183,15 @@ public class Account {
                 "./src/main/java/storage/" + accountName + ".txt"))) {
             pw.println(accountName + "," + passwordHash);
             for (Expense expense : expenseList.getExpenseList()) {
-                pw.println(expense.toSave());
-                pw.println(expense);
+                pw.println(expense.toAdd());
             }
+            expenseList.clear();
             pw.close();
         } catch (IOException e) {
             System.out.println("Error: Failed to save expenses.");
             return;
         }
         expenseList = null;
-        System.out.println("Logout successful.");
     }
 }
 

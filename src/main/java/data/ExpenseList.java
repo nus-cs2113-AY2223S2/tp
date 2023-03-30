@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
 public class ExpenseList implements Serializable {
 
     public static ArrayList<Expense> expenseList = new ArrayList<>();

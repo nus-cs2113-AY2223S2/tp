@@ -27,6 +27,22 @@ public class Expense implements Serializable {
         this.description = description;
     }
 
+    public Expense(String description, BigDecimal expenseAmount, Time expenseTime) {
+        this.description = description;
+        this.expenseAmount = expenseAmount;
+        this.expenseTime = expenseTime;
+    }
+
+    public Expense(BigDecimal expenseAmount, Time date, String description) {
+        this.expenseAmount = expenseAmount;
+        this.expenseTime = date;
+        this.description = description;
+    }
+
+    public Expense(String category) {
+        this.description = category;
+    }
+
     private BigDecimal formatExpenseAmount(BigDecimal originalExpenseAmount) {
         BigDecimal roundedExpense = originalExpenseAmount.setScale(2, RoundingMode.HALF_UP);
         return roundedExpense;
@@ -111,8 +127,12 @@ public class Expense implements Serializable {
 
 
     public String toSave() {
-        return (this.expenseTime + VERTICAL_BAR + this.description + "\n");
+        return (this.currencyType + VERTICAL_BAR + this.expenseAmount + VERTICAL_BAR + this.expenseTime
+                + VERTICAL_BAR + this.description + "\n");
     }
 
+    public String toAdd() {
+        return ("add amt/" + this.expenseAmount + " t/" + this.expenseTime.toStringSave() + " cat/" + this.description);
+    }
 }
 

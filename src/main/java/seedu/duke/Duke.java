@@ -9,16 +9,15 @@ import command.CommandTotal;
 import command.overview.CommandOverview;
 import command.CommandFind;
 
+import data.Account;
 import data.ExpenseList;
 import data.Currency;
 import parser.Parser;
 import storage.Storage;
 
 import java.util.Scanner;
-import static common.MessageList.HELLO_MESSAGE;
-import static common.MessageList.COMMAND_LIST_MESSAGE;
-import static common.MessageList.MESSAGE_DIVIDER;
-import static common.MessageList.NAME_QUESTION;
+
+import static common.MessageList.*;
 import static data.Account.logout;
 import static data.ExpenseList.showToUser;
 import static parser.ParserPassword.initialize;
@@ -31,6 +30,7 @@ public class Duke {
     protected ExpenseList expenseList;
     protected Currency currency;
     protected Storage storage;
+    Account currentUser = null;
     /**
      * Initialize Duke and instantiate parser and expenseList objects.
      */
@@ -43,7 +43,7 @@ public class Duke {
     }
 
     public void run() {
-        showToUser(HELLO_MESSAGE, MESSAGE_DIVIDER, COMMAND_LIST_MESSAGE, MESSAGE_DIVIDER, NAME_QUESTION);
+        showToUser(HELLO_MESSAGE, MESSAGE_DIVIDER, ACCOUNT_MESSAGE, MESSAGE_DIVIDER, NAME_QUESTION);
         Scanner in = new Scanner(System.in);
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
