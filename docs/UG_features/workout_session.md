@@ -2,32 +2,25 @@
 
 ## About
 
-Our workouts feature is designed to help you complete a workout and log your progress
-
-[todo]
+Our workouts feature is designed to help you complete a workout and log your progress.
 
 ## Commands
 
-### Getting help ```help```
-
-[description]
-[sample command]
-[todo]
-
 ### Viewing your current workout exercises ```current```
 
-[description]
-[sample command]
-[todo]
+Displays a list of the user's current workout exercises.
+
+Format: ```current```
 
 ### Cancelling a workout and return to main menu ```cancel```
 
-[description]
-[sample command]
-[todo]
+Cancels the user's current workout session. The workout session is recognised as not completed.
+
+Format: ```cancel```
 
 ### Finishing a workout ```finish```
 
-[description]
-[sample command]
-[todo]
+Finishes the current workout session. The workout session is recognised as completed.
+
+Format: ```finish```
+

@@ -56,16 +56,24 @@ public class JsonUserPlansStorage implements UserPlansStorage {
      */
     @Override
     public UserPlan loadUserPlans () {
-        UserPlan userPlan = new UserPlan();
+        UserPlan userPlan;
         try {
             userPlan = jsonUserPlansLoader.loadPlanFromJson(userPlansFilePath);
             logger.log(Level.INFO, "Plans Data has been restored from the previous session!");
             return userPlan;
         } catch (Exception e) {
-            logger.log(Level.WARNING, "Plans data file has been corrupted or missing, we will create a new file for " +
-                "you, all your plans will be lost.");
-            return userPlan;
+            userPlan = new UserPlan();
+            try {
+                writeToJson(userPlan);
+                logger.log(Level.WARNING,
+                           "Plans data file has been corrupted or missing, we will create a new file for " +
+                               "you, all your plans will be lost.");
+                return userPlan;
+            } catch (DukeError ex) {
+                logger.log(Level.SEVERE, "Unable to write new user data file to hard disk!");
+            }
         }
+        return userPlan;
     }
 
 }

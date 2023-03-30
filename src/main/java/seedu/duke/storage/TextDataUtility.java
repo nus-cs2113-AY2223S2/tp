@@ -13,8 +13,7 @@ public abstract class TextDataUtility {
                     System.out.println("Created a new listData file");
                 }
             } catch (IOException e) {
-                System.out.println("We can't create a file for some reason :<, exiting program");
-                System.exit(1);
+                System.out.println("We can't create a file for some reason :< Please dont use this file thanks");
             }
         }
     }

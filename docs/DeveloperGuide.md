@@ -69,6 +69,15 @@ Types of pre-defined messages:
 3. Error messages that trigger when a user's input is incorrect and provides an explanation to the
    user. (`ErrorMessages` class)
 
+The class diagram as shown in Figure *1.3* illustrates the structure of the different classes in Ui.
+
+<div align="center">
+<img src="UML/Images/Ui.png"/>
+<p>
+Figure 1.3
+</p>
+</div>
+
 ### Storage Component
 
 API: [```StorageHandler.java```](https://github.com/AY2223S2-CS2113-W13-2/tp/blob/master/src/main/java/seedu/duke/storage/StorageHandler.java)
@@ -83,11 +92,11 @@ Key Aspects:
 * Handles the creation of user data file when previous one is missing or corrupted
 * Handles the loading of user data and plans upon start of the program
 
-The class diagram as shown in *Figure X.1* illustrates the structure of the different classes in Storage.
+The class diagram as shown in *Figure 1.4* illustrates the structure of the different classes in Storage.
 <div align="center">
-<img src="UML/Images/StorageHandlerClass.png"/>
+<img src="UML/Images/Storage.png"/>
 <p>
-Figure X.1
+Figure 1.4
 </p>
 </div>
 
@@ -97,7 +106,7 @@ resumption of the program.
 <div align="center">
 <img src="UML/Images/LoadingUserCareerData.png"/>
 <p>
-Figure X.2
+Figure 1.5
 </p>
 </div>
 
@@ -114,7 +123,7 @@ It controls where the user input is being processed.
 <div align="center">
 <img src="UML/Images/CommandHandler.png"/>
 <p>
-Figure X.X
+Figure 1.6
 </p>
 </div>
 
@@ -128,7 +137,7 @@ ending, cancelling workouts.
 <div align="center">
 <img src="UML/Images/CommandHandler.png"/>
 <p>
-Figure X.X
+Figure 1.7
 </p>
 </div>
 
@@ -167,13 +176,17 @@ Accounts for the different scenarios that may trigger an error during user's int
 Enumeration: [```ErrorMessages.java```]
 All error messages are stored in the ErrorMessage enumeration for easy access across different classes that could run into similar exceptions.
 <img src="UML/Images/ErrorMessagesEnum.png"/>
+<div align="center">
+<p>
+Figure 1.8
+</p>
+</div>
 
 
 ### Additional features to be added
 
-1. An IPPT calculator to integrate with Fitness Duke to facilitate users who want to train for their IPPT fitness
-   assessments.
-2. An achievement list that 
+1. A workout planner for the user to add and customise their desired sequence or schedule of workouts.
+2. An achievement list that will output messages to congratulate the user based on the different milestones of exercises he/she has achieved when using the program.
 
 ## Product scope
 
@@ -220,3 +233,34 @@ progress.
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+### Launch and shutdown of program
+1. Download the latest version of the .jar file and copy the file to the folder where you want the Fitness Duke program to run.
+2. Run the .jar file based on the instructions on the User Guide.
+Expected: Shows the CLI with the welcome message. alongside some logging messages.
+
+### Input of commands 
+1. Input of unlisted/unknown commands that are not listed in the help command:
+Test cases:  ```o``` , ```hi```
+Expected: Error details will be shown in the terminal
+### ```find``` command
+1. Find a set of exercises based on a specified keyword : ```find [keyword]```
+2.  Test case: ```find```
+Expected: The list of exercises will not be shown. Error details will be shown in the terminal.
+3. Test case :```find arm```
+Expected: The list of exercises containing keyword ```arm``` will be shown.
+### ```generate``` command
+1. Get a list of workouts
+2. Test case: ```generate```
+Expected: The list of exercises will not be shown. Error details will be shown in the terminal.
+3. Test case: ```generate 2```
+Expected: A list of 2 random exercises will be shown, alongside their respective IDs, names, difficulty levels, workout types and descriptions.
+4. Test case: ```generate easy```
+Expected: The list of exercises will not be shown. Error details will be shown in the terminal.
+### ```quick``` command
+1. Prerequisites : An existing plan under ```plans``` 
+2. Test case: ```quick```
+Expected: The list of exercises will not be shown. Error details will be shown in the terminal.
+3. Test case: ```quick home_legs_day 3```
+If plan ```home_legs_day``` is not in ```plans``` , error details will be shown in the terminal.
+Otherwise, list of 3 exercises will be shown related to the workout type.
