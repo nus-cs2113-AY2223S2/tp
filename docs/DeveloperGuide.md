@@ -6,60 +6,65 @@
 
 ## Table of Contents
 
+- [Developer Guide](#developer-guide)
+  - [Table of Contents](#table-of-contents)
 - [Design](#design)
-    - [Architecture](#architecture)
-    - [Frontend](#frontend)
-        - [Parser](#parser)
-        - [Commands](#commands)
-            - [Add Command](#add-command)
-            - [Delete Command](#delete-command)
-            - [Edit Command](#edit-command)
-                - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
-                - [Implementation](#implementation)
-                - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
-            - [View Command](#view-command)
-                - [Class diagram of view command](#class-diagram-of-view-command)
-                - [Implementation](#implementation-1)
-            - [Help Command](#help-command)
-                - [Implementation](#implementation-2)
-            - [Exit/Bye Command](#exitbye-command)
-                - [Implementation](#implementation-3)
-    - [Backend](#backend)
-        - [Storage](#storage)
-        - [API](#api)
-            - [Endpoints](#endpoints)
-                - [Creating a request](#creating-a-request)
-                - [Making a request](#making-a-request)
-            - [Access all entries available](#access-all-entries-available)
-                - [Get recent or all entries](#get-recent-or-all-entries)
-            - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
-                - [Add an entry](#add-an-entry)
-                - [View a specific entry](#view-a-specific-entry)
-                - [Delete an entry](#delete-an-entry)
-                - [Modify an entry](#modify-an-entry)
-    - [Data Structure](#data-structure)
-    - [Communication](#communication)
+  - [Architecture](#architecture)
+  - [Frontend](#frontend)
+    - [Parser](#parser)
+    - [Commands](#commands)
+      - [Add Command](#add-command)
+      - [Delete Command](#delete-command)
+      - [Edit Command](#edit-command)
+        - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+        - [Implementation](#implementation)
+        - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+      - [View Command](#view-command)
+        - [Class diagram of view command](#class-diagram-of-view-command)
+        - [Implementation](#implementation-1)
+      - [Help Command](#help-command)
+        - [Implementation](#implementation-2)
+      - [Exit/Bye Command](#exitbye-command)
+        - [Implementation](#implementation-3)
+  - [Backend](#backend)
+    - [Storage](#storage)
+      - [Reading from Database](#reading-from-database)
+      - [Writing to Database](#writing-to-database)
+      - [Resetting Database](#resetting-database)
+    - [API](#api)
+      - [Endpoints](#endpoints)
+        - [Creating a request](#creating-a-request)
+        - [Making a request](#making-a-request)
+      - [Access all entries available](#access-all-entries-available)
+        - [Get recent or all entries](#get-recent-or-all-entries)
+      - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
+        - [Add an entry](#add-an-entry)
+        - [View a specific entry](#view-a-specific-entry)
+        - [Delete an entry](#delete-an-entry)
+        - [Modify an entry](#modify-an-entry)
+  - [Data Structure](#data-structure)
+  - [Communication](#communication)
 - [Testing](#testing)
-    - [Unit Tests](#unit-tests)
-    - [Instructions for manual testing](#instructions-for-manual-testing)
-        - [Feature Testing](#feature-testing)
-        - [Add expense: /add](#add-expense-add)
-        - [View expense: /view](#view-expense-view)
-        - [Delete expense: /delete](#delete-expense-delete)
-        - [Edit expense: /edit](#edit-expense-edit)
-        - [Show help menu: /help](#show-help-menu-help)
-        - [Terminate program: /bye](#terminate-program-bye)
-    - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
-        - [Exceptions](#exceptions)
+  - [Unit Tests](#unit-tests)
+  - [Instructions for manual testing](#instructions-for-manual-testing)
+    - [Feature Testing](#feature-testing)
+    - [Add expense: /add](#add-expense-add)
+    - [View expense: /view](#view-expense-view)
+    - [Delete expense: /delete](#delete-expense-delete)
+    - [Edit expense: /edit](#edit-expense-edit)
+    - [Show help menu: /help](#show-help-menu-help)
+    - [Terminate program: /bye](#terminate-program-bye)
+  - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
+    - [Exceptions](#exceptions)
 - [Product scope](#product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
+  - [Target user profile](#target-user-profile)
+  - [Value proposition](#value-proposition)
 - [User Stories](#user-stories)
 - [Non-Functional Requirements](#non-functional-requirements)
 - [Acknowledgements](#acknowledgements)
-    - [Documentation](#documentation)
-    - [Storage](#storage-1)
-    - [Unit Tests](#unit-tests-1)
+  - [Documentation](#documentation)
+  - [Storage](#storage-1)
+  - [Unit Tests](#unit-tests-1)
 
 # Design
 
@@ -352,10 +357,34 @@ The structure of the Storage class is as follows:
 
 ![StorageClassDiagram](static/backend/storage/StorageClassDiagram.png)
 
-The Sequence Diagram below illustrates the interactions within the `Parser` component upon initialization of PocketPal,
-as well as whenever data is being saved.
+#### Reading from Database
 
-![StorageSequenceDiagram](static/backend/storage/StorageSequenceDiagram.png)
+The `readFromDatabase()` method is called from a `Backend` instance upon its instantiation, and reads from the database which comes in the form of a text file.
+
+![StorageReadSequenceDiagram](static/backend/storage/StorageSequenceDiagramRead.png)
+
+1. When a `Backend` instance is created, the constructor will call the `readFromDatabase()` method which first calls `makeFileIfNotExists()` to create a new database file if it does not exist.
+2. The `readEntryLine()` method reads the data from the database file line by line, until there are no more lines to read. It then returns a list of `Entry` objects which is passed back to the `Backend` instance to be processed.
+3. Two possible exceptions to be thrown are the `IOException` and the `InvalidReadFile` exceptions.
+
+#### Writing to Database
+
+The `writeFromDatabase()` method is called from a `Backend` instance through the `save()` method.
+
+![StorageWriteSequenceDiagram](static/backend/storage/StorageSequenceDiagramWrite.png)
+
+1. The `save()` method calls the `writeFromDatabase()` method which first calls `makeFileIfNotExists()` to create a new database file if it does not exist.
+2. The `writeEntryLine()` method writes the data into the database file line by line, until there are no more lines to write. If successful, nothing is returned.
+3. An `IOException` might be thrown in this method.
+
+#### Resetting Database
+
+The `reset()` method is called from a `Backend` instance through the `clearData()` method.
+
+![StorageWriteSequenceDiagram](static/backend/storage/StorageSequenceDiagramReset.png)
+
+1. The `clearData()` method calls the `reset()` method which first deletes the database file, then calls the `makeFileIfNotExists()` method to create a new database file. If successful, nothing is returned.
+2. An `IOException` might be thrown in this method.
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
