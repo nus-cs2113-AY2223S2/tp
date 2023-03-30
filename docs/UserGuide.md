@@ -1,15 +1,25 @@
-# User Guide
+# User Guide for Sniff
 
 ## Introduction
 
-{Give a product intro}
+Sniff is an appointment manager that helps clinic deal with handling appointments of different types.
+Features such as appointment tracking via uid, date, and appointment type help improve
+efficiency in the workplace and reduce human errors.
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
-1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Ensure you have Java 11 or above installed on your computer.
+2. Download the latest version of Sniff from [here](https://github.com/AY2223S2-CS2113-W12-1/tp/releases).
+3. Move the file to a location where you want to run Sniff from.
+4. Open a command terminal and navigate to the location where `sniff.jar` is.
+5Use the following command to run the program: `java -jar sniff.jar`
+6If Sniff runs successfully, you will see the following welcome message
+```
+______________________________________________________________________
+ Hello! I'm Sniff, your personal appointment manager.
+ What can I do for you?
+______________________________________________________________________
+```
 
 ## Features 
 
@@ -77,6 +87,16 @@ ______________________________________________________________________
  Owner Name: jon | Contact Number: 91919191
 ______________________________________________________________________
 ```
+### Removing an appointment: `remove`
+Removes an appointment with a specific UID from the appointment manager.
+
+Format: `remove uid`
+
+
+Example of usage: (with reference to the above appointment list)
+
+* `remove S67775112T` to remove the first appointment.
+* `remove V34624451A` to remove the second appointment.
 
 ## FAQ
 
