@@ -188,7 +188,17 @@ import java.lang.reflect.Type;
 
 import java.util.ArrayList;
 
-import model.*;
+import model.TagList;
+import model.CardList;
+import model.TagUUID;
+import model.Tag;
+import model.Memory;
+import model.DeckList;
+import model.Card;
+import model.Deck;
+import model.CardUUID;
+import model.DeckUUID;
+
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageCorrupted;
 
