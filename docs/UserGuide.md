@@ -55,7 +55,7 @@ Please note the following about the format of commands given under each [feature
        [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
        for the guide on installing Java 11
 2. Download the latest version of "rainyDay"
-   from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v1.0/rainyDay.jar) by clicking on
+   from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v2.0/rainyDay.jar) by clicking on
    "rainyDay.jar".
 3. Move the "rainyDay.jar" file to the folder of your choice by doing the following steps:
     1. Locate the "rainyDay.jar" file in your "Downloads" folder
@@ -193,7 +193,7 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
 
 Example of usage:
 
-You dine at Haidilao for $500. To add it to rainyDay, the following command can be provided to rainyDay:
+You had dinner at Haidilao for $500. To add it to rainyDay, the following command can be provided to rainyDay:
 
 ```
 > add -out Haidilao $500
