@@ -1,18 +1,36 @@
 # rainyDay User Guide
 
-Thank you for choosing rainyDay!
+Welcome to rainyDay's user guide! Thank you so much for choosing rainyDay. We sincerely hope that rainyDay can 
+successfully take you one step closer to reaching your financial goals!
+Should you have any feedback or enquiries, please do not hesitate to drop us an
+[email](mailto:rainydayfinancialtracker@gmail.com).
 
 ## Introduction
 
-rainyDay is a desktop application for managing your finances that runs on a Command Line Interface (CLI). rainyDay aims
-to provide a simple solution for young working adults to track your finances and achieve your financial goals.
+### Motivation of creating rainyDay
+In addition to rising costs of living, young adults just entering the workforce will also be exposed to a barrage of 
+new sources of expense and income. Thus, rainyDay was created to aid young working adults in keeping track and managing
+their finances well and reaching their financial goals, by providing an easy-to-use and convenient platform to track 
+their [inflows and outflows](#glossary).
+
+Despite the availability of several other financial tracking applications, only a handful of them have integrated a 
+[Command Line Interface (CLI)](#glossary) into their systems. However, the utilization of a CLI can significantly 
+improve the speed and accuracy of user-provided information, even though it may have a steep learning curve. 
+To learn more about CLI, please refer to this [resource](https://www.freecodecamp.org/news/command-line-for-beginners/).
+Considering the convenience and ease of use, we have decided to leverage the advantages of a CLI by developing rainyDay 
+with a CLI interface.
 
 This user guide provides an in-depth documentation on how to install and use rainyDay. This guide caters to all users of
-rainyDay, from people who are just starting out to advanced users looking for extra features they were unaware of.
+rainyDay, from users who are just starting out to advanced users who are looking for extra features they were unaware 
+of.
 
-We sincerely hope that rainyDay will make it easier for you to track your finances.
-Should you have any feedback or enquiries, please do not hesitate to drop us an 
-[email](mailto:rainydayfinancialtracker@gmail.com).
+### Features overview
+rainyDay supports a variety of features for users to input and view their [transactions](#glossary). Please refer to the
+basic overview below, for more in-depth information, refer to the [Features Overview](#features-overview) section.
+
+**Transaction related** - adding, deleting and editing transaction entries <br>
+**Viewing related** - View, filter or sort transactions based on criteria  <br>
+**Budget related** - Setting a budget to adhere to
 
 ## Content Page
 
@@ -32,8 +50,8 @@ Should you have any feedback or enquiries, please do not hesitate to drop us an
 
 ## How to use the user guide
 
-This section assumes that you are a new user of rainyDay and are interested in learning more about the basic features
-provided by rainyDay.
+The first step to using rainyDay effectively is to learn how to use the user guide. This section assumes that you are a 
+new user of rainyDay and are interested in learning more about the basic features provided by rainyDay.
 
 Please note the following about the format of commands given under each [feature](#features).
 
@@ -48,6 +66,9 @@ Please note the following about the format of commands given under each [feature
 * Words in "double quotation marks" are the names of items
 
 ## Quick Start
+
+After you have learnt how to use this user guide, you are ready to begin! Next, we will run you through how to install
+rainyDay on your device and how to start using it. Please refer to the steps below:
 
 1. Ensure that you have Java 11 or above installed on your computer
     1. Click [here](https://www.java.com/en/download/help/version_manual.html) for steps on how to check your Java
@@ -67,9 +88,10 @@ Please note the following about the format of commands given under each [feature
 4. To run "rainyDay.jar" on the command line, we have to do the following:
     1. Open the folder containing "rainyDay.jar" and click on the address bar <br>
        ![folderpath.png](images/UserGuide/folderpath.png)
-    2. Type the words "cmd" in the folder path in the address bar <br>
+    2. We will need to open rainyDay in your CLI. This can be done by typing the word ["cmd"](#glossary) in the folder 
+path in the address bar as shown <br>
        ![cmd.png](images/UserGuide/cmd.png)
-    3. Press Enter. Your Command Prompt should now be open in the folder containing "rainyDay.jar".
+    3. Press Enter. Your Command Line should now be open in the folder containing "rainyDay.jar".
 5. Type `java -jar rainyDay.jar` and press Enter on your keyboard to start the application
 
 ## Features Overview
@@ -99,8 +121,9 @@ Please note the following about the format of commands given under each [feature
 
 ### Viewing help
 
-In case you need a reminder of the capabilities of rainyDay, the help command will give you a comprehensive list of all
-the possible commands and their respective structures!
+Once you have started rainyDay in [Quick Start](#quick-start), you will need to know the format of inputs to send to 
+rainyDay. To get an overview of possible commands and their respective formats, we can use the `help` function as seen 
+below:
 
 Format: `help`
 
@@ -130,13 +153,18 @@ The table below will be shown with the `help` command: <br>
 +====================================================================================================+
 ```
 
-For more information on each individual command, the help command can also provide a more detailed guide, including
-details such as input constraints and examples for you to refer to
+After reading the overview, suppose you require more details on any of the functions, you can use the following command.
 
 Format: `help {COMMAND}`
 
-For instance, the table below are details for the add command: <br>
+This command will give you more information on the particular command, such as input constraints and examples.
 
+For instance, suppose you want to find out more information on rainyDay's `add` command, you can type the following 
+command: <br>
+
+`> help add`
+
+the output will be shown as below:
 ```
 > help add
 +====================================================================================================+
@@ -788,5 +816,6 @@ that "rainyDay.jar" is going to be stored in
 | Inflow                 | Signify an increment of money on your side, such as deposits into your wallet                                                                                    |
 | Outflow                | Signify a decrement of money on your side, such as payments from your wallet                                                                                     |
 | Transaction            | An activity relating to transferring of money                                                                                                                    |
+| Cmd                    | acronym for Command, which is the command-line interpreter of Windows Operating Systems                                                                          |
 
 [Jump back to Table of Contents](#content-page)
