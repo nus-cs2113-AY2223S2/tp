@@ -29,7 +29,7 @@ public class Messages {
             "view_dish\n" +
             "find_dish <keyword>\n";
 
-    public static final String MESSAGE_WORKER_COMMANDS =
+    public static final String MESSAGE_STAFF_COMMANDS =
             "add_staff n/<name> w/<working day> d/<date of birth> p/phone\n" +
             "delete_staff <staff index>\n" +
             "view_staff\n" +

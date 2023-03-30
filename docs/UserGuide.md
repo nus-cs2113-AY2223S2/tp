@@ -235,7 +235,7 @@ Outcome:
 
 #### Add a staff:
 
-Add a worker to the staffs list.
+Add a staff to the staffs list.
 
 Format: `add_staff n/<name> w/<working day> d/<date of birth> p/phone`
 
@@ -267,13 +267,13 @@ Outcome:
 
 #### Delete a staff:
 
-Delete a worker from the staffs list.
+Delete a staff from the staffs list.
 
-Format: `delete_worker <staff index>`
+Format: `delete_staff <staff index>`
 
 Example: 
 ```
-delete_worker 1
+delete_staff 1
 ```
 
 Outcome: 

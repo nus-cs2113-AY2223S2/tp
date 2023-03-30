@@ -13,7 +13,7 @@ public class HelpCommand extends Command {
                 Messages.MESSAGE_MEETING_COMMANDS,
                 Messages.MESSAGE_DEADLINE_COMMANDS,
                 Messages.MESSAGE_RECIPE_COMMANDS,
-                Messages.MESSAGE_WORKER_COMMANDS);
+                Messages.MESSAGE_STAFF_COMMANDS);
         ui.printMessage(helpList);
     }
 
