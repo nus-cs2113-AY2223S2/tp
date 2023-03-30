@@ -28,6 +28,18 @@ public class ParserTest {
     }
 
     @Test
+    public void parseUserInput_wrongFormatDescription_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/add -d test/123 -p 100 -c food");
+        });
+
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_DESCRIPTION;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
     public void parseUserInput_emptyPrice_exceptionThrown() {
         Parser parser = new Parser();
         Exception exception = assertThrows(MissingArgumentsException.class, () -> {
@@ -161,6 +173,17 @@ public class ParserTest {
         assertEquals(expectedMessage, actualMessage);
     }
 
+    @Test
+    public void parseViewCommand_maxPriceSmallerThanMinPrice_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/view -p 20 -p 10");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_PRICE_RANGE;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
 
     @Test
     public void parseUserInput_validAddCommand_parsedSuccessfully() {
@@ -240,6 +263,17 @@ public class ParserTest {
         Parser parser = new Parser();
         Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
             parser.parseUserInput("/delete abc");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_ID;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseDeleteCommand_negativeExpenseId_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/delete -1");
         });
         String expectedMessage = MessageConstants.MESSAGE_INVALID_ID;
         String actualMessage = exception.getMessage();
