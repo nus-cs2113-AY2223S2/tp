@@ -52,12 +52,12 @@ public class ExerciseStateHandler {
      * This function switches the state of how Command Handler functions,
      * blocking off certain commands until the session has ended
      */
-    public void startWorkout() throws DukeError {
+    public void startWorkout () throws DukeError {
         if (previousGeneratedWorkout.size() == 0) {
             throw new DukeError(ErrorMessages.ERROR_NO_EXERCISE_LOADED.toString());
         }
         System.out.println("The current workout is: ");
-        System.out.println("The size ofthe current workout session is" + previousGeneratedWorkout.size());
+        System.out.println("The size ofthe current workout session is " + previousGeneratedWorkout.size());
         for (int i = 0; i < previousGeneratedWorkout.size(); i++) {
             System.out.println(previousGeneratedWorkout.get(i).getName());
         }
@@ -72,9 +72,9 @@ public class ExerciseStateHandler {
      * Otherwise throws an error
      *
      * @throws DukeError Throws an error if there is no ongoing exercise
-     *                   session
+     *     session
      */
-    public void printCurrentWorkout() throws DukeError {
+    public void printCurrentWorkout () throws DukeError {
         if (!workoutOngoing) {
             throw new DukeError(ErrorMessages.ERROR_NO_ONGOING_EXERCISE.toString());
         }
@@ -86,10 +86,10 @@ public class ExerciseStateHandler {
      * This ends the current workout, resuming access to other functions
      *
      * @param workoutCompleted Will add current session to saved sessions if true
-     * @param userCareerData   Stores and contains user data
+     * @param userCareerData Stores and contains user data
      */
-    public void endWorkout(boolean workoutCompleted, UserCareerData userCareerData,
-                           AchievementListHandler achievementListHandler) throws DukeError {
+    public void endWorkout (boolean workoutCompleted, UserCareerData userCareerData,
+                            AchievementListHandler achievementListHandler) throws DukeError {
         assert userCareerData != null;
         workoutOngoing = false;
         if (workoutCompleted) {
@@ -116,7 +116,7 @@ public class ExerciseStateHandler {
     }
 
     //@@author ChubbsBunns
-    private void updateWorkoutAchievements(Session session, AchievementListHandler achievementListHandler) {
+    private void updateWorkoutAchievements (Session session, AchievementListHandler achievementListHandler) {
         ArrayList<Achievement> completedAchievements = new ArrayList<>();
         ArrayList<Achievement> loggedAchievements = achievementListHandler.getAchievementList();
         ArrayList<ExerciseData> exercises = session.getSessionExercises();
@@ -150,13 +150,11 @@ public class ExerciseStateHandler {
             System.out.println("Congradulations! You have achieved the following achievements:");
             for (int i = 0; i < completedAchievements.size(); i++) {
                 System.out.println((i + 1) + ") " + completedAchievements.get(i).getName() + ": " +
-                        completedAchievements.get(i).getRequirement());
+                                       completedAchievements.get(i).getRequirement());
             }
             System.out.println("Keep on working out with Fitness Duke!");
         }
     }
-
-
 
     /**
      * Prints congratulation message and saves the completed session
@@ -170,6 +168,5 @@ public class ExerciseStateHandler {
         userCareerData.addWorkoutSession(completedWorkout);
         storage.writeToJson(userCareerData);
     }
-
 
 }

@@ -16,8 +16,9 @@ public class QuickStartCommand extends Command {
         }
         String planName = userCommands[1];
         UserPlan.getPlan();
-
+        System.out.println("These are the plans we found: ");
         ArrayList<String> exercisePlans = UserPlan.getExercisePlan(planName);
+        System.out.println();
         if (exercisePlans == null) {
             System.out.println("no such plan");
             return;
