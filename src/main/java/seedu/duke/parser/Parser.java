@@ -150,9 +150,9 @@ public class Parser {
 
     public static IngredientList parseIngredients(String inputIngredients) {
         ArrayList<Ingredient> parsed = new ArrayList<>();
-        String[] parsedIngredients = inputIngredients.split(", ");
+        String[] parsedIngredients = inputIngredients.split(",");
         for (String ingredient : parsedIngredients) {
-            parsed.add(new Ingredient(ingredient));
+            parsed.add(new Ingredient(ingredient.trim()));
         }
         return new IngredientList(parsed);
     }
