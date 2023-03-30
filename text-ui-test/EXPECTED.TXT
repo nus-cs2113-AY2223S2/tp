@@ -141,7 +141,7 @@ Here are 3 ingredients in the list:
 __________________________________________________________
 There are 1 steps in the list
 Do you want to view step-by-step?
-Type yes if so
+Type "yes" if so
 To exit recipe view, type "quit"
 Else, enter any key to continue
 1. add spaghetti
@@ -201,7 +201,7 @@ Here are 3 ingredients in the list:
 __________________________________________________________
 There are 1 steps in the list
 Do you want to view step-by-step?
-Type yes if so
+Type "yes" if so
 There are 1 steps in the list
 1. chop beef
 __________________________________________________________
@@ -229,7 +229,7 @@ Here are 3 ingredients in the list:
 __________________________________________________________
 There are 1 steps in the list
 Do you want to view step-by-step?
-Type yes if so
+Type "yes" if so
 There are 1 steps in the list
 1. go to haidilao
 __________________________________________________________
@@ -276,7 +276,7 @@ Here are 3 ingredients in the list:
 __________________________________________________________
 There are 4 steps in the list
 Do you want to view step-by-step?
-Type yes if so
+Type "yes" if so
 To exit recipe view, type "quit"
 Else, enter any key to continue
 1. brew tea
