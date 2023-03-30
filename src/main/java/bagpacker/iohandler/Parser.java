@@ -61,7 +61,7 @@ public class Parser {
             }
         }
         setFullInput(inputLine);
-        String[] inputStringList = inputLine.trim().split(" ");
+        String[] inputStringList = inputLine.trim().split("\\s+");
         setInputStringArray(inputStringList);
         switch (getCommand()) {
         case "add":
@@ -124,7 +124,7 @@ public class Parser {
         }
         try {
             int itemIndStart = fullInput.indexOf(" ") + 1;
-            itemName = fullInput.substring(itemIndStart);
+            itemName = fullInput.substring(itemIndStart).trim();
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidVariablesException();
         }
@@ -144,8 +144,7 @@ public class Parser {
             throw new InvalidIndexException();
         }
         try {
-            int itemIndStart = fullInput.indexOf(" ") + 1;
-            inputIndex = fullInput.substring(itemIndStart);
+            inputIndex = inputStringArray.get(1);
             itemIndex = Integer.parseInt(inputIndex);
             if (itemIndex < 1 | itemIndex > PackingList.getItemList().size()) {
                 throw new InvalidIndexException();
