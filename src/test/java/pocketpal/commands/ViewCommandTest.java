@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
-
+import static pocketpal.frontend.util.UIUtil.formatPrice;
 
 
 @DisplayName("Test view command")
@@ -63,8 +63,10 @@ public class ViewCommandTest extends EntryTestUtil {
                     .append((testEntries.getSize()) - 1)
                     .append(" entries.")
                     .append(System.lineSeparator());
-            expectedString.append("Total expenditure: $" + expectedTotalExpenditure).append(System.lineSeparator());
-            expectedString.append("Total income: $" + expectedTotalIncome).append(System.lineSeparator());
+            expectedString.append("Total expenditure: $" + formatPrice(expectedTotalExpenditure))
+                    .append(System.lineSeparator());
+            expectedString.append("Total income: $" + formatPrice(expectedTotalIncome))
+                    .append(System.lineSeparator());
             for (int index = 1; index <= 2; index ++){
                 String formattedEntry = ui.formatViewEntries(testEntries.getEntry(index), index);
                 expectedString.append(formattedEntry).append(System.lineSeparator());

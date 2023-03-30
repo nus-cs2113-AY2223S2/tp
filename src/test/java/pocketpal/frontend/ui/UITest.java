@@ -1,6 +1,7 @@
 package pocketpal.frontend.ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static pocketpal.frontend.util.UIUtil.formatPrice;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -95,9 +96,9 @@ public class UITest {
 
         @Test
         void testFloatingPointPadding() {
-            assertEquals(UIUtil.formatPrice(2), "2.00");
-            assertEquals(UIUtil.formatPrice(0.123), "0.12");
-            assertEquals(UIUtil.formatPrice(3.1), "3.10");
+            assertEquals(formatPrice(2), "2.00");
+            assertEquals(formatPrice(0.123), "0.12");
+            assertEquals(formatPrice(3.1), "3.10");
         }
 
         @Test
@@ -153,9 +154,9 @@ public class UITest {
                     .append(testEntries.getSize())
                     .append(" entries.")
                     .append(System.lineSeparator());
-            expectedString.append("Total expenditure: $" + testEntries.getTotalExpenditure())
+            expectedString.append("Total expenditure: $" + formatPrice(testEntries.getTotalExpenditure()))
                     .append(System.lineSeparator());
-            expectedString.append("Total income: $" + testEntries.getTotalIncome())
+            expectedString.append("Total income: $" + formatPrice(testEntries.getTotalIncome()))
                     .append(System.lineSeparator());
             for (int index = 1; index <= testEntries.getSize(); index++) {
                 String formattedEntry = ui.formatViewEntries(testEntries.getEntry(index), index);

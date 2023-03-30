@@ -7,6 +7,8 @@ import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.constants.UIConstants;
 import pocketpal.frontend.util.UIUtil;
 
+import static pocketpal.frontend.util.UIUtil.formatPrice;
+
 public class UI {
     /**
      * Returns a string based on the details of the Entry object and entryID entered.
@@ -22,7 +24,7 @@ public class UI {
         String category = entry.getCategoryString();
         String dateTime = entry.getDateTimeString();
         return "<" + entryID + ">: " + description +
-                " (" + category + ") - $" + UIUtil.formatPrice(price) +
+                " (" + category + ") - $" + formatPrice(price) +
                 " <<" + dateTime + ">>";
     }
 
@@ -94,9 +96,9 @@ public class UI {
                         : ".")
                 .append(System.lineSeparator());
 
-        finalString.append("Total expenditure: $" + entries.getTotalExpenditure())
+        finalString.append("Total expenditure: $" + formatPrice(entries.getTotalExpenditure()))
                 .append(System.lineSeparator());
-        finalString.append("Total income: $" + entries.getTotalIncome())
+        finalString.append("Total income: $" + formatPrice(entries.getTotalIncome()))
                 .append(System.lineSeparator());
 
         for (int index = 1; index <= entries.getSize(); index++) {
