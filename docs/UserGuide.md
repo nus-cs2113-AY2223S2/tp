@@ -154,14 +154,14 @@ There is no need to save manually.
 
 ## Command Summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `addExpense a/ <amount> d/ <description> t/ <time> c/ <category>` <br> e.g., `addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD` <br> `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>` <br> eg., `addIncome a/ 400 d/ salary t/ 2023 03 12 15 01 c/ SALARY`
-**List** | `listExpense` <br> `listIncome`
-**Edit** | `editExpense i/ <index> t/ <type> n/ <newEntry>` <br> e.g., `editExpense i/ 1 t/ amount n/ 7` <br> `editIncome i/ <index> t/ <type> n/ <newEntry>` <br> e.g., `editIncome i/ 1 t/ info n/ pay`
-**Sort** | `sortExpenseByAmount` <br> `sortExpenseByTime` <br> `sortIncomeByAmount` <br> `sortExpenseByAmount`
-**Delete** | `deleteExpense <index>` <br> e.g., `deleteExpense 2` <br> `deleteIncome <index>` <br> e.g., `deleteIncome 2`
-**Set Budget** | `setBudget <amount> [t/ time]` <br> e.g., `setBudget 2000 t/ 2023/04` 
-**View Budget** | `viewBudget [t/ time]` <br> e.g., `viewBudget t/ 2023/02`
-**Exit** | `exit`
+| Action          | Format, Examples                                                                                                                                                                                                                                                                |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `addExpense a/ <amount> d/ <description> t/ <time> c/ <category>` <br> e.g., `addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD` <br> `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>` <br> eg., `addIncome a/ 400 d/ salary t/ 2023 03 12 15 01 c/ SALARY` |
+| **List**        | `listExpense` <br> `listIncome`                                                                                                                                                                                                                                                 |
+| **Edit**        | `editExpense i/ <index> t/ <type> n/ <newEntry>` <br> e.g., `editExpense i/ 1 t/ amount n/ 7` <br> `editIncome i/ <index> t/ <type> n/ <newEntry>` <br> e.g., `editIncome i/ 1 t/ info n/ pay`                                                                                  |
+| **Sort**        | `sortExpenseByAmount` <br> `sortExpenseByTime` <br> `sortIncomeByAmount` <br> `sortExpenseByAmount`                                                                                                                                                                             |
+| **Delete**      | `deleteExpense <index>` <br> e.g., `deleteExpense 2` <br> `deleteIncome <index>` <br> e.g., `deleteIncome 2`                                                                                                                                                                    |
+| **Set Budget**  | `setBudget <amount> [t/ time]` <br> e.g., `setBudget 2000 t/ 2023/04`                                                                                                                                                                                                           |
+| **View Budget** | `viewBudget [t/ time]` <br> e.g., `viewBudget t/ 2023/02`                                                                                                                                                                                                                       |
+|  **Exit**       | `exit`                                                                                                                                                                                                                                                                          |
 
