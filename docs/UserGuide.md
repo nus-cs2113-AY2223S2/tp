@@ -8,12 +8,12 @@ ChChing is a desktop app for tracking spending, and it uses a Command Line Inter
 
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `ChChing` from [here](https://github.com/AY2223S2-CS2113-T12-1/tp/releases).
-3. Copy downloaded `ChChing.jar` file to the desired home folder of choice.
+3. Copy downloaded `tp.jar` file to the desired home folder of choice.
 4. Open a command terminal and `cd` into the folder mentioned in step 3.
 5. Type in the following to run the application:
 
 ```
-java -jar ChChing.jar
+java -jar tp.jar
 ```
 
 6. If successful, the following greeting should appear:
@@ -85,8 +85,13 @@ Format:
 <br> `set currency /cr CURRENCY`
 
 Use case:
-
 - show the currency that users want to convert to.
+- List of supported currencies:
+  * HKD - Hong Kong Dollar
+  * PHP - Philippine Peso
+  * IDR - Indonesian Rupiah
+  * MYR - Malaysian Ringgit
+  * VND - Vietnamese Dong
 
 Example of usage:
 <br> `set currency /cr HKD`
@@ -179,7 +184,7 @@ Use case:
 - VALUE is more than or equal to zero
 
 Example of usage:
-<br> `add target 350`
+<br> `add target /v 350`
 
 ### Finding balance of finances: `balance`
 
