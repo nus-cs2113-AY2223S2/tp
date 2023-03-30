@@ -164,12 +164,12 @@ These are the categories currently supported by PocketPal:
 
 ## Command Summary {#summary}
 
-| Command | Format                                                                                                                                                                                |
-|--------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|    /add | <code>/add <-d &#124; -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c &VerticalLine; -category CATEGORY> <-p &#124; -price PRICE></code>                                         |
-|   /view | <code>/view [COUNT] [-c &#124; -category CATEGORY] [-p &#124; -price PRICE_MIN] [-p &#124; -price PRICE_MAX] [<-sd &#124; -startdate START_DATE -ed &#124; -enddate END_DATE>]</code> |
-|   /edit | <code>/edit <EXPENSE_ID> [-c &#124; -category NEW_CATEGORY] [-p &#124; -price NEW_PRICE] [-d &#124; -description NEW_DESC]</code>                                                     |
-| /delete | <code>/delete <EXPENSE_ID></code>                                                                                                                                                     |
-|   /help | <code>/help</code>                                                                                                                                                                    |
+| Command | Format                                                                                                                                                                                 |
+|--------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    /add | <code>/add <-d &#124; -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c &VerticalLine; -category CATEGORY> <-p &#124; -price PRICE> </code>                                         |
+|   /view | <code>/view [COUNT] [-c &#124; -category CATEGORY] [-p &#124; -price PRICE_MIN] [-p &#124; -price PRICE_MAX] [<-sd &#124; -startdate START_DATE -ed &#124; -enddate END_DATE>] </code> |
+|   /edit | <code>/edit <EXPENSE_ID> [-c &#124; -category NEW_CATEGORY] [-p &#124; -price NEW_PRICE] [-d &#124; -description NEW_DESC] </code>                                                     |
+| /delete | <code>/delete <EXPENSE_ID> </code>                                                                                                                                                     |
+|   /help | <code>/help</code>                                                                                                                                                                     |
 
 <!-- @@author -->
