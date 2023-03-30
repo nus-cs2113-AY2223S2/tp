@@ -71,4 +71,8 @@ public class JsonEventListStorage implements EventListStorage{
         }
         return savedList;
     }
+    public static void wipeFile(){
+        File saveFile = new File(fileLocation);
+        saveFile.delete();
+    }
 }
