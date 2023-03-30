@@ -325,10 +325,14 @@ Examples:
 
 |  Action   | 	Format  | Example |
 |  ----  | ----  | ----  |
-| **help**  | [`help`](#viewing-help-help) | |
-| **add**  | [`add n/NAME i/INGREDIENTS t/TAG`](#adding-a-recipe-add)| `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese` |
-| **delete**  | [`delete n/NAME`](#deleting-a-recipe-delete)| `delete INDEX` |
-| **view**  | [`view INDEX`](#viewing-a-recipe-view) | `view 1`  |
-| **list**  | [`list`](#listing-all-recipes-list)| |
-| **clear**  | [`clear`](#clearing-all-entries-clear)| |
-| **exit**  | [`exit`](#exiting-the-program-exit)| |
+| [**help**](#viewing-help-help)  | `help` | |
+| [**add**](#adding-a-recipe-add) | `add n/NAME t/TAG i/INGREDIENT ... s/SUMOFSTEP [STEP]...` | `add n/Hotpot t/Chinese i/Beef i/Potatoes i/Carrots s/2` `add carrots` `cook 5 minutes` |
+| [**editingredient**](#editing-ingredients-editingredient)  | `editingredient INDEX` | |
+| [**editstep**](#editing-steps-editstep)  | `editstep INDEX` | |
+| [**delete**](#deleting-a-recipe-delete)  | `delete INDEX` | `delete 1` |
+| [**find**](#finding-recipes-by-name-find)  | `find KEYWORD ` | `find Hotpot` |
+| [**view**](#viewing-a-recipe-view)  | `view INDEX` | `view 1` |
+| [**list**](#listing-all-recipes-list)  | `list` | |
+| [**clear**](#clearing-all-entries-clear)  | `clear` | |
+| [**exit**](#exiting-the-program-exit)  | `exit` | |
+
