@@ -76,9 +76,9 @@ public class Meal360 {
                 ui.printMessage(deletedRecipe);
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage =
-                        "Please enter a valid recipe number or name. You did not enter a recipe number or "
-                                + "name.";
+                String errorMessage = "Please enter a valid recipe number or name. You did not enter a recipe number " +
+                        "or "
+                        + "name.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
@@ -102,8 +102,7 @@ public class Meal360 {
                 ui.printSeparator();
                 RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
                 ui.listRecipe(recipeListToPrint);
-            } catch (IllegalArgumentException | IndexOutOfBoundsException |
-                     NullPointerException e) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
@@ -152,8 +151,7 @@ public class Meal360 {
                 ui.printSeparator();
                 String tag = parser.parseTagRecipe(command, recipeList);
                 ui.printMessage("You have modified the recipe(s) in this \"" + tag + "\" tag.");
-            } catch (IllegalArgumentException | IndexOutOfBoundsException |
-                     NullPointerException e) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
@@ -190,8 +188,7 @@ public class Meal360 {
                     ui.printMessage("Please enter a valid command.");
                     break;
                 }
-            } catch (IllegalArgumentException | InvalidNegativeValueException |
-                     InvalidRecipeNameException
+            } catch (IllegalArgumentException | InvalidNegativeValueException | InvalidRecipeNameException
                      | ArrayIndexOutOfBoundsException e) {
                 ui.printMessage(e.getMessage());
             }

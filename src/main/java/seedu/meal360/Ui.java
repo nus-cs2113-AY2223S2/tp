@@ -83,7 +83,7 @@ public class Ui {
     }
 
     private void listRecipes(RecipeList recipeListToPrint, String emptyListMsg,
-                             String listHeaderMsg) {
+            String listHeaderMsg) {
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
         if (numberOfRecipes == 0) {

@@ -411,18 +411,18 @@ public class Parser {
         WeeklyPlan updatedWeeklyPlan;
         try {
             switch (command[1]) {
-                case "/add":
-                case "/delete":
-                    updatedWeeklyPlan = parseEditSingleWeeklyPlan(command, recipes);
-                    break;
-                case "/multiadd":
-                case "/multidelete":
-                    updatedWeeklyPlan = parseEditMultiWeeklyPlan(command, recipes);
-                    break;
-                default:
-                    throw new IllegalArgumentException(
-                            "Please indicate if you would want to add or delete the recipe from your weekly "
-                                    + "plan.");
+            case "/add":
+            case "/delete":
+                updatedWeeklyPlan = parseEditSingleWeeklyPlan(command, recipes);
+                break;
+            case "/multiadd":
+            case "/multidelete":
+                updatedWeeklyPlan = parseEditMultiWeeklyPlan(command, recipes);
+                break;
+            default:
+                throw new IllegalArgumentException(
+                        "Please indicate if you would want to add or delete the recipe from your weekly "
+                                + "plan.");
             }
 
             return updatedWeeklyPlan;
@@ -518,7 +518,7 @@ public class Parser {
     }
 
     private StringBuilder getRecipeNames(String[] command, ArrayList<String> recipeNames,
-            StringBuilder recipeName, int nameStartIndex, int nameEndIndex) {
+                                         StringBuilder recipeName, int nameStartIndex, int nameEndIndex) {
         recipeName.append(command[nameStartIndex].toLowerCase().trim());
         for (int j = nameStartIndex + 1; j <= nameEndIndex; j++) {
             recipeName.append(" ").append(command[j].toLowerCase().trim());
@@ -547,18 +547,18 @@ public class Parser {
         try {
             for (int i = 1; i < command.length; i++) {
                 switch (command[i]) {
-                    case "/n":
-                        ingredientName = command[++i];
-                        break;
-                    case "/c":
-                        ingredientCount = Integer.parseInt(command[++i]);
-                        break;
-                    case "/d":
-                        expiryDate = command[++i];
-                        break;
-                    default:
-                        throw new IllegalArgumentException("Missing required information. Please provide "
-                                + "ingredient name, count, and expiry date.");
+                case "/n":
+                    ingredientName = command[++i];
+                    break;
+                case "/c":
+                    ingredientCount = Integer.parseInt(command[++i]);
+                    break;
+                case "/d":
+                    expiryDate = command[++i];
+                    break;
+                default:
+                    throw new IllegalArgumentException("Missing required information. Please provide "
+                            + "ingredient name, count, and expiry date.");
                 }
             }
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
@@ -579,15 +579,15 @@ public class Parser {
         try {
             for (int i = 1; i < command.length; i++) {
                 switch (command[i]) {
-                    case "/n":
-                        ingredientName = command[++i];
-                        break;
-                    case "/c":
-                        ingredientCount = Integer.parseInt(command[++i]);
-                        break;
-                    default:
-                        throw new IllegalArgumentException(
-                                "Missing required information. Please provide " + "ingredient name and count.");
+                case "/n":
+                    ingredientName = command[++i];
+                    break;
+                case "/c":
+                    ingredientCount = Integer.parseInt(command[++i]);
+                    break;
+                default:
+                    throw new IllegalArgumentException(
+                            "Missing required information. Please provide " + "ingredient name and count.");
                 }
             }
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
