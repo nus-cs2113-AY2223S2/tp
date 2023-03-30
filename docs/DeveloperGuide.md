@@ -6,6 +6,8 @@ We hope this documents serves useful to understand the behind-the-scenes working
 
 ## Acknowledgements
 
+1. GSON - [Documentation](https://sites.google.com/site/gson/gson-user-guide)
+
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}'
 
 ## Getting started
@@ -16,6 +18,24 @@ Refer to the user guide [here](https://github.com/AY2223S2-CS2113-F13-3/tp/blob/
 ## Design & implementation
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+### Architecture
+![Architecture Diagram](UML/Images/ArchitectureDesign.png)
+
+The **Architecture Diagram** above explains the high-level design of NusPlanner. 
+Below is an overview of how the main components interact with each other.
+
+#### Main Components of the architecture
+
+`Duke` is the "Main" of the application. It is responsible for:
+* At app launch: Initializes components in the correct sequence, and connects them to each other
+* At shut down: Saves the current state of the EventList.
+
+The rest of the app consists of four components:
+* `UI`: The UI of the app
+* `Parser`: The command executor
+*  `EventList`: Holds the data of the app in memory
+* `Storage`: Reads data from and writes data to the hard disk
+
 
 ### Parser Component
 The component will return the correct command based on what the user inputs into the application.
@@ -131,10 +151,13 @@ It is necessary to have a list which contains all the current event/class so tha
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+| Version | As a ...     | I want to ...                             | So that I can ...                                             |
+|---------|--------------|-------------------------------------------|---------------------------------------------------------------|
+| v1.0    | As a user    | Add, edit, delete and view events         | Plan my schedule and have an understanding of what's upcoming |
+| v1.0    | As a user    | Save my events                            | Revisit them at a later time without having to reenter them   |
+| v2.0    | As a student | Add modules and view my schedule by weeks | Plan my schedule around modules and upcoming events           |
+| v2.0    | As a user    | Set an event to be recurring              | Easily add recurring events to my schedule                    |
+| v2.0    | As a user    | Save the location of an event             | Remember where I need to go for the next event                |
 
 ## Non-Functional Requirements
 
