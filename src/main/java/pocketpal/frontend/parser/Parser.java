@@ -462,14 +462,12 @@ public class Parser {
             logger.info("start date identified as: " + startDateString);
             isValidDate(startDateString);
             logger.info("start date verified");
-            arguments = arguments.replaceFirst(matcher.group(), "").trim();
             startDateString = startDateString + EntryConstants.EARLIEST_TIME;
         }
         if (!endDateString.isEmpty()) {
             logger.info("end date identified as: " + endDateString);
             isValidDate(endDateString);
             logger.info("end date verified");
-            arguments = arguments.replaceFirst(matcher.group(), "").trim();
             endDateString = endDateString + EntryConstants.LATEST_TIME;
         }
         if (startDateString.isEmpty() ^ endDateString.isEmpty()) {
