@@ -118,7 +118,12 @@ public class TaskList {
             Ui.addedTaskMessage(currTodo);
         }
     }
-
+    /**
+     * Sets a priority to the specified task
+     *
+     * @param words  The input variable from the user, consisting of an index and a priority (from 1 to 3)
+     * @param tasks The array list of tasks
+     */
     static void setPriority(ArrayList<Task> tasks, String[] words) {
         int taskNumber = Integer.parseInt(words[1]);
         int taskCount = Task.getTaskCount();
@@ -219,6 +224,8 @@ public class TaskList {
      * @param line  The line of input from the user
      * @param tasks The array list of tasks
      */
+
+
     static void addDeadline(String line, ArrayList<Task> tasks) throws IllegalDeadlineException, expiredDateException {
         String description = line.substring(0, line.indexOf("/by")).trim();
         String deadlineString = line.substring(line.indexOf("/by") + 3).trim();
@@ -235,6 +242,7 @@ public class TaskList {
             Ui.addedTaskMessage(currDeadline);
         }
     }
+
 
     /**
      * adds a recurringDeadline to the list
