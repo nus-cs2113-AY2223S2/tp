@@ -101,12 +101,21 @@ public class ExerciseStateHandler {
         currentSessionWorkout = null;
     }
 
+    //@@author L-K-Chng
+    /**
+     * Deletes the completed workout session which the user specifies.
+     *
+     * @param userCareerData Stores and contains user data.
+     * @param i The number of the session which the user wishes to delete.
+     * @throws DukeError
+     */
     public void deleteWorkoutSession (UserCareerData userCareerData, int i) throws DukeError{
         System.out.println("OK, you have deleted Workout Session Number " + i + "!");
         userCareerData.deleteWorkoutSession(i);
         storage.writeToJson(userCareerData);
     }
 
+    //@@author ChubbsBunns
     private void updateWorkoutAchievements(Session session, AchievementListHandler achievementListHandler) {
         ArrayList<Achievement> completedAchievements = new ArrayList<>();
         ArrayList<Achievement> loggedAchievements = achievementListHandler.getAchievementList();
