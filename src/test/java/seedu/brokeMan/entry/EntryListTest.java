@@ -10,7 +10,9 @@ import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.brokeMan.entry.EntryList.*;
+import static seedu.brokeMan.entry.EntryList.addEntry;
+import static seedu.brokeMan.entry.EntryList.deleteEntry;
+import static seedu.brokeMan.entry.EntryList.getEntryListSum;
 import static seedu.brokeMan.parser.StringToTime.convertStringToTime;
 import static seedu.brokeMan.parser.StringToCategory.convertStringToCategory;
 
@@ -28,13 +30,19 @@ public class EntryListTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        entry1 = new Expense(4, "lunch", convertStringToTime("2022 09 08 12 14"), convertStringToCategory("FOOD"));
-        entry2 = new Expense(6, "dinner",  convertStringToTime("2023 12 12 20 01"), convertStringToCategory("FOOD"));
-        entry3 = new Expense(5, "book", convertStringToTime("2023 09 08 20 14"), convertStringToCategory("ENTERTAINMENT"));
+        entry1 = new Expense(4, "lunch", convertStringToTime("2022 09 08 12 14"),
+                convertStringToCategory("FOOD"));
+        entry2 = new Expense(6, "dinner",  convertStringToTime("2023 12 12 20 01"),
+                convertStringToCategory("FOOD"));
+        entry3 = new Expense(5, "book", convertStringToTime("2023 09 08 20 14"),
+                convertStringToCategory("ENTERTAINMENT"));
         expenseList = new LinkedList<Entry>(Arrays.asList(entry1, entry2));
-        entry4 = new Income(5, "Stock", convertStringToTime("2023 03 29 10 11"), convertStringToCategory("INVESTMENT"));
-        entry5 = new Income(10, "TA", convertStringToTime("2023 03 10 12 15"), convertStringToCategory("SALARY"));
-        entry5 = new Income(20, "Allowance", convertStringToTime("2023 03 31 20 50"), convertStringToCategory("OTHERS"));
+        entry4 = new Income(5, "Stock", convertStringToTime("2023 03 29 10 11"),
+                convertStringToCategory("INVESTMENT"));
+        entry5 = new Income(10, "TA", convertStringToTime("2023 03 10 12 15"),
+                convertStringToCategory("SALARY"));
+        entry5 = new Income(20, "Allowance", convertStringToTime("2023 03 31 20 50"),
+                convertStringToCategory("OTHERS"));
         incomeList = new LinkedList<Entry>(Arrays.asList(entry4, entry5));
     }
 
