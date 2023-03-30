@@ -111,7 +111,7 @@ public class GeneralCommandHandler implements CommandList {
                 }
                 break;
             case QUICK_START_COMMAND:
-                if (additionalDescription.length() != 0) {
+                if (additionalDescription.length() == 0) {
                     ui.unknownCommand();
                     errorExists = true;
                 } else {

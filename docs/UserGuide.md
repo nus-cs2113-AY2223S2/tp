@@ -57,6 +57,8 @@ Example Command: ```exit```
 
 ### Getting a list of specific workouts: ```generate [arguments] [number]```
 
+*Easter Egg: Having the [number] as 1337 would always generate the first 3 workouts no matter the filters*
+
 Shows a list containing *number* of random workouts that suits the arguments filter.
 
 *Possible arguments are*:
@@ -112,17 +114,19 @@ Finds existing exercises whose names contain the input keyword.
 
 Example Command: ```find [keyword]```
 
-Examples:
+Examples: ```find arm```,```find legs```
+
+All exercise name containing "arms" will appear
 ```
-find arm
 Here are the exercises matching your keyword:
 1.Farmer's Walk
 2.Kneeling Forearm Stretch
 3.Seated One-arm Cable Pulley Rows
 ________________________________________
 ```
+
+All exercise name containing "legs" will appear
 ```
-find legs
 Here are the exercises matching your keyword:
 1.legs-SMR
 2.Lying Prone legs
@@ -150,15 +154,18 @@ completion of each exercise.
 
 Example Command: ```data```
 
-### Generating a list of planned exercises: ```quick [plan_name] [x]```
+### Generating a list of planned exercises: ```quick [plan_name] [number]```
+
 
 Generates a list of exercises planned by the user.
 
-Example Command: ```quick home_legs_day 3```, plan_name has to be present under "plans" and x refers to the number of 
-exercises 
-the user intends to do.
+Example Command: ```quick home_legs_day 3```, plan_name has to be present under "plans" and [number] refers to the 
+number of exercises the user intends to do.
 
-Examples:
+*Easter Egg: Remember from the generate command what happens when you generate with the magic number 1337? The same 
+thing would apply here no matter what plans you have! "
+
+This is your current workout plan:
 ```
 YOUR WORKOUT PLAN:
 _________
@@ -179,6 +186,8 @@ _________
 SUNDAY
 ________________________________________
 ```
+
+The generated workout will be filters of **legs** and **static**:
 ```
 quick home_leg_day 3
 Exercise ID: 576. 
@@ -239,7 +248,8 @@ Advanced users are welcome to update data directly by editing that data file.
 ## Resource data
 
 FitnessDuke's exercise data are saved as a JSON file within the jar package. Please do not unpack the jar file and 
-modify its contents and attempt to re-jar it. We will not guarantee the promised features if the jar file is tampered.
+modify its contents and attempt to re-jar it. We will not guarantee the promised features if the jar file is 
+tampered with.
 
 ## FAQ
 

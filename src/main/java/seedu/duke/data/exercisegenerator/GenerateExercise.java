@@ -99,6 +99,15 @@ public class GenerateExercise {
         return filteredExerciseList;
     }
 
+    public ArrayList<ExerciseData> generateFirstThree () {
+        ArrayList<ExerciseData> tripletExerciseList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            ExerciseData exerciseToAdd = this.exerciseDataList.get(i);
+            tripletExerciseList.add(exerciseToAdd);
+        }
+        return tripletExerciseList;
+    }
+
     /**
      * Returns an exercise list which is filtered according to the workout type: Gym
      * chosen by the user.
@@ -148,6 +157,7 @@ public class GenerateExercise {
     }
 
     //@@author L-K-Chng
+
     /**
      * Returns an exercise list which is filtered according to the workout type
      * chosen by the user.

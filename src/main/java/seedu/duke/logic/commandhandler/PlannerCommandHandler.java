@@ -64,6 +64,7 @@ public class PlannerCommandHandler implements CommandList {
             default:
                 ui.unknownCommand();
             }
+            ui.plannerMode();
             storage.writeToJson(planner);
 
         }
