@@ -55,15 +55,20 @@ new user of rainyDay and are interested in learning more about the basic feature
 
 Please note the following about the format of commands given under each [feature](#features).
 
-* Words in CAPS are the parameters to be supplied by the user
+* CAPS are the parameters to be supplied by the user eg. DESCRIPTION
 
-* Words in `markdown` format are related to commands provided by the user
+* `markdown` format are related to commands provided by the user eg. `help`
 
-* Words in *italics* format are related to buttons that can be found on the screen
+* *italics* format are related to buttons that can be found on the screen *From Text/CSV*
 
-* Items surrounded by [square brackets] are mandatory fields, while the items in {curly brackets} are optional
+* Items surrounded by [square brackets] are mandatory fields, while the items in {curly brackets} are optional eg. 
+  [DESCRIPTION] {TIME} 
 
-* Words in "double quotation marks" are the names of items
+* Words in "double quotation marks" are the names of items eg. "beef noodles"
+
+* 💡 indicates helpful suggestions that will enhance your experience
+
+* ⚠️ highlights actions you should avoid
 
 ## Quick Start
 
@@ -93,36 +98,42 @@ path in the address bar as shown <br>
        ![cmd.png](images/UserGuide/cmd.png)
     3. Press Enter. Your Command Line should now be open in the folder containing "rainyDay.jar".
 5. Type `java -jar rainyDay.jar` and press Enter on your keyboard to start the application
+6. {todo add image of startup}
 
 ## Features Overview
 
 * [Viewing help](#viewing-help)
-* [Adding a transaction](#adding-a-transaction)
-* [Viewing the transactions](#viewing-the-transactions)
-* [Deleting a transaction](#deleting-a-transaction)
-* [Filter statements](#filter-statements)
-* [Editing a transaction](#editing-a-transaction)
+* [Transactions](#transactions)
+  * [Adding a transaction](#adding-a-transaction)
+  * [Viewing the transactions](#viewing-the-transactions)
+  * [Deleting a transaction](#deleting-a-transaction)
+  * [Editing a transaction](#editing-a-transaction)
+  * [Filter transactions](#filter-statements)
+  * [Ignoring a transaction](#ignoring-a-transaction)
 * [Setting a Monthly Budget](#setting-a-monthly-budget)
 * [Shortcuts](#shortcuts)
     * [Adding a shortcut](#adding-a-shortcut)
     * [Using a shortcut](#using-a-shortcut)
     * [Viewing a shortcut](#viewing-a-shortcut)
     * [Deleting a shortcut](#deleting-a-shortcut)
-* [Ignoring an entry](#ignoring-an-entry)
-* [Saving the data](#saving-the-data)
-* [Where is my saved file located?](#where-is-my-saved-file-located)
-    * [Loading saved data](#loading-saved-data)
-* [Exporting to CSV](#exporting-to-csv)
-    * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
-    * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
+* [Data Management](#data-management)
+  * [Saving the data](#saving-the-data)
+  * [Where is my saved file located?](#where-is-my-saved-file-located)
+      * [Loading saved data](#loading-saved-data)
+  * [Exporting to CSV](#exporting-to-csv)
+      * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
+      * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
 * [Exiting the application](#exiting-the-application)
 
 ## Features
 
 ### Viewing help
 
-Once you have started rainyDay in [Quick Start](#quick-start), you will need to know the format of inputs to send to 
-rainyDay. To get an overview of possible commands and their respective formats, we can use the `help` function as seen 
+Welcome to the help section of our rainyDay! Now that you have started rainyDay in [Quick Start](#quick-start), you will 
+need to know the format of inputs to send to rainyDay. Whenever you find yourself stuck to perform a certain task, don't
+worry! The help command is here to help you every step of the way!
+
+To get an overview of possible commands and their respective formats, you can use the `help` function as seen 
 below:
 
 Format: `help`
@@ -194,6 +205,20 @@ the output will be shown as below:
 |                             | category set to Bills                                                |
 +====================================================================================================+
 ```
+
+### Transactions
+
+Here's the transaction management section of our guide! In this section, we'll cover all the key tasks you'll 
+need to perform to manage your transactions effectively. Whether you need to add, view, edit, or delete transactions, 
+we've got you covered. We'll also show you how to filter your transactions and ignore any that are irrelevant to your 
+needs. So, if you're ready to take control of your transactions and keep your records up-to-date, let's get started!
+
+* [Adding a transaction](#adding-a-transaction)
+* [Viewing the transactions](#viewing-the-transactions)
+* [Deleting a transaction](#deleting-a-transaction)
+* [Editing a transaction](#editing-a-transaction)
+* [Filter transactions](#filter-statements)
+* [Ignoring a transaction](#ignoring-a-transaction)
 
 ### Adding a transaction
 
@@ -535,9 +560,9 @@ Done, edited entry 2 from the financial report
 
 ### Setting a Monthly Budget
 
-In the process of keeping track of your expenses, you might feel inclined to stick to a budget. RainyDay can help
-to give you reminders, and encourage you to stick to your budget!
-With a set monthly budget, RainyDay will remind you how much you have spent for the month with
+After you know how to manage your transactions, you can now set a monthly budget! In the process of keeping track of 
+your expenses, you might feel inclined to stick to a budget. RainyDay can help to give you reminders, and encourage you 
+to stick to your budget! With a set monthly budget, RainyDay will remind you how much you have spent for the month with
 every new expense in the same month.
 
 Format : `setbudget GOAL`
@@ -570,6 +595,16 @@ Monthly Budget Goal removed!
 
 ### Shortcuts
 
+Welcome to the shortcuts section of our guide! Shortcuts can be a great way to save time! In this section, we'll show 
+you how to create and use shortcuts effectively. Whether you need to add a new shortcut, view an existing one, 
+or delete an old one, we'll cover them all. So, if you're ready to start working smarter, not harder, let's dive into 
+the world of shortcuts!
+
+ * [Adding a shortcut](#adding-a-shortcut)
+ * [Using a shortcut](#using-a-shortcut)
+ * [Viewing a shortcut](#viewing-a-shortcut)
+ * [Deleting a shortcut](#deleting-a-shortcut)
+  
 #### Adding a shortcut
 
 If you happen to have certain commands that you find yourself frequently using, rainyDay's shortcuts can make it much
@@ -658,7 +693,7 @@ command below:
 
 [Jump back to features overview](#features-overview)
 
-### Ignoring an entry
+### Ignoring a transaction
 
 Due to potential certain one-time payments or receivables that you encounter, rainyDay's ignore function can help you
 keep a more accurate track of your finances by allowing you to ignore certain transactions from the overall calculation
@@ -717,6 +752,21 @@ Done, Entry 4 ignored from overview calculations
 ```
 
 [Jump back to features overview](#features-overview)
+
+### Data Management
+
+Welcome to the data management section of our guide! Saving and loading your data is something you don't have to worry 
+as we have got it covered for you! In this section, we'll show you where to locate your saved files and 
+how to export your  data to a CSV file, which is a widely-used file format that can be opened in a variety of 
+software applications. We'll show you how to export and view the exported CSV file using Microsoft Excel, 
+which is a popular spreadsheet program used by many people around the world. Let's get started!
+
+* [Saving the data](#saving-the-data)
+* [Where is my saved file located?](#where-is-my-saved-file-located)
+    * [Loading saved data](#loading-saved-data)
+* [Exporting to CSV](#exporting-to-csv)
+    * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
+    * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
 
 ### Saving the data
 
@@ -807,6 +857,7 @@ that "rainyDay.jar" is going to be stored in
 
 | Term                   | Explanation                                                                                                                                                      |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Cmd                    | acronym for Command, which is the command-line interpreter of Windows Operating Systems                                                                          |
 | Command Line Interface | An interface that uses text as the mode of interaction between the user and the program                                                                          |
 | CSV                    | Stands for Comma Separated Value, a type of file format that can be imported to other statistical software such as Microsoft Excel, R Commander or Google Sheets |
 | Filter                 | A function to narrow down the range of items to be shown                                                                                                         |
@@ -816,6 +867,5 @@ that "rainyDay.jar" is going to be stored in
 | Inflow                 | Signify an increment of money on your side, such as deposits into your wallet                                                                                    |
 | Outflow                | Signify a decrement of money on your side, such as payments from your wallet                                                                                     |
 | Transaction            | An activity relating to transferring of money                                                                                                                    |
-| Cmd                    | acronym for Command, which is the command-line interpreter of Windows Operating Systems                                                                          |
 
 [Jump back to Table of Contents](#content-page)
