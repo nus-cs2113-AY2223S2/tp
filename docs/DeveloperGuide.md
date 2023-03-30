@@ -32,10 +32,11 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 
 ## Setting up, getting started
 
-1. Java 11 is required for Meal Companion to function. Please ensure it is installed and functional on the device you are using, otherwise you may download it [here](https://www.oracle.com/sg/java/technologies/downloads/#java11).
+1. Java 11 is required for Meal Companion to function properly, please make sure your device has Java 11 installed. If not, you may download it [here](https://www.oracle.com/sg/java/technologies/downloads/#java11). If you need further asssistance installing Java 11, you may refer to the [Installation Guide](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html).
 
-2. Once you have ascertained that your device has Java 11 installed, you may download the `.jar file` [here](https://github.com/AY2223S2-CS2113T-T09-3/tp/releases/tag/v1.0). 
-![jar1.png](images/jar1.png)
+2. Once you have ascertained that your device has Java 11 installed, you may download the `.jar file` [here](https://github.com/AY2223S2-CS2113T-T09-3/tp/releases/tag/v2.0). 
+
+![jar2.png](images/jar2.png)
 
 Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
