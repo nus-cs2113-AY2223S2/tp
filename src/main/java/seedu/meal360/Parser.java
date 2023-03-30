@@ -175,13 +175,14 @@ public class Parser {
 
     public String parseDeleteRecipe(String[] input, RecipeList recipeList) {
         // user inputted recipe name
-        if (input[1].contains("r/")) {
+        if (input[1].contains("/r")) {
             // skip over /r in recipe name
             String recipeToDelete = "";
             for (int i = 2; i < input.length; i++) {
                 recipeToDelete += input[i] + " ";
             }
             recipeToDelete = recipeToDelete.trim();
+            System.out.println("recipeToDelete: " + recipeToDelete);
             if (recipeToDelete.equals("all")) {
                 String allRecipes = "";
                 int index = 0;
