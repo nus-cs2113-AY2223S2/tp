@@ -37,7 +37,7 @@ public class Ui {
             ".JMMmmmdP'.AMA.   .AMMA.P\"Ybmmd\"  .JMML.  .JMML..JMMmmmd9    `\"bmmd\"'.AMA.   " +
             ".AMMA..JMML. .JMM..JMMmmmdP'   ";
     public static final String LOGO1 = "`MMb     dMM'     dM.      6MMMMb/ `MM'     `M' 6MMMMb\\  6MMMMbMMMMMMMMMM " +
-            "6MMMMb     6MMMMb/ `MM    d'\n";
+            " 6MMMMb     6MMMMb/ `MM    d'\n";
     public static final String LOGO2 = " MMM.   ,PMM     ,MMb     8P    YM  MM       M 6M'    ` 6M'    /   MM  " +
             " \\ 8P    Y8   8P    YM  MM   d'\n";
     public static final String LOGO3 = " M`Mb   d'MM     d'YM.   6M      Y  MM       M MM       MM         MM " +
