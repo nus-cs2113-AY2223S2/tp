@@ -2,11 +2,14 @@
 
 ## Introduction
 
-rainyDay is a desktop application for managing your finances that runs on a Command Line Interface (CLI). rainyDay
-provides a simple solution to track your finances and achieve your financial goals.
+rainyDay is a desktop application for managing your finances that runs on a Command Line Interface (CLI). rainyDay aims
+to provide a simple solution for young working adults to track your finances and achieve your financial goals. 
 
 This user guide provides an in-depth documentation on how to install and use rainyDay. This guide caters to all users of
 rainyDay, from people who are just starting out to advanced users looking for extra features they were unaware of.
+
+Thank you for choosing rainyDay! We sincerely hope that rainyDay has made it easier for you to track your finances.
+Should you have any feedback or enquiries, please do not hesitate to drop us an at rainydayfinancialtracker@gmail.com
 
 ## Content Page
 
@@ -14,11 +17,10 @@ rainyDay, from people who are just starting out to advanced users looking for ex
 * [rainyDay User Guide](#rainyday-user-guide)
   * [Introduction](#introduction)
   * [Content Page](#content-page)
-  * [Acknowledgement](#acknowledgement)
   * [How to use the user guide](#how-to-use-the-user-guide)
   * [Quick Start](#quick-start)
   * [Features Overview](#features-overview)
-  * [Features](#features)
+  * [Features](#features)  <details>  <summary> <a href = #feature>Features</a> </summary>
     * [Viewing help](#viewing-help)
     * [Adding a transaction](#adding-a-transaction)
     * [Viewing the transactions](#viewing-the-transactions)
@@ -43,11 +45,6 @@ rainyDay, from people who are just starting out to advanced users looking for ex
   * [Command Summary](#command-summary)
   * [Glossary](#glossary)
 <!-- TOC -->
-
-## Acknowledgement
-
-Thank you for choosing rainyDay! We sincerely hope that rainyDay has made it easier for you to track your finances.
-Should you have any feedback or enquiries, please do not hesitate to drop us an [email](add-link-to-email?)!
 
 ## How to use the user guide
 
@@ -79,7 +76,8 @@ Please note the following about the format of commands given under each [feature
        [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
        for the guide on installing Java 11
 2. Download the latest version of "rainyDay"
-   from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v1.0/rainyDay.jar).
+   from [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/releases/download/v1.0/rainyDay.jar) by clicking on 
+   "rainyDay.jar".
 3. Move the "rainyDay.jar" file to the folder of your choice by doing the following steps:
     1. Locate the "rainyDay.jar" file in your "Downloads" folder
     2. Right-click the "rainyDay.jar" file and select cut from the table that appears <br>
