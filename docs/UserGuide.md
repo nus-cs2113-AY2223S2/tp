@@ -18,14 +18,14 @@ Should you have any feedback or enquiries, please do not hesitate to drop us an 
 <!-- TOC -->
 
 * [rainyDay User Guide](#rainyday-user-guide)
-    * [Introduction](#introduction)
-    * [Content Page](#content-page)
-    * [How to use the user guide](#how-to-use-the-user-guide)
-    * [Quick Start](#quick-start)
-    * [Features Overview](#features-overview)
-    * [FAQ](#faq)
-    * [Command Summary](#command-summary)
-    * [Glossary](#glossary)
+* [Introduction](#introduction)
+* [Content Page](#content-page)
+* [How to use the user guide](#how-to-use-the-user-guide)
+* [Quick Start](#quick-start)
+* [Features Overview](#features-overview)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
+* [Glossary](#glossary)
 
 <!-- TOC -->
 
