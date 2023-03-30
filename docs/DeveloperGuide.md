@@ -173,17 +173,37 @@ It makes use of a static HashMap<Integer, HashMap<Month, Double>> to keep track 
 access budget using keys that are not entered in the HashMap, it will return a warning mentioning that the inquired
 budget has not been set yet.
 
-### SaveExpense, SaveIncome
+### SaveExpense, SaveIncome, Save Budget
 
-The SaveExpense and SaveIncome class deal with saving in the user inputted data locally so that it can be later accessed.
+The SaveExpense, SaveIncome, Save Budget class deal with saving in the user inputted data locally.
+So that it can all be later accessed.
+They all save once the exit command is set.
+So assuming there are no bugs it should save.
+
 **Methods**
 
 writeFile(LinkedList<Entry> expenses/incomes)
 * writes to the file in a similar format that is entered in to make a new Expense object within the constructor.
-*
+
 readExpenseFile()
 
-* This method reads in from the saved file either ExpenseData.txt or IncomeData.txt. Reads in and initialized each line as either expense or income. Then adds to the respective list.
+* This method reads in from the saved file either ExpenseData.txt or IncomeData.txt. 
+* Reads in and initialized each line as either expense or income. 
+* Then adds to the respective list.
+
+
+writeFile(HashMap<Integer, HashMap<Month, Double>> budget)
+* This method writes to the file under ./data/BudgetData.txt file.
+* Will write upon exit.
+* organizes it based on how it the information is constructed for easy reading.
+* Iterates through the outer HashMap then inner.
+
+public static HashMap<Integer, HashMap<Month, Double>> readFile()
+* On start up reads through the file ./data/BudgetData.txt.
+* Reads in and the year then as a key then the monthly declared budget of the given months.
+* Returns this as the initialized budget on start.
+
+
 
 ---
 
