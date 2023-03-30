@@ -45,13 +45,19 @@ public class Parser {
     private static final Pattern startDatePattern = Pattern.compile("(-sd|-startdate)\\s+(0*\\d+/0*\\d+/\\d{2,})");
     private static final Pattern endDatePattern = Pattern.compile("(-ed|-enddate)\\s+(0*\\d+/0*\\d+/\\d{2,})");
 
-    /**
-     * @param userInput The entire string of user input.
-     * @throws InvalidCommandException   If command entered by user is not
-     *                                   recognisable.
-     * @throws InvalidArgumentsException If arguments following command is in
-     *                                   incorrect format.
-     * @throws MissingArgumentsException If required arguments are missing.
+
+    
+    /** 
+     * Returns a Command object that is to be executed by the backend
+     * 
+     * @param userInput Entire user input string
+     * @return Command Command object to be executed
+     * @throws InvalidCommandException If command entered is invalid
+     * @throws InvalidArgumentsException If arguments entered are in wrong format
+     * @throws MissingArgumentsException If required arguments are missing
+     * @throws InvalidCategoryException If category entered is invalid
+     * @throws MissingDateException If required date is missing
+     * @throws InvalidDateException If date entered is invalid
      */
     public Command parseUserInput(String userInput) throws
             InvalidCommandException, InvalidArgumentsException,
@@ -130,11 +136,16 @@ public class Parser {
         return argumentsArray;
     }
 
-    /**
-     * @param arguments User arguments entered after the command.
-     * @throws MissingArgumentsException If user did not specify description,
-     *                                   category and price.
-     * @throws InvalidArgumentsException
+
+    
+    /** 
+     * Returns a AddCommand object to be executed by the backend.
+     * 
+     * @param arguments User input entered after add command.
+     * @return Command Command object to be executed.
+     * @throws MissingArgumentsException If required arguments are missing.
+     * @throws InvalidArgumentsException If required arguments are in wrong format.
+     * @throws InvalidCategoryException If category entered is invalid.
      */
     private Command parseAddCommand(String arguments)
             throws MissingArgumentsException, InvalidArgumentsException, InvalidCategoryException {
@@ -295,13 +306,48 @@ public class Parser {
         }
         String[] argumentsArray = arguments.split(" ");
         assert argumentsArray.length >= 1 : "User input must contain at least 1 argument";
-        Double priceMinDouble;
-        Double priceMaxDouble;
         Category category = null;
         String categoryStr = extractDetail(arguments, categoryPattern);
         if (!categoryStr.isEmpty()) {
             category = CategoryUtil.convertStringToCategory(StringUtil.toTitleCase(categoryStr));
         }
+        Double[] startEndPrices = extractPrices(arguments);
+        Double priceMinDouble = startEndPrices[0];
+        Double priceMaxDouble = startEndPrices[1];
+        Integer viewCountInt = extractViewCount(arguments);
+        String[] startEndDates = extractDates(arguments);
+        String startDateString = startEndDates[0];
+        String endDateString = startEndDates[1];
+        logger.info("User entered count:" + viewCountInt);
+        logger.info("User entered category:" + categoryStr);
+        logger.info("User entered start date: " + startDateString);
+        logger.info("User entered end date: " + endDateString);
+        logger.exiting(Parser.class.getName(), "parseViewCommand()");
+        return new ViewCommand(viewCountInt, category, priceMinDouble, priceMaxDouble, startDateString, endDateString);
+    }
+
+    private Integer extractViewCount(String arguments) throws InvalidArgumentsException {
+        String viewCount = extractDetail(arguments, idPattern); //detail extracted is either view count or an
+        // optional flag indicated by user
+        if (viewCount.matches("-sd|-p|-c|-startdate|-enddate|-category|-price")) {
+            viewCount = Integer.toString(Integer.MAX_VALUE);
+        }
+        Integer viewCountInt;
+        try {
+            viewCountInt = Integer.parseInt(viewCount);
+        } catch (NumberFormatException e) {
+            logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+        }
+        if (viewCountInt < 0) {
+            logger.warning("Negative expense ID provided: " + MessageConstants.MESSAGE_INVALID_ID);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+        }
+        return viewCountInt;
+    }
+
+    private Double[] extractPrices(String arguments) throws InvalidArgumentsException {
+        Double[] prices = new Double[2];
         String priceMinStr = extractDetail(arguments, pricePattern);
         String priceMaxStr = extractDetail(arguments, pricePattern);
         if (!priceMinStr.isEmpty()) {
@@ -314,6 +360,19 @@ public class Parser {
         } else {
             priceMaxStr = Integer.toString(Integer.MAX_VALUE);
         }
+        Double priceMinDouble = Double.parseDouble(priceMinStr);
+        Double priceMaxDouble = Double.parseDouble(priceMaxStr);
+        if (priceMaxDouble < priceMinDouble) {
+            logger.warning("Maximum price range higher than minimum: " + MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
+        }
+        prices[0] = priceMinDouble;
+        prices[1] = priceMaxDouble;
+        return prices;
+    }
+
+    private String[] extractDates(String arguments) throws InvalidDateException, MissingDateException {
+        String[] dates = new String[2];
         String startDateString = extractDetail(arguments, startDatePattern);
         String endDateString = extractDetail(arguments, endDatePattern);
         if (!startDateString.isEmpty()) {
@@ -332,34 +391,9 @@ public class Parser {
             logger.info("Missing at least one date as view command request parameter");
             throw new MissingDateException(MessageConstants.MESSAGE_MISSING_DATE);
         }
-        Integer viewCountInt;
-        String viewCount = extractDetail(arguments, idPattern); //detail extracted is either view count or an
-        // optional flag indicated by user
-        if (viewCount.matches("-sd|-p|-c|-startdate|-enddate|-category|-price")) {
-            viewCount = Integer.toString(Integer.MAX_VALUE);
-        }
-        try {
-            viewCountInt = Integer.parseInt(viewCount);
-        } catch (NumberFormatException e) {
-            logger.warning("Expense ID is not an integer: " + MessageConstants.MESSAGE_INVALID_ID);
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
-        }
-        if (viewCountInt < 0) {
-            logger.warning("Negative expense ID provided: " + MessageConstants.MESSAGE_INVALID_ID);
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
-        }
-        logger.info("User entered count:" + viewCount);
-        logger.info("User entered category:" + categoryStr);
-        logger.info("User entered start date: " + startDateString);
-        logger.info("User entered end date: " + endDateString);
-        priceMinDouble = Double.parseDouble(priceMinStr);
-        priceMaxDouble = Double.parseDouble(priceMaxStr);
-        if (priceMaxDouble < priceMinDouble) {
-            logger.warning("Maximum price range higher than minimum: " + MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
-        }
-        logger.exiting(Parser.class.getName(), "parseViewCommand()");
-        return new ViewCommand(viewCountInt, category, priceMinDouble, priceMaxDouble, startDateString, endDateString);
+        dates[0] = startDateString;
+        dates[1] = endDateString;
+        return dates;
     }
 
     private String extractDetail(String string, Pattern detail) {
