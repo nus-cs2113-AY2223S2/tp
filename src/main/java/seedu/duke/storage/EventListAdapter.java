@@ -150,6 +150,9 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
                         time = readTime(reader);
                     }
                 }
+                if ((date ==null) || (time == null)){ //checks that date and time fields were not abused.
+                    throw new NPExceptions("Event Corrupted");
+                }
                 reader.endObject();
                 String combination = date + " " + time;
                 startTime = LocalDateTime.parse(combination, dfWithTime);
@@ -164,6 +167,9 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
                     } else if (startName.equals("time")){
                         time = readTime(reader);
                     }
+                }
+                if ((date ==null) || (time == null)){ //checks that date and time fields were not abused.
+                    throw new NPExceptions("Event Corrupted");
                 }
                 reader.endObject();
                 String combination = date + " " + time;

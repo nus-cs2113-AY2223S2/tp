@@ -202,8 +202,10 @@ public class Parser {
 
             // loading modules. Need to update when singleton design is utilized.
             HashMap<String, NusModule> nusmods = converter.loadModules();
+            Duke.LOGGER.log(Level.INFO, "loadModules() called");
             // Fetch NusModule from module code
             NusModule nusModule = nusmods.get(moduleCode);
+            System.out.println(nusmods.isEmpty()); //Debug test.
             if (nusModule == null) {
                 Duke.LOGGER.log(Level.INFO, "User selected module that does not exist.");
                 throw new NPExceptions("Module "+ moduleCode +" does not exist!");
