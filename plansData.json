@@ -15,6 +15,38 @@
         ],
         "planName": "test",
         "noOfExercise": 0
+      },
+      {
+        "exercisePlans": [
+          "legs",
+          "static"
+        ],
+        "planName": "home_leg_day",
+        "noOfExercise": 0
+      },
+      {
+        "exercisePlans": [
+          "legs",
+          "static"
+        ],
+        "planName": "home_leg_day",
+        "noOfExercise": 0
+      },
+      {
+        "exercisePlans": [
+          "legs",
+          "static"
+        ],
+        "planName": "home_leg_day",
+        "noOfExercise": 0
+      },
+      {
+        "exercisePlans": [
+          "legs",
+          "static"
+        ],
+        "planName": "home_leg_day",
+        "noOfExercise": 0
       }
     ],
     [],
