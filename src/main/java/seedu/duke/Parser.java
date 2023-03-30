@@ -341,6 +341,8 @@ public class Parser {
         boolean isValidFormat = !information[0].equalsIgnoreCase("") && !information[2].equalsIgnoreCase("")
                 && !information[1].equalsIgnoreCase("");
 
+        
+
         if (!isValidFormat) {
             throw new NPExceptions("Please use correct command format!");
         }
