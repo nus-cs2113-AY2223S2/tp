@@ -66,7 +66,7 @@ for the purposes of printing the user interface messages when users are performi
 operations of BadMaths such as the notes and calculation operations and functionalities.
 
 The methods that are in the Ui class are as follows:
-`printIncorrectFormatEnteredelevant ()`: prints out a warning message to alert the 
+`printIncorrectFormatEntered()`: prints out a warning message to alert the 
 user that an incorrect command format for badMaths has been entered.
 
 `printNegativeAmplitudeEntered()`: prints out a warning message to alert that the user has input a negative amplitude.
@@ -106,7 +106,7 @@ review counts for each note item in a list format.
 `printNotesByPriority(ArrayList<Note> notes)`: prints out all the notes sorted based on the
 priority (high, medium, low) of the note items in a list format.
 
-#### NotesPriority class:
+#### NotePriority class:
 The `NotePriority` class is utilised to set the priority level (LOW, MEDIUM, HIGH)
 of the notes stored in the Notes List by users.
 
