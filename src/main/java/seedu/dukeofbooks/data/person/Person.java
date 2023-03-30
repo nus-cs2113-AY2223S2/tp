@@ -81,9 +81,7 @@ public class Person {
      */
     public String getAsTextShowAll() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ");
-        builder.append(getPhone());
+        builder.append(getName());
         return builder.toString();
     }
 

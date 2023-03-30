@@ -38,8 +38,6 @@ public class DukeOfBooks {
     private TextUi ui;
 
     public static void main(String[] args) {
-        // System.out.println("Hello, world!");
-
         new DukeOfBooks().run();
     }
 
@@ -53,17 +51,28 @@ public class DukeOfBooks {
         this.allLoanRecords = new LoanRecords();
         this.userRecords = new UserRecords();
         try {
+            Inventory inventory = new Inventory();
+            InventoryController.setData(inventory);
+            SearchController.setData(inventory);
+            // add test data
             Isbn isbn = new Isbn("testIsbn");
-            Title title = new Title("testTitle");
+            Title title = new Title("the greatest nation");
             Topic topic = new Topic("testTopic");
             PersonName authorName = new PersonName("Author");
             Phone authorPhone = new Phone(87654321);
             Person author = new Person(authorName, authorPhone);
             Book book = new Book(isbn, title, topic, author);
-            Inventory inventory = new Inventory();
-            InventoryController.setData(inventory);
             InventoryController.addBook(book);
-            SearchController.setData(inventory);
+
+            isbn = new Isbn("testIsbn2");
+            title = new Title("the great wall of china");
+            topic = new Topic("testTopicanother");
+            authorName = new PersonName("Authoranother");
+            authorPhone = new Phone(87654321);
+            author = new Person(authorName, authorPhone);
+            book = new Book(isbn, title, topic, author);
+            InventoryController.addBook(book);
+
         } catch (IllegalValueException | IllegalOperationException ive) {
             ive.printStackTrace();
         }

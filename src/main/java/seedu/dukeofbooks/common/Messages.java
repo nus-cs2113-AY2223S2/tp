@@ -12,8 +12,10 @@ public class Messages {
     public static final String AUTHOR_ARG = "-author";
     public static final String ISBN_ARG = "-isbn";    
     public static final String ACTION_ARG = "-action";
-    
+    public static final String DIVIDER = "===================================================";
+    public static final String NEW_LINE = "\n";
     public static final String SPACE_CHAR = " ";
+    public static final String SEPARATOR = "|";
     public static final String BOOK_TITLE_NOT_FOUND = "Book title is not found";
     public static final String BOOK_TOPIC_NOT_FOUND = "Book topic is not found";
 }
