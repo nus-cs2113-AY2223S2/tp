@@ -31,11 +31,13 @@ public class TrigoGraphAnalyser {
     private double verticalShift;
     private double freq;
 
-    public String getTrig() {
-        return trigonometry;
-    }
+
     public TrigoGraphAnalyser(String trigoEqn) {
         this.trigoEqn = trigoEqn;
+    }
+
+    public String getTrig() {
+        return trigonometry;
     }
 
     public boolean canStartAnalyser() {
