@@ -105,7 +105,7 @@ public class Parser {
                     }
                     break;
                 case "remove":
-                    if (words[1].equals("class")) {
+                    if (words[1].equals("/class")) {
                         TaskList.tryDeleteClass(classes, line);
                         Storage.trySave(tasks, classes);
                     } else {
