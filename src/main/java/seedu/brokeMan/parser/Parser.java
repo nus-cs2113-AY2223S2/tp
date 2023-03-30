@@ -152,13 +152,11 @@ public class Parser {
                     SetBudgetCommand.MESSAGE_USAGE);
         }
 
-        assert(!description.equals("")) : "|  You did not specify your budget\n";
+        assert(!description.equals("")) : "You did not specify your budget\n";
         String[] descriptionByWord = description.split(" t/ ");
         if (descriptionByWord.length > 2 || descriptionByWord.length < 1) {
             return new InvalidCommand("Invalid information entered", SetBudgetCommand.MESSAGE_USAGE);
         }
-
-        assert(descriptionByWord.length == 2) : "|  Invalid information entered\n";
 
         double budget;
         String budgetInString = descriptionByWord[0];
