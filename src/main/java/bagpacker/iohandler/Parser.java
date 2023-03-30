@@ -206,12 +206,15 @@ public class Parser {
             if (itemDescription == null) {
                 throw new InvalidVariablesException();
             }
+            if (itemQuantity < 1){
+                throw new InvalidIndexException();
+            }
             return new AddCommand(new Item(itemQuantity, itemDescription));
-        } catch (InvalidVariablesException e) {
+        } catch (InvalidVariablesException | ArrayIndexOutOfBoundsException e) {
             return new IncorrectCommand("Invalid input format",
                     AddCommand.HELP_MSG);
-        } catch (NumberFormatException e) {
-            return new IncorrectCommand("Invalid Item Index",
+        } catch (NumberFormatException | InvalidIndexException e) {
+            return new IncorrectCommand("Invalid Item Quantity",
                     "for item quantity, try to input a positive integer number");
         }
     }
@@ -281,7 +284,7 @@ public class Parser {
             } else {
                 return new IncorrectCommand("Invalid Item Index",
                         "Try to input an item index number between 1 and " + PackingList.getItemList().size());
-            }
+            } 
         }
     }
 
