@@ -1,5 +1,31 @@
 # User Guide
 
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Quick Start](#quick-start)
+3. [Features](#features)
+   * [Adding an expense](#adding-an-expense--addexpense)
+   * [Adding an income](#adding-an-income--addincome)
+   * [Listing all expenses](#listing-all-expenses--listexpense)
+   * [Listing all income](#listing-all-income--listincome)
+   * [Editing an expense](#editing-an-expense--editexpense)
+   * [Editing an income](#editing-an-income--editincome)
+   * [Sorting an expense by amount](#sorting-an-expense-by-amount--sortexpensebyamount)
+   * [Sorting an income by amount](#sorting-an-income-by-amount--sortincomebyamount)
+   * [Sorting an expense by date](#sorting-an-expense-by-date--sortexpensebydate)
+   * [Sorting an income by date](#sorting-an-income-by-date--sortincomebydate)
+   * [Deleting an expense](#deleting-an-expense--deleteexpense)
+   * [Deleting an income](#deleting-an-income--deleteincome)
+   * [Set budget](#set-budget--setbudget)
+   * [View budget](#view-budget--viewbudget)
+   * [Help command](#help-command--help)
+   * [Exiting the program](#exiting-the-program--exit)
+   * [Saving the data](#saving-the-data)
+4. [FAQ](#faq)
+5. [Command Summary](#command-summary)
+
+
 ## Introduction
 
 
@@ -69,7 +95,7 @@ Example of usage: `listExpense t/ 2023/03` Shows a list of all expenses incurred
 
 ---
 
-### Listing all income: `listIncome'
+### Listing all income: `listIncome`
 Format: `listIncome [t/ time]`
 Shows a list of all income in the list of income.
 
@@ -81,7 +107,7 @@ Example of usage: `listIncome` Shows a list of all income made across the entire
 
 ---
 
-### Editing an expense: `editExpense'
+### Editing an expense: `editExpense`
 Format: `editExpense i/ <index> t/ <type> n/ <newEntry>`
 * Edits the expense at the specified `index`. 
 The index refers to the index number shown in the displayed expense list.
@@ -98,8 +124,6 @@ Example of usage:
 `editExpense i/ 1 t/ amount n/ 5`
 
 **Note**: Please do not leave the description of tags empty.
-
-
 
 ---
 
@@ -122,7 +146,7 @@ Example of usage: `editIncome i/ 2 t/ category n/ FOOD`
 
 ---
 
-### Sorting an income by amount: `sortExpenseByAmount`
+### Sorting an expense by amount: `sortExpenseByAmount`
 Format: `sortExpenseByAmount`
 Shows a list of all expenses in the order of higher amount to lower amount.
 
@@ -138,7 +162,7 @@ Example of usage: `sortIncomeByAmount`
 
 ---
 
-### Sorting an income by amount: `sortExpenseByDate`
+### Sorting an expense by date: `sortExpenseByDate`
 Format: `sortExpenseByDate`
 Shows a list of all expenses in a chronological order.
 
@@ -146,15 +170,15 @@ Example of usage: `sortExpenseByDate`
 
 ---
 
-### Sorting an income by amount: `sortIncomeByCommand`
-Format: `sortIncomeByCommand`
+### Sorting an income by date: `sortIncomeByDate`
+Format: `sortIncomeByDate`
 Shows a list of all income in a chronological order.
 
-Example of usage: `sortIncomeByCommand`
+Example of usage: `sortIncomeByDate`
 
 ---
 
-### Deleting an expense: `deleteExpense'
+### Deleting an expense: `deleteExpense`
 Format: `deleteExpense <index>`
 * Deletes the expense at the specified `index`.
 * The index refers to the index number shown in the displayed expense list.
@@ -167,7 +191,7 @@ Example of usage:
 
 ---
 
-### Deleting an income: `deleteIncome'
+### Deleting an income: `deleteIncome`
 Format: `deleteIncome <index>`
 * Deletes the expense at the specified `index`.
 * The index refers to the index number shown in the displayed income list.
@@ -194,7 +218,7 @@ Example of usage:
 
 ---
 
-### View budget: 'viewBudget'
+### View budget: `viewBudget`
 Format: `viewBudget [t/ time]`
 * The `time` should follow `YYYY/MM` format.
 * The time parameter is optional.
