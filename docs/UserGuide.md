@@ -1,6 +1,6 @@
 # Duck User Guide(v 2.0)
 
-Duck is a **desktop app for managing tasks and deadlines, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Duck will have a number of quality-of-life features for busy students seeking a simple solution to task management. These include automated task removal upon expiration, or limiting the number of tasks displayed to within a date range. Duck also has recurring task functionality to automate routine tasks so users do not have to manually re-add expired tasks.
+Duck is a **desktop app for managing tasks and deadlines, as well as a school class scheduler. It is optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). Duck will have a number of quality-of-life features for busy students seeking a simple solution to task management. These include automated task removal upon expiration, or limiting the number of tasks displayed to within a date range. Duck also has recurring task functionality to automate routine tasks so users do not have to manually re-add expired tasks.
 
 
 
