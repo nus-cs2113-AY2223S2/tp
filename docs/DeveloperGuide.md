@@ -16,8 +16,6 @@ Refer to the user guide [here](https://github.com/AY2223S2-CS2113-F13-3/tp/blob/
 
 
 ## Design & implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ### Architecture
 ![Architecture Diagram](UML/Images/ArchitectureDesign.png)
 
@@ -56,12 +54,26 @@ The Parser component handles the following methods:
 * Revise information using index
 * Revise information using name
 
-The UML diagram below illustrates the flow of how the application adds events:
+##### Add Events Diagram
+The diagram below illustrates the flow of how the application adds events:
 ![Add Event Class Diagram](UML/Images/addEvent.png)
 
+When the user adds an event, the application checks if the format of the command is correct before proceeding further.
 
-The UML diagram below illustrates the flow of how the application adds modules:
+It will then go through different processes depending on if the event has an end date.
+
+Following that, it will go through another process to check if the event is set to be recurring before finally creating a new event and displaying a success message to the user.
+
+##### Add Modules Diagram
+The diagram below illustrates the flow of how the application adds modules:
 ![Add Event Class Diagram](UML/Images/addModules.png)
+
+When the user adds an event, the application checks if the format of the command is correct before proceeding further.
+
+Modules are then loaded and the application uses getLesson() to access modules from a Hash Map. 
+
+Then, according to the information provided by the user, the application will convert it to fit the event method before adding a new event.
+
 
 #### Why is the feature implemented this way?
 
@@ -143,7 +155,7 @@ It is necessary to have a list which contains all the current event/class so tha
 
 ### Target user profile
 
-{Describe the target user profile}
+Our target user profile is students studying in NUS.
 
 ### Value proposition
 
@@ -151,19 +163,19 @@ It is necessary to have a list which contains all the current event/class so tha
 
 ## User Stories
 
-| Version | As a ...     | I want to ...                             | So that I can ...                                             |
-|---------|--------------|-------------------------------------------|---------------------------------------------------------------|
-| v1.0    | As a user    | Add, edit, delete and view events         | Plan my schedule and have an understanding of what's upcoming |
-| v1.0    | As a user    | Save my events                            | Revisit them at a later time without having to reenter them   |
-| v2.0    | As a student | Add modules and view my schedule by weeks | Plan my schedule around modules and upcoming events           |
-| v2.0    | As a user    | Set an event to be recurring              | Easily add recurring events to my schedule                    |
-| v2.0    | As a user    | Save the location of an event             | Remember where I need to go for the next event                |
+| Version | As a ...     | I want to ...                             | So that I can ...                                                                  |
+|---------|--------------|-------------------------------------------|------------------------------------------------------------------------------------|
+| v1.0    | As a user    | Add, edit, delete and view events         | Plan my schedule and have an understanding of what's upcoming                      |
+| v1.0    | As a user    | Save my events                            | Revisit them at a later time without having to reenter them                        |
+| v2.0    | As a student | Add modules and view my schedule in a list or table format by weeks | Plan my schedule around modules (lectures, tutorials and labs) and upcoming events |
+| v2.0    | As a user    | Set an event to be recurring              | Easily add recurring events to my schedule                                         |
+| v2.0    | As a user    | Save the location of an event             | Remember where I need to go for the next event                                     |
 
 ## Non-Functional Requirements
 1. The program should be able to run on any computer regardless of OS.
-2. The program should be able to handle data corruption
+2. The program should be able to handle data corruption.
 3. The program is not required to return an accurate timetable for modules that only have one or two lectures in the whole semester.
-{Give non-functional requirements}
+4. The program should be lightweight and fast.
 
 ## Glossary
 
