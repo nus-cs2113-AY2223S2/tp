@@ -1,7 +1,6 @@
 package seedu.duke.storage;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.Event;
 import seedu.duke.EventList;
 import seedu.duke.NPExceptions;
 import seedu.duke.NusModule;
