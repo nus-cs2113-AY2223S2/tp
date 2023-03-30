@@ -1,17 +1,172 @@
+//@@author WilsonLee2000
+
 @startuml
-title Notes Sequence Diagram
+title Sequence Diagram for Notes Functionalities
 'https://plantuml.com/sequence-diagram
 
 actor User
 
-User -> Notes : setToDo()
-activate Notes
-
-Notes -> Ui : printNotes()
+User -> BadMaths : main()
+activate BadMaths
+BadMaths -> NotesList: NotesList(Storage.loadFile(path))
+NotesList -> Storage : loadFile(String path)
+activate Storage
+deactivate Storage
+activate NotesList
+NotesList --> BadMaths
+deactivate NotesList
+BadMaths -> Parser : Parser(userInput)
+activate Parser
+Parser --> BadMaths : getCommand()
+Parser --> BadMaths : getToDo()
+deactivate Parser
+alt inputCommand is null
+activate Command
+    BadMaths -> Command : Command(command, toDo);
+    else inputCommand is not null
+    BadMaths -> Command : setCommand(command)
+    BadMaths -> Command : setToDo(toDo)
+    end
+BadMaths -> Command : executeCommand(notes)
+Command -> TrigoGraph : TrigoGraph(toDo)
+activate TrigoGraph
+deactivate TrigoGraph
+Command -> Calculator : Calculator(toDo)
+activate Calculator
+deactivate Calculator
+Command -> Quadratic : Quadratic(toDo)
+activate Quadratic
+deactivate Quadratic
+alt "Bye"
+else "Graph"
+Command -> TrigoGraph : startGraphAnalysis()
+activate TrigoGraph
+deactivate TrigoGraph
+else "Store"
+Command -> NotesList : add(toDo)
+activate NotesList
+deactivate NotesList
+Command -> Ui : printAddNote(toDo, notes.getsize())
 activate Ui
 deactivate Ui
-destroy Ui
-ArrayList --> Notes : cache
+else "List"
+alt isInvalid(toDo)
+Command -> Ui : printNotes(notes.getAll())
+activate Ui
+deactivate Ui
+else
+Command -> NotesList : review(index)
+activate NotesList
+NotesList -> Notes : incrementReviewCount()
+activate Notes
 deactivate Notes
+deactivate NotesList
+
+Command -> Ui : printSpecificNote(index, notes.getAll())
+activate Ui
+deactivate Ui
+end
+else "Delete"
+Command -> Ui : printDelete(notes.getText(deleteIndex), notes.getSize())
+activate Ui
+deactivate Ui
+Command -> NotesList : remove(deleteIndex)
+activate NotesList
+deactivate NotesList
+else "Mark"
+Command -> NotesList : markAsDone(markIndex)
+activate NotesList
+NotesList -> Note : markAsDone()
+activate Note
+deactivate Note
+deactivate NotesList
+Command -> Ui : printMark(notes.getText(markIndex))
+activate Ui
+deactivate Ui
+else "Unmark"
+Command -> NotesList : markAsUndone(unmarkIndex)
+activate NotesList
+NotesList -> Note : markAsNotDone();
+activate Note
+deactivate Note
+deactivate NotesList
+Command -> Ui : printUnmark(notes.getText(unmarkIndex))
+activate Ui
+deactivate Ui
+else "Low"
+Command -> NotesList : setPriority(lowIndex, NotePriority.Priority.LOW)
+activate NotesList
+NotesList -> Note : setPriority(priority)
+activate Note
+deactivate Note
+deactivate NotesList
+Command -> Ui : printPriority(lowIndex, notes.getAll())
+activate Ui
+deactivate Ui
+else "Medium"
+Command -> NotesList : setPriority(mediumIndex, NotePriority.Priority.MEDIUM)
+activate NotesList
+deactivate NotesList
+Command -> Ui : printPriority(mediumIndex, notes.getAll())
+activate Ui
+deactivate Ui
+else "High"
+Command -> NotesList : setPriority(highIndex, NotePriority.Priority.HIGH)
+activate NotesList
+deactivate NotesList
+Command -> Ui : printPriority(highIndex, notes.getAll())
+activate Ui
+deactivate Ui
+else "FindInfo"
+Command -> Ui : printFindNotes(notes.relevantInfo(keyword))
+activate Ui
+deactivate Ui
+else "FindPrior"
+Command -> Ui : printFindNotes(notes.relevantPriority(priorityStr)
+activate Ui
+deactivate Ui
+else "FindMark"
+Command -> Ui : printFindNotes(notes.relevantMarked())
+activate Ui
+deactivate Ui
+else "FindUnmark"
+Command -> Ui : printFindNotes(notes.relevantUnmarked())
+activate Ui
+deactivate Ui
+else "Rank"
+alt toDo == "Review Count"
+  Command -> NotesList : rankByReviewCount(
+  activate NotesList
+  deactivate NotesList
+  Command -> Ui : printNotesByReviewCount(notes.getAll())
+  activate Ui
+  deactivate Ui
+  else toDo == "Priority"
+  Command -> NotesList : rankByPriority()
+  activate NotesList
+  deactivate NotesList
+  Command -> Ui : printNotesByPriority(notes.getAll()
+  activate Ui
+  deactivate Ui
+end
+else "Clear"
+Command -> NotesList : reset()
+activate NotesList
+deactivate NotesList
+else "Help"
+Command -> HelpManual : readHelpManual()
+activate HelpManual
+deactivate HelpManual
+else "Matrix"
+Command -> Calculator : run(toDo)
+activate Calculator
+deactivate Calculator
+else "Quadratic"
+Command -> Quadratic : solveQuadratic()
+activate Quadratic
+deactivate Quadratic
+end
+deactivate Command
+deactivate BadMaths
 
 @enduml
