@@ -7,6 +7,7 @@ import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.recipe.Step;
 import seedu.duke.recipe.StepList;
+import seedu.duke.ui.StringLib;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -14,8 +15,6 @@ import java.io.IOException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static seedu.duke.ui.StringLib.*;
 
 
 /**
@@ -99,18 +98,18 @@ public class Storage {
                 saveWriter = new FileWriter("data/" + dishIndex + "-" + dish.getName() + ".txt");
                 saveWriter.write(dish.getName() + "\n");
                 saveWriter.write(dish.getTag() + "\n");
-                saveWriter.write(INGREDIENT_LIST + "\n");
+                saveWriter.write(StringLib.INGREDIENT_LIST + "\n");
                 for (Ingredient ingredient : dish.getIngredientList().getList()) {
                     saveWriter.write( ingredient.getName() + "\n");
                 }
-                saveWriter.write(STEP_LIST + "\n");
+                saveWriter.write(StringLib.STEP_LIST + "\n");
                 for (Step step : dish.getStepList().getList()) {
                     saveWriter.write(step.getStep() + "\n");
                 }
                 saveWriter.close();
                 dishIndex++;
             }
-            System.out.println(SAVE_SUCCESS);
+            System.out.println(StringLib.SAVE_SUCCESS);
         } catch (IOException e) {
             System.out.println("Error in file writing:" + e.getMessage());
         }
@@ -143,8 +142,8 @@ public class Storage {
             ArrayList<Step> stepList = new ArrayList<>();
             while (reader.hasNextLine()) {
                 String ingredient = reader.nextLine();
-                if (ingredient.equals(INGREDIENT_LIST)) {
-                } else if (ingredient.equals(STEP_LIST)) {
+                if (ingredient.equals(StringLib.INGREDIENT_LIST)) {
+                } else if (ingredient.equals(StringLib.STEP_LIST)) {
                     break;
                 } else {
                     ingredientList.add(new Ingredient(ingredient));
@@ -152,9 +151,9 @@ public class Storage {
             }
             while (reader.hasNextLine()) {
                 String step = reader.nextLine();
-                if (step.equals(IMPORT_END_RECIPE)) {
+                if (step.equals(StringLib.IMPORT_END_RECIPE)) {
                     break;
-                } else if (step.equals(STEP_LIST)) {
+                } else if (step.equals(StringLib.STEP_LIST)) {
                 } else {
                     stepList.add(new Step(step));
                 }
