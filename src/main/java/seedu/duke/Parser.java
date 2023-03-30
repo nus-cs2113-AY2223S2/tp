@@ -12,12 +12,8 @@ import java.util.Map;
 import java.util.logging.Level;
 
 public class Parser {
-    public static final Map<Integer, LocalDate> SEMESTER_START_DATES = Map.of(
-            1, LocalDate.of(2022, 8, 8),
-            2, LocalDate.of(2023, 1, 9),
-            3, LocalDate.of(2023, 5, 8),
-            4, LocalDate.of(2023, 6, 19)
-    );
+    public static final Map<Integer, LocalDate> SEMESTER_START_DATES = Map.of(1, LocalDate.of(2022, 8, 8), 2,
+            LocalDate.of(2023, 1, 9), 3, LocalDate.of(2023, 5, 8), 4, LocalDate.of(2023, 6, 19));
     private static final int OFFSET = 1;
     private static final JsonNusModuleLoader converter = new JsonNusModuleLoader();
     private final Ui ui;
@@ -134,7 +130,7 @@ public class Parser {
                     throw new NPExceptions("Cannot have duplicate flags a command!");
                 }
                 break;
-            case("n"):
+            case ("n"):
             case ("st"):
                 if (!duplicity[1]) {
                     information[1] = change;
@@ -211,7 +207,8 @@ public class Parser {
             }
 
             // Fetch lessons from module
-            List<Lesson> lessons = nusModule.getLesson(UserUtility.getUser().getSemester(), lectureType, classNumber);
+            List<Lesson> lessons =
+                    nusModule.getLesson(UserUtility.getUser().getSemester(), lectureType, classNumber);
             if (lessons == null || lessons.isEmpty()) {
                 Duke.LOGGER.log(Level.INFO, "User selected module that is unavailable for semester.");
                 Ui.printErrorMsg("Selected module is not available for semester " +
@@ -220,12 +217,13 @@ public class Parser {
             }
 
             // Create event for each day of module
-            for(Lesson lesson: lessons) {
+            for (Lesson lesson : lessons) {
                 String venue = lesson.getVenue();
-                for(Integer week: lesson.getWeeks()) {
+                for (Integer week : lesson.getWeeks()) {
 
                     // Method to get date on the lesson's day in a given week number.
-                    String startDate = findDateOfWeek(UserUtility.getUser().getSemester(), week, lesson.getDay());
+                    String startDate =
+                            findDateOfWeek(UserUtility.getUser().getSemester(), week, lesson.getDay());
 
                     // Converting time to HH:mm format.
                     StringBuilder sb = new StringBuilder(lesson.getStartTime());
@@ -235,7 +233,8 @@ public class Parser {
 
                     int size = eventList.getSize();
                     try {
-                        eventList.addEvent(nusModule.getModuleCode(), startTime, startDate, endTime, startDate);
+                        eventList.addEvent(nusModule.getModuleCode(), startTime, startDate, endTime,
+                                startDate);
                         eventList.reviseLocation(size++, venue);
                         count++;
                     } catch (NPExceptions e) {
@@ -259,18 +258,21 @@ public class Parser {
                 } else {
                     eventList.addEvent(eventName, startTime, startDate, endTime, endDate, information[5]);
                 }
-    
+
             } else {
+                if (!information[3].equals("")) {
+                    Ui.printETOmitted();
+                }
                 if (information[5].equals("")) {
                     eventList.addEvent(eventName, startTime, startDate);
                 } else {
-                    eventList.addEvent(eventName, startTime, startDate,information[5]);
+                    eventList.addEvent(eventName, startTime, startDate, information[5]);
                 }
             }
 
             // add location(venue)
             int eventNum = eventList.getSize() - 1;
-            if(duplicity[6] == true){
+            if (duplicity[6] == true) {
                 eventList.reviseLocation(eventNum, information[6]);
             }
 
@@ -284,8 +286,8 @@ public class Parser {
 
         // Calculate the date for the specified day of the week in the specified week
         LocalDate weekStartDate = semesterStartDate.plusWeeks(weekNumber - 1);
-        LocalDate desiredDate = weekStartDate.with(TemporalAdjusters
-                .nextOrSame(DayOfWeek.valueOf(dayOfWeek.toUpperCase())));
+        LocalDate desiredDate =
+                weekStartDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.valueOf(dayOfWeek.toUpperCase())));
 
         // Output the result
         return desiredDate.toString().replace('-', '/');
@@ -338,18 +340,14 @@ public class Parser {
         } else {
             reviseTimeInfoUsingIndex(information, eventList);
         }
-        
     }
 
     private static void addFormatChecker(String[] information) throws NPExceptions {
-        // System.out.println();
-        // System.out.println();
-        // System.out.println();
-        // System.out.println();
-        // for(int i = 0; i < 7; i++){
-        //     System.out.println("information[" + i + "]: " + information[i]);
-        // }
-        boolean isValidFormat = !information[0].equalsIgnoreCase("") && !information[2].equalsIgnoreCase("");
+        boolean isValidFormat = !information[0].equalsIgnoreCase("") && !information[2].equalsIgnoreCase("")
+                && !information[1].equalsIgnoreCase("");
+
+        // String recurFlag = information[5].split(" ")[2].trim();
+        // isValidFormat = isValidFormat && (recurFlag.equalsIgnoreCase("W") || recurFlag.equalsIgnoreCase("D"));
 
         if (!isValidFormat) {
             throw new NPExceptions("Please use correct command format!");
@@ -381,6 +379,7 @@ public class Parser {
         if (!information[5].equals("")) {
             eventList.reviseLocation(eventIndex, information[5]);
         }
+
         Duke.LOGGER.log(Level.INFO, "User edited time of event.");
         Ui.editSuccessMsg(eventList.getDescription(eventIndex), eventList.getTime(eventIndex));
     }

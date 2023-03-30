@@ -141,6 +141,11 @@ public class Ui {
         printDash();
     }
 
+    public static void printETOmitted() {
+        printDash();
+        System.out.println("(since no ending date information is given, ending time is omitted)");
+    }
+
     public static void getSemester() {
         System.out.println("Before getting started, Please enter the semester you are in according to the below menu.");
 
