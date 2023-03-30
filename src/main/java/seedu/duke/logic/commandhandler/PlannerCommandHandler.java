@@ -25,47 +25,51 @@ public class PlannerCommandHandler implements CommandList {
             for (int i = 1; i < userCommands.length; i++) {
                 additionalDescription = additionalDescription + " " + userCommands[i];
             }
+            try {
 
-            switch (userCommands[0]) {
-            case HELP_COMMAND:
-                if (additionalDescription.length() != 0) {
+                switch (userCommands[0]) {
+                case HELP_COMMAND:
+                    if (additionalDescription.length() != 0) {
+                        ui.unknownCommand();
+                    } else {
+                        ui.printPlannerHelp();
+                    }
+                    break;
+                case VIEW_PLAN_COMMAND:
+                    if (additionalDescription.length() != 0) {
+                        ui.unknownCommand();
+                    } else {
+                        ui.showPlan(planner);
+                    }
+                    break;
+                case EXIT_COMMAND:
+                    if (additionalDescription.length() != 0) {
+                        ui.unknownCommand();
+                    } else {
+                        System.out.println("Exited planner editor!");
+                    }
+                    return;
+                case ADD_PLAN_COMMAND:
+                    UserPlan.addPlan(userCommands);
+                    break;
+                case FILTERS_COMMAND:
+                    if (additionalDescription.length() != 0) {
+                        ui.unknownCommand();
+                    } else {
+                        ui.printFilters();
+                    }
+                    break;
+                case DELETE_PLAN_COMMAND:
+                    UserPlan.deletePlan(userCommands);
+                    break;
+                default:
                     ui.unknownCommand();
-                } else {
-                    ui.printPlannerHelp();
                 }
-                break;
-            case VIEW_PLAN_COMMAND:
-                if (additionalDescription.length() != 0) {
-                    ui.unknownCommand();
-                } else {
-                    ui.showPlan(planner);
-                }
-                break;
-            case EXIT_COMMAND:
-                if (additionalDescription.length() != 0) {
-                    ui.unknownCommand();
-                } else {
-                    System.out.println("Exited planner editor!");
-                }
-                return;
-            case ADD_PLAN_COMMAND:
-                UserPlan.addPlan(userCommands);
-                break;
-            case FILTERS_COMMAND:
-                if (additionalDescription.length() != 0) {
-                    ui.unknownCommand();
-                } else {
-                    ui.printFilters();
-                }
-                break;
-            case DELETE_PLAN_COMMAND:
-                UserPlan.deletePlan(userCommands);
-                break;
-            default:
-                ui.unknownCommand();
+                ui.plannerMode();
+                storage.writeToJson(planner);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-            ui.plannerMode();
-            storage.writeToJson(planner);
 
         }
     }
