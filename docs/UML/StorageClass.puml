@@ -1,40 +1,72 @@
 @startuml
-!include Style.puml
 hide circle
+skinparam packageStyle Rectangle
 skinparam classAttributeIconSize 0
 
-class Storage{
-- saveLocation : String
-- builder : GsonBuilder
-- gson : Gson
-+ void saveToFile(eventList)
-+ ArrayList<Event> loadEvents()
+package Storage{
+    class "<<interface>>\nStorage"{
+        +saveToFile(EventList):void
+        +loadEvents():ArrayList<Schedule>
+        +loadModules():HashMap<String, NusModule>
+    }
+    package "EventListStorage"{
+        class "<<interface>>\nEventListStorage"{
+            +saveToFile(EventList):void
+            +loadEvents():ArrayList<Schedule>
+        }
+        class JsonEventListStorage {
+                +saveToFile(EventList):void
+                +loadEvents():ArrayList<Schedule>
+        }
+        class EventListAdapter{
+        }
+    }
+
+    package NusModuleLoader{
+        class "<<interface>>\nNusModuleLoader"{
+            +loadModules():HashMap<String, NusModule>
+        }
+
+        class JsonNusModuleLoader{
+            +loadModules():HashMap<String, NusModule>
+        }
+
+        class ModuleAdapter{
+        }
+    }
+
+    class StorageManager{
+    +saveToFile(EventList):void
+    +loadEvents():ArrayList<Schedule>
+    +loadModules():HashMap<String, NusModule>
+    }
+
+
+
+
+
+
+    "<<interface>>\nStorage" --|> "<<interface>>\nNusModuleLoader"
+    "<<interface>>\nStorage" --|>"<<interface>>\nEventListStorage"
+
+    StorageManager --> "1""<<interface>>\nNusModuleLoader"
+    StorageManager --> "1""<<interface>>\nEventListStorage"
+    StorageManager .down.> "<<interface>>\nStorage"
+
+    JsonEventListStorage .up.|> "<<interface>>\nEventListStorage"
+    JsonEventListStorage -down-> "1" EventListAdapter
+
+    JsonNusModuleLoader .up.|> "<<interface>>\nNusModuleLoader"
+    JsonNusModuleLoader -down-> "1" ModuleAdapter
+
+}
+package gson{
+    class TypeAdapter{
+    }
 }
 
-class com.google.gson.TypeAdapter{
-}
 
-class EventListAdapter{
-- dfWithTime : DateTimeFormatter
-+ void write(JsonWriter, ArrayList<Event>)
-+ void writeEvent(JsonWriter, Event)
-+ ArrayList<Event> read(JsonReader)
-+ Event readEvent(JsonReader)
-+ String readDate(JsonReader)
-+ String readTime(Jsonreader)
-}
+    EventListAdapter --|> TypeAdapter
+    ModuleAdapter --|> TypeAdapter
 
-
-class EventList{
-# taskList : ArrayList<Event>
-}
-
-
-
-Storage --> "1" EventListAdapter
-
-
-EventListAdapter .l> com.google.gson.TypeAdapter
-Storage . EventList : writes to <
-Storage . EventList :  > gets data from
 @enduml

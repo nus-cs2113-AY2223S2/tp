@@ -1,0 +1,37 @@
+@startuml
+hide footbox
+-> ":Storage" : saveToFile(EventList)
+activate ":Storage"
+    ":Storage" -> ":EventListStorage" : saveToFile(EventList)
+    activate ":EventListStorage"
+    ":EventListStorage" -> ":EventListAdapter" :  gson.toJson(eventList.getFullList())
+    activate ":EventListAdapter"
+    ":EventListAdapter" -> ":EventListAdapter" : write()
+    activate ":EventListAdapter"
+    loop Event in ArrayList<Event>
+        ":EventListAdapter" -> ":EventListAdapter" : writeEvent()
+    end
+    deactivate ":EventListAdapter"
+    ":EventListAdapter" --> ":EventListStorage" : String
+    deactivate ":EventListAdapter"
+    opt File does not exist
+        ":EventListStorage" -> ":File" : <<create>>
+        activate ":File"
+        ":File" --> ":EventListStorage"
+        deactivate ":File"
+    end
+    ":EventListStorage" -> ":FileWriter" : taskWriter.write(gsonData)
+    activate ":FileWriter"
+    ":FileWriter" --> ":File" : String
+    activate ":File"
+    ":File" --> ":FileWriter"
+    deactivate ":File"
+    ":FileWriter" --> ":EventListStorage"
+    deactivate ":FileWriter"
+    ":EventListStorage" --> ":Storage"
+    deactivate ":EventListStorage"
+    <-- ":Storage"
+    deactivate ":Storage"
+
+
+@enduml

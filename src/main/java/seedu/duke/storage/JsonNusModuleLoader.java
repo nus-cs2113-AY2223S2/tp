@@ -12,6 +12,9 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
+/**
+ * A class to access NusMods data stored on a json file.
+ */
 public class JsonNusModuleLoader implements NusModuleLoader{
 
     private static final String nusModFile = System.getProperty("user.dir")+"/src/main/data/nusmods.json";
@@ -20,6 +23,10 @@ public class JsonNusModuleLoader implements NusModuleLoader{
 
     Gson gson = builder.create();
 
+    /**
+     * Loads and deserializes information from nusMods.json into a HashMap for quick reference by other components.
+     * @return HashMap with String key and NusModule objects as value.
+     */
     public HashMap<String, NusModule> loadModules(){
         File loadFile = new File(nusModFile);
         HashMap<String, NusModule> nusModuleHashMap = new HashMap<>();

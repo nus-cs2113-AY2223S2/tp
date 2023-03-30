@@ -1,0 +1,36 @@
+@startuml
+hide circle
+hide footbox
+
+-> ":Storage" : loadModules()
+activate ":Storage"
+Alt modulesLoaded
+    ":Storage" --> ":Storage" : :HashMap<String, NusModule>
+    <-- ":Storage" : :HashMap<String, NusModule>
+else else
+    ":Storage" -> ":NusModuleLoader" : loadModules()
+    activate ":NusModuleLoader"
+    ":NusModuleLoader" -> ":ModuleAdapter" :<<create>>
+    activate ":ModuleAdapter"
+    ":ModuleAdapter" -> ":HashMap<String, NusModule>" : <<create>>
+    activate ":HashMap<String, NusModule>"
+    ":ModuleAdapter" -> ":ModuleAdapter" : read()
+    loop module in NusMods.json
+        ":ModuleAdapter" -> ":ModuleAdapter" : readModule()
+        ":ModuleAdapter" --> ":HashMap<String, NusModule>" : Module
+    end
+    ":HashMap<String, NusModule>" --> ":ModuleAdapter" : ":HashMap<String, NusModule>"
+    deactivate ":HashMap<String, NusModule>"
+    ":ModuleAdapter" --> ":NusModuleLoader" : ":HashMap<String, NusModule>"
+    deactivate ":ModuleAdapter"
+    ":NusModuleLoader" --> ":Storage" : ":HashMap<String, NusModule>"
+    deactivate ":NusModuleLoader"
+    <-- ":Storage" : ":HashMap<String, NusModule>"
+    deactivate ":Storage"
+    destroy ":HashMap<String, NusModule>"
+end
+
+
+
+
+@enduml
