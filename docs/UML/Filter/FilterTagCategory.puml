@@ -37,17 +37,18 @@ group sd [filter category or tag]
         return filteredItems
     end
     return null or filteredItems
+    Participant "Ui" << Class >>
     alt filteredItems is not null
-        ":FilterCommand" -> ":Ui": printSearchItems()
-        activate ":Ui"
-        ref over ":Ui"
+        ":FilterCommand" -> "Ui": printSearchItems()
+        activate "Ui"
+        ref over "Ui"
             print items in table
         end ref
         return
     else
-        ":FilterCommand" -> ":Ui": printEmptySearch()
-        activate ":Ui"
-        ref over ":Ui"
+        ":FilterCommand" -> "Ui": printEmptySearch()
+        activate "Ui"
+        ref over "Ui"
             print empty search message
         end ref
         return

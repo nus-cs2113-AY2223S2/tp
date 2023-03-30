@@ -9,7 +9,7 @@ group sd [filter price]
     activate ":FilterCommand" #lightgreen
     ":FilterCommand" -> ":FilterCommand": filterPrice()
     activate ":FilterCommand" #cyan
-    participant Ui
+    participant Ui << Class >>
     alt mode == "p/lt"
         ref over ":FilterCommand"
             place all items with price less than input to filteredItems
