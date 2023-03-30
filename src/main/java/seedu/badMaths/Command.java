@@ -50,8 +50,15 @@ public class Command {
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
         Calculator calculator = new Calculator();
         Quadratic quadratic = new Quadratic(toDo);
-
         try {
+            //@@author WilsonLee2000
+            assert (command.equals("Bye") || command.equals("Graph") || command.equals("Store") ||
+                    command.equals("List") || command.equals("Delete") || command.equals("Mark") ||
+                    command.equals("Unmark") || command.equals("Low") || command.equals("Medium") ||
+                    command.equals("High") || command.equals("FindInfo") || command.equals("FindPrior") ||
+                    command.equals("FindMark") || command.equals("FindUnmark") || command.equals("Rank") ||
+                    command.equals("Clear") || command.equals("Help") || command.equals("Matrix") ||
+                    command.equals("Quadratic")) : "input has incorrect format required";
             switch (command) {
             case "Bye":
                 System.out.println("Goodbye!");
@@ -61,7 +68,7 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Store":
-                if (!isInvalidTodo(toDo)) {
+                if (isInvalidTodo(toDo)) {
                     throw new IllegalTodoException();
                 }
                 notes.add(toDo);
