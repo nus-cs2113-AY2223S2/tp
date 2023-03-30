@@ -310,10 +310,7 @@ public class Parser {
                 return new IncorrectCommand("Invalid Item Index",
                         "Try to input an integer number between 1 and " + PackingList.getItemList().size());
             }
-//            if (itemQuantity > PackingList.get(itemIndex).getTotalQuantity()) {
-//                return new IncorrectCommand("Invalid Item Quantity", "Your item quantity should " +
-//                        "not exceed total quantity");
-//            }
+
             return new UnpackCommand(itemQuantity, itemIndex);
         } catch (NumberFormatException e) {
             if (PackingList.getItemList().size() == 0) {
