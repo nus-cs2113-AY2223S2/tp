@@ -1,5 +1,6 @@
 package seedu.duke.logic.commandhandler;
 
+import java.util.Scanner;
 import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.UserCareerData;
@@ -21,7 +22,8 @@ public class CommandHandler {
      */
     public void handleUserCommands (String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
                                     UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
-                                    Storage storage, UserPlan planner, AchievementListHandler achievementListHandler) {
+                                    Storage storage, UserPlan planner, AchievementListHandler achievementListHandler,
+                                    Scanner scanner) {
         StringSplitter stringSplitter = new StringSplitter();
         String[] userCommands = stringSplitter.splitString(rawUserCommands);
         if (exerciseStateHandler.workoutOngoing) {
@@ -35,7 +37,8 @@ public class CommandHandler {
                                                             userCareerData, exerciseStateHandler,
                                                             storage,
                                                             planner,
-                                                            achievementListHandler);
+                                                            achievementListHandler,
+                                                            scanner);
         }
     }
 

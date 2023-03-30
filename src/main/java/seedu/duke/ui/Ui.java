@@ -45,6 +45,14 @@ public class Ui {
         System.out.println(SEPARATOR);
     }
 
+    public void plannerMode () {
+        System.out.println("\n===>Planner Mode<===");
+    }
+
+    public void workoutMode () {
+        System.out.println("\n===>Workout Mode<===");
+    }
+
     public void printUserExerciseHistory (HashMap<String, Integer> userExerciseHistory) {
         PrintUserExerciseData.printUserExerciseHistory(userExerciseHistory);
     }
@@ -53,7 +61,7 @@ public class Ui {
         PrintPlanner.printPlannerGreeting();
     }
 
-    public void printExerciseSessionHelp() {
+    public void printExerciseSessionHelp () {
         PrintHelpMessage.showAvailableExerciseSessionCommands();
     }
 

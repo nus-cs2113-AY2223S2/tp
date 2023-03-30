@@ -39,6 +39,9 @@ public class GenerateFilterCommand extends Command {
         String userGenerateCount = userCommands[userCommands.length - 1];
         try {
             this.numberOfExercisesToGenerate = Integer.parseInt(userGenerateCount);
+            if (this.numberOfExercisesToGenerate <= 0) {
+                throw new DukeError(ErrorMessages.ERROR_EXERCISE_NUM_INPUT_STRING.toString());
+            }
         } catch (NumberFormatException error) {
             throw new DukeError(ErrorMessages.ERROR_EXERCISE_NUM_INPUT_STRING.toString());
         }
@@ -80,10 +83,13 @@ public class GenerateFilterCommand extends Command {
                 throw new DukeError(ErrorMessages.ERROR_FILTER_INPUT.toString());
             }
         }
-        if (numberOfExercisesToGenerate > exercises.size()) {
+        if (numberOfExercisesToGenerate == 1337) {
+            exercises = exerciseGenerator.generateFirstThree();
+        } else if (numberOfExercisesToGenerate > exercises.size()) {
             throw new DukeError(ErrorMessages.ERROR_EXCESSIVE_FILTERS.toString());
+        } else {
+            exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
         }
-        exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
         exerciseListGenerated = exercises;
         ui.printExerciseFromList(exercises);
     }
