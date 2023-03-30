@@ -141,6 +141,33 @@ Figure 1.7
 </p>
 </div>
 
+### PlannerCommandHandler
+The planner Command Handler is engaged when the user enters the workout planner.
+By implementing a separate Command Handler dedicated for the planning of work-outs, 
+this simplifies the user experience by compartmentalising the secondary planner function,
+and ensures that users will not be bombarded by a long list of commands in the help menu.
+
+To manage this exists the ```PlannerCommandHandler```, which allows for adding, deleting, 
+and viewing the workout plans.
+
+<p>
+
+<div align="center">
+<img src="UML/Images/PlannerCommandHandler.png"/>
+<p>
+Figure X.X
+</p>
+</div>
+
+<p>
+
+<div align="center">
+<img src="UML/Images/addPlan.png"/>
+<p>
+Figure X.X
+</p>
+</div>
+
 ### Exceptions
 
 Accounts for the different scenarios that may trigger an error during user's interactions with the program
