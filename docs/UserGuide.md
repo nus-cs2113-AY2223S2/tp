@@ -33,7 +33,14 @@ Example of usage:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: You do so by following these steps:
+
+1. Export the deck as a Json file using the command "export"
+2. Navigate to the directory of your Inka installation.
+3. The file will be named savedata.json. Copy this file.
+4. Paste this file in the Inka's directory in the new computer
+
+Your file will be loaded the next time you run Inka!
 
 ## Command Summary
 
