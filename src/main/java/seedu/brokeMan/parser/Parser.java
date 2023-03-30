@@ -152,10 +152,13 @@ public class Parser {
                     SetBudgetCommand.MESSAGE_USAGE);
         }
 
+        assert(!description.equals("")) : "|  You did not specify your budget\n";
         String[] descriptionByWord = description.split(" t/ ");
         if (descriptionByWord.length > 2 || descriptionByWord.length < 1) {
             return new InvalidCommand("Invalid information entered", SetBudgetCommand.MESSAGE_USAGE);
         }
+
+        assert(descriptionByWord.length == 2) : "|  Invalid information entered\n";
 
         double budget;
         String budgetInString = descriptionByWord[0];
@@ -314,12 +317,15 @@ public class Parser {
         if (!containsAllFlags) {
             throw new InvalidAddCommandException();
         }
+
         boolean isFlagInCorrectOrder = description.indexOf("a/") < description.indexOf("d/") &&
                 description.indexOf("d/") < description.indexOf("t/") &&
                 description.indexOf("t/") < description.indexOf("c/");
         if (!isFlagInCorrectOrder) {
             throw new WrongFlagOrderException();
         }
+
+        assert(isFlagInCorrectOrder) : "|  flag is not in order";
 
         String[] splitDescriptions = description.split("/");
 
@@ -332,7 +338,7 @@ public class Parser {
         splitDescriptions[2] = splitDescriptions[2].substring(0, length2 - 1).trim();
         splitDescriptions[3] = splitDescriptions[3].substring(0, length3 - 1).trim();
         checkEmptyAddFlag(splitDescriptions);
-        splitDescriptions[4] = splitDescriptions[4].substring(1);
+        splitDescriptions[4] = splitDescriptions[4].substring(1).trim();
         checkDoubleException(splitDescriptions[1]);
         checkTimeException(splitDescriptions[3]);
 
