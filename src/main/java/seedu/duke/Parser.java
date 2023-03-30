@@ -198,6 +198,7 @@ public class Parser {
 
             // loading modules. Need to update when singleton design is utilized.
             HashMap<String, NusModule> nusmods = converter.loadModules();
+            Duke.LOGGER.log(Level.INFO, "loadModules() called");
             // Fetch NusModule from module code
             NusModule nusModule = nusmods.get(moduleCode);
             if (nusModule == null) {
