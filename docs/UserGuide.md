@@ -268,7 +268,11 @@ Removes a school class from the schedule.
 
 **Input:** `remove /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>`
 
-**Output:  Demonstrated with input `remove class /class CS2113 /description /day THURSDAY /from 1100 /to 1200`**
+`<description>` can be left empty if the class has no description.
+
+eg. `remove /class cs2113 /description /day THURSDAY /from 1100 /to 1200`
+
+**Output:  Demonstrated with input `remove class /class CS2113 /description bring laptop /day THURSDAY /from 1100 /to 1200`**
 
 
 ```
