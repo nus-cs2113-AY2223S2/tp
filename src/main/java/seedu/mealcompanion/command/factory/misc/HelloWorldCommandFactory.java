@@ -8,6 +8,7 @@ import seedu.mealcompanion.parser.CommandArguments;
 /**
  * Represents a factory for the easter egg "hello world" command.
  */
+//@@author EthanYidong
 public class HelloWorldCommandFactory extends ExecutableCommandFactory {
     public HelloWorldCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new HelloWorldCommand(arguments.getPositionalArgument());
