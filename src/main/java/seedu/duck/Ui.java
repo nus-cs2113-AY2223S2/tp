@@ -462,7 +462,7 @@ public class Ui {
         System.out.println("\t - mark <task_number>: I'll mark that task as done.");
         System.out.println("\t - unmark <task_number>: I'll mark that task as undone.");
         System.out.println("\t - delete <task_number>: I'll delete that task from your list.");
-        System.out.println("\t - remove class /class <class_name> /description <description> " +
+        System.out.println("\t - remove /class <class_name> /description <description> " +
                 "/day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>");
         System.out.println("\t   (/description can be followed by whitespace if the class has no description.");
         System.out.println("\t   : I'll remove this class from your class schedule.");
