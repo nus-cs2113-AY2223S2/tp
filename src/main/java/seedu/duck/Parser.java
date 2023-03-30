@@ -152,7 +152,7 @@ public class Parser {
                         Ui.unknownCommandMessage();
                     }
                     break;
-                case "notes":
+                case "view_notes":
                     if(words.length == 2 && isNumeric(words[1])) {
                         Ui.printNotes(tasks, words);
                     }else{

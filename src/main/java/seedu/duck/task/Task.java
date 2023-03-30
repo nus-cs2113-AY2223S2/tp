@@ -47,7 +47,7 @@ public class Task {
     }
 
     public String savedNotes(){
-        String save = new String("");
+        String save = "";
         for (int i = 0; i < additionalNotes.size(); i++){
             save += this.additionalNotes.get(i);
             if (!(i==additionalNotes.size()-1)) {

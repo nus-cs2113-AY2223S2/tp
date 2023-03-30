@@ -286,7 +286,7 @@ Specifies a priority for a given task, with the following assignments:
 * 2 - Medium 
 * 3 - High 
 
-By default there is no priority specified.
+By default, all tasks are low priority.
 
 **Input:** `priority <Task_Number> <priority>`
 
@@ -298,7 +298,67 @@ Understood. The task's new priority is:
 	 Low priority.
 ```
 
+## **Print notes for a specific task : `add_note`**
+Adds a note to the specified task
 
+**Input:** `add_note <Task_Number>`  
+**Output: Demonstrated below adding "Bring own recyclable bag"**
+```
+    What note would you like to add to the following task?
+        [T][ ] Buy groceries (Low priority.)
+    ____________________________________________________________
+Bring own recyclable bag
+    The note has been added!
+    ____________________________________________________________
+```
+
+## **Print notes for a specific task : `delete_note`**
+Deletes the 
+
+**Input:** `delete_note <Task_Number> <Note_number>`  
+**Output: Demonstrated below to delete 1 task**
+
+```
+        ____________________________________________________________
+	 Deleting note: 
+	 	Bring own recyclable bag
+	____________________________________________________________
+```
+## **Print notes for a specific task : `edit_note`**
+Edits the specified note for a specific task.
+
+**Input:** `edit_note <Task_Number> <Note_Number>`  
+**Output: Demonstrated below to edit "Bring recyclable bag" to "Bring tote bag"**
+```
+        ____________________________________________________________
+	 What would you like to change the note to? 
+		Bring recyclable bag
+Bring tote bag
+	The specified note has been edited!
+	____________________________________________________________
+```
+
+## **Print notes for a specific task : `view_notes`**
+Prints the notes for a specific task if they exist.   
+Otherwise, a message stating that there are no notes for that task will be shown
+
+**Input:** `view_notes <Task_Number>`  
+**Output: Demonstrated below for a task with 1 note**
+```
+        ____________________________________________________________
+	Here are the notes for that task quack!
+			 [T][ ] Buy groceries (Low priority.)
+	1. Bring own recyclable bag
+	____________________________________________________________
+```
+**Output: Demonstrated below for a task with no notes**
+```
+        ____________________________________________________________
+	Here are the notes for that task quack!
+			 [T][ ] Buy groceries (Low priority.)
+	There are no notes for this task!
+	____________________________________________________________
+```
 
 ## **Purge Expired Tasks : `purge`**
 
