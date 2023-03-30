@@ -195,9 +195,6 @@ public class Parser {
                 logger.warning("add command given by user in the wrong format");
                 throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
             }
-            if (this.date.getYear() < 1800 || this.date.isAfter(LocalDate.now())) {
-                throw new RainyDayException(ErrorMessage.UNSUPPORTED_DATE.toString());
-            }
         } else {
             logger.warning("add command given by user in the wrong format");
             throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
@@ -229,29 +226,28 @@ public class Parser {
     //@@author BenjaminPoh
     public Command generateReport(String input) {
         input = input.substring(4).trim();
-        LocalDate startDate = LocalDate.now();
+        LocalDate startDate= LocalDate.now();
+        LocalDate endDate = LocalDate.now();
         if (input.equals("")) {
-            startDate = startDate.minusMonths(1);
-            return new ViewCommand(startDate, false);
+            startDate = LocalDate.of(startDate.getYear(),startDate.getMonth(), 1);
+            endDate = startDate.plusMonths(1);
+            endDate = endDate.minusDays(1);
+            return new ViewCommand(startDate, endDate, false, false);
         }
         if (input.equals("-sort")) {
-            startDate = startDate.minusMonths(1);
-            return new ViewCommand(startDate, true);
+            startDate = LocalDate.of(startDate.getYear(),startDate.getMonth(), 1);
+            endDate = startDate.plusMonths(1);
+            endDate = endDate.minusDays(1);
+            return new ViewCommand(startDate, endDate, true, false);
         }
         Pattern pattern = Pattern.compile("^(-all)?\\s*((-sort)?)\\s*$");
         Matcher matcher = pattern.matcher(input);
         if (matcher.matches()) {
             try {
-                System.out.println(matcher.group(1));
-                System.out.println(matcher.group(2));
-                boolean printEverything = matcher.group(1).equals("-all");
                 boolean sortRequired = matcher.group(2).equals("-sort");
-                if (printEverything) {
-                    startDate = LocalDate.of(1800, 1, 1);
-                    return new ViewCommand(startDate, sortRequired);
-                }
-                startDate = startDate.minusMonths(1);
-                return new ViewCommand(startDate, sortRequired);
+                startDate = LocalDate.of(1, 1, 1);
+                endDate = LocalDate.of(9999,12,31);
+                return new ViewCommand(startDate, endDate, sortRequired, true);
             } catch (Exception e) {
                 logger.warning("view command given by user in the wrong format");
                 return new InvalidCommand(ErrorMessage.WRONG_VIEW_FORMAT.toString());
@@ -268,19 +264,19 @@ public class Parser {
                 boolean sortRequired = matcher.group(3).equals("-sort");
                 if (dateType.equals("d") && minusAmount < 32) {
                     startDate = startDate.minusDays(minusAmount);
-                    return new ViewCommand(startDate, sortRequired);
+                    return new ViewCommand(startDate, endDate, sortRequired, false);
                 }
                 if (dateType.equals("w") && minusAmount < 5) {
                     startDate = startDate.minusWeeks(minusAmount);
-                    return new ViewCommand(startDate, sortRequired);
+                    return new ViewCommand(startDate, endDate, sortRequired, false);
                 }
                 if (dateType.equals("m") && minusAmount < 13) {
                     startDate = startDate.minusMonths(minusAmount);
-                    return new ViewCommand(startDate, sortRequired);
+                    return new ViewCommand(startDate, endDate, sortRequired, false);
                 }
                 if (dateType.equals("y") && minusAmount < 11) {
                     startDate = startDate.minusYears(minusAmount);
-                    return new ViewCommand(startDate, sortRequired);
+                    return new ViewCommand(startDate, endDate, sortRequired, false);
                 }
                 logger.warning("view command given by user in the wrong format");
                 return new InvalidCommand(ErrorMessage.WRONG_VIEW_FORMAT.toString());
