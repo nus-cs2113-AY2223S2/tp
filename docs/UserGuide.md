@@ -20,7 +20,11 @@ Should you have any feedback or enquiries, please do not hesitate to drop us an 
   * [How to use the user guide](#how-to-use-the-user-guide)
   * [Quick Start](#quick-start)
   * [Features Overview](#features-overview)
-  * [Features](#features)  <details>  <summary> <a href = #feature>Features</a> </summary>
+  * <details> 
+    <summary>
+    <a href = #feature>Features</a> 
+    </summary>
+
     * [Viewing help](#viewing-help)
     * [Adding a transaction](#adding-a-transaction)
     * [Viewing the transactions](#viewing-the-transactions)
@@ -41,6 +45,8 @@ Should you have any feedback or enquiries, please do not hesitate to drop us an 
       * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
       * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
     * [Exiting the application](#exiting-the-application)
+    
+    </details>
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
   * [Glossary](#glossary)
