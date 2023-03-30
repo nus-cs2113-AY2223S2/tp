@@ -7,7 +7,7 @@ activate ":AddCommand"
 
 ":AddCommand" -> ":IngredientList": getIngredients()
 activate ":IngredientList"
-":AddCommand" <- ":IngredientList": ArrayList<Ingredient>: ingredients
+":AddCommand" <-- ":IngredientList": ArrayList<Ingredient>: ingredients
 deactivate ":IngredientList"
 
 ":AddCommand" -> ":AddCommand": findIndex("egg")
@@ -19,7 +19,7 @@ deactivate ":AddCommand"
 
 ":AddCommand" -> ":Ingredient": new Ingredient("egg", 5)
 activate ":Ingredient"
-":AddCommand" <- ":Ingredient": ingredient
+":AddCommand" <-- ":Ingredient": ingredient
 deactivate ":Ingredient"
 
 ":AddCommand" -> ":IngredientDatabase": getDbInstance
@@ -32,7 +32,8 @@ activate ":IngredientList"
 ":AddCommand" <-- ":IngredientList":
 deactivate ":IngredientList"
 
-[<- ":AddCommand": Done
+[<-- ":AddCommand": Done
+destroy ":AddCommand"
 deactivate ":AddCommand"
 
 @enduml
