@@ -283,6 +283,8 @@ public class JsonStorage extends Storage {
             cardObject.addProperty("uuid", card.getUuid().toString());
             cardObject.addProperty("question", card.getQuestion());
             cardObject.addProperty("answer", card.getAnswer());
+            cardObject.add("tags", new JsonArray()); // dummy empty field for now
+            cardObject.add("decks", new JsonArray());
             cardData.add(cardObject);
         }
         exportData.add("cards", cardData);
