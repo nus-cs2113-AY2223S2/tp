@@ -166,7 +166,7 @@ These are the categories currently supported by PocketPal:
 
 | Command | Format                                                                                                                                                                     |
 |--------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|    /add | `/add <-d &VerticalLine; -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c &VerticalLine; -category CATEGORY> <-p &#124; -price PRICE>`                                 |
+|    /add | <code>/add <-d &#124; -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c &VerticalLine; -category CATEGORY> <-p &#124; -price PRICE></code>                              |
 |   /view | `/view [COUNT] [-c &#124; -category CATEGORY] [-p &#124; -price PRICE_MIN] [-p &#124; -price PRICE_MAX] [<-sd &#124; -startdate START_DATE -ed &#124; -enddate END_DATE>]` |
 |   /edit | `/edit <EXPENSE_ID> [-c &#124; -category NEW_CATEGORY] [-p &#124; -price NEW_PRICE] [-d &#124; -description NEW_DESC]`                                                     |
 | /delete | `/delete <EXPENSE_ID>`                                                                                                                                                     |
