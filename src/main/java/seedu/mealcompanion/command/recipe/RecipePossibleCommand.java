@@ -38,7 +38,7 @@ public class RecipePossibleCommand extends RecipeCommand {
             for (Recipe recipe : possibleRecipes.getRecipes()) {
                 String recipeName = recipe.getName();
                 int index = recipes.findIndex(recipeName);
-                mealCompanionSession.getUi().printMessage(Integer.toString(index) + ". " + recipeName);
+                mealCompanionSession.getUi().printMessage(Integer.toString(index + 1) + ". " + recipeName);
             }
         } catch (MealCompanionException e) {
             mealCompanionSession.getUi().printMessage(String.valueOf(e));
