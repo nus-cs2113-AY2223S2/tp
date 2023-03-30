@@ -192,6 +192,16 @@ The Matrix feature supports various basic matrix calculations below:
 
 With calling `calculator.run()`, BadMaths parses the user's input and conducts the given command.
 
+If you want to see the overall flow of the Matrix part, click the toggle button below:
+<details>
+<summary>See the Sequence Diagram</summary>
+<div markdown="1">
+
+![img.png](MatrixDG.png)
+
+</div>
+</details>
+
 Below is an example usage scenario and how the `Matrix` feature behaves at each step.
 
 When user enters an input:

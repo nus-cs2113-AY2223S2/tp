@@ -1,0 +1,111 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Command -> Calculator : run()
+activate Calculator
+
+Calculator --> Ui : Ui()
+activate Ui
+Ui --> Calculator
+deactivate Ui
+
+Calculator --> Parser : Parser()
+activate Parser
+Parser --> Calculator
+deactivate Parser
+
+Calculator -> Parser : parse(toDo)
+activate Parser
+
+Parser --> Execute : Execute()
+activate Execute
+Execute --> Parser
+deactivate Execute
+
+alt ADD
+    Parser -> Execute : executeAdd(command)
+    activate Execute
+
+    Execute --> Calculate : Calculate()
+    activate Calculate
+    Calculate --> Execute
+    deactivate Calculate
+
+    Execute -> Execute : executeTranspose(operator[0])
+    Execute -> Execute : executeTranspose(operator[1])
+
+    Execute -> Calculate : add(t1, t2)
+    activate Calculate
+    Calculate -> Execute : result
+    deactivate Calculate
+
+    Execute -> Parser : result
+    deactivate Execute
+else SUB
+    Parser -> Execute : executeSub(command)
+    activate Execute
+
+    Execute --> Calculate : Calculate()
+    activate Calculate
+    Calculate --> Execute
+    deactivate Calculate
+
+    Execute -> Execute : executeTranspose(operator[0])
+    Execute -> Execute : executeTranspose(operator[1])
+
+    Execute -> Calculate : sub(t1, t2)
+    activate Calculate
+    Calculate -> Execute : result
+    deactivate Calculate
+
+    Execute -> Parser : result
+    deactivate Execute
+else MUL
+    Parser -> Execute : executeMul()
+    activate Execute
+
+    Execute --> Calculate : Calculate()
+    activate Calculate
+    Calculate --> Execute
+    deactivate Calculate
+
+    Execute -> Execute : executeTranspose(operator[0])
+    Execute -> Execute : executeTranspose(operator[1])
+
+    Execute -> Calculate : mul(t1, t2)
+    activate Calculate
+    Calculate -> Execute : result
+    deactivate Calculate
+
+    Execute -> Parser : result
+    deactivate Execute
+else DOT
+    Parser -> Execute : executeDot()
+    activate Execute
+
+    Execute --> Calculate : Calculate()
+    activate Calculate
+    Calculate --> Execute
+    deactivate Calculate
+
+    Execute -> Execute : executeTranspose(operator[0])
+    Execute -> Execute : executeTranspose(operator[1])
+
+    Execute -> Calculate : dot(t1, t2)
+    activate Calculate
+    Calculate -> Execute : result
+    deactivate Calculate
+
+    Execute -> Parser : result
+    deactivate Execute
+end
+
+Parser -> Calculator : result
+
+Calculator -> Ui : printResult(result)
+deactivate Calculator
+
+activate Ui
+deactivate Ui
+
+@enduml
