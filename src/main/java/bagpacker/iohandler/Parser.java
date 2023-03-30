@@ -196,7 +196,7 @@ public class Parser {
      * Attempts to create AddCommand object to be executed where it is called from
      *
      * @return AddCommand the command to be executed to add an item to the packing list, else
-     * an IncorrectCommand is created to be executed
+     *          an IncorrectCommand is created to be executed
      */
     public static Command createAddObj() {
         try {
@@ -232,7 +232,7 @@ public class Parser {
      * Attempts to create DeleteCommand object to be executed where it is called from
      *
      * @return DeleteCommand the command to be executed to delete an item to the packing list, else
-     * an IncorrectCommand is created to be executed
+     *          an IncorrectCommand is created to be executed
      */
     public static Command createDeleteObj() {
         try {
@@ -269,7 +269,7 @@ public class Parser {
      * Attempts to create PackCommand object to be executed where it is called from
      *
      * @return PackCommand the command to be executed to Pack an item in the packing list, else
-     * an IncorrectCommand is created to be executed
+     *          an IncorrectCommand is created to be executed
      */
     public static Command createPackObj() {
         try {
@@ -294,7 +294,8 @@ public class Parser {
     public static String[] getPackVariables() throws InvalidIndexException {
         String[] inputStringList = fullInput.trim().split(" ", 2);
         String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
-        if (Integer.parseInt(inputVariables[1]) < 1 | Integer.parseInt(inputVariables[1]) > PackingList.getItemList().size()) {
+        if (Integer.parseInt(inputVariables[1]) < 1 | Integer.parseInt(inputVariables[1])
+                > PackingList.getItemList().size()) {
             throw new InvalidIndexException();
         }
         return inputVariables;
@@ -305,7 +306,7 @@ public class Parser {
      * Attempts to create UnpackCommand object to be executed where it is called from
      *
      * @return UnpackCommand the command to be executed to unpack an item in the packing list, else
-     * an IncorrectCommand is created to be executed
+     *          an IncorrectCommand is created to be executed
      */
     public static Command createUnpackObj() {
         try {
