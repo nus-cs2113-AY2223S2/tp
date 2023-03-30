@@ -36,7 +36,9 @@ public class Item {
     //    public boolean getIsPacked() {
     //        return isPacked;
     //    }
-
+    public int getTotalQuantity(){
+        return totalQuantity;
+    }
     public void setPacked(int quantity) {
         this.packedQuantity += quantity;
     }

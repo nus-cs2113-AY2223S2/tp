@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static bagpacker.commands.PackCommand.HELP_MSG;
+
 /**
  * Parser class contains methods to manipulate user input
  */
@@ -276,7 +278,8 @@ public class Parser {
                         "Your packing list is empty, there is nothing to pack");
             } else {
                 return new IncorrectCommand("Invalid Item Index",
-                        "Try to input an integer number between 1 and " + PackingList.getItemList().size());
+                        "Try to input an integer number between 1 and " + PackingList.getItemList().size() +
+                        "\n" + HELP_MSG);
             }
         }
     }
@@ -297,7 +300,20 @@ public class Parser {
         try {
             String[] quantityAndIndex = getPackVariables();
             int itemQuantity = Integer.parseInt(quantityAndIndex[0]);
+            if (itemQuantity <= 0) {
+                return new IncorrectCommand("Invalid Item Quantity", "Your item quantity should " +
+                        "be greater than 0");
+            }
+
             int itemIndex = Integer.parseInt(quantityAndIndex[1]);
+            if (itemIndex > PackingList.getItemList().size()) {
+                return new IncorrectCommand("Invalid Item Index",
+                        "Try to input an integer number between 1 and " + PackingList.getItemList().size());
+            }
+//            if (itemQuantity > PackingList.get(itemIndex).getTotalQuantity()) {
+//                return new IncorrectCommand("Invalid Item Quantity", "Your item quantity should " +
+//                        "not exceed total quantity");
+//            }
             return new UnpackCommand(itemQuantity, itemIndex);
         } catch (NumberFormatException e) {
             if (PackingList.getItemList().size() == 0) {
