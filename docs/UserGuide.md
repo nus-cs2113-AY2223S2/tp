@@ -242,6 +242,8 @@ If you would like to access your saved ingredients list on a new instance of Mea
 ## Help
 If you are unsure of which commands to use, the `help` command will display a list of available commands for you to use.
 
+For a comprehensive list of commands available to you, please refer to the [Command List](#command-list) section.
+
 ![help1.png](images/help1.png)  
 <sub>Fig 20: Sample of Help command with listed output of in-built commands.</sub>
 
