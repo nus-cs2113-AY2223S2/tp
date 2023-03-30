@@ -5,10 +5,11 @@ import java.util.HashMap;
 public class Recipe {
 
     // changed ingredients to public to edit via editRecipe
+    private static IngredientList ingredientList = new IngredientList();
     public HashMap<String, Integer> ingredients;
     private String name;
     private Boolean available;
-    private static IngredientList ingredientList = new IngredientList();
+
 
     public Recipe(String name, HashMap<String, Integer> ingredients) {
         this.name = name;

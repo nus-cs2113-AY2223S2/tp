@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class RecipeList extends ArrayList<Recipe> {
-    public HashMap<String, HashMap<Recipe, Integer>> tags = new HashMap<>();
     private static IngredientList ingredientList = new IngredientList();
+    public HashMap<String, HashMap<Recipe, Integer>> tags = new HashMap<>();
 
     public Recipe findByName(String name) {
         for (Recipe recipe : this) {
