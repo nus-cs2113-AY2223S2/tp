@@ -3,6 +3,7 @@ package seedu.brokeMan;
 import seedu.brokeMan.command.Command;
 import seedu.brokeMan.command.ExitCommand;
 import seedu.brokeMan.parser.Parser;
+import seedu.brokeMan.save.SaveBudget;
 import seedu.brokeMan.save.SaveExpense;
 import seedu.brokeMan.save.SaveIncome;
 import seedu.brokeMan.ui.Ui;
@@ -27,6 +28,7 @@ public class BrokeMan {
         Command command;
         SaveExpense.readExpenseFile();
         SaveIncome.readIncomeFile();
+        SaveBudget.readFile();
         do {
             String userFullInput = Ui.getUserCommand();
             command = Parser.parseCommand(userFullInput);
