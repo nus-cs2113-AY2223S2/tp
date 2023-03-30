@@ -28,12 +28,16 @@ public interface StringLib {
             + "## Add ## \n"
             + "Description : Adds a new recipe to the list. \n"
             + "Format      : \"add n/<insert recipe name> i/<insert ingredients with \", \" separation> "
-            + "t/<insert cuisine>\"\n"
-            + "Example use : \"add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese\" \n \n"
-            + "## Edit ## \n"
-            + "Description : Edits a recipe in the list. \n"
-            + "Format      : \"edit n/<insert recipe name>\"\n"
-            + "Example use : \"edit n/Hotpot\" \n \n"
+            + "t/<insert cuisine> s/<insert number of steps in recipe>\"\n"
+            + "Example use : \"add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/4\" \n \n"
+            + "## Edit Step ## \n"
+            + "Description : Edits the steps of a recipe in the list. \n"
+            + "Format      : \"editstep <insert recipe index>\"\n"
+            + "Example use : \"editstep 1\" \n \n"
+            + "## Edit Ingredient ## \n"
+            + "Description : Edits the ingredients of a recipe in the list. \n"
+            + "Format      : \"editingredient <insert recipe index>\"\n"
+            + "Example use : \"editingredient 1\" \n \n"
             + "## View ## \n"
             + "Description : Displays the details of a particular recipe from the recipe list. "
             + "Requires either the recipe name or index as the input. \n"
@@ -122,7 +126,7 @@ public interface StringLib {
     String STEP_EDIT_SUCCESS = "Step has been edited:";
     String STEP_VIEW_QUIT_KEYWORD = "quit";
     String RECIPE_NO_STEPS = "This recipe has no steps!";
-    String STEPBYSTEP_PROMPT = "Do you want to view step-by-step?\nType yes if so";
+    String STEPBYSTEP_PROMPT = "Do you want to view step-by-step?\nType \"yes\" if so";
     String STEPBYSTEP_EARLY_TERMINATION_PROMPT = "To exit recipe view, type \"quit\"\nElse, enter any key to continue";
     String ENTER_INGREDIENT_DESCRIPTION = "Enter the description of the ingredient:";
     String INGREDIENT_EDIT_SUCCESS = "Ingredient has been edited:";
