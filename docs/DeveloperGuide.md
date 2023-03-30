@@ -195,7 +195,6 @@ There are too many things to keep track of in a restaurant. We want to create an
 | v2.0    | restaurant manager                                       | find information about a specific meeting                | so that I can look up information about that meeting without going through the whole list |
 | v2.0    | restaurant manager                                       | find information about a specific deadline               | I can find details about the deadline date  without going through the whole list          |
 | v2.0    | restaurant manager                                       | view what I typed into the app previously                | I don't need to retype everything everytime I enter the app                               |
-| v2.0    | restaurant manager                                       | keep track of tips that the servers get                  | split the tips amongst the backend crew as well                                           |
 
 ## Non-Functional Requirements
 
