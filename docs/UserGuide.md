@@ -27,6 +27,17 @@ ___
 * [View weekly plan](#view-this-weeks-plan--weeklyplan)
 * [Random a recipe](#random-a-recipe--random)
 
+
+### HOW TO ADD INGREDIENTS TO A RECIPE:
+
+* Please follow the below-mentioned format.
+
+Format: `ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...`
+   
+* Examples: `chicken=100 oil and sauce=200 vegetables=300`
+            `meat=200 salt and spices=400`
+* Type the ingredient name followed by equal sign and quantity in positive integer values.
+
 ### Adding recipes: `add`
 
 Add new recipes to your list.
@@ -43,12 +54,14 @@ Example of usage:
 
 ### Editing recipes: `edit`
 
-Edit recipes in your list either partially or fully.
+Edit recipes in your list partially, fully or add new ingredients to already existing recipe.
 
 Format: `edit /r [recipe_name]`
 
 * `recipe_name` is basically a string.
 * Type the recipe name after typing `/r `.
+* If you want to edit fully: press 1, edit partially: press 2, or add new ingredients: press 3.
+* Follow the proper format while editing/adding ingredients. 
 
 Example of usage:
 
@@ -129,7 +142,7 @@ Example of usage:
 * `tag breakfast << milk && boiled egg && bread` adds milk, boiled egg and
   bread into 'breakfast' tag.
 
-__Removing recipes form a tag__
+__Removing recipes from a tag__
 
 Remove recipes from a specific tag.
 
