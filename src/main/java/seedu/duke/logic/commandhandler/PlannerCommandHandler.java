@@ -12,9 +12,8 @@ import java.util.Scanner;
 //@@author Khulon
 public class PlannerCommandHandler implements CommandList {
     public static void plannerCommandHandler (Ui ui, UserPlan planner,
-                                              Storage storage) throws DukeError {
+                                              Storage storage, Scanner in) throws DukeError {
         ui.printPlannerGreeting();
-        Scanner in = new Scanner(System.in);
 
         while (true) {
             String rawUserCommands = in.nextLine();

@@ -39,6 +39,9 @@ public class GenerateFilterCommand extends Command {
         String userGenerateCount = userCommands[userCommands.length - 1];
         try {
             this.numberOfExercisesToGenerate = Integer.parseInt(userGenerateCount);
+            if (this.numberOfExercisesToGenerate <= 0) {
+                throw new DukeError(ErrorMessages.ERROR_EXERCISE_NUM_INPUT_STRING.toString());
+            }
         } catch (NumberFormatException error) {
             throw new DukeError(ErrorMessages.ERROR_EXERCISE_NUM_INPUT_STRING.toString());
         }

@@ -1,5 +1,6 @@
 package seedu.duke.logic.commandhandler;
 
+import java.util.Scanner;
 import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
 import seedu.duke.logic.commands.Command;
@@ -19,7 +20,6 @@ import seedu.duke.data.userdata.userplan.UserPlan;
 
 import java.util.HashMap;
 
-
 public class GeneralCommandHandler implements CommandList {
 
     /**
@@ -37,7 +37,8 @@ public class GeneralCommandHandler implements CommandList {
     public void handleGeneralUserCommands (String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
                                            UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
                                            Storage storage, UserPlan planner,
-                                           AchievementListHandler achievementListHandler) {
+                                           AchievementListHandler achievementListHandler,
+                                           Scanner scanner) {
         Command command = null;
         boolean errorExists = false;
         //additional error check for whether there's additional description behind single
@@ -62,7 +63,7 @@ public class GeneralCommandHandler implements CommandList {
                     exerciseStateHandler.deleteWorkoutSession(userCareerData, sessionNumber);
                 } catch (NumberFormatException e) {
                     System.out.println("You did not key in a session number. " +
-                            "Please key in a valid session number and try again!");
+                                           "Please key in a valid session number and try again!");
                 }
                 break;
             case GENERATE_COMMAND:
@@ -98,7 +99,7 @@ public class GeneralCommandHandler implements CommandList {
                     ui.unknownCommand();
                     errorExists = true;
                 } else {
-                    PlannerCommandHandler.plannerCommandHandler(ui, planner, storage);
+                    PlannerCommandHandler.plannerCommandHandler(ui, planner, storage, scanner);
                 }
                 break;
             case VIEW_PLAN_COMMAND:
@@ -148,7 +149,7 @@ public class GeneralCommandHandler implements CommandList {
                     errorExists = true;
                 } else {
                     HashMap<String, Integer> userExerciseDataMap = UserExerciseData
-                            .addUserExerciseHistory(userCareerData);
+                        .addUserExerciseHistory(userCareerData);
                     ui.printUserExerciseHistory(userExerciseDataMap);
                 }
                 break;

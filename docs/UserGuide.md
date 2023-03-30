@@ -47,13 +47,13 @@ Some example commands you can try:
 
 Shows a list of basic commands that the user can input.
 
-Format: ```help```
+Example Command: ```help```
 
 ### Exiting the program: ```exit```
 
 Gracefully exits the program and prints bye message.
 
-Format: ```exit```
+Example Command: ```exit```
 
 ### Getting a list of specific workouts: ```generate [arguments] [number]```
 
@@ -67,7 +67,7 @@ Shows a list containing *number* of random workouts that suits the arguments fil
 
 *Type*: ```static```, ```gym```
 
-Format: ```generate easy 3```, ```generate hard upper 4```
+Example Command: ```generate easy 3```, ```generate hard upper 4```
 
 Examples:
 ```
@@ -110,7 +110,7 @@ The filters are shown here:
 
 Finds existing exercises whose names contain the input keyword.
 
-Format: ```find [keyword]```
+Example Command: ```find [keyword]```
 
 Examples:
 ```
@@ -133,7 +133,7 @@ ________________________________________
 
 Displays all workout plans which have been created by the user.
 
-Format: ```plans```
+Example Command: ```plans```
 
 ### Seeing your workout history: ```history```
 
@@ -141,20 +141,22 @@ Displays your entire career history in using Fitness Duke.
 Each history will give you details on the sessions you completed with the date and time as well
 as the exercises that you completed.
 
-Format: ```history```
+Example Command: ```history```
 
 ### Seeing your workout summary: ```data```
 
 Displays the list of exercises which you have completed, along with the individual frequencies of
 completion of each exercise.
 
-Format: ```data```
+Example Command: ```data```
 
 ### Generating a list of planned exercises: ```quick [plan_name] [x]```
 
 Generates a list of exercises planned by the user.
 
-Format: ```quick home_legs_day 3```, plan_name has to be present under "plans" and x refers to the number of exercises the user intends to do.
+Example Command: ```quick home_legs_day 3```, plan_name has to be present under "plans" and x refers to the number of 
+exercises 
+the user intends to do.
 
 Examples:
 ```
@@ -204,11 +206,13 @@ ________________________________________
 
 ### Getting into a workout: ```start```
 
-Enters a workout session.
+Enters a workout session with the **previously (latest) generated** workout session.
+
+**Note that you must have at least one previously generated workout to start.
 
 **Note that you will not be able to access any other features until you complete your exercise
 
-Format: ```start```
+Example Command: ```start```
 
 ### Within your workout session
 Click [here](UG_features/workout_session.md) to learn more about using our workouts feature.
@@ -220,20 +224,22 @@ Click [here](UG_features/workout_session.md) to learn more about using our worko
 
 Enters another interface where you can configure your workout plans and save them for the week.
 
-Format: ```planner```
+Example Command: ```planner```
 
 ### Within your fitness planner
 Click [here](UG_features/planner.md) to learn more about using our planner feature.
 
 ## Saving the data
 
-FitnessDuke data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. :-)
-
-## Editing the data file
-
-FitnessDuke data are saved as a JSON file [JAR file location]/resources/data.json. Advanced users are welcome to update data directly by editing that data file.
-
+User data files are saved in the hard disk automatically after any command that changes the data. There is no need to 
+save manually. :-)
+Advanced users are welcome to update data directly by editing that data file.
 **Caution: If your changes to the data file makes its format invalid, FitnessDuke will discard all data and start with an empty data file at the next run.**
+
+## Resource data
+
+FitnessDuke's exercise data are saved as a JSON file within the jar package. Please do not unpack the jar file and 
+modify its contents and attempt to re-jar it. We will not guarantee the promised features if the jar file is tampered.
 
 ## FAQ
 
@@ -243,17 +249,17 @@ FitnessDuke data are saved as a JSON file [JAR file location]/resources/data.jso
 
 ## Command Summary
 
-| Action       | Format, Examples                                                         |
-|--------------|--------------------------------------------------------------------------|
-| **help**     | ```help```                                                               |
-| **exit**     | ```exit```                                                               |
-| **generate** | ```generate [arguments] [number]``` <br> eg. ```generate hard upper 4``` |
-| **filters**  | ```filters```                                                            |
-| **find**     | ```find [keyword]```<br> eg. ```find arms```                             |
-| **plans**    | ```plans```                                                              |
-| **planner**  | ```planner```                                                            |
-| **history**  | ```history```                                                            |
-| **data**     | ```data```                                                               |
-| **start**    | ```start```                                                              |
-| **quick**    | ```quick [plan_name] [x]``` <br> eg. ```quick home_leg_day 3```          |
+| Action       | Example Command, Examples                                               |
+|--------------|-------------------------------------------------------------------------|
+| **help**     | ```help```                                                              |
+| **exit**     | ```exit```                                                              |
+| **generate** | ```generate [arguments] [number]```<br/>eg. ```generate hard upper 4``` |
+| **filters**  | ```filters```                                                           |
+| **find**     | ```find [keyword]``` <br/>eg. ```find arms```                           |
+| **plans**    | ```plans```                                                             |
+| **planner**  | ```planner```                                                           |
+| **history**  | ```history```                                                           |
+| **data**     | ```data```                                                              |
+| **start**    | ```start```                                                             |
+| **quick**    | ```quick [plan_name] [x]```<br/> eg. ```quick home_leg_day 3```         |
 
