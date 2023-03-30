@@ -6,46 +6,46 @@ title Architecture Sequence Diagram
 Actor User as user #crimson
 participant MoneyMind as mm #lightblue
 participant UI as ui #lightpink
-participant Parser as ps #orange
-participant EventCommand as event #lightgreen
-participant Data as data #lightyellow
 participant Storage as storage #lightgrey
 
 
 
-user -[#crimson]> mm : event  buy lunch e/10
+user -[#crimson]> mm : EventCommand  buy lunch e/10
 activate mm #lightblue
 
-mm -[#lightblue]> ps : parseNextCommand()
+mm -> ps : parseNextCommand()
 activate ps #orange
 
-ps -[#orange]> ps : createEventCommand()
+ps -> ps : createEventCommand()
 activate ps #orange
-ps -[#orange]> event : <<create>>
-activate event #lightgreen
-event --[#lightgreen]> ps
-deactivate event #lightgreen
-ps --[#orange]> ps
+create EventCommand
+ps -> EventCommand
+activate EventCommand
+EventCommand --> ps
+deactivate EventCommand
+ps --> ps
 deactivate ps #orange
-ps --[#orange]> mm
+ps --> mm
 deactivate ps #orange
 
-mm -[#lightblue]> event : isExit()
-activate event #lightgreen
-event --[#lightgreen]> mm
-deactivate event #lightgreen
+mm -> EventCommand : isExit()
+activate EventCommand
+EventCommand --> mm
+deactivate EventCommand
 
-mm -[#lightblue]> event : execute()
-activate event #lightgreen
-event -[#lightgreen]> data : <<create>>
-activate data #lightyellow
-data --[#lightyellow]> event
-deactivate data #lightyellow
-event --[#lightgreen]> mm
+mm -> EventCommand : execute()
+activate EventCommand
+create Data
+EventCommand -> Data
+activate Data
+Data --> EventCommand
+deactivate Data
+EventCommand --> mm
+deactivate EventCommand
 
-mm -[#lightblue]> storage : save()
+mm -> storage : save()
 activate storage #lightgrey
-storage --[#lightgrey]> mm
+storage --> mm
 deactivate storage #lightgrey
 
 

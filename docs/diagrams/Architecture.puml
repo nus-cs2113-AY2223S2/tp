@@ -10,13 +10,15 @@ package " "<<Rectangle>> {
     class Storage
     class Command
     class Data
+    class Parser
 }
 
 MoneyMind --> UI
 Storage ..> MoneyMind
 Storage --> Data
 Data --> Storage
-MoneyMind --> Command
+MoneyMind --> Parser
+Parser --> Command
 Command --> Data
 
 @enduml
