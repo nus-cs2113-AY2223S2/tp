@@ -202,6 +202,14 @@ Event edited successfully!
 ____________________________________________________________
 ~~~
 
+### Saving Data
+NusPlanner data are saved to the hard drive automatically after the `bye` command to quit it. There is no need to save manually.
+
+### Editing the data file
+Data for NUSPlanner is saved as a `.json` file. The path for the save file is `[JAR file location]/save.json`. Advanced users are welcome to update data directly by editing the data file.
+
+🚧 **Warning**: If your changes to the data file makes its format invalid, NUSPlanner will discard all data and load an empty data file at the next run. 
+
 ## FAQ
 
 **Q**: Why is a JAR file required?
