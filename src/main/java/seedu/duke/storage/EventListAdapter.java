@@ -4,6 +4,8 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import seedu.duke.Event;
+import seedu.duke.NPExceptions;
+import seedu.duke.Ui;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -93,13 +95,22 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
      * @throws IOException If there was an error reading the JSON file.
      */
     @Override
-    public ArrayList<Event> read (JsonReader reader) throws IOException{
+    public ArrayList<Event> read (JsonReader reader) throws IOException {
         ArrayList<Event> eventList = new ArrayList<>();
+        boolean isCorrupt = false;
         reader.beginArray();
         while(reader.hasNext()){
-            eventList.add(readEvent(reader));
+            try {
+                eventList.add(readEvent(reader));
+            } catch (NPExceptions e){
+                Ui.printErrorMsg(e.getMessage());
+                isCorrupt = true;
+            }
         }
         reader.endArray();
+        if (isCorrupt){
+            eventList.clear();
+        }
         return eventList;
     }
 
@@ -109,7 +120,7 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
      * @return  Event. This is the deserialized Event java object.
      * @throws IOException If there was an error deserializing the event class.
      */
-    public Event readEvent(JsonReader reader) throws IOException{
+    public Event readEvent(JsonReader reader) throws IOException, NPExceptions{
         String description = null;
         LocalDateTime startTime = null;
         LocalDateTime endTime = null;
@@ -172,7 +183,7 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
             } else if (name.equals("location")){
                 location = reader.nextString();
             } else{
-                reader.skipValue();
+                throw new NPExceptions("File Corrupted"); //catches un-parsable modifications to fields.
             }
         }
         reader.endObject();
@@ -195,30 +206,55 @@ public class EventListAdapter extends TypeAdapter<ArrayList<Event>> {
      */
     private static Event createEvent(String description, LocalDateTime startTime, LocalDateTime endTime,
                                      boolean hasStartTime, boolean hasEndTime, boolean hasLocation, boolean isRecurring,
-                                     String timeInterval, String location) {
+                                     String timeInterval, String location) throws NPExceptions{
         if (hasEndTime && isRecurring && hasLocation){
+            if ((timeInterval == null) || (endTime == null) || (location == null) || (description == null) ||
+                    (startTime == null)){
+                throw new NPExceptions("Event Corrupted!");
+            }
             Event temp = new Event(description, startTime, endTime, hasStartTime, hasEndTime, timeInterval);
             temp.changeLocation(location);
             return temp;
         } else if (hasEndTime && isRecurring){
+            if ((timeInterval == null) || (endTime == null)  || (description == null) || (startTime == null)){
+                throw new NPExceptions("Event Corrupted!");
+            }
             return new Event(description, startTime, endTime, hasStartTime, hasEndTime, timeInterval);
         } else if (hasEndTime && hasLocation){
+            if ( (endTime == null) || (location == null) || (description == null) || (startTime == null)){
+                throw new NPExceptions("Event Corrupted!");
+            }
             Event temp = new Event(description, startTime, endTime, hasStartTime, hasEndTime);
             temp.changeLocation(location);
             return temp;
         } else if (isRecurring && hasLocation){
+            if ((timeInterval == null) || (location == null) || (description == null) || (startTime == null)){
+                throw new NPExceptions("Event Corrupted!");
+            }
             Event temp = new Event(description, startTime,hasStartTime);
             temp.changeLocation(location);
             return temp;
         } else if (hasEndTime){
+            if ( (endTime == null) || (description == null) || (startTime == null)){
+                throw new NPExceptions("Event Corrupted!");
+            }
             return new Event(description, startTime, endTime, hasStartTime, hasEndTime);
         } else if (hasLocation){
+            if ( (location == null) || (description == null) || (startTime == null)){
+                throw new NPExceptions("Event Corrupted!");
+            }
             Event temp = new Event(description, startTime, hasStartTime);
             temp.changeLocation(location);
             return temp;
         } else if (isRecurring){
+            if ((timeInterval == null) || (description == null) || (startTime == null)){
+                throw new NPExceptions("Event Corrupted!");
+            }
             return new Event(description, startTime, hasStartTime, timeInterval);
         } else{
+            if ( (description == null) || (startTime == null)){
+                throw new NPExceptions("Event Corrupted!");
+            }
             return new Event(description, startTime, hasStartTime);
         }
     }
