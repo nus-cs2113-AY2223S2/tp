@@ -52,7 +52,7 @@ public class Ui {
         }
 
     }
-    
+
     public void printWeeklyIngredients(WeeklyPlan weeklyPlan, RecipeList recipeList) {
         if (weeklyPlan.isEmpty()) {
             printMessage("Your weekly plan is empty!");
@@ -71,17 +71,24 @@ public class Ui {
     }
 
     public void listRecipe(RecipeList recipeListToPrint) {
+        listRecipes(recipeListToPrint, "There is nothing to list.", "These are the recipes you have");
+    }
+
+    public void listAvailableRecipes(RecipeList recipeListToPrint) {
+        listRecipes(recipeListToPrint, "There are no available recipes.", "These are the recipes you can cook");
+    }
+
+    private void listRecipes(RecipeList recipeListToPrint, String emptyListMsg, String listHeaderMsg) {
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
         if (numberOfRecipes == 0) {
-            printMessage("There is nothing to list.");
+            printMessage(emptyListMsg);
             return;
         }
-        printMessage("These are the recipes you have (" + numberOfRecipes + " recipes):");
+        printMessage(listHeaderMsg + " (" + numberOfRecipes + " recipes):");
         for (Recipe recipe : recipeListToPrint) {
-            order = order + 1;
-            printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients()
-                    + " ingredients)");
+            order++;
+            printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients() + " ingredients)");
         }
     }
 

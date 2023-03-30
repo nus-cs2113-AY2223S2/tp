@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class RecipeList extends ArrayList<Recipe> {
     public HashMap<String, HashMap<Recipe, Integer>> tags = new HashMap<>();
+    private static IngredientList ingredientList = new IngredientList();
 
     public Recipe findByName(String name) {
         for (Recipe recipe : this) {
@@ -46,11 +47,11 @@ public class RecipeList extends ArrayList<Recipe> {
 
     public void removeRecipeFromTag(String tag, Recipe recipe) {
         HashMap<Recipe, Integer> tagRecipeList = tags.get(tag);
-        boolean isAbleToFindTheRecipe =  tagRecipeList.containsKey(recipe);
+        boolean isAbleToFindTheRecipe = tagRecipeList.containsKey(recipe);
         if (!isAbleToFindTheRecipe) {
-            String errorMessage1 = "Unable to find the recipe: \"" + recipe.getName() +"\" in the" +
+            String errorMessage1 = "Unable to find the recipe: \"" + recipe.getName() + "\" in the" +
                     " tag.";
-            String errorMessage2 = "All the recipe before \"" + recipe.getName() +"\" (if any) are " +
+            String errorMessage2 = "All the recipe before \"" + recipe.getName() + "\" (if any) are " +
                     "successfully removed from the tag.";
             throw new IndexOutOfBoundsException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
         }
@@ -91,7 +92,7 @@ public class RecipeList extends ArrayList<Recipe> {
         boolean hasNoRecipeToReturn;
         boolean isNotFoundTag;
 
-        //add all recipe from first tag to the list
+        // add all recipe from first tag to the list
         isNotFoundTag = !this.tags.containsKey(filters[0].trim());
         if (isNotFoundTag) {
             throw new NullPointerException("There is no \"" + filters[0] + "\" tag found. Please make sure you have " +
@@ -118,6 +119,16 @@ public class RecipeList extends ArrayList<Recipe> {
             }
         }
         return filteredRecipeList;
+    }
+
+    public RecipeList availableRecipes() {
+        RecipeList availableRecipeList = new RecipeList();
+        for (Recipe recipe : this) {
+            if (recipe.isAvailable()) {
+                availableRecipeList.add(recipe);
+            }
+        }
+        return availableRecipeList;
     }
 
     public Recipe randomRecipe() {

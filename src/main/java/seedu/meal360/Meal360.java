@@ -51,14 +51,14 @@ public class Meal360 {
                 ui.printMessage(deletedRecipe);
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage =
-                        "Please enter a valid recipe number or name. You did not enter a recipe number or "
-                                + "name.";
+                String errorMessage = "Please enter a valid recipe number or name. You did not enter a recipe number or "
+                        + "name.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
                         "Please enter a valid recipe number or name. You entered %s, "
-                                + "which is in invalid.", command[1]);
+                                + "which is in invalid.",
+                        command[1]);
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -142,28 +142,34 @@ public class Meal360 {
                 WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipeList);
 
                 switch (command[1]) {
-                case "/add":
-                case "/multiadd":
-                    weeklyPlan.addPlans(recipeMap);
-                    ui.printMessage("I've added the recipes to your weekly plan!");
-                    break;
-                case "/delete":
-                case "/multidelete":
-                    weeklyPlan.deletePlans(recipeMap);
-                    ui.printMessage("I've deleted the recipes from your weekly plan!");
-                    break;
-                case "/clear":
-                    weeklyPlan.clearPlan();
-                    ui.printMessage("I've cleared your entire weekly plan!");
-                    break;
-                default:
-                    ui.printMessage("Please enter a valid command.");
-                    break;
+                    case "/add":
+                    case "/multiadd":
+                        weeklyPlan.addPlans(recipeMap);
+                        ui.printMessage("I've added the recipes to your weekly plan!");
+                        break;
+                    case "/delete":
+                    case "/multidelete":
+                        weeklyPlan.deletePlans(recipeMap);
+                        ui.printMessage("I've deleted the recipes from your weekly plan!");
+                        break;
+                    case "/clear":
+                        weeklyPlan.clearPlan();
+                        ui.printMessage("I've cleared your entire weekly plan!");
+                        break;
+                    default:
+                        ui.printMessage("Please enter a valid command.");
+                        break;
                 }
-            } catch (IllegalArgumentException | InvalidNegativeValueException | InvalidRecipeNameException |
-                     ArrayIndexOutOfBoundsException e) {
+            } catch (IllegalArgumentException | InvalidNegativeValueException | InvalidRecipeNameException
+                    | ArrayIndexOutOfBoundsException e) {
                 ui.printMessage(e.getMessage());
             }
+            ui.printSeparator();
+        } else if (command[0].equals("available")) {
+            // list recipes with ingredients all in ingredient list
+            ui.printSeparator();
+            RecipeList availableRecipes = recipeList.availableRecipes();
+            ui.listAvailableRecipes(availableRecipes);
             ui.printSeparator();
         } else if (command[0].equals("weeklyingredients")) {
             ui.printSeparator();
