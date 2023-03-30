@@ -1,8 +1,10 @@
 package seedu.dukeofbooks.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import seedu.dukeofbooks.common.Messages;
 import seedu.dukeofbooks.data.book.Book;
@@ -43,6 +45,26 @@ public class SearchController {
             throw new IllegalValueException(BOOK_TITLE_NOT_FOUND);
         }
         return target.get();
+    }
+    public static ArrayList<Book> searchBooksByTitle(String titleString) throws IllegalValueException {
+        assert(inventory != null);
+        
+        HashMap<Book, InventoryDetails> listing = inventory.getInventoryMap();
+        ArrayList<Book> target = listing.entrySet()
+                                        .stream()
+                                        .filter(e -> e.getKey().getTitle().toString().toLowerCase().contains(titleString))
+                                        .map(Map.Entry::getKey).collect(Collectors.toCollection(ArrayList::new));
+        return target;
+    }
+    public static ArrayList<Book> searchBooksByTopic(String topic) throws IllegalValueException {
+        assert(inventory != null);
+        
+        HashMap<Book, InventoryDetails> listing = inventory.getInventoryMap();
+        ArrayList<Book> target = listing.entrySet()
+                                        .stream()
+                                        .filter(e -> e.getKey().getTopic().toString().contains(topic))
+                                        .map(Map.Entry::getKey).collect(Collectors.toCollection(ArrayList::new));
+        return target;
     }
     public static Book searchBookByTopic(String topic) throws IllegalValueException {
         assert(inventory != null);

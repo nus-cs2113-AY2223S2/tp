@@ -53,6 +53,10 @@ public class DukeOfBooks {
         this.allLoanRecords = new LoanRecords();
         this.userRecords = new UserRecords();
         try {
+            Inventory inventory = new Inventory();
+            InventoryController.setData(inventory);
+            SearchController.setData(inventory);
+            // add test data
             Isbn isbn = new Isbn("testIsbn");
             Title title = new Title("testTitle");
             Topic topic = new Topic("testTopic");
@@ -60,10 +64,19 @@ public class DukeOfBooks {
             Phone authorPhone = new Phone(87654321);
             Person author = new Person(authorName, authorPhone);
             Book book = new Book(isbn, title, topic, author);
-            Inventory inventory = new Inventory();
-            InventoryController.setData(inventory);
             InventoryController.addBook(book);
-            SearchController.setData(inventory);
+
+            // signup -username u -password p -name n
+            // search -title title -topic another
+            isbn = new Isbn("testIsbn2");
+            title = new Title("testTitleanother");
+            topic = new Topic("testTopicanother");
+            authorName = new PersonName("Authoranother");
+            authorPhone = new Phone(87654321);
+            author = new Person(authorName, authorPhone);
+            book = new Book(isbn, title, topic, author);
+            InventoryController.addBook(book);
+
         } catch (IllegalValueException | IllegalOperationException ive) {
             ive.printStackTrace();
         }

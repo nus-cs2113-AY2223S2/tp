@@ -1,6 +1,6 @@
 package seedu.dukeofbooks.parser;
 
-import static seedu.dukeofbooks.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 
 import seedu.dukeofbooks.command.BorrowCommand;
 import seedu.dukeofbooks.command.HistoryCommand;
@@ -12,6 +12,7 @@ import seedu.dukeofbooks.command.RenewCommand;
 import seedu.dukeofbooks.command.ReturnCommand;
 import seedu.dukeofbooks.command.SearchCommand;
 import seedu.dukeofbooks.command.UserCommand;
+import seedu.dukeofbooks.common.Messages;
 import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.book.BorrowableItem;
@@ -24,6 +25,7 @@ import static seedu.dukeofbooks.common.Messages.AUTHOR_ARG;
 import static seedu.dukeofbooks.common.Messages.ACTION_ARG;
 import static seedu.dukeofbooks.common.Messages.ISBN_ARG;
 import static seedu.dukeofbooks.common.Messages.SPACE_CHAR;
+import static seedu.dukeofbooks.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 public class UserCommandParser implements IParser{
     private final Person currentUser;
@@ -209,7 +211,8 @@ public class UserCommandParser implements IParser{
         if ((titleIndex != -1) && (topicIndex!=-1)) {
             String title = getWord(titleIndex, parts);
             String topic = getWord(topicIndex, parts);
-            return new SearchCommand(title,SearchCommand.COMBINED_SEARCH);
+            return new SearchCommand(title.concat(Messages.NEW_LINE).
+                    concat(topic),SearchCommand.COMBINED_SEARCH);
         } else if (titleIndex != -1) {
             String title = getWord(titleIndex, parts);
             return new SearchCommand(title,SearchCommand.TITLE_SEARCH);
@@ -217,7 +220,7 @@ public class UserCommandParser implements IParser{
             String topic = getWord(topicIndex, parts);
             return new SearchCommand(topic,SearchCommand.TOPIC_SEARCH);
         } else {
-            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            return new IncorrectUserCommand(SearchCommand.INCORRECT_SYNTAX);
         }
     }
 

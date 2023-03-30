@@ -35,7 +35,7 @@ public class Isbn implements IVerifiable {
 
     @Override
     public String toString() {
-        return String.format("Isbn: %S", isbn);
+        return String.format("%s", isbn);
     }
 
     public String getISBN() {
