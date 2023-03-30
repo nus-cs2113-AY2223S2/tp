@@ -8,14 +8,14 @@
 
 - [Getting Started](#getting-started)
 - [Features](#features)
-    - [Adding an expense: `/add` {#add}](#adding-an-expense-add-add)
-    - [Deleting an expense: `/delete` {#delete}](#deleting-an-expense-delete-delete)
-    - [Edit an expense: `/edit` {#edit}](#edit-an-expense-edit-edit)
-    - [View an expense: `/view` {#view}](#view-an-expense-view)
-    - [Show help menu: `/help` {#help}](#show-help-menu-help)
-    - [Exit Program: `/bye` {#bye}](#exit-program-bye)
-    - [Supported Categories {#categories}](#supported-categories-categories)
-- [Command Summary {#summary}](#command-summary)
+    - [Adding an expense: `/add`](#add)
+    - [Deleting an expense: `/delete`](#delete)
+    - [Edit an expense: `/edit`](#edit)
+    - [View an expense: `/view`](#view)
+    - [Show help menu: `/help`](#help)
+    - [Exit Program: `/bye`](#bye)
+    - [Supported Categories](#categories)
+- [Command Summary](#summary)
 
 ## Getting Started
 
@@ -164,12 +164,12 @@ These are the categories currently supported by PocketPal:
 
 ## Command Summary {#summary}
 
-| Command | Format                                                                                                                                                                     |
-|--------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|    /add | `/add <-d &#124; -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c &#124; -category CATEGORY> <-p &#124; -price PRICE>`                                                 |
-|   /view | `/view [COUNT] [-c &#124; -category CATEGORY] [-p &#124; -price PRICE_MIN] [-p &#124; -price PRICE_MAX] [<-sd &#124; -startdate START_DATE -ed &#124; -enddate END_DATE>]` |
-|   /edit | `/edit <EXPENSE_ID> [-c &#124; -category NEW_CATEGORY] [-p &#124; -price NEW_PRICE] [-d &#124; -description NEW_DESC]`                                                     |
-| /delete | `/delete <EXPENSE_ID>`                                                                                                                                                     |
-|   /help | `/help`                                                                                                                                                                    |
+| Command | Format                                                                                                                                                                                |
+|--------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|    /add | <code>/add <-d &#124; -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c &VerticalLine; -category CATEGORY> <-p &#124; -price PRICE></code>                                         |
+|   /view | <code>/view [COUNT] [-c &#124; -category CATEGORY] [-p &#124; -price PRICE_MIN] [-p &#124; -price PRICE_MAX] [<-sd &#124; -startdate START_DATE -ed &#124; -enddate END_DATE>]</code> |
+|   /edit | <code>/edit <EXPENSE_ID> [-c &#124; -category NEW_CATEGORY] [-p &#124; -price NEW_PRICE] [-d &#124; -description NEW_DESC]</code>                                                     |
+| /delete | <code>/delete <EXPENSE_ID></code>                                                                                                                                                     |
+|   /help | <code>/help</code>                                                                                                                                                                    |
 
 <!-- @@author -->
