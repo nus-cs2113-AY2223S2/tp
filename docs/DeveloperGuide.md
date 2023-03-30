@@ -4,8 +4,6 @@
 Credits to [Personbook](https://github.com/nus-cs2113-AY2223S2/personbook)
 for some reused skeleton code and inspiration on OOP implementation.
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
 ## Setting up
 
 ## Design 
@@ -198,7 +196,6 @@ There are too many things to keep track of in a restaurant. We want to create an
 | v2.0    | restaurant manager                                       | find information about a specific deadline               | I can find details about the deadline date  without going through the whole list          |
 | v2.0    | restaurant manager                                       | view what I typed into the app previously                | I don't need to retype everything everytime I enter the app                               |
 | v2.0    | restaurant manager                                       | keep track of tips that the servers get                  | split the tips amongst the backend crew as well                                           |
-| v2.0    | restaurant manager                                       | be forgetful about what commands I typed                 | I can refer to what command I typed in previously                                         |
 
 ## Non-Functional Requirements
 

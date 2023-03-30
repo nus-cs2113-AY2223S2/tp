@@ -6,7 +6,7 @@
 - [Quick Start](#quick-start)
   - [Installing DinerDirector](#installing-dinerdirector)
 - [Features](#features)
-  - [Viewing Help](#viewing-help)
+  - [Help](#help)
   - [Meetings](#meetings)
   - [Deadlines](#deadlines)
   - [Dish](#dish)
@@ -27,16 +27,15 @@ This section will guide you through the installation process
 ### Installing DinerDirector
 
 1. Ensure that you have Java 11 or above installed. 
-2. Down the latest version of `DinerDirector` from [here](https://github.com/AY2223S2-CS2113-W15-4/tp/releases). 
+2. Download the latest version of `DinerDirector` from [here](https://github.com/AY2223S2-CS2113-W15-4/tp/releases). 
 3. Copy the file to the folder you want to use as the home folder for your `DinerDirector`. 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dinerdirector.jar` command to run the application. 
-5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window. 
-6. Refer to the Features below for details of each command. 
-7. Command format: <> denotes parameter. [] denotes optional field.
+5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window. 
+6. Refer to the Features below for details of each command.
 
 ## Features 
 
-### Viewing Help
+### Help
 A simple command to display the help page in the program. 
 
 Format: `help`
@@ -281,7 +280,7 @@ Outcome:
 1 john, working in thursday. Date of birth: 234, phoneNumber: 1234 removed
 ```
 
-### Find a staff 
+#### Find a staff 
 
 Find a staff from staffs list  
 
@@ -293,7 +292,16 @@ find_staff titi
 
 Outcome: 
 ```
+Here's the matching staff:
 titi, working in 12. Date of birth: 12, phoneNumber: 12
+```
+### Exit
+Exits the program.
+Format: `exit`
+Outcome:
+```
+>exit
+Thank you for using DinerDirector!
 ```
 
 ### Storage
@@ -310,22 +318,22 @@ The data stored in those files are in plaintext format and the user can copy out
 
 | Action          | Command                                                                                                        |
 |-----------------|----------------------------------------------------------------------------------------------------------------|
-| help            | help                                                                                                           |
-| add_meeting     | add_meeting n/<name> t/<time>                                                                                  |
-| view_meetings   | view_meetings                                                                                                  |
-| delete_meeting  | delete_meeting n/<name>                                                                                        |
-| find_meeting    | find_meeting s/<string>                                                                                        |
+| help            | `help`                                                                                                         |
+| add_meeting     | `add_meeting n/<name> t/<time>`                                                                                |
+| view_meetings   | `view_meetings`                                                                                                |
+| delete_meeting  | `delete_meeting n/<name>`                                                                                      |
+| find_meeting    | `find_meeting s/<string>`                                                                                      |
 | add_dish        | `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]` |
 | view_dish       | `view_dish`                                                                                                    |
 | delete_dish     | `delete_dish <index_number>`                                                                                   |
 | find_dish       | `find_dish <keyword>`                                                                                          |
-| add_deadline    | add_deadline n/<name> t/<time>                                                                                 |
-| view_deadline   | view_deadline                                                                                                  |
-| delete_deadline | delete_deadline <index>                                                                                        |
-| find_deadline   | find_deadline <keyword>                                                                                        |
-| add_staff      | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                                   |
-| view_staff     | `view_staff`                                                                                                     |
-| delete_staff   | `delete_staff <staff index>`                                                                                     |
-| find_staff     | `find_staff <keyword>`                                                                                           |
+| add_deadline    | `add_deadline n/<name> t/<time>`                                                                               |
+| view_deadline   | `view_deadline`                                                                                                |
+| delete_deadline | `delete_deadline <index>`                                                                                      |
+| find_deadline   | `find_deadline <keyword>`                                                                                      |
+| add_staff       | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                                 |
+| view_staff      | `view_staff`                                                                                                   |
+| delete_staff    | `delete_staff <staff index>`                                                                                   |
+| find_staff      | `find_staff <keyword>`                                                                                         |
 
 
