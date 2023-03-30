@@ -63,6 +63,9 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 ![startup.png](images/startup.png)  
 <sub>Fig 2: Command to start using Meal Companion.</sub>
 
+7. To get started using Meal Companion, take a look at the [`add`](#add-ingredients) command to let the app know what ingredients you have available to you, then use the [`recipe possible`](#possible-recipes) command to figure out what recipes you can make!
+8. Alternatively, if you don't have any ingredients on hand but are interested in learning a new recipe, you can use the [`recipe all`](#all-recipes) command to browse through our recipe book and find a recipe you're interested in making, then use the [`recipe details`](#recipe-details) command to view how to make it.
+
 Meal Companion uses a Command Line Interface (CLI), as the current version is just a proof of concept. We have plans to further develop Meal Companion to include a Graphical User Interface (GUI), or even to a mobile application platform. However as we have not yet reached that stage in our development, the CLI will suffice as the input method to operate Meal Companion. We apologize for any inconvenience caused.
 
 ##### [Back to table of contents](#table-of-contents)
@@ -81,6 +84,8 @@ Meal Companion will assist you in tracking the items in your refrigerator, and i
 To add an ingredient of a certain quantity to Meal Companion's storage, use the command `add <ingredient> /qty <quantity>`.
 The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command. 
 For example, `add ground chicken /qty 300`.
+
+Note that the ingredient you add must be in the list of known ingredient names. If you're not sure what an ingredient is called, you can utilize the [`ingredient search`](#search-ingredients) comnmand to figure it out.
 
 ![add1.png](images/add1.png)  
 <sub>Fig 3: Sample of Add Ingredients command with user input highlighted.</sub>
@@ -125,6 +130,8 @@ To remove all ingredients from Meal Companion's storage, use the `clear` command
 
 ## Allergens
 Meal Companion recognizes that you may have certain dietary restrictions. As such, we have provided a feature that allows you to track your allergens and block Meal Companion from showing you recipes that contain said allergens. We will go into more detail on the Allergens function below.
+
+Note that all allergens must be known ingredient names, similar to the `add` command.
 
 Once your allergies are added to Meal Companion, you may refer to the section on [Possible Recipes](#possible-recipes) to see how this will affect the recipes available to you.
 
