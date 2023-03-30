@@ -17,6 +17,13 @@ public class Ingredient {
         this.updateExpired();
     }
 
+    public Ingredient(String ingredient, int newCount, LocalDate expiryDate) {
+        this.ingredientName = ingredient;
+        this.ingredientCount = newCount;
+        this.expiryDate = expiryDate;
+        this.updateExpired();
+    }
+
     public void updateExpired() {
         if (expiryDate.isBefore(LocalDate.now())) {
             expired = true;

@@ -2,6 +2,7 @@ package seedu.meal360;
 
 import java.io.IOException;
 import java.util.Scanner;
+import seedu.meal360.exceptions.IngredientNotFoundException;
 import seedu.meal360.exceptions.InvalidNegativeValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
 import seedu.meal360.storage.Database;
@@ -189,6 +190,17 @@ public class Meal360 {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
+        } else if (command[0].equals("weeklydone")) {
+            ui.printSeparator();
+            try {
+                parser.parseMarkDone(command, userIngredients, weeklyPlan, recipeList);
+                ui.printMessage("I've recorded that you've done this recipe!");
+                ui.printMessage("Ingredients list has been updated accordingly!");
+            } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException |
+                     IngredientNotFoundException e) {
+                ui.printMessage(e.getMessage());
+            }
+            ui.printSeparator();
         } else if (command[0].equals("weeklyingredients")) {
             ui.printSeparator();
             ui.printWeeklyIngredients(weeklyPlan, recipeList);
@@ -211,7 +223,7 @@ public class Meal360 {
             try {
                 parser.parseDeleteUserIngredients(command, userIngredients);
                 ui.printMessage("Ingredients successfully deleted!");
-            } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | IngredientNotFoundException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
