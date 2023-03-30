@@ -9,17 +9,18 @@ import seedu.meal360.WeeklyPlan;
 
 public class Database {
 
-    private static final String recipesDatabaseFilepath =
-            "." + System.getProperty("file.separator") + "database" + System.getProperty("file.separator")
-                    + "recipesDatabase.json";
+    private static final String recipesDatabaseFilepath = "." + System.getProperty("file.separator") + "database"
+            + System.getProperty("file.separator")
+            + "recipesDatabase.json";
 
-    private static final String weeklyPlanDatabaseFilepath =
-            "." + System.getProperty("file.separator") + "database" + System.getProperty("file.separator")
-                    + "weeklyPlanDatabase.json";
+    private static final String weeklyPlanDatabaseFilepath = "." + System.getProperty("file.separator") + "database"
+            + System.getProperty("file.separator")
+            + "weeklyPlanDatabase.json";
 
-    private static final String userIngredientsDatabaseFilepath =
-            "." + System.getProperty("file.separator") + "database" + System.getProperty(
-                    "file.separator") + "userIngredientsDatabase.json";
+    private static final String userIngredientsDatabaseFilepath = "." + System.getProperty("file.separator")
+            + "database" + System.getProperty(
+                    "file.separator")
+            + "userIngredientsDatabase.json";
 
     JsonDatabaseHelper<RecipeList> recipeListJsonDatabaseHelper = new JsonDatabaseHelper<>(
             recipesDatabaseFilepath, defaultRecipeList(), RecipeList.class);
@@ -186,4 +187,3 @@ public class Database {
         return defaultRecipeList;
     }
 }
-

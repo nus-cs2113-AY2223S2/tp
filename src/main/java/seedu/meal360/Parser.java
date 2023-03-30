@@ -3,8 +3,10 @@ package seedu.meal360;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
 import seedu.meal360.exceptions.InvalidNegativeValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
@@ -100,7 +102,8 @@ public class Parser {
         }
         recipeToEdit = recipeList.findByName(recipeName);
         System.out.println("Do you want to edit recipe fully or partially?");
-        System.out.println("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
+        System.out.println(
+                "Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
 
         Scanner getInput = new Scanner(System.in);
         int index = getInput.nextInt();
@@ -155,7 +158,8 @@ public class Parser {
             Recipe recipe = parseViewRecipe(recipeName, recipeList);
             ui.printRecipe(recipe);
             ui.printSeparator();
-            System.out.println("Please Enter Additional Ingredients & Quantity (Enter done when complete): ");
+            System.out.println(
+                    "Please Enter Additional Ingredients & Quantity (Enter done when complete): ");
             while (true) {
                 String line = userInput.nextLine();
                 if (line.equals("done")) {
@@ -215,8 +219,9 @@ public class Parser {
                 while (recipeList.size() != newSize) {
                     rangeRecipes += recipeList.deleteRecipe(startIndex).getName() + ", ";
                 }
-                rangeRecipes = rangeRecipes.substring(0, rangeRecipes.length() - 2);
-                return rangeRecipes;
+                rangeRecipes = new StringBuilder(
+                        rangeRecipes.substring(0, rangeRecipes.length() - 2));
+                return rangeRecipes.toString();
             } else {
                 int recipeIndex = Integer.parseInt(input[1]);
                 // need to subtract 1 since list is 1-based
@@ -397,10 +402,10 @@ public class Parser {
     }
 
     public Recipe parseRandomRecipe(RecipeList recipes) {
-        Recipe randomRecipe = recipes.randomRecipe();
         if (recipes.size() == 0) {
             throw new NullPointerException("There is no recipe in the list to random");
         }
+        Recipe randomRecipe = recipes.randomRecipe();
         return randomRecipe;
     }
 
@@ -486,11 +491,17 @@ public class Parser {
                     "Please ensure that the command is entered in the correct format.");
         }
 
+        if (startIndices.size() == 0) {
+            throw new IllegalArgumentException(
+                    "Please ensure that the command is entered in the correct format.");
+        }
+
         // Building the recipe names
         for (int i = 0; i < startIndices.size(); i++) {
             int nameStartIndex = startIndices.get(i) + 1;
             int nameEndIndex = endIndices.get(i) - 1;
-            recipeName = getRecipeNames(command, recipeNames, recipeName, nameStartIndex, nameEndIndex);
+            recipeName = getRecipeNames(command, recipeNames, recipeName, nameStartIndex,
+                    nameEndIndex);
         }
 
         // Add each recipe to the weekly plan
@@ -510,7 +521,7 @@ public class Parser {
     }
 
     private StringBuilder getRecipeNames(String[] command, ArrayList<String> recipeNames,
-            StringBuilder recipeName, int nameStartIndex, int nameEndIndex) {
+                                         StringBuilder recipeName, int nameStartIndex, int nameEndIndex) {
         recipeName.append(command[nameStartIndex].toLowerCase().trim());
         for (int j = nameStartIndex + 1; j <= nameEndIndex; j++) {
             recipeName.append(" ").append(command[j].toLowerCase().trim());
@@ -526,7 +537,8 @@ public class Parser {
         try {
             return LocalDate.parse(input, formatter);
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Please enter a valid date in the format dd/mm/yyyy");
+            throw new IllegalArgumentException(
+                    "Please enter a valid date in the format dd/mm/yyyy");
         }
     }
 
