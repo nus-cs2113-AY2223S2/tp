@@ -11,12 +11,14 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.storage.Storage;
+import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.data.userdata.UserExerciseData;
 import seedu.duke.data.userdata.userplan.UserPlan;
 
 import java.util.HashMap;
+
 
 public class GeneralCommandHandler implements CommandList {
 
@@ -46,8 +48,23 @@ public class GeneralCommandHandler implements CommandList {
         }
 
         try {
-
             switch (userCommands[0]) {
+            case DELETE_COMMAND:
+                //additional description becomes a number. Delete the session
+                try {
+                    if (additionalDescription.length() == 0) {
+                        throw new DukeError(ErrorMessages.ERROR_EMPTY_DESCRIPTION_NUMBER.toString());
+                    }
+                    int sessionNumber = Integer.parseInt(userCommands[1]);
+                    if ((sessionNumber > userCareerData.getTotalUserCareerSessions().size()) || sessionNumber <= 0) {
+                        throw new DukeError(ErrorMessages.ERROR_INVALID_DELETE_SESSION.toString());
+                    }
+                    exerciseStateHandler.deleteWorkoutSession(userCareerData, sessionNumber);
+                } catch (NumberFormatException e) {
+                    System.out.println("You did not key in a session number. " +
+                            "Please key in a valid session number and try again!");
+                }
+                break;
             case GENERATE_COMMAND:
                 command = new GenerateFilterCommand(userCommands);
                 break;

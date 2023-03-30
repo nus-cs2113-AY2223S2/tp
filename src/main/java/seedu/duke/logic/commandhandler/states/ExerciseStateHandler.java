@@ -101,6 +101,12 @@ public class ExerciseStateHandler {
         currentSessionWorkout = null;
     }
 
+    public void deleteWorkoutSession (UserCareerData userCareerData, int i) throws DukeError{
+        System.out.println("OK, you have deleted Workout Session Number " + i + "!");
+        userCareerData.deleteWorkoutSession(i);
+        storage.writeToJson(userCareerData);
+    }
+
     private void updateWorkoutAchievements(Session session, AchievementListHandler achievementListHandler) {
         ArrayList<Achievement> completedAchievements = new ArrayList<>();
         ArrayList<Achievement> loggedAchievements = achievementListHandler.getAchievementList();
@@ -142,6 +148,7 @@ public class ExerciseStateHandler {
     }
 
 
+
     /**
      * Prints congratulation message and saves the completed session
      *
@@ -154,5 +161,6 @@ public class ExerciseStateHandler {
         userCareerData.addWorkoutSession(completedWorkout);
         storage.writeToJson(userCareerData);
     }
+
 
 }

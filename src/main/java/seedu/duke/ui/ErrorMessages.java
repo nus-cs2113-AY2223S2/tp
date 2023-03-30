@@ -36,6 +36,8 @@ public enum ErrorMessages {
     ERROR_NUM_ACHIEVEMENT_NOT_FOUND("The number of achievements seem to be lost. Achievements might not"),
     ERROR_LOAD_CORRUPT_ACHIEVEMENT_DATA("This particular achievement entry is corrupt, not loading this achievement"),
     ERROR_INVALID_PLAN("No such plan found!"),
+    ERROR_EMPTY_DESCRIPTION_NUMBER("Please specify the session number which you want to delete!"),
+    ERROR_INVALID_DELETE_SESSION("Unable to delete session as the session does not exist!"),
     ERROR_UNABLE_TO_WRITE_TO_FILE("Unable to append to file"),
     ERROR_DELETE_CONTENT_ERROR_TEXT("For some reason I cant delete the content of the folder");
 
