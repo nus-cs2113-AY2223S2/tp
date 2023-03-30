@@ -51,14 +51,14 @@ APP accept the <strong>same name for different recipes</strong>. For example, yo
 <h2 id="viewing-help-help"> Viewing help:<code class="language-plaintext highlighter-rouge">help</code></h2>
 
 Shows a message explaining how to access the help page.<br>
-Format: `help`<br>
+**Format**: `help`<br>
 
 <h2 id="adding-a-recipe-add"> Adding a recipe: <code class="language-plaintext highlighter-rouge">add</code></h2>
 
-Adds a recipe to the recipe manager.
-**Format**: `add n/NAME i/INGREDIENTS t/TAG s/NUMBEROFSTEPS`
-**Hint**: Number of steps is the number of steps in the recipe, then you will be prompted to enter the steps.
-**Examples**:
+Adds a recipe to the recipe manager.<br>
+**Format**: `add n/NAME i/INGREDIENTS t/TAG s/NUMBEROFSTEPS`<br>
+**Hint**: Number of steps is the number of steps in the recipe, then you will be prompted to enter the steps.<br>
+**Examples**:<br>
 ```
 __________________________________________________________
 add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/4
@@ -87,10 +87,10 @@ __________________________________________________________
 
 <h2 id="editing-a-recipe-step-editstep"> Editing a recipe's steps: <code class="language-plaintext highlighter-rouge">editstep</code></h2>
 
-Edits a step for a recipe in the recipe manager.
-**Format**: `editstep INDEX`, then input the step number
-**Hint**: At the edit page, you can input `quit` if you decide not to edit.
-**Examples**:
+Edits a step for a recipe in the recipe manager.<br>
+**Format**: `editstep INDEX`, then input the step number<br>
+**Hint**: At the edit page, you can input `quit` if you decide not to edit.<br>
+**Examples**:<br>
 
 ```
 editstep 2
@@ -123,11 +123,11 @@ Following which, type in the description for the step.
 
 <h2 id="editing-a-recipe-ingredient-editingredient"> Editing a recipe's ingredients: <code class="language-plaintext highlighter-rouge">editingredient</code></h2>
 
-<p>Edits an ingredient for a recipe in the recipe manager.
+Edits an ingredient for a recipe in the recipe manager.<br>
 
-**Format**: `editingredient INDEX`, then input the ingredient number
-**Hint**: At the edit page, you can input `quit` if you decide not to edit.
-**Examples**:
+**Format**: `editingredient INDEX`, then input the ingredient number<br>
+**Hint**: At the edit page, you can input `quit` if you decide not to edit.<br>
+**Examples**:<br>
 
 ```
 editingredient 1
@@ -160,7 +160,7 @@ __________________________________________________________
 First input the index of the recipe to edit, then input the ingredient number you would like to edit.
 Following which, type in the description for the ingredient. </p>
 
-<p> Note that to `exit` the whole program from the edit window, you have to `quit` first then `exit` </p>
+Note that to `exit` the whole program from the edit window, you have to `quit` first then `exit` 
 
 <h2 id="deleting-a-recipe-delete"> Deleting a recipe: <code class="language-plaintext highlighter-rouge">delete</code></h2>
 
@@ -181,11 +181,12 @@ __________________________________________________________
 <p>App will remove the recipe with the corresponding index.</p>
 
 <h2 id="finding-recipes-find"> Finding recipes: <code class="language-plaintext highlighter-rouge">find</code></h2>
-Find recipes whose names contain any of the given keywords. The results will be displayed in a list, telling you the index of the recipe in the recipe list. Only the name of the recipe will be searched.
 
-**Format**: `find KEYWORD`
-**constraints**: `KEYWORD` cannot be empty.
-**Examples**:
+Find recipes whose names contain any of the given keywords. The results will be displayed in a list, telling you the index of the recipe in the recipe list. Only the name of the recipe will be searched.<br>
+
+**Format**: `find KEYWORD`<br>
+**constraints**: `KEYWORD` cannot be empty.<br>
+**Examples**:<br>
 ```
 __________________________________________________________
 find hotpot
@@ -200,10 +201,10 @@ __________________________________________________________
 
 <div>Views a detailed recipe from the recipe manager if INDEX is entered.</div>
 
-**Format**: `view INDEX`
-**Hint**: If you want to view a recipe **by name**, use the **find** command first to find the index of the recipe, then use the view command to view the recipe.
-**Constraints**: The index must be a positive integer larger than 0.
-**Examples**:
+**Format**: `view INDEX` <br>
+**Hint**: If you want to view a recipe **by name**, use the **find** command first to find the index of the recipe, then use the view command to view the recipe.<br>
+**Constraints**: The index must be a positive integer larger than 0.<br>
+**Examples**:<br>
 ```
 __________________________________________________________
 view 1
@@ -226,22 +227,22 @@ __________________________________________________________
 <h2 id="listing-all-recipes-list"> Listing all recipes: <code class="language-plaintext highlighter-rouge">list</code></h2>
 
 This feature allows you to **list all recipes** you currently have. This feature is useful after using the add, edit and delete commands to make changes to the recipe list, as it shows you the updated list.
-**Format**: `list`
-**Examples**:
+**Format**: `list`<br>
+**Examples**:<br>
 * `list`
 
 <h2 id="clearing-all-entries-clear"> Clearing all entries: <code class="language-plaintext highlighter-rouge">clear</code></h2>
 
 This feature allows you to **delete all recipes** that are currently stored on the recipe manager. Users may use this to clear all data when starting to use the app or when they wish to clear all data.
-**Format**: `clear`
-**Examples**:
+**Format**: `clear`<br>
+**Examples**:<br>
 * `clear`
 
 <h2 id="exiting-the-program-exit"> Exiting the program: <code class="language-plaintext highlighter-rouge">exit</code></h2>
 
 Exits the program.
-**Format**: `exit`
-**Examples**:
+**Format**: `exit`<br>
+**Examples**:<br>
 * `exit`
 
 <h2 id="save-data"> Saving the data </h2>
@@ -249,7 +250,7 @@ The recipe manager data are saved in the hard disk automatically after any comma
 
 <h2 id="edit-data"> Editing the data file </h2>
 
-The recipe data are saved as a text file `[JAR file location]/data/[dish name].txt`. 
+The recipe data are saved as a text file `[JAR file location]/data/[INDEX-(dish name)].txt`. 
 Here is an example of a valid file, `data/Hotpot.txt`:
 ```
 Hotpot
@@ -280,10 +281,10 @@ If you change the data file **in a wrong way**, the recipe manager will not star
 |  ----  | ----  | ----  |
 | [**help**](#viewing-help-help)  | `help` | |
 | [**add**](#adding-a-recipe-add) | `add n/NAME t/TAG i/INGREDIENT ... s/SUMOFSTEP [STEP]...` | `add n/Hotpot t/Chinese i/Beef i/Potatoes i/Carrots s/2` `add carrots` `cook 5 minutes` |
-| [**editingredient**](#editing-ingredients-editingredient)  | `editingredient INDEX` | |
+| [**editingredient**](#editing-a-recipe-ingredient-editingredient)  | `editingredient INDEX` | |
 | [**editstep**](#editing-steps-editstep)  | `editstep INDEX` | |
 | [**delete**](#deleting-a-recipe-delete)  | `delete INDEX` | `delete 1` |
-| [**find**](#finding-recipes-by-name-find)  | `find KEYWORD ` | `find Hotpot` |
+| [**find**](#finding-recipes-find)  | `find KEYWORD ` | `find Hotpot` |
 | [**view**](#viewing-a-recipe-view)  | `view INDEX` | `view 1` |
 | [**list**](#listing-all-recipes-list)  | `list` | |
 | [**clear**](#clearing-all-entries-clear)  | `clear` | |
