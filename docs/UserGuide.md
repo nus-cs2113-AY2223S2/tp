@@ -79,8 +79,7 @@ Got it. I've added this recipe:
   [Chinese] Hotpot
 Now you have 2 recipes in the list.
 
-MaLaXiangGuo
-Hotpot
+Data saved successfully!
 __________________________________________________________
 ```
 <p>App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.</p>
@@ -93,6 +92,7 @@ Edits a step for a recipe in the recipe manager.<br>
 **Examples**:<br>
 
 ```
+__________________________________________________________
 editstep 2
 There are 1 steps in the list
 1. chop beef
@@ -103,6 +103,9 @@ Enter the description of the step:
 go to haidilao
 Step has been edited:
 1. go to haidilao
+
+Data saved successfully!
+__________________________________________________________
 ```
 ```
 editstep 1
@@ -130,6 +133,7 @@ Edits an ingredient for a recipe in the recipe manager.<br>
 **Examples**:<br>
 
 ```
+__________________________________________________________
 editingredient 1
 Here are 3 ingredients in the list:
 1. Beef
@@ -142,9 +146,13 @@ Enter the description of the ingredient:
 Chicken
 Ingredient has been edited:
 2. Chicken
+
+Data saved successfully!
+__________________________________________________________
 ```
 
 ```
+__________________________________________________________
 editingredient 1
 Here are 3 ingredients in the list:
 1. Beef
@@ -175,7 +183,8 @@ Noted. I've removed this recipe:
   [Chinese] MaLaXiangGuo
 Now you have 1 recipes in the list.
 
-Hotpot
+
+Data saved successfully!
 __________________________________________________________
 ```
 <p>App will remove the recipe with the corresponding index.</p>
@@ -217,10 +226,19 @@ Here are 3 ingredients in the list:
 3. Carrots
 __________________________________________________________
 There are 4 steps in the list
+Do you want to view step-by-step?
+Type "yes" if so
+yes
+To exit recipe view, type "quit"
+Else, enter any key to continue
 1. chop beef
+
 2. add potatoes
+
 3. add carrots
+
 4. cook 5 minutes
+
 __________________________________________________________
 ```
 
@@ -250,7 +268,7 @@ The recipe manager data are saved in the hard disk automatically after any comma
 
 <h2 id="edit-data"> Editing the data file </h2>
 
-The recipe data are saved as a text file `[JAR file location]/data/[INDEX-(dish name)].txt`. 
+The recipe data are saved as a text file `[JAR file location]/data/[INDEX]-[dish name].txt`. 
 Here is an example of a valid file, `data/1-Hotpot.txt`:
 ```
 Hotpot
@@ -266,9 +284,9 @@ add carrots
 cook 5 minutes
 ```
 The first line is the name of the dish. And the second line is the tag of the dish. The third line is the ingredient list. The following lines are the ingredients until the line "Step list". The following lines are the steps until the end of the file.
-***warning***:
-* Do **NOT** modify the save data easily.
-If you change the data file **in a wrong way**, the recipe manager will not start up correctly.
+***WARNING***:
+* Do **NOT** modify the save data.
+* If you modify the data file, and save data has **the wrong format**, the recipe manager will not process the data correctly.
 
 <h2 id='faq'> FAQ </h2>
 <strong>Q:</strong> What happens if I don't format the parameter correctly?<br>
