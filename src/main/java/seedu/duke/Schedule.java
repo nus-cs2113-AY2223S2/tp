@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -121,7 +122,7 @@ public class Schedule {
         }
         return formatter.format(timeInfo);
     }
-    public boolean isRecurring() {
+    public boolean isRecur() {
         return isRecurring;
     }
     public String getTime() {
@@ -167,26 +168,27 @@ public class Schedule {
         this.hasEndInfo = false;
     }
 
+    public int getActualInterval() {
+        String[] details = this.timeInterval.split(" ");
+
+        int actualDays = 0;
+        switch(details[1].trim()) {
+            case("D"):
+                actualDays = Integer.parseInt(details[0].trim());
+                break;
+            case("W"):
+                actualDays = Integer.parseInt(details[0].trim()) *7;
+                break;                
+            default:
+                break;
+        }
+        return actualDays;
+    }
+
     // fuinction mayhbe useful in arlarm?
     public ArrayList<Schedule> getNextNTimes(int n) {
         ArrayList<Schedule> list = new ArrayList<>();
-        String[] details = timeInterval.split(" ");
-        int actualDays = 0;
-        switch(details[1].trim()) {
-        case("D"):
-            actualDays = Integer.parseInt(details[0].trim());
-            break;
-        case("W"):
-            actualDays = Integer.parseInt(details[0].trim()) *7;
-            break;                
-        case("M"):
-            // dk how to do this, once in a month does it mean once in 30 days or 31?
-            //or we just stipulate it as 30......?
-            break;
-        default:
-            //exceptions
-            break;
-        }
+        int actualDays = getActualInterval();
         
         LocalDateTime stTime = startTime;
         LocalDateTime edTime = endTime;
@@ -201,9 +203,17 @@ public class Schedule {
         return list;
     }
 
-    // public ArrayList<Schedule> schedulesInThisWeek() {
+    public ArrayList<Schedule> schedulesInThisWeek(LocalDate weekStartDate, LocalDate weekEndDate) {
+        ArrayList<Schedule> events = new ArrayList<Schedule>();
+        
+        long timeToStart = weekStartDate.toEpochDay() - startTime.toLocalDate().toEpochDay();
+        int recurTime = getActualInterval();
+        int weeks = (int)timeToStart / recurTime;
+        int remdays = (int)timeToStart % recurTime;
 
-    // }
+        
+        return events;
+    }
 
     // need exception
     public void reviseTimeinterval(String recurringTime) {
