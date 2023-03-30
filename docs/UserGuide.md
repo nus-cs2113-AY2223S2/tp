@@ -233,32 +233,67 @@ Outcome:
 
 ### Staffs
 
-#### Add a worker:
+#### Add a staff:
 
-Add a worker to the workers list.
+Add a staff to the staffs list.
 
-Format: `add_worker n/<name> w/<working day> d/<date of birth> p/<phone>`
-
-Example: 
-```
-add_worker w/Weekdays Morning Shift n/Patrick Parker d/12 Aug 2002 p/9583 4832
-```
-
-#### View a worker:
-
-View the workers list.
-
-Format: `view_workers`
-
-#### Delete a worker:
-
-Delete a worker from the workers list.
-
-Format: `delete_worker n/<name>`
+Format: `add_staff n/<name> w/<working day> d/<date of birth> p/phone`
 
 Example: 
 ```
-delete_worker n/Patrick Parker
+add_staff n/John Doe w/Sunday d/09 March 2001 p/82802123
+```
+
+Outcome: 
+```
+John Doe, working in Sunday. Date of birth: 09 March 2001, phoneNumber: 82802123 added!
+```
+
+#### View a staff:
+
+View the staffs list.
+
+Format: `view_staff` 
+
+Outcome: 
+```
+1. john, working in thursday. Date of birth: 234, phoneNumber: 1234
+2. jane, working in thursday. Date of birth: 12356, phoneNumber: 1007
+3. name, working in thus. Date of birth: 1007, phoneNumber: 1235
+4. titi, working in 12. Date of birth: 12, phoneNumber: 12
+5. kristian, working in test. Date of birth: 12, phoneNumber: 12
+6. John Doe, working in Sunday. Date of birth: 09 March 2001, phoneNumber: 82802123
+```
+
+#### Delete a staff:
+
+Delete a staff from the staffs list.
+
+Format: `delete_staff <staff index>`
+
+Example: 
+```
+delete_staff 1
+```
+
+Outcome: 
+```
+1 john, working in thursday. Date of birth: 234, phoneNumber: 1234 removed
+```
+
+### Find a staff 
+
+Find a staff from staffs list  
+
+Format: `find_staff <keyword>`
+Example: 
+```
+find_staff titi
+```
+
+Outcome: 
+```
+titi, working in 12. Date of birth: 12, phoneNumber: 12
 ```
 
 ### Storage
@@ -270,7 +305,6 @@ The data stored in those files are in plaintext format and the user can copy out
 **Q**: How do I set up the project?
 
 **A**: Clone the project from GitHub and run it through Intellij.
-
 
 
 
@@ -289,5 +323,9 @@ The data stored in those files are in plaintext format and the user can copy out
 | view_deadline   | view_deadline                                                                                                  |
 | delete_deadline | delete_deadline <index>                                                                                        |
 | find_deadline   | find_deadline <keyword>                                                                                        |
+| add_staff      | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                                   |
+| view_staff     | `view_staff`                                                                                                     |
+| delete_staff   | `delete_staff <staff index>`                                                                                     |
+| find_staff     | `find_staff <keyword>`                                                                                           |
 
 
