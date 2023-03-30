@@ -13,12 +13,11 @@ Duck is a **desktop app for managing tasks and deadlines, optimised for use via 
     * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number> `
     * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-task_number) `unmark <task number>`
     * [Deleting a task :](#deleting-a-task--delete) `delete <task number> `
-    * [Deleting a school class :](#deleting-a-school-class--remove-class) `remove class /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm> `
+    * [Deleting a school class :](#deleting-a-school-class--remove-class) `remove /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm> `
     * [Designate a priority to a given task :](#designate-a-task-priority--priority-task_number-priority) 
             * `priority <task number> <priority>`   
     * [List tasks of low/medium/high priority :](#listing-all-low-priority-tasks--low_priority) `low_priority`/`medium_priority`/`high_priority`
     * [List tasks in priority order:](#listing-all-tasks-arranged-by-priority--priority_list) `priority_list`
-    * [Refresh task list and class schedule:](#refreshing-task-list-and-class-schedule--refresh) `refresh`
     * [Purge expired tasks :](#purge-expired-tasks--purge) `purge`
     * [Clearing all tasks (including datafile) :](#clearing-tasks-from-storage-clear) `clear `
     * [Find tasks matching a given keyword :](#finding-tasks-from-storage-that-match-a-keyword-find-keyword) `find <keyword>`
@@ -267,7 +266,7 @@ You now have 3 tasks in your list.
 
 Removes a school class from the schedule.
 
-**Input:** `remove class /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>`
+**Input:** `remove /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>`
 
 **Output:  Demonstrated with input `remove class /class CS2113 /description /day THURSDAY /from 1100 /to 1200`**
 
@@ -297,18 +296,6 @@ By default there is no priority specified.
 ```
 Understood. The task's new priority is:
 	 Low priority.
-```
-
-
-## **Refreshing task list and class schedule : `refresh`**
-
-Clears the task list and class schedule, and reloads them from the savedata. This function is mainly used to update class sorting and tracking.
-
-**Output:**
-
-
-```
-Your task list and class schedule have been refreshed!
 ```
 
 
