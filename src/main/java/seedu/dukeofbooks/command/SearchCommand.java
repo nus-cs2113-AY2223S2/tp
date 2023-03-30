@@ -2,15 +2,13 @@ package seedu.dukeofbooks.command;
 
 import java.util.ArrayList;
 
-import com.ibm.j9ddr.vm29.structure.stat;
-
 import seedu.dukeofbooks.common.Messages;
 import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.exception.IllegalOperationException;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import static seedu.dukeofbooks.common.Messages.DIVIDER;
-import static seedu.dukeofbooks.common.Messages.NEW_LINE;;
+import static seedu.dukeofbooks.common.Messages.NEW_LINE;
 
 public class SearchCommand extends UserCommand {
     public static final String COMMAND_WORD = "search";
@@ -61,10 +59,11 @@ public class SearchCommand extends UserCommand {
     }
 
     private String processBooks(ArrayList<Book> books) throws IllegalValueException {
+        String returnString = "";
         if (books == null){
             throw new IllegalValueException(INVALID_ITEM_BORROWED);
         }
-        String returnString = "";
+
         returnString = returnString.concat(RESULT_STRING);
         for (int i = 0; i < books.size(); i++) {
             Book book = books.get(i);

@@ -52,8 +52,12 @@ public class SearchController {
         HashMap<Book, InventoryDetails> listing = inventory.getInventoryMap();
         ArrayList<Book> target = listing.entrySet()
                                         .stream()
-                                        .filter(e -> e.getKey().getTitle().toString().toLowerCase().contains(titleString))
+                                        .filter(e -> e.getKey().getTitle().toString().
+                                                toLowerCase().contains(titleString))
                                         .map(Map.Entry::getKey).collect(Collectors.toCollection(ArrayList::new));
+        if (target.size()==0) {
+            throw new IllegalValueException(BOOK_TITLE_NOT_FOUND);
+        }
         return target;
     }
     public static ArrayList<Book> searchBooksByTopic(String topic) throws IllegalValueException {
@@ -64,6 +68,10 @@ public class SearchController {
                                         .stream()
                                         .filter(e -> e.getKey().getTopic().toString().contains(topic))
                                         .map(Map.Entry::getKey).collect(Collectors.toCollection(ArrayList::new));
+        
+        if (target.size()==0) {
+            throw new IllegalValueException(BOOK_TOPIC_NOT_FOUND);
+        }
         return target;
     }
     public static Book searchBookByTopic(String topic) throws IllegalValueException {

@@ -38,8 +38,6 @@ public class DukeOfBooks {
     private TextUi ui;
 
     public static void main(String[] args) {
-        // System.out.println("Hello, world!");
-
         new DukeOfBooks().run();
     }
 
@@ -58,7 +56,7 @@ public class DukeOfBooks {
             SearchController.setData(inventory);
             // add test data
             Isbn isbn = new Isbn("testIsbn");
-            Title title = new Title("testTitle");
+            Title title = new Title("the greatest nation");
             Topic topic = new Topic("testTopic");
             PersonName authorName = new PersonName("Author");
             Phone authorPhone = new Phone(87654321);
@@ -66,10 +64,8 @@ public class DukeOfBooks {
             Book book = new Book(isbn, title, topic, author);
             InventoryController.addBook(book);
 
-            // signup -username u -password p -name n
-            // search -title title -topic another
             isbn = new Isbn("testIsbn2");
-            title = new Title("testTitleanother");
+            title = new Title("the great wall of china");
             topic = new Topic("testTopicanother");
             authorName = new PersonName("Authoranother");
             authorPhone = new Phone(87654321);

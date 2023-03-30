@@ -14,17 +14,29 @@ import seedu.dukeofbooks.data.inventory.Inventory;
 
 import static seedu.dukeofbooks.common.Messages.BOOK_TITLE_NOT_FOUND;
 import static seedu.dukeofbooks.common.Messages.BOOK_TOPIC_NOT_FOUND;
-import static seedu.dukeofbooks.command.SearchCommand.RESULT_STRING;
 
 public class SearchCommandTest {
+    public static final String VALID_REPONSE_STRING = "The Search Results:\n"+
+            "===================================================\n"+
+            "No.1\n"+
+            "ISBN: 1234567890123\n"+
+            "Title: The only book\n"+
+            "Author: anon\n"+
+            "Topic: python\n";
+    public static final String VALID_BOOK_TITLE = "The only book";
+    public static final String VALID_BOOK_ISBN = "1234567890123";
+    public static final String VALID_BOOK_AUTHOR = "anon";
+    public static final String VALID_BOOK_TOPIC = "python";
+    
     public Inventory inventory = new Inventory();
     public Book newBook;
 
+
     public void execute_validSearchTitle_success() {
-        SearchCommand command = new SearchCommand("The only book",SearchCommand.TITLE_SEARCH);
+        SearchCommand command = new SearchCommand("book",SearchCommand.TITLE_SEARCH);
         CommandResult result = command.execute();
         
-        assertEquals(String.format(RESULT_STRING,newBook.toString()), result.feedbackToUser);
+        assertEquals(VALID_REPONSE_STRING, result.feedbackToUser);
     }
 
     public void execute_invalidSearchTitle_fail() {
@@ -35,10 +47,10 @@ public class SearchCommandTest {
     }
 
     public void execute_validSearchTopic_success() {
-        SearchCommand command = new SearchCommand("python",SearchCommand.TOPIC_SEARCH);
+        SearchCommand command = new SearchCommand(VALID_BOOK_TOPIC,SearchCommand.TOPIC_SEARCH);
         CommandResult result = command.execute();
         
-        assertEquals(String.format(RESULT_STRING,newBook.toString()), result.feedbackToUser);
+        assertEquals(VALID_REPONSE_STRING, result.feedbackToUser);
     }
 
     public void execute_invalidSearchTopic_fail() {
@@ -53,7 +65,7 @@ public class SearchCommandTest {
     public void execute_searchTitle() throws DukeOfBooksException {
         SearchController.setData(inventory);
         InventoryController.setData(inventory);
-        this.newBook = new Book("1234567890123", "The only book", "python", "anon");
+        this.newBook = new Book(VALID_BOOK_ISBN, VALID_BOOK_TITLE, VALID_BOOK_TOPIC, VALID_BOOK_AUTHOR);
         InventoryController.addBook(this.newBook);
 
         execute_validSearchTitle_success();
@@ -67,7 +79,7 @@ public class SearchCommandTest {
         this.newBook = new Book("1234567890123", "The only book", "python", "anon");
         InventoryController.addBook(this.newBook);
 
-        execute_validSearchTitle_success();
-        execute_invalidSearchTitle_fail();
+        execute_validSearchTopic_success();
+        execute_invalidSearchTopic_fail();
     }
 }
