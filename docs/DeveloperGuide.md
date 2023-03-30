@@ -1,94 +1,107 @@
 <!-- omit in toc -->
+
 # Developer Guide
 
 <!-- omit in toc -->
+
 ## Table of Contents
+
 - [Design](#design)
-  - [Architecture](#architecture)
-  - [Frontend](#frontend)
-    - [Parser](#parser)
-    - [Commands](#commands)
-      - [Add Command](#add-command)
-      - [Delete Command](#delete-command)
-      - [Edit Command](#edit-command)
-        - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
-        - [Implementation](#implementation)
-        - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
-      - [View Command](#view-command)
-        - [Class diagram of view command](#class-diagram-of-view-command)
-        - [Implementation](#implementation-1)
-      - [Help Command](#help-command)
-        - [Implementation](#implementation-2)
-      - [Exit/Bye Command](#exitbye-command)
-        - [Implementation](#implementation-3)
-  - [Backend](#backend)
-    - [Storage](#storage)
-    - [API](#api)
-      - [Endpoints](#endpoints)
-        - [Creating a request](#creating-a-request)
-        - [Making a request](#making-a-request)
-      - [Access all entries available](#access-all-entries-available)
-        - [Get recent or all entries](#get-recent-or-all-entries)
-      - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
-        - [Add an entry](#add-an-entry)
-        - [View a specific entry](#view-a-specific-entry)
-        - [Delete an entry](#delete-an-entry)
-        - [Modify an entry](#modify-an-entry)
-  - [Data Structure](#data-structure)
-  - [Communication](#communication)
+    - [Architecture](#architecture)
+    - [Frontend](#frontend)
+        - [Parser](#parser)
+        - [Commands](#commands)
+            - [Add Command](#add-command)
+            - [Delete Command](#delete-command)
+            - [Edit Command](#edit-command)
+                - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+                - [Implementation](#implementation)
+                - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+            - [View Command](#view-command)
+                - [Class diagram of view command](#class-diagram-of-view-command)
+                - [Implementation](#implementation-1)
+            - [Help Command](#help-command)
+                - [Implementation](#implementation-2)
+            - [Exit/Bye Command](#exitbye-command)
+                - [Implementation](#implementation-3)
+    - [Backend](#backend)
+        - [Storage](#storage)
+        - [API](#api)
+            - [Endpoints](#endpoints)
+                - [Creating a request](#creating-a-request)
+                - [Making a request](#making-a-request)
+            - [Access all entries available](#access-all-entries-available)
+                - [Get recent or all entries](#get-recent-or-all-entries)
+            - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
+                - [Add an entry](#add-an-entry)
+                - [View a specific entry](#view-a-specific-entry)
+                - [Delete an entry](#delete-an-entry)
+                - [Modify an entry](#modify-an-entry)
+    - [Data Structure](#data-structure)
+    - [Communication](#communication)
 - [Testing](#testing)
-  - [Unit Tests](#unit-tests)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
-    - [Feature Testing](#feature-testing)
-    - [Add expense: /add](#add-expense-add)
-    - [View expense: /view](#view-expense-view)
-    - [Delete expense: /delete](#delete-expense-delete)
-    - [Edit expense: /edit](#edit-expense-edit)
-    - [Show help menu: /help](#show-help-menu-help)
-    - [Terminate program: /bye](#terminate-program-bye)
-  - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
-    - [Exceptions](#exceptions)
+    - [Unit Tests](#unit-tests)
+    - [Instructions for manual testing](#instructions-for-manual-testing)
+        - [Feature Testing](#feature-testing)
+        - [Add expense: /add](#add-expense-add)
+        - [View expense: /view](#view-expense-view)
+        - [Delete expense: /delete](#delete-expense-delete)
+        - [Edit expense: /edit](#edit-expense-edit)
+        - [Show help menu: /help](#show-help-menu-help)
+        - [Terminate program: /bye](#terminate-program-bye)
+    - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
+        - [Exceptions](#exceptions)
 - [Product scope](#product-scope)
-  - [Target user profile](#target-user-profile)
-  - [Value proposition](#value-proposition)
+    - [Target user profile](#target-user-profile)
+    - [Value proposition](#value-proposition)
 - [User Stories](#user-stories)
 - [Non-Functional Requirements](#non-functional-requirements)
 - [Acknowledgements](#acknowledgements)
-  - [Documentation](#documentation)
-  - [Storage](#storage-1)
-  - [Unit Tests](#unit-tests-1)
+    - [Documentation](#documentation)
+    - [Storage](#storage-1)
+    - [Unit Tests](#unit-tests-1)
 
 # Design
 
 ## Architecture
+
 ![PocketPal Architecture](./static/PocketPalArchitecture.png)
 
 The diagram above illustrates the high-level overview of `PocketPal`.
 
 __Main Components of PocketPal__
-- The entry point to our application is `pocketpal.PocketPal`, which creates the `Frontnend` and `Backend` instances at launch.
+
+- The entry point to our application is `pocketpal.PocketPal`, which creates the `Frontnend` and `Backend` instances at
+  launch.
 - `PocketPal` also sets up logging for the application, which outputs the logs to `logs/logging.txt`.
 
 __Frontend__
 `Frontend` is made up of the following components
+
 - `UI`: Handles display of user interface
 - `Parser`: Converts text entered by users into `Command` if valid
 - `Command`: Contains the instructions to be executed as input by the user
 
 __Backend__
 `Backend` is made up of the following components
-- `Endpoint`: The parent component used by various endpoints (`EntryEndpoint` and `EntriesEndpoint`), where the frontend can send a `Request` 
+
+- `Endpoint`: The parent component used by various endpoints (`EntryEndpoint` and `EntriesEndpoint`), where the frontend
+  can send a `Request`
 - `EntryLog`: The main data structure used for temporarily storing multiple `Entry` objects
 - `Storage`: Reads data from, and writes data to the disk, which can be found at `data/storage.txt`
 
 __Communication between `Frontend` and `Backend`__
-- PocketPal uses the `Gson` library to serialise and deserialise objects where applicable, such as `Entry` and `EntryLog`.
-- This allows us to standardise the communication framework between `Frontend` and `Backend`, by using a simplified HTTP model.
+
+- PocketPal uses the `Gson` library to serialise and deserialise objects where applicable, such as `Entry`
+  and `EntryLog`.
+- This allows us to standardise the communication framework between `Frontend` and `Backend`, by using a simplified HTTP
+  model.
 - Each endpoint takes in a `Request`, and returns a `Response` based on the requested data.
 
 ## Frontend
 
 <!-- @@author adenteo -->
+
 ### Parser
 
 The `Parser` class is a fundamental component instantiated as soon as PocketPal is initialised. Its __purpose__ is to
@@ -134,7 +147,9 @@ command: `/add McDonalds -c Food -p 10.50`
 ### Commands
 
 #### Add Command
-The add entry mechanism is facilitated by `EntryLog`. Every instance of `AddCommand` is created with an `Entry` instance.
+
+The add entry mechanism is facilitated by `EntryLog`. Every instance of `AddCommand` is created with an `Entry`
+instance.
 
 The following sequence diagram shows how the add command work:
 
@@ -145,17 +160,21 @@ Given below is an example usage scenario and how the add mechanism behaves at ea
 
 Step 1. The user launches the application for the first time. The `EntryLog` will be initialized and contains no entry.
 
-Step 2. The user executes `/add Lunch at McDonalds -category Food -price 19.9` command to add an `Entry` to the `EntryLog`.
+Step 2. The user executes `/add Lunch at McDonalds -category Food -price 19.9` command to add an `Entry` to
+the `EntryLog`.
 
-_***Note.*** The command will fail its execution if its format is incorrect, and no `Entry` will be added to the `Entrylog`. An error message will be displayed informing the user._
+_***Note.*** The command will fail its execution if its format is incorrect, and no `Entry` will be added to
+the `Entrylog`. An error message will be displayed informing the user._
 
 Step 3. The command will be resolved by `Parser`, which would create an `AddCommmand` object.
 
-Step 4. The `AddCommand` constructor creates and returns an `Entry` object containing the description, price and category to be added.
+Step 4. The `AddCommand` constructor creates and returns an `Entry` object containing the description, price and
+category to be added.
 
 Step 5. When `execute()` method is called, a `Request` object is created.
 
-Step 6. From there, the `Request` is ready to be handled. `addEntry()` method is called and the new `Entry` is added to the `EntryLog`.
+Step 6. From there, the `Request` is ready to be handled. `addEntry()` method is called and the new `Entry` is added to
+the `EntryLog`.
 
 Step 7. A success message is after the new `Entry` is added to the `EntryLog`.
 
@@ -164,6 +183,7 @@ The following activity diagram summarizes what happens when a user executes an a
 ![AddCommandActivityDiagram](static/frontend/commands/AddCommandActivityDiagram.png)
 
 #### Delete Command
+
 The 'delete' entry mechanism is facilitated by `EntryLog`.
 
 Every instance of `DeleteCommand` is created with an Integer, which is the ID of the `Entry` to be deleted.
@@ -178,41 +198,50 @@ Given below is an example usage scenario and how the delete mechanism behaves at
 
 Step 1. The user decides to remove an `Entry` from the `EntryLog` and executes `/delete 1` command.
 
-_**Note:** The command will fail its execution if the index provided is invalid, and no `Entry` will be removed from the `EntryLog`. An error message will be displayed informing the user._
+_**Note:** The command will fail its execution if the index provided is invalid, and no `Entry` will be removed from
+the `EntryLog`. An error message will be displayed informing the user._
 
-Step 2. The command will be resolved by `Parser`, which would create an `DeleteCommmand` object containing the index of the `Entry` to be deleted.
+Step 2. The command will be resolved by `Parser`, which would create an `DeleteCommmand` object containing the index of
+the `Entry` to be deleted.
 
 Step 3. When `execute()` method is called, a `Request` object is created.
 
-Step 4. From there, the `Request` is ready to be handled. `deleteEntry()` method is called and the `Entry` is removed from `EntryLog`.
+Step 4. From there, the `Request` is ready to be handled. `deleteEntry()` method is called and the `Entry` is removed
+from `EntryLog`.
 
 Step 5. A success message is after the `Entry` is removed from `EntryLog`.
 
-The following activity diagram summarizes what happens when a user executes a delete   command:
+The following activity diagram summarizes what happens when a user executes a delete command:
 
 ![DeleteCommandActivityDiagram](static/frontend/commands/DeleteCommandActivityDiagram.png)
 
 <!-- @@author leonghuenweng -->
+
 #### Edit Command
+
 ##### Overall class diagram for editing an Entry
+
 ![EditCommandClassDiagram](static/frontend/commands/EditCommandClassDiagram.png)
 
 ##### Implementation
 
-**Step 1.** User runs Edit command, specifying the ID of the entry to edit, as well as the new attributes of the respective
+**Step 1.** User runs Edit command, specifying the ID of the entry to edit, as well as the new attributes of the
+respective
 fields.
 
 **Step 2.** Parser extracts the relevant argument and returns a EditCommand object.
 
-**Step 3.** The execute method of the EditCommand is called and a Request object is created. This request object specifies
+**Step 3.** The execute method of the EditCommand is called and a Request object is created. This request object
+specifies
 the modifications of the various fields.
 
-**Step 4.** The Request object is then parsed as an argument to the Backend Class, which feeds this request as an argument
+**Step 4.** The Request object is then parsed as an argument to the Backend Class, which feeds this request as an
+argument
 to a method in the EntryEndpoint class.
 
 **Step 5.** The EntryEndpoint class then finds and modifies the entry as specified by the user.
 
-**Step 6.** Upon successful completion of the modification, the EntryEndpoint class returns a Response object to the 
+**Step 6.** Upon successful completion of the modification, the EntryEndpoint class returns a Response object to the
 Backend class. The Response object contains the updated fields of the entry.
 
 **Step 7.** The Backend class calls the save() method to update the Storage class with the edited entry.It then returns
@@ -226,29 +255,32 @@ acknowledgement message is printed to the user.
 ![img_1.png](static/frontend/commands/EditCommandSequenceDiagram.png)
 
 #### View Command
-##### Class diagram of view command 
+
+##### Class diagram of view command
+
 ![ViewCommandClassDiagram.png](./static/viewCommandClassDiagram.png)
-Class diagram above shows the methods called in the execute method of the 
+Class diagram above shows the methods called in the execute method of the
 View Command object.
 
 ##### Implementation
+
 ![ViewCommandSequenceDiagram.png](static/frontend/commands/ViewCommandOverallSequenceDiagram.png)
 
 **Step 1.** String of user arguments is fed into the parseViewCommand method in Parser object.
 
-**Step 2.** The various filters such as price and dateTime are extracted from the argument String and fed into the 
-            constructor of viewCommand.
+**Step 2.** The various filters such as price and dateTime are extracted from the argument String and fed into the
+constructor of viewCommand.
 
 **Step 3.** A request object is instantiated, with all the query parameters (eg price) as its attributes.
 
 **Step 4.** The request is fed into the backend method requestEndpointEntries, which then sends this request to the
-            EntriesEndpoint class.
+EntriesEndpoint class.
 
-**Step 5.** A response object is then returned from EntriesEndpoint. This response contains the serialised form of all 
-            relevant entries.
+**Step 5.** A response object is then returned from EntriesEndpoint. This response contains the serialised form of all
+relevant entries.
 
-**Step 6.** The entries are then deserialised and fed into the ui printEntriesToBeViewed method, which prints the 
-            details of each entry to the user.
+**Step 6.** The entries are then deserialised and fed into the ui printEntriesToBeViewed method, which prints the
+details of each entry to the user.
 
 #### Help Command
 
@@ -258,9 +290,8 @@ View Command object.
 
 **Step 2.** The execute method of the returned HelpCommand object is then called.
 
-**Step 3.** In the execute method, the printHelp method of the UI Class is called and a fixed string displaying all 
-            available commands is called.
-
+**Step 3.** In the execute method, the printHelp method of the UI Class is called and a fixed string displaying all
+available commands is called.
 
 #### Exit/Bye Command
 
@@ -269,7 +300,7 @@ View Command object.
 **Step 1.** The Parser extracts the bye command from the user input and calls the parseHelpCommand method.
 
 **Step 2.** An ExitCommand is returned and since this command is the only command object with the isExit attribute set
-            as "true", the while loop of the program will terminate since !isExit is the loop condition.
+as "true", the while loop of the program will terminate since !isExit is the loop condition.
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -283,31 +314,37 @@ View Command object.
 </div> -->
 
 <!-- @@author jinxuan-owyong -->
+
 ## Backend
 
-The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices. The following diagram illustrates the relationship between various classes involved in `Backend` as described in the [application architecture](#architecture)
+The backend uses a simplified RESTful API approach. This allows us to decouple code using the proven industry practices.
+The following diagram illustrates the relationship between various classes involved in `Backend` as described in
+the [application architecture](#architecture)
 
 ![Backend](./static/backend/BackendClassDiagram.png)
 
-
 To find out more, visit the following sections:
+
 - [Storage](#storage)
 - [API](#api)
-  - [Add, modify, view or delete an entry - `GET`](#add-modify-view-or-delete-an-entry)
-  - [Access all entries available - `DELETE`, `GET`, `PATCH`, `POST`](#access-all-entries-available)
+    - [Add, modify, view or delete an entry - `GET`](#add-modify-view-or-delete-an-entry)
+    - [Access all entries available - `DELETE`, `GET`, `PATCH`, `POST`](#access-all-entries-available)
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
 
 <!-- @@author nghochi123 -->
+
 ### Storage
 
-The `Storage` class is responsible for the serialization of `Entry` data into a csv-like syntax, as well as the deserialization of that data back into `Entry` objects.
+The `Storage` class is responsible for the serialization of `Entry` data into a csv-like syntax, as well as the
+deserialization of that data back into `Entry` objects.
 
 The main callable functions to be used are:
 
-- `readFromDatabase()` - Deserializes data stored in text form back into `Entry` objects. Executed when PocketPal is instantiated
+- `readFromDatabase()` - Deserializes data stored in text form back into `Entry` objects. Executed when PocketPal is
+  instantiated
 - `writeToDatabase()` - Serializes `Entry` objects in `EntryLog` into text form.
 - `reset()` - Clears whatever is in the stored text file, without affecting what is in the current `EntryLog`.
 
@@ -315,9 +352,10 @@ The structure of the Storage class is as follows:
 
 ![StorageClassDiagram](static/backend/storage/StorageClassDiagram.png)
 
-The Sequence Diagram below illustrates the interactions within the `Parser` component upon initialization of PocketPal, as well as whenever data is being saved.
+The Sequence Diagram below illustrates the interactions within the `Parser` component upon initialization of PocketPal,
+as well as whenever data is being saved.
 
-![StorageSequenceDiagram](static/backend/storage/StorageSequenceDiagram.png) 
+![StorageSequenceDiagram](static/backend/storage/StorageSequenceDiagram.png)
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -325,7 +363,9 @@ The Sequence Diagram below illustrates the interactions within the `Parser` comp
 <!-- @@author -->
 
 <!-- @@author jinxuan-owyong -->
+
 ### API
+
 #### Endpoints
 
 ![Endpoints](static/backend/endpoint/EndpointClassDiagram.png)
@@ -335,7 +375,7 @@ The sequence diagram for specific request handling at each endpoint can be viewe
 Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints available:
 
 | Endpoint   | Method to call          |
-| ---------- | ----------------------- |
+|------------|-------------------------|
 | `/entry`   | `callEntryEndpoint()`   |
 | `/entries` | `callEntriesEndpoint()` |
 
@@ -346,8 +386,8 @@ Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints avai
 - If there are any parameters associated with the request, you may add them using `addParam()`
 
 ```java
-Request req = new Request(RequestMethod.PATCH);
-req.addParam(RequestParams.EDIT_DESCRIPTION, "mango juice");
+Request req=new Request(RequestMethod.PATCH);
+        req.addParam(RequestParams.EDIT_DESCRIPTION,"mango juice");
 ```
 
 ##### Making a request
@@ -358,14 +398,14 @@ req.addParam(RequestParams.EDIT_DESCRIPTION, "mango juice");
 > All request body and parameter data should be serialised with `String.valueOf()` if not specified.
 
 ```java
-Backend backend = new Backend();
-Response res = backend.callEntryEndpoint(req);
+Backend backend=new Backend();
+        Response res=backend.callEntryEndpoint(req);
 
-if (res.getResponseStatus() != ResponseStatus.OK) {
-   // handle status        
-}
+        if(res.getResponseStatus()!=ResponseStatus.OK){
+        // handle status        
+        }
 
-Entry entry = EntryParser.deserialise(res.getData());
+        Entry entry=EntryParser.deserialise(res.getData());
 // process entry
 ```
 
@@ -374,6 +414,7 @@ Entry entry = EntryParser.deserialise(res.getData());
 </div>
 
 #### Access all entries available
+
 ##### Get recent or all entries
 
 <details>
@@ -417,7 +458,7 @@ __`FILTER_BY_QUERY`__ String
 __Responses__
 
 | Status Code | Description           | Remarks                                                                       |
-| ----------- | --------------------- | ----------------------------------------------------------------------------- |
+|-------------|-----------------------|-------------------------------------------------------------------------------|
 | `200`       | OK                    | Gson-serialised `List<Entry>`, deserialise with `EntryLogParser::deserialise` |
 | `422`       | Unprocessable Content | -                                                                             |
 
@@ -426,6 +467,7 @@ __Responses__
 </div>
 
 #### Add, modify, view or delete an entry
+
 ##### Add an entry
 
 `POST /entry`
@@ -448,9 +490,8 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks |
-| ----------- | ----------- | ------- |
+|-------------|-------------|---------|
 | `201`       | Created     | -       |
-
 
 ##### View a specific entry
 
@@ -467,10 +508,9 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks                                                              |
-| ----------- | ----------- | -------------------------------------------------------------------- |
+|-------------|-------------|----------------------------------------------------------------------|
 | `200`       | OK          | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found   | -                                                                    |
-
 
 ##### Delete an entry
 
@@ -494,10 +534,9 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks                                                              |
-| ----------- | ----------- | -------------------------------------------------------------------- |
+|-------------|-------------|----------------------------------------------------------------------|
 | `200`       | OK          | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found   | -                                                                    |
-
 
 ##### Modify an entry
 
@@ -507,7 +546,7 @@ __Responses__
    <summary>Sequence diagram</summary>
 
    <img alt="Entry Endpoint [PATCH] Sequence Diagram" src="docs/../static/backend/EntryEndpointPatchSequence.png" />
-   
+
 </details>
 
 __Body__
@@ -531,7 +570,7 @@ __`EDIT_DESCRIPTION`__ string
 __Responses__
 
 | Status Code | Description           | Remarks                                                              |
-| ----------- | --------------------- | -------------------------------------------------------------------- |
+|-------------|-----------------------|----------------------------------------------------------------------|
 | `200`       | OK                    | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found             | -                                                                    |
 | `422`       | Unprocessable Content | -                                                                    |  |
@@ -552,7 +591,8 @@ We use the `EntryLog` data structure to keep track of the entries entered by the
 
 ## Communication
 
-This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related operations. The backend returns a `Response`, which is then processed by the frontend
+This project uses a simplified HTTP model, where the frontend sends a `Request` to the backend to perform data-related
+operations. The backend returns a `Response`, which is then processed by the frontend
 
 ![Simplified HTTP Model](static/communication/SimplifiedHTTPClassDiagram.png)
 
@@ -568,15 +608,19 @@ This project uses a simplified HTTP model, where the frontend sends a `Request` 
 # Testing
 
 ## Unit Tests
+
 We adopt the Arrange, Act, Assert pattern for unit tests in this project.
-This allows us to achieve a structured unit tests while balancing code readability and maintainability, and allowing a clear separation of the setup, operations and results.
-For backend testing, we use utility classes such as `EntryTestUtil` and `BackendTestUtil` to reduce code repetition and to simplify the testing process.
+This allows us to achieve a structured unit tests while balancing code readability and maintainability, and allowing a
+clear separation of the setup, operations and results.
+For backend testing, we use utility classes such as `EntryTestUtil` and `BackendTestUtil` to reduce code repetition and
+to simplify the testing process.
 
 <details>
 <summary>Example</summary>
 
   ```java
-  @DisplayName("Test /entries [GET]")
+
+@DisplayName("Test /entries [GET]")
 class TestEntriesGet extends EntryTestUtil {
     private static final EntryLog expectedEntryLog = new EntryLog();
 
@@ -631,9 +675,10 @@ for each major component is working, before they are combined and tested through
 </div> -->
 
 <!-- @@author adenteo -->
+
 ## Instructions for manual testing
 
-Refer to the [user guide](/docs/UserGuide.md#getting-started) on launching PocketPal.
+Refer to the [user guide](../docs/UserGuide.md#getting-started) on launching PocketPal.
 
 ### Feature Testing
 
@@ -648,12 +693,12 @@ in PocketPal.
 
 ### Add expense: /add
 
-**Usage:** `/add <DESCRIPTION> <-c | -category CATEGORY> <-p | -price PRICE>`
+**Usage:** `/add <-d | -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c | -category CATEGORY> <-p | -price PRICE>`
 
 __Test Case 1 (All required flags are provided):__
 
 - **Prerequisites:** None
-- __Input:__ `/add McDonalds -c Food -p 10.50`
+- __Input:__ `/add -d McDonalds -c Food -p 10.50`
 
 <details>
 <summary>Expected output:</summary>
@@ -675,24 +720,24 @@ Enter a command or /help to see the list of commands available.
 __Test Case 2 (Missing price flag):__
 
 - **Prerequisites:** None
-- __Input:__ `/add McDonalds -c Food`
+- __Input:__ `/add -d McDonalds -c Food`
 
 <details>
 <summary>Expected output:</summary>
 
 ```
 ________________________________________________
-Please specify the description, category and price!
+Please specify the price using the '-p' flag!
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
 
 </details>
 
-
 ### View expense: /view
 
-**Usage:** `/view [COUNT] [-c | -category CATEGORY]`
+**Usage:** `/view [COUNT] [-c | -category CATEGORY] [-p | -price PRICE_MIN] [-p | -price PRICE_MAX]
+[<-sd | -startdate START_DATE -ed | -enddate END_DATE>]`
 
 __Test case 1 (No expenses exist):__
 
@@ -762,7 +807,7 @@ You may view the list of existing expenses along with their corresponding indexe
 __Test case 1:__
 
 - **Prerequisites:** At least **3** expenses pre-added into the program, with the 3rd expense matching the one shown
-in the example above.
+  in the example above.
 - __Input:__ `/delete 3`
 
 <details>
@@ -803,7 +848,7 @@ __Test case 3__
 
 - **Prerequisites:** At least **2** expenses pre-added into the program
 - __Input:__ `/delete 1 2`
- 
+
 <details>
 <summary>Expected output:</summary>
 
@@ -828,8 +873,7 @@ Enter a command or /help to see the list of commands available.
 
 ### Edit expense: /edit
 
-
-**Usage:** `/edit <EXPENSE_ID> [FLAG...]`
+**Usage:** `/edit <EXPENSE_ID> [-c | -category NEW_CATEGORY] [-p | -price NEW_PRICE] [-d | -description NEW_DESC]`
 
 __Test case 1 (Editing all flags)__
 
@@ -853,7 +897,8 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 2 (Editing price only)__
 
-- **Prerequisites:** At least **2** expenses pre-added into the program, with the 2nd expense matching the one shown in the example above.
+- **Prerequisites:** At least **2** expenses pre-added into the program, with the 2nd expense matching the one shown in
+  the example above.
 - __Input:__ `/edit 2 -p 300.50`
 
 <details>
@@ -1014,8 +1059,7 @@ replicated as follows:
 # User Stories
 
 | Version | As a ... | I want to ... | So that I can ... |
-| ------- | -------- | ------------- | ----------------- |
-
+|---------|----------|---------------|-------------------|
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>

@@ -22,7 +22,19 @@ public class ParserTest {
             parser.parseUserInput("/add -p 100 -c food");
         });
 
-        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_DESCRIPTION_ADD;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseUserInput_wrongFormatDescription_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/add -d test/123 -p 100 -c food");
+        });
+
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_DESCRIPTION;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -31,10 +43,10 @@ public class ParserTest {
     public void parseUserInput_emptyPrice_exceptionThrown() {
         Parser parser = new Parser();
         Exception exception = assertThrows(MissingArgumentsException.class, () -> {
-            parser.parseUserInput("/add expense1 -c food");
+            parser.parseUserInput("/add -d expense1 -c food");
         });
 
-        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_PRICE_ADD;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -43,10 +55,10 @@ public class ParserTest {
     public void parseUserInput_emptyCategory_exceptionThrown() {
         Parser parser = new Parser();
         Exception exception = assertThrows(MissingArgumentsException.class, () -> {
-            parser.parseUserInput("/add expense1 -p 100");
+            parser.parseUserInput("/add -d expense1 -p 100");
         });
 
-        String expectedMessage = MessageConstants.MESSAGE_MISSING_ARGS_ADD;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_CATEGORY_ADD;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -55,7 +67,7 @@ public class ParserTest {
     public void parseUserInput_nonNumericalPrice_exceptionThrown() {
         Parser parser = new Parser();
         Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
-            parser.parseUserInput("/add expense1 -p 10f0 -c food");
+            parser.parseUserInput("/add -d expense1 -p 10f0 -c food");
         });
 
         String expectedMessage = MessageConstants.MESSAGE_INVALID_PRICE;
@@ -161,12 +173,23 @@ public class ParserTest {
         assertEquals(expectedMessage, actualMessage);
     }
 
+    @Test
+    public void parseViewCommand_maxPriceSmallerThanMinPrice_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/view -p 20 -p 10");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_PRICE_RANGE;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
 
     @Test
     public void parseUserInput_validAddCommand_parsedSuccessfully() {
         Parser parser = new Parser();
         assertDoesNotThrow(() -> {
-            parser.parseUserInput("/add coffee -c food -p 3.50");
+            parser.parseUserInput("/add -d coffee -c food -p 3.50");
         });
     }
 
@@ -247,6 +270,17 @@ public class ParserTest {
     }
 
     @Test
+    public void parseDeleteCommand_negativeExpenseId_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/delete -1");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_ID;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
     public void parseDeleteCommand_validArguments_parsedSuccessfully() {
         Parser parser = new Parser();
         assertDoesNotThrow(() -> parser.parseUserInput("/delete 1"));
@@ -309,7 +343,7 @@ public class ParserTest {
     public void parseViewCommand_missingDateException() {
         Parser parser = new Parser();
         Exception exception = assertThrows(MissingDateException.class, () -> {
-            parser.parseUserInput("/view -c food-sd 30/11/19");
+            parser.parseUserInput("/view -c food -sd 30/11/19");
         });
         assertEquals(exception.getMessage(), MessageConstants.MESSAGE_MISSING_DATE);
 
