@@ -166,14 +166,18 @@ Example of usage:
 
 You received a gift of $500 from your mother. To add it to rainyDay, the following command can be provided to rainyDay:
 
-> > add -out Haidilao $500
-> Done! Added: out for Haidilao, -$500.00
+```
+> add -out Haidilao $500
+Done! Added: out for Haidilao, -$500.00
+```
 
 You had lunch at a hawker centre for $6.80 on 10/03/2023. To add it to rainyDay, the following command can be provided
 to rainyDay:
 
-> > add -in Allowance $20 -c Allowance -date 01/03/2023
-> Done! Added: in for Allowance, +$20.00
+```
+> add -in Allowance $20 -c Allowance -date 01/03/2023
+Done! Added: in for Allowance, +$20.00
+```
 
 > 💡**Tip:** The flags `-c` and `-date` can also be used exclusively. The following are also valid formats:
 >
@@ -185,13 +189,17 @@ Example of usage:
 You received your monthly income of $2000 on 05/03/2023. To add it to rainyDay, the following command can be provided to
 rainyDay:
 
-> > add -out beef noodles $12 -c Food and Drinks
-> Done! Added: out for beef noodles, -$12.00
+```
+> add -out beef noodles $12 -c Food and Drinks <br>
+Done! Added: out for beef noodles, -$12.00
+```
 
 You paid for your school fees of $1000.50. To add it to rainyDay, the following command can be provided to rainyDay:
 
-> > add -in pay $50000 -date 26/03/2023
-> Done! Added: in for pay, +$50000.00
+```
+> add -in pay $50000 -date 26/03/2023
+Done! Added: in for pay, +$50000.00
+```
 
 ### Viewing the transactions
 
