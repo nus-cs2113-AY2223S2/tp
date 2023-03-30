@@ -11,41 +11,39 @@ rainyDay, from people who are just starting out to advanced users looking for ex
 ## Content Page
 
 <!-- TOC -->
-
 * [rainyDay User Guide](#rainyday-user-guide)
-    * [Introduction](#introduction)
-    * [Content Page](#content-page)
-    * [Acknowledgement](#acknowledgement)
-    * [How to use the user guide](#how-to-use-the-user-guide)
-    * [Quick Start](#quick-start)
-    * [Features Overview](#features-overview)
-    * [Features](#features)
-        * [Viewing help](#viewing-help)
-        * [Adding a transaction](#adding-a-transaction)
-            * [Simple Usage](#simple-usage)
-            * [Advanced Usage](#advanced-usage)
-        * [Viewing the transactions](#viewing-the-transactions)
-        * [Deleting a transaction](#deleting-a-transaction)
-        * [Filter statements](#filter-statements)
-        * [Editing a transaction](#editing-a-transaction)
-        * [Setting a Monthly Budget](#setting-a-monthly-budget)
-        * [Adding a shortcut](#adding-a-shortcut)
-        * [Using a shortcut](#using-a-shortcut)
-        * [Viewing a shortcut](#viewing-a-shortcut)
-        * [Deleting a shortcut](#deleting-a-shortcut)
-        * [Ignoring an entry](#ignoring-an-entry)
-        * [Saving the data](#saving-the-data)
-            * [Where is my saved file located?](#where-is-my-saved-file-located)
-        * [Loading saved data](#loading-saved-data)
-        * [Exporting to CSV](#exporting-to-csv)
-            * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
-            * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
-        * [Exiting the application](#exiting-the-application)
-    * [FAQ](#faq)
-    * [Command Summary](#command-summary)
-    * [An Example Usage of rainyDay](#an-example-usage-of-rainyday)
-    * [Glossary](#glossary)
-
+  * [Introduction](#introduction)
+  * [Content Page](#content-page)
+  * [Acknowledgement](#acknowledgement)
+  * [How to use the user guide](#how-to-use-the-user-guide)
+  * [Quick Start](#quick-start)
+  * [Features Overview](#features-overview)
+  * [Features](#features)
+    * [Viewing help](#viewing-help)
+    * [Adding a transaction](#adding-a-transaction)
+      * [Simple Usage](#simple-usage)
+      * [Advanced Usage](#advanced-usage)
+    * [Viewing the transactions](#viewing-the-transactions)
+    * [Deleting a transaction](#deleting-a-transaction)
+    * [Filter statements](#filter-statements)
+    * [Editing a transaction](#editing-a-transaction)
+    * [Setting a Monthly Budget](#setting-a-monthly-budget)
+    * [Shortcuts](#shortcuts)
+      * [Adding a shortcut](#adding-a-shortcut)
+      * [Using a shortcut](#using-a-shortcut)
+      * [Viewing a shortcut](#viewing-a-shortcut)
+      * [Deleting a shortcut](#deleting-a-shortcut)
+    * [Ignoring an entry](#ignoring-an-entry)
+    * [Saving the data](#saving-the-data)
+      * [Where is my saved file located?](#where-is-my-saved-file-located)
+      * [Loading saved data](#loading-saved-data)
+    * [Exporting to CSV](#exporting-to-csv)
+      * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
+      * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
+    * [Exiting the application](#exiting-the-application)
+  * [FAQ](#faq)
+  * [Command Summary](#command-summary)
+  * [Glossary](#glossary)
 <!-- TOC -->
 
 ## Acknowledgement
@@ -195,6 +193,8 @@ to rainyDay:
 > * `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY`
 > * `add -DIRECTION DESCRIPTION $AMOUNT -date DD/MM/YYYY`
 
+[Jump back to features overview](#features-overview)
+
 ### Viewing the transactions
 
 An important aspect to track your finances is to view all the transactions that you have already done before. The "view"
@@ -212,6 +212,8 @@ Format: `view {TIMESPAN} {-sort}`
 > 💡**Tip:** To view all entries you can use -all in place of a specific time in TIMESPAN
 
 ![view.png](images/UserGuide/view.png)
+
+[Jump back to features overview](#features-overview)
 
 ### Deleting a transaction
 
@@ -234,6 +236,8 @@ To delete the transaction with the description "lunch at hawker centre", provide
 The transaction with the description "lunch at hawker centre" will be deleted, and the transactions shown to you
 subsequently after requesting to view the transactions will be as such: <br>
 ![delete1.png](images/UserGuide/delete1.png)
+
+[Jump back to features overview](#features-overview)
 
 ### Filter statements
 
@@ -277,6 +281,8 @@ Suppose you want to check your outflows only, you can use this command:
 >
 > ![FilterMultipleFlags.png](images/UserGuide/FilterMultipleFlags.png)
 
+[Jump back to features overview](#features-overview)
+
 ### Editing a transaction
 
 Should you need to update details in a previous transaction, rainyDay's "edit" function supports changing the details of
@@ -288,7 +294,7 @@ Format : `edit [INDEX] [FLAG] {NEWFIELD}`
     * `-d` to edit the description
     * `-c` to edit the category
     * `-v` to edit the value
-    * `-date` to edit the date
+    * `-date` to edit the date in `DD/MM/YYYY` format
     * `-in` to change direction to inflow
     * `-out` to change direction to outflow
 
@@ -316,6 +322,8 @@ this command:
 
 ![EditMultipleEntries.png](images/UserGuide/EditMultipleEntries.png)
 
+[Jump back to features overview](#features-overview)
+
 ### Setting a Monthly Budget
 
 In the process of keeping track of your expenses, you might feel inclined to stick to a budget. RainyDay can help
@@ -339,7 +347,11 @@ If at any point of time you would like to remove this feature, simply set the go
 
 ![unsetbudgetgoal.png](images/UserGuide/unsetbudgetgoal.png)
 
-### Adding a shortcut
+[Jump back to features overview](#features-overview)
+
+### Shortcuts
+
+#### Adding a shortcut
 
 If you happen to have certain commands that you find yourself frequently using, rainyDay's shortcuts can make it much
 easier to execute those commands!
@@ -357,7 +369,7 @@ command in full, you could configure the shortcut as follows.
 `shortcut FavLunch -maps add -out noodles $4 -c food`
 
 >⚠️ Avoid adding a shortcut with the same name as an actual command. The actual command will take priority over your configured shortcut.
-### Using a shortcut
+#### Using a shortcut
 
 After configuring your shortcuts, you may want to use the shortcut to save yourself the trouble of typing the
 full command. This can be done by simply inputting the name of the configured shortcut.
@@ -375,7 +387,7 @@ Using the shortcut will allow you to add the same entry for noodles with a short
 
 ![shortcutusage](images/UserGuide/shortcutusage.png)
 
-### Viewing a shortcut
+#### Viewing a shortcut
 
 After configuring all your shortcuts, the `shortcut_view` command can be used to keep track of all your shortcuts
 that you have configured.
@@ -388,7 +400,7 @@ The output will look something like this:
 
 ![shortcutview.png](images/UserGuide/shortcutview.png)
 
-### Deleting a shortcut
+#### Deleting a shortcut
 
 At some point, you may discover that the shortcut you configured is no longer useful, or you may have misconfigured a
 previously added shortcut. In these situations, the `shortcut_delete` command provided by rainyDay can prove to be quite
@@ -406,6 +418,8 @@ dish. Now the shortcut you previously configured is no longer useful. All you ha
 follows:
 
 `shortcut_delete FavLunch`
+
+[Jump back to features overview](#features-overview)
 
 ### Ignoring an entry
 
@@ -430,6 +444,8 @@ You can then execute the following command to ignore the entry:
 
 ![ignore.png](images/UserGuide/ignore.png)
 
+[Jump back to features overview](#features-overview)
+
 ### Saving the data
 
 Your data will automatically be saved whenever any changes are made to your data. This includes your financial data and
@@ -440,9 +456,11 @@ your configured shortcuts.
 It is located in the "data" folder within the same folder as your "rainyDay.jar" file. This should have
 been configured in step 3 of the [Quick Start section](#quick-start). The data file will be named "rainyDay.json".
 
-### Loading saved data
+#### Loading saved data
 
 Whenever you start up your rainyDay application, previously saved data will automatically be loaded if such data exists.
+
+[Jump back to features overview](#features-overview)
 
 ### Exporting to CSV
 
@@ -471,12 +489,16 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
    below.
    ![statementstable.png](images/UserGuide/statementstable.png)
 
+[Jump back to features overview](#features-overview)
+
 ### Exiting the application
 
 After you have completed updating your transactions and would like to close the application, input the following
 command:
 
 Format: `bye`
+
+[Jump back to features overview](#features-overview)
 
 ## FAQ
 
@@ -503,10 +525,7 @@ that "rainyDay.jar" is going to be stored in
 | Export to CSV   | `export`                                                                                                                                                                                                                                                                                                                                                                    |              
 | Exit            | `bye`                                                                                                                                                                                                                                                                                                                                                                       |
 
-## An Example Usage of rainyDay
-
-{a walkthrough of possible usage of the product (so that users know how the product works without using the product), to
-update when product is finalised}
+[Jump back to Table of Contents](#content-page)
 
 ## Glossary
 
@@ -557,3 +576,5 @@ Simple usage
 Transaction
 
 - An activity relating to transferring of money.
+
+[Jump back to Table of Contents](#content-page)
