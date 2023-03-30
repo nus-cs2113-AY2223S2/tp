@@ -31,7 +31,7 @@ public class ReadFile extends Storage{
     private static final int REPS_PER_SET_INDEX_4 = 5;
 
     public static void readFile(String filePath) {
-        WorkoutList workoutList = Command.getWorkoutList();
+        //WorkoutList workoutList = Command.getWorkoutList();
 
         File savedFile = new File(filePath);
         if (!savedFile.getParentFile().exists()) {

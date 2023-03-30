@@ -25,7 +25,8 @@ public class ListWorkoutCommandTest {
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy");
 
         // Call the method to be tested
-        WorkoutList workoutList = Command.getWorkoutList();
+       // WorkoutList workoutList = Command.getWorkoutList();
+        WorkoutList workoutList = new WorkoutList();
         workoutList.addWorkout(new Workout(format.parse("11/11/23")));
         workoutList.addWorkout(new Workout(format.parse("11/10/23")));
         ListWorkoutCommand testList = new ListWorkoutCommand();

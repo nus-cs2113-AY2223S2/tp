@@ -15,9 +15,9 @@ public class Command {
 
     public Command() {
     }
-    public static WorkoutList getWorkoutList() {
+   /* public static WorkoutList getWorkoutList() {
         return workoutList;
-    }
+    }*/
 
 
     public void setData(WorkoutList workoutList, CalorieTracker calorieTracker) throws IllegalArgumentException {

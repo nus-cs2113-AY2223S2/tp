@@ -16,7 +16,7 @@ public class WriteFile extends Storage{
     }
 
     public static void writeWorkoutToFile(String filePath){
-        WorkoutList workoutList = Command.getWorkoutList();
+        //WorkoutList workoutList = Command.getWorkoutList();
         workoutArrayList = workoutList.getWorkoutArrayList();
 
         try {

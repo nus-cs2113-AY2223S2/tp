@@ -18,7 +18,8 @@ public class DeleteCommandTest {
     //@@ author guillaume-grn
     @Test
     public void testRemoveWorkout() throws Exception {
-        WorkoutList workoutLists = Command.getWorkoutList();
+        //WorkoutList workoutLists = Command.getWorkoutList();
+        WorkoutList workoutLists = new WorkoutList();
         CalorieTracker calorieTracker = new CalorieTracker();
         Command command = new InvalidCommand("invalid");
 
