@@ -16,13 +16,13 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+    public static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     private final EventList eventTracker;
     private final Ui ui;
     private final Parser parser;
     private final EventListStorage eventListStorage;
     private final NusModuleLoader nusModuleLoader;
     private final Storage storage;
-    public static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public Duke (){
         startLogger();
