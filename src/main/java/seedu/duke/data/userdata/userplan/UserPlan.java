@@ -75,6 +75,11 @@ public class UserPlan {
             }
             exerciseFilters.add(userCommands[i]);
         }
+        ArrayList<String> exercisePlans = UserPlan.getExercisePlan(name.toLowerCase());
+        if (exercisePlans != null) {
+            throw new DukeError(ErrorMessages.ERROR_INVALID_PLAN_NAME.toString());
+        }
+
         Plan newPlan = new Plan(exerciseFilters, name);
         plan[intDay].add(newPlan);
         System.out.println("[" + name + "] added to " + intToDay(intDay));
