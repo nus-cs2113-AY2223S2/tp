@@ -1,10 +1,10 @@
 //@@author Thunderdragon221
 package seedu.duke.save;
 
+import seedu.duke.diagnosis.Diagnosis;
 import seedu.duke.medicine.MedicineManager;
 import seedu.duke.patient.Patient;
 import seedu.duke.ui.Information;
-import seedu.duke.diagnosis.Diagnosis;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,6 +28,9 @@ import java.util.logging.Logger;
  * This class reads and writes information to and from the patient-data file.
  */
 public class Storage {
+    //@@author Geeeetyx
+    static final String QUEUE_FILE_PATH = "./data/queue_data.txt";
+    //@@author
 
     /** Specifies the directory path to be created */
     static final String DIR_PATH = "./data/";
@@ -45,6 +48,10 @@ public class Storage {
             createDirectory();
             createFile();
             readFile();
+            //@@author Geeeetyx
+            createQueueFile();
+            readQueueFile();
+            //@@author
         } catch (FileNotFoundException e) {
             System.out.println("ERROR: File not found.");
         } catch (CorruptedDataException e) {
@@ -278,5 +285,36 @@ public class Storage {
         }
 
         return isValid;
+    }
+
+    //@@author Geeeetyx
+    private static void createQueueFile() throws IOException {
+        File file = new File(QUEUE_FILE_PATH);
+        file.createNewFile();
+    }
+
+    public static void saveQueue() {
+        try {
+            FileWriter writer = new FileWriter(QUEUE_FILE_PATH);
+            ArrayList<String> queueList = Information.getQueueList();
+            for (String currentQueueNumber : queueList) {
+                writer.write(currentQueueNumber + "\n");
+            }
+
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("ERROR: Unable to save queue to file");
+        }
+    }
+
+    private static void readQueueFile() throws FileNotFoundException, CorruptedDataException {
+        File file = new File(QUEUE_FILE_PATH);
+        Scanner scanner = new Scanner(file);
+
+        while (scanner.hasNextLine()) {
+            Information.addToQueue(scanner.nextLine());
+        }
+
+        scanner.close();
     }
 }
