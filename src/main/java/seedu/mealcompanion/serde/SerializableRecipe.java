@@ -35,6 +35,6 @@ public class SerializableRecipe {
         for (String instruction : instructions) {
             instructionList.add(new Instruction(instruction));
         }
-        return new Recipe(this.name, this.calorieCount, this.prepTime, this.cookTime, ingredientList, instructionList);
+        return new Recipe(this.name, false, this.calorieCount, this.prepTime, this.cookTime, ingredientList, instructionList);
     }
 }

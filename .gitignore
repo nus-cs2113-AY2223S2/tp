@@ -20,3 +20,4 @@ Output.txt
 src/main/resources/META-INF/MANIFEST.MF
 build/libs/mealcompanion.jar
 build/libs/tp.jar
+build/libs.ingredients.txt

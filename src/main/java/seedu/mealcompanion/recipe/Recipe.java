@@ -10,11 +10,13 @@ public class Recipe {
     private int cookTime;
     private IngredientList ingredients;
     private InstructionList instructions;
+    private boolean isFavourite;
 
     //@@author EthanYidong
-    public Recipe(String name, int calorieCount, int prepTime, int cookTime, IngredientList ingredients,
+    public Recipe(String name, boolean isFavourite, int calorieCount, int prepTime, int cookTime, IngredientList ingredients,
                   InstructionList instructions) {
         this.name = name;
+        this.isFavourite = isFavourite;
         this.calorieCount = calorieCount;
         this.ingredients = ingredients;
         this.instructions = instructions;
@@ -25,6 +27,21 @@ public class Recipe {
     //@@author ngyida
     public String getName() {
         return name;
+    }
+
+    //@@author Jjzeng123
+    public String getFavStatus() {
+        return (isFavourite ? "*" : "");
+    }
+
+    //@@author Jjzeng123
+    public void setFavourite() {
+        isFavourite = true;
+    }
+
+    //@@author Jjzeng123
+    public void unSetFavourite() {
+        isFavourite = false;
     }
 
     //@@author Jjzeng123
