@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class TransactionList {
 
-    private ArrayList<Transaction> transactions;
+    private final ArrayList<Transaction> transactions;
     private int size;
 
     public TransactionList() {

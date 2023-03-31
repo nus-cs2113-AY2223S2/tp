@@ -24,7 +24,7 @@ import java.util.Scanner;
 
 public class AccountList {
     private ArrayList<Account> accounts;
-    private Ui ui;
+    private final Ui ui;
 
     /**
      * Instantiates AccountList and creates a new account.

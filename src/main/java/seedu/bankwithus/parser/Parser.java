@@ -53,7 +53,6 @@ public class Parser {
     /**
      * Parses the user input into command and arguments.
      *
-     * @throws IOException
      */
     public void parseUserInput(String input) throws CommandNotFoundException, IOException {
         // Split input by space
@@ -179,7 +178,6 @@ public class Parser {
      * and splits the name and balance by ; character. Part of
      * accountList parser, not bwu parser
      *
-     * @param scanner
      * @throws CorruptedSaveFileException if any of the parameters are corrupted
      */
     public void parseSavedFile(Scanner scanner) throws CorruptedSaveFileException, SaveFileIsEmptyException {

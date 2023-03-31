@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Transaction {
-    private String accountName;
-    private String amount;
+    private final String accountName;
+    private final String amount;
 
     //Take Note of this date is in LocalDate format, but not a String!
-    private LocalDate date;
-    private String type;
+    private final LocalDate date;
+    private final String type;
 
     public Transaction(String accountName, String type, String amount, LocalDate date) {
         this.accountName = accountName;
