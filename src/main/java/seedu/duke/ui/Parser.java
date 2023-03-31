@@ -103,6 +103,9 @@ public class Parser {
             medicineManager.findMedicine(phrase);
             break;
         //@@author Geeeetyx
+        case "10": //show queue number
+            Information.printPatientQueueNumber();
+            break;
         case "0":
             Menu.exit();
             break;

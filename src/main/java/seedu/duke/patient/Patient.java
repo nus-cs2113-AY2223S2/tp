@@ -23,7 +23,9 @@ public class Patient {
      * @param patientMedicineHistory  Array containing the history of prescribed medications to the patient.
      */
     public Patient(String name, int hash, ArrayList<String> patientDiagnosisHistory,
-                   Hashtable<String, ArrayList<String>> patientMedicineHistory) {
+                   Hashtable<String, ArrayList<String>> patientMedicineHistory
+                   //int queueNumber
+                   ) {
         assert patientDiagnosisHistory.size() >= 0 : "Patient diagnosis history is either empty or not empty";
         this.setName(name);
         this.setPassword(hash);
