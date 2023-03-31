@@ -36,14 +36,12 @@ If you can type fast, BrokeMan can get your expenses and income management tasks
 
 
 1. Ensure that you have Java 11 or above installed.
-2. Download the latest version of `BrokeMan` from [here](http://link.to/duke).
+2. Download the latest version of `BrokeMan` from [here](https://github.com/AY2223S2-CS2113-F13-2/tp/releases/tag/v2.0).
 3. Copy the file to the folder you want to use as the home folder for your BrokeMan.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar brokeman.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar F13-2_v2.0.jar` command to run the application.
 
     A welcoming message should appear.
-5. Type the command in the command box and press Enter to execute it.
-   Some example commands you can try:
-6. Refer to the Features below for details of each command.
+5. Type the command in the command box and press Enter to execute it. Refer to the Features below for details of each command.
 
 ---
 
@@ -75,6 +73,8 @@ Adds a new expense to the list of expenses.
 * The `description` can be in a natural language format.
 * The `time` should follow `YYYY MM HH mm` format.
 * The `category` should be one of the categories in the category list mentioned in `addExpense` feature.
+
+**Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
 
 Example of usage:
 `addIncome a/ 400 d/ salary t/ 2023 03 12 15 01 c/ SALARY`
@@ -229,7 +229,7 @@ If the optional time parameter is not given, it will show the budget for the cur
 
 Example of usage:
 `viewBudget t/ 2023/02` shows the budget in 2023/02.
-`setBudget` shows the budget in the current month.
+`viewBudget` shows the budget in the current month.
 
 **Note**: Please do not leave the description of time tag empty.
 
