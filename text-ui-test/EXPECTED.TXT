@@ -1,4 +1,6 @@
 Welcome to the Pet Health Tracker!
+Here are your tasks due today:
+You have no tasks due today (yay)!
 
 Please enter a valid command!
 
