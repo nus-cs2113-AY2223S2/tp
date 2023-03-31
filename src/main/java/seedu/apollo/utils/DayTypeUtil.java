@@ -37,33 +37,6 @@ public class DayTypeUtil {
      * @param day The string to be converted.
      * @return The integer representation of the day string.
      */
-    public static int determineDay(String day) {
-        switch (day) {
-        case "Monday":
-            return 0;
-        case "Tuesday":
-            return 1;
-        case "Wednesday":
-            return 2;
-        case "Thursday":
-            return 3;
-        case "Friday":
-            return 4;
-        case "Saturday":
-            return 5;
-        case "Sunday":
-            return 6;
-        default:
-            return -1;
-        }
-    }
-
-    /**
-     * Converts a day string to an integer.
-     *
-     * @param day The string to be converted.
-     * @return The integer representation of the day string.
-     */
     public static int determineDay(DayOfWeek day) {
         switch (day) {
         case MONDAY:
@@ -79,6 +52,33 @@ public class DayTypeUtil {
         case SATURDAY:
             return 5;
         case SUNDAY:
+            return 6;
+        default:
+            return -1;
+        }
+    }
+
+    /**
+     * Converts a day string to an integer.
+     *
+     * @param day The string to be converted.
+     * @return The integer representation of the day string.
+     */
+    public static int determineDay(String day) {
+        switch (day) {
+        case "Monday":
+            return 0;
+        case "Tuesday":
+            return 1;
+        case "Wednesday":
+            return 2;
+        case "Thursday":
+            return 3;
+        case "Friday":
+            return 4;
+        case "Saturday":
+            return 5;
+        case "Sunday":
             return 6;
         default:
             return -1;

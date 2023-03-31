@@ -93,7 +93,6 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar)  {
 
-
         assert (module != null) : "ShowModuleCommand: Module should not be null!";
         try {
             if (args.length == 2) {

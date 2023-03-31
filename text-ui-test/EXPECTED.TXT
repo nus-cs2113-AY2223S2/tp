@@ -191,29 +191,39 @@ Sectional Teaching (-st)
 Tutorial (-tut)
 
 Sectional Teaching 1
-   Friday 1200 - 1300
+   Wednesday 0900 - 1000
 Sectional Teaching 1
-   Wednesday 1200 - 1400
+   Thursday 1200 - 1400
+Tutorial 01
+   Wednesday 1000 - 1200
 Tutorial 02
    Monday 1000 - 1200
+Tutorial 03
+   Wednesday 1200 - 1400
 Tutorial 04
-   Monday 1400 - 1600
-Tutorial 05
-   Monday 1600 - 1800
-Tutorial 07
-   Tuesday 1000 - 1200
-Tutorial 08
    Tuesday 1200 - 1400
+Tutorial 05
+   Thursday 1000 - 1200
+Tutorial 06
+   Tuesday 1000 - 1200
+Tutorial 07
+   Thursday 1400 - 1600
+Tutorial 08
+   Wednesday 1400 - 1600
 Tutorial 09
-   Tuesday 1400 - 1600
-Tutorial 10
    Tuesday 1600 - 1800
+Tutorial 10
+   Monday 1200 - 1400
+Tutorial 11
+   Thursday 1600 - 1800
 Tutorial 12
+   Monday 1400 - 1600
+Tutorial 13
+   Tuesday 1400 - 1600
+Tutorial 14
    Wednesday 1600 - 1800
-Tutorial 17
-   Friday 1400 - 1600
-Tutorial 18
-   Friday 1600 - 1800
+Tutorial 15
+   Monday 1600 - 1800
 ____________________________________________________________
 ____________________________________________________________
 CG2023
@@ -246,7 +256,7 @@ ____________________________________________________________
 ____________________________________________________________
 Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
 Class Number: 1
-   Monday 1200 - 1400
+   Tuesday 1000 - 1200
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
@@ -270,7 +280,7 @@ Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
 Adding lesson type: TUTORIAL for Module: CS2113
-Class Number: 1
+Class Number: 01
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
@@ -309,9 +319,6 @@ ____________________________________________________________
 ____________________________________________________________
 Heads up, your deadline occurs on the same day as these!
 ______________________
-Lessons:
-1. ST2334 Lecture: 0800-1000
-
 Tasks:
 1. [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
 ______________________

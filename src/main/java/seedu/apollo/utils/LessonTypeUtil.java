@@ -4,6 +4,12 @@ import seedu.apollo.module.LessonType;
 
 public class LessonTypeUtil {
 
+    /**
+     * Converts a lesson type string to a LessonType enum.
+     *
+     * @param lessonType The string to be converted.
+     * @return The LessonType enum representation of the string.
+     */
     public static LessonType determineLessonType(String lessonType) {
         switch (lessonType) {
         case "Lecture":
@@ -35,6 +41,13 @@ public class LessonTypeUtil {
         }
     }
 
+    /**
+     * Converts a LessonType enum to a string.
+     *
+     * @param lessonType The LessonType enum to be converted.
+     * @param isFlag Whether the string should be a flag.
+     * @return The string representation of the LessonType enum.
+     */
     public static String enumToString(LessonType lessonType, Boolean isFlag){
         switch (lessonType) {
         case LECTURE:
