@@ -41,8 +41,8 @@ public class UserDataStorageTest {
     public static void deleteTestingFile () {
         File userDatafile = new File(filePath);
         File plansFile = new File(plansPath);
-        userDatafile.delete();
         plansFile.delete();
+        userDatafile.delete();
     }
 
     /**

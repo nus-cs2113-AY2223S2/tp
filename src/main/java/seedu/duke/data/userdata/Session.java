@@ -10,7 +10,6 @@ import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 public class Session {
     private final LocalDateTime dateAdded;
     private final ArrayList<ExerciseData> sessionExercises;
-    private LocalDateTime dateComplete;
     private String status;
 
     /**
@@ -24,15 +23,6 @@ public class Session {
         this.sessionExercises = sessionExercises;
         this.dateAdded = LocalDateTime.now();
         this.status = "Incomplete";
-    }
-
-    /**
-     * Gets the current status of the Workout Session to check its completion status
-     *
-     * @return status of current workout whether it is complete or incomplete
-     */
-    public String getStatus () {
-        return this.status;
     }
 
     /**
@@ -53,22 +43,27 @@ public class Session {
         return this.sessionExercises;
     }
 
-    /**
-     * Marks the session as completed
-     */
-    public void markComplete () {
-        this.status = "Complete";
-        this.dateComplete = LocalDateTime.now();
+    private void checkExerciseDataNullity () throws DukeError {
+        for (ExerciseData exerciseData : sessionExercises) {
+            try {
+                if (!exerciseData.checkExerciseNullity()) {
+                    throw new DukeError("Null in exerciseData");
+                }
+            } catch (Exception e) {
+                throw new DukeError("Null in exerciseData");
+            }
+        }
     }
 
-    public boolean checkNull () throws DukeError {
+    public boolean checkSessionNullity () throws DukeError {
         for (Field f : getClass().getDeclaredFields()) {
             try {
-                if (f.get(this) != null) {
+                checkExerciseDataNullity();
+                if (f.get(this) == null) {
                     return false;
                 }
             } catch (Exception e) {
-                throw new DukeError("Illegal access");
+                throw new DukeError("Null element in Session");
             }
         }
         return true;

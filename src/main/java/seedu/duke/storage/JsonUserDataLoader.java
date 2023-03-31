@@ -40,7 +40,7 @@ public class JsonUserDataLoader {
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("History");
             for (JsonElement element : jsonArray) {
                 Session sessionFromFile = gson.fromJson(element, Session.class);
-                if (!sessionFromFile.checkNull()) {
+                if (!sessionFromFile.checkSessionNullity()) {
                     throw new DukeError("Null error");
                 }
                 userCareerData.addWorkoutSession(sessionFromFile);

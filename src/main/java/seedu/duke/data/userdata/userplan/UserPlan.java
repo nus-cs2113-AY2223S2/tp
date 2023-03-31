@@ -1,5 +1,6 @@
 package seedu.duke.data.userdata.userplan;
 
+import java.lang.reflect.Field;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.ui.ErrorMessages;
 
@@ -124,6 +125,18 @@ public class UserPlan {
      */
     public ArrayList<Plan> getDayPlans (int day) {
         return plan[day];
+    }
+
+    public void checkPlansNullity () throws DukeError {
+        for (Field f : getClass().getDeclaredFields()) {
+            try {
+                if (f.get(this) == null) {
+                    throw new DukeError("Null element in plans");
+                }
+            } catch (Exception e) {
+                throw new DukeError("Null element in user plans");
+            }
+        }
     }
 
 }

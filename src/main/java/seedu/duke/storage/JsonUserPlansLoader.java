@@ -40,8 +40,11 @@ public class JsonUserPlansLoader {
                 JsonElement jsonWeekElements = jsonArray.get(i);
                 JsonArray jsonDayPlans = jsonWeekElements.getAsJsonArray();
                 for (JsonElement element : jsonDayPlans) {
-                    userPlan.addDayPlan(gson.fromJson(element, Plan.class), i);
+                    Plan planFromFile = gson.fromJson(element, Plan.class);
+                    planFromFile.checkDayPlanNullity();
+                    userPlan.addDayPlan(planFromFile, i);
                 }
+                userPlan.checkPlansNullity();
             }
             return userPlan;
         } catch (Exception e) {
