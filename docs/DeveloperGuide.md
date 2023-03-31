@@ -70,8 +70,6 @@ Here is the UML diagram of Ui class:
 
 ### Parser component
 
-The 
-
 ### Command component
 
 ### Storage component
