@@ -12,6 +12,7 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [Displaying class schedule :](#displaying-class-schedule--list-classes) `list classes`
     * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number> `
     * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-task_number) `unmark <task number>`
+    * [Edit a specific piece information of a task :](#editing-a-task--edit-task_number) `edit <task number>`
     * [Deleting a task :](#deleting-a-task--delete) `delete <task number> `
     * [Deleting a school class :](#deleting-a-school-class--remove-class) `remove /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm> `
     * [Designate a priority to a given task :](#designate-a-task-priority--priority-task_number-priority) 
@@ -21,11 +22,13 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [Purge expired tasks :](#purge-expired-tasks--purge) `purge`
     * [Clearing all tasks (including datafile) :](#clearing-tasks-from-storage-clear) `clear `
     * [Find tasks matching a given keyword :](#finding-tasks-from-storage-that-match-a-keyword-find-keyword) `find <keyword>`
-    * [Add tasks that can be broken down into the following 4 types:](#adding-a-todo-task--description)
+    * [Add tasks that can be broken down into the following 6 types:](#adding-a-todo-task--description)
     
             * Add ToDo: <description>
             * Add Deadline: <description> /by <yyyy-MM-dd HHmm>
+            * Add RecurringDeadline: /re <description> /by <HHmm> /day <DAY_OF_WEEK>
             * Add Event: <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>
+            * Add RecurringEvent: /re <description> /from <HHmm> /to <HHmm> /day <DAY_OF_WEEK>
             * Add Class: <description> /class <class_name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>
     * [Terminate the program :](#exiting-the-program--bye) `bye`
 
@@ -243,7 +246,32 @@ Unmarks a task from the tasklist as not complete.
 	 	 [T][ ] todo (No priority established.)
 ```
 
+## **Editing a task : `edit <Task_Number>`**
 
+Edits a specific piece of information of a task.
+
+**Input:** `edit <Task_Number>`
+
+**Output: Demonstrated with input `edit 2`**
+
+```
+	____________________________________________________________
+	 Please edit one of the following:
+	 For non-recurring deadlines: /description or /deadline
+	 For recurring deadlines: /description or /deadline or /day
+	 Please follow the format: 
+	 /description <new_description> or /deadline <new_deadline> or /day <NEW_DAY_OF_WEEK>
+	 e.g. /deadline 2023-06-30 1200 or /deadline 1200 (for recurring deadlines)
+```
+**Following output: Demonstrated with input `/deadline 2023-04-01 2000`**
+
+```
+	____________________________________________________________
+	 Quack!
+	 I have changed your task to:
+	 	 [D][ ] deadline (by: 2023-04-01 2000) (Low priority.)
+	____________________________________________________________
+```
 
 ## **Deleting a task : `delete`**
 
@@ -465,6 +493,20 @@ Alright, I have added this task:
 You now have 3 tasks in your list.
 ```
 
+## **Adding a RecurringDeadline Task : `/re <description> /by <HHmm> /day <DAY_OF_WEEK>`**
+
+Adds a RecurringDeadline task to the storage of Duck
+
+**Input:** `/re <description> /by <HHmm> /day <DAY_OF_WEEK>`
+
+**Output:  Demonstrated by inputting `/re new_deadline /by 2359 /day MONDAY`**
+
+
+```
+Alright, I have added this task: 
+	[D][ ] new_deadline (by: 2359) (every MONDAY) (Low priority.)
+You now have 4 tasks in your list.
+```
 
 
 ## **Adding an Event Task : `<description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>`**
@@ -479,7 +521,22 @@ Adds an Event task to the storage of Duck
 ```
 Alright, I have added this task: 
 		[E][ ] event (from: 2023-03-25 2359 to: 2023-03-26 1100) (No priority established.)
-You now have 4 tasks in your list.
+You now have 5 tasks in your list.
+```
+
+## **Adding an RecurringEvent Task : `/re <description> /from <HHmm> /to <HHmm> /day <DAY_OF_WEEK>`**
+
+Adds a RecurringEvent task to the storage of Duck
+
+**Input:** `/re <description> /from <HHmm> /to <HHmm> /day <DAY_OF_WEEK>`
+
+**Output:  Demonstrated by inputting `/re new_event /from 2000 /to 2300 /day MONDAY`**
+
+
+```
+Alright, I have added this task: 
+		[E][ ] new_event (from: 2000 to: 2300) (every MONDAY) (No priority established.)
+You now have 6 tasks in your list.
 ```
 
 
