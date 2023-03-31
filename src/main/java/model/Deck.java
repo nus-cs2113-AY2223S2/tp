@@ -63,6 +63,11 @@ public class Deck {
         return deckUUID;
     }
 
+    public void setDeckUUID(String uuidStr){
+        this.deckUUID = new DeckUUID(UUID.fromString(uuidStr));
+    }
+
+
     public ArrayList<CardUUID> getCardsUUID() {
         return cards;
     }

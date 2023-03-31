@@ -1,5 +1,6 @@
 import model.CardList;
 import model.DeckList;
+import model.Memory;
 import model.TagList;
 import utils.UserInterface;
 import utils.command.Command;
@@ -14,6 +15,8 @@ public class Inka {
     private final Parser parser;
     private Storage storage;
 
+    private Memory memory;
+
     private CardList cardList;
     private TagList tagList;
     private DeckList deckList;
@@ -22,9 +25,10 @@ public class Inka {
         storage = new JsonStorage(filePath);
         ui = new UserInterface();
         parser = new Parser();
-        deckList = new DeckList();
-        cardList = loadSaveFile();
-        tagList = new TagList();
+        memory = loadSaveFile();
+        deckList = memory.getDeckList();
+        cardList = memory.getCardList();
+        tagList = memory.getTagList();
     }
 
     public static void main(String[] args) {
@@ -36,23 +40,23 @@ public class Inka {
      *
      * @return CardList containing all saved cards
      */
-    private CardList loadSaveFile() {
+    private Memory loadSaveFile() {
         // Notify user of no previously saved file
         if (!storage.saveFileExists()) {
             ui.printNoSaveFile();
-            return new CardList();
+            return new Memory();
         }
 
         // File exists; try to load from it
-        CardList cardList = new CardList();
+        Memory memory = new Memory();
         try {
-            cardList = storage.load();
+            memory = storage.load();
             ui.printLoadSuccess();
         } catch (InkaException e) {
             ui.printException(e);
         }
 
-        return cardList;
+        return memory;
     }
 
     public void run() {
