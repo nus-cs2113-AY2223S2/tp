@@ -42,6 +42,8 @@ public class RecipeUnfavouriteCommand extends RecipeCommand {
 
             Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
             recipe.unSetFavourite();
+            mealCompanionSession.getUi().printMessage("Success! Removed this recipe from favourites: ");
+            mealCompanionSession.getUi().printMessage((index + 1) + ". " + recipe.getName());
         } catch (MealCompanionException e) {
             mealCompanionSession.getUi().printMessage(String.valueOf(e));
         }

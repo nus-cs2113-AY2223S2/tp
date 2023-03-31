@@ -42,6 +42,8 @@ public class RecipeFavouriteCommand extends RecipeCommand {
 
             Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
             recipe.setFavourite();
+            mealCompanionSession.getUi().printMessage("Success! Added this recipe to favourites: ");
+            mealCompanionSession.getUi().printMessage((index + 1) + ". " + recipe.getName());
         } catch (MealCompanionException e) {
             mealCompanionSession.getUi().printMessage(String.valueOf(e));
         }
