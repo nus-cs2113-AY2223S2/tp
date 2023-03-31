@@ -90,7 +90,8 @@ public class Parser {
                 "Welcome to Inka! Type " + HELP_KEYWORD + " at any time to show this message" + System.lineSeparator();
         helpMessage += "== Deck Management (run `<keyword> help` for more info) ===" + System.lineSeparator();
         helpMessage += formatHelpLine(CARD_KEYWORD, "Card-related functionality");
-        helpMessage += formatHelpLine(TAG_KEYWORD, "Tag-related functionality)");
+        helpMessage += formatHelpLine(TAG_KEYWORD, "Tag-related functionality");
+        helpMessage += formatHelpLine(DECK_KEYWORD, "Deck-related functionality");
         helpMessage += "================== Miscellaneous Commands =================" + System.lineSeparator();
         helpMessage += formatHelpLine(EXPORT_KEYWORD, "Saves your deck");
         helpMessage += formatHelpLine(EXIT_KEYWORD, "Exits Inka");
