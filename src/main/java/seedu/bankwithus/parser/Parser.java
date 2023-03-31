@@ -61,115 +61,115 @@ public class Parser {
         String command = split[0];
         String args = split.length == 2 ? split[1] : "";
         switch (command) {
-        case "exit":
-            try {
-                bwu.exit();
-            } catch (IOException e) {
-                throw e;
-            }
-            break;
-        case "deposit":
-            try {
-                accountList.depositMoney(args);
-                transactionList.createNewTransaction(accountList.getMainAccount().getAccountName(),
-                        "deposit", args, LocalDate.now());
-                ui.showDepositMessage();
-                accountList.showBal();
-                ui.printLine();
-            } catch (NumberFormatException e) {
-                ui.showNumberFormatError();
-            } catch (NullPointerException e) {
-                // Will almost never happen, but who knows
-                ui.showNullInputError();
-            } catch (NegativeAmountException e) {
-                ui.showNegativeAmountError();
-            }
-            break;
-        case "view-account":
-            try {
-                String accDetails = accountList.getAllAccountDetails();
-                ui.viewAccount(accDetails);
-            } catch (AccountNotFoundException e) {
-                ui.showAccountNotFound();
-            }
-            break;
-        case "withdraw":
-            try {
-                accountList.withdrawMoney(args);
-                transactionList.createNewTransaction(accountList.getMainAccount().getAccountName(),
-                        "withdraw", args, LocalDate.now());
-                accountList.showBal();
-                ui.printLine();
-            } catch (NumberFormatException e) {
-                ui.showNumberFormatError();
-            } catch (NegativeAmountException e) {
-                ui.showNegativeAmountError();
-            } catch (InsufficientBalanceException e) {
-                ui.showInsufficientBalanceMessage();
-            } catch (ExceedsWithdrawalLimitException e) {
-                ui.showExceedsWithdrawalLimitError();
+            case "exit":
+                try {
+                    bwu.exit();
+                } catch (IOException e) {
+                    throw e;
+                }
+                break;
+            case "deposit":
+                try {
+                    accountList.depositMoney(args);
+                    transactionList.createNewTransaction(accountList.getMainAccount().getAccountName(),
+                            "deposit", args, LocalDate.now());
+                    ui.showDepositMessage();
+                    accountList.showBal();
+                    ui.printLine();
+                } catch (NumberFormatException e) {
+                    ui.showNumberFormatError();
+                } catch (NullPointerException e) {
+                    // Will almost never happen, but who knows
+                    ui.showNullInputError();
+                } catch (NegativeAmountException e) {
+                    ui.showNegativeAmountError();
+                }
+                break;
+            case "view-account":
+                try {
+                    String accDetails = accountList.getAllAccountDetails();
+                    ui.viewAccount(accDetails);
+                } catch (AccountNotFoundException e) {
+                    ui.showAccountNotFound();
+                }
+                break;
+            case "withdraw":
+                try {
+                    accountList.withdrawMoney(args);
+                    transactionList.createNewTransaction(accountList.getMainAccount().getAccountName(),
+                            "withdraw", args, LocalDate.now());
+                    accountList.showBal();
+                    ui.printLine();
+                } catch (NumberFormatException e) {
+                    ui.showNumberFormatError();
+                } catch (NegativeAmountException e) {
+                    ui.showNegativeAmountError();
+                } catch (InsufficientBalanceException e) {
+                    ui.showInsufficientBalanceMessage();
+                } catch (ExceedsWithdrawalLimitException e) {
+                    ui.showExceedsWithdrawalLimitError();
+                    String[] wlInfo = accountList.checkWithdrawalLimit();
+                    ui.showWithdrawalLimit(wlInfo[0]); //print wl
+                    ui.showTotalAmountWithdrawn(wlInfo[1]); //print total amt withdrawn
+                    ui.printLine();
+                }
+                break;
+            case "add-account":
+                accountList.createNewAccount();
+                break;
+            case "switch-to":
+                try {
+                    accountList.switchMainAccount(args);
+                } catch (NoAccountException e) {
+                    ui.showAccountNotFound();
+                }
+                break;
+            case "set-wl":
+                try {
+                    accountList.setWithdrawalLimit(args);
+                    String withdrawalLimit = accountList.getMainAccount()
+                            .getWithdrawalChecker().getWithdrawalLimit();
+                    ui.showWithdrawalLimitSet(withdrawalLimit);
+                    ui.printLine();
+                } catch (NumberFormatException e) {
+                    ui.showNumberFormatError();
+                } catch (NegativeAmountException e) {
+                    ui.showNegativeAmountError();
+                }
+                break;
+            case "check-wl":
                 String[] wlInfo = accountList.checkWithdrawalLimit();
                 ui.showWithdrawalLimit(wlInfo[0]); //print wl
                 ui.showTotalAmountWithdrawn(wlInfo[1]); //print total amt withdrawn
                 ui.printLine();
-            }
-            break;
-        case "add-account":
-            accountList.createNewAccount();
-            break;
-        case "switch-to":
-            try {
-                accountList.switchMainAccount(args);
-            } catch (NoAccountException e) {
-                ui.showAccountNotFound();
-            }
-            break;
-        case "set-wl":
-            try {
-                accountList.setWithdrawalLimit(args);
-                String withdrawalLimit = accountList.getMainAccount()
-                        .getWithdrawalChecker().getWithdrawalLimit();
-                ui.showWithdrawalLimitSet(withdrawalLimit);
-                ui.printLine();
-            } catch (NumberFormatException e) {
-                ui.showNumberFormatError();
-            } catch (NegativeAmountException e) {
-                ui.showNegativeAmountError();
-            }
-            break;
-        case "check-wl":
-            String[] wlInfo = accountList.checkWithdrawalLimit();
-            ui.showWithdrawalLimit(wlInfo[0]); //print wl
-            ui.showTotalAmountWithdrawn(wlInfo[1]); //print total amt withdrawn
-            ui.printLine();
-            break;
-        case "help":
-            ui.showHelp();
-            break;
-        case "set-save-goal":
-            if(args.length() > 0) {
-                String untilWhenStr = ui.getDeadline();
-                accountList.handleSaveGoal(args, untilWhenStr);
-            } else {
-                ui.showInsufficientArgsEntered();
-            }
-            break;
-        case "show-save-goal":
-            accountList.showGoal();
-            break;
-        case "delete":
-            accountList.deleteAccount(args);
-            break;
-        case "view-transactions-all":
-            try {
-                transactionList.printAllTransactions();
-                ui.printLine();
-            } catch (NoTransactionsFoundException e) {
-                ui.noTransactionsFoundError();
-            }
-            break;
-        default:
-            throw new CommandNotFoundException();
+                break;
+            case "help":
+                ui.showHelp();
+                break;
+            case "set-save-goal":
+                if(args.length() > 0) {
+                    String untilWhenStr = ui.getDeadline();
+                    accountList.handleSaveGoal(args, untilWhenStr);
+                } else {
+                    ui.showInsufficientArgsEntered();
+                }
+                break;
+            case "show-save-goal":
+                accountList.showGoal();
+                break;
+            case "delete":
+                accountList.deleteAccount(args);
+                break;
+            case "view-transactions-all":
+                try {
+                    transactionList.printAllTransactions();
+                    ui.printLine();
+                } catch (NoTransactionsFoundException e) {
+                    ui.noTransactionsFoundError();
+                }
+                break;
+            default:
+                throw new CommandNotFoundException();
         }
     }
 
@@ -213,7 +213,7 @@ public class Parser {
                     //if no history of withdrawing
                     accountList.addAccount(name, balanceString, withdrawalLimit, amtToSave, untilWhen);
                 } else {
-                    accountList.addAccount(name, balanceString, totalAmtWithdrawn, 
+                    accountList.addAccount(name, balanceString, totalAmtWithdrawn,
                             LocalDate.parse(lastWithdrawnDate), withdrawalLimit, amtToSave, untilWhen);
                 }
             } catch (Exception e) {
@@ -243,3 +243,4 @@ public class Parser {
         }
     }
 }
+
