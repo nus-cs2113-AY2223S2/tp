@@ -87,6 +87,9 @@ to extract `month` and `year` from user input. It then calls on `Monthly Overvie
 are not null, which makes use of `MonthFilter` to filter out expenses in that specific month and returns sum by 
 category sorted in descending order before printing out the final overview in the intended format.
 
+Given below is the sequence diagram to explain how the 'monthly overview' mechanism behaves.
+![](diagrams/MonthlyOverview.png)
+
 
 ### 'Total' feature
 This mechanism is facilitated by `CommandTotal`.
@@ -109,8 +112,12 @@ Step 2. The expense list is iterated through and `total` is obtained by summing 
 ## Product scope
 ### Target user profile
 
-- People who want to keep track of their expenses easily
-- Users who travel overseas often and want to keep track of their expenses throughout their travels
+- has a need to manage daily expenses
+- travels overseas often and want to keep track of their expenses throughout their travels in different currencies
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
 ### Value proposition
 
@@ -131,7 +138,6 @@ Step 2. The expense list is iterated through and `total` is obtained by summing 
 | v2.0    | user              | add expenses with specified currencies                      | know the exact amount I spent in different currencies                                    |
 | v2.0    | user              | sort my expenses by category/date                           | better keep track of my expenses through either date or category                         |
 | v2.0    | user in Singapore | see my total spending in SGD                                | -                                                                                        |
-| v2.0    | user              | see an overview of my expenses in a particular month        | understand what categories I like to spend on and better plan my spending in the future. |
 | v2.0    | user in Singapore | see an overview of my expenses in a particular month in SGD | understand what categories I like to spend on and better plan my spending in the future. |                                                                                        |
 
 

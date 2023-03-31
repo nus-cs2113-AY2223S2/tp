@@ -22,6 +22,7 @@ application! You will see a command box for command instruction.
    * `delete 1`: Delete the first entry in the expense list.
    * `sort D`: Sort the expenses by date.
    * `category food`: Find all expenses with food category.
+   * `find 2.5`: Find all expenses with information of 2.5.
 8. When you want to log out and save your expense list, type `logout`. 
 
 ## Account instructions
@@ -38,6 +39,7 @@ application! You will see a command box for command instruction.
    * When you log out, all of your expenses in the expense list is saved, and the data is just restricted to your account.
    * Once you log in again, the expense list could be loaded from your previous session. You can view the list through 
    command `list`.
+
 ## Features
 
 ### Adding an expense: `add`
@@ -155,6 +157,25 @@ Example of usage:
 `category food`
 
 `category clothes`
+
+### Find expenses: `find`
+Find all expenses with the specified information, regardless whether this information can form a meaningful word or match the expense attribute.
+
+Format: `find INFO`
+
+* INFO represents the information that the user want to find.
+* If none of the expenses have such information, it will tell the user this case.
+* Even if the information is not a word, let's say "f", the method still will find expenses that any of their attributes contain the character f.
+
+Example of usage:
+
+`find 2.5`
+
+`find f`
+
+`find SGD`
+
+
 
 ### Generating a monthly overview: `overview`
 Generate a monthly overview consisting of total expenses of the month and a 
