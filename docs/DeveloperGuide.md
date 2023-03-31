@@ -52,7 +52,15 @@ include links to the original source as well}
 API: Ui.java
 
 ### Parser Component
-API: Parser.java
+API: ```Parser.java```
+
+1. ```Parser``` parses user's inputs, some of which require using imported parser from the Apache Commons CLI library.
+2. This results in a ```Command``` object which then executes itself in main.
+3. The execution of ```Command``` may affect the ```CardList```, ```TagList``` and ```DeckList``` objects.
+4. The execution of ```Command``` may also instruct the ```UI``` object to perform certain actions, such as printing out success message for adding a new card.
+
+Given below is the Sequence Diagram for interactions within the Parser component for the execute("card add -q Who is John Cena's crush -a Lao Gan Ma!") API call.
+
 
 ### Storage Component
 API: Storage.java
@@ -84,8 +92,8 @@ The implementation of the features are shown below:
 
 * Adding a card
 1. When the user enters ```card add -q ... -a ...```, the input is passed to ```Parser``` class which calls ```Parser#parseCommand()```.
-2. The parser detects the keyword "card", then calls the ```Parser#CardKeywordParser()```.
-3. 
+2. The parser detects the keyword "card", then calls the ```Parser#CardKeywordParser()``` on the user inputs excluding the "card" keyword.
+3. The ```Parser#CardKeywordParser()``` uses the Apache Commons CLI library to parse the remaining user input.
 
 The sequence diagram below shows how this feature works:
 {UML will be added here.}
