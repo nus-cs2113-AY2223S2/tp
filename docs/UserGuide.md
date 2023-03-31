@@ -142,6 +142,95 @@ ______________________________________________________________________
  Appointment ID must consist of integers!
 ______________________________________________________________________
 ```
+### Mark Appointment : `mark ` <br>
+
+This feature marks the appointment as done and is denoted by an `[X]`.
+The tasks are marked depending on the uID input the by user.
+If the uID entry is not valid it displays a corresponding error message.<br>
+
+Format : `mark uID/ `
+Example : `mark uID/V14082745S`
+
+Example of Valid Command:
+
+```
+mark uID/C26135173W
+______________________________________________________________________
+The appointment has been marked successfully
+Task marked successfully!
+______________________________________________________________________
+```
+Example of InValid Command :
+```
+mark uID/C26135173W_
+______________________________________________________________________
+ Sorry, an error was encountered! Here is the error description:
+ There are no appointments with this ID.
+______________________________________________________________________
+
+```
+Marked in the list:
+```
+list
+______________________________________________________________________
+1.  UID: S53144505J [ ] | Priority: LOW
+    Animal Name: Lulu | Animal Type: Cat
+    Owner Name: Jon | Contact Number: 91919191
+    Start Date: 2023-12-12 | Start Time: 19:00
+    End Date: 2023-12-12 | End Time: 20:00
+2.  UID: V48152237H [ ] | vaccine: Covid
+    Date: 2023-12-12 | Time: 19:00
+    Animal Name: Lulu | Animal Type: Cat
+    Owner Name: Jon | Contact Number: 91919191
+3.  UID: C26135173W [X]
+    Date: 2023-12-12 | Time: 19:00
+    Animal Name: Lulu | Animal Type: Cat
+    Owner Name: Jon | Contact Number: 91919191
+______________________________________________________________________
+```
+
+### UnMark Appointment : `unmark ` <br>
+
+This feature Unmarks the appointment as not done and is denoted by an `[ ]`.
+The tasks are Unmarked depending on the uID input the by user. 
+If the uID entry is not valid it displays a corresponding error message.<br>
+
+Example of Valid Command :
+```
+
+unmark uID/C26135173W
+______________________________________________________________________
+The appointment has been unmarked successfully
+Task marked successfully!
+______________________________________________________________________
+```
+Example of InValid Command :
+```
+unmark uID/C26135173E
+______________________________________________________________________
+ Sorry, an error was encountered! Here is the error description:
+ There are no appointments with this ID.
+______________________________________________________________________
+```
+Corresponding list :
+```
+list
+______________________________________________________________________
+1.  UID: S53144505J [ ] | Priority: LOW
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+ Start Date: 2023-12-12 | Start Time: 19:00
+ End Date: 2023-12-12 | End Time: 20:00
+2.  UID: V48152237H [ ] | vaccine: Covid
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+3.  UID: C26135173W [ ]
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+______________________________________________________________________
+```
 
 ## FAQ
 
