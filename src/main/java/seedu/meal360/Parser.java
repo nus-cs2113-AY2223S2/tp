@@ -3,7 +3,7 @@ package seedu.meal360;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-
+import seedu.meal360.exceptions.IngredientNotFoundException;
 import seedu.meal360.exceptions.InvalidNegativeValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
 
@@ -16,9 +16,9 @@ public class Parser {
     Ui ui = new Ui();
 
     public String combineWords(String[] input, int startIndex, int length) {
-        StringBuilder word = new StringBuilder(input[startIndex]);
+        StringBuilder word = new StringBuilder(input[startIndex].trim());
         for (int i = startIndex + 1; i < length; i++) {
-            word.append(" ").append(input[i]);
+            word.append(" ").append(input[i].trim());
         }
 
         return word.toString();
@@ -403,8 +403,7 @@ public class Parser {
         if (recipes.size() == 0) {
             throw new NullPointerException("There is no recipe in the list to random");
         }
-        Recipe randomRecipe = recipes.randomRecipe();
-        return randomRecipe;
+        return recipes.randomRecipe();
     }
 
     public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes)
@@ -489,11 +488,6 @@ public class Parser {
                     "Please ensure that the command is entered in the correct format.");
         }
 
-        if (startIndices.size() == 0) {
-            throw new IllegalArgumentException(
-                    "Please ensure that the command is entered in the correct format.");
-        }
-
         // Building the recipe names
         for (int i = 0; i < startIndices.size(); i++) {
             int nameStartIndex = startIndices.get(i) + 1;
@@ -553,6 +547,10 @@ public class Parser {
                     break;
                 case "/c":
                     ingredientCount = Integer.parseInt(command[++i]);
+                    if (ingredientCount < 0) {
+                        throw new IllegalArgumentException(
+                                "Please enter a positive number for the quantity.");
+                    }
                     break;
                 case "/d":
                     expiryDate = command[++i];
@@ -573,7 +571,8 @@ public class Parser {
         ingredientList.addIngredient(new Ingredient(ingredientName, ingredientCount, expiryDate));
     }
 
-    public void parseDeleteUserIngredients(String[] command, IngredientList userIngredients) {
+    public void parseDeleteUserIngredients(String[] command, IngredientList userIngredients)
+            throws IngredientNotFoundException {
         String ingredientName = null;
         Integer ingredientCount = null;
 
@@ -585,6 +584,10 @@ public class Parser {
                     break;
                 case "/c":
                     ingredientCount = Integer.parseInt(command[++i]);
+                    if (ingredientCount < 0) {
+                        throw new IllegalArgumentException(
+                                "Please enter a positive number for the quantity.");
+                    }
                     break;
                 default:
                     throw new IllegalArgumentException(
@@ -600,5 +603,39 @@ public class Parser {
         }
 
         userIngredients.deleteIngredient(ingredientName, ingredientCount);
+    }
+
+    public void parseMarkDone(String[] command, IngredientList userIngredients, WeeklyPlan weeklyPlan,
+            RecipeList recipes) throws IngredientNotFoundException {
+        if (command.length == 1) {
+            throw new IllegalArgumentException("Please enter a recipe name.");
+        }
+        String recipeName = combineWords(command, 1, command.length);
+        if (recipes.findByName(recipeName) == null) {
+            throw new IllegalArgumentException("Please enter a valid recipe name.");
+        }
+
+        if (weeklyPlan.get(recipeName) == null) {
+            throw new IllegalArgumentException("Recipe does not exist in weekly plan.");
+        }
+
+        HashMap<String, Integer> ingredients = recipes.findByName(recipeName).getIngredients();
+        try {
+            for (String ingredient : ingredients.keySet()) {
+                int currentCount = userIngredients.findIngredientCount(ingredient);
+                if (currentCount < ingredients.get(ingredient)) {
+                    throw new IllegalArgumentException(
+                            "You do not have enough ingredients to mark this recipe as done.");
+                }
+            }
+        } catch (IngredientNotFoundException e) {
+            throw new IllegalArgumentException(
+                    "You do not have enough ingredients to mark this recipe as done.");
+        }
+
+        // If all ingredients are present, mark recipe as done
+        for (String ingredient : ingredients.keySet()) {
+            userIngredients.deleteIngredient(ingredient, ingredients.get(ingredient));
+        }
     }
 }

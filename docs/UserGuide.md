@@ -11,7 +11,8 @@ ___
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Down the latest version of `Meal360`
+   from [here](https://github.com/AY2223S2-CS2113-F10-3/tp/releases).
 
 ___
 
@@ -26,6 +27,17 @@ ___
 * [Remove multiple recipe from weekly plan](#deleting-from-this-weeks-plan--weekly-delete)
 * [View weekly plan](#view-this-weeks-plan--weeklyplan)
 * [Random a recipe](#random-a-recipe--random)
+
+
+### HOW TO ADD INGREDIENTS TO A RECIPE:
+
+* Please follow the below-mentioned format.
+
+Format: `ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...`
+   
+* Examples: `chicken=100 oil and sauce=200 vegetables=300`
+            `meat=200 salt and spices=400`
+* Type the ingredient name followed by equal sign and quantity in positive integer values.
 
 ### Adding recipes: `add`
 
@@ -43,12 +55,14 @@ Example of usage:
 
 ### Editing recipes: `edit`
 
-Edit recipes in your list either partially or fully.
+Edit recipes in your list partially, fully or add new ingredients to already existing recipe.
 
 Format: `edit /r [recipe_name]`
 
 * `recipe_name` is basically a string.
 * Type the recipe name after typing `/r `.
+* If you want to edit fully: press 1, edit partially: press 2, or add new ingredients: press 3.
+* Follow the proper format while editing/adding ingredients. 
 
 Example of usage:
 
@@ -129,7 +143,7 @@ Example of usage:
 * `tag breakfast << milk && boiled egg && bread` adds milk, boiled egg and
   bread into 'breakfast' tag.
 
-__Removing recipes form a tag__
+__Removing recipes from a tag__
 
 Remove recipes from a specific tag.
 
@@ -231,6 +245,12 @@ View this week's ingredients.
 
 Format: `weeklyingredients`
 
+### View user total list of ingredients: `view_ingredients`
+
+View list of all ingredients that users have.
+
+Format: `view_ingredients`
+
 ### Random a recipe: `random`
 
 Random a recipe from all the recipes that user have, and show the list of
@@ -244,11 +264,38 @@ Exits the program.
 
 Format: `bye`
 
-## FAQ
+### Add user ingredient: `add_i`
 
-**Q**: How do I transfer my data to another computer?
+Add user's ingredients into the ingredient list.
+Format : `add_i /n INGREDIENT_NAME /c QUANTITY /d DATE`
 
-**A**: {your answer here}
+* This function is **case sensitive**.
+* The quantity **must be a positive
+  integer** 1,2,3, ...
+* The date **must be in the format of DD/MM/YYYY**
+
+Example of usage:
+
+* `add_i /n chicken /c 1 /d 01/01/2020` adds chicken with quantity 1 and expiry date 01/01/2020
+
+### Delete user ingredient: `del_i`
+
+Delete user's ingredients from the ingredient list.
+Format : `del_i /n INGREDIENT_NAME /c QUANTITY`
+
+* This function is **case sensitive**.
+* The quantity has to be **less than or equal** to the quantity of the ingredient in the list.
+* The quantity **must be a positive
+  integer** 1,2,3, ...
+
+Example of usage:
+
+* `del_i /n chicken /c 1` deletes chicken with quantity 1
+
+### View user ingredients: `view_ingredients`
+
+View user's ingredients from the ingredient list.
+Format : `view_ingredients`
 
 ## Command Summary
 
@@ -265,3 +312,8 @@ Format: `bye`
 | Delete from weekly plan            | `weekly /delete RECIPE NAME`<br/>e.g `weekly /delete pizza`                                                 |
 | Delete multiple from weekly plan   | `weekly /multidelete [/r RECIPE NAME /q QUANTITY]` <br/>e.g `weekly /multiadd /r pizza /q 1 /r burger /q 4` |
 | View weekly plan                   | `weeklyplan`                                                                                                |
+| View weekly ingredients            | `weeklyingredients`                                                                                         |
+| View user ingredients              | `view_ingredients`                                                                                          |
+| Add user ingredient                | `add_i /n NAME /c COUNT /d DATE` <br/>e.g `add_i /n Rice /c 100 /d 04/09/2023`                              |
+| Delete user ingredient             | `del_i /n NAME /c COUNT` <br/>e.g `delete_i /n Rice /c 50`                                                  |
+| Mark plan as completed             | `weeklydone NAME` <br/>e.g `weeklydone chicken rice`                                                        |
