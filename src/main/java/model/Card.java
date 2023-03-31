@@ -31,6 +31,8 @@ public class Card {
         this.question = question;
         this.answer = answer;
         this.uuid = new CardUUID(UUID.fromString(uuidStr));
+
+
     }
 
     /**
