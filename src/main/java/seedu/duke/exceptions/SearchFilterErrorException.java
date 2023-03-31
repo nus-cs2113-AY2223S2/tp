@@ -3,7 +3,7 @@ package seedu.duke.exceptions;
 
 public class SearchFilterErrorException extends Exception {
     public void missingPriceComparator() {
-         System.out.println("Price comparator missing or malformed! Please use the format: filter " +
+        System.out.println("Price comparator missing or malformed! Please use the format: filter " +
                 "f/{price/category} {p/[gt/get/lt/let] [Price] or [Category keywords]}");
     }
 
