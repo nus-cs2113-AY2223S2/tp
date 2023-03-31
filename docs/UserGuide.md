@@ -398,6 +398,8 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 
 * Unmark a specific expenditure to be complete (Tuition or Accommodation): `unmark INDEX`
 
+* Set temporary expenditure: `set AMOUNT`
+
 * Sort expenditure list by ascending/descending amount: `sort ASCEND/DESCEND`
 
 * Sort expenditure list by latest/earliest date added: `sort LATEST/EARLIEST`
