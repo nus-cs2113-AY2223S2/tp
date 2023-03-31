@@ -7,9 +7,11 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
 * [**Features**](#features)
     * [Viewing help :](#viewing-help--help) `help`
     * [Listing all tasks :](#listing-all-tasks--list) `list`
-    * [Listing all tasks and classes happening today :](#listing-all-tasks--list) `list today`
+    * [Listing all tasks and classes happening today :](#listing-all-tasks--list) `list_today`
     * [Listing all tasks up to X days into the future :](#listing-all-tasks-up-to-x-days-in-the-future--list-x) `list X`
-    * [Displaying class schedule :](#displaying-class-schedule--list-classes) `list classes`
+    * [Displaying upcoming deadline](#displaying-upcoming-deadline)
+    * [Displaying class schedule :](#displaying-class-schedule--list-classes) `list_classes`
+    * [Displaying upcoming class :](#displaying-upcoming-class--upcomingclass) `upcoming_class`
     * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number> `
     * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-task_number) `unmark <task number>`
     * [Edit a specific piece information of a task :](#editing-a-task--edit-task_number) `edit <task number>`
@@ -75,11 +77,11 @@ Here are the tasks in your list:
 	 3.	 [E][ ] event (from: 2023-03-25 1200 to: 2023-03-26 2359) (No priority established.)
 ```
 
-## **Listing all tasks and classes happening today : `list today`**
+## **Listing all tasks and classes happening today : `list_today`**
 
 Displays all deadlines, events and classes happening today.
 
-**Input:** `list today`
+**Input:** `list_today`
 
 **Output: Demonstrated with 1 of each type currently in the stored data array**
 
@@ -96,13 +98,22 @@ Displays all deadlines, events and classes happening today.
 	 [E][ ] study (from: 0800 to: 2300) (every WEDNESDAY) (No priority established.)
 	____________________________________________________________
 ```
+## **Displaying upcoming deadline**
 
+Displays upcoming deadline stored in the application when starting the application. 
 
-## **Displaying class schedule : `list classes`**
+**Output: The upcoming deadline with remaining time before the deadline**
+
+```
+Here are the upcoming deadline:  
+1.Eat bread (1 day 26 hours 50 minutes before the deadline)
+```
+
+## **Displaying class schedule : `list_classes`**
 
 Displays all School Classes currently stored in the application. Classes will be automatically sorted according to chronological order. Classes will also automatically be marked as done (represented by a cross) if the current time is past the ending time of the class, and their 'done' status will be reset at the start of each week.
 
-**Input:** `list classes`
+**Input:** `list_classes`
 
 **Output: Demonstrated with classes with different names and start/end times, with some already past their end time**
 
@@ -110,11 +121,26 @@ Displays all School Classes currently stored in the application. Classes will be
 ```
 Here is your class schedule:
 
-[MONDAY][X] eg2501 (from: 1600 to: 1800)
-[TUESDAY][X] ee2026 (from: 0900 to: 1200)
-[TUESDAY][ ] cs2113 (from: 1600 to: 1700)
+    [MONDAY][X] eg2501 (from: 1600 to: 1800)
+    [TUESDAY][X] ee2026 (from: 0900 to: 1200)
+    [TUESDAY][ ] cs2113 (from: 1600 to: 1700)
 
 ```
+## **Displaying upcoming class : `upcoming_class`**
+
+Displays the next upcoming class stored in the application. Classes will be automatically sorted according to chronological order. Classes will also automatically be marked as done (represented by a cross) if the current time is past the ending time of the class, and their 'done' status will be reset at the start of each week.
+
+**Input:** `upcoming_class`
+
+**Output: The next upcoming class with names and start/end times**
+
+
+```
+Here is your next upcoming class:
+    [TUESDAY][ ] cs2113 (from: 1600 to: 1700)
+
+```
+
 
 ## **Listing all low priority tasks : `low_priority`**
 Displays all tasks that have been assigned low priority  

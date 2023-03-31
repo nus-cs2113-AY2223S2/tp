@@ -12,7 +12,7 @@ public class Task {
         this.description = description;
         this.isDone = false;
         this.priority = 1; //automatically set to low priority
-        this.additionalNotes = new ArrayList<String>();
+        this.additionalNotes = new ArrayList<>();
     }
 
     public void setDescription(String description) {
@@ -65,7 +65,7 @@ public class Task {
     }
     public String getNote(int index){
         return this.additionalNotes.get(index);
-    };
+    }
 
     public void deleteNote(int indexToBeDeleted){
         this.additionalNotes.remove(indexToBeDeleted-1);
