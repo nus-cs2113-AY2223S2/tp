@@ -25,8 +25,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-
-
 import java.util.ArrayList;
 
 import model.TagList;
@@ -42,8 +40,6 @@ import model.DeckUUID;
 
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageCorrupted;
-
-
 import utils.exceptions.StorageLoadFailure;
 import utils.exceptions.StorageSaveFailure;
 import utils.storage.Storage;
@@ -67,19 +63,6 @@ public class JsonStorage extends Storage {
         backupFilePath = backupFileDir + File.separator + "." + backupFilePath.substring(
                 backupFilePath.lastIndexOf(File.separator) + 1);
         backupFile = new File(backupFilePath);
-
-
-
-
-
-
-
-
-
-
-
-
-
         gsonBuilder = new GsonBuilder();
 
         //Add custom adapters
@@ -98,18 +81,10 @@ public class JsonStorage extends Storage {
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             gsonBuilder.setLenient();
-
-
-
             JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
             JsonObject saveDataObject = jsonElement.getAsJsonObject();
-
-
             JsonArray jsonArray = saveDataObject.getAsJsonArray("cards");
             ArrayList<Card> cards = new ArrayList<>();
-
-
-
 
             for (JsonElement jsonCard : jsonArray) {
                 JsonObject cardObject = jsonCard.getAsJsonObject();
@@ -119,8 +94,6 @@ public class JsonStorage extends Storage {
 
                 String question = cardObject.get("question").getAsString();
                 String answer = cardObject.get("answer").getAsString();
-
-
 
                 Card card = Card.createCardWithUUID(question, answer, uuidString);
 
@@ -132,8 +105,6 @@ public class JsonStorage extends Storage {
                 for (JsonElement tagListElement : tagsArray) {
                     JsonObject tagUuidObject = tagListElement.getAsJsonObject();
 
-
-
                     String tagUuidString = tagUuidObject.get("uuid").getAsString();
                     card.addTag(new TagUUID(UUID.fromString(tagUuidString)));
 
@@ -143,10 +114,6 @@ public class JsonStorage extends Storage {
 
                     JsonObject deckUuidObject = deckListElement.getAsJsonObject();
                     String deckUuidString = deckUuidObject.get("uuid").getAsString();
-
-
-
-
                     card.addDeck(new DeckUUID(UUID.fromString(deckUuidString)));
 
                 }
