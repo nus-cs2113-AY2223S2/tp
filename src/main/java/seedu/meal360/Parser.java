@@ -178,20 +178,22 @@ public class Parser {
     }
 
     public String parseDeleteRecipe(String[] input, RecipeList recipeList) {
-        assert input[0].equals("delete");
         // user inputted recipe name
-        if (input[1].contains("r/")) {
+        if (input[1].contains("/r")) {
             // skip over /r in recipe name
-            String recipeToDelete = input[1].substring(2);
+            String recipeToDelete = "";
+            for (int i = 2; i < input.length; i++) {
+                recipeToDelete += input[i] + " ";
+            }
+            recipeToDelete = recipeToDelete.trim();
             if (recipeToDelete.equals("all")) {
-                StringBuilder allRecipes = new StringBuilder();
-                System.out.println("recipeList size: " + recipeList.size());
+                String allRecipes = "";
                 int index = 0;
                 while (recipeList.size() != 0) {
-                    allRecipes.append(recipeList.deleteRecipe(index).getName()).append(", ");
+                    allRecipes += recipeList.deleteRecipe(index).getName() + ", ";
                 }
-                allRecipes = new StringBuilder(allRecipes.substring(0, allRecipes.length() - 2));
-                return allRecipes.toString();
+                allRecipes = allRecipes.substring(0, allRecipes.length() - 2);
+                return allRecipes;
             } else {
                 int recipeIndex = 0;
                 for (Recipe recipe : recipeList) {
@@ -205,20 +207,19 @@ public class Parser {
             }
             // user inputted index of recipe in list
         } else {
-            // check if deleting a range of recipes
+            // deleting a range of recipes
             if (input[1].length() >= 3) {
-                StringBuilder rangeRecipes = new StringBuilder();
+                String rangeRecipes = "";
                 int startIndex = Integer.parseInt(input[1].charAt(0) + "");
                 int endIndex = Integer.parseInt(input[1].charAt(2) + "");
                 startIndex -= 1;
                 endIndex -= 1;
                 int newSize = recipeList.size() - ((endIndex - startIndex) + 1);
                 while (recipeList.size() != newSize) {
-                    rangeRecipes.append(recipeList.deleteRecipe(startIndex).getName()).append(", ");
+                    rangeRecipes += recipeList.deleteRecipe(startIndex).getName() + ", ";
                 }
-                rangeRecipes = new StringBuilder(
-                        rangeRecipes.substring(0, rangeRecipes.length() - 2));
-                return rangeRecipes.toString();
+                rangeRecipes = String.valueOf(new StringBuilder(rangeRecipes.substring(0, rangeRecipes.length() - 2)));
+                return rangeRecipes;
             } else {
                 int recipeIndex = Integer.parseInt(input[1]);
                 // need to subtract 1 since list is 1-based
