@@ -12,37 +12,64 @@ import java.util.Scanner;
 //@@author Khulon
 public class PlannerCommandHandler implements CommandList {
     public static void plannerCommandHandler (Ui ui, UserPlan planner,
-                                              Storage storage) throws DukeError {
+                                              Storage storage, Scanner in) throws DukeError {
         ui.printPlannerGreeting();
-        Scanner in = new Scanner(System.in);
 
         while (true) {
             String rawUserCommands = in.nextLine();
             StringSplitter stringSplitter = new StringSplitter();
             String[] userCommands = stringSplitter.splitString(rawUserCommands);
-            switch (userCommands[0]) {
-            case HELP_COMMAND:
-                ui.printPlannerHelp();
-                break;
-            case VIEW_PLAN_COMMAND:
-                ui.showPlan(planner);
-                break;
-            case EXIT_COMMAND:
-                System.out.println("Exited planner editor!");
-                return;
-            case ADD_PLAN_COMMAND:
-                UserPlan.addPlan(userCommands);
-                break;
-            case FILTERS_COMMAND:
-                ui.printFilters();
-                break;
-            case DELETE_PLAN_COMMAND:
-                UserPlan.deletePlan(userCommands);
-                break;
-            default:
-                ui.unknownCommand();
+            //additional error check for whether there's additional description behind single
+            //word commands
+            String additionalDescription = "";
+            for (int i = 1; i < userCommands.length; i++) {
+                additionalDescription = additionalDescription + " " + userCommands[i];
             }
-            storage.writeToJson(planner);
+            try {
+
+                switch (userCommands[0]) {
+                case HELP_COMMAND:
+                    if (additionalDescription.length() != 0) {
+                        ui.unknownCommand();
+                    } else {
+                        ui.printPlannerHelp();
+                    }
+                    break;
+                case VIEW_PLAN_COMMAND:
+                    if (additionalDescription.length() != 0) {
+                        ui.unknownCommand();
+                    } else {
+                        ui.showPlan(planner);
+                    }
+                    break;
+                case EXIT_COMMAND:
+                    if (additionalDescription.length() != 0) {
+                        ui.unknownCommand();
+                    } else {
+                        System.out.println("Exited planner editor!");
+                    }
+                    return;
+                case ADD_PLAN_COMMAND:
+                    UserPlan.addPlan(userCommands);
+                    break;
+                case FILTERS_COMMAND:
+                    if (additionalDescription.length() != 0) {
+                        ui.unknownCommand();
+                    } else {
+                        ui.printFilters();
+                    }
+                    break;
+                case DELETE_PLAN_COMMAND:
+                    UserPlan.deletePlan(userCommands);
+                    break;
+                default:
+                    ui.unknownCommand();
+                }
+                ui.plannerMode();
+                storage.writeToJson(planner);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
         }
     }

@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.logic.commandhandler.CommandHandler;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.storage.JsonUserCareerStorage;
@@ -25,6 +26,7 @@ public class Duke {
     private Storage storage;
     private UserCareerData userCareerData;
     private HashMap<String, Integer> userExerciseHistory;
+    private AchievementListHandler achievementListHandler;
     private UserPlan planner;
 
     public Duke () {
@@ -34,6 +36,8 @@ public class Duke {
         UserCareerStorage userCareerStorage = new JsonUserCareerStorage(USER_FILEPATH);
         storage = new StorageManager(userCareerStorage, userPlansStorage);
         exerciseHandler = new ExerciseStateHandler(storage);
+        achievementListHandler = new AchievementListHandler();
+        this.achievementListHandler.loadAchievementsFromFile();
         this.userCareerData = storage.loadUserData();
         this.planner = storage.loadUserPlans();
         assert this.userCareerData != null : "User career is null, data should not be empty";
@@ -51,7 +55,7 @@ public class Duke {
         ui.greetUser();
         while (true) {
             commandHandler.handleUserCommands(in.nextLine(), ui, exerciseGenerator, userCareerData, exerciseHandler,
-                                              storage, planner);
+                                              storage, planner, achievementListHandler, in);
         }
     }
 

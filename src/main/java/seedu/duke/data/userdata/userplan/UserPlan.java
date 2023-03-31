@@ -1,11 +1,8 @@
 package seedu.duke.data.userdata.userplan;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.commons.exceptions.InvalidAddPlanError;
-import seedu.duke.commons.exceptions.InvalidDateInputError;
-import seedu.duke.commons.exceptions.InvalidFilterInputError;
-import seedu.duke.commons.exceptions.InvalidDeletePlanError;
-import seedu.duke.commons.exceptions.InvalidPlanError;
+import seedu.duke.ui.ErrorMessages;
+
 import java.util.ArrayList;
 
 import static seedu.duke.data.exercisegenerator.exersisedata.ExerciseFilter.isAValidFilter;
@@ -43,10 +40,12 @@ public class UserPlan {
      * @return the exercise plan or null if not found
      */
     public static ArrayList<String> getExercisePlan (String planName) {
-        System.out.println("1:" + planName);
+        //System.out.println("1:" + planName);
+        System.out.println(planName);
         for (int day = 0; day < DAYSINAWEEK; day++) {
             for (int exercisePlan = 0; exercisePlan < plan[day].size(); exercisePlan++) {
-                System.out.println("2:" + plan[day].get(exercisePlan).getPlanName());
+                //System.out.println("2:" + plan[day].get(exercisePlan).getPlanName());
+                System.out.println(plan[day].get(exercisePlan).getPlanName());
                 if (plan[day].get(exercisePlan).getPlanName().equals(planName)) {
                     return plan[day].get(exercisePlan).getExercisePlans();
                 }
@@ -63,17 +62,17 @@ public class UserPlan {
     public static void addPlan (String[] userCommands) throws DukeError {
         ArrayList<String> exerciseFilters = new ArrayList<>();
         if (userCommands.length < 4) {
-            throw new InvalidAddPlanError();
+            throw new DukeError(ErrorMessages.ERROR_INVALID_PLAN_ADDITION.toString());
         }
         int intDay = dayToInt(userCommands[1]);
 
         if (intDay == -1) {
-            throw new InvalidDateInputError();
+            throw new DukeError(ErrorMessages.ERROR_INVALID_DATE_INPUT.toString());
         }
         String name = userCommands[2];
         for (int i = 3; i < userCommands.length; i++) {
             if (!isAValidFilter(userCommands[i])) {
-                throw new InvalidFilterInputError();
+                throw new DukeError(ErrorMessages.ERROR_INVALID_FILTER_INPUT.toString());
             }
             exerciseFilters.add(userCommands[i]);
         }
@@ -89,11 +88,11 @@ public class UserPlan {
      */
     public static void deletePlan (String[] userCommands) throws DukeError {
         if (userCommands.length != 3) {
-            throw new InvalidDeletePlanError();
+            throw new DukeError(ErrorMessages.ERROR_INVALID_DELETE_COMMAND.toString());
         }
         int intDay = dayToInt(userCommands[1]);
         if (intDay == -1) {
-            throw new InvalidDateInputError();
+            throw new DukeError(ErrorMessages.ERROR_INVALID_DATE_INPUT.toString());
         }
         String name = userCommands[2];
         for (int i = 0; i < plan[intDay].size(); i++) {
@@ -103,7 +102,7 @@ public class UserPlan {
                 return;
             }
         }
-        throw new InvalidPlanError();
+        throw new DukeError(ErrorMessages.ERROR_INVALID_PLAN.toString());
     }
 
     /**

@@ -1,5 +1,7 @@
 package seedu.duke.logic.commandhandler;
 
+import java.util.Scanner;
+import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.GenerateFilterCommand;
@@ -10,6 +12,7 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.storage.Storage;
+import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.data.userdata.UserExerciseData;
@@ -33,36 +36,95 @@ public class GeneralCommandHandler implements CommandList {
     // addition of user exercise history
     public void handleGeneralUserCommands (String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
                                            UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
-                                           Storage storage, UserPlan planner) {
+                                           Storage storage, UserPlan planner,
+                                           AchievementListHandler achievementListHandler,
+                                           Scanner scanner) {
         Command command = null;
         boolean errorExists = false;
-        try {
+        //additional error check for whether there's additional description behind single
+        //word commands
+        String additionalDescription = "";
+        for (int i = 1; i < userCommands.length; i++) {
+            additionalDescription = additionalDescription + " " + userCommands[i];
+        }
 
+        try {
             switch (userCommands[0]) {
+            case DELETE_COMMAND:
+                //additional description becomes a number. Delete the session
+                try {
+                    if (additionalDescription.length() == 0) {
+                        throw new DukeError(ErrorMessages.ERROR_EMPTY_DESCRIPTION_NUMBER.toString());
+                    }
+                    int sessionNumber = Integer.parseInt(userCommands[1]);
+                    if ((sessionNumber > userCareerData.getTotalUserCareerSessions().size()) || sessionNumber <= 0) {
+                        throw new DukeError(ErrorMessages.ERROR_INVALID_DELETE_SESSION.toString());
+                    }
+                    exerciseStateHandler.deleteWorkoutSession(userCareerData, sessionNumber);
+                } catch (NumberFormatException e) {
+                    System.out.println("You did not key in a session number. " +
+                                           "Please key in a valid session number and try again!");
+                }
+                break;
             case GENERATE_COMMAND:
                 command = new GenerateFilterCommand(userCommands);
                 break;
             case FILTERS_COMMAND:
-                ui.printFilters();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    ui.printFilters();
+                }
                 break;
             case EXIT_COMMAND:
-                ui.byeUser();
-                System.exit(0);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    ui.byeUser();
+                    System.exit(0);
+                }
                 break;
             case HELP_COMMAND:
-                command = new HelpCommand();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    command = new HelpCommand();
+                }
                 break;
             case PLANNER_EDITOR_COMMAND:
-                PlannerCommandHandler.plannerCommandHandler(ui, planner, storage);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    PlannerCommandHandler.plannerCommandHandler(ui, planner, storage, scanner);
+                }
                 break;
             case VIEW_PLAN_COMMAND:
-                ui.showPlan(planner);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    ui.showPlan(planner);
+                }
                 break;
             case QUICK_START_COMMAND:
-                command = new QuickStartCommand(userCommands, ui, exerciseGenerator);
+                if (additionalDescription.length() == 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    command = new QuickStartCommand(userCommands, ui, exerciseGenerator);
+                }
                 break;
             case START_COMMAND:
-                exerciseStateHandler.startWorkout();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    exerciseStateHandler.startWorkout();
+                }
                 break;
             case CURRENT_COMMAND:
             case FINISH_COMMAND:
@@ -71,15 +133,28 @@ public class GeneralCommandHandler implements CommandList {
                                        " Please generate a workout and use the \"start\" command!");
                 break;
             case HISTORY_COMMAND:
-                userCareerData.printAllFinishedWorkoutSessions();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    userCareerData.printAllFinishedWorkoutSessions();
+                }
                 break;
             case FIND_COMMAND:
                 command = new ExerciseSearchCommand(userCommands);
                 break;
             case EXERCISE_DATA_COMMAND:
-                HashMap<String, Integer> userExerciseDataMap = UserExerciseData
-                    .addUserExerciseHistory(userCareerData);
-                ui.printUserExerciseHistory(userExerciseDataMap);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                    errorExists = true;
+                } else {
+                    HashMap<String, Integer> userExerciseDataMap = UserExerciseData
+                        .addUserExerciseHistory(userCareerData);
+                    ui.printUserExerciseHistory(userExerciseDataMap);
+                }
+                break;
+            case ACHIEVEMENTS:
+                achievementListHandler.printAchievements();
                 break;
             default:
                 ui.unknownCommand();

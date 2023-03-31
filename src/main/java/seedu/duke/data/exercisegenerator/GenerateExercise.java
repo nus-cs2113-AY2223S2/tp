@@ -1,9 +1,8 @@
 package seedu.duke.data.exercisegenerator;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.commons.exceptions.InvalidDifficultyInputError;
-import seedu.duke.commons.exceptions.InvalidBodyWorkoutTypeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.ui.ErrorMessages;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -59,11 +58,11 @@ public class GenerateExercise {
         case HARD:
             return EXPERT;
         default:
-            throw new InvalidDifficultyInputError();
+            throw new DukeError(ErrorMessages.ERROR_DIFFICULTY_INPUT.toString());
         }
     }
 
-    //@@author Khulon
+    //@@author L-K-Chng
 
     /**
      * Parse the user input to return the corresponding workout type within the data file.
@@ -83,7 +82,7 @@ public class GenerateExercise {
         case LEGS:
             return LEGS;
         default:
-            throw new InvalidBodyWorkoutTypeError();
+            throw new DukeError(ErrorMessages.ERROR_BODY_WORKOUT_TYPE_INPUT.toString());
         }
     }
 
@@ -98,6 +97,15 @@ public class GenerateExercise {
             filteredExerciseList.add(randomExercise);
         }
         return filteredExerciseList;
+    }
+
+    public ArrayList<ExerciseData> generateFirstThree () {
+        ArrayList<ExerciseData> tripletExerciseList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            ExerciseData exerciseToAdd = this.exerciseDataList.get(i);
+            tripletExerciseList.add(exerciseToAdd);
+        }
+        return tripletExerciseList;
     }
 
     /**
@@ -147,6 +155,8 @@ public class GenerateExercise {
         }
         return filteredExerciseList;
     }
+
+    //@@author L-K-Chng
 
     /**
      * Returns an exercise list which is filtered according to the workout type

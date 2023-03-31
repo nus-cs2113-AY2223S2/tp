@@ -40,6 +40,11 @@ public class ExerciseData {
         return id;
     }
 
+    //added setId for junit test.
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName () {
         return name;
     }

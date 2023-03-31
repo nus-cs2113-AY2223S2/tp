@@ -1,17 +1,12 @@
 package seedu.duke.logic.commandhandler;
 
+import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.commons.exceptions.OngoingExGenerationError;
-import seedu.duke.commons.exceptions.OngoingExHelpError;
-import seedu.duke.commons.exceptions.OngoingExHistoryError;
-import seedu.duke.commons.exceptions.OngoingExProgressError;
 
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
+import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.UserCareerData;
-import seedu.duke.data.userdata.UserExerciseData;
-
-import java.util.HashMap;
 import java.util.Scanner;
 
 //@@ChubbsBunns
@@ -65,46 +60,78 @@ public class ExerciseSessionCommandHandler implements CommandList {
 
     public void handleExerciseSessionUserCommands (String[] userCommands, Ui ui,
                                                    UserCareerData userCareerData,
-                                                   ExerciseStateHandler exerciseStateHandler) {
+                                                   ExerciseStateHandler exerciseStateHandler,
+                                                   AchievementListHandler achievementListHandler) {
+        //additional error check for whether there's additional description behind single
+        //word commands
+        String additionalDescription = "";
+        for (int i = 1; i < userCommands.length; i++) {
+            additionalDescription = additionalDescription + " " + userCommands[i];
+        }
+
         try {
             switch (userCommands[0]) {
             case GENERATE_COMMAND:
-                throw new OngoingExGenerationError();
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_GENERATE_COMMAND.toString());
             case HELP_COMMAND:
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    ui.printExerciseSessionHelp();
+                }
+                break;
             case FILTERS_COMMAND:
             case FIND_COMMAND:
-                throw new OngoingExHelpError();
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HELP_COMMAND.toString());
             case EXIT_COMMAND:
-                boolean exit = confirmExitDuringWorkout();
-                if (exit) {
-                    ui.byeUser();
-                    System.exit(0);
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
                 } else {
-                    System.out.println("You got this! Finish your exercise session!");
+                    boolean exit = confirmExitDuringWorkout();
+                    if (exit) {
+                        exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData, achievementListHandler);
+                        System.out.println("Back to main menu...");
+                        return;
+                    } else {
+                        System.out.println("You got this! Finish your exercise session!");
+                    }
                 }
                 break;
             case START_COMMAND:
-                throw new OngoingExProgressError();
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_START_COMMAND.toString());
             case CURRENT_COMMAND:
-                exerciseStateHandler.printCurrentWorkout();
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    exerciseStateHandler.printCurrentWorkout();
+                }
                 break;
             case FINISH_COMMAND:
-                exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData);
-                break;
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData, achievementListHandler);
+                }
+                return;
             case CANCEL_COMMAND:
-                exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData);
-                break;
+                if (additionalDescription.length() != 0) {
+                    ui.unknownCommand();
+                } else {
+                    exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData, achievementListHandler);
+                }
+                return;
             case HISTORY_COMMAND:
-                throw new OngoingExHistoryError();
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_HISTORY_COMMAND.toString());
             case EXERCISE_DATA_COMMAND:
-                HashMap<String, Integer> userExerciseDataMap = UserExerciseData
-                    .addUserExerciseHistory(userCareerData);
-                ui.printUserExerciseHistory(userExerciseDataMap);
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_DATA_COMMAND.toString());
+            case ACHIEVEMENTS:
+                achievementListHandler.printAchievements();
                 break;
             default:
                 ui.unknownCommand();
                 break;
             }
+            ui.workoutMode();
         } catch (DukeError e) {
             System.out.println(e.getMessage());
         }

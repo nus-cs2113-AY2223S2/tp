@@ -3,8 +3,6 @@ package seedu.duke.exercisegenerator;
 import org.junit.jupiter.api.Test;
 import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.commons.exceptions.ExerciseNumberInputAsStringError;
-import seedu.duke.commons.exceptions.TooManyFiltersError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
@@ -85,7 +83,7 @@ public class GenerateExerciseTest {
         GenerateFilterCommand generateFilterCommand = new GenerateFilterCommand(sampleUserCommand.split(" "));
         Ui ui = new Ui();
         GenerateExercise generateExercise = new GenerateExercise(RANDOM_SEED);
-        assertThrows(TooManyFiltersError.class, () -> generateFilterCommand.executeCommand(ui, generateExercise));
+        assertThrows(DukeError.class, () -> generateFilterCommand.executeCommand(ui, generateExercise));
     }
 
     /**
@@ -101,7 +99,7 @@ public class GenerateExerciseTest {
         GenerateFilterCommand generateFilterCommand = new GenerateFilterCommand(sampleUserCommand.split(" "));
         Ui ui = new Ui();
         GenerateExercise generateExercise = new GenerateExercise(RANDOM_SEED);
-        assertThrows(TooManyFiltersError.class, () -> generateFilterCommand.executeCommand(ui, generateExercise));
+        assertThrows(DukeError.class, () -> generateFilterCommand.executeCommand(ui, generateExercise));
     }
 
     /**
@@ -111,7 +109,7 @@ public class GenerateExerciseTest {
     @Test
     void testInvalidInput () {
         String sampleUserCommand = "easy core 9999999999999999999999999";
-        assertThrows(ExerciseNumberInputAsStringError.class,
+        assertThrows(DukeError.class,
                      () -> new GenerateFilterCommand(sampleUserCommand.split(" ")));
 
     }

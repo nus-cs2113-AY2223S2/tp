@@ -1,11 +1,9 @@
 package seedu.duke.logic.commands;
 
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.commons.exceptions.ExerciseNumberInputAsStringError;
-import seedu.duke.commons.exceptions.UnknownFilterInputError;
-import seedu.duke.commons.exceptions.TooManyFiltersError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -41,8 +39,11 @@ public class GenerateFilterCommand extends Command {
         String userGenerateCount = userCommands[userCommands.length - 1];
         try {
             this.numberOfExercisesToGenerate = Integer.parseInt(userGenerateCount);
+            if (this.numberOfExercisesToGenerate <= 0) {
+                throw new DukeError(ErrorMessages.ERROR_EXERCISE_NUM_INPUT_STRING.toString());
+            }
         } catch (NumberFormatException error) {
-            throw new ExerciseNumberInputAsStringError();
+            throw new DukeError(ErrorMessages.ERROR_EXERCISE_NUM_INPUT_STRING.toString());
         }
     }
 
@@ -79,13 +80,16 @@ public class GenerateFilterCommand extends Command {
                 exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
                 break;
             default:
-                throw new UnknownFilterInputError();
+                throw new DukeError(ErrorMessages.ERROR_FILTER_INPUT.toString());
             }
         }
-        if (numberOfExercisesToGenerate > exercises.size()) {
-            throw new TooManyFiltersError();
+        if (numberOfExercisesToGenerate == 1337) {
+            exercises = exerciseGenerator.generateFirstThree();
+        } else if (numberOfExercisesToGenerate > exercises.size()) {
+            throw new DukeError(ErrorMessages.ERROR_EXCESSIVE_FILTERS.toString());
+        } else {
+            exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
         }
-        exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
         exerciseListGenerated = exercises;
         ui.printExerciseFromList(exercises);
     }
