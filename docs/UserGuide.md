@@ -135,9 +135,12 @@ Search for item(s) in the inventory list using keywords or UPC.
 
 Format: `search [Keywords]` or `searchupc [UPC]`
 
+Notes: `search` will find items with all keywords. Hence, the search term `sleeves` will find both `Laptop Sleeves`
+and `Clothes Sleeves`, but the search term `laptop sleee` will only return the item `Laptop Sleeves`
+
 Example of usage:
 
-``search apples``
+``search sleeves``
 
 Sample output:
 
@@ -146,13 +149,30 @@ ____________________________________________________________
 +-----------------+--------------+----------+----------+
 | Name            | UPC          | Quantity | Price    |
 +-----------------+--------------+----------+----------+
-| Apples          | 0123241      | 10       | $15.0    |
+| laptop sleeves  | 1            | 10       | $15.0    |
 +-----------------+--------------+----------+----------+
-| Large Apples    | 012321       | 10       | $15.0    |
+| shirt sleeves   | 3            | 10       | $5.0     |
 +-----------------+--------------+----------+----------+
 
 ____________________________________________________________
 ```
+
+Example of usage:
+
+``search laptop sleee``
+
+Sample output:
+```
+____________________________________________________________
++-----------------+--------------+----------+----------+
+| Name            | UPC          | Quantity | Price    |
++-----------------+--------------+----------+----------+
+| laptop sleeves  | 1            | 10       | $15.0    |
++-----------------+--------------+----------+----------+
+
+____________________________________________________________
+```e
+
 Example of usage:
 
 ``searchupc 0123241``
