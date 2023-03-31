@@ -3,8 +3,9 @@
 
 actor User
 User -> ":HistoryParser"**
-activate ":HistoryParser"
+
 User -> ":HistoryParser": run()
+activate ":HistoryParser"
 alt rawInput length is not one
     ref over ":HistoryParser"
         handle input error
@@ -12,8 +13,9 @@ alt rawInput length is not one
     ":HistoryParser" --> User
 end
 ":HistoryParser" -> ":HistoryCommand"**
-activate ":HistoryCommand"
+
 ":HistoryParser" -> ":HistoryCommand": run()
+activate ":HistoryCommand"
 ":HistoryCommand" -> ":HistoryCommand": getHistoryResults()
 activate ":HistoryCommand" #cyan
 alt upcCode does not belong to any item

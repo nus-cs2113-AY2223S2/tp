@@ -4,8 +4,9 @@
 actor User
 participant ":FilterParser"
 User -> ":FilterParser" **
-activate ":FilterParser"
+
 User -> ":FilterParser": run()
+activate ":FilterParser"
 alt rawInput == null
     ref over ":FilterParser"
         handle input error
