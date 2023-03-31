@@ -22,7 +22,7 @@ The app also allows users to keep track of their daily exercises to compute thei
 * Add Exercise
 * Calculate caloric needs
 * Calculate amount of calories left in the day
-* Track Calorie Intake
+* Track Calorie IntakeNothing, He is perfect
 
 ### Viewing User Profile: `view`
 
