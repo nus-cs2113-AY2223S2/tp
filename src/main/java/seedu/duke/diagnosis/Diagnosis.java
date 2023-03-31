@@ -142,4 +142,17 @@ public class Diagnosis {
                 .filter(possibleIllness -> possibleIllness.getSimilarityPercentage() > POSSIBILITY_THRESHOLD)
                 .collect(toCollection(ArrayList::new));
     }
+
+    //@@author Thunderdragon221
+    public static boolean isValidDiagnosis(String diagnosis) {
+        boolean isValid = false;
+
+        for (Illness illness : ALL_ILLNESSES) {
+            if (illness.getIllnessName().equals(diagnosis)) {
+                isValid = true;
+            }
+        }
+
+        return isValid;
+    }
 }

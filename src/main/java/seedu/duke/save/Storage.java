@@ -1,7 +1,10 @@
+//@@author Thunderdragon221
 package seedu.duke.save;
 
+import seedu.duke.medicine.MedicineManager;
 import seedu.duke.patient.Patient;
 import seedu.duke.ui.Information;
+import seedu.duke.diagnosis.Diagnosis;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +13,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -19,17 +24,16 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-//@@author Thunderdragon221
 /**
  * This class reads and writes information to and from the patient-data file.
  */
 public class Storage {
 
     /** Specifies the directory path to be created */
-    private static final String DIR_PATH = "./data/";
+    static final String DIR_PATH = "./data/";
 
     /** Specifies the file path to be created */
-    private static final String FILE_PATH = "./data/patient-data.txt";
+    static final String FILE_PATH = "./data/patient-data.txt";
 
     private static Logger logger = Logger.getLogger(Storage.class.getName());
     /**
@@ -83,22 +87,41 @@ public class Storage {
 
         while (scanner.hasNextLine()) {
             String password = scanner.nextLine();
-            if (endOfFile(password)) {
+            if (emptyField(password)) {
                 break;
+            } else if (!password.matches("[0-9]*")) {
+                throw new CorruptedDataException();
             }
 
+            if (!scanner.hasNextLine()) {
+                logger.log(Level.WARNING, "Corrupted data file");
+                throw new CorruptedDataException();
+            }
             String name = scanner.nextLine();
-            if (endOfFile(name)) {
+            if (emptyField(name)) {
                 logger.log(Level.WARNING, "Corrupted data file");
                 throw new CorruptedDataException();
             }
 
-            int numberOfEntries = Integer.parseInt(scanner.nextLine());
+            if (!scanner.hasNextLine()) {
+                logger.log(Level.WARNING, "Corrupted data file");
+                throw new CorruptedDataException();
+            }
+            String line = scanner.nextLine();
+            if (emptyField(line) || (!line.matches("[0-9]*"))) {
+                logger.log(Level.WARNING, "Corrupted data file");
+                throw new CorruptedDataException();
+            }
+            int numberOfEntries = Integer.parseInt(line);
             ArrayList<String> diagnosisHistory = new ArrayList<>();
 
             for (int i = 0; i < numberOfEntries; i++) {
+                if (!scanner.hasNextLine()) {
+                    logger.log(Level.WARNING, "Corrupted data file");
+                    throw new CorruptedDataException();
+                }
                 String diagnosis = scanner.nextLine();
-                if (endOfFile(diagnosis)) {
+                if (emptyField(diagnosis) || (!Diagnosis.isValidDiagnosis(diagnosis))) {
                     logger.log(Level.WARNING, "Corrupted data file");
                     throw new CorruptedDataException();
                 }
@@ -122,12 +145,25 @@ public class Storage {
     private static Hashtable<String, ArrayList<String>> readMedicineHistoryFromFile(Scanner scanner)
             throws CorruptedDataException {
 
-        int numberOfMedicineEntries = Integer.parseInt(scanner.nextLine());
-        Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
+        //@@author Thunderdragon221
+        String line = scanner.nextLine();
+        if (emptyField(line) || (!line.matches("[0-9]*"))) {
+            logger.log(Level.WARNING, "Corrupted data file");
+            throw new CorruptedDataException();
+        }
+        //@@author tanyizhe
+        int numberOfMedicineEntries = Integer.parseInt(line);
+        Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable();
 
         for (int entry = 0; entry < numberOfMedicineEntries; entry++) {
+            //@@author Thunderdragon221
+            if (!scanner.hasNextLine()) {
+                logger.log(Level.WARNING, "Corrupted data file");
+                throw new CorruptedDataException();
+            }
+            //@@author tanyizhe
             String dateMedicineString = scanner.nextLine();
-            if (endOfFile(dateMedicineString)) {
+            if (emptyField(dateMedicineString)) {
                 logger.log(Level.WARNING, "Corrupted data file");
                 throw new CorruptedDataException();
             }
@@ -136,7 +172,30 @@ public class Storage {
             for (int medStringCount = 1; medStringCount < splitDateMedicineStrings.length; medStringCount++) {
                 medicines.add(splitDateMedicineStrings[medStringCount]);
             }
-            medicineHistory.put(splitDateMedicineStrings[0], medicines);
+            //@@author Thunderdragon221
+            String date = splitDateMedicineStrings[0];
+            if (!date.matches("^[0-9]{4}/[0-9]{2}/[0-9]{2}$")) {
+                logger.log(Level.WARNING, "Corrupted data file");
+                throw new CorruptedDataException();
+            }
+            int year = Integer.parseInt(date.substring(0, 4));
+            int month = Integer.parseInt(date.substring(5, 7));
+            int day = Integer.parseInt(date.substring(8, 10));
+            if (!isValidDate(year, month, day)) {
+                logger.log(Level.WARNING, "Corrupted data file");
+                throw new CorruptedDataException();
+            }
+
+            MedicineManager medicineManager = new MedicineManager();
+            for (String medicine : medicines) {
+                if (!medicineManager.isValidMedicine(medicine)) {
+                    logger.log(Level.WARNING, "Corrupted data file");
+                    throw new CorruptedDataException();
+                }
+            }
+
+            //@@author tanyizhe
+            medicineHistory.put(date, medicines);
         }
         return medicineHistory;
     }
@@ -179,7 +238,7 @@ public class Storage {
      * @throws IOException Exception thrown when file cannot be written on or found.
      */
     private static void writeMedicineHistory(FileWriter writer, Hashtable<String,
-                ArrayList<String>> medicineHistory) throws IOException {
+            ArrayList<String>> medicineHistory) throws IOException {
         List<String> dates = Collections.list(medicineHistory.keys());
         Collections.sort(dates);
         for (String date : dates) {
@@ -187,17 +246,37 @@ public class Storage {
             for (String medString : medicineHistory.get(date)) {
                 writer.write(medString + " ");
             }
-            writer.write("\n");
         }
+        writer.write("\n");
     }
     //@@author Thunderdragon221
     /**
-     * Checks whether the end of the file has been reached.
+     * Checks whether an empty field is scanned.
      *
      * @param data Current line being read from the patient-data file.
      * @return true if the line is empty, and false otherwise.
      */
-    private static boolean endOfFile(String data) {
+    private static boolean emptyField(String data) {
         return data.matches("^ *$");
+    }
+
+    /**
+     * Checks whether the date is valid.
+     *
+     * @param year year of the date in integer YYYY format.
+     * @param month month of the date in integer MM format.
+     * @param day day of the date in integer DD format.
+     * @return true if the date is valid and false otherwise.
+     */
+    private static boolean isValidDate(int year, int month, int day) {
+        boolean isValid = true;
+
+        try {
+            LocalDate.of(year, month, day);
+        } catch (DateTimeException e) {
+            isValid = false;
+        }
+
+        return isValid;
     }
 }

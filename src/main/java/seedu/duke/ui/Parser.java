@@ -1,3 +1,4 @@
+//@@author JeraldChen
 package seedu.duke.ui;
 
 import seedu.duke.Duke;
@@ -8,13 +9,11 @@ import seedu.duke.patient.Patient;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.time.LocalDateTime;
 import java.util.Scanner;
-
+import java.time.LocalDateTime;
 
 import static seedu.duke.save.Storage.saveData;
 
-//@@author JeraldChen
 public class Parser {
 
     /**
@@ -38,9 +37,10 @@ public class Parser {
             break;
         }
     }
+
+    //@@author Thunderdragon221, Geeeetyx, tanyizhe
     /**
      * Parses the user input for the account menu.
-     * @author Thunderdragon221, Geeeetyx, tanyizhe
      *
      * @param choice Users choice of input.
     */

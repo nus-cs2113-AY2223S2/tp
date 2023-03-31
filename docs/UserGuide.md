@@ -209,7 +209,7 @@ DO NOT spell out the symptom, just choose the option.
 Both forms yield the same expected result.
 
 Expected outcome:
-~~~
+```
 Please enter a symptom.
 ---------------------------------------------------
 abc
@@ -217,8 +217,9 @@ Do you have any other symptoms? [Y/N]
 n
 Your entered symptoms are: 
 [FEVER, DRY_COUGH, COUGH_WITH_PHLEGM]
-~~~
-~~~
+```
+OR
+```
 Please enter a symptom.
 ---------------------------------------------------
 a b c
@@ -226,16 +227,16 @@ Do you have any other symptoms? [Y/N]
 n
 Your entered symptoms are: 
 [FEVER, DRY_COUGH, COUGH_WITH_PHLEGM]
-~~~
+```
 
-The patient may key in ``Y`` or ``y`` to continue reporting symptoms.
+The patient may key in `Y` or `y`to continue reporting symptoms. Once the patient is finished reporting their symptoms, they can type `N` or `n` to finish reporting their symptoms.
 
 After reporting their symptoms, Doctor Duke will then diagnose the patient, by:
-1. showing what illness the patient might have,
-2. and then displaying what medicine the patient should consume.
+1. Showing what illness the patient might have,
+2. Displaying what medicine the patient should consume.
 
 Expected Outcome:
-~~~
+```
 Please enter a symptom.
 ---------------------------------------------------
 a b c
@@ -253,7 +254,7 @@ Medication for: Sore Throat
 Medication for: Fever
     Paracetamol / Dosage: 1 or 2 pills up to 3 times a day
 ---------------------------------------------------
-~~~
+```
 
 ### 2. View Diagnosis History
 The patient can view his/her diagnosis history.

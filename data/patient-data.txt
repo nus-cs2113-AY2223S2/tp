@@ -1,31 +1,10 @@
 49
 Demo
-11
-Bronchitis
-Sore Throat
-Fever
-Headache
-Sore Throat
-Fever
-Sore Throat
-Fever
-Sore Throat
-Fever
-COVID-19
-2
-2023/03/23 Ultracarbon Paracetamol Ibuprofen Aspirin Robitussin Magnesium 
-2023/03/25 Paracetamol Lozenges Guaifenesin Ibuprofen 
-50
-sjfnsdkl
-0
-0
-1567
-Demo
 5
-Bronchitis
-Sore Throat
-Fever
-Headache
-COVID-19
+Constipation
+Back Ache
+Muscle Ache
+Migraine
+Insomnia
 1
-2023/03/29 Guaifenesin Ibuprofen Lozenges Paracetamol 
+2023/03/30 Dulcolax Ibuprofen Aspirin Magnesium 

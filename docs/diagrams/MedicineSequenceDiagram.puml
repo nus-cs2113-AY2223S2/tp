@@ -1,0 +1,31 @@
+[comment]: <> (//@@author tanyizhe)
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+create MedicineManager
+Parser -> MedicineManager : new MedicineManager()
+activate MedicineManager
+create Medicine
+MedicineManager -> Medicine: new Medicine()
+MedicineManager -> Medicine: InitialiseMedications()
+activate MedicineManager
+activate Medicine
+MedicineManager -> Medicine: InitialiseMedicineDosages()
+Medicine --> MedicineManager: toString()
+Medicine --> MedicineManager: getDosage()
+deactivate Medicine
+deactivate MedicineManager
+MedicineManager -> Diagnosis: getIllnessMatch()
+activate Diagnosis
+Diagnosis --> MedicineManager
+deactivate Diagnosis
+
+
+
+MedicineManager --> Parser: AnalyseIllness()
+deactivate MedicineManager
+
+
+@enduml
