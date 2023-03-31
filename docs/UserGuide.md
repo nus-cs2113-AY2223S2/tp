@@ -17,14 +17,6 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 3. Move the `.jar` file to an empty folder.
 4. Run the file with the command `java -jar magusstock.jar`.
 
-### For BEST experience please run the java file in Terminal App (Not CMD)
-Reason: The UI Color is designed to be used in Terminal App as CMD does not support ANSI Escape Code.
-
-![img_3.png](img_3.png)
-
-Where to get it if you don't have one? (Go to Windows Store)
-![img_4.png](img_4.png)
-## Features 
 - [Adding an item: `add`](#adding-an-item--add)
 - [Editing an item: `edit`](#editting-an-item--edit)
 - [Removing an item: `remove`](#removing-an-item--remove)
@@ -41,7 +33,6 @@ Where to get it if you don't have one? (Go to Windows Store)
 - [Autosave of Inventory: `autosave`](#change-autosave-mode--autosave)
 - [Exiting the program: `exit`](#exiting-the-program--exit)
 
-{Give detailed description of each feature}
 
 ### Adding an item: `add`
 Adds a new item to the inventory list.
@@ -128,7 +119,28 @@ Example of usage:
 `list`
 
 Sample output:  
-![img_2.png](img_2.png)
+```
+list
+____________________________________________________________
+
+██╗███╗░░██╗██╗░░░██╗███████╗███╗░░██╗████████╗░█████╗░██████╗░██╗░░░██╗
+██║████╗░██║██║░░░██║██╔════╝████╗░██║╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝
+██║██╔██╗██║╚██╗░██╔╝█████╗░░██╔██╗██║░░░██║░░░██║░░██║██████╔╝░╚████╔╝░
+██║██║╚████║░╚████╔╝░██╔══╝░░██║╚████║░░░██║░░░██║░░██║██╔══██╗░░╚██╔╝░░
+██║██║░╚███║░░╚██╔╝░░███████╗██║░╚███║░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░
+╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░
+Here are the items in your inventory:
++-----------------+--------------+----------+----------+
+| Name            | UPC          | Quantity | Price    |
++-----------------+--------------+----------+----------+
+| laptop          | 12           | 33       | $2.3     |
++-----------------+--------------+----------+----------+
+| laptop sleeves  | 1212         | 33       | $2.4     |
++-----------------+--------------+----------+----------+
+
+____________________________________________________________
+
+``````
 
 ### Search for an item in the inventory: `search`
 Search for item(s) in the inventory list using keywords or UPC.
@@ -368,7 +380,7 @@ Item Name: Computer
 UPC Code: 12345
 Quantity Available: 105
 ____________________________________________________________
-````
+
 
 ### Dashboard: `db`
 Shows a dashboard of information related to the system's inventory, user insights and 
@@ -381,7 +393,34 @@ Example of usage:
 `db` - It's that simple
 
 Sample output:  
-![img_1.png](img_1.png)
+```
+db
+____________________________________________________________
+
+██████╗░░█████╗░░██████╗██╗░░██╗██████╗░░█████╗░░█████╗░██████╗░██████╗░
+██╔══██╗██╔══██╗██╔════╝██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔══██╗
+██║░░██║███████║╚█████╗░███████║██████╦╝██║░░██║███████║██████╔╝██║░░██║
+██║░░██║██╔══██║░╚═══██╗██╔══██║██╔══██╗██║░░██║██╔══██║██╔══██╗██║░░██║
+██████╔╝██║░░██║██████╔╝██║░░██║██████╦╝╚█████╔╝██║░░██║██║░░██║██████╔╝
+╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░
+Overview:
+____________________________________________________________
+Total number of items: 2
+Total number of active alerts: 0
+Total value of inventory: $155.1
+Item with most quantity: laptop (33)
+Item with least quantity: laptop (33)
+____________________________________________________________
+Current Session Configurations:
+____________________________________________________________
+AutoSave Mode: TRUE
+Inventory Data File Status: CORRUPTED
+Alerts Data File Status: MISSING (Will be created if AutoSave is TRUE)
+____________________________________________________________
+List of active alerts:
+No alerts to print.
+____________________________________________________________
+```
 ### Category: `cat`
 Shows list of categories, and/or its items, or a specified category of items.
 
