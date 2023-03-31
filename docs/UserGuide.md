@@ -99,6 +99,50 @@ Example of usage: (with reference to the above appointment list)
 * `remove S67775112T` to remove the first appointment.
 * `remove V34624451A` to remove the second appointment.
 
+### Find by appointment UID / appointment type / animal type: <br>
+Format: `find a/dog` `find t/surgery` `find aID/123` <br>
+Retrieves specific appointments requested by user <br>
+Can filter by appointment ID, appointment type, animal type <br>
+Example of usage: Displays the requested appointments <br>
+
+```
+______________________________________________________________________
+find a/cat
+______________________________________________________________________
+1.  UID: C31245737A [ ]
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+2.  UID: S52117007D [ ] | Priority: HIGH
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+ Start Date: 2023-12-12 | Start Time: 19:00
+ End Date: 2023-12-12 | End Time: 20:00
+______________________________________________________________________
+```
+```
+______________________________________________________________________
+find t/consultation
+______________________________________________________________________
+1.  UID: C31245737A [ ]
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+______________________________________________________________________
+```
+```
+______________________________________________________________________
+find aID/V14082745S
+______________________________________________________________________
+1.  UID: V14082745S [ ] | vaccine: covid
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+ Sorry, an error was encountered! Here is the error description:
+ Appointment ID must consist of integers!
+______________________________________________________________________
+```
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
