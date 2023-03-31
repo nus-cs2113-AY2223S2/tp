@@ -1,5 +1,6 @@
 package seedu.storage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import seedu.entities.Dish;
 import seedu.entities.Food;
 import seedu.entities.Ingredient;
 import seedu.entities.Side;
+import seedu.exceptions.LifeTrackerException;
 
 public class FoodStorage extends Storage implements FileReadable {
     private static final String csvDelimiter = ",";
@@ -43,6 +45,12 @@ public class FoodStorage extends Storage implements FileReadable {
         float sugar;
         float sodium;
         Food food;
+
+        File storageFile = new File(filePath);
+        if (!storageFile.getParentFile().exists()) {
+            storageFile.getParentFile().mkdirs();
+            storageFile.createNewFile();
+        }
         
         String[] foodDataList = FoodData.getFoodData();
         
@@ -111,7 +119,12 @@ public class FoodStorage extends Storage implements FileReadable {
         return filteredFoods;
     }
 
-    public List<Food> getFoodsByCalories(float caloriesLowerLimit, float caloriesUpperLimit) {
+    public List<Food> getFoodsByCalories(float caloriesLowerLimit, float caloriesUpperLimit)
+            throws LifeTrackerException {
+
+        if (caloriesLowerLimit > caloriesUpperLimit) {
+            throw new LifeTrackerException("Please enter valid lower and upper calorie limits!");
+        }
         List<Food> caloriesFilteredFoods = foods.stream()
                 .filter(f -> f.getCalories() >= caloriesLowerLimit && f.getCalories() <= caloriesUpperLimit)
                 .collect(Collectors.toList());

@@ -35,8 +35,9 @@ public class TrackCalorieCommand extends Command {
             System.out.println("No Meals and Exercises Found!");
             return;
         }
+        System.out.println("Showing your history from " + startDate + " to " + endDate);
 
-        while (startDate.compareTo(endDate) < 0) {
+        while (startDate.compareTo(endDate) <= 0) {
             caloriesConsumed = caloriesBurnt = 0;
             filteredMeals = mealStorage.getMealByDate(startDate);
             filteredExercises = exerciseStorage.getExercisesByDate(startDate);

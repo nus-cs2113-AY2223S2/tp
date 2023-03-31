@@ -36,19 +36,22 @@ public class FilterCaloriesCommand extends Command {
                         ExerciseStorage exerciseStorage)
             throws LifeTrackerException {
 
-        System.out.println("Please key in the lower limit (float):");
+        System.out.println("Please key in the lower calorie limit (float):");
         String lower = ui.readLine();
         try {
             caloriesLowerLimit = Float.parseFloat(lower);
         } catch (NumberFormatException e) {
             System.out.println("Invalid input, input is not a float value");
         }
-        System.out.println("Please key in the upper limit (float):");
+        System.out.println("Please key in the upper calorie limit (float):");
         String upper = ui.readLine();
         try {
             caloriesUpperLimit = Float.parseFloat(upper);
         } catch (NumberFormatException e) {
             System.out.println("Invalid input, input is not a float value");
+        }
+        if (caloriesLowerLimit < caloriesUpperLimit) {
+            throw new LifeTrackerException("Please enter valid lower and upper limits!");
         }
 
         List<Food> caloriesFilteredFoods = foodStorage.getFoodsByCalories(caloriesLowerLimit, caloriesUpperLimit);

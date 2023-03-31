@@ -9,12 +9,14 @@ import seedu.exceptions.UnableToSaveDatabaseException;
 import seedu.logger.LogFileHandler;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,6 +39,13 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
     @Override
     public void load() throws IOException {
         String line = "";
+
+        File storageFile = new File(filePath);
+        if (!storageFile.getParentFile().exists()) {
+            storageFile.getParentFile().mkdirs();
+            storageFile.createNewFile();
+        }
+        
         br = new BufferedReader(new FileReader(filePath));
         br.readLine();
 
@@ -66,6 +75,7 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
                 CSVWriter.RFC4180_LINE_END);
         String[] header = { "Exercise Name", "Exercise Description", "Calories Burnt" };
         writer.writeNext(header);
+        Collections.sort(exercises);
         for (Exercise exercise : exercises) {
             writer.writeNext(exercise.toWriteFormat(CSV_DELIMITER, DTF));
         }

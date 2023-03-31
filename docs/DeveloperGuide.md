@@ -203,20 +203,33 @@ the user to keep track of their net calorie gain on a daily basis.
 | Version | As a ... | I want to ...                                            | So that I can ...                                           |
 |---------|----------|----------------------------------------------------------|-------------------------------------------------------------|
 | v1.0    | new user | see usage instructions                                   | refer to them when I forget how to use the application      |
-| v1.0    | student  | calculate my caloric needs based on my height and weight | lead a healthy lifestyle within my caloric needs            |
+| v1.0    | user     | calculate my caloric needs based on my height and weight | lead a healthy lifestyle within my caloric needs            |
+| v1.0    | user     | add a meal                                               | keep track of the food I have eaten on a particular day     |
+| v1.0    | user     | delete a meal                                            | remove a meal if I entered it in wrongly                    |
 | v1.0    | user     | view my previous meals                                   | track the calories of each meal                             |
 | v1.0    | user     | key in my weight on a daily basis                        | keep track of my weight loss/gain                           |
-| v2.0    | user     | find a to-do item by name                                | locate a to-do without having to go through the entire list |
+| v1.0    | user     | see the amount of calories left I have in the day        | not exceed my daily caloric limit                           |
+| v2.0    | user     | search for a type of food and view its nutritional contents | make a more informed choice about what to eat            |
 | v2.0    | user     | search for meals within a specific calorie range         | decide which meal to consume                                |
+| v2.0    | user     | enter the type and duration of exercise I have completed | keep better track of my physical activies                   |
 
 ## Non-Functional Requirements
 
-1. Should work on any mainstream OS as long as it has Java `11` installed
+1. Should work on any mainstream OS as long as it has Java `11` installed.
+2. This app is meant for a single user and will not be able to accurately keep track of the meals, personal information and caloric requirements for different people.
+3. This app is targeted at users who would prefer typing over other input types. Ideally they would have an above-average typing speed and therefore prefer CLI over other interfaces. 
 
 ## Glossary
 
 * *glossary item* - Definition
 ___
-# Appendix: Instructions for manual testing
+##Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+Given below are instructions on how to test the application by yourself manually. You can use these instructions as a starting point for your testing. 
+
+#Launch and Shutdown
+- Initial launch
+- Shutdown
+
+#Adding a meal
+

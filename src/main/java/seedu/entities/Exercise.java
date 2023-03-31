@@ -3,7 +3,7 @@ package seedu.entities;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Exercise {
+public class Exercise implements Comparable<Exercise>{
     protected String exerciseName;
     protected float caloriesBurnt;
     protected String exerciseDescription;
@@ -66,4 +66,16 @@ public class Exercise {
         this.date = date;
     }
 
+    @Override
+    public int compareTo(Exercise otherExercise) {
+        if (getDate() == null || otherExercise.getDate() == null) {
+            return 0;
+        }
+        int comparator = this.getDate().compareTo(otherExercise.getDate());
+        if (comparator != 0) {
+            return comparator;
+        } else {
+            return Float.compare(this.getCaloriesBurnt(), otherExercise.getCaloriesBurnt());
+        }
+    }
 }
