@@ -98,7 +98,7 @@ Displays all deadlines, events and classes happening today.
 
 ## **Displaying class schedule : `list classes`**
 
-Displays all School Classes currently stored in the application.
+Displays all School Classes currently stored in the application. Classes will be automatically sorted according to chronological order. Classes will also automatically be marked as done (represented by a cross) if the current time is past the ending time of the class, and their 'done' status will be reset at the start of each week.
 
 **Input:** `list classes`
 
