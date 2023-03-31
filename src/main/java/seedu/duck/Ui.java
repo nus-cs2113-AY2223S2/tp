@@ -506,13 +506,14 @@ public class Ui {
         System.out.println("\t   (/description can be followed by whitespace if the class has no description.");
         System.out.println("\t   : I'll remove this class from your class schedule.");
         System.out.println("\t - add_note <task_number>: I'll add an additional note to that task!" );
-        System.out.println("\t - delete_note <task_number> <note_number>: I'll delete additional note to that task!" );
-        System.out.println("\t - notes <task_number>: I'll print the additional notes for that task!" );
+        System.out.println("\t - delete_note <task_number> <note_number>: I'll delete the note to that task!" );
+        System.out.println("\t - edit_note <task_number> <note_number>: I'll edit the note for that task!" );
+        System.out.println("\t - view_notes <task_number>: I'll print the additional notes for that task!" );
         System.out.println("\t - purge: I'll delete all expired tasks from your list after a confirmation.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
         System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
         System.out.println("\t                                   1:Low, 2:Medium and 3:High.");
-        System.out.println("\t                                   Default: LOW priority.");
+        System.out.println("\t                                   Default: Low priority.");
         System.out.println("\t - bye: I will shut down my program.\n");
         System.out.println("\t Here are the following ways to input tasks/classes:");
         System.out.println("\t Deadlines: <description> /by <yyyy-MM-dd HHmm>");
@@ -677,10 +678,15 @@ public class Ui {
     static void printNotes(ArrayList<Task> tasks, String []words) {
         int index = Integer.parseInt(words[1]);
         ArrayList<String> toBePrinted = tasks.get(index-1).getAdditionalNotes();
+        borderLine();
+        System.out.println("\tHere are the notes for that task quack!");
+        System.out.println("\t\t" + tasks.get(index-1).toString());
         if (!toBePrinted.isEmpty()) {
             for (int i = 0; i < toBePrinted.size(); i++) {
                 System.out.println("\t" + (i + 1) + ". " + toBePrinted.get(i));
             }
+        } else {
+            System.out.println("\tThere are no notes for this task!");
         }
         borderLine();
     }
