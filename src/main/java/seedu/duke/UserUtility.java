@@ -24,9 +24,9 @@ public class UserUtility {
         return user;
     }
 
-    public static void printScheduleTable(List<Schedule> events, int currentWeek){
+    public static void printScheduleTable(List<Schedule> events, int semesterWeek){
         System.out.println("Showing schedule for semester " +
-                UserUtility.getUser().getSemester() + " and week " + currentWeek);
+                UserUtility.getUser().getSemester() + " and week " + semesterWeek);
 
         Ui.listTask((ArrayList<Schedule>) events.stream().filter(e -> e.getEndTime()
                 == null).collect(Collectors.toList()));
@@ -40,6 +40,12 @@ public class UserUtility {
         // define the semester start date and the current week number
         LocalDate semesterStartDate = SEMESTER_START_DATES.get(getUser().getSemester());
 
+        int currentWeek = semesterWeek;
+
+        if (currentWeek >= 7) {
+            currentWeek++;
+        }
+        
         // get the start and end dates for the current week
         LocalDate weekStartDate = semesterStartDate.plusWeeks(currentWeek - 1);
         LocalDate weekEndDate = weekStartDate.plusDays(6);
