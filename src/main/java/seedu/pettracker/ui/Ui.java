@@ -162,7 +162,9 @@ public class Ui {
         System.out.println("Here is Pet Tracker's Help Page");
         System.out.println("Words in uppercase is used to show the user's input\n");
         showPetHelp();
+        showTaskHelp();
     }
+
     /**
      * Print out help for pet related commands
      */
@@ -174,14 +176,22 @@ public class Ui {
         showRemoveStatCommandHelp();
         showEditStatCommandHelp();
     }
+
     /**
      * Print out help for task related commands
      */
     private void showTaskHelp() {
-
+        showAddTaskCommandHelp();
+        showRemoveTaskCommandHelp();
+        showTaskListCommandHelp();
+        showEditTaskCommandHelp();
+        showScheduleCommandHelp();
+        showMarkTaskCommandHelp();
+        showUnMarkTaskCommandHelp();
     }
+
     /**
-     * Print out help for add-pet commands
+     * Print out help for add-pet command
      */
     private void showAddPetCommandHelp() {
         System.out.println("Command: add-pet NAME");
@@ -189,8 +199,9 @@ public class Ui {
         System.out.println("Example: add-pet Bob");
         System.out.println(DIVIDER);
     }
+
     /**
-     * Print out help for remove-pet commands
+     * Print out help for remove-pet command
      */
     private void showRemovePetCommandHelp() {
         System.out.println("Command: remove-pet NAME");
@@ -198,8 +209,9 @@ public class Ui {
         System.out.println("Example: remove-pet Bob");
         System.out.println(DIVIDER);
     }
+
     /**
-     * Print out help for remove-pet commands
+     * Print out help for remove-pet command
      */
     private void showPetListCommandHelp() {
         System.out.println("Command: list");
@@ -207,8 +219,9 @@ public class Ui {
         System.out.println("Example: list");
         System.out.println(DIVIDER);
     }
+
     /**
-     * Print out help for add-stat commands
+     * Print out help for add-stat command
      */
     private void showAddStatCommandHelp() {
         System.out.println("Command: add-stat NAME STAT VALUE");
@@ -216,8 +229,9 @@ public class Ui {
         System.out.println("Example: add-stat Bob Weight 30");
         System.out.println(DIVIDER);
     }
+
     /**
-     * Print out help for remove-stat commands
+     * Print out help for remove-stat command
      */
     private void showRemoveStatCommandHelp() {
         System.out.println("Command: remove-stat NAME STAT");
@@ -225,8 +239,9 @@ public class Ui {
         System.out.println("Example: remove-stat Bob Weight");
         System.out.println(DIVIDER);
     }
+
     /**
-     * Print out help for edit-stat commands
+     * Print out help for edit-stat command
      */
     private void showEditStatCommandHelp() {
         System.out.println("Command: edit-stat NAME STAT");
@@ -235,4 +250,74 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Print out help for add-task command
+     */
+    private void showAddTaskCommandHelp() {
+        System.out.println("Command: add-task NAME or add-task Name /by DATE");
+        System.out.println("Description: Adds a task to the Task List");
+        System.out.println("Example: add-task Buy food /by 2021-03-01");
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Print out help for remove-task command
+     */
+    private void showRemoveTaskCommandHelp() {
+        System.out.println("Command: remove-task NUMBER");
+        System.out.println("Description: Removes a task from the Task List");
+        System.out.println("Example: remove-task 1");
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Print out help for list-tasks command
+     */
+    private void showTaskListCommandHelp() {
+        System.out.println("Command: list-tasks");
+        System.out.println("Description: View the current Task List and total number of Tasks");
+        System.out.println("Example: list-tasks");
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Print out help for edit-task command
+     */
+    private void showEditTaskCommandHelp() {
+        System.out.println("Command: edit-task NUMBER VALUE or edit-task NUMBER VALUE /by DATE");
+        System.out.println("Description: Edit the task description or date");
+        System.out.println("Example: edit-task 2 feed the cat");
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Print out help for schedule command
+     */
+    private void showScheduleCommandHelp() {
+        System.out.println("Command: schedule");
+        System.out.print("Description: View the current list of tasks with an associated deadline, ");
+        System.out.println("in order of deadline");
+        System.out.println("Example: schedule");
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Print out help for mark-task command
+     */
+    private void showMarkTaskCommandHelp() {
+        System.out.println("Command: mark-task NUMBER");
+        System.out.println("Description: Marks a task as done in the Task List");
+        System.out.println("Example: mark-task 2");
+        System.out.println(DIVIDER);
+    }
+
+    /**
+     * Print out help for unmark-task command
+     */
+    private void showUnMarkTaskCommandHelp() {
+        System.out.println("Command: unmark-task NUMBER");
+        System.out.println("Description: Marks a task as not done in the Task List");
+        System.out.println("Example: unmark-task 2");
+        System.out.println(DIVIDER);
+    }
 }
