@@ -29,7 +29,7 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
             * Add RecurringDeadline: /re <description> /by <HHmm> /day <DAY_OF_WEEK>
             * Add Event: <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>
             * Add RecurringEvent: /re <description> /from <HHmm> /to <HHmm> /day <DAY_OF_WEEK>
-            * Add Class: <description> /class <class_name> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>
+            * Add Class: <description> /class <class_name> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>
     * [Terminate the program :](#exiting-the-program--bye) `bye`
 
 
