@@ -1,8 +1,10 @@
 package seedu.duke.data.userdata;
 
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 public class Session {
@@ -57,6 +59,19 @@ public class Session {
     public void markComplete () {
         this.status = "Complete";
         this.dateComplete = LocalDateTime.now();
+    }
+
+    public boolean checkNull () throws DukeError {
+        for (Field f : getClass().getDeclaredFields()) {
+            try {
+                if (f.get(this) != null) {
+                    return false;
+                }
+            } catch (Exception e) {
+                throw new DukeError("Illegal access");
+            }
+        }
+        return true;
     }
 
 }
