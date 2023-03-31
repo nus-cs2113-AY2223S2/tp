@@ -75,7 +75,7 @@ Deck does not exist.. creating a new one
 Successfully added card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 to deck fd2df33d-4bbe-4be7-83df-5ddaecd3f1ca
 ```
 
-### Viewing a card : `card view -c {cardUUID}
+### Viewing a card : `card view -c {cardUUID}`
 
 View the content of a Card based on its cardUUID
 
@@ -90,6 +90,64 @@ Ans: yes
 UUID:  f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
 Here are the tags : 
 1.Tag name : physics, tag uuid : 83f26992-09d7-496b-b7a8-3ad05e43c8b7
+```
+
+### Editing a tag : `tag edit -o {tagNameOld} -n {tagNameNew}`
+
+Edit the name of an existing tag
+
+Example of usage :
+`tag edit -o CS2113 -n CS2113T`
+
+Sample output :
+
+```agsl
+Tag 7a130cd5-8154-4aa7-870f-45d7d92970f9tag name has been changed from CS2113 to CS2113T
+```
+
+### Deleting a tag : `tag delete -t {tagName}`
+
+Delete an existing tag by name, and remove the tag from all the cards which are previously under it.
+
+Example of usage :
+`tag delete -t CS2113T`
+
+Sample output :
+
+```agsl
+Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from card 3b86b31c-6289-4716-a5c6-5afd43b9bbd3
+Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from the tag list.
+```
+
+### List all tags : `tag list`
+
+List all current tags 
+
+Example of usage :
+`tag list`
+
+Sample output :
+
+```agsl
+Here is your current list of tags:
+1.Tag name : CS2113, tag uuid : 15df3d00-d0ad-48e0-bd28-1f640b74789f
+2.Tag name : CS2040C, tag uuid : 5d14dd29-e7e4-4b17-945a-ebf8598d4152
+```
+
+### List cards under tag : `tag list -t <tagName>`
+
+List all cards under a specific tag indentified by its name.
+
+Example of usage :
+`tag list -t <tagName>`
+
+Sample output :
+
+```agsl
+Here is a list of your cards :
+1.Qn: fdf
+Ans: ffffffffff
+UUID:  3b86b31c-6289-4716-a5c6-5afd43b9bbd3
 ```
 
 ## FAQ
@@ -110,3 +168,4 @@ Your file will be loaded the next time you run Inka!
 {Give a 'cheat sheet' of commands here}
 
 * Add todo `todo n/TODO_NAME d/DEADLINE`
+
