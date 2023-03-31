@@ -11,8 +11,9 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 * Documentation
 * For more information on how to use MagusStock, please refer to the following documents:
 
-User Guide
-Developer Guide
+[User Guide](https://ay2223s2-cs2113-w12-3.github.io/tp/UserGuide.html)
+
+[Developer Guide](https://ay2223s2-cs2113-w12-3.github.io/tp/DeveloperGuide.html)
 ### About Us
 This project is under the module CS2113 (Software Engineering & Object-Oriented Programming) that we are taking in the National University of Singapore
 Please refer to the [About Us](AboutUs.md) document to learn more about our team members!
