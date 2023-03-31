@@ -123,10 +123,10 @@ public class Ui {
         System.out.println("show-save-goal: shows the current save goal and the deadline");
         System.out.println("add-account: adds a new account");
         System.out.println("switch-to <account username>: switches to <account username> account");
-        System.out.println("delete <account username>: deletes the account with username <account " 
+        System.out.println("delete <account username>: deletes the account with username <account "
                 + "username>");
         System.out.println("set-wl <amount>: sets <amount> to be the withdrawal limit");
-        System.out.println("check-wl: shows the withdrawal limit and the amount of money withdrawn " 
+        System.out.println("check-wl: shows the withdrawal limit and the amount of money withdrawn "
                 + "this month");
         System.out.println("view-transactions-all: views all transactions across all accounts");
         System.out.println("exit: quits program and saves");
@@ -255,7 +255,7 @@ public class Ui {
         System.out.println("What would be the end date for the duration of your Saving goal?");
         return getNextLine();
     }
-    
+
     //@@author tyuyang
     public void showWithdrawalLimitSet(String withdrawalLimit) {
         System.out.println("Withdrawal limit set to $" + withdrawalLimit + "!");
@@ -283,3 +283,4 @@ public class Ui {
         printLine();
     }
 }
+

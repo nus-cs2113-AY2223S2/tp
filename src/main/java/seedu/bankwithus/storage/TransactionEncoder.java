@@ -7,8 +7,8 @@ import java.util.logging.Logger;
 
 
 class TransactionEncoder {
-    private static final Logger logger =
-            Logger.getLogger(TransactionEncoder.class.getName());
+    private static final Logger logger = Logger.getLogger(TransactionEncoder.class.getName());
+
     public String encodeTransaction(Transaction transaction) {
 
         //minor fix in the code, buggy
