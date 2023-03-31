@@ -161,8 +161,10 @@ public class Ui {
     public void showHelpMessage() {
         System.out.println("Here is Pet Tracker's Help Page");
         System.out.println("Words in uppercase is used to show the user's input\n");
+        System.out.println(DIVIDER);
         showPetHelp();
         showTaskHelp();
+        System.out.println("Hope this helps!");
     }
 
     /**
