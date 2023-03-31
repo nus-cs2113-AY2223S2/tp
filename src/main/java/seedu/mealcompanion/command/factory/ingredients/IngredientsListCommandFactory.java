@@ -9,6 +9,7 @@ import seedu.mealcompanion.parser.CommandArguments;
 /**
  * Represents a factory for the "ingredients list" command
  */
+//@@author EthanYidong
 public class IngredientsListCommandFactory extends ExecutableCommandFactory {
     @Override
     public ExecutableCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {

@@ -7,6 +7,7 @@ import seedu.mealcompanion.ingredient.IngredientList;
 /**
  * Represents the "ingredients list" command
  */
+//@@author EthanYidong
 public class IngredientsListCommand extends ExecutableCommand {
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {

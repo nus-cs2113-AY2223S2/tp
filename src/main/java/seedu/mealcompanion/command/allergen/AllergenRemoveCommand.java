@@ -8,6 +8,7 @@ import seedu.mealcompanion.recipe.IngredientMetadata;
 /**
  * Represents the "add" command.
  */
+//@@author EthanYidong
 public class AllergenRemoveCommand extends ExecutableCommand {
     String name;
 

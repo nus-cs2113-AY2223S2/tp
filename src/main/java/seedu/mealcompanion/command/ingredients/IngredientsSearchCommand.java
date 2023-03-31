@@ -5,6 +5,7 @@ import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.recipe.IngredientDatabase;
 import seedu.mealcompanion.recipe.IngredientMetadata;
 
+//@@author EthanYidong
 public class IngredientsSearchCommand extends ExecutableCommand {
     String searchTerm;
 

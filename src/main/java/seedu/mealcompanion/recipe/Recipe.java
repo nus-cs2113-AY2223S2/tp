@@ -11,6 +11,7 @@ public class Recipe {
     private IngredientList ingredients;
     private InstructionList instructions;
 
+    //@@author EthanYidong
     public Recipe(String name, int calorieCount, int prepTime, int cookTime, IngredientList ingredients,
                   InstructionList instructions) {
         this.name = name;
@@ -21,14 +22,17 @@ public class Recipe {
         this.cookTime = cookTime;
     }
 
+    //@@author ngyida
     public String getName() {
         return name;
     }
 
+    //@@author Jjzeng123
     public int getCalorieCount() {
         return calorieCount;
     }
 
+    //@@author EthanYidong
     public int getPrepTime() {
         return prepTime;
     }
@@ -37,15 +41,18 @@ public class Recipe {
         return cookTime;
     }
 
+    //@@author ngyida
     public IngredientList getIngredients() {
         return ingredients;
     }
 
+    //@@author ngyida
     public InstructionList getInstructions() {
         return instructions;
     }
 
     @Override
+    //@@author ngyida
     public String toString() {
         StringBuilder recipeDetails = new StringBuilder();
         recipeDetails.append("Recipe for " + this.name + System.lineSeparator());

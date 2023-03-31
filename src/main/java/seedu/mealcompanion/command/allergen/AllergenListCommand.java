@@ -4,6 +4,7 @@ import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.recipe.IngredientMetadata;
 
+//@@author EthanYidong
 public class AllergenListCommand extends ExecutableCommand {
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {

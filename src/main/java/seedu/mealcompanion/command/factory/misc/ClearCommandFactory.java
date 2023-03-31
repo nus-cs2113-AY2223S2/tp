@@ -8,6 +8,7 @@ import seedu.mealcompanion.parser.CommandArguments;
 /**
  * Represents a factory for the "clear" command.
  */
+//@@author TJW0911
 public class ClearCommandFactory extends ExecutableCommandFactory {
     public ClearCommand buildCommand(MealCompanionSession mealCompanionSession, CommandArguments arguments) {
         return new ClearCommand();

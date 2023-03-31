@@ -81,13 +81,13 @@ public class MealCompanionUI {
     }
 
     private static void printRecipeNeedHelp() {
-        System.out.println("Command: recipe detail <recipe number>");
+        System.out.println("Command: recipe need <recipe number>");
         System.out.println("Prints all the missing ingredients needed to make a specified recipe");
         System.out.println(DIVIDER);
     }
 
     private static void printRecipeDetailHelp() {
-        System.out.println("Command: recipe detail <recipe number/name>");
+        System.out.println("Command: recipe detail <recipe number>");
         System.out.println("Prints all the details of the specified recipe");
         System.out.println(DIVIDER);
     }
