@@ -353,6 +353,7 @@ public class Ui {
     public static String printTable() {
         HashMap<String, String> commandsHashMap = new HashMap<>();
         CommandFormat commandFormat = new CommandFormat(commandsHashMap);
+        commandsHashMap = commandFormat.getCommandsHashMap(commandsHashMap);
         int[] columnWidths = {COMMAND_COL_WIDTH, FORMAT_COL_WIDTH};
 
         StringBuilder table = new StringBuilder();

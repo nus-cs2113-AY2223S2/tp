@@ -6,6 +6,7 @@ import seedu.duke.utils.Ui;
 import seedu.duke.types.Types;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Represents the command to search for an item in the inventory.
@@ -43,19 +44,38 @@ public class SearchCommand extends Command {
      * Search for an item in the inventory by its keyword and returns search query
      */
     public ArrayList<Item> searchKeyword() {
-        ArrayList<String> resultNames = itemsTrie.prefixFind(input);
-        if (resultNames.size() == 0) {
+        ArrayList<Item> results = new ArrayList<>();
+        HashMap<Item, Integer> resultItemsCount = new HashMap<>();
+        String[] inputs = input.split(" ");
+        for(String currentInput: inputs) {
+            ArrayList<String> resultNames = itemsTrie.prefixFind(currentInput);
+            ArrayList<Item> resultItems = new ArrayList<>();
+            for (String name : resultNames) {
+                for (Item item : itemNameHash.get(name)) {
+                    if (!resultItems.contains(item)) {
+                        resultItems.add(item);
+                    }
+                }
+            }
+            for(Item item: resultItems){
+                if(!resultItemsCount.containsKey(item)){
+                    resultItemsCount.put(item, 1);
+                }else{
+                    int count = resultItemsCount.get(item);
+                    resultItemsCount.replace(item, count+1);
+                }
+            }
+        }
+        for(Item item: resultItemsCount.keySet()){
+            if(resultItemsCount.get(item) == inputs.length){
+                results.add(item);
+            }
+        }
+        if (results.size() == 0) {
             Ui.printEmptySearch();
             return null;
         }
-        ArrayList<Item> resultItems = new ArrayList<>();
-        for (String name : resultNames) {
-            for (Item item : itemNameHash.get(name)) {
-                resultItems.add(item);
-            }
-        }
-        return resultItems;
-
+        return results;
     }
 
     /**
