@@ -2,7 +2,6 @@ package seedu.mealcompanion.command.factory.misc;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.command.factory.ExecutableCommandFactory;
-
 import seedu.mealcompanion.command.recipe.RecipeFavouriteCommand;
 import seedu.mealcompanion.parser.CommandArguments;
 

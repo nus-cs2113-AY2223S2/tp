@@ -83,7 +83,8 @@ class RecipePossibleCommandTest {
         RecipePossibleCommand command = new RecipePossibleCommand();
         IngredientList waterIngredients = new IngredientList();
         waterIngredients.add(new Ingredient("water", 100.00));
-        Recipe cupOfWater = new Recipe("Cup of Water", false, 0, 0, 0, waterIngredients, new InstructionList());
+        Recipe cupOfWater = new Recipe("Cup of Water", false, 0, 0, 0,
+                waterIngredients, new InstructionList());
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("water", 100.00));
         fridgeIngredients.add(new Ingredient("chicken", 5.00));
@@ -95,7 +96,8 @@ class RecipePossibleCommandTest {
         RecipePossibleCommand command = new RecipePossibleCommand();
         IngredientList waterIngredients = new IngredientList();
         waterIngredients.add(new Ingredient("water", 100.00));
-        Recipe cupOfWater = new Recipe("Cup of Water", false,0, 0, 0, waterIngredients, new InstructionList());
+        Recipe cupOfWater = new Recipe("Cup of Water", false,0, 0, 0,
+                waterIngredients, new InstructionList());
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("water", 90.00));
         fridgeIngredients.add(new Ingredient("chicken", 5.00));
@@ -107,7 +109,8 @@ class RecipePossibleCommandTest {
         RecipePossibleCommand command = new RecipePossibleCommand();
         IngredientList waterIngredients = new IngredientList();
         waterIngredients.add(new Ingredient("water", 100.00));
-        Recipe cupOfWater = new Recipe("Cup of Water", false,0, 0, 0, waterIngredients, new InstructionList());
+        Recipe cupOfWater = new Recipe("Cup of Water", false,0, 0, 0,
+                waterIngredients, new InstructionList());
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("apple", 9.00));
         fridgeIngredients.add(new Ingredient("chicken", 5.00));
