@@ -6,6 +6,9 @@ import java.util.Scanner;
  * Class to handle all output from commands and get user input from Standard Input.
  */
 public class Ui {
+    private static final String DIVIDER = "\n_________________________________________________________________________"
+            + "_______________________________\n";
+
 
     Scanner in;
 
@@ -153,9 +156,18 @@ public class Ui {
     }
 
     /**
-     * Function to print out help for all commands
+     * Print out help for all commands
      */
     public void showHelpMessage() {
-
+        System.out.println("Here is Pet Tracker's Help Page\n");
+        showAddPetCommandHelp();
+    }
+    /**
+     * Print out help for add-pet commands
+     */
+    private void showAddPetCommandHelp() {
+        System.out.println("Instructions for add-pet Command");
+        System.out.println("Description: Adds a pet to the Pet List");
+        System.out.println(DIVIDER);
     }
 }
