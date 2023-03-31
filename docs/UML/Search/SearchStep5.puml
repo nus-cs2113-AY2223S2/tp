@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/object-diagram
-
+skinparam classAttributeIconSize 0
 object SearchParser{
     - rawInput = "apple"
     - Inventory = inventory
