@@ -6,10 +6,13 @@
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Download the latest version of `Inka.jar` from [here](https://github.com/AY2223S2-CS2113-F10-1/tp/releases).
+3. Copy the JAR file to the folder you wish to use as the Inka home folder -- your data will be saved here!
+4. Open the JAR file, either by clicking or running `java -jar Inka.jar`. A command line interface should appear:
+![Inka interface](img/quick-start.png)
+
+Enjoy your revision!
 
 ## Features
 
