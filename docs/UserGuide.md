@@ -222,7 +222,7 @@ Here is your current list of decks:
 
 **A**: No, please add them one at a time using `card add`
 
-**Q**: How do I transfer my data to another computer?
+**Q**: Can I transfer my cards to another computer?
 
 **A**: You do so by following these steps:
 
