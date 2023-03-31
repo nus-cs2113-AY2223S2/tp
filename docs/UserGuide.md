@@ -40,7 +40,27 @@ If you can type fast, BrokeMan can get your expenses and income management tasks
 3. Copy the file to the folder you want to use as the home folder for your BrokeMan.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar F13-2_v2.0.jar` command to run the application.
 
-    A welcoming message should appear.
+    A welcoming message as shown below should appear.
+
+    ```
+    |  -----------------------------------------------------------------------
+    |  -----------------------------------------------------------------------
+    |
+    |  $$$$$___ ______ _______ $$_____ _______ $$___$$_ _______ _______
+    |  $$__$$__ ______ _______ $$__$$_ _$$$$__ $$$_$$$_ $$$$$__ _______
+    |  $$$$$___ $$_$$_ _$$$$__ $$_$$__ $$__$$_ $$$$$$$_ ____$$_ $$$$$__
+    |  $$___$$_ $$$_$_ $$__$$_ $$$$___ $$$$$$_ $$_$_$$_ _$$$$$_ $$__$$_
+    |  $$___$$_ $$____ $$__$$_ $$_$$__ $$_____ $$___$$_ $$__$$_ $$__$$_
+    |  $$$$$$__ $$____ _$$$$__ $$__$$_ _$$$$$_ $$___$$_ _$$$$$_ $$__$$_
+    |  Welcome to BrokeMan!
+    |  Your personal budget manager to prevent you to become broke like me...
+    |
+    |  -----------------------------------------------------------------------
+    |  -----------------------------------------------------------------------
+    |
+    |  Enter command:
+    ```
+
 5. Type the command in the command box and press Enter to execute it. Refer to the Features below for details of each command.
 
 ---
@@ -61,6 +81,19 @@ Adds a new expense to the list of expenses.
 Example of usage:
 `addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD`
 
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD
+|  You have successfully added [$4.50 spent on lunch - 2023-03-22 @ 20:12 [FOOD]]
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
+
 **Note**: Please do not leave the description of tags empty.
 
 ---
@@ -79,6 +112,19 @@ Adds a new expense to the list of expenses.
 Example of usage:
 `addIncome a/ 400 d/ salary t/ 2023 03 12 15 01 c/ SALARY`
 
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: addIncome a/ 400 d/ salary t/ 2023 03 12 15 01 c/ SALARY
+|  You have successfully added [$400.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]]
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
+
 **Note**: Please do not leave the description of tags empty.
 
 ---
@@ -93,6 +139,21 @@ it will show a list of all the expenses incurred in the month specified.
 
 Example of usage: `listExpense t/ 2023/03` Shows a list of all expenses incurred in the month 2023 March
 
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: listExpense t/ 2023/03
+|  Here are the expenses you have made for 2023/MARCH.
+|  1. $4.50 spent on lunch - 2023-03-22 @ 20:12 [FOOD]
+|  Total expenses: $4.5
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
+
 ---
 
 ### Listing all income: `listIncome`
@@ -104,6 +165,21 @@ Shows a list of all income in the list of income.
 it will show a list of all income made in the specified month.
 
 Example of usage: `listIncome` Shows a list of all income made across the entire time period.
+
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: listIncome
+|  Here are the income you have made.
+|  1. $400.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]
+|  Total income: $400.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
 
 ---
 
@@ -123,6 +199,19 @@ The index must be a positive integer 1, 2, 3, …​
 Example of usage:
 `editExpense i/ 1 t/ amount n/ 5`
 
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: editExpense i/ 1 t/ amount n/ 5
+|  Successfully edited amount.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
+
 **Note**: Please do not leave the description of tags empty.
 
 ---
@@ -140,7 +229,20 @@ Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
 
-Example of usage: `editIncome i/ 2 t/ category n/ FOOD`
+Example of usage: `editIncome i/ 1 t/ category n/ FOOD`
+
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: editIncome i/ 1 t/ category n/ FOOD
+|  Successfully edited category.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
 
 **Note**: Please do not leave the description of tags empty.
 
@@ -152,6 +254,21 @@ Shows a list of all expenses in the order of higher amount to lower amount.
 
 Example of usage: `sortExpenseByAmount`
 
+Example output:
+
+```
+|
+|  Enter command: sortExpenseByAmount
+|  1. $50.00 spent on dinner - 2023-03-10 @ 18:18 [FOOD]
+|  2. $20.00 spent on brunch - 2023-12-12 @ 12:12 [FOOD]
+|  3. $5.00 spent on lunch - 2023-03-22 @ 14:00 [FOOD]
+|  Total expenses: $75.0
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
+
 ---
 
 ### Sorting an income by amount: `sortIncomeByAmount`
@@ -159,6 +276,22 @@ Format: `sortIncomeByAmount`
 Shows a list of all income in the order of higher amount to lower amount.
 
 Example of usage: `sortIncomeByAmount`
+
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: sortIncomeByAmount
+|  1. $3000.00 earned on stocks - 2023-02-11 @ 01:01 [INVESTMENT]
+|  2. $1000.00 earned on grab - 2023-03-15 @ 15:15 [SALARY]
+|  3. $400.00 earned on salary - 2023-03-12 @ 15:01 [FOOD]
+|  Total income: $4400.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
 
 ---
 
@@ -168,6 +301,22 @@ Shows a list of all expenses in a chronological order.
 
 Example of usage: `sortExpenseByDate`
 
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: sortExpenseByDate
+|  1. $20.00 spent on brunch - 2023-12-12 @ 12:12 [FOOD]
+|  2. $5.00 spent on lunch - 2023-03-22 @ 14:00 [FOOD]
+|  3. $50.00 spent on dinner - 2023-03-10 @ 18:18 [FOOD]
+|  Total expenses: $75.0
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
+
 ---
 
 ### Sorting an income by date: `sortIncomeByDate`
@@ -175,6 +324,22 @@ Format: `sortIncomeByDate`
 Shows a list of all income in a chronological order.
 
 Example of usage: `sortIncomeByDate`
+
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: sortIncomeByDate
+|  1. $1000.00 earned on grab - 2023-03-15 @ 15:15 [SALARY]
+|  2. $400.00 earned on salary - 2023-03-12 @ 15:01 [FOOD]
+|  3. $3000.00 earned on stocks - 2023-02-11 @ 01:01 [INVESTMENT]
+|  Total income: $4400.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
 
 ---
 
@@ -186,6 +351,19 @@ Format: `deleteExpense <index>`
 
 Example of usage:
 `deleteExpense 2`
+
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: deleteExpense 2
+|  Successfully deleted.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
 
 **Note**: Please do not leave the index empty.
 
@@ -199,6 +377,19 @@ Format: `deleteIncome <index>`
 
 Example of usage:
 `deleteIncome 2`
+
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: deleteIncome 2
+|  Successfully deleted.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
 
 **Note**: Please do not leave the index empty.
 
@@ -216,6 +407,32 @@ Example of usage:
 `setBudget 2000 t/ 2023/04` sets the budget of 2023/04 at 2000.
 `setBudget 2000` sets the budget for the current month.
 
+Example output with optional time flag:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: setBudget 2000 t/ 2023/04
+|  You have successfully set $2000.00 as your budget for 2023/APRIL.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
+
+Example output without optional time flag:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: setBudget 2000
+|  You have successfully set $2000.00 as your budget for 2023/MARCH.
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
+
 **Note**: Please do not leave the description of amount and / or description of optional time tag empty.
 
 ---
@@ -228,8 +445,36 @@ If you add this optional parameter, it shows the budget of the indicated month.
 If the optional time parameter is not given, it will show the budget for the current month.
 
 Example of usage:
-`viewBudget t/ 2023/02` shows the budget in 2023/02.
+`viewBudget t/ 2023/04` shows the budget in 2023/02.
 `viewBudget` shows the budget in the current month.
+
+Example output with optional time flag:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: viewBudget t/ 2023/04
+|  You have set your budget as $2000.00 for 2023/APRIL.
+|  The amount of budget left is $2000.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
+
+Example output without optional time flag:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: viewBudget
+|  You have set your budget as $2000.00 for 2023/MARCH.
+|  The amount of budget left is $2000.00
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
 
 **Note**: Please do not leave the description of time tag empty.
 
@@ -240,6 +485,88 @@ Format: `help` Shows all the help messages for all features.
 
 Example of usage: `help`
 
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: help
+|  addExpense: add expense to the expense list.
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM HH mm> c/ <category>
+|  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
+|  Example: addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD
+|
+|  addIncome: add income to the income list.
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
+|  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
+|
+|  deleteExpense: deletes an expense from the list
+|  Parameter: <index>
+|  Example: deleteExpense 1
+|
+|  deleteIncome: deletes an income from the list
+|  Parameter: <index>
+|  Example: deleteIncome 1
+|
+|  editExpense: edits the expense from the list.
+|  Parameter: i/ <index> t/ <type> n/ <newEntry>
+|  There are 4 types that can be changed, amount, info, time, category
+|  Example: editExpense i/ 1 t/ cost n/ 5
+|
+|  editIncome: edits the income from the list.
+|  Parameter: i/ <index> t/ <type> n/ <newEntry>
+|  There are 4 types that can be changed, amount, info, time, category
+|  Example: editIncome i/ 1 t/ info n/ stocks
+|
+|  listExpense: lists expenses made in the current month.
+|  listExpense t/ <date in YYYY/MM>: : lists expenses made in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: listExpense
+|  Example: listExpense t/ 2023/03
+|
+|  listIncome: lists incomes made in the current month.
+|  listIncome t/ <date in YYYY/MM>: : lists incomes made in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: listIncome
+|  Example: listIncome t/ 2023/03
+|
+|  setBudget: sets your budget for current month.
+|  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
+|  Compulsory Parameter: <amount>
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: setBudget 500
+|  Example: setBudget 500 t/ 2023/03
+|
+|  viewBudget: view your budget and how much of it is left remaining.
+|  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: viewBudget
+|  Example: viewBudget /t 2023/03
+|
+|  sortExpenseByAmount: shows the expenses made, sorted by amount of expense
+|  Example: sortExpenseByAmount
+|
+|  sortIncomeByAmount: shows the incomes made, sorted by amount of income
+|  Example: sortIncomeByAmount
+|
+|  sortExpenseByDate: shows the expenses made, sorted by date of expense
+|  Example: sortExpenseByDate
+|
+|  sortIncomeByDate: shows the incomes made, sorted by date of income
+|  Example: sortIncomeByDate
+|
+|  help: shows all the commands for the program.
+|  Example: help
+|
+|  exit: exits the program
+|  Example: exit
+|
+|  -----------------------------------------------------------------------
+|
+|  Enter command:
+```
+
 ---
 
 ### Exiting the program: `exit`
@@ -247,10 +574,32 @@ Format: `exit` Exits the program.
 
 Example of usage: `exit`
 
+Example output:
+
+```
+|  -----------------------------------------------------------------------
+|
+|  Enter command: exit
+|  Exiting program...
+|
+|  -----------------------------------------------------------------------
+|  -----------------------------------------------------------------------
+|
+|     ___                       _              ___     _  _
+|    / __|    ___     ___    __| |     o O O  | _ )   | || |   ___
+|   | (_ |   / _ \   / _ \  / _` |    o       | _ \    \_, |  / -_)
+|    \___|   \___/   \___/  \__,_|   TS__[O]  |___/   _|__/   \___|
+|  _|"""""|_|"""""|_|"""""|_|"""""| {======|_|"""""|_| """"|_|"""""|
+|  "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'./o--000'"`-0-0-'"`-0-0-'"`-0-0-'
+|
+|  -----------------------------------------------------------------------
+|  -----------------------------------------------------------------------
+```
+
 ---
 
 ### Saving the data
-BrokeMan data are saved in text files ExpenseData and IncomeData automatically after any command that changes the data.
+BrokeMan data are saved in text files ExpenseData, IncomeData and BudgetData automatically upon exiting the program.
 There is no need to save manually.
 
 **DO NOT MAKE CHANGES TO THE .txt FILE GENERATED BY THE PROGRAM!**
