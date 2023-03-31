@@ -1,9 +1,10 @@
 49
 Demo
-4
-Sore Throat
-Fever
-Sore Throat
-Fever
+0
 1
-2023/03/31 Lozenges Paracetamol 
+2023/03/31 Guaifenesin Ibuprofen Lozenges Paracetamol Naproxen 
+50
+Demo
+0
+0
+
