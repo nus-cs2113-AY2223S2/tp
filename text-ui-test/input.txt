@@ -20,6 +20,10 @@ add-task Feed Alice
 mark-task 1
 list-tasks
 edit-task 1 Feed Candy
+unmark-task 1
 list-tasks
 help
+add-task Buy Food /by 2021-03-01
+add-task Feed Bob /by 2021-01-01
+schedule
 exit
