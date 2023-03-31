@@ -195,6 +195,18 @@ Deletes an existing expenditure record from the expenditure list. After a succes
 
 - Providing special characters and indices out of the range of the number of expenditures in the expenditure list are invalid.
 
+Input:
+
+```
+delete 1
+```
+Output:
+
+```
+Entry has been deleted
+Here is your updated list:
+```
+
 ### 4.6 Duplicating an expenditure record
 
 Duplicates an existing expenditure record from the expenditure list. After a successful duplicate, it will be appended to the expenditure list.
@@ -252,7 +264,7 @@ Sets a budget amount that one would like to keep within.
 **Important Information:**
 
 - The set budget can be compared with the total sum of expenditures with the [`check`](#48-checking-expenditures-against-the-set-budget) command.
-
+- The set budget will not be saved after the `exit` command, thus it will be 0 when MyLedger is restarted.
 ### 4.8 Checking expenditures against the set budget
 
 Compares the set budget via the [`set`](#47-setting-a-budget) command against the total sum of expenditures in the expenditures.
