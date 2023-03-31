@@ -74,7 +74,7 @@ Adds a new expense to the list of expenses.
 * The `amount` should be double.
 * The `description` can be in a natural language format.
 * The `time` should follow `YYYY MM HH mm` format.  
-* The `category` should be one of the tags in the category list.
+* The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
 
@@ -105,7 +105,7 @@ Adds a new expense to the list of expenses.
 * The `amount` should be double.
 * The `description` can be in a natural language format.
 * The `time` should follow `YYYY MM HH mm` format.
-* The `category` should be one of the categories in the category list mentioned in `addExpense` feature.
+* The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
 
@@ -192,7 +192,7 @@ The index must be a positive integer 1, 2, 3, …​
   * amount (of type **double**): edits the expense
   * info (of type **String**): edits the description of expense
   * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense
-  * category (should be in the category list mentioned in `addExpense` feature): edits the category of that expense
+  * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense--addexpense) feature): edits the category of that expense
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
 
@@ -225,7 +225,7 @@ Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
   * amount (of type **double**): edits the income
   * info (of type **String**): edits the description of income
   * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned
-  * category (should be in the category list mentioned in `addExpense` feature): edits the category of that income
+  * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense--addexpense) feature): edits the category of that income
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
 
