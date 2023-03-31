@@ -211,6 +211,54 @@ Begin in a pushup position on the floor. This will be your starting position., U
 ________________________________________
 ```
 
+### Deleting a workout session: ```delete [number]```
+
+Deletes a completed workout session according to the session number which the user specifies.
+
+Example Command: ```delete 1```
+
+Examples:
+
+**Before deletion of workout**
+```
+history
+Session 1
+On this date: 2023-03-31
+Exercise ID: 71. 
+Name: Bench Jump
+Difficulty Level: intermediate
+Workout Type: legs
+Begin with a box or bench 1-2 feet in front of you. Stand with your feet shoulder width apart. This will be your starting position., Perform a short squat in preparation for the jump; swing your upper body behind you., Rebound out of this position, extending through the hips, knees, and ankles to jump as high as possible. Swing your upper body forward and up., Jump over the bench, landing with the knees bent, absorbing the impact through the legs., Turn around and face the opposite direction, then jump back over the bench.
+
+
+ 
+Session 2
+On this date: 2023-03-31
+Exercise ID: 326. 
+Name: Hip Lift with Band
+Difficulty Level: beginner
+Workout Type: legs
+After choosing a suitable band, lay down in the middle of the rack, after securing the band on either side of you. If your rack doesn't have pegs, the band can be secured using heavy dumbbells or similar objects, just ensure they won't move., Adjust your position so that the band is directly over your hips. Bend your knees and place your feet flat on the floor. Your hands can be on the floor or holding the band in position., Keeping your upper body on the ground, drive through your heels to raise your hips, pushing into the band as high as you can., Pause at the top of the motion, and return to the starting position.
+
+________________________________________
+```
+**After deletion of workout**
+```
+delete 2
+OK, you have deleted Workout Session Number 2!
+________________________________________
+history
+Session 1
+On this date: 2023-03-31
+Exercise ID: 71. 
+Name: Bench Jump
+Difficulty Level: intermediate
+Workout Type: legs
+Begin with a box or bench 1-2 feet in front of you. Stand with your feet shoulder width apart. This will be your starting position., Perform a short squat in preparation for the jump; swing your upper body behind you., Rebound out of this position, extending through the hips, knees, and ankles to jump as high as possible. Swing your upper body forward and up., Jump over the bench, landing with the knees bent, absorbing the impact through the legs., Turn around and face the opposite direction, then jump back over the bench.
+
+________________________________________
+```
+
 ## *Starting a workout session*
 
 ### Getting into a workout: ```start```
