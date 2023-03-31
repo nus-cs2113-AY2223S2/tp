@@ -90,10 +90,14 @@ public class Menu {
         int hash = Information.hashPassword(password);
         if (Information.checkHash(hash) && Information.getPatientInfo(hash).getName().equals(name)) {
             Duke.setPassword(hash);
+
             //@@author Geeeetyx
+
             System.out.println("---------------------------------------------------");
             System.out.println("Login successful!");
             System.out.println("Welcome " + name + "!");
+
+            Information.addToQueue(password);
         } else {
             System.out.println("----------------------------------------------------------------------");
             System.out.println("Login failed! Please register first or key in the correct information.");
@@ -112,6 +116,7 @@ public class Menu {
         System.out.print(logo);
         System.out.println("---------------------------------------------------");
         Storage.saveData();
+        Storage.saveQueue();
         System.exit(0);
     }
     //@@author
@@ -120,15 +125,16 @@ public class Menu {
     public static void showAccountMenu() {
         System.out.println("---------------------------------------------------");
         System.out.println("What would you like to do? Please enter the number:");
-        System.out.println("1. Report symptoms");
-        System.out.println("2. View diagnosis history");
-        System.out.println("3. Reset diagnosis history");
-        System.out.println("4. View symptoms History");
-        System.out.println("5. Delete symptom choice");
-        System.out.println("6. Reset symptoms");
-        System.out.println("7. View Medicine history");
-        System.out.println("8. List available medicines");
-        System.out.println("9. Find available medicine");
+        System.out.println("1.  Report symptoms");
+        System.out.println("2.  View diagnosis history");
+        System.out.println("3.  Reset diagnosis history");
+        System.out.println("4.  View symptoms History");
+        System.out.println("5.  Delete symptom choice");
+        System.out.println("6.  Reset symptoms");
+        System.out.println("7.  View Medicine history");
+        System.out.println("8.  List available medicines");
+        System.out.println("9.  Find available medicine");
+        System.out.println("10. Display Queue Number");
         System.out.println("0. Exit");
         System.out.println("---------------------------------------------------");
     }
@@ -458,4 +464,6 @@ public class Menu {
         System.out.println("---------------------------------------------------");
         System.out.println("Results for \"" + phrase + "\":");
     }
+
+
 }
