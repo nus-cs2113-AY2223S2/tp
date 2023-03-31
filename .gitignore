@@ -16,3 +16,11 @@ bin/
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
 /data/
+/trigoGraphAnalyser.log.1
+/trigoGraphAnalyser.log.1.lck
+/trigoGraphAnalyser.log.2
+/trigoGraphAnalyser.log.2.lck
+/trigoGraphAnalyser.log.3
+/trigoGraphAnalyser.log.3.lck
+/trigoGraphAnalyser.log.4
+/trigoGraphAnalyser.log.lck

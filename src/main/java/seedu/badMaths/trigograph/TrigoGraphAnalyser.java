@@ -36,6 +36,10 @@ public class TrigoGraphAnalyser {
         this.trigoEqn = trigoEqn;
     }
 
+    public String getTrig() {
+        return trigonometry;
+    }
+
     public boolean canStartAnalyser() {
         setUpLogger();
         try {

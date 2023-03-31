@@ -2,10 +2,9 @@ package seedu.badMaths.trigograph;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 
 class TrigoGraphAnalyserTest {
     @Test
@@ -42,6 +41,10 @@ class TrigoGraphAnalyserTest {
             analyser.findFreqForNoPhasors(freq);
         });
     }
-
-
+    @Test
+    void tanHasNoAmplitude() {
+        TrigoGraphAnalyser test = new TrigoGraphAnalyser("2*tan(2*x+5)-2");
+        test.canStartAnalyser();
+        assertEquals("tan",test.getTrig());
+    }
 }
