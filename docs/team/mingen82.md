@@ -70,5 +70,8 @@ For error handling, I also created some custome exceptions. These are the except
 - Developer Guide:
     - Added documentation for `Storage` components (PR [#100](https://github.com/AY2223S2-CS2113-W15-1/tp/commit/23a885bb27918f787c7c58a248178cd4a9865210#diff-b50feaf9240709b6b02fb9584696b012c2a69feeba89e409952cc2f401f373fb))
 
+## Community:
+- Helped my groupmates with their parts of the project (PR [#55](https://github.com/AY2223S2-CS2113-W15-1/tp/commit/c0f3dfea3f2730c03a8ebfc212de40bb919bc19c), [#86](https://github.com/AY2223S2-CS2113-W15-1/tp/commit/3fa74ef706a130ea8cceb75aa5fbc497294bf9fa))
+
 ## Tools
 - Integrated a third party library ([OpenCSV](https://mvnrepository.com/artifact/com.opencsv/opencsv/5.6)) to the project (PR [#41](https://github.com/AY2223S2-CS2113-W15-1/tp/commit/c5dea64be66692bab992ce8a5572dd76ebcf8a62#diff-49a96e7eea8a94af862798a45174e6ac43eb4f8b4bd40759b5da63ba31ec3ef7))
