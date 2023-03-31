@@ -2,7 +2,7 @@ package seedu.meal360;
 
 import java.io.IOException;
 import java.util.Scanner;
-
+import seedu.meal360.exceptions.IngredientNotFoundException;
 import seedu.meal360.exceptions.InvalidNegativeValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
 import seedu.meal360.storage.Database;
@@ -76,15 +76,14 @@ public class Meal360 {
                 ui.printMessage(deletedRecipe);
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
-                String errorMessage = "Please enter a valid recipe number or name. You did not enter a recipe number " +
-                        "or "
-                        + "name.";
+                String errorMessage =
+                        "Please enter a valid recipe number or name. You did not enter a recipe number "
+                                + "or " + "name.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
                         "Please enter a valid recipe number or name. You entered %s, "
-                                + "which is in invalid.",
-                        command[1]);
+                                + "which is in invalid.", command[1]);
                 ui.printMessage(errorMessage);
             }
             ui.printSeparator();
@@ -128,8 +127,7 @@ public class Meal360 {
                 ui.printMessage("I've edited this recipe:" + recipeToEdit.getName());
             } catch (NumberFormatException e) {
                 String errorMessage = String.format(
-                        "Please enter a valid recipe number. You entered %s, "
-                                + "which is not a number.",
+                        "Please enter a valid recipe number. You entered %s, " + "which is not a number.",
                         command[1]);
                 ui.printMessage(errorMessage);
             } catch (ArrayIndexOutOfBoundsException e) {
@@ -137,8 +135,7 @@ public class Meal360 {
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
-                        "Please enter a valid recipe number. You entered %s, "
-                                + "which is out of bounds.",
+                        "Please enter a valid recipe number. You entered %s, " + "which is out of bounds.",
                         command[1]);
                 ui.printMessage(errorMessage);
             } catch (NullPointerException e) {
@@ -188,11 +185,21 @@ public class Meal360 {
                     ui.printMessage("Please enter a valid command.");
                     break;
                 }
-            } catch (IllegalArgumentException | InvalidNegativeValueException | InvalidRecipeNameException
-                     | ArrayIndexOutOfBoundsException e) {
+            } catch (IllegalArgumentException | InvalidNegativeValueException | InvalidRecipeNameException |
+                     ArrayIndexOutOfBoundsException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
+        } else if (command[0].equals("weeklydone")) {
+            ui.printSeparator();
+            try {
+                parser.parseMarkDone(command, userIngredients, weeklyPlan, recipeList);
+                ui.printMessage("I've recorded that you've done this recipe!");
+                ui.printMessage("Ingredients list has been updated accordingly!");
+            } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException |
+                     IngredientNotFoundException e) {
+                ui.printMessage(e.getMessage());
+            }
         } else if (command[0].equals("available")) {
             // list recipes with ingredients all in ingredient list
             ui.printSeparator();
@@ -221,7 +228,7 @@ public class Meal360 {
             try {
                 parser.parseDeleteUserIngredients(command, userIngredients);
                 ui.printMessage("Ingredients successfully deleted!");
-            } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | IngredientNotFoundException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
