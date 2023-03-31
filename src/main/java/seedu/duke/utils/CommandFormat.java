@@ -3,13 +3,13 @@ package seedu.duke.utils;
 import java.util.HashMap;
 
 public class CommandFormat {
-    public static final String ADD_FORMAT = "add n/[Name] upc/[UPC] qty/[Quantity] p/[Price]";
+    public static final String ADD_FORMAT = "add n/[Name] upc/[UPC] qty/[Quantity] p/[Price] c/[Category]";
     public static final String EDIT_FORMAT = "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
     public static final String REMOVE_FORMAT = "remove f/item upc/[UPC]\nremove f/index [Index]";
     public static final String RESTOCK_FORMAT = "restock upc/[UPC] qty/[Quantity]";
     public static final String SELL_FORMAT = "sell upc/[UPC] qty/[Quantity]";
     public static final String HELP_FORMAT = "help";
-    public static final String SEARCH_KEYWORD_FORMAT = "search [Keyword]";
+    public static final String SEARCH_KEYWORD_FORMAT = "search [Keywords]";
     public static final String SEARCH_UPC_FORMAT = "searchupc [UPC]";
     public static final String FILTER_FORMAT = "filter f/[Filter type] {p/[Price type] [Category or Price or Tag]}";
     public static final String LIST_FORMAT = "list";
@@ -17,7 +17,6 @@ public class CommandFormat {
 
     public static final String ALERT_REMOVE_FORMAT = "alert remove upc/[UPC] level/[Min or Max]";
     public static final String CATEGORY_FORMAT = "cat {list/table/[Category]}";
-    public static final String TAG_FORMAT = "tag a/[Add/Remove] n/[Name] [Tag]";
     public static final String HISTORY_FORMAT = "history [UPC]";
 
     public static final String DASHBOARD_FORMAT = "db";
@@ -36,7 +35,6 @@ public class CommandFormat {
     public static final String ALERT_REMOVE_DESCRIPTION = "alert remove:\nremoves existing alert for an item";
     public static final String CATEGORY_DESCRIPTION = "cat list: list all categories\n" + "cat table: list table " +
             "of categories and items\n" + "cat [Category]: list items in a specified category";
-    public static final String TAG_DESCRIPTION = "tag:\nadds or removSes a tag of an existing item";
     public static final String HISTORY_DESCRIPTION = "history:\nshows the historical commands executed for an item";
     public static final String DASHBOARD_DESCRIPTION = "db:\nDisplays the dashboard of Magus-Stock";
 
@@ -58,7 +56,6 @@ public class CommandFormat {
         commands.put(SEARCH_KEYWORD_FORMAT, SEARCH_KEYWORD_DESCRIPTION);
         commands.put(FILTER_FORMAT, FILTER_DESCRIPTION);
         commands.put(CATEGORY_FORMAT, CATEGORY_DESCRIPTION);
-        commands.put(TAG_FORMAT, TAG_DESCRIPTION);
         commands.put(ALERT_ADD_FORMAT, ALERT_ADD_DESCRIPTION);
         commands.put(ALERT_REMOVE_FORMAT, ALERT_REMOVE_DESCRIPTION);
         commands.put(HELP_FORMAT, HELP_DESCRIPTION);
