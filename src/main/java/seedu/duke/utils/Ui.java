@@ -126,8 +126,7 @@ public class Ui {
             " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!";
     public static final String INVALID_DEDUCT_QUANTITY_FORMAT = "Unable to sell item. REASON: Quantity inputs" +
             " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!" + "\n" +
-            ANSI_RED + "Also ensure that the desired" + " quantity to be deducted is LESS THAN current stock levels."
-            + ANSI_RESET;
+            "Also ensure that the desired" + " quantity to be deducted is LESS THAN current stock levels.";
     public static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
             "following format: " + "sell upc/[UPC] qty/[Quantity]";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
@@ -634,7 +633,7 @@ public class Ui {
      */
     public static void printInvalidEditCommand() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_EDIT_FORMAT + ANSI_RESET);
+        System.out.println(INVALID_EDIT_FORMAT);
         System.out.println(LINE);
     }
 
@@ -643,7 +642,7 @@ public class Ui {
      */
     public static void printItemNotFound() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + ITEM_NOT_FOUND + ANSI_RESET);
+        System.out.println(ITEM_NOT_FOUND);
         System.out.println(LINE);
     }
 
@@ -677,10 +676,10 @@ public class Ui {
      */
     private static void printUpdatedItemDetails(Item oldItem, Item updatedItem) {
         System.out.println(LINE);
-        System.out.println(ANSI_BLUE + SUCCESS_EDIT + ANSI_RESET + "\n");
-        System.out.println(ANSI_RED + "Before Update: " + ANSI_RESET);
+        System.out.println(SUCCESS_EDIT + "\n");
+        System.out.println("Before Update: ");
         System.out.println(oldItem.toString());
-        System.out.println("\n" + ANSI_GREEN + "After Update: " + ANSI_RESET);
+        System.out.println("\n" + "After Update: ");
         System.out.println(updatedItem.toString());
         System.out.println(LINE);
     }
@@ -694,13 +693,13 @@ public class Ui {
      */
     public static void printRestockDetails(Item oldItem, Item updatedItem) {
         System.out.println(LINE);
-        System.out.println(ANSI_BLUE + SUCCESS_RESTOCK + ANSI_RESET + "\n");
-        System.out.println(ANSI_RED + "Before Restocking: " + ANSI_RESET);
+        System.out.println(SUCCESS_RESTOCK + "\n");
+        System.out.println("Before Restocking: ");
         System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
-                "Quantity Available: " + ANSI_RED + oldItem.getQuantity() + ANSI_RESET);
-        System.out.println("\n" + ANSI_GREEN + "After Restocking: " + ANSI_RESET);
+                "Quantity Available: " + oldItem.getQuantity());
+        System.out.println("\n" + "After Restocking: ");
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
-                "Quantity Available: " + ANSI_GREEN + updatedItem.getQuantity() + ANSI_RESET);
+                "Quantity Available: " + updatedItem.getQuantity());
         System.out.println(LINE);
     }
 
@@ -713,16 +712,16 @@ public class Ui {
      */
     public static void printSellDetails(Item oldItem, Item updatedItem) {
         System.out.println(LINE);
-        System.out.println(ANSI_BLUE + SUCCESS_SELL + ANSI_RESET + "\n");
-        System.out.println(ANSI_RED + "Before Selling: " + ANSI_RESET);
+        System.out.println(SUCCESS_SELL + "\n");
+        System.out.println("Before Selling: ");
         System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
-                "Quantity Available: " + ANSI_RED + oldItem.getQuantity() + ANSI_RESET);
-        System.out.println("\n" + ANSI_GREEN + "After Selling: " + ANSI_RESET);
+                "Quantity Available: " + oldItem.getQuantity());
+        System.out.println("\n" + "After Selling: ");
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
-                "Quantity Available: " + ANSI_GREEN + updatedItem.getQuantity() + ANSI_RESET);
-        System.out.println("\n" + ANSI_BLUE + "Sold " + ANSI_CYAN + (oldItem.getQuantity() - updatedItem.getQuantity())
-                + " " + ANSI_BLUE + updatedItem.getName() + " at a price of $" + ANSI_CYAN + updatedItem.getPrice() +
-                "." + ANSI_RESET);
+                "Quantity Available: " + updatedItem.getQuantity());
+        System.out.println("\n" + "Sold " + (oldItem.getQuantity() - updatedItem.getQuantity())
+                + " " + updatedItem.getName() + " at a price of $" + updatedItem.getPrice() +
+                ".");
         System.out.println(LINE);
     }
 
@@ -731,8 +730,8 @@ public class Ui {
      */
     private static void printItemNotUpdatedError() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + ITEM_NOT_EDITED + ANSI_RESET);
-        System.out.println(ANSI_RED + "REASON: Item's name/price/quantity is the same as user's input." + ANSI_RESET);
+        System.out.println(ITEM_NOT_EDITED);
+        System.out.println("REASON: Item's name/price/quantity is the same as user's input.");
         System.out.println(LINE);
     }
 
@@ -741,10 +740,10 @@ public class Ui {
      */
     public static void printInvalidPriceOrQuantityEditInput() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + ITEM_NOT_EDITED + ANSI_RESET);
-        System.out.println(ANSI_RED + "REASON:" + ANSI_RESET);
-        System.out.println(ANSI_RED + WRONG_QUANTITY_INPUT + ANSI_RESET);
-        System.out.println(ANSI_RED + WRONG_PRICE_INPUT + ANSI_RESET);
+        System.out.println(ITEM_NOT_EDITED);
+        System.out.println("REASON:");
+        System.out.println(WRONG_QUANTITY_INPUT);
+        System.out.println(WRONG_PRICE_INPUT);
         System.out.println(LINE);
     }
 
@@ -753,7 +752,7 @@ public class Ui {
      */
     public static void printInvalidRestockCommand() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_RESTOCK_FORMAT + ANSI_RESET);
+        System.out.println(INVALID_RESTOCK_FORMAT);
         System.out.println(LINE);
 
     }
@@ -763,7 +762,7 @@ public class Ui {
      */
     public static void printInvalidAddQuantityInput() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_ADD_QUANTITY_FORMAT + ANSI_RESET);
+        System.out.println(INVALID_ADD_QUANTITY_FORMAT);
         System.out.println(LINE);
     }
 
@@ -772,7 +771,7 @@ public class Ui {
      */
     public static void printInvalidDeductQuantityInput() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_DEDUCT_QUANTITY_FORMAT + ANSI_RESET);
+        System.out.println(INVALID_DEDUCT_QUANTITY_FORMAT);
         System.out.println(LINE);
     }
 
@@ -781,7 +780,7 @@ public class Ui {
      */
     public static void printInvalidSellCommand() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_SELL_FORMAT + ANSI_RESET);
+        System.out.println(INVALID_SELL_FORMAT);
         System.out.println(LINE);
     }
 

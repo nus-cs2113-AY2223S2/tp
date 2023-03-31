@@ -4,8 +4,8 @@
 actor User
 participant ":SearchParser"
 User -> ":SearchParser" **
-activate ":SearchParser"
 User -> ":SearchParser": run()
+activate ":SearchParser"
 
 alt searchType == Types.SearchType.KEYWORD
     ":SearchParser" -> ":SearchParser": parseSearch
@@ -17,6 +17,7 @@ alt searchType == Types.SearchType.KEYWORD
         end
         ":SearchParser" -> ":SearchCommand" ** :
         ":SearchParser" -> ":SearchCommand" ++ : run()
+
         ref over ":SearchCommand"
             ":SearchCommand" runs
         end ref
