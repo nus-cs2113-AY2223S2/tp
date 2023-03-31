@@ -16,8 +16,6 @@ Enjoy your revision!
 
 ## Features
 
-{Give detailed description of each feature}
-
 ### Adding a card: `card add -q {question} -a {answer}`
 
 Adds a new Card with its question and answer.
@@ -90,6 +88,62 @@ Ans: yes
 UUID:  f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
 Here are the tags : 
 1.Tag name : physics, tag uuid : 83f26992-09d7-496b-b7a8-3ad05e43c8b7
+```
+
+---
+
+### Edit a deck: `deck edit`
+
+Rename an existing deck
+
+Example of usage: `deck edit -o old-deck-name -n new-deck-name`
+
+Sample output:
+```
+Deck 9dc5ab5f-75af-4b0d-b554-341f59ac829bdeck name has been changed from old-deck-name to new-deck-name
+```
+
+### [WIP] Delete a card/tag from deck: `deck delete -d {deckName} (-c {cardUUID} | -t {tagUUID})`
+
+Delete a card from an existing deck
+
+Example of usage: `deck delete -c c2c61475-df53-4656-94c4-c2e36933d359 -d my-deck`
+
+Sample output:
+```
+Successfully removed card c2c61475-df53-4656-94c4-c2e36933d359 from deck my-deck
+```
+
+Alternatively, delete a tag from an existing deck
+
+Example of usage: `deck delete -t 833249f3-a090-474c-a3de-c1b5f25609d4 -d my-deck`
+
+Sample output:
+```
+Successfully removed tag 833249f3-a090-474c-a3de-c1b5f25609d4 from deck my-deck
+```
+
+The entire deck can also be deleted (cards and tags that were in the deck are not deleted)
+
+Example of usage: `deck delete -d my-deck`
+
+Sample output:
+```
+Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from card c2c61475-df53-4656-94c4-c2e36933d359
+Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from the deck list.
+```
+
+### List all decks: `deck list`
+
+List all decks that have been created
+
+Example usage: `deck list`
+
+Sample output:
+```
+Here is your current list of decks:
+1.Deck name : test-deck, deck uuid : 9dc5ab5f-75af-4b0d-b554-341f59ac829b
+2.Deck name : another-deck, deck uuid : b7fa870a-e92c-4a74-90de-cfeafd6ec141```
 ```
 
 ## FAQ
