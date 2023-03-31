@@ -19,17 +19,19 @@ public final class MessageConstants {
     public static final String MESSAGE_EXPENDITURE_EDITED = "The following expenditure has been updated:" + NEWLINE;
     public static final String MESSAGE_NO_ENTRIES = "There are no entries available." + NEWLINE;
     public static final String MESSAGE_ADD_COMMAND = "Add - Adds an expense to your current expenditure." + NEWLINE
-            + "Usage: /add <DESCRIPTION> <-c CATEGORY> <-p PRICE>" + NEWLINE
-            + NEWLINE;
-    public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes a specified expense from your expenditure."
+            + "Usage: /add <-d | -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c | -category CATEGORY>" + " <-p " +
+            "| -price PRICE>" + NEWLINE + NEWLINE;
+    public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified expense(s) from your expenditure."
             + NEWLINE
             + "Usage: /delete <EXPENSE_ID> [ADDITIONAL_EXPENSE_ID...]" + NEWLINE + NEWLINE;
     public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified expense in your current expenditure."
             + NEWLINE
-            + "Usage: /edit <EXPENSE_ID> [FLAG...]" + NEWLINE + NEWLINE;
+            + "Usage: /edit <EXPENSE_ID> [-c | -category NEW_CATEGORY] [-p | -price NEW_PRICE]" +
+            " [-d | -description NEW_DESC]" + NEWLINE + NEWLINE;
     public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current expenditure."
             + NEWLINE
-            + "Usage: /view [COUNT] [-c | -category CATEGORY]" + NEWLINE + NEWLINE;
+            + "Usage: /view [COUNT] [-c | -category CATEGORY] [-p | -price PRICE_MIN] [-p | -price PRICE_MAX]" +
+            " [<-sd | -startdate START_DATE -ed | -enddate END_DATE>]" + NEWLINE + NEWLINE;
     public static final String MESSAGE_HELP_COMMAND = "Help - Displays the help menu." + NEWLINE
             + "Usage: /help" + NEWLINE + NEWLINE;
     public static final String MESSAGE_BYE_COMMAND = "Exit - Terminates PocketPal." + NEWLINE
