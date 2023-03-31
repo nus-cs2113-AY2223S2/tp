@@ -4,9 +4,9 @@ import seedu.duke.diagnosis.Diagnosis;
 import seedu.duke.diagnosis.IllnessMatch;
 import seedu.duke.diagnosis.symptoms.Symptom;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,7 +30,7 @@ public class MedicineManager {
             "Lozenges", "When you feel pain from sore throat",
             //@@author Geeeetyx
             "Lozenges are used to medicate the mouth and throat for the slow administration in digestion or \n" +
-                    "    cough remedies. Lozenges may contain an anesthetic, a demulcent, or an antiseptic.\n");
+                    "    cough remedies. Lozenges may contain an anesthetic, a demulcent, or an antiseptic.");
     //@@author
 
     private static final Medicine ROBITUSSIN = new Medicine(
@@ -96,8 +96,49 @@ public class MedicineManager {
 
             //@@author Geeeetyx
             "Guaifenesin is used to relieve chest congestion. \n" +
-                    "It works by thinning the mucus in the air passages to make it easier to cough up the mucus \n" +
-                    "    and clear the airways.");
+                    "    It works by thinning the mucus in the air passages to make it easier to \n" +
+                    "    cough up the mucus and clear the airways.");
+
+    private static final Medicine ZOLPIDEM = new Medicine(
+            "Zolpidem ", "taking it once every 2 or 3 nights",
+            "Zolpidem is used for short-term treatment of insomnia (difficulty sleeping). \n" +
+                    "    It helps you fall asleep faster and sleep through the night.");
+
+    private static final Medicine DIPHENOXYLATE = new Medicine(
+            "Diphenoxylate", "2 tablets 3-4 times daily",
+            "Diphenoxylate works by decreasing activity of the bowel, for the treatment of diarrhea.");
+
+    private static final Medicine LACTULOSE = new Medicine(
+            "Lactulose", "15ml twice a day",
+            "This medication is used to treat constipation. \n" +
+                    "    It encourages bowel movement by drawing water into the bowel. \n" +
+                    "    This helps to soften the stools and increase bowel movement.");
+
+    private static final Medicine DECONGESTANT_SPRAY = new Medicine(
+            "Decongestant", "1 to 4 times a day",
+            "Decongestants shrink the blood vessels (or decongest them) in the nose, \n" +
+                    "    reducing the swelling and allowing easier breathing. \n" +
+                    "    Use the spray for 2 - 3 days and then wait 2 - 3 days before using the spray again.");
+
+    private static final Medicine ZYRTEC_D = new Medicine(
+            "Antihistamine", "1 5mg tablet every 12 hours",
+            "ZYRTEC-D® contains both an antihistamine and a decongestant for allergies. \n" +
+                    "    It clears your blocked nose and relieves other allergy symptoms.");
+
+    private static final Medicine DIFFLAM_THROAT_SPRAY = new Medicine(
+            "Difflam Throat Spray", "2 - 4 times every 1.5 - 3 hours until you feel better",
+            "This spray offers targeted and rapid symptom relief for hard-to-reach inflamed and \n" +
+                    "    painful areas in your mouth and throat. It provides rapid relief from local inflammation \n" +
+                    "    and pain from 60 seconds. ");
+
+    private static final Medicine NAPROXEN = new Medicine(
+            "Naproxen", "Dissolove 1-2 tablets in water, take for 1-2 days ONLY and only after meals",
+            "Naproxen is a non-steroidal anti-inflammatory drug (NSAID). \n" +
+                    "    It reduces swelling (inflammation) and pain in joints and muscles, \n" +
+                    "    which can help with muscle aches.");
+
+
+
     //@@author
 
     //@@author tanyizhe
@@ -121,15 +162,15 @@ public class MedicineManager {
                 .collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Medicine> headacheMedications = Stream.of(PARACETAMOL)
                 .collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Medicine> insomniaMedications = Stream.of(MAGNESIUM)
+        ArrayList<Medicine> insomniaMedications = Stream.of(MAGNESIUM, ZOLPIDEM)
                 .collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Medicine> conjunctivitisMedications = Stream.of(EYE_DROPS)
                 .collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Medicine> diarrhoeaMedications = Stream.of(ULTRACARBON)
+        ArrayList<Medicine> diarrhoeaMedications = Stream.of(ULTRACARBON, DIPHENOXYLATE)
                 .collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Medicine> constipationMedications = Stream.of(DULCOLAX)
+        ArrayList<Medicine> constipationMedications = Stream.of(DULCOLAX, LACTULOSE)
                 .collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Medicine> soreThroatMedications = Stream.of(LOZENGE)
+        ArrayList<Medicine> soreThroatMedications = Stream.of(LOZENGE, DIFFLAM_THROAT_SPRAY)
                 .collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Medicine> bronchitisMedications = Stream.of(GUAIFENESIN, IBUPROFEN)
                 .collect(Collectors.toCollection(ArrayList::new));
@@ -145,6 +186,15 @@ public class MedicineManager {
         medicationDict.put("Constipation", constipationMedications);
         medicationDict.put("Sore Throat", soreThroatMedications);
         medicationDict.put("Bronchitis", bronchitisMedications);
+
+        //@@author Geeeetyx
+        ArrayList<Medicine> nasalCongestionMedications = Stream.of(DECONGESTANT_SPRAY, ZYRTEC_D)
+                .collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Medicine> muscleAcheMedications = Stream.of(NAPROXEN)
+                        .collect(Collectors.toCollection(ArrayList::new));
+        medicationDict.put("Nasal Congestion", nasalCongestionMedications);
+        medicationDict.put("Muscle Ache", muscleAcheMedications);
+        //@@author
     }
 
     /**
@@ -162,6 +212,17 @@ public class MedicineManager {
         medicineDosages.put(ULTRACARBON.toString(), ULTRACARBON.getDosage());
         medicineDosages.put(DULCOLAX.toString(), DULCOLAX.getDosage());
         medicineDosages.put(GUAIFENESIN.toString(), GUAIFENESIN.getDosage());
+
+        //@@author Geeeetyx
+        medicineDosages.put(ZOLPIDEM.toString(), ZOLPIDEM.getDosage());
+        medicineDosages.put(DIPHENOXYLATE.toString(), DIPHENOXYLATE.getDosage());
+        medicineDosages.put(LACTULOSE.toString(), LACTULOSE.getDosage());
+        medicineDosages.put(DECONGESTANT_SPRAY.toString(), DECONGESTANT_SPRAY.getDosage());
+        medicineDosages.put(ZYRTEC_D.toString(), ZYRTEC_D.getDosage());
+        medicineDosages.put(DIFFLAM_THROAT_SPRAY.toString(), DIFFLAM_THROAT_SPRAY.getDosage());
+        medicineDosages.put(NAPROXEN.toString(),NAPROXEN.getDosage());
+        //@@author
+
         assert medicineDosages.isEmpty() == false : "Medicine dosage hashtable must not be empty";
     }
 
@@ -187,7 +248,9 @@ public class MedicineManager {
             for (Medicine medicine : relevantMedications) {
                 System.out.println("    " + medicine.toString() + " - Dosage: " + medicine.getDosage());
                 //@@author Geeeetyx
+                System.out.println("---------------------------------------------------");
                 System.out.println("    " + medicine.getDescription());
+                System.out.println("---------------------------------------------------");
                 //@@author
             }
         } else {
@@ -265,10 +328,4 @@ public class MedicineManager {
     public boolean isValidMedicine(String medicine) {
         return medicineDosages.containsKey(medicine);
     }
-
-    //@@author Geeeetyx
-    public void getMedicationDescriptions() {
-
-    }
-
 }
