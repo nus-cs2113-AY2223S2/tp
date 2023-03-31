@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -40,8 +41,8 @@ public class TaskList implements Serializable {
         return tasks.get(id);
     }
 
-    public String addTask(String description, LocalDateTime deadline, String email, HashSet<String> tags,
-                          int repeatDuration,int priority) {
+    public String addTask(String description, LocalDateTime deadline, String email, TreeSet<String> tags,
+                          int repeatDuration, int priority) {
         Task task = new Task(id, description, deadline, email, tags, repeatDuration, priority);
         tasks.put(id++, task);
         return task.toString();
@@ -105,7 +106,6 @@ public class TaskList implements Serializable {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    //@@author ERJUNZE
     /**
      * Gets the string representation of the task at the given id of the task list.
      *
@@ -129,7 +129,7 @@ public class TaskList implements Serializable {
         return getTask(id).getDeadline();
     }
 
-    public HashSet<String> getTags(int id) throws InvalidIdException {
+    public TreeSet<String> getTags(int id) throws InvalidIdException {
         return getTask(id).getTags();
     }
 
@@ -141,8 +141,8 @@ public class TaskList implements Serializable {
         return getTask(id).getFullInfo();
     }
 
-    public HashSet<String> getAllTags() {
-        HashSet<String> tags = new HashSet<>();
+    public TreeSet<String> getAllTags() {
+        TreeSet<String> tags = new TreeSet<>();
         tasks.values().forEach(task -> tags.addAll(task.getTags()));
         return tags;
     }
@@ -163,7 +163,7 @@ public class TaskList implements Serializable {
         return getTask(id).setDeadline(deadline);
     }
 
-    public String setTags(int id, HashSet<String> tags) throws InvalidIdException {
+    public String setTags(int id, TreeSet<String> tags) throws InvalidIdException {
         return getTask(id).setTags(tags);
     }
 

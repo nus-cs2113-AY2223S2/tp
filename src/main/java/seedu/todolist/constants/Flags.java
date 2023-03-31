@@ -26,13 +26,13 @@ public enum Flags {
     COMMAND_EDIT_EMAIL("email", false),
     COMMAND_EDIT_TAGS("tags", false),
     COMMAND_EDIT_REPEAT("rep", false),
-    COMMAND_EDIT_PRIORITY("priority", false),
+    COMMAND_EDIT_PRIORITY("prio", false),
 
     // Argument flags
     DESCRIPTION("-desc", false),
     DEADLINE("-due", false),
     EMAIL("-email", false),
-    PRIORITY("-priority", false),
+    PRIORITY("-prio", false),
     REPEAT("-rep", false),
     TAG("-tags", false),
     EDIT("-edit", false),

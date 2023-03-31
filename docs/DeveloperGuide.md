@@ -7,7 +7,7 @@
 
 ## Acknowledgements
 
-Adapted from AddressBook Level 3 Developer Guide (https://se-education.org/addressbook-level3/DeveloperGuide.html)
+Adapted from [AddressBook Level 3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 ## Setup
 
@@ -23,7 +23,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ## Design
 
-> The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](diagrams) folder.
+> The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](https://github.com/AY2223S2-CS2113-T11-4/tp/tree/master/docs/diagrams) folder.
 
 ### Architecture
 
@@ -39,7 +39,7 @@ The above diagram provides a high-level overview of the program's design, which 
 
 ### Manager Component
 
-The code for this component is found in [`ToDoListManager.java`](../src/main/java/seedu/todolist/ToDoListManager.java).
+The code for this component is found in [`ToDoListManager.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/ToDoListManager.java).
 
 ![ManagerClassDiagram](images/ManagerClassDiagram.png)
 
@@ -54,11 +54,11 @@ The `ToDoListManager` component,
 
 ### Ui component
 
-The code for this component is found in [`Ui.java`](../src/main/java/seedu/todolist/ui/Ui.java).
+The code for this component is found in [`Ui.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/ui/Ui.java).
 
 ### Logic component
 
-The main code for this component is found in [`Parser.java`](../src/main/java/seedu/todolist/logic/Parser.java).
+The main code for this component is found in [`Parser.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/logic/Parser.java).
 
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
@@ -72,11 +72,11 @@ component.
 
 ### TaskList component
 
-The code for this component is found in [`TaskList.java`](../src/main/java/seedu/todolist/task/TaskList.java).
+The code for this component is found in [`TaskList.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/task/TaskList.java).
 
 ### Storage component
 
-The code for this component is found in [`Storage.java`](../src/main/java/seedu/todolist/storage/Storage.java).
+The code for this component is found in [`Storage.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/storage/Storage.java).
 
 The Storage component can save the task list as TaskList objects in a .txt file format using Serialization and read it 
 back into a TaskList object.
@@ -269,7 +269,7 @@ Forgetful NUS students who used to rely on LumiNUS’s deadline reminders.
 
 #### Value proposition
 
-With the transition to Canvas, the most important feature of LumiNUS’s deadline reminders is gone! Our project aims to 
+With the transition to Canvas, the most important feature of LumiNUS’s deadline reminders is gone! Our project aims to
 bring an application to keep you aware of your deadlines and not miss them.
 
 ### User Stories
@@ -300,10 +300,14 @@ bring an application to keep you aware of your deadlines and not miss them.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
 able to accomplish most of the tasks faster using commands than using the mouse.
 
-### Glossary
-
-* *glossary item* - Definition
-
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+The following are instructions on how to test the program manually.
+
+### Startup/Exit
+
+- After downloading the jar file from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0),
+double-click on it or run `java -jar todolist.jar` in a terminal to start the program.
+  - Expected: The startup, save loading and startup reminder messages will be displayed in the terminal.
+- To exit, use the exit command: `exit`
+  - Expected: The exit message is displayed in the terminal and the program exits, returning control to the terminal.
