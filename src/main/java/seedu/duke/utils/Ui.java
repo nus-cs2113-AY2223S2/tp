@@ -10,60 +10,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-import static seedu.duke.utils.ColorCode.ANSI_BLUE;
-import static seedu.duke.utils.ColorCode.ANSI_CYAN;
-import static seedu.duke.utils.ColorCode.ANSI_GREEN;
-import static seedu.duke.utils.ColorCode.ANSI_ORANGE;
-import static seedu.duke.utils.ColorCode.ANSI_RED;
-import static seedu.duke.utils.ColorCode.ANSI_RESET;
-import static seedu.duke.utils.ColorCode.ANSI_WHITE;
-import static seedu.duke.utils.ColorCode.ANSI_YELLOW;
 
 public class Ui {
     public static final String LINE = "____________________________________________________________";
-    public static final String DASHBOARDLOGO = "`7MM\"\"\"Yb.      db       .M\"\"\"bgd `7MMF'  " +
-            "`7MMF'`7MM\"\"\"Yp,   .g8\"\"8q.      db      `7MM\"\"\"Mq.  `7MM\"\"\"Yb.   \n" +
-            "  MM    `Yb.   ;MM:     ,MI    \"Y   MM      MM    MM    Yb .dP'    `YM.   ;MM:    " +
-            "   MM   `MM.   MM    `Yb. \n" +
-            "  MM     `Mb  ,V^MM.    `MMb.       MM      MM    MM    dP dM'      `MM  ,V^MM.    " +
-            "  MM   ,M9    MM     `Mb \n" +
-            "  MM      MM ,M  `MM      `YMMNq.   MMmmmmmmMM    MM\"\"\"bg. MM        MM ,M  `MM " +
-            "     MMmmdM9     MM      MM \n" +
-            "  MM     ,MP AbmmmqMA   .     `MM   MM      MM    MM    `Y MM.      ,MP AbmmmqMA   " +
-            "  MM  YM.     MM     ,MP \n" +
-            "  MM    ,dP'A'     VML  Mb     dM   MM      MM    MM    ,9 `Mb.    ,dP'A'     VML  " +
-            "  MM   `Mb.   MM    ,dP' \n" +
-            ".JMMmmmdP'.AMA.   .AMMA.P\"Ybmmd\"  .JMML.  .JMML..JMMmmmd9    `\"bmmd\"'.AMA.   " +
-            ".AMMA..JMML. .JMM..JMMmmmdP'   ";
-    public static final String LOGO1 = "`MMb     dMM'     dM.      6MMMMb/ `MM'     `M' 6MMMMb\\  6MMMMbMMMMMMMMMM " +
-            " 6MMMMb     6MMMMb/ `MM    d'\n";
-    public static final String LOGO2 = " MMM.   ,PMM     ,MMb     8P    YM  MM       M 6M'    ` 6M'    /   MM  " +
-            " \\ 8P    Y8   8P    YM  MM   d'\n";
-    public static final String LOGO3 = " M`Mb   d'MM     d'YM.   6M      Y  MM       M MM       MM         MM " +
-            "   6M      Mb 6M      Y  MM  d'\n";
-    public static final String LOGO4 = " M YM. ,P MM    ,P `Mb   MM         MM       M YM.      YM.        MM " +
-            "   MM      MM MM         MM d'     \n";
-    public static final String LOGO5 = " M `Mb d' MM    d'  YM.  MM         MM       M  YMMMMb   YMMMMb    MM " +
-            "   MM      MM MM         MMd'      \n";
-    public static final String LOGO6 = " M  YM.P  MM   ,P   `Mb  MM     ___ MM       M      `Mb      `Mb   MM " +
-            "   MM      MM MM         MMYM.     \n";
-    public static final String LOGO7 = " M  `Mb'  MM   d'    YM. MM     `M' MM       M       MM       MM   MM " +
-            "   MM      MM MM         MM YM.    \n";
-    public static final String LOGO8 = " M   YP   MM  ,MMMMMMMMb YM      M  YM       M       MM       MM   MM " +
-            "   YM      M9 YM      6  MM  YM.   \n";
-    public static final String LOGO9 = " M   `'   MM  d'      YM. 8b    d9   8b     d8 L    ,M9 L    ,M9   MM " +
-            "    8b    d8   8b    d9  MM   YM.  \n";
-    public static final String LOGO10 = "_M_      _MM_dM_     _dMM_ YMMMM9     YMMMMM9  MYMMMM9  MYMMMM9   _MM_" +
-            "     YMMMM9     YMMMM9  _MM_   YM._\n";
+    public static final String DASHBOARDLOGO = "\n" +
+            "????????????????????????????????????????????????????????????????????????\n" +
+            "????????????????????????????????????????????????????????????????????????\n" +
+            "????????????????????????????????????????????????????????????????????????\n" +
+            "????????????????????????????????????????????????????????????????????????\n" +
+            "????????????????????????????????????????????????????????????????????????\n" +
+            "????????????????????????????????????????????????????????????????????????";
+    public static final String LOGO = "\n" +
+            "??????????????????????????????????????????????????????????????????????????????????????\n" +
+            "??????????????????????????????????????????????????????????????????????????????????????\n" +
+            "??????????????????????????????????????????????????????????????????????????????????????\n" +
+            "??????????????????????????????????????????????????????????????????????????????????????\n" +
+            "??????????????????????????????????????????????????????????????????????????????????????\n" +
+            "??????????????????????????????????????????????????????????????????????????????????????";
 
-    public static final String INVENTORYLOGO = "`7MMF'`7MN.   `7MF'`7MMF'   `7MF'`7MM\"\"\"YMM  `7MN.   " +
-            "`7MF'MMP\"\"MM\"\"YMM   .g8\"\"8q. `7MM\"\"\"Mq.`YMM'   `MM'\n" +
-            "  MM    MMN.    M    `MA     ,V    MM    `7    MMN.    M  P'   MM   `7 .dP'    `YM. MM   `MM. VMA   ,V\n" +
-            "  MM    M YMb   M     VM:   ,V     MM   d      M YMb   M       MM      dM'      `MM MM   ,M9   VMA ,V \n" +
-            "  MM    M  `MN. M      MM.  M'     MMmmMM      M  `MN. M       MM      MM        MM MMmmdM9     VMMP\n" +
-            "  MM    M   `MM.M      `MM A'      MM   Y  ,   M   `MM.M       MM      MM.      ,MP MM  YM.      MM\n" +
-            "  MM    M     YMM       :MM;       MM     ,M   M     YMM       MM      `Mb.    ,dP' MM   `Mb.    MM\n" +
-            ".JMML..JML.    YM        VF      .JMMmmmmMMM .JML.    YM     .JMML.      `\"bmmd\"' .JMML. .JMM. .JMML.";
+    public static final String INVENTORYLOGO = "\n" +
+            "????????????????????????????????????????????????????????????????????????\n" +
+            "????????????????????????????????????????????????????????????????????????\n" +
+            "????????????????????????????????????????????????????????????????????????\n" +
+            "????????????????????????????????????????????????????????????????????????\n" +
+            "????????????????????????????????????????????????????????????????????????\n" +
+            "????????????????????????????????????????????????????????????????????????";
 
     public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
     public static final String EXIT_MESSAGE = "Hope you had an enjoyable experience. See you next time!";
@@ -211,27 +182,27 @@ public class Ui {
     }
 
     public static void printDoubleNeeded() {
-        System.out.println(ANSI_RED + MISSING_PRICE + ANSI_RESET);
+        System.out.println(MISSING_PRICE);
     }
 
     public static void printEmptySearch() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + NO_SEARCH_RESULTS + ANSI_RESET);
+        System.out.println(NO_SEARCH_RESULTS);
         System.out.println(LINE);
     }
 
     public static void printSearchUPCItem(Item item) {
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + "Here is your item: ");
+        System.out.println("Here is your item: ");
         ArrayList<Item> singleItem = new ArrayList<>();
         singleItem.add(item);
-        System.out.println(printTable(singleItem) + ANSI_RESET);
+        System.out.println(printTable(singleItem));
         System.out.println(LINE);
     }
 
     public static void printSearchItems(ArrayList<Item> items) {
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + printTable(items) + ANSI_RESET);
+        System.out.println(printTable(items));
         System.out.println(LINE);
     }
 
@@ -244,93 +215,92 @@ public class Ui {
     public static void greetUser() {
         System.out.println(LINE);
         System.out.println(
-                ANSI_RED + LOGO1 + LOGO2 + ANSI_ORANGE + LOGO3 + LOGO4 + ANSI_YELLOW + LOGO5 + LOGO6 +
-                        ANSI_GREEN + LOGO7 + LOGO8 + ANSI_CYAN + LOGO9 + LOGO10 + ANSI_RESET);
+                LOGO);
         System.out.println(GREET_MESSAGE);
         System.out.println(LINE);
     }
 
     public static void printInvalidSessionFile() {
-        System.out.println(ANSI_YELLOW + INVALID_SESSION_FILE + ANSI_RESET);
+        System.out.println(INVALID_SESSION_FILE);
         System.out.println(LINE);
     }
 
     public static void printRecoveredSessionFile() {
-        System.out.println(ANSI_GREEN + RECOVERED_SESSION_FILE + ANSI_RESET);
+        System.out.println(RECOVERED_SESSION_FILE);
         System.out.println(LINE);
     }
 
     public static void printEmptySessionFile() {
-        System.out.println(ANSI_YELLOW + EMPTY_SESSION_FILE + ANSI_RESET);
+        System.out.println(EMPTY_SESSION_FILE);
         System.out.println(LINE);
     }
 
     public static void printInvalidAlertFile() {
-        System.out.println(ANSI_YELLOW + INVALID_ALERT_FILE + ANSI_RESET);
+        System.out.println(INVALID_ALERT_FILE);
         System.out.println(LINE);
     }
 
     public static void printEmptyAlertFile() {
-        System.out.println(ANSI_YELLOW + EMPTY_ALERT_FILE + ANSI_RESET);
+        System.out.println(EMPTY_ALERT_FILE);
         System.out.println(LINE);
     }
 
     public static void printRecoveredAlertFile() {
-        System.out.println(ANSI_GREEN + RECOVERED_ALERT_FILE + ANSI_RESET);
+        System.out.println(RECOVERED_ALERT_FILE);
         System.out.println(LINE);
     }
 
     public static void printUnknownCommand() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + UNKNOWN_COMMAND + ANSI_RESET);
+        System.out.println(UNKNOWN_COMMAND);
         System.out.println(LINE);
     }
 
     public static void printInvalidAddCommand() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_ADD + ANSI_RESET);
+        System.out.println(INVALID_ADD);
         System.out.println(LINE);
     }
 
     public static void printInvalidAutoSaveInput() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_AUTO_SAVE_INPUT + ANSI_RESET);
+        System.out.println(INVALID_AUTO_SAVE_INPUT);
         System.out.println(LINE);
     }
 
     public static void printAutoSaveEnabled() {
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + AUTOSAVE_ON + ANSI_RESET);
+        System.out.println(AUTOSAVE_ON);
         System.out.println(LINE);
     }
 
     public static void printAutoSaveDisabled() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + AUTOSAVE_OFF + ANSI_RESET);
+        System.out.println(AUTOSAVE_OFF);
         System.out.println(LINE);
     }
 
     public static void printDuplicateAdd() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + DUPLICATE_ADD + ANSI_RESET);
+        System.out.println(DUPLICATE_ADD);
         System.out.println(LINE);
     }
 
     public static void printSuccessAdd() {
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + SUCCESS_ADD + ANSI_RESET);
+        System.out.println(SUCCESS_ADD);
         System.out.println(LINE);
     }
 
     public static void printSuccessList() {
         System.out.println(LINE);
-        System.out.println(ANSI_CYAN + INVENTORYLOGO + ANSI_CYAN);
-        System.out.println(ANSI_GREEN + SUCCESS_LIST + ANSI_RESET);
+        System.out.println(INVENTORYLOGO);
+        System.out.println(SUCCESS_LIST);
     }
 
     public static void printEmptyList() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
+        System.out.println(EMPTY_LIST);
         System.out.println(LINE);
     }
 
@@ -786,26 +756,26 @@ public class Ui {
 
     public static void printInvalidReply() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_REPLY + ANSI_RESET);
+        System.out.println(INVALID_REPLY);
         System.out.println(LINE);
     }
 
     public static void printNotRemoving() {
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + NOT_REMOVING + ANSI_RESET);
+        System.out.println(NOT_REMOVING);
         System.out.println(LINE);
     }
 
     public static void printSuccessRemove(Item itemToRemove) {
         System.out.println(LINE);
-        System.out.println(ANSI_BLUE + SUCCESS_REMOVE + ANSI_RESET);
+        System.out.println(SUCCESS_REMOVE);
         System.out.println(itemToRemove.toString());
         System.out.println(LINE);
     }
 
     public static void printConfirmMessage(Item itemToRemove) {
         System.out.println(LINE);
-        System.out.println(ANSI_BLUE + CONFIRM_MESSAGE + ANSI_RESET);
+        System.out.println(CONFIRM_MESSAGE);
         System.out.println(itemToRemove.toString());
         System.out.println(LINE);
     }
@@ -815,14 +785,14 @@ public class Ui {
         int listSize = inventory.getItemInventory().size();
         switch (listSize) {
         case 0:
-            System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
+            System.out.println(EMPTY_LIST);
             break;
         case 1:
-            System.out.println(ANSI_RED + INVALID_INDEX + "0 to remove item successfully." + ANSI_RESET);
+            System.out.println(INVALID_INDEX + "0 to remove item successfully.");
             break;
         default:
-            System.out.println(ANSI_RED + INVALID_INDEX + "between 0 to " + (listSize - 1) +
-                    " to remove item successfully." + ANSI_RESET);
+            System.out.println(INVALID_INDEX + "between 0 to " + (listSize - 1) +
+                    " to remove item successfully.");
             break;
         }
         System.out.println(LINE);
@@ -832,66 +802,66 @@ public class Ui {
         System.out.println(LINE);
         int listSize = inventory.getItemInventory().size();
         if (listSize == 0) {
-            System.out.println(ANSI_RED + EMPTY_LIST + ANSI_RESET);
+            System.out.println(EMPTY_LIST);
         } else {
-            System.out.println(ANSI_RED + "This UPC is invalid. Try again." + ANSI_RESET);
+            System.out.println("This UPC is invalid. Try again.");
         }
         System.out.println(LINE);
     }
 
     public static void printExistingMinAlert() {
-        System.out.println(ANSI_RED + EXISTING_MIN_ALERT + ANSI_RESET);
+        System.out.println(EXISTING_MIN_ALERT);
     }
 
     public static void printExistingMaxAlert() {
-        System.out.println(ANSI_RED + EXISTING_MAX_ALERT + ANSI_RESET);
+        System.out.println(EXISTING_MAX_ALERT);
     }
 
     public static void printInvalidAddAlertCommand() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_ADD_ALERT + ANSI_RESET);
+        System.out.println(INVALID_ADD_ALERT);
         System.out.println(LINE);
     }
 
     public static void printInvalidMinAlert() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_MIN_ALERT + ANSI_RESET);
+        System.out.println(INVALID_MIN_ALERT);
         System.out.println(LINE);
     }
 
     public static void printInvalidMaxAlert() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_MAX_ALERT + ANSI_RESET);
+        System.out.println(INVALID_MAX_ALERT);
         System.out.println(LINE);
     }
 
     public static void printSuccessAddAlert() {
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + SUCCESS_ADD_ALERT + ANSI_RESET);
+        System.out.println(SUCCESS_ADD_ALERT);
         System.out.println(LINE);
     }
 
     public static void printInvalidAlertKeyword() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_ALERT_KEYWORD + ANSI_RESET);
+        System.out.println(INVALID_ALERT_KEYWORD);
         System.out.println(LINE);
     }
 
     public static void printInvalidRemoveAlertCommand() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(INVALID_REMOVE_ALERT);
         System.out.println(LINE);
     }
 
     public static void printSuccessRemoveAlertCommand() {
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + SUCCESS_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(SUCCESS_REMOVE_ALERT);
         System.out.println(LINE);
     }
 
     public static void printNonExistentRemoveAlert() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + NONEXISTENT_REMOVE_ALERT + ANSI_RESET);
+        System.out.println(NONEXISTENT_REMOVE_ALERT);
         System.out.println(LINE);
     }
 
@@ -907,7 +877,7 @@ public class Ui {
 
         if (hasMinAlerts) {
             minAlertTable = Ui.printTable(alertList.getMinAlertUpcs(), inventory);
-            alertTable.append(ANSI_CYAN + "Alerts for minimum stock level:" + ANSI_RESET + System.lineSeparator());
+            alertTable.append("Alerts for minimum stock level:" + System.lineSeparator());
             alertTable.append(minAlertTable);
         }
 
@@ -916,7 +886,7 @@ public class Ui {
                 alertTable.append(System.lineSeparator());
             }
             maxAlertTable = Ui.printTable(alertList.getMaxAlertUpcs(), inventory);
-            alertTable.append(ANSI_CYAN + "Alerts for maximum stock level:" + ANSI_RESET + System.lineSeparator());
+            alertTable.append("Alerts for maximum stock level:" + System.lineSeparator());
             alertTable.append(maxAlertTable);
         }
 
@@ -931,34 +901,34 @@ public class Ui {
         Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithMostQuantity());
         Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithLeastQuantity());
         System.out.println(LINE);
-        System.out.println(ANSI_YELLOW + DASHBOARDLOGO + ANSI_RESET);
+        System.out.println(DASHBOARDLOGO);
         System.out.println("Overview:");
         System.out.println(LINE);
-        System.out.println(ANSI_ORANGE + "Total number of items: " + ANSI_WHITE +
-                inventory.getItemInventory().size() + ANSI_RESET);
-        System.out.println(ANSI_ORANGE + "Total number of active alerts: " + ANSI_WHITE +
-                alertList.getTotalAlertNumber() + ANSI_RESET);
+        System.out.println("Total number of items: " +
+                inventory.getItemInventory().size());
+        System.out.println("Total number of active alerts: " +
+                alertList.getTotalAlertNumber());
 
-        System.out.println(ANSI_ORANGE + "Total value of inventory: " + ANSI_WHITE +
-                "$" + inventory.getTotalValue() + ANSI_RESET);
+        System.out.println("Total value of inventory: " +
+                "$" + inventory.getTotalValue());
         if (!inventory.getItemInventory().isEmpty()) {
-            System.out.println(ANSI_ORANGE + "Item with most quantity: " + ANSI_GREEN + mostQuantityItem.getName() +
-                    " (" + mostQuantityItem.getQuantity() + ") " + ANSI_RESET);
-            System.out.println(ANSI_ORANGE + "Item with least quantity: " + ANSI_RED + leastQuantityItem.getName() +
-                    " (" + leastQuantityItem.getQuantity() + ") " + ANSI_RESET);
+            System.out.println("Item with most quantity: " + mostQuantityItem.getName() +
+                    " (" + mostQuantityItem.getQuantity() + ") ");
+            System.out.println("Item with least quantity: " + leastQuantityItem.getName() +
+                    " (" + leastQuantityItem.getQuantity() + ") ");
         }
         System.out.println(LINE);
-        System.out.println(ANSI_CYAN + "Current Session Configurations:" + ANSI_RESET);
+        System.out.println("Current Session Configurations:");
         System.out.println(LINE);
         if (SessionManager.getAutoSave()) {
-            System.out.println("AutoSave Mode: " + ANSI_GREEN + "TRUE" + ANSI_RESET);
+            System.out.println("AutoSave Mode: " + "TRUE");
         } else {
-            System.out.println("AutoSave Mode: " + ANSI_RED + "FALSE" + ANSI_RESET);
+            System.out.println("AutoSave Mode: " + "FALSE");
         }
         System.out.println("Inventory Data File Status: " + SessionManager.inventoryDataFileExist());
         System.out.println("Alerts Data File Status: " + SessionManager.alertDataFileExist());
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + "List of active alerts:" + ANSI_RESET);
+        System.out.println("List of active alerts:");
 
         String alertTable = printAlerts(inventory, alertList);
 
@@ -967,13 +937,13 @@ public class Ui {
     }
 
     public static void printHistory(ArrayList<Item> results) {
-        System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+        System.out.println(LINE);
         System.out.println(ITEM_ADDED_AT + results.get(0).getDateTimeString());
         System.out.println(results.get(0).toString());
-        System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+        System.out.println(LINE);
         for (int i = 1; i < results.size(); i++) {
-            System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
-            System.out.println(AT + results.get(i).getDateTimeString() + ANSI_CYAN);
+            System.out.println(LINE);
+            System.out.println(AT + results.get(i).getDateTimeString());
             ArrayList<Types.EditType> edits = results.get(i - 1).getEditTypes(results.get(i));
             for (Types.EditType editType : edits) {
                 switch (editType) {
@@ -1013,60 +983,60 @@ public class Ui {
                     break;
                 }
             }
-            System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+            System.out.println(LINE);
         }
         if (results.size() > 1) {
-            System.out.println(ANSI_ORANGE + LINE);
-            System.out.println(ANSI_RESET + results.get(results.size() - 1).toString());
-            System.out.println(ANSI_ORANGE + LINE + ANSI_RESET);
+            System.out.println(LINE);
+            System.out.println(results.get(results.size() - 1).toString());
+            System.out.println(LINE);
         }
     }
 
     public static void printMinAlertWarning(String name, int alertLevel) {
-        System.out.println(ANSI_YELLOW + "ALERT: The quantity of " + ANSI_RED + name + ANSI_RESET + ANSI_YELLOW +
-                " is below the minimum level of " + ANSI_RED + alertLevel + ANSI_YELLOW + "." + ANSI_RESET);
+        System.out.println("ALERT: The quantity of " + name +
+                " is below the minimum level of " + alertLevel + ".");
         System.out.println(LINE);
     }
 
     public static void printMaxAlertWarning(String name, int alertLevel) {
-        System.out.println(ANSI_YELLOW + "ALERT: The quantity of " + ANSI_RED + name + ANSI_RESET + ANSI_YELLOW +
-                " is above the maximum level of " + ANSI_RED + alertLevel + ANSI_YELLOW + "." + ANSI_RESET);
+        System.out.println("ALERT: The quantity of " + name +
+                " is above the maximum level of " + alertLevel + ".");
         System.out.println(LINE);
     }
 
     public static void printInvalidCategoryCommand() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_CATEGORY_FORMAT + ANSI_RESET);
+        System.out.println(INVALID_CATEGORY_FORMAT);
         System.out.println(LINE);
     }
 
     public static void printCategory(HashMap<String, ArrayList<Item>> categoryHash) {
         System.out.println(LINE);
-        System.out.println(ANSI_GREEN + printTable(categoryHash) + ANSI_RESET);
+        System.out.println(printTable(categoryHash));
         System.out.println(LINE);
     }
 
     public static void printNoCategoryList() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + NO_CATEGORY_LIST + ANSI_RESET);
+        System.out.println(NO_CATEGORY_LIST);
         System.out.println(LINE);
     }
 
     public static void printInvalidCategory() {
         System.out.println(LINE);
-        System.out.println(ANSI_RED + INVALID_CATEGORY_FIND + ANSI_RESET);
+        System.out.println(INVALID_CATEGORY_FIND);
         System.out.println(LINE);
     }
 
     public static void printNewCategory() {
         System.out.println(LINE);
-        System.out.println(ANSI_BLUE + INVALID_CATEGORY + NEW_CATEGORY_ADDED + ANSI_RESET);
+        System.out.println(INVALID_CATEGORY + NEW_CATEGORY_ADDED);
         System.out.println(LINE);
     }
 
     public static void printCategoryList(HashMap<String, ArrayList<Item>> categoryHash) {
         System.out.println(LINE);
-        System.out.println(ANSI_BLUE + "Here is the list of categories you have: " + ANSI_RESET);
+        System.out.println("Here is the list of categories you have: ");
         categoryHash.forEach((cat, items) -> System.out.println(cat));
         System.out.println(LINE);
     }

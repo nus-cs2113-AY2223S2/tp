@@ -1,10 +1,10 @@
 
 @startuml
-title AddCommand Class
+title AddCommand Sequence Diagram
 
-participant AddParser
+participant :AddParser
 participant AddCommand
-AddParser -> AddCommand: run()
+:AddParser -> AddCommand: run()
 
 activate AddCommand
 AddCommand -> Command:Command(inventory)

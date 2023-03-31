@@ -20,10 +20,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static seedu.duke.utils.ColorCode.ANSI_GREEN;
-import static seedu.duke.utils.ColorCode.ANSI_ORANGE;
-import static seedu.duke.utils.ColorCode.ANSI_RED;
-import static seedu.duke.utils.ColorCode.ANSI_RESET;
 
 public class Storage {
     private static Inventory inventory = new Inventory();
@@ -41,7 +37,7 @@ public class Storage {
 
     private static final String VALID_DATAROW_REGEX =
             "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+,\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{9}$";
-    private static final String VALID_ALERT_REGEX =  "(.+),\\d+,(min|max)$";
+    private static final String VALID_ALERT_REGEX = "(.+),\\d+,(min|max)$";
 
     /**
      * Reads the CSV file from Types.SESSIONFILEPATH and
@@ -258,11 +254,11 @@ public class Storage {
 
         switch (fileHealth) {
         case OK:
-            return ANSI_GREEN + "VALID" + ANSI_RESET;
+            return "VALID";
         case CORRUPT:
-            return ANSI_RED + "CORRUPTED" + ANSI_RESET;
+            return "CORRUPTED";
         case MISSING:
-            return ANSI_ORANGE + "MISSING (Will be created if AutoSave is TRUE)" + ANSI_RESET;
+            return "MISSING (Will be created if AutoSave is TRUE)";
         default:
             return "UNKNOWN";
         }
@@ -274,11 +270,11 @@ public class Storage {
 
         switch (fileHealth) {
         case OK:
-            return ANSI_GREEN + "VALID" + ANSI_RESET;
+            return "VALID";
         case CORRUPT:
-            return ANSI_RED + "CORRUPTED" + ANSI_RESET;
+            return "CORRUPTED";
         case MISSING:
-            return ANSI_ORANGE + "MISSING (Will be created if AutoSave is TRUE)" + ANSI_RESET;
+            return "MISSING (Will be created if AutoSave is TRUE)";
         default:
             return "UNKNOWN";
         }
