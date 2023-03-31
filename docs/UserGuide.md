@@ -13,7 +13,7 @@ MyLedger is a desktop app for managing finances, designed for university student
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `MyLedger` from [here](https://github.com/AY2223S2-CS2113-T14-3/tp/releases/tag/v2.0).
+2. Download the latest version of `MyLedger` from [here](https://github.com/AY2223S2-CS2113-T14-3/tp/releases/tag/v2.0).
 
 ## Managing Transactions
 
@@ -262,6 +262,7 @@ Compares the set budget via the [`set`](#47-setting-a-budget) command against th
 **Important Information:**
 
 - Checking budget is compared with the latest stored value of the set budget. By default, the budget set is 0.
+- If budget set is 0, message will prompt user to `set` a value before calling `check` again. `check` will not work if budget is 0.
 - Borrowed expenditure amount owed is separated for a better view of expenditures.
 
 ### 4.9 Marking a lend or borrow expenditure record
