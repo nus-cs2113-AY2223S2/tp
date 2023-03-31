@@ -38,13 +38,13 @@ bring an application to keep you aware of your deadlines and not miss them.
 
 Adds a new task to your To-Do list.
 
-Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-rep REPEAT_DURATION] [-priority PRIORITY_LEVEL]`
+Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-rep REPEAT_DURATION] [-prio PRIORITY_LEVEL]`
 
 - The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
 - `EMAIL_ADDRESS` must be a valid email address.
 - `LIST_OF_TAGS` can consist of multiple tags, separated by a space. A task cannot have multiple of the same tag. Tags will be sorted in alphabetical order.
 - `REPEAT_DURATION` must be an integer >= 0, and can only be used if a `DEADLINE` is also provided. The task will repeat every week starting from the `DEADLINE` for `REPEAT_DURATION` times.
-- `PRIORITY` must be either 1, 2, or 3 (1: `Low`, 2: `Medium`, 3: `High`).
+- `PRIORITY_LEVEL` must be either 1, 2, or 3 (1: `Low`, 2: `Medium`, 3: `High`).
 
 Example of usage and output: 
 
@@ -129,10 +129,10 @@ Okay, I have edited the priority level of this task to [Medium]:
 
 Edits, or deletes the priority level of a task with the given id in the ToDo List.
 
-Format: `prio ID -edit PRIORITY`
+Format: `prio ID -edit PRIORITY_LEVEL`
 
 - The `ID` has to be an id of a task that can be found in the To-Do list.
-- The `PRIORITY` must be either 1, 2, or 3 (1: `Low`, 2: `Medium`, 3: `High`).
+- The `PRIORITY_LEVEL` must be either 1, 2, or 3 (1: `Low`, 2: `Medium`, 3: `High`).
 
 Example of usage:
 
@@ -294,22 +294,22 @@ Here are the tasks which were completed in the past week:
 
 ## Command Summary
 
-| Action                               | Command                                                                                             |
-|--------------------------------------|-----------------------------------------------------------------------------------------------------|
-| Add a task                           | `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-rep REPEAT_DURATION]` |
-| Mark task complete                   | `mark ID`                                                                                           |
-| Mark task incomplete                 | `unmark ID`                                                                                         |
-| Delete a task                        | `delete ID`                                                                                         |
-| Change description of task           | `desc ID -edit DESCRIPTION`                                                                         |
-| Change priority level of task        | `prio ID -edit PRIORITY_VALUE`                                                                      |
-| Add/edit deadline to a task          | `due ID -edit DEADLINE`                                                                             |
-| Delete deadline from a task          | `due ID -del`                                                                                       |
-| Add/edit email to a task             | `email ID -edit EMAIL_ADDRESS`                                                                      |
-| Delete email from a task             | `email ID -del`                                                                                     |
-| Add/edit tags to a task              | `tags ID -edit LIST_OF_TAGS`                                                                        |
-| Delete all tags from a task          | `tags ID -del`                                                                                      |
-| Add/edit repeat duration to a task   | `repeat ID -edit REPEAT DURATION`                                                                   |
-| Delete repeat duration from a task   | `repeat ID -del`                                                                                    |
-| List all tasks                       | `list`                                                                                              |
-| Check all details of a task          | `info`                                                                                              |
-| Check progress of current week tasks | `progress`                                                                                          |
+| Action                               | Command                                                                                                                    |
+|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| Add a task                           | `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-rep REPEAT_DURATION] [-prio PRIORITY_LEVEL]` |
+| Mark task complete                   | `mark ID`                                                                                                                  |
+| Mark task incomplete                 | `unmark ID`                                                                                                                |
+| Delete a task                        | `delete ID`                                                                                                                |
+| Change description of task           | `desc ID -edit DESCRIPTION`                                                                                                |
+| Change priority level of task        | `prio ID -edit PRIORITY_LEVEL`                                                                                             |
+| Add/edit deadline to a task          | `due ID -edit DEADLINE`                                                                                                    |
+| Delete deadline from a task          | `due ID -del`                                                                                                              |
+| Add/edit email to a task             | `email ID -edit EMAIL_ADDRESS`                                                                                             |
+| Delete email from a task             | `email ID -del`                                                                                                            |
+| Add/edit tags to a task              | `tags ID -edit LIST_OF_TAGS`                                                                                               |
+| Delete all tags from a task          | `tags ID -del`                                                                                                             |
+| Add/edit repeat duration to a task   | `rep ID -edit REPEAT DURATION`                                                                                             |
+| Delete repeat duration from a task   | `rep ID -del`                                                                                                              |
+| List all tasks                       | `list`                                                                                                                     |
+| Check all details of a task          | `info`                                                                                                                     |
+| Check progress of current week tasks | `progress`                                                                                                                 |
