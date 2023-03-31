@@ -8,7 +8,7 @@
    - [UI component](#ui-component)
    - [Parser component](#parser-component)
    - [Storage component](#storage-component)
-   - [Common classes](#common-classes)
+   - [Common class](#common-class)
 3. [Implementation](#implementation)
 4. [Appendix: Requirements](#appendix--requirements)
 5. [Appendix: Instructions for manual testing](#appendix--instructions-for-manual-testing)
@@ -57,7 +57,16 @@ the commands `delete 1` and `exit`.
 
 ![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
+---
+
 ### Ui component
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/ui/Ui.java)
+
+The Ui consists of methods to format the output to be displayed to the user.
+
+Here is the UML diagram of Ui class:
+{to be added}
 
 ### Parser component
 
@@ -73,7 +82,7 @@ Messages used by multiple components are in the `seedu.brokeMan.commmon` package
 
 ---
 
-## implementation
+## Implementation
 
 ### Entry
 
