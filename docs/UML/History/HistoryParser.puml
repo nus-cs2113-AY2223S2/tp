@@ -2,72 +2,74 @@
 'https://plantuml.com/sequence-diagram
 
 actor User
-User -> HistoryParser**
-activate HistoryParser
-User -> HistoryParser: run()
+User -> ":HistoryParser"**
+
+User -> ":HistoryParser": run()
+activate ":HistoryParser"
 alt rawInput length is not one
-    ref over HistoryParser
+    ref over ":HistoryParser"
         handle input error
     end ref
-    HistoryParser --> User
+    ":HistoryParser" --> User
 end
-HistoryParser -> HistoryCommand**
-activate HistoryCommand
-HistoryParser -> HistoryCommand: run()
-HistoryCommand -> HistoryCommand: getHistoryResults()
-activate HistoryCommand #cyan
+":HistoryParser" -> ":HistoryCommand"**
+
+":HistoryParser" -> ":HistoryCommand": run()
+activate ":HistoryCommand"
+":HistoryCommand" -> ":HistoryCommand": getHistoryResults()
+activate ":HistoryCommand" #cyan
 alt upcCode does not belong to any item
-    HistoryCommand --> HistoryCommand: null
+    ":HistoryCommand" --> ":HistoryCommand": null
 end
-ref over HistoryCommand
+ref over ":HistoryCommand"
     retrieve history from inventory
     sort history
 end ref
 return null or results
-participant Ui
+participant "Ui" << Class >>
 alt results is not null
 else
-HistoryCommand -> Ui: printHistory
-activate Ui
-ref over Ui
+":HistoryCommand" -> "Ui": printHistory
+activate "Ui"
+ref over "Ui"
     print time first item was added
     print first item info
 end ref
 loop over all items passed from the second item
-    ref over Ui
+    ref over "Ui"
         get item edit type
     end ref
     alt edit type is RECATEGORIZE
-        ref over Ui
+        ref over "Ui"
             print new category
         end ref
     else edit type is SOLD
-        ref over Ui
+        ref over "Ui"
             print how many sold
         end ref
     else edit type is BOUGHT
-        ref over Ui
+        ref over "Ui"
             print how many bought
         end ref
     else edit type is RENAME
-        ref over Ui
+        ref over "Ui"
             print new name
         end ref
     else edit type is PRICE_DECREASE
-        ref over Ui
+        ref over "Ui"
             print old and new price
         end ref
     else edit type is PRICE_INCREASE
-        ref over Ui
+        ref over "Ui"
             print old and new price
         end ref
     else edit type is CHANGE_TAG
-        ref over Ui
+        ref over "Ui"
             print new tags
         end ref
     end
     alt more than one item passed
-        ref over Ui
+        ref over "Ui"
             print last item info
         end ref
     end
@@ -75,7 +77,7 @@ end
 return
 end
 return
-destroy HistoryCommand
+destroy ":HistoryCommand"
 return
-destroy HistoryParser
+destroy ":HistoryParser"
 @enduml
