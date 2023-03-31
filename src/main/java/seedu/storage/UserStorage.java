@@ -43,12 +43,6 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
         float height;
         int age;
         String gender;
-        File storageFile = new File(filePath);
-        
-        if (!storageFile.getParentFile().exists()) {
-            storageFile.getParentFile().mkdirs();
-            storageFile.createNewFile();
-        }
 
         try {
             // parsing a CSV file into BufferedReader class constructor

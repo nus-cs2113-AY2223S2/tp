@@ -24,14 +24,24 @@ public class GeneralUi {
         String command = "";
         while (command.length() == 0) {
             command = sc.nextLine();
+            if (command.length() == 0) {
+                System.out.println("Please enter a non-blank input!");
+            } else {
+                break;
+            }
         }
         return command;
     }
 
     public int readInt() {
         String value = "";
-        while (value.length() == 0 || !value.matches("^([+-]?[1-9]\\d*|0)$")) {
+        while (true) {
             value = sc.nextLine();
+            if (value.length() == 0 || !value.matches("^([+-]?[1-9]\\d*|0)$")) {
+                System.out.println("Please enter a valid integer!");
+            } else {
+                break;
+            }
         }
         return Integer.parseInt(value);
     }

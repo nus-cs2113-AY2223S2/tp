@@ -89,7 +89,7 @@ public class AddMealCommand extends Command {
      */
     private void getDetails(GeneralUi ui, FoodStorage foodStorage) throws LifeTrackerException {
         boolean toContinue = true;
-        System.out.println("Enter date of meal (d/m/yyyy):");
+        System.out.println("Enter date of meal (d/M/yyyy):");
         try {
             dateString = ui.readLine();
             date = LocalDate.parse(dateString, dtf);
