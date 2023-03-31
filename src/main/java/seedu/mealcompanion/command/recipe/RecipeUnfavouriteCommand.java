@@ -47,4 +47,3 @@ public class RecipeUnfavouriteCommand extends RecipeCommand {
         }
     }
 }
-
