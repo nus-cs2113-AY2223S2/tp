@@ -182,7 +182,6 @@ public class Parser {
                 recipeToDelete += input[i] + " ";
             }
             recipeToDelete = recipeToDelete.trim();
-            System.out.println("recipeToDelete: " + recipeToDelete);
             if (recipeToDelete.equals("all")) {
                 String allRecipes = "";
                 int index = 0;
@@ -215,8 +214,8 @@ public class Parser {
                 while (recipeList.size() != newSize) {
                     rangeRecipes += recipeList.deleteRecipe(startIndex).getName() + ", ";
                 }
-                rangeRecipes = rangeRecipes.substring(0, rangeRecipes.length() - 2);
-                return rangeRecipes;
+                rangeRecipes = String.valueOf(new StringBuilder(rangeRecipes.substring(0, rangeRecipes.length() - 2)));
+                return rangeRecipes.toString();
             } else {
                 int recipeIndex = Integer.parseInt(input[1]);
                 // need to subtract 1 since list is 1-based
