@@ -15,8 +15,11 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [Edit a specific piece information of a task :](#editing-a-task--edit-task_number) `edit <task number>`
     * [Deleting a task :](#deleting-a-task--delete) `delete <task number> `
     * [Deleting a school class :](#deleting-a-school-class--remove-class) `remove /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm> `
-    * [Designate a priority to a given task :](#designate-a-task-priority--priority-task_number-priority) 
-            * `priority <task number> <priority>`   
+    * [Designate a priority to a given task :](#designate-a-task-priority--priority-task_number-priority) `priority <task number> <priority>` 
+    * [Adding notes for a specific task :](#adding-notes-for-a-specific-task--add_note) `add_note <task number>`
+    * [Deleting notes for a specific task :](#deleting-notes-for-a-specific-task--delete_note) `delete_note <task number>`
+    * [Editing notes for a specific task :](#editing-notes-for-a-specific-task--edit_note) `edit_note <task number> <note number>`
+    * [Viewing notes for a specific task :](#printing-notes-for-a-specific-task--view_notes) `view_notes <task number>`
     * [List tasks of low/medium/high priority :](#listing-all-low-priority-tasks--low_priority) `low_priority`/`medium_priority`/`high_priority`
     * [List tasks in priority order:](#listing-all-tasks-arranged-by-priority--priority_list) `priority_list`
     * [Purge expired tasks :](#purge-expired-tasks--purge) `purge`
@@ -329,7 +332,7 @@ Understood. The task's new priority is:
 	 Low priority.
 ```
 
-## **Print notes for a specific task : `add_note`**
+## **Adding notes for a specific task : `add_note`**
 Adds a note to the specified task
 
 **Input:** `add_note <Task_Number>`  
@@ -343,7 +346,7 @@ Bring own recyclable bag
     ____________________________________________________________
 ```
 
-## **Print notes for a specific task : `delete_note`**
+## **Deleting notes for a specific task : `delete_note`**
 Deletes the 
 
 **Input:** `delete_note <Task_Number> <Note_number>`  
@@ -355,7 +358,7 @@ Deletes the
 	 	Bring own recyclable bag
 	____________________________________________________________
 ```
-## **Print notes for a specific task : `edit_note`**
+## **Editing notes for a specific task : `edit_note`**
 Edits the specified note for a specific task.
 
 **Input:** `edit_note <Task_Number> <Note_Number>`  
@@ -369,7 +372,7 @@ Bring tote bag
 	____________________________________________________________
 ```
 
-## **Print notes for a specific task : `view_notes`**
+## **Printing notes for a specific task : `view_notes`**
 Prints the notes for a specific task if they exist.   
 Otherwise, a message stating that there are no notes for that task will be shown
 
