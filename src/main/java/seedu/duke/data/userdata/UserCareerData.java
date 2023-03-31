@@ -42,7 +42,8 @@ public class UserCareerData {
 
 
     /**
-     * Deletes a workout session according to the number as input by the user.
+     * Deletes a workout session according to the session number as
+     * input by the user.
      * @param i the session number input by the user.
      */
     public void deleteWorkoutSession (int i) {

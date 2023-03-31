@@ -44,11 +44,11 @@ Class Ui {
 }
 
 left to right direction
-Bye <|.. Ui
-Greet <|.. Ui
-PrintExercises <|.. Ui
-PrintPlanner <|.. Ui
-PrintHelpMessage <|.. Ui
-PrintUserExerciseData <|.. Ui
+Bye <.. Ui
+Greet <.. Ui
+PrintExercises <.. Ui
+PrintPlanner <.. Ui
+PrintHelpMessage <.. Ui
+PrintUserExerciseData <.. Ui
 
 @enduml
