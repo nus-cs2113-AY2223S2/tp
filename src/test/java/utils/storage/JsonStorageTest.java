@@ -11,7 +11,6 @@ import model.CardUUID;
 import model.Memory;
 import model.TagUUID;
 import org.junit.jupiter.api.Test;
-import utils.exceptions.CardNotFoundException;
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageCorrupted;
 import utils.storage.json.JsonStorage;
@@ -114,19 +113,5 @@ public class JsonStorageTest {
 
     }
 
-//    @Test
-//    public void load_validFile() throws InkaException {
-//        Storage storage = new JsonStorage(VALID_FILE.toString());
-//        Memory memory = storage.load();
-//
-//        CardList cardList = memory.getCardList();
-//        boolean has
-//        try {
-//            assertEquals(card1, cardList.findCardFromUUID(new CardUUID(UUID.fromString(UUID_1))));
-//            assertEquals(card2, cardList.findCardFromUUID(new CardUUID(UUID.fromString(UUID_2))));
-//        } catch (CardNotFoundException e) {
-//            assertEquals("Card cannot be found", e.getMessage());
-//        }
-//
-//    }
+
 }
