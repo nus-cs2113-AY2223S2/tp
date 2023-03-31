@@ -16,7 +16,7 @@ public class DeleteListCommand extends Command {
     @Override
     public void execute(PackingList packingList) {
         ArrayList<Item> emptyList = new ArrayList<>();
-        packingList.setItemList(emptyList);
+        PackingList.setItemList(emptyList);
         Ui.printToUser(String.format(MSG_SUCCESS_DELETE_LIST));
     }
 
