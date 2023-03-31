@@ -62,7 +62,7 @@ Displays all tasks currently stored in the application.
 
 **Input:** `list`
 
-**Output: Demonstrated with 1 of each type currently in the stored data array**
+**Output: Demonstrated with 1 of each type currently in the stored list of tasks**
 
 
 ```
@@ -70,7 +70,6 @@ Here are the tasks in your list:
 	 1.	 [T][ ] todo (No priority established.)
 	 2.	 [D][ ] deadline (by: 2023-03-25 2359) (No priority established.)
 	 3.	 [E][ ] event (from: 2023-03-25 1200 to: 2023-03-26 2359) (No priority established.)
-	 4.	 [C][ ] CS2113: Class (from: 2023-03-25 1100 to: 2023-03-25 1200) (No priority established.)
 ```
 
 ## **Listing all tasks and classes happening today : `list today`**
@@ -211,7 +210,7 @@ For instance <code>list 0<strong></strong></code>returns all tasks that are star
 ```
  Here are your tasks in 0 days:
 	 1.	 [E][ ] event (from: 2023-03-25 1200 to: 2023-03-26 2359) (No priority established.)
-	 2.	 [C][ ] CS2113: Class (from: 2023-03-25 1100 to: 2023-03-25 1200) (No priority established.)
+	 2.	 [D][ ] Submit CS2113 quiz (by: 2023-03-31 2359) (Low priority.)
 ```
 
 
