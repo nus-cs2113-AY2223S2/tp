@@ -9,6 +9,7 @@ import seedu.exceptions.UnableToSaveDatabaseException;
 import seedu.logger.LogFileHandler;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -38,6 +39,13 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
     @Override
     public void load() throws IOException {
         String line = "";
+
+        File storageFile = new File(filePath);
+        if (!storageFile.getParentFile().exists()) {
+            storageFile.getParentFile().mkdirs();
+            storageFile.createNewFile();
+        }
+        
         br = new BufferedReader(new FileReader(filePath));
         br.readLine();
 

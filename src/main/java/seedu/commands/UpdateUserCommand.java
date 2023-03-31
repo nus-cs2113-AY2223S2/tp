@@ -102,7 +102,7 @@ public class UpdateUserCommand extends Command {
             System.out.println("Invalid weight format!");
         }
         float weight = Float.parseFloat(weightString);
-        assert weight >= 0: "Invalid height";
+        assert weight >= 0: "Invalid weight";
         return weight;
     }
 

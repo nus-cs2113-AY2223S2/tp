@@ -10,10 +10,13 @@ import seedu.ui.GeneralUi;
 import java.nio.file.Paths;
 
 public class LifeTracker {
-    private static final String PATH_HOME = System.getProperty("user.dir");
-    private static final String MEAL_FILE_PATH = Paths.get(PATH_HOME, "data", "mealData.csv").toString();
-    private static final String USER_FILE_PATH = Paths.get(PATH_HOME, "data", "userData.csv").toString();
-    private static final String EXERCISE_FILE_PATH = Paths.get(PATH_HOME, "data", "exerciseData.csv").toString();
+    // private static final String PATH_HOME = System.getProperty("user.dir");
+    // private static final String MEAL_FILE_PATH = Paths.get(PATH_HOME, "data", "mealData.csv").toString();
+    // private static final String USER_FILE_PATH = Paths.get(PATH_HOME, "data", "userData.csv").toString();
+    // private static final String EXERCISE_FILE_PATH = Paths.get(PATH_HOME, "data", "exerciseData.csv").toString();
+    private static final String MEAL_FILE_PATH = "./data/mealData.csv";
+    private static final String USER_FILE_PATH = "./data/userData.csv";
+    private static final String EXERCISE_FILE_PATH = "./data/exerciseData.csv";
 
     private FoodStorage foodStorage;
     private MealStorage mealStorage;

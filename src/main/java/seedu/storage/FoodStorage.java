@@ -1,5 +1,6 @@
 package seedu.storage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,12 @@ public class FoodStorage extends Storage implements FileReadable {
         float sugar;
         float sodium;
         Food food;
+
+        File storageFile = new File(filePath);
+        if (!storageFile.getParentFile().exists()) {
+            storageFile.getParentFile().mkdirs();
+            storageFile.createNewFile();
+        }
         
         String[] foodDataList = FoodData.getFoodData();
         
