@@ -59,7 +59,7 @@ Example Command: ```exit```
 
 *Easter Egg: Having the [number] as 1337 would always generate the first 3 workouts no matter the filters*
 
-Shows a list containing *number* of random workouts that suits the arguments filter.
+Shows a list containing *number* of _random_ workouts that suits the arguments filter.
 
 *Possible arguments are*:
 
@@ -70,6 +70,9 @@ Shows a list containing *number* of random workouts that suits the arguments fil
 *Type*: ```static```, ```gym```
 
 Example Command: ```generate easy 3```, ```generate hard upper 4```
+
+### Do note that the exercises that you generate might not be the same as the exercises in the example below!
+#### This is due to the 800+ exercises that we have in our library!
 
 Examples:
 ```
@@ -298,6 +301,10 @@ Advanced users are welcome to update data directly by editing that data file.
 FitnessDuke's exercise data are saved as a JSON file within the jar package. Please do not unpack the jar file and 
 modify its contents and attempt to re-jar it. We will not guarantee the promised features if the jar file is 
 tampered with.
+
+The achievement data is also stored as a text file not to be tampered with. On the off chance that the file is 
+tampered with, the data will not be loaded in, and the achievement will not be loaded in on a line-by-line basis (i.e.
+if a specific line of data is corrupt, that specific achievement is not loaded, but the rest will work.)
 
 ## FAQ
 
