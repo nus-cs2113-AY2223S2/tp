@@ -1,5 +1,3 @@
-Data file does not exist, creating a new one
-Created a new listData file
 Hello from
     _______ __                          ____        __      
    / ____(_) /_____  ___  __________   / __ \__  __/ /_____ 
@@ -56,9 +54,7 @@ Welcome to planner editor, type exit to exit
 Plan your Workouts here!! try:
 add monday Home_Leg_Day legs static
 delete monday Home_Leg_Day
-[test] added to MONDAY
-
-===>Planner Mode<===
+Plan name already exists!
 Exited planner editor!
 ________________________________________
 Generating workout for: 
