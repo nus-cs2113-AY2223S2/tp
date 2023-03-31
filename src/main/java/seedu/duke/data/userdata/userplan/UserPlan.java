@@ -41,11 +41,10 @@ public class UserPlan {
      */
     public static ArrayList<String> getExercisePlan (String planName) {
         //System.out.println("1:" + planName);
-        System.out.println(planName);
+        //System.out.println(planName);
         for (int day = 0; day < DAYSINAWEEK; day++) {
             for (int exercisePlan = 0; exercisePlan < plan[day].size(); exercisePlan++) {
-                //System.out.println("2:" + plan[day].get(exercisePlan).getPlanName());
-                System.out.println(plan[day].get(exercisePlan).getPlanName());
+                //System.out.println(plan[day].get(exercisePlan).getPlanName());
                 if (plan[day].get(exercisePlan).getPlanName().equals(planName)) {
                     return plan[day].get(exercisePlan).getExercisePlans();
                 }
