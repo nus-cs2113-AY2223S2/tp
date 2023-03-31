@@ -237,4 +237,30 @@ Your file will be loaded the next time you run Inka!
 
 {Give a 'cheat sheet' of commands here}
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| **Command**                   | **Format**                                                                          |
+|-------------------------------|-------------------------------------------------------------------------------------|
+| Create a `Card`               | `card add -q {question_here} -a {answer_here}`                                      |
+| Create a `Tag`                | `card tag -c {cardUUID} -t {tag_name}`                                              |
+| Create a `Deck`               | `card deck -c {cardUUID} -d {deck_name}` OR `card deck -t {tagUUID} -d {deckName}`  |
+| Add a `Card` to a `Deck`      | `card deck -c {cardUUID} -d {deckName}` OR `card deck -i {cardIndex} -d {deckName}` |
+| Add a `Tag` to a `Deck`       | `tag deck -t {tagUUID} -d {deckName}`                                               |
+| Add a `Card` to a `Tag`       | `card tag -c {cardUUID} -t {tagName}`                                               |
+| Delete a `Card`               | `card delete -i {cardUUID}`                                                         |
+| Delete a `Tag`                | `tag delete -t {tagName}`                                                           |
+| Delete a `Deck`               | `deck delete -d {deckName}`                                                         |
+| Delete a `Card` from a `Deck` | `deck delete -d {deckName} -c {cardUUID}`                                           |
+| Delete a `Tag` from a `Deck`  | `deck delete -d {deckName} -t {tagUUID}`                                            |
+| List `Cards`                  | `card list`                                                                         |
+| List `Tags`                   | `tag list`                                                                          |
+| List `Decks`                  | `deck list`                                                                         |
+| List `Cards` under a `Deck`   | `deck list -c {deckName}`                                                           |
+| List `Cards` under a `Tag`    | `tag list -t {tagName}`                                                             |
+| List `Tags` under a `Deck`    | `deck list -d {deckName}`                                                           |
+| Edit a `Tag`                  | `tag edit -n {newTagName} -o {oldTagName}`                                          |
+| Edit a `Card`                 | `card edit -n {newTagName} -o {oldTagName}`                                         |
+| Edit a `Deck`                 | `deck edit -n {newTagName} -o {oldTagName}`                                         |
+| View a `Card`                 | `card view -c {cardUUID}`                                                           |
+| Help about `Deck`             | `deck help`                                                                         |
+| Help about `Tag`              | `tag help`                                                                          |
+| Help about `Card`             | `card help`                                                                         |
+| Help in general               | `help`                                                                              |
