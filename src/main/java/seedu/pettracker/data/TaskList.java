@@ -78,7 +78,7 @@ public class TaskList {
         System.out.println("Here are your tasks due today:");
         boolean isDueSoon = false;
         for (int i = 0; i < numberOfTasks; i++) {
-            if (taskList.get(i).deadline.equals(LocalDate.now())) {
+            if (taskList.get(i).deadline != null && taskList.get(i).deadline.equals(LocalDate.now())) {
                 System.out.println(taskList.get(i).getStatusIcon() + " " + taskList.get(i).description);
                 isDueSoon = true;
             }
