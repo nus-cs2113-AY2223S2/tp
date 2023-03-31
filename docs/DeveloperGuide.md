@@ -50,6 +50,13 @@ The rest of the program consists of mainly 5 main components.
 - [`Storage`](#storage-component): Reads data from, and writes data to hard disk.
 - [`EntryList`](#entrylist-component): Stores the list of entries when program is running.
 
+**How the architecture components interact with each other**
+
+The sequence diagram shows how the components interact with each other for the scenarios where the user issues
+the commands `delete 1` and `exit`.
+
+![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
+
 ### Ui component
 
 ### Parser component

@@ -1,0 +1,102 @@
+@startuml
+
+Actor User as user
+Participant ":Ui" as ui
+Participant ":Parser" as parser
+Participant ":Command" as command
+Participant ":EntryList" as entryList
+Participant ":Storage" as storage
+
+user -> ui : "deleteExpense 1"
+activate ui
+
+ui -> parser : execute("deleteExpense 1")
+activate parser
+
+parser -> command : DeleteExpenseCommand(index 1)
+activate command
+
+command -> entryList : ExpenseList.deleteExpense(1)
+activate entryList
+
+entryList --> command
+deactivate entryList
+
+command --> parser
+deactivate command
+
+parser --> ui
+deactivate parser
+
+ui --> user
+deactivate ui
+
+user -> ui : "exit"
+activate ui
+
+ui -> parser : execute("exit")
+activate parser
+
+parser -> command : ExitCommand
+activate command
+
+command -> storage : SaveExpense.writeFile(expenseList)
+activate storage
+
+storage -> storage : Save to file
+activate storage
+storage -> entryList : expenseList
+activate entryList
+entryList --> storage
+deactivate entryList
+storage --> storage
+deactivate storage
+
+storage --> command
+deactivate storage
+
+command -> storage : SaveIncome.writeFile(incomeList)
+activate storage
+
+storage -> storage : Save to file
+activate storage
+storage -> entryList : incomeList
+activate entryList
+entryList --> storage
+deactivate entryList
+storage --> storage
+deactivate storage
+
+storage --> command
+deactivate storage
+
+command -> storage : SaveBudget.writeFile(budgetEachMonth)
+activate storage
+
+storage -> storage : Save to file
+activate storage
+storage -> entryList : budgetList
+activate entryList
+entryList --> storage
+deactivate entryList
+destroy entryList
+storage --> storage
+deactivate storage
+
+storage --> command
+deactivate storage
+destroy storage
+
+command --> parser
+deactivate command
+destroy command
+
+parser --> ui
+deactivate parser
+destroy parser
+
+ui --> user
+deactivate ui
+destroy ui
+
+@enduml
