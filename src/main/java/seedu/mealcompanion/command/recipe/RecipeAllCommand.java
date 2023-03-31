@@ -24,7 +24,8 @@ public class RecipeAllCommand extends RecipeCommand {
         int index = 1;
         mealCompanionSession.getUi().printMessage("Here is the full list of recipes:");
         for (Recipe recipe : recipes.getRecipes()) {
-            mealCompanionSession.getUi().printMessage(recipe.getFavStatus() + Integer.toString(index) + ". " + recipe.getName());
+            mealCompanionSession.getUi().printMessage(recipe.getFavStatus() + Integer.toString(index) + ". "
+                    + recipe.getName());
             index++;
         }
     }

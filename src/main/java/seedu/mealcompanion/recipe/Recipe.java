@@ -13,8 +13,8 @@ public class Recipe {
     private boolean isFavourite;
 
     //@@author EthanYidong
-    public Recipe(String name, boolean isFavourite, int calorieCount, int prepTime, int cookTime, IngredientList ingredients,
-                  InstructionList instructions) {
+    public Recipe(String name, boolean isFavourite, int calorieCount, int prepTime, int cookTime,
+                  IngredientList ingredients, InstructionList instructions) {
         this.name = name;
         this.isFavourite = isFavourite;
         this.calorieCount = calorieCount;
