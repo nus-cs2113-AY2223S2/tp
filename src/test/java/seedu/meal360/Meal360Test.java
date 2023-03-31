@@ -1,11 +1,5 @@
 package seedu.meal360;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
@@ -16,6 +10,12 @@ import seedu.meal360.exceptions.InvalidNegativeValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
 import seedu.meal360.storage.Database;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class Meal360Test {
 
@@ -312,6 +312,110 @@ class Meal360Test {
         inputs = new String[]{"list", "salad", "&&", "pizza"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(0, recipeListToPrint.size());
+    }
+
+    @Test
+    public void testListTagAndAddTag() {
+        RecipeList recipeListToPrint;
+        String[] inputs;
+        // add tag for testing
+        String[] addTagInputs = new String[]{"tag", "breakfast", "<<", "salad"};
+        parser.parseTagRecipe(addTagInputs, recipes);
+
+        inputs = new String[]{"list", "/t", "breakfast"};
+        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+        assertEquals(recipeListToPrint.size(), 1);
+        assertEquals(recipeListToPrint.get(0).getName(), "salad");
+
+        // add tag for testing
+        addTagInputs = new String[]{"tag", "breakfast", "<<", "pizza"};
+        parser.parseTagRecipe(addTagInputs, recipes);
+        addTagInputs = new String[]{"tag", "western", "<<", "burger"};
+        parser.parseTagRecipe(addTagInputs, recipes);
+
+        inputs = new String[]{"list", "/t", "breakfast"};
+        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+        assertEquals(recipeListToPrint.size(), 2);
+        assertEquals(recipeListToPrint.get(1).getName(), "pizza");
+
+        inputs = new String[]{"list", "/t", "breakfast", "&&", "western"};
+        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+        assertEquals(recipeListToPrint.size(), 0);
+
+        // add tag for testing
+        addTagInputs = new String[]{"tag", "western", "<<", "pizza"};
+        parser.parseTagRecipe(addTagInputs, recipes);
+        inputs = new String[]{"list", "/t", "breakfast", "&&", "western"};
+        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+        assertEquals(recipeListToPrint.size(), 1);
+        assertEquals(recipeListToPrint.get(0).getName(), "pizza");
+    }
+
+    @Test
+    public void testListTagException() {
+        String[] inputs;
+
+        //check exception
+        String[] noArgInputs = new String[]{"list", "/t"};
+        assertThrows(IllegalArgumentException.class, () -> parser.parseListRecipe(noArgInputs, recipes));
+
+        String[] notFoundTagInputs1 = new String[]{"list", "/t", "/t"};
+        assertThrows(NullPointerException.class, () -> parser.parseListRecipe(notFoundTagInputs1, recipes));
+
+        String[] notFoundTagInputs2 = new String[]{"list", "/t", "phone", "&&", "computer"};
+        assertThrows(NullPointerException.class, () -> parser.parseListRecipe(notFoundTagInputs2, recipes));
+
+        String[] beforeAddTagInputs = new String[]{"list", "/t", "breakfast"};
+        assertThrows(NullPointerException.class, () -> parser.parseListRecipe(beforeAddTagInputs, recipes));
+
+        // add tag for testing
+        inputs = new String[]{"tag", "breakfast", "<<", "salad"};
+        parser.parseTagRecipe(inputs, recipes);
+        inputs = new String[]{"tag", "breakfast", ">>", "salad"};
+        parser.parseTagRecipe(inputs, recipes);
+
+        String[] nothingInTagInputs = new String[]{"list", "/t", "breakfast"};
+        ui.listRecipe(parser.parseListRecipe(nothingInTagInputs, recipes));
+        assertEquals(ui.formatMessage("There is nothing to list."), outContent.toString().trim());
+    }
+
+    @Test
+    public void testRemoveTagAndAddTag() {
+        String[] inputs;
+        Recipe invalidRecipe = new Recipe("invalid Recipe", new HashMap<>(1,1));
+
+        inputs = new String[]{"tag", "western", "<<", "burger"};
+        parser.parseTagRecipe(inputs, recipes);
+        inputs = new String[]{"tag", "western", "<<", "pizza"};
+        parser.parseTagRecipe(inputs, recipes);
+
+        //exception
+        assertThrows(IndexOutOfBoundsException.class, ()
+                -> recipes.removeRecipeFromTag("western", invalidRecipe));
+        String[] invalidTagInputs = new String[]{"tag", "random", "tag", ">>", "burger"};
+        assertThrows(IndexOutOfBoundsException.class, ()
+                -> parser.parseTagRecipe(invalidTagInputs, recipes));
+
+        String[] noRecipeInTagInputs = new String[]{"tag", "breakfast", ">>", "pizza"};
+        assertThrows(IndexOutOfBoundsException.class, ()
+                -> parser.parseTagRecipe(noRecipeInTagInputs, recipes));
+
+        inputs = new String[]{"tag", "western", ">>", "pizza"};
+        parser.parseTagRecipe(inputs, recipes);
+        assertEquals(recipes.tags.get("western").size(), 1);
+    }
+
+    @Test
+    public void testRandomRecipe() {
+        // no recipe in the lists
+        RecipeList blankRecipeList = new RecipeList();
+        assertThrows(NullPointerException.class, () -> parser.parseRandomRecipe(blankRecipeList));
+
+
+        // general case
+        Recipe randomRecipe1 = parser.parseRandomRecipe(recipes);
+        assertNotNull(randomRecipe1);
+        assertNotNull(recipes.randomRecipe());
     }
 
     @Test
