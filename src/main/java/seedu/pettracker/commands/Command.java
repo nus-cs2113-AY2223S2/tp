@@ -9,6 +9,7 @@ public abstract class Command {
      * Executes the given command
      *
      * @param ui Ui to do printing if required
+     * @param storage Storage to save files if required
      */
     public abstract void execute(Ui ui, Storage storage);
 
