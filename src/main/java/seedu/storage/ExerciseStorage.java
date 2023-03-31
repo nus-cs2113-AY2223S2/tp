@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,6 +67,7 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
                 CSVWriter.RFC4180_LINE_END);
         String[] header = { "Exercise Name", "Exercise Description", "Calories Burnt" };
         writer.writeNext(header);
+        Collections.sort(exercises);
         for (Exercise exercise : exercises) {
             writer.writeNext(exercise.toWriteFormat(CSV_DELIMITER, DTF));
         }
