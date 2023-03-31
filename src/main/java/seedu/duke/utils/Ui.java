@@ -22,29 +22,49 @@ import static seedu.duke.utils.ColorCode.ANSI_YELLOW;
 public class Ui {
     public static final String LINE = "____________________________________________________________";
 
-    public static final String DASHBOARDLOGO =
-            "░░░░░░   ░░░░░  ░░░░░░░ ░░   ░░ ░░░░░░   ░░░░░░   ░░░░░  ░░░░░░  ░░░░░░  \n" +
-                    "▒▒   ▒▒ ▒▒   ▒▒ ▒▒      ▒▒   ▒▒ ▒▒   ▒▒ ▒▒    ▒▒ ▒▒   ▒▒ ▒▒   ▒▒ ▒▒   ▒▒ \n" +
-                    "▒▒   ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒    ▒▒ ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒   ▒▒ \n" +
-                    "▓▓   ▓▓ ▓▓   ▓▓      ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ ▓▓   ▓▓ \n" +
-                    "██████  ██   ██ ███████ ██   ██ ██████   ██████  ██   ██ ██   ██ ██████  \n";
-    public static final String LOGO1 = "░░░    ░░░  ░░░░░   ░░░░░░  ░░    ░░ ░░░░░░░ "
-            + "░░░░░░░ ░░░░░░░░  ░░░░░░   ░░░░░░ ░░   ░░ \n";
-    public static final String LOGO2 = "▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒       ▒▒    ▒▒ ▒▒      "
-            + "▒▒         ▒▒    ▒▒    ▒▒ ▒▒      ▒▒  ▒▒  \n";
-    public static final String LOGO3 = "▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒▒▒ ▒▒   ▒▒▒ ▒▒    ▒▒ ▒▒▒▒▒▒▒ "
-            + "▒▒▒▒▒▒▒    ▒▒    ▒▒    ▒▒ ▒▒      ▒▒▒▒▒ \n";
-    public static final String LOGO4 = "▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓    ▓▓      ▓▓ "
-            + "     ▓▓    ▓▓    ▓▓    ▓▓ ▓▓      ▓▓  ▓▓  \n";
-    public static final String LOGO5 = "██      ██ ██   ██  ██████   ██████  ███████ "
-            + "███████    ██     ██████   ██████ ██   ██ \n";
+    public static final String DASHBOARDLOGO = "`7MM\"\"\"Yb.      db       .M\"\"\"bgd `7MMF'  " +
+            "`7MMF'`7MM\"\"\"Yp,   .g8\"\"8q.      db      `7MM\"\"\"Mq.  `7MM\"\"\"Yb.   \n" +
+            "  MM    `Yb.   ;MM:     ,MI    \"Y   MM      MM    MM    Yb .dP'    `YM.   ;MM:    " +
+            "   MM   `MM.   MM    `Yb. \n" +
+            "  MM     `Mb  ,V^MM.    `MMb.       MM      MM    MM    dP dM'      `MM  ,V^MM.    " +
+            "  MM   ,M9    MM     `Mb \n" +
+            "  MM      MM ,M  `MM      `YMMNq.   MMmmmmmmMM    MM\"\"\"bg. MM        MM ,M  `MM " +
+            "     MMmmdM9     MM      MM \n" +
+            "  MM     ,MP AbmmmqMA   .     `MM   MM      MM    MM    `Y MM.      ,MP AbmmmqMA   " +
+            "  MM  YM.     MM     ,MP \n" +
+            "  MM    ,dP'A'     VML  Mb     dM   MM      MM    MM    ,9 `Mb.    ,dP'A'     VML  " +
+            "  MM   `Mb.   MM    ,dP' \n" +
+            ".JMMmmmdP'.AMA.   .AMMA.P\"Ybmmd\"  .JMML.  .JMML..JMMmmmd9    `\"bmmd\"'.AMA.   " +
+            ".AMMA..JMML. .JMM..JMMmmmdP'   ";
+    public static final String LOGO1 = "`MMb     dMM'     dM.      6MMMMb/ `MM'     `M' 6MMMMb\\  6MMMMbMMMMMMMMMM " +
+            " 6MMMMb     6MMMMb/ `MM    d'\n";
+    public static final String LOGO2 = " MMM.   ,PMM     ,MMb     8P    YM  MM       M 6M'    ` 6M'    /   MM  " +
+            " \\ 8P    Y8   8P    YM  MM   d'\n";
+    public static final String LOGO3 = " M`Mb   d'MM     d'YM.   6M      Y  MM       M MM       MM         MM " +
+            "   6M      Mb 6M      Y  MM  d'\n";
+    public static final String LOGO4 = " M YM. ,P MM    ,P `Mb   MM         MM       M YM.      YM.        MM " +
+            "   MM      MM MM         MM d'     \n";
+    public static final String LOGO5 = " M `Mb d' MM    d'  YM.  MM         MM       M  YMMMMb   YMMMMb    MM " +
+            "   MM      MM MM         MMd'      \n";
+    public static final String LOGO6 = " M  YM.P  MM   ,P   `Mb  MM     ___ MM       M      `Mb      `Mb   MM " +
+            "   MM      MM MM         MMYM.     \n";
+    public static final String LOGO7 = " M  `Mb'  MM   d'    YM. MM     `M' MM       M       MM       MM   MM " +
+            "   MM      MM MM         MM YM.    \n";
+    public static final String LOGO8 = " M   YP   MM  ,MMMMMMMMb YM      M  YM       M       MM       MM   MM " +
+            "   YM      M9 YM      6  MM  YM.   \n";
+    public static final String LOGO9 = " M   `'   MM  d'      YM. 8b    d9   8b     d8 L    ,M9 L    ,M9   MM " +
+            "    8b    d8   8b    d9  MM   YM.  \n";
+    public static final String LOGO10 = "_M_      _MM_dM_     _dMM_ YMMMM9     YMMMMM9  MYMMMM9  MYMMMM9   _MM_" +
+            "     YMMMM9     YMMMM9  _MM_   YM._\n";
 
-    public static final String INVENTORYLOGO = "░░ ░░░    ░░ ░░    ░░ ░░░░░░░ ░░░    ░░ "
-            + "░░░░░░░░  ░░░░░░  ░░░░░░  ░░    ░░ \n" +
-            "▒▒ ▒▒▒▒   ▒▒ ▒▒    ▒▒ ▒▒      ▒▒▒▒   ▒▒    ▒▒    ▒▒    ▒▒ ▒▒   ▒▒  ▒▒  ▒▒  \n" +
-            "▒▒ ▒▒ ▒▒  ▒▒ ▒▒    ▒▒ ▒▒▒▒▒   ▒▒ ▒▒  ▒▒    ▒▒    ▒▒    ▒▒ ▒▒▒▒▒▒    ▒▒▒▒   \n" +
-            "▓▓ ▓▓  ▓▓ ▓▓  ▓▓  ▓▓  ▓▓      ▓▓  ▓▓ ▓▓    ▓▓    ▓▓    ▓▓ ▓▓   ▓▓    ▓▓    \n" +
-            "██ ██   ████   ████   ███████ ██   ████    ██     ██████  ██   ██    ██    \n";
+    public static final String INVENTORYLOGO = "`7MMF'`7MN.   `7MF'`7MMF'   `7MF'`7MM\"\"\"YMM  `7MN.   " +
+            "`7MF'MMP\"\"MM\"\"YMM   .g8\"\"8q. `7MM\"\"\"Mq.`YMM'   `MM'\n" +
+            "  MM    MMN.    M    `MA     ,V    MM    `7    MMN.    M  P'   MM   `7 .dP'    `YM. MM   `MM. VMA   ,V\n" +
+            "  MM    M YMb   M     VM:   ,V     MM   d      M YMb   M       MM      dM'      `MM MM   ,M9   VMA ,V \n" +
+            "  MM    M  `MN. M      MM.  M'     MMmmMM      M  `MN. M       MM      MM        MM MMmmdM9     VMMP\n" +
+            "  MM    M   `MM.M      `MM A'      MM   Y  ,   M   `MM.M       MM      MM.      ,MP MM  YM.      MM\n" +
+            "  MM    M     YMM       :MM;       MM     ,M   M     YMM       MM      `Mb.    ,dP' MM   `Mb.    MM\n" +
+            ".JMML..JML.    YM        VF      .JMMmmmmMMM .JML.    YM     .JMML.      `\"bmmd\"' .JMML. .JMM. .JMML.";
 
 
     public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
@@ -227,8 +247,8 @@ public class Ui {
     public static void greetUser() {
         System.out.println(LINE);
         System.out.println(
-                ANSI_RED + LOGO1 + ANSI_ORANGE + LOGO2 + ANSI_YELLOW + LOGO3 +
-                        ANSI_GREEN + LOGO4 + ANSI_CYAN + LOGO5 + ANSI_RESET);
+                ANSI_RED + LOGO1 + LOGO2 + ANSI_ORANGE + LOGO3 + LOGO4 + ANSI_YELLOW + LOGO5 + LOGO6 +
+                        ANSI_GREEN + LOGO7 + LOGO8 + ANSI_CYAN + LOGO9 + LOGO10 + ANSI_RESET);
         System.out.println(GREET_MESSAGE);
         System.out.println(LINE);
     }

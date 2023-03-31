@@ -1,4 +1,5 @@
 @startuml
+skinparam classAttributeIconSize 0
 object HistoryParser{
     - rawInput = "0123241"
     - Inventory = inventory

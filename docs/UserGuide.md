@@ -38,6 +38,7 @@ Where to get it if you don't have one? (Go to Windows Store)
 - [Dashboard: `db`](#dashboard--db)
 - [Category: `cat`](#category--cat)
 - [Alert for item(s): `alert`](#alert-for-an-item--alert)
+- [Autosave of Inventory: `autosave`](#change-autosave-mode--autosave)
 - [Exiting the program: `exit`](#exiting-the-program--exit)
 
 {Give detailed description of each feature}
@@ -63,20 +64,43 @@ Sample output:
 
 ![img.png](img.png)
 ### Editing an item: `edit`
-Edit an item's details in the inventory list.
+Edit an item's details in the inventory.
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `edit upc/[UPC] {n/[item_name] qty/[quantity] p/[price]}`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.
+Required parameters:
+* The `upc/` parameter where `[UPC]`  must be a numerical value and exists in the inventory.
+
+Optional parameters:
+* The `n/` parameter where `[item_name]` must be alphanumeric.
+* The `qty/` parameter for `[quantity]` must be a numerical value.
+* The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
 
 Example of usage:
 
 ``
-
+edit upc/2142535453 n/HP Laptop Pro qty/10 p/1299.99
 ``
 
 Sample output:
+```
+Successfully edited the following item:
+
+Before Update:
+Name: HP Laptop
+UPC: 2142535453
+Price: 1299.99
+Quantity: 10
+Category: uncategorized
+
+After Update:
+Name: HP Laptop Pro
+UPC: 2142535453
+Price: 1299.99
+Quantity: 10
+Category: uncategorized
+
+```
 
 ### Removing an item from the inventory: `remove`
 Removes an item from the inventory list using either its UPC or index in list.
@@ -261,8 +285,7 @@ Format: `sell upc/[UPC] qty/[Quantity]`
 **NOT EMPTY**.
 4. `Quantity` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
 
-Example of usage:
-
+Example of Usage:
 `sell upc/123 qty/5`: Searches for the item of `UPC` code `123`, and if it exists, **DEDUCT** a **quantity** of `5`
 items from its current stock levels.
 
@@ -294,14 +317,14 @@ ____________________________________________________________
 Restock quantities of an item in the inventory list.
 
 Format: `restock upc/[UPC] qty/[Quantity]`
+
 1. `UPC` refers to the identification number assigned to the item at the point of **initial addition** of the item.
 2. `Quantity` refers to the amount of stock to be **ADDED** from the current stock levels recorded.
 3. `UPC` has to be valid, that is, it **EXISTS** in the database, and has to be a **POSITIVE NUMBER** and
    **NOT EMPTY**.
 4. `Quantity` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**.
 
-Example of usage:
-
+Example of Usage:
 `restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a **quantity** of `5`
 items to its current stock levels.
 
@@ -326,6 +349,7 @@ UPC Code: 12345
 Quantity Available: 105
 ____________________________________________________________
 ````
+
 ### Dashboard: `db`
 Shows a dashboard of information related to the system's inventory, user insights and 
 session configurations.
@@ -336,25 +360,46 @@ Example of usage:
 
 `db` - It's that simple
 
-Sample output:
+Sample output:  
 ![img_1.png](img_1.png)
 ### Category: `cat`
 Shows list of categories, and/or its items, or a specified category of items.
 
 Format: 
-`cat list`: shows list of all categories in the inventory.
-`cat table`: shows table of all categories and all items in each category.
-`cat [Category]`: shows list of all items in a specified category.
+* `cat list`: shows list of all categories in the inventory.
+* `cat table`: shows table of all categories and all items in each category.
+* `cat [Category]`: shows list of all items in a specified category.
 
-Example of usage:
+Example of Usage & Expected Output:
+```
+cat list
+____________________________________________________________
+Here is the list of categories you have: 
+uncategorized
+fruits
+____________________________________________________________
+```
+```
+cat table
++-----------------+--------------------------------+
+| Category        | Name: UPC                      |
++-----------------+--------------------------------+
+| uncategorized   | testItem:123456789012,         |
+|                 | testItem2:123456789013,        |
+|                 | asdsadsa:1231                  |
++-----------------+--------------------------------+
+```
 
-`cat list`
-
-`cat table`
-`cat fruit`
-
-Sample output:
-
+```
+cat fruit
++-----------------+--------------------------------+
+| Category        | Name: UPC                      |
++-----------------+--------------------------------+
+| fruit           | apple:123456789012,            |
+|                 | pear:123456789013,             |
+|                 | oranges:123456789555           |
++-----------------+--------------------------------+
+```
 ### Alert for an item: `alert`
 Add alerts that will display when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
@@ -375,7 +420,7 @@ Successfully added a new alert.
 ____________________________________________________________
 ```
 
-Examples of usage:
+Examples of usage:  
 `alert remove upc/1234 level/min`  
 `alert remove upc/1234 level/max`
 
@@ -384,6 +429,27 @@ Sample output:
 ```
 ____________________________________________________________
 Successfully removed the alert.
+____________________________________________________________
+``` 
+### Change Autosave Mode: `autosave`
+
+Set whether the program should automatically save the udpated inventory to the inventory data file after every successful
+write command issued.
+
+Format: `autosave [on/off]`
+
+Sample input and expected output:
+```
+autosave on
+____________________________________________________________
+Auto-save has been enabled!
+____________________________________________________________
+```
+
+```
+autosave off
+____________________________________________________________
+Auto-save has been disabled!
 ____________________________________________________________
 ```
 
@@ -418,6 +484,7 @@ ____________________________________________________________
 | View history (`history`)        |
 | View dashboard (`db`) |
 | View all commands (`help`) |
+| Set autosave mode (`autosave`) |
 | Exit the program (`exit`) |
 
 
