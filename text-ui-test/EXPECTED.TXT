@@ -53,8 +53,10 @@ Here are your tasks:
 
 Updated task 1 to Feed Candy.
 
+Task marked as not done
+
 Here are your tasks:
-1. [X] Feed Candy
+1. [ ] Feed Candy
 2. [ ] Feed Alice
 
 Here is Pet Tracker's Help Page
@@ -142,5 +144,13 @@ Example: unmark-task 2
 ________________________________________________________________________________________________________
 
 Hope this helps!
+
+Added new task to list
+
+Added new task to list
+
+Here is your schedule: 
+1. [ ] Feed Bob (Deadline: 2021-01-01)
+2. [ ] Buy Food (Deadline: 2021-03-01)
 
 Goodbye! See you soon.

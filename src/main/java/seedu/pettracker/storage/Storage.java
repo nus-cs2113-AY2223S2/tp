@@ -23,6 +23,10 @@ public class Storage {
         this.taskFilePath = taskFilePath;
     }
 
+    /**
+     * Checks if pet output file exists, else creates it
+     * @param ui Ui to print error if needed
+     */
     public void createPetFile(Ui ui) {
         try {
             File file = new File(petFilePath);
@@ -46,7 +50,10 @@ public class Storage {
             ui.fileIOErrorMessage();
         }
     }
-
+    /**
+     * Checks if task output file exists, else creates it
+     * @param ui Ui to print error if needed
+     */
     public void createTaskFile(Ui ui) {
         try {
             File file = new File(taskFilePath);
@@ -83,6 +90,11 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Saves the current pet list into the pet output file
+     * @param petList ArrayList of all pets
+     * @param ui Ui to print error if needed
+     */
     public void savePets(ArrayList<Pet> petList, Ui ui) {
         try {
             writePetsToFile(petList);
@@ -101,7 +113,11 @@ public class Storage {
 
         fw.close();
     }
-
+    /**
+     * Saves the current task list into the task output file
+     * @param taskList ArrayList of all tasks
+     * @param ui Ui to print error if needed
+     */
     public void saveTasks(ArrayList<Task> taskList, Ui ui) {
         try {
             writeTasksToFile(taskList);

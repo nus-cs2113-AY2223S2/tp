@@ -22,6 +22,9 @@ public class Task {
         if (isDone) {
             toSave = "1";
         }
+        if (deadline != null) {
+            return toSave + "|" + description + "|" + deadline;
+        }
         return toSave + "|" + description;
     }
 }
