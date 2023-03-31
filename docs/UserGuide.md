@@ -13,7 +13,7 @@ MyLedger is a desktop app for managing finances, designed for university student
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `MyLedger` from [here](https://github.com/AY2223S2-CS2113-T14-3/tp/releases/tag/v2.0).
+2. Download the latest version of `MyLedger` from [here](https://github.com/AY2223S2-CS2113-T14-3/tp/releases/tag/v2.0).
 
 ## Managing Transactions
 
@@ -195,6 +195,18 @@ Deletes an existing expenditure record from the expenditure list. After a succes
 
 - Providing special characters and indices out of the range of the number of expenditures in the expenditure list are invalid.
 
+Input:
+
+```
+delete 1
+```
+Output:
+
+```
+Entry has been deleted
+Here is your updated list:
+```
+
 ### 4.6 Duplicating an expenditure record
 
 Duplicates an existing expenditure record from the expenditure list. After a successful duplicate, it will be appended to the expenditure list.
@@ -252,7 +264,7 @@ Sets a budget amount that one would like to keep within.
 **Important Information:**
 
 - The set budget can be compared with the total sum of expenditures with the [`check`](#48-checking-expenditures-against-the-set-budget) command.
-
+- The set budget will not be saved after the `exit` command, thus it will be 0 when MyLedger is restarted.
 ### 4.8 Checking expenditures against the set budget
 
 Compares the set budget via the [`set`](#47-setting-a-budget) command against the total sum of expenditures in the expenditures.
@@ -262,6 +274,7 @@ Compares the set budget via the [`set`](#47-setting-a-budget) command against th
 **Important Information:**
 
 - Checking budget is compared with the latest stored value of the set budget. By default, the budget set is 0.
+- If budget set is 0, message will prompt user to `set` a value before calling `check` again. `check` will not work if budget is 0.
 - Borrowed expenditure amount owed is separated for a better view of expenditures.
 
 ### 4.9 Marking a lend or borrow expenditure record
@@ -397,6 +410,8 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 * Mark a specific expenditure to be complete (Tuition or Accommodation): `mark INDEX`
 
 * Unmark a specific expenditure to be complete (Tuition or Accommodation): `unmark INDEX`
+
+* Set temporary expenditure: `set AMOUNT`
 
 * Sort expenditure list by ascending/descending amount: `sort ASCEND/DESCEND`
 
