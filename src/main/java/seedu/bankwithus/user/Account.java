@@ -8,10 +8,10 @@ import java.time.LocalDate;
 
 public class Account {
     public SaveGoal saveGoal;
-    private String name;
+    private final String name;
     private String balance;
-    private WithdrawalChecker withdrawalChecker;
-    //@@author Sherlock-YH
+    private final WithdrawalChecker withdrawalChecker;
+
     /**
      * Instantiates an account object
      *
@@ -27,7 +27,7 @@ public class Account {
 
     //@@author tyuyang
     public Account(String name, String balance, String totalAmtWithdrawn,
-            LocalDate lastWithdrawnDate, String amtToSave, String untilWhen) {
+                   LocalDate lastWithdrawnDate, String amtToSave, String untilWhen) {
         this.name = name;
         this.balance = balance;
         this.withdrawalChecker = new WithdrawalChecker(totalAmtWithdrawn, lastWithdrawnDate);
@@ -42,7 +42,6 @@ public class Account {
         return balance;
     }
 
-    //@@author tyuyang
     public WithdrawalChecker getWithdrawalChecker() {
         return withdrawalChecker;
     }
@@ -76,3 +75,7 @@ public class Account {
         return this.saveGoal;
     }
 }
+
+
+
+
