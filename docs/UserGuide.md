@@ -10,13 +10,12 @@
 2. Download the latest version of `Inka.jar` from [here](https://github.com/AY2223S2-CS2113-F10-1/tp/releases).
 3. Copy the JAR file to the folder you wish to use as the Inka home folder -- your data will be saved here!
 4. Open the JAR file, either by clicking or running `java -jar Inka.jar`. A command line interface should appear:
+
 ![Inka interface](img/quick-start.png)
 
 Enjoy your revision!
 
 ## Features
-
-{Give detailed description of each feature}
 
 ### Adding a card: `card add -q {question} -a {answer}`
 
@@ -92,6 +91,8 @@ Here are the tags :
 1.Tag name : physics, tag uuid : 83f26992-09d7-496b-b7a8-3ad05e43c8b7
 ```
 
+---
+
 ### Editing a tag : `tag edit -o {tagNameOld} -n {tagNameNew}`
 
 Edit the name of an existing tag
@@ -121,7 +122,7 @@ Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from the tag list.
 
 ### List all tags : `tag list`
 
-List all current tags 
+List all current tags
 
 Example of usage :
 `tag list`
@@ -148,6 +149,62 @@ Here is a list of your cards :
 1.Qn: fdf
 Ans: ffffffffff
 UUID:  3b86b31c-6289-4716-a5c6-5afd43b9bbd3
+```
+
+---
+
+### Edit a deck: `deck edit`
+
+Rename an existing deck
+
+Example of usage: `deck edit -o old-deck-name -n new-deck-name`
+
+Sample output:
+```
+Deck 9dc5ab5f-75af-4b0d-b554-341f59ac829bdeck name has been changed from old-deck-name to new-deck-name
+```
+
+### [WIP] Delete a card/tag from deck: `deck delete -d {deckName} (-c {cardUUID} | -t {tagUUID})`
+
+Delete a card from an existing deck
+
+Example of usage: `deck delete -c c2c61475-df53-4656-94c4-c2e36933d359 -d my-deck`
+
+Sample output:
+```
+Successfully removed card c2c61475-df53-4656-94c4-c2e36933d359 from deck my-deck
+```
+
+Alternatively, delete a tag from an existing deck
+
+Example of usage: `deck delete -t 833249f3-a090-474c-a3de-c1b5f25609d4 -d my-deck`
+
+Sample output:
+```
+Successfully removed tag 833249f3-a090-474c-a3de-c1b5f25609d4 from deck my-deck
+```
+
+The entire deck can also be deleted (cards and tags that were in the deck are not deleted)
+
+Example of usage: `deck delete -d my-deck`
+
+Sample output:
+```
+Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from card c2c61475-df53-4656-94c4-c2e36933d359
+Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from the deck list.
+```
+
+### List all decks: `deck list`
+
+List all decks that have been created
+
+Example usage: `deck list`
+
+Sample output:
+```
+Here is your current list of decks:
+1.Deck name : test-deck, deck uuid : 9dc5ab5f-75af-4b0d-b554-341f59ac829b
+2.Deck name : another-deck, deck uuid : b7fa870a-e92c-4a74-90de-cfeafd6ec141```
 ```
 
 ## FAQ
@@ -181,4 +238,3 @@ Your file will be loaded the next time you run Inka!
 {Give a 'cheat sheet' of commands here}
 
 * Add todo `todo n/TODO_NAME d/DEADLINE`
-
