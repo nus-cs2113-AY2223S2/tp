@@ -102,7 +102,7 @@ editDescription(), editAmount(), editTime(), editCategory()
 
 isSameMonth()
 
-* Takes in Integer year and Month month and returns if the entry is made in the date specified by parameters.
+* Takes in Integer year and Month and returns if the entry is made in the date specified by parameters.
 
 ### EntryList
 
@@ -132,28 +132,44 @@ deleteEntry()
 * Takes in the list of entry and index of the entry to be deleted.
 * The method acts as an underlying method for subclasses' deletion methods.
 
-editEntry()
+editEntryCost()
 
 * Overloaded method. All methods take in the LinkedList of entries and the index of the entry that has to be edited.
   Another parameter has to be provided, which can be double, LocalDateTime, or String.
 * additional parameter double edits the money amount of the entry in the list.
-* additional parameter LocalDateTime edits the time when the entry is made.
+
+editEntryDescription()
+
 * additional parameter String edits the description of the entry in the list.
+
+editEntryTime()
+
+* additional parameter LocalDateTime edits the time when the entry is made.
+
+editEntryCategory()
+
+* additional parameter Category edits the time when the entry is made.
 
 getTotalAmount()
 
 * Takes in a list of entries and returns the sum of all entry's monetary value.
 
-SortEntryByAmount()
+sortEntriesByAmount()
 
 * Returns a sorted list of entry by amount of entry.
 
-SortEntryByDate()
+sortEntriesByDate()
 
 * Returns a sorted list of entry by date of entry.
   
 findEntriesByCategory()
 * Returns a list of entries with the same category and the total amount in this category.
+
+selectEntryForDate()
+* Returns a list of entries with the time range.
+
+getEntryListSum()
+* Returns the sum of amounts of all entries in the list.
 
 ### ExpenseList, IncomeList
 
@@ -262,9 +278,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
+(For all use cases below, the System is the `BrokeMan` and the Actor is the `user`, 
+unless specified otherwise)
+
+#### Use case: Delete an expense
+
+#### MSS
+
+1. User requests to list expenses.
+2. BrokeMan shows a list of expenses.
+3. User requests to delete a specific person in the list.
+4. BrokeMan deletes the person.
+
+    Use case ends.
+
+#### Extensions
+* 2a. The list is empty.
+    
+    Use case ends.
+* 3a. The given index is invalid.
+  * 3a1. BrokeMan shows an error message.
+
+    Use case resumes at step 2.
+
+{More to be added}
+
 ### Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+2. Should be able to hold up to 1000 entries without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+{More to be added}
 
 ## Glossary
 
