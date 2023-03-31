@@ -242,4 +242,45 @@ ______________________________________________________________________
 
 {Give a 'cheat sheet' of commands here}
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+* Add consultation :
+  `vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME` 
+
+
+* Add surgery :
+  `surgery at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL` 
+
+
+* Add vaccination :
+  `vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE cd/DATE ct/TIME` 
+
+
+* List :
+  `list`
+
+
+* Remove appointment :
+  `remove uid`
+
+
+* find appointment by animal_type :
+`find a/dog` 
+
+
+* find appointment by appointment_type :
+`find t/surgery` 
+
+
+* find appointment by appointment_uID :
+`find aID/123`
+
+
+* Mark appointment :
+  `mark uID/ `
+
+
+* UnMark appointment :
+  `unmark uID/ `
+
+
+ 
+ 
