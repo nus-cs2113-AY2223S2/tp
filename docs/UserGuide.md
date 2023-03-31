@@ -7,18 +7,37 @@
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](https://github.com/AY2223S2-CS2113-T13-2/tp/releases).
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Duke.jar` command to run the application.
-1. Enter your name when prompted in the command box and press enter.
-1. Type the command in the command box and press Enter to execute it.
+2. Down the latest version of `Duke` from [here](https://github.com/AY2223S2-CS2113-T13-2/tp/releases).
+3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Duke.jar` command to run the application.
+4. Enter your name when prompted in the command box and press enter.
+5. Log in to your account by typing `login` if you have already got one, or else type `signup` to create your account,
+and then press Enter to proceed. After sign up successfully, you should log in to experience the app. More instructions 
+about account and password are stated in the "Account Instructions" part.
+6. Once you have logged in successfully, you will see a message `Login successful`, and you are ready to experience our
+application! You will see a command box for command instruction.
+7. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
-
    * `add amt/100 t/15-03-2023`: Add an expense entry with a value of SGD100.0 and a date of 15th March 2023 to the expense list.
    * `list`: List all expenses in the expense list.
    * `delete 1`: Delete the first entry in the expense list.
    * `sort D`: Sort the expenses by date.
    * `category food`: Find all expenses with food category.
+8. When you want to log out and save your expense list, type `logout`. 
 
+## Account instructions
+   ### Create Account: `signup`
+   * When you sign up, you should type your username, press Enter, then type your password, and press Enter. 
+   * If your username is taken already, you should sign up again. Else, you could proceed to `login`.
+   ### Note: Username and password rules:
+   * Username must just include alphabet characters (both uppercase and lowercase) or number.
+   * Password must have at least 8 characters.
+   ### Log In To Your Account: `login`
+   * In order to log in to your account, you do similar steps as `signup`. 
+   * If you type the password wrongly, you will see a message `Invalid username or password.`and you have to log in again.
+   ### Sign out and save your expense: `logout`
+   * When you log out, all of your expenses in the expense list is saved, and the data is just restricted to your account.
+   * Once you log in again, the expense list could be loaded from your previous session. You can view the list through 
+   command `list`.
 ## Features
 
 ### Adding an expense: `add`
