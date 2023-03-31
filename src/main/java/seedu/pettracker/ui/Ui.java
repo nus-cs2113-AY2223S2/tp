@@ -159,15 +159,80 @@ public class Ui {
      * Print out help for all commands
      */
     public void showHelpMessage() {
-        System.out.println("Here is Pet Tracker's Help Page\n");
+        System.out.println("Here is Pet Tracker's Help Page");
+        System.out.println("Words in uppercase is used to show the user's input\n");
+        showPetHelp();
+    }
+    /**
+     * Print out help for pet related commands
+     */
+    private void showPetHelp() {
         showAddPetCommandHelp();
+        showRemovePetCommandHelp();
+        showPetListCommandHelp();
+        showAddStatCommandHelp();
+        showRemoveStatCommandHelp();
+        showEditStatCommandHelp();
+    }
+    /**
+     * Print out help for task related commands
+     */
+    private void showTaskHelp() {
+
     }
     /**
      * Print out help for add-pet commands
      */
     private void showAddPetCommandHelp() {
-        System.out.println("Instructions for add-pet Command");
+        System.out.println("Command: add-pet NAME");
         System.out.println("Description: Adds a pet to the Pet List");
+        System.out.println("Example: add-pet Bob");
         System.out.println(DIVIDER);
     }
+    /**
+     * Print out help for remove-pet commands
+     */
+    private void showRemovePetCommandHelp() {
+        System.out.println("Command: remove-pet NAME");
+        System.out.println("Description: Removes a pet from the Pet List");
+        System.out.println("Example: remove-pet Bob");
+        System.out.println(DIVIDER);
+    }
+    /**
+     * Print out help for remove-pet commands
+     */
+    private void showPetListCommandHelp() {
+        System.out.println("Command: list");
+        System.out.println("Description: View the current Pet List and total number of pets");
+        System.out.println("Example: list");
+        System.out.println(DIVIDER);
+    }
+    /**
+     * Print out help for add-stat commands
+     */
+    private void showAddStatCommandHelp() {
+        System.out.println("Command: add-stat NAME STAT VALUE");
+        System.out.println("Description: Adds a pet to the Pet List");
+        System.out.println("Example: add-stat Bob Weight 30");
+        System.out.println(DIVIDER);
+    }
+    /**
+     * Print out help for remove-stat commands
+     */
+    private void showRemoveStatCommandHelp() {
+        System.out.println("Command: remove-stat NAME STAT");
+        System.out.println("Description: Removes a stat from a pet in the Pet List");
+        System.out.println("Example: remove-stat Bob Weight");
+        System.out.println(DIVIDER);
+    }
+    /**
+     * Print out help for edit-stat commands
+     */
+    private void showEditStatCommandHelp() {
+        System.out.println("Command: edit-stat NAME STAT");
+        System.out.println("Description: Edit a stat from a pet in the Pet List");
+        System.out.println("Example: edit-stat Bob Weight 20");
+        System.out.println(DIVIDER);
+    }
+
 }
