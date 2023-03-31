@@ -22,38 +22,28 @@ import static seedu.duke.utils.ColorCode.ANSI_YELLOW;
 public class Ui {
     public static final String LINE = "____________________________________________________________";
 
-    public static final String DASHBOARDLOGO = "`7MM\"\"\"Yb.      db       .M\"\"\"bgd `7MMF'  " +
-            "`7MMF'`7MM\"\"\"Yp,   .g8\"\"8q.      db      `7MM\"\"\"Mq.  `7MM\"\"\"Yb.   \n" +
-            "  MM    `Yb.   ;MM:     ,MI    \"Y   MM      MM    MM    Yb .dP'    `YM.   ;MM:    " +
-            "   MM   `MM.   MM    `Yb. \n" +
-            "  MM     `Mb  ,V^MM.    `MMb.       MM      MM    MM    dP dM'      `MM  ,V^MM.    " +
-            "  MM   ,M9    MM     `Mb \n" +
-            "  MM      MM ,M  `MM      `YMMNq.   MMmmmmmmMM    MM\"\"\"bg. MM        MM ,M  `MM " +
-            "     MMmmdM9     MM      MM \n" +
-            "  MM     ,MP AbmmmqMA   .     `MM   MM      MM    MM    `Y MM.      ,MP AbmmmqMA   " +
-            "  MM  YM.     MM     ,MP \n" +
-            "  MM    ,dP'A'     VML  Mb     dM   MM      MM    MM    ,9 `Mb.    ,dP'A'     VML  " +
-            "  MM   `Mb.   MM    ,dP' \n" +
-            ".JMMmmmdP'.AMA.   .AMMA.P\"Ybmmd\"  .JMML.  .JMML..JMMmmmd9    `\"bmmd\"'.AMA.   " +
-            ".AMMA..JMML. .JMM..JMMmmmdP'   ";
-    public static final String LOGO1 = "░░░    ░░░  ░░░░░   ░░░░░░  ░░    ░░ ░░░░░░░ "
-            + "░░░░░░░ ░░░░░░░░  ░░░░░░   ░░░░░░ ░░   ░░ \n";
-    public static final String LOGO2 = "▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒       ▒▒    ▒▒ ▒▒      "
-            + "▒▒         ▒▒    ▒▒    ▒▒ ▒▒      ▒▒  ▒▒  \n";
-    public static final String LOGO3 = "▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒▒▒ ▒▒   ▒▒▒ ▒▒    ▒▒ ▒▒▒▒▒▒▒ "
-            + "▒▒▒▒▒▒▒    ▒▒    ▒▒    ▒▒ ▒▒      ▒▒▒▒▒ \n";
-    public static final String LOGO4 = "▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓    ▓▓      ▓▓ "
-            + "     ▓▓    ▓▓    ▓▓    ▓▓ ▓▓      ▓▓  ▓▓  \n";
-    public static final String LOGO5 = "██      ██ ██   ██  ██████   ██████  ███████ "
-            + "███████    ██     ██████   ██████ ██   ██ \n";
+    public static final String LOGO =
+            "███╗░░░███╗░█████╗░░██████╗░██╗░░░██╗░██████╗░██████╗████████╗░█████╗░░█████╗░██╗░░██╗\n" +
+                    "████╗░████║██╔══██╗██╔════╝░██║░░░██║██╔════╝██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║░██╔╝\n" +
+                    "██╔████╔██║███████║██║░░██╗░██║░░░██║╚█████╗░╚█████╗░░░░██║░░░██║░░██║██║░░╚═╝█████═╝░\n" +
+                    "██║╚██╔╝██║██╔══██║██║░░╚██╗██║░░░██║░╚═══██╗░╚═══██╗░░░██║░░░██║░░██║██║░░██╗██╔═██╗░\n" +
+                    "██║░╚═╝░██║██║░░██║╚██████╔╝╚██████╔╝██████╔╝██████╔╝░░░██║░░░╚█████╔╝╚█████╔╝██║░╚██╗\n" +
+                    "╚═╝░░░░░╚═╝╚═╝░░╚═╝░╚═════╝░░╚═════╝░╚═════╝░╚═════╝░░░░╚═╝░░░░╚════╝░░╚════╝░╚═╝░░╚═╝";
+    public static final String DASHBOARDLOGO =
+            "██████╗░░█████╗░░██████╗██╗░░██╗██████╗░░█████╗░░█████╗░██████╗░██████╗░\n" +
+                    "██╔══██╗██╔══██╗██╔════╝██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔══██╗\n" +
+                    "██║░░██║███████║╚█████╗░███████║██████╦╝██║░░██║███████║██████╔╝██║░░██║\n" +
+                    "██║░░██║██╔══██║░╚═══██╗██╔══██║██╔══██╗██║░░██║██╔══██║██╔══██╗██║░░██║\n" +
+                    "██████╔╝██║░░██║██████╔╝██║░░██║██████╦╝╚█████╔╝██║░░██║██║░░██║██████╔╝\n" +
+                    "╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░";
 
-    public static final String INVENTORYLOGO = "░░ ░░░    ░░ ░░    ░░ ░░░░░░░ ░░░    ░░ "
-            + "░░░░░░░░  ░░░░░░  ░░░░░░  ░░    ░░ \n" +
-            "▒▒ ▒▒▒▒   ▒▒ ▒▒    ▒▒ ▒▒      ▒▒▒▒   ▒▒    ▒▒    ▒▒    ▒▒ ▒▒   ▒▒  ▒▒  ▒▒  \n" +
-            "▒▒ ▒▒ ▒▒  ▒▒ ▒▒    ▒▒ ▒▒▒▒▒   ▒▒ ▒▒  ▒▒    ▒▒    ▒▒    ▒▒ ▒▒▒▒▒▒    ▒▒▒▒   \n" +
-            "▓▓ ▓▓  ▓▓ ▓▓  ▓▓  ▓▓  ▓▓      ▓▓  ▓▓ ▓▓    ▓▓    ▓▓    ▓▓ ▓▓   ▓▓    ▓▓    \n" +
-            "██ ██   ████   ████   ███████ ██   ████    ██     ██████  ██   ██    ██    \n";
-
+    public static final String INVENTORYLOGO =
+            "██╗███╗░░██╗██╗░░░██╗███████╗███╗░░██╗████████╗░█████╗░██████╗░██╗░░░██╗\n" +
+                    "██║████╗░██║██║░░░██║██╔════╝████╗░██║╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝\n" +
+                    "██║██╔██╗██║╚██╗░██╔╝█████╗░░██╔██╗██║░░░██║░░░██║░░██║██████╔╝░╚████╔╝░\n" +
+                    "██║██║╚████║░╚████╔╝░██╔══╝░░██║╚████║░░░██║░░░██║░░██║██╔══██╗░░╚██╔╝░░\n" +
+                    "██║██║░╚███║░░╚██╔╝░░███████╗██║░╚███║░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░\n" +
+                    "╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░";
 
     public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
     public static final String EXIT_MESSAGE = "Hope you had an enjoyable experience. See you next time!";
@@ -76,7 +66,7 @@ public class Ui {
     public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
 
     public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. " +
-             "\n" + "      Please delete the corrupt .csv file.";
+            "\n" + "      Please delete the corrupt .csv file.";
     public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
             " The inventory has been updated.";
     public static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
@@ -186,7 +176,7 @@ public class Ui {
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
             "does not exist.";
     private static final String INVALID_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please enter category commands " +
-            "as shown below.\n" + "List all categories: cat list\n" + "List all items in a category: cat [Category]\n"+
+            "as shown below.\n" + "List all categories: cat list\n" + "List all items in a category: cat [Category]\n" +
             "List all items and all categories: cat table";
     private static final int CATEGORY_COL_WIDTH = 15;
     private static final int ITEMS_COL_WIDTH = 30;
@@ -235,8 +225,7 @@ public class Ui {
     public static void greetUser() {
         System.out.println(LINE);
         System.out.println(
-                ANSI_RED + LOGO1 + ANSI_ORANGE + LOGO2 + ANSI_YELLOW + LOGO3 +
-                        ANSI_GREEN + LOGO4 + ANSI_CYAN + LOGO5 + ANSI_RESET);
+                ANSI_ORANGE + LOGO + ANSI_RESET);
         System.out.println(GREET_MESSAGE);
         System.out.println(LINE);
     }
@@ -586,7 +575,7 @@ public class Ui {
         }
 
         if (words[current].equals(",")) {
-            for (int i = 0; i < width-line.length(); i++) {
+            for (int i = 0; i < width - line.length(); i++) {
                 line.append(" ");
             }
         }
