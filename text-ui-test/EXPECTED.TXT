@@ -1,4 +1,6 @@
 Welcome to the Pet Health Tracker!
+Here are your tasks due today:
+You have no tasks due today (yay)!
 
 Please enter a valid command!
 
@@ -54,5 +56,91 @@ Updated task 1 to Feed Candy.
 Here are your tasks:
 1. [X] Feed Candy
 2. [ ] Feed Alice
+
+Here is Pet Tracker's Help Page
+Words in uppercase is used to show the user's input
+
+
+________________________________________________________________________________________________________
+
+Command: add-pet NAME
+Description: Adds a pet to the Pet List
+Example: add-pet Bob
+
+________________________________________________________________________________________________________
+
+Command: remove-pet NAME
+Description: Removes a pet from the Pet List
+Example: remove-pet Bob
+
+________________________________________________________________________________________________________
+
+Command: list
+Description: View the current Pet List and total number of pets
+Example: list
+
+________________________________________________________________________________________________________
+
+Command: add-stat NAME STAT VALUE
+Description: Adds a pet to the Pet List
+Example: add-stat Bob Weight 30
+
+________________________________________________________________________________________________________
+
+Command: remove-stat NAME STAT
+Description: Removes a stat from a pet in the Pet List
+Example: remove-stat Bob Weight
+
+________________________________________________________________________________________________________
+
+Command: edit-stat NAME STAT
+Description: Edit a stat from a pet in the Pet List
+Example: edit-stat Bob Weight 20
+
+________________________________________________________________________________________________________
+
+Command: add-task NAME or add-task Name /by DATE
+Description: Adds a task to the Task List
+Example: add-task Buy food /by 2021-03-01
+
+________________________________________________________________________________________________________
+
+Command: remove-task NUMBER
+Description: Removes a task from the Task List
+Example: remove-task 1
+
+________________________________________________________________________________________________________
+
+Command: list-tasks
+Description: View the current Task List and total number of Tasks
+Example: list-tasks
+
+________________________________________________________________________________________________________
+
+Command: edit-task NUMBER VALUE or edit-task NUMBER VALUE /by DATE
+Description: Edit the task description or date
+Example: edit-task 2 feed the cat
+
+________________________________________________________________________________________________________
+
+Command: schedule
+Description: View the current list of tasks with an associated deadline, in order of deadline
+Example: schedule
+
+________________________________________________________________________________________________________
+
+Command: mark-task NUMBER
+Description: Marks a task as done in the Task List
+Example: mark-task 2
+
+________________________________________________________________________________________________________
+
+Command: unmark-task NUMBER
+Description: Marks a task as not done in the Task List
+Example: unmark-task 2
+
+________________________________________________________________________________________________________
+
+Hope this helps!
 
 Goodbye! See you soon.

@@ -7,6 +7,7 @@ import seedu.pettracker.commands.Command;
 import seedu.pettracker.commands.EditStatCommand;
 import seedu.pettracker.commands.EditTaskCommand;
 import seedu.pettracker.commands.ExitCommand;
+import seedu.pettracker.commands.HelpCommand;
 import seedu.pettracker.commands.InvalidCommand;
 import seedu.pettracker.commands.ListPetCommand;
 import seedu.pettracker.commands.ListTasksCommand;
@@ -37,6 +38,8 @@ public class CommandParser {
     final String KEYWORD_MARK_TASK = "mark-task";
     final String KEYWORD_UNMARK_TASK = "unmark-task";
     final String KEYWORD_SCHEDULE_TASKS = "schedule";
+    final String KEYWORD_HELP = "help";
+
 
     public CommandParser() {
     }
@@ -160,6 +163,8 @@ public class CommandParser {
                 logger.log(Level.INFO, "bounds error");
                 break;
             }
+        case KEYWORD_HELP:
+            return new HelpCommand();
         default:
             return new InvalidCommand();
         }

@@ -21,4 +21,5 @@ mark-task 1
 list-tasks
 edit-task 1 Feed Candy
 list-tasks
+help
 exit

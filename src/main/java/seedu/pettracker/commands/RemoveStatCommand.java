@@ -19,6 +19,7 @@ public class RemoveStatCommand extends Command {
      * Executes the given command
      *
      * @param ui Ui to do printing if required
+     * @param storage Storage to save files if required
      */
     @Override
     public void execute(Ui ui, Storage storage) {
