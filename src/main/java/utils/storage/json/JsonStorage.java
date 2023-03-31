@@ -188,11 +188,17 @@ import java.lang.reflect.Type;
 
 import java.util.ArrayList;
 
-import model.Card;
+import model.TagList;
 import model.CardList;
-import model.CardUUID;
 import model.TagUUID;
+import model.Tag;
+import model.Memory;
+import model.DeckList;
+import model.Card;
+import model.Deck;
+import model.CardUUID;
 import model.DeckUUID;
+
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageCorrupted;
 
@@ -241,8 +247,10 @@ public class JsonStorage extends Storage {
     }
 
     @Override
-    public CardList load() throws InkaException {
+    public Memory load() throws InkaException {
         CardList cardList = null;
+        TagList tagList = null;
+        DeckList deckList = null;
         boolean useBackup = false;
         try {
             FileReader fileReader = new FileReader(saveFile);
@@ -253,10 +261,10 @@ public class JsonStorage extends Storage {
 
 
             JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
-            JsonObject jsonObject = jsonElement.getAsJsonObject();
+            JsonObject saveDataObject = jsonElement.getAsJsonObject();
 
 
-            JsonArray jsonArray = jsonObject.getAsJsonArray("cards");
+            JsonArray jsonArray = saveDataObject.getAsJsonArray("cards");
             ArrayList<Card> cards = new ArrayList<>();
 
 
@@ -273,31 +281,10 @@ public class JsonStorage extends Storage {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
                 Card card = Card.createCardWithUUID(question, answer, uuidString);
 
                 JsonArray tagsArray = cardObject.getAsJsonArray("tags");
                 JsonArray decksArray = cardObject.getAsJsonArray("decks");
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -326,28 +313,71 @@ public class JsonStorage extends Storage {
                 cards.add(card);
             }
 
-            cardList = new CardList(cards);
+            cardList = new CardList(cards); // assign cardList object with cards
+
+            tagList = new TagList(); // construct empty taglist to append stuff to
+            JsonArray tagJsonArray = saveDataObject.getAsJsonArray("tags");
+            for(JsonElement jsonTag : tagJsonArray) {
+                JsonObject tagObject = jsonTag.getAsJsonObject();
+                JsonObject uuidObject = tagObject.getAsJsonObject("uuid");
+                String uuidString = uuidObject.get("uuid").getAsString();
+
+                String tagName = tagObject.get("tagName").getAsString();
+                JsonArray tagCardArray = tagObject.getAsJsonArray("cards");
+                Tag tag = new Tag(tagName, uuidString, "pw");
+
+                for (JsonElement cardListElement : tagCardArray) {
+                    JsonObject cardUuidObject = cardListElement.getAsJsonObject();
+
+                    String cardUuidString = cardUuidObject.get("uuid").getAsString();
+                    tag.addCard(new CardUUID(UUID.fromString(cardUuidString)));
+                }
+
+                tagList.addTag(tag);
+
+
+
+
+
+            }
+
+            deckList = new DeckList();
+            JsonArray deckJsonArray = saveDataObject.getAsJsonArray("decks");
+            for(JsonElement jsonDeck : deckJsonArray) {
+                JsonObject deckObject = jsonDeck.getAsJsonObject();
+                JsonObject uuidObject = deckObject.getAsJsonObject("deckUUID");
+                String uuidString = uuidObject.get("uuid").getAsString();
+
+                String deckName = deckObject.get("deckName").getAsString();
+                Deck deck = new Deck(deckName);
+                deck.setDeckUUID(uuidString);
+
+
+                //obtain cards from a jsonDeck
+                JsonArray deckCardArray = deckObject.getAsJsonArray("cards");
+
+
+                for (JsonElement deckListElement : deckCardArray) {
+                    JsonObject cardUuidObject = deckListElement.getAsJsonObject();
+                    String cardUuidString = cardUuidObject.get("uuid").getAsString();
+                    deck.addCard(new CardUUID(UUID.fromString(cardUuidString)));
+                }
+
+                //obtain tags from a jsonDeck
+                JsonArray deckTagArray = deckObject.getAsJsonArray("tags");
+                for (JsonElement deckListElement : deckTagArray) {
+                    JsonObject tagUuidObject = deckListElement.getAsJsonObject();
+                    String tagUuidString = tagUuidObject.get("uuid").getAsString();
+                    deck.addTag(new TagUUID(UUID.fromString(tagUuidString)));
+                }
+
+                deckList.addDeck(deck);
+
+
+
+            }
 
         } catch (IOException e) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Failed to load file from " + absolutePath, e);
@@ -382,11 +412,16 @@ public class JsonStorage extends Storage {
             }
         }
 
-        return cardList;
+        Memory savedMemory = new Memory();
+        savedMemory.setCardList(cardList);
+        savedMemory.setTagList(tagList);
+        savedMemory.setDeckList(deckList);
+
+        return savedMemory;
     }
 
     @Override
-    public void save(CardList cardList) throws StorageSaveFailure {
+    public void save(CardList cardList, TagList tagList, DeckList deckList) throws StorageSaveFailure {
 
         JsonObject exportData = new JsonObject();
         Gson gson = new Gson();
@@ -403,6 +438,32 @@ public class JsonStorage extends Storage {
         }
         exportData.add("cards", cardData);
 
+        // Serialize Tags
+
+        JsonArray tagData = new JsonArray();
+        for (int i = 0; i < tagList.size(); i++) {
+            // Convert the card object to a JsonObject using Gson
+            Tag tag = tagList.get(i);
+
+            JsonObject tagObject = gson.toJsonTree(tag).getAsJsonObject();
+
+            // Add the card object to the cardData array
+            tagData.add(tagObject);
+        }
+        exportData.add("tags", tagData);
+
+        JsonArray deckData = new JsonArray();
+        for (int i = 0; i < deckList.size(); i++) {
+            // Convert the card object to a JsonObject using Gson
+            Deck deck = deckList.get(i);
+
+            JsonObject deckObject = gson.toJsonTree(deck).getAsJsonObject();
+
+            // Add the card object to the cardData array
+            deckData.add(deckObject);
+        }
+        exportData.add("decks", deckData);
+
         try {
             saveDataToFile(saveFile, exportData);
 
@@ -413,6 +474,7 @@ public class JsonStorage extends Storage {
             logger.log(Level.WARNING, "Failed to save data to savedata.json" + absolutePath, e);
             throw new StorageSaveFailure(absolutePath);
         }
+
     }
 
     private void saveDataToFile(File file, JsonObject data) throws IOException {

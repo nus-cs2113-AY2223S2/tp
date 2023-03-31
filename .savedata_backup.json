@@ -1,21 +1,61 @@
 {
-  "deckName": "lky deck",
-  "numCards": 3,
   "cards": [
     {
-      "uuid": "98685c9e-91d5-43f6-8d94-e6c73a425f5f",
-      "question": "deck_test_card",
-      "answer": "nothing"
+      "uuid": {
+        "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
+      },
+      "question": "fdfds",
+      "answer": "ffffffghgg",
+      "tags": [
+        {
+          "uuid": "03658854-e5d4-468f-8c41-74917e5d4515"
+        }
+      ],
+      "decks": [
+        {
+          "uuid": "c83e08ad-e5b7-4812-9dd1-4b44504386ad"
+        }
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "uuid": {
+        "uuid": "03658854-e5d4-468f-8c41-74917e5d4515"
+      },
+      "tagName": "tag1",
+      "cards": [
+        {
+          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
+        }
+      ],
+      "decks": []
+    }
+  ],
+  "decks": [
+    {
+      "deckName": "deck1",
+      "deckUUID": {
+        "uuid": "c83e08ad-e5b7-4812-9dd1-4b44504386ad"
+      },
+      "cards": [
+        {
+          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
+        }
+      ],
+      "tags": []
     },
     {
-      "uuid": "b4ee4e97-21df-4459-8268-ac7f218cae7d",
-      "question": "tag_test_card",
-      "answer": "nothing"
-    },
-    {
-      "uuid": "463d973a-48d6-45fa-8db1-5aaf4ce19492",
-      "question": "deck_test_tag",
-      "answer": "nothing"
+      "deckName": "decktag",
+      "deckUUID": {
+        "uuid": "46f82128-0ee7-4f8c-baa3-e4ca255eeb45"
+      },
+      "cards": [],
+      "tags": [
+        {
+          "uuid": "03658854-e5d4-468f-8c41-74917e5d4515"
+        }
+      ]
     }
   ]
 }
