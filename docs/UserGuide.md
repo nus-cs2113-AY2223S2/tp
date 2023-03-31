@@ -471,7 +471,7 @@ Adds a ToDo task to the storage of Duck
 
 ```
 Alright, I have added this task: 
-			 [T][ ] todo (No priority established.)
+	[T][ ] todo (No priority established.)
 You now have 2 tasks in your list.
 ```
 
@@ -488,7 +488,7 @@ Adds a Deadline task to the storage of Duck
 
 ```
 Alright, I have added this task: 
-	   [D][ ] deadline (by: 2023-03-25 2359) (No priority established.)
+	[D][ ] deadline (by: 2023-03-25 2359) (No priority established.)
 You now have 3 tasks in your list.
 ```
 
@@ -519,7 +519,7 @@ Adds an Event task to the storage of Duck
 
 ```
 Alright, I have added this task: 
-		[E][ ] event (from: 2023-03-25 2359 to: 2023-03-26 1100) (No priority established.)
+	[E][ ] event (from: 2023-03-25 2359 to: 2023-03-26 1100) (No priority established.)
 You now have 5 tasks in your list.
 ```
 
@@ -534,7 +534,7 @@ Adds a RecurringEvent task to the storage of Duck
 
 ```
 Alright, I have added this task: 
-		[E][ ] new_event (from: 2000 to: 2300) (every MONDAY) (No priority established.)
+	[E][ ] new_event (from: 2000 to: 2300) (every MONDAY) (No priority established.)
 You now have 6 tasks in your list.
 ```
 
@@ -551,7 +551,7 @@ Adds a Class task to the storage of Duck
 
 ```
 Alright, I have added this task: 
-			 [THURSDAY][ ] CS2113: Bring laptop (from: 1100 to: 1200)
+	[THURSDAY][ ] CS2113: Bring laptop (from: 1100 to: 1200)
 You now have 1 class in your schedule.
 ```
 
