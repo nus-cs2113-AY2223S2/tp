@@ -1,11 +1,45 @@
 # User Guide
 
-## Introduction
+* **[1 Introduction](#1-introduction)**
+   * [1.1 What is SEP Helper](#11-what-is-sep-helper)
+   * [1.2 How to use this User Guide](#12-how-to-use-this-user-guide)
+* **[2 Quick Start](#2-quick-start)**
+* **[3 Features Overview](#3-features-overview)**
+* [3.1 Help Command](#31-help-command--help)
+   * [3.2 Modules](#32-modules)
+     * [3.2.1 List](#321-list--list-command)
+       * [3.2.1.1 List the Saved Modules](#3211-listing-modules-user-has-selected--list-current)
+       * [3.2.1.2 List all the Partner Universities](#3212-listing-out-pu-module-list--list-pu-abbreviationpu-index)
+       * [3.2.1.3 List the Modules from a Partner University](#3213-listing-out-all-partner-universities--list-pu)
+       * [3.2.1.4 List the Saved Modules from a Partner 
+University](#3214-listing-modules-user-has-selected-for-specific-partner-university--list-current-pu-abbreviation)
+     * [3.2.2 Add](#322-add)
+     * [3.2.3 Remove](#323-remove-user-selected-modules-from-list--remove)
+     * [3.2.4 Search](#324-search-by-nus-module-code--search)
+   * [3.3 Deadline](#33-deadlines)
+     * [3.3.1 List the Deadlines](#331-list-all-the-deadlines-saved--deadlinelist)
+     * [3.3.2 Add Deadlines](#332-add-a-new-deadline--deadlineadd)
+     * [3.3.3 Remove Deadlines](#333-remove-a-deadline-from-the-list--deadlineremove)
+   * [3.4 Budget Planner](#34-budget-planner--budget)
+     * [3.4.1 Edit the Budget](#341-budget---edits-the-budget)
+     * [3.4.2 Edit the Accommodation Cost](#342-accommodation---edits-the-accommodation-cost)
+     * [3.4.3 Edit the Airplane Ticket Cost](#343-airplane---edits-the-airplane-ticket-cost)
+     * [3.4.4 Edit the Food Cost](#344-food---edits-the-food-cost)
+     * [3.4.5 Edit the Entertainment Cost](#345-entertainment---edits-the-entertainment-cost)
+     * [3.4.6 View the Budget Plan](#346-view---views-the-entire-budget-plan)
+* **[4 FAQ](#4-faq)**
+* **[5 Command Summary](#5-command-summary)**
 
+---
+## 1 Introduction
+### 1.1 What is SEP Helper
 SEP Helper is a desktop application for Mechanical Engineering students, studying at the
 National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
+---
+### 1.2 How to Use this User Guide
 
-## Quick Start
+---
+## 2 Quick Start
 
 1. Ensure that you have Java 11 or above installed in your computer, if not proceed to download from the link:
    https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
@@ -13,16 +47,56 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 3. Double-click the file to start the app.
 4. Type the command in the terminal and press enter to execute it. E.g. entering `/help` will show the help page
 
+---
+## 3 Features Overview
 
-## Features Overview
-
-### Notes:
+#### Notes:
 * **Command words**:
   * Command words are not case-sensitive.
     * E.g. `eXIT` will be accepted as the `exit` command.
+    * 
+### 3.1 Help Command: `/help`
+Provides a list of all the commands and its format, along with the respective
+descriptions.
 
+Format: `/help`
 
-### List: `list` command
+Expected Outcome: A list of all the commands.
+
+Description of Outcome:
+```
+Here are the list of commands:
+LIST PU                          : Provides the list of Partner Universities available
+LIST [PU ABBRV]                  : Provides the list of all modules available in the specified Partner University
+LIST [PU INDEX]                  : Provides the list of all modules available in the specified Partner University
+                                   by index of LIST PU
+LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters
+                                  [FILTER] Format 1: mc == [num of MCs]
+                                  [FILTER] Format 2: [description] in name
+LIST CURRENT                     : Provides the list of modules that the user has added to his/her list of interest
+LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list of
+                                   list of interest for the specified PU
+ADD [PU ABBRV]/[MODULE CODE]     : Adds the specified module into user's current list of modules
+REMOVE [PU ABBRV]/ [INDEX]       : Removes the specified module by index from user's current list
+SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module
+/budget budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for his/her SEP trip
+/budget accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation cost
+                                   for his/her SEP trip
+/budget airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane
+                                   ticket cost for his/her SEP trip
+/budget food [AMOUNT]            : Allows the user to input/edit the total amount of food cost for his/her SEP trip
+/budget entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment
+                                   cost for his/her SEP trip
+/budget view                     : Provides an overview of the user's planned budget
+/deadline/list                   : Provides the list of deadlines the user has added
+/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own personalized deadlines
+                                    of the key dates for certain SEP requirements
+/deadline/remove [DEADLINE INDEX] : Allows the user to remove the specific deadline from the list
+EXIT                              : Exits the program
+```
+---
+### 3.2 Modules
+#### 3.2.1 List: `list` command
 
 All List commands start with `list`.
 1. List Current
@@ -31,7 +105,7 @@ All List commands start with `list`.
 4. List Current [PU Abbreviation/PU INDEX]
 
 ****
-#### 1. Listing modules user has selected: `List Current`
+##### 3.2.1.1 Listing modules user has selected: `List Current`
 
 Format: `list current`
 
@@ -71,7 +145,7 @@ ____________________________________________________________
 ```
 
 ****
-#### 2. Listing out PU Module List: `List [PU Abbreviation/PU INDEX]`
+##### 3.2.1.2 Listing out PU Module List: `List [PU Abbreviation/PU INDEX]`
 
 **PU Module List** - Get a list of all the modules provided by the specific PU </span>
 
@@ -100,7 +174,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 ****
-#### 3. Listing out all Partner Universities: `list pu`
+##### 3.2.1.3 Listing out all Partner Universities: `list pu`
 
 Format: `list pu`
 
@@ -119,7 +193,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 ****
-#### 4. Listing modules user has selected for specific Partner University: `List Current [PU Abbreviation]`
+##### 3.2.1.4 Listing modules user has selected for specific Partner University: `List Current [PU Abbreviation]`
 
 Format: `List Current [PU Abbreviation]`
 
@@ -140,8 +214,10 @@ maps to ----> [ME3122][Heat Transfer][4]
 ____________________________________________________________
 ```
 ****
+#### 3.2.2 Add
 
-### Remove user selected modules from list: `remove`
+---
+#### 3.2.3 Remove user selected modules from list: `remove`
 
 Format: `remove [PU ABBREVIATION]/[INDEX TO REMOVE]`
 
@@ -180,8 +256,7 @@ Tip: This command is best utilized by executing `list current [PU Abbreviation]`
 ****
 
 
-### Search by NUS module Code: `search`
-****
+#### 3.2.4 Search by NUS module Code: `search`
 Search for PU modules that can be mapped to the user's specific NUS module code.
 
 Format: `search [NUS MODULE CODE]`
@@ -221,14 +296,67 @@ ____________________________________________________________
 6. [M2795.00400][HIGH ENERGY THERMOFLUID DYNAMICS][0]
 
 ```
+---
+### 3.3 Deadlines
+Deadlines are tasks added by the user. There will be a due date for the task.
+If the task is due in 7 days, there will be a reminder shown along with the 
+welcome message when the program first runs.
+#### 3.3.1 List All the Deadlines Saved: `/deadline/list`
 
-### Budget Planner: `/budget`
+Provides the list of all the deadlines the user has added.
+
+Format: /deadline/list
+
+Expected Outcome:
+```
+List of Deadlines:
+____________________________________________________________
+1. Take passport photo [Due by: 01-03-2023]
+2. Submit documents to KU [Due by: 20-03-2023]
+____________________________________________________________
+```
+---
+#### 3.3.2 Add a New Deadline: `/deadline/add`
+Adds a new deadline to the list of saved deadlines.
+
+Format: `/deadline/add  [TASK] /by [DUE DATE]`
+
+:warning: Take note DUE DATE format is in DD-MM-YYYY
+
+Example of Usage: `/deadline/add Take passport photo /by 01-03-2023`
+
+Expected Outcome: Adds a task named: Take passport photo. It is set to due-by
+01-03-2023. 
+
+Description of Outcome:
+```
+This deadline has been added to the current deadlines
+____________________________________________________________
+```
+---
+#### 3.3.3 Remove a Deadline from the List: `/deadline/remove`
+User deletes a deadline from the list of saved deadlines by index.
+
+Format: `/deadline/remove [INDEX]`
+
+Example of Usage: `/deadline/remove 1`
+
+Expected Outcome: Deletes the first index from the list of saved deadlines
+
+Description of Outcome:
+```
+This module has been deleted from the current module list!
+____________________________________________________________
+```
+---
+
+### 3.4 Budget Planner: `/budget`
 
 All Budget Planner commands start with /budget.
 
 ****
 
-#### `budget` - Edits the budget
+#### 3.4.1 `budget` - Edits the budget
 
 Edits the current total budget to a new amount the user plans to spend on his/her SEP trip
 
@@ -237,10 +365,10 @@ Format: `/budget budget [AMOUNT]`
 - The `AMOUNT` is the user's input budget for his/her SEP trip in SGD.
 - Initial budget is set to 0 when user has not set any budget before.
 
-Example of usage:
+Example of Usage:
 `/budget budget 2000`
 
-Expected outcome:
+Expected Outcome:
 
 - Changes the budget `AMOUNT` to 2000 SGD.
 - Shows a budget changed successful message to let the user check the budget set corresponds to his input.
@@ -255,7 +383,7 @@ ____________________________________________________________
 
 ****
 
-#### `accommodation` - Edits the accommodation cost
+#### 3.4.2 `accommodation` - Edits the accommodation cost
 
 Edits the current accommodation planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -282,7 +410,7 @@ ____________________________________________________________
 
 ****
 
-#### `airplane` - Edits the Airplane Ticket cost
+#### 3.4.3 `airplane` - Edits the Airplane Ticket cost
 
 Edits the current Airplane Ticket planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -309,7 +437,7 @@ ____________________________________________________________
 
 ****
 
-#### `Food` - Edits the Food cost
+#### 3.4.4 `Food` - Edits the Food cost
 
 Edits the current Food planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -336,7 +464,7 @@ ____________________________________________________________
 
 ****
 
-#### `Entertainment` - Edits the Entertainment cost
+#### 3.4.5 `Entertainment` - Edits the Entertainment cost
 
 Edits the current Entertainment planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -363,7 +491,7 @@ ____________________________________________________________
 
 ****
 
-#### `View` - Views the entire budget plan
+#### 3.4.6 `View` - Views the entire budget plan
 
 Provides an overview of what the budget consists of.
 
@@ -393,14 +521,15 @@ Entertainment cost: 2000
 Surplus/Deficit: -6000
 ____________________________________________________________
 ```
-
-## FAQ
+---
+## 4 FAQ
 
 **Q**: How do I transfer my data to another computer?
 
 **A**: {your answer here}
 
-## Command Summary
+---
+## 5 Command Summary
 
 {Give a 'cheat sheet' of commands here}
 
