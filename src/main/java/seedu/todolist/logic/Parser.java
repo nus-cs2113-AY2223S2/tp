@@ -83,7 +83,6 @@ public class Parser {
         return arguments;
     }
 
-    //@@author ERJUNZE
     /**
      * Parses the given command string into a command that can be executed.
      *

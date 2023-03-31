@@ -7,8 +7,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.StringJoiner;
+import java.util.TreeSet;
 import java.util.function.Predicate;
 
 public class Task implements Serializable {
@@ -32,12 +32,12 @@ public class Task implements Serializable {
     private String description;
     private String email;
     private LocalDateTime deadline;
-    private HashSet<String> tags;
+    private TreeSet<String> tags;
     private boolean isDone = false;
     private int repeatDuration;
     private int priority = 1;
 
-    public Task(int id, String description, LocalDateTime deadline, String email, HashSet<String> tags,
+    public Task(int id, String description, LocalDateTime deadline, String email, TreeSet<String> tags,
                 int repeatDuration, int priority) {
         this.id = id;
         this.description = description;
@@ -62,14 +62,7 @@ public class Task implements Serializable {
         StringJoiner infoString = new StringJoiner(System.lineSeparator());
         infoString.add("ID: " + id);
         infoString.add("Description: " + description);
-        if (priority == 1) {
-            infoString.add("Priority: Low");
-        } else if (priority == 2) {
-            infoString.add("Priority: Medium");
-        } else{
-            infoString.add("Priority: High");
-        }
-
+        infoString.add("Priority: " + FormatterUtil.getPriorityAsString(priority));
         if (deadline != null) {
             infoString.add("Due: " + FormatterUtil.getDeadlineAsString(deadline));
         }
@@ -97,7 +90,7 @@ public class Task implements Serializable {
         return this.deadline;
     }
 
-    public HashSet<String> getTags() {
+    public TreeSet<String> getTags() {
         return tags;
     }
 
@@ -108,6 +101,7 @@ public class Task implements Serializable {
     public int getRepeatDuration() {
         return this.repeatDuration;
     }
+
     public int getPriority() {
         return this.priority;
     }
@@ -137,23 +131,13 @@ public class Task implements Serializable {
         return toString();
     }
 
-    public String setTags(HashSet<String> tags) {
+    public String setTags(TreeSet<String> tags) {
         this.tags = tags;
         return toString();
     }
 
     public String setPriority(int priority){
         this.priority = priority;
-        return toString();
-    }
-
-    public String addTags(HashSet<String> tags) {
-        this.tags.addAll(tags);
-        return toString();
-    }
-
-    public String deleteTags(HashSet<String> tags) {
-        this.tags.removeAll(tags);
         return toString();
     }
 

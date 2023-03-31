@@ -1,6 +1,7 @@
 # NUS To-Do List
 
-**NUS To-Do List** helps busy NUS students keep track of all the tasks they have to do.
+With the transition to Canvas, the most important feature of LumiNUS’s deadline reminders is gone! **NUS To-Do List** aims to
+bring an application to keep you aware of your deadlines and not miss them.
 
 Useful links:
 * [User Guide](UserGuide.md)

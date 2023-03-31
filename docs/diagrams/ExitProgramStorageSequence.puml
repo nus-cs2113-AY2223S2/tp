@@ -40,15 +40,17 @@ activate Ui
 Ui --> ExitCommand
 deactivate Ui
 ExitCommand --> ToDoListManager
+deactivate ExitCommand
 ToDoListManager -> Storage: saveData(taskList)
 activate Storage
 Storage --> ToDoListManager
 deactivate Storage
 ToDoListManager -> ExitCommand: shouldExit()
+activate ExitCommand
 ExitCommand --> ToDoListManager: true
 deactivate ExitCommand
 destroy ExitCommand
-ToDoListManager --> User : Notify user that program is exiting
+ToDoListManager --> User
 deactivate ToDoListManager
 destroy ToDoListManager
 @enduml
