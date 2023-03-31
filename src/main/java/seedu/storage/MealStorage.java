@@ -1,6 +1,7 @@
 package seedu.storage;
 
 import java.io.BufferedReader;
+import java.io.File;
 // import java.io.File;
 // import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -65,14 +66,11 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         ArrayList<Food> foods;
         MealTypes mealType;
 
-        // try {
-        //     br = new BufferedReader(new FileReader(filePath));
-        // } catch (FileNotFoundException e) {
-        //     File newFile = new File(filePath);
-        //     newFile.createNewFile();
-        //     br = new BufferedReader(new FileReader(filePath));
-        //     // LogFileHandler.logWarning("Meal Storage was not found!");
-        // }
+        File storageFile = new File(filePath);
+        if (!storageFile.getParentFile().exists()) {
+            storageFile.getParentFile().mkdirs();
+            storageFile.createNewFile();
+        }
 
         br = new BufferedReader(new FileReader(filePath));
 

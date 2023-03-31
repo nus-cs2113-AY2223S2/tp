@@ -1,7 +1,5 @@
-Error loading Meal Storage
 User File not found. Creating new user file...
-Error loading User Storage
-Error loading Exercise Storage
+Exercise File not found. Creating new exercise file...
 ------------------------------------------------------------
 Hello! Welcome to
  _      _  __  _______             _              

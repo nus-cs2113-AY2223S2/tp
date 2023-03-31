@@ -3,7 +3,7 @@
 ---
 ### Acknowledgements
 
-1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/tp)
+1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/ip)
 ---
 
 ## Design & implementation

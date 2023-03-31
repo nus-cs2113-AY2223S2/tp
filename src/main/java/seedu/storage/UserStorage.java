@@ -43,6 +43,7 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
         float height;
         int age;
         String gender;
+
         try {
             // parsing a CSV file into BufferedReader class constructor
             BufferedReader br = new BufferedReader(new FileReader(filePath));

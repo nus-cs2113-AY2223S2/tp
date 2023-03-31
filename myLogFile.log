@@ -1,2 +1,9 @@
-Mar 31, 2023 12:24:20 PM seedu.logger.LogFileHandler logInfo
+Mar 31, 2023 9:06:04 PM seedu.logger.LogFileHandler logInfo
+INFO: Lunch was consumed on 31/3/2023
+Total Calories are: 416.90000009536743
+Here are the foods you ate:
+1) Plain Chicken Rice from Chicken Rice
+2) White Rice from Chicken Rice
+
+Mar 31, 2023 9:09:07 PM seedu.logger.LogFileHandler logInfo
 INFO: User exited the programme.
