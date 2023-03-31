@@ -1,55 +1,21 @@
 {
   "deckName": "lky deck",
-  "numCards": 7,
+  "numCards": 3,
   "cards": [
     {
-      "uuid": "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454",
-      "question": "is akhil a dirty commie",
-      "answer": "yes",
-      "tags": [],
-      "decks": []
+      "uuid": "98685c9e-91d5-43f6-8d94-e6c73a425f5f",
+      "question": "deck_test_card",
+      "answer": "nothing"
     },
     {
-      "uuid": "00000000-0000-0000-0000-000000000001",
-      "question": "why do other groups keep attackin ian",
-      "answer": "he is not a dirty commie",
-      "tags": [],
-      "decks": []
+      "uuid": "b4ee4e97-21df-4459-8268-ac7f218cae7d",
+      "question": "tag_test_card",
+      "answer": "nothing"
     },
     {
-      "uuid": "fbfda5e0-7816-493a-a99e-5da006315d17",
-      "question": "how is this",
-      "answer": "dunno",
-      "tags": [],
-      "decks": []
-    },
-    {
-      "uuid": "5f8a7558-40dc-4e5a-8d3d-44678f3e01f8",
-      "question": "test_deck_creation",
-      "answer": "deck_creation_passed",
-      "tags": [],
-      "decks": []
-    },
-    {
-      "uuid": "6232a5eb-f3d1-4449-8e0c-8f82187e5fc8",
-      "question": "deck test",
-      "answer": "deck test",
-      "tags": [],
-      "decks": []
-    },
-    {
-      "uuid": "da243c73-4da1-4f24-b3aa-7a5a7d96d2b8",
-      "question": "rename_checker",
-      "answer": "rename_checker",
-      "tags": [],
-      "decks": []
-    },
-    {
-      "uuid": "2ac3997b-cfe7-4773-93aa-e6594963e4f2",
-      "question": "test",
-      "answer": "test",
-      "tags": [],
-      "decks": []
+      "uuid": "463d973a-48d6-45fa-8db1-5aaf4ce19492",
+      "question": "deck_test_tag",
+      "answer": "nothing"
     }
   ]
 }

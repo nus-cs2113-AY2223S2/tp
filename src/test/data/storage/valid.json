@@ -1,16 +1,30 @@
 {
-  "deckName": "lky deck",
-  "numCards": 2,
   "cards": [
     {
-      "uuid": "00000000-0000-0000-0000-000000000000",
-      "question": "is akhil a dirty commie",
-      "answer": "yes"
+      "uuid": {
+        "uuid": "c2c61475-df53-4656-94c4-c2e36933d359"
+      },
+      "question": "fdff",
+      "answer": "rerrr",
+      "tags": [],
+      "decks": []
     },
     {
-      "uuid": "00000000-0000-0000-0000-000000000001",
-      "question": "why do other groups keep attackin ian",
-      "answer": "he is not a dirty commie"
+      "uuid": {
+        "uuid": "3b86b31c-6289-4716-a5c6-5afd43b9bbd3"
+      },
+      "question": "fdf",
+      "answer": "ffffffffff",
+      "tags": [
+        {
+          "uuid": "d480b453-f900-471b-8f1d-9e74504d5cf7"
+        }
+      ],
+      "decks": [
+        {
+          "uuid": "ef2df71c-b645-4bcf-a8b7-c5d2a0349efa"
+        }
+      ]
     }
   ]
 }
