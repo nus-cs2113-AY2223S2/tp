@@ -24,12 +24,12 @@ public class UserUtility {
         return user;
     }
 
-    public static void printScheduleTable(List<Schedule> events, int semesterWeek){
-        System.out.println("Showing schedule for semester " +
-                UserUtility.getUser().getSemester() + " and week " + semesterWeek);
+    public static void printScheduleTable(List<Schedule> events, int semesterWeek) {
+        System.out.println("Showing schedule for semester " + UserUtility.getUser().getSemester()
+                + " and week " + semesterWeek);
 
-        Ui.listTask((ArrayList<Schedule>) events.stream().filter(e -> e.getEndTime()
-                == null).collect(Collectors.toList()));
+        Ui.listTask((ArrayList<Schedule>) events.stream().filter(e -> e.getEndTime() == null)
+                .collect(Collectors.toList()));
 
         events = events.stream().filter(e -> e.getEndTime() != null).collect(Collectors.toList());
 
@@ -45,7 +45,7 @@ public class UserUtility {
         if (currentWeek >= 7) {
             currentWeek++;
         }
-        
+
         // get the start and end dates for the current week
         LocalDate weekStartDate = semesterStartDate.plusWeeks(currentWeek - 1);
         LocalDate weekEndDate = weekStartDate.plusDays(6);
@@ -69,7 +69,7 @@ public class UserUtility {
                 Event now = (Event) event;
                 ArrayList<Event> recurEventInWeek = eventInThisWeek(now, weekStartDate, weekEndDate);
                 eventToShow.addAll(recurEventInWeek);
-            } 
+            }
             eventToShow.add(event);
         }
 
@@ -77,63 +77,33 @@ public class UserUtility {
         LocalDateTime time = LocalDateTime.of(weekStartDate, start);
         int count = 0;
         while (count++ <= 32) {
-            if(time.toLocalTime().equals(LocalTime.of(0, 0))){
+            if (time.toLocalTime().equals(LocalTime.of(0, 0))) {
                 System.out.print(String.format("%-10s|", end.format(DateTimeFormatter.ofPattern("HH:mm"))));
                 time = time.minusMinutes(1).plusDays(1);
             } else {
                 System.out.print(String.format("%-10s|", time.format(DateTimeFormatter.ofPattern("HH:mm"))));
             }
-            for (DayOfWeek day : DayOfWeek.values()) {
-                boolean found = false;
-                for (Schedule event : eventToShow) {
-                    LocalDateTime startDateTime = event.getStartTime();
-                    LocalDateTime endDateTime = event.getEndTime();
 
-                    if (startDateTime.toLocalTime().getMinute() > 0
-                            && startDateTime.toLocalTime().getMinute() < 30) {
-                        startDateTime = LocalDateTime.of(startDateTime.toLocalDate(),
-                                LocalTime.of(startDateTime.getHour(), 0));
-                    }
-                    if (endDateTime.toLocalTime().getMinute() > 30
-                            && startDateTime.toLocalTime().getMinute() <= 59) {
-                        endDateTime = LocalDateTime.of(endDateTime.toLocalDate(),
-                                LocalTime.of(endDateTime.getHour() + 1, 0));
-                    }
+            drawEventThisWeek(eventToShow, time, weekStartDate, weekEndDate);
 
-                    if (time.getDayOfWeek() == day && isValidInterval(time, startDateTime, endDateTime)
-                            && time.toLocalDate().isAfter(weekStartDate.minusDays(1))
-                            && time.toLocalDate().isBefore(weekEndDate.plusDays(1))) {
-                        System.out.print(String.format("%-15s|",
-                                event.getDescription().substring(0, Math.min(event.getDescription().length(), 15))));
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    System.out.print(String.format("%-15s|", ""));
-                }
-                time = time.plusDays(1);
-            }
             System.out.println();
             System.out.print(String.format("%-10s+", ""));
             for (int i = 0; i < DayOfWeek.values().length; i++) {
                 System.out.print(String.format("%-15s+", "---------------"));
             }
             System.out.println();
-            time = LocalDateTime.of(weekStartDate, start.plusMinutes(count*30));
+            time = LocalDateTime.of(weekStartDate, start.plusMinutes(count * 30));
         }
         System.out.println();
         Ui.printDash();
     }
-    
-    //add -e exercise -sd 2023/03/01 -st 10:00 -ed 2023/03/01 -et 11:00 -r 3 D
+
     public static ArrayList<Event> eventInThisWeek(Event curEvent, LocalDate weekStartDate,
             LocalDate weekEndDate) {
         ArrayList<Event> events = new ArrayList<Event>();
 
         long timeToStart = weekStartDate.toEpochDay() - curEvent.getStartTime().toLocalDate().toEpochDay();
         int recurTime = curEvent.getActualInterval();
-        int weeks = (int) timeToStart / recurTime;
         int remdays = (int) timeToStart % recurTime;
 
         LocalDateTime stTime = curEvent.getStartTime();
@@ -159,7 +129,44 @@ public class UserUtility {
         return events;
     }
 
-    private static boolean isValidInterval(LocalDateTime time, LocalDateTime startTime, LocalDateTime endTime) {
+    private static void drawEventThisWeek(ArrayList<Schedule> eventToShow, LocalDateTime time,
+            LocalDate weekStartDate, LocalDate weekEndDate) {
+
+        for (DayOfWeek day : DayOfWeek.values()) {
+            boolean found = false;
+            for (Schedule event : eventToShow) {
+                LocalDateTime startDateTime = event.getStartTime();
+                LocalDateTime endDateTime = event.getEndTime();
+
+                if (startDateTime.toLocalTime().getMinute() > 0
+                        && startDateTime.toLocalTime().getMinute() < 30) {
+                    startDateTime = LocalDateTime.of(startDateTime.toLocalDate(),
+                            LocalTime.of(startDateTime.getHour(), 0));
+                }
+                if (endDateTime.toLocalTime().getMinute() > 30
+                        && startDateTime.toLocalTime().getMinute() <= 59) {
+                    endDateTime = LocalDateTime.of(endDateTime.toLocalDate(),
+                            LocalTime.of(endDateTime.getHour() + 1, 0));
+                }
+
+                if (time.getDayOfWeek() == day && isValidInterval(time, startDateTime, endDateTime)
+                        && time.toLocalDate().isAfter(weekStartDate.minusDays(1))
+                        && time.toLocalDate().isBefore(weekEndDate.plusDays(1))) {
+                    System.out.print(String.format("%-15s|", event.getDescription().substring(0,
+                            Math.min(event.getDescription().length(), 15))));
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                System.out.print(String.format("%-15s|", ""));
+            }
+            time = time.plusDays(1);
+        }
+    }
+
+    private static boolean isValidInterval(LocalDateTime time, LocalDateTime startTime,
+            LocalDateTime endTime) {
         return time.equals(startTime) || (time.isAfter(startTime) && time.isBefore(endTime))
                 || time.equals(endTime);
     }

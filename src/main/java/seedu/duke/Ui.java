@@ -141,9 +141,9 @@ public class Ui {
         printDash();
     }
 
-    public static void printETOmitted() {
+    public static void printEDOmitted() {
         printDash();
-        System.out.println("(since no ending date information is given, ending time is omitted)");
+        System.out.println("(since no specific ending time information is given, ending date is omitted)");
     }
 
     public static void getSemester() {
