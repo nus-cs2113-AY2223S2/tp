@@ -19,15 +19,18 @@ activate Quadratic #FFBBBB
 deactivate Quadratic
 Quadratic -> Quadratic: printAnswer()
 activate Quadratic #FFBBBB
+activate UI
 Quadratic -> UI: Ui.printQuadraticAnswer()
 activate UI
+UI --> Quadratic
 deactivate UI
 deactivate Quadratic
 opt Exceptions
 Quadratic -> UI: printQuadraticFormatError()
 activate UI
+UI --> Quadratic
 deactivate UI
 end opt
 deactivate Quadratic
-Quadratic -> Command
+Quadratic --> Command
 @enduml

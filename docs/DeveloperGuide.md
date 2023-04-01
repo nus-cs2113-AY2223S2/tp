@@ -31,16 +31,26 @@ Below is an  example of how it would be called.
 Quadratic. 2x^2 + 3x + 1
 ```
 Step 1. Parser class would split the user input into 2 parts, command and toDo. Command would be `Quadratic`,
-thus `executeCommand` would trigger `quadraticSolver`. toDo would be `2x^2 + 3x + 1`.
+thus `executeCommand` in the Command class would trigger `quadraticSolver`. `toDo` would be `2x^2 + 3x + 1`.
 
 Step 2. The general formula of quadratic equations is `ax^2 + bx + c`, thus `findA`, `findB`, `findC`
 would identify a, b and c from toDo.
+- `findA` takes in `toDo` and uses substring function to isolate a from the rest of the equation. It would thus return a as
+a `Double` data type.
+- `findB` takes in `toDo` and uses substring function to isolate b and its sign(+/-) from the rest of the equation. It would 
+thus return b as a `Double` data type.
+- `findC` takes in `toDo` and uses substring function to isolate c and its sign(+/-) from the rest of the equation. 
+It would thus return c as a `Double` data type.
 
-Step 3. To solve the quadratic equation, `quadraticFormula` is called with a, b and c as parameters. The output would be
-a ArrayList of Doubles that contain 2 values, the possible values of x.
+Step 3. To solve the quadratic equation, `quadraticFormula(a,b,c)` is called with a, b and c as parameters. 
+- The parameters are put into the equation `x = (-b±√(b²-4ac))/(2a)`. The output would be an ArrayList of Doubles that contains 2 values which 
+are the possible values of x. 
+- There is a possibility that the x values are imaginary, in this case, the ArrayList would simply store them as Nan values.
 
-Step 4. `printAnswer` is then called which would call upon the `UI` class's method: `printQuadraticAnswer`. This would output
-the two x values.
+Step 4. Then, `printAnswer` is called which would call upon the `UI` class's method: `printQuadraticAnswer(ArrayList<Double>)`.
+- If the ArrayList contains NaN values, it would print `x is imaginary.`
+- If the ArrayList contains Double data types, then it would print `x1 = 1st Answer` and `x2 = 2nd Answer`.
+
 
 Step 5. If any exceptions are caught in the above steps, `printQuadraticFormulaError` would be called from UI to show an error message
 to the user.
@@ -330,11 +340,12 @@ have to search for different tools online.
 
 ## User Stories
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
-
+| Version | As a ...                                | I want to ...                         | So that I can ...                                                                      |
+|---------|-----------------------------------------|---------------------------------------|----------------------------------------------------------------------------------------|
+| v1.0    | student studying Linear Algebra         | be able to check my answers for Matrix multiplications | ensure that the method I am using for manual calculations is correct                   |
+| v1.0    | student overwhelmed by math information | be able to store custom notes         | refer to them whenever I want to refresh my memory                                     |
+| v1.0    | student studying Signals and Systems    | be able to find the characteristics of trigo graphs easily | save time when doing my tutorials and not have to worry about the tedious calculations |
+| v2.0    | secondary school maths student          | be able to solve quadratic equations  | complete my homework as fast as possible and as correcetly as possible                 |
 ## Non-Functional Requirements
 
 * Notes can be ported when program starts on a new device.
@@ -353,4 +364,9 @@ walked is out of scope.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+- Download the latest release of BadMaths [here](https://github.com/AY2223S2-CS2113-F10-2/tp/releases).
+- Save the java file to a new folder.
+- Open command prompt by typing `cmd` in the Windows search bar.
+- Navigate to the folder via `cd "folder path"`. (eg. `cd C:\Users\your_name\Desktop\BadMaths`).
+- Type `java -jar Badmaths.jar` to run BadMaths.
+- Follow the `User Guide` to begin testing.
