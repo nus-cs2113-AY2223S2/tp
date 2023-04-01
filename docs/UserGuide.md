@@ -1,4 +1,26 @@
 # User Guide
+<!-- TOC -->
+* [User Guide](#user-guide)
+  * [Introduction](#introduction)
+  * [Quick Start](#quick-start)
+  * [Features](#features)
+    * [Adding an entry: `add`](#adding-an-entry--add)
+    * [Listing all expenses and incomes: `list`](#listing-all-expenses-and-incomes--list)
+    * [Updating an entry: `edit`](#updating-an-entry--edit)
+    * [Setting currency to be converted: `set currency`](#setting-currency-to-be-converted--set-currency)
+    * [Unset currency to be converted: `unset currency`](#unset-currency-to-be-converted--unset-currency)
+    * [Finding an entry: `find`](#finding-an-entry--find)
+    * [Showing the balance: `balance`](#showing-the-balance--balance)
+    * [Deleting an entry: `delete`](#deleting-an-entry--delete)
+    * [Clear entire income list: `clear expense`](#clear-entire-income-list--clear-expense)
+    * [Clear entire expense list: `clear income`](#clear-entire-expense-list--clear-income)
+    * [Clear entire both income and expense lists: `clear all`](#clear-entire-both-income-and-expense-lists--clear-all)
+    * [Set a target for balance of finances: `add target`](#set-a-target-for-balance-of-finances--add-target)
+    * [Finding balance of finances: `balance`](#finding-balance-of-finances--balance)
+    * [View help: `help`](#view-help--help)
+    * [Saving and loading of data](#saving-and-loading-of-data)
+  * [Command Summary (Alphabetical Order)](#command-summary--alphabetical-order-)
+<!-- TOC -->
 
 ## Introduction
 
@@ -17,6 +39,16 @@ java -jar tp.jar
 ```
 
 6. If successful, the following greeting should appear:
+<br> For first time users:
+```
+Unfortunately, income list file can't be found. I'll make a new one!
+Unfortunately, expense list can't be found. I'll make a new one!
+    ____________________________________________________________
+    Hello! I'm ChChing.
+    What can I do for you?
+    ____________________________________________________________
+```
+<br> For current users:
 
 ```
     ____________________________________________________________
@@ -32,6 +64,7 @@ java -jar tp.jar
 ### Adding an entry: `add`
 
 Creates a new entry for expenses or income, with respective input formats.
+<br> Income and Expense values can only be at most 1000000.
 
 Format:
 <br>`add expense /c CATEGORY /de DESCRIPTION /da DATE /v VALUE`
@@ -62,7 +95,7 @@ Format:
 Edit an existing expense/income that is currently in the list.
 
 Format:
-<br> `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
+<br> `edit expense /in INDEX [c/ CATEGORY] [de/ DESCRIPTION] [da/ DATE] [v/ VALUE]`
 <br> `edit income /in INDEX [de/DESCRIPTION] [da/DATE] [v/VALUE]`
 <br> where [] indicates optional fields.
 
@@ -127,13 +160,6 @@ Example of usage:
 <br> `find /c expense /k beef`
 <br> `find /c income /k salary`
 
-### Showing the balance: `balance`
-
-Shows users the balance he has after calculating the difference of income and expense.
-
-Format:
-<br> `balance`
-
 ### Deleting an entry: `delete`
 
 Remove an entry from the expense/income list.
@@ -151,7 +177,7 @@ Example of usage:
 <br>`delete expense /in 1`
 <br>`delete income /in 2`
 
-### Clear entire income list: `clear expense`
+### Clear entire income list: `clear income`
 
 Clear the entire list of incomes.
 
@@ -172,19 +198,19 @@ Clear the entire list of incomes and expenses.
 Format:
 <br> `clear all`
 
-### Set a target for balance of finances: `add target`
+### Set a target for balance of finances: `set target`
 
 Allows users to set a target for their balance.
 
 Format:
-<br> `add target /v VALUE`
+<br> `set target /v VALUE`
 
 Use case:
 
-- VALUE is more than or equal to zero
+- VALUE ranges from negative to postive
 
 Example of usage:
-<br> `add target /v 350`
+<br> `set target /v 350`
 
 ### Finding balance of finances: `balance`
 
@@ -200,27 +226,35 @@ Shows basic commands executable by the program and the use format for the comman
 Format:
 <br> `help`
 
+### Exit: `exit`
+Exit the program
+
+Format:
+<br> `exit`
 ### Saving and loading of data
 
 Record entries are saved in `data/chching.txt` file. This file is updated upon exit.
 When reading from the file, entries for income and expenses are stored in their respective arrayList.
 
-## Command Summary
+## Command Summary (Alphabetical Order)
 
 - Add Expense: `add expense /c CATEGORY /de DESCRIPTION /da DATE /v VALUE`
 - Add Income: `add income /de DESCRIPTION /da DATE /v VALUE`
-- List Records: `list`
-- List Expenses: `list expense`
-- List Incomes: `list income`
-- Edit income list: `edit income /i INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`
-- Edit expense list: `edit expense /i INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
-- Find entry: `find income /c CATEGORY /k DESCRIPTION`
-- Delete Expense: `delete expense /in INDEX`
-- Delete Income: `delete income /in INDEX`
 - Clear income list: `clear income`
 - Clear expense list: `clear expense`
 - Clear both income and expense lists: `clear all`
-- Set Target: `add target /v Value`
+- Delete Expense: `delete expense /in INDEX`
+- Delete Income: `delete income /in INDEX`
+- Edit income list: `edit income /i INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`
+- Edit expense list: `edit expense /i INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
+- Exit: `exit`
+- Find entry: `find income /c CATEGORY /k DESCRIPTION`
+- List Records: `list`
+- List Expenses: `list expense`
+- List Incomes: `list income`
+- Set Target: `set target /v Value`
 - Show Target: `show target`
 - Show Balance: `balance`
+- Set Currency: `set currency /cr CURRENCY`
 - Show help: `help`
+- Unset Currency: `unset currency /cr CURRENCY`

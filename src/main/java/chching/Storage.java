@@ -51,7 +51,7 @@ public class Storage {
             reader.close();
 
         } catch (FileNotFoundException e) {
-            System.out.println("Unfortunately, file can't be found. I'll make a new one!");
+            System.out.println("Unfortunately, income list file can't be found. I'll make a new one!");
         }
 
         return incomes;
@@ -79,7 +79,7 @@ public class Storage {
             reader.close();
 
         } catch (FileNotFoundException e) {
-            System.out.println("Unfortunately, file can't be found. I'll make a new one!");
+            System.out.println("Unfortunately, expense list can't be found. I'll make a new one!");
         }
 
         return expenses;

@@ -126,7 +126,7 @@ public class Parser {
                 command = new ClearAllCommand();
                 ui.showListCleared();
                 break;
-            case "add target":
+            case "set target":
                 Target target = TargetParser.parseTarget(argumentsByField);
                 command = new AddTargetCommand(target);
                 ui.showTargetAdded();
