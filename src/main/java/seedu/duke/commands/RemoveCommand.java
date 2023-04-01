@@ -96,7 +96,6 @@ public class RemoveCommand extends Command {
         }
         switch (userConfirmation.toUpperCase()) {
         case "Y":
-            String itemName = itemToRemove.getName().toLowerCase();
             String upcCode = itemToRemove.getUpc();
             String category = itemToRemove.getCategory();
             int i = itemInventory.indexOf(itemToRemove);

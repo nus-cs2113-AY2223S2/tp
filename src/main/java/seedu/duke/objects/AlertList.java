@@ -1,4 +1,5 @@
 package seedu.duke.objects;
+
 import seedu.duke.utils.Ui;
 
 import java.util.HashMap;
@@ -16,8 +17,9 @@ public class AlertList {
     }
 
     public int getTotalAlertNumber() {
-        return  minAlertUpcs.size() + maxAlertUpcs.size();
+        return minAlertUpcs.size() + maxAlertUpcs.size();
     }
+
     public void setMinAlertUpcs(String upc, int min) {
         this.minAlertUpcs.put(upc, min);
     }
@@ -28,16 +30,12 @@ public class AlertList {
 
     public void checkAlerts(String upc, String name, int currentQuantity) {
 
-        if (getMinAlertUpcs().containsKey(upc)) {
-            if (getMinAlertUpcs().get(upc) > currentQuantity) {
-                Ui.printMinAlertWarning(name, getMinAlertUpcs().get(upc));
-            }
+        if (getMinAlertUpcs().containsKey(upc) && (getMinAlertUpcs().get(upc) > currentQuantity)) {
+            Ui.printMinAlertWarning(name, getMinAlertUpcs().get(upc));
         }
 
-        if (getMaxAlertUpcs().containsKey(upc)) {
-            if (getMaxAlertUpcs().get(upc) < currentQuantity) {
-                Ui.printMaxAlertWarning(name, getMaxAlertUpcs().get(upc));
-            }
+        if (getMaxAlertUpcs().containsKey(upc) && (getMaxAlertUpcs().get(upc) < currentQuantity)) {
+            Ui.printMaxAlertWarning(name, getMaxAlertUpcs().get(upc));
         }
     }
 

@@ -142,7 +142,6 @@ public class Storage {
             }
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(Types.ALERTFILEPATH));
-            int counter = 0;
 
             for (Map.Entry<String, Integer> entry : alertList.getMinAlertUpcs().entrySet()) {
                 String key = entry.getKey();
@@ -218,12 +217,18 @@ public class Storage {
     public static Types.FileHealth checkFileValid(final String path, String validRow) {
         File file = new File(path);
 
+        // Check if directory exists
         if (!file.exists()) {
             return Types.FileHealth.MISSING;
         }
 
         try {
             Scanner scanner = new Scanner(file);
+            // Check if file is empty
+            if (!scanner.hasNextLine()) {
+                scanner.close();
+                return Types.FileHealth.EMPTY;
+            }
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 Pattern pattern = Pattern.compile(validRow);
@@ -248,35 +253,26 @@ public class Storage {
      *
      * @return String that will be printed which indicates the state of the file (MISSING/CORRUPT/OK/UNKNOWN)
      */
-    public static String inventoryDataFileExist() {
-        String path = Types.SESSIONFILEPATH;
-        Types.FileHealth fileHealth = checkFileValid(path, VALID_DATAROW_REGEX);
+    public static String checkDataFileExist(boolean isInventoryData) {
+        Types.FileHealth fileHealth;
+        if (isInventoryData) {
+            fileHealth = checkFileValid(Types.SESSIONFILEPATH, VALID_DATAROW_REGEX);
+        } else {
+            fileHealth = checkFileValid(Types.ALERTFILEPATH, VALID_ALERT_REGEX);
+        }
 
         switch (fileHealth) {
         case OK:
             return "VALID";
         case CORRUPT:
-            return "CORRUPTED";
+            return "CORRUPTED (Please delete the file or fix it manually)";
         case MISSING:
             return "MISSING (Will be created if AutoSave is TRUE)";
+        case EMPTY:
+            return "EMPTY";
         default:
             return "UNKNOWN";
         }
     }
 
-    public static String alertDataFileExist() {
-        String path = Types.ALERTFILEPATH;
-        Types.FileHealth fileHealth = checkFileValid(path, VALID_ALERT_REGEX);
-
-        switch (fileHealth) {
-        case OK:
-            return "VALID";
-        case CORRUPT:
-            return "CORRUPTED";
-        case MISSING:
-            return "MISSING (Will be created if AutoSave is TRUE)";
-        default:
-            return "UNKNOWN";
-        }
-    }
 }

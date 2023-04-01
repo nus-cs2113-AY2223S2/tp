@@ -9,9 +9,6 @@ import seedu.duke.objects.Inventory;
 public class SessionManager {
     private static boolean isAutoSaveActive = true;
 
-    public SessionManager() {
-    }
-
     public static void writeSession(final Inventory inventory) {
         Storage.writeCSV(inventory);
     }
@@ -37,11 +34,11 @@ public class SessionManager {
     }
 
     public static String inventoryDataFileExist() {
-        return Storage.inventoryDataFileExist();
+        return Storage.checkDataFileExist(true);
     }
 
     public static String alertDataFileExist() {
-        return Storage.alertDataFileExist();
+        return Storage.checkDataFileExist(false);
     }
 
 

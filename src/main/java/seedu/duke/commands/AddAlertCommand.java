@@ -72,17 +72,11 @@ public class AddAlertCommand extends Command  {
     }
 
     private boolean isMinValueValid(final int minStock, final String upc, final HashMap<String, Integer> maxUpcMap) {
-        if (maxUpcMap.containsKey(upc) && maxUpcMap.get(upc) <= minStock) {
-            return false;
-        }
-        return true;
+        return !maxUpcMap.containsKey(upc) || maxUpcMap.get(upc) > minStock;
     }
 
     private boolean isMaxValueValid(final int maxStock, final String upc, final HashMap<String, Integer> minUpcMap) {
-        if (minUpcMap.containsKey(upc) && minUpcMap.get(upc) >= maxStock) {
-            return false;
-        }
-        return true;
+        return !minUpcMap.containsKey(upc) || minUpcMap.get(upc) < maxStock;
     }
 
 

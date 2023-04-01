@@ -25,22 +25,22 @@ public abstract class Parser {
     protected Inventory inventory;
     protected SessionManager session;
 
-    public Parser(String rawInput, Inventory inventory, SessionManager session) {
+    protected Parser(String rawInput, Inventory inventory, SessionManager session) {
         this.rawInput = rawInput;
         this.inventory = inventory;
         this.session = session;
     }
 
-    public Parser(String rawInput, Inventory inventory) {
+    protected Parser(String rawInput, Inventory inventory) {
         this.rawInput = rawInput;
         this.inventory = inventory;
     }
 
-    public Parser(Inventory inventory) {
+    protected Parser(Inventory inventory) {
         this.inventory = inventory;
     }
 
-    public Parser() {
+    protected Parser() {
     }
 
     public abstract void run();

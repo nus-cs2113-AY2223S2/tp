@@ -16,8 +16,12 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+    implementation 'org.jetbrains:annotations:24.0.1'
+    implementation 'com.mikemybytes:junit5-formatted-source:0.2.0'
+    implementation 'com.mikemybytes:junit5-formatted-source-tests:0.2.0'
+    implementation 'com.mikemybytes:junit5-formatted-source-parent:0.2.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.2'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.9.2'
 
 
 }

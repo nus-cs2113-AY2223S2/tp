@@ -21,7 +21,7 @@ public abstract class Command {
     protected HashMap<String, Item> upcCodes;
     protected Trie itemsTrie;
 
-    public Command(Inventory inventory) {
+    protected Command(Inventory inventory) {
         this.inventory = inventory;
         this.itemInventory = inventory.getItemInventory();
         this.itemNameHash = inventory.getItemNameHash();
@@ -29,5 +29,6 @@ public abstract class Command {
         this.itemsTrie = inventory.getTrie();
         this.categoryHash = inventory.getCategoryHash();
     }
+
     public abstract void run();
 }
