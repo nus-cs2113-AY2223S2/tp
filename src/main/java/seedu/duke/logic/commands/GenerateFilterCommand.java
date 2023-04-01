@@ -93,6 +93,43 @@ public class GenerateFilterCommand extends Command {
         exerciseListGenerated = exercises;
         ui.printExerciseFromList(exercises);
     }
+
+
+    public static boolean isAValidSetOfFilters (GenerateExercise exerciseGenerator, String[] filterList) throws DukeError {
+        ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
+        assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())
+            : "Do not modify the ArrayList of GenerateExercise";
+        for (int i = 0; i < filterList.length; i++) {
+            switch (filterList[i]) {
+            case GYM:
+                exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
+                break;
+            case STATIC:
+                exercises = exerciseGenerator.generateFilteredStaticSetFrom(exercises);
+                break;
+            case EASY:
+            case MEDIUM:
+            case HARD:
+                exercises = exerciseGenerator.generateFilteredDifficultySetFrom(exercises, filterList[i]);
+                break;
+            case UPPER:
+            case CORE:
+            case LEGS:
+                exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, filterList[i]);
+                break;
+            default:
+                throw new DukeError(ErrorMessages.ERROR_FILTER_INPUT.toString());
+            }
+        }
+
+        if (exercises.size() == 0) {
+            throw new DukeError(ErrorMessages.ERROR_EXCESSIVE_FILTERS.toString());
+        } else {
+            return true;
+        }
+    }
+
+
     //@author
 
     public ArrayList<ExerciseData> provideExerciseList () {

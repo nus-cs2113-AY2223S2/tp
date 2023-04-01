@@ -1,7 +1,9 @@
 package seedu.duke.data.userdata.userplan;
 
 import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.ui.ErrorMessages;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
 
 import java.util.ArrayList;
 
@@ -13,6 +15,8 @@ import static seedu.duke.data.userdata.userplan.Day.intToDay;
 public class UserPlan {
     private static final Integer DAYSINAWEEK = 7;
     private static ArrayList<Plan>[] plan;
+    private final static GenerateExercise exerciseGenerator = new GenerateExercise();
+    
 
     /**
      * initialize new UserPlan
@@ -78,6 +82,15 @@ public class UserPlan {
         ArrayList<String> exercisePlans = UserPlan.getExercisePlan(name.toLowerCase());
         if (exercisePlans != null) {
             throw new DukeError(ErrorMessages.ERROR_INVALID_PLAN_NAME.toString());
+        }
+
+        String[] filterList = new String[userCommands.length - 3];
+        for (int filterNo = 3; filterNo < userCommands.length; filterNo++) {
+            filterList[filterNo - 3] = userCommands[filterNo];
+        }
+
+        if (!GenerateFilterCommand.isAValidSetOfFilters(exerciseGenerator, filterList)) {
+            return;
         }
 
         Plan newPlan = new Plan(exerciseFilters, name);
