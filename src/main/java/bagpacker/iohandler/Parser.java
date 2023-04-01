@@ -290,12 +290,8 @@ public class Parser {
                         "Your packing list is empty, there is nothing to pack");
             } else {
                 return new IncorrectCommand("Invalid Item Index",
-<<<<<<< HEAD
                         "Try to input an integer number between 1 and " + PackingList.getItemList().size() +
                         "\n" + HELP_MSG);
-=======
-                        "Try to input an item index number between 1 and " + PackingList.getItemList().size());
->>>>>>> a00331e81217091efb8dec3bf7a94da76f2016fd
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             return new IncorrectCommand("Invalid Input Variables",
