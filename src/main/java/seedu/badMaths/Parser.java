@@ -20,7 +20,7 @@ public class Parser {
     }
 
     public String getCommand() {
-        try {z
+        try {
             String trimmedInput = userInput.trim();
             if (trimmedInput.contains(" ")) {
                 int indexOfSpace = trimmedInput.indexOf(" ");
