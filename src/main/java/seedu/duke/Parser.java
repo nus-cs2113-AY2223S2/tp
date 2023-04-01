@@ -198,6 +198,7 @@ public class Parser {
 
             // loading modules. Need to update when singleton design is utilized.
             HashMap<String, NusModule> nusmods = converter.loadModules();
+            Duke.LOGGER.log(Level.INFO, "loadModules() called");
             // Fetch NusModule from module code
             NusModule nusModule = nusmods.get(moduleCode);
             if (nusModule == null) {
@@ -345,8 +346,8 @@ public class Parser {
         boolean isValidFormat = !information[0].equalsIgnoreCase("") && !information[2].equalsIgnoreCase("")
                 && !information[1].equalsIgnoreCase("");
 
-        String recurFlag = information[5].split(" ")[2].trim();
-        isValidFormat = isValidFormat && (recurFlag.equalsIgnoreCase("W") || recurFlag.equalsIgnoreCase("D"));
+        // String recurFlag = information[5].split(" ")[2].trim();
+        // isValidFormat = isValidFormat && (recurFlag.equalsIgnoreCase("W") || recurFlag.equalsIgnoreCase("D"));
 
         if (!isValidFormat) {
             throw new NPExceptions("Please use correct command format!");

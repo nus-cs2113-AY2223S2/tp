@@ -67,6 +67,7 @@ public class ModuleAdapter extends TypeAdapter<HashMap<String, NusModule>> {
                 break;
             default:
                 reader.skipValue();
+
                 break;
             }
         }

@@ -31,17 +31,17 @@ Read this section to find out how NUSPlanner can make your life easier!
 ### Adding an event: `add`
 Adds an event to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit. 
 
-Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r RECURRING TIMR`
+Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r RECURRING TIME`
 * sd and ed must be of the format YYYY/MM/DD
 * e, sd and st are compulsory fields 
 * ed and et are optional, but they must be written together if you use them
 * v is optional
 * r is optional, the format is x D/ x W, which means the event will happen in every x day/x week.
 
-#### Examples of usage
+#### Examples of usage  
 * Add event that starts and ends on different days: `add –e Career Fair –st 14:00 –sd 2023/02/10 –et 16:00 –ed 2023-02-11`
-* Add event that starts and ends on same day: `add –e Career Fair –st 14:00 –sd 2023/02/10 –et 16:00`
-* Add event that happens every week: `add –e collect mails –st 8:00 –sd 2023/02/10 –et 8:10 -r 1 W`
+
+* Add event that happens every week: `add –e collect mails –st 8:00 –sd 2023/02/10 –et 8:10 -ed 2023/02/10 -r 1 W`
 
 Expected outcome:
 ~~~
@@ -202,6 +202,14 @@ Event edited successfully!
 ____________________________________________________________
 ~~~
 
+### Saving Data
+NusPlanner data are saved to the hard drive automatically after the `bye` command to quit it. There is no need to save manually.
+
+### Editing the data file
+Data for NUSPlanner is saved as a `.json` file. The path for the save file is `[JAR file location]/save.json`. Advanced users are welcome to update data directly by editing the data file.
+
+🚧 **Warning**: If your changes to the data file makes its format invalid, NUSPlanner will discard all data and load an empty data file at the next run. 
+
 ## FAQ
 
 **Q**: Why is a JAR file required?
@@ -221,11 +229,12 @@ Please add a description of the bug found under our [Issue Tracker](https://gith
 
 
 **Command | Description**
-* `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE` | Add event
+* `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` | Add event
+* `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
 * `delete –s 1` | Delete a single event
 * `delete -all` | Delete all events
 * `list` | List all events
-* `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE` | Edit event
+* `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` | Edit event
 
 
 
