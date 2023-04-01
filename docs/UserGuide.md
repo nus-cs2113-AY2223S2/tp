@@ -66,24 +66,42 @@ The flags can be listed in ***any*** order and must be followed by strings.
 
 Example of usage:
 
-`card add -q "how do i use this command? -a "by referring to this user guide"`
+`card add -q how do i use this command? -a by referring to this user guide`
 
 ### Listing all cards :
 
 `card list`
 
-List all existing cards
+List all existing cards. The UUID enclosed in the `[]` is the cardUUID. The `Tags` and `Decks` show the tagUUIDs and
+deckUUIDs
+that the cards are currently under.
 
 Sample output :
 
 ```
 Here is a list of your cards :
-1.Qn: What is the formula of force?
-Ans: F = ma
-UUID:  1ddd9a67-f56c-4914-99c0-2f90c580f0e9
-2.Qn: How efficient is binary search?
-Ans: O(log n)
-UUID:  619c689d-395a-4bb8-ab00-6ae9972bb929
+1.[1ddd9a67-f56c-4914-99c0-2f90c580f0e9]
+
+ Tags: 
+ - 03658854-e5d4-468f-8c41-74917e5d4515
+ - c8259fee-125d-4700-829c-0da79eba1e91
+
+ Decks: 
+ - c83e08ad-e5b7-4812-9dd1-4b44504386ad
+
+ Qn:  What is the formula of force?
+ Ans:  F = ma
+
+2.[619c689d-395a-4bb8-ab00-6ae9972bb929]
+
+ Tags: None
+
+ Decks: None
+
+ Qn:  How efficient is binary search?
+ Ans:  O(log n)
+
+
 ```
 
 ### Deleting a card :
@@ -152,13 +170,21 @@ Example of usage :
 
 Sample output :
 
-```agsl
-Qn: is akhil a dirty commie
-Ans: yes
-UUID:  f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
-Here are the tags : 
-1.Tag name : physics, tag uuid : 83f26992-09d7-496b-b7a8-3ad05e43c8b7
 ```
+[1ddd9a67-f56c-4914-99c0-2f90c580f0e9]
+
+ Tags: 
+ - 03658854-e5d4-468f-8c41-74917e5d4515
+ - c8259fee-125d-4700-829c-0da79eba1e91
+
+ Decks: 
+ - c83e08ad-e5b7-4812-9dd1-4b44504386ad
+
+ Qn:  What is the formula of force?
+ Ans:  F = ma
+```
+
+The UUID enclosed within `[]` refers to the cardUUID that the user is currently viewing.
 
 ---
 

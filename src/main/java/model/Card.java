@@ -101,10 +101,20 @@ public class Card {
         return tagsStr;
     }
 
+    public String getDecksString() {
+        String decksStr = "";
+        for (DeckUUID deck : decks) {
+            decksStr = decksStr + "\n - " + deck.toString();
+        }
+        return decksStr;
+    }
+
     @Override
     public String toString() {
         String tagsStr = this.tags.isEmpty() ? "None" : getTagsString();
-        return "[" + this.uuid + "]" + "\n\n Tags: " +
-                tagsStr + "\n\n Qn:  " + this.question + "\n Ans:  " + this.answer + "\n";
+        String decksStr = this.decks.isEmpty() ? "None" : getDecksString();
+        return "[" + this.uuid + "]" +
+                "\n\n Tags: " + tagsStr + "\n\n Decks: " + decksStr +
+                "\n\n Qn:  " + this.question + "\n Ans:  " + this.answer + "\n";
     }
 }
