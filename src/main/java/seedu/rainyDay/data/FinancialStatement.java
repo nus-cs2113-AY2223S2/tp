@@ -90,8 +90,8 @@ public class FinancialStatement {
     }
 
     public String getFullStatement() {
-        return String.format("%s for %s, %s$%.2f", getFlowDirectionWord(), getDescription(), getFlowSymbol(),
-                getValue());
+        return String.format("%s for %s, %s$%.2f, in category %s on %s", getFlowDirectionWord(), getDescription(), getFlowSymbol(),
+                getValue(), getCategory(), getDate().format(DateTimeFormatter.ofPattern("dd/MM/uuuu")));
     }
 
     public String getStatementForList() {
