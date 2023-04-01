@@ -24,7 +24,7 @@ public class ExpenseList extends RecordList {
     public ExpenseList(ArrayList<Expense> expenseList) {
         this.expenseList = expenseList;
     }
-    
+
     /**
      * Default constructor to instantiate ExpenseList objects
      */
@@ -39,7 +39,7 @@ public class ExpenseList extends RecordList {
     public void addExpense(Expense expense) {
         expenseList.add(expense);
     }
-    
+
     /**
      * Method to edit an expense in the expense list.
      * Edits a specific field of an expense based on the parameters field to value.
@@ -50,41 +50,48 @@ public class ExpenseList extends RecordList {
      * @throws ChChingException If value value is not a non-numeric input.
      */
     public void editExpense(int index, String field, String value) throws ChChingException {
-    
+
         // change from 1-based indexing to 0-based indexing
         int indexZeroBased = index - 1;
         Expense expense = expenseList.get(indexZeroBased);
-        
+
         // edit the according field
-        switch(field) {
-        case "c":
-            expense.setCategory(value);
-            break;
-        case "de":
-            expense.setDescription(value);
-            break;
-        case "da":
-            LocalDate date = parseDate(value);
-            expense.setDate(date);
-            break;
-        case "v":
-            try {
-                double amount = Float.parseFloat(value);
-                expense.setValue(amount);
-            } catch (Exception e) {
-                throw new ChChingException("Trouble adding expense value");
-            }
-            break;
-        default:
-            assert false : "No such field to enter here";
-            throw new ChChingException("No such field in expense");
+        switch (field) {
+            case "c":
+                expense.setCategory(value);
+                break;
+            case "de":
+                expense.setDescription(value);
+                break;
+            case "da":
+                LocalDate date = parseDate(value);
+                expense.setDate(date);
+                break;
+            case "v":
+                try {
+                    double amount = Double.parseDouble(value);
+                    if (amount < 0.01) {
+                        throw new ChChingException("Expense must be greater than or equals 0.01");
+                    }
+                    assert amount > 0.01 : "Income cannot be negative";
+                    expense.setValue(amount);
+                } catch (Exception e) {
+                    if (e instanceof NumberFormatException) {
+                        throw new ChChingException("Expense value must be a number");
+                    }
+                    throw new ChChingException(e.getMessage());
+                }
+                break;
+            default:
+                assert false : "No such field to enter here";
+                throw new ChChingException("No such field in expense");
         }
     }
-    
+
     /**
      * Deletes expense from an ExpenseList
      *
-     * @param i     index of the income entry
+     * @param i index of the income entry
      */
     public void deleteExpense(int i) throws IndexOutOfBoundsException {
         try {
@@ -102,11 +109,9 @@ public class ExpenseList extends RecordList {
         }
     }
 
-    public void clearExpenseList(){
+    public void clearExpenseList() {
         expenseList.clear();
     }
-
-
 
     @Override
     public Expense get(int i) {
