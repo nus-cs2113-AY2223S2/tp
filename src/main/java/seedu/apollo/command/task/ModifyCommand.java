@@ -80,6 +80,25 @@ public class ModifyCommand extends Command implements LoggerInterface {
 
     }
 
+    private void markTaskAsDone(TaskList taskList, Ui ui) throws IndexOutOfBoundsException {
+        if (!taskList.get(idx).isDone()){
+            taskList.get(idx).setDone(true);
+            ui.printMarkDone(taskList.get(idx));
+        } else {
+            ui.printTaskHasBeenMarkedPreviously();
+        }
+    }
+
+    private void unmarkTask(TaskList taskList, Ui ui) throws IndexOutOfBoundsException {
+        if (taskList.get(idx).isDone()){
+            taskList.get(idx).setDone(false);
+            ui.printMarkNotDone(taskList.get(idx));
+        } else {
+            ui.printTaskHasBeenUnmarkedPreviously();
+        }
+    }
+
+
     /**
      * Executes the modification of a Task in the TaskList based on data in the class.
      *
@@ -94,12 +113,10 @@ public class ModifyCommand extends Command implements LoggerInterface {
             throws UnexpectedException, IndexOutOfBoundsException, NumberFormatException {
         switch(command) {
         case COMMAND_MARK_WORD:
-            taskList.get(idx).setDone(true);
-            ui.printMarkDone(taskList.get(idx));
+            markTaskAsDone(taskList, ui);
             break;
         case COMMAND_UNMARK_WORD:
-            taskList.get(idx).setDone(false);
-            ui.printMarkNotDone(taskList.get(idx));
+            unmarkTask(taskList, ui);
             break;
         case COMMAND_DELETE_WORD:
             int initialCount = taskList.size();

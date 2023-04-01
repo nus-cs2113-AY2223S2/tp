@@ -185,7 +185,9 @@ public class Ui {
         int count = 0;
         for (CalendarModule module : calendar.get(i)) {
             count++;
-            System.out.println(count + ". " + module.getCode() + " " + module.getSchedule());
+            Timetable schedule = module.getSchedule();
+            System.out.println(schedule.getStartTime() + "-" + schedule.getEndTime() + ": " +
+                    module.getCode() + " " + schedule.getLessonType() + " (" + schedule.getClassnumber() + ")");
         }
         return (count <= 0);
     }
@@ -501,6 +503,14 @@ public class Ui {
     }
 
     /**
+     * Prints error message if there are duplicate modules in the moduleData.txt file
+     */
+    public void printDuplicateModuleInTextFile(int counter){
+        System.out.println("There is a duplicate module detected in the moduleData.txt at line "
+                + (counter + 1) + ".\n" + "Ignoring duplicate modules");
+    }
+
+    /**
      * Prints error message if the user does not specify the description of a task.
      */
     public void printEmptyDescription() {
@@ -698,4 +708,24 @@ public class Ui {
     public void printClashingEventModuleMessage() {
         System.out.println("This event clashes with a lesson in your timetable!");
     }
+
+    /**
+     * Prints a message when user tries to mark an already done task as done again.
+     */
+    public void printTaskHasBeenMarkedPreviously() {
+        System.out.println("You have already marked this task as done previously.");
+    }
+
+    /**
+     * Prints a message when user tries to mark an already incomplete task as not done again.
+     */
+    public void printTaskHasBeenUnmarkedPreviously(){
+        System.out.println("This task was never marked as done!");
+    }
+
+    public void deadlineSuggestion(){
+        System.out.println("This todo seems to suggest that this is a deadline type task.\n" +"You could consider " +
+                "using the deadline command instead.\n");
+    }
+
 }
