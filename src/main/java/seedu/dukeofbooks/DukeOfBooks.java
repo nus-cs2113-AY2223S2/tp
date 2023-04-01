@@ -51,9 +51,14 @@ public class DukeOfBooks {
         this.ui = new TextUi();
         // Add book data into inventory
         try {
-            ReadWriteData.readData((inventory));
+            ReadWriteData.readBookData((inventory));
         } catch (FileNotFoundException e) {
-            File f = new File("database/books.txt");
+            File f = new File(ReadWriteData.BOOK_FILEPATH);
+        }
+        try {
+            ReadWriteData.readUserData(userRecords);
+        } catch (FileNotFoundException e) {
+            File f = new File(ReadWriteData.USER_FILEPATH);
         }
         ui.showWelcomeMessage(VERSION);
     }
@@ -62,9 +67,16 @@ public class DukeOfBooks {
         ui.showExitMessage();
         // Write book data into inventory
         try {
-            ReadWriteData.writeData(inventory);
+            ReadWriteData.writeBookData(inventory);
         } catch (IOException e) {
-            System.out.println("Failed to save data!");
+            System.out.println("Failed to save book data!");
+            System.exit(1);
+        }
+        try {
+            ReadWriteData.writeUserData(userRecords);
+        } catch (IOException e) {
+            System.out.println("Failed to save user data!");
+            System.exit(1);
         }
         System.exit(0);
     }
