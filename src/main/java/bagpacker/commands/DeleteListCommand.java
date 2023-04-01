@@ -7,7 +7,7 @@ import bagpacker.packingfunc.PackingList;
 import java.util.ArrayList;
 
 public class DeleteListCommand extends Command {
-    public static final String MSG_SUCCESS_DELETE_LIST = "list deleted";
+    public static final String MSG_SUCCESS_DELETE_LIST = "Packing list deleted";
 
     public static final String HELP_MSG =
             "deletelist : Deletes all items in the packing list.\n" +

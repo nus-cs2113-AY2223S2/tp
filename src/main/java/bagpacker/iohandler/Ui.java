@@ -67,7 +67,8 @@ public class Ui {
         System.out.println("4. " + PackCommand.HELP_MSG);
         System.out.println("5. " + UnpackCommand.HELP_MSG);
         System.out.println("6. " + DeleteListCommand.HELP_MSG);
-        System.out.println("7. " + ByeCommand.HELP_MSG);
+        System.out.println("7. " + PackAllCommand.HELP_MSG);
+        System.out.println("8. " + ByeCommand.HELP_MSG);
         printLine();
     }
 

@@ -12,15 +12,15 @@ public class BagPacker {
      * Main entry-point for the java.BagPacker application.
      */
     public static void main(String[] args) {
-        // initialise variables
+        // Initialise variables
         BagPacker.packingList = new PackingList();
-        //initialise BagPacker program
+        // Initialise BagPacker program
         Ui.initialMessage();
 
-        //run main program
+        // Run main program
         runBagPacker();
 
-        //Close program
+        // Close program
         Ui.goodbyeMessage();
     }
 
