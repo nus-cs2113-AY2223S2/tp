@@ -11,6 +11,7 @@ import seedu.apollo.exception.task.DateOrderException;
 import seedu.apollo.exception.task.InvalidDeadline;
 import seedu.apollo.exception.task.InvalidEvent;
 import seedu.apollo.exception.utils.InvalidSaveFile;
+import seedu.apollo.exception.utils.DuplicateModuleInTextFileException;
 import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.Deadline;
@@ -273,19 +274,39 @@ public class Storage implements LoggerInterface {
                 if (newModule == null) {
                     throw new InvalidSaveFile();
                 }
+
                 Module module = new Module(newModule.getCode(), newModule.getTitle(), newModule.getModuleCredits());
+                if (isAdded(newModuleList, module)) {
+                    throw new DuplicateModuleInTextFileException();
+                }
                 addLessons(module, newModule, moduleInfoArgs);
                 calendar.addModule(module);
                 newModuleList.add(module);
                 counter++;
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
+            } catch ( DuplicateModuleInTextFileException e) {
+                ui.printDuplicateModuleInTextFile(counter,moduleDataFilePath);
             }
         }
         return newModuleList;
     }
 
-
+    /**
+     * Checks if the module is already in the module file.
+     *
+     * @param moduleList The list of modules.
+     * @param module The module to be checked.
+     * @return True if the module is already in the module file.
+     */
+    public static boolean isAdded(ModuleList moduleList, Module module) {
+        for (Module mod: moduleList) {
+            if (mod.getCode().equals(module.getCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
     private static void addLessons(Module module, Module searchModule, String[] moduleInfo) {
         module.createNewTimeTable();
 
