@@ -1,4 +1,5 @@
 # User Guide
+![img_11.png](img_11.png)
 ## Contents
 - [Introduction](#introduction)
 - [Quick Start](#quick_start)
@@ -34,66 +35,78 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 - [Autosave of Inventory: `autosave`](#autosave)
 - [Exiting the program: `exit`](#exit)
 
-
+---
 ### Adding an item: `add` <a name = "add"></a>
 Adds a new item to the inventory list.
 
-Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price]`
+Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 
-Required parameters:
+**REQUIRED** parameters:
 * The `n/` parameter where `[item_name]`  must be alphanumeric. 
-* The `upc/` parameter for `[UPC]` must be a numerical value.
-* The `qty/` parameter for `[quantity]` must be a numerical value.
-* The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
+* The `upc/` parameter for `[UPC]` must be a **non-negative numerical** value.
+* The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value.
+* The `p/` parameter for `[price]` must be a **non-negative numerical** value (decimals accepted).
+
+OPTIONAL parameters:
+* The `cat/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized`)
+
 
 Example of usage: 
 
 `add n/HP Laptop upc/2142535453 qty/10 p/1299.99`
 
-`add n/iPhone 11 Pro Max Max upc/2987654323 qty/11 p/1099.99`
+`add n/iPhone 11 Pro Max Max upc/2987654323 qty/11 p/1099.99 c/electronics`
 
 Sample output:
-
-![img.png](img.png)
+```
+add n/iPhone 11 Pro Max Max upc/2987654323 qty/11 p/1099.99 c/electronics
+____________________________________________________________
+Successfully added the item(s) into the system!
+____________________________________________________________
+```
+---
 ### Editing an item: `edit` <a name = "edit"></a>
 Edit an item's details in the inventory.
 
-Format: `edit upc/[UPC] {n/[item_name] qty/[quantity] p/[price]}`
+Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price]`
 
-Required parameters:
+**REQUIRED** parameters:
 * The `upc/` parameter where `[UPC]`  must be a numerical value and exists in the inventory.
 
-Optional parameters:
+OPTIONAL parameters:
 * The `n/` parameter where `[item_name]` must be alphanumeric.
 * The `qty/` parameter for `[quantity]` must be a numerical value.
 * The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
+* The `c/` parameter for `[category]` must be alphanumeric.
 
 Example of usage:
 
 ``
-edit upc/2142535453 n/HP Laptop Pro qty/10 p/1299.99
+edit upc/2142535453 c/laptop
 ``
 
 Sample output:
 ```
+____________________________________________________________
 Successfully edited the following item:
 
-Before Update:
-Name: HP Laptop
-UPC: 2142535453
-Price: 1299.99
-Quantity: 10
-Category: uncategorized
-
-After Update:
+Before Update: 
 Name: HP Laptop Pro
 UPC: 2142535453
 Price: 1299.99
 Quantity: 10
-Category: uncategorized
+Category: uncategorised
+
+After Update: 
+Name: HP Laptop Pro
+UPC: 2142535453
+Price: 1299.99
+Quantity: 10
+Category: laptop
+____________________________________________________________
 
 ```
-
+---
 ### Removing an item from the inventory: `remove` <a name = "remove"></a>
 Removes an item from the inventory list using either its UPC or index in list.
 
@@ -110,6 +123,7 @@ Example of usage:
 
 Sample output:
 
+---
 ### List all items in the inventory: `list` <a name = "list"></a>
 Lists all items in the inventory list.
 
@@ -142,7 +156,7 @@ Here are the items in your inventory:
 ____________________________________________________________
 
 ``````
-
+---
 ### Search for an item in the inventory: `search` <a name = "search"></a>
 Search for item(s) in the inventory list using keywords or UPC.
 
@@ -202,7 +216,7 @@ Here is your item:
 
 ____________________________________________________________
 ```
-
+---
 ### Filtering by type: `filter` <a name = "filter"></a>
 
 ### Filtering inventory list by type: `filter`
@@ -255,7 +269,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 ```
-
+---
 ### List all available commands: `help` <a name = "help"></a>
 Lists all commands available and the command formats.
 
@@ -267,6 +281,7 @@ Example of usage:
 
 Sample output:
 
+---
 ### Historical records of item: `history` <a name = "history"></a>
 Lists historical changes to an item in the inventory list.
 
@@ -312,6 +327,7 @@ Category: fruits
 ____________________________________________________________
 ```
 
+---
 ### Sell quantity of item: `sell` <a name = "sell"></a>
 Reduces the quantity of an item in the inventory list.
 
@@ -350,6 +366,7 @@ Sold 5 orange and apples at a price of $6.0.
 ____________________________________________________________
 ````
 
+---
 ### Restock an item: `restock` <a name = "restock"></a>
 Restock quantities of an item in the inventory list.
 
@@ -387,6 +404,7 @@ Quantity Available: 105
 ____________________________________________________________
 ```
 
+---
 ### Dashboard: `db` <a name = "db"></a>
 Shows a dashboard of information related to the system's inventory, user insights and 
 session configurations.
@@ -426,6 +444,8 @@ List of active alerts:
 No alerts to print.
 ____________________________________________________________
 ```
+
+---
 ### Category: `cat` <a name = "cat"></a>
 Shows list of categories, and/or its items, or a specified category of items.
 
@@ -464,6 +484,8 @@ cat fruit
 |                 | oranges:123456789555           |
 +-----------------+--------------------------------+
 ```
+
+---
 ### Alert for an item: `alert` <a name = "alert"></a>
 Add alerts that will display when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
@@ -495,6 +517,8 @@ ____________________________________________________________
 Successfully removed the alert.
 ____________________________________________________________
 ``` 
+
+---
 ### Change Autosave Mode: `autosave` <a name = "autosave"></a>
 
 Set whether the program should automatically save the updated inventory to the inventory data file after every successful
@@ -517,7 +541,7 @@ Auto-save has been disabled!
 ____________________________________________________________
 ```
 
-
+---
 ### Exiting the program: `exit` <a name = "exit"></a>
 Exits the MagusStock program.
 
@@ -529,6 +553,8 @@ ____________________________________________________________
 Hope you had an enjoyable experience. See you next time!
 ____________________________________________________________
 ```
+
+---
 
 <a name = "faq"></a>
 <a name = "command_summary"></a>
