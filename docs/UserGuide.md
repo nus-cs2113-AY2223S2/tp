@@ -42,13 +42,26 @@ Ans: he is not a dirty commie
 UUID:  00000000-0000-0000-0000-000000000001
 ```
 
-### Deleting a card : `card delete -i {cardUUID}`
+### Deleting a card :
 
-Deletes a Card based on the cardUUID
+`card delete -c {cardUUID}`
+`card delete -i {cardIndex}`
+
+User has the option to delete the card based on card index or card UUID.
+The card index can be found by running `card list`.
 
 Example of usage:
 
-`card delete -i f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454`
+`card delete -c f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454`
+
+`card delete -i 3`
+
+Sample output :
+
+```
+Too easy ha? You won't see that question again!
+You now have 2 questions in the bank.
+```
 
 ### Tagging a card : `card tag -c {cardUUID} -t {tagName}`
 
@@ -57,7 +70,7 @@ Example of usage :
 
 Sample output :
 
-```agsl
+```
 Tag does not exist.. creating a new tag: physics
 Successfully added tag 83f26992-09d7-496b-b7a8-3ad05e43c8b7 to card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
 ```
@@ -160,6 +173,7 @@ Rename an existing deck
 Example of usage: `deck edit -o old-deck-name -n new-deck-name`
 
 Sample output:
+
 ```
 Deck 9dc5ab5f-75af-4b0d-b554-341f59ac829bdeck name has been changed from old-deck-name to new-deck-name
 ```
@@ -171,6 +185,7 @@ Delete a card from an existing deck
 Example of usage: `deck delete -c c2c61475-df53-4656-94c4-c2e36933d359 -d my-deck`
 
 Sample output:
+
 ```
 Successfully removed card c2c61475-df53-4656-94c4-c2e36933d359 from deck my-deck
 ```
@@ -180,6 +195,7 @@ Alternatively, delete a tag from an existing deck
 Example of usage: `deck delete -t 833249f3-a090-474c-a3de-c1b5f25609d4 -d my-deck`
 
 Sample output:
+
 ```
 Successfully removed tag 833249f3-a090-474c-a3de-c1b5f25609d4 from deck my-deck
 ```
@@ -189,6 +205,7 @@ The entire deck can also be deleted (cards and tags that were in the deck are no
 Example of usage: `deck delete -d my-deck`
 
 Sample output:
+
 ```
 Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from card c2c61475-df53-4656-94c4-c2e36933d359
 Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from the deck list.
@@ -201,6 +218,7 @@ List all decks that have been created
 Example usage: `deck list`
 
 Sample output:
+
 ```
 Here is your current list of decks:
 1.Deck name : test-deck, deck uuid : 9dc5ab5f-75af-4b0d-b554-341f59ac829b
@@ -208,7 +226,6 @@ Here is your current list of decks:
 ```
 
 ## FAQ
-
 
 **Q**: Will deleting a card from a tag delete it from multiple decks?
 

@@ -9,6 +9,9 @@
       "tags": [
         {
           "uuid": "03658854-e5d4-468f-8c41-74917e5d4515"
+        },
+        {
+          "uuid": "c8259fee-125d-4700-829c-0da79eba1e91"
         }
       ],
       "decks": [
@@ -33,6 +36,18 @@
         "uuid": "03658854-e5d4-468f-8c41-74917e5d4515"
       },
       "tagName": "tag1",
+      "cards": [
+        {
+          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
+        }
+      ],
+      "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "c8259fee-125d-4700-829c-0da79eba1e91"
+      },
+      "tagName": "physics",
       "cards": [
         {
           "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
