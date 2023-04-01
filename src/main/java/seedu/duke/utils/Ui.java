@@ -41,8 +41,9 @@ public class Ui {
     public static final String UNKNOWN_COMMAND = "I don't understand that command, please refer to the user guide " +
             "or enter 'help' for all available commands";
     public static final String INVALID_ADD = "Wrong/Incomplete Format! Please add new items in the following format: " +
-            "add n/[name] upc/[UPC] qty/[quantity] p/[price]\nTip: Ensure that your UPC, quantity and price are all " +
-            "in numbers and within valid range";
+            "\nFormat: add n/[name] upc/[UPC] qty/[quantity] p/[price] c/[category]\nREQUIRED fields: n/ upc/ qty/ " +
+            "p/ \nOPTIONAL field: c/\nTip: Ensure that your UPC, quantity and price are all positive numbers and " +
+            "within valid range";
 
     public static final String INVALID_AUTO_SAVE_INPUT = "Invalid input! Please enter either 'on' or 'off' to " +
             "enable/disable auto-save";
@@ -82,7 +83,9 @@ public class Ui {
     public static final int COMMAND_COL_WIDTH = 25;
     public static final int FORMAT_COL_WIDTH = 25;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
-            "format: " + "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price] c/[Category]}";
+            "format: \nFormat: edit upc/[UPC] n/[Name] qty/[Quantity] p/[Price] c/[Category]\nREQUIRED fields: upc/\n" +
+            "OPTIONAL fields: n/ qty/ p/ c/\nTip: Ensure that your UPC, quantity and price are all positive numbers " +
+            "and within valid range";
     public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
             "first!";
     public static final String SUCCESS_EDIT = "Successfully edited the following item:";
