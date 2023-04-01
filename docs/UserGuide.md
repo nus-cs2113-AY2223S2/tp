@@ -1,51 +1,64 @@
-# User Guide
+# <span style="color:#00A36C">BagPacker User Guide</span>
 
-## Table of contents
-- [Introduction](#span-stylecolor00a36c-introduction-span)
-- [Quick Start](#span-stylecolor00a36c-quick-start-span)
-- [Features](#span-stylecolor00a36c-features-span)
-  - [Adding a new item](#span-stylecolor6495ed-adding-a-new-item--span-add)
-  - [Deleting an item](#span-stylecolor6495ed-deleting-an-item--span-delete)
-  - [Packing some items](#span-stylecolor6495ed-packing-some-items--span-pack)
-  - [Unpacking some items](#span-stylecolor6495ed-unpacking-some-items--span-unpack)
-  - [Listing all items](#span-stylecolor6495ed-listing-all-items--span-list)
-  - [Deleting the entire list](#span-stylecolor6495ed-deleting-the-entire-list--span-deletelist)
-  - [Help message](#span-stylecolor6495ed-help-message--span-help)
-  - [Exiting the application](#span-stylecolor6495ed-exiting-the-application--span-bye)
-- [Frequently Asked Questions (FAQ)](#span-stylecolor00a36c-frequently-asked-questions--faq--span)
-- [Command Summary](#span-stylecolor00a36c-command-summary-span)
+---
+
+## <span style="color:#00A36C">Table of contents</span>
+* [Introduction](#span-stylecolor00a36c-introduction-span)
+* [Quick Start](#span-stylecolor00a36c-quick-start-span)
+* [Features](#span-stylecolor00a36c-features-span)
+  * [Adding a new item](#span-stylecolor6495ed-adding-a-new-item--span-add)
+  * [Deleting an item](#span-stylecolor6495ed-deleting-an-item--span-delete)
+  * [Packing some items](#span-stylecolor6495ed-packing-some-items--span-pack)
+  * [Unpacking some items](#span-stylecolor6495ed-unpacking-some-items--span-unpack)
+  * [Listing all items](#span-stylecolor6495ed-listing-all-items--span-list)
+  * [Deleting the entire list](#span-stylecolor6495ed-deleting-the-entire-list--span-deletelist)
+  * [Help message](#span-stylecolor6495ed-help-message--span-help)
+  * [Exiting the application](#span-stylecolor6495ed-exiting-the-application--span-bye)
+* [Frequently Asked Questions (FAQ)](#span-stylecolor00a36c-frequently-asked-questions--faq--span)
+* [Command Summary](#span-stylecolor00a36c-command-summary-span)
 
 ---
 
 ## <span style="color:#00A36C">Introduction</span>
 
-BagPacker is an application to help users manage their packing list.
+Meant for travellers, BagPacker is an application to help travellers manage their packing list. 
+Users can add items of multiple quantities to their packing list, delete items, and view their packing lists.
 
 ---
 
 ## <span style="color:#00A36C">Quick Start</span>
 
 1. Ensure that you have Java 11 installed.
-2. Download the latest `jar` file from [here](https://github.com/AY2223S2-CS2113-T14-2/tp/releases)
+   * If not, please follow the instructions here for [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA) and [macOS](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
+2. Download the `jar` file from the **latest release** [here](https://github.com/AY2223S2-CS2113-T14-2/tp/releases)
 3. Move this `jar` file into an empty folder on your computer.
 4. Open a command line interface, and enter the directory with the jar file.
-   - For Windows users: search for Command Prompt, and launch it.
-   - For macOS users:
+   * For Windows users: search for Command Prompt, and launch it.
+   * For macOS users:
 5. Execute the following command `java -jar Team_Project.jar`
+
+[Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span)
 
 ---
 
 ## <span style="color:#00A36C">Features</span>
 > **Notes about command format**
-> - `n/`, `i/` and `d/` indicate that a user input is expected.
-> - The `/` in `/of` is necessary for `of` to be recognised as a keyword.
+> * Words that are fully capitalised (such as `QUANTITY`) indicate that an input is expected from the user.
+> * The `/` in `/of` is necessary for `of` to be recognised as a keyword.
+> * `NAME` is a case-sensitive input.
+> * Additional parameters will be ignored for commands that do not need them.
+>   * For example, `deletelist abc123` will be interpreted as `deletelist`.
 
 ### <span style="color:#6495ED">Adding a new item:</span> `add`
 Adds a new item and its quantity to the packing list.
 
-Format: `add n/QUANTITY /of d/NAME`
-* `QUANTITY` is the number of items to be packed, it should not be too large.
+Format: `add QUANTITY /of NAME`
+* `QUANTITY` is the number of items to be packed.
+  * It must be a positive integer.
+  * It must be more than 0, but not more than 1 million (1,000,000).
+  * An invalid `QUANTITY` will result in an error message.
 * `NAME` is the name of the item to be packed.  
+  * `NAME` is case-sensitive.
 
 Examples of usage: 
 * `add 3 /of jackets`
@@ -54,36 +67,51 @@ Examples of usage:
 ### <span style="color:#6495ED">Deleting an item:</span> `delete`
 Deletes an item from the packing list.
 
-Format: `delete i/INDEX`
-* `INDEX` is the index of the list item to be deleted.
+Format: `delete INDEX`
+* `INDEX` is the index of the item to be deleted. 
+  * It must be a positive integer.
+  * It must be more than 0, but no more than the number of items in the list.
+  * An invalid index will result in an error message.
 
 Examples of usage:
 * `delete 2`
 
 ### <span style="color:#6495ED">Packing some items:</span> `pack`
-Packs some of an item in the packing list.
+Packs the given amount of that item in the packing list.
 
-Format: `pack n/QUANTITY /of i/INDEX`
-* `QUANTITY` is the additional number of that item to be packed. It should not be a negative number, and adding it to the current quantity packed should not exceed the total quantity to be packed.
+Format: `pack QUANTITY /of INDEX`
+* `QUANTITY` is the additional number of that item to be packed. 
+  * It must be a positive integer that is more than 0.
+  * Adding `QUANTITY` to the current quantity packed must not exceed the total quantity to be packed.
+  * An invalid `QUANTITY` will result in an error message.
 * `INDEX` is the index of the item that is being packed.
+  * It must be a positive integer that is more than 0, but no more than the number of items in the list.
+  * An invalid `INDEX` will result in an error message.
 
 Examples of usage:
 * `pack 3 /of 1`
 
 ### <span style="color:#6495ED">Unpacking some items:</span> `unpack`
-Unpacks some of an item in the packing list.
+Unpacks the given amount of that item in the packing list.
 
-Format: `unpack n/QUANTITY /of i/INDEX`
-* `QUANTITY` is the number of that item to be unpacked. It should not be a negative number, and subtracting it from the current quantity packed should not result in a negative number.
+Format: `unpack QUANTITY /of INDEX`
+* `QUANTITY` is the number of that item to be unpacked. 
+  * It must be a positive integer that is more than 0.
+  * Subtracting `QUANTITY` from the current quantity packed must not result in a negative integer.
+  * An invalid `QUANTITY` will result in an error message.
 * `INDEX` is the index of the item that is being unpacked.
+  * It must be a positive integer that is more than 0, but no more than the number of items in the list.
+  * An invalid `INDEX` will result in an error message.
 
 Examples of usage:
 * `unpack 2 /of 5`
 
 ### <span style="color:#6495ED">Listing all items:</span> `list`
-Lists all the items in the packing list, and includes the current packed quantity, and the total quantity to be packed.
+Lists all the items in the packing list.
+* Includes the current packed quantity, the total quantity to be packed, and the name of the item.
 
 Format: `list`
+* This command is not expecting any parameters. Any additional parameters will be ignored.
 
 Examples of usage:
 * `list`
@@ -93,6 +121,7 @@ Want to start on a new packing list? This command will clear the whole packing l
 Be careful, this action is irreversible.
 
 Format: `deletelist`
+* This command is not expecting any parameters. Any additional parameters will be ignored.
 
 Example of usage:
 * `deletelist`
@@ -101,6 +130,7 @@ Example of usage:
 Can't get the results you want? Refer to the help message to see which command should be used.
 
 Format: `help`
+* This command is not expecting any parameters. Any additional parameters will be ignored.
 
 Examples of usage:
 * `help`
@@ -109,9 +139,12 @@ Examples of usage:
 Done packing for today? Exit BagPacker and continue tomorrow!
 
 Format: `bye`
+* This command is not expecting any parameters. Any additional parameters will be ignored.
 
 Examples of usage:
 * `bye`
+
+[Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) | [Go to Features](#span-stylecolor00a36c-table-of-contents-span)
 
 ---
 
@@ -121,20 +154,21 @@ Examples of usage:
 
 **A**: Please check that there are no typos in the command. To check the correct spelling of the commands, please type `help` and hit enter.
 
+[Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span)
+
 ---
 
 ## <span style="color:#00A36C">Command Summary</span>
 
-| Action description    | Syntax                          |
-|:----------------------|:--------------------------------|
-| Add an item           | `add n/QUANTITY /of d/NAME`     |
-| Delete an item        | `delete i/INDEX`                |
-| Pack some of an item  | `pack n/QUANTITY /of i/INDEX`   |
-| Unpack some item      | `unpack n/QUANTITY /of i/INDEX` |
-| List all items        | `list`                          |
-| Delete the whole list | `deletelist`                    |
-| Help message          | `help`                          |
-| Exit                  | `bye`                           |
+| Action description    | Syntax                      | Remarks                                                                                                                          |
+|:----------------------|:----------------------------|:---------------------------------------------------------------------------------------------------------------------------------|
+| Add an item           | `add QUANTITY /of NAME`     | `QUANTITY` must be between 0 and 1,000,000, not inclusive of 0 and 1,000,000                                                     |
+| Delete an item        | `delete INDEX`              | `INDEX` must be a valid list index                                                                                               |
+| Pack some of an item  | `pack QUANTITY /of INDEX`   | <li>Adding `QUANTITY` should not cause the quantity to exceed the total quantity</li><li>`INDEX` must be a valid list index</li> |
+| Unpack some item      | `unpack QUANTITY /of INDEX` | <li>Subtracting `QUANTITY` should not cause the quantity to be less than 0</li><li>`INDEX` must be a valid list index</li>       |      |
+| List all items        | `list`                      | Additional parameters will be ignored                                                                                            |
+| Delete the whole list | `deletelist`                | Additional parameters will be ignored                                                                                            |
+| Help message          | `help`                      | Additional parameters will be ignored                                                                                            |
+| Exit                  | `bye`                       | Additional parameters will be ignored                                                                                            |
 
----
-back to [table of contents](#table-of-contents)
+[Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) | [Go to Features](#span-stylecolor00a36c-table-of-contents-span)
