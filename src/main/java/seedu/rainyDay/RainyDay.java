@@ -44,14 +44,12 @@ public class RainyDay {
     }
 
     private void run() {
-        showStartingMessage();
+        setUpDate();
         runCommand();
         ui.sayFarewellToUser(userData.getReportOwner());
     }
 
-    private void showStartingMessage() {
-        ui.printLogo();
-        ui.greetUser(userData.getReportOwner());
+    private void setUpDate() {
         int currentMonthYear = LocalDate.now().getMonthValue() + LocalDate.now().getYear() * 12;
         System.out.println(userData.checkUserBudgetLimit(currentMonthYear));
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
