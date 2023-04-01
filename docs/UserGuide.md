@@ -47,7 +47,7 @@ Before you start using BadMaths, make sure you have the following ready!
 
 ### 1) Graph analyser and visualiser: `Graph `
 This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
-It also displays the image of the corresponding graph.
+It also displays the image of the corresponding graph. 
 
 Format: `Graph [Amplitude]*[Trigo]([sign][Frequency]*x[sign][PhaseShift])[sign][VerticalShift]`
 
@@ -59,9 +59,11 @@ Format: `Graph [Amplitude]*[Trigo]([sign][Frequency]*x[sign][PhaseShift])[sign][
 * `[sign]` can be + or - .
 * `[` and `]` are not needed when entering the input.
 
+**Note: Accuracy of graph drawn is up to 4 digits (Thousand place) for numerical inputs. E.g. `9999`.**
+
 Example input:
 ```
-Graph 2*sin(5*x+2)-8
+Graph 2985*sin(5999*x+2665)-8678
 ```
 ```
 Graph 2*sin(5*pi*x-2)+5.6
