@@ -6,60 +6,62 @@
 
 ## Table of Contents
 
+- [Developer Guide](#developer-guide)
+  - [Table of Contents](#table-of-contents)
 - [Design](#design)
-    - [Architecture](#architecture)
-    - [Frontend](#frontend)
-        - [Parser](#parser)
-        - [Commands](#commands)
-            - [Add Command](#add-command)
-            - [Delete Command](#delete-command)
-            - [Edit Command](#edit-command)
-                - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
-                - [Implementation](#implementation)
-                - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
-            - [View Command](#view-command)
-                - [Class diagram of view command](#class-diagram-of-view-command)
-                - [Implementation](#implementation-1)
-            - [Help Command](#help-command)
-                - [Implementation](#implementation-2)
-            - [Exit/Bye Command](#exitbye-command)
-                - [Implementation](#implementation-3)
-    - [Backend](#backend)
-        - [Storage](#storage)
-        - [API](#api)
-            - [Endpoints](#endpoints)
-                - [Creating a request](#creating-a-request)
-                - [Making a request](#making-a-request)
-            - [Access all entries available](#access-all-entries-available)
-                - [Get recent or all entries](#get-recent-or-all-entries)
-            - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
-                - [Add an entry](#add-an-entry)
-                - [View a specific entry](#view-a-specific-entry)
-                - [Delete an entry](#delete-an-entry)
-                - [Modify an entry](#modify-an-entry)
-    - [Data Structure](#data-structure)
-    - [Communication](#communication)
+  - [Architecture](#architecture)
+  - [Frontend](#frontend)
+    - [Parser](#parser)
+    - [Commands](#commands)
+      - [Add Command](#add-command)
+      - [Delete Command](#delete-command)
+      - [Edit Command](#edit-command)
+        - [Overall class diagram for editing an Entry](#overall-class-diagram-for-editing-an-entry)
+        - [Implementation](#implementation)
+        - [Overall sequence diagram for editing an Entry](#overall-sequence-diagram-for-editing-an-entry)
+      - [View Command](#view-command)
+        - [Class diagram of view command](#class-diagram-of-view-command)
+        - [Implementation](#implementation-1)
+      - [Help Command](#help-command)
+        - [Implementation](#implementation-2)
+      - [Exit/Bye Command](#exitbye-command)
+        - [Implementation](#implementation-3)
+  - [Backend](#backend)
+    - [Storage](#storage)
+    - [API](#api)
+      - [Endpoints](#endpoints)
+        - [Creating a request](#creating-a-request)
+        - [Making a request](#making-a-request)
+      - [Access all entries available](#access-all-entries-available)
+        - [Get recent or all entries](#get-recent-or-all-entries)
+      - [Add, modify, view or delete an entry](#add-modify-view-or-delete-an-entry)
+        - [Add an entry](#add-an-entry)
+        - [View a specific entry](#view-a-specific-entry)
+        - [Delete an entry](#delete-an-entry)
+        - [Modify an entry](#modify-an-entry)
+  - [Data Structure](#data-structure)
+  - [Communication](#communication)
 - [Testing](#testing)
-    - [Unit Tests](#unit-tests)
-    - [Instructions for manual testing](#instructions-for-manual-testing)
-        - [Feature Testing](#feature-testing)
-        - [Add expense: /add](#add-expense-add)
-        - [View expense: /view](#view-expense-view)
-        - [Delete expense: /delete](#delete-expense-delete)
-        - [Edit expense: /edit](#edit-expense-edit)
-        - [Show help menu: /help](#show-help-menu-help)
-        - [Terminate program: /bye](#terminate-program-bye)
-    - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
-        - [Exceptions](#exceptions)
+  - [Unit Tests](#unit-tests)
+  - [Instructions for manual testing](#instructions-for-manual-testing)
+    - [Feature Testing](#feature-testing)
+    - [Add expense: /add](#add-expense-add)
+    - [View expense: /view](#view-expense-view)
+    - [Delete expense: /delete](#delete-expense-delete)
+    - [Edit expense: /edit](#edit-expense-edit)
+    - [Show help menu: /help](#show-help-menu-help)
+    - [Terminate program: /bye](#terminate-program-bye)
+  - [Testing with sample data (from file)](#testing-with-sample-data-from-file)
+    - [Exceptions](#exceptions)
 - [Product scope](#product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
+  - [Target user profile](#target-user-profile)
+  - [Value proposition](#value-proposition)
 - [User Stories](#user-stories)
 - [Non-Functional Requirements](#non-functional-requirements)
 - [Acknowledgements](#acknowledgements)
-    - [Documentation](#documentation)
-    - [Storage](#storage-1)
-    - [Unit Tests](#unit-tests-1)
+  - [Documentation](#documentation)
+  - [Storage](#storage-1)
+  - [Unit Tests](#unit-tests-1)
 
 # Design
 
@@ -374,10 +376,10 @@ The sequence diagram for specific request handling at each endpoint can be viewe
 
 Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints available:
 
-| Endpoint   | Method to call          |
-|------------|-------------------------|
-| `/entry`   | `callEntryEndpoint()`   |
-| `/entries` | `callEntriesEndpoint()` |
+| Endpoint   | Method to call             |
+| ---------- | -------------------------- |
+| `/entry`   | `requestEntryEndpoint()`   |
+| `/entries` | `requestEntriesEndpoint()` |
 
 ##### Creating a request
 
@@ -386,8 +388,8 @@ Each endpoint is a child class `Endpoint`. Currently, there are 2 endpoints avai
 - If there are any parameters associated with the request, you may add them using `addParam()`
 
 ```java
-Request req=new Request(RequestMethod.PATCH);
-        req.addParam(RequestParams.EDIT_DESCRIPTION,"mango juice");
+Request req = new Request(RequestMethod.PATCH);
+req.addParam(RequestParams.EDIT_DESCRIPTION,"mango juice");
 ```
 
 ##### Making a request
@@ -398,14 +400,14 @@ Request req=new Request(RequestMethod.PATCH);
 > All request body and parameter data should be serialised with `String.valueOf()` if not specified.
 
 ```java
-Backend backend=new Backend();
-        Response res=backend.callEntryEndpoint(req);
+Backend backend = new Backend();
+Response res = backend.callEntryEndpoint(req);
 
-        if(res.getResponseStatus()!=ResponseStatus.OK){
-        // handle status        
-        }
+if (res.getResponseStatus() != ResponseStatus.OK) {
+   // handle status        
+}
 
-        Entry entry=EntryParser.deserialise(res.getData());
+Entry entry = EntryParser.deserialise(res.getData());
 // process entry
 ```
 
@@ -417,14 +419,14 @@ Backend backend=new Backend();
 
 ##### Get recent or all entries
 
+`GET /entries`
+
 <details>
    <summary>Sequence diagram</summary>
 
-   <img alt="Entries Endpoint [GET] Sequence Diagram" src="docs/../static/backend/EntriesEndpointGetSequence.png" />
+   <img alt="Entries Endpoint [GET] Sequence Diagram" src="./static/backend/endpoint/EntriesEndpointGetSequence.png" />
 
 </details>
-
-`GET /entries`
 
 __Body__
 
@@ -458,7 +460,7 @@ __`FILTER_BY_QUERY`__ String
 __Responses__
 
 | Status Code | Description           | Remarks                                                                       |
-|-------------|-----------------------|-------------------------------------------------------------------------------|
+| ----------- | --------------------- | ----------------------------------------------------------------------------- |
 | `200`       | OK                    | Gson-serialised `List<Entry>`, deserialise with `EntryLogParser::deserialise` |
 | `422`       | Unprocessable Content | -                                                                             |
 
@@ -475,7 +477,7 @@ __Responses__
 <details>
    <summary>Sequence diagram</summary>
 
-   <img alt="Entry Endpoint [POST] Sequence Diagram" src="docs/../static/backend/EntryEndpointPostSequence.png" />
+   <img alt="Entry Endpoint [POST] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointPostSequence.png" />
 
 </details>
 
@@ -490,12 +492,19 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks |
-|-------------|-------------|---------|
+| ----------- | ----------- | ------- |
 | `201`       | Created     | -       |
 
 ##### View a specific entry
 
 `GET /entry`
+
+<details>
+   <summary>Sequence diagram</summary>
+
+   <img alt="Entry Endpoint [GET] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointGetSequence.png" />
+
+</details>
 
 __Body__
 
@@ -508,7 +517,7 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks                                                              |
-|-------------|-------------|----------------------------------------------------------------------|
+| ----------- | ----------- | -------------------------------------------------------------------- |
 | `200`       | OK          | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found   | -                                                                    |
 
@@ -519,7 +528,7 @@ __Responses__
 <details>
    <summary>Sequence diagram</summary>
 
-   <img alt="Entry Endpoint [DELETE] Sequence Diagram" src="docs/../static/backend/EntryEndpointDeleteSequence.png" />
+   <img alt="Entry Endpoint [DELETE] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointDeleteSequence.png" />
 
 </details>
 
@@ -534,7 +543,7 @@ N/A
 __Responses__
 
 | Status Code | Description | Remarks                                                              |
-|-------------|-------------|----------------------------------------------------------------------|
+| ----------- | ----------- | -------------------------------------------------------------------- |
 | `200`       | OK          | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found   | -                                                                    |
 
@@ -545,7 +554,7 @@ __Responses__
 <details>
    <summary>Sequence diagram</summary>
 
-   <img alt="Entry Endpoint [PATCH] Sequence Diagram" src="docs/../static/backend/EntryEndpointPatchSequence.png" />
+   <img alt="Entry Endpoint [PATCH] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointPatchSequence.png" />
 
 </details>
 
@@ -570,7 +579,7 @@ __`EDIT_DESCRIPTION`__ string
 __Responses__
 
 | Status Code | Description           | Remarks                                                              |
-|-------------|-----------------------|----------------------------------------------------------------------|
+| ----------- | --------------------- | -------------------------------------------------------------------- |
 | `200`       | OK                    | Gson-serialised `Entry`, deserialise with `EntryParser::deserialise` |
 | `404`       | Not Found             | -                                                                    |
 | `422`       | Unprocessable Content | -                                                                    |  |
@@ -1022,17 +1031,17 @@ replicated as follows:
 
 1. Delimiter is invalid: If the delimiter is not the comma (","), it is not recognised as a delimiter and will not be
    processed correctly.
-   Example row: Apple Juice|5.50|Food - In this case, the pipe ("|") is used as a delimiter, which is not allowed.
+   > Example row: Apple Juice|5.50|Food - In this case, the pipe ("|") is used as a delimiter, which is not allowed.
 2. Amount is invalid: If the amount is not a numeric, it is not recognised as a valid amount and will not be processed
    correctly.
-   Example row: Apple Juice,5A6B,Food - In this case, the amount is "5A6B", which is not a numeric and therefore not
-   allowed.
+   > Example row: Apple Juice,5A6B,Food - In this case, the amount is "5A6B", which is not a numeric and therefore not
+   > allowed.
 3. Category is invalid: If the category is not a string from the list of allowed categories (see above), it is not
    recognised as a valid category and will not be processed correctly.
-   Example row: Apple Juice,5.50,Drink - In this case, the category is "Drink", which is not a valid category and
-   therefore not allowed.
+   > Example row: Apple Juice,5.50,Drink - In this case, the category is "Drink", which is not a valid category and
+   > therefore not allowed.
 4. Not enough columns: If a row has insufficient columns compared to what is needed, the Entry cannot be created.
-   Example row: Apple Juice,5.50 - In this case, there are only two categories which is not allowed.
+   > Example row: Apple Juice,5.50 - In this case, there are only two categories which is not allowed.
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -1059,7 +1068,7 @@ replicated as follows:
 # User Stories
 
 | Version | As a ... | I want to ... | So that I can ... |
-|---------|----------|---------------|-------------------|
+| ------- | -------- | ------------- | ----------------- |
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
