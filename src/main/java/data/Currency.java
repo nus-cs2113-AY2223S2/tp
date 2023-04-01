@@ -101,6 +101,9 @@ public class Currency implements Serializable {
         if (currencyKey.equals("SGD")) {
             return new BigDecimal(1);
         }
+        if(date.isAfter(LocalDate.parse("1988-01-08"))) {
+            return getOfflineRate(currencyKey);
+        }
         try {
             String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8b" +
                     "c-4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date.toString() + "&limit=1";
