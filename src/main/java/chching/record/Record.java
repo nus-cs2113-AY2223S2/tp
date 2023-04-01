@@ -2,6 +2,7 @@ package chching.record;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import chching.ChChingException;
 
 // Abstract class that will not be initialized as an object
 /**
@@ -15,9 +16,9 @@ public abstract class Record {
     /**
      * Constructor template for Expense and Income classes
      *
-     * @param description       String description
-     * @param date      String of the date
-     * @param value        value of the income/expense
+     * @param description String description
+     * @param date        String of the date
+     * @param value       value of the income/expense
      */
     public Record(String description, LocalDate date, double value) {
         this.description = description;
@@ -47,7 +48,10 @@ public abstract class Record {
         return value;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description) throws ChChingException {
+        if (description.trim().equals("")) {
+            throw new ChChingException("Description cannot be empty");
+        }
         this.description = description;
     }
 
@@ -58,6 +62,7 @@ public abstract class Record {
     public void setValue(double value) {
         this.value = value;
     }
+
     public String toString() {
         return "";
     }
