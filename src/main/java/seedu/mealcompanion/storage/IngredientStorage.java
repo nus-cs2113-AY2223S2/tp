@@ -85,7 +85,7 @@ public class IngredientStorage {
         if (ingredient.getMetadata() == null ||
                 ingredient.getMetadata().getName() == null ||
                 (ingredient.getMetadata().getUnits() == null && ingredient.getMetadata().getUnitLabel() == null) ||
-                ingredient.getQuantity() == 0) {
+                ingredient.getQuantity() <= 0) {
             fileHasBeenEdited = true;
             return;
         }
