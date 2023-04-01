@@ -102,7 +102,7 @@ Example output:
 Format: `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new income to the list of incomes.
 
-* The `amount` should be double up to 2dp. Digits beyond 2dp will be ignored.
+* The `amount` should be double up to **2dp**. Digits beyond 2dp will be ignored.
 * The `description` can be in a natural language format.
 * The `time` should follow `YYYY MM HH mm` format.
 * The `category` should be one of the categories in the category list.
