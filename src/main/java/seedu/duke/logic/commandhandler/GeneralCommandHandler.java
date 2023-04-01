@@ -115,7 +115,7 @@ public class GeneralCommandHandler implements CommandList {
                     ui.unknownCommand();
                     errorExists = true;
                 } else {
-                    command = new QuickStartCommand(userCommands, ui, exerciseGenerator);
+                    command = new QuickStartCommand(userCommands, ui, exerciseGenerator, exerciseStateHandler);
                 }
                 break;
             case START_COMMAND:
