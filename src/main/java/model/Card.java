@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.UUID;
-import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.InvalidUUIDException;
 
 //to be made into an abstract class containing a few types of Cards later, for now just a single Card will do
