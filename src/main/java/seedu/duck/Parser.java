@@ -141,6 +141,7 @@ public class Parser {
                 case "add_note":
                     if(words.length == 2 && isNumeric(words[1])){
                         TaskList.addNote(tasks, words);
+                        Storage.trySave(tasks, classes);
                     }else{
                         Ui.unknownCommandMessage();
                     }
@@ -148,6 +149,7 @@ public class Parser {
                 case "delete_note":
                     if(words.length == 3){
                         TaskList.deleteNotes(tasks,words);
+                        Storage.trySave(tasks, classes);
                     } else{
                         Ui.unknownCommandMessage();
                     }
@@ -162,6 +164,7 @@ public class Parser {
                 case "edit_note":
                     if(words.length == 3){
                         TaskList.editNote(tasks, words);
+                        Storage.trySave(tasks, classes);
                     }else{
                         Ui.unknownCommandMessage();
                     }

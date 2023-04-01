@@ -18,7 +18,7 @@ public class Deadline extends Task {
 
     @Override
     public String toSaveString() {
-        return super.toSaveString() + " /by " + getDeadline() + " <p>" + getPriorityIndex() + System.lineSeparator();
+        return super.toSaveString() + " /by " + getDeadline() + " <p>" + getPriorityIndex() + " <n>" + getSavedNotes() + System.lineSeparator();
     }
 
     @Override

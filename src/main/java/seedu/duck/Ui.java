@@ -679,11 +679,11 @@ public class Ui {
         int index = Integer.parseInt(words[1]);
         ArrayList<String> toBePrinted = tasks.get(index-1).getAdditionalNotes();
         borderLine();
-        System.out.println("\tHere are the notes for that task quack!");
-        System.out.println("\t\t" + tasks.get(index-1).toString());
+        System.out.println("\t Here are the notes for that task quack!");
+        System.out.println(tasks.get(index-1).toString());
         if (!toBePrinted.isEmpty()) {
             for (int i = 0; i < toBePrinted.size(); i++) {
-                System.out.println("\t" + (i + 1) + ". " + toBePrinted.get(i));
+                System.out.println("\t \t" + (i + 1) + ". " + toBePrinted.get(i));
             }
         } else {
             System.out.println("\tThere are no notes for this task!");

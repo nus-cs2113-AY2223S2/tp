@@ -20,7 +20,7 @@ public class Storage {
     static final String SAVEFOLDER = "data";
 
     /**
-     * Load tasks from save data into the list
+     * Load tasks and the notes under the task from save data into the list
      *
      * @param line The line of input from the save file
      * @param tasks The array list of tasks
@@ -78,10 +78,20 @@ public class Storage {
     static void loadTodo(String line, ArrayList<Task> tasks) {
         String description = line.substring(0, line.indexOf("<p>")).trim();
         Todo currTodo = new Todo(description);
-        String priority = line.substring(line.indexOf("<p>") + 3).trim();
+        String priority = line.substring(line.indexOf("<p>") + 3,line.indexOf("<n>")).trim();
         currTodo.setPriority(priority);
         tasks.add(currTodo);
+        String savedNotes = line.substring(line.indexOf("<n>") + 3);
+        if (savedNotes.charAt(0) == '1'){
+            savedNotes = savedNotes.substring(1);
+            String[] notesToBeAdded;
+            notesToBeAdded = savedNotes.split("@",0);
+                for (String item : notesToBeAdded) {
+                    tasks.get(tasks.size() - 1).addNotes(item);
+                }
+        }
     }
+
 
     /**
      * Adds an event into the list without generating messages,
@@ -98,6 +108,15 @@ public class Storage {
         Event currEvent = new Event(description, start, end);
         currEvent.setPriority(priority);
         tasks.add(currEvent);
+        String savedNotes = line.substring(line.indexOf("<n>") + 3);
+        if (savedNotes.charAt(0) == '1'){
+            savedNotes = savedNotes.substring(1);
+            String[] notesToBeAdded;
+            notesToBeAdded = savedNotes.split("@",0);
+            for (String item : notesToBeAdded) {
+                tasks.get(tasks.size() - 1).addNotes(item);
+            }
+        }
     }
 
     static void loadRecurrEvent(String line, ArrayList<Task> tasks) {
@@ -144,6 +163,15 @@ public class Storage {
         Deadline currDeadline = new Deadline(description, deadline);
         currDeadline.setPriority(priority);
         tasks.add(currDeadline);
+        String savedNotes = line.substring(line.indexOf("<n>") + 3);
+        if (savedNotes.charAt(0) == '1'){
+            savedNotes = savedNotes.substring(1);
+            String[] notesToBeAdded;
+            notesToBeAdded = savedNotes.split("@",0);
+            for (String item : notesToBeAdded) {
+                tasks.get(tasks.size() - 1).addNotes(item);
+            }
+        }
     }
 
     /**
