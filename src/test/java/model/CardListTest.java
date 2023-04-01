@@ -28,6 +28,7 @@ class CardListTest {
 
     @Test
     void findCardFromUUID() {
+        createDummyCards();
         ArrayList<Card> cards = new ArrayList<Card>(Arrays.asList(card1, card2));
         CardList cardList = new CardList(cards);
         try {
