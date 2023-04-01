@@ -31,6 +31,7 @@ public enum ErrorMessages {
     ERROR_FILTER_INPUT("Unknown filter input!"),
     ERROR_EMPTY_KEYWORD("Please key in a keyword for Fitness Duke to search!"),
     ERROR_INVALID_PLAN_ADDITION("Invalid add command!"),
+    ERROR_INVALID_PLAN_NAME("Plan name already exists!"),
     ERROR_NO_EXERCISE_LOADED("There is no exercise generated! Please use the generate " +
                                  "command to generate an exercise session!"),
     ERROR_INVALID_DATE_INPUT("Invalid date input!"),

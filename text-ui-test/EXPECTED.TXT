@@ -61,8 +61,7 @@ delete monday Home_Leg_Day
 ===>Planner Mode<===
 Exited planner editor!
 ________________________________________
-These are the plans we found: 
-test
+Generating workout for: 
 test
 
 Exercise ID: 0. 

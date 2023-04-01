@@ -5,8 +5,8 @@ UserPlan -> "newPlan:Plan" **
 activate "newPlan:Plan"
 "newPlan:Plan" --> UserPlan
 deactivate "newPlan:Plan"
-activate Storage
 UserPlan -> Storage : writeToJson()
+activate Storage
 Storage --> UserPlan
 deactivate Storage
 deactivate UserPlan
