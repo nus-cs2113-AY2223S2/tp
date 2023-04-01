@@ -6,6 +6,9 @@ import seedu.mealcompanion.recipe.Recipe;
 import seedu.mealcompanion.recipe.RecipeList;
 
 //@@author jingyaaa
+/**
+ * Represents the "recipe find" command
+ */
 
 public class RecipeFindCommand extends ExecutableCommand {
 
@@ -15,6 +18,11 @@ public class RecipeFindCommand extends ExecutableCommand {
         this.findTerm = findTerm;
     }
 
+    /**
+     * Check if recipe name in a recipe list contains the search term
+     * @param mealCompanionSession the MealCompanionSession containing the recipe list
+     * @return true if there are recipe names that contain search term, else false
+     */
     private boolean haveRecipes(MealCompanionSession mealCompanionSession) {
         RecipeList recipeList = mealCompanionSession.getRecipes();
         String matchTerm = findTerm.toLowerCase();
