@@ -1,0 +1,50 @@
+ISBN: 978-0131872486
+Title: Thinking in Java
+Author: Bruce Eckel
+Topic: Computer Programming
+NEXTBOOK
+ISBN: 978-0275967765
+Title: Cpp Programming Language
+Author: Bjarne Stroustrup
+Topic: Computer Programming
+NEXTBOOK
+ISBN: 978-1133608424
+Title: Data Structures and Algorithms in Cpp
+Author: Adam Drozdek
+Topic: Data Structures and Algorithms
+NEXTBOOK
+ISBN: 978-1119800361
+Title: Operating System Concepts
+Author: Abraham Silberschatz
+Topic: Operating Systems
+NEXTBOOK
+ISBN: 978-1492051299
+Title: Head First Python A Learner Guide to the Fundamentals of Python Programming
+Author: Paul Barry
+Topic: Computer Programming
+NEXTBOOK
+ISBN: 978-0201835953
+Title: The Mythical Man Month Essays on Software Engineering
+Author: Frederick P Brooks
+Topic: Software Engineering
+NEXTBOOK
+ISBN: 978-0357433836
+Title: Guide to Operating Systems
+Author: Greg Tomsho
+Topic: Operating Systems
+NEXTBOOK
+ISBN: 978-0135957059
+Title: The Pragmatic Programmer Your journey to mastery
+Author: David Thomas
+Topic: Software Engineering
+NEXTBOOK
+ISBN: 978-0262033848
+Title: Introduction to Algorithms
+Author: Thomas H Cormen
+Topic: Data Structures and Algorithms
+NEXTBOOK
+ISBN: 978-8131773383
+Title: Clean Code A Handbook of Agile Software Craftsmanship
+Author: Robert C Martin
+Topic: Software Engineering
+NEXTBOOK
