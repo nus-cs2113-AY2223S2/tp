@@ -96,6 +96,16 @@ Format: `list`
 Examples of usage:
 * `list`
 
+Example output:
+``` 
+Here are the items in your list
+1. [1000000/1000000] tooth
+2. [0/1] toothpaste
+```
+Format explanation:
+
+`ITEM_INDEX. [CURRENTLY_PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`
+
 ### <span style="color:#6495ED">Deleting the entire list:</span> `deletelist`
 Want to start on a new packing list? This command will clear the whole packing list. 
 Be careful, this action is irreversible.
