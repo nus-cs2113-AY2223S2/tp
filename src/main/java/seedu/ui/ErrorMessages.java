@@ -1,5 +1,6 @@
 package seedu.ui;
 
+import java.time.LocalDate;
 
 public enum ErrorMessages {
 
@@ -19,7 +20,9 @@ public enum ErrorMessages {
     ERROR_INVALID_EXPENDITURE_TYPE_MESSAGE("Invalid expenditure type! Please try again"),
     ERROR_NUMBER_FORMAT_MESSAGE("Index must be an integer and within bounds! Please try again"),
     ERROR_WRONG_FORMAT_MESSAGE("Input command cannot be recognised as it is in the wrong format. Please try again"),
-    ERROR_BUDGET_NOT_NUMERICAL_MESSAGE("Budget amount is not a numerical value!");
+    ERROR_BUDGET_NOT_NUMERICAL_MESSAGE("Budget amount is not a numerical value!"),
+    ERROR_INVALID_DATE_MESSAGE("Borrow date must be before the return date! Please try again"),
+    ERROR_INVALID_DEADLINE_MESSAGE("Return date must be after today's date! " + "Today's date is " + LocalDate.now());
  
 
     public final String message;

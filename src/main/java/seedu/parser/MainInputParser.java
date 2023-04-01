@@ -22,6 +22,7 @@ import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
 import seedu.commands.SortCommand;
+import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.WrongInputException;
 import seedu.commands.DuplicateCommand;
@@ -113,6 +114,8 @@ public class MainInputParser {
             return new InvalidCommand(ERROR_INVALID_EXPENDITURE_TYPE_MESSAGE.toString());
         } catch (NotPositiveValueException p) {
             return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
+        } catch (InvalidDateException e) {
+            return new InvalidCommand(e.getMessage());
         }
     }
 }

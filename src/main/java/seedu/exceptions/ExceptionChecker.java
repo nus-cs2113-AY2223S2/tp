@@ -1,5 +1,7 @@
 package seedu.exceptions;
 
+import java.time.LocalDate;
+
 import seedu.expenditure.AccommodationExpenditure;
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.TuitionExpenditure;
@@ -14,6 +16,16 @@ public class ExceptionChecker {
     public static void checkPositiveAmount(double amountVal) throws NotPositiveValueException {
         if (amountVal <= 0) {
             throw new NotPositiveValueException();
+        }
+    }
+
+    public static void checkDate(LocalDate startDate, LocalDate endDate) throws InvalidDateException, InvalidDeadlineException {
+        LocalDate currentDate = LocalDate.now();
+        if (startDate.compareTo(endDate) > 0) {
+            throw new InvalidDateException();
+        } 
+        if (endDate.isBefore(currentDate)) {
+            throw new InvalidDeadlineException();
         }
     }
 
