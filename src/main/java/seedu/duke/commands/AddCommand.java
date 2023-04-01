@@ -41,7 +41,7 @@ public class AddCommand extends Command {
                     item.setCategory(category);
                 }
             } catch (NullPointerException e) {
-                item.setCategory("Uncategorized");
+                item.setCategory("uncategorised");
             }
             try {
                 CategoryCommand.updateItemCategory(item, item.getCategory(), item.getCategory());

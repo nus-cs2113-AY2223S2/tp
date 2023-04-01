@@ -5,12 +5,9 @@ import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ListCommandTest {
     Inventory inventory;
@@ -38,7 +35,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| apples          | 012345678    | 5000     | $12.0    | Uncategorized   |" +
+                        "| apples          | 012345678    | 5000     | $12.0    | uncategorised   |" +
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
@@ -68,7 +65,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| applesorangesgr | 012345678    | 5000     | $12.0    | Uncategorized   |" +
+                        "| applesorangesgr | 012345678    | 5000     | $12.0    | uncategorised   |" +
                         System.lineSeparator() +
                         "| eenbeansredbean |              |          |          |                 |" +
                         System.lineSeparator() +
@@ -97,7 +94,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| red orange      | 012345678    | 5000     | $12.0    | Uncategorized   |" +
+                        "| red orange      | 012345678    | 5000     | $12.0    | uncategorised   |" +
                         System.lineSeparator() +
                         "| yellow green    |              |          |          |                 |" +
                         System.lineSeparator() +

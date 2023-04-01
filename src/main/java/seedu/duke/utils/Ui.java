@@ -12,7 +12,6 @@ import java.util.Objects;
 
 
 public class Ui {
-   // public static final String LINE = "____________________________________________________________";
     public static final String LINE = "---------------------------------------------------------------------------";
     public static final String DASHBOARDLOGO = "\n" +
             "██████╗░░█████╗░░██████╗██╗░░██╗██████╗░░█████╗░░█████╗░██████╗░██████╗░\n" +
