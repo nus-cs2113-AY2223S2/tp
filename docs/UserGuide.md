@@ -71,7 +71,7 @@ If you can type fast, BrokeMan can get your expenses and income management tasks
 Format: `addExpense a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new expense to the list of expenses.
 
-* The `amount` should be double.
+* The `amount` should be double up to **2 decimal places** (dp). Digits beyond 2dp will be ignored.
 * The `description` can be in a natural language format.
 * The `time` should follow `YYYY MM HH mm` format.  
 * The `category` should be one of the categories in the category list.
@@ -102,7 +102,7 @@ Example output:
 Format: `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new income to the list of incomes.
 
-* The `amount` should be double.
+* The `amount` should be double up to 2dp. Digits beyond 2dp will be ignored.
 * The `description` can be in a natural language format.
 * The `time` should follow `YYYY MM HH mm` format.
 * The `category` should be one of the categories in the category list.
@@ -189,7 +189,7 @@ Format: `editExpense i/ <index> t/ <type> n/ <newEntry>`
 The index refers to the index number shown in the displayed expense list.
 The index must be a positive integer 1, 2, 3, …​
 * The `type` can be: amount, description, time, or category.
-  * amount (of type **double**): edits the expense
+  * amount (of type **double** up to **2dp**. Digits beyond 2dp will be ignored.): edits the expense
   * info (of type **String**): edits the description of expense
   * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense
   * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that expense
@@ -222,7 +222,7 @@ Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
   The index refers to the index number shown in the displayed income list.
   The index must be a positive integer 1, 2, 3, ...
 * The `type` can be: amount, info, time, or category.
-  * amount (of type **double**): edits the income
+  * amount (of type **double** up to **2dp**. Digits beyond 2dp will be ignored.): edits the income
   * info (of type **String**): edits the description of income
   * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned
   * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that income
@@ -397,7 +397,7 @@ Example output:
 
 ### Set budget: `setBudget`
 Format:  `setBudget <amount> [t/ time]`
-* The `amount` should be double.
+* The `amount` should be double up to **2dp**. Digits beyond 2dp will be ignored.
 * The `time` should follow `YYYY/MM` format.
 * The time parameter is optional. 
 If you add this optional parameter, the budget will only take expenses within the indicated month into consideration.
