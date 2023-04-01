@@ -12,6 +12,7 @@ import seedu.dukeofbooks.command.RenewCommand;
 import seedu.dukeofbooks.command.ReturnCommand;
 import seedu.dukeofbooks.command.SearchCommand;
 import seedu.dukeofbooks.command.UserCommand;
+import seedu.dukeofbooks.command.UserExitCommand;
 import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.book.BorrowableItem;
@@ -62,6 +63,8 @@ public class UserCommandParser implements IParser{
             return prepareReturnCommand(arguments);
         case SearchCommand.COMMAND_WORD:
             return prepareSearchCommand(arguments);
+        case UserExitCommand.COMMAND_WORD:
+            return new UserExitCommand();
         default:
             return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
