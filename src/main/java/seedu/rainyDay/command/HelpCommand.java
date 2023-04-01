@@ -46,14 +46,14 @@ public class HelpCommand extends Command {
             "|                             |                                                                      |\n" +
             "| add -out Noodles $5         | Adds entry with description: Noodles and value: $5 as outflow        |\n" +
             "|                             |                                                                      |\n" +
-            "| add -out Bus $0.98 -c       | Adds entry with description: Bus and value: $0.98 as outflow,        |\n" +
-            "| Transport                   | with its category set to Transport                                   |\n" +
+            "| add -out Bus $0.98 -c       | Adds entry with description: Bus and value: $0.98 as outflow, with   |\n" +
+            "| Transport                   | its category set to Transport and date set to present date           |\n" +
+            "|                             |                                                                      |\n" +
+            "| add -out Haidilao $500      | Adds entry with description: Haidilao and value: $5000 as outflow,   |\n" +
+            "| -date 22/03/2018            | with its category set to Food and date set to 22nd March, 2018       |\n" +
             "|                             |                                                                      |\n" +
             "| add -out Bubble Tea $5.20   | Adds entry with description: Bubble Tea and value: $5.20 as outflow, |\n" +
             "| -c Food -date 22/03/2018    | with its category set to Food and date set to 22nd March, 2018       |\n" +
-            "|                             |                                                                      |\n" +
-            "| add -out $198 -c Bills      | Adds entry with no description and value: $198 as outflow, with its  |\n" +
-            "|                             | category set to Bills                                                |\n" +
             "+====================================================================================================+\n";
 
     private static final String HELP_DELETE_COMMAND = "" +
