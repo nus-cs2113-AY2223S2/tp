@@ -27,6 +27,17 @@ public abstract class Command {
 
     protected UserData userData;
 
+    //@@author KN-CY
+    public static boolean isValidCommand(String word) {
+        return word.equalsIgnoreCase(COMMAND_ADD) || word.equalsIgnoreCase(COMMAND_DELETE) ||
+                word.equalsIgnoreCase(COMMAND_VIEW) || word.equalsIgnoreCase(COMMAND_HELP) ||
+                word.equalsIgnoreCase(COMMAND_EXIT) || word.equalsIgnoreCase(COMMAND_FILTER) ||
+                word.equalsIgnoreCase(COMMAND_EDIT) || word.equalsIgnoreCase(COMMAND_EXPORT) ||
+                word.equalsIgnoreCase(COMMAND_SHORTCUT) || word.equalsIgnoreCase(COMMAND_SET_BUDGET) ||
+                word.equalsIgnoreCase(COMMAND_DELETE_SHORTCUT) || word.equalsIgnoreCase(COMMAND_VIEW_SHORTCUT) ||
+                word.equalsIgnoreCase(COMMAND_IGNORE) || word.equalsIgnoreCase(COMMAND_UNIGNORE);
+    }
+
     /**
      * Sets the attribute to reference the financial report for execution of commands
      *

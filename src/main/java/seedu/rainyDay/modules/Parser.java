@@ -84,7 +84,7 @@ public class Parser {
                 // check if the user has a shortcut command
                 HashMap<String, String> shortcutCommands = RainyDay.userData.getShortcutCommands();
                 if (shortcutCommands.containsKey(userInput)) {
-                    return parseUserInput(shortcutCommands.get(userInput));
+                    return parseUserInput(processShortcutUsage(shortcutCommands, userInput));
                 }
                 logger.warning("unrecognised input from user!");
                 return new InvalidCommand(ErrorMessage.UNRECOGNIZED_INPUT.toString());
@@ -453,27 +453,35 @@ public class Parser {
     }
 
     //@@author KN-CY
-    private Command generateShortcut(String userInput) {
+    private Command generateShortcut(String userInput) throws RainyDayException {
         if (!userInput.contains(" -maps ")) {
-            return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
+            throw new RainyDayException(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
         }
 
         String[] tokens = userInput.split(" -maps ");
 
         // check for > 1 instance of " -maps "
         if (tokens.length > 2) { //
-            return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
+            throw new RainyDayException(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
         }
         String key = tokens[0];
         String value = tokens[1];
 
         // ensure that shortcut is a single word
         if (key.contains(" ")) {
-            return new InvalidCommand(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
+            throw new RainyDayException(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
         }
         return new ShortcutAddCommand(key, value);
     }
 
+    //@@author KN-CY
+    private String processShortcutUsage(HashMap<String, String> shortcutCommands, String shortcut) {
+        String actualCommand = shortcutCommands.get(shortcut);
+        System.out.println("Shortcut used: " + shortcut);
+        System.out.println("rainyDay will now execute your mapped command: " + actualCommand);
+
+        return shortcutCommands.get(shortcut);
+    }
 
     //@@author BenjaminPoh
     private Command setUserBudgetGoal(String userInput) {
