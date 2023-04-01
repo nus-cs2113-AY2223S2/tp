@@ -50,10 +50,10 @@ public class EditCommand extends Command {
      * @throws MissingParametersException Exception related to all errors due to missing parameters.
      * @throws NumberFormatException      Exception related to all invalid number formats inputted.
      */
-    public void updateItemInfo(final Item item, final String[] data) throws
+    public void updateItemInfo(final Item item, final Item oldItem, final String[] data) throws
             MissingParametersException, NumberFormatException {
         try {
-            handleUserEditCommands(item, data);
+            handleUserEditCommands(item, oldItem, data);
         } catch (MissingParametersException mpe) {
             throw new MissingParametersException();
         } catch (NumberFormatException nfe) {
@@ -72,35 +72,112 @@ public class EditCommand extends Command {
      * @throws MissingParametersException Exception related to all errors due to missing parameters.
      * @throws NumberFormatException      Exception related to all invalid number formats inputted.
      */
-    private void handleUserEditCommands(Item item, String[] data) throws
+    private void handleUserEditCommands(Item item, Item oldItem, String[] data) throws
             MissingParametersException, NumberFormatException, CategoryFormatException {
+        String currentLabel = "null";
+        try {
+            validateUserEditCommands(data);
+            for (int dataSequence = 1; dataSequence < data.length; dataSequence += 1) {
+                currentLabel = makeEdits(item, data, currentLabel, dataSequence);
+            }
+        } catch (MissingParametersException mpe) {
+            throw new MissingParametersException();
+        } catch (NumberFormatException nfe) {
+            revertChanges(item, oldItem);
+            throw new NumberFormatException();
+        }
+    }
+
+    /**
+     * In the event that edits were not made due to errors, revert attributes back to old attributes.
+     *
+     * @param item The item whose attributes are to be edited.
+     * @param oldItem The item containing the old attributes before the edit was made.
+     */
+    private void revertChanges(Item item, Item oldItem) {
+        item.setName(oldItem.getName());
+        item.setPrice(oldItem.getPrice());
+        item.setQuantity(oldItem.getQuantity());
+        item.setCategory(oldItem.getCategory());
+    }
+
+    /**
+     * Make specific edits to an attribute based on the inputs of the user, which can range from quantity to price
+     * to category and name.
+     *
+     * @param item The target item in which the user wants to edit.
+     * @param data The user input which contains the information to be used to update the item attributes.
+     * @param currentLabel The current attribute type being edited.
+     * @param dataSequence The numerical index of the string array containing the user commands.
+     * @return String containing the name of the attribute type currently being edited.
+     * @throws MissingParametersException Exception related to all errors due to missing parameters.
+     */
+    private static String makeEdits(Item item, String[] data, String currentLabel, int dataSequence)
+            throws MissingParametersException {
+        if (data[dataSequence].contains("n/")) {
+            String newName = data[dataSequence].replaceFirst("n/", "");
+            item.setName(newName);
+            currentLabel = NAME_LABEL;
+        } else if (data[dataSequence].contains("qty/")) {
+            String updatedQuantity = data[dataSequence].replaceFirst("qty/", "");
+            setItemQuantity(item, updatedQuantity);
+            currentLabel = QUANTITY_LABEL;
+        } else if (data[dataSequence].contains("p/")) {
+            String updatedPrice = data[dataSequence].replaceFirst("p/", "");
+            setItemPrice(item, updatedPrice);
+            currentLabel = PRICE_LABEL;
+        } else if (data[dataSequence].contains("c/")) {
+            String updatedCategory = data[dataSequence].replaceFirst("c/", "");
+            updatedCategory = updatedCategory.toLowerCase();
+            item.setCategory(updatedCategory);
+            currentLabel = CATEGORY_LABEL;
+        } else {
+            if (currentLabel.equals(NAME_LABEL)) {
+                item.setName(item.getName() + " " + data[dataSequence]);
+            } else {
+                throw new MissingParametersException();
+            }
+        }
+        return currentLabel;
+    }
+
+    /**
+     * Ensures that the edit command formatting is valid before passing the input onwards for edit processing.
+     *
+     * @param data The user input which contains the information to be used to update the item attributes.
+     * @throws MissingParametersException Exception related to all errors due to missing parameters.
+     */
+    private void validateUserEditCommands(String[] data) throws  MissingParametersException {
+        int upcEditCount = 0;
+        int nameEditCount = 0;
+        int quantityEditCount = 0;
+        int priceEditCount = 0;
+        int categoryEditCount = 0;
         String currentLabel = "null";
         for (int dataSequence = 1; dataSequence < data.length; dataSequence += 1) {
             if (data[dataSequence].contains("n/")) {
-                String newName = data[dataSequence].replaceFirst("n/", "");
-                item.setName(newName);
+                nameEditCount += 1;
                 currentLabel = NAME_LABEL;
             } else if (data[dataSequence].contains("qty/")) {
-                String updatedQuantity = data[dataSequence].replaceFirst("qty/", "");
-                setItemQuantity(item, updatedQuantity);
+                quantityEditCount += 1;
                 currentLabel = QUANTITY_LABEL;
             } else if (data[dataSequence].contains("p/")) {
-                String updatedPrice = data[dataSequence].replaceFirst("p/", "");
-                setItemPrice(item, updatedPrice);
+                priceEditCount += 1;
                 currentLabel = PRICE_LABEL;
+            } else if (data[dataSequence].contains("upc/")) {
+                upcEditCount += 1;
             } else if (data[dataSequence].contains("c/")) {
-                String updatedCategory = data[dataSequence].replaceFirst("c/", "");
-                updatedCategory = updatedCategory.toLowerCase();
-                //CategoryCommand.updateItemCategory(item, item.getCategory(), updatedCategory);
-                item.setCategory(updatedCategory);
+                categoryEditCount += 1;
                 currentLabel = CATEGORY_LABEL;
             } else {
-                if (currentLabel.equals(NAME_LABEL)) {
-                    item.setName(item.getName() + " " + data[dataSequence]);
-                } else {
+                if (!currentLabel.equals(NAME_LABEL)) {
                     throw new MissingParametersException();
                 }
             }
+        }
+        if (nameEditCount > 1 || quantityEditCount > 1 || priceEditCount > 1 || categoryEditCount > 1
+                || upcEditCount >= 1) {
+            throw new MissingParametersException();
         }
     }
 
@@ -113,8 +190,12 @@ public class EditCommand extends Command {
      */
     private static void setItemPrice(Item item, String updatedPrice) throws NumberFormatException {
         try {
-            Double newPrice = Double.valueOf(updatedPrice);
-            item.setPrice(newPrice);
+            double newPrice = Double.parseDouble(updatedPrice);
+            if (newPrice >= 0) {
+                item.setPrice(newPrice);
+            } else {
+                throw new NumberFormatException();
+            }
         } catch (NumberFormatException nfe) {
             throw new NumberFormatException();
         }
@@ -129,8 +210,12 @@ public class EditCommand extends Command {
      */
     private static void setItemQuantity(Item item, String updatedQuantity) throws NumberFormatException {
         try {
-            Integer newQuantity = Integer.valueOf(updatedQuantity);
-            item.setQuantity(newQuantity);
+            int newQuantity = Integer.parseInt(updatedQuantity);
+            if (newQuantity >= 0) {
+                item.setQuantity(newQuantity);
+            } else {
+                throw new NumberFormatException();
+            }
         } catch (NumberFormatException nfe) {
             throw new NumberFormatException();
         }
@@ -145,7 +230,8 @@ public class EditCommand extends Command {
             Item updatedItem = retrieveItemFromHashMap(editInfo);
             Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
                     updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
-            updateItemInfo(updatedItem, editInfo);
+            updateItemInfo(updatedItem, oldItem, editInfo);
+            CategoryCommand.updateItemCategory(oldItem, oldItem.getCategory(),updatedItem.getCategory());
             Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
                     updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
             handleTrie(updatedItem, oldItem);
@@ -157,10 +243,6 @@ public class EditCommand extends Command {
                     upcCodes.get(updatedItem.getUpc()).getQuantity().intValue());
 
             inventory.getUpcCodesHistory().get(oldItem.getUpc()).add(itemForHistory);
-
-            CategoryCommand.updateItemCategory(oldItem, oldItem.getCategory(),updatedItem.getCategory());
-
-
             if (SessionManager.getAutoSave()) {
                 SessionManager.writeSession(inventory);
             }
