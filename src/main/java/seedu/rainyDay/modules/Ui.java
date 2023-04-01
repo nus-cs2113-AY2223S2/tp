@@ -54,16 +54,16 @@ public class Ui {
     public String readUserName() {
         System.out.println("Welcome new user! What is your name?");
         String username;
-        while(true) {
+        username = in.nextLine().trim();
+        while (username.isEmpty()) {
+            System.out.println("Very funny, you should not have an empty name!\nWhat is your name?");
             username = in.nextLine().trim();
-            if (username.isEmpty()) {
-                System.out.println("Very funny, you should not have an empty name!\nWhat is your name?");
-            } else {
-                break;
-            }
         }
+        greetUser(username);
+        System.out.println("Get started by providing the command \"help\" to learn the functions offered by rainyDay!");
         return username;
     }
+
 
     public String readUserCommand() {
         System.out.print("> ");

@@ -43,7 +43,7 @@ public class Parser {
             String[] action = userInput.split("\\s+", 2);
             if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
                 logger.info("add command executing");
-                return addStatement(action[1].trim());
+                return addStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
                 logger.info("delete command executing");
                 return parseDeleteStatement(userInput);
@@ -95,9 +95,10 @@ public class Parser {
         }
     }
 
-    private Command addStatement(String addInput) throws RainyDayException { // example: add -<in/out> <description>
+    private Command addStatement(String userInput) throws RainyDayException { // example: add -<in/out> <description>
         // $value -c -date
         try {
+            String addInput = userInput.split("\\s+", 2)[1];
             this.category = "miscellaneous";
             this.date = LocalDate.now();
             String remainingInformation = returnRemainingInformation(addInput);
@@ -120,7 +121,7 @@ public class Parser {
             }
             logger.info("returning new AddCommand object");
             return new AddCommand(description.trim(), direction, amount, category, date);
-        } catch (Exception e) {
+        } catch (IndexOutOfBoundsException e) {
             logger.warning("add command given by user in the wrong format");
             throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
         }
@@ -128,60 +129,70 @@ public class Parser {
 
     private String returnRemainingInformation(String input) throws RainyDayException {
         try {
+            int flag = 0;
             Pattern pattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)");
             Matcher matcher = pattern.matcher(input);
-            if (matcher.matches()) {
-                this.direction = matcher.group(1);
-                this.description = matcher.group(2);
-                double exactAmount = Double.parseDouble(matcher.group(3));
-                exactAmount = (int) (exactAmount * 100);
-                if (exactAmount == 0) {
+            if (!matcher.matches()) {
+                flag = 1;
+                pattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)\\s+(.*)");
+                matcher = pattern.matcher(input);
+                if (!matcher.matches()) {
+                    logger.warning("add command given by user in the wrong format");
                     throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
                 }
-                this.amount = exactAmount / 100;
+            }
+            this.direction = matcher.group(1);
+            this.description = matcher.group(2);
+            if (this.description.contains("-")) {
+                logger.warning("unsupported description name");
+                throw new RainyDayException(ErrorMessage.UNSUPPORTED_DESCRIPTION_NAME.toString());
+            }
+            if (this.description.trim().isEmpty()) {
+                logger.warning("unsupported description name");
+                throw new RainyDayException(ErrorMessage.EMPTY_DESCRIPTION_NAME.toString());
+            }
+            double exactAmount = Double.parseDouble(matcher.group(3)); // check
+            exactAmount = (int) (exactAmount * 100);
+            if (exactAmount == 0) {
+                throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            }
+            this.amount = exactAmount / 100;
+            if (flag == 0) {
                 logger.info("obtaining mandatory information");
                 return "";
             }
-            pattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)\\s+(.*)");
-            matcher = pattern.matcher(input);
-            if (matcher.matches()) {
-                this.direction = matcher.group(1);
-                this.description = matcher.group(2);
-                double exactAmount = Double.parseDouble(matcher.group(3));
-                exactAmount = (int) (exactAmount * 100);
-                if (exactAmount == 0) {
-                    throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
-                }
-                this.amount = exactAmount / 100;
-                logger.info("obtaining mandatory information");
-                return matcher.group(4);
-            }
+            logger.info("obtaining mandatory information");
+            return matcher.group(4);
         } catch (Exception e) {
             logger.warning("add command given by user in the wrong format");
-            throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            throw new RainyDayException(e.getMessage());
         }
-        logger.warning("add command given by user in the wrong format");
-        throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
     }
 
     private String setCategory(String input) throws RainyDayException {
-        Pattern newPattern = Pattern.compile("-c\\s+(.+)\\s+-date\\s+(\\d{2}/\\d{2}/\\d{4})");
-        Matcher newMatcher = newPattern.matcher(input);
-        if (newMatcher.matches()) {
-            this.category = newMatcher.group(1);
-            logger.info("obtaining category");
-            return "-date " + newMatcher.group(2);
-        }
-
-        Pattern pattern = Pattern.compile("-c\\s+(.+)");
+        int flag = 0;
+        Pattern pattern = Pattern.compile("-c\\s+(.+)\\s+-date\\s+(\\d{2}/\\d{2}/\\d{4})");
         Matcher matcher = pattern.matcher(input);
-        if (matcher.matches()) {
-            this.category = matcher.group(1);
-            logger.info("obtaining category");
-            return "";
+        if (!matcher.matches()) {
+            flag = 1;
+            pattern = Pattern.compile("-c\\s+(.+)");
+            matcher = pattern.matcher(input);
+            if (!matcher.matches()) {
+                logger.warning("add command given by user in the wrong format");
+                throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+            }
         }
-        logger.warning("add command given by user in the wrong format");
-        throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+        this.category = matcher.group(1);
+        if (this.category.contains("-")) {
+            logger.warning("unsupported category name");
+            throw new RainyDayException(ErrorMessage.UNSUPPORTED_CATEGORY_NAME.toString());
+        }
+        if (flag == 0) {
+            logger.info("obtaining category");
+            return "-date " + matcher.group(2);
+        }
+        logger.info("obtaining category");
+        return "";
     }
 
     private void setDate(String input) throws RainyDayException {
@@ -226,16 +237,16 @@ public class Parser {
     //@@author BenjaminPoh
     public Command generateReport(String input) {
         input = input.substring(4).trim();
-        LocalDate startDate= LocalDate.now();
+        LocalDate startDate = LocalDate.now();
         LocalDate endDate = LocalDate.now();
         if (input.equals("")) {
-            startDate = LocalDate.of(startDate.getYear(),startDate.getMonth(), 1);
+            startDate = LocalDate.of(startDate.getYear(), startDate.getMonth(), 1);
             endDate = startDate.plusMonths(1);
             endDate = endDate.minusDays(1);
             return new ViewCommand(startDate, endDate, false, false);
         }
         if (input.equals("-sort")) {
-            startDate = LocalDate.of(startDate.getYear(),startDate.getMonth(), 1);
+            startDate = LocalDate.of(startDate.getYear(), startDate.getMonth(), 1);
             endDate = startDate.plusMonths(1);
             endDate = endDate.minusDays(1);
             return new ViewCommand(startDate, endDate, true, false);
@@ -246,7 +257,7 @@ public class Parser {
             try {
                 boolean sortRequired = matcher.group(2).equals("-sort");
                 startDate = LocalDate.of(1, 1, 1);
-                endDate = LocalDate.of(9999,12,31);
+                endDate = LocalDate.of(9999, 12, 31);
                 return new ViewCommand(startDate, endDate, sortRequired, true);
             } catch (Exception e) {
                 logger.warning("view command given by user in the wrong format");
