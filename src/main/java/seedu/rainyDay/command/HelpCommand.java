@@ -4,7 +4,7 @@ package seedu.rainyDay.command;
 public class HelpCommand extends Command {
     private static final String HELP_COMMAND = "" +
             "+====================================================================================================+\n" +
-            "| Welcome to RainyDay! Here is the overview of commands available                                    |\n" +
+            "| Welcome to rainyDay! Here is the overview of commands available                                    |\n" +
             "+====================================================================================================+\n" +
             "| Feature            | Command   | Additional Syntax                                                 |\n" +
             "+--------------------+-----------+-------------------------------------------------------------------+\n" +
@@ -13,7 +13,7 @@ public class HelpCommand extends Command {
             "| View entries       | view      | {TIME} {-sort}                                                    |\n" +
             "| Filter entries     | filter    | {-in} {-out} {-d DESCRIPTION} {-c CATEGORY} {-date DATE}          |\n" +
             "| Edit an entry      | edit      | [INDEX] [-in/-out/-d DESCRIPTION/-v $VALUE/-c CATEGORY/-date DATE]|\n" +
-            "| Set monthly budget | setbudget | [VALUE]                                                           |\n"+
+            "| Set monthly budget | setbudget | [VALUE]                                                           |\n" +
             "| Create shortcuts   | shortcut  | [SHORTCUT COMMAND -maps VALID COMMAND]                            |\n" +
             "| Ignore entry       | ignore    | [INDEX]                                                           |\n" +
             "| Unignore entry     | unignore  | [INDEX]                                                           |\n" +
@@ -27,15 +27,19 @@ public class HelpCommand extends Command {
 
     private static final String HELP_ADD_COMMAND = "" +
             "+====================================================================================================+\n" +
-            "| Add command                 | Used to add a new entry to RainyDay                                  |\n" +
+            "| Add command                 | Used to add a new entry to rainyDay                                  |\n" +
             "+====================================================================================================+\n" +
             "| Details       | Requirement | Description                                                          |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "| -in / -out    | Mandatory   | Used to denote if the entry is an inflow or an outflow               |\n" +
-            "| <DESCRIPTION> | Optional    | Used to describe the entry. Description will be left blank if omitted|\n" +
+            "| <DESCRIPTION> | Mandatory   | Used to describe the entry. Description will be left blank if omitted|\n" +
             "| $<VALUE>      | Mandatory   | Used to set the value of the entry.                                  |\n" +
             "| -c <CATEGORY> | Optional    | Used to denote the category of the entry. Set to Misc if omitted     |\n" +
             "| -date <DATE>  | Optional    | Used to denote the date of the entry. Set to present date if omitted |\n" +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| Note: DESCRIPTION and CATEGORY cannot contain \"-\" character                                        |\n"
+            +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
@@ -43,19 +47,19 @@ public class HelpCommand extends Command {
             "|                             |                                                                      |\n" +
             "| add -out Noodles $5         | Adds entry with description: Noodles and value: $5 as outflow        |\n" +
             "|                             |                                                                      |\n" +
-            "| add -out Bus $0.98 -c       | Adds entry with description: Bus and value: $0.98 as outflow,        |\n" +
-            "| Transport                   | with its category set to Transport                                   |\n" +
+            "| add -out Bus $0.98 -c       | Adds entry with description: Bus and value: $0.98 as outflow, with   |\n" +
+            "| Transport                   | its category set to Transport and date set to present date           |\n" +
+            "|                             |                                                                      |\n" +
+            "| add -out Haidilao $500      | Adds entry with description: Haidilao and value: $5000 as outflow,   |\n" +
+            "| -date 22/03/2018            | with its category set to Food and date set to 22nd March, 2018       |\n" +
             "|                             |                                                                      |\n" +
             "| add -out Bubble Tea $5.20   | Adds entry with description: Bubble Tea and value: $5.20 as outflow, |\n" +
             "| -c Food -date 22/03/2018    | with its category set to Food and date set to 22nd March, 2018       |\n" +
-            "|                             |                                                                      |\n" +
-            "| add -out $198 -c Bills      | Adds entry with no description and value: $198 as outflow, with its  |\n" +
-            "|                             | category set to Bills                                                |\n" +
             "+====================================================================================================+\n";
 
     private static final String HELP_DELETE_COMMAND = "" +
             "+====================================================================================================+\n" +
-            "| Delete command              | Used to delete an existing entry from RainyDay                       |\n" +
+            "| Delete command              | Used to delete an existing entry from rainyDay                       |\n" +
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
@@ -68,7 +72,7 @@ public class HelpCommand extends Command {
 
     private static final String HELP_VIEW_COMMAND = "" +
             "+====================================================================================================+\n" +
-            "| View command                | Views entries within a specific timeframe in RainyDay                |\n" +
+            "| View command                | Views entries within a specific timeframe in rainyDay                |\n" +
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
@@ -144,7 +148,7 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n";
     private static final String HELP_EXPORT_COMMAND = "" +
             "+====================================================================================================+\n" +
-            "| Export command              | Used to export all entries in RainyDay to CSV                        |\n" +
+            "| Export command              | Used to export all entries in rainyDay to CSV                        |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
@@ -182,7 +186,7 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| shortcut salary -maps add   | Creates a shortcut: salary ,which runs add -in $10000 salary         |\n" +
+            "| shortcut salary -maps add   | Creates a shortcut: salary, which runs add -in $10000 salary         |\n" +
             "| -in $10000 salary           |                                                                      |\n" +
             "|                             |                                                                      |\n" +
             "| shortcut_view               | Views all shortcuts created and what they are mapped to              |\n" +
@@ -192,7 +196,7 @@ public class HelpCommand extends Command {
 
     private static final String HELP_IGNORE_COMMAND = "" +
             "+====================================================================================================+\n" +
-            "| Ignore commands (2)         | Used to ignore the calculation of an existing entry from RainyDay    |\n" +
+            "| Ignore commands (2)         | Used to ignore the calculation of an existing entry from rainyDay    |\n" +
             "+====================================================================================================+\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +

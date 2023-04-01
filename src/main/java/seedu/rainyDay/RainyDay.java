@@ -29,7 +29,9 @@ public class RainyDay {
     private RainyDay(String filePath) {
         ui = new Ui();
         try {
+            ui.printLogo();
             userData = Storage.loadFromFile(filePath);
+            ui.greetUser(userData.getReportOwner());
             assert userData != null : "Error loading from json file";
             logger.log(Level.INFO, "File loaded successfully.");
         } catch (FileNotFoundException | JsonParseException e) {
@@ -44,14 +46,12 @@ public class RainyDay {
     }
 
     private void run() {
-        showStartingMessage();
+        setUpDate();
         runCommand();
         ui.sayFarewellToUser(userData.getReportOwner());
     }
 
-    private void showStartingMessage() {
-        ui.printLogo();
-        ui.greetUser(userData.getReportOwner());
+    private void setUpDate() {
         int currentMonthYear = LocalDate.now().getMonthValue() + LocalDate.now().getYear() * 12;
         System.out.println(userData.checkUserBudgetLimit(currentMonthYear));
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
@@ -79,7 +79,7 @@ public class RainyDay {
         command.setData(userData);
         CommandResult result = command.execute();
         if (result != null) {
-            result.printResult();
+            System.out.println(result.output);
         }
         Storage.writeToFile(userData, filePath);
     }
