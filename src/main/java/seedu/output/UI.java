@@ -1,5 +1,6 @@
 package seedu.output;
 
+import seedu.entities.Exercise;
 import seedu.entities.Food;
 import seedu.storage.FoodStorage;
 
@@ -84,8 +85,5 @@ public class UI {
                 System.out.println((i + 1) + ". " + taskDescription);
             }
         }
-    }
-
-    public void printDeletedFood(Food newFood) {
     }
 }

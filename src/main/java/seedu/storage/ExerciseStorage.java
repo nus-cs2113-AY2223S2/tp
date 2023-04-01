@@ -4,6 +4,7 @@ import com.opencsv.CSVWriter;
 
 import seedu.constants.DateConstants;
 import seedu.entities.Exercise;
+import seedu.entities.Meal;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.UnableToSaveDatabaseException;
 import seedu.logger.LogFileHandler;
@@ -102,6 +103,10 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
         }
     }
 
+    public int getExercisesCount() {
+        return this.exercises.size();
+    }
+
     public ArrayList<Exercise> getExercises() {
         return this.exercises;
     }
@@ -112,4 +117,9 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
                 .collect(Collectors.toList());
         return filteredExercises;
     }
+
+    public Exercise getExerciseById(int id) {
+        return this.exercises.get(id);
+    }
+
 }
