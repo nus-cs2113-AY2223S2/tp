@@ -304,7 +304,7 @@ Displays all expenditures in the expenditure list.
 
 ### 4.11 Finding expenditure records by keyword
 
-Marks an existing lend or borrow expenditure in the expenditure list as completed.
+Find expenditures by description 
 
 **Format:** `find keyword`
 
@@ -315,6 +315,7 @@ Marks an existing lend or borrow expenditure in the expenditure list as complete
 **Important Information:**
 
 - Parameter must not be empty.
+- Keyword is case-sensitive
 - Works like "Ctrl-F", the find command is able to search for all characters matching the keyword in the expenditure descriptions.
 
 ### 4.12 Sorting the expenditure list
