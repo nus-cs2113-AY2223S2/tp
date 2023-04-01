@@ -4,7 +4,6 @@ import com.opencsv.CSVWriter;
 
 import seedu.constants.DateConstants;
 import seedu.entities.Exercise;
-import seedu.entities.Meal;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.UnableToSaveDatabaseException;
 import seedu.logger.LogFileHandler;

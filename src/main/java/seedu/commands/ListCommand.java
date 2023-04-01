@@ -7,7 +7,6 @@ import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
 import seedu.storage.UserStorage;
-import seedu.exceptions.InvalidArgumentsException;
 import seedu.ui.GeneralUi;
 
 public class ListCommand extends Command {

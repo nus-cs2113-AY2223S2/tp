@@ -11,7 +11,6 @@ public class User {
     private int age;
     private String gender;
     private float targetWeight;
-
     private double caloricLimit;
     public User() {
         this.name = "";
@@ -88,10 +87,12 @@ public class User {
         float difference = 0;
         if (actualDifference > 0) {
             difference = actualDifference;
-            System.out.println("You need to lose " + difference + "kg to reach your target weight: " + targetWeight + "kg");
+            System.out.println("You need to lose " + difference + "kg to reach your target weight: " +
+                    targetWeight + "kg");
         } else if (actualDifference < 0) {
             difference = actualDifference * (-1);
-            System.out.println("You need to gain " + difference + "kg to reach your target weight: " + targetWeight + "kg");
+            System.out.println("You need to gain " + difference + "kg to reach your target weight: " +
+                    targetWeight + "kg");
         } else {
             System.out.println("Congrats! You have reached your target weight!");
         }
@@ -102,10 +103,12 @@ public class User {
         float difference = 0;
         if (actualDifference > 0) {
             difference = actualDifference;
-            System.out.println("With your updated target weight, you now need to lose " + difference + "kg to reach it.");
+            System.out.println("With your updated target weight, you now need to lose " + difference +
+                    "kg to reach it.");
         } else if (actualDifference < 0) {
             difference = actualDifference * (-1);
-            System.out.println("With your updated target weight, you now need to gain " + difference + "kg to reach it.");
+            System.out.println("With your updated target weight, you now need to gain " + difference +
+                    "kg to reach it.");
         } else {
             System.out.println("Congrats! You have reached your target weight!");
         }

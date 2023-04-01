@@ -2,7 +2,11 @@ package seedu.commands;
 
 import seedu.entities.Exercise;
 import seedu.entities.Meal;
-import seedu.exceptions.*;
+import seedu.exceptions.ExtraArgumentsException;
+import seedu.exceptions.InvalidCommandException;
+import seedu.exceptions.LifeTrackerException;
+import seedu.exceptions.MissingArgumentsException;
+import seedu.exceptions.InvalidIndexException;
 import seedu.logger.LogFileHandler;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
@@ -31,11 +35,9 @@ public class DeleteCommand extends Command{
         String[] commandParts = commandDescriptor.split(" ");
         if (commandParts.length == 1) {
             throw new MissingArgumentsException("delete", "[/meal, /exercise]");
-        }
-        else if (commandParts.length > 3) {
+        } else if (commandParts.length > 3) {
             throw new ExtraArgumentsException();
-        }
-        else if (!commandParts[1].equals("/meal") && !commandParts[1].equals("/exercise")) {
+        } else if (!commandParts[1].equals("/meal") && !commandParts[1].equals("/exercise")) {
             throw new InvalidCommandException();
         }
         this.itemType = commandParts[1].substring(1);

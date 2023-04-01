@@ -1,6 +1,5 @@
 package seedu.output;
 
-import seedu.entities.Exercise;
 import seedu.entities.Food;
 import seedu.storage.FoodStorage;
 

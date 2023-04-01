@@ -12,9 +12,13 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class GeneralUi {
-    public static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
+    private static int minimumNumber = 1; //inclusive
+    private static int maximumNumber = 11; //exclusive
+    private static Random random = new Random();
+    private static int numberGenerated = random.nextInt(maximumNumber - minimumNumber) + minimumNumber;
     private static String endingMessage = "Bye! Hope to see you again soon!";
-    private static String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!" 
+    private static String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!"
             + System.lineSeparator();
 
     /**
@@ -53,11 +57,6 @@ public class GeneralUi {
     public void printLine() {
         System.out.println("------------------------------------------------------------");
     }
-
-    int minimumNumber = 1; //inclusive
-    int maximumNumber = 11; //exclusive
-    Random random = new Random();
-    int numberGenerated = random.nextInt(maximumNumber - minimumNumber) + minimumNumber;
 
     public void printMotivateMessage() {
         if (numberGenerated == 1) {
