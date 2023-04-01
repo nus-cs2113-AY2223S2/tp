@@ -279,12 +279,31 @@ public class AddCommand extends Command implements LoggerInterface {
             LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatter);
             LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatter);
 
-            if (isOverlap(eventStart, eventEnd, lessonStart, lessonEnd)) {
+            if (isOverlap(eventStart, eventEnd, lessonStart, lessonEnd) && isDuringSemester(eventStart,eventEnd)) {
+
                 return true;
             }
         }
         return false;
     }
+
+
+    /**
+     * Checks if event occurs during the academic semester 1 or 2
+     * @param eventStart The start time of the event
+     * @param eventEnd  The end time of the event
+     * @return
+     */
+    private boolean isDuringSemester(LocalDateTime eventStart,LocalDateTime eventEnd) {
+        LocalDateTime startSemesterTwo = LocalDateTime.of(2023, 1, 9, 0, 0);
+        LocalDateTime endSemesterTwo= LocalDateTime.of(2023,5,7,0,0);
+        LocalDateTime startSemesterOne = LocalDateTime.of(2023,8,14,0,0);
+        LocalDateTime endSemesterOne = LocalDateTime.of(2023,11,10,0,0);
+        return (!startSemesterTwo.isAfter(eventEnd) && !endSemesterTwo.isBefore(eventStart))
+                || (!startSemesterOne.isAfter(eventEnd) && !endSemesterOne.isBefore(eventStart));
+    }
+
+
 
     /**
      * Checks if an event and lesson overlap.

@@ -164,7 +164,7 @@ public class Ui {
         }
     }
 
-    private static boolean printLessonsOnDay(Calendar calendar, int i) {
+    private boolean printLessonsOnDay(Calendar calendar, int i) {
         System.out.println("Lessons:");
         int count = 0;
         for (CalendarModule module : calendar.get(i)) {
@@ -174,7 +174,7 @@ public class Ui {
         return (count <= 0);
     }
 
-    private static boolean printTasksOnDay(TaskList taskList, LocalDate curr) {
+    private boolean printTasksOnDay(TaskList taskList, LocalDate curr) {
         System.out.println("\nTasks:");
         TaskList tasksOnDay = taskList.getTasksOnDate(curr);
         int count = 0;
@@ -186,13 +186,13 @@ public class Ui {
     }
 
     public void printClashingDeadlineMessage(TaskList clashTasks, ArrayList<CalendarModule> clashLessons) {
-        if (clashTasks.size()==0 & clashLessons.size()==0) {
+        if (clashTasks.size() == 0 & clashLessons.size() == 0) {
             return;
         }
         System.out.println("Heads up, your deadline occurs on the same day as these!\n" +
                 "______________________");
 
-        if (clashLessons.size()!=0) {
+        if (clashLessons.size() != 0) {
             System.out.println("Lessons:");
             int count = 0;
             for (CalendarModule module : clashLessons) {
@@ -202,7 +202,7 @@ public class Ui {
             System.out.println();
         }
 
-        if (clashTasks.size()!=0) {
+        if (clashTasks.size() != 0) {
             System.out.println("Tasks:");
             int count = 0;
             for (Task task : clashTasks) {
