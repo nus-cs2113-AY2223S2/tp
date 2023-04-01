@@ -68,7 +68,13 @@ public class Ui {
      * Prints out a list of all available commands.
      */
     public void printHelpMessage() {
-        System.out.println("Task Commands:\n" +
+        printTaskCommands();
+        printModuleCommands();
+        printCommonAndNote();
+        printAddModuleOptions();
+    }
+    private void printTaskCommands(){
+        System.out.print("Task Commands:\n" +
                 "- Enter \"list\" to see all tasks\n" +
                 "- Enter \"todo [task]\" to add a task\n" +
                 "- Enter \"deadline [task] /by [date]\" to add a deadline\n" +
@@ -77,25 +83,29 @@ public class Ui {
                 "- Enter \"unmark [idx]\" to mark task as not done\n" +
                 "- Enter \"delete [idx]\" to remove task from list\n" +
                 "- Enter \"find [keyword]\" to see all tasks containing [keyword]\n" +
-                "- Enter \"date [yyyy-MM-dd]\" to see all tasks occurring on that date\n\n" +
+                "- Enter \"date [yyyy-MM-dd]\" to see all tasks occurring on that date\n\n");
+    }
 
-                "Module Commands:\n" +
+    private void printModuleCommands(){
+        System.out.print("Module Commands:\n" +
                 "- Enter \"listmod\" to see your module list\n" +
                 "- Enter \"addmod [MODULE_CODE]\" to add a Module to the Module list\n" +
                 "- Enter \"addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a lesson\n" +
                 "- Enter \"showmod [MODULE_CODE]\" to see more information about the module\n" +
                 "- Enter \"showmod [MODULE_CODE] -[FLAG]\" to see schedule of specific lesson type for a module\n" +
                 "- Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n" +
-                "- Enter \"delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a task to a lesson\n\n" +
+                "- Enter \"delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a task to a lesson\n\n");
+    }
 
-                "Common Commands:\n" +
+    private void printCommonAndNote() {
+        System.out.print("Common Commands:\n" +
                 "- Enter \"week\" to see your schedule for the week\n" +
                 "- Enter \"bye\" to exit the program\n\n" +
 
                 "***NOTE***\n" +
                 "Please enter all [date]s in the format: \"yyyy-MM-ddThh:mm\"\n" +
-                "eg. \"2023-10-30T23:59\" represents Oct 20 2023, 11:59PM\n");
-        printAddModuleOptions();
+                "eg. \"2023-10-30T23:59\" represents Oct 20 2023, 11:59PM\n\n");
+
     }
 
     /**
@@ -103,12 +113,18 @@ public class Ui {
      */
     public void printAddModuleOptions() {
         System.out.println("There are -FLAGS for the various lessons options per module:\n" +
-                "-lec\t\t\t" + "LECTURE\n" + "-plec\t\t\t" + "PACKAGED LECTURE\n" + "-st \t\t\t"
-                + "SECTIONAL TEACHING\n" + "-dlec\t\t\t" + "DESIGN LECTURE\n" + "-tut\t\t\t" + "TUTORIAL\n"
-                + "-ptut\t\t\t" + "PACKAGED TUTORIAL\n" + "-rcit\t\t\t" + "RECITATION\n" + "-lab\t\t\t"
-                + "LABORATORY\n" + "-ws\t\t\t\t" + "WORKSHOP\n" + "-smc\t\t\t"
-                + "SEMINAR STYLE MODULE CLASS\n" + "-mp\t\t\t\t" + "MINI PROJECT\n" + "-tt2\t\t\t"
-                + "TUTORIAL TYPE 2");
+                "-lec\t\t\t" + "LECTURE\n" +
+                "-plec\t\t\t" + "PACKAGED LECTURE\n" +
+                "-st \t\t\t" + "SECTIONAL TEACHING\n" +
+                "-dlec\t\t\t" + "DESIGN LECTURE\n" +
+                "-tut\t\t\t" + "TUTORIAL\n" +
+                "-ptut\t\t\t" + "PACKAGED TUTORIAL\n" +
+                "-rcit\t\t\t" + "RECITATION\n" +
+                "-lab\t\t\t" + "LABORATORY\n" +
+                "-ws \t\t\t" + "WORKSHOP\n" +
+                "-smc\t\t\t" + "SEMINAR STYLE MODULE CLASS\n" +
+                "-mp \t\t\t" + "MINI PROJECT\n"
+                + "-tt2\t\t\t" + "TUTORIAL TYPE 2");
     }
 
 

@@ -201,6 +201,7 @@ public class AddCommand extends Command implements LoggerInterface {
         DayOfWeek day = by.getDayOfWeek();
         int dayNum = determineDay(day);
         ArrayList<CalendarModule> clashLessons = calendar.get(dayNum);
+        taskList.sortTaskByDay(clashTasks);
         ui.printClashingDeadlineMessage(clashTasks, clashLessons);
     }
 

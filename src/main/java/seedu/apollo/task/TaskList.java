@@ -88,49 +88,7 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
-     * Sorts the TaskList by date.
-     *
-     * @param allTasks The TaskList containing different task types to be sorted.
-     */
-    public void sortTaskByDay(TaskList allTasks) {
-        assert allTasks != null : "TaskList should not be null";
-        allTasks.clusterByType();
-        //do nothing for todo type tasks
-        for (int i = 0; i < allTasks.size(); i++) {
-            if (allTasks.get(i).getType().equals("deadline")) {
-                allTasks.sort((Task task1, Task task2) -> {
-
-                    if (task1 instanceof Deadline && task2 instanceof Deadline) {
-
-                        LocalDateTime deadline1Date = ((Deadline) task1).getByDate();
-                        LocalDateTime deadline2Date = ((Deadline) task2).getByDate();
-                        return deterministicSortForDeadline(deadline1Date, deadline2Date);
-
-                    } else {
-                        return 0;
-                    }
-
-                });
-            } else if (allTasks.get(i).getType().equals("event")) {
-                allTasks.sort((Task task1, Task task2) -> {
-                    if (task1 instanceof Event && task2 instanceof Event) {
-
-                        LocalDateTime startDay1 = ((Event) task1).getFromDate();
-                        LocalDateTime endDay1 = ((Event) task1).getToDate();
-                        LocalDateTime startDay2 = ((Event) task2).getFromDate();
-                        LocalDateTime endDay2 = ((Event) task2).getToDate();
-                        return deterministicSortForEvent(startDay1, endDay1, startDay2, endDay2);
-
-                    } else {
-                        return 0;
-                    }
-                });
-            }
-        }
-    }
-
-    /**
-     * Determines the order of the deadlines based on their respective due dates. Sorts deadlines in natural time order.
+     * Determines the order of the deadlines based on their respective due dates.
      *
      * @param deadline1 The deadline of the first deadline task.
      * @param deadline2 The deadline of the second deadline task.
@@ -148,4 +106,64 @@ public class TaskList extends ArrayList<Task> {
         }
     }
 
+    /**
+     * Sorts the deadline tasks in the TaskList by their respective due dates.
+     * @param allTasks
+     */
+    private void sortDeadlineTasks(TaskList allTasks){
+        assert allTasks != null : "TaskList should not be null";
+        allTasks.sort((Task task1, Task task2) -> {
+
+            if (task1 instanceof Deadline && task2 instanceof Deadline) {
+
+                LocalDateTime deadline1Date = ((Deadline) task1).getByDate();
+                LocalDateTime deadline2Date = ((Deadline) task2).getByDate();
+                return deterministicSortForDeadline(deadline1Date, deadline2Date);
+
+            } else {
+                return 0;
+            }
+
+        });
+    }
+
+    /**
+     * Sorts the event tasks in the TaskList by their respective from and to dates.
+     * @param allTasks
+     */
+
+    private void sortEventTasks(TaskList allTasks){
+        assert allTasks != null : "TaskList should not be null";
+        allTasks.sort((Task task1, Task task2) -> {
+            if (task1 instanceof Event && task2 instanceof Event) {
+
+                LocalDateTime startDay1 = ((Event) task1).getFromDate();
+                LocalDateTime endDay1 = ((Event) task1).getToDate();
+                LocalDateTime startDay2 = ((Event) task2).getFromDate();
+                LocalDateTime endDay2 = ((Event) task2).getToDate();
+                return deterministicSortForEvent(startDay1, endDay1, startDay2, endDay2);
+
+            } else {
+                return 0;
+            }
+        });
+    }
+
+    /**
+     * Sorts the TaskList by date.
+     *
+     * @param allTasks The TaskList containing different task types to be sorted.
+     */
+    public void sortTaskByDay(TaskList allTasks) {
+        assert allTasks != null : "TaskList should not be null";
+        allTasks.clusterByType();
+        //do nothing for todo type tasks
+        for (int i = 0; i < allTasks.size(); i++) {
+            if (allTasks.get(i).getType().equals("deadline")) {
+                sortDeadlineTasks(allTasks);
+            } else if (allTasks.get(i).getType().equals("event")) {
+                sortEventTasks(allTasks);
+            }
+        }
+    }
 }
