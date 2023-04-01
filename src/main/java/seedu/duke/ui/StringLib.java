@@ -137,5 +137,4 @@ public interface StringLib {
     String INVALID_STEP = "\nThe step you have entered is invalid!\n" +
             "Please enter a valid step below:";
     String POS_INT = "\nPlease enter a valid index!";
-    String SAVED = "\nData saved successfully!";
 }
