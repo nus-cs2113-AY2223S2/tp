@@ -166,8 +166,7 @@ Successfully added card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 to deck fd2df33d-4b
 
 ### Viewing a card :
 
-`card view -c {cardUUID}`
-`card view -i {cardIndex}`
+`card view (-c {cardUUID} | -i {cardIndex}) `
 
 View the content of a Card based on its cardUUID or the cardIndex.
 
@@ -241,7 +240,7 @@ Example of usage :
 
 Sample output :
 
-```agsl
+```
 Here is your current list of tags:
 1.Tag name : CS2113, tag uuid : 15df3d00-d0ad-48e0-bd28-1f640b74789f
 2.Tag name : CS2040C, tag uuid : 5d14dd29-e7e4-4b17-945a-ebf8598d4152
@@ -279,7 +278,9 @@ Deck 9dc5ab5f-75af-4b0d-b554-341f59ac829bdeck name has been changed from old-dec
 
 ### [WIP] Delete a card/tag from deck: `deck delete -d {deckName} (-c {cardUUID} | -t {tagUUID})`
 
-Delete a card from an existing deck
+Delete a card from an existing deck either by specifying the cardUUID or tagUUID to delete.
+
+To delete a card from an existing deck
 
 Example of usage: `deck delete -c c2c61475-df53-4656-94c4-c2e36933d359 -d my-deck`
 
