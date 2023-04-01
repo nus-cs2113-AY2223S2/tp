@@ -36,6 +36,7 @@ public class Parser {
      * @return a <code>Command</code> containing the command to be executed.
      */
     public static Command parseCommands(String line) {
+        line = line.strip();
         String[] lineSpaced = line.split(" ");
         String fullDescription = "";
         if (lineSpaced.length > 1) {
@@ -45,7 +46,7 @@ public class Parser {
             fullDescription = lineSpaced[1].trim();
         }
         CommandType type;
-        switch (lineSpaced[0]) {
+        switch (lineSpaced[0].toLowerCase()) {
         case "list":
             type = CommandType.LIST;
             break;

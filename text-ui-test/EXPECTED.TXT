@@ -124,7 +124,7 @@ RECIPE LIST
 4. [Chinese] Beijing Duck
 
 __________________________________________________________
-Here is the recipe you requested, which is a Italian flavour:
+Here is the recipe you requested, which is Italian flavour:
 name: Spaghetti
 __________________________________________________________
 There are 3 ingredients in the list:
@@ -177,7 +177,7 @@ RECIPE LIST
 6. [Chinese] Guilinggao
 
 __________________________________________________________
-Here is the recipe you requested, which is a Chinese flavour:
+Here is the recipe you requested, which is Chinese flavour:
 name: MaLaXiangGuo
 __________________________________________________________
 There are 3 ingredients in the list:
@@ -201,7 +201,7 @@ Step has been edited:
 
 Data saved successfully!
 __________________________________________________________
-Here is the recipe you requested, which is a Chinese flavour:
+Here is the recipe you requested, which is Chinese flavour:
 name: MaLaXiangGuo
 __________________________________________________________
 There are 3 ingredients in the list:
@@ -243,7 +243,7 @@ RECIPE LIST
 7. [Western] IceLemonTea
 
 __________________________________________________________
-Here is the recipe you requested, which is a Western flavour:
+Here is the recipe you requested, which is Western flavour:
 name: IceLemonTea
 __________________________________________________________
 There are 3 ingredients in the list:
