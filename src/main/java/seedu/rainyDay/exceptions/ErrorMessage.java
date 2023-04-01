@@ -1,7 +1,7 @@
 package seedu.rainyDay.exceptions;
 
 public enum ErrorMessage {
-    UNRECOGNIZED_INPUT("Sorry! I do not understand your input!\n Please refer to the help table!"),
+    UNRECOGNIZED_INPUT("Sorry! I do not understand your input!\nPlease refer to the help table!"),
     WRONG_DELETE_INDEX("Sorry, your delete command is invalid. Please ensure delete index is a number > 0 and <= %s"),
     NO_DELETE_INDEX("Sorry, your delete command is invalid. Please include a delete index! \n" +
             "Delete format is as follows :\n" + "delete [index]"),
@@ -27,8 +27,14 @@ public enum ErrorMessage {
     WRONG_IGNORE_INDEX("Sorry, your ignore command is invalid. Please ensure ignore index is a number > 0 and <= %s"),
     WRONG_IGNORE_FORMAT("Sorry, your ignore command is invalid. Please include a ignore index! \n" +
             "ignore format is as follows :\n" + "ignore/unignore [index]"),
-    UNSUPPORTED_DATE("Sorry, date before the year 1800 and future dates are not supported \n" +
-            "Please provide a date on or after the year 1800");
+    UNSUPPORTED_DESCRIPTION_NAME("Sorry, character \"-\" is not supported for description name\n\n" +
+            "Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!"),
+    UNSUPPORTED_CATEGORY_NAME("Sorry, character \"-\" is not supported for category name\n\n" +
+            "Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!");
 
     private final String error;
 
