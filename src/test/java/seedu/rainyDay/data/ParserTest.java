@@ -54,7 +54,7 @@ class ParserTest {
         try {
             new Parser().parseUserInput("add");
         } catch (Exception e) {
-            assertEquals(ErrorMessage.MISSING_DETAILS.toString(),
+            assertEquals(ErrorMessage.WRONG_ADD_FORMAT.toString(),
                     e.getMessage().toString());
         }
         try {
