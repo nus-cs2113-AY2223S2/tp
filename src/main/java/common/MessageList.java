@@ -16,5 +16,7 @@ public class MessageList {
     public static final String SUCCESSFUL_ADD = "The following expense is successfully added:";
 
     public static final String TAB = "    ";
+    public static final String WHITESPACE = " ";
+    public static final String PERIOD = ".";
 
 }
