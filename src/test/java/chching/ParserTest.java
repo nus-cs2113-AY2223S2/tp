@@ -1,4 +1,4 @@
-/* @@author avielcx, thomasjalba */
+/* @@author avielcx*/
 
 package chching;
 
