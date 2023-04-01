@@ -107,6 +107,7 @@ public class Storage {
                 saveWriter.close();
                 dishIndex++;
             }
+            System.out.println(StringLib.SAVED);
         } catch (IOException e) {
             System.out.println("Error in file writing:" + e.getMessage());
         }

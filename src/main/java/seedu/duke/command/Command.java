@@ -80,10 +80,10 @@ public class Command {
                 StepList recipeSteps = Parser.parseSteps(ui,sumOfSteps);
                 recipeList.addNewRecipe(new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps));
                 ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeList.getCurrRecipeNumber());
+                Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showAddingRecipeErrorMessage(e);
             }
-            Storage.writeSavedFile();
             break;
         case DELETE:
             try {
@@ -103,10 +103,10 @@ public class Command {
                 Recipe recipeToBeDeleted = recipeList.getRecipeFromList(recipeListIndex);
                 ui.showRecipeDeleted(recipeToBeDeleted, recipeList.getCurrRecipeNumber() - 1);
                 recipeList.removeRecipe(recipeListIndex);
+                Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showDeletingTaskErrorMessage(e, type);
             }
-            Storage.writeSavedFile();
             break;
         case CLEAR:
             recipeList.clearRecipeList();
@@ -164,7 +164,8 @@ public class Command {
                 recipeToEditStepList.showFullStepList();
                 ui.showEditRecipeStepPrompt();
                 String input = ui.readCommand();
-                if (input.trim().equals("quit")) {
+                if (input.trim().equals(StringLib.STEP_VIEW_QUIT_KEYWORD) ||
+                        input.contains(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
                     break;
                 }
                 int stepIndex = Integer.parseInt(input) - 1;
@@ -178,10 +179,10 @@ public class Command {
                     throw new OutOfIndexException(StringLib.INPUT_STEPS_INDEX_EXCEEDED +
                             "\nValid Range: 1 to " + maxSteps);
                 }
+                Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }
-            Storage.writeSavedFile();
             break;
             
         case EDITINGREDIENT:
@@ -208,7 +209,8 @@ public class Command {
                 recipeToEditIngredientList.showList();
                 ui.showEditRecipeIngredientPrompt();
                 String input = ui.readCommand();
-                if (input.trim().equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
+                if (input.trim().equals(StringLib.STEP_VIEW_QUIT_KEYWORD) ||
+                        input.contains(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
                     break;
                 }
                 int ingredientIndex = Integer.parseInt(input) - 1;
@@ -222,10 +224,10 @@ public class Command {
                     System.out.println("Valid Range: 1 to " + maxSteps);
                 }
                 recipeToEditIngredientList.editIngredient(ui, ingredientIndex);
+                Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }
-            Storage.writeSavedFile();
             break;
         case HELP:
             ui.showHelp();
