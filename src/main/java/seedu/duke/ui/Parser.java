@@ -1,3 +1,4 @@
+//@@author JeraldChen
 package seedu.duke.ui;
 
 import seedu.duke.Duke;
@@ -8,12 +9,11 @@ import seedu.duke.patient.Patient;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.time.LocalDateTime;
-
 
 import static seedu.duke.save.Storage.saveData;
 
-//@@author JeraldChen
 public class Parser {
 
     /**
@@ -37,9 +37,10 @@ public class Parser {
             break;
         }
     }
+
+    //@@author Thunderdragon221, Geeeetyx, tanyizhe
     /**
      * Parses the user input for the account menu.
-     * @author Thunderdragon221, Geeeetyx, tanyizhe
      *
      * @param choice Users choice of input.
     */
@@ -91,8 +92,21 @@ public class Parser {
         case "7":
             user.printPatientMedicineHistory();
             break;
-        //@@author Geeeetyx
         case "8":
+            medicineManager.listMedicines();
+            break;
+        case "9":
+            Scanner phraseScanner = new Scanner(System.in);
+            Menu.displayFindMedicinePrompt();
+            String phrase = phraseScanner.nextLine();
+            Menu.displayFindMedicineMessage(phrase);
+            medicineManager.findMedicine(phrase);
+            break;
+        //@@author Geeeetyx
+        case "10": //show queue number
+            Information.printPatientQueueNumber();
+            break;
+        case "0":
             Menu.exit();
             break;
         default:

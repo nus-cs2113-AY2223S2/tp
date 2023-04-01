@@ -6,14 +6,26 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 
+/**
+ * The Patient Class contains methods related to the information of a Patient.
+ */
 public class Patient {
     protected ArrayList<String> patientDiagnosisHistory = new ArrayList<>();
     protected Hashtable<String, ArrayList<String>> patientMedicineHistory = new Hashtable<>();
     protected String name;
     protected int hash;
 
+    /**
+     * Creates a new Patient object, to be used throughout Dr Duke.
+     * @param name                    The name of the Patient.
+     * @param hash                    The hashed password of the Patient.
+     * @param patientDiagnosisHistory Array containing the history of diagnoses of the patient.
+     * @param patientMedicineHistory  Array containing the history of prescribed medications to the patient.
+     */
     public Patient(String name, int hash, ArrayList<String> patientDiagnosisHistory,
-                   Hashtable<String, ArrayList<String>> patientMedicineHistory) {
+                   Hashtable<String, ArrayList<String>> patientMedicineHistory
+                   //int queueNumber
+                   ) {
         assert patientDiagnosisHistory.size() >= 0 : "Patient diagnosis history is either empty or not empty";
         this.setName(name);
         this.setPassword(hash);

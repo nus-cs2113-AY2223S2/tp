@@ -1,0 +1,34 @@
+[comment]: <> (//@@author Thunderdragon221)
+@startuml
+'https://plantuml.com/sequence-diagram
+hide footbox
+!include Style.puml
+
+participant "main :Duke"
+"main :Duke" -> Storage: loadData()
+activate Storage
+Storage -> Storage: createDirectory()
+activate Storage
+Storage -> Storage: directory created
+deactivate Storage
+Storage -> Storage: createFile()
+activate Storage
+Storage -> Storage: file created
+deactivate Storage
+Storage -> Storage: readFile()
+activate Storage
+Storage -> Patient: new Patient()
+activate Patient
+Patient -> Information: storePatientInfo()
+activate Information
+Information --> Patient: patient stored
+deactivate Information
+Patient --> Storage: patient added
+destroy Information
+deactivate Patient
+deactivate Storage
+Storage --> "main :Duke" : data loaded
+destroy Patient
+deactivate Storage
+
+@enduml

@@ -3,9 +3,15 @@ package seedu.duke.medicine;
 public class Medicine {
     private String name;
     private String dosage;
-    public Medicine(String name, String dosage) {
+
+    //@@author Geeeetyx
+    private String medicineDescription;
+    //@@author
+
+    public Medicine(String name, String dosage, String medicineDescription) {
         this.name = name;
         this.dosage = dosage;
+        this.medicineDescription = medicineDescription;
     }
 
     /**
@@ -19,5 +25,12 @@ public class Medicine {
     public String toString() {
         return name;
     }
+
+
+    //@@author Geeeetyx
+    public String getDescription() {
+        return medicineDescription;
+    }
+    //@@author
 
 }

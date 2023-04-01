@@ -1,5 +1,9 @@
+[comment]: <> (//@@author Thunderdragon221)
 @startuml
 'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
 
 !include Style.puml
 class Storage {

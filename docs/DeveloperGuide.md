@@ -2,12 +2,7 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-original source as well}
-
 ## Design & implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 [comment]: <> (//@@author Jeraldchen)
 
@@ -77,6 +72,8 @@ Knowing this, each child object of `Illness` will be created and stored in `Arra
 
 #### Diagnosis algorithm
 
+![DiagnosisSequenceDiagram.png](diagrams%2FDiagnosisSequenceDiagram.png)
+
 After the patient has entered all their symptoms, it will be passed to the `getPossibleIllnesses()` function
 in `Diagnosis` where it will match each symptom the patient has to each symptom of all possible
 illnesses `ALL_ILLNESSES`.
@@ -90,7 +87,8 @@ An `ArrayList<IllnessMatch> possibleIllnesses` is then returned to retrieve the 
 
 ### Implementation of MedicineManager class, Medicine class
 
-![img_1.png](MedicineSequenceDiagram.png)
+![img_1.png](diagrams%2FMedicineSequenceDiagram.png)
+
 *Sequence diagram for medicine class*
 
 #### From the menu to the Medicine Manager
@@ -114,49 +112,88 @@ the user has inputted match the illness as explained in the "Diagnosis" section 
 Each illness will be analysed in the analyseIllness() method, and the medications that cure that illness
 will be suggested to the user. This information is then printed, and stored in the user's account.
 
+[comment]: <> (//@@Thunderdragon221)
+### Storage
+
+![StorageClassDiagram.png](diagrams%2FStorageClassDiagram.png)
+
+The Storage class is responsible for loading information from and writing information to a designated data file.
+
+Upon each start up of the application, Dr Duke will call `loadData()`. If Dr Duke is started for the very first time 
+on a device, the designated directory and file for all subsequent use will be created via `createDirectory()` and 
+`createFile()`, which are part of the `loadData()` method. `readFile()` will then be called under `loadData()` to read
+the data previously stored in the data file (if any). `readFile()` also calls `readMedicineHistoryFromFile()`, which 
+reads in any past medicine dispensing records of the patient stored in the data file. `readFile()` throws
+`CorruptedDataException` if any corruption in the data file is found in the process of reading from it, which is 
+facilitated by the `endOfFile()` method.
+
+During use of Dr Duke, if the patient decides to reset his/her diagnosis history, `resetDiagnosisHistory()` will be
+called, which will call `saveData()` after resetting the patient's diagnosis history. After the patient has been
+diagnosed with possible illnesses and dispensed appropriate medication, these records will also be saved by called
+`saveData()`. Finally, before exiting Dr Duke, `saveData()` will also be called to write all existing data to the data
+file.
+
+### Implementation of loadData() in Storage Class
+![loadDataSequenceDiagram.png](diagrams%2FloadDataSequenceDiagram.png)
+
+### Implementation of saveData() in Storage Class
+![saveDataSequenceDiagram.png](diagrams%2FsaveDataSequenceDiagram.png)
+
 [comment]: <> (//@@Geeeetyx)
 
 ### Patient
+![PatientClassDiagram.png](diagrams%2FPatientClassDiagram.png)
+
 The Patient class is responsible for creating a patient object, which is required to store a user's information.
 
 The method for creating a new Patient object is as follows:
+
 ~~~
-new Patient(name, hash, diagnosisHistory, medicineHistory)
+new Patient(name, hash, diagnosisHistory, medicineHistory);
 ~~~
 
-Once key information about the patient is obtained from the Menu class, the new patient object is created via
-`Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory, medicineHistory));`, which is 
-found in the Menu class.
+Once key information about the patient is obtained from the Menu class, the new patient object is created via:
+
+~~~
+Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory, medicineHistory));
+~~~
+
+which is found in the Menu class.
+
+#### Patient Class Methods:
+
+The methods contained in the Patient Class are primarily used in the Information, Parser and Storage class.
 
 The Patient class contains important getters and setters, allowing different classes to access the patient object and
 the patient's information via the following methods:
 
-`getName()` returns the name of the patient.\
-`getPassword()` returns the password of the patient's account.\
-`getPatientDiagnosisHistory()` allows for access to the array where past diagnoses are stored.\
-`getPatientMedicineHistory()` allows for access to the array where past prescribed medications are stored.\
+`getName()` returns the name of the patient.
 
-`setName()` and `setPassword()` allow the programme to set the patient's name and password.\
+`getPassword()` returns the password of the patient's account.
+
+`getPatientDiagnosisHistory()` allows for access to the array where past diagnoses are stored.
+
+`getPatientMedicineHistory()` allows for access to the array where past prescribed medications are stored.
+
+`setName()` and `setPassword()` allow the programme to set the patient's name and password.
+
 `setPatientDiagnosisHistory()` and `setPatientMedicineHistory()` allow the programme to read data from a storage file,
-and then set the stored data into the Patient object.\
+and then set the stored data into the Patient object.
+
 `updatePatientMedicineHistory()` and `updatePatientDiagnosisHistory()` allow us to add new diagnoses and medications
 prescribed to the Patient object.
+
 `appendMedicineToSameDate()` appends medicine patient is prescribed if additional medicine is prescribed on the same
 day, allowing us to keep track of multiple prescriptions to one patient in one session.
 
-[comment]: <> (//@@Geeeetyx)
 ## Product scope
 
 ### Target user profile
-
-{Describe the target user profile}
 
 Doctor Duke is targeted at people who want to get diagnosed with certain **mild** illnesses they have
 and/or get medicine to treat their illness without having to visit a General Practitioner.
 
 ### Value proposition
-
-{Describe the value proposition: what problem does it solve?}
 
 The current median wait times at a polyclinics across Singapore average at around 15-20 minutes,
 (Source: 
@@ -183,19 +220,27 @@ the patient might have, and dispense medicine and dosage accordingly, at a speed
 | v1.0    | doctor                              | ensure Doctor Duke does not give out Medical Certificates                                                        | control the issuance of such certificates and they are only from a licensed and qualified professional |
 | v1.0    | doctor                              | treat patients with mild illnesses quickly                                                                       | focus on patients with more severe illnesses.                                                          |
 | v1.0    | doctor                              | set a cap on the amount of medicine prescribed                                                                   | avoid cases of patients overdosing.                                                                    |
-| v2.0    | user                                | find a to-do item by name                                                                                        | locate a to-do without having to go through the entire list                                            |
+| v2.0    | experienced user                    | find what symptoms I have entered                                                                                | check if I entered the correct symptoms                                                                |
+| v2.0    | meticulous patient                  | check what symptoms I have entered and have the option to delete certain ones                                    | make sure I key in the information accurately                                                          |
+| v2.0    | nurse                               | use Doctor Duke to monitor when patients get their medication                                                    | keep tabs on anyone potentially misusing Dr Duke for medicine.                                         |
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. The programme must be secure and protects a patient's data, allowing access to the data either through an admin account,
+or by the user himself.
+2. The programme must be easy to use, with clear instructions and clean UI design.
+3. The system must be reliable and function without errors or crashes.
+4. The programme must be easy to maintain and update, with clear documentation and code organization.
+5. The programme must comply with legal and regulatory requirements, such as data protection and privacy laws.
+6. The programme should follow sound medical practices, by performing proper research into the different diagnoses and
+medicines.
 
-## Glossary
+[//]: # (## Glossary)
 
-* *glossary item* - Definition
+[//]: # ()
+[//]: # (* *glossary item* - Definition)
 
 ## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 Dummy accounts are provided for testing. First, access the Doctor Duke programme by following the steps in the
 User Guide, which can be found [here](https://ay2223s2-cs2113-w13-1.github.io/tp/UserGuide.html).
