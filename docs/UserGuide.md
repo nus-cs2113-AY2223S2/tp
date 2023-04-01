@@ -17,6 +17,46 @@ Enjoy your revision!
 
 ## Features
 
+### Get help manual :
+
+Users can run `help` command to see the list of commands available for each feature.
+
+Sample output :
+
+```
+Welcome to Inka! Type help at any time to show this message
+== Deck Management (run `<keyword> help` for more info) ===
+card         - Card-related functionality
+tag          - Tag-related functionality
+deck         - Deck-related functionality
+================== Miscellaneous Commands =================
+export       - Saves your deck
+bye          - Exits Inka
+```
+
+Users can then run :
+
+- `card help` for features related to cards
+- `tag help` for features related to tags
+- `deck help` for features related to decks
+
+Sample output for `tag help` :
+
+```
+usage: `tag edit`
+Edit existing tags
+-n,--new <arg>          New tag name
+-o,--old <arg>          Old tag name
+
+usage: `tag delete`
+Delete tags
+-t,--tag <arg>          tag name
+
+usage: `tag list`
+List tags
+-t,--tag <arg>          tag name (optional)
+```
+
 ### Adding a card:
 
 `card add -q {question} -a {answer}`
@@ -173,7 +213,7 @@ Example of usage :
 
 Sample output :
 
-```agsl
+```
 Here is a list of your cards :
 1.Qn: fdf
 Ans: ffffffffff
@@ -239,6 +279,23 @@ Sample output:
 Here is your current list of decks:
 1.Deck name : test-deck, deck uuid : 9dc5ab5f-75af-4b0d-b554-341f59ac829b
 2.Deck name : another-deck, deck uuid : b7fa870a-e92c-4a74-90de-cfeafd6ec141```
+```
+
+---
+
+### Exit the program :
+
+User simply needs to run `bye`
+
+Sample output :
+
+```
+ ____  _  _  ____    _   
+(  _ \( \/ )(  __)  / \  
+ ) _ ( )  /  ) _)   \_/  
+(____/(__/  (____)  (_) 
+
+ Bye! All the best for your exams man!!!
 ```
 
 ## FAQ
