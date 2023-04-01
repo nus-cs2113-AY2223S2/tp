@@ -135,15 +135,16 @@ Login successful!
 Welcome Demo!
 ---------------------------------------------------
 What would you like to do? Please enter the number:
-1. Report symptoms
-2. View diagnosis history
-3. Reset diagnosis history
-4. View symptoms History
-5. Delete symptom choice
-6. Reset symptoms
-7. View Medicine history
-8. List available medicines
-9. Find available medicine
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
 0. Exit
 ---------------------------------------------------
 ~~~
@@ -158,15 +159,16 @@ A list of symptoms will then be displayed to the user.
 ~~~
 ---------------------------------------------------
 What would you like to do? Please enter the number:
-1. Report symptoms
-2. View diagnosis history
-3. Reset diagnosis history
-4. View symptoms History
-5. Delete symptom choice
-6. Reset symptoms
-7. View Medicine history
-8. List available medicines
-9. Find available medicine
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
 0. Exit
 ---------------------------------------------------
 1
@@ -265,15 +267,16 @@ Expected outcome:
 ```
 ---------------------------------------------------
 What would you like to do? Please enter the number:
-1. Report symptoms
-2. View diagnosis history
-3. Reset diagnosis history
-4. View symptoms History
-5. Delete symptom choice
-6. Reset symptoms
-7. View Medicine history
-8. List available medicines
-9. Find available medicine
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
 0. Exit
 ---------------------------------------------------
 2
@@ -296,15 +299,16 @@ Expected outcome:
 ```
 ---------------------------------------------------
 What would you like to do? Please enter the number:
-1. Report symptoms
-2. View diagnosis history
-3. Reset diagnosis history
-4. View symptoms History
-5. Delete symptom choice
-6. Reset symptoms
-7. View Medicine history
-8. List available medicines
-9. Find available medicine
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
 0. Exit
 ---------------------------------------------------
 3
@@ -312,15 +316,16 @@ What would you like to do? Please enter the number:
 Your diagnosis history has been reset.
 ---------------------------------------------------
 What would you like to do? Please enter the number:
-1. Report symptoms
-2. View diagnosis history
-3. Reset diagnosis history
-4. View symptoms History
-5. Delete symptom choice
-6. Reset symptoms
-7. View Medicine history
-8. List available medicines
-9. Find available medicine
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
 0. Exit
 ---------------------------------------------------
 2
@@ -404,15 +409,16 @@ Login successful!
 Welcome Demo!
 ---------------------------------------------------
 What would you like to do? Please enter the number:
-1. Report symptoms
-2. View diagnosis history
-3. Reset diagnosis history
-4. View symptoms History
-5. Delete symptom choice
-6. Reset symptoms
-7. View Medicine history
-8. List available medicines
-9. Find available medicine
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
 0. Exit
 ---------------------------------------------------
 6
@@ -424,15 +430,16 @@ Else, expected outcome after entering some symptoms:
 ~~~
 ---------------------------------------------------
 What would you like to do? Please enter the number:
-1. Report symptoms
-2. View diagnosis history
-3. Reset diagnosis history
-4. View symptoms History
-5. Delete symptom choice
-6. Reset symptoms
-7. View Medicine history
-8. List available medicines
-9. Find available medicine
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
 0. Exit
 ---------------------------------------------------
 6
@@ -451,15 +458,16 @@ Expected outcome:
 ~~~
 ---------------------------------------------------
 What would you like to do? Please enter the number:
-1. Report symptoms
-2. View diagnosis history
-3. Reset diagnosis history
-4. View symptoms History
-5. Delete symptom choice
-6. Reset symptoms
-7. View Medicine history
-8. List available medicines
-9. Find available medicine
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
 0. Exit
 ---------------------------------------------------
 7
@@ -478,15 +486,16 @@ Expected outcome:
 ~~~
 ---------------------------------------------------
 What would you like to do? Please enter the number:
-1. Report symptoms
-2. View diagnosis history
-3. Reset diagnosis history
-4. View symptoms History
-5. Delete symptom choice
-6. Reset symptoms
-7. View Medicine history
-8. List available medicines
-9. Find available medicine
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
 0. Exit
 ---------------------------------------------------
 8
@@ -542,6 +551,54 @@ Ultracarbon
 ~~~
 
 [comment]: <> (//@@author Geeeetyx)
+### 10. Viewing your Queue Number
+When a user logs in, he/she is assigned a queue number.
+
+As of v2.1, this queue number feature is only a basic feature. With more work it could be further integrated with
+an actual pharmercy to manage the queue of patients.
+
+Format: Enter `10` to view your queue number.
+~~~
+---------------------------------------------------
+Login successful!
+Welcome Demo!
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
+0. Exit
+---------------------------------------------------
+10
+---------------------------------------------------
+This is your queue number
+---------------------------------------------------
+7
+---------------------------------------------------
+What would you like to do? Please enter the number:
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
+0. Exit
+---------------------------------------------------
+~~~
+
+
+
 ### 0. Exiting Doctor Duke
 Once the patient is done with the program, he/she can exit the program.
 
@@ -551,15 +608,16 @@ Expected outcome:
 ~~~
 ---------------------------------------------------
 What would you like to do? Please enter the number:
-1. Report symptoms
-2. View diagnosis history
-3. Reset diagnosis history
-4. View symptoms History
-5. Delete symptom choice
-6. Reset symptoms
-7. View Medicine history
-8. List available medicines
-9. Find available medicine
+1.  Report symptoms
+2.  View diagnosis history
+3.  Reset diagnosis history
+4.  View symptoms History
+5.  Delete symptom choice
+6.  Reset symptoms
+7.  View Medicine history
+8.  List available medicines
+9.  Find available medicine
+10. Display Queue Number
 0. Exit
 ---------------------------------------------------
 0
