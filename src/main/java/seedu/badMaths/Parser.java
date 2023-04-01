@@ -20,7 +20,7 @@ public class Parser {
     }
 
     public String getCommand() {
-        try {
+        try {z
             String trimmedInput = userInput.trim();
             if (trimmedInput.contains(" ")) {
                 int indexOfSpace = trimmedInput.indexOf(" ");
@@ -37,7 +37,7 @@ public class Parser {
 
     public String getToDo() {
         try {
-            String parts[] = userInput.split(" ", 2);
+            String[] parts = userInput.split(" ", 2);
             if (parts.length == 1) {
                 return "Invalid todo";
             } else {
