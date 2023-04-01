@@ -10,7 +10,8 @@ public class Types {
     public enum FileHealth {
         OK,
         CORRUPT,
-        MISSING
+        MISSING,
+        EMPTY
     }
     public enum EditType {
         PRICE_INCREASE,

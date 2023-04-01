@@ -37,11 +37,11 @@ public class SessionManager {
     }
 
     public static String inventoryDataFileExist() {
-        return Storage.inventoryDataFileExist();
+        return Storage.checkDataFileExist(true);
     }
 
     public static String alertDataFileExist() {
-        return Storage.alertDataFileExist();
+        return Storage.checkDataFileExist(false);
     }
 
 
