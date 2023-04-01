@@ -1,40 +1,41 @@
 # User Guide
 ## Contents
 - [Introduction](#introduction)
-- [Quick Start](#Quick-start)
+- [Quick Start](#quick_start)
 - [Features](#features)
 - [FAQ](#faq)
-- [Command Summary](#command-summary)
+- [Command Summary](#command_summary)
 
-## Introduction
+## Introduction <a name = "introduction"></a>
 
 MagusStock is a Java command-line interface (CLI) application designed for inventory management.
 
-## Quick Start
+## Quick Start <a name = "quick_start"></a>
 
 1. Ensure that you have Java 11 or above installed. 
 2. Download the latest version of MagusStock from [here](https://github.com/AY2223S2-CS2113-W12-3/tp/releases).
 3. Move the `.jar` file to an empty folder.
 4. Run the file with the command `java -jar magusstock.jar`.
 
-- [Adding an item: `add`](#adding-an-item--add)
-- [Editing an item: `edit`](#editting-an-item--edit)
-- [Removing an item: `remove`](#removing-an-item--remove)
-- [Listing all items: `list`](#list-all-items--list)
-- [Searching for item(s): `search`](#searching-an-item--search)
-- [Filtering item(s) by type: `filter`](#filtering-by-type--filter)
-- [Listing all commands: `help`](#list-all-commands--help)
-- [History of item: `history`](#historical-records-of-item--history)
-- [Selling an item: `sell`](#sell-quantity-of-item--sell)
-- [Restocking an item: `restock`](#restock-an-item--restock)
-- [Dashboard: `db`](#dashboard--db)
-- [Category: `cat`](#category--cat)
-- [Alert for item(s): `alert`](#alert-for-an-item--alert)
-- [Autosave of Inventory: `autosave`](#change-autosave-mode--autosave)
-- [Exiting the program: `exit`](#exiting-the-program--exit)
+<a name = "features"></a>
+- [Adding an item: `add`](#add)
+- [Editing an item: `edit`](#edit)
+- [Removing an item: `remove`](#remove)
+- [Listing all items: `list`](#list)
+- [Searching for item(s): `search`](#search)
+- [Filtering item(s) by type: `filter`](#filter)
+- [Listing all commands: `help`](#help)
+- [History of item: `history`](#history)
+- [Selling an item: `sell`](#sell)
+- [Restocking an item: `restock`](#restock)
+- [Dashboard: `db`](#db)
+- [Category: `cat`](#cat)
+- [Alert for item(s): `alert`](#alert)
+- [Autosave of Inventory: `autosave`](#autosave)
+- [Exiting the program: `exit`](#exit)
 
 
-### Adding an item: `add`
+### Adding an item: `add` <a name = "add"></a>
 Adds a new item to the inventory list.
 
 Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price]`
@@ -54,7 +55,7 @@ Example of usage:
 Sample output:
 
 ![img.png](img.png)
-### Editing an item: `edit`
+### Editing an item: `edit` <a name = "edit"></a>
 Edit an item's details in the inventory.
 
 Format: `edit upc/[UPC] {n/[item_name] qty/[quantity] p/[price]}`
@@ -93,7 +94,7 @@ Category: uncategorized
 
 ```
 
-### Removing an item from the inventory: `remove`
+### Removing an item from the inventory: `remove` <a name = "remove"></a>
 Removes an item from the inventory list using either its UPC or index in list.
 
 Format: `remove f/item upc/[UPC]` or `remove f/index [Index]`
@@ -109,7 +110,7 @@ Example of usage:
 
 Sample output:
 
-### List all items in the inventory: `list`
+### List all items in the inventory: `list` <a name = "list"></a>
 Lists all items in the inventory list.
 
 Format: `list`
@@ -142,7 +143,7 @@ ____________________________________________________________
 
 ``````
 
-### Search for an item in the inventory: `search`
+### Search for an item in the inventory: `search` <a name = "search"></a>
 Search for item(s) in the inventory list using keywords or UPC.
 
 Format: `search [Keywords]` or `searchupc [UPC]`
@@ -183,7 +184,7 @@ ____________________________________________________________
 +-----------------+--------------+----------+----------+
 
 ____________________________________________________________
-```e
+```
 
 Example of usage:
 
@@ -202,13 +203,17 @@ Here is your item:
 ____________________________________________________________
 ```
 
-### Filtering by type: `filter`
+### Filtering by type: `filter` <a name = "filter"></a>
 
 ### Filtering inventory list by type: `filter`
 
 Filters items from the inventory list by price or category.
 
 Format: `filter f/{price/category} {p/[gt/get/lt/let] [Price] or [Category keywords]`
+
+Note: `gt` means `greater than`, `get` means `greater or equal than`, `lt` means `less than` and `let` means
+`less than or equal than`, which specifies which values the price filter will return.
+   
 
 Example of usage:
 
@@ -251,7 +256,7 @@ ____________________________________________________________
 
 ```
 
-### List all available commands: `help`
+### List all available commands: `help` <a name = "help"></a>
 Lists all commands available and the command formats.
 
 Format: `help`
@@ -262,7 +267,7 @@ Example of usage:
 
 Sample output:
 
-### Historical records of item: `history`
+### Historical records of item: `history` <a name = "history"></a>
 Lists historical changes to an item in the inventory list.
 
 Format: `history [UPC]`
@@ -307,7 +312,7 @@ Category: fruits
 ____________________________________________________________
 ```
 
-### Sell quantity of item: `sell`
+### Sell quantity of item: `sell` <a name = "sell"></a>
 Reduces the quantity of an item in the inventory list.
 
 Format: `sell upc/[UPC] qty/[Quantity]`
@@ -345,7 +350,7 @@ Sold 5 orange and apples at a price of $6.0.
 ____________________________________________________________
 ````
 
-### Restock an item: `restock`
+### Restock an item: `restock` <a name = "restock"></a>
 Restock quantities of an item in the inventory list.
 
 Format: `restock upc/[UPC] qty/[Quantity]`
@@ -364,7 +369,7 @@ items to its current stock levels.
 **quantity** of `10` items to its current stock levels.
 
 Sample output:
-````
+```
 ____________________________________________________________
 restock upc/12345 qty/5
 ____________________________________________________________
@@ -380,9 +385,9 @@ Item Name: Computer
 UPC Code: 12345
 Quantity Available: 105
 ____________________________________________________________
+```
 
-
-### Dashboard: `db`
+### Dashboard: `db` <a name = "db"></a>
 Shows a dashboard of information related to the system's inventory, user insights and 
 session configurations.
 
@@ -421,7 +426,7 @@ List of active alerts:
 No alerts to print.
 ____________________________________________________________
 ```
-### Category: `cat`
+### Category: `cat` <a name = "cat"></a>
 Shows list of categories, and/or its items, or a specified category of items.
 
 Format: 
@@ -459,7 +464,7 @@ cat fruit
 |                 | oranges:123456789555           |
 +-----------------+--------------------------------+
 ```
-### Alert for an item: `alert`
+### Alert for an item: `alert` <a name = "alert"></a>
 Add alerts that will display when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
 Format:  
@@ -490,9 +495,9 @@ ____________________________________________________________
 Successfully removed the alert.
 ____________________________________________________________
 ``` 
-### Change Autosave Mode: `autosave`
+### Change Autosave Mode: `autosave` <a name = "autosave"></a>
 
-Set whether the program should automatically save the udpated inventory to the inventory data file after every successful
+Set whether the program should automatically save the updated inventory to the inventory data file after every successful
 write command issued.
 
 Format: `autosave [on/off]`
@@ -513,7 +518,7 @@ ____________________________________________________________
 ```
 
 
-### Exiting the program: `exit`
+### Exiting the program: `exit` <a name = "exit"></a>
 Exits the MagusStock program.
 
 Format: `exit` or `bye`
@@ -525,8 +530,8 @@ Hope you had an enjoyable experience. See you next time!
 ____________________________________________________________
 ```
 
-
-
+<a name = "faq"></a>
+<a name = "command_summary"></a>
 ## Command Summary
 | Action                          |
 |---------------------------------|
