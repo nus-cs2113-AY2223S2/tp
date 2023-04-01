@@ -503,9 +503,9 @@ public class Ui {
     /**
      * Prints error message if there are duplicate modules in the moduleData.txt file
      */
-    public void printDuplicateModuleInTextFile(int counter,String filePath){
-        System.out.println("There is a duplicate module in the moduleData.txt at line " + (counter + 1) + ".\n" +
-                        "You can edit the moduleData save file at:" + filePath);
+    public void printDuplicateModuleInTextFile(int counter){
+        System.out.println("There is a duplicate module detected in the moduleData.txt at line " + (counter + 1) + ".\n" +
+                        "Ignoring duplicate modules");
     }
 
     /**

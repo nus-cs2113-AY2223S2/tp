@@ -285,8 +285,8 @@ public class Storage implements LoggerInterface {
                 counter++;
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
-            } catch ( DuplicateModuleInTextFileException e) {
-                ui.printDuplicateModuleInTextFile(counter,moduleDataFilePath);
+            } catch (DuplicateModuleInTextFileException e) {
+                ui.printDuplicateModuleInTextFile(counter);
             }
         }
         return newModuleList;
