@@ -29,16 +29,22 @@ import java.util.logging.Logger;
  */
 public class Storage {
     //@@author Geeeetyx
-    static final String QUEUE_FILE_PATH = "./data/queue_data.txt";
-    //@@author
+    private static final String QUEUE_FILE_PATH = "./data/queue_data.txt";
+    //@@author Thunderdragon221
 
     /** Specifies the directory path to be created */
-    static final String DIR_PATH = "./data/";
+    private static final String DIR_PATH = "./data/";
 
     /** Specifies the file path to be created */
-    static final String FILE_PATH = "./data/patient-data.txt";
+    private static final String FILE_PATH = "./data/patient-data.txt";
 
-    private static Logger logger = Logger.getLogger(Storage.class.getName());
+    /** Stores the data read in from patient-data file to check hash similar to a checksum */
+    private static String dataCompare = "";
+
+    /** Stores the data read in from queue_data file to check hash similar to a checksum */
+    private static String queueDataCompare = "";
+
+    private static final Logger logger = Logger.getLogger(Storage.class.getName());
     /**
      * Loads each patient's data into a hashmap of patients in the Information class
      * by reading from the patient-data file.
@@ -51,7 +57,7 @@ public class Storage {
             //@@author Geeeetyx
             createQueueFile();
             readQueueFile();
-            //@@author
+            //@@author Thunderdragon221
         } catch (FileNotFoundException e) {
             System.out.println("ERROR: File not found.");
         } catch (CorruptedDataException e) {
@@ -91,12 +97,28 @@ public class Storage {
     private static void readFile() throws FileNotFoundException, CorruptedDataException {
         File file = new File(FILE_PATH);
         Scanner scanner = new Scanner(file);
+        String hashString;
+
+        if (!scanner.hasNextLine()) {
+            scanner.close();
+            return;
+        }
+
+        hashString = scanner.nextLine();
+        if (((!hashString.matches("^[0-9]+$")) && (!hashString.matches("^-[0-9]+$"))) ||
+                hashString.matches("^0{2,}$")) {
+            logger.log(Level.WARNING, "Corrupted data file");
+            throw new CorruptedDataException();
+        }
+        int fileHash = Integer.parseInt(hashString);
 
         while (scanner.hasNextLine()) {
             String password = scanner.nextLine();
+            dataCompare += password + "\n";
             if (emptyField(password)) {
                 break;
-            } else if (!password.matches("[0-9]*")) {
+            } else if ((!password.matches("^[0-9]+$")) && (!password.matches("^-[0-9]+$"))) {
+                logger.log(Level.WARNING, "Corrupted data file");
                 throw new CorruptedDataException();
             }
 
@@ -105,6 +127,7 @@ public class Storage {
                 throw new CorruptedDataException();
             }
             String name = scanner.nextLine();
+            dataCompare += name + "\n";
             if (emptyField(name)) {
                 logger.log(Level.WARNING, "Corrupted data file");
                 throw new CorruptedDataException();
@@ -115,11 +138,12 @@ public class Storage {
                 throw new CorruptedDataException();
             }
             String line = scanner.nextLine();
-            if (emptyField(line) || (!line.matches("[0-9]*"))) {
+            if (emptyField(line) || (!line.matches("[0-9]+"))) {
                 logger.log(Level.WARNING, "Corrupted data file");
                 throw new CorruptedDataException();
             }
             int numberOfEntries = Integer.parseInt(line);
+            dataCompare += numberOfEntries + "\n";
             ArrayList<String> diagnosisHistory = new ArrayList<>();
 
             for (int i = 0; i < numberOfEntries; i++) {
@@ -128,6 +152,7 @@ public class Storage {
                     throw new CorruptedDataException();
                 }
                 String diagnosis = scanner.nextLine();
+                dataCompare += diagnosis + "\n";
                 if (emptyField(diagnosis) || (!Diagnosis.isValidDiagnosis(diagnosis))) {
                     logger.log(Level.WARNING, "Corrupted data file");
                     throw new CorruptedDataException();
@@ -139,6 +164,12 @@ public class Storage {
             int hash = Integer.parseInt(password);
             Patient patient = new Patient(name, hash, diagnosisHistory, medicineHistory);
             Information.storePatientInfo(hash, patient);
+        }
+
+        int dataCompareHash = dataCompare.hashCode();
+        if (dataCompareHash != fileHash) {
+            logger.log(Level.WARNING, "Corrupted data file");
+            throw new CorruptedDataException();
         }
         scanner.close();
     }
@@ -154,12 +185,13 @@ public class Storage {
 
         //@@author Thunderdragon221
         String line = scanner.nextLine();
-        if (emptyField(line) || (!line.matches("[0-9]*"))) {
+        if (emptyField(line) || (!line.matches("[0-9]+"))) {
             logger.log(Level.WARNING, "Corrupted data file");
             throw new CorruptedDataException();
         }
         //@@author tanyizhe
         int numberOfMedicineEntries = Integer.parseInt(line);
+        dataCompare += numberOfMedicineEntries + "\n";
         Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable();
 
         for (int entry = 0; entry < numberOfMedicineEntries; entry++) {
@@ -170,11 +202,12 @@ public class Storage {
             }
             //@@author tanyizhe
             String dateMedicineString = scanner.nextLine();
+            dataCompare += dateMedicineString + "\n";
             if (emptyField(dateMedicineString)) {
                 logger.log(Level.WARNING, "Corrupted data file");
                 throw new CorruptedDataException();
             }
-            String[] splitDateMedicineStrings = dateMedicineString.split(" ");
+            String[] splitDateMedicineStrings = dateMedicineString.split("%");
             ArrayList<String> medicines = new ArrayList<>();
             for (int medStringCount = 1; medStringCount < splitDateMedicineStrings.length; medStringCount++) {
                 medicines.add(splitDateMedicineStrings[medStringCount]);
@@ -192,6 +225,7 @@ public class Storage {
                 logger.log(Level.WARNING, "Corrupted data file");
                 throw new CorruptedDataException();
             }
+
 
             MedicineManager medicineManager = new MedicineManager();
             for (String medicine : medicines) {
@@ -213,6 +247,7 @@ public class Storage {
     public static void saveData() {
         try {
             FileWriter writer = new FileWriter(FILE_PATH);
+            String data = "";
             for (Map.Entry<Integer, Patient> entry : Information.getAllPatientData().entrySet()) {
                 Patient patient = entry.getValue();
                 String name = patient.getName();
@@ -222,15 +257,16 @@ public class Storage {
                 Hashtable<String, ArrayList<String>> medicineHistory = patient.getPatientMedicineHistory();
                 int numberOfMedicines = medicineHistory.size();
 
-                writer.write(password + "\n");
-                writer.write(name + "\n");
-                writer.write(numberOfDiagnoses + "\n");
+                data += password + "\n" + name + "\n" + numberOfDiagnoses + "\n";
                 for (String diagnosis : diagnosisHistory) {
-                    writer.write(diagnosis + "\n");
+                    data += diagnosis + "\n";
                 }
-                writer.write(numberOfMedicines + "\n");
-                writeMedicineHistory(writer, medicineHistory);
+                data += numberOfMedicines + "\n";
+                data = writeMedicineHistory(data, medicineHistory);
             }
+            int fileHash = data.hashCode();
+            data = fileHash + "\n" + data;
+            writer.write(data);
             writer.close();
         } catch (IOException e) {
             logger.log(Level.WARNING, "Unable to save data to file");
@@ -240,21 +276,24 @@ public class Storage {
     //@@author tanyizhe
     /**
      * Writes medicine history of patient to data file for storage.
-     * @param writer Writer that writes onto a file.
+     * @param data that writes onto a file.
      * @param medicineHistory Hashtable with key String with value of patient's medicine History
-     * @throws IOException Exception thrown when file cannot be written on or found.
+     * @return updated data to be written to file
      */
-    private static void writeMedicineHistory(FileWriter writer, Hashtable<String,
-            ArrayList<String>> medicineHistory) throws IOException {
+    private static String writeMedicineHistory(String data, Hashtable<String,
+            ArrayList<String>> medicineHistory) {
         List<String> dates = Collections.list(medicineHistory.keys());
         Collections.sort(dates);
         for (String date : dates) {
-            writer.write(date + " ");
+            data += date + "%";
             for (String medString : medicineHistory.get(date)) {
-                writer.write(medString + " ");
+                data += medString + "%";
             }
         }
-        writer.write("\n");
+        if (dates.size() > 0) {
+            data += "\n";
+        }
+        return data;
     }
     //@@author Thunderdragon221
     /**
@@ -297,11 +336,16 @@ public class Storage {
         try {
             FileWriter writer = new FileWriter(QUEUE_FILE_PATH);
             ArrayList<String> queueList = Information.getQueueList();
+            String data = "";
             for (String currentQueueNumber : queueList) {
-                writer.write(currentQueueNumber + "\n");
+                data += currentQueueNumber + "\n";
             }
-
+            //@@author Thunderdragon221
+            int fileHash = data.hashCode();
+            data = fileHash + "\n" + data;
+            writer.write(data);
             writer.close();
+            //@@author Geeeetyx
         } catch (IOException e) {
             System.out.println("ERROR: Unable to save queue to file");
         }
@@ -310,11 +354,31 @@ public class Storage {
     private static void readQueueFile() throws FileNotFoundException, CorruptedDataException {
         File file = new File(QUEUE_FILE_PATH);
         Scanner scanner = new Scanner(file);
-
-        while (scanner.hasNextLine()) {
-            Information.addToQueue(scanner.nextLine());
+        //@@author Thunderdragon221
+        String hashString;
+        if (!scanner.hasNextLine()) {
+            scanner.close();
+            return;
         }
-
+        hashString = scanner.nextLine();
+        if (((!hashString.matches("^[0-9]+$")) && (!hashString.matches("^-[0-9]+$"))) ||
+                hashString.matches("^0{2,}$")) {
+            logger.log(Level.WARNING, "Corrupted data file");
+            throw new CorruptedDataException();
+        }
+        int fileHash = Integer.parseInt(hashString);
+        //@@author Geeeetyx
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            Information.addToQueue(line);
+            queueDataCompare += line + "\n";
+        }
+        //@@author Thunderdragon221
+        int queueDataHashCompare = queueDataCompare.hashCode();
+        if (fileHash != queueDataHashCompare) {
+            logger.log(Level.WARNING, "Corrupted data file");
+            throw new CorruptedDataException();
+        }
         scanner.close();
     }
 }
