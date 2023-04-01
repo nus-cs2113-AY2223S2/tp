@@ -9,6 +9,7 @@ import seedu.storage.MealStorage;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
 
 public class GeneralUi {
     public static Scanner sc = new Scanner(System.in);
@@ -51,6 +52,35 @@ public class GeneralUi {
      */
     public void printLine() {
         System.out.println("------------------------------------------------------------");
+    }
+
+    int minimumNumber = 1; //inclusive
+    int maximumNumber = 11; //exclusive
+    Random random = new Random();
+    int numberGenerated = random.nextInt(maximumNumber - minimumNumber) + minimumNumber;
+
+    public void printMotivateMessage() {
+        if (numberGenerated == 1) {
+            System.out.println("You can do it!");
+        } else if (numberGenerated == 2) {
+            System.out.println("Keep it up!");
+        } else if (numberGenerated == 3) {
+            System.out.println("Good Progress!");
+        } else if (numberGenerated == 4) {
+            System.out.println("Well done!");
+        } else if (numberGenerated == 5) {
+            System.out.println("Good Work!");
+        } else if (numberGenerated == 6) {
+            System.out.println("Nice Effort!");
+        } else if (numberGenerated == 7) {
+            System.out.println("You are almost there!");
+        } else if (numberGenerated == 8) {
+            System.out.println("You can do it!");
+        } else if (numberGenerated == 9) {
+            System.out.println("Every step counts!");
+        } else {
+            System.out.println("Your goal is within reach!");
+        }
     }
 
 
@@ -156,3 +186,5 @@ public class GeneralUi {
         }
     }
 }
+
+
