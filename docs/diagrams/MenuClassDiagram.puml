@@ -3,6 +3,9 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+hide circle
+skinparam classAttributeIconSize 0
+
 !include Style.puml
 class Menu {
     + {static} symptoms: ArrayList<Symptom>
@@ -36,5 +39,24 @@ class Parser {
     + {static} parseWelcome(choice: String): void
     + {static} parseAccountCommand(choice: String): void
 }
+
+class Patient {
+    # patientDiagnosticHistory: ArrayList<String>
+    # patientMedicineHistory: Hashtable<String, ArrayList<String>>
+    # name: String
+    # hash: int
+    + getName(): String
+    + setName(name: String): void
+    + getPassword(): void
+    + setPassword(hash: int): void
+    + setPatientDiagnosticHistory(diagnosis: ArrayList<String>): void
+    + getPatientDiagnosticHistory(): ArrayList<String>
+    + updatePatientDiagnosticHistory(diagnosis: String): void
+}
+
+Information "1" *-- "many" Patient : contains
+Parser o-- Patient
+Parser o-- Information
+Parser o-- Menu
 
 @enduml
