@@ -7,11 +7,11 @@ import bagpacker.packingfunc.PackingList;
 public class UnpackCommand extends Command {
 
     public static final String MSG_SUCCESS_UNPACK = "Item unpacked: %s";
-    public static final String HELP_MSG =
-            "unpack : Deducts from the current quantity of items packed in the packing list.\n" +
-                    "\tExample: unpack 1 /of 2\n" +
-                    "\tMeaning: unpacks 1 quantity of the second item in the packing list";
 
+    public static final String HELP_MSG = "unpack : Deducts from the current quantity of items packed in the packing " +
+            "list.\n" +
+            "\tExample: unpack 1 /of 2\n" +
+            "\tMeaning: unpacks 1 quantity of the second item in the packing list";
     private static int unpackQuantity;
 
     public UnpackCommand(int quantity, int targetIndex) {
