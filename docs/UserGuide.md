@@ -100,7 +100,7 @@ Example output:
 
 ### Adding an income: `addIncome`
 Format: `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>`
-Adds a new income to the list of expenses.
+Adds a new income to the list of incomes.
 
 * The `amount` should be double.
 * The `description` can be in a natural language format.
