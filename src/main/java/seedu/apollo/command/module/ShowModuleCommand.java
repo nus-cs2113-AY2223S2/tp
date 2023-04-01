@@ -154,9 +154,11 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
 
         if (copyList.size() == 0) {
             ui.printNoLessonType();
+        } else {
+            sortTimetable(copyList);
+            ui.printModuleLessonTimetable(module, lessonType, copyList);
         }
-        sortTimetable(copyList);
-        ui.printModuleLessonTimetable(module, lessonType, copyList);
+
 
     }
 
