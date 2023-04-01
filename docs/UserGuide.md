@@ -23,7 +23,7 @@ The application requires user to login before performing other actions.
 Login the system using username and password. 
 
 Format:
-* login -username [username] -password [password]
+* login -username USERNAME -password PASSWORD
 
 Examples:
 * login -username me -password my$password
@@ -32,7 +32,7 @@ Examples:
 Sign up a new account with a unique username, password and user's actual name.
 
 Format: 
-* signup -username [username] -password [password] -name [your name]
+* signup -username USERNAME -password PASSWORD -name NAME
 
 Examples:
 * signup -username me -password my$password -name My Name
@@ -41,13 +41,14 @@ Examples:
 Change the password of a user.
 
 Format: 
-* password -username [username] -old [old password] -new [new password]
+* password -username USERNAME -old OLD_PASSWORD -new NEW_PASSWORD
 
 Examples:
 * password -username me -old old$password -new new$password
 
 ### Logout: `logout`
-Logout the user. This command can only be used after logging in.
+Logout the user. This command can only be used after logging in. The user can 
+then log in again with the same / different account.  
 
 Format:
 * logout
@@ -56,7 +57,8 @@ Examples:
 * logout
 
 ### Exit the application: `exit`
-Exits the application.
+Exits the application. This command should be executed only after logging out 
+of the system.  
 
 Format: 
 * exit
