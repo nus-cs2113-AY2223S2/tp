@@ -115,7 +115,7 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
      * @param module The module being checked.
      * @return The lesson types available for this module.
      */
-    public ArrayList<LessonType> getLessonTypes(Module module) {
+    private ArrayList<LessonType> getLessonTypes(Module module) {
         ArrayList<LessonType> lessonTypes = new ArrayList<>();
         for (Timetable timetable : module.getModuleTimetable()) {
             LessonType lessonType = determineLessonType(timetable.getLessonType());
