@@ -19,7 +19,8 @@ public class ExceptionChecker {
         }
     }
 
-    public static void checkDate(LocalDate startDate, LocalDate endDate) throws InvalidDateException, InvalidDeadlineException {
+    public static void checkDate(LocalDate startDate, LocalDate endDate) throws 
+    InvalidDateException, InvalidDeadlineException {
         LocalDate currentDate = LocalDate.now();
         if (startDate.compareTo(endDate) > 0) {
             throw new InvalidDateException();
