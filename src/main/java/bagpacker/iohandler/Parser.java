@@ -217,7 +217,7 @@ public class Parser {
                     AddCommand.HELP_MSG);
         } catch (NumberFormatException | InvalidIndexException e) {
             return new IncorrectCommand("Invalid Item Quantity",
-                    "for item quantity, try to input a positive integer number");
+                    "For item quantity, try to input a positive integer number between 1 and 1000000");
         }
     }
 
@@ -299,10 +299,10 @@ public class Parser {
         } catch (InvalidVariablesException e){
             if(quantityNotPacked == 0){
                 return new IncorrectCommand("Invalid Pack Usage",
-                        "this item is fully packed");
+                        "This item is fully packed");
             }
             return new IncorrectCommand("Invalid Input Quantity",
-                    "try to input a quantity between 1 and "+ quantityNotPacked +" to be packed");
+                    "Try to input a quantity between 1 and "+ quantityNotPacked +" to be packed");
         }
     }
 
@@ -361,10 +361,10 @@ public class Parser {
         }  catch (InvalidVariablesException e){
         if(quantityPacked == 0){
             return new IncorrectCommand("Invalid Unpack Usage",
-                    "this item is not even packed yet");
+                    "This item is not even packed yet");
         }
         return new IncorrectCommand("Invalid Input Quantity",
-                "try to input a quantity between 1 and "+ quantityPacked +" to be packed");
+                "Try to input a quantity between 1 and "+ quantityPacked +" to be packed");
     }
     }
 
