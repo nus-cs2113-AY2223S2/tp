@@ -7,17 +7,24 @@ skinparam classAttributeIconSize 0
 
 !include Style.puml
 class Storage {
-- {static} DIR_PATH : String
-- {static} FILE_PATH : String
+- {static} DIR_PATH: String
+- {static} FILE_PATH: String
+- {static} QUEUE_FILE_PATH : String
+- {static} dataCompare : String
+- {static} queueDataCompare : String
 - {static} logger : Logger
 + {static} loadData() : void
 + {static} saveData() : void
 - {static} createDirectory() : void
 - {static} createFile() : void
 - {static} readFile() : void
-- {static} endOfFile(data: String) : boolean
+- {static} emptyField(data: String) : boolean
+- {static} isValidDate(year: int, month: int, day: int) : boolean
 - {static} readMedicineHistoryFromFile(scanner: Scanner) : Hashtable<String, ArrayList<String>>
-- {static} writeMedicineHistory(writer: FileWriter, Hashtable<String, ArrayList<String>> medicineHistory) : void
+- {static} writeMedicineHistory(data: String, medicineHistory: Hashtable<String, ArrayList<String>>) : String
+- {static} createQueueFile() : void
+- {static} saveQueue() : void
+- {static} readQueueFile() : void
 }
 
 exception CorruptedDataException {}
