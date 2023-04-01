@@ -37,7 +37,8 @@ public class HelpCommand extends Command {
             "| -c <CATEGORY> | Optional    | Used to denote the category of the entry. Set to Misc if omitted     |\n" +
             "| -date <DATE>  | Optional    | Used to denote the date of the entry. Set to present date if omitted |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| Note: DESCRIPTION and CATEGORY cannot contain \"-\" character                                      |\n" +
+            "| Note: DESCRIPTION and CATEGORY cannot contain \"-\" character                                        |\n"
+            +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
