@@ -1,6 +1,7 @@
 package utils;
 
 import java.util.Scanner;
+
 import model.Card;
 import model.CardList;
 import model.CardUUID;
