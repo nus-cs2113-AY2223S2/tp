@@ -5,6 +5,8 @@ import seedu.commands.LendExpenditureCommand;
 import seedu.commands.BorrowExpenditureCommand;
 import seedu.commands.InvalidCommand;
 import seedu.exceptions.EmptyStringException;
+import seedu.exceptions.ExceptionChecker;
+import seedu.exceptions.NotPositiveValueException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -26,12 +28,13 @@ public class ParseLendBorrow {
         this.userInput = userInput;
     }
 
-    public Command addItem(String command) {
+    public Command addItem(String command) throws NotPositiveValueException {
         try {
             // Format: category d/date, n/name, a/amount, b/deadline, s/description
             String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
             String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, BSLASH);
             double amount = Double.parseDouble(amountVal);
+            ExceptionChecker.checkPositiveAmount(amount);
             String name = ParseIndividualValue.parseIndividualValue(userInput,NSLASH, ASLASH);
             LocalDate lentDate = LocalDate.parse(ParseIndividualValue.parseIndividualValue(userInput,DSLASH, NSLASH));
             LocalDate deadline = LocalDate.parse(ParseIndividualValue.parseIndividualValue(userInput, BSLASH, SSLASH));

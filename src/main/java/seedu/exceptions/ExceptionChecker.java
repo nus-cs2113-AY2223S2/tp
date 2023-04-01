@@ -11,6 +11,12 @@ public class ExceptionChecker {
         }
     }
 
+    public static void checkPositiveAmount(double amountVal) throws NotPositiveValueException {
+        if (amountVal <= 0) {
+            throw new NotPositiveValueException();
+        }
+    }
+
     public static void checkAlreadyMark(Expenditure expenditure) throws AlreadyMarkException {
         if (expenditure instanceof TuitionExpenditure) {
             boolean isAlreadyPaidTuition = ((TuitionExpenditure) expenditure).
