@@ -2,7 +2,7 @@ package seedu.parser;
 
 import seedu.commands.AddMealCommand;
 import seedu.commands.Command;
-import seedu.commands.DeleteMealCommand;
+import seedu.commands.DeleteCommand;
 import seedu.commands.ExitCommand;
 import seedu.commands.UpdateUserCommand;
 import seedu.commands.ViewUserCommand;
@@ -25,7 +25,7 @@ public class CommandParser {
             command = new AddMealCommand(commandWord, userInput);
             break;
         case "delete":
-            command = new DeleteMealCommand(commandWord, userInput);
+            command = new DeleteCommand(commandWord, userInput);
             break;
         case "bye":
             command = new ExitCommand();

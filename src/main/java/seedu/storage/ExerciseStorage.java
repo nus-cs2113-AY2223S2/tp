@@ -102,6 +102,10 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
         }
     }
 
+    public int getExercisesCount() {
+        return this.exercises.size();
+    }
+
     public ArrayList<Exercise> getExercises() {
         return this.exercises;
     }
@@ -111,5 +115,13 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
                 .filter(e -> e.getDate().equals(date))
                 .collect(Collectors.toList());
         return filteredExercises;
+    }
+
+    public Exercise getExerciseById(int id) {
+        return this.exercises.get(id);
+    }
+
+    public Exercise deleteExercise(int index) {
+        return exercises.remove(index);
     }
 }

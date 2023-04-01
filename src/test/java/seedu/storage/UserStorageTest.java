@@ -2,6 +2,7 @@ package seedu.storage;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.entities.User.calculateCaloricNeeds;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

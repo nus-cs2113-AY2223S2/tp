@@ -85,7 +85,4 @@ public class UI {
             }
         }
     }
-
-    public void printDeletedFood(Food newFood) {
-    }
 }

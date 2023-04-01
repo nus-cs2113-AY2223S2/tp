@@ -12,9 +12,13 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class GeneralUi {
-    public static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
+    private static int minimumNumber = 1; //inclusive
+    private static int maximumNumber = 11; //exclusive
+    private static Random random = new Random();
+    private static int numberGenerated = random.nextInt(maximumNumber - minimumNumber) + minimumNumber;
     private static String endingMessage = "Bye! Hope to see you again soon!";
-    private static String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!" 
+    private static String welcomeMessage = "Hello! I am LifeTracker, a program to aid you in keeping fit!"
             + System.lineSeparator();
 
     /**
@@ -53,11 +57,6 @@ public class GeneralUi {
     public void printLine() {
         System.out.println("------------------------------------------------------------");
     }
-
-    int minimumNumber = 1; //inclusive
-    int maximumNumber = 11; //exclusive
-    Random random = new Random();
-    int numberGenerated = random.nextInt(maximumNumber - minimumNumber) + minimumNumber;
 
     public void printMotivateMessage() {
         if (numberGenerated == 1) {
@@ -141,6 +140,18 @@ public class GeneralUi {
         }
     }
 
+    public void printAllExercises(ExerciseStorage exerciseStorage) {
+        if (exerciseStorage.getExercisesCount() == 0) {
+            System.out.println("There are no exercises in your exercise list!");
+        } else {
+            System.out.println("Here are the exercises in your exercise list:");
+            for (int i = 0; i < exerciseStorage.getExercisesCount(); i++) {
+                String taskDescription = exerciseStorage.getExerciseById(i).toString();
+                System.out.println((i + 1) + ". " + taskDescription);
+            }
+        }
+    }
+
     public void printNewMealAdded(Meal meal) {
         System.out.println(meal);
     }
@@ -148,6 +159,11 @@ public class GeneralUi {
     public void printMealDeleted(Meal meal) {
         System.out.println("Successfully deleted this meal:");
         System.out.println(meal);
+    }
+
+    public void printExerciseDeleted(Exercise exercise) {
+        System.out.println("Successfully deleted this exercise:");
+        System.out.println(exercise);
     }
 
     public void requestCalorieLimit() {
