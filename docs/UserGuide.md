@@ -28,15 +28,14 @@ ___
 * [View weekly plan](#view-this-weeks-plan--weeklyplan)
 * [Random a recipe](#random-a-recipe--random)
 
-
 ### HOW TO ADD INGREDIENTS TO A RECIPE:
 
 * Please follow the below-mentioned format.
 
 Format: `ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...`
-   
+
 * Examples: `chicken=100 oil and sauce=200 vegetables=300`
-            `meat=200 salt and spices=400`
+  `meat=200 salt and spices=400`
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
 
 ### Adding recipes: `add`
@@ -62,7 +61,7 @@ Format: `edit /r [recipe_name]`
 * `recipe_name` is basically a string.
 * Type the recipe name after typing `/r `.
 * If you want to edit fully: press 1, edit partially: press 2, or add new ingredients: press 3.
-* Follow the proper format while editing/adding ingredients. 
+* Follow the proper format while editing/adding ingredients.
 
 Example of usage:
 
@@ -165,9 +164,10 @@ Example of usage:
 
 Adds an existing recipe to this week's plan.
 
-Format: `weekly /add RECIPE NAME QUANTITY`
+Format: `weekly /add RECIPE_NAME QUANTITY`
 
-* Adds the specified `RECIPE NAME` to this week's plan`QUANTITY` number of times.
+* Adds the specified `RECIPE_ NAME` to this week's plan`QUANTITY` number of times, with quantity
+  representing the number of days the user plans to prepare the recipe within the week.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
 * The quantity **must be a positive
   integer** 1,2,3, ...
@@ -181,7 +181,7 @@ Example of usage:
 
 Adds multiple existing recipe to this week's plan.
 
-Format: `weekly /multiadd [/r RECIPE NAME /q QUANTITY]`
+Format: `weekly /multiadd [/r RECIPE_NAME /q QUANTITY]`
 
 * Adds the specified `RECIPE NAME` to this week's plan`QUANTITY` number of times.
 * At least one pair of `RECIPE_NAME` and `QUANTITY` is required.
@@ -189,6 +189,8 @@ Format: `weekly /multiadd [/r RECIPE NAME /q QUANTITY]`
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
 * The quantity **must be a positive
   integer** 1,2,3, ...
+* If the same recipe is specified multiple times, only the **last** quantity specified
+  will be used.
 
 Example of usage:
 
@@ -199,9 +201,9 @@ Example of usage:
 
 Deletes an existing recipe from this week's plan.
 
-Format: `weekly /delete RECIPE NAME`
+Format: `weekly /delete RECIPE_NAME`
 
-* Deletes the specified `RECIPE NAME` to this week's plan.
+* Deletes the specified `RECIPE_NAME` to this week's plan.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
 
 Example of usage:
@@ -212,14 +214,16 @@ Example of usage:
 
 Deletes multiple existing recipe from this week's plan.
 
-Format: `weekly /multidelete [/r RECIPE NAME /q QUANTITY]`
+Format: `weekly /multidelete [/r RECIPE_NAME /q QUANTITY]`
 
-* Deletes the specified `RECIPE NAME` from this week's plan`QUANTITY` number of times.
+* Deletes the specified `RECIPE_NAME` from this week's plan`QUANTITY` number of times.
 * At least one pair of `RECIPE_NAME` and `QUANTITY` is required.
 * Each `RECIPE_NAME` and `QUANTITY` requires `/r` and `/q` before it respectively.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
 * The quantity **must be a positive
   integer** 1,2,3, ...
+* If the same recipe is specified multiple times, only the **last** quantity specified
+  will be used.
 
 Example of usage:
 
@@ -269,7 +273,6 @@ Format: `bye`
 Add user's ingredients into the ingredient list.
 Format : `add_i /n INGREDIENT_NAME /c QUANTITY /d DATE`
 
-* This function is **case sensitive**.
 * The quantity **must be a positive
   integer** 1,2,3, ...
 * The date **must be in the format of DD/MM/YYYY**
@@ -283,7 +286,6 @@ Example of usage:
 Delete user's ingredients from the ingredient list.
 Format : `del_i /n INGREDIENT_NAME /c QUANTITY`
 
-* This function is **case sensitive**.
 * The quantity has to be **less than or equal** to the quantity of the ingredient in the list.
 * The quantity **must be a positive
   integer** 1,2,3, ...

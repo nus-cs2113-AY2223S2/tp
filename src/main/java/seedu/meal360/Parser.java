@@ -24,6 +24,12 @@ public class Parser {
         return word.toString();
     }
 
+    public String[] cleanUserInput(String input) {
+        input = input.replaceAll("\\s+", " ");
+        input = input.toLowerCase();
+        return input.trim().split(" ");
+    }
+
     public HashMap<String, Integer> parseIngredientName(String[] command) {
         HashMap<String, Integer> ingredients = new HashMap<>();
         int flag = 0;
@@ -372,7 +378,7 @@ public class Parser {
             requestedRecipe = recipes.get(recipeIndex - 1);
         } catch (NumberFormatException error) {
             String errorMessage = String.format(
-                    "Please enter a valid recipe number. You entered %s, " + "which is not a number.",
+                    "Please enter a valid recipe number. You entered %s, " + "which is not a valid number.",
                     command[1]);
             throw new NumberFormatException(errorMessage);
         } catch (ArrayIndexOutOfBoundsException error) {
@@ -432,9 +438,15 @@ public class Parser {
 
     private WeeklyPlan parseEditSingleWeeklyPlan(String[] command, RecipeList recipes)
             throws InvalidNegativeValueException, InvalidRecipeNameException {
-        int numDays = Integer.parseInt(command[command.length - 1]);
-        if (numDays < 1) {
-            throw new InvalidNegativeValueException("Number of days needs to be at least 1.");
+        int numDays;
+        try {
+            numDays = Integer.parseInt(command[command.length - 1]);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Please enter a number between 1 to 1000 for the quantity.");
+        }
+
+        if (numDays > 1000 || numDays < 1) {
+            throw new NumberFormatException("Please enter a number between 1 to 1000 for the quantity.");
         }
 
         int nameLastIndex = command.length - 1;
@@ -467,20 +479,16 @@ public class Parser {
             } else if (command[i].equals("/q")) {
                 endIndices.add(i);
                 int quantity = Integer.parseInt(command[i + 1]);
-                if (quantity < 1) {
+                if (quantity < 1 || quantity > 1000) {
                     throw new InvalidNegativeValueException(
-                            "Please enter a positive number for the quantity.");
+                            "Please enter a positive number between 1 to 1000 for the quantity.");
                 }
                 quantities.add(quantity);
             }
         }
 
         // Checks that command is entered in the correct
-        if (startIndices.size() != endIndices.size()) {
-            throw new IllegalArgumentException("Please ensure the number of recipes and quantities match.");
-        }
-
-        if (startIndices.size() == 0) {
+        if (startIndices.size() != endIndices.size() || startIndices.size() == 0) {
             throw new IllegalArgumentException(
                     "Please ensure that the command is entered in the correct format.");
         }
@@ -502,7 +510,8 @@ public class Parser {
                 }
             }
         } catch (NumberFormatException error) {
-            throw new NumberFormatException("Please enter a positive number for the quantity.");
+            throw new NumberFormatException(
+                    "Please enter a positive number between 1 to 1000 for the quantity.");
         }
 
         return recipesToEdit;
@@ -542,9 +551,9 @@ public class Parser {
                     break;
                 case "/c":
                     ingredientCount = Integer.parseInt(command[++i]);
-                    if (ingredientCount < 0) {
+                    if (ingredientCount < 0 || ingredientCount > 1000) {
                         throw new IllegalArgumentException(
-                                "Please enter a positive number for the quantity.");
+                                "Please enter a positive number between 1 to 1000 for the quantity.");
                     }
                     break;
                 case "/d":

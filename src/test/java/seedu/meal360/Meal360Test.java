@@ -164,29 +164,42 @@ class Meal360Test {
         assertEquals(5, (int) weeklyPlan.get("pizza"));
         assertFalse(weeklyPlan.containsKey("salad"));
 
+        // Testing specifying the same recipe name twice
+        recipeMap = parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "1", "/r", "burger", "/q", "20"},
+                recipes);
+        weeklyPlan.addPlans(recipeMap);
+        assertEquals(21, (int) weeklyPlan.get("burger"));
+
+        // Testing if case-insensitive
+        recipeMap = parser.parseWeeklyPlan(new String[]{"weekly", "/multiadd", "/r", "Burger", "/q", "20"},
+                recipes);
+        weeklyPlan.addPlans(recipeMap);
+        assertEquals(41, (int) weeklyPlan.get("burger"));
+
         // Testing exceptions
         assertThrows(InvalidRecipeNameException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "1", "/r", "pizza", "/q", "5"},
+                new String[]{"weekly", "/multiadd", "/r", "burgersss", "/q", "1", "/r", "pizza", "/q", "5"},
                 recipes));
 
         assertThrows(InvalidNegativeValueException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "0", "/r", "pizza", "/q", "5"},
+                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "0", "/r", "pizza", "/q", "5"},
                 recipes));
 
         assertThrows(InvalidNegativeValueException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "-1", "/r", "pizza", "/q", "5"},
+                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "-1", "/r", "pizza", "/q", "5"},
                 recipes));
 
         assertThrows(NumberFormatException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "one", "/r", "pizza", "/q", "5"},
+                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "one", "/r", "pizza", "/q", "5"},
                 recipes));
 
         assertThrows(IllegalArgumentException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "1", "/r", "salad", "/r", "pizza"},
+                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "1", "/r", "salad", "/r", "pizza"},
                 recipes));
 
         assertThrows(IllegalArgumentException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burgers", "/q", "1", "/r", "salad", "/q", "/q"},
+                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "1", "/r", "salad", "/q", "/q"},
                 recipes));
     }
 
@@ -227,6 +240,19 @@ class Meal360Test {
                 recipes);
         weeklyPlan.deletePlans(recipeMap);
         assertEquals(3, weeklyPlan.size());
+
+        // Testing specifying the same recipe name twice
+        recipeMap = parser.parseWeeklyPlan(
+                new String[]{"weekly", "/multidelete", "/r", "burger", "/q", "50", "/r", "burger", "/q",
+                        "30"}, recipes);
+        weeklyPlan.deletePlans(recipeMap);
+        assertEquals(69, (int) weeklyPlan.get("burger"));
+
+        // Testing if case-insensitive
+        recipeMap = parser.parseWeeklyPlan(new String[]{"weekly", "/multidelete", "/r", "Burger", "/q", "3"},
+                recipes);
+        weeklyPlan.deletePlans(recipeMap);
+        assertEquals(66, (int) weeklyPlan.get("burger"));
 
         // Testing exceptions
         weeklyPlan.put("pizza", 3);
@@ -336,7 +362,7 @@ class Meal360Test {
         inputs = new String[]{"list", "/t", "breakfast"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(recipeListToPrint.size(), 2);
-        assertEquals(recipeListToPrint.get(1).getName(), "pizza");
+        assertEquals(recipeListToPrint.get(0).getName(), "pizza");
 
         inputs = new String[]{"list", "/t", "breakfast", "&&", "western"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
@@ -382,7 +408,7 @@ class Meal360Test {
     @Test
     public void testRemoveTagAndAddTag() {
         String[] inputs;
-        Recipe invalidRecipe = new Recipe("invalid Recipe", new HashMap<>(1,1));
+        Recipe invalidRecipe = new Recipe("invalid Recipe", new HashMap<>(1, 1));
 
         inputs = new String[]{"tag", "western", "<<", "burger"};
         parser.parseTagRecipe(inputs, recipes);
@@ -390,15 +416,14 @@ class Meal360Test {
         parser.parseTagRecipe(inputs, recipes);
 
         //exception
-        assertThrows(IndexOutOfBoundsException.class, ()
-                -> recipes.removeRecipeFromTag("western", invalidRecipe));
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> recipes.removeRecipeFromTag("western", invalidRecipe));
         String[] invalidTagInputs = new String[]{"tag", "random", "tag", ">>", "burger"};
-        assertThrows(IndexOutOfBoundsException.class, ()
-                -> parser.parseTagRecipe(invalidTagInputs, recipes));
+        assertThrows(IndexOutOfBoundsException.class, () -> parser.parseTagRecipe(invalidTagInputs, recipes));
 
         String[] noRecipeInTagInputs = new String[]{"tag", "breakfast", ">>", "pizza"};
-        assertThrows(IndexOutOfBoundsException.class, ()
-                -> parser.parseTagRecipe(noRecipeInTagInputs, recipes));
+        assertThrows(IndexOutOfBoundsException.class,
+                () -> parser.parseTagRecipe(noRecipeInTagInputs, recipes));
 
         inputs = new String[]{"tag", "western", ">>", "pizza"};
         parser.parseTagRecipe(inputs, recipes);
@@ -410,7 +435,6 @@ class Meal360Test {
         // no recipe in the lists
         RecipeList blankRecipeList = new RecipeList();
         assertThrows(NullPointerException.class, () -> parser.parseRandomRecipe(blankRecipeList));
-
 
         // general case
         Recipe randomRecipe1 = parser.parseRandomRecipe(recipes);
