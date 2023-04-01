@@ -226,16 +226,16 @@ public class Parser {
     //@@author BenjaminPoh
     public Command generateReport(String input) {
         input = input.substring(4).trim();
-        LocalDate startDate= LocalDate.now();
+        LocalDate startDate = LocalDate.now();
         LocalDate endDate = LocalDate.now();
         if (input.equals("")) {
-            startDate = LocalDate.of(startDate.getYear(),startDate.getMonth(), 1);
+            startDate = LocalDate.of(startDate.getYear(), startDate.getMonth(), 1);
             endDate = startDate.plusMonths(1);
             endDate = endDate.minusDays(1);
             return new ViewCommand(startDate, endDate, false, false);
         }
         if (input.equals("-sort")) {
-            startDate = LocalDate.of(startDate.getYear(),startDate.getMonth(), 1);
+            startDate = LocalDate.of(startDate.getYear(), startDate.getMonth(), 1);
             endDate = startDate.plusMonths(1);
             endDate = endDate.minusDays(1);
             return new ViewCommand(startDate, endDate, true, false);
@@ -246,7 +246,7 @@ public class Parser {
             try {
                 boolean sortRequired = matcher.group(2).equals("-sort");
                 startDate = LocalDate.of(1, 1, 1);
-                endDate = LocalDate.of(9999,12,31);
+                endDate = LocalDate.of(9999, 12, 31);
                 return new ViewCommand(startDate, endDate, sortRequired, true);
             } catch (Exception e) {
                 logger.warning("view command given by user in the wrong format");

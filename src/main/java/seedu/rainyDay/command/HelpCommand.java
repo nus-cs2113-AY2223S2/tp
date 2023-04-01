@@ -13,7 +13,7 @@ public class HelpCommand extends Command {
             "| View entries       | view      | {TIME} {-sort}                                                    |\n" +
             "| Filter entries     | filter    | {-in} {-out} {-d DESCRIPTION} {-c CATEGORY} {-date DATE}          |\n" +
             "| Edit an entry      | edit      | [INDEX] [-in/-out/-d DESCRIPTION/-v $VALUE/-c CATEGORY/-date DATE]|\n" +
-            "| Set monthly budget | setbudget | [VALUE]                                                           |\n"+
+            "| Set monthly budget | setbudget | [VALUE]                                                           |\n" +
             "| Create shortcuts   | shortcut  | [SHORTCUT COMMAND -maps VALID COMMAND]                            |\n" +
             "| Ignore entry       | ignore    | [INDEX]                                                           |\n" +
             "| Unignore entry     | unignore  | [INDEX]                                                           |\n" +
@@ -185,7 +185,7 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| shortcut salary -maps add   | Creates a shortcut: salary ,which runs add -in $10000 salary         |\n" +
+            "| shortcut salary -maps add   | Creates a shortcut: salary, which runs add -in $10000 salary         |\n" +
             "| -in $10000 salary           |                                                                      |\n" +
             "|                             |                                                                      |\n" +
             "| shortcut_view               | Views all shortcuts created and what they are mapped to              |\n" +
