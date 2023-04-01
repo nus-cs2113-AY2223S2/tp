@@ -16,8 +16,9 @@ import seedu.mealcompanion.command.factory.misc.RemoveCommandFactory;
 import seedu.mealcompanion.command.factory.misc.MakeCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeAllCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeDetailCommandFactory;
-import seedu.mealcompanion.command.factory.misc.RecipePossibleCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeNeedCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RecipePossibleCommandFactory;
+import seedu.mealcompanion.command.factory.misc.RecipeFindCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeRandomCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeAlmostCommandFactory;
 import seedu.mealcompanion.ingredient.IngredientList;
@@ -55,6 +56,7 @@ public class MealCompanionSession {
                             .route("almost", new RecipeAlmostCommandFactory())
                             .route("random", new RecipeRandomCommandFactory())
                             .route("need", new RecipeNeedCommandFactory())
+                            .route("find", new RecipeFindCommandFactory())
                     )
                     .route("recipe", new RecipeDetailCommandFactory())
                     .route("ingredients", new CommandRouterNode()
