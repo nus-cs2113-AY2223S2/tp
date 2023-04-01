@@ -220,8 +220,12 @@ public class Parser {
             for (Lesson lesson : lessons) {
                 String venue = lesson.getVenue();
                 for (Integer week : lesson.getWeeks()) {
-
+                    
                     // Method to get date on the lesson's day in a given week number.
+                    if (week >= 7) {
+                        week++;
+                    }
+
                     String startDate =
                             findDateOfWeek(UserUtility.getUser().getSemester(), week, lesson.getDay());
 
