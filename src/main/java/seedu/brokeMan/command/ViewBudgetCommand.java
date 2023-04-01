@@ -13,7 +13,7 @@ public class ViewBudgetCommand extends Command {
             " t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month\n" +
             "|  Optional Parameter: t/ <date in YYYY/MM>\n" +
             "|  Example: " + COMMAND_WORD + "\n" +
-            "|  Example: " + COMMAND_WORD + " /t 2023/03";
+            "|  Example: " + COMMAND_WORD + " t/ 2023/03";
 
     private final Optional<String> date;
 

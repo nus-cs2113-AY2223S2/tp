@@ -185,7 +185,7 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully set $500.00 as your budget for 2023/MARCH.
+|  Enter command: |  You have successfully set $500.00 as your budget for 2023/APRIL.
 |
 |  -----------------------------------------------------------------------
 |
@@ -216,8 +216,8 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have set your budget as $500.00 for 2023/MARCH.
-|  The amount of budget left is $500.00
+|  Enter command: |  You have set your budget as $2000.00 for 2023/APRIL.
+|  The amount of budget left is $2000.00
 |
 |  -----------------------------------------------------------------------
 |
@@ -227,7 +227,7 @@
 |  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
 |  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: viewBudget
-|  Example: viewBudget /t 2023/03
+|  Example: viewBudget t/ 2023/03
 |
 |  -----------------------------------------------------------------------
 |
@@ -237,7 +237,7 @@
 |  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
 |  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: viewBudget
-|  Example: viewBudget /t 2023/03
+|  Example: viewBudget t/ 2023/03
 |
 |  -----------------------------------------------------------------------
 |
