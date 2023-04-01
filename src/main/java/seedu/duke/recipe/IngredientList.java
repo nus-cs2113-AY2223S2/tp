@@ -53,7 +53,7 @@ public class IngredientList {
         currIngredientNumber--;
     }
     public void showList() {
-        System.out.println("Here are " + currIngredientNumber + " ingredients in the list:");
+        System.out.println("There are " + currIngredientNumber + " ingredients in the list:");
         for (int i = 0; i < currIngredientNumber; i++) {
             System.out.println((i + 1) + ". " + list.get(i).getName());
         }

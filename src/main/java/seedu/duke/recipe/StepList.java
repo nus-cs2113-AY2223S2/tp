@@ -70,7 +70,6 @@ public class StepList {
         if (input.toLowerCase().equals("yes")) {
             System.out.println(StringLib.STEPBYSTEP_EARLY_TERMINATION_PROMPT);
             showStepByStep(ui);
-
         } else {
             showFullStepList();
         }

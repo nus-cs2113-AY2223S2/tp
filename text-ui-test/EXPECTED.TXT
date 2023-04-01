@@ -127,7 +127,7 @@ __________________________________________________________
 Here is the recipe you requested, which is Italian flavour:
 name: Spaghetti
 __________________________________________________________
-Here are 3 ingredients in the list:
+There are 3 ingredients in the list:
 1. Pasta
 2. Tomato Sauce
 3. Cheese
@@ -180,7 +180,7 @@ __________________________________________________________
 Here is the recipe you requested, which is Chinese flavour:
 name: MaLaXiangGuo
 __________________________________________________________
-Here are 3 ingredients in the list:
+There are 3 ingredients in the list:
 1. Beef
 2. Mutton
 3. Mushrooms
@@ -204,7 +204,7 @@ __________________________________________________________
 Here is the recipe you requested, which is Chinese flavour:
 name: MaLaXiangGuo
 __________________________________________________________
-Here are 3 ingredients in the list:
+There are 3 ingredients in the list:
 1. Beef
 2. Mutton
 3. Mushrooms
@@ -246,7 +246,7 @@ __________________________________________________________
 Here is the recipe you requested, which is Western flavour:
 name: IceLemonTea
 __________________________________________________________
-Here are 3 ingredients in the list:
+There are 3 ingredients in the list:
 1. Lemon
 2. Tea
 3. Ice
