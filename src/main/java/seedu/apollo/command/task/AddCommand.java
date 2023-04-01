@@ -133,8 +133,8 @@ public class AddCommand extends Command implements LoggerInterface {
             addTask(taskList, calendar, ui);
         } catch (DateTimeParseException e) {
             if(e.getMessage().contains("Invalid date")) {
-                ui.dateNotWithinCalender();}
-            else {
+                ui.dateNotWithinCalender();
+            } else {
                 ui.printInvalidDateTime();
             }
             return;
@@ -171,7 +171,12 @@ public class AddCommand extends Command implements LoggerInterface {
             throws DateTimeParseException, DateOverException, DateOrderException, UnexpectedException {
         switch (command) {
         case COMMAND_TODO_WORD:
-            taskList.add(new ToDo(desc));
+            ToDo todo = new ToDo(desc);
+            taskList.add(todo);
+            if (todo.getDescription().contains("by")||todo.getDescription().contains("/by")||
+                    todo.getDescription().contains("due")){
+                ui.deadlineSuggestion();
+            }
             break;
         case COMMAND_DEADLINE_WORD:
             Deadline deadline = new Deadline(desc, by);
@@ -190,6 +195,8 @@ public class AddCommand extends Command implements LoggerInterface {
             throw new UnexpectedException("Adding Task");
         }
     }
+
+
 
     /**
      * Prints warning message to user with all tasks and lessons that clash with the deadline.
