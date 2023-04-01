@@ -465,6 +465,13 @@ public class Ui {
     }
 
     /**
+     * Prints error message if date cannot exist in calendar
+     */
+    public void dateNotWithinCalender() {
+        System.out.println("Please enter a valid date");
+    }
+
+    /**
      * Prints error message if the date entered does not fit the format.
      * For Date command.
      */
@@ -515,7 +522,7 @@ public class Ui {
     }
 
     /**
-     * Prints error message if the start date of an even occurs after the end date.
+     * Prints error message if the start date of an event occurs after the end date.
      */
     public void printDateOrderException() {
         System.out.println("Oops, the start date for your event occurs after the end date!");

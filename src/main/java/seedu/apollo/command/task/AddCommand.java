@@ -132,7 +132,11 @@ public class AddCommand extends Command implements LoggerInterface {
         try {
             addTask(taskList, calendar, ui);
         } catch (DateTimeParseException e) {
-            ui.printInvalidDateTime();
+            if(e.getMessage().contains("Invalid date")) {
+                ui.dateNotWithinCalender();}
+            else {
+                ui.printInvalidDateTime();
+            }
             return;
         } catch (DateOverException e) {
             ui.printDateOverException(e);
