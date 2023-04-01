@@ -1,3 +1,5 @@
+/* @@author avielcx, thomasjalba */
+
 package chching;
 
 import chching.parser.Parser;
@@ -49,15 +51,19 @@ public class ParserTest {
     @Test
     public void splitLine_testScenario_expectedBehaviour() {
         List<String> expectedOutput = new ArrayList<String>();
+        expectedOutputsForExpectedBehaviour(expectedOutput);
+
+        assertEquals(expectedOutput, new Parser().splitLine("add expense /ca meal /de breakfast /da 01/02/23 /v 3.50"));
+    }
+
+    private static void expectedOutputsForExpectedBehaviour(List<String> expectedOutput) {
         expectedOutput.add(ADD_EXPENSE);
         expectedOutput.add(CA);
         expectedOutput.add(DE);
         expectedOutput.add(DA);
         expectedOutput.add(V);
-        
-        assertEquals(expectedOutput, new Parser().splitLine("add expense /ca meal /de breakfast /da 01/02/23 /v 3.50"));
     }
-    
+
     /**
      * JUnit test for sortArguments method.
      * Checks if the arguments are sorted in the expected behaviour.
@@ -75,10 +81,10 @@ public class ParserTest {
         expectedOutput.put("de", "breakfast");
         expectedOutput.put("da", "01/02/23");
         expectedOutput.put("v", "3.50");
-        
+
         assertEquals(expectedOutput, new Parser().sortArguments(input));
     }
-    
+
     /**
      * JUnit test for sortArguments method.
      * Checks if the method returns an empty HashMap if the input is empty.
@@ -99,7 +105,7 @@ public class ParserTest {
     public void sortArguments_invalidInput_throwsException() {
         List<String> input = new ArrayList<String>();
         input.add(INVALID_INPUT);
-        
+
         try {
             new Parser().sortArguments(input);
             fail(); // the test should not reach this line
@@ -107,7 +113,7 @@ public class ParserTest {
             assertEquals("arguments not inputted correctly or missing a value", e.getMessage());
         }
     }
-    
+
     /**
      * JUnit test for getCategory method.
      * Checks if the method returns the category properly.

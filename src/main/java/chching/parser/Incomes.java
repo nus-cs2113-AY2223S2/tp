@@ -31,6 +31,9 @@ public class Incomes {
             String incomeDateString = argumentsByField.get("da");
             LocalDate incomeDate = parseDate(incomeDateString);
             float incomeValue = Float.parseFloat(argumentsByField.get("v"));
+            if(incomeValue > 1000000){
+                throw new ChChingException("Income value can at most be 1000000");
+            }
             assert incomeValue > 0 : "incomeValue has to be more than 0";
             inc = new Income(incomeDescription, incomeDate, incomeValue);
         } catch (Exception e) {
