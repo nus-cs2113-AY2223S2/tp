@@ -36,8 +36,8 @@ public class TrigoGraphVisualiser extends JPanel {
         this.verticalShift = verticalShift;
         xMin = (-2 * Math.PI) / freqInHz;
         xMax = (2 * Math.PI) / freqInHz;
-        yMin = -(amplitude+verticalShift)*2;
-        yMax = (amplitude+verticalShift)*2;
+        yMin = -(amplitude+Math.abs(verticalShift))*2;
+        yMax = (amplitude+Math.abs(verticalShift))*2;
     }
 
     @Override

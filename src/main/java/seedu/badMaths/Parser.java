@@ -27,7 +27,7 @@ public class Parser {
 
     public String getToDo() {
         if (userInput.contains(".") && userInput.contains(" ")) {
-            return userInput.substring(userInput.indexOf(".") + 2); // 1
+            return userInput.substring(userInput.indexOf(".") + 2).trim(); // 1
         } else {
             return "Invalid todo";
         }

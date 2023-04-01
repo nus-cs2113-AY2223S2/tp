@@ -1,4 +1,6 @@
 package seedu.badMaths.trigograph;
+import seedu.badMaths.IllegalIndexException;
+import seedu.badMaths.IllegalTodoException;
 import seedu.badMaths.ui.Ui;
 
 
@@ -14,8 +16,11 @@ public class TrigoGraph {
         this.trigoEqn = trigoEqn;
     }
 
-    public void startGraphAnalysis() {
+    public void startGraphAnalysis() throws IllegalTodoException {
         TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(trigoEqn);
+        if(trigoEqn.isEmpty()){
+            throw new IllegalTodoException();
+        }
         if(analyser.canStartAnalyser()){
             assert analyser.canStartAnalyser() == true: "Information analysed.";
             getGraphDetails(analyser);
