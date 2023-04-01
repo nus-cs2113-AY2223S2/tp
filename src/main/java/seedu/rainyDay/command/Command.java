@@ -1,6 +1,7 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.exceptions.RainyDayException;
 
 //@@author lil1n
 
@@ -43,5 +44,5 @@ public abstract class Command {
     /**
      * Executes the command and print the relevant output message
      */
-    public abstract CommandResult execute();
+    public abstract CommandResult execute() throws RainyDayException;
 }
