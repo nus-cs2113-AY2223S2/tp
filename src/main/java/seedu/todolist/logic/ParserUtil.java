@@ -54,22 +54,23 @@ public class ParserUtil {
      * Parses the priority string into an integer from 1 to 3, if it exists.
      * If the priority is null because it is not provided, it will default to 1.
      *
-     * @param priority The priority string.
+     * @param priorityString The priority string.
      * @return The priority, as an integer.
      * @throws InvalidPriorityException If the priority cannot be parsed to an integer, or if is not from 1 to 3.
      */
-    public static int parsePriority(String priority) throws InvalidPriorityException {
-        if (priority == null) {
+    public static int parsePriority(String priorityString) throws InvalidPriorityException {
+        if (priorityString == null) {
             return 1;
         }
 
         try {
-            if (Integer.parseInt(priority) > 3){
-                throw new InvalidPriorityException(priority);
+            int priority = Integer.parseInt(priorityString);
+            if (priority < 1 || priority > 3){
+                throw new InvalidPriorityException(priorityString);
             }
-            return Integer.parseInt(priority);
+            return priority;
         } catch (NumberFormatException e) {
-            throw new InvalidPriorityException(priority);
+            throw new InvalidPriorityException(priorityString);
         }
     }
 

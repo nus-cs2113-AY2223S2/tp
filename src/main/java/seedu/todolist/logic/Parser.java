@@ -58,10 +58,10 @@ public class Parser {
 
             // Current word is a new flag
             Flags flag = Flags.fromString(word);
-            // Unexpected and duplicate flags for this command are not allowed
-            boolean unexpectedFlag = flag == null || !flagsSet.contains(flag);
-            boolean duplicateFlag = currentFlag.equals(flag) || arguments.containsKey(flag);
-            if (unexpectedFlag || duplicateFlag) {
+            // Unexpected and repeated flags for this command are not allowed
+            boolean isUnexpectedFlag = flag == null || !flagsSet.contains(flag);
+            boolean isRepeatedFlag = currentFlag.equals(flag) || arguments.containsKey(flag);
+            if (isUnexpectedFlag || isRepeatedFlag) {
                 throw new InvalidFlagException(word);
             }
 
