@@ -77,7 +77,7 @@ public class RainyDay {
         command.setData(userData);
         CommandResult result = command.execute();
         if (result != null) {
-            result.printResult();
+            System.out.println(result.output);
         }
         Storage.writeToFile(userData, filePath);
     }
