@@ -39,7 +39,11 @@ public class JsonUserDataLoader {
             JsonElement jsonTree = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("History");
             for (JsonElement element : jsonArray) {
-                userCareerData.addWorkoutSession(gson.fromJson(element, Session.class));
+                Session sessionFromFile = gson.fromJson(element, Session.class);
+                if (!sessionFromFile.checkSessionNullity()) {
+                    throw new DukeError("Null error");
+                }
+                userCareerData.addWorkoutSession(sessionFromFile);
             }
             assert jsonArray.size() == userCareerData.getTotalUserCareerSessions()
                                                      .size() : "All elements from json must be written" +
