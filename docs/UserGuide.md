@@ -100,7 +100,7 @@ Example output:
 
 ### Adding an income: `addIncome`
 Format: `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>`
-Adds a new expense to the list of expenses.
+Adds a new income to the list of expenses.
 
 * The `amount` should be double.
 * The `description` can be in a natural language format.
@@ -192,7 +192,7 @@ The index must be a positive integer 1, 2, 3, …​
   * amount (of type **double**): edits the expense
   * info (of type **String**): edits the description of expense
   * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense
-  * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense--addexpense) feature): edits the category of that expense
+  * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that expense
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
 
@@ -225,7 +225,7 @@ Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
   * amount (of type **double**): edits the income
   * info (of type **String**): edits the description of income
   * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned
-  * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense--addexpense) feature): edits the category of that income
+  * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that income
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
 
@@ -512,7 +512,7 @@ Example output:
 |  editExpense: edits the expense from the list.
 |  Parameter: i/ <index> t/ <type> n/ <newEntry>
 |  There are 4 types that can be changed, amount, info, time, category
-|  Example: editExpense i/ 1 t/ cost n/ 5
+|  Example: editExpense i/ 1 t/ amount n/ 5
 |
 |  editIncome: edits the income from the list.
 |  Parameter: i/ <index> t/ <type> n/ <newEntry>
@@ -542,7 +542,7 @@ Example output:
 |  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
 |  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: viewBudget
-|  Example: viewBudget /t 2023/03
+|  Example: viewBudget t/ 2023/03
 |
 |  sortExpenseByAmount: shows the expenses made, sorted by amount of expense
 |  Example: sortExpenseByAmount
