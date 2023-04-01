@@ -122,7 +122,7 @@ public class Storage {
             int counter = 0;
             for (int i = 0; i < currentInventory.getItemInventory().size(); i++) {
                 String itemUPC = currentInventory.getItemInventory().get(i).getUpc();
-                for (Item item : currentInventory.getItemInventory()) {
+                for (Item item : currentInventory.getUpcCodesHistory().get(itemUPC)) {
                     writer.write(counter + "," + item.getName() + "," + item.getUpc() + "," + item.getQuantity()
                             + "," + item.getPrice() + "," + item.getCategory() + "," + item.getDateTime() + "\n");
                     counter++;
