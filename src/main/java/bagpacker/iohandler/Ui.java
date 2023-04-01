@@ -6,6 +6,8 @@ import bagpacker.commands.*;
  * Ui class contains methods to print messages to user interface on Command Line Interface
  */
 public class Ui {
+    private static final String RETURN_USER_GREET = "Welcome back, User!";
+    private static final String NEW_USER_GREET = "No save files detected. Hello new user!";
     public static String logo = " ____              _____           _\n"
             + "|  _ \\            |  __ \\         | |\n"
             + "| |_) | __ _  __ _| |__) |_ _  ___| | _____ _ __\n"
@@ -75,7 +77,7 @@ public class Ui {
     /**
      * Prints messages(s) to the user
      *
-     * @param message
+     * @param message Message to be shown to the user
      */
     public static void printToUser(String... message) {
         printLine();
@@ -83,5 +85,12 @@ public class Ui {
             System.out.println(m);
         }
         printLine();
+    }
+
+    public static void showUserReturn() {
+        printToUser(RETURN_USER_GREET);
+    }
+    public static void showNewUser() {
+        printToUser(NEW_USER_GREET);
     }
 }
