@@ -24,6 +24,7 @@ public class IngredientStorage {
     public String filename = "ingredients.txt";
     private Gson gson = new Gson();
     private BufferedWriter bufferedWriter = null;
+    private boolean fileHasBeenEdited = false;
 
     /**
      * Checks for existing file containing ingredients and initialises buffered writer accordingly
@@ -63,6 +64,10 @@ public class IngredientStorage {
                 addStoredIngredients(ingredientString, ingredients);
                 ingredientString = bufferedReader.readLine();
             }
+            if (fileHasBeenEdited) {
+                System.out.println("Please refrain from editing the ingredients.txt file, " +
+                        "some ingredients in your list has been affected and is now invalid.");
+            }
         } catch (FileNotFoundException e) {
             System.out.println("Oops, an error occurred while loading file");
         } catch (IOException e) {
@@ -77,6 +82,13 @@ public class IngredientStorage {
      */
     private void addStoredIngredients(String inputFromFile, IngredientList ingredients) {
         Ingredient ingredient = gson.fromJson(inputFromFile, Ingredient.class);
+        if (ingredient.getMetadata() == null ||
+                ingredient.getMetadata().getName() == null ||
+                (ingredient.getMetadata().getUnits() == null && ingredient.getMetadata().getUnitLabel() == null) ||
+                ingredient.getQuantity() == 0) {
+            fileHasBeenEdited = true;
+            return;
+        }
         ingredients.add(ingredient);
     }
 
