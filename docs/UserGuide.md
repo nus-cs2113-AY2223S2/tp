@@ -4,7 +4,7 @@ title: User Guide
 --- -->
 <h1> User Guide </h1>
 <h2> Introduction </h2>
-RM(recipe manager) is a <strong>desktop recipe manager application for managing recipes, optimized for use via a Command Line Interface</strong>(CLI). 
+Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managing recipes, optimized for use via a Command Line Interface</strong> (CLI). 
 <h2> Table of Contents </h2>
 
 * **[Quick Start](#quick-start)**
@@ -33,7 +33,7 @@ RM(recipe manager) is a <strong>desktop recipe manager application for managing 
 <h2 id="quick-start"> Quick Start</h2>
 
 1. Enusure you have `Java 11` installed on your Computer.
-2. Download the latest `RM.jar` from here.
+2. Download the latest `tp.main.jar` from [here](https://github.com/AY2223S2-CS2113-F13-1/tp/releases).
 3. Copy the file to the folder you want to use as home folder for the recipe manager.
 4. Use `Win+R` to open the command prompt and type `cmd` and press Enter.
 5. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`
