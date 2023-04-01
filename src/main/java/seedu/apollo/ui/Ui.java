@@ -537,7 +537,8 @@ public class Ui {
      * Prints error message if the user tries to add a module which does not exist.
      */
     public void printInvalidModule() {
-        System.out.println("This module does not exist!");
+        System.out.println("This module does not exist, or is not available this semester!\n" +
+                "Please refer to official NUS module list for more information.");
     }
 
     /**

@@ -196,7 +196,7 @@ public class AddCommand extends Command implements LoggerInterface {
      * @param calendar Existing lessons.
      * @param by       Due date of the deadline being added.
      */
-    public void warnDeadlineClash(Ui ui, TaskList taskList, Calendar calendar, LocalDateTime by) {
+    private void warnDeadlineClash(Ui ui, TaskList taskList, Calendar calendar, LocalDateTime by) {
         TaskList clashTasks = taskList.getTasksOnDate(by.toLocalDate());
         DayOfWeek day = by.getDayOfWeek();
         int dayNum = determineDay(day);
