@@ -70,7 +70,7 @@ public class Ui {
     public static final String RECOVERED_ALERT_FILE = "INFO: Session Alert Data recovered." +
             " The list of active alerts has been updated.";
 
-    public static final int INVENTORY_ATTRIBUTE_COUNT = 4;
+    public static final int INVENTORY_ATTRIBUTE_COUNT = 5;
     public static final int HELP_ATTRIBUTE_COUNT = 2;
     public static final int ALERT_ATTRIBUTE_COUNT = 3;
 
@@ -119,6 +119,8 @@ public class Ui {
     private static final String UPC_HEADING = "UPC";
     private static final String QTY_HEADING = "Quantity";
     private static final String PRICE_HEADING = "Price";
+
+    private static final String CATEGORY_HEADING = "Category";
     private static final String COMMAND_HEADING = "Command";
     private static final String FORMAT_HEADING = "Command Format";
 
@@ -171,7 +173,6 @@ public class Ui {
             "List all items and all categories: cat table";
     private static final int CATEGORY_COL_WIDTH = 15;
     private static final int ITEMS_COL_WIDTH = 30;
-    private static final String CATEGORY_HEADING = "Category";
     private static final String NO_CATEGORY_LIST = "Category list is empty. There are no items in the inventory.";
     private static final String INVALID_CATEGORY_FIND = "The category you are looking for does not exist.";
     private static final String INVALID_CATEGORY = "The category does not exist.";
@@ -335,7 +336,7 @@ public class Ui {
     }
 
     public static String printTable(ArrayList<Item> items) {
-        int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH};
+        int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH, CATEGORY_COL_WIDTH};
 
         StringBuilder table = new StringBuilder();
 
@@ -348,8 +349,9 @@ public class Ui {
             String upc = item.getUpc();
             String qty = Integer.toString(item.getQuantity());
             String price = Double.toString(item.getPrice());
+            String category = item.getCategory();
 
-            table.append(printRow(name, upc, qty, price, columnWidths));
+            table.append(printRow(name, upc, qty, price, category, columnWidths));
         }
         return table.toString();
     }
@@ -374,7 +376,7 @@ public class Ui {
     private static String printHeadings(int[] columnWidths) {
         String[] headings = {};
         if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
-            headings = new String[]{NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING};
+            headings = new String[]{NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING, CATEGORY_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
@@ -460,11 +462,12 @@ public class Ui {
         return row.toString();
     }
 
-    private static String printRow(String name, String upc, String qty, String price,
+    private static String printRow(String name, String upc, String qty, String price, String category,
                                    int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
         String[] qtyLines = wrapText(qty, QTY_COL_WIDTH);
+        String [] catLines = wrapText(category, CATEGORY_COL_WIDTH);
         String[] priceLines = wrapText(DOLLAR_SIGN + price, PRICE_COL_WIDTH);
         StringBuilder row = new StringBuilder();
 
@@ -479,6 +482,8 @@ public class Ui {
             row.append(printAttribute(qtyLines, QTY_COL_WIDTH, i));
             row.append(TABLE_MIDDLE);
             row.append(printAttribute(priceLines, PRICE_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(catLines, CATEGORY_COL_WIDTH, i));
             row.append(TABLE_RIGHT);
             row.append(System.lineSeparator());
 
