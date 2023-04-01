@@ -5,22 +5,22 @@
 1. [Introduction](#introduction)
 2. [Quick Start](#quick-start)
 3. [Features](#features)
-   * [Adding an expense](#adding-an-expense--addexpense)
-   * [Adding an income](#adding-an-income--addincome)
-   * [Listing all expenses](#listing-all-expenses--listexpense)
-   * [Listing all income](#listing-all-income--listincome)
-   * [Editing an expense](#editing-an-expense--editexpense)
-   * [Editing an income](#editing-an-income--editincome)
-   * [Sorting an expense by amount](#sorting-an-expense-by-amount--sortexpensebyamount)
-   * [Sorting an income by amount](#sorting-an-income-by-amount--sortincomebyamount)
-   * [Sorting an expense by date](#sorting-an-expense-by-date--sortexpensebydate)
-   * [Sorting an income by date](#sorting-an-income-by-date--sortincomebydate)
-   * [Deleting an expense](#deleting-an-expense--deleteexpense)
-   * [Deleting an income](#deleting-an-income--deleteincome)
-   * [Set budget](#set-budget--setbudget)
-   * [View budget](#view-budget--viewbudget)
-   * [Help command](#help-command--help)
-   * [Exiting the program](#exiting-the-program--exit)
+   * [Adding an expense](#adding-an-expense-addexpense)
+   * [Adding an income](#adding-an-income-addincome)
+   * [Listing all expenses](#listing-all-expenses-listexpense)
+   * [Listing all income](#listing-all-income-listincome)
+   * [Editing an expense](#editing-an-expense-editexpense)
+   * [Editing an income](#editing-an-income-editincome)
+   * [Sorting an expense by amount](#sorting-an-expense-by-amount-sortexpensebyamount)
+   * [Sorting an income by amount](#sorting-an-income-by-amount-sortincomebyamount)
+   * [Sorting an expense by date](#sorting-an-expense-by-date-sortexpensebydate)
+   * [Sorting an income by date](#sorting-an-income-by-date-sortincomebydate)
+   * [Deleting an expense](#deleting-an-expense-deleteexpense)
+   * [Deleting an income](#deleting-an-income-deleteincome)
+   * [Set budget](#set-budget-setbudget)
+   * [View budget](#view-budget-viewbudget)
+   * [Help command](#help-command-help)
+   * [Exiting the program](#exiting-the-program-exit)
    * [Saving the data](#saving-the-data)
 4. [FAQ](#faq)
 5. [Command Summary](#command-summary)
@@ -134,7 +134,7 @@ Format: `listExpense [t/ time]`
 Shows a list of all expenses in the list of expense.
 
 - The `time` should follow `YYYY/MM` format
-- The time parameter is optional. If you add this optional parameter,
+- The time parameter is **optional**. If you add this optional parameter,
 it will show a list of all the expenses incurred in the month specified.
 
 Example of usage: `listExpense t/ 2023/03` Shows a list of all expenses incurred in the month 2023 March
@@ -161,7 +161,7 @@ Format: `listIncome [t/ time]`
 Shows a list of all income in the list of income.
 
 - The `time` should follow `YYYY/MM` format
-- The time parameter is optional. If you add this optional parameter,
+- The time parameter is **optional**. If you add this optional parameter,
 it will show a list of all income made in the specified month.
 
 Example of usage: `listIncome` Shows a list of all income made across the entire time period.
@@ -628,8 +628,8 @@ There is no need to save manually.
 | **Edit**        | `editExpense i/ <index> t/ <type> n/ <newEntry>` <br> e.g., `editExpense i/ 1 t/ amount n/ 7` <br> `editIncome i/ <index> t/ <type> n/ <newEntry>` <br> e.g., `editIncome i/ 1 t/ info n/ pay`                                                                                  |
 | **Sort**        | `sortExpenseByAmount` <br> `sortExpenseByTime` <br> `sortIncomeByAmount` <br> `sortExpenseByAmount`                                                                                                                                                                             |
 | **Delete**      | `deleteExpense <index>` <br> e.g., `deleteExpense 2` <br> `deleteIncome <index>` <br> e.g., `deleteIncome 2`                                                                                                                                                                    |
-| **Set Budget**  | `setBudget <amount> [t/ time]` <br> e.g., `setBudget 2000 t/ 2023/04` <br> e.g., `setBudget 4000`                                                                                                                                                                              |
-| **View Budget** | `viewBudget [t/ time]` <br> e.g., `viewBudget t/ 2023/02`   <br> e.g., `viewBudget`                                                                                                                                                                                               |
-|  **Exit**       | `exit`                                                                                                                                                                                                                                                                          |
-| **Help**        | `help`                                                                                                  |
+| **Set Budget**  | `setBudget <amount> [t/ time]` <br> e.g., `setBudget 2000 t/ 2023/04` <br> e.g., `setBudget 4000`                                                                                                                                                                               |
+| **View Budget** | `viewBudget [t/ time]` <br> e.g., `viewBudget t/ 2023/02`   <br> e.g., `viewBudget`                                                                                                                                                                                             |
+| **Exit**        | `exit`                                                                                                                                                                                                                                                                          |
+| **Help**        | `help`                                                                                                                                                                                                                                                                          |
 
