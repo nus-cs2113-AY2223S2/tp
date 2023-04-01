@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserTest {
-    private final User newUser = new User("user", 80, 180, 21, "male");
+    private final User newUser = new User("user", 80, 180, 21, "male", 75);
 
     @Test
     void calculateCaloricNeeds_male_expect1466() {
@@ -45,5 +45,10 @@ class UserTest {
     @Test
     void getGender_male_expectMale() {
         assertEquals("male", newUser.getGender());
+    }
+
+    @Test
+    void getTargetWeight_input75_expect75() {
+        assertEquals(75.0, newUser.getTargetWeight());
     }
 }
