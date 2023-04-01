@@ -1,11 +1,11 @@
 package seedu.dukeofbooks.data.inventory;
 
+import seedu.dukeofbooks.data.book.Book;
+import seedu.dukeofbooks.data.exception.IllegalValueException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
-import seedu.dukeofbooks.data.book.Book;
-import seedu.dukeofbooks.data.exception.IllegalValueException;
 
 public class Inventory {
     public static final String INVALID_BOOK_REMOVAL = "Book being removed does not exist";
@@ -89,4 +89,6 @@ public class Inventory {
     private void decrementBookEntry(Book book) throws IllegalValueException {
         inventoryListing.get(book).decrementCount();
     }
+
+
 }

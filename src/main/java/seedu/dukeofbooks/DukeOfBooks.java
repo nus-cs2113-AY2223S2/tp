@@ -1,29 +1,19 @@
 package seedu.dukeofbooks;
 
-import seedu.dukeofbooks.command.AccessCommand;
-import seedu.dukeofbooks.command.AccessHelpCommand;
-import seedu.dukeofbooks.command.CommandResult;
-import seedu.dukeofbooks.command.ExitCommand;
-import seedu.dukeofbooks.command.LogoutCommand;
-import seedu.dukeofbooks.command.UserCommand;
-import seedu.dukeofbooks.controller.InventoryController;
+import seedu.dukeofbooks.command.*;
 import seedu.dukeofbooks.controller.SearchController;
-import seedu.dukeofbooks.data.book.Book;
-import seedu.dukeofbooks.data.book.Isbn;
-import seedu.dukeofbooks.data.book.Title;
-import seedu.dukeofbooks.data.book.Topic;
-import seedu.dukeofbooks.data.exception.IllegalOperationException;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.inventory.Inventory;
 import seedu.dukeofbooks.data.loan.LoanRecords;
-import seedu.dukeofbooks.data.person.Person;
-import seedu.dukeofbooks.data.person.PersonName;
-import seedu.dukeofbooks.data.person.Phone;
 import seedu.dukeofbooks.data.user.User;
 import seedu.dukeofbooks.data.user.UserRecords;
 import seedu.dukeofbooks.parser.AccessCommandParser;
 import seedu.dukeofbooks.parser.UserCommandParser;
 import seedu.dukeofbooks.ui.TextUi;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Main file to run
@@ -36,6 +26,8 @@ public class DukeOfBooks {
     private SearchController searchController = new SearchController();
     private User currentUser;
     private TextUi ui;
+
+    private Inventory inventory = new Inventory();
 
     public static void main(String[] args) {
         new DukeOfBooks().run();
@@ -50,38 +42,24 @@ public class DukeOfBooks {
     private void start() {
         this.allLoanRecords = new LoanRecords();
         this.userRecords = new UserRecords();
-        try {
-            Inventory inventory = new Inventory();
-            InventoryController.setData(inventory);
-            SearchController.setData(inventory);
-            // add test data
-            Isbn isbn = new Isbn("testIsbn");
-            Title title = new Title("the greatest nation");
-            Topic topic = new Topic("testTopic");
-            PersonName authorName = new PersonName("Author");
-            Phone authorPhone = new Phone(87654321);
-            Person author = new Person(authorName, authorPhone);
-            Book book = new Book(isbn, title, topic, author);
-            InventoryController.addBook(book);
-
-            isbn = new Isbn("testIsbn2");
-            title = new Title("the great wall of china");
-            topic = new Topic("testTopicanother");
-            authorName = new PersonName("Authoranother");
-            authorPhone = new Phone(87654321);
-            author = new Person(authorName, authorPhone);
-            book = new Book(isbn, title, topic, author);
-            InventoryController.addBook(book);
-
-        } catch (IllegalValueException | IllegalOperationException ive) {
-            ive.printStackTrace();
-        }
         this.ui = new TextUi();
+        // Add book data into inventory
+        try {
+            ReadWriteData.readData((inventory));
+        } catch (FileNotFoundException e) {
+            File f = new File("database/books.txt");
+        }
         ui.showWelcomeMessage(VERSION);
     }
 
     private void exit() {
         ui.showExitMessage();
+        // Write book data into inventory
+        try {
+            ReadWriteData.writeData(inventory);
+        } catch (IOException e) {
+            System.out.println("Failed to save data!");
+        }
         System.exit(0);
     }
 
