@@ -91,6 +91,10 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 recipeListIndex = Integer.parseInt(fullDescription);
+                if (recipeList.getCurrRecipeNumber() == 0) {
+                    System.out.println(StringLib.EMPTY_LIST_MESSAGE);
+                    break;
+                }
                 if (recipeListIndex <= 0 || recipeListIndex > recipeList.getCurrRecipeNumber()) {
                     System.out.println(StringLib.POS_INT);
                     System.out.println("Valid range: " + 1 + " to " + recipeList.getCurrRecipeNumber());
@@ -115,6 +119,10 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
+                if (recipeList.getCurrRecipeNumber() == 0) {
+                    System.out.println(StringLib.EMPTY_LIST_MESSAGE);
+                    break;
+                }
                 if (recipeListNum <= 0 || recipeListNum > recipeList.getCurrRecipeNumber()) {
                     System.out.println(StringLib.POS_INT);
                     System.out.println("Valid range: " + 1 + " to " + recipeList.getCurrRecipeNumber());
@@ -135,6 +143,10 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
+                if (recipeList.getCurrRecipeNumber() == 0) {
+                    System.out.println(StringLib.EMPTY_LIST_MESSAGE);
+                    break;
+                }
                 if (recipeListNum <= 0 || recipeListNum > recipeList.getCurrRecipeNumber()) {
                     System.out.println(StringLib.POS_INT);
                     System.out.println("Valid range: " + 1 + " to " + recipeList.getCurrRecipeNumber());
@@ -178,6 +190,10 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
+                if (recipeList.getCurrRecipeNumber() == 0) {
+                    System.out.println(StringLib.EMPTY_LIST_MESSAGE);
+                    break;
+                }
                 if (recipeListNum <= 0 || recipeListNum > recipeList.getCurrRecipeNumber()) {
                     System.out.println(StringLib.POS_INT);
                     System.out.println("Valid range: " + 1 + " to " + recipeList.getCurrRecipeNumber());
