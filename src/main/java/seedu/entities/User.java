@@ -10,6 +10,7 @@ public class User {
     private float height;
     private int age;
     private String gender;
+    private float targetWeight;
 
     private double caloricLimit;
     public User() {
@@ -19,14 +20,16 @@ public class User {
         this.age = 0;
         this.gender = "";
         this.caloricLimit = 0;
+        this.targetWeight = 0;
     }
 
-    public User(String name, float weight, float height, int age, String gender) {
+    public User(String name, float weight, float height, int age, String gender, float targetWeight) {
         this.name = name;
         this.weight = weight;
         this.height = height;
         this.age = age;
         this.gender = gender;
+        this.targetWeight = targetWeight;
         this.caloricLimit = calculateCaloricNeeds(weight, height, age, gender);
     }
 
@@ -48,6 +51,12 @@ public class User {
 
     public void setWeight(float weight) {
         this.weight = weight;
+    }
+    public float getTargetWeight() {
+        return this.targetWeight;
+    }
+    public void setTargetWeight(float targetWeight) {
+        this.targetWeight = targetWeight;
     }
 
     public float getHeight() {
@@ -72,6 +81,34 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public static void displayNewWeightDifference (float weight, float targetWeight) {
+        float actualDifference = weight - targetWeight;
+        float difference = 0;
+        if (actualDifference > 0) {
+            difference = actualDifference;
+            System.out.println("You need to lose " + difference + "kg to reach your target weight: " + targetWeight + "kg");
+        } else if (actualDifference < 0) {
+            difference = actualDifference * (-1);
+            System.out.println("You need to gain " + difference + "kg to reach your target weight: " + targetWeight + "kg");
+        } else {
+            System.out.println("Congrats! You have reached your target weight!");
+        }
+    }
+
+    public static void displayNewTargetWeightDifference (float weight, float targetWeight) {
+        float actualDifference = weight - targetWeight;
+        float difference = 0;
+        if (actualDifference > 0) {
+            difference = actualDifference;
+            System.out.println("With your updated target weight, you now need to lose " + difference + "kg to reach it.");
+        } else if (actualDifference < 0) {
+            difference = actualDifference * (-1);
+            System.out.println("With your updated target weight, you now need to gain " + difference + "kg to reach it.");
+        } else {
+            System.out.println("Congrats! You have reached your target weight!");
+        }
     }
 
     public static double calculateCaloricNeeds (float weight, float height, int age, String gender) {

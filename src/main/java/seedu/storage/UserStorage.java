@@ -30,7 +30,7 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
                 CSVWriter.NO_QUOTE_CHARACTER,
                 CSVWriter.DEFAULT_ESCAPE_CHARACTER,
                 CSVWriter.RFC4180_LINE_END);
-        String[] header = { "Name", "Weight", "Height", "Age", "Gender" };
+        String[] header = { "Name", "Weight", "Height", "Age", "Gender", "TargetWeight" };
         writer.writeNext(header);
         writer.writeNext(user.toWriteFormat());
         writer.close();
@@ -43,6 +43,7 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
         float height;
         int age;
         String gender;
+        float targetWeight;
 
         try {
             // parsing a CSV file into BufferedReader class constructor
@@ -57,7 +58,8 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
             height = Float.parseFloat(userLine[2]);
             age = Integer.parseInt(userLine[3]);
             gender = userLine[4];
-            user = new User(name, weight, height, age, gender);
+            targetWeight = Float.parseFloat(userLine[5]);
+            user = new User(name, weight, height, age, gender, targetWeight);
             br.close();
         } catch (FileNotFoundException e) {
             System.out.println("User File not found. Creating new user file...");
