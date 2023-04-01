@@ -177,6 +177,6 @@ public class Ui {
     }
 
     public void showListCleared() {
-        System.out.println("    List/s cleared");
+        System.out.println("    List(s) cleared");
     }
 }

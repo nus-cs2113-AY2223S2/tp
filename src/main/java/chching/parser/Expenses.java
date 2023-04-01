@@ -42,7 +42,10 @@ public class Expenses {
             String expenseDateString = argumentsByField.get("da");
             LocalDate expenseDate = parseDate(expenseDateString);
             float expenseValue = Float.parseFloat(argumentsByField.get("v"));
-            assert expenseValue > 0 : "Expense value should be greater than zero";
+            if(expenseValue > 1000000){
+                throw new ChChingException("Expense value can at most be 1000000");
+            }
+            assert expenseValue > 0: "Expense value should be greater than zero";
             exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
         } catch (Exception e) {
             throw new ChChingException("Trouble adding expense value");
