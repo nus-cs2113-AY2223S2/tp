@@ -101,7 +101,7 @@ public class Currency implements Serializable {
         if (currencyKey.equals("SGD")) {
             return new BigDecimal(1);
         }
-        if(date.isAfter(LocalDate.parse("1988-01-08"))) {
+        if(date.isBefore(LocalDate.parse("1988-01-08"))) {
             return getOfflineRate(currencyKey);
         }
         try {
