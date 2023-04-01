@@ -2,25 +2,40 @@ package bagpacker;
 
 import bagpacker.commands.ByeCommand;
 import bagpacker.commands.Command;
+import bagpacker.iohandler.Storage;
 import bagpacker.iohandler.Ui;
 import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
 
+import java.io.FileNotFoundException;
+
 public class BagPacker {
     private static PackingList packingList;
+
     /**
      * Main entry-point for the java.BagPacker application.
      */
     public static void main(String[] args) {
         // initialise variables
         BagPacker.packingList = new PackingList();
-        //initialise BagPacker program
+
         Ui.initialMessage();
 
-        //run main program
+        // load save file if possible
+        try {
+            Storage.load();
+            Ui.showUserReturn();
+        } catch (FileNotFoundException | RuntimeException e) {
+            Ui.showNewUser();
+        }
+
+        // run main program
         runBagPacker();
 
-        //Close program
+        // save packingList
+        Storage.save(packingList);
+
+        // Close program
         Ui.goodbyeMessage();
     }
 
