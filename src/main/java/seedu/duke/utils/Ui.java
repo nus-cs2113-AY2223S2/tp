@@ -89,8 +89,9 @@ public class Ui {
     public static final String SUCCESS_RESTOCK = "Successfully restocked the following item:";
     public static final String SUCCESS_SELL = "Successfully sold the following item:";
     public static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
-    public static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a WHOLE NUMBER.";
-    public static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE a WHOLE NUMBER/DECIMAL NUMBER.";
+    public static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a POSITIVE WHOLE NUMBER/ZERO.";
+    public static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE a POSITIVE WHOLE " +
+            "NUMBER/DECIMAL NUMBER/ZERO.";
     public static final String INVALID_RESTOCK_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
             "following format: " + "restock upc/[UPC] qty/[Quantity]";
     public static final String INVALID_ADD_QUANTITY_FORMAT = "Unable to restock item. REASON: Quantity inputs" +
