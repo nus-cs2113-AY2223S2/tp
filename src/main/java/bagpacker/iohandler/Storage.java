@@ -21,31 +21,42 @@ public class Storage {
     private static final String FILE_PATH = "packing_list.txt";
 
     /**
-     * Loads packingList with items containing relevant packedQuantity, totalQuantity and item description
-     * @throws FileNotFoundException
+     * Loads packingList with items saved in save file
+     * @throws FileNotFoundException when no save file in directory FILE_PATH is found
      */
     public static void load() throws FileNotFoundException {
         Scanner reader = new Scanner(new File(FILE_PATH));
         String line;
         while (reader.hasNext()) {
             line = reader.nextLine();
-
-            // packedQuantity of an item is integer form of number after first [
-            int packedQuantity = Integer.parseInt(String.valueOf(line.charAt(line.indexOf('[') + 1)));
-
-            // totalQuantity of an item is integer form of number after first /
-            int totalQuantity = Integer.parseInt(String.valueOf(line.charAt(line.indexOf('/') + 1)));
-
-            // itemDesc will be after a whitespace after first ]
-            String itemDesc = line.substring(line.indexOf(']') + 2);
-            Item item = new Item(totalQuantity, packedQuantity, itemDesc);
-            PackingList.getItemList().add(item);
+            PackingList.getItemList().add(readItem(line));
         }
     }
 
     /**
-     * saves packingList onto user's file directory
-     * @param packingList
+     * Returns an item with details saved in save file
+     * @param line line from save file
+     * @return item containing relevant packedQuantity, totalQuantity and item description
+     */
+    private static Item readItem(String line) {
+        int openBracketIndex = line.indexOf('[');
+        int forwardSlashIndex = line.indexOf('/');
+        int closeBracketIndex = line.indexOf(']');
+
+        // packedQuantity of an item is integer form of number after '[' and before '/'
+        int packedQuantity = Integer.parseInt(line.substring(openBracketIndex + 1, forwardSlashIndex));
+
+        // totalQuantity of an item is integer form of number after '/' and before ']'
+        int totalQuantity = Integer.parseInt(line.substring(forwardSlashIndex + 1, closeBracketIndex));
+
+        // itemDesc will be after '] '
+        String itemDesc = line.substring(line.indexOf(']') + 2);
+        return new Item(totalQuantity, packedQuantity, itemDesc);
+    }
+
+    /**
+     * saves current list of items onto file directory FILE_PATH
+     * @param packingList list of items used by user
      */
     public static void save(PackingList packingList) {
         try {
