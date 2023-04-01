@@ -703,7 +703,7 @@ public class Ui {
      * Prints a message when user tries to mark an already done task as done again.
      */
     public void printTaskHasBeenMarkedPreviously() {
-        System.out.println("You have already marked this task as done previously");
+        System.out.println("You have already marked this task as done previously.");
     }
 
     /**
@@ -711,6 +711,11 @@ public class Ui {
      */
     public void printTaskHasBeenUnmarkedPreviously(){
         System.out.println("This task was never marked as done!");
+    }
+
+    public void deadlineSuggestion(){
+        System.out.println("This todo seems to suggest that this is a deadline type task.\n" +"You could consider " +
+                "using the deadline command instead.\n");
     }
 
 }
