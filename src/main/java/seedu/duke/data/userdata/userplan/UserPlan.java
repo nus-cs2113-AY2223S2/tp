@@ -1,7 +1,11 @@
 package seedu.duke.data.userdata.userplan;
 
+import java.lang.reflect.Field;
 import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.ui.ErrorMessages;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
+import java.util.HashMap;
 
 import java.util.ArrayList;
 
@@ -13,6 +17,8 @@ import static seedu.duke.data.userdata.userplan.Day.intToDay;
 public class UserPlan {
     private static final Integer DAYSINAWEEK = 7;
     private static ArrayList<Plan>[] plan;
+    private static GenerateExercise exerciseGenerator = new GenerateExercise();
+    
 
     /**
      * initialize new UserPlan
@@ -80,6 +86,23 @@ public class UserPlan {
             throw new DukeError(ErrorMessages.ERROR_INVALID_PLAN_NAME.toString());
         }
 
+        String[] filterList = new String[userCommands.length - 3];
+        HashMap<String, Integer> filterMap = new HashMap<>();
+        for (int filterNo = 3; filterNo < userCommands.length; filterNo++) {
+            String filter = userCommands[filterNo];
+            if (filterMap.get(filter) != null) {
+                throw new DukeError(ErrorMessages.ERROR_MULTPILE_SIMILAR_FILTERS.toString());
+            }
+            filterMap.put(filter, 1);
+        }
+
+        for (int filterNo = 3; filterNo < userCommands.length; filterNo++) {
+            filterList[filterNo - 3] = userCommands[filterNo];
+        }
+        if (!GenerateFilterCommand.isAValidSetOfFilters(exerciseGenerator, filterList)) {
+            return;
+        }
+
         Plan newPlan = new Plan(exerciseFilters, name);
         plan[intDay].add(newPlan);
         System.out.println("[" + name + "] added to " + intToDay(intDay));
@@ -128,6 +151,18 @@ public class UserPlan {
      */
     public ArrayList<Plan> getDayPlans (int day) {
         return plan[day];
+    }
+
+    public void checkPlansNullity () throws DukeError {
+        for (Field f : getClass().getDeclaredFields()) {
+            try {
+                if (f.get(this) == null) {
+                    throw new DukeError("Null element in plans");
+                }
+            } catch (Exception e) {
+                throw new DukeError("Null element in user plans");
+            }
+        }
     }
 
 }
