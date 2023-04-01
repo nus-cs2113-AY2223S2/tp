@@ -7,19 +7,22 @@ FitnessDuke is a **Command Line Application for tracking and managing workouts, 
 ## Table of contents
 * [Getting started](#getting-started)
 * [FitnessDuke's Features](#fitnessdukes-features)
-  * [Viewing help: ```help```](#viewing-help-help)
+  * [Viewing help: ```help```](#viewing-help--help)
   * [Exiting the program: ```exit```](#exiting-the-program--exit)
-  * [Getting a list of specific workouts: ```generate [arguments] [number]```](#getting-a-list-of-specific-workouts--generate-arguments-number)
-  * [Getting the filters to generate workout ```filters```](#getting-the-filters-to-generate-workout-filters)
-  * [Searching for a workout ```find [keyword]```](#searching-for-a-workout-find-keyword)
-  * [Viewing plans ```plans```](#viewing-plans-plans)
-  * [Seeing your workout history ```history```](#seeing-your-workout-history-history)
-  * [Seeing your workout summary ```data```](#seeing-your-workout-summary-data)
-  * [Generating a list of planned exercises ```quick [plan_name] [x]```](#generating-a-list-of-planned-exercises-quick-planname-x)
-  * [Getting into a workout ```start```](#getting-into-a-workout-start)
-  * [Getting into the fitness planner ```planner```](#getting-into-the-fitness-planner-planner)
+  * [Getting the filters to generate workout: ```filters```](#getting-the-filters-to-generate-workout--filters)
+  * [Generating a list of workouts according to filters: ```generate [arguments] [number]```](#generating-a-list-of-workouts-according-to-filters--generate-arguments-number)
+  * [Getting into a workout: ```start```](#getting-into-a-workout--start)
+  * [Within your workout session](#within-your-workout-session)
+  * [Seeing your workout history: ```history```](#seeing-your-workout-history--history)
+  * [Seeing your workout summary: ```data```](#seeing-your-workout-summary--data)
+  * [Deleting a workout session: ```delete [number]```](#deleting-a-workout-session--delete-number)
+  * [Searching for a workout: ```find [keyword]```](#searching-for-a-workout--find-keyword)
+  * [Getting into the fitness planner: ```planner```](#getting-into-the-fitness-planner--planner)
+  * [Within your fitness planner](#within-your-fitness-planner)
+  * [Viewing plans: ```plans```](#viewing-plans--plans)
+  * [Generating a list of planned exercises: ```quick [plan_name] [number]```](#generating-a-list-of-planned-exercises--quick-planname-number)
 * [Saving the data](#saving-the-data)
-* [Editing the data file](#editing-the-data-file)
+* [Resource data](#resource-data)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
@@ -55,7 +58,27 @@ Gracefully exits the program and prints bye message.
 
 Example Command: ```exit```
 
-### Getting a list of specific workouts: ```generate [arguments] [number]```
+### Getting the filters to generate workout: ```filters```
+
+Shows a list of filters available and their description.
+
+The filters are shown here:
+
+
+| Filter   | Description                                   |
+|----------|-----------------------------------------------|
+| [gym]    | exercises that can be done with gym equipment |
+| [static] | exercises that only require your body         |
+| [easy]   | exercises of low intensity                    |
+| [medium] | exercises of medium intensity                 |
+| [hard]   | exercises of hard intensity                   |
+| [upper]  | exercises that train your upper body          |
+| [core]   | exercises that train your core                |
+| [legs]   | exercises that train your legs                |
+
+
+
+### Generating a list of workouts according to filters: ```generate [arguments] [number]```
 
 *Easter Egg: Having the [number] as 1337 would always generate the first 3 workouts no matter the filters*
 
@@ -71,8 +94,7 @@ Shows a list containing *number* of _random_ workouts that suits the arguments f
 
 Example Command: ```generate easy 3```, ```generate hard upper 4```
 
-### Do note that the exercises that you generate might not be the same as the exercises in the example below!
-#### This is due to the 800+ exercises that we have in our library!
+#### **Do note that the exercises that you generate might not be the same as the exercises in the example below! This is due to the 800+ exercises that we have in our library!
 
 Examples:
 ```
@@ -92,24 +114,80 @@ Position a bar in a rack at upper body height., Standing, take a shoulder width 
 ________________________________________
 ```
 
-### Getting the filters to generate workout: ```filters```
+### Getting into a workout: ```start```
 
-Shows a list of filters available and their description.
+Enters a workout session with the **previously (latest) generated** workout session.
 
-The filters are shown here:
+**Note that you must have at least one previously generated workout to start.
+
+**Note that you will not be able to access any other features until you complete your exercise
+
+Example Command: ```start```
+
+### Within your workout session
+**Click **[here](UG_features/workout_session.md)** to learn more about using our workouts feature.
+
+### Seeing your workout history: ```history```
+
+Displays your entire career history in using Fitness Duke.
+Each history will give you details on the sessions you completed with the date and time as well
+as the exercises that you completed.
+
+Example Command: ```history```
+
+### Seeing your workout summary: ```data```
+
+Displays the list of exercises which you have completed, along with the number of times of completion for each exercise.
+
+Example Command: ```data```
+
+### Deleting a workout session: ```delete [number]```
+
+Deletes a completed workout session according to the session number which the user specifies.
+
+Example Command: ```delete 1```
+
+Examples:
+
+**Before deletion of workout**
+```
+history
+Session 1
+On this date: 2023-03-31
+Exercise ID: 71. 
+Name: Bench Jump
+Difficulty Level: intermediate
+Workout Type: legs
+Begin with a box or bench 1-2 feet in front of you. Stand with your feet shoulder width apart. This will be your starting position., Perform a short squat in preparation for the jump; swing your upper body behind you., Rebound out of this position, extending through the hips, knees, and ankles to jump as high as possible. Swing your upper body forward and up., Jump over the bench, landing with the knees bent, absorbing the impact through the legs., Turn around and face the opposite direction, then jump back over the bench.
 
 
-| Filter   | Description                                   |
-|----------|-----------------------------------------------|
-| [gym]    | exercises that can be done with gym equipment |
-| [static] | exercises that only require your body         |
-| [easy]   | exercises of low intensity                    |
-| [medium] | exercises of medium intensity                 |
-| [hard]   | exercises of hard intensity                   |
-| [upper]  | exercises that train your upper body          |
-| [core]   | exercises that train your core                |
-| [legs]   | exercises that train your legs                |
+ 
+Session 2
+On this date: 2023-03-31
+Exercise ID: 326. 
+Name: Hip Lift with Band
+Difficulty Level: beginner
+Workout Type: legs
+After choosing a suitable band, lay down in the middle of the rack, after securing the band on either side of you. If your rack doesn't have pegs, the band can be secured using heavy dumbbells or similar objects, just ensure they won't move., Adjust your position so that the band is directly over your hips. Bend your knees and place your feet flat on the floor. Your hands can be on the floor or holding the band in position., Keeping your upper body on the ground, drive through your heels to raise your hips, pushing into the band as high as you can., Pause at the top of the motion, and return to the starting position.
 
+________________________________________
+```
+**After deletion of workout**
+```
+delete 2
+OK, you have deleted Workout Session Number 2!
+________________________________________
+history
+Session 1
+On this date: 2023-03-31
+Exercise ID: 71. 
+Name: Bench Jump
+Difficulty Level: intermediate
+Workout Type: legs
+Begin with a box or bench 1-2 feet in front of you. Stand with your feet shoulder width apart. This will be your starting position., Perform a short squat in preparation for the jump; swing your upper body behind you., Rebound out of this position, extending through the hips, knees, and ankles to jump as high as possible. Swing your upper body forward and up., Jump over the bench, landing with the knees bent, absorbing the impact through the legs., Turn around and face the opposite direction, then jump back over the bench.
+
+________________________________________
+```
 
 ### Searching for a workout: ```find [keyword]```
 
@@ -136,26 +214,22 @@ Here are the exercises matching your keyword:
 3.legs-SMR
 ________________________________________
 ```
+
+### Getting into the fitness planner: ```planner```
+
+Enters another interface where you can configure your workout plans and save them for the week.
+
+Example Command: ```planner```
+
+### Within your fitness planner
+**Click **[here](UG_features/planner.md)** to learn more about using our planner feature.
+
 ### Viewing plans: ```plans```
 
 Displays all workout plans which have been created by the user.
 
 Example Command: ```plans```
 
-### Seeing your workout history: ```history```
-
-Displays your entire career history in using Fitness Duke.
-Each history will give you details on the sessions you completed with the date and time as well
-as the exercises that you completed.
-
-Example Command: ```history```
-
-### Seeing your workout summary: ```data```
-
-Displays the list of exercises which you have completed, along with the individual frequencies of
-completion of each exercise.
-
-Example Command: ```data```
 
 ### Generating a list of planned exercises: ```quick [plan_name] [number]```
 
@@ -214,86 +288,12 @@ Begin in a pushup position on the floor. This will be your starting position., U
 ________________________________________
 ```
 
-### Deleting a workout session: ```delete [number]```
-
-Deletes a completed workout session according to the session number which the user specifies.
-
-Example Command: ```delete 1```
-
-Examples:
-
-**Before deletion of workout**
-```
-history
-Session 1
-On this date: 2023-03-31
-Exercise ID: 71. 
-Name: Bench Jump
-Difficulty Level: intermediate
-Workout Type: legs
-Begin with a box or bench 1-2 feet in front of you. Stand with your feet shoulder width apart. This will be your starting position., Perform a short squat in preparation for the jump; swing your upper body behind you., Rebound out of this position, extending through the hips, knees, and ankles to jump as high as possible. Swing your upper body forward and up., Jump over the bench, landing with the knees bent, absorbing the impact through the legs., Turn around and face the opposite direction, then jump back over the bench.
-
-
- 
-Session 2
-On this date: 2023-03-31
-Exercise ID: 326. 
-Name: Hip Lift with Band
-Difficulty Level: beginner
-Workout Type: legs
-After choosing a suitable band, lay down in the middle of the rack, after securing the band on either side of you. If your rack doesn't have pegs, the band can be secured using heavy dumbbells or similar objects, just ensure they won't move., Adjust your position so that the band is directly over your hips. Bend your knees and place your feet flat on the floor. Your hands can be on the floor or holding the band in position., Keeping your upper body on the ground, drive through your heels to raise your hips, pushing into the band as high as you can., Pause at the top of the motion, and return to the starting position.
-
-________________________________________
-```
-**After deletion of workout**
-```
-delete 2
-OK, you have deleted Workout Session Number 2!
-________________________________________
-history
-Session 1
-On this date: 2023-03-31
-Exercise ID: 71. 
-Name: Bench Jump
-Difficulty Level: intermediate
-Workout Type: legs
-Begin with a box or bench 1-2 feet in front of you. Stand with your feet shoulder width apart. This will be your starting position., Perform a short squat in preparation for the jump; swing your upper body behind you., Rebound out of this position, extending through the hips, knees, and ankles to jump as high as possible. Swing your upper body forward and up., Jump over the bench, landing with the knees bent, absorbing the impact through the legs., Turn around and face the opposite direction, then jump back over the bench.
-
-________________________________________
-```
-
-## *Starting a workout session*
-
-### Getting into a workout: ```start```
-
-Enters a workout session with the **previously (latest) generated** workout session.
-
-**Note that you must have at least one previously generated workout to start.
-
-**Note that you will not be able to access any other features until you complete your exercise
-
-Example Command: ```start```
-
-### Within your workout session
-Click [here](UG_features/workout_session.md) to learn more about using our workouts feature.
-
-
-## *Configuring plans*
-
-### Getting into the fitness planner: ```planner```
-
-Enters another interface where you can configure your workout plans and save them for the week.
-
-Example Command: ```planner```
-
-### Within your fitness planner
-Click [here](UG_features/planner.md) to learn more about using our planner feature.
-
 ## Saving the data
 
 User data files are saved in the hard disk automatically after any command that changes the data. There is no need to 
 save manually. :-)
 Advanced users are welcome to update data directly by editing that data file.
+
 **Caution: If your changes to the data file makes its format invalid, FitnessDuke will discard all data and start with an empty data file at the next run.**
 
 ## Resource data
@@ -327,4 +327,5 @@ if a specific line of data is corrupt, that specific achievement is not loaded, 
 | **data**     | ```data```                                                              |
 | **start**    | ```start```                                                             |
 | **quick**    | ```quick [plan_name] [x]```<br/> eg. ```quick home_leg_day 3```         |
+| **delete**   | ```delete [number]```<br/> eg. ```delete 1```                           |
 

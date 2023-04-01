@@ -12,13 +12,20 @@ public class PrintUserExerciseData {
      */
     public static void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory) {
         assert userExerciseHistory != null : "user exercise history should not be null!";
-        String message = "Here is a list of all the exercises you have completed:" +
-                System.lineSeparator();
-        System.out.println(message);
-        for (Map.Entry<String,Integer> entry: userExerciseHistory.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            System.out.println("Exercise: " + key + "\tFrequency of Completion: " + value);
+        if (userExerciseHistory.isEmpty()) {
+            System.out.println("You have not completed any exercises ☹");
+            System.out.println("Add on to this list by completing a workout session!");
+        } else {
+            String message = "Here is a list of all the exercises you have completed:" +
+                    System.lineSeparator();
+            System.out.println(message);
+            for (Map.Entry<String,Integer> entry: userExerciseHistory.entrySet()) {
+                String key = entry.getKey();
+                Integer value = entry.getValue();
+                String val = value.toString();
+                System.out.println(String.format("%-10s %-60s %-20s", "Exercise: ",
+                        key, "Times Completed: " + val));
+            }
         }
     }
 }

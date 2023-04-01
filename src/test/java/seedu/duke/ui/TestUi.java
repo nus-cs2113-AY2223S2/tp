@@ -348,16 +348,25 @@ public class TestUi {
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 
+        String inputOne = String.format("%-10s %-60s %-20s", "Exercise: ", "3/4 Sit-Up",
+                "Times Completed: 2  \r\n");
+        String inputTwo = String.format("%-10s %-60s %-20s", "Exercise: ", "90/90 Hamstring",
+                "Times Completed: 1  \r\n");
+        String inputThree = String.format("%-10s %-60s %-20s", "Exercise: ", "3/4 Sit-Up",
+                "Times Completed: 2  \n");
+        String inputFour = String.format("%-10s %-60s %-20s", "Exercise: ", "90/90 Hamstring",
+                "Times Completed: 1  \n");
+
         if (os.contains("Windows")) {
             expectedOutput = "Here is a list of all the exercises you have completed:\r\n" +
                     "\r\n" +
-                    "Exercise: 3/4 Sit-Up" + "\tFrequency of Completion: 2\r\n" +
-                    "Exercise: 90/90 Hamstring" + "\tFrequency of Completion: 1\r\n";
+                    inputOne +
+                    inputTwo;
         } else {
             expectedOutput = "Here is a list of all the exercises you have completed:\n" +
                     "\n" +
-                    "Exercise: 3/4 Sit-Up" + "\tFrequency of Completion: 2\n" +
-                    "Exercise: 90/90 Hamstring" + "\tFrequency of Completion: 1\n";
+                    inputThree +
+                    inputFour;
         }
         assertEquals(expectedOutput,actualOutput.toString());
     }
