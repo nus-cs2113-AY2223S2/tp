@@ -1,15 +1,18 @@
 package seedu.dukeofbooks.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-
 import seedu.dukeofbooks.common.Messages;
 import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.exception.IllegalOperationException;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.inventory.Inventory;
 import seedu.dukeofbooks.data.inventory.InventoryDetails;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import static seedu.dukeofbooks.common.Messages.BOOK_TITLE_NOT_FOUND;
 import static seedu.dukeofbooks.common.Messages.BOOK_TOPIC_NOT_FOUND;
 
@@ -43,6 +46,35 @@ public class SearchController {
             throw new IllegalValueException(BOOK_TITLE_NOT_FOUND);
         }
         return target.get();
+    }
+    public static ArrayList<Book> searchBooksByTitle(String titleString) throws IllegalValueException {
+        assert(inventory != null);
+        
+        HashMap<Book, InventoryDetails> listing = inventory.getInventoryMap();
+        ArrayList<Book> target = listing.entrySet()
+                                        .stream()
+                                        .filter(e -> e.getKey().getTitle().toString().
+                                                toLowerCase().contains(titleString.toLowerCase()))
+                                        .map(Map.Entry::getKey).collect(Collectors.toCollection(ArrayList::new));
+        if (target.size()==0) {
+            throw new IllegalValueException(BOOK_TITLE_NOT_FOUND);
+        }
+        return target;
+    }
+    public static ArrayList<Book> searchBooksByTopic(String topic) throws IllegalValueException {
+        assert(inventory != null);
+        
+        HashMap<Book, InventoryDetails> listing = inventory.getInventoryMap();
+        ArrayList<Book> target = listing.entrySet()
+                                        .stream()
+                                        .filter(e -> e.getKey().getTopic().toString().toLowerCase()
+                                        .contains(topic.toLowerCase()))
+                                        .map(Map.Entry::getKey).collect(Collectors.toCollection(ArrayList::new));
+        
+        if (target.size()==0) {
+            throw new IllegalValueException(BOOK_TOPIC_NOT_FOUND);
+        }
+        return target;
     }
     public static Book searchBookByTopic(String topic) throws IllegalValueException {
         assert(inventory != null);

@@ -14,26 +14,28 @@ import seedu.dukeofbooks.data.inventory.Inventory;
 import seedu.dukeofbooks.data.book.Book;
 
 public class SearchControllerTest {
-    public static final String TITLE_TO_SEARCH = "The only book";
-    public static final String TOPIC_TO_SEARCH = "python";
+    public static final String VALID_BOOK_TITLE = "The only book";
+    public static final String VALID_BOOK_ISBN = "1234567890123";
+    public static final String VALID_BOOK_AUTHOR = "anon";
+    public static final String VALID_BOOK_TOPIC = "python";
     public Inventory inventory = new Inventory();
     
 
     public void searchBookByTitle_validBook_getBook() throws IllegalOperationException, IllegalValueException {
-        Book target = SearchController.searchBookByTitle(TITLE_TO_SEARCH);
-        assertEquals(TITLE_TO_SEARCH, target.getTitle().toString());
+        Book target = SearchController.searchBookByTitle(VALID_BOOK_TITLE);
+        assertEquals(VALID_BOOK_TITLE, target.getTitle().toString());
     }
 
     public void searchBookByTopic_validBook_getBook() throws IllegalOperationException, IllegalValueException {
-        Book target = SearchController.searchBookByTopic(TOPIC_TO_SEARCH);
-        assertEquals(TOPIC_TO_SEARCH, target.getTopic().toString());
+        Book target = SearchController.searchBookByTopic(VALID_BOOK_TOPIC);
+        assertEquals(VALID_BOOK_TOPIC, target.getTopic().toString());
     }
 
     @Test
     public void searchBook_validBook_success() throws IllegalOperationException, IllegalValueException {
         InventoryController.setData(inventory);
         SearchController.setData(inventory);
-        InventoryController.addBook("1234567890123", "The only book", "writer", "python");
+        InventoryController.addBook(VALID_BOOK_ISBN, VALID_BOOK_TITLE, VALID_BOOK_AUTHOR, VALID_BOOK_TOPIC);
         System.out.println(inventory.getInventoryMap().size());
         searchBookByTitle_validBook_getBook();
         searchBookByTopic_validBook_getBook();
@@ -45,6 +47,6 @@ public class SearchControllerTest {
         SearchController.setData(inventory);
         InventoryController.setData(inventory);
         assertThrows(IllegalValueException.class,
-                () -> SearchController.searchBookByTitle("The only book"));
+                () -> SearchController.searchBookByTitle(VALID_BOOK_TITLE));
     }
 }

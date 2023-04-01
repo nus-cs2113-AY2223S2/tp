@@ -102,6 +102,6 @@ public class Book extends BorrowableItem implements IVerifiable {
 
     @Override
     public String toString() {
-        return String.format("Book\nISBN: %s, Title: %s, Author: %s, Topic: %s", isbn, title, author, topic);
+        return String.format("ISBN: %s\nTitle: %s\nAuthor: %s\nTopic: %s", isbn, title, author, topic);
     }
 }
