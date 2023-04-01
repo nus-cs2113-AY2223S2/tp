@@ -164,7 +164,7 @@ public class Command {
                 recipeToEditStepList.showFullStepList();
                 ui.showEditRecipeStepPrompt();
                 String input = ui.readCommand();
-                if (input.equals("quit")) {
+                if (input.trim().equals("quit")) {
                     break;
                 }
                 int stepIndex = Integer.parseInt(input) - 1;
@@ -208,7 +208,7 @@ public class Command {
                 recipeToEditIngredientList.showList();
                 ui.showEditRecipeIngredientPrompt();
                 String input = ui.readCommand();
-                if (input.equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
+                if (input.trim().equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
                     break;
                 }
                 int ingredientIndex = Integer.parseInt(input) - 1;
