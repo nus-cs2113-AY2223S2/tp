@@ -21,7 +21,7 @@ TUESDAY
 _________
 WEDNESDAY
 1. gym_with_tom
-Filters: gym upper lower hard
+Filters: gym upper legs hard
 _________
 THURSDAY
 _________
