@@ -147,6 +147,10 @@ public class Parser {
                 logger.warning("unsupported description name");
                 throw new RainyDayException(ErrorMessage.UNSUPPORTED_DESCRIPTION_NAME.toString());
             }
+            if (this.description.trim().isEmpty()) {
+                logger.warning("unsupported description name");
+                throw new RainyDayException(ErrorMessage.EMPTY_DESCRIPTION_NAME.toString());
+            }
             double exactAmount = Double.parseDouble(matcher.group(3)); // check
             exactAmount = (int) (exactAmount * 100);
             if (exactAmount == 0) {

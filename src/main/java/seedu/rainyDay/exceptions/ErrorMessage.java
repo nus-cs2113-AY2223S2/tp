@@ -34,6 +34,10 @@ public enum ErrorMessage {
     UNSUPPORTED_CATEGORY_NAME("Sorry, character \"-\" is not supported for category name\n\n" +
             "Add format is as follows: \n" +
             "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!"),
+    EMPTY_DESCRIPTION_NAME("Sorry, description name cannot be empty\n\n" +
+            "Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
             "Please refer to 'help' for more information!");
 
     private final String error;
