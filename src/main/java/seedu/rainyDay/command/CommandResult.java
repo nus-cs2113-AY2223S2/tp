@@ -7,8 +7,4 @@ public class CommandResult {
     public CommandResult(String output) {
         this.output = output;
     }
-
-    public void printResult() {
-        System.out.println(this.output);
-    }
 }
