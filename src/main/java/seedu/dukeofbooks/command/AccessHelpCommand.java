@@ -1,8 +1,5 @@
 package seedu.dukeofbooks.command;
 
-import seedu.dukeofbooks.data.exception.IllegalValueException;
-import seedu.dukeofbooks.data.user.User;
-
 public class AccessHelpCommand extends AccessCommand {
     public static final String COMMAND_WORD = "help";
 
@@ -20,7 +17,7 @@ public class AccessHelpCommand extends AccessCommand {
     }
 
     @Override
-    public User execute() throws IllegalValueException {
-        return null;
+    public AccessResponse execute() {
+        return new AccessResponse(null, "");
     }
 }

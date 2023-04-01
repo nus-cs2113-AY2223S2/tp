@@ -8,6 +8,7 @@ import seedu.dukeofbooks.data.user.UserRecords;
 public class LoginCommand extends AccessCommand {
     public static final String COMMAND_WORD = "login";
     public static final String COMMAND_USAGE = "login -username [username] -password [password]";
+    private static final String SUCCESS_MESSAGE = "Login Success!";
 
     private final String username;
     private final String password;
@@ -19,7 +20,12 @@ public class LoginCommand extends AccessCommand {
     }
 
     @Override
-    public User execute() throws IllegalValueException {
-        return AccessController.loginAccount(userRecords, username, password);
+    public AccessResponse execute() {
+        try {
+            User user = AccessController.loginAccount(userRecords, username, password);
+            return new AccessResponse(user, SUCCESS_MESSAGE);
+        } catch (IllegalValueException ive) {
+            return new AccessResponse(null, ive.getMessage());
+        }
     }
 }
