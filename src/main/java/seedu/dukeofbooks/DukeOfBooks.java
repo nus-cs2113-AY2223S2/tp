@@ -1,6 +1,12 @@
 package seedu.dukeofbooks;
 
-import seedu.dukeofbooks.command.*;
+
+import seedu.dukeofbooks.command.AccessCommand;
+import seedu.dukeofbooks.command.AccessHelpCommand;
+import seedu.dukeofbooks.command.CommandResult;
+import seedu.dukeofbooks.command.ExitCommand;
+import seedu.dukeofbooks.command.LogoutCommand;
+import seedu.dukeofbooks.command.UserCommand;
 import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.inventory.Inventory;

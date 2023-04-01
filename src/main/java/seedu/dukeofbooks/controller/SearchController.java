@@ -67,7 +67,8 @@ public class SearchController {
         HashMap<Book, InventoryDetails> listing = inventory.getInventoryMap();
         ArrayList<Book> target = listing.entrySet()
                                         .stream()
-                                        .filter(e -> e.getKey().getTopic().toString().toLowerCase().contains(topic.toLowerCase()))
+                                        .filter(e -> e.getKey().getTopic().toString().toLowerCase()
+                                        .contains(topic.toLowerCase()))
                                         .map(Map.Entry::getKey).collect(Collectors.toCollection(ArrayList::new));
         
         if (target.size()==0) {
