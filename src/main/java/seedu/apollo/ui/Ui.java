@@ -187,7 +187,7 @@ public class Ui {
             count++;
             Timetable schedule = module.getSchedule();
             System.out.println(schedule.getStartTime() + "-" + schedule.getEndTime() + ": " +
-                    module.getCode() + " " + schedule.getLessonType());
+                    module.getCode() + " " + schedule.getLessonType() + " (" + schedule.getClassnumber() + ")");
         }
         return (count <= 0);
     }
