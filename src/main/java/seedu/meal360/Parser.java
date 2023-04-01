@@ -102,8 +102,7 @@ public class Parser {
         }
         recipeToEdit = recipeList.findByName(recipeName);
         System.out.println("Do you want to edit recipe fully or partially?");
-        System.out.println(
-                "Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
+        System.out.println("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
 
         Scanner getInput = new Scanner(System.in);
         int index = getInput.nextInt();
@@ -158,8 +157,7 @@ public class Parser {
             Recipe recipe = parseViewRecipe(recipeName, recipeList);
             ui.printRecipe(recipe);
             ui.printSeparator();
-            System.out.println(
-                    "Please Enter Additional Ingredients & Quantity (Enter done when complete): ");
+            System.out.println("Please Enter Additional Ingredients & Quantity (Enter done when complete): ");
             while (true) {
                 String line = userInput.nextLine();
                 if (line.equals("done")) {
@@ -218,7 +216,8 @@ public class Parser {
                 while (recipeList.size() != newSize) {
                     rangeRecipes += recipeList.deleteRecipe(startIndex).getName() + ", ";
                 }
-                rangeRecipes = String.valueOf(new StringBuilder(rangeRecipes.substring(0, rangeRecipes.length() - 2)));
+                rangeRecipes = String.valueOf(
+                        new StringBuilder(rangeRecipes.substring(0, rangeRecipes.length() - 2)));
                 return rangeRecipes;
             } else {
                 int recipeIndex = Integer.parseInt(input[1]);
@@ -407,30 +406,28 @@ public class Parser {
     }
 
     public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes)
-            throws InvalidRecipeNameException, InvalidNegativeValueException {
+            throws ArrayIndexOutOfBoundsException, NumberFormatException, InvalidRecipeNameException,
+            InvalidNegativeValueException {
         WeeklyPlan updatedWeeklyPlan;
-        try {
-            switch (command[1]) {
-            case "/add":
-            case "/delete":
-                updatedWeeklyPlan = parseEditSingleWeeklyPlan(command, recipes);
-                break;
-            case "/multiadd":
-            case "/multidelete":
-                updatedWeeklyPlan = parseEditMultiWeeklyPlan(command, recipes);
-                break;
-            default:
-                throw new IllegalArgumentException(
-                        "Please indicate if you would want to add or delete the recipe from your weekly "
-                                + "plan.");
-            }
-
-            return updatedWeeklyPlan;
-        } catch (ArrayIndexOutOfBoundsException error) {
-            throw new ArrayIndexOutOfBoundsException("Insufficient number of arguments provided.");
-        } catch (NumberFormatException error) {
-            throw new NumberFormatException("Please enter a valid number as the last argument.");
+        switch (command[1]) {
+        case "/add":
+        case "/delete":
+            updatedWeeklyPlan = parseEditSingleWeeklyPlan(command, recipes);
+            break;
+        case "/multiadd":
+        case "/multidelete":
+            updatedWeeklyPlan = parseEditMultiWeeklyPlan(command, recipes);
+            break;
+        case "/clear":
+            updatedWeeklyPlan = new WeeklyPlan();
+            break;
+        default:
+            throw new IllegalArgumentException(
+                    "Please indicate if you would want to add to, delete from, or clear the weekly "
+                            + "plan.");
         }
+
+        return updatedWeeklyPlan;
     }
 
     private WeeklyPlan parseEditSingleWeeklyPlan(String[] command, RecipeList recipes)
@@ -492,8 +489,7 @@ public class Parser {
         for (int i = 0; i < startIndices.size(); i++) {
             int nameStartIndex = startIndices.get(i) + 1;
             int nameEndIndex = endIndices.get(i) - 1;
-            recipeName = getRecipeNames(command, recipeNames, recipeName, nameStartIndex,
-                    nameEndIndex);
+            recipeName = getRecipeNames(command, recipeNames, recipeName, nameStartIndex, nameEndIndex);
         }
 
         // Add each recipe to the weekly plan
@@ -513,7 +509,7 @@ public class Parser {
     }
 
     private StringBuilder getRecipeNames(String[] command, ArrayList<String> recipeNames,
-                                         StringBuilder recipeName, int nameStartIndex, int nameEndIndex) {
+            StringBuilder recipeName, int nameStartIndex, int nameEndIndex) {
         recipeName.append(command[nameStartIndex].toLowerCase().trim());
         for (int j = nameStartIndex + 1; j <= nameEndIndex; j++) {
             recipeName.append(" ").append(command[j].toLowerCase().trim());
@@ -529,8 +525,7 @@ public class Parser {
         try {
             return LocalDate.parse(input, formatter);
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException(
-                    "Please enter a valid date in the format dd/mm/yyyy");
+            throw new IllegalArgumentException("Please enter a valid date in the format dd/mm/yyyy");
         }
     }
 

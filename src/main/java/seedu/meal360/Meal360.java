@@ -64,6 +64,7 @@ public class Meal360 {
 
     public static void receiveInput(String input) {
         input = input.replaceAll("\\s+", " ");
+        input = input.toLowerCase();
         String[] command = input.trim().split(" ");
 
         if (input.equalsIgnoreCase("bye")) {
