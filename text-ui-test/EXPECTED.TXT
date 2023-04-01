@@ -47,9 +47,9 @@ There are -FLAGS for the various lessons options per module:
 -ptut			PACKAGED TUTORIAL
 -rcit			RECITATION
 -lab			LABORATORY
--ws				WORKSHOP
+-ws 			WORKSHOP
 -smc			SEMINAR STYLE MODULE CLASS
--mp				MINI PROJECT
+-mp 			MINI PROJECT
 -tt2			TUTORIAL TYPE 2
 ____________________________________________________________
 ____________________________________________________________
