@@ -691,4 +691,19 @@ public class Ui {
     public void printClashingEventModuleMessage() {
         System.out.println("This event clashes with a lesson in your timetable!");
     }
+
+    /**
+     * Prints a message when user tries to mark an already done task as done again.
+     */
+    public void printTaskHasBeenMarkedPreviously() {
+        System.out.println("You have already marked this task as done previously");
+    }
+
+    /**
+     * Prints a message when user tries to mark an already incomplete task as not done again.
+     */
+    public void printTaskHasBeenUnmarkedPreviously(){
+        System.out.println("This task was never marked as done!");
+    }
+
 }
