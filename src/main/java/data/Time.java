@@ -1,4 +1,5 @@
 package data;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
@@ -28,9 +29,14 @@ public class Time implements Serializable, Comparable<Time> {
         return Integer.parseInt(year) > getCurrentYear();
     }
 
-    public static boolean isFutureMonth(String year, String month) {
-        return  isFutureYear(year) | Integer.parseInt(year) == getCurrentYear()
-                && Month.valueOf(month.toUpperCase()).getValue() > getCurrentMonth();
+    public static boolean isFutureMonth(String year, String month) throws IllegalArgumentException {
+        if (month == null) {
+            return isFutureYear(year);
+        } else {
+            int monthNumber = Month.valueOf(month.toUpperCase()).getValue();
+            return isFutureYear(year) | (Integer.parseInt(year) == getCurrentYear()
+                    && monthNumber > getCurrentMonth());
+        }
     }
 
 
@@ -42,7 +48,7 @@ public class Time implements Serializable, Comparable<Time> {
     public static Time toTime(String timeString) {
         // The format of the timeString is dd/MM/yyyy
         String standardFormat = timeString.substring(6) + "-"
-                + timeString.substring(3,5) + "-" + timeString.substring(0,2);
+                + timeString.substring(3, 5) + "-" + timeString.substring(0, 2);
         Time returnTime = new Time(LocalDate.parse(standardFormat));
         return returnTime;
     }
