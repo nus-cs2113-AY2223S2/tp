@@ -12,6 +12,7 @@ import pocketpal.data.entrylog.EntryLog;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,8 +37,8 @@ public class Backend {
         try {
             savedEntries = storage.readFromDatabase();
         } catch (InvalidReadFileException e) {
-            logger.log(Level.SEVERE, "Save data is invalid.", e);
-            throw new RuntimeException(e);
+            logger.log(Level.INFO, "Save data is invalid.", e);
+            savedEntries = new ArrayList<Entry>();
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Unable to perform IO operation.", e);
             throw new RuntimeException(e);
