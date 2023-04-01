@@ -122,4 +122,7 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
         return this.exercises.get(id);
     }
 
+    public Exercise deleteExercise(int index) {
+        return exercises.remove(index);
+    }
 }

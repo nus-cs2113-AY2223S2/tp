@@ -162,6 +162,11 @@ public class GeneralUi {
         System.out.println(meal);
     }
 
+    public void printExerciseDeleted(Exercise exercise) {
+        System.out.println("Successfully deleted this exercise:");
+        System.out.println(exercise);
+    }
+
     public void requestCalorieLimit() {
     }
 
