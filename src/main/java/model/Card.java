@@ -93,8 +93,18 @@ public class Card {
         return this.tags.isEmpty();
     }
 
+    public String getTagsString() {
+        String tagsStr = "";
+        for (TagUUID tag : tags) {
+            tagsStr = tagsStr + "\n - " + tag.toString();
+        }
+        return tagsStr;
+    }
+
     @Override
     public String toString() {
-        return "Qn: " + this.question + "\nAns: " + this.answer + "\nUUID:  " + this.uuid;
-    } // return the card
+        String tagsStr = this.tags.isEmpty() ? "None" : getTagsString();
+        return "[" + this.uuid + "]" + "\n\n Tags: " +
+                tagsStr + "\n\n Qn:  " + this.question + "\n Ans:  " + this.answer + "\n";
+    }
 }

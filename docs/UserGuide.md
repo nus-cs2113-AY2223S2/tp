@@ -17,15 +17,20 @@ Enjoy your revision!
 
 ## Features
 
-### Adding a card: `card add -q {question} -a {answer}`
+### Adding a card:
+
+`card add -q {question} -a {answer}`
 
 Adds a new Card with its question and answer.
+The flags can be listed in ***any*** order and must be followed by strings.
 
 Example of usage:
 
 `card add -q "how do i use this command? -a "by referring to this user guide"`
 
-### Listing all cards : `card list`
+### Listing all cards :
+
+`card list`
 
 List all existing cards
 
@@ -74,7 +79,12 @@ Tag does not exist.. creating a new tag: physics
 Successfully added tag 83f26992-09d7-496b-b7a8-3ad05e43c8b7 to card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
 ```
 
-### Putting a card into a deck : `card deck -c {cardUUID} -d {deckName}`
+### Putting a card into a deck :
+
+`card deck -c {cardUUID} -d {deckName}`
+
+Specify the card based on its cardUUID and put it in the deck.
+The flags `-c` and `-d` can be listed in any order.
 
 Example of usage :
 `card deck -c f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 -d deckTest`
@@ -86,12 +96,19 @@ Deck does not exist.. creating a new one
 Successfully added card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 to deck fd2df33d-4bbe-4be7-83df-5ddaecd3f1ca
 ```
 
-### Viewing a card : `card view -c {cardUUID}`
+### Viewing a card :
 
-View the content of a Card based on its cardUUID
+`card view -c {cardUUID}`
+`card view -i {cardIndex}`
+
+View the content of a Card based on its cardUUID or the cardIndex.
+The cardIndex can be found by running `card list`.
 
 Example of usage :
+
 `card view -c f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454`
+
+`card view -i 3`
 
 Sample output :
 
