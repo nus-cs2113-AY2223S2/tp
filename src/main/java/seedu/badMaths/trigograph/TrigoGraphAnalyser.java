@@ -71,6 +71,12 @@ public class TrigoGraphAnalyser {
             logger.log(Level.SEVERE, "IllegalArguementException", e);
             Ui.printIncorrectFormatEntered();
             return CANNOT_RUN_ANALYSER;
+        } catch (NegativeFrequencyException e){
+            Ui.printNegativeFrequencyEntered();
+            return CANNOT_RUN_ANALYSER;
+        } catch (ZeroFrequencyException e){
+            Ui.printZeroFrequencyEntered();
+            return CANNOT_RUN_ANALYSER;
         }
     }
 
@@ -163,7 +169,8 @@ public class TrigoGraphAnalyser {
         }
     }
 
-    public void splitTrigoIntoPhasors(String trigo) throws IllegalArgumentException {
+    public void splitTrigoIntoPhasors(String trigo) throws IllegalArgumentException, NegativeFrequencyException,
+            ZeroFrequencyException {
         int startPosOfPhase = trigo.indexOf("(") + 1;
         int endPosOfPhase = trigo.length();
         if (startPosOfPhase == CORRECT_POS_OF_PHASE){
@@ -176,19 +183,19 @@ public class TrigoGraphAnalyser {
         splitPhasorsIntoFreq(phase);
     }
 
-    public void findFreqForNoPhasors(String phasors) {
+    public void findFreqForNoPhasors(String phasors) throws NegativeFrequencyException, ZeroFrequencyException {
         phase = 0.0;
         boolean isFreqNegative = testForNegativeFreq(phasors);
         findFreq(phasors,isFreqNegative);
     }
-    private void findFreqForPlus(String phasors) {
+    private void findFreqForPlus(String phasors) throws NegativeFrequencyException, ZeroFrequencyException {
         String[] freqAndShift = phasors.split("\\+", PLACEHOLDER_SIZE_WITH_POS_PHASE);
         findPhase(freqAndShift[INDEX_FOR_POS_PHASE], false);
-        boolean isFreqNegative = testForNegativeFreq(freqAndShift);
+        boolean isFreqNegative = testForNegativeFreq(freqAndShift[0]);
         findFreq(freqAndShift[INDEX_FOR_POS_FREQ], isFreqNegative);
     }
 
-    private void findFreqForMinus(String phasors) {
+    private void findFreqForMinus(String phasors) throws NegativeFrequencyException, ZeroFrequencyException {
         String[] freqAndShift = phasors.split("-", PLACEHOLDER_SIZE_WITH_NEG_PHASE);
         boolean isPhaseNegative = true;
         boolean isFreqNegative = testForNegativeFreq(freqAndShift);
@@ -201,7 +208,7 @@ public class TrigoGraphAnalyser {
         }
     }
 
-    private void splitPhasorsIntoFreq(String phasors) {
+    private void splitPhasorsIntoFreq(String phasors) throws NegativeFrequencyException, ZeroFrequencyException {
         if (phasors.endsWith("x")){
             findFreqForNoPhasors(phasors);
         } else if (phasors.contains("+")) {
@@ -224,31 +231,35 @@ public class TrigoGraphAnalyser {
         return false;
     }
 
-    public void findFreq(String freqWithX, boolean isFreqNeg) throws NumberFormatException {
+    public void findFreq(String freqWithX, boolean isFreqNeg) throws NumberFormatException, NegativeFrequencyException,
+            ZeroFrequencyException {
         try {
+            if(isFreqNeg){
+                throw new NegativeFrequencyException();
+            }
             String freqComponents;
             if (freqWithX.equals("x")) {
-                if (isFreqNeg) {
-                    freqComponents = "-1.0";
-                } else {
                     freqComponents = "1.0";
-                }
-            } else {
+                } else {
                 int lastIndexForFreq = freqWithX.indexOf("*");
                 freqComponents = freqWithX.substring(0, lastIndexForFreq);
+                checkForZeroFreq(freqComponents);
                 if (trigoEqn.contains("pi")) {
                     freq = Double.parseDouble(freqComponents) / 2;
                 } else {
                     freq = Double.parseDouble(freqComponents) / (2 * Math.PI);
                 }
             }
-            if (isFreqNeg) {
-                freq = Math.abs(freq) * -1;
-            } else {
-                freq = Math.abs(freq);
-            }
+            freq = Math.abs(freq);
+
         } catch (NumberFormatException e) {
             throw new NumberFormatException();
+        }
+    }
+
+    public void checkForZeroFreq(String freqComponents) throws ZeroFrequencyException {
+        if(Double.parseDouble(freqComponents) == 0.0){
+            throw new ZeroFrequencyException();
         }
     }
 

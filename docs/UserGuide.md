@@ -45,20 +45,26 @@ Before you start using BadMaths, make sure you have the following ready!
 
 ## Features
 
-### 1) Graph analyser and visualiser: `Graph. `
+### 1) Graph analyser and visualiser: `Graph `
 This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
 It also displays the image of the corresponding graph.
 
-Format: `Graph. [Amplitude]*[Trigo]([Frequency]*x+[PhaseShift])+[VerticalShift]`
+Format: `Graph [Amplitude]*[Trigo]([sign][Frequency]*x[sign][PhaseShift])[sign][VerticalShift]`
 
-* `[Amplitude]` can be any positive number.
-* `[Trigo]` can be sin, cos or tan.
-* `[Frequency],[PhaseShift],[VerticalShift]` can be any number.
-* `[]` is not needed when entering the input.
+* `[Amplitude]` can be any positive number. E.g. `15.5`, `4`, `0`
+* `[Trigo]` can be sin, cos or tan. 
+* `[Frequency]` can be any positive integer (more than 0). E.g. `100`
+  * When entering frequency, one can include 𝜋 by typing `2*pi*x` instead of `6.283*x`
+* `[PhaseShift],[VerticalShift]` can be any number. E.g. `15.1`, `4`, `0`,`-1`
+* `[sign]` can be + or - .
+* `[` and `]` are not needed when entering the input.
 
 Example input:
 ```
-Graph. 2*sin(5*x+2)-8
+Graph 2*sin(5*x+2)-8
+```
+```
+Graph 2*sin(5*pi*x-2)+5.6
 ```
 
 ### 2) Matrix calculation: `Matrix. `

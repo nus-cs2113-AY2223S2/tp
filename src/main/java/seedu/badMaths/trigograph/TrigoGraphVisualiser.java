@@ -56,6 +56,7 @@ public class TrigoGraphVisualiser extends JPanel {
         g.translate(width / 2, height / 2);
         createXAxis(g,xScale,yScale);
         createYAxis(g,xScale,yScale);
+        labelOrigin(g,xScale,yScale);
         try {
             switch (trig) {
             case ("sin"):
@@ -75,6 +76,10 @@ public class TrigoGraphVisualiser extends JPanel {
         }
     }
 
+    public void labelOrigin(Graphics g, double xScale, double yScale) {
+        g.drawString("0",0,0);
+    }
+
     public void createYAxis(Graphics g, double xScale, double yScale) {
         g.setColor(Color.BLACK);
         g.drawLine(0, (int) (yMin * yScale), 0, (int) (yMax * yScale));
@@ -90,7 +95,7 @@ public class TrigoGraphVisualiser extends JPanel {
     public void drawSinCurve(Graphics g, double xScale, double yScale) {
         g.setColor(Color.BLUE);
         labelAmplitude(g,yScale);
-        for (double x = xMin; x <= xMax; x += 0.01) {
+        for (double x = 0; x <= xMax; x += 0.01) {
             double y = amplitude * Math.sin(freqInHz*x+phase)+verticalShift;
             int xPixel = (int) Math.round(x * xScale);
             int yPixel = (int) Math.round(-y * yScale);
@@ -108,7 +113,7 @@ public class TrigoGraphVisualiser extends JPanel {
     public void drawCosCurve(Graphics g, double xScale, double yScale) {
         g.setColor(Color.RED);
         labelAmplitude(g,yScale);
-        for (double x = xMin; x <= xMax; x += 0.01) {
+        for (double x = 0; x <= xMax; x += 0.01) {
             double y = amplitude * Math.cos(freqInHz*x+phase)+verticalShift;
             int xPixel = (int) Math.round(x * xScale);
             int yPixel = (int) Math.round(-y * yScale);
@@ -119,7 +124,7 @@ public class TrigoGraphVisualiser extends JPanel {
 
     public void drawTanCurve(Graphics g, double xScale, double yScale) {
         g.setColor(Color.BLACK);
-        for (double x = xMin; x <= xMax; x += 0.01) {
+        for (double x = 0; x <= xMax; x += 0.01) {
             double y = amplitude * Math.tan(freqInHz*x+phase)+verticalShift;
             int xPixel = (int) Math.round(x * xScale);
             int yPixel = (int) Math.round(-y * yScale);

@@ -23,8 +23,15 @@ public class Ui {
         System.out.println(logo);
     }
     public static void printTanHasNoAmplitude(){
-        System.out.println("Psss... Tangent graph has no amplitude");
+        System.out.println("Psss... Tangent graph has no amplitude.");
     }
+    public static void printNegativeFrequencyEntered(){
+        System.out.println("Frequency cannot be negative.");
+    }
+    public static void printZeroFrequencyEntered(){
+        System.out.println("Frequency cannot be zero.");
+    }
+
     public static void printIncorrectFormatEntered() {
         System.out.println("Please enter the format as required.");
     }

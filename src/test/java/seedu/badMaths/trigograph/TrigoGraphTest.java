@@ -7,10 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class TrigoGraphTest {
 
     @Test
-    void validEqn_withMinus_expectCanStartAnalyser(){
+    void validEqn_withMinusFreq_expectCannotStartAnalyser(){
         String eqn = "cos(-1*x-1)-1";
         TrigoGraphAnalyser test = new TrigoGraphAnalyser(eqn);
-        assertEquals(true,test.canStartAnalyser());
+        assertEquals(false,test.canStartAnalyser());
     }
 
     @Test
