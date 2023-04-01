@@ -162,6 +162,11 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
             throws ClassNotFoundException {
 
         Boolean isFound = false;
+
+        if (module.getModuleTimetable() == null) {
+            throw new ClassNotFoundException();
+        }
+
         ArrayList<Timetable> copyList = new ArrayList<>(module.getModuleTimetable());
 
         //searches for lesson of specified type and number
