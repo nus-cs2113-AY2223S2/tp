@@ -18,6 +18,9 @@ public class Item {
     }
 
     private final int totalQuantity;
+    public int getUnpackedQuantity() {
+        return totalQuantity - packedQuantity;
+    }
 
     public Item(int quantity, String description) {
         this.itemName = description;
