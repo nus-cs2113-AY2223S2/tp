@@ -338,18 +338,18 @@ public class Parser {
             }
 
             int itemIndex = Integer.parseInt(quantityAndIndex[1]);
-<<<<<<< HEAD
+
             if (itemIndex > PackingList.getItemList().size()) {
                 return new IncorrectCommand("Invalid Item Index",
                         "Try to input an integer number between 1 and " + PackingList.getItemList().size());
             }
 
-=======
+
             quantityPacked = PackingList.get(itemIndex - 1).getPackedQuantity();
             if(itemQuantity < 1 | itemQuantity > quantityPacked){
                 throw new InvalidVariablesException();
             }
->>>>>>> a00331e81217091efb8dec3bf7a94da76f2016fd
+
             return new UnpackCommand(itemQuantity, itemIndex);
         } catch (NumberFormatException | InvalidIndexException e) {
             if (PackingList.getItemList().size() == 0) {
