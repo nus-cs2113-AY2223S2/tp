@@ -9,7 +9,6 @@ import seedu.dukeofbooks.command.ExitCommand;
 import seedu.dukeofbooks.command.LogoutCommand;
 import seedu.dukeofbooks.command.UserCommand;
 import seedu.dukeofbooks.controller.SearchController;
-import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.inventory.Inventory;
 import seedu.dukeofbooks.data.loan.LoanRecords;
 import seedu.dukeofbooks.data.user.User;
