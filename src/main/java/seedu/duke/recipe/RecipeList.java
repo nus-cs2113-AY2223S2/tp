@@ -1,5 +1,7 @@
 package seedu.duke.recipe;
 
+import seedu.duke.exceptions.EditFormatException;
+import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.RecipeListEmptyException;
 
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import static seedu.duke.ui.StringLib.MISSING_KEYWORD;
 import static seedu.duke.ui.StringLib.EMPTY_LIST_MESSAGE;
 import static seedu.duke.ui.StringLib.NO_MATCHES;
 import static seedu.duke.ui.StringLib.MATCHING_ITEMS;
+import seedu.duke.ui.StringLib;
 
 public class RecipeList {
     protected static ArrayList<Recipe> recipeList;
@@ -85,5 +88,29 @@ public class RecipeList {
                 System.out.println("  " + match);
             }
         }
+    }
+
+    public void editIngredient(int recipeIndex, int ingredientIndex, String newIngredient) throws EditFormatException {
+        if (recipeIndex > getCurrRecipeNumber() || recipeIndex < 1) {
+            throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX);
+        }
+        Recipe recipe = getRecipeFromList(recipeIndex);
+        IngredientList ingredientList = recipe.getIngredientList();
+        if (ingredientIndex > ingredientList.getCurrIngredientNumber() || ingredientIndex < 1) {
+            throw new EditFormatException(StringLib.INVALID_INGREDIENT_INDEX);
+        }
+        ingredientList.editIngredient(ingredientIndex - 1, newIngredient);
+    }
+
+    public void editStep(Integer recipeIndex, int stepIndex, String newStep) throws EditFormatException {
+        if (recipeIndex > getCurrRecipeNumber() || recipeIndex < 1) {
+            throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX);
+        }
+        Recipe recipe = getRecipeFromList(recipeIndex);
+        StepList stepList = recipe.getStepList();
+        if (stepIndex > stepList.getCurrStepNumber() || stepIndex < 1) {
+            throw new EditFormatException(StringLib.INVALID_STEP_INDEX);
+        }
+        stepList.editStep(stepIndex - 1, newStep);
     }
 }

@@ -1,10 +1,10 @@
 Hotpot
 Chinese
 Ingredient list
-Beef
+Chinese Cabbage
 Porken
 Carrots
 Step list
-chop beef
+GG
 burn food
 eat food

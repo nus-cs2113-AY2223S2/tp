@@ -14,6 +14,7 @@ import seedu.duke.ui.UI;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static seedu.duke.ui.IntLib.RECIPE_NAME_INDEX;
 import static seedu.duke.ui.IntLib.RECIPE_INGREDIENTS_INDEX;
@@ -117,7 +118,7 @@ public class Command {
             }
             break;
         case FIND:
-            RecipeList.searchRecipeList(fullDescription);
+            recipeList.searchRecipeList(fullDescription);
             break;
         case EDITSTEP:
             try {
@@ -179,6 +180,24 @@ public class Command {
                 recipeToEditIngredientList.editIngredient(ui, ingredientIndex);
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
+            }
+            Storage.writeSavedFile();
+            break;
+        case EDIT:
+            try {
+                EditType editType = Parser.parseEditType(fullDescription);
+                boolean isEditIngredient = editType == EditType.INGREDIENT;
+                boolean isEditStep = editType == EditType.STEP;
+                Object[] parsed = Parser.parseEditRecipeIndex(fullDescription.substring(4),editType);
+                int recipeIndex = (int) parsed[0];
+                String editDescription = (String) parsed[1];
+                if(isEditIngredient) {
+                    Parser.parseEditIngredient(recipeList, recipeIndex, editDescription);
+                } else if (isEditStep) {
+                    Parser.parseEditStep(recipeList, recipeIndex, editDescription);
+                }
+            } catch (Exception e) {
+                ui.showErrorMessage(e);
             }
             Storage.writeSavedFile();
             break;

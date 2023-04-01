@@ -2,11 +2,10 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.CommandType;
+import seedu.duke.command.EditType;
+import seedu.duke.exceptions.EditFormatException;
 import seedu.duke.exceptions.IncompleteInputException;
-import seedu.duke.recipe.Ingredient;
-import seedu.duke.recipe.IngredientList;
-import seedu.duke.recipe.Step;
-import seedu.duke.recipe.StepList;
+import seedu.duke.recipe.*;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
@@ -64,6 +63,9 @@ public class Parser {
             break;
         case "editingredient":
             type = CommandType.EDITINGREDIENT;
+            break;
+        case "edit":
+            type = CommandType.EDIT;
             break;
         case "delete":
             type = CommandType.DELETE;
@@ -171,5 +173,78 @@ public class Parser {
             parsedStepList.add(new Step(inputStep));
         }
         return new StepList(parsedStepList);
+    }
+
+    public static EditType parseEditType(String description) throws IncompleteInputException {
+        boolean isIngredient = description.startsWith("--i ");
+        boolean isStep = description.startsWith("--s ");
+        if (isIngredient) {
+            return EditType.INGREDIENT;
+        } else if (isStep) {
+            return EditType.STEP;
+        } else {
+            throw new IncompleteInputException(StringLib.EDIT_TYPE_ERROR);
+        }
+    }
+
+    public static Object[] parseEditRecipeIndex(String description, EditType type) throws IncompleteInputException {
+        String[] parsedDescription = description.split(" ",2);
+        String errorLog = type.equals(EditType.INGREDIENT) ?
+                StringLib.EDIT_INGREDIENT_ERROR : StringLib.EDIT_STEP_ERROR;
+        if (parsedDescription.length < 2) {
+            throw new IncompleteInputException(errorLog);
+        }
+        try {
+            Integer recipeIndex = Integer.parseInt(parsedDescription[0]);
+            return new Object[]{recipeIndex, parsedDescription[1].trim()};
+        } catch (NumberFormatException e) {
+            throw new IncompleteInputException(errorLog);
+        }
+    }
+
+    public static void parseEditIngredient(RecipeList recipeList,
+                                           Integer recipeIndex, String description) throws Exception {
+        String[] parsedDescription = description.split("i/");
+        if (parsedDescription.length < 2) {
+            throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+        }
+        if (!matchString(description,"i/")) {
+            throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+        }
+        try{
+            int ingredientIndex = Integer.parseInt(parsedDescription[0].trim());
+            String newIngredient = parsedDescription[1].trim();
+            if (newIngredient.isEmpty()) {
+                throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+            }
+            recipeList.editIngredient(recipeIndex, ingredientIndex, newIngredient);
+        } catch (NumberFormatException e) {
+            throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+        } catch (EditFormatException e) {
+            throw new Exception("error in edit ingredient:\n" + e.getMessage());
+        }
+    }
+
+    public static void parseEditStep(RecipeList recipeList,
+                                     Integer recipeIndex, String description) throws Exception {
+        String[] parsedDescription = description.split("s/");
+        if (parsedDescription.length < 2) {
+            throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+        }
+        if (!matchString(description,"s/")) {
+            throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+        }
+        try{
+            int stepIndex = Integer.parseInt(parsedDescription[0].trim());
+            String newStep = parsedDescription[1].trim();
+            if (newStep.isEmpty()) {
+                throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+            }
+            recipeList.editStep(recipeIndex, stepIndex, newStep);
+        } catch (NumberFormatException e) {
+            throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+        } catch (EditFormatException e) {
+            throw new Exception("error in edit step:\n" + e.getMessage());
+        }
     }
 }

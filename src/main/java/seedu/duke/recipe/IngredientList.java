@@ -71,4 +71,12 @@ public class IngredientList {
         System.out.print((ingredientIndex + 1) + ". ");
         System.out.println(list.get(ingredientIndex).getName());
     }
+
+    public void editIngredient(int ingredientIndex, String description) {
+        Ingredient newIngredient = new Ingredient(description);
+        list.set(ingredientIndex, newIngredient);
+        System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
+        System.out.print((ingredientIndex + 1) + ". ");
+        System.out.println(list.get(ingredientIndex).getName());
+    }
 }

@@ -13,6 +13,7 @@ Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managin
     * **[Adding a recipe: `add`](#adding-a-recipe-add)**
     * **[Editing steps for a recipe: `editstep`](#editing-a-recipe-step-editstep)**
     * **[Editing ingredients for a recipe: `editingredient`](#editing-a-recipe-ingredient-editingredient)**
+    * **[Editing recipe with one line command:`edit`](#editing-a-recipe-edit)**
     * **[Deleting a recipe: `delete`](#deleting-a-recipe-delete)**
     * **[Finding recipes: `find`](#finding-recipes-find)**
     * **[Viewing a recipe: `view`](#viewing-a-recipe-view)**
@@ -55,7 +56,7 @@ Shows a message explaining how to access the help page.<br>
 
 <h2 id="adding-a-recipe-add"> Adding a recipe: <code class="language-plaintext highlighter-rouge">add</code></h2>
 
-Adds a recipe to the recipe manager.<br>
+Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
 **Format**: `add n/NAME i/INGREDIENTS t/TAG s/NUMBEROFSTEPS`<br>
 **Hint**: Number of steps is the number of steps in the recipe, then you will be prompted to enter the steps.<br>
 **Examples**:<br>
@@ -82,7 +83,6 @@ Now you have 2 recipes in the list.
 Data saved successfully!
 __________________________________________________________
 ```
-<p>App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.</p>
 
 <h2 id="editing-a-recipe-step-editstep"> Editing a recipe's steps: <code class="language-plaintext highlighter-rouge">editstep</code></h2>
 
@@ -169,6 +169,14 @@ First input the index of the recipe to edit, then input the ingredient number yo
 Following which, type in the description for the ingredient. </p>
 
 Note that to `exit` the whole program from the edit window, you have to `quit` first then `exit`. 
+
+<h2 id="editing-a-recipe-edit"> Editing a recipe with one line command: <code class="language-plaintext highlighter-rouge">edit</code></h2>
+
+For expert users, you can edit a recipe with one line command.<br>
+For editing ingredients, you can use `edit --i` to edit ingredients.<br>
+**Format**: `edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT`<br>
+For editing steps, you can use `edit --s` to edit steps.<br>
+**Format**: `edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP`<br>
 
 <h2 id="deleting-a-recipe-delete"> Deleting a recipe: <code class="language-plaintext highlighter-rouge">delete</code></h2>
 
@@ -295,16 +303,16 @@ The first line is the name of the dish. And the second line is the tag of the di
 <h2 id='command-summary'> Command Summary </h2>
 
 
-|  Action   | 	Format  | Example |
-|  ----  | ----  | ----  |
-| [**help**](#viewing-help-help)  | `help` | |
-| [**add**](#adding-a-recipe-add) | `add n/NAME t/TAG i/INGREDIENT ... s/SUMOFSTEP [STEP]...` | `add n/Hotpot t/Chinese i/Beef i/Potatoes i/Carrots s/2` `add carrots` `cook 5 minutes` |
-| [**editingredient**](#editing-a-recipe-ingredient-editingredient)  | `editingredient INDEX` | |
-| [**editstep**](#editing-steps-editstep)  | `editstep INDEX` | |
-| [**delete**](#deleting-a-recipe-delete)  | `delete INDEX` | `delete 1` |
-| [**find**](#finding-recipes-find)  | `find KEYWORD ` | `find Hotpot` |
-| [**view**](#viewing-a-recipe-view)  | `view INDEX` | `view 1` |
-| [**list**](#listing-all-recipes-list)  | `list` | |
-| [**clear**](#clearing-all-entries-clear)  | `clear` | |
-| [**exit**](#exiting-the-program-exit)  | `exit` | |
+|  Action   | 	Format  | Example                                                                               |
+|  ----  | ----  |---------------------------------------------------------------------------------------|
+| [**help**](#viewing-help-help)  | `help` |                                                                                       |
+| [**add**](#adding-a-recipe-add) | `add n/NAME t/TAG i/INGREDIENT ... s/SUMOFSTEP [STEP]...` | `add n/Hotpot t/Chinese i/Beef, Potatoes, Carrots s/2` `add carrots` `cook 5 minutes` |
+| [**editingredient**](#editing-a-recipe-ingredient-editingredient)  | `editingredient INDEX` |                                                                                       |
+| [**editstep**](#editing-steps-editstep)  | `editstep INDEX` |                                                                                       |
+| [**delete**](#deleting-a-recipe-delete)  | `delete INDEX` | `delete 1`                                                                            |
+| [**find**](#finding-recipes-find)  | `find KEYWORD ` | `find Hotpot`                                                                         |
+| [**view**](#viewing-a-recipe-view)  | `view INDEX` | `view 1`                                                                              |
+| [**list**](#listing-all-recipes-list)  | `list` |                                                                                       |
+| [**clear**](#clearing-all-entries-clear)  | `clear` |                                                                                       |
+| [**exit**](#exiting-the-program-exit)  | `exit` |                                                                                       |
 
