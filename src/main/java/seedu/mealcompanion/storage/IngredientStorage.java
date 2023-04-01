@@ -1,6 +1,7 @@
 package seedu.mealcompanion.storage;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
 
@@ -65,13 +66,15 @@ public class IngredientStorage {
                 ingredientString = bufferedReader.readLine();
             }
             if (fileHasBeenEdited) {
-                System.out.println("Please refrain from editing the ingredients.txt file, " +
+                System.out.println("Please refrain from editing the 'ingredients.txt' file, " +
                         "some ingredients in your list has been affected and is now invalid.");
             }
         } catch (FileNotFoundException e) {
             System.out.println("Oops, an error occurred while loading file");
         } catch (IOException e) {
             System.out.println("Oops, an error occurred while reading file");
+        } catch (JsonSyntaxException e) {
+            System.out.println("Please refrain from editing the 'ingredients.txt' file, stored data cannot be loaded");
         }
     }
 
