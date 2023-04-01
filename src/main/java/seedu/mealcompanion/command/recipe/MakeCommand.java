@@ -33,6 +33,8 @@ public class MakeCommand extends RecipeCommand {
         assert fridgeQuantity >= quantity : "fridgeQuantity should be more than quantity to be removed";
         double newQuantity = fridgeQuantity - quantity;
         mealCompanionSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
+        mealCompanionSession.getUi().printMessage(
+                String.format("%s has been consumed. New quantity of %s is %f", name, name, newQuantity));
         if (newQuantity == 0) {
             mealCompanionSession.getIngredients().remove(indexOfExistingIngredient);
             mealCompanionSession.getUi().printMessage(String.format("All %s has been removed", name));
