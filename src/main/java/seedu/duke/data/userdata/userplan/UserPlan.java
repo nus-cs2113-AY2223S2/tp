@@ -15,7 +15,7 @@ import static seedu.duke.data.userdata.userplan.Day.intToDay;
 public class UserPlan {
     private static final Integer DAYSINAWEEK = 7;
     private static ArrayList<Plan>[] plan;
-    private final static GenerateExercise exerciseGenerator = new GenerateExercise();
+    private static GenerateExercise exerciseGenerator = new GenerateExercise();
     
 
     /**

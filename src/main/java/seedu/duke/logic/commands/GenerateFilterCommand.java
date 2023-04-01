@@ -95,7 +95,8 @@ public class GenerateFilterCommand extends Command {
     }
 
 
-    public static boolean isAValidSetOfFilters (GenerateExercise exerciseGenerator, String[] filterList) throws DukeError {
+    public static boolean isAValidSetOfFilters (GenerateExercise exerciseGenerator,
+                                                String[] filterList) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
         assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())
             : "Do not modify the ArrayList of GenerateExercise";
