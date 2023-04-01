@@ -84,16 +84,18 @@ public class ModifyCommand extends Command implements LoggerInterface {
         if (!taskList.get(idx).isDone()){
             taskList.get(idx).setDone(true);
             ui.printMarkDone(taskList.get(idx));
+        } else {
+            ui.printTaskHasBeenMarkedPreviously();
         }
-        ui.printTaskHasBeenMarkedPreviously();
     }
 
     private void unmarkTask(TaskList taskList, Ui ui) throws IndexOutOfBoundsException {
         if (taskList.get(idx).isDone()){
             taskList.get(idx).setDone(false);
             ui.printMarkNotDone(taskList.get(idx));
+        } else {
+            ui.printTaskHasBeenUnmarkedPreviously();
         }
-        ui.printTaskHasBeenUnmarkedPreviously();
     }
 
 
