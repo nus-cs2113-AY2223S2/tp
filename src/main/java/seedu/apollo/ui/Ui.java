@@ -169,7 +169,9 @@ public class Ui {
         int count = 0;
         for (CalendarModule module : calendar.get(i)) {
             count++;
-            System.out.println(count + ". " + module.getCode() + " " + module.getSchedule());
+            Timetable schedule = module.getSchedule();
+            System.out.println(schedule.getStartTime() + "-" + schedule.getEndTime() + ": " +
+                    module.getCode() + " " + schedule.getLessonType());
         }
         return (count <= 0);
     }
