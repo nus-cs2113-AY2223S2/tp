@@ -61,7 +61,7 @@ public class Command {
     public void execute(RecipeList recipeList, UI ui) throws IOException {
 
         int recipeListIndex;
-
+        int recipeCount = recipeList.getCurrRecipeNumber();
         switch (type) {
         case LIST:
             ui.showRecipeList(recipeList.getRecipeList());
@@ -79,7 +79,7 @@ public class Command {
                 int sumOfSteps = Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
                 StepList recipeSteps = Parser.parseSteps(ui,sumOfSteps);
                 recipeList.addNewRecipe(new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps));
-                ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeList.getCurrRecipeNumber());
+                ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeCount);
                 Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showAddingRecipeErrorMessage(e);
@@ -91,17 +91,17 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 recipeListIndex = Integer.parseInt(fullDescription);
-                if (recipeList.getCurrRecipeNumber() == 0) {
+                if (recipeCount == 0) {
                     System.out.println(StringLib.EMPTY_LIST_MESSAGE);
                     break;
                 }
-                if (recipeListIndex <= 0 || recipeListIndex > recipeList.getCurrRecipeNumber()) {
+                if (recipeListIndex <= 0 || recipeListIndex > recipeCount) {
                     System.out.println(StringLib.POS_INT);
-                    System.out.println("Valid range: " + 1 + " to " + recipeList.getCurrRecipeNumber());
+                    System.out.println("Valid range: " + 1 + " to " + recipeCount);
                     break;
                 }
                 Recipe recipeToBeDeleted = recipeList.getRecipeFromList(recipeListIndex);
-                ui.showRecipeDeleted(recipeToBeDeleted, recipeList.getCurrRecipeNumber() - 1);
+                ui.showRecipeDeleted(recipeToBeDeleted, recipeCount - 1);
                 recipeList.removeRecipe(recipeListIndex);
                 Storage.writeSavedFile();
             } catch (Exception e) {
@@ -119,13 +119,13 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
-                if (recipeList.getCurrRecipeNumber() == 0) {
+                if (recipeCount == 0) {
                     System.out.println(StringLib.EMPTY_LIST_MESSAGE);
                     break;
                 }
-                if (recipeListNum <= 0 || recipeListNum > recipeList.getCurrRecipeNumber()) {
+                if (recipeListNum <= 0 || recipeListNum > recipeCount) {
                     System.out.println(StringLib.POS_INT);
-                    System.out.println("Valid range: " + 1 + " to " + recipeList.getCurrRecipeNumber());
+                    System.out.println("Valid range: " + 1 + " to " + recipeCount);
                     break;
                 }
                 Recipe recipeToBeViewed = recipeList.getRecipeFromList(recipeListNum);
@@ -143,13 +143,13 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
-                if (recipeList.getCurrRecipeNumber() == 0) {
+                if (recipeCount == 0) {
                     System.out.println(StringLib.EMPTY_LIST_MESSAGE);
                     break;
                 }
-                if (recipeListNum <= 0 || recipeListNum > recipeList.getCurrRecipeNumber()) {
+                if (recipeListNum <= 0 || recipeListNum > recipeCount) {
                     System.out.println(StringLib.POS_INT);
-                    System.out.println("Valid range: " + 1 + " to " + recipeList.getCurrRecipeNumber());
+                    System.out.println("Valid range: " + 1 + " to " + recipeCount);
                     break;
                 }
                 Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
@@ -191,13 +191,13 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
-                if (recipeList.getCurrRecipeNumber() == 0) {
+                if (recipeCount == 0) {
                     System.out.println(StringLib.EMPTY_LIST_MESSAGE);
                     break;
                 }
-                if (recipeListNum <= 0 || recipeListNum > recipeList.getCurrRecipeNumber()) {
+                if (recipeListNum <= 0 || recipeListNum > recipeCount) {
                     System.out.println(StringLib.POS_INT);
-                    System.out.println("Valid range: " + 1 + " to " + recipeList.getCurrRecipeNumber());
+                    System.out.println("Valid range: " + 1 + " to " + recipeCount);
                     break;
                 }
                 Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
