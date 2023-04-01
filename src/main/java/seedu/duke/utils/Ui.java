@@ -12,7 +12,8 @@ import java.util.Objects;
 
 
 public class Ui {
-    public static final String LINE = "____________________________________________________________";
+   // public static final String LINE = "____________________________________________________________";
+    public static final String LINE = "---------------------------------------------------------------------------";
     public static final String DASHBOARDLOGO = "\n" +
             "██████╗░░█████╗░░██████╗██╗░░██╗██████╗░░█████╗░░█████╗░██████╗░██████╗░\n" +
             "██╔══██╗██╔══██╗██╔════╝██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔══██╗\n" +
@@ -817,11 +818,15 @@ public class Ui {
     }
 
     public static void printExistingMinAlert() {
+        System.out.println(LINE);
         System.out.println(EXISTING_MIN_ALERT);
+        System.out.println(LINE);
     }
 
     public static void printExistingMaxAlert() {
+        System.out.println(LINE);
         System.out.println(EXISTING_MAX_ALERT);
+        System.out.println(LINE);
     }
 
     public static void printInvalidAddAlertCommand() {
