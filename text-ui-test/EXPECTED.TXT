@@ -5,16 +5,12 @@ A: A1
 You have added the following card:
 Q: Q1
 A: A1
-Found 3 cards with the query "q1":
+Found 2 cards with the query "q1":
 [1]
 Q: Q1
 A: A1
-D: 2023-04-02
-[2]
-Q: Q1
-A: A1
 D: 2023-04-01
-[3]
+[2]
 Q: Q1
 A: A1
 D: 2023-04-01
@@ -25,13 +21,13 @@ A: A1
 D: 2023-04-01
 There are 2 cards available for review today.
 ---
-Q: Q2 (ENTER to view answer)A: A1
+Q: Q1 (ENTER to view answer)A: A1
 Did you get it right? (y/n) Great, you got it right!
 ---
-Q: Q1 (ENTER to view answer)A: A1
+Q: Q2 (ENTER to view answer)A: A1
 Did you get it right? (y/n) Please enter 'y' or 'n': (y/n) Please enter 'y' or 'n': (y/n) No worries, we will try again later today.
 ---
-Q: Q1 (ENTER to view answer)A: A1
+Q: Q2 (ENTER to view answer)A: A1
 Did you get it right? (y/n) Great, you got it right!
 ---
 Congrats! You have reviewed all the flashcards due today!
