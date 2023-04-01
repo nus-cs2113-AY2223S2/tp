@@ -32,14 +32,13 @@ List all existing cards
 Sample output :
 
 ```
-
 Here is a list of your cards :
-1.Qn: is akhil a dirty commie
-Ans: yes
-UUID:  f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
-2.Qn: why do other groups keep attackin ian
-Ans: he is not a dirty commie
-UUID:  00000000-0000-0000-0000-000000000001
+1.Qn: What is the formula of force?
+Ans: F = ma
+UUID:  1ddd9a67-f56c-4914-99c0-2f90c580f0e9
+2.Qn: How efficient is binary search?
+Ans: O(log n)
+UUID:  619c689d-395a-4bb8-ab00-6ae9972bb929
 ```
 
 ### Deleting a card :
