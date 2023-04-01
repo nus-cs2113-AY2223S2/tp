@@ -31,7 +31,11 @@ public class StorageTest {
     /** Specifies the file path to be created */
     private static final String DUMMY_FILE_PATH = "./dummy-data/dummy-patient-data.txt";
 
+    private static final String DUMMY_QUEUE_PATH = "/dummy-data/dummy_queue_data.txt";
+
     private static final String DUMMY_FILE_PATH_TEST = "./dummy-data/dummy-patient-data-2.txt";
+
+    private static final String DUMMY_QUEUE_PATH_TEST = "./dummy-data/dummy_queue_data_2.txt";
 
     @Test
     public void createDirectory() {
@@ -68,6 +72,7 @@ public class StorageTest {
         createDirectory();
         createFile();
 
+        String data = "";
         try {
             FileWriter writer = new FileWriter(DUMMY_FILE_PATH);
             for (Map.Entry<Integer, Patient> entry : InformationStub.getAllPatientData().entrySet()) {
@@ -79,36 +84,42 @@ public class StorageTest {
                 Hashtable<String, ArrayList<String>> medicineHistory = patient.getPatientMedicineHistory();
                 int numberOfMedicines = medicineHistory.size();
 
-                writer.write(password + "\n");
-                writer.write(name + "\n");
-                writer.write(numberOfDiagnoses + "\n");
+                data += password + "\n";
+                data += name + "\n";
+                data += numberOfDiagnoses + "\n";
                 for (String diagnosis : diagnosisHistory) {
-                    writer.write(diagnosis + "\n");
+                    data += diagnosis + "\n";
                 }
-                writer.write(numberOfMedicines + "\n");
+                data += numberOfMedicines + "\n";
                 List<String> dates = Collections.list(medicineHistory.keys());
                 Collections.sort(dates);
                 for (String date : dates) {
-                    writer.write(date + " ");
+                    data += date + "%";
                     for (String medString : medicineHistory.get(date)) {
-                        writer.write(medString + " ");
+                        data += medString + "%";
                     }
                 }
-                writer.write("\n");
+                if (dates.size() > 0) {
+                    data += "\n";
+                }
             }
+            int fileHash = data.hashCode();
+            data = fileHash + "\n" + data;
+            writer.write(data);
             writer.close();
 
             Path path = Paths.get(DUMMY_FILE_PATH);
+            // Create dummy file with identical data to test corruption checking
             Path pathTest = Paths.get(DUMMY_FILE_PATH_TEST);
 
             Files.createFile(path);
             FileWriter writerTest = new FileWriter(DUMMY_FILE_PATH_TEST);
-            writerTest.write(1 + "\n");
-            writerTest.write("Jerry\n");
-            writerTest.write(1 + "\n");
-            writerTest.write("Fever\n");
-            writerTest.write(1 + "\n");
-            writerTest.write("2023/01/01 Paracetamol \n");
+            String dataTest = "";
+            dataTest += 1 + "\nJerry\n" + 1 + "Fever\n" + 1 + "\n2023/01/01%Paracetamol%\n";
+            int fileHashTest = dataTest.hashCode();
+            dataTest = fileHashTest + "\n" + dataTest;
+            writerTest.write(dataTest);
+            writerTest.close();
 
             byte[] pathBytes = Files.readAllBytes(path);
             byte[] pathTestBytes = Files.readAllBytes(pathTest);
@@ -128,30 +139,38 @@ public class StorageTest {
         try {
             File file = new File(DUMMY_FILE_PATH);
             Scanner scanner = new Scanner(file);
+            String dataCompare = "";
 
             while (scanner.hasNextLine()) {
+                int fileHash = Integer.parseInt(scanner.nextLine());
                 String password = scanner.nextLine();
                 String name = scanner.nextLine();
                 int hash = Integer.parseInt(password);
+                dataCompare += hash + "\n" + name + "\n";
 
                 int numberOfEntries = Integer.parseInt(scanner.nextLine());
+                dataCompare += numberOfEntries + "\n";
                 ArrayList<String> diagnosisHistory = new ArrayList<>();
                 for (int i = 0; i < numberOfEntries; i++) {
                     String diagnosis = scanner.nextLine();
+                    dataCompare += diagnosis + "\n";
                     diagnosisHistory.add(diagnosis);
                 }
 
                 int numberOfMedicineEntries = Integer.parseInt(scanner.nextLine());
+                dataCompare += numberOfMedicineEntries + "\n";
                 Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable();
                 for (int entry = 0; entry < numberOfMedicineEntries; entry++) {
                     String dateMedicineString = scanner.nextLine();
-                    String[] splitDateMedicineStrings = dateMedicineString.split(" ");
+                    dataCompare += dateMedicineString + "\n";
+                    String[] splitDateMedicineStrings = dateMedicineString.split("%");
                     ArrayList<String> medicines = new ArrayList<>();
                     for (int medStringCount = 1; medStringCount < splitDateMedicineStrings.length; medStringCount++) {
                         medicines.add(splitDateMedicineStrings[medStringCount]);
                     }
                     medicineHistory.put(splitDateMedicineStrings[0], medicines);
                 }
+                int fileHashCompare = dataCompare.hashCode();
 
                 Assertions.assertEquals(name, "Jerry");
                 Assertions.assertEquals(hash, 1);
@@ -163,6 +182,76 @@ public class StorageTest {
                 Assertions.assertTrue(medicineHistory.containsKey("2023/01/01"));
                 Assertions.assertEquals(medicineHistory.get("2023/01/01").size(), 1);
                 Assertions.assertTrue(medicineHistory.get("2023/01/01").get(0).equals("Paracetamol"));
+                Assertions.assertEquals(fileHash, fileHashCompare);
+            }
+            scanner.close();
+        } catch (IOException e) {
+            Assertions.assertFalse(false);
+        }
+    }
+
+    @Test
+    public void saveQueue() {
+        createDirectory();
+        createFile();
+
+        String data = "";
+        try {
+            FileWriter writer = new FileWriter(DUMMY_QUEUE_PATH);
+            ArrayList<String> queueList = InformationStub.getQueueList();
+            for (String queueNumber : queueList) {
+                data += queueNumber + "\n";
+            }
+            int fileHash = data.hashCode();
+            data = fileHash + "\n" + data;
+            writer.write(data);
+            writer.close();
+
+            Path path = Paths.get(DUMMY_QUEUE_PATH);
+            // Create dummy file with identical data to test corruption checking
+            Path pathTest = Paths.get(DUMMY_QUEUE_PATH_TEST);
+
+            Files.createFile(path);
+            FileWriter writerTest = new FileWriter(DUMMY_QUEUE_PATH_TEST);
+            String dataTest = "1\n";
+            int fileHashTest = dataTest.hashCode();
+            dataTest = fileHashTest + "\n" + dataTest;
+            writerTest.write(dataTest);
+            writerTest.close();
+
+            byte[] pathBytes = Files.readAllBytes(path);
+            byte[] pathTestBytes = Files.readAllBytes(pathTest);
+
+            Assertions.assertArrayEquals(pathBytes, pathTestBytes);
+        } catch (IOException e) {
+            Assertions.assertFalse(false);
+        }
+    }
+
+    @Test
+    public void loadQueue() {
+        createDirectory();
+        createFile();
+        saveQueue();
+
+        try {
+            File file = new File(DUMMY_QUEUE_PATH);
+            Scanner scanner = new Scanner(file);
+            String dataCompare = "";
+
+            while (scanner.hasNextLine()) {
+                int fileHash = Integer.parseInt(scanner.nextLine());
+                ArrayList<String> queueList = new ArrayList<>();
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    dataCompare += line + "\n";
+                    queueList.add(line);
+                }
+                int fileHashCompare = dataCompare.hashCode();
+
+                Assertions.assertEquals(queueList.size(), 1);
+                Assertions.assertEquals(queueList.get(0), "1");
+                Assertions.assertEquals(fileHash, fileHashCompare);
             }
             scanner.close();
         } catch (IOException e) {
