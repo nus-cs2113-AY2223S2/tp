@@ -1,6 +1,5 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.UserData;
 
 //@@author lil1n
@@ -25,7 +24,6 @@ public abstract class Command {
     public static final String COMMAND_IGNORE = "ignore";
     public static final String COMMAND_UNIGNORE = "unignore";
 
-    protected FinancialReport financialReport;
     protected UserData userData;
 
     /**
