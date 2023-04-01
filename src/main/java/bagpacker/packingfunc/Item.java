@@ -7,7 +7,16 @@ package bagpacker.packingfunc;
 public class Item {
     private final String itemName;
 
+    public int getPackedQuantity() {
+        return packedQuantity;
+    }
+
     private int packedQuantity;
+
+    public int getTotalQuantity() {
+        return totalQuantity;
+    }
+
     private final int totalQuantity;
 
     public Item(int quantity, String description) {

@@ -198,7 +198,7 @@ public class Parser {
      * Attempts to create AddCommand object to be executed where it is called from
      *
      * @return AddCommand the command to be executed to add an item to the packing list, else
-     *      an IncorrectCommand is created to be executed
+     *          an IncorrectCommand is created to be executed
      */
     public static Command createAddObj() {
         try {
@@ -208,26 +208,33 @@ public class Parser {
             if (itemDescription == null) {
                 throw new InvalidVariablesException();
             }
+            if (itemQuantity < 1) {
+                throw new InvalidIndexException();
+            }
             return new AddCommand(new Item(itemQuantity, itemDescription));
-        } catch (InvalidVariablesException e) {
-            return new IncorrectCommand("Invalid Item Name",
-                    "try to input a name (word(s)) to be added into the list");
-        } catch (NumberFormatException e) {
-            return new IncorrectCommand("Invalid Item Index",
-                    "try to input an integer number between 1 and " + PackingList.getItemList().size());
+        } catch (InvalidVariablesException | ArrayIndexOutOfBoundsException e) {
+            return new IncorrectCommand("Invalid input format",
+                    AddCommand.HELP_MSG);
+        } catch (NumberFormatException | InvalidIndexException e) {
+            return new IncorrectCommand("Invalid Item Quantity",
+                    "for item quantity, try to input a positive integer number");
         }
     }
 
-    public static String[] getAddVariables() {
+    public static String[] getAddVariables() throws InvalidVariablesException {
         String[] inputStringList = fullInput.trim().split(" ", 2);
-        return inputStringList[1].trim().split("\\s+/of\\s+");
+        String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
+        if (inputVariables.length != 2) {
+            throw new InvalidVariablesException();
+        }
+        return inputVariables;
     }
 
     /**
      * Attempts to create DeleteCommand object to be executed where it is called from
      *
      * @return DeleteCommand the command to be executed to delete an item to the packing list, else
-     *      an IncorrectCommand is created to be executed
+     *          an IncorrectCommand is created to be executed
      */
     public static Command createDeleteObj() {
         try {
@@ -264,29 +271,53 @@ public class Parser {
      * Attempts to create PackCommand object to be executed where it is called from
      *
      * @return PackCommand the command to be executed to Pack an item in the packing list, else
-     *      an IncorrectCommand is created to be executed
+     *          an IncorrectCommand is created to be executed
      */
     public static Command createPackObj() {
+        int quantityNotPacked = 0;
         try {
             String[] quantityAndIndex = getPackVariables();
             int itemQuantity = Integer.parseInt(quantityAndIndex[0]);
             int itemIndex = Integer.parseInt(quantityAndIndex[1]);
+            quantityNotPacked = PackingList.get(itemIndex - 1).getTotalQuantity() - PackingList.get(itemIndex - 1).getPackedQuantity();
+            if(itemQuantity < 1 | itemQuantity > quantityNotPacked){
+                throw new InvalidVariablesException();
+            }
             return new PackCommand(itemQuantity, itemIndex);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | InvalidIndexException e) {
             if (PackingList.getItemList().size() == 0) {
                 return new IncorrectCommand("Invalid Item Index",
                         "Your packing list is empty, there is nothing to pack");
             } else {
                 return new IncorrectCommand("Invalid Item Index",
+<<<<<<< HEAD
                         "Try to input an integer number between 1 and " + PackingList.getItemList().size() +
                         "\n" + HELP_MSG);
+=======
+                        "Try to input an item index number between 1 and " + PackingList.getItemList().size());
+>>>>>>> a00331e81217091efb8dec3bf7a94da76f2016fd
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new IncorrectCommand("Invalid Input Variables",
+                    PackCommand.HELP_MSG);
+        } catch (InvalidVariablesException e){
+            if(quantityNotPacked == 0){
+                return new IncorrectCommand("Invalid Pack Usage",
+                        "this item is fully packed");
+            }
+            return new IncorrectCommand("Invalid Input Quantity",
+                    "try to input a quantity between 1 and "+ quantityNotPacked +" to be packed");
         }
     }
 
-    public static String[] getPackVariables() {
+    public static String[] getPackVariables() throws InvalidIndexException {
         String[] inputStringList = fullInput.trim().split(" ", 2);
-        return inputStringList[1].trim().split("\\s+/of\\s+");
+        String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
+        if (Integer.parseInt(inputVariables[1]) < 1 | Integer.parseInt(inputVariables[1])
+                > PackingList.getItemList().size()) {
+            throw new InvalidIndexException();
+        }
+        return inputVariables;
     }
 
 
@@ -294,9 +325,10 @@ public class Parser {
      * Attempts to create UnpackCommand object to be executed where it is called from
      *
      * @return UnpackCommand the command to be executed to unpack an item in the packing list, else
-     *      an IncorrectCommand is created to be executed
+     *          an IncorrectCommand is created to be executed
      */
     public static Command createUnpackObj() {
+        int quantityPacked = 0;
         try {
             String[] quantityAndIndex = getPackVariables();
             int itemQuantity = Integer.parseInt(quantityAndIndex[0]);
@@ -306,21 +338,38 @@ public class Parser {
             }
 
             int itemIndex = Integer.parseInt(quantityAndIndex[1]);
+<<<<<<< HEAD
             if (itemIndex > PackingList.getItemList().size()) {
                 return new IncorrectCommand("Invalid Item Index",
                         "Try to input an integer number between 1 and " + PackingList.getItemList().size());
             }
 
+=======
+            quantityPacked = PackingList.get(itemIndex - 1).getPackedQuantity();
+            if(itemQuantity < 1 | itemQuantity > quantityPacked){
+                throw new InvalidVariablesException();
+            }
+>>>>>>> a00331e81217091efb8dec3bf7a94da76f2016fd
             return new UnpackCommand(itemQuantity, itemIndex);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | InvalidIndexException e) {
             if (PackingList.getItemList().size() == 0) {
                 return new IncorrectCommand("Invalid Item Index",
                         "Your packing list is empty, there is nothing to unpack");
             } else {
                 return new IncorrectCommand("Invalid Item Index",
-                        "Try to input an integer number between 1 and " + PackingList.getItemList().size());
+                        "Try to input an item index number between 1 and " + PackingList.getItemList().size());
             }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new IncorrectCommand("Invalid Input Variables",
+                    UnpackCommand.HELP_MSG);
+        }  catch (InvalidVariablesException e){
+        if(quantityPacked == 0){
+            return new IncorrectCommand("Invalid Unpack Usage",
+                    "this item is not even packed yet");
         }
+        return new IncorrectCommand("Invalid Input Quantity",
+                "try to input a quantity between 1 and "+ quantityPacked +" to be packed");
+    }
     }
 
     public static Command listCommand() {
