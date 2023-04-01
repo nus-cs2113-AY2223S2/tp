@@ -14,11 +14,10 @@ import java.util.Scanner;
 
 public class RemoveParser extends Parser{
     private static Scanner in = new Scanner(System.in);
-    private static AlertList alertList;
+
 
     public RemoveParser(String rawInput, Inventory inventory) {
         super(rawInput, inventory);
-        this.alertList = inventory.getAlertList();
     }
     private static void parseRemoveByIndex(final String[] commands, Inventory inventory)
             throws MissingParametersException {

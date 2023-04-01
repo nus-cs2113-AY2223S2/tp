@@ -142,7 +142,6 @@ public class Storage {
             }
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(Types.ALERTFILEPATH));
-            int counter = 0;
 
             for (Map.Entry<String, Integer> entry : alertList.getMinAlertUpcs().entrySet()) {
                 String key = entry.getKey();

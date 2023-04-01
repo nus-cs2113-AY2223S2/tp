@@ -71,7 +71,7 @@ public class SearchCommand extends Command {
                 results.add(item);
             }
         }
-        if (results.size() == 0) {
+        if (results.isEmpty()) {
             Ui.printEmptySearch();
             return null;
         }

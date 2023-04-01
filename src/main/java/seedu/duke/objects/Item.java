@@ -256,14 +256,11 @@ public class Item implements Comparable<Item> {
 
     @Override
     public boolean equals(final Object o) {
-        if (!o.getClass().equals(this.getClass())) {
+        if (o == null || !o.getClass().equals(this.getClass())) {
             return false;
         }
         Item item = (Item) o;
-        if (item.getUpc().equals(upc)) {
-            return true;
-        }
-        return false;
+        return item.getUpc().equals(upc);
     }
 
     @Override

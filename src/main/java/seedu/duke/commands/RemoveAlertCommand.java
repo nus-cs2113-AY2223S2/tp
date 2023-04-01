@@ -50,10 +50,7 @@ public class RemoveAlertCommand extends Command {
     }
 
     private boolean hasUpcInAlerts(HashMap<String, Integer> alertUpcMap) {
-        if (alertUpcMap.containsKey(upc)) {
-            return true;
-        }
-        return false;
+        return alertUpcMap.containsKey(upc);
     }
 
     @Override

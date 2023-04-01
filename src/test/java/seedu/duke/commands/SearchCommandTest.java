@@ -8,12 +8,10 @@ import seedu.duke.types.Types;
 import seedu.duke.utils.parsers.RestockParser;
 import seedu.duke.utils.parsers.SellParser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 
 import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SearchCommandTest {
     Inventory inventory;
@@ -143,20 +141,20 @@ public class SearchCommandTest {
         addParser.run();
         SearchCommand searchCommand = new SearchCommand(inventory, "2", Types.SearchType.UPC);
         Item searchResult = searchCommand.searchUPC();
-        assertFalse(searchResult==null);
+        assertNotNull(searchResult);
         searchCommand = new SearchCommand(inventory, "3", Types.SearchType.UPC);
         searchResult = searchCommand.searchUPC();
-        assertTrue(searchResult==null);
+        assertNull(searchResult);
         Command removeCommand = new RemoveCommand(inventory, "2", "Y");
         removeCommand.run();
         searchCommand = new SearchCommand(inventory, "2", Types.SearchType.UPC);
         searchResult = searchCommand.searchUPC();
-        assertTrue(searchResult==null);
+        assertNull(searchResult);
         EditParser editParser = new EditParser("upc/1 n/laptops", inventory);
         editParser.run();
         searchCommand = new SearchCommand(inventory, "1", Types.SearchType.UPC);
         searchResult = searchCommand.searchUPC();
-        assertFalse(searchResult==null);
+        assertNotNull(searchResult);
     }
 
     /**

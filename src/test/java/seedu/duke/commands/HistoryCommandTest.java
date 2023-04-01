@@ -29,16 +29,16 @@ public class HistoryCommandTest {
         historyCommand = new HistoryCommand(inventory, "1");
         results = historyCommand.getHistoryResults();
         assertEquals(2, results.size());
-        assertTrue(results.get(0).getName().equals("orange"));
-        assertTrue(results.get(1).getName().equals("Laptops"));
+        assertEquals("orange", results.get(0).getName());
+        assertEquals("Laptops", results.get(1).getName());
         editParser = new EditParser("upc/1 n/TV qty/1 p/10999.0", inventory);
         editParser.run();
         historyCommand = new HistoryCommand(inventory, "1");
         results = historyCommand.getHistoryResults();
         assertEquals(3, results.size());
-        assertTrue(results.get(0).getName().equals("orange"));
-        assertTrue(results.get(1).getName().equals("Laptops"));
-        assertTrue(results.get(2).getName().equals("TV"));
+        assertEquals("orange", results.get(0).getName());
+        assertEquals("Laptops", results.get(1).getName());
+        assertEquals("TV", results.get(2).getName());
     }
 
     /**
@@ -69,17 +69,17 @@ public class HistoryCommandTest {
         addParser.run();
         HistoryCommand historyCommand = new HistoryCommand(inventory, "1");
         ArrayList<Item> results = historyCommand.getHistoryResults();
-        assertTrue(results.get(0).getCategory().equals("uncategorized"));
+        assertEquals("uncategorized", results.get(0).getCategory());
         EditParser editParser = new EditParser("upc/1 c/fruits",inventory);
         editParser.run();
         historyCommand = new HistoryCommand(inventory, "1");
         results = historyCommand.getHistoryResults();
-        assertTrue(results.get(0).getCategory().equals("uncategorized"));
-        assertTrue(results.get(1).getCategory().equals("fruits"));
+        assertEquals("uncategorized", results.get(0).getCategory());
+        assertEquals("fruits", results.get(1).getCategory());
         addParser = new AddParser("n/orange upc/2 qty/5 p/5 c/fruits", inventory);
         addParser.run();
         historyCommand = new HistoryCommand(inventory, "2");
         results = historyCommand.getHistoryResults();
-        assertTrue(results.get(0).getCategory().equals("fruits"));
+        assertEquals("fruits", results.get(0).getCategory());
     }
 }
