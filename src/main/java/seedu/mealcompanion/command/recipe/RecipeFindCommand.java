@@ -15,7 +15,7 @@ public class RecipeFindCommand extends ExecutableCommand {
         this.findTerm = findTerm;
     }
 
-    private boolean findRecipes(MealCompanionSession mealCompanionSession) {
+    private boolean haveRecipes(MealCompanionSession mealCompanionSession) {
         RecipeList recipeList = mealCompanionSession.getRecipes();
         String matchTerm = findTerm.toLowerCase();
         int index = 1;
@@ -34,7 +34,7 @@ public class RecipeFindCommand extends ExecutableCommand {
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
-            boolean foundRecipe = findRecipes(mealCompanionSession);
+            boolean foundRecipe = haveRecipes(mealCompanionSession);
             mealCompanionSession.getUi().printMessage("These are the recipes found:");
             if (!foundRecipe) {
                 mealCompanionSession.getUi().printMessage("There are no recipes found!");
