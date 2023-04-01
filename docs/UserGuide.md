@@ -40,8 +40,8 @@ Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed 
 
 #### Examples of usage  
 * Add event that starts and ends on different days: `add –e Career Fair –st 14:00 –sd 2023/02/10 –et 16:00 –ed 2023-02-11`
-* Add event that starts and ends on same day: `add –e Career Fair –st 14:00 –sd 2023/02/10 –et 16:00`
-* Add event that happens every week: `add –e collect mails –st 8:00 –sd 2023/02/10 –et 8:10 -r 1 W`
+
+* Add event that happens every week: `add –e collect mails –st 8:00 –sd 2023/02/10 –et 8:10 -ed 2023/02/10 -r 1 W`
 
 Expected outcome:
 ~~~
