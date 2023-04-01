@@ -25,13 +25,21 @@ BagPacker is an application to help users manage their packing list.
 
 ## <span style="color:#00A36C">Quick Start</span>
 
+#### For Windows users:
 1. Ensure that you have Java 11 installed.
 2. Download the latest `jar` file from [here](https://github.com/AY2223S2-CS2113-T14-2/tp/releases)
 3. Move this `jar` file into an empty folder on your computer.
-4. Open a command line interface, and enter the directory with the jar file.
-   - For Windows users: search for Command Prompt, and launch it.
-   - For macOS users:
+4. Open your Terminal, and enter the directory with the jar file. Search for Command Prompt, and launch it.
 5. Execute the following command `java -jar Team_Project.jar`
+
+#### For macOS users:
+1. Ensure that you have Java 11 installed.
+2. Download the latest `jar` file from [here](https://github.com/AY2223S2-CS2113-T14-2/tp/releases)
+3. Create a new folder on your computer where you want to run the program. Move this `jar` file into the folder.
+4. Open your Terminal and navigate to the directory with the downloaded `jar` file using the `cd` command.
+5. Execute the following command `java -jar Team_Project.jar`
+
+You should now be able to use BagPacker on your device.
 
 ---
 
