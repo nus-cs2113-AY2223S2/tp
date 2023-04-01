@@ -125,7 +125,14 @@ Too easy ha? You won't see that question again!
 You now have 2 questions in the bank.
 ```
 
-### Tagging a card : `card tag -c {cardUUID} -t {tagName}`
+### Tagging a card :
+
+`card tag -c {cardUUID} -t {tagName}`
+
+Tags a card by specifying the cardUUID and tag name.
+
+The flags `-c` and `-d` can be listed in any order, but they must ***not*** contain any whitespaces.
+and they cannot be empty.
 
 Example of usage :
 `card tag -c f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 -t physics`
@@ -142,9 +149,12 @@ Successfully added tag 83f26992-09d7-496b-b7a8-3ad05e43c8b7 to card f8c3de3d-1fe
 `card deck -c {cardUUID} -d {deckName}`
 
 Specify the card based on its cardUUID and put it in the deck.
-The flags `-c` and `-d` can be listed in any order.
+
+The flags `-c` and `-d` can be listed in any order, but they must ***not*** contain any whitespaces.
+and they cannot be empty.
 
 Example of usage :
+
 `card deck -c f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 -d deckTest`
 
 Sample output :
@@ -160,7 +170,8 @@ Successfully added card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 to deck fd2df33d-4b
 `card view -i {cardIndex}`
 
 View the content of a Card based on its cardUUID or the cardIndex.
-The cardIndex can be found by running `card list`.
+
+The cardIndex can be found by running `card list`. The flags `-c` and `-i` must ***not*** be empty.
 
 Example of usage :
 
@@ -190,14 +201,17 @@ The UUID enclosed within `[]` refers to the cardUUID that the user is currently 
 
 ### Editing a tag : `tag edit -o {tagNameOld} -n {tagNameNew}`
 
-Edit the name of an existing tag
+Edit the name of an existing tag by specifying the old name and new name"
+
+The flags `-o` and `-n` can be listed in any order, but they must ***not*** contain any whitespaces.
+and they cannot be empty.
 
 Example of usage :
 `tag edit -o CS2113 -n CS2113T`
 
 Sample output :
 
-```agsl
+```
 Tag 7a130cd5-8154-4aa7-870f-45d7d92970f9tag name has been changed from CS2113 to CS2113T
 ```
 
@@ -205,19 +219,22 @@ Tag 7a130cd5-8154-4aa7-870f-45d7d92970f9tag name has been changed from CS2113 to
 
 Delete an existing tag by name, and remove the tag from all the cards which are previously under it.
 
+The flag `t` must ***not*** contain any whitespaces.
+and it cannot be empty.
+
 Example of usage :
 `tag delete -t CS2113T`
 
 Sample output :
 
-```agsl
+```
 Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from card 3b86b31c-6289-4716-a5c6-5afd43b9bbd3
 Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from the tag list.
 ```
 
 ### List all tags : `tag list`
 
-List all current tags
+List all current tags in the `tagList`
 
 Example of usage :
 `tag list`
