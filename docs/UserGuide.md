@@ -218,9 +218,9 @@ Example output:
 
 ### Editing an income: `editIncome`
 Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
-* Edits the expense at the specified `index`.
-  The index refers to the index number shown in the displayed expense list.
-  The index must be a positive integer 1, 2, 3, …​
+* Edits the income at the specified `index`.
+  The index refers to the index number shown in the displayed income list.
+  The index must be a positive integer 1, 2, 3, ...
 * The `type` can be: amount, info, time, or category.
   * amount (of type **double**): edits the income
   * info (of type **String**): edits the description of income
