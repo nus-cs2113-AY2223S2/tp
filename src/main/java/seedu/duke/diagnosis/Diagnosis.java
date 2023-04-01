@@ -125,6 +125,7 @@ public class Diagnosis {
      * @return An ArrayList of IllnessMatch which indicates the most probable Illness and its similarity percentage.
      */
     public static ArrayList<IllnessMatch> getPossibleIllnesses(ArrayList<Symptom> patientSymptoms) {
+        diagnosisLogger.setLevel(Level.SEVERE);
         diagnosisLogger.log(Level.INFO, "Receiving patient symptoms for diagnosis.");
         ArrayList<IllnessMatch> possibleIllnesses = new ArrayList<>();
         IllnessMatch illnessMatch;
