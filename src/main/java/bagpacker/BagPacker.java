@@ -16,9 +16,8 @@ public class BagPacker {
      * Main entry-point for the java.BagPacker application.
      */
     public static void main(String[] args) {
-        // initialise variables
+        // Initialise variables
         BagPacker.packingList = new PackingList();
-
         Ui.initialMessage();
 
         // load save file if possible

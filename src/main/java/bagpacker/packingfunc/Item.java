@@ -18,6 +18,9 @@ public class Item {
     }
 
     private final int totalQuantity;
+    public int getUnpackedQuantity() {
+        return totalQuantity - packedQuantity;
+    }
 
     /**
      * Constructor of an Item class used in @AddCommand
