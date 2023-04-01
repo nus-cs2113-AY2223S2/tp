@@ -62,8 +62,11 @@ public class Ui {
                 break;
             }
         }
+        greetUser(username);
+        System.out.println("Get started by providing the command \"help\" to learn the functions offered by rainyDay!");
         return username;
     }
+
 
     public String readUserCommand() {
         System.out.print("> ");

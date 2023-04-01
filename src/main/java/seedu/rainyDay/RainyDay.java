@@ -29,7 +29,9 @@ public class RainyDay {
     private RainyDay(String filePath) {
         ui = new Ui();
         try {
+            ui.printLogo();
             userData = Storage.loadFromFile(filePath);
+            ui.greetUser(userData.getReportOwner());
             assert userData != null : "Error loading from json file";
             logger.log(Level.INFO, "File loaded successfully.");
         } catch (FileNotFoundException | JsonParseException e) {
