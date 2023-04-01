@@ -350,6 +350,7 @@ Your file will be loaded the next time you run Inka!
 | Edit a `Card`                 | `card edit -n {newTagName} -o {oldTagName}`                                         |
 | Edit a `Deck`                 | `deck edit -n {newTagName} -o {oldTagName}`                                         |
 | View a `Card`                 | `card view -c {cardUUID}`                                                           |
+| Exits the program             | `bye`                                                                               |
 | Help about `Deck`             | `deck help`                                                                         |
 | Help about `Tag`              | `tag help`                                                                          |
 | Help about `Card`             | `card help`                                                                         |
