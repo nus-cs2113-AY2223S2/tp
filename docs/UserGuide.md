@@ -236,11 +236,11 @@ Format: `addmod MODULE_CODE`
 >> addmod cs2113
 Got it. I've added this module:
   CS2113: Software Engineering & Object-Oriented Programming
-Total modular credits you have in this semester: 36
+Total modular credits you have in this semester: 12
+Enter "addmod CS2113 -[FLAG] [LESSON NUMBER]" to add lessons for this module.
 Here are the lesson types for this module:
-LECTURE
-TUTORIAL
-To see how to add lessons, enter 'help'.
+Lecture (-lec)
+Tutorial (-tut)
 ```
 #### `addmod` flags
 There are many lesson options and types, the below is a list of all the flags and their respective lesson types.
