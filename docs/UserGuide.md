@@ -177,7 +177,7 @@ Example of usage:
 <br>`delete expense /in 1`
 <br>`delete income /in 2`
 
-### Clear entire income list: `clear expense`
+### Clear entire income list: `clear income`
 
 Clear the entire list of incomes.
 
