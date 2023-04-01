@@ -6,8 +6,14 @@
 
 [comment]: <> (//@@author Jeraldchen)
 
+### Architecture
+![Architecture.png](diagrams%2FArchitecture.png)
+
+### Duke Main Sequence Diagram
+![MainClass.png](diagrams%2FMainSequenceDiagram.png)
+
 ### User Interface
-![UIClass.png](diagrams%2FUIClass.png)
+![UIClass.png](diagrams%2FMenuClassDiagram.png)
 
 This feature shows how the user interface is being implemented via three main classes which are Menu, Information and Parser.
 

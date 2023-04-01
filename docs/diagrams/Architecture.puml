@@ -1,0 +1,27 @@
+[comment]: <> (//@@author Jeraldchen)
+@startuml
+'https://plantuml.com/component-diagram
+skinparam componentStyle rectangle
+
+actor user
+user --> [Duke]: Enter Input
+[Duke] --> [Storage]: Load Data
+[Storage] --> [Duke]: Data
+[Duke] --> [Menu]: Display Menu
+[Duke] --> [Parser]: Parse Input
+[Parser] --> [Duke]: Command
+[IllnessMatch] --> [Diagnosis]: Symptoms
+[Parser] --> [Illness]: Symptoms
+[Illness] --> [IllnessMatch]: Symptoms
+[MedicineManager] --> [Medicine]: Medicine
+[Medicine] --> [Parser]: Medicine
+[Parser] --> [Information]: Command
+[Information] --> [Parser]: Information
+[Diagnosis] --> [MedicineManager]: Illness
+
+
+file data
+
+[Storage]..> data: Reads and Write Data
+
+@enduml
