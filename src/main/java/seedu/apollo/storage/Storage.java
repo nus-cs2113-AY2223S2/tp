@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
@@ -314,9 +315,16 @@ public class Storage implements LoggerInterface {
      * @throws InvalidSaveFile If any line in the input data is not of the right format.
      */
     private static Task newTask(String text) throws InvalidSaveFile, DateOverException {
-        char type = getType(text);
-        Boolean isDone = isStatusDone(text);
-        String param = getParam(text);
+        char type;
+        Boolean isDone;
+        String param;
+        try {
+            type = getType(text);
+            isDone = isStatusDone(text);
+            param = getParam(text);
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new InvalidSaveFile();
+        }
         switch (type) {
         case TXT_TODO_WORD:
             return newToDo(isDone, param);
@@ -354,9 +362,13 @@ public class Storage implements LoggerInterface {
         } catch (InvalidDeadline e) {
             throw new InvalidSaveFile();
         }
-        Deadline newDeadline = new Deadline(paramAndBy[0], paramAndBy[1]);
-        newDeadline.setDone(isDone);
-        return newDeadline;
+        try {
+            Deadline newDeadline = new Deadline(paramAndBy[0], paramAndBy[1]);
+            newDeadline.setDone(isDone);
+            return newDeadline;
+        } catch (DateTimeParseException e) {
+            throw new InvalidSaveFile();
+        }
     }
 
     private static Event newEvent(Boolean isDone, String param) throws InvalidSaveFile, DateOverException {
@@ -370,7 +382,7 @@ public class Storage implements LoggerInterface {
             Event newEvent = new Event(paramAndFromTo[0], paramAndFromTo[1], paramAndFromTo[2]);
             newEvent.setDone(isDone);
             return newEvent;
-        } catch (DateOrderException e) {
+        } catch (DateTimeParseException | DateOrderException e) {
             throw new InvalidSaveFile();
         }
     }
