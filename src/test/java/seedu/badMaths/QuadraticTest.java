@@ -10,24 +10,41 @@ class QuadraticTest {
 
     @Test
     void findAShouldReturnA() {
-        String toDo = "-2x^2 + 5x + 3";
+        String toDo = "-2.5x^2 + 5x + 3";
         Quadratic quadraticTest = new Quadratic(toDo);
-        int A = quadraticTest.findA();
-        assertEquals(-2, A);
+        double A = quadraticTest.findA();
+        assertEquals(-2.5, A);
+    }
+
+    @Test
+    void findAIfOnlySignShouldReturnA() {
+        String toDo = "x^2 + 5.9x + 3";
+        Quadratic quadraticTest = new Quadratic(toDo);
+        double A = quadraticTest.findA();
+        assertEquals(1, A);
     }
     @Test
     void findBShouldReturnB() {
-        String toDo = "-2x^2 + 5x + 3";
+        String toDo = "-2x^2 - 5.9x + 3";
         Quadratic quadraticTest = new Quadratic(toDo);
-        int B = quadraticTest.findB();
-        assertEquals(5, B);
+        double B = quadraticTest.findB();
+        assertEquals(-5.9, B);
     }
+
+    @Test
+    void findBIfOnlySignShouldReturnB() {
+        String toDo = "-2x^2 - x + 3";
+        Quadratic quadraticTest = new Quadratic(toDo);
+        double B = quadraticTest.findB();
+        assertEquals(-1, B);
+    }
+
     @Test
     void findCShouldReturnC() {
-        String toDo = "-2x^2 + 5x + 3";
+        String toDo = "-2x^2 + 5x + 3.0888";
         Quadratic quadraticTest = new Quadratic(toDo);
-        int C = quadraticTest.findC();
-        assertEquals(3, C);
+        double C = quadraticTest.findC();
+        assertEquals(3.0888, C);
     }
     @Test
     void quadraticFormulaShouldReturnArrayOfX() {
