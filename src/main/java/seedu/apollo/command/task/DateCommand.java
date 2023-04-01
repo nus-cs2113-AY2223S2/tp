@@ -33,10 +33,11 @@ public class DateCommand extends Command implements LoggerInterface {
      * @throws InvalidDateTime If the input date does not fit the above format.
      */
     public DateCommand (String dateString) throws InvalidDateTime {
+        setUpLogger();
         assert dateString != null : "DateCommand: dateString should not be null!";
-        assert dateString.matches("\\d{4}-\\d{2}-\\d{2}") : "Date string should be in format yyyy-MM-dd";
         try {
             this.date = LocalDate.parse(dateString);
+            assert dateString.matches("\\d{4}-\\d{2}-\\d{2}") : "Date string should be in format yyyy-MM-dd";
         } catch (DateTimeParseException e) {
             throw new InvalidDateTime();
         }
@@ -44,8 +45,6 @@ public class DateCommand extends Command implements LoggerInterface {
 
     /**
      * Sets up logger for DateCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
      */
     @Override
     public void setUpLogger() {
@@ -57,7 +56,7 @@ public class DateCommand extends Command implements LoggerInterface {
         try {
 
             if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
+                assert(new File("apollo.log").createNewFile()) : "Error in creating save file";
             }
 
             FileHandler logFile = new FileHandler("apollo.log", true);

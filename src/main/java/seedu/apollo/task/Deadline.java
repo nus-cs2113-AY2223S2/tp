@@ -47,12 +47,13 @@ public class Deadline extends Task {
     /**
      * {@inheritDoc}
      */
+
     @Override
     public String getType() {
         return "deadline";
     }
 
-    public LocalDateTime getDateTime() {
+    public LocalDateTime getByDate() {
         return by;
     }
     /**
@@ -60,12 +61,8 @@ public class Deadline extends Task {
      */
     @Override
     public Boolean isOnDate(LocalDate date) {
-        boolean byExists = (by != null);
-        LocalDate byDate = null;
-        if (byExists) {
-            byDate = by.toLocalDate();
-        }
-        return byExists && date.isEqual(byDate);
+        LocalDate byDate = by.toLocalDate();
+        return date.isEqual(byDate);
     }
 
     /**

@@ -22,6 +22,9 @@ import java.util.logging.Logger;
 public class ListCommand extends Command implements LoggerInterface {
     private static Logger logger = Logger.getLogger("ListCommand");
 
+    public ListCommand() {
+        setUpLogger();
+    }
     /**
      * Sets up logger for ListCommand class.
      *
@@ -54,12 +57,12 @@ public class ListCommand extends Command implements LoggerInterface {
      * Prints out all Tasks from the TaskList.
      *
      * @param taskList The existing TaskList.
-     * @param ui Prints shortlisted Tasks to user.
+     * @param ui       Prints shortlisted Tasks to user.
      */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar) {
-        taskList.clusterByType();
+        taskList.sortTaskByDay(taskList);
         ui.printList(taskList);
 
     }

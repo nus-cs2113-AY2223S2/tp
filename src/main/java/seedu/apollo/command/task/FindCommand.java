@@ -30,6 +30,7 @@ public class FindCommand extends Command implements LoggerInterface {
      */
     public FindCommand(String keyword) {
         this.keyword = keyword;
+        setUpLogger();
     }
 
     /**

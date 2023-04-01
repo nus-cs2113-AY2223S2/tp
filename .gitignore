@@ -22,3 +22,4 @@ testModuleData.txt
 
 *.log
 *.lck
+*.log.*

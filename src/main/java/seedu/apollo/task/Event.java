@@ -3,10 +3,16 @@ package seedu.apollo.task;
 import seedu.apollo.exception.task.DateOverException;
 import seedu.apollo.exception.task.DateOrderException;
 
+
+
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+
 
 /**
  * Events are a type of Task that have a set start date and end date,
@@ -41,6 +47,8 @@ public class Event extends Task {
         if (to.isBefore(LocalDateTime.now())) {
             throw new DateOverException(getType(), description, null, from, to);
         }
+
+
     }
 
     /**
@@ -83,21 +91,11 @@ public class Event extends Task {
      */
     @Override
     public Boolean isOnDate(LocalDate date) {
-        boolean fromExists = (from != null);
-        boolean toExists = (to != null);
-        LocalDate fromDate = null;
-        LocalDate toDate = null;
-        if (fromExists) {
-            fromDate = from.toLocalDate();
-        }
-        if (toExists) {
-            toDate = to.toLocalDate();
-        }
-        boolean isOnFrom = fromExists && date.isEqual(fromDate);
-        boolean isOnTo = toExists && date.isEqual(toDate);
-        boolean isBetween = fromExists && toExists && date.isAfter(fromDate) && date.isBefore(toDate);
-
-        return isOnFrom || isOnTo || isBetween;
+        LocalDate fromDate = from.toLocalDate();
+        LocalDate toDate = to.toLocalDate();
+        boolean isBefore = date.isBefore(fromDate);
+        boolean isAfter = date.isAfter(toDate);
+        return !(isBefore | isAfter);
     }
 
     /**
@@ -108,4 +106,7 @@ public class Event extends Task {
         return "[" + EVENT_LABEL + "][" + getStatus() + "] " + description +
                 " (from: " + getFrom(printPattern) + " to: " + getTo(printPattern) + ")";
     }
+
+
 }
+
