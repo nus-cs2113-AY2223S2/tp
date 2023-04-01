@@ -1,0 +1,35 @@
+@startuml
+!include ../../Style.puml
+
+' autonumber
+title Reading Entries from Storage
+
+participant "backend:Backend" as Backend
+participant "storage:Storage" as Storage
+participant "Database" as Database
+
+ref over Backend
+Read entries from Storage
+end ref
+
+Backend -> Storage ** : Backend()
+activate Storage
+activate Database
+Storage -> Database: readFromDatabase()
+Storage -> Storage: makeFileIfNotExists()
+alt Read successful
+    loop n
+        Database -> Database: readEntryLine()
+    end
+    Database --> Storage: entries
+    Backend <-- Storage : entries
+else IOException
+    Database --> Storage: IOException
+    Backend <-- Storage: IOException
+else Invalid Storage File
+    Database --> Storage: InvalidReadFileException
+    Backend <-- Storage: InvalidReadFileException
+end
+
+
+@enduml
