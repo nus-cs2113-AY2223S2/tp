@@ -46,7 +46,7 @@ public class UserData {
     public String checkUserBudgetLimit(LocalDate currentDate) {
         double budgetLimit = getBudgetGoal();
         if (budgetLimit < 0) {
-            return "Your budget was set to negative.\nUse the setbudget command to have a more realistic goal!";
+            return "\nYour budget was set to negative.\nUse the setbudget command to have a more realistic goal!";
         }
         if (budgetLimit == 0) {
             return "";

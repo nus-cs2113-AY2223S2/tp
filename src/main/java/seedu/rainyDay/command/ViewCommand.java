@@ -60,7 +60,7 @@ public class ViewCommand extends Command {
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
             LocalDate statementDate = currentStatement.getDate();
-            if (statementDate.isAfter(lowerLimit) && !statementDate.isAfter(upperLimit)) {
+            if (!statementDate.isBefore(lowerLimit) && !statementDate.isAfter(upperLimit)) {
                 filteredIndexes.add(index);
             }
         }
