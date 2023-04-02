@@ -1,5 +1,6 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
@@ -29,6 +30,8 @@ public class AddPetCommand extends Command {
             ui.addPetCommandMessage(petName);
         } catch (EmptyPetNameException e) {
             ui.petNameEmptyMessage();
+        } catch (DuplicatePetException e) {
+            ui.duplicatePetMessage();
         }
     }
 

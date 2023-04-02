@@ -1,5 +1,6 @@
 invalidcommand
 add-pet Bob
+add-pet Bob
 add-stat Bob Age notNumber
 add-stat Bob Age -1
 add-stat Bob Age 0

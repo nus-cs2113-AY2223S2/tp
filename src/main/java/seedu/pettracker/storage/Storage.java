@@ -4,6 +4,7 @@ import seedu.pettracker.data.Pet;
 import seedu.pettracker.data.PetList;
 import seedu.pettracker.data.Task;
 import seedu.pettracker.data.TaskList;
+import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
@@ -176,6 +177,8 @@ public class Storage {
                 System.out.println("Stat belongs to a pet that does not exist");
             } catch (EmptyPetNameException e) {
                 System.out.println("Pet name in file is empty");
+            } catch (DuplicatePetException e) {
+                System.out.println("File contains duplicate pet names");
             }
         }
     }
