@@ -1,7 +1,6 @@
 //@@author Thunderdragon221
 package seedu.duke.save;
 
-import seedu.duke.diagnosis.Diagnosis;
 import seedu.duke.medicine.MedicineManager;
 import seedu.duke.patient.Patient;
 import seedu.duke.ui.Information;
@@ -149,20 +148,38 @@ public class Storage {
             }
             int numberOfEntries = Integer.parseInt(line);
             dataCompare += numberOfEntries + "\n";
-            ArrayList<String> diagnosisHistory = new ArrayList<>();
+            Hashtable<String, ArrayList<String>> diagnosisHistory = new Hashtable<>();
 
             for (int i = 0; i < numberOfEntries; i++) {
                 if (!scanner.hasNextLine()) {
                     logger.log(Level.INFO, "Corrupted data file");
                     throw new CorruptedDataException();
                 }
-                String diagnosis = scanner.nextLine();
-                dataCompare += diagnosis + "\n";
-                if (emptyField(diagnosis) || (!Diagnosis.isValidDiagnosis(diagnosis))) {
+                String dateDiagnosisString = scanner.nextLine();
+                dataCompare += dateDiagnosisString + "\n";
+                if (emptyField(dateDiagnosisString)) {
                     logger.log(Level.INFO, "Corrupted data file");
                     throw new CorruptedDataException();
                 }
-                diagnosisHistory.add(diagnosis);
+                String[] splitDateDiagnosisStrings = dateDiagnosisString.split("%");
+                ArrayList<String> diagnoses = new ArrayList<>();
+                for (int diagnosisStringCount = 1; diagnosisStringCount < splitDateDiagnosisStrings.length;
+                     diagnosisStringCount++) {
+                    diagnoses.add(splitDateDiagnosisStrings[diagnosisStringCount]);
+                }
+                String date = splitDateDiagnosisStrings[0];
+                if (!date.matches("^[0-9]{4}/[0-9]{2}/[0-9]{2}$")) {
+                    logger.log(Level.INFO, "Corrupted data file");
+                    throw new CorruptedDataException();
+                }
+                int year = Integer.parseInt(date.substring(0, 4));
+                int month = Integer.parseInt(date.substring(5, 7));
+                int day = Integer.parseInt(date.substring(8, 10));
+                if (!isValidDate(year, month, day)) {
+                    logger.log(Level.INFO, "Corrupted data file");
+                    throw new CorruptedDataException();
+                }
+                diagnosisHistory.put(date, diagnoses);
             }
             Hashtable<String, ArrayList<String>> medicineHistory = readMedicineHistoryFromFile(scanner);
 
@@ -261,14 +278,22 @@ public class Storage {
                 Patient patient = entry.getValue();
                 String name = patient.getName();
                 int password = patient.getPassword();
-                ArrayList<String> diagnosisHistory = patient.getPatientDiagnosisHistory();
+                Hashtable<String, ArrayList<String>> diagnosisHistory = patient.getPatientDiagnosisHistory();
                 int numberOfDiagnoses = diagnosisHistory.size();
                 Hashtable<String, ArrayList<String>> medicineHistory = patient.getPatientMedicineHistory();
                 int numberOfMedicines = medicineHistory.size();
 
                 data += password + "\n" + name + "\n" + numberOfDiagnoses + "\n";
-                for (String diagnosis : diagnosisHistory) {
-                    data += diagnosis + "\n";
+                List<String> dates = Collections.list(diagnosisHistory.keys());
+                Collections.sort(dates);
+                for (String date : dates) {
+                    data += date + "%";
+                    for (String diagnosisString : diagnosisHistory.get(date)) {
+                        data += diagnosisString + "%";
+                    }
+                }
+                if (dates.size() > 0) {
+                    data += "\n";
                 }
                 data += numberOfMedicines + "\n";
                 data = writeMedicineHistory(data, medicineHistory);

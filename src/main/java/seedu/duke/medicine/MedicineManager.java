@@ -103,7 +103,7 @@ public class MedicineManager {
                     "    cough up the mucus and clear the airways.");
 
     private static final Medicine ZOLPIDEM = new Medicine(
-            "Zolpidem ", "taking it once every 2 or 3 nights",
+            "Zolpidem", "taking it once every 2 or 3 nights",
             "Description: Zolpidem is used for short-term treatment of " +
                     "insomnia (difficulty sleeping). \n" +
                     "    It helps you fall asleep faster and sleep through the night.");
