@@ -1,17 +1,19 @@
 package chching;
-
+import java.io.FileReader;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
 import chching.record.Record;
 import chching.record.Income;
 import chching.record.IncomeList;
 import chching.record.Expense;
 import chching.record.ExpenseList;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Models a class to handle storage for the program.
@@ -23,7 +25,7 @@ public class Storage {
      * Build constructor for the Storage class.
      * @param filepath the filepath of the storage.
      */
-    Storage(String filepath) {
+    Storage(String filepath){
         String dirname = filepath.substring(0, filepath.lastIndexOf("/"));
         File dir = new File(dirname);
         dir.mkdirs();
@@ -31,26 +33,32 @@ public class Storage {
     }
 
     public ArrayList<Income> loadIncomes() {
+        // create a JSON parser object
+        JSONParser parser = new JSONParser();
+
         ArrayList<Income> incomes = new ArrayList<>();
 
         try {
-            Scanner reader = new Scanner(file);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                String[] extract = line.split("\\|");
-                String symbol = extract[0].trim();
+            // read the JSON file into a JSONObject
+            Object obj = parser.parse(new FileReader(file));
+            JSONArray entries = (JSONArray) obj;
 
-                if (symbol.equals("I")) {
-                    String description = extract[1].trim();
-                    LocalDate date = LocalDate.parse(extract[2].trim());
-                    String value = extract[3].trim();
-                    Income income = new Income(description, date, Double.parseDouble(value));
+            // loop through the entries and print each one
+            for (Object entry : entries) {
+                JSONObject jsonObj = (JSONObject) entry;
+                String type = (String) jsonObj.get("type");
+                String description = (String) jsonObj.get("description");
+                String date = (String) jsonObj.get("date");
+                Double amount = (Double) jsonObj.get("amount");
+
+                if (type.equals("I")) {
+                    Income income = new Income(description, LocalDate.parse(date), amount);
                     incomes.add(income);
+
                 }
             }
-            reader.close();
 
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             System.out.println("Unfortunately, income list file can't be found. I'll make a new one!");
         }
 
@@ -58,60 +66,76 @@ public class Storage {
     }
 
     public ArrayList<Expense> loadExpenses() {
+        // create a JSON parser object
+        JSONParser parser = new JSONParser();
+
         ArrayList<Expense> expenses = new ArrayList<>();
 
         try {
-            Scanner reader = new Scanner(file);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                String[] extract = line.split("\\|");
-                String symbol = extract[0].trim();
+            // read the JSON file into a JSONObject
+            Object obj = parser.parse(new FileReader(file));
+            JSONArray entries = (JSONArray) obj;
 
-                if (symbol.equals("E")) {
-                    String category = extract[1].trim();
-                    String description = extract[2].trim();
-                    LocalDate date = LocalDate.parse(extract[3].trim());
-                    String value = extract[4].trim();
-                    Expense expense = new Expense(category, description, date, Double.parseDouble(value));
+            // loop through the entries and print each one
+            for (Object entry : entries) {
+                JSONObject jsonObj = (JSONObject) entry;
+                String type = (String) jsonObj.get("type");
+                String description = (String) jsonObj.get("description");
+                String date = (String) jsonObj.get("date");
+                Double amount = (Double) jsonObj.get("amount");
+
+                if (type.equals("E")) {
+                    String category = (String) jsonObj.get("category");
+                    Expense expense = new Expense(description, category, LocalDate.parse(date), amount);
                     expenses.add(expense);
+
                 }
             }
-            reader.close();
 
-        } catch (FileNotFoundException e) {
-            System.out.println("Unfortunately, expense list can't be found. I'll make a new one!");
+        } catch (Exception e) {
+            System.out.println("Unfortunately, expense list file can't be found. I'll make a new one!");
         }
 
         return expenses;
     }
 
     public void save(IncomeList incomes, ExpenseList expenses) {
-        try {
-            file.createNewFile();
+        JSONArray jsonArray = new JSONArray();
 
-            FileWriter fileWriter = new FileWriter(file);
+        for (int i = 0; i < incomes.size(); i++) {
+            Record income = incomes.get(i);
+            JSONObject obj = new JSONObject();
+            obj.put("type", "I");
+            obj.put("description", income.getDescription());
+            obj.put("date", income.getDate().toString());
+            obj.put("amount", income.getValue());
 
-            for (int i = 0; i < incomes.size(); i++) {
-                Record income = incomes.get(i);
-                String line = String.format("I | %s | %s | %.2f\n", income.getDescription(),
-                        income.getDate(), income.getValue());
-                fileWriter.write(line);
-            }
+            jsonArray.add(obj);
+        }
 
-            for (int i = 0; i < expenses.size(); i++) {
-                Record expense = expenses.get(i);
-                String line = String.format("E | %s | %s | %s | %.2f\n", expense.getCategory(),
-                        expense.getDescription(), expense.getDate(), expense.getValue());
-                fileWriter.write(line);
-            }
+        for (int i = 0; i < expenses.size(); i++) {
+            Record expense = expenses.get(i);
+            JSONObject obj = new JSONObject();
+            obj.put("type", "E");
+            obj.put("category", expense.getCategory());
+            obj.put("description", expense.getDescription());
+            obj.put("date", expense.getDate().toString());
+            obj.put("amount", expense.getValue());
 
-            fileWriter.flush();
-            fileWriter.close();
+            jsonArray.add(obj);
+        }
+
+        String jsonString = JSONValue.toJSONString(jsonArray);
+
+        // write the JSONObject to a file
+        try (FileWriter file = new FileWriter(this.file)) {
+            file.write(jsonString);
 
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred while writing JSON data to file.");
             e.printStackTrace();
         }
+
     }
 }
 
