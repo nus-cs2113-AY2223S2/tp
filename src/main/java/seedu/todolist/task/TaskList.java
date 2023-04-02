@@ -4,11 +4,11 @@ import seedu.todolist.exception.InvalidIdException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * A list of Task objects representing the current list of tasks.
@@ -105,6 +105,18 @@ public class TaskList implements Serializable {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
+    public ArrayList<Task> getTaskWithTag(String tag) {
+        return  (ArrayList<Task>) tasks.values().stream()
+                .filter(t -> t.getTags().contains(tag))
+                .collect(toList());
+    }
+
+    public ArrayList<Task> getTaskWithPriority(Integer priority) {
+        return (ArrayList<Task>) tasks.values().stream()
+                .filter(t -> t.getPriority() == priority)
+                .collect(toList());
+    }
+
     //@@author ERJUNZE
     /**
      * Gets the string representation of the task at the given id of the task list.
@@ -145,6 +157,12 @@ public class TaskList implements Serializable {
         HashSet<String> tags = new HashSet<>();
         tasks.values().forEach(task -> tags.addAll(task.getTags()));
         return tags;
+    }
+
+    public HashSet<Integer> getAllPrioritiesInTaskList() {
+        HashSet<Integer> priorities = new HashSet<>();
+        tasks.values().forEach(task -> priorities.add(task.getPriority()));
+        return priorities;
     }
 
     public String setDescription(int id, String description) throws InvalidIdException {
