@@ -26,6 +26,26 @@
       },
       "question": "How efficient is binary search?",
       "answer": "O(log n)",
+      "tags": [
+        {
+          "uuid": "c8259fee-125d-4700-829c-0da79eba1e91"
+        },
+        {
+          "uuid": "f5234305-3263-4969-bc52-dd93013b7228"
+        }
+      ],
+      "decks": [
+        {
+          "uuid": "e723ebf2-57e4-4f5f-98f2-564dd824f517"
+        }
+      ]
+    },
+    {
+      "uuid": {
+        "uuid": "a7094276-8429-4620-96b0-48f9e73c86dd"
+      },
+      "question": "fsjgfssurglhsughfdughfdlufghfdughfdghdfugihguidhgufgsgsgsgsg",
+      "answer": "ans",
       "tags": [],
       "decks": []
     }
@@ -51,6 +71,9 @@
       "cards": [
         {
           "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
+        },
+        {
+          "uuid": "619c689d-395a-4bb8-ab00-6ae9972bb929"
         }
       ],
       "decks": []
@@ -80,6 +103,18 @@
           "uuid": "03658854-e5d4-468f-8c41-74917e5d4515"
         }
       ]
+    },
+    {
+      "deckName": "deckname",
+      "deckUUID": {
+        "uuid": "e723ebf2-57e4-4f5f-98f2-564dd824f517"
+      },
+      "cards": [
+        {
+          "uuid": "619c689d-395a-4bb8-ab00-6ae9972bb929"
+        }
+      ],
+      "tags": []
     }
   ]
 }

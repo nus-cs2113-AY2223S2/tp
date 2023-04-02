@@ -10,6 +10,10 @@ public class DeckList {
         this.deckList = new ArrayList<>();
     }
 
+    public List<Deck> getDecks() {
+        return this.deckList;
+    }
+
     public List<Deck> getTags() {
         return this.deckList;
     }
@@ -21,6 +25,7 @@ public class DeckList {
     public boolean deleteDeckByUUID(DeckUUID uuid) {
         return deckList.removeIf(deck -> (deck.getDeckUUID().equals(uuid)));
     }
+
     public boolean isEmpty() {
         return deckList.isEmpty();
     }
@@ -50,6 +55,7 @@ public class DeckList {
         }
         return null;
     }
+
     public void delete(int id) {
         this.deckList.remove(id);
     }

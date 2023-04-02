@@ -15,12 +15,9 @@ public class Tag {
         cards.add(cardUUID);
     }
 
-    public Tag(String tagName, String uuidStr, String password) {
-        if (password.equals("pw")) {
-
-            this.tagName = tagName;
-            this.uuid = new TagUUID(UUID.fromString(uuidStr));
-        }
+    public Tag(String tagName, String uuidStr) {
+        this.tagName = tagName;
+        this.uuid = new TagUUID(UUID.fromString(uuidStr));
     }
 
     public ArrayList<DeckUUID> getDecks() {

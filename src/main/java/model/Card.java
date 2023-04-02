@@ -32,7 +32,11 @@ public class Card {
     private Card(String question, String answer, String uuidStr) throws InvalidUUIDException {
         this.question = question;
         this.answer = answer;
-        this.uuid = new CardUUID(UUID.fromString(uuidStr));
+        try {
+            this.uuid = new CardUUID(UUID.fromString(uuidStr));
+        } catch (IllegalArgumentException e) {
+            throw new InvalidUUIDException();
+        }
     }
 
     /**
@@ -92,28 +96,24 @@ public class Card {
         return this.tags.isEmpty();
     }
 
-    public String getTagsString() {
-        String tagsStr = "";
-        for (TagUUID tag : tags) {
-            tagsStr = tagsStr + "\n - " + tag.toString();
-        }
-        return tagsStr;
-    }
-
-    public String getDecksString() {
-        String decksStr = "";
-        for (DeckUUID deck : decks) {
-            decksStr = decksStr + "\n - " + deck.toString();
-        }
-        return decksStr;
-    }
-
     @Override
     public String toString() {
-        String tagsStr = this.tags.isEmpty() ? "None" : getTagsString();
-        String decksStr = this.decks.isEmpty() ? "None" : getDecksString();
-        return "[" + this.uuid + "]" +
-                "\n\n Tags: " + tagsStr + "\n\n Decks: " + decksStr +
-                "\n\n Qn:  " + this.question + "\n Ans:  " + this.answer + "\n";
+        return "\t[" + this.uuid + "]\n" +
+                "\tQn:  " + this.question +
+                "\n\tAns:  " + this.answer + "\n";
+    }
+
+    public String toTruncatedString() {
+        boolean isQnTooLong = this.question.length() > 50;
+        boolean isAnsTooLong = this.answer.length() > 50;
+
+        String warningStr =
+                (isQnTooLong || isAnsTooLong) ? "\n\tNote : Actual question or answer is too long, string truncated\n"
+                        : "";
+        String questionStr = isQnTooLong ? this.question.substring(0, 50) : this.question;
+        String answerStr = isAnsTooLong ? this.answer.substring(0, 50) : this.answer;
+
+        return "\t[" + this.uuid + "]" +
+                "\n\tQn:  " + questionStr + "\n\tAns:  " + answerStr + warningStr + "\n";
     }
 }
