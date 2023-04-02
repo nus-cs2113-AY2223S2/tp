@@ -1,5 +1,27 @@
 # Developer Guide
 
+<!-- TOC -->
+* [Developer Guide](#developer-guide)
+  * [Acknowledgements](#acknowledgements)
+  * [Design & implementation](#design--implementation)
+  * [Implementation](#implementation)
+    * [Record and RecordList](#record-and-recordlist)
+    * [DeleteIncomeCommand](#deleteincomecommand)
+    * [Target and TargetStorage](#target-and-targetstorage)
+    * [[Proposed] EditIncomeCommand/EditExpenseCommand](#proposed-editincomecommandeditexpensecommand)
+    * [AddIncomeCommand](#addincomecommand)
+    * [ListExpenseCommand](#listexpensecommand)
+    * [SetTargetCommand](#settargetcommand)
+    * [SetCurrencyCommand](#setcurrencycommand)
+  * [Product scope](#product-scope)
+    * [Target user profile](#target-user-profile)
+    * [Value proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+  * [Instructions for manual testing](#instructions-for-manual-testing)
+<!-- TOC -->
+
 ## Acknowledgements
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
