@@ -313,6 +313,7 @@ Adding lesson type: LECTURE for Module: ST2334
 Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
+This event clashes with a lesson in your timetable!
 Got it. I've added this event:
   [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
 ____________________________________________________________
