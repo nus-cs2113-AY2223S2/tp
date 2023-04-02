@@ -1,4 +1,4 @@
--453023646
+-1792371956
 49
 demo
 2
@@ -13,6 +13,74 @@ Stomach Ache
 Sore Throat
 1
 2023/04/02%Lozenges%Difflam Throat Spray%
+51
+Demo
+63
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+Dengue Fever
+Sore Throat
+Fever
+COVID-19
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+Sore Throat
+Fever
+Headache
+COVID-19
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+Bronchitis
+Sore Throat
+Fever
+Headache
+COVID-19
+1
+2023/04/02%Guaifenesin%Ibuprofen%Lozenges%Difflam Throat Spray%Paracetamol%
 99333
 abc
 0

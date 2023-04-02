@@ -38,7 +38,7 @@ public class Information {
         return patientsList.get(hash);
     }
 
-    //@@Geeeetyx
+    //@@author Geeeetyx
 
     /**
      * Prints the diagnosis history of the Patient.
@@ -79,7 +79,7 @@ public class Information {
         saveData();
     }
 
-    //@@Thunderdragon221
+    //@@author Thunderdragon221
 
     /**
      * Checks the existence of a password in Dr Duke.
@@ -102,7 +102,7 @@ public class Information {
         return patientsList;
     }
 
-    //@@Thunderdragon221
+    //@@author Thunderdragon221
 
     /**
      * Hashes the password keyed in by the user.
@@ -113,7 +113,7 @@ public class Information {
         return password.hashCode();
     }
 
-    //@@Jeraldchen
+    //@@author Jeraldchen
 
     /**
      * Resets the symptom choice of the patient.
@@ -122,14 +122,14 @@ public class Information {
     public static void resetSymptomChoice(ArrayList<Symptom> symptoms) {
         if (symptoms.size() != 0) {
             symptoms.clear();
-            //@@Geeeetyx
+            //@@author Geeeetyx
             System.out.println("---------------------------------------------------");
-            //@@JeraldChen
+            //@@author JeraldChen
             System.out.println("Your symptom choice has been reset.");
         } else {
-            //@@Geeeetyx
+            //@@author Geeeetyx
             System.out.println("---------------------------------------------------");
-            //@@JeraldChen
+            //@@authorJeraldChen
             System.out.println("You have not entered any symptoms. No symptoms to reset.");
         }
     }
@@ -143,8 +143,8 @@ public class Information {
         if (symptoms.size() == 0) {
             System.out.println("You have not entered any symptoms.");
         } else {
-            for (int i = 0; i < symptoms.size(); i++) {
-                System.out.println(symptoms.get(i));
+            for (Symptom symptom : symptoms) {
+                System.out.println(symptom);
             }
         }
     }
