@@ -1,5 +1,4 @@
 /* @@author avielcx */
-
 package chching;
 
 import chching.parser.Parser;

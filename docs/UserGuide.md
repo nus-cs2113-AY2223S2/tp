@@ -10,14 +10,15 @@
     * [Setting currency to be converted: `set currency`](#setting-currency-to-be-converted--set-currency)
     * [Unset currency to be converted: `unset currency`](#unset-currency-to-be-converted--unset-currency)
     * [Finding an entry: `find`](#finding-an-entry--find)
-    * [Showing the balance: `balance`](#showing-the-balance--balance)
     * [Deleting an entry: `delete`](#deleting-an-entry--delete)
-    * [Clear entire income list: `clear expense`](#clear-entire-income-list--clear-expense)
+    * [Clear entire income list: `clear income`](#clear-entire-income-list--clear-income)
     * [Clear entire expense list: `clear income`](#clear-entire-expense-list--clear-income)
     * [Clear entire both income and expense lists: `clear all`](#clear-entire-both-income-and-expense-lists--clear-all)
-    * [Set a target for balance of finances: `add target`](#set-a-target-for-balance-of-finances--add-target)
+    * [Set a target for balance of finances: `set target`](#set-a-target-for-balance-of-finances--set-target)
+    * [See target set: `show target`](#see-target-set--show-target)
     * [Finding balance of finances: `balance`](#finding-balance-of-finances--balance)
     * [View help: `help`](#view-help--help)
+    * [Exit: `exit`](#exit--exit)
     * [Saving and loading of data](#saving-and-loading-of-data)
   * [Command Summary (Alphabetical Order)](#command-summary--alphabetical-order-)
 <!-- TOC -->
@@ -211,6 +212,13 @@ Use case:
 
 Example of usage:
 <br> `set target /v 350`
+
+### See target set: `show target`
+
+Allows users to see the target they have set.
+
+Format:
+<br> `show target`
 
 ### Finding balance of finances: `balance`
 
