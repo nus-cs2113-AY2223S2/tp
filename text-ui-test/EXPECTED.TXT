@@ -22,6 +22,14 @@ Updated Weight to 30 for Bob
 
 ERROR: Pet not Found
 
+ERROR: Pet not Found
+
+ERROR: Pet not Found
+
+ERROR: The only valid stats are type, age, or weight.
+
+ERROR: The only valid stats are type, age, or weight.
+
 ERROR: The only valid stats are type, age, or weight.
 
 Name: Bob

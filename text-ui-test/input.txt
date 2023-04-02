@@ -7,8 +7,12 @@ add-stat Bob Weight notNumber
 add-stat Bob Weight -1
 add-stat Bob Weight 0
 add-stat Bob Weight 30
-add-stat doesnotexist weight 10
+add-stat doesnotexist Weight 10
+edit-stat doesnotexist Weight 10
+remove-stat doesnotexist Weight
 add-stat Bob notAge 10
+edit-stat Bob notAge 10
+remove-stat Bob notAge
 list
 remove-stat Bob Weight
 remove-pet Bob
