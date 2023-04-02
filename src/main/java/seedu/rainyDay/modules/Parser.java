@@ -56,7 +56,7 @@ public class Parser {
                 return displayHelp(userInput.trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
                 logger.info("filter command executing");
-                return filterStatement(action[1]);
+                return filterStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EDIT)) {
                 logger.info("edit command executing");
                 return editStatement(userInput);
@@ -315,10 +315,16 @@ public class Parser {
     }
 
     //@@author ChongQiRong
-    private Command filterStatement(String input) throws RainyDayException {
+    private Command filterStatement(String userInput) throws RainyDayException {
         try {
+            String[] action = userInput.split("\\s+", 2);
+            if (action.length == 1) {
+                logger.warning("No flags in filter");
+                throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+            }
+
             int sizeOfFilterFlagAndField = 0;
-            String[] flagAndField = input.split("\\s");
+            String[] flagAndField = action[1].split("\\s");
             for (String s : flagAndField) {
                 if (s.contains("-in")) {
                     sizeOfFilterFlagAndField += 1;
@@ -333,9 +339,9 @@ public class Parser {
                 }
             }
 
-            if (input.startsWith("-in") | input.startsWith("-out") | input.startsWith("-d")
-                    | input.startsWith("-c") | input.startsWith("-date")) {
-                ArrayList<String> filterFlagAndField = parseFilterMultipleFlags(input, sizeOfFilterFlagAndField);
+            if (action[1].startsWith("-in") | action[1].startsWith("-out") | action[1].startsWith("-d")
+                    | action[1].startsWith("-c") | action[1].startsWith("-date")) {
+                ArrayList<String> filterFlagAndField = parseFilterMultipleFlags(action[1], sizeOfFilterFlagAndField);
                 if (filterFlagAndField.contains("-date")) {
                     LocalDate.parse(filterFlagAndField.get(filterFlagAndField.size() - 1),
                             DateTimeFormatter.ofPattern("dd/MM/yyyy"));
