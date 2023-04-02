@@ -53,7 +53,7 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
             br.readLine();
 
             String[] userLine = br.readLine().split(csvDelimiter);
-            //System.out.println(userLine.length);
+            System.out.println(userLine.length);
             name = userLine[0];
             weight = Float.parseFloat(userLine[1]);
             height = Float.parseFloat(userLine[2]);
@@ -68,6 +68,9 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
             newFile.createNewFile();
             user = new User();
         } catch (NullPointerException e) {
+            System.out.println("User File empty. Initialising blank user...");
+            user = new User();
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("User File empty. Initialising blank user...");
             user = new User();
         }
