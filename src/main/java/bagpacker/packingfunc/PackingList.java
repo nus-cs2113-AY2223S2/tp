@@ -5,6 +5,8 @@ import java.util.ArrayList;
  * PackingList class contains methods to manipulate the users packing list
  */
 public class PackingList {
+    private static ArrayList<Item> itemList = new ArrayList<>();
+
     /***
      * Checks if item of the same name as itemName is found in the current packing list
      *
@@ -38,7 +40,6 @@ public class PackingList {
         assert(existingItem != null);
         return existingItem;
     }
-
     /***
      * Adds the added quantity to the current total quantity of an item in the itemList
      *
@@ -50,9 +51,6 @@ public class PackingList {
         int totalQuantity = itemToAdd.getTotalQuantity();
         itemToAdd.setTotalQuantity(totalQuantity + addQty);
     }
-    private static ArrayList<Item> itemList = new ArrayList<>();
-
-    private static int targetIndex = -1;
 
     public static void setItemList(ArrayList<Item> itemList) {
         PackingList.itemList = itemList;

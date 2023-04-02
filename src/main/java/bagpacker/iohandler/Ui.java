@@ -1,13 +1,19 @@
 package bagpacker.iohandler;
 
-import bagpacker.commands.*;
+
+import bagpacker.commands.AddCommand;
+import bagpacker.commands.ByeCommand;
+import bagpacker.commands.DeleteCommand;
+import bagpacker.commands.DeleteListCommand;
+import bagpacker.commands.ListCommand;
+import bagpacker.commands.PackAllCommand;
+import bagpacker.commands.PackCommand;
+import bagpacker.commands.UnpackCommand;
 
 /**
  * Ui class contains methods to print messages to user interface on Command Line Interface
  */
 public class Ui {
-    private static final String RETURN_USER_GREET = "Welcome back, User!";
-    private static final String NEW_USER_GREET = "No save files detected. Hello new user!";
     public static String logo = " ____              _____           _\n"
             + "|  _ \\            |  __ \\         | |\n"
             + "| |_) | __ _  __ _| |__) |_ _  ___| | _____ _ __\n"
@@ -16,6 +22,8 @@ public class Ui {
             + "|____/ \\__,_|\\__, |_|   \\__,_|\\___|_|\\_\\___|_|\n"
             + "              __/ |\n"
             + "             |___/\n";
+    private static final String RETURN_USER_GREET = "Welcome back, User!";
+    private static final String NEW_USER_GREET = "No save files detected. Hello new user!";
 
     public static void printErrorLine() {
         System.out.println("/////////////////////////////////////////////////////////////");
@@ -90,6 +98,7 @@ public class Ui {
     public static void showUserReturn() {
         printToUser(RETURN_USER_GREET);
     }
+
     public static void showNewUser() {
         printToUser(NEW_USER_GREET);
     }

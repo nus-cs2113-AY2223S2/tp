@@ -7,24 +7,9 @@ package bagpacker.packingfunc;
 public class Item {
     private final String itemName;
 
-    public int getPackedQuantity() {
-        return packedQuantity;
-    }
-
     private int packedQuantity;
 
-    public int getTotalQuantity() {
-        return totalQuantity;
-    }
-
-    public void setTotalQuantity(int totalQuantity) {
-        this.totalQuantity = totalQuantity;
-    }
-
     private int totalQuantity;
-    public int getUnpackedQuantity() {
-        return totalQuantity - packedQuantity;
-    }
 
     /**
      * Constructor of an Item class used in @AddCommand
@@ -49,26 +34,24 @@ public class Item {
         this.totalQuantity = totalQuantity;
     }
 
-    //    public Item(String description, boolean isPacked) {
-    //        this.itemName = description;
-    //        this.isPacked = isPacked;
-    //    }
+    public int getTotalQuantity() {
+        return totalQuantity;
+    }
 
-    //    public void setPackIcon() {
-    //        if (this.isPacked) {
-    //            this.packIcon = "X";
-    //        } else {
-    //            this.packIcon = " ";
-    //        }
-    //    }
+    public int getPackedQuantity() {
+        return packedQuantity;
+    }
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public int getUnpackedQuantity() {
+        return totalQuantity - packedQuantity;
+    }
 
     public String getItemName() {
         return itemName;
     }
-
-    //    public boolean getIsPacked() {
-    //        return isPacked;
-    //    }
 
     public void setPacked(int quantity) {
         this.packedQuantity += quantity;
