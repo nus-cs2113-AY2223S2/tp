@@ -13,6 +13,7 @@ import java.util.HashMap;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.meal360.exceptions.IngredientNotFoundException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
 import seedu.meal360.exceptions.InvalidValueException;
 import seedu.meal360.storage.Database;
@@ -25,7 +26,7 @@ class Meal360Test {
 
     private static final Database database = new Database();
 
-    private static final IngredientList userIngredients = new IngredientList();
+    private static IngredientList userIngredients = new IngredientList();
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -62,14 +63,48 @@ class Meal360Test {
         saladIngredients.put("cucumber", 1);
         Recipe salad = new Recipe("salad", saladIngredients);
 
+        HashMap<String, Integer> chickenRiceIngredients = new HashMap<>();
+        chickenRiceIngredients.put("rice", 1);
+        chickenRiceIngredients.put("chicken", 1);
+        Recipe chickenRice = new Recipe("chicken rice", chickenRiceIngredients);
+
         recipes.addRecipe(burger);
         recipes.addRecipe(pizza);
         recipes.addRecipe(salad);
+        recipes.addRecipe(chickenRice);
+
+        // Adding of ingredients
+        Ingredient buns = new Ingredient("buns", 10, "10/10/2024");
+        Ingredient meatPatty = new Ingredient("meat patty", 10, "10/10/2024");
+        Ingredient lettuce = new Ingredient("lettuce", 10, "10/10/2024");
+        Ingredient dough = new Ingredient("dough", 10, "10/10/2024");
+        Ingredient tomatoSauce = new Ingredient("tomato sauce", 10, "10/10/2024");
+        Ingredient cheese = new Ingredient("cheese", 10, "10/10/2024");
+        Ingredient pepperoni = new Ingredient("pepperoni", 10, "10/10/2024");
+        Ingredient tomato = new Ingredient("tomato", 10, "10/10/2024");
+        Ingredient cucumber = new Ingredient("cucumber", 10, "10/10/2024");
+        Ingredient rice = new Ingredient("rice", 10, "10/10/2024");
+        Ingredient chicken = new Ingredient("chicken", 10, "10/10/2024");
+        Ingredient peasandcorn = new Ingredient("peas and corn", 10, "10/10/2024");
+
+        userIngredients.addIngredient(buns);
+        userIngredients.addIngredient(meatPatty);
+        userIngredients.addIngredient(lettuce);
+        userIngredients.addIngredient(dough);
+        userIngredients.addIngredient(tomatoSauce);
+        userIngredients.addIngredient(cheese);
+        userIngredients.addIngredient(pepperoni);
+        userIngredients.addIngredient(tomato);
+        userIngredients.addIngredient(cucumber);
+        userIngredients.addIngredient(rice);
+        userIngredients.addIngredient(chicken);
+        userIngredients.addIngredient(peasandcorn);
     }
 
     @AfterEach
     public void tearDownRecipes() {
         recipes = new RecipeList();
+        userIngredients = new IngredientList();
     }
 
     @Test
@@ -176,7 +211,7 @@ class Meal360Test {
             assert false;
         }
 
-        // Testing case-insensitive
+        // Testing positive case (case-insensitive)
         try {
             String userInput = "weekly /add BURGER 1";
             String[] command = parser.cleanUserInput(userInput);
@@ -184,6 +219,18 @@ class Meal360Test {
             weeklyPlan.addPlans(recipeMap);
             assertTrue(weeklyPlan.containsKey("burger"));
             assertEquals(2, (int) weeklyPlan.get("burger"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Testing positive case (name with space)
+        try {
+            String userInput = "weekly /add chicken rice 1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assertTrue(weeklyPlan.containsKey("chicken rice"));
+            assertEquals(1, (int) weeklyPlan.get("chicken rice"));
         } catch (Exception e) {
             assert false;
         }
@@ -339,6 +386,20 @@ class Meal360Test {
             assert false;
         }
 
+        // Testing case where recipe name has space
+        try {
+            String userInput = "weekly /multiadd /r burger /q 1 /r chicken rice /q 20";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assertTrue(weeklyPlan.containsKey("burger"));
+            assertEquals(23, (int) weeklyPlan.get("burger"));
+            assertTrue(weeklyPlan.containsKey("chicken rice"));
+            assertEquals(20, (int) weeklyPlan.get("chicken rice"));
+        } catch (Exception e) {
+            assert false;
+        }
+
         // Testing negative case (quantity is negative)
         try {
             String userInput = "weekly /multiadd /r burger /q -1 /r pizza /q 5";
@@ -433,6 +494,7 @@ class Meal360Test {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
         weeklyPlan.put("salad", 10);
         weeklyPlan.put("pizza", 30);
+        weeklyPlan.put("chicken rice", 10);
 
         // Testing positive cases
         try {
@@ -452,6 +514,17 @@ class Meal360Test {
             WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
             weeklyPlan.deletePlans(recipeMap);
             assertEquals(29, weeklyPlan.get("pizza"));
+        } catch (InvalidRecipeNameException | InvalidValueException e) {
+            assert false; // Not supposed to throw any exception here
+        }
+
+        // Testing case where recipe name has space
+        try {
+            String userInput = "weekly /delete chicken rice 1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assertEquals(9, weeklyPlan.get("chicken rice"));
         } catch (InvalidRecipeNameException | InvalidValueException e) {
             assert false; // Not supposed to throw any exception here
         }
@@ -571,6 +644,7 @@ class Meal360Test {
         weeklyPlan.put("salad", 10);
         weeklyPlan.put("pizza", 30);
         weeklyPlan.put("burger", 100);
+        weeklyPlan.put("chicken rice", 50);
 
         // Testing positive case
         try {
@@ -604,6 +678,17 @@ class Meal360Test {
             weeklyPlan.deletePlans(recipeMap);
             assertNull(weeklyPlan.get("salad"));
             assertNull(weeklyPlan.get("pizza"));
+        } catch (InvalidRecipeNameException | InvalidValueException e) {
+            assert false; // Not supposed to throw any exception here
+        }
+
+        // Testing positive case (recipe name has space)
+        try {
+            String userInput = "weekly /multidelete /r chicken rice /q 1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assertEquals(49, weeklyPlan.get("chicken rice"));
         } catch (InvalidRecipeNameException | InvalidValueException e) {
             assert false; // Not supposed to throw any exception here
         }
@@ -722,8 +807,7 @@ class Meal360Test {
     }
 
     @Test
-    public void testViewIngredients() {
-
+    public void testViewWeeklyIngredients() {
         HashMap<String, Integer> pastaIngredients = new HashMap<>();
         pastaIngredients.put("penne", 1);
         Recipe pasta = new Recipe("pasta", pastaIngredients);
@@ -761,7 +845,7 @@ class Meal360Test {
 
         inputs = new String[]{"list"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
-        assertEquals(3, recipeListToPrint.size());
+        assertEquals(4, recipeListToPrint.size());
         assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
         assertEquals(4, recipeListToPrint.get(1).getNumOfIngredients());
         assertEquals(3, recipeListToPrint.get(2).getNumOfIngredients());
@@ -882,6 +966,354 @@ class Meal360Test {
         Recipe randomRecipe1 = parser.parseRandomRecipe(recipes);
         assertNotNull(randomRecipe1);
         assertNotNull(recipes.randomRecipe());
+    }
+
+    @Test
+    public void testWeeklyDone() {
+        WeeklyPlan weeklyPlan = new WeeklyPlan();
+        weeklyPlan.put("pizza", 100);
+        weeklyPlan.put("burger", 100);
+        weeklyPlan.put("chicken rice", 100);
+
+        // Testing positive case
+        try {
+            String userInput = "weekly /done burger";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            assertEquals(8, userIngredients.findIngredientCount("buns"));
+            assertEquals(9, userIngredients.findIngredientCount("meat patty"));
+            assertEquals(7, userIngredients.findIngredientCount("lettuce"));
+            assertEquals(99, weeklyPlan.get("burger"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Testing positive case (case-insensitive)
+        try {
+            String userInput = "weekly /done Pizza";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            assertEquals(9, userIngredients.findIngredientCount("dough"));
+            assertEquals(9, userIngredients.findIngredientCount("tomato sauce"));
+            assertEquals(9, userIngredients.findIngredientCount("cheese"));
+            assertEquals(9, userIngredients.findIngredientCount("pepperoni"));
+            assertEquals(99, weeklyPlan.get("pizza"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Testing positive case (entire command case-insensitive)
+        try {
+            String userInput = "WEEKLY /DONE pizza";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            assertEquals(8, userIngredients.findIngredientCount("dough"));
+            assertEquals(8, userIngredients.findIngredientCount("tomato sauce"));
+            assertEquals(8, userIngredients.findIngredientCount("cheese"));
+            assertEquals(8, userIngredients.findIngredientCount("pepperoni"));
+            assertEquals(98, weeklyPlan.get("pizza"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Testing positive case (recipe name with space)
+        try {
+            String userInput = "weekly /done chicken rice";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            assertEquals(9, userIngredients.findIngredientCount("chicken"));
+            assertEquals(9, userIngredients.findIngredientCount("rice"));
+            assertEquals(99, weeklyPlan.get("chicken rice"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Testing negative case (recipe not found)
+        try {
+            String userInput = "weekly /done pizzaandburgers";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(InvalidRecipeNameException.class, e.getClass());
+            assertEquals("Please enter a valid recipe name.", e.getMessage());
+        }
+
+        // Testing negative case (recipe not in weekly plan)
+        try {
+            String userInput = "weekly /done salad";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Recipe does not exist in weekly plan.", e.getMessage());
+        }
+
+        // Testing negative case (not enough ingredients)
+        try {
+            String userInput = "weekly /done burger";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            parser.parseMarkDone(command, userIngredients, weeklyPlan, recipes);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("You do not have enough ingredients to mark this recipe as done.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddUserIngredients() {
+
+        // Test positive case (new ingredient)
+        try {
+            String userInput = "add_i /n fish /c 10 /d 10/10/2024";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assertEquals(10, userIngredients.findIngredientCount("fish"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Test positive case (ingredient name already exists)
+        try {
+            String userInput = "add_i /n chicken /c 10 /d 10/10/2024";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assertEquals(20, userIngredients.findIngredientCount("chicken"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        //  Test positive case (case-insensitive)
+        try {
+            String userInput = "add_i /n CHICKEN /c 10 /d 10/10/2024";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assertEquals(30, userIngredients.findIngredientCount("chicken"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Test positive case (expiry date gets updated)
+        try {
+            String userInput = "add_i /n chicken /c 10 /d 21/10/2025";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assertEquals(40, userIngredients.findIngredientCount("chicken"));
+            assertEquals(parser.parseDate("21/10/2025"), userIngredients.findExpiryDate("chicken"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Test positive case (ingredient name with spaces)
+        try {
+            String userInput = "add_i /n peas and corn and carrot /c 10 /d 10/10/2024";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assertEquals(10, userIngredients.findIngredientCount("peas and corn and carrot"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Test negative case (quantity is 0)
+        try {
+            String userInput = "add_i /n chicken /c 0 /d 10/10/2024";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Test negative case (quantity is negative)
+        try {
+            String userInput = "add_i /n chicken /c -10 /d 10/10/2024";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Test negative case (quantity is more than 1000)
+        try {
+            String userInput = "add_i /n chicken /c 1001 /d 10/10/2024";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Test negative case (quantity is not a number)
+        try {
+            String userInput = "add_i /n chicken /c abc /d 10/10/2024";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Test negative case (expiry date is not in the correct format)
+        try {
+            String userInput = "add_i /n chicken /c 10 /d 10/10/202";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please enter a valid date in the format dd/mm/yyyy.", e.getMessage());
+        }
+
+        // Test negative case (expiry date is not a valid date)
+        try {
+            String userInput = "add_i /n chicken /c 10 /d 10/13/2024";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseAddUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please enter a valid date in the format dd/mm/yyyy.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testDeleteUserIngredients() {
+
+        // Test positive case
+        try {
+            String userInput = "del_i /n chicken /c 5";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteUserIngredients(command, userIngredients);
+            assertEquals(5, userIngredients.findIngredientCount("chicken"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Test positive case (case-insensitive)
+        try {
+            String userInput = "del_i /n CHEESE /c 5";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteUserIngredients(command, userIngredients);
+            assertEquals(5, userIngredients.findIngredientCount("cheese"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Test positive case (ingredient name with spaces)
+        try {
+            String userInput = "del_i /n peas and corn /c 5";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteUserIngredients(command, userIngredients);
+            assertEquals(5, userIngredients.findIngredientCount("peas and corn"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Test positive case (quantity is more than the current quantity)
+        try {
+            String userInput = "del_i /n chicken /c 100";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteUserIngredients(command, userIngredients);
+            assertNull(userIngredients.get("chicken"));
+        } catch (Exception e) {
+            assert false;
+        }
+
+        // Test negative case (quantity is 0)
+        try {
+            String userInput = "del_i /n chicken /c 0";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Test negative case (quantity is negative)
+        try {
+            String userInput = "del_i /n chicken /c -5";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Test negative case (quantity is more than 1000)
+        try {
+            String userInput = "del_i /n chicken /c 1001";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Test negative case (quantity is not a number)
+        try {
+            String userInput = "del_i /n chicken /c abc";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Test negative case (ingredient name is not found)
+        try {
+            String userInput = "del_i /n beef /c 5";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseDeleteUserIngredients(command, userIngredients);
+            assert false; // should not reach here
+        } catch (Exception e) {
+            assertEquals(IngredientNotFoundException.class, e.getClass());
+            assertEquals("Ingredient not found", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testNonEmptyListUserIngredients() {
+        IngredientList testIngredientList = new IngredientList();
+        Ingredient buns = new Ingredient("buns", 10, "10/10/2024");
+        testIngredientList.addIngredient(buns);
+
+        // Test positive case
+        ui.printUserIngredients(testIngredientList);
+        assertEquals(
+                ui.formatMessage("Here is your ingredient list:") + System.lineSeparator() + ui.formatMessage(
+                        "buns " + "(10) " + "[by:10/10/2024]") + System.lineSeparator(),
+                outContent.toString());
+    }
+
+    @Test
+    public void testEmptyListUserIngredients() {
+        IngredientList testIngredientList = new IngredientList();
+
+        // Testing positive case (no ingredients)
+        ui.printUserIngredients(testIngredientList);
+        assertEquals(ui.formatMessage("Your ingredient list is empty!") + System.lineSeparator(),
+                outContent.toString());
     }
 
     @Test

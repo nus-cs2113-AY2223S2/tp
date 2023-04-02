@@ -25,7 +25,14 @@ public class IngredientList extends HashMap<String, Ingredient> {
     }
 
     public void addIngredient(Ingredient ingredient) {
-        super.put(ingredient.ingredientName, ingredient);
+        if (this.containsKey(ingredient.ingredientName)) {
+            int currentCount = this.get(ingredient.ingredientName).ingredientCount;
+            int newCount = currentCount + ingredient.ingredientCount;
+            this.put(ingredient.ingredientName,
+                    new Ingredient(ingredient.ingredientName, newCount, ingredient.expiryDate));
+        } else {
+            this.put(ingredient.ingredientName, ingredient);
+        }
     }
 
     public void editIngredient(Ingredient ingredient, Integer ingredientCount, String expiryDate)
@@ -46,11 +53,8 @@ public class IngredientList extends HashMap<String, Ingredient> {
             int newCount = currentCount - ingredientCount;
             if (newCount > 0) {
                 this.put(ingredient, new Ingredient(ingredient, newCount, this.get(ingredient).expiryDate));
-            } else if (newCount == 0) {
-                this.remove(ingredient);
             } else {
-                throw new IllegalArgumentException(
-                        "Number of ingredients to delete exceeds the number " + "of ingredients available!");
+                this.remove(ingredient);
             }
         } else {
             throw new IngredientNotFoundException("Ingredient not found");
@@ -85,7 +89,7 @@ public class IngredientList extends HashMap<String, Ingredient> {
             }
         }
         if (expiredIngredients.equals("")) {
-            System.out.println("No expired ingredients");
+            System.out.println("No expired ingredients.");
         } else {
             System.out.println(expiredIngredients);
         }

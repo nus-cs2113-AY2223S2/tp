@@ -504,8 +504,7 @@ public class Parser {
 
         // Checks that command is entered in the correct
         if (startIndices.size() != endIndices.size() || startIndices.size() == 0) {
-            throw new IllegalArgumentException(
-                    "Please enter the command in the correct format.");
+            throw new IllegalArgumentException("Please enter the command in the correct format.");
         }
 
         // Building the recipe names
@@ -549,38 +548,49 @@ public class Parser {
         try {
             return LocalDate.parse(input, formatter);
         } catch (DateTimeParseException e) {
-            throw new IllegalArgumentException("Please enter a valid date in the format dd/mm/yyyy");
+            throw new IllegalArgumentException("Please enter a valid date in the format dd/mm/yyyy.");
         }
     }
 
-    public void parseAddUserIngredients(String[] command, IngredientList ingredientList) {
+    public void parseAddUserIngredients(String[] command, IngredientList ingredientList)
+            throws InvalidValueException {
         String ingredientName = null;
         Integer ingredientCount = null;
         String expiryDate = null;
 
-        try {
-            for (int i = 1; i < command.length; i++) {
-                switch (command[i]) {
-                case "/n":
-                    ingredientName = command[++i];
-                    break;
-                case "/c":
-                    ingredientCount = Integer.parseInt(command[++i]);
-                    if (ingredientCount < 0 || ingredientCount > 1000) {
-                        throw new IllegalArgumentException(
-                                "Please enter a positive number between 1 to 1000 for the quantity.");
+        for (int i = 1; i < command.length; i++) {
+            switch (command[i]) {
+            case "/n":
+                StringBuilder nameBuilder = new StringBuilder();
+                while (++i < command.length && !command[i].startsWith("/")) {
+                    if (nameBuilder.length() > 0) {
+                        nameBuilder.append(" ");
                     }
-                    break;
-                case "/d":
-                    expiryDate = command[++i];
-                    break;
-                default:
-                    throw new IllegalArgumentException("Missing required information. Please provide "
-                            + "ingredient name, count, and expiry date.");
+                    nameBuilder.append(command[i]);
                 }
+                ingredientName = nameBuilder.toString();
+                i--; // Move back to the previous flag
+                break;
+            case "/c":
+                try {
+                    ingredientCount = Integer.parseInt(command[++i]);
+                } catch (NumberFormatException e) {
+                    throw new NumberFormatException(
+                            "Please enter a positive number between 1 to 1000 for the quantity.");
+                }
+
+                if (ingredientCount < 1 || ingredientCount > 1000) {
+                    throw new InvalidValueException(
+                            "Please enter a positive number between 1 to 1000 for the quantity.");
+                }
+                break;
+            case "/d":
+                expiryDate = command[++i];
+                break;
+            default:
+                throw new IllegalArgumentException("Missing required information. Please provide "
+                        + "ingredient name, count, and expiry date.");
             }
-        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid command format. Please check your input.");
         }
 
         if (ingredientName == null || ingredientCount == null || expiryDate == null) {
@@ -590,31 +600,42 @@ public class Parser {
         ingredientList.addIngredient(new Ingredient(ingredientName, ingredientCount, expiryDate));
     }
 
+
     public void parseDeleteUserIngredients(String[] command, IngredientList userIngredients)
-            throws IngredientNotFoundException {
+            throws IngredientNotFoundException, InvalidValueException {
         String ingredientName = null;
         Integer ingredientCount = null;
 
-        try {
-            for (int i = 1; i < command.length; i++) {
-                switch (command[i]) {
-                case "/n":
-                    ingredientName = command[++i];
-                    break;
-                case "/c":
-                    ingredientCount = Integer.parseInt(command[++i]);
-                    if (ingredientCount < 0) {
-                        throw new IllegalArgumentException(
-                                "Please enter a positive number for the quantity.");
+        for (int i = 1; i < command.length; i++) {
+            switch (command[i]) {
+            case "/n":
+                StringBuilder nameBuilder = new StringBuilder();
+                while (++i < command.length && !command[i].startsWith("/")) {
+                    if (nameBuilder.length() > 0) {
+                        nameBuilder.append(" ");
                     }
-                    break;
-                default:
-                    throw new IllegalArgumentException(
-                            "Missing required information. Please provide " + "ingredient name and count.");
+                    nameBuilder.append(command[i]);
                 }
+                ingredientName = nameBuilder.toString();
+                i--; // Move back to the previous flag
+                break;
+            case "/c":
+                try {
+                    ingredientCount = Integer.parseInt(command[++i]);
+                } catch (NumberFormatException e) {
+                    throw new NumberFormatException(
+                            "Please enter a positive number between 1 to 1000 for the quantity.");
+                }
+
+                if (ingredientCount < 1 || ingredientCount > 1000) {
+                    throw new InvalidValueException(
+                            "Please enter a positive number between 1 to 1000 for the quantity.");
+                }
+                break;
+            default:
+                throw new IllegalArgumentException(
+                        "Missing required information. Please provide " + "ingredient name and count.");
             }
-        } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid command format. Please check your input.");
         }
 
         if (ingredientName == null || ingredientCount == null) {
@@ -624,14 +645,15 @@ public class Parser {
         userIngredients.deleteIngredient(ingredientName, ingredientCount);
     }
 
+
     public void parseMarkDone(String[] command, IngredientList userIngredients, WeeklyPlan weeklyPlan,
-            RecipeList recipes) throws IngredientNotFoundException {
-        if (command.length == 1) {
+            RecipeList recipes) throws IngredientNotFoundException, InvalidRecipeNameException {
+        if (command.length == 2) {
             throw new IllegalArgumentException("Please enter a recipe name.");
         }
-        String recipeName = combineWords(command, 1, command.length);
+        String recipeName = combineWords(command, 2, command.length);
         if (recipes.findByName(recipeName) == null) {
-            throw new IllegalArgumentException("Please enter a valid recipe name.");
+            throw new InvalidRecipeNameException("Please enter a valid recipe name.");
         }
 
         if (weeklyPlan.get(recipeName) == null) {
@@ -639,22 +661,24 @@ public class Parser {
         }
 
         HashMap<String, Integer> ingredients = recipes.findByName(recipeName).getIngredients();
-        try {
-            for (String ingredient : ingredients.keySet()) {
-                int currentCount = userIngredients.findIngredientCount(ingredient);
-                if (currentCount < ingredients.get(ingredient)) {
-                    throw new IllegalArgumentException(
-                            "You do not have enough ingredients to mark this recipe as done.");
-                }
+        for (String ingredient : ingredients.keySet()) {
+            int currentCount = userIngredients.findIngredientCount(ingredient);
+            if (currentCount < ingredients.get(ingredient)) {
+                throw new IllegalArgumentException(
+                        "You do not have enough ingredients to mark this recipe as done.");
             }
-        } catch (IngredientNotFoundException e) {
-            throw new IllegalArgumentException(
-                    "You do not have enough ingredients to mark this recipe as done.");
         }
 
         // If all ingredients are present, mark recipe as done
         for (String ingredient : ingredients.keySet()) {
             userIngredients.deleteIngredient(ingredient, ingredients.get(ingredient));
+        }
+
+        // Remove count of recipe from weekly plan
+        if (weeklyPlan.get(recipeName) == 1) {
+            weeklyPlan.remove(recipeName);
+        } else {
+            weeklyPlan.put(recipeName, weeklyPlan.get(recipeName) - 1);
         }
     }
 }
