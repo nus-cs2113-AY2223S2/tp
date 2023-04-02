@@ -97,7 +97,7 @@ public class UserInterface {
         } else {
             System.out.println("Here is a list of your cards :\n");
             for (int i = 0; i < cardList.size(); ++i) {
-                System.out.println("\t" + (i + 1) + "." + cardList.get(i)); // 1. question  answer
+                System.out.println("\t" + (i + 1) + "." + cardList.get(i).toTruncatedString()); // 1. question  answer
             }
         }
         printDivider();
