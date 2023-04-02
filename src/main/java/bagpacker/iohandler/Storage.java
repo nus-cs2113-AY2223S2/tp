@@ -3,15 +3,11 @@ package bagpacker.iohandler;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
 
-//import java.io.File;
-//import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
-//import java.util.Scanner;
 
 /**
  * Storage class contains methods to save and retrieve saved packing list in txt file
