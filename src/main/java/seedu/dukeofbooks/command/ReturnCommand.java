@@ -15,7 +15,6 @@ public final class ReturnCommand extends LoanCommand {
     private static final String NOT_FOUND_MSG = "Item not found!";
     Person person;
     BorrowableItem item;
-    private String title;
     
     public ReturnCommand(LoanRecords loanRecords, Person person, BorrowableItem item) {
         super(loanRecords);

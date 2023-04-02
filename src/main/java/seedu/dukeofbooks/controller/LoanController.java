@@ -15,7 +15,19 @@ public class LoanController {
     private static final String AVAILABLE_STATUS_FORMAT = "Status: Not borrowed";
     private static final String BORROWED_STATUS_FORMAT = "Status: Borrowed (borrower: %s, due: %s)";
     private static final String OVERDUE_STATUS_FORMAT = "Status: Overdue (borrower: %s, due: %s)";
+
+    private static final String AVAILABLE_STATUS_STRING = "Status: Not borrowed";
+    private static final String BORROWED_STATUS_STRING = "Status: Borrowed";
+
     private static final int DEFAULT_RENEW_DAYS = 30;
+
+    public static String checkItemAvailability(BorrowableItem item) {
+        if (!item.isBorrowed()) {
+            return AVAILABLE_STATUS_STRING;
+        } else {
+            return BORROWED_STATUS_STRING;
+        }
+    }
 
     public static void borrowItem(LoanRecords loanRecords, Person borrower,
             BorrowableItem toBorrow, LocalDateTime borrowTime)
