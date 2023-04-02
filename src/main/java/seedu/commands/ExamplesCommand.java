@@ -36,7 +36,7 @@ public class ExamplesCommand extends Command{
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage,
                         MealStorage mealStorage, UserStorage userStorage, ExerciseStorage exerciseStorage)
-        throws LifeTrackerException {
+            throws LifeTrackerException {
         printExamples(input, ui);
     }
 }

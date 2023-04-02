@@ -52,6 +52,20 @@ public class GeneralUi {
         return Integer.parseInt(value);
     }
 
+    public float readFloat() {
+        String value = "";
+        while (true) {
+            value = sc.nextLine();
+            if (value.length() == 0 || 
+                    !value.matches("^([0-9]+([.][0-9]*)?|[.][0-9]+)$")) {
+                System.out.println("Invalid input, input is not a positive float value");
+            } else {
+                break;
+            }
+        }
+        return Float.parseFloat(value);
+    }
+
     /**
      * Helper function to print divider
      */
@@ -180,7 +194,7 @@ public class GeneralUi {
     }
     public void showWellDoneMessage(){
     }
-    public static void displayDayCalories(ExerciseStorage exerciseStorage, LocalDate date, MealStorage mealStorage) {
+    public void displayDayCalories(ExerciseStorage exerciseStorage, LocalDate date, MealStorage mealStorage) {
         List<Exercise> exercisesOnSpecificDate = exerciseStorage.getExercisesByDate(date);
         float caloricDeficit = 0;
         for (Exercise exercise: exercisesOnSpecificDate){

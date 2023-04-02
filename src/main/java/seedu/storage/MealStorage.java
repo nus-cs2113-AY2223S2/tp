@@ -99,6 +99,15 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
     }
 
     public void saveMeal(Meal meal) {
+        for (Meal m : meals) {
+            if (!m.getDate().equals(meal.getDate()) || 
+                    !m.getIdentifier().equals(meal.getIdentifier())) {
+                continue;
+            }
+            m.addFoods(meal.getFoods());
+            return;
+        }
+        
         meals.add(meal);
         try {
             this.write();
