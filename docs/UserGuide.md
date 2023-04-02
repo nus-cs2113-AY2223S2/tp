@@ -47,7 +47,7 @@ Before you start using BadMaths, make sure you have the following ready!
 
 ## Features
 
-### 1) Graph analyser and visualiser: `Graph`
+### 1) Graph Analyser and Visualiser: `Graph`
 This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
 It also displays the image of the corresponding graph.
 
@@ -63,7 +63,7 @@ Example input:
 Graph. 2*sin(5*x+2)-8
 ```
 
-### 2) Matrix calculation: `Matrix`
+### 2) Matrix Calculation: `Matrix`
 This feature accepts matrix equation and outputs calculation result.
 
 Format: `Matrix. [Matrix] [operator] [Matrix]`
@@ -107,7 +107,7 @@ isNote
 Now you have <number> of notes in the list
 ```
 
-### 4) Display all Notes: `List`
+### 4) Display All Notes: `List`
 Display a list of all items stored by user.
 
 Format: `List` 
@@ -124,7 +124,7 @@ Here are the notes you have stored:
 3. [LOW][N][0]note_item_3
 ```
 
-### 5) Display a specific note: `List <index>`
+### 5) Display A Specific Note: `List <index>`
 Display a particular item in the Notes list through index of list item.
 
 Format: `List <index of list item>`
@@ -155,7 +155,7 @@ You have removed this note:
 Now you have <number> notes in the list.
 ```
 
-### 7) Clear all notes stored in Notes List `Clear`
+### 7) Clear All Notes Stored In Notes List `Clear`
 Delete all note items stored in Notes List.
 
 Format: `Clear.`
@@ -198,7 +198,7 @@ Expected output:
 You have unmarked this note:
 [LOW][N][0]note_item_2
 ```
-### 10) List all items marked as completed: `FindMark`
+### 10) List All Items Marked As Completed: `FindMark`
 Display a list of all note items marked as completed.
 i.e. items with mark bracket `[Y]`
 
@@ -215,7 +215,7 @@ Here are the notes you are searching for:
 2. [LOW][Y][0]note_item_3
 ```
 
-### 11) List all notes that are not marked as completed: `FindUnmark`
+### 11) List All Notes That Are Not Marked As Completed: `FindUnmark`
 Display a list of all incomplete note items.
 i.e. items with mark bracket `[N]`
 
@@ -231,7 +231,7 @@ Here are the notes you are searching for:
 1. [LOW][N][0]note_item_2
 ```
 
-### 12) Find notes using keyword: `FindInfo`
+### 12) Find Notes Using Keyword: `FindInfo`
 Find items stored in Notes by searching for a keyword.
 
 Format: `FindInfo <description>`
@@ -252,7 +252,7 @@ Here are the notes you are searching for:
 1. [LOW][N][0]Add
 ```
 
-### 13) Prioritize a note
+### 13) Prioritize A Note
 Change the priority of a certain note in the notes list.
 
 Format: `<Priority Type>. Index`
@@ -281,13 +281,13 @@ You have changed its priority to MEDIUM
 3: [MEDIUM][N][0]Note 3
 ````
 
-### 14) Display all notes based on all priority types:
+### 14) Display All Notes Based On All Priority Types:
 Display all items stored in the Notes List based on the respective priority rankings.
 
 Format: `Rank. Priority`
 Example of usage: `Rank. Priority`
 
-### 15) Display all notes of a certain priority type:
+### 15) Display All Notes Of A Certain Priority Type:
 Find all notes stored in the list based on priority that users are searching for
 
 Format: `FindPrior. <Priority Type>`
