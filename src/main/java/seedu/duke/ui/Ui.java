@@ -29,7 +29,7 @@ public class Ui {
         showLine();
     }
 
-    private static void showHelpText() {
+    public void showHelpText() {
         System.out.println("Here are the functions of the application!");
         System.out.println("To display this guide at any time, type:");
         System.out.println("                    help");
@@ -70,22 +70,34 @@ public class Ui {
         System.out.println("To choose a venue, type:");
         System.out.println("                    choose venue <INDEX>");
         System.out.println(" ");
+        System.out.println("To exit the program, type:");
+        System.out.println("                    exit");
+        System.out.println(" ");
+        showLine();
     }
 
     public void showSuccessfulDeletionMessage() {
+        showLine();
         System.out.println("Company information successfully deleted!");
+        showLine();
     }
 
     public void showSuccessfulAdditionMessage(String company) {
+        showLine();
         System.out.println(company + " added successfully!");
+        showLine();
     }
 
     public void showSuccessfulPurgingMessage() {
+        showLine();
         System.out.println("Data has been deleted successfully!");
+        showLine();
     }
 
     public void showSampleDataLoadedMessage() {
+        showLine();
         System.out.println("Sample data has been loaded into the list!");
+        showLine();
     }
 
     public void showSuccessfulConfirmedMessage() {
@@ -103,31 +115,42 @@ public class Ui {
     public void showExistingUnconfirmationMessage() {
         System.out.println("This company is already unconfirmed!");
     }
+      
 
     public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList) {
+        showLine();
         System.out.println("Here are the companies in <" + industry + "> field.");
         int i = 1;
         for (Company company : sortedCompanyList) {
             System.out.println(i++ + ".");
             System.out.println(company);
         }
+        showLine();
     }
 
     public void showCompanyFoundMessage(Company company, int idx) {
+        showLine();
         System.out.println("The company is found in the company list.");
         System.out.println(idx + System.lineSeparator() + company);
+        showLine();
     }
 
     public void showCompanyNotFoundMessage(String targetCompany) {
+        showLine();
         System.out.println("The company <" + targetCompany + "> is not found in the company list.");
+        showLine();
     }
 
 
     public void showVenueSelectionMessage(String venue) {
+        showLine();
         System.out.println(venue + " is your venue!");
+        showLine();
     }
 
     public void showEventNameSelectionMessage(String eventName) {
+        showLine();
         System.out.println(eventName + " is your event name!");
+        showLine();
     }
 }

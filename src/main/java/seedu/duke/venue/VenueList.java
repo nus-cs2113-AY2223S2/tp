@@ -25,9 +25,11 @@ public class VenueList {
         if (venueList.isEmpty()) {
             throw new EmptyListException();
         }
+        ui.showLine();
         for (int i = 0; i < venueList.size(); i++) {
             System.out.println(i + 1 + ". " + venueList.get(i));
         }
+        ui.showLine();
     }
 
     public Venue getVenue(int venueNum) {
