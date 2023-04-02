@@ -1,6 +1,2 @@
-Apr 02, 2023 9:57:24 AM seedu.logger.LogFileHandler logInfo
-INFO: Dinner was consumed on 10/10/2023
-Total Calories are: 135.0
-Here are the foods you ate:
-1) Minced Pork (side) from Ramen
-
+Apr 02, 2023 11:27:05 AM seedu.logger.LogFileHandler logInfo
+INFO: User exited the programme.
