@@ -71,7 +71,7 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
             System.out.println("User File empty. Initialising blank user...");
             user = new User();
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("User File empty. Initialising blank user...");
+            System.out.println("User File not found. Creating new user file...");
             user = new User();
         }
     }
