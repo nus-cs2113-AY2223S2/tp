@@ -15,17 +15,11 @@ public class Parser {
 
     protected String userInput;
 
-    public Parser(String userInput) { // Bye. abdscscs
+    public Parser(String userInput) { // List. 1
         this.userInput = userInput;
     }
 
     public String getCommand() {
-<<<<<<< .merge_file_a27836
-        if (userInput.contains(".")) {
-            return userInput.substring(0, userInput.indexOf(".")); // Bye
-        } else {
-            return "Invalid command";
-=======
         try {
             String trimmedInput = userInput.trim();
             if (trimmedInput.contains(" ")) {
@@ -38,17 +32,10 @@ public class Parser {
         } catch (IllegalArgumentException e) {
             Ui.printIncorrectFormatEntered();
             return null;
->>>>>>> .merge_file_a30848
         }
     }
 
     public String getToDo() {
-<<<<<<< .merge_file_a27836
-        if (userInput.contains(".") && userInput.contains(" ")) {
-            return userInput.substring(userInput.indexOf(".") + 2); // absbsds
-        } else {
-            return "Invalid todo";
-=======
         try {
             String[] parts = userInput.split(" ", 2);
             if (parts.length == 1) {
@@ -59,7 +46,6 @@ public class Parser {
         } catch (IllegalArgumentException e) {
             Ui.printIncorrectFormatEntered();
             return null;
->>>>>>> .merge_file_a30848
         }
     }
 }
