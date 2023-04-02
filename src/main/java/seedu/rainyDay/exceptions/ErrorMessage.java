@@ -43,7 +43,7 @@ public enum ErrorMessage {
     SHORTCUT_MAPS_ITSELF("The shortcut you are trying to configure should not map to itself."),
     SHORTCUT_NAME_VALID_COMMAND("The shortcut you are trying to configure has the same name as a valid command, " +
             "please name your shortcut something else."),
-    SHORTCUT_MAPS_SHORTCUT("The shortcut you are trying to configure should not map to another shortcut");
+    SHORTCUT_MAPS_SHORTCUT("A configured shortcut should not map to another shortcut");
 
 
     private final String error;

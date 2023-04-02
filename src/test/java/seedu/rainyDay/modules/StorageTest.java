@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.exceptions.RainyDayException;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class StorageTest {
     }
 
     @Test
-    public void writeToFileTest_contentMatch() throws IOException {
+    public void writeToFileTest_contentMatch() throws IOException, NoSuchFieldException, RainyDayException {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
         FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);

@@ -1,6 +1,5 @@
 package seedu.rainyDay;
 
-import com.google.gson.JsonParseException;
 import seedu.rainyDay.command.CommandResult;
 import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.exceptions.RainyDayException;
@@ -10,7 +9,6 @@ import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.modules.Parser;
 
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +33,7 @@ public class RainyDay {
             ui.greetUser(userData.getReportOwner());
             assert userData != null : "Error loading from json file";
             logger.log(Level.INFO, "File loaded successfully.");
-        } catch (FileNotFoundException | JsonParseException e) {
+        } catch (Exception e) {
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
             String username = ui.readUserName();
