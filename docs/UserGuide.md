@@ -287,11 +287,23 @@ Format: `Rank. Priority`
 Example of usage: `Rank. Priority`
 
 ### 15) Display All Notes Of A Certain Priority Type: `FindPrior`
-Find all notes stored in the list based on the priority that users are searching for.
+* Find all notes stored in the list based on the priority that users are searching for.
+* Format: `FindPrior <Priority Type>`
+* The `<Priority Type>` must be one of the three types: `High`, `MEDIUM`, `LOW`.
 
-Format: `FindPrior <Priority Type>`
-* The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
-  Example of usage: `FindPrior. <LOW>`
+
+Example input:
+```
+FindPrior LOW
+```
+
+Expected outcome:
+````
+Here are the notes you are searching for:
+1. [LOW][N][0]note_item_1
+2. [LOW][N][0]note_item_2
+3. [LOW][N][0]note_item_3
+````
 
 ### 16) Solving Quadratic Equations: `Quadratic.`
 Solves for `x` in a quadratic equation.
