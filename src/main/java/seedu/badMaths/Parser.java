@@ -13,13 +13,13 @@ public class Parser {
 
     protected String userInput;
 
-    public Parser(String userInput) { // List. 1
+    public Parser(String userInput) { // Bye. abdscscs
         this.userInput = userInput;
     }
 
     public String getCommand() {
         if (userInput.contains(".")) {
-            return userInput.substring(0, userInput.indexOf(".")); // List
+            return userInput.substring(0, userInput.indexOf(".")); // Bye
         } else {
             return "Invalid command";
         }
@@ -27,7 +27,7 @@ public class Parser {
 
     public String getToDo() {
         if (userInput.contains(".") && userInput.contains(" ")) {
-            return userInput.substring(userInput.indexOf(".") + 2); // 1
+            return userInput.substring(userInput.indexOf(".") + 2); // absbsds
         } else {
             return "Invalid todo";
         }
