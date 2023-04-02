@@ -99,7 +99,7 @@ public class ViewCommand extends Command {
         if (validIndexes.size() == 0) {
             assert userData.getStatementCount() == 0 : "statement count mismatch";
             logger.log(Level.INFO, "empty financial report");
-            String output = "Your financial report is empty";
+            String output = String.format("Your financial report is empty for %s till %s", lowerLimit, upperLimit);
             return new CommandResult(output);
         }
         assert userData.getStatementCount() != 0 : "statement count mismatch";
