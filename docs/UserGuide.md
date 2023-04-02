@@ -210,8 +210,7 @@ Expected Output:
 
 ```
 Here are your tasks:
-1. [ ] Buy food
-  (Deadline: 2021-03-01)
+1. [ ] Buy food (Deadline: 2021-03-01)
 2. [ ] Feed the dog
 ```
 
