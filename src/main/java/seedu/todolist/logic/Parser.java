@@ -111,8 +111,6 @@ public class Parser {
             return new ListTagsCommand();
         case COMMAND_PROGRESS:
             return new ProgressBarCommand();
-        case COMMAND_CHECK:
-            return new CheckRepeatingTaskCommand();
         case COMMAND_ADD:
             return new AddTaskCommand(getArguments(splitInput, AddTaskCommand.EXPECTED_FLAGS));
         case COMMAND_MARK:
