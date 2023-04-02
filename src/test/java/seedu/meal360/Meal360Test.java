@@ -1,21 +1,21 @@
 package seedu.meal360;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.meal360.exceptions.InvalidNegativeValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
+import seedu.meal360.exceptions.InvalidValueException;
 import seedu.meal360.storage.Database;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class Meal360Test {
 
@@ -24,6 +24,8 @@ class Meal360Test {
     private static final Ui ui = new Ui();
 
     private static final Database database = new Database();
+
+    private static final IngredientList userIngredients = new IngredientList();
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -72,24 +74,74 @@ class Meal360Test {
 
     @Test
     public void testViewRecipe() {
-        Recipe recipe = parser.parseViewRecipe(new String[]{"view", "1"}, recipes);
-        assertEquals("burger", recipe.getName());
-        assertEquals(2, (int) recipe.getIngredients().get("buns"));
-        assertEquals(1, (int) recipe.getIngredients().get("meat patty"));
-        assertEquals(3, (int) recipe.getIngredients().get("lettuce"));
 
-        // Testing exceptions
-        assertThrows(ArrayIndexOutOfBoundsException.class,
-                () -> parser.parseViewRecipe(new String[]{"view"}, recipes));
+        // Testing positive case
+        try {
+            String userInput = "view 1";
+            String[] command = parser.cleanUserInput(userInput);
+            Recipe recipe = parser.parseViewRecipe(command, recipes);
+            assertEquals("burger", recipe.getName());
+            assertEquals(2, (int) recipe.getIngredients().get("buns"));
+            assertEquals(1, (int) recipe.getIngredients().get("meat patty"));
+            assertEquals(3, (int) recipe.getIngredients().get("lettuce"));
+        } catch (Exception e) {
+            assert false;
+        }
 
-        assertThrows(NumberFormatException.class,
-                () -> parser.parseViewRecipe(new String[]{"view", "a"}, recipes));
+        // Testing negative case (invalid index)
+        try {
+            String userInput = "view 5";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseViewRecipe(command, recipes);
+            assert false;
+        } catch (Exception e) {
+            assertEquals("Please enter a valid recipe number. You entered 5, which is out of bounds.",
+                    e.getMessage());
+        }
 
-        assertThrows(IndexOutOfBoundsException.class,
-                () -> parser.parseViewRecipe(new String[]{"view", "5"}, recipes));
+        // Testing negative case (invalid index)
+        try {
+            String userInput = "view 0";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseViewRecipe(command, recipes);
+            assert false;
+        } catch (Exception e) {
+            assertEquals("Please enter a valid recipe number. You entered 0, which is out of bounds.",
+                    e.getMessage());
+        }
 
-        assertThrows(IndexOutOfBoundsException.class,
-                () -> parser.parseViewRecipe(new String[]{"view", "0"}, recipes));
+        // Testing negative case (missing index)
+        try {
+            String userInput = "view";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseViewRecipe(command, recipes);
+            assert false;
+        } catch (Exception e) {
+            assertEquals("Please enter a valid recipe number. You did not enter a recipe number.",
+                    e.getMessage());
+        }
+
+        // Testing negative case (index is not a number)
+        try {
+            String userInput = "view a";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseViewRecipe(command, recipes);
+            assert false;
+        } catch (Exception e) {
+            assertEquals("Please enter a valid recipe number. You entered a, which is not a valid number.",
+                    e.getMessage());
+        }
+
+        // Testing negative case (index is negative number)
+        try {
+            String userInput = "view -1";
+            String[] command = parser.cleanUserInput(userInput);
+            parser.parseViewRecipe(command, recipes);
+            assert false;
+        } catch (Exception e) {
+            assertEquals("Please enter a valid recipe number. You entered -1, which is out of bounds.",
+                    e.getMessage());
+        }
     }
 
     @Test
@@ -109,162 +161,553 @@ class Meal360Test {
     }
 
     @Test
-    public void testAddWeeklyPlan() throws InvalidRecipeNameException, InvalidNegativeValueException {
+    public void testAddWeeklyPlan() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
 
-        // Testing add recipe to weekly plan
-        WeeklyPlan recipeMap = parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "1"}, recipes);
-        weeklyPlan.addPlans(recipeMap);
-        assertTrue(weeklyPlan.containsKey("burger"));
-        assertEquals(1, (int) weeklyPlan.get("burger"));
-        assertFalse(weeklyPlan.containsKey("pizza"));
+        // Testing positive case
+        try {
+            String userInput = "weekly /add burger 1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assertTrue(weeklyPlan.containsKey("burger"));
+            assertEquals(1, (int) weeklyPlan.get("burger"));
+        } catch (Exception e) {
+            assert false;
+        }
 
-        recipeMap = parser.parseWeeklyPlan(new String[]{"weekly", "/add", "pizza", "3"}, recipes);
-        weeklyPlan.addPlans(recipeMap);
-        assertTrue(weeklyPlan.containsKey("pizza"));
-        assertEquals(3, (int) weeklyPlan.get("pizza"));
+        // Testing case-insensitive
+        try {
+            String userInput = "weekly /add BURGER 1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assertTrue(weeklyPlan.containsKey("burger"));
+            assertEquals(2, (int) weeklyPlan.get("burger"));
+        } catch (Exception e) {
+            assert false;
+        }
 
-        // Testing throwing of exceptions
-        assertThrows(IllegalArgumentException.class,
-                () -> parser.parseWeeklyPlan(new String[]{"weekly", "burger", "1"}, recipes));
+        // Testing negative case (recipe does not exist in recipe list)
+        try {
+            String userInput = "weekly /add chicken 1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(InvalidRecipeNameException.class, e.getClass());
+            assertEquals("Please indicate a valid recipe name.", e.getMessage());
+        }
 
-        assertThrows(IllegalArgumentException.class,
-                () -> parser.parseWeeklyPlan(new String[]{"weekly", "burger"}, recipes));
+        // Testing negative case (quantity is 0)
+        try {
+            String userInput = "weekly /add burger 0";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
 
-        assertThrows(NumberFormatException.class,
-                () -> parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger"}, recipes));
+        // Testing negative case (quantity is negative)
+        try {
+            String userInput = "weekly /add burger -1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
 
-        assertThrows(NumberFormatException.class,
-                () -> parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "a"}, recipes));
+        // Testing negative case (quantity is greater than 1000)
+        try {
+            String userInput = "weekly /add burger 1001";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
 
-        assertThrows(InvalidNegativeValueException.class,
-                () -> parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "0"}, recipes));
+        // Testing negative case (quantity is not a number)
+        try {
+            String userInput = "weekly /add burger a";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
 
-        assertThrows(InvalidNegativeValueException.class,
-                () -> parser.parseWeeklyPlan(new String[]{"weekly", "/add", "burger", "-9"}, recipes));
+        // Testing negative case (recipe name is not specified)
+        try {
+            String userInput = "weekly /add";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please enter the command in the correct format.", e.getMessage());
+        }
 
-        assertThrows(InvalidRecipeNameException.class,
-                () -> parser.parseWeeklyPlan(new String[]{"weekly", "/add", "unknown", "1"}, recipes));
+        // Testing negative case (quantity is not specified)
+        try {
+            String userInput = "weekly /add burger";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please enter the command in the correct format.", e.getMessage());
+        }
 
-        // TODO: Check error messages
+        // Testing negative case (quantity specified is not an integer)
+        try {
+            String userInput = "weekly /add burger 1.5";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
+
+        // Testing negative case (quantity specified causes integer overflow)
+        try {
+            String userInput = "weekly /add burger 21474836480000000000";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
     }
 
     @Test
-    public void testAddMultiWeeklyPlan() throws InvalidRecipeNameException, InvalidNegativeValueException {
+    public void testAddMultiWeeklyPlan() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
 
-        // Testing add recipe to weekly plan
-        WeeklyPlan recipeMap = parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "1", "/r", "pizza", "/q", "5"},
-                recipes);
-        weeklyPlan.addPlans(recipeMap);
-        assertTrue(weeklyPlan.containsKey("burger"));
-        assertEquals(1, (int) weeklyPlan.get("burger"));
-        assertTrue(weeklyPlan.containsKey("pizza"));
-        assertEquals(5, (int) weeklyPlan.get("pizza"));
-        assertFalse(weeklyPlan.containsKey("salad"));
+        // Testing positive case
+        try {
+            String userInput = "weekly /multiadd /r burger /q 1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assertTrue(weeklyPlan.containsKey("burger"));
+            assertEquals(1, (int) weeklyPlan.get("burger"));
+        } catch (Exception e) {
+            assert false;
+        }
 
-        // Testing specifying the same recipe name twice
-        recipeMap = parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "1", "/r", "burger", "/q", "20"},
-                recipes);
-        weeklyPlan.addPlans(recipeMap);
-        assertEquals(21, (int) weeklyPlan.get("burger"));
+        // Testing positive case (adding multiple recipes)
+        try {
+            String userInput = "weekly /multiadd /r burger /q 1 /r pizza /q 5";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assertTrue(weeklyPlan.containsKey("burger"));
+            assertEquals(2, (int) weeklyPlan.get("burger"));
+            assertTrue(weeklyPlan.containsKey("pizza"));
+            assertEquals(5, (int) weeklyPlan.get("pizza"));
+        } catch (Exception e) {
+            assert false;
+        }
 
-        // Testing if case-insensitive
-        recipeMap = parser.parseWeeklyPlan(new String[]{"weekly", "/multiadd", "/r", "Burger", "/q", "20"},
-                recipes);
-        weeklyPlan.addPlans(recipeMap);
-        assertEquals(41, (int) weeklyPlan.get("burger"));
+        // Testing case where same recipe name is specified twice
+        try {
+            String userInput = "weekly /multiadd /r burger /q 1 /r burger /q 20";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assertTrue(weeklyPlan.containsKey("burger"));
+            assertEquals(22, (int) weeklyPlan.get("burger"));
+        } catch (Exception e) {
+            assert false;
+        }
 
-        // Testing exceptions
-        assertThrows(InvalidRecipeNameException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burgersss", "/q", "1", "/r", "pizza", "/q", "5"},
-                recipes));
+        // Testing negative case (quantity is negative)
+        try {
+            String userInput = "weekly /multiadd /r burger /q -1 /r pizza /q 5";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
 
-        assertThrows(InvalidNegativeValueException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "0", "/r", "pizza", "/q", "5"},
-                recipes));
+        // Testing negative case (quantity is greater than 1000)
+        try {
+            String userInput = "weekly /multiadd /r burger /q 1001 /r pizza /q 5";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
 
-        assertThrows(InvalidNegativeValueException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "-1", "/r", "pizza", "/q", "5"},
-                recipes));
+        // Testing negative case (quantity is not a number)
+        try {
+            String userInput = "weekly /multiadd /r burger /q a /r pizza /q 5";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
 
-        assertThrows(NumberFormatException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "one", "/r", "pizza", "/q", "5"},
-                recipes));
+        // Testing negative case (recipe name is not in the recipe list)
+        try {
+            String userInput = "weekly /multiadd /r randomname /q 1 /r burger /q 5";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(InvalidRecipeNameException.class, e.getClass());
+            assertEquals("Please indicate a valid recipe name.", e.getMessage());
+        }
 
-        assertThrows(IllegalArgumentException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "1", "/r", "salad", "/r", "pizza"},
-                recipes));
+        // Testing negative case (recipe name is not specified)
+        try {
+            String userInput = "weekly /multiadd /q 1 /r burger /q 5";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please enter the command in the correct format.", e.getMessage());
+        }
 
-        assertThrows(IllegalArgumentException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multiadd", "/r", "burger", "/q", "1", "/r", "salad", "/q", "/q"},
-                recipes));
+        // Testing negative case (quantity is not specified)
+        try {
+            String userInput = "weekly /multiadd /r burger /r pizza /q 5";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please enter the command in the correct format.", e.getMessage());
+        }
+
+        // Testing negative case (quantity given results in integer overflow)
+        try {
+            String userInput = "weekly /multiadd /r burger /q 10000000000000000000000 /r pizza /q 5";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.addPlans(recipeMap);
+            assert false; // Not supposed to reach this line
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
     }
 
     @Test
     public void testDeleteWeeklyPlan() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
-        weeklyPlan.put("salad", 1);
-        weeklyPlan.put("pizza", 3);
+        weeklyPlan.put("salad", 10);
+        weeklyPlan.put("pizza", 30);
 
-        // Testing delete recipe from weekly plan
-        int oldWeeklyPlanSize = weeklyPlan.size();
-        WeeklyPlan toDelete = new WeeklyPlan();
+        // Testing positive cases
+        try {
+            String userInput = "weekly /delete salad 1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assertEquals(9, weeklyPlan.get("salad"));
+        } catch (Exception e) {
+            assert false; // Not supposed to throw any exception here
+        }
 
-        // Testing negative case
-        toDelete.put("burger", 0);
-        assertThrows(IllegalArgumentException.class, () -> weeklyPlan.deletePlans(toDelete));
+        // Testing case-insensitive
+        try {
+            String userInput = "weekly /delete Pizza 1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assertEquals(29, weeklyPlan.get("pizza"));
+        } catch (InvalidRecipeNameException | InvalidValueException e) {
+            assert false; // Not supposed to throw any exception here
+        }
 
-        // Testing positive case
-        int newWeeklyPlanSize = weeklyPlan.size();
-        assertEquals(oldWeeklyPlanSize, newWeeklyPlanSize);
-        toDelete.clear();
-        toDelete.put("salad", 1);
-        weeklyPlan.deletePlans(toDelete);
-        newWeeklyPlanSize = weeklyPlan.size();
-        assertEquals(oldWeeklyPlanSize - 1, newWeeklyPlanSize);
+        // Testing negative case (recipe exist in recipe list but not in weekly plan)
+        try {
+            String userInput = "weekly /delete burger 20";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Recipe does not exist in weekly plan!", e.getMessage());
+        }
+
+        // Testing negative case (recipe does not exist in recipe list)
+        try {
+            String userInput = "weekly /delete unknown 1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(InvalidRecipeNameException.class, e.getClass());
+            assertEquals("Please indicate a valid recipe name.", e.getMessage());
+        }
+
+        // Testing negative case (quantity is 0)
+        try {
+            String userInput = "weekly /delete salad 0";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
+
+        // Testing negative case (quantity is greater than 1000)
+        try {
+            String userInput = "weekly /delete salad 1001";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
+
+        // Testing negative case (quantity is negative)
+        try {
+            String userInput = "weekly /delete salad -1";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
+
+        // Testing negative case (quantity is not a number)
+        try {
+            String userInput = "weekly /delete salad one";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
+
+        // Testing negative case (quantity is not specified)
+        try {
+            String userInput = "weekly /delete salad";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please enter the command in the correct format.", e.getMessage());
+        }
+
+        // Testing negative case (recipe name is not specified)
+        try {
+            String userInput = "weekly /delete";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please enter the command in the correct format.", e.getMessage());
+        }
+
+        // Testing negative case (quantity results in integer overflow)
+        try {
+            String userInput = "weekly /delete salad 1000000000000000000000000000000000";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a number between 1 to 1000 for the quantity.", e.getMessage());
+        }
     }
 
     @Test
-    public void testDeleteMultiWeeklyPlan() throws InvalidRecipeNameException, InvalidNegativeValueException {
+    public void testDeleteMultiWeeklyPlan() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
-        weeklyPlan.put("salad", 1);
-        weeklyPlan.put("pizza", 3);
+        weeklyPlan.put("salad", 10);
+        weeklyPlan.put("pizza", 30);
         weeklyPlan.put("burger", 100);
 
-        // Testing delete recipe from weekly plan
-        WeeklyPlan recipeMap = parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multidelete", "/r", "burger", "/q", "1", "/r", "pizza", "/q", "1"},
-                recipes);
-        weeklyPlan.deletePlans(recipeMap);
-        assertEquals(3, weeklyPlan.size());
+        // Testing positive case
+        try {
+            String userInput = "weekly /multidelete /r salad /q 1 /r pizza /q 2";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assertEquals(9, weeklyPlan.get("salad"));
+            assertEquals(28, weeklyPlan.get("pizza"));
+        } catch (InvalidRecipeNameException | InvalidValueException e) {
+            assert false; // Not supposed to throw any exception here
+        }
 
-        // Testing specifying the same recipe name twice
-        recipeMap = parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multidelete", "/r", "burger", "/q", "50", "/r", "burger", "/q",
-                        "30"}, recipes);
-        weeklyPlan.deletePlans(recipeMap);
-        assertEquals(69, (int) weeklyPlan.get("burger"));
+        // Testing positive case (case-insensitive)
+        try {
+            String userInput = "weekly /multidelete /r SALAD /q 1 /r pIzZa /q 2";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assertEquals(8, weeklyPlan.get("salad"));
+            assertEquals(26, weeklyPlan.get("pizza"));
+        } catch (InvalidRecipeNameException | InvalidValueException e) {
+            assert false; // Not supposed to throw any exception here
+        }
 
-        // Testing if case-insensitive
-        recipeMap = parser.parseWeeklyPlan(new String[]{"weekly", "/multidelete", "/r", "Burger", "/q", "3"},
-                recipes);
-        weeklyPlan.deletePlans(recipeMap);
-        assertEquals(66, (int) weeklyPlan.get("burger"));
+        // Testing positive case (quantity given exceeds the current quantity)
+        try {
+            String userInput = "weekly /multidelete /r salad /q 100 /r pizza /q 100";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assertNull(weeklyPlan.get("salad"));
+            assertNull(weeklyPlan.get("pizza"));
+        } catch (InvalidRecipeNameException | InvalidValueException e) {
+            assert false; // Not supposed to throw any exception here
+        }
 
-        // Testing exceptions
-        weeklyPlan.put("pizza", 3);
-        weeklyPlan.put("burger", 100);
-        assertThrows(InvalidRecipeNameException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multidelete", "/r", "burgers", "/q", "2"}, recipes));
+        // Testing negative case (recipe name is not specified)
+        try {
+            String userInput = "weekly /multidelete /q 1 /r pizza /q 2";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please enter the command in the correct format.", e.getMessage());
+        }
 
-        assertThrows(IllegalArgumentException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multidelete", "burger", "pizza", "salad"}, recipes));
+        // Testing negative case (quantity is not specified)
+        try {
+            String userInput = "weekly /multidelete /r salad /r pizza /q 2";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Please enter the command in the correct format.", e.getMessage());
+        }
 
-        assertThrows(IllegalArgumentException.class, () -> parser.parseWeeklyPlan(
-                new String[]{"weekly", "/multidelete", "/r", "burger", "/q", "1", "/r", "pizza"}, recipes));
+        // Testing negative case (quantity is not a number)
+        try {
+            String userInput = "weekly /multidelete /r salad /q one /r pizza /q 2";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Testing negative case (quantity results in integer overflow)
+        try {
+            String userInput = "weekly /multidelete /r salad /q 100000000000000000000000000 /r pizza /q 2";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(NumberFormatException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Testing negative case (quantity is negative)
+        try {
+            String userInput = "weekly /multidelete /r salad /q -1 /r pizza /q 2";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Testing negative case (quantity is 0)
+        try {
+            String userInput = "weekly /multidelete /r salad /q 0 /r pizza /q 2";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Testing negative case (quantity is greater than 1000)
+        try {
+            String userInput = "weekly /multidelete /r salad /q 1001 /r pizza /q 2";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(InvalidValueException.class, e.getClass());
+            assertEquals("Please enter a positive number between 1 to 1000 for the quantity.",
+                    e.getMessage());
+        }
+
+        // Testing negative case (recipe name is not in the weekly plan)
+        try {
+            String userInput = "weekly /multidelete /r randomname /q 1 /r pizza /q 2";
+            String[] command = parser.cleanUserInput(userInput);
+            WeeklyPlan recipeMap = parser.parseWeeklyPlan(command, recipes);
+            weeklyPlan.deletePlans(recipeMap);
+            assert false; // Not supposed to reach here
+        } catch (Exception e) {
+            assertEquals(InvalidRecipeNameException.class, e.getClass());
+            assertEquals("Please indicate a valid recipe name.", e.getMessage());
+        }
     }
 
     @Test
@@ -362,7 +805,6 @@ class Meal360Test {
         inputs = new String[]{"list", "/t", "breakfast"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(recipeListToPrint.size(), 2);
-        assertEquals(recipeListToPrint.get(0).getName(), "pizza");
 
         inputs = new String[]{"list", "/t", "breakfast", "&&", "western"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);

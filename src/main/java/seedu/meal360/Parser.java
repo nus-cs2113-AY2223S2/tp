@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import seedu.meal360.exceptions.IngredientNotFoundException;
-import seedu.meal360.exceptions.InvalidNegativeValueException;
+import seedu.meal360.exceptions.InvalidValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
 
 import java.time.format.DateTimeFormatter;
@@ -413,7 +413,7 @@ public class Parser {
 
     public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes)
             throws ArrayIndexOutOfBoundsException, NumberFormatException, InvalidRecipeNameException,
-            InvalidNegativeValueException {
+            InvalidValueException {
         WeeklyPlan updatedWeeklyPlan;
         switch (command[1]) {
         case "/add":
@@ -437,8 +437,13 @@ public class Parser {
     }
 
     private WeeklyPlan parseEditSingleWeeklyPlan(String[] command, RecipeList recipes)
-            throws InvalidNegativeValueException, InvalidRecipeNameException {
+            throws InvalidValueException, InvalidRecipeNameException {
         int numDays;
+
+        if (command.length < 4) {
+            throw new IllegalArgumentException("Please enter the command in the correct format.");
+        }
+
         try {
             numDays = Integer.parseInt(command[command.length - 1]);
         } catch (NumberFormatException e) {
@@ -446,7 +451,7 @@ public class Parser {
         }
 
         if (numDays > 1000 || numDays < 1) {
-            throw new NumberFormatException("Please enter a number between 1 to 1000 for the quantity.");
+            throw new InvalidValueException("Please enter a number between 1 to 1000 for the quantity.");
         }
 
         int nameLastIndex = command.length - 1;
@@ -465,7 +470,12 @@ public class Parser {
     }
 
     private WeeklyPlan parseEditMultiWeeklyPlan(String[] command, RecipeList recipes)
-            throws InvalidNegativeValueException, InvalidRecipeNameException {
+            throws InvalidValueException, InvalidRecipeNameException {
+        int quantity;
+        if (command.length < 6) {
+            throw new IllegalArgumentException("Please enter the command in the correct format.");
+        }
+
         WeeklyPlan recipesToEdit = new WeeklyPlan();
         ArrayList<Integer> quantities = new ArrayList<>();
         ArrayList<String> recipeNames = new ArrayList<>();
@@ -478,9 +488,14 @@ public class Parser {
                 startIndices.add(i);
             } else if (command[i].equals("/q")) {
                 endIndices.add(i);
-                int quantity = Integer.parseInt(command[i + 1]);
+                try {
+                    quantity = Integer.parseInt(command[i + 1]);
+                } catch (NumberFormatException e) {
+                    throw new NumberFormatException(
+                            "Please enter a positive number between 1 to 1000 for the quantity.");
+                }
                 if (quantity < 1 || quantity > 1000) {
-                    throw new InvalidNegativeValueException(
+                    throw new InvalidValueException(
                             "Please enter a positive number between 1 to 1000 for the quantity.");
                 }
                 quantities.add(quantity);
@@ -490,7 +505,7 @@ public class Parser {
         // Checks that command is entered in the correct
         if (startIndices.size() != endIndices.size() || startIndices.size() == 0) {
             throw new IllegalArgumentException(
-                    "Please ensure that the command is entered in the correct format.");
+                    "Please enter the command in the correct format.");
         }
 
         // Building the recipe names

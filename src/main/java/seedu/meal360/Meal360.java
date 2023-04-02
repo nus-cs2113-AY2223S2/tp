@@ -3,7 +3,7 @@ package seedu.meal360;
 import java.io.IOException;
 import java.util.Scanner;
 import seedu.meal360.exceptions.IngredientNotFoundException;
-import seedu.meal360.exceptions.InvalidNegativeValueException;
+import seedu.meal360.exceptions.InvalidValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
 import seedu.meal360.storage.Database;
 
@@ -184,7 +184,7 @@ public class Meal360 {
                     ui.printMessage("Please enter a valid command.");
                     break;
                 }
-            } catch (IllegalArgumentException | InvalidNegativeValueException | InvalidRecipeNameException |
+            } catch (IllegalArgumentException | InvalidValueException | InvalidRecipeNameException |
                      ArrayIndexOutOfBoundsException e) {
                 ui.printMessage(e.getMessage());
             }

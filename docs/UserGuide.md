@@ -13,6 +13,10 @@ ___
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `Meal360`
    from [here](https://github.com/AY2223S2-CS2113-F10-3/tp/releases).
+3. Upon the first launch, the app will create a `database` folder in the same directory as the
+   `tp.jar` file. This folder will contain all the data files that the app will use. Please do not
+   touch these files to ensure smooth operation of the app.
+4. To allow for immediate testing of features, the app comes preloaded with 10 recipes.
 
 ___
 
@@ -170,7 +174,7 @@ Format: `weekly /add RECIPE_NAME QUANTITY`
   representing the number of days the user plans to prepare the recipe within the week.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
 * The quantity **must be a positive
-  integer** 1,2,3, ...
+  integer** between 1 and 1000.
 
 Example of usage:
 
@@ -188,7 +192,7 @@ Format: `weekly /multiadd [/r RECIPE_NAME /q QUANTITY]`
 * Each `RECIPE_NAME` and `QUANTITY` requires `/r` and `/q` before it respectively.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
 * The quantity **must be a positive
-  integer** 1,2,3, ...
+  integer** between 1 and 1000.
 * If the same recipe is specified multiple times, only the **last** quantity specified
   will be used.
 
@@ -205,6 +209,8 @@ Format: `weekly /delete RECIPE_NAME`
 
 * Deletes the specified `RECIPE_NAME` to this week's plan.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
+* The quantity **must be a positive
+  integer** between 1 and 1000.
 
 Example of usage:
 
@@ -221,7 +227,7 @@ Format: `weekly /multidelete [/r RECIPE_NAME /q QUANTITY]`
 * Each `RECIPE_NAME` and `QUANTITY` requires `/r` and `/q` before it respectively.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
 * The quantity **must be a positive
-  integer** 1,2,3, ...
+  integer** between 1 and 1000.
 * If the same recipe is specified multiple times, only the **last** quantity specified
   will be used.
 
