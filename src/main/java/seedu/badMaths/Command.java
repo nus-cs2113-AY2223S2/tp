@@ -46,6 +46,16 @@ public class Command {
         return (index < 0 || index >= notes.getSize());
     }
 
+    public boolean isNotAnInt(String todo) {
+        try {
+            Integer.parseInt(todo);
+        } catch (NumberFormatException numberException) {
+            Ui.printInvalidNumberEntered();
+            return false;
+        }
+        return true;
+    }
+
     public void executeCommand(NotesList notes) {
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
         Calculator calculator = new Calculator();
@@ -84,6 +94,9 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "List":
+                if (isNotAnInt(toDo) == false) {
+                    break;
+                }
                 if (isInvalidTodo(toDo)) {
                     Ui.printNotes(notes.getAll());
                     break;
@@ -98,6 +111,9 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Delete":
+                if (isNotAnInt(toDo) == false) {
+                    break;
+                }
                 int deleteIndex = Integer.parseInt(toDo) - 1; // deleteIndex == 3
                 if (isInvalidIndex(deleteIndex, notes) == true) { // if true
                     throw new IllegalIndexException();
@@ -107,6 +123,9 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Mark":
+                if (isNotAnInt(toDo) == false) {
+                    break;
+                }
                 int markIndex = Integer.parseInt(toDo) - 1;
                 if (isInvalidIndex(markIndex, notes)) {
                     throw new IllegalIndexException();
@@ -116,6 +135,9 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Unmark":
+                if (isNotAnInt(toDo) == false) {
+                    break;
+                }
                 int unmarkIndex = Integer.parseInt(toDo) - 1;
                 if (isInvalidIndex(unmarkIndex, notes)) {
                     throw new IllegalIndexException();
