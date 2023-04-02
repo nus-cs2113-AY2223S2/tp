@@ -4,6 +4,9 @@ import seedu.pettracker.data.Pet;
 import seedu.pettracker.data.PetList;
 import seedu.pettracker.data.Task;
 import seedu.pettracker.data.TaskList;
+import seedu.pettracker.exceptions.InvalidStatException;
+import seedu.pettracker.exceptions.NonPositiveIntegerException;
+import seedu.pettracker.exceptions.PetNotFoundException;
 import seedu.pettracker.ui.Ui;
 
 import java.io.File;
@@ -25,6 +28,7 @@ public class Storage {
 
     /**
      * Checks if pet output file exists, else creates it
+     *
      * @param ui Ui to print error if needed
      */
     public void createPetFile(Ui ui) {
@@ -42,7 +46,7 @@ public class Storage {
         }
     }
 
-    public void loadPetFile(Ui ui)  {
+    public void loadPetFile(Ui ui) {
         try {
             ArrayList<String> data = readFile(petFilePath);
             parsePetFile(data);
@@ -50,8 +54,10 @@ public class Storage {
             ui.fileIOErrorMessage();
         }
     }
+
     /**
      * Checks if task output file exists, else creates it
+     *
      * @param ui Ui to print error if needed
      */
     public void createTaskFile(Ui ui) {
@@ -69,7 +75,7 @@ public class Storage {
         }
     }
 
-    public void loadTaskFile(Ui ui)  {
+    public void loadTaskFile(Ui ui) {
         try {
             ArrayList<String> data = readFile(taskFilePath);
             parseTaskFile(data);
@@ -92,8 +98,9 @@ public class Storage {
 
     /**
      * Saves the current pet list into the pet output file
+     *
      * @param petList ArrayList of all pets
-     * @param ui Ui to print error if needed
+     * @param ui      Ui to print error if needed
      */
     public void savePets(ArrayList<Pet> petList, Ui ui) {
         try {
@@ -113,10 +120,12 @@ public class Storage {
 
         fw.close();
     }
+
     /**
      * Saves the current task list into the task output file
+     *
      * @param taskList ArrayList of all tasks
-     * @param ui Ui to print error if needed
+     * @param ui       Ui to print error if needed
      */
     public void saveTasks(ArrayList<Task> taskList, Ui ui) {
         try {
@@ -143,18 +152,28 @@ public class Storage {
             PetList.addPet(petName);
 
             String petType = getPetType(line);
-            if (!petType.equals("")) {
-                PetList.addStat(petName, "type", petType);
-            }
+            try {
+                if (!petType.equals("")) {
+                    PetList.addStat(petName, "type", petType);
+                }
 
-            String age = getAge(line);
-            if (!age.equals("")) {
-                PetList.addStat(petName, "age", age);
-            }
+                String age = getAge(line);
+                if (!age.equals("")) {
+                    PetList.addStat(petName, "age", age);
+                }
 
-            String weight = getWeight(line);
-            if (!weight.equals("")) {
-                PetList.addStat(petName, "weight", weight);
+                String weight = getWeight(line);
+                if (!weight.equals("")) {
+                    PetList.addStat(petName, "weight", weight);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Output File has non-integer values for age/weight");
+            } catch (NonPositiveIntegerException e) {
+                System.out.println("Output File has non-positive values for age/weight");
+            } catch (InvalidStatException e) {
+                System.out.println("Output File has invalid Stats");
+            } catch (PetNotFoundException e) {
+                System.out.println("Stat belongs to a pet that does not exist");
             }
         }
     }

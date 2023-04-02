@@ -1,5 +1,8 @@
 package seedu.pettracker.data;
 
+import seedu.pettracker.exceptions.InvalidStatException;
+import seedu.pettracker.exceptions.NonPositiveIntegerException;
+import seedu.pettracker.exceptions.PetNotFoundException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 
@@ -41,17 +44,21 @@ public class PetList {
         return petList.get(index);
     }
 
-    public static void addStat(String petName, String statName, String statValue) {
+    public static void addStat(String petName, String statName, String statValue)
+            throws NumberFormatException, NonPositiveIntegerException, InvalidStatException, PetNotFoundException{
         int index = PetList.find(petName);
         if (index == -1) {
-            System.out.println("ERROR: Pet not Found");
+            throw new PetNotFoundException();
         } else {
             petList.get(index).addStat(statName, statValue);
         }
     }
 
-    public static void removeStat(String petName, String statName) {
+    public static void removeStat(String petName, String statName) throws InvalidStatException, PetNotFoundException {
         int index = PetList.find(petName);
+        if (index == -1) {
+            throw new PetNotFoundException();
+        }
         petList.get(index).removeStat(statName);
     }
 
@@ -86,8 +93,12 @@ public class PetList {
         return numberOfPets;
     }
 
-    public static void editPetStats(String petName, String stat, String newValue) {
+    public static void editPetStats(String petName, String stat, String newValue)
+            throws NonPositiveIntegerException, NumberFormatException, InvalidStatException, PetNotFoundException {
         int index = PetList.find(petName);
+        if (index == -1) {
+            throw new PetNotFoundException();
+        }
         Pet petToEdit = PetList.get(index);
         switch (stat.toLowerCase()) {
         case "name":
@@ -103,10 +114,11 @@ public class PetList {
             petToEdit.setWeight(newValue);
             break;
         default:
-            System.out.println("Invalid stat");
+            throw new InvalidStatException();
         }
     }
-    public static void savePetsToStorage(Storage storage, Ui ui){
-        storage.savePets(petList,ui);
+
+    public static void savePetsToStorage(Storage storage, Ui ui) {
+        storage.savePets(petList, ui);
     }
 }
