@@ -89,16 +89,16 @@ Example input:
  ```
  Matrix. [1,2;3,4] .* [4,5;6,7]
  ```
-### 3) Store Notes:
+### 3) Store Notes: `Store. `
 Adds a new item to the Notes list.
 
 Format: `Store. <item description>`
 Example of usage: `Store. index`
 
-### 4) Display all Notes:
+### 4) Display all Notes: `List. `
 Display a list of all items stored by user.
 
-Format: `List.`
+Format: `List.` 
 Example of usage: `List.`
 
 ### 5) Display a specific note:
@@ -113,52 +113,38 @@ Delete a particular item stored in the Notes list.
 Format: `Delete. <number>`
 Example of usage: `Delete. 1`
 
-### 7) Mark Notes:
+### 7) Clear all notes stored in Notes List:
+Delete all note items stored in Notes List.
+
+Format: `Clear.`
+
+### 8) Mark Notes:
 Mark a particular item in Notes List as completed.
 
 Format: `Mark. <number>`
 Example of usage: `Mark. 1`
 
-### 8) Unmark Notes:
+### 9) Unmark Notes:
 Unmark a particular item in Notes List as incomplete.
 
 Format: `Unmark. <number>`
 
-### 9) List all completed items:
+### 10) List all completed items:
 Display a list of all note items marked as completed.
 
 Format: `FindMark.`
 Example of usage: `FindMark.`
 
-### 10) List all uncompleted notes:
+### 11) List all uncompleted notes:
 Display a list of all incomplete note items.
 
 Format: `FindUnmark.`
 Example of usage: `FindUnmark.`
 
-### 11) Find notes using keyword:
+### 12) Find notes using keyword:
 Find items stored in Notes List by searching for a keyword.
 
 Format: `FindInfo. <description>`
-
-### 12) Display all notes based on priority types:
-Display all items stored in the Notes List based on the respective priority rankings.
-
-Format: `Rank. Priority`
-Example of usage: `Rank. Priority`
-
-### 13) Display all notes of a certain priority type:
-Find all notes stored in the list based on priority that users are searching for
-
-Format: `FindPrior. <Priority Type>`
-* The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
-  Example of usage: `FindPrior. <LOW>`
-
-### 14) Clear all notes stored in Notes List:
-Delete all note items stored in Notes List.
-
-Format: `Clear.`
-
 
 ### 15) Prioritize a note
 Change the priority of a certain note in the notes list.
@@ -189,6 +175,19 @@ You have changed its priority to MEDIUM
 3: [MEDIUM][N][0]Note 3
 ````
 
+### 13) Display all notes based on all priority types:
+Display all items stored in the Notes List based on the respective priority rankings.
+
+Format: `Rank. Priority`
+Example of usage: `Rank. Priority`
+
+### 14) Display all notes of a certain priority type:
+Find all notes stored in the list based on priority that users are searching for
+
+Format: `FindPrior. <Priority Type>`
+* The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
+  Example of usage: `FindPrior. <LOW>`
+
 ### 16) Solving Quadratic Equations: `Quadratic.`
 Solves for `x` in a quadratic equation.
 
@@ -203,8 +202,14 @@ Examples:
 - Input: `Quadratic. 2x^2 + 2x + 1` Output: `x is imaginary.`
 - Input: `Quadratic. x^2 + 4x - 5` Output: `x1 = 1.0 , x2 = -5.0`
 
-### 17) Exit MathHelp:
-Exit and leave MathHelp:
+### 17) View Help Manual: `Help.`
+
+View the content of Help Manual.
+Format: `Help.`
+
+
+### 18) Exit BadMaths:
+Exit and leave BadMaths:
 
 Format: `Bye.`
 
@@ -215,11 +220,6 @@ Expected outcome:
 ````
 Goodbye!
 ````
-
-### 18) View Help Manual: `Help.`
-
-View the content of Help Manual.
-Format: `Help.`
 
 ## FAQ
 
