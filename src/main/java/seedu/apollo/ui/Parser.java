@@ -150,14 +150,24 @@ public class Parser {
 
                 return new HelpCommand();
             }
+
+
             if (isTwoWord(split)) {
-                return chooseHelpCommand(split[1]);
+                String[] furthersplit = split[1].split(" ",2);
+                if(furthersplit.length > 1) {
+                    throw new IllegalCommandException();
+                }
+                else try {
+                    return chooseHelpCommand(furthersplit[0]);
+                } catch(IllegalArgumentException e){
+                    throw new IllegalCommandException();
+                }
+
+
 
             }
 
-            else if(split.length > 2) {
-                throw new IllegalCommandException();
-            }
+
         case COMMAND_LIST_WORD:
             if (!isOneWord(split)) {
                 throw new IllegalCommandException();
