@@ -3,7 +3,12 @@ package seedu.parser;
 import seedu.commands.Command;
 import seedu.commands.IncorrectSyntaxCommand;
 import seedu.commands.countcommands.CountSetsRepsCommand;
-import seedu.commands.workoutcommands.*;
+import seedu.commands.workoutcommands.AddWorkoutCommand;
+import seedu.commands.workoutcommands.DeleteWorkoutCommand;
+import seedu.commands.workoutcommands.ListWorkoutCommand;
+import seedu.commands.workoutcommands.StartWorkoutCommand;
+import seedu.commands.workoutcommands.ViewWorkoutCommand;
+import seedu.commands.workoutcommands.StartDayCommand;
 import seedu.workout.Exercise;
 
 import java.text.ParseException;
@@ -17,7 +22,7 @@ public class CheckInputs {
 
     static Command processDay(String arguments) {
         Date date = parseDate(arguments);
-       // Command.setDay(date);
+        // Command.setDay(date);
         return date != null && parseInput(arguments) ? new StartDayCommand(date) :
                 new IncorrectSyntaxCommand("/day command");
     }
@@ -47,8 +52,6 @@ public class CheckInputs {
      * @return Incorrect command if the input date is incorrect, otherwise, initialize the StartCommand
      */
     static Command processStart(String arguments) {
-        //String workout = parseDate(arguments);
-       // String workout = parseWorkoutName(arguments);
         return parseWorkoutName(arguments) ? new StartWorkoutCommand(arguments) :
                 new IncorrectSyntaxCommand("/start command");
 
@@ -71,13 +74,14 @@ public class CheckInputs {
         return arguments == null || arguments.trim().isEmpty() ? new ListWorkoutCommand() :
                 new IncorrectSyntaxCommand("/list command");
     }
+
     /**
      * This method is used to check the "/view" command
+     *
      * @param arguments Date input
      * @return Incorrect command if the input date is incorrect, otherwise, initialize the ViewCommand
      */
     //@@ author Richardtok
-
     static Command processView(String arguments) {
         Date date;
         try {
@@ -103,6 +107,7 @@ public class CheckInputs {
 
     /**
      * This method is used to check the input date format
+     *
      * @param arguments inputs date
      * @return return null if the date format is invalid
      */
@@ -125,6 +130,7 @@ public class CheckInputs {
 
     /**
      * This method is used to check the input command based on the format and the date
+     *
      * @param arguments input
      * @return return false if the input does not follow the format
      */
@@ -168,8 +174,8 @@ public class CheckInputs {
         return true; // input is in the correct format
     }
 
-    public static boolean parseWorkoutName(String arguments){
-        if(!arguments.trim().startsWith("Workout")){
+    public static boolean parseWorkoutName(String arguments) {
+        if (!arguments.trim().startsWith("Workout")) {
             System.out.println("The workout name should start with 'Workout'");
             return false;
         }

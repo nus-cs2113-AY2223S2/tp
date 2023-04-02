@@ -1,23 +1,11 @@
 package seedu.storage;
 
 
-import seedu.commands.Command;
-import seedu.parser.DateFormatter;
-import seedu.workout.Exercise;
 import seedu.workout.Workout;
-import seedu.workout.WorkoutList;
-
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.FileReader;
-
-
-import java.text.ParseException;
 import java.util.Date;
 
 
-public class ReadFile extends Storage{
+public class ReadFile extends Storage {
 
     private static Workout toStart;
     private static Date date;
@@ -33,7 +21,7 @@ public class ReadFile extends Storage{
     public static void readFile(String filePath) {
         //WorkoutList workoutList = Command.getWorkoutList();
 
-        File savedFile = new File(filePath);
+        /*File savedFile = new File(filePath);
         if (!savedFile.getParentFile().exists()) {
             savedFile.getParentFile().mkdirs();
 
@@ -76,6 +64,7 @@ public class ReadFile extends Storage{
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+    }*/
     }
 }
 

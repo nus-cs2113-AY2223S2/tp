@@ -1,9 +1,9 @@
 package seedu.workout;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+//@@ author ZIZI-czh
 public class Day {
     private Date date;
     private HashMap<String, Workout> workoutsByDate;
@@ -15,14 +15,12 @@ public class Day {
         //workout = new Workout();
     }
 
+    //@@ author ZIZI-czh
     public Day() {
         this.workoutsByDate = new HashMap<>();
     }
 
-   /* public Date getDate() {
-        return date;
-    }*/
-
+    //@@ author ZIZI-czh
     public void addWorkout(String workoutName, Workout workout) {
         workoutsByDate.put(workoutName, workout);
         setWorkout(workout);
@@ -30,24 +28,24 @@ public class Day {
     }
 
 
+    //@@ author ZIZI-czh
     public Workout getWorkout() {
         return this.workout;
     }
 
 
+    //@@ author ZIZI-czh
     public void setWorkout(Workout workout) {
         this.workout = workout;
     }
 
-    /*public Workout getWorkouts(String name) {
-                return workouts.get(name);
-            }*/
+    //@@ author ZIZI-czh
     public HashMap<String, Workout> getWorkoutsByDate() {
         return this.workoutsByDate;
     }
 
+    //@@ author ZIZI-czh
     public void setWorkoutsByDate(HashMap<String, Workout> workoutsByDate) {
         this.workoutsByDate = workoutsByDate;
     }
-
 }

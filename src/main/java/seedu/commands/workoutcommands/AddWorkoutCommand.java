@@ -1,39 +1,30 @@
 package seedu.commands.workoutcommands;
 
-
 import seedu.commands.Command;
-import seedu.workout.Day;
 import seedu.workout.Exercise;
-import seedu.workout.Workout;
 
-import java.util.Date;
-import java.util.HashMap;
-
-
+//@@ author ZIZI-czh
 public class AddWorkoutCommand extends Command {
-    //private final WorkoutList workoutList;
-
-    //private Workout workout;
     private static Exercise exercise;
-    private final String SHOW_EXERCISES_ADDED = "  has been added";
-    private final String MISSING_WORKOUT = "Please enter your workout before adding exercises.";
+    private static final String SHOW_EXERCISES_ADDED = "  has been added";
+    private static final String MISSING_WORKOUT = "Please enter your workout before adding exercises.";
 
+    //@@ author ZIZI-czh
     public AddWorkoutCommand(Exercise exercise) {
-       this.exercise = exercise;
+        this.exercise = exercise;
     }
 
+    //@@ author ZIZI-czh
     @Override
     public String execute() {
         //ArrayList<Exercise> exercises = Workout.getExercises();
-        if(isWorkoutEntered) {
+        if (isWorkoutEntered) {
             day = workoutList.getSingleWorkout();
             workoutForOneDay = day.getWorkout();
-           workoutForOneDay.addExercise(exercise);
+            workoutForOneDay.addExercise(exercise);
             return exercise + SHOW_EXERCISES_ADDED;
-        }else{
+        } else {
             return MISSING_WORKOUT;
         }
     }
-
-
 }

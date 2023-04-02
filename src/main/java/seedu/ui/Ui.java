@@ -1,10 +1,6 @@
 package seedu.ui;
 
 
-import seedu.workout.Exercise;
-
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Ui {
@@ -64,6 +60,5 @@ public class Ui {
         return HELP_MESSAGE;
     }
 
-    //@@ author guillaume-grn
 
 }

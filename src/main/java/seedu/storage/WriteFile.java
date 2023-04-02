@@ -1,23 +1,17 @@
 package seedu.storage;
 
-import seedu.commands.Command;
-import seedu.parser.DateFormatter;
-import seedu.workout.WorkoutList;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 
-
-public class WriteFile extends Storage{
+public class WriteFile extends Storage {
     private static final String SPACE = "          ";
-    public WriteFile(){
+
+    public WriteFile() {
         super();
     }
 
-    public static void writeWorkoutToFile(String filePath){
+    public static void writeWorkoutToFile(String filePath) {
         //WorkoutList workoutList = Command.getWorkoutList();
-        workoutArrayList = workoutList.getWorkoutArrayList();
+       /* workoutArrayList = workoutList.getWorkoutArrayList();
 
         try {
             File savedFile = new File(filePath);
@@ -45,6 +39,6 @@ public class WriteFile extends Storage{
 
 
 
+    }*/
     }
 }
-

@@ -4,11 +4,7 @@ package seedu.parser;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.commands.InvalidCommand;
-import seedu.commands.workoutcommands.EndWorkoutCommand;
 import seedu.commands.workoutcommands.HelpWorkoutCommand;
-import seedu.commands.workoutcommands.StartDayCommand;
-import seedu.commands.workoutcommands.StartWorkoutCommand;
-import seedu.duke.Duke;
 import seedu.exceptions.InvalidSyntaxException;
 
 import java.util.regex.Matcher;
@@ -39,8 +35,6 @@ public class Parser {
             return CheckInputs.processStart(arguments);
         case "/wadd":
             return CheckInputs.processAdd(arguments);
-        /*case "/end":
-            return new EndWorkoutCommand();*/
         case "/delete":
             return CheckInputs.processDelete(arguments);
         case "/list":

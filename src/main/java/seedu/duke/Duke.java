@@ -7,7 +7,6 @@ import seedu.commands.ExitCommand;
 import seedu.commands.IncorrectSyntaxCommand;
 import seedu.exceptions.InvalidSyntaxException;
 import seedu.parser.Parser;
-import seedu.storage.ReadFile;
 import seedu.ui.Ui;
 import seedu.workout.Day;
 import seedu.workout.WorkoutList;
@@ -17,7 +16,6 @@ public class Duke {
     private WorkoutList workoutList;
     private Day day;
     private CalorieTracker calorieTracker;
-
 
 
     /*public Duke(String filePath) {
@@ -34,7 +32,6 @@ public class Duke {
         Ui.showWelcomeMessage();
         executeCommandUntilExit();
     }
-
 
     private void executeCommandUntilExit() {
         Command command;

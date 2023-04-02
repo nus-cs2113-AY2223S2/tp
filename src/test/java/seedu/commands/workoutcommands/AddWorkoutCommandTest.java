@@ -12,6 +12,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
+//@@ author ZIZI-czh
 public class AddWorkoutCommandTest {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
     private static final Date date;
@@ -24,7 +25,8 @@ public class AddWorkoutCommandTest {
         }
     }
 
-    private static final Workout currentWorkout = new Workout(date);
+    //@@ author ZIZI-czh
+    private static final Workout currentWorkout = new Workout();
 
     @Test
     public void testAddCommand() {
