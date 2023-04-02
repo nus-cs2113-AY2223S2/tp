@@ -8,6 +8,7 @@ import seedu.dukeofbooks.data.user.UserRecords;
 public class SignupCommand extends AccessCommand {
     public static final String COMMAND_WORD = "signup";
     public static final String COMMAND_USAGE = "signup -username [username] -password [password] -name [name]";
+    private static final String SIGNUP_SUCCESS = "Sign up success!";
 
     private final String username;
     private final String name;
@@ -21,7 +22,12 @@ public class SignupCommand extends AccessCommand {
     }
 
     @Override
-    public User execute() throws IllegalValueException {
-        return AccessController.createAccount(userRecords, username, password, name);
+    public AccessResponse execute() {
+        try {
+            User user = AccessController.createAccount(userRecords, username, password, name);
+            return new AccessResponse(user, SIGNUP_SUCCESS);
+        } catch (IllegalValueException ive) {
+            return new AccessResponse(null, ive.getMessage());
+        }
     }
 }

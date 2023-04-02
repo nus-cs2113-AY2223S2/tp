@@ -3,12 +3,12 @@ package seedu.dukeofbooks;
 
 import seedu.dukeofbooks.command.AccessCommand;
 import seedu.dukeofbooks.command.AccessHelpCommand;
+import seedu.dukeofbooks.command.AccessResponse;
 import seedu.dukeofbooks.command.CommandResult;
 import seedu.dukeofbooks.command.ExitCommand;
 import seedu.dukeofbooks.command.LogoutCommand;
 import seedu.dukeofbooks.command.UserCommand;
 import seedu.dukeofbooks.controller.SearchController;
-import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.inventory.Inventory;
 import seedu.dukeofbooks.data.loan.LoanRecords;
 import seedu.dukeofbooks.data.user.User;
@@ -114,10 +114,9 @@ public class DukeOfBooks {
         }
 
         try {
-            return accessCommand.execute();
-        } catch (IllegalValueException ive) {
-            ui.showToUser(ive.getMessage());
-            return null;
+            AccessResponse response = accessCommand.execute();
+            ui.showToUser(response.message == null  ? "" : response.message);
+            return response.user;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException();
