@@ -75,7 +75,8 @@ Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price]`
 
 OPTIONAL parameters:
 * The `n/` parameter where `[item_name]` must be alphanumeric.
-* The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value.
+* The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value not exceeding the 32-bit integer 
+limit.
 * The `p/` parameter for `[price]` must be a **non-negative numerical value** (decimals accepted).
 * The `c/` parameter for `[category]` must be alphanumeric.
 

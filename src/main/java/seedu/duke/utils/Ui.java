@@ -98,7 +98,9 @@ public class Ui {
     public static final String INVALID_RESTOCK_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
             "following format: " + "restock upc/[UPC] qty/[Quantity]";
     public static final String INVALID_ADD_QUANTITY_FORMAT = "Unable to restock item. REASON: Quantity inputs" +
-            " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!";
+            " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!" + "\n" +
+            "Also ensure that the desired quantity to be added does not cause current stock levels to exceed MAX" +
+            "\n" + "integer limit of 2147483647.";
     public static final String INVALID_DEDUCT_QUANTITY_FORMAT = "Unable to sell item. REASON: Quantity inputs" +
             " SHOULD NOT contain NEGATIVE integers, DECIMALS, ZERO(0), or STRING inputs!" + "\n" +
             "Also ensure that the desired" + " quantity to be deducted is LESS THAN current stock levels.";

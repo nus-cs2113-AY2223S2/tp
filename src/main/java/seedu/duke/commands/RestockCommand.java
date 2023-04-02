@@ -23,8 +23,8 @@ public class RestockCommand extends Command{
      * @param quantity The user input for how much is to be added to the existing quantity of the item.
      * @throws RestockErrorException Exception related to all errors associated with the "restock" command.
      */
-    private void checkQuantityValidity(int quantity) throws RestockErrorException {
-        if (quantity <= 0) {
+    private void checkQuantityValidity(int quantity, int oldQuantity) throws RestockErrorException {
+        if (quantity <= 0 || quantity + oldQuantity < 0) {
             throw new RestockErrorException();
         }
     }
@@ -44,8 +44,8 @@ public class RestockCommand extends Command{
             String updatedQuantity = data.replaceFirst("qty/", "");
             try {
                 int quantityToAdd = Integer.parseInt(updatedQuantity);
-                checkQuantityValidity(quantityToAdd);
                 int oldQuantity = item.getQuantity();
+                checkQuantityValidity(quantityToAdd, oldQuantity);
                 item.setQuantity(oldQuantity + quantityToAdd);
             } catch (NumberFormatException nfe) {
                 throw new NumberFormatException();
