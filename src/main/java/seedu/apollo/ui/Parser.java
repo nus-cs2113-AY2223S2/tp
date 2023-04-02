@@ -7,12 +7,21 @@ import seedu.apollo.command.module.AddModuleCommand;
 import seedu.apollo.command.Command;
 import seedu.apollo.command.task.DateCommand;
 import seedu.apollo.command.module.DeleteModuleCommand;
+import seedu.apollo.command.utils.DeleteHelpCommand;
 import seedu.apollo.command.utils.ExitCommand;
 import seedu.apollo.command.task.FindCommand;
+import seedu.apollo.command.utils.FindHelpCommand;
 import seedu.apollo.command.utils.HelpCommand;
 import seedu.apollo.command.task.ListCommand;
 import seedu.apollo.command.module.ListModuleCommand;
 import seedu.apollo.command.task.ModifyCommand;
+import seedu.apollo.command.utils.ListHelpCommand;
+import seedu.apollo.command.utils.TodoHelpCommand;
+import seedu.apollo.command.utils.DeadlineHelpCommand;
+import seedu.apollo.command.utils.EventHelpCommand;
+import seedu.apollo.command.utils.MarkHelpCommand;
+import seedu.apollo.command.utils.UnmarkHelpCommand;
+import seedu.apollo.command.utils.DateHelpCommand;
 import seedu.apollo.exception.module.EmptyAddModException;
 import seedu.apollo.exception.module.EmptyDelModException;
 import seedu.apollo.exception.module.EmptyShowModException;
@@ -51,6 +60,7 @@ public class Parser {
     public static final String COMMAND_LIST_MODULE_WORD = "listmod";
     public static final String COMMAND_DELETE_MODULE_WORD = "delmod";
     public static final String COMMAND_SHOW_MODULE_DETAILS_WORD = "showmod";
+
 
     /**
      * Returns the corresponding Command to the user input.
@@ -136,10 +146,20 @@ public class Parser {
             return new ExitCommand();
 
         case COMMAND_HELP_WORD:
-            if (!isOneWord(split)) {
+            if (!isOneWord(split) && (!split[1].equals("todo") &&!split[1].equals("deadline")&&!split[1].equals("event")
+                    &&!split[1].equals("mark")&&!split[1].equals("unmark")&&!split[1].equals("delete")
+                    &&!split[1].equals("find") &&!split[1].equals("date") &&!split[1].equals("addmod")
+                    &&!split[1].equals("delmod")&&!split[1].equals("week") &&!split[1].equals("showmod")
+                    &&!split[1].equals("listmod") &&!split[1].equals("list"))) {
+
+
                 throw new IllegalCommandException();
             }
-            return new HelpCommand();
+            if(isOneWord(split)) {
+                return new HelpCommand();}
+            else {
+                return chooseHelpCommand(split[1]);
+            }
 
         case COMMAND_LIST_WORD:
             if (!isOneWord(split)) {
@@ -194,11 +214,44 @@ public class Parser {
             String moduleCode = split[1];
             return new DeleteModuleCommand(moduleCode);
 
+
+
         default:
             throw new IllegalCommandException();
         }
     }
 
+    /**
+     * Method that selects which help command class to invoke
+     * @param helpCommandName
+     * @return The appropriate HelpCommandClass child
+     * @throws IllegalArgumentException If an unknown command is input by the user.
+     */
+    public static HelpCommand chooseHelpCommand(String helpCommandName) throws IllegalArgumentException{
+        switch(helpCommandName) {
+        case "list":
+            return new ListHelpCommand();
+        case "todo":
+            return new TodoHelpCommand();
+        case "deadline":
+            return new DeadlineHelpCommand();
+        case "event":
+            return new EventHelpCommand();
+        case "mark":
+            return new MarkHelpCommand();
+        case "unmark":
+            return new UnmarkHelpCommand();
+        case "delete":
+            return new DeleteHelpCommand();
+        case "find":
+            return new FindHelpCommand();
+        case "date":
+            return new DateHelpCommand();
+        default:
+            throw new IllegalArgumentException("Invalid command name: " + helpCommandName);
+
+        }
+    }
     /**
      * Checks if the user's input parameter is empty.
      *
