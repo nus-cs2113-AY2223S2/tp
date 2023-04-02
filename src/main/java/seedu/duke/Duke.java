@@ -17,10 +17,14 @@ import java.util.Scanner;
 
 public class Duke {
 
+    protected static Storage storage;
     protected Parser parser;
     protected ExpenseList expenseList;
     protected Currency currency;
-    protected Storage storage;
+
+    //TODO: arbitrary filePath
+    protected String filePath = "test.json";
+
 
     /**
      * Initialize Duke and instantiate parser and expenseList objects.
@@ -30,7 +34,7 @@ public class Duke {
         expenseList = new ExpenseList();
         currency = new Currency();
         storage = new Storage(expenseList);
-        expenseList = storage.initialiseExpenseList();
+        expenseList.setExpenseList(storage.loadExpenses(filePath));
     }
 
     public void run() {
@@ -80,7 +84,7 @@ public class Duke {
                 System.out.println("Unknown command.");
                 break;
             }
-            storage.saveExpenseList();
+            storage.saveExpenses(filePath);
         }
         in.close();
     }
