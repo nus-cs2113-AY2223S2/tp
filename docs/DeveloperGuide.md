@@ -151,6 +151,30 @@ The following sequence diagram shows how the edit operations works:
 
 ![EditDeadlineCommandSequence](images/EditDeadlineCommandSequence.png)
 
+### Repeating tasks feature
+
+The repeating tasks function extends NUS To-Do List allowing tasks to be listed as repeating for a certain number of
+occurrences.
+It is facilitated by the TaskList, Storage and Command classes. It implements the `TaskList#setRepeatDuration()` 
+which sets the number of times the task is to repeat, and `TaskList#checkRepeatingTasks()` to check for tasks stored
+in the TaskList for repeat settings.
+
+Given below is an example usage scenario and how the repeating task mechanism will behave at each step.
+
+Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
+
+Step 2. The user executes `add survey -due 20-03-2023 23:59 -rep 3` command to add a task to the To-Do List.
+The `add` command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
+
+Step 3. The user then exits the program with the saved TaskList.
+
+Step 4. The user opens the program a week after the set deadline of the `survey` task. Upon program startup, it checks 
+if any tasks in the TaskList have a repeat count of > 0. Since the existing task fulfils the condition, a new task 
+with the same description `survey` will be created, with a deadline of 1 week from the original deadline appended to the 
+task. (i.e `27-03-2023 23:59`). The repeat count of the original `survey` task will be changed to 0, whilst the new `survey`
+task will have a repeat count of 2.
+
+
 ### List tasks sorted by deadline feature
 
 This ListTasksCommand extends NUS To-Do List with an automatic sorting feature that sorts all tasks in an ascending
