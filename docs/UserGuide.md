@@ -47,7 +47,7 @@ Before you start using BadMaths, make sure you have the following ready!
 
 ## Features
 
-### 1) Graph analyser and visualiser: `Graph. `
+### 1) Graph analyser and visualiser: `Graph`
 This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
 It also displays the image of the corresponding graph.
 
@@ -63,7 +63,7 @@ Example input:
 Graph. 2*sin(5*x+2)-8
 ```
 
-### 2) Matrix calculation: `Matrix. `
+### 2) Matrix calculation: `Matrix`
 This feature accepts matrix equation and outputs calculation result.
 
 Format: `Matrix. [Matrix] [operator] [Matrix]`
@@ -91,62 +91,166 @@ Example input:
  ```
  Matrix. [1,2;3,4] .* [4,5;6,7]
  ```
-### 3) Store Notes: `Store. `
+### 3) Store Notes: `Store`
 Adds a new item to the Notes list.
 
-Format: `Store. <item description>`
-Example of usage: `Store. index`
+Format: `Store <item description>`
 
-### 4) Display all Notes: `List. `
+Example input:
+
+`Store isNote`
+
+Expected output:
+```
+You have added this note: 
+isNote
+Now you have <number> of tasks in the list
+```
+
+### 4) Display all Notes: `List`
 Display a list of all items stored by user.
 
-Format: `List.` 
-Example of usage: `List.`
+Format: `List` 
 
-### 5) Display a specific note:
+Example input:
+```
+List
+```
+Expected output:
+```
+Here are the notes you have stored:
+1. [LOW][N][0]note_item_1
+2. [LOW][N][0]note_item_2
+3. [LOW][N][0]note_item_3
+```
+
+### 5) Display a specific note: `List <index>`
 Display a particular item in the Notes list.
 
-Format: `List. <number>`
-Example of usage: `List. 1`
+Format: `List <index of list item>`
 
-### 6) Delete Notes:
+Example input:
+```
+List 2
+```
+Expected output:
+```
+Here is the note you are looking for
+2. [LOW][N][0]note_item_2
+```
+
+### 6) Delete Notes: `Delete <index>`
 Delete a particular item stored in the Notes list.
 
-Format: `Delete. <number>`
-Example of usage: `Delete. 1`
+Format: `Delete. <index of list item>`
 
-### 7) Clear all notes stored in Notes List:
+Example input:
+```
+Delete 2
+```
+Expected output:
+```
+You have removed this note:
+[LOW][N][0]note_item_2
+Now you have <number> tasks in the list.
+```
+
+### 7) Clear all notes stored in Notes List `Clear`
 Delete all note items stored in Notes List.
 
 Format: `Clear.`
 
-### 8) Mark Notes:
+Example input:
+```
+Clear
+```
+Expected output:
+```
+File content cleared successfully!
+```
+### 8) Mark Notes: `Mark`
 Mark a particular item in Notes List as completed.
+The mark bracket will change from `[N]` to `[Y]`.
 
-Format: `Mark. <number>`
-Example of usage: `Mark. 1`
+Format: `Mark <number>`
 
-### 9) Unmark Notes:
+Example input:
+```
+Mark 2
+```
+Expected output:
+```
+You have marked this note as done:
+[LOW][Y][0]note_item_2
+```
+### 9) Unmark Notes: `Unmark`
 Unmark a particular item in Notes List as incomplete.
+The mark bracket will change from `[Y]` to `[N]`.
 
-Format: `Unmark. <number>`
+Format: `Unmark <number>`
 
-### 10) List all completed items:
+Example input:
+```
+Unmark 2
+```
+Expected output:
+```
+You have unmarked this note:
+[LOW][N][0]note_item_2
+```
+### 10) List all items marked as completed: `FindMark`
 Display a list of all note items marked as completed.
+i.e. items with mark bracket `[Y]`
 
-Format: `FindMark.`
-Example of usage: `FindMark.`
+Format: `FindMark`
 
-### 11) List all uncompleted notes:
+Example input:
+```
+FindMark
+```
+Expected output:
+```
+Here are the notes you are searching for:
+1. [LOW][Y][0]note_item_1
+2. [LOW][Y][0]note_item_3
+```
+
+### 11) List all notes that are not marked as completed: `FindUnmark`
 Display a list of all incomplete note items.
+i.e. items with mark bracket `[N]`
 
-Format: `FindUnmark.`
-Example of usage: `FindUnmark.`
+Format: `FindUnmark`
 
-### 12) Find notes using keyword:
-Find items stored in Notes List by searching for a keyword.
+Example input:
+```
+FindUnmark
+```
+Expected output:
+```
+Here are the notes you are searching for:
+1. [LOW][N][0]note_item_2
+```
 
-Format: `FindInfo. <description>`
+### 12) Find notes using keyword: `FindInfo`
+Find items stored in Notes by searching for a keyword.
+
+Format: `FindInfo <description>`
+
+Assuming that the List is as follows:
+```
+1. [LOW][N][0]Add
+2. [LOW][N][0]Subtract
+3. [LOW][N][0]Multiply
+```
+Example input:
+```
+FindInfo Add
+```
+Expected output:
+```
+Here are the notes you are searching for:
+1. [LOW][N][0]Add
+```
 
 ### 15) Prioritize a note
 Change the priority of a certain note in the notes list.
@@ -204,21 +308,41 @@ Examples:
 - Input: `Quadratic. 2x^2 + 2x + 1` Output: `x is imaginary.`
 - Input: `Quadratic. x^2 + 4x - 5` Output: `x1 = 1.0 , x2 = -5.0`
 
-### 17) View Help Manual: `Help.`
-
+### 17) Help Manual `Help`
 View the content of Help Manual.
-Format: `Help.`
 
+Format: `Help`
 
-### 18) Exit BadMaths:
+Example input:
+```
+Help
+```
+Expected output:
+```
+------------------------------------------------------------------
+Hello! What can I do for you?
+------------------------------------------------------------------
+1. Type -> Graph equation <- to do graph calculation
+2. Type -> Matrix equation <- to do matrix calculation
+3. Type -> Store any_string <- to add notes
+4. Type -> List <- to list stored notes
+5. Type -> Bye <- to exit program
+-------------------------------------------------------------------
+For more details, please visit our GitHub website [https://github.com/AY2223S2-CS2113-F10-2/tp].
+If you have any queries, please contact [wilsonleejunwei@u.nus.edu].
+-------------------------------------------------------------------
+```
+
+### 18) Exit BadMaths `Bye`
 Exit and leave BadMaths:
 
-Format: `Bye.`
+Format: `Bye`
 
-Example of usage: `Bye.`
-
+Example input:
+```
+Bye
+```
 Expected outcome:
-
 ````
 Goodbye!
 ````
