@@ -51,8 +51,11 @@ public class Duke {
             System.out.println("Hello " + in.nextLine());
         }
         String input = "";
-        while (in.hasNextLine() && !input.equals("exit")) {
+        while (in.hasNextLine()) {
             input = in.nextLine();
+            if(input.equals("exit")) {
+                break;
+            }
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();

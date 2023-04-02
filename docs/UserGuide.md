@@ -23,13 +23,13 @@
 ## Features
 
 ### Adding an expense: `add`
-Adds a new item to the list of todo items.
+Adds a new item to the list of expenses.
 
-Format: `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_DESCRIPTION] [cur/EXPENSE_CURRENCY]`
+Format: `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRENCY]`
 
-* The `TIME` must be in the DD-MM-YYYY format.
+* The `TIME` must be in the DD-MM-YYYY format. Future dates beyond today's date and Past dates before 1981 are invalid.
 * The `EXPENSE_AMOUNT` must be an integer or decimal number.  
-* The `EXPENSE_DESCRIPTION` can be any word or phrase that does not contain the backdash symbol`/` or whitespace symbol.
+* The `EXPENSE_CATERGORY` can be any string that does not contain a whitespace symbol.
 * The `EXPENSE_CURRENCY` has 22 currencies to choose from. If the input currency is not found in the list of currencies
 available, the currency will default to SGD.
 * The command parameters may be entered in any order. If multiple of the same parameter type is inputted, such as in 
