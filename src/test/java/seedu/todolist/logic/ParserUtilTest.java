@@ -53,6 +53,8 @@ class ParserUtilTest {
             }
         } catch (InvalidDateException e) {
             fail("Valid deadline was not successfully parsed.");
+        } catch (PassedDateException e) {
+            fail("Valid dateline was not successfully parsed.");
         }
     }
 
