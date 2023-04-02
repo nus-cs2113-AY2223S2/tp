@@ -18,11 +18,31 @@ public class Item {
     }
 
     private final int totalQuantity;
+    public int getUnpackedQuantity() {
+        return totalQuantity - packedQuantity;
+    }
 
+    /**
+     * Constructor of an Item class used in @AddCommand
+     * @param quantity no. of items user wants to pack
+     * @param description name of the item
+     */
     public Item(int quantity, String description) {
         this.itemName = description;
         packedQuantity = 0;
         this.totalQuantity = quantity;
+    }
+
+    /**
+     * Constructor of an Item class used in @Storage
+     * @param totalQuantity total no. of items needed to pack shown in save file
+     * @param packedQuantity no. of items currently packed shown in the save file
+     * @param description name of item to be packed shown in save file
+     */
+    public Item(int totalQuantity, int packedQuantity, String description) {
+        itemName = description;
+        this.packedQuantity = packedQuantity;
+        this.totalQuantity = totalQuantity;
     }
 
     //    public Item(String description, boolean isPacked) {

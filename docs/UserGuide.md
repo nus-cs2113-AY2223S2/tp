@@ -28,16 +28,15 @@ Users can add items of multiple quantities to their packing list, delete items, 
 
 ## <span style="color:#00A36C">Quick Start</span>
 
+#### For Windows users:
 1. Ensure that you have Java 11 installed.
    * If not, please follow the instructions here for [Windows](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-A7E27B90-A28D-4237-9383-A58B416071CA) and [macOS](https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html#GUID-2FE451B0-9572-4E38-A1A5-568B77B146DE)
 2. Download the `jar` file from the **latest release** [here](https://github.com/AY2223S2-CS2113-T14-2/tp/releases)
 3. Move this `jar` file into an empty folder on your computer.
-4. Open a command line interface, and enter the directory with the jar file.
+4. Open a command line interface, and navigate to the directory with the `jar` file using the `cd` command.
    * For Windows users: search for Command Prompt, and launch it.
-   * For macOS users:
-5. Execute the following command `java -jar Team_Project.jar`
-
-[Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span)
+   * For macOS users: search for Terminal, and launch it.
+6. Execute the following command `java -jar Team_Project.jar`
 
 ---
 
@@ -115,6 +114,16 @@ Format: `list`
 
 Examples of usage:
 * `list`
+
+Example output:
+``` 
+Here are the items in your list
+1. [1000000/1000000] tooth
+2. [0/1] toothpaste
+```
+Format explanation:
+
+`ITEM_INDEX. [CURRENTLY_PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`
 
 ### <span style="color:#6495ED">Deleting the entire list:</span> `deletelist`
 Want to start on a new packing list? This command will clear the whole packing list. 
