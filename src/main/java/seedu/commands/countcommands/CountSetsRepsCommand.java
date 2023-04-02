@@ -15,10 +15,9 @@ public class CountSetsRepsCommand extends Command {
 
     @Override
     public String execute() {
-        if (workoutList.getCurrentWorkoutIndex() == WorkoutList.NO_CURRENT_WORKOUT) {
+
             workoutList.countSetsReps(dayInSpecificWeekDate);
-            return "";
-        }
-        return "End your current workout before asking for Count command";
+        //return "End your current workout before asking for Count command";
+        return " ";
     }
 }

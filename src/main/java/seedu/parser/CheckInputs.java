@@ -1,14 +1,9 @@
 package seedu.parser;
 
-
 import seedu.commands.Command;
 import seedu.commands.IncorrectSyntaxCommand;
 import seedu.commands.countcommands.CountSetsRepsCommand;
-import seedu.commands.workoutcommands.AddWorkoutCommand;
-import seedu.commands.workoutcommands.DeleteWorkoutCommand;
-import seedu.commands.workoutcommands.ListWorkoutCommand;
-import seedu.commands.workoutcommands.StartWorkoutCommand;
-import seedu.commands.workoutcommands.ViewWorkoutCommand;
+import seedu.commands.workoutcommands.*;
 import seedu.workout.Exercise;
 
 import java.text.ParseException;
@@ -19,6 +14,13 @@ public class CheckInputs {
     private static final int WEIGHT_INDEX = 1;
     private static final int REPS_PER_SET_INDEX = 2;
 
+
+    static Command processDay(String arguments) {
+        Date date = parseDate(arguments);
+       // Command.setDay(date);
+        return date != null && parseInput(arguments) ? new StartDayCommand(date) :
+                new IncorrectSyntaxCommand("/day command");
+    }
 
     static Command processAdd(String arguments) {
         Exercise toAdd;
@@ -37,7 +39,7 @@ public class CheckInputs {
     }
 
     /**
-     * This method used to check the "/start" command
+     * This method is used to check the "/start" command
      * If the date input has incorrect format, it will notify the users
      * Otherwise, StartCommand will be executed
      *
@@ -45,13 +47,15 @@ public class CheckInputs {
      * @return Incorrect command if the input date is incorrect, otherwise, initialize the StartCommand
      */
     static Command processStart(String arguments) {
-        Date date = parseDate(arguments);
-        return date != null && parseInput(arguments) ? new StartWorkoutCommand(date) :
+        //String workout = parseDate(arguments);
+       // String workout = parseWorkoutName(arguments);
+        return parseWorkoutName(arguments) ? new StartWorkoutCommand(arguments) :
                 new IncorrectSyntaxCommand("/start command");
+
     }
 
     /**
-     * This method used to check the "/delete" command
+     * This method is used to check the "/delete" command
      *
      * @param arguments Date input
      * @return Incorrect command if the input date is incorrect, otherwise, initialize the StartCommand
@@ -129,19 +133,19 @@ public class CheckInputs {
     private static boolean parseInput(String arguments) {
         //arguments.trim().contains("\\s+");
         if (arguments.trim().contains("\\s+")) {
-            System.out.println("invalid input date, please use the format /start dd/MM/yyyy");
+            System.out.println("invalid input date, please use the format /start dd/MM/yy");
             return false; // not in the form "/start dd/MM/yy"
         }
         String[] dateParts = arguments.trim().split("/");
 
         if (dateParts.length != 3) {
-            System.out.println("invalid input, please use the format dd/MM/yyyy");
+            System.out.println("invalid input, please use the format dd/MM/yy");
             return false; // not in the form "dd/MM/yy"
         }
 
         for (String part : dateParts) {
             if (part.contains("/")) {
-                System.out.println("invalid input, please follow /start dd/MM/yyyy");
+                System.out.println("invalid input, please follow /start dd/MM/yy");
                 return false; // non-numeric character found in date
             }
         }
@@ -162,6 +166,14 @@ public class CheckInputs {
             return false; // not valid date components
         }
         return true; // input is in the correct format
+    }
+
+    public static boolean parseWorkoutName(String arguments){
+        if(!arguments.trim().startsWith("Workout")){
+            System.out.println("The workout name should start with 'Workout'");
+            return false;
+        }
+        return true;
     }
 
 
