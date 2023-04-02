@@ -6,61 +6,29 @@ import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
 import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
-import java.util.Objects;
+
 public class HelpCommand extends Command {
-
-    private final String command;
-
-    public HelpCommand() {
-        command = null;
-    }
-
-    public HelpCommand(String command) {
-        this.command = command;
-    }
-
-    public String getCommand() {
-        return this.command;
-    }
 
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
                         ExerciseStorage exerciseStorage)
             throws LifeTrackerException {
-        if (command == null) {
-            ui.printHelpPage();
-            return;
-        }
-        switch (command) {
-        case "view":
-            ui.printHelpView();
-            return;
-        case "update":
-            ui.printHelpUpdate();
-            return;
-        case "add":
-            ui.printHelpAdd();
-            return;
-        case "delete":
-            ui.printHelpDelete();
-            return;
-        case "list":
-            ui.printHelpList();
-            return;
-        case "filter":
-            ui.printHelpFilter();
-            return;
-        case "nutrition":
-            ui.printHelpNutrition();
-            return;
-        case "exercise":
-            ui.printHelpExercise();
-            return;
-        case "track":
-            ui.printHelpTrack();
-            return;
-        default:
-            ui.printHelpBye();
-        }
+        System.out.println("Here are the list of available commands");
+        System.out.println("[view]: View your personal information.");
+        System.out.println("[update]: Update your personal information.");
+        System.out.println("[add]: Add a meal. ");
+        System.out.println("Usage: add /on [date] /type [MealType] /foods [foods]");
+        System.out.println("[list]: List either all the foods in the database or all previous added meals. ");
+        System.out.println("Usage: list foods / list meals");
+        System.out.println("[delete]: Deletes a previously added meal. ");
+        System.out.println("Usage: delete [index]");
+        System.out.println("[filter]: Filters food by calorie content.");
+        System.out.println("[nutrition]: Find the nutrients of a specific kind of food.");
+        System.out.println("[exercise]: Input a completed exercise. ");
+        System.out.println("Usage: exercise /type [exercise name] /description [exercise description] " +
+                "/calories [calories burnt] /on [date]");
+        System.out.println("[track]: Returns your caloric intake from previous days.");
+        System.out.println("[bye]: Exits the program.");
+        System.out.println("For any other questions please visit out User Guide.");
     }
 }
