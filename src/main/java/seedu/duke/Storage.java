@@ -41,6 +41,43 @@ public class Storage implements DatabaseInterface {
             return;
         }
         readModData(SAVED_MODULES_FILE_PATH, modules);
+        boolean isStorageCorrupted = checkDatabaseCorrupted();
+        if (isStorageCorrupted) {
+            UI.printStorageCorruptedMessage();
+        }
+        try {
+            writeModListToFile(modules);
+        } catch (IOException e) {
+            UI.printWriteToDatabaseFailureMessage();
+        }
+    }
+
+    @Override
+    public boolean checkDatabaseCorrupted() {
+        ArrayList<Module> allModules = new DataReader().getModules();
+        boolean isCorrupted = false;
+        ArrayList<Module> copyArrayList = new ArrayList<>();
+        for (Module module : modules) {
+            if (!checkIsValidModule(module, allModules)) {
+                isCorrupted = true;
+            } else {
+                copyArrayList.add(module);
+            }
+        }
+        modules.clear();
+        for (Module toCopyModule : copyArrayList) {
+            modules.add(toCopyModule);
+        }
+        return isCorrupted;
+    }
+
+    private boolean checkIsValidModule(Module moduleToCheck, ArrayList<Module> allModules) {
+        for (Module module : allModules) {
+            if (module.toString().equals(moduleToCheck.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void initialiseDeadlinesDatabase() throws IOException {
@@ -63,9 +100,17 @@ public class Storage implements DatabaseInterface {
                 if (row[3].equals("N/A")) {
                     row[3] = "0";
                 }
-                Module module = new Module(Integer.parseInt(row[0]), row[1], row[2],
-                        Integer.parseInt(row[3]), row[4], row[5], Integer.parseInt(row[6]));
-                modules.add(module);
+                try {
+                    Module module = new Module(Integer.parseInt(row[0]), row[1], row[2],
+                            Integer.parseInt(row[3]), row[4], row[5], Integer.parseInt(row[6]));
+                    boolean isDuplicate = doesModuleExist(module);
+                    if (isDuplicate) {
+                        continue;
+                    }
+                    modules.add(module);
+                } catch (NumberFormatException e) {
+                    System.out.println("One Module Corrupted, will be deleted");
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
