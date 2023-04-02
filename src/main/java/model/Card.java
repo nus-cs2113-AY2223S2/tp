@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import utils.exceptions.InvalidUUIDException;
 
 //to be made into an abstract class containing a few types of Cards later, for now just a single Card will do
 public class Card {
@@ -26,13 +27,12 @@ public class Card {
      * @param question The question in the card.
      * @param answer   The answer in the card.
      * @param uuidStr  The custom UUID String that the user specifies for the card.
+     * @throws InvalidUUIDException when the UUID specified is not in 03658854-e5d4-468f-8c41-74917e5d4515 format
      */
-    private Card(String question, String answer, String uuidStr) {
+    private Card(String question, String answer, String uuidStr) throws InvalidUUIDException {
         this.question = question;
         this.answer = answer;
         this.uuid = new CardUUID(UUID.fromString(uuidStr));
-
-
     }
 
     /**
@@ -44,7 +44,7 @@ public class Card {
      * @param uuidStr  The custom UUID String that the user wants for the card
      * @return
      */
-    public static Card createCardWithUUID(String question, String answer, String uuidStr) {
+    public static Card createCardWithUUID(String question, String answer, String uuidStr) throws InvalidUUIDException {
         return new Card(question, answer, uuidStr);
     }
 
@@ -55,6 +55,7 @@ public class Card {
     public ArrayList<TagUUID> getTagsUUID() {
         return this.tags;
     }
+
     public ArrayList<DeckUUID> getDecksUUID() {
         return this.decks;
     }
@@ -70,6 +71,7 @@ public class Card {
     public void addTag(TagUUID tagUUID) {
         tags.add(tagUUID);
     }
+
     public void addDeck(DeckUUID deckUUID) {
         decks.add(deckUUID);
     }
@@ -81,6 +83,7 @@ public class Card {
     public void removeDecks(DeckUUID deckUUID) {
         decks.remove(deckUUID);
     }
+
     public boolean deckEmpty() {
         return this.decks.isEmpty();
     }
@@ -89,8 +92,28 @@ public class Card {
         return this.tags.isEmpty();
     }
 
+    public String getTagsString() {
+        String tagsStr = "";
+        for (TagUUID tag : tags) {
+            tagsStr = tagsStr + "\n - " + tag.toString();
+        }
+        return tagsStr;
+    }
+
+    public String getDecksString() {
+        String decksStr = "";
+        for (DeckUUID deck : decks) {
+            decksStr = decksStr + "\n - " + deck.toString();
+        }
+        return decksStr;
+    }
+
     @Override
     public String toString() {
-        return "Qn: " + this.question + "\nAns: " + this.answer + "\nUUID:  " + this.uuid;
-    } // return the card
+        String tagsStr = this.tags.isEmpty() ? "None" : getTagsString();
+        String decksStr = this.decks.isEmpty() ? "None" : getDecksString();
+        return "[" + this.uuid + "]" +
+                "\n\n Tags: " + tagsStr + "\n\n Decks: " + decksStr +
+                "\n\n Qn:  " + this.question + "\n Ans:  " + this.answer + "\n";
+    }
 }

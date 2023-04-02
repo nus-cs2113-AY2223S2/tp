@@ -1,6 +1,5 @@
 package utils;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import model.Card;
 import model.CardList;
@@ -86,6 +85,7 @@ public class UserInterface {
 
     public void printCard(Card card) {
         System.out.println(card);
+        printDivider();
     }
 
     public void printException(InkaException e) {
@@ -128,18 +128,6 @@ public class UserInterface {
         printDivider();
     }
 
-    public void printTags(ArrayList<Tag> tags) {
-        if (tags.isEmpty()) {
-            System.out.println("There is currently no tags");
-        } else {
-            System.out.println("Here are the tags : ");
-            for (int i = 0; i < tags.size(); ++i) {
-                System.out.println((i + 1) + "." + tags.get(i));
-            }
-        }
-        printDivider();
-    }
-
     public void printAddTagToCardSuccess(CardUUID cardUUID, TagUUID tagUUID) {
         System.out.println("Successfully added tag " + tagUUID + " to card " + cardUUID);
         printDivider();
@@ -158,8 +146,8 @@ public class UserInterface {
     public void printRemoveTagFromDeckSuccess(TagUUID tagUUID, String deckName) {
         System.out.println("Successfully removed tag " + tagUUID + " from deck " + deckName);
         printDivider();
-
     }
+
     public void printAddTagToDeckSuccess(TagUUID tagUUID, DeckUUID deckUUID) {
         System.out.println("Successfully added tag " + tagUUID + " to deck " + deckUUID);
         printDivider();
@@ -176,6 +164,7 @@ public class UserInterface {
     public void printRemoveTagFromCard(CardUUID cardUUID, TagUUID tagUUID) {
         System.out.println("Successfully removed tag " + tagUUID + " from card " + cardUUID);
     }
+
     public void printRemoveDeckFromCard(CardUUID cardUUID, DeckUUID deckUUID) {
         System.out.println("Successfully removed deck " + deckUUID + " from card " + cardUUID);
     }
@@ -183,7 +172,6 @@ public class UserInterface {
     public void printRemoveDeckFromTag(TagUUID tagUUID, DeckUUID deckUUID) {
         System.out.println("Successfully removed deck " + deckUUID + " from tag " + tagUUID);
     }
-
 
     public void printRemoveTagFromTagList(TagUUID tagUUID) {
         System.out.println("Successfully removed tag " + tagUUID + " from the tag list.");

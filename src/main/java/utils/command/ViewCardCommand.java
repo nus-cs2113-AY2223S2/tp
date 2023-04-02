@@ -49,7 +49,6 @@ public class ViewCardCommand extends Command {
             ui.printCard(card);
             ArrayList<TagUUID> tagsUUID = card.getTagsUUID();
             tags = findTagsFromTagUUID(tagsUUID, tagList);
-            ui.printTags(tags);
         } else {
             throw new CardNotFoundException();
         }

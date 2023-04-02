@@ -17,6 +17,7 @@ import org.apache.commons.cli.ParseException;
 import utils.command.Command;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
+import utils.exceptions.InvalidUUIDException;
 import utils.exceptions.UnrecognizedCommandException;
 
 /**
@@ -75,7 +76,7 @@ public abstract class KeywordParser {
         return optionGroup;
     }
 
-    protected static CardSelector getSelectedCard(CommandLine cmd) throws ParseException {
+    protected static CardSelector getSelectedCard(CommandLine cmd) throws ParseException, InvalidUUIDException {
 
         if (cmd.hasOption(FLAG_CARD_UUID)) {
             String cardUUID = cmd.getOptionValue(FLAG_CARD_UUID);

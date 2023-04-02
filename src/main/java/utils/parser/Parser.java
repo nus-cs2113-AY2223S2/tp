@@ -93,7 +93,6 @@ public class Parser {
         helpMessage += formatHelpLine(TAG_KEYWORD, "Tag-related functionality");
         helpMessage += formatHelpLine(DECK_KEYWORD, "Deck-related functionality");
         helpMessage += "================== Miscellaneous Commands =================" + System.lineSeparator();
-        helpMessage += formatHelpLine(EXPORT_KEYWORD, "Saves your deck");
         helpMessage += formatHelpLine(EXIT_KEYWORD, "Exits Inka");
 
         return helpMessage;
