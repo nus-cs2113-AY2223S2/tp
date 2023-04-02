@@ -291,7 +291,8 @@ public class AddCommand extends Command implements LoggerInterface {
             LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatter);
             LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatter);
 
-            if (isEventLessonClashing(eventStart, eventEnd, lessonStart, lessonEnd) && isDuringSemester(eventStart,eventEnd)) {
+            if (isEventLessonClashing(eventStart, eventEnd, lessonStart, lessonEnd) &&
+                    isDuringSemester(eventStart,eventEnd)) {
 
                 return true;
             }
