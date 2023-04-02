@@ -60,11 +60,14 @@ public class CommandAdd extends Command {
                 if(!date.toString().replace('/', '-').equals(parsedInput[ParserAdd.TIME_INDEX])) {
                     throw new InvalidDateException();
                 }
+                String curr = Currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]);
+                if(parsedInput[ParserAdd.CURRENCY_INDEX] != null && !curr.toString().equals(parsedInput[ParserAdd.CURRENCY_INDEX].toUpperCase())) {
+                    System.out.println("WARNING: Input currency does not exist and has defaulted to SGD.");
+                }
                 Expense addedExpense = new Expense(currency.roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
                         date, parsedInput[ParserAdd.CATEGORY_INDEX],
-                        Currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]),
-                        Currency.getExchangeRate(LocalDate.parse(exchangeRateDate),
-                                currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX])));
+                        curr, Currency.getExchangeRate(LocalDate.parse(exchangeRateDate),
+                                curr));
                 expenseList.add(addedExpense);
                 return new CommandRes(SUCCESSFUL_ADD, addedExpense,
                         ExpenseList.getAllMessage(expenseList));
