@@ -629,8 +629,7 @@ command in full, you could configure the shortcut with the command below.
 Shortcut successfully added
 ```
 
-> ⚠️ Avoid adding a shortcut with the same name as an actual command. The actual command will take priority over your
-> configured shortcut.
+> ⚠️ Your configured shortcut should map to a valid full command for it to work correctly.
 
 #### Using a shortcut
 

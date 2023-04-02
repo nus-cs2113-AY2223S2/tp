@@ -38,7 +38,13 @@ public enum ErrorMessage {
     EMPTY_DESCRIPTION_NAME("Sorry, description name cannot be empty\n\n" +
             "Add format is as follows: \n" +
             "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!");
+            "Please refer to 'help' for more information!"),
+    SHORTCUT_ALREADY_EXISTS("The shortcut already exists."),
+    SHORTCUT_MAPS_ITSELF("The shortcut you are trying to configure should not map to itself."),
+    SHORTCUT_NAME_VALID_COMMAND("The shortcut you are trying to configure has the same name as a valid command, " +
+            "please name your shortcut something else."),
+    SHORTCUT_MAPS_SHORTCUT("The shortcut you are trying to configure should not map to another shortcut");
+
 
     private final String error;
 
