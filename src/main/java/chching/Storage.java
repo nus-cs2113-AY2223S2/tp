@@ -1,19 +1,23 @@
 package chching;
-import java.io.FileReader;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
-import chching.record.Record;
-import chching.record.Income;
-import chching.record.IncomeList;
-import chching.record.Expense;
+
 import chching.record.ExpenseList;
+import chching.record.Expense;
+import chching.record.IncomeList;
+import chching.record.Income;
+import chching.record.Record;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 
 /**
  * Models a class to handle storage for the program.
@@ -33,32 +37,31 @@ public class Storage {
     }
 
     public ArrayList<Income> loadIncomes() {
-        // create a JSON parser object
-        JSONParser parser = new JSONParser();
-
         ArrayList<Income> incomes = new ArrayList<>();
 
         try {
-            // read the JSON file into a JSONObject
-            Object obj = parser.parse(new FileReader(file));
-            JSONArray entries = (JSONArray) obj;
+            // Create a GSON object
+            Gson gson = new Gson();
 
-            // loop through the entries and print each one
-            for (Object entry : entries) {
-                JSONObject jsonObj = (JSONObject) entry;
-                String type = (String) jsonObj.get("type");
-                String description = (String) jsonObj.get("description");
-                String date = (String) jsonObj.get("date");
-                Double amount = (Double) jsonObj.get("amount");
+            // Read the JSON file into a string
+            String json = Files.readString(file.toPath());
 
+            // Parse the JSON string into a JsonArray
+            JsonArray entries = gson.fromJson(json, JsonArray.class);
+
+            // Loop through the entries and add each income to the list
+            for (JsonElement entry : entries) {
+                JsonObject jsonObj = entry.getAsJsonObject();
+                String type = jsonObj.get("type").getAsString();
                 if (type.equals("I")) {
-                    Income income = new Income(description, LocalDate.parse(date), amount);
+                    String description = jsonObj.get("description").getAsString();
+                    LocalDate date = LocalDate.parse(jsonObj.get("date").getAsString());
+                    double amount = jsonObj.get("amount").getAsDouble();
+                    Income income = new Income(description, date, amount);
                     incomes.add(income);
-
                 }
             }
-
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Unfortunately, income list file can't be found. I'll make a new one!");
         }
 
@@ -66,68 +69,70 @@ public class Storage {
     }
 
     public ArrayList<Expense> loadExpenses() {
-        // create a JSON parser object
-        JSONParser parser = new JSONParser();
-
         ArrayList<Expense> expenses = new ArrayList<>();
 
         try {
-            // read the JSON file into a JSONObject
-            Object obj = parser.parse(new FileReader(file));
-            JSONArray entries = (JSONArray) obj;
+            // Create a GSON object
+            Gson gson = new Gson();
 
-            // loop through the entries and print each one
-            for (Object entry : entries) {
-                JSONObject jsonObj = (JSONObject) entry;
-                String type = (String) jsonObj.get("type");
-                String description = (String) jsonObj.get("description");
-                String date = (String) jsonObj.get("date");
-                Double amount = (Double) jsonObj.get("amount");
+            // Read the JSON file into a string
+            String json = Files.readString(file.toPath());
 
+            // Parse the JSON string into a JsonArray
+            JsonArray entries = gson.fromJson(json, JsonArray.class);
+
+            // Loop through the entries and add each income to the list
+            for (JsonElement entry : entries) {
+                JsonObject jsonObj = entry.getAsJsonObject();
+                String type = jsonObj.get("type").getAsString();
                 if (type.equals("E")) {
-                    String category = (String) jsonObj.get("category");
-                    Expense expense = new Expense(description, category, LocalDate.parse(date), amount);
+                    String description = jsonObj.get("description").getAsString();
+                    String category = jsonObj.get("category").getAsString();
+                    LocalDate date = LocalDate.parse(jsonObj.get("date").getAsString());
+                    double amount = jsonObj.get("amount").getAsDouble();
+                    Expense expense = new Expense(category, description, date, amount);
                     expenses.add(expense);
-
                 }
             }
-
-        } catch (Exception e) {
-            System.out.println("Unfortunately, expense list file can't be found. I'll make a new one!");
+        } catch (IOException e) {
+            System.out.println("Unfortunately, income list file can't be found. I'll make a new one!");
         }
 
         return expenses;
     }
 
     public void save(IncomeList incomes, ExpenseList expenses) {
-        JSONArray jsonArray = new JSONArray();
+        JsonArray jsonArray = new JsonArray();
 
         for (int i = 0; i < incomes.size(); i++) {
             Record income = incomes.get(i);
-            JSONObject obj = new JSONObject();
-            obj.put("type", "I");
-            obj.put("description", income.getDescription());
-            obj.put("date", income.getDate().toString());
-            obj.put("amount", income.getValue());
 
-            jsonArray.add(obj);
+            JsonObject incomeObj = new JsonObject();
+            incomeObj.addProperty("type", "I");
+            incomeObj.addProperty("description", income.getDescription());
+            incomeObj.addProperty("date", income.getDate().toString());
+            incomeObj.addProperty("amount", income.getValue());
+
+            jsonArray.add(incomeObj);
         }
 
         for (int i = 0; i < expenses.size(); i++) {
             Record expense = expenses.get(i);
-            JSONObject obj = new JSONObject();
-            obj.put("type", "E");
-            obj.put("category", expense.getCategory());
-            obj.put("description", expense.getDescription());
-            obj.put("date", expense.getDate().toString());
-            obj.put("amount", expense.getValue());
 
-            jsonArray.add(obj);
+            JsonObject expenseObj = new JsonObject();
+            expenseObj.addProperty("type", "E");
+            expenseObj.addProperty("category", expense.getCategory());
+            expenseObj.addProperty("description", expense.getDescription());
+            expenseObj.addProperty("date", expense.getDate().toString());
+            expenseObj.addProperty("amount", expense.getValue());
+
+            jsonArray.add(expenseObj);
         }
 
-        String jsonString = JSONValue.toJSONString(jsonArray);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonString = gson.toJson(jsonArray);
 
-        // write the JSONObject to a file
+        // write the JSON string to a file
         try (FileWriter file = new FileWriter(this.file)) {
             file.write(jsonString);
 
@@ -135,7 +140,6 @@ public class Storage {
             System.out.println("An error occurred while writing JSON data to file.");
             e.printStackTrace();
         }
-
     }
 }
 
