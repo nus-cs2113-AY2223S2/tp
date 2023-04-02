@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 
-public class Currency implements Serializable {
+public class Currency {
 
     protected static HashMap<String, String> currencies = new HashMap<>();
     protected static HashMap<String, BigDecimal> offlineExchangeRate = new HashMap<>();

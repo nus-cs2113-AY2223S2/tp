@@ -5,8 +5,7 @@ import data.ExpenseList;
 
 import java.util.ArrayList;
 
-import static common.MessageList.SUCCESSFUL_DELETE;
-import static common.MessageList.OFFSET;
+import static common.MessageList.*;
 
 public class CommandDelete extends Command {
 

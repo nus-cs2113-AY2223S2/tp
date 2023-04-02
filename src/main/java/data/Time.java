@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
-public class Time implements Serializable, Comparable<Time> {
+public class Time implements Comparable<Time> {
     // This class is used to deal with the initialization, access, and change of DateTime
     protected LocalDate date;
 

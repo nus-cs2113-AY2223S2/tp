@@ -1,18 +1,21 @@
 package storage;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import data.Expense;
 import data.ExpenseList;
 
+
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.EOFException;
+import java.io.Reader;
+import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 // https://kodejava.org/how-do-i-store-objects-in-file/
@@ -22,110 +25,87 @@ public class Storage {
     private static final String READ_STORAGE_SUCCESSFUL = "All past expenses retrieved successfully!";
     private static final String READ_EXPENSELIST_ERROR = "Error reading expense list.";
     private static final String WRITE_TO_EXPENSELIST_ERROR = "Error writing to expense list.";
-    private static final String CREATE_FILE_ERROR = "Error creating file.";
-    private static final String INITIAL_WELCOME_MESSAGE = "";
     private static final String NEW_EXPENSE = "New expense list created.";
+    private static final String WRITING_TO_FILE_ERROR = "Error writing to account file";
+    private static final String INITIAL_WELCOME_MESSAGE = "Welcome to Duke!";
+    private static final String SUBSEQUENT_WELCOME_MESSAGE = "Welcome back!";
+    private static final String DATA_CORRUPTED_ERROR = "Data file corrupted. " +
+            "Save the remaining data to another location before deleting the current data file. " +
+            "Restart the programme after deleting the corrupted data file to proceed.";
+    private static final String CREATE_FILE_ERROR = "Error creating file.";
     private static final Gson GSON = new Gson();
 
     private ExpenseList expenseList;
-    private ArrayList<Expense> expenses;
 
-    public Storage(ArrayList<Expense> expenses) {
-        this.expenses = expenses;
-    }
 
     public Storage(ExpenseList expenseList) {
         this.expenseList = expenseList;
     }
 
-    //json
-    public void saveExpenses(ArrayList<Expense> expenses, String filePath) {
-        File file = new File(filePath);
+    /**
+     * Saves expenses to json file as json object.
+     *
+     * @param filePath Path at which the json file is stored.
+     */
+    public void saveExpenses(String filePath) {
         try {
-            file.createNewFile();
-        } catch (IOException e) {
-            System.out.println("Error creating account file.");
-        }
-
-        try {
+            File file = new File(filePath);
             FileWriter fileWriter = new FileWriter(file);
-            fileWriter.write(GSON.toJson(expenses));
+            fileWriter.write(GSON.toJson(expenseList.getExpenseList()));
+            fileWriter.close();
         } catch (IOException e) {
-            System.out.println("Error writing to account file");
+            System.out.println(WRITING_TO_FILE_ERROR);
         }
     }
 
-    public ArrayList<Expense> loadExpenses(String filePath) {
-        ArrayList<Expense> expenses = new ArrayList<>();
-        return expenses;
-    }
-
-
-    public ExpenseList getExpenseList() {
-        return expenseList;
-    }
 
     /**
-     * Saves ExpenseList objects to dat file.
+     * Creates JSON file if it does not exist with user specified file path.
+     *
+     * @param filePath Path at which the json file is stored.
      */
-    public void saveExpenseList() {
+    private void createFile(String filePath) {
         try {
-            FileOutputStream fos = new FileOutputStream("expenselist.dat");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            oos.writeObject(expenseList);
-        } catch (IOException e) {
-            System.out.println(WRITE_TO_EXPENSELIST_ERROR);
-        }
-    }
-
-    public boolean createFile() {
-        try {
-            File f = new File("expenselist.dat");
+            File f = new File(filePath);
             if (f.createNewFile()) {
                 // first time that the programme is being run, update welcome message later on
                 System.out.println(INITIAL_WELCOME_MESSAGE);
-                return true;
+            } else {
+                System.out.println(SUBSEQUENT_WELCOME_MESSAGE);
             }
         } catch (IOException e) {
             System.out.println(CREATE_FILE_ERROR);
         }
-        return false;
     }
 
+    //TODO: JSON
     /**
-     * Reads ExpenseList object from dat file and store as expenseList.
+     * Loads expenses from json file and save as ArrayList<Expenses>
+     * @param filePath Path at which the json file is stored.
+     *
+     * @return An arraylist of expenses.
+     * @throws NullPointerException if json file is empty.
      */
 
-    public ExpenseList initialiseExpenseList() {
+    public ArrayList<Expense> loadExpenses(String filePath) throws NullPointerException {
+        ArrayList<Expense> expenses = new ArrayList<>();
+        createFile(filePath);
         try {
-            boolean isFileCreated = createFile();
-            if (isFileCreated) {
-                expenseList = new ExpenseList();
-                System.out.println("File created");
-            } else {
-                FileInputStream fis = new FileInputStream("expenselist.dat");
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                expenseList = (ExpenseList) ois.readObject();
-                System.out.println(READ_STORAGE_SUCCESSFUL);
-            }
-        } catch (EOFException e) {
-            System.out.print(NEW_EXPENSE);
-            expenseList = new ExpenseList();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println(READ_EXPENSELIST_ERROR);
+            Reader reader = Files.newBufferedReader(Paths.get(filePath));
+            Type typeOfObject = new TypeToken<ArrayList<Expense>>() {}.getType();
+            expenses = GSON.fromJson(reader, typeOfObject);
+        } catch (JsonSyntaxException e) {
+            System.out.println(DATA_CORRUPTED_ERROR);
+            System.exit(0);
+        } catch (IOException e) {
+            System.out.println(CREATE_FILE_ERROR);
         }
-        return expenseList;
+
+        return Objects.requireNonNullElseGet(expenses, ArrayList::new);
     }
 
-
-    public void clearContent() {
-        try {
-            FileOutputStream fos = new FileOutputStream("expenselist.dat");
-            fos.close();
-        } catch (IOException e) {
-            System.out.println(WRITE_TO_EXPENSELIST_ERROR);
-        }
+    public ExpenseList getExpenseList() {
+        return expenseList;
     }
 
 }

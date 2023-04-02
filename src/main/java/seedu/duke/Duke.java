@@ -20,7 +20,10 @@ public class Duke {
     protected Parser parser;
     protected ExpenseList expenseList;
     protected Currency currency;
-    protected Storage storage;
+    protected static Storage storage;
+    
+    //TODO: arbitrary filePath
+    protected String filePath = "test.json";
 
     /**
      * Initialize Duke and instantiate parser and expenseList objects.
@@ -29,9 +32,8 @@ public class Duke {
         parser = new Parser();
         expenseList = new ExpenseList();
         currency = new Currency();
-//        storage = new Storage(expenseList);
-//        expenseList = storage.initialiseExpenseList();
-        storage = new Storage(expenseList.getExpenseList());
+        storage = new Storage(expenseList);
+        expenseList.setExpenseList(storage.loadExpenses(filePath));
     }
 
     public void run() {
@@ -81,8 +83,7 @@ public class Duke {
                 System.out.println("Unknown command.");
                 break;
             }
-//            storage.saveExpenseList();
-            storage.saveExpenses(expenseList.getExpenseList(), "test.json");
+            storage.saveExpenses(filePath);
         }
         in.close();
     }

@@ -2,7 +2,7 @@ package parser;
 
 import java.io.Serializable;
 
-public class ParserAdd implements Serializable {
+public class ParserAdd {
 
     public static final int AMOUNT_INDEX = 0;
     public static final int TIME_INDEX = 1;

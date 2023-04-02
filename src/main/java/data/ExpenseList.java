@@ -6,9 +6,14 @@ import parser.Parser;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ExpenseList implements Serializable {
+public class ExpenseList {
 
     protected Parser parser = new Parser();
+
+    public void setExpenseList(ArrayList<Expense> expenseList) {
+        this.expenseList = expenseList;
+    }
+
     private ArrayList<Expense> expenseList = new ArrayList<>();
 
 
