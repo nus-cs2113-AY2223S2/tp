@@ -23,6 +23,8 @@ import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.logic.command.EditTagsCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
 import seedu.todolist.logic.command.EditPriorityCommand;
+import seedu.todolist.logic.command.FindByTag;
+import seedu.todolist.logic.command.FindByPriority;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -136,6 +138,10 @@ public class Parser {
             return new EditPriorityCommand(getArguments(splitInput, EditPriorityCommand.EXPECTED_FLAGS));
         case COMMAND_FULL_INFO:
             return new ListFullInfoCommand(getArguments(splitInput, ListFullInfoCommand.EXPECTED_FLAGS));
+        case COMMAND_FIND_TAG:
+            return new FindByTag(getArguments(splitInput, FindByTag.EXPECTED_FLAGS));
+        case COMMAND_FIND_PRIORITY:
+            return new FindByPriority(getArguments(splitInput, FindByPriority.EXPECTED_FLAGS));
         default:
             throw new InvalidCommandException();
         }
