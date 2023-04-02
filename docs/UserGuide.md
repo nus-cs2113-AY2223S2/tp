@@ -1,30 +1,32 @@
 # GitHub User Guide for BadMaths ➕➖✖️➗
 
+## Table of Contents:
 <!-- TOC -->
 * [GitHub User Guide for BadMaths ➕➖✖️➗](#github-user-guide-for-badmaths-)
-   * [Introduction 🧮](#introduction-)
-   * [Quick Start](#quick-start)
-   * [Features](#features)
-      * [1) Graph analyser and visualiser: `Graph. `](#1--graph-analyser-and-visualiser--graph-)
-      * [2) Matrix calculation: `Matrix. `](#2--matrix-calculation--matrix-)
-      * [3) Store Notes:](#3--store-notes-)
-      * [4) Display all Notes:](#4--display-all-notes-)
-      * [5) Display a specific note:](#5--display-a-specific-note-)
-      * [6) Delete Notes:](#6--delete-notes-)
-      * [7) Mark Notes:](#7--mark-notes-)
-      * [8) Unmark Notes:](#8--unmark-notes-)
-      * [9) List all completed items:](#9--list-all-completed-items-)
-      * [10) List all uncompleted notes:](#10--list-all-uncompleted-notes-)
-      * [11) Find notes using keyword:](#11--find-notes-using-keyword-)
-      * [12) Display all notes based on priority types:](#12--display-all-notes-based-on-priority-types-)
-      * [13) Display all notes of a certain priority type:](#13--display-all-notes-of-a-certain-priority-type-)
-      * [14) Clear all notes stored in Notes List:](#14--clear-all-notes-stored-in-notes-list-)
-      * [15) Prioritize a note](#15--prioritize-a-note)
-      * [16) Solving Quadratic Equations: `Quadratic.`](#16--solving-quadratic-equations--quadratic)
-      * [17) Exit MathHelp:](#17--exit-mathhelp-)
-      * [18) View Help Manual: `Help.`](#18--view-help-manual--help)
-   * [FAQ](#faq)
-   * [Command Summary](#command-summary)
+  * [Table of Contents:](#table-of-contents-)
+  * [Introduction 🧮](#introduction-)
+  * [Quick Start](#quick-start)
+  * [Features](#features)
+    * [1) Graph analyser and visualiser: `Graph. `](#1--graph-analyser-and-visualiser--graph-)
+    * [2) Matrix calculation: `Matrix. `](#2--matrix-calculation--matrix-)
+    * [3) Store Notes: `Store. `](#3--store-notes--store-)
+    * [4) Display all Notes: `List. `](#4--display-all-notes--list-)
+    * [5) Display a specific note:](#5--display-a-specific-note-)
+    * [6) Delete Notes:](#6--delete-notes-)
+    * [7) Clear all notes stored in Notes List:](#7--clear-all-notes-stored-in-notes-list-)
+    * [8) Mark Notes:](#8--mark-notes-)
+    * [9) Unmark Notes:](#9--unmark-notes-)
+    * [10) List all completed items:](#10--list-all-completed-items-)
+    * [11) List all uncompleted notes:](#11--list-all-uncompleted-notes-)
+    * [12) Find notes using keyword:](#12--find-notes-using-keyword-)
+    * [15) Prioritize a note](#15--prioritize-a-note)
+    * [13) Display all notes based on all priority types:](#13--display-all-notes-based-on-all-priority-types-)
+    * [14) Display all notes of a certain priority type:](#14--display-all-notes-of-a-certain-priority-type-)
+    * [16) Solving Quadratic Equations: `Quadratic.`](#16--solving-quadratic-equations--quadratic)
+    * [17) View Help Manual: `Help.`](#17--view-help-manual--help)
+    * [18) Exit BadMaths:](#18--exit-badmaths-)
+  * [FAQ](#faq)
+  * [Command Summary](#command-summary)
 <!-- TOC -->
 
 ## Introduction 🧮
@@ -45,7 +47,7 @@ Before you start using BadMaths, make sure you have the following ready!
 
 ## Features
 
-### 1) Graph analyser and visualiser: `Graph. `
+### 1) Graph Analyser and Visualiser: `Graph`
 This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
 It also displays the image of the corresponding graph.
 
@@ -60,8 +62,16 @@ Example input:
 ```
 Graph. 2*sin(5*x+2)-8
 ```
+Expected output:
+```
+This is the amplitude: 2.0
+This is the freq (Hz): 0.7957747154594768
+This is the phase: 2.0
+This is the vertical shift: -8.0
+```
+![Alt Text](https://raw.githubusercontent.com/AY2223S2-CS2113-F10-2/tp/fa918f3fa579d26aef963f1b134d818af9e955a5/trigo.JPG)
 
-### 2) Matrix calculation: `Matrix. `
+### 2) Matrix Calculation: `Matrix`
 This feature accepts matrix equation and outputs calculation result.
 
 Format: `Matrix. [Matrix] [operator] [Matrix]`
@@ -89,78 +99,168 @@ Example input:
  ```
  Matrix. [1,2;3,4] .* [4,5;6,7]
  ```
-### 3) Store Notes:
+### 3) Store Notes: `Store`
 Adds a new item to the Notes list.
 
-Format: `Store. <item description>`
-Example of usage: `Store. index`
+Format: `Store <item description>`
 
-### 4) Display all Notes:
+Example input:
+
+`Store isNote`
+
+Expected output:
+```
+You have added this note: 
+isNote
+Now you have <number> of notes in the list
+```
+
+### 4) Display All Notes: `List`
 Display a list of all items stored by user.
 
-Format: `List.`
-Example of usage: `List.`
+Format: `List` 
 
-### 5) Display a specific note:
-Display a particular item in the Notes list.
+Example input:
+```
+List
+```
+Expected output:
+```
+Here are the notes you have stored:
+1. [LOW][N][0]note_item_1
+2. [LOW][N][0]note_item_2
+3. [LOW][N][0]note_item_3
+```
 
-Format: `List. <number>`
-Example of usage: `List. 1`
+### 5) Display A Specific Note: `List <index>`
+Display a particular item in the Notes list through index of list item.
 
-### 6) Delete Notes:
-Delete a particular item stored in the Notes list.
+Format: `List <index of list item>`
 
-Format: `Delete. <number>`
-Example of usage: `Delete. 1`
+Example input:
+```
+List 2
+```
+Expected output:
+```
+Here is the note you are looking for
+2. [LOW][N][0]note_item_2
+```
 
-### 7) Mark Notes:
-Mark a particular item in Notes List as completed.
+### 6) Delete Notes: `Delete <index>`
+Delete a particular item stored in the Notes list through index of list item.
 
-Format: `Mark. <number>`
-Example of usage: `Mark. 1`
+Format: `Delete. <index of list item>`
 
-### 8) Unmark Notes:
-Unmark a particular item in Notes List as incomplete.
+Example input:
+```
+Delete 2
+```
+Expected output:
+```
+You have removed this note:
+[LOW][N][0]note_item_2
+Now you have <number> notes in the list.
+```
 
-Format: `Unmark. <number>`
-
-### 9) List all completed items:
-Display a list of all note items marked as completed.
-
-Format: `FindMark.`
-Example of usage: `FindMark.`
-
-### 10) List all uncompleted notes:
-Display a list of all incomplete note items.
-
-Format: `FindUnmark.`
-Example of usage: `FindUnmark.`
-
-### 11) Find notes using keyword:
-Find items stored in Notes List by searching for a keyword.
-
-Format: `FindInfo. <description>`
-
-### 12) Display all notes based on priority types:
-Display all items stored in the Notes List based on the respective priority rankings.
-
-Format: `Rank. Priority`
-Example of usage: `Rank. Priority`
-
-### 13) Display all notes of a certain priority type:
-Find all notes stored in the list based on priority that users are searching for
-
-Format: `FindPrior. <Priority Type>`
-* The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
-  Example of usage: `FindPrior. <LOW>`
-
-### 14) Clear all notes stored in Notes List:
+### 7) Clear All Notes Stored In Notes List `Clear`
 Delete all note items stored in Notes List.
 
 Format: `Clear.`
 
+Example input:
+```
+Clear
+```
+Expected output:
+```
+File content cleared successfully!
+```
+### 8) Mark Notes: `Mark`
+Mark a particular item in Notes List as completed.
+The mark bracket will change from `[N]` to `[Y]`.
 
-### 15) Prioritize a note
+Format: `Mark <number>`
+
+Example input:
+```
+Mark 2
+```
+Expected output:
+```
+You have marked this note as done:
+[LOW][Y][0]note_item_2
+```
+### 9) Unmark Notes: `Unmark`
+Unmark a particular item in Notes List as incomplete.
+The mark bracket will change from `[Y]` to `[N]`.
+
+Format: `Unmark <number>`
+
+Example input:
+```
+Unmark 2
+```
+Expected output:
+```
+You have unmarked this note:
+[LOW][N][0]note_item_2
+```
+### 10) List All Items Marked As Completed: `FindMark`
+Display a list of all note items marked as completed.
+i.e. items with mark bracket `[Y]`
+
+Format: `FindMark`
+
+Example input:
+```
+FindMark
+```
+Expected output:
+```
+Here are the notes you are searching for:
+1. [LOW][Y][0]note_item_1
+2. [LOW][Y][0]note_item_3
+```
+
+### 11) List All Notes That Are Not Marked As Completed: `FindUnmark`
+Display a list of all incomplete note items.
+i.e. items with mark bracket `[N]`
+
+Format: `FindUnmark`
+
+Example input:
+```
+FindUnmark
+```
+Expected output:
+```
+Here are the notes you are searching for:
+1. [LOW][N][0]note_item_2
+```
+
+### 12) Find Notes Using Keyword: `FindInfo`
+Find items stored in Notes by searching for a keyword.
+
+Format: `FindInfo <description>`
+
+Assuming that the List is as follows:
+```
+1. [LOW][N][0]Add
+2. [LOW][N][0]Subtract
+3. [LOW][N][0]Multiply
+```
+Example input:
+```
+FindInfo Add
+```
+Expected output:
+```
+Here are the notes you are searching for:
+1. [LOW][N][0]Add
+```
+
+### 13) Prioritize A Note
 Change the priority of a certain note in the notes list.
 
 Format: `<Priority Type>. Index`
@@ -189,6 +289,19 @@ You have changed its priority to MEDIUM
 3: [MEDIUM][N][0]Note 3
 ````
 
+### 14) Display All Notes Based On All Priority Types:
+Display all items stored in the Notes List based on the respective priority rankings.
+
+Format: `Rank. Priority`
+Example of usage: `Rank. Priority`
+
+### 15) Display All Notes Of A Certain Priority Type:
+Find all notes stored in the list based on priority that users are searching for
+
+Format: `FindPrior. <Priority Type>`
+* The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
+  Example of usage: `FindPrior. <LOW>`
+
 ### 16) Solving Quadratic Equations: `Quadratic.`
 Solves for `x` in a quadratic equation.
 
@@ -203,29 +316,51 @@ Examples:
 - Input: `Quadratic. 2x^2 + 2x + 1` Output: `x is imaginary.`
 - Input: `Quadratic. x^2 + 4x - 5` Output: `x1 = 1.0 , x2 = -5.0`
 
-### 17) Exit MathHelp:
-Exit and leave MathHelp:
+### 17) Help Manual `Help`
+View the content of Help Manual.
 
-Format: `Bye.`
+Format: `Help`
 
-Example of usage: `Bye.`
+Example input:
+```
+Help
+```
+Expected output:
+```
+------------------------------------------------------------------
+Hello! What can I do for you?
+------------------------------------------------------------------
+1. Type -> Graph equation <- to do graph calculation
+2. Type -> Matrix equation <- to do matrix calculation
+3. Type -> Store any_string <- to add notes
+4. Type -> List <- to list stored notes
+5. Type -> Bye <- to exit program
+-------------------------------------------------------------------
+For more details, please visit our GitHub website [https://github.com/AY2223S2-CS2113-F10-2/tp].
+If you have any queries, please contact [wilsonleejunwei@u.nus.edu].
+-------------------------------------------------------------------
+```
 
+### 18) Exit BadMaths `Bye`
+Exit and leave BadMaths:
+
+Format: `Bye`
+
+Example input:
+```
+Bye
+```
 Expected outcome:
-
 ````
 Goodbye!
 ````
-
-### 18) View Help Manual: `Help.`
-
-View the content of Help Manual.
-Format: `Help.`
 
 ## FAQ
 
 **Q**: How do I start and run BadMaths?
 
-**A**: {your answer here}
+**A**: To start and run BadMaths:
+ 
 
 **Q**: How do I exit and leave BadMaths?
 
