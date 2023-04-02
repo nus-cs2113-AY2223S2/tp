@@ -55,8 +55,8 @@ public class FoodStorage extends Storage implements FileReadable {
 
             id = Integer.parseInt(foodLine[0]);
             foodType = foodLine[1];
-            name = foodLine[2];
-            store = foodLine[3];
+            name = foodLine[2].trim();
+            store = foodLine[3].trim();
             storeNumber = Integer.parseInt(foodLine[4]);
 
             for (int j = 4; j < 13; j++) {

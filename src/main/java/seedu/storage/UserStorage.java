@@ -18,6 +18,7 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
         super(filePath);
         try {
             this.load();
+            System.out.println("Initialised User Storage");
         } catch (IOException e) {
             System.out.println("Error loading User Storage");
         }
@@ -53,22 +54,21 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
             br.readLine();
 
             String[] userLine = br.readLine().split(csvDelimiter);
-            //System.out.println(userLine.length);
             name = userLine[0];
             weight = Float.parseFloat(userLine[1]);
             height = Float.parseFloat(userLine[2]);
             age = Integer.parseInt(userLine[3]);
-            gender = String.valueOf(userLine[4]);
+            gender = userLine[4];
             targetWeight = Float.parseFloat(userLine[5]);
             user = new User(name, weight, height, age, gender, targetWeight);
             br.close();
         } catch (FileNotFoundException e) {
-            System.out.println("User File not found. Creating new user file...");
             File newFile = new File(filePath);
             newFile.createNewFile();
             user = new User();
         } catch (NullPointerException e) {
-            System.out.println("User File empty. Initialising blank user...");
+            user = new User();
+        } catch (ArrayIndexOutOfBoundsException e) {
             user = new User();
         }
     }

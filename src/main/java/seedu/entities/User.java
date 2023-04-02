@@ -1,10 +1,8 @@
 package seedu.entities;
 
 import java.util.Objects;
-import java.util.logging.Logger;
 
 public class User {
-    private static Logger logger = Logger.getLogger(Logger.class.getName());
     private String name;
     private float weight;
     private float height;
@@ -12,6 +10,7 @@ public class User {
     private String gender;
     private float targetWeight;
     private double caloricLimit;
+    
     public User() {
         this.name = "";
         this.weight = 0;
