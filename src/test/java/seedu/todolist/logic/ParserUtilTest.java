@@ -6,6 +6,7 @@ import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidDurationException;
 import seedu.todolist.exception.InvalidEmailFormatException;
 import seedu.todolist.exception.InvalidIdException;
+import seedu.todolist.exception.PassedDateException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
