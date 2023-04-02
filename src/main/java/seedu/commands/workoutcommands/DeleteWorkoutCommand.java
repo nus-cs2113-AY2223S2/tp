@@ -11,9 +11,9 @@ import java.util.HashMap;
 
 //@@ author ZIZI-czh
 public class DeleteWorkoutCommand extends Command {
-    private static final String DELETE_WORKOUT_FIRST = "Day";
-    private static final String DELETE_WORKOUT_SECOND = "have been deleted ";
-    private static final String NO_SUCH_DAY = "does not exit";
+    private static final String DELETE_WORKOUT_FIRST = "Day ";
+    private static final String DELETE_WORKOUT_SECOND = " have been deleted ";
+    private static final String NO_SUCH_DAY = " does not exit";
     private final Date workoutToDeleteDate;
 
     //@@ author ZIZI-czh
