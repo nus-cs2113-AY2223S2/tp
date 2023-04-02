@@ -17,7 +17,11 @@ public class Item {
         return totalQuantity;
     }
 
-    private final int totalQuantity;
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    private int totalQuantity;
     public int getUnpackedQuantity() {
         return totalQuantity - packedQuantity;
     }

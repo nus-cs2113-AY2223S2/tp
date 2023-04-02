@@ -416,7 +416,7 @@ public class Parser {
                     "This item is not even packed yet");
         }
         return new IncorrectCommand("Invalid Input Quantity",
-                "Try to input a positive quantity that does not exceed "+ quantityPacked +" to be packed");
+                "Try to input a positive quantity that does not exceed "+ quantityPacked);
     }
     }
 
