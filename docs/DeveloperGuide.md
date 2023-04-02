@@ -91,6 +91,7 @@ candidate `Illness` and the `similarityPercentage`.
 
 An `ArrayList<IllnessMatch> possibleIllnesses` is then returned to retrieve the appropriate medicine in another class.
 
+[comment]: <> (//@@author tanyizhe)
 ### Implementation of MedicineManager class, Medicine class
 
 ![img_1.png](diagrams%2FMedicineSequenceDiagram.png)
@@ -100,23 +101,41 @@ An `ArrayList<IllnessMatch> possibleIllnesses` is then returned to retrieve the 
 #### From the menu to the Medicine Manager
 
 User input from the menu will first get parsed by the parser class.
-From the Parser class, a new MedicineManager class is created. The MedicineManager class initialises 2 hash tables
+From the Parser class, a new `MedicineManager` class is created. The `MedicineManager` class initialises 2 hash tables
 with medicines created with the Medicine class. Each medicine has a different name and dosage, which can be
-retrieved using the Medicine.toString() and Medicine.getDosages().
+retrieved using the `Medicine.toString()` and `Medicine.getDosages()` methods.
 
 #### Medicines
 
 Medicine information is stored in two hash tables. One for matching the relevant medication with illnesses, the other
-matching the medicines with correct dosages.
+matching the medicines with correct dosages. Medicine information are 
+stored in two separate hash tables so that only relevant information is obtained.
+There are a lot of different kinds of medicines, which are all created as constants using the `final` keyword.
+Information about medicines are sourced online from various pharmacies and their websites.
 
 #### Analysing the symptoms and prescribing the medications
 
-Diagnosis.getIllnessMatch() is called in the MedicineManager class, which returns an ArrayList of illnessMatch
-objects. IllnessMatch objects contain information about the illness' name and the likelihood that the symptoms
+`Diagnosis.getIllnessMatch()` is called in the MedicineManager class, which returns an ArrayList of `illnessMatch`
+objects. `IllnessMatch` objects contain information about the illness' name and the likelihood that the symptoms
 the user has inputted match the illness as explained in the "Diagnosis" section above.
 
-Each illness will be analysed in the analyseIllness() method, and the medications that cure that illness
-will be suggested to the user. This information is then printed, and stored in the user's account.
+Each illness will be analysed in the `analyseIllness()` method, and the medications that are relevant 
+to the mentioned illness will be suggested to the user. 
+This information is then printed, and stored in the user's Medicine History.
+
+#### Medicine History
+
+The user's medicine history is stored in a dictionary within the `Storage` class. Whenever a user is prescribed
+medication, the date of the prescription and medications prescribed are saved into a file, as explained below
+in the Storage section of this Developer Guide. Medicine history of users is important and needs to be saved
+to prevent abuse of the system and may cause undesirable effects such as overdose, if not properly monitored.
+
+#### Listing and Finding Medicines
+
+User can list and find available medicines using the application. Listing medicines calls the
+`listMedicines()` method of the MedicineManager class. `listMedicines()` will collect all the keys of the
+`medicineDosages` hash table, sort them using `Collections.sort()` and proceed to print them out in
+alphabetical order.
 
 [comment]: <> (//@@Thunderdragon221)
 ### Storage
