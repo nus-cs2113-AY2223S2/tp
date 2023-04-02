@@ -217,25 +217,11 @@ public class TaskList implements Serializable {
     }
 
     //@@author clement559
-    public TaskList getFilteredTasks(String filter) {
+    public TaskList getFilteredTasks(Predicate<Task> predicate) {
         TaskList filteredTaskList = new TaskList();
         for (Task task : tasks.values()) {
-            boolean completionStatus = task.isDone();
-            LocalDateTime deadline = task.getDeadline();
-            if (filter.equals("done")) {
-                if (completionStatus) {
-                    filteredTaskList.addTask(task);
-                }
-            }
-            else if (filter.equals("overdue")) {
-                if (!completionStatus && (deadline != null) && deadline.isBefore(LocalDateTime.now())) {
-                    filteredTaskList.addTask(task);
-                }
-            }
-            else if (filter.equals("undone")) {
-                if (!completionStatus) {
-                    filteredTaskList.addTask(task);
-                }
+            if (predicate.test(task)) {
+                filteredTaskList.addTask(task);
             }
         }
         return filteredTaskList;

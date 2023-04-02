@@ -153,4 +153,8 @@ public class Task implements Serializable {
     public static Predicate<Task> afterDate(LocalDate date) {
         return task -> task.deadline != null && task.deadline.toLocalDate().isAfter(date);
     }
+
+    public static Predicate<Task> isOverdue() {
+        return task -> !task.isDone && task.deadline != null && task.deadline.toLocalDate().isBefore(LocalDate.now());
+    }
 }

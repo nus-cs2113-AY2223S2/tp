@@ -9,6 +9,9 @@ import seedu.todolist.ui.Ui;
 import seedu.todolist.task.TaskList;
 
 import java.util.HashMap;
+import java.util.function.Predicate;
+
+import static java.util.function.Predicate.not;
 
 //@@author KedrianLoh
 /**
@@ -20,7 +23,7 @@ public class ListTasksCommand extends Command {
             Flags.FILTER_DONE, Flags.FILTER_UNDONE, Flags.FILTER_OVERDUE};
 
     private TaskList filteredTaskList;
-    String filter;
+    private Predicate<Task> predicate = task -> true;
     /**
      * Displays the current task list.
      */
@@ -33,22 +36,22 @@ public class ListTasksCommand extends Command {
      * @throws ToDoListException If any of the provided arguments are invalid.
      */
     public ListTasksCommand(HashMap<Flags, String> args) throws ToDoListException {
+        if (args.containsKey(Flags.FILTER_DONE)) {
+            predicate = predicate.and(Task.isDonePredicate());
+        }
+        if (args.containsKey(Flags.FILTER_UNDONE)) {
+            predicate = predicate.and(not(Task.isDonePredicate()));
+        }
         if (args.containsKey(Flags.FILTER_OVERDUE)) {
-            filter = "overdue";
-        } else if (args.containsKey(Flags.FILTER_DONE)) {
-            filter = "done";
-        } else if (args.containsKey(Flags.FILTER_UNDONE)) {
-            filter = "undone";
+            predicate = predicate.and(Task.isOverdue());
         }
     }
-    public void execute(TaskList taskList, Ui ui) throws InvalidFlagException {
-        if (filter == null) {
+    public void execute(TaskList taskList, Ui ui) {
+        if (predicate == null) {
             ui.printTaskList(taskList.size(), taskList.toString(Task.deadlineComparator));
-        } else if (filter.equals("done") || filter.equals("undone") || filter.equals("overdue")){
-            filteredTaskList = taskList.getFilteredTasks(filter);
-            ui.printTaskList(filteredTaskList.size(), filteredTaskList.toString(Task.deadlineComparator));
         } else {
-            throw new InvalidFlagException(filter);
+            filteredTaskList = taskList.getFilteredTasks(predicate);
+            ui.printTaskList(filteredTaskList.size(), filteredTaskList.toString(Task.deadlineComparator));
         }
     }
 }
