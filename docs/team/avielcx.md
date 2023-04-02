@@ -23,7 +23,7 @@ Given below are my contributions to the project.
 * Created an AddTarget feature which allow users to set their target.
 * Created a ShowTarget feature which allow users to see the target they have set.
 * Contributed to tests for `AddIncomeCommand`, `AddExpenseCommand`, `DeleteExpenseCommand`, `DeleteIncomeCommand`, `BalanceCommand`, `ShowTargetCommand`, `AddTargetCommand`, 
-`IncomeTest`, `ExpenseTest`, `IncomeListTest`, `ExpenseListTest`, `Parser`, `ExitTest`. 
+`IncomeTest`, `ExpenseTest`, `IncomeListTest`, `ExpenseListTest`, `ParserTest`, `ExitTest`. 
 
 #### Contributions to the UG:
 * Added `Table of Contents`
