@@ -1,7 +1,5 @@
 package seedu.dukeofbooks.command;
 
-import seedu.dukeofbooks.data.exception.IllegalValueException;
-import seedu.dukeofbooks.data.user.User;
 import seedu.dukeofbooks.data.user.UserRecords;
 
 public abstract class AccessCommand extends Command {
@@ -11,7 +9,7 @@ public abstract class AccessCommand extends Command {
         this.userRecords = userRecords;
     }
 
-    public abstract User execute() throws IllegalValueException;
+    public abstract AccessResponse execute();
 
     public boolean isAccessCommand() {
         return true;

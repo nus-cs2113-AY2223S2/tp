@@ -1,9 +1,8 @@
 package seedu.dukeofbooks.command;
 
-import seedu.dukeofbooks.data.exception.IllegalValueException;
-import seedu.dukeofbooks.data.user.User;
-
 public class IncorrectAccessCommand extends AccessCommand {
+    private static final String UNKNOWN_CMD = "Unknown Command!";
+
     public final String feedbackToUser;
 
     public IncorrectAccessCommand(String feedbackToUser) {
@@ -12,8 +11,8 @@ public class IncorrectAccessCommand extends AccessCommand {
     }
 
     @Override
-    public User execute() throws IllegalValueException {
-        throw new IllegalValueException(feedbackToUser);
+    public AccessResponse execute() {
+        return new AccessResponse(null, UNKNOWN_CMD);
     }
 
     public static boolean isIncorrect(Command command) {
