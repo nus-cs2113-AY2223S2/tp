@@ -1,6 +1,7 @@
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
+import seedu.todolist.exception.InvalidFlagException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.ParserUtil;
 import seedu.todolist.task.Task;
@@ -14,8 +15,9 @@ import java.util.HashMap;
  * Command for displaying the current task list.
  */
 public class ListTasksCommand extends Command {
+    // @@author clement559
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_LIST,
-            Flags.FILTER};
+            Flags.FILTER_DONE, Flags.FILTER_UNDONE, Flags.FILTER_OVERDUE};
 
     private TaskList filteredTaskList;
     String filter;
@@ -31,14 +33,22 @@ public class ListTasksCommand extends Command {
      * @throws ToDoListException If any of the provided arguments are invalid.
      */
     public ListTasksCommand(HashMap<Flags, String> args) throws ToDoListException {
-        filter = ParserUtil.parseDescription(args.get(Flags.FILTER));
+        if (args.containsKey(Flags.FILTER_OVERDUE)) {
+            filter = "overdue";
+        } else if (args.containsKey(Flags.FILTER_DONE)) {
+            filter = "done";
+        } else if (args.containsKey(Flags.FILTER_UNDONE)) {
+            filter = "undone";
+        }
     }
-    public void execute(TaskList taskList, Ui ui) {
-        if (filter.isEmpty()) {
+    public void execute(TaskList taskList, Ui ui) throws InvalidFlagException {
+        if (filter == null) {
             ui.printTaskList(taskList.size(), taskList.toString(Task.deadlineComparator));
-        } else {
+        } else if (filter.equals("done") || filter.equals("undone") || filter.equals("overdue")){
             filteredTaskList = taskList.getFilteredTasks(filter);
             ui.printTaskList(filteredTaskList.size(), filteredTaskList.toString(Task.deadlineComparator));
+        } else {
+            throw new InvalidFlagException(filter);
         }
     }
 }

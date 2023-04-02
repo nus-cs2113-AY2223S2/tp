@@ -201,7 +201,7 @@ public class TaskList implements Serializable {
     public String setRepeatDuration(int id, int repeatDuration) throws InvalidIdException {
         return getTask(id).setRepeatDuration(repeatDuration);
     }
-
+    //@@author clement559
     public void checkRepeatingTasks() {
         for (Task task : tasks.values()) {
             int repeatDuration = task.getRepeatDuration();
@@ -216,17 +216,24 @@ public class TaskList implements Serializable {
         }
     }
 
+    //@@author clement559
     public TaskList getFilteredTasks(String filter) {
         TaskList filteredTaskList = new TaskList();
-        if (filter.equals("c")) {
-            for (Task task : tasks.values()) {
-                if (task.isDone()) {
+        for (Task task : tasks.values()) {
+            boolean completionStatus = task.isDone();
+            LocalDateTime deadline = task.getDeadline();
+            if (filter.equals("done")) {
+                if (completionStatus) {
                     filteredTaskList.addTask(task);
                 }
             }
-        } else if (filter.equals("nc")) {
-            for (Task task : tasks.values()) {
-                if (!task.isDone()) {
+            else if (filter.equals("overdue")) {
+                if (!completionStatus && (deadline != null) && deadline.isBefore(LocalDateTime.now())) {
+                    filteredTaskList.addTask(task);
+                }
+            }
+            else if (filter.equals("undone")) {
+                if (!completionStatus) {
                     filteredTaskList.addTask(task);
                 }
             }
