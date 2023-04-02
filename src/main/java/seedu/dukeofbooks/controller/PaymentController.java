@@ -1,6 +1,7 @@
 package seedu.dukeofbooks.controller;
 
 import java.text.SimpleDateFormat;
+import java.time.zone.ZoneOffsetTransitionRule.TimeDefinition;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -21,24 +22,24 @@ public class PaymentController {
                 int choice = in.nextInt();
                 if (choice < 1 || choice > 5) {
                     System.out.println("Invalid Choice!");
-                } else if (choice > 0 && choice < 4)
+                } else if (choice > 0 && choice < 4) {
                     break;
-                else if (choice == 5) {
+                } else if (choice == 5) {
                     throw new PaymentUnsuccessfulException("Payment Unsuccessful...");
                 }
             } while (true);
         }
-        String TID = generateTID(toReturn);
-        System.out.println("Payment Successful! Transaction ID: " + TID);
+        String tid = generateTID(toReturn);
+        System.out.println("Payment Successful! Transaction ID: " + tid);
     }
 
     public static String generateTID(BorrowableItem toReturn) {
         Book book = (Book) toReturn;
-        String TID;
+        String tid;
         SimpleDateFormat sdf = new SimpleDateFormat("YYYYMMddhhmm");
-        Date temp_date = new Date();
-        String date = sdf.format(temp_date);
-        TID = book.getIsbn() + date;
-        return TID;
+        Date tempDate = new Date();
+        String date = sdf.format(tempDate);
+        tid = book.getIsbn() + date;
+        return tid;
     }
 }
