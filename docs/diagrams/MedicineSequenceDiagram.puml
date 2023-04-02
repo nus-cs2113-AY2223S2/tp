@@ -2,7 +2,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-
+hide footbox
 
 create MedicineManager
 Parser -> MedicineManager : new MedicineManager()

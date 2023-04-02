@@ -1,6 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+hide footbox
 "<<class>>\nMedicineManager" -> "<<class>>\nDiagnosis": analyseIllness()
 activate "<<class>>\nMedicineManager"
 activate "<<class>>\nDiagnosis"
@@ -31,10 +32,6 @@ destroy "illnessMatch:IllnessMatch"
 "<<class>>\nDiagnosis" --> "<<class>>\nMedicineManager": possibleIllnesses
 deactivate "<<class>>\nDiagnosis"
 destroy "<<class>>\nDiagnosis"
-
-
-
-
 
 
 @enduml

@@ -3,8 +3,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-autonumber
-
+hide footbox
 create Patient
 Storage -> Patient : new Patient()
 activate Patient

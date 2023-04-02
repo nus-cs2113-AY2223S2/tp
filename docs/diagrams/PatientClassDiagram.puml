@@ -3,7 +3,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 hide circle
-
+skinparam classAttributeIconSize 0
 
 class Patient{
 #patientDiagnosisHistory: ArrayList<String>
