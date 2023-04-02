@@ -17,6 +17,10 @@ public class Converter {
         currencyMap.put("VND", 17618.54);
     }
 
+    public void setConversionRate(String currency, double rate) {
+        currencyMap.put(currency, rate);
+    }
+
     public double convert(String currency, double amount) {
         return amount * currencyMap.get(currency);
     }
@@ -24,8 +28,8 @@ public class Converter {
     /**
      * Executes print converter
      *
-     * @param value       income value
-     * @param selector      selector
+     * @param value    income value
+     * @param selector selector
      */
     public String printConverter(double value, Selector selector) {
         String result = "";
@@ -37,6 +41,13 @@ public class Converter {
             }
         }
         return result;
+    }
+
+    // for testing
+    public void printConversionRate() {
+        for (String currency : currencyMap.keySet()) {
+            System.out.println(currency + " " + currencyMap.get(currency));
+        }
     }
 
 }

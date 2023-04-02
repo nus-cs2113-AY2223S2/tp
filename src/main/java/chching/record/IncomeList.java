@@ -23,7 +23,7 @@ public class IncomeList extends RecordList {
     public IncomeList(ArrayList<Income> incomeList) {
         this.incomeList = incomeList;
     }
-    
+
     /**
      * Default constructor to instantiate IncomeList objects
      */
@@ -40,7 +40,7 @@ public class IncomeList extends RecordList {
         incomeList.add(income);
 
     }
-    
+
     /**
      * Method to edit an income in the income list.
      * Edits a specific field of an income based on the parameters field to value.
@@ -51,13 +51,13 @@ public class IncomeList extends RecordList {
      * @throws ChChingException If value value is not a non-numeric input.
      */
     public void editIncome(int index, String field, String value) throws ChChingException {
-    
+
         // change from 1-based indexing to 0-based indexing
         int indexZeroBased = index - 1;
         Income income = incomeList.get(indexZeroBased);
-        
+
         // edit the according field
-        switch(field) {
+        switch (field) {
         case "de":
             income.setDescription(value);
             break;
@@ -67,22 +67,29 @@ public class IncomeList extends RecordList {
             break;
         case "v":
             try {
-                double amount = Float.parseFloat(value);
+                double amount = Double.parseDouble(value);
+                if (amount < 0.01) {
+                    throw new ChChingException("Income must be greater than or equals 0.01");
+                }
+                assert amount > 0.01 : "Income cannot be negative";
                 income.setValue(amount);
             } catch (Exception e) {
-                throw new ChChingException("Trouble adding income value");
+                if (e instanceof NumberFormatException) {
+                    throw new ChChingException("Income value must be a number");
+                }
+                throw new ChChingException(e.getMessage());
             }
             break;
         default:
-            assert false: "No such field to enter here";
+            assert false : "No such field to enter here";
             throw new ChChingException("No such field in income");
         }
     }
-    
+
     /**
      * Deletes income from an IncomeList
      *
-     * @param i     index of the income entry
+     * @param i index of the income entry
      */
     public void deleteIncome(int i) throws IndexOutOfBoundsException {
         try {
@@ -100,7 +107,7 @@ public class IncomeList extends RecordList {
         }
     }
 
-    public void clearIncomeList(){
+    public void clearIncomeList() {
         incomeList.clear();
     }
 
