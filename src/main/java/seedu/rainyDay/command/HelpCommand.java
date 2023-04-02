@@ -19,7 +19,6 @@ public class HelpCommand extends Command {
             "| Unignore entry     | unignore  | [INDEX]                                                           |\n" +
             "| Export to .csv     | export    |                                                                   |\n" +
             "| Display a guide    | help      | {COMMAND}                                                         |\n" +
-            "| Exits rainyDay     | bye       |                                                                   |\n" +
             "| Close rainyDay     | bye       |                                                                   |\n" +
             "+====================================================================================================+\n" +
             "|[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |\n" +
