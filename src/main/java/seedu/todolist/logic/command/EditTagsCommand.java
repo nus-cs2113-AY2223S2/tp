@@ -30,7 +30,7 @@ public class EditTagsCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
         String taskString = taskList.setTags(id, tags);
-        if (tags.isEmpty()) {
+        if (tags == null) {
             ui.printEditDeleteTaskMessage("tags", taskString);
         } else {
             ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
