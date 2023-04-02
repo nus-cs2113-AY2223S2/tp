@@ -47,7 +47,6 @@ public class RainyDay {
     private void run() {
         setUpDate();
         runCommand();
-        ui.sayFarewellToUser(userData.getReportOwner());
     }
 
     private void setUpDate() {
@@ -60,12 +59,12 @@ public class RainyDay {
         while (true) {
             try {
                 String userInput = ui.readUserCommand();
-                if (userInput.equalsIgnoreCase("bye")) {
-                    break;
-                }
                 specificCommand = new Parser().parseUserInput(userInput);
                 assert specificCommand != null : "Parser returned null";
                 executeCommand(specificCommand);
+                if(specificCommand.isExit()) {
+                    break;
+                }
             } catch (Exception e) {
                 logger.log(Level.WARNING, e.getMessage());
                 System.out.println(e.getMessage());

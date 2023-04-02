@@ -20,7 +20,6 @@ public class Ui {
             "           |\n" +
             "         `='";
     private static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
-    private static final String FINANCIAL_REPORT_EMPTY = "Your financial report is empty";
     private static Logger UILogger = Logger.getLogger("UILogger.log");
 
     private final Scanner in;
@@ -32,6 +31,11 @@ public class Ui {
 
     public Ui(InputStream in) {
         this.in = new Scanner(in);
+    }
+
+    public static void printShortCutConfirmation(String shortcut, String actualCommand) {
+        System.out.println("Shortcut used: " + shortcut);
+        System.out.println("rainyDay will now execute your mapped command: " + actualCommand);
     }
 
     //@@author BenjaminPoh
@@ -47,10 +51,6 @@ public class Ui {
         System.out.println(NO_FILE_DETECTED);
     }
 
-    public static void emptyFinancialReport() {
-        System.out.println(FINANCIAL_REPORT_EMPTY);
-    }
-
     public String readUserName() {
         System.out.println("Welcome new user! What is your name?");
         String username;
@@ -63,7 +63,6 @@ public class Ui {
         System.out.println("Get started by providing the command \"help\" to learn the functions offered by rainyDay!");
         return username;
     }
-
 
     public String readUserCommand() {
         System.out.print("> ");
