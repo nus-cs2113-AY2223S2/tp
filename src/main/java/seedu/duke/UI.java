@@ -38,13 +38,17 @@ public class UI {
     private static final String CURRENT_DEADLINES_LIST_EMPTY = "The current deadlines list is empty";
     private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map "
             + "this NUS module code: ";
+    public static final String MODULE_ALREADY_EXIST_MESSAGE = "This module already exists in your list";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
-    public UI() {}
+    public UI() {
+    }
+
     public static void printLine() {
         System.out.println(LINE);
     }
+
     public void printPUListMessage() {
         System.out.println(LIST_PU_MESSAGE);
     }
@@ -240,6 +244,7 @@ public class UI {
     public static void printReminderMessage() {
         System.out.println("REMINDER! The following task(s) is/are due soon: ");
     }
+
     public static void printReminderDeadline(Deadline deadline, int counter) {
         String deadlineTask = deadline.getTask();
         String deadlineDueDate = deadline.getDueDate();
@@ -252,6 +257,12 @@ public class UI {
 
     public static void printAddModuleFailureMessage() {
         System.out.println(ADD_MOD_FAILURE_MESSAGE);
+    }
+
+    public static void printModAlreadyExistMessage() {
+        printLine();
+        System.out.println(MODULE_ALREADY_EXIST_MESSAGE);
+        printLine();
     }
 
     public static void printAddDeadlineFailureMessage() {
@@ -356,10 +367,8 @@ public class UI {
      * university selected, and prints out module information to the user
      * afterwards.
      *
-     * @param modules
-     *            ArrayList of all modules that user has selected.
-     * @param uniID
-     *            Unique partner university ID
+     * @param modules ArrayList of all modules that user has selected.
+     * @param uniID   Unique partner university ID
      */
     public void printCurrentPuModList(ArrayList<Module> modules, int uniID) {
         ArrayList<Module> puModulesToPrint = new ArrayList<>();
