@@ -6,6 +6,8 @@ Please enter a valid command!
 
 Successfully added new pet: Bob
 
+ERROR: Pet already exists
+
 ERROR: Input should be an integer
 
 ERROR: Integer provided should be above 0
@@ -31,6 +33,10 @@ ERROR: The only valid stats are type, age, or weight.
 ERROR: The only valid stats are type, age, or weight.
 
 ERROR: The only valid stats are type, age, or weight.
+
+ERROR: Pet not Found
+
+ERROR: Pet Name is empty
 
 Name: Bob
 Type: 

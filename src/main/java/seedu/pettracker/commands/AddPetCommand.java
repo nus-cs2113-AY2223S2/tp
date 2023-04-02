@@ -1,5 +1,7 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.exceptions.DuplicatePetException;
+import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.PetList;
@@ -17,14 +19,20 @@ public class AddPetCommand extends Command {
     /**
      * Executes the given command
      *
-     * @param ui Ui to do printing if required
+     * @param ui      Ui to do printing if required
      * @param storage Storage to save files if required
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        PetList.addPet(petName);
-        PetList.savePetsToStorage(storage, ui);
-        ui.addPetCommandMessage(petName);
+        try {
+            PetList.addPet(petName);
+            PetList.savePetsToStorage(storage, ui);
+            ui.addPetCommandMessage(petName);
+        } catch (EmptyPetNameException e) {
+            ui.petNameEmptyMessage();
+        } catch (DuplicatePetException e) {
+            ui.duplicatePetMessage();
+        }
     }
 
     //TODO: Implement this method

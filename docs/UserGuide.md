@@ -35,11 +35,11 @@ Here is a list of features for Pet Tracker
 ## Command Summary
 
 ### Adding a pet: `add-pet`
-Adds a pet to the Pet List.
+Adds a pet to the Pet List. 
 
-Format: `add-pet NAME`
+Format: `add-pet PETNAME`
 
-* The `NAME` must not be empty.
+* The `PETNAME` must not be empty.
 
 Example of usage:
 
@@ -58,9 +58,9 @@ Successfully added new pet: Bob
 ### Removing a pet: `remove-pet`
 Removes a pet from the Pet List.
 
-Format: `remove-pet NAME`
+Format: `remove-pet PETNAME`
 
-* The `NAME` must not be empty.
+* The `PETNAME` must not be empty.
 
 Example of usage:
 
@@ -76,9 +76,9 @@ Successfully removed pet: Alice
 Adds a stat to a pet in the Pet List.
 Currently, the only stats supported are Type, Age and Weight.
 
-Format: `add-stat NAME STAT VALUE`
+Format: `add-stat PETNAME STAT VALUE`
 
-* The `NAME` must not be empty.
+* The `PETNAME` must not be empty.
 * The `STAT` must not be empty.
 * The `VALUE` must not be empty.
 
@@ -100,9 +100,9 @@ Updated Age to 10 for Bob
 ### Removing a stat from a pet: `remove-stat`
 Removes a stat from a pet in the Pet List.
 
-Format: `remove-stat NAME STAT`
+Format: `remove-stat PETNAME STAT`
 
-* The `NAME` must not be empty.
+* The `PETNAME` must not be empty.
 * The `STAT` must not be empty.
 
 Example of usage:
@@ -120,9 +120,9 @@ Successfully removed Age from Bob
 ### Editing a stat of a pet: `edit-stat`
 Edit a stat of a pet in the Pet List.
 
-Format: `edit-stat NAME STAT VALUE`
+Format: `edit-stat PETNAME STAT VALUE`
 
-* The `NAME` must not be empty.
+* The `PETNAME` must not be empty.
 * The `STAT` must not be empty.
 * The `VALUE` must not be empty.
 
@@ -164,9 +164,9 @@ Number of pets: 1
 ### Adding a Task: `add-task`
 Adds a task to the Task List.
 
-Format: `add-task NAME` or `add-task NAME /by DATE`
+Format: `add-task TASKNAME` or `add-task TASKNAME /by DATE`
 
-* The `NAME` must not be empty.
+* The `TASKNAME` must not be empty.
 * The `DATE` must be in the format `yyyy-mm-dd`.
 
 Example of usage:

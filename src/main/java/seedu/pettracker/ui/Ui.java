@@ -166,6 +166,12 @@ public class Ui {
     public void petNotFoundMessage() {
         System.out.println("ERROR: Pet not Found");
     }
+    public void petNameEmptyMessage() {
+        System.out.println("ERROR: Pet Name is empty");
+    }
+    public void duplicatePetMessage() {
+        System.out.println("ERROR: Pet already exists");
+    }
     /**
      * Print out help for all commands
      */
