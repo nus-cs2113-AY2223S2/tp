@@ -113,7 +113,7 @@ public class Information {
         return password.hashCode();
     }
 
-    //@@Jeraldchen
+    //@@author Jeraldchen
 
     /**
      * Resets the symptom choice of the patient.

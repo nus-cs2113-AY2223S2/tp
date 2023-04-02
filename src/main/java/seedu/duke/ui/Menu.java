@@ -30,6 +30,9 @@ public class Menu {
     }
 
     //@@author JeraldChen
+    /**
+     * Shows the register menu.
+     */
     public static void register() {
         String name = "";
         Scanner scanner = new Scanner(System.in);
@@ -79,6 +82,9 @@ public class Menu {
     }
 
     //@@author JeraldChen
+    /**
+     * Shows the login menu.
+     */
     public static void login() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("---------------------------------------------------");
@@ -131,6 +137,9 @@ public class Menu {
         System.exit(0);
     }
 
+    /**
+     * Shows the account menu.
+     */
     public static void showAccountMenu() {
         System.out.println("---------------------------------------------------");
         System.out.println("What would you like to do? Please enter the number:");
