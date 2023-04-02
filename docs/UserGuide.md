@@ -73,6 +73,7 @@ Successfully removed pet: Alice
 
 ### Adding a stat to a pet: `add-stat`
 Adds a stat to a pet in the Pet List.
+Currently, the only stats supported are Type, Age and Weight.
 
 Format: `add-stat NAME STAT VALUE`
 
