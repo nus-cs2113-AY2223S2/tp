@@ -54,7 +54,7 @@ public class SellCommand extends Command{
      */
     private void handleUserSellCommands(Item item, String data) throws MissingParametersException,
             NumberFormatException, SellErrorException {
-        if (data.contains("qty/")) {
+        if (data.startsWith("qty/")) {
             String updatedQuantity = data.replaceFirst("qty/", "");
             try {
                 int quantityToDeduct = Integer.parseInt(updatedQuantity);

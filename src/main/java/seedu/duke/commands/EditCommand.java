@@ -114,19 +114,19 @@ public class EditCommand extends Command {
      */
     private static String makeEdits(Item item, String[] data, String currentLabel, int dataSequence)
             throws MissingParametersException {
-        if (data[dataSequence].contains("n/")) {
+        if (data[dataSequence].startsWith("n/")) {
             String newName = data[dataSequence].replaceFirst("n/", "");
             item.setName(newName);
             currentLabel = NAME_LABEL;
-        } else if (data[dataSequence].contains("qty/")) {
+        } else if (data[dataSequence].startsWith("qty/")) {
             String updatedQuantity = data[dataSequence].replaceFirst("qty/", "");
             setItemQuantity(item, updatedQuantity);
             currentLabel = QUANTITY_LABEL;
-        } else if (data[dataSequence].contains("p/")) {
+        } else if (data[dataSequence].startsWith("p/")) {
             String updatedPrice = data[dataSequence].replaceFirst("p/", "");
             setItemPrice(item, updatedPrice);
             currentLabel = PRICE_LABEL;
-        } else if (data[dataSequence].contains("c/")) {
+        } else if (data[dataSequence].startsWith("c/")) {
             String updatedCategory = data[dataSequence].replaceFirst("c/", "");
             updatedCategory = updatedCategory.toLowerCase();
             item.setCategory(updatedCategory);
@@ -155,18 +155,18 @@ public class EditCommand extends Command {
         int categoryEditCount = 0;
         String currentLabel = "null";
         for (int dataSequence = 1; dataSequence < data.length; dataSequence += 1) {
-            if (data[dataSequence].contains("n/")) {
+            if (data[dataSequence].startsWith("n/")) {
                 nameEditCount += 1;
                 currentLabel = NAME_LABEL;
-            } else if (data[dataSequence].contains("qty/")) {
+            } else if (data[dataSequence].startsWith("qty/")) {
                 quantityEditCount += 1;
                 currentLabel = QUANTITY_LABEL;
-            } else if (data[dataSequence].contains("p/")) {
+            } else if (data[dataSequence].startsWith("p/")) {
                 priceEditCount += 1;
                 currentLabel = PRICE_LABEL;
-            } else if (data[dataSequence].contains("upc/")) {
+            } else if (data[dataSequence].startsWith("upc/")) {
                 upcEditCount += 1;
-            } else if (data[dataSequence].contains("c/")) {
+            } else if (data[dataSequence].startsWith("c/")) {
                 categoryEditCount += 1;
                 currentLabel = CATEGORY_LABEL;
             } else {

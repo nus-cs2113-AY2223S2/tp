@@ -40,7 +40,7 @@ public class RestockCommand extends Command{
      */
     private void handleUserRestockCommands(Item item, String data) throws MissingParametersException,
             NumberFormatException, RestockErrorException {
-        if (data.contains("qty/")) {
+        if (data.startsWith("qty/")) {
             String updatedQuantity = data.replaceFirst("qty/", "");
             try {
                 int quantityToAdd = Integer.parseInt(updatedQuantity);

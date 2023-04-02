@@ -75,15 +75,17 @@ Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price]`
 
 OPTIONAL parameters:
 * The `n/` parameter where `[item_name]` must be alphanumeric.
-* The `qty/` parameter for `[quantity]` must be a numerical value.
-* The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
+* The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value.
+* The `p/` parameter for `[price]` must be a **non-negative numerical value** (decimals accepted).
 * The `c/` parameter for `[category]` must be alphanumeric.
 
-Example of usage:
+Example of usage: <br />
+`edit upc/2142535453 c/laptop`: Searches for the item in the inventory with a `UPC` code of `2142535453`, and change
+its `Category` type to `laptop`. <br />
 
-``
-edit upc/2142535453 c/laptop
-``
+`edit upc/123 n/Orange qty/5 p/2.00`: Searches for the item in the inventory with a `UPC` code of `123`, and change
+its `Name` to `Orange`, `quantity` to be set to `5` and `price` will be set to `2.00`.
+
 
 Sample output:
 ```
