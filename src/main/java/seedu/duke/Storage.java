@@ -85,11 +85,15 @@ public class Storage implements DatabaseInterface {
         }
     }
 
-    public void addModuleToModuleList(Module moduleToAdd) {
+    public boolean addModuleToModuleList(Module moduleToAdd) {
         assert (moduleToAdd != null) : "error line 89";
         if (moduleToAdd == null) {
             UI.printAddModuleFailureMessage();
-            return;
+            return false;
+        }
+        if (doesModuleExist(moduleToAdd)) {
+            UI.printModAlreadyExistMessage();
+            return false;
         }
         modules.add(moduleToAdd);
         try {
@@ -97,6 +101,17 @@ public class Storage implements DatabaseInterface {
         } catch (IOException e) {
             UI.printAddModuleFailureMessage();
         }
+        return true;
+    }
+
+    public boolean doesModuleExist(Module moduleToAdd) {
+        for (Module module : modules) {
+            if ((moduleToAdd.getUnivId() == module.getUnivId()) &&
+                    moduleToAdd.getModuleCode().equalsIgnoreCase(module.getModuleCode())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void saveModuleToStorage(String saveModuleString) throws IOException {
