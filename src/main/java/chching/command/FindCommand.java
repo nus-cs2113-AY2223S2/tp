@@ -38,10 +38,13 @@ public class FindCommand extends Command {
                               Converter converter, TargetStorage targetStorage) throws ChChingException {
         IncomeList incomesMatched = new IncomeList();
         ExpenseList expensesMatched = new ExpenseList();
+
         if(category == null) {
             throw new ChChingException("No category specified");
+
         } else if(keyword == null) {
             throw new ChChingException("No keyword specified");
+
         } else if(!category.equals("income") && !category.equals("expense")) {
             throw new ChChingException("Category specified must be income or expense");
         }
