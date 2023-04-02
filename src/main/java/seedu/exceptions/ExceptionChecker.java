@@ -21,10 +21,18 @@ public class ExceptionChecker {
         }
     }
 
+    public static void checkValidDoubleInput(String amountVal) throws InvalidCharacterInAmount {
+        String lowerCaseAmountVal = amountVal.toLowerCase();
+        boolean containsSpecialCharacter = (lowerCaseAmountVal.contains("f") || lowerCaseAmountVal.contains("d"));
+        if (containsSpecialCharacter) {
+            throw new InvalidCharacterInAmount();
+        }
+    }
+
     public static void checkDate(LocalDate startDate, LocalDate endDate)
             throws InvalidDateException, InvalidDeadlineException {
         LocalDate currentDate = LocalDate.now();
-        if (startDate.compareTo(endDate) > 0) {
+        if (startDate.isAfter(endDate)) {
             throw new InvalidDateException();
         }
         if (endDate.isBefore(currentDate)) {
