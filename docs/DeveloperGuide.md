@@ -571,12 +571,13 @@ Step 4. The parameters `startWeek`, `endWeek`, `taskList` (all tasks), and `cale
 
 Step 5. Starting from Monday, the lessons and tasks occurring on each day of the week are printed out. 
 - Step 5a. The day of week is printed using the `determineDay()` method in `DayTypeUtil`. 
-- Step 5b. The method `printLessonsOnDay()` obtains all lessons on that day using `calender.get()`. 
-            If no lessons occur on that day, the method returns `false` and Step 5c is skipped.
-- Step 5c. The schedule of each lesson is stored in a new `Timetable`, then printed out in the desired format. 
-- Step 5d. Similarly, the method `printTasksOnDay` obtains all tasks on that day using the method `getTasksOnDate()` in
-            `TaskList`. If no tasks occur on that day, the method returns `false` and Step 5e is skipped. 
-- Step 5e. Each task on the day is printed out. 
+- Step 5b. All lessons on that day are stored in an `ArrayList<CalendarModule> lessonsOnDay` using `calender.get()`. 
+  If no lessons occur on that day, Step 5c is skipped.
+- Step 5c. `lessonsOnDay` is passed into the method `printLessonsOnDay()` in `Ui`. 
+  The schedule of each lesson is stored in a new `Timetable`, then printed out in the desired format. 
+- Step 5d. Similarly, All tasks on that day are stored in an `TaskList tasksOnDay` using `taskList.getTasksOnDay()`.
+  If no lessons occur on that day, Step 5e is skipped.
+- Step 5e. `tasksOnDay` is passed into the method `printTasksOnDay()` in `Ui`. Each task is printed out.
 - Step 5f. The current day is increased to the following day.
 - Step 5g. Go back to Step 5a, stop after all lessons and tasks on Sunday have been printed. 
 

@@ -28,31 +28,26 @@ loop 7 times
     activate DayTypeUtil
     return
     destroy DayTypeUtil
+
+    Ui -> Calendar : get()
+    activate Calendar
+    Calendar -> Ui : lessonsOnDay
+    destroy Calendar
+    alt lessonsOnDay.size() > 0
     Ui -> Ui : printLessonsOnDay()
     activate Ui
-        Ui -> Calendar : get()
-        activate Calendar
-        Calendar -> Ui : lessonsOnDay
-        destroy Calendar
-        alt lessonsOnDay.size() == 0
-            Ui -> Ui : false
-        else
-            Ui -> Ui : true
-        end
     deactivate Ui
+    end
 
+    Ui -> TaskList : getTasksOnDate()
+    activate TaskList
+    TaskList -> Ui : tasksOnDay
+    destroy TaskList
+    alt tasksOnDay.size() > 0
     Ui -> Ui : printTasksOnDay()
     activate Ui
-        Ui -> TaskList : getTasksOnDate()
-        activate TaskList
-        TaskList -> Ui : tasksOnDay
-        destroy TaskList
-        alt tasksOnDay.size() == 0
-            Ui -> Ui : false
-        else
-            Ui -> Ui : true
-        end
     deactivate Ui
+    end
 end
 destroy Ui
 destroy week

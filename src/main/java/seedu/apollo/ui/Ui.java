@@ -165,43 +165,44 @@ public class Ui {
             showSmallLine();
             System.out.println(determineDay(i) + "\n");
 
-            if (!printLessonsOnDay(calendar, i)) {
+            // lessons
+            ArrayList<CalendarModule> modulesOnDay = calendar.get(i);
+            if (modulesOnDay.size() == 0) {
                 System.out.println("There are no lessons on this day.");
+            } else {
+                printLessonsOnDay(modulesOnDay);
             }
-            if (!printTasksOnDay(taskList, curr)) {
+            System.out.println();
+
+            // tasks
+            TaskList tasksOnDay = taskList.getTasksOnDate(curr);
+            if (tasksOnDay.size() == 0) {
                 System.out.println("There are no tasks on this day.");
+            } else {
+                printTasksOnDay(tasksOnDay);
             }
 
+            // go to next day
             curr = curr.plusDays(1);
         }
     }
 
-    private boolean printLessonsOnDay(Calendar calendar, int i) {
+    private void printLessonsOnDay(ArrayList<CalendarModule> modulesOnDay) {
         System.out.println("Lessons:");
-        ArrayList<CalendarModule> modulesOnDay = calendar.get(i);
-        if (modulesOnDay.size() == 0) {
-            return false;
-        }
         for (CalendarModule module : modulesOnDay) {
             Timetable schedule = module.getSchedule();
             System.out.println(schedule.getStartTime() + "-" + schedule.getEndTime() + ": " +
                     module.getCode() + " " + schedule.getLessonType() + " (" + schedule.getClassnumber() + ")");
         }
-        return true;
     }
 
-    private boolean printTasksOnDay(TaskList taskList, LocalDate curr) {
-        System.out.println("\nTasks:");
-        TaskList tasksOnDay = taskList.getTasksOnDate(curr);
-        if (tasksOnDay.size() == 0) {
-            return false;
-        }
+    private void printTasksOnDay(TaskList tasksOnDay) {
+        System.out.println("Tasks:");
         int count = 0;
         for (Task task : tasksOnDay) {
             count++;
             System.out.println(count + ". " + task);
         }
-        return true;
     }
 
     public void printClashingDeadlineMessage(TaskList clashTasks, ArrayList<CalendarModule> clashLessons) {
