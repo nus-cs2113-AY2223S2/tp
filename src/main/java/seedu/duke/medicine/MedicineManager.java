@@ -74,7 +74,8 @@ public class MedicineManager {
     private static final Medicine EYE_DROPS = new Medicine(
             "Eye Drops", "When your eyes itch",
             //@@author Geeeetyx
-            "Description: Eye Drops are a decongestant used to relieve redness in the eyes caused by minor eye irritations \n" +
+            "Description: Eye Drops are a decongestant used to relieve redness in the eyes caused by " +
+                    "minor eye irritations \n" +
                     "    (such as smog, swimming, dust, or smoke).");
     //@@author
 
