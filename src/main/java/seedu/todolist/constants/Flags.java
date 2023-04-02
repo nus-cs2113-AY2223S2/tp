@@ -36,7 +36,8 @@ public enum Flags {
     REPEAT("-rep", false),
     TAG("-tags", false),
     EDIT("-edit", false),
-    EDIT_DELETE("-del", true);
+    EDIT_DELETE("-del", true),
+    FILTER("-filter", false);
 
 
     private static final HashMap<String, Flags> map = new HashMap<>();

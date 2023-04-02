@@ -47,6 +47,10 @@ public class TaskList implements Serializable {
         return task.toString();
     }
 
+    public void addTask(Task task) {
+        tasks.put(id++, task);
+    }
+
     /**
      * Deletes the task at the given id of the task list.
      *
@@ -187,5 +191,23 @@ public class TaskList implements Serializable {
                 task.setRepeatDuration(0);
             }
         }
+    }
+
+    public TaskList getFilteredTasks(String filter) {
+        TaskList filteredTaskList = new TaskList();
+        if (filter.equals("c")) {
+            for (Task task : tasks.values()) {
+                if (task.isDone()) {
+                    filteredTaskList.addTask(task);
+                }
+            }
+        } else if (filter.equals("nc")) {
+            for (Task task : tasks.values()) {
+                if (!task.isDone()) {
+                    filteredTaskList.addTask(task);
+                }
+            }
+        }
+        return filteredTaskList;
     }
 }
