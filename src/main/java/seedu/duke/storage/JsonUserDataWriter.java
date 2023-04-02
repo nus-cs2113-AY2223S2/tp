@@ -8,6 +8,7 @@ import seedu.duke.data.userdata.UserCareerData;
 
 import java.io.FileWriter;
 import java.io.Writer;
+//@author EangJS
 
 /**
  * Class to write an ArrayList of completedWorkouts into a json file.

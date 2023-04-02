@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.duke.commons.LogMaster;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.UserCareerData;
+//@author EangJS
 
 /**
  * This class is responsible to save all user career into a json file for storage on the hard disk.

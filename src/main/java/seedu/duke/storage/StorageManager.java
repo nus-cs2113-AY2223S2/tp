@@ -5,6 +5,7 @@ import seedu.duke.commons.LogMaster;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.data.userdata.userplan.UserPlan;
+//@author EangJS
 
 /**
  * Manages storage of Fitness Duke data into the local hard disk

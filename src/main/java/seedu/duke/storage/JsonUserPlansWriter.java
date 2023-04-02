@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.Writer;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.userplan.UserPlan;
+//@author EangJS
 
 /**
  * Class to write all {@code UserPlans} into a json file.

@@ -13,11 +13,12 @@ import seedu.duke.data.userdata.Session;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.ErrorMessages;
 
+//@author EangJS
+
 /**
  * Class to read and parse the json file containing userData into an ArrayList of completed workouts.
  */
 public class JsonUserDataLoader {
-    private static final Integer DAYSINAWEEK = 7;
     private final Gson gson;
 
     public JsonUserDataLoader (Gson gson) {

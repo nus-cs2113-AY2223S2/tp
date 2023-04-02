@@ -10,6 +10,7 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.userplan.Plan;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.ui.ErrorMessages;
+//@author EangJS
 
 /**
  * Class to read and parse the json file containing {@code userPlans} into an ArrayList of completed workouts.
