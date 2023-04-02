@@ -3,16 +3,28 @@
 
 title WeekCommand
 
-participant Parser as Parser
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":WeekCommand" as week
+participant ":Ui" as Ui
+participant ":DayTypeUtil" as DayTypeUtil
+participant ":Calendar" as Calendar
+participant ":TaskList" as TaskList
 
-participant WeekCommand as week
+User -> Apollo : "week"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+Parser -> week** : WeekCommand()
+week++
+return
+return
 
-Parser -> week : WeekCommand()
+Apollo -> week : execute()
+Apollo --
 activate week
-deactivate week
 
- -> week : execute()
-activate week
 
 week -> Ui : printWeek()
 activate Ui
@@ -25,7 +37,7 @@ loop 7 times
 
     Ui -> Calendar : get()
     activate Calendar
-    Calendar -> Ui : lessonsOnDay
+    Calendar --> Ui : lessonsOnDay
     destroy Calendar
     alt lessonsOnDay.size() > 0
     Ui -> Ui : printLessonsOnDay()
@@ -35,7 +47,7 @@ loop 7 times
 
     Ui -> TaskList : getTasksOnDate()
     activate TaskList
-    TaskList -> Ui : tasksOnDay
+    TaskList --> Ui : tasksOnDay
     destroy TaskList
     alt tasksOnDay.size() > 0
     Ui -> Ui : printTasksOnDay()
