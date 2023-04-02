@@ -104,7 +104,7 @@ Expected output:
 ```
 You have added this note: 
 isNote
-Now you have <number> of tasks in the list
+Now you have <number> of notes in the list
 ```
 
 ### 4) Display all Notes: `List`
@@ -125,7 +125,7 @@ Here are the notes you have stored:
 ```
 
 ### 5) Display a specific note: `List <index>`
-Display a particular item in the Notes list.
+Display a particular item in the Notes list through index of list item.
 
 Format: `List <index of list item>`
 
@@ -140,7 +140,7 @@ Here is the note you are looking for
 ```
 
 ### 6) Delete Notes: `Delete <index>`
-Delete a particular item stored in the Notes list.
+Delete a particular item stored in the Notes list through index of list item.
 
 Format: `Delete. <index of list item>`
 
@@ -152,7 +152,7 @@ Expected output:
 ```
 You have removed this note:
 [LOW][N][0]note_item_2
-Now you have <number> tasks in the list.
+Now you have <number> notes in the list.
 ```
 
 ### 7) Clear all notes stored in Notes List `Clear`
@@ -351,7 +351,8 @@ Goodbye!
 
 **Q**: How do I start and run BadMaths?
 
-**A**: {your answer here}
+**A**: To start and run BadMaths:
+ 
 
 **Q**: How do I exit and leave BadMaths?
 
