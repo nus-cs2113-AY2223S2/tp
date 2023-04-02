@@ -146,17 +146,18 @@ public class Parser {
             return new ExitCommand();
 
         case COMMAND_HELP_WORD:
-            if (!isOneWord(split) && (!isValidWord(split[1]))){
+            if (isOneWord(split)){
 
+                return new HelpCommand();
+            }
+            if (isTwoWord(split)) {
+                return chooseHelpCommand(split[1]);
 
+            }
+
+            else if(split.length > 2) {
                 throw new IllegalCommandException();
             }
-            if(isOneWord(split)) {
-                return new HelpCommand();}
-            else {
-                return chooseHelpCommand(split[1]);
-            }
-
         case COMMAND_LIST_WORD:
             if (!isOneWord(split)) {
                 throw new IllegalCommandException();
@@ -217,33 +218,9 @@ public class Parser {
         }
     }
 
-    /**
-     * Checks if word given is a valid command in Apollo
-     * @param word
-     * @return
-     */
-    public static boolean isValidWord(String word){
-        switch(word) {
-        case "list":
-        case "todo":
-        case "deadline":
-        case "event":
-        case "mark":
-        case "unmark":
-        case "delete":
-        case "find":
-        case "date":
-        case "addmod":
-        case"showmod":
-        case"delmod":
-        case"week":
-        case"listmod":
-            return true;
-        default:
-            return false;
-        }
 
-    }
+
+
     /**
      * Method that selects which help command class to invoke
      * @param helpCommandName
@@ -294,7 +271,9 @@ public class Parser {
     private static Boolean isOneWord(String[] split) {
         return (split.length == 1);
     }
-
+    private static Boolean isTwoWord(String[] split) {
+        return (split.length == 2);
+    }
 
     /**
      * Separates a Deadline's input data into its description, and due date.
