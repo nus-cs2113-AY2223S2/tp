@@ -62,6 +62,14 @@ Example input:
 ```
 Graph. 2*sin(5*x+2)-8
 ```
+Expected output:
+```
+This is the amplitude: 2.0
+This is the freq (Hz): 0.7957747154594768
+This is the phase: 2.0
+This is the vertical shift: -8.0
+```
+![Alt Text](https://raw.githubusercontent.com/AY2223S2-CS2113-F10-2/tp/fa918f3fa579d26aef963f1b134d818af9e955a5/trigo.JPG)
 
 ### 2) Matrix Calculation: `Matrix`
 This feature accepts matrix equation and outputs calculation result.
