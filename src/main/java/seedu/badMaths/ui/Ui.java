@@ -66,26 +66,26 @@ public class Ui {
     public static void printAddNote(String text, int size) {
         System.out.println("You have added this note:");
         System.out.println(text);
-        System.out.println("Now you have " + size + " tasks in the list.");
+        System.out.println("Now you have " + size + " notes in the list.");
     }
 
     //@@author WilsonLee2000
     public static void printDelete(String text, int size) {
         System.out.println("You have removed this note:");
         System.out.println(text);
-        System.out.println("Now you have " + (size - 1) + " tasks in the list.");
+        System.out.println("Now you have " + (size - 1) + " notes in the list.");
     }
 
     //@@author WilsonLee2000
     public static void printNotes(ArrayList<Note> notes) {
         if (notes.size() == 0) {
-            System.out.println("You have no note yet. :(");
+            System.out.println("You have no notes yet. :(");
         } else {
             System.out.println("Here are the notes you have stored:");
             for (int i = 0; i < notes.size(); i++) {
                 System.out.println((i + 1) + ". " + notes.get(i).toString());
             }
-            System.out.println("Now you have " + notes.size() + " tasks in the list.");
+            System.out.println("Now you have " + notes.size() + " notes in the list.");
         }
     }
 
