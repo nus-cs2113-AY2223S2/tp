@@ -142,7 +142,7 @@ Successfully updated Bob's Weight to 12
 
 
 ### Viewing Pet List: `list`
-View the current Pet List and total number of pets.
+Views the current Pet List and total number of pets.
 
 Format: `list`
 
@@ -196,7 +196,7 @@ Successfully removed task 1
 ```
 
 ### Viewing Task List: `list-tasks`
-View the current Task List and total number of tasks.
+Views the current Task List and total number of tasks.
 
 Format: `list-tasks`
 
@@ -213,7 +213,7 @@ Here are your tasks:
 ```
 
 ### Editing tasks: `edit-task`
-View the current Task List and total number of tasks.
+Views the current Task List and total number of tasks.
 
 Format: `edit-task NUMBER VALUE` or `edit-task NUMBER VALUE /by DATE`
 * The `NUMBER` must not be empty. The NUMBER here refers to index in the list
@@ -230,7 +230,7 @@ Updated task 2 to feed the cat.
 ```
 
 ### Print Task Schedule: `schedule`
-View the current list of tasks with an associated deadline, in order of deadline.
+Views the current list of tasks with an associated deadline, in order of deadline.
 
 Format: `schedule`
 
