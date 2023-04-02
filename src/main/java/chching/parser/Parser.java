@@ -172,12 +172,25 @@ public class Parser {
         for (int i = 0; i < argumentsCount; i++) {
             String argument = arguments.get(i);
             String[] fieldAndValue = argument.split(" ", 2);
+            String field;
+            String value;
             try {
-                String field = fieldAndValue[0].trim();
-                String value = fieldAndValue[1].trim();
-                argumentsByField.put(field, value);
+                field = fieldAndValue[0].trim();
+                value = fieldAndValue[1].trim();
             } catch (Exception e) {
-                throw new ChChingException("arguments not inputted correctly or missing a value");
+                throw new ChChingException("Arguments not inputted correctly");
+            }
+    
+            // checks if it is an existing field
+            boolean isDuplicateField = argumentsByField.containsKey(field);
+            // check if field/value is empty or just spaces
+            boolean isEmptyFieldOrValue = field.isBlank() || value.isBlank();
+            if (isDuplicateField) {
+                throw new ChChingException("Duplicate fields detected");
+            } else if (isEmptyFieldOrValue) {
+                throw new ChChingException("Empty value detected or use of \" / \" in value");
+            } else {
+                argumentsByField.put(field, value);
             }
         }
         return argumentsByField;
