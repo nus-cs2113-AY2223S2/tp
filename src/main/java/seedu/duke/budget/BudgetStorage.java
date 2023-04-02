@@ -77,6 +77,10 @@ public class BudgetStorage implements DatabaseInterface {
             while ((line = br.readLine()) != null) {
                 costs.add(line);
             }
+            if (costs.size() != 5) {
+                corruptBudgetFixProcedure();
+                return;
+            }
             try {
                 budget = Integer.parseInt(costs.get(0));
                 accommodation = new Accommodation(Integer.parseInt(costs.get(1)));
