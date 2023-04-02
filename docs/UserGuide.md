@@ -281,3 +281,18 @@ Expected Output:
 ```
 Task marked as not done
 ```
+
+### Exiting the program: `exit`
+Exits the program.
+
+Format: `exit`
+
+Example of usage:
+
+`exit`
+
+Expected Output:
+
+```
+Goodbye! See you soon.
+```

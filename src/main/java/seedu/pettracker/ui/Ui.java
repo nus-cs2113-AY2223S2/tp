@@ -164,6 +164,7 @@ public class Ui {
         System.out.println(DIVIDER);
         showPetHelp();
         showTaskHelp();
+        showExitCommandHelp();
         System.out.println("Hope this helps!");
     }
 
@@ -320,6 +321,15 @@ public class Ui {
         System.out.println("Command: unmark-task NUMBER");
         System.out.println("Description: Marks a task as not done in the Task List");
         System.out.println("Example: unmark-task 2");
+        System.out.println(DIVIDER);
+    }
+    /**
+     * Print out help for exit command
+     */
+    private void showExitCommandHelp() {
+        System.out.println("Command: exit");
+        System.out.println("Description: Exits the program");
+        System.out.println("Example: exit");
         System.out.println(DIVIDER);
     }
 }
