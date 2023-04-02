@@ -214,8 +214,39 @@ maps to ----> [ME3122][Heat Transfer][4]
 ____________________________________________________________
 ```
 ****
-#### 3.2.2 Add
+#### 3.2.2 Add user selected modules to list: `add`
 
+Format: `add [PU ABBREVIATION]/[MODULE CODE]`
+
+* The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
+* The  `MODULE CODE` is the Partner University's module code provided by ` list current`
+  or ` list current [PU Abbreviation]` command.
+
+Example of usage: `add KU/AMSE216`
+
+Expected outcome: Adds the module AMSE216 from Korea University to the list of user selected modules.
+
+Description of outcome:
+```
+This module has been added to the current module list!
+____________________________________________________________
+```
+
+**Before Command** `add KU/AMSE216`
+```
+The current module list is empty for: KOREA UNIVERSITY
+____________________________________________________________
+____________________________________________________________
+```
+
+**After Command** `add KU/AMSE216`
+```
+List of Added Modules for: KOREA UNIVERSITY
+____________________________________________________________
+1.[AMSE216][Introduction to biomaterials][3]
+   maps to ----> [ME4253][Biomaterials Engineering][4]
+____________________________________________________________
+```
 ---
 #### 3.2.3 Remove user selected modules from list: `remove`
 
@@ -356,7 +387,7 @@ All Budget Planner commands start with /budget.
 
 ****
 
-#### 3.4.1 `budget` - Edits the budget
+#### 3.4.1 Edits the budget - `budget`
 
 Edits the current total budget to a new amount the user plans to spend on his/her SEP trip
 
@@ -383,7 +414,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.4.2 `accommodation` - Edits the accommodation cost
+#### 3.4.2 Edits the accommodation cost - `accommodation` 
 
 Edits the current accommodation planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -410,7 +441,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.4.3 `airplane` - Edits the Airplane Ticket cost
+#### 3.4.3 Edits the Airplane Ticket cost - `airplane` 
 
 Edits the current Airplane Ticket planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -437,7 +468,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.4.4 `Food` - Edits the Food cost
+#### 3.4.4 Edits the Food cost - `Food` 
 
 Edits the current Food planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -464,7 +495,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.4.5 `Entertainment` - Edits the Entertainment cost
+#### 3.4.5 Edits the Entertainment cost - `Entertainment` 
 
 Edits the current Entertainment planned cost to a new amount the user plans to spend on his/her SEP trip
 
@@ -491,7 +522,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.4.6 `View` - Views the entire budget plan
+#### 3.4.6 Views the entire budget plan - `View` 
 
 Provides an overview of what the budget consists of.
 
