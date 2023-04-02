@@ -24,7 +24,7 @@ public class Pet {
     }
 
     public void addStat(String statName, String statValue) throws NonPositiveIntegerException,
-            NumberFormatException, InvalidStatException{
+            NumberFormatException, InvalidStatException {
         assert statName != null && statValue != null : "statName/statValue is null";
         switch (statName.toLowerCase()) {
         case "type":
@@ -58,9 +58,11 @@ public class Pet {
             System.out.println("ERROR: The only valid stats are type, age, or weight.");
         }
     }
+
     private void removeAge() {
         this.age = "";
     }
+
     private void removeWeight() {
         this.weight = "";
     }
@@ -87,7 +89,9 @@ public class Pet {
 
     public void setAge(String age) throws NonPositiveIntegerException, NumberFormatException {
         int ageInt = Integer.parseInt(age);
-        if (ageInt <= 0) throw new NonPositiveIntegerException();
+        if (ageInt <= 0) {
+            throw new NonPositiveIntegerException();
+        }
         this.age = age;
     }
 
@@ -95,9 +99,11 @@ public class Pet {
         return weight;
     }
 
-    public void setWeight(String weight) throws NonPositiveIntegerException, NumberFormatException{
+    public void setWeight(String weight) throws NonPositiveIntegerException, NumberFormatException {
         int weightInt = Integer.parseInt(weight);
-        if (weightInt <= 0) throw new NonPositiveIntegerException();
+        if (weightInt <= 0) {
+            throw new NonPositiveIntegerException();
+        }
         this.weight = weight;
     }
 
