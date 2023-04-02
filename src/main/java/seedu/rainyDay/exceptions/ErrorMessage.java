@@ -51,7 +51,31 @@ public enum ErrorMessage {
     SHORTCUT_MAPS_ITSELF("The shortcut you are trying to configure should not map to itself."),
     SHORTCUT_NAME_VALID_COMMAND("The shortcut you are trying to configure has the same name as a valid command, " +
             "please name your shortcut something else."),
-    SHORTCUT_MAPS_SHORTCUT("A configured shortcut should not map to another shortcut");
+    SHORTCUT_MAPS_SHORTCUT("A configured shortcut should not map to another shortcut"),
+    INVALID_YEAR("Year provided needs to be in the form YYYY!\n\n" +
+            "Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!"),
+    INVALID_MONTH("Month provided needs to be in the form MM or M!\n\n" +
+            "Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!"),
+    INVALID_DAY("Year provided needs to be in the form DD or D!\n\n" +
+            "Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!"),
+    INVALID_DATE_FORMAT("Date provided needs to be in the form of DD/MM/YYYY or D instead of DD and M instead of MM\n\n" +
+            "Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!"),
+    EMPTY_CATEGORY_NAME("Category name cannot be empty\n\n" +
+            "Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!"),
+    INVALID_DATE("Date provided does not exist, please ensure that you have keyed the correct date\n\n" +
+            "Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!");
 
 
     private final String error;
