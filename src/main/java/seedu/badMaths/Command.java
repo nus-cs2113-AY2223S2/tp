@@ -60,7 +60,11 @@ public class Command {
                     command.equals("Clear") || command.equals("Help") || command.equals("Matrix") ||
                     command.equals("Quadratic")) : "input has incorrect format required";
             switch (command) {
+            //@@author WilsonLee2000
             case "Bye":
+                if(!isInvalidTodo(toDo)) {
+                    throw new IllegalTodoException();
+                }
                 System.out.println("Goodbye!");
                 break;
             case "Graph":
