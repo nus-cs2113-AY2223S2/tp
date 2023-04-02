@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.exceptions.RainyDayException;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,10 +31,11 @@ public class StorageTest {
     }
 
     @Test
-    public void writeToFileTest_contentMatch() throws IOException {
+    public void writeToFileTest_contentMatch() throws IOException, RainyDayException {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
         FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
+        financialReport.setReportOwner("bob");
         financialReport.addStatement(
                 new FinancialStatement("noodles", "in", 5, "Default", LocalDate.now()));
         String filePath = "rainyDay.txt";
@@ -42,6 +44,8 @@ public class StorageTest {
         Storage.writeToFile(userData, filePath);
         UserData userDataLoaded = Storage.loadFromFile(filePath);
 
+        System.out.println(userData.getFinancialReport().getFullStatement(0));
+        System.out.println(userDataLoaded.getFinancialReport().getFullStatement(0));
         assertEquals(userData.getFinancialReport().getFullStatement(0),
                 userDataLoaded.getFinancialReport().getFullStatement(0));
     }

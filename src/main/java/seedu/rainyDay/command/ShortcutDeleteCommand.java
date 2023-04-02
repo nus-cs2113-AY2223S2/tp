@@ -2,18 +2,16 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.RainyDay;
 
-import java.util.HashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author KN-CY
-public class ShortcutDeleteCommand extends Command {
+public class ShortcutDeleteCommand extends ShortcutCommand {
     private static final Logger logger = Logger.getLogger(ShortcutAddCommand.class.getName());
 
     private static String keyToDelete;
-    private static HashMap<String, String> shortcutCommands;
     private static final String SHORTCUT_SUCCESSFULLY_DELETED = "Shortcut successfully deleted.";
     private static final String SHORTCUT_DOES_NOT_EXIST = "The shortcut does not exist.";
 
