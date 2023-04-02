@@ -6,7 +6,7 @@ public class Medicine {
 
     //@@author Geeeetyx
     private String medicineDescription;
-    //@@author
+    //@@author tanyizhe
 
     public Medicine(String name, String dosage, String medicineDescription) {
         this.name = name;
@@ -32,5 +32,4 @@ public class Medicine {
         return medicineDescription;
     }
     //@@author
-
 }

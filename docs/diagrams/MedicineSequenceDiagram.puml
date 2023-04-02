@@ -10,10 +10,12 @@ activate MedicineManager
 create Medicine
 MedicineManager -> Medicine: new Medicine()
 MedicineManager -> Medicine: InitialiseMedications()
-activate MedicineManager
 activate Medicine
-MedicineManager -> Medicine: InitialiseMedicineDosages()
 Medicine --> MedicineManager: toString()
+activate MedicineManager
+
+MedicineManager -> Medicine: InitialiseMedicineDosages()
+
 Medicine --> MedicineManager: getDosage()
 deactivate Medicine
 deactivate MedicineManager
