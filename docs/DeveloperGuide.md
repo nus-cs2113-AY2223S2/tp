@@ -3,7 +3,7 @@
 <!-- TOC -->
 * [Developer Guide](#developer-guide)
   * [Acknowledgements](#acknowledgements)
-  * [Design & implementation](#design--implementation)
+  * [Design & implementation](#design-implementation)
   * [Implementation](#implementation)
     * [Record and RecordList](#record-and-recordlist)
     * [DeleteIncomeCommand](#deleteincomecommand)
