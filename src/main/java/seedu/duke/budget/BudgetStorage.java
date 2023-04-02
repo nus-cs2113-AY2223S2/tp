@@ -1,6 +1,7 @@
 package seedu.duke.budget;
 
 import seedu.duke.DatabaseInterface;
+import seedu.duke.UI;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -83,19 +84,21 @@ public class BudgetStorage implements DatabaseInterface {
                 food = new Food(Integer.parseInt(costs.get(3)));
                 entertainment = new Entertainment(Integer.parseInt(costs.get(4)));
             } catch (NumberFormatException e) {
-                System.out.println("Budget is corrupted, resetting budget1");
-                setBaseBudget();
-                updateBudgetStorage();
+                corruptBudgetFixProcedure();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         boolean isBudgetDataCorrupted = checkDatabaseCorrupted();
         if (isBudgetDataCorrupted) {
-            System.out.println("Budget is corrupted, resetting budget");
-            setBaseBudget();
-            updateBudgetStorage();
+            corruptBudgetFixProcedure();
         }
+    }
+
+    private void corruptBudgetFixProcedure() {
+        UI.printBudgetStorageCorruptedMessage();
+        setBaseBudget();
+        updateBudgetStorage();
     }
 
     private void updateBudgetStorage() {

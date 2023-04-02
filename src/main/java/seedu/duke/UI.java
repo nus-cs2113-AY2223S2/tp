@@ -361,6 +361,10 @@ public class UI {
         System.out.println(LINE);
     }
 
+    public static void printBudgetStorageCorruptedMessage() {
+        System.out.println("Budget Storage is corrupted, resetting budget");
+    }
+
     /**
      * Prints out user added modules of a specified partner university using uniID
      * as identity. The function first picks out all modules specified to the
