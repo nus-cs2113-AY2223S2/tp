@@ -89,7 +89,11 @@ public class Ui {
     }
 
     public void showSuccessfulConfirmedMessage() {
-        System.out.println("Company has been successfully confirmed/uncomfirmed!");
+        System.out.println("Company has been successfully confirmed!");
+    }
+
+    public void showSuccessfulUnconfirmedMessage() {
+        System.out.println("Company has been successfully uncomfirmed!");
     }
 
     public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList) {

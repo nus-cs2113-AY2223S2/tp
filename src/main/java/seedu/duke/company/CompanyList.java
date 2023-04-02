@@ -135,6 +135,6 @@ public class CompanyList {
         }
         Company company = companyList.get(companyNum);
         company.markUnconfirmed();
-        ui.showSuccessfulConfirmedMessage();
+        ui.showSuccessfulUnconfirmedMessage();
     }
 }
