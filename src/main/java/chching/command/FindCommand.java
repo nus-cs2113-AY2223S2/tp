@@ -52,7 +52,7 @@ public class FindCommand extends Command {
         if (category.equals("income")) {
             for (int i = 0; i < incomes.size(); i++) {
                 Income income = incomes.get(i);
-                if (income.toString().contains(keyword)) {
+                if (income.toString().toLowerCase().contains(keyword.toLowerCase())) {
                     incomesMatched.addIncome(income);
                 }
             }
@@ -61,7 +61,7 @@ public class FindCommand extends Command {
         } else {
             for (int i = 0; i < expenses.size(); i++) {
                 Expense expense = expenses.get(i);
-                if (expense.toString().contains(keyword)) {
+                if (expense.toString().toLowerCase().contains(keyword.toLowerCase())) {
                     expensesMatched.addExpense(expense);
                 }
             }
