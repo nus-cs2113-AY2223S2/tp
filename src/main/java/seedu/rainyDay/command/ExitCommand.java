@@ -25,7 +25,7 @@ public class ExitCommand extends Command {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ExitCommand.execute()");
-        String output = "We hope you enjoyed using rainyDay!";
+        String output = "";
         setExit();
 
         return new CommandResult(output);
