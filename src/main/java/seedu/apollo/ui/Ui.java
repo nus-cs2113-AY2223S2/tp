@@ -46,6 +46,9 @@ public class Ui {
     public void showLine() {
         System.out.println("____________________________________________________________");
     }
+    public void showSmallLine() {
+        System.out.println("_____________________________");
+    }
 
     /**
      * Prints the welcome message.
@@ -93,7 +96,7 @@ public class Ui {
                 "- Enter \"addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a lesson\n" +
                 "- Enter \"showmod [MODULE_CODE]\" to see more information about the module\n" +
                 "- Enter \"showmod [MODULE_CODE] -[FLAG]\" to see schedule of specific lesson type for a module\n" +
-                "- Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n" +
+                "- Enter \"delmod [MODULE_CODE / IDX]\" to remove a Module you previously added\n" +
                 "- Enter \"delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a task to a lesson\n\n");
     }
 
@@ -165,7 +168,7 @@ public class Ui {
         LocalDate curr = startWeek;
         System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
         for (int i = 0; i < 7; i++) {
-            System.out.println("______________________");
+            showSmallLine();
             DayOfWeek day = determineDay(i);
             System.out.println(day + "\n");
 
@@ -187,7 +190,7 @@ public class Ui {
             count++;
             Timetable schedule = module.getSchedule();
             System.out.println(schedule.getStartTime() + "-" + schedule.getEndTime() + ": " +
-                    module.getCode() + " " + schedule.getLessonType());
+                    module.getCode() + " " + schedule.getLessonType() + " (" + schedule.getClassnumber() + ")");
         }
         return (count <= 0);
     }
@@ -207,28 +210,24 @@ public class Ui {
         if (clashTasks.size() == 0 & clashLessons.size() == 0) {
             return;
         }
-        System.out.println("Heads up, your deadline occurs on the same day as these!\n" +
-                "______________________");
+        System.out.println("Heads up, your deadline occurs on the same day as these!");
+        showSmallLine();
 
         if (clashLessons.size() != 0) {
             System.out.println("Lessons:");
-            int count = 0;
             for (CalendarModule module : clashLessons) {
-                count++;
-                System.out.println(count + ". " + module.getCode() + " " + module.getSchedule());
+                System.out.println( " - " + module.getCode() + " " + module.getSchedule());
             }
             System.out.println();
         }
 
         if (clashTasks.size() != 0) {
             System.out.println("Tasks:");
-            int count = 0;
             for (Task task : clashTasks) {
-                count++;
-                System.out.println(count + ". " + task);
+                System.out.println(" - " + task);
             }
         }
-        System.out.println("______________________");
+        showSmallLine();
 
     }
 
@@ -467,6 +466,13 @@ public class Ui {
     }
 
     /**
+     * Prints error message if date cannot exist in calendar
+     */
+    public void dateNotWithinCalender() {
+        System.out.println("Please enter a valid date");
+    }
+
+    /**
      * Prints error message if the date entered does not fit the format.
      * For Date command.
      */
@@ -496,6 +502,14 @@ public class Ui {
     }
 
     /**
+     * Prints error message if there are duplicate modules in the moduleData.txt file
+     */
+    public void printDuplicateModuleInTextFile(int counter){
+        System.out.println("There is a duplicate module detected in the moduleData.txt at line "
+                + (counter + 1) + ".\n" + "Ignoring duplicate modules");
+    }
+
+    /**
      * Prints error message if the user does not specify the description of a task.
      */
     public void printEmptyDescription() {
@@ -517,7 +531,7 @@ public class Ui {
     }
 
     /**
-     * Prints error message if the start date of an even occurs after the end date.
+     * Prints error message if the start date of an event occurs after the end date.
      */
     public void printDateOrderException() {
         System.out.println("Oops, the start date for your event occurs after the end date!");
@@ -693,4 +707,24 @@ public class Ui {
     public void printClashingEventModuleMessage() {
         System.out.println("This event clashes with a lesson in your timetable!");
     }
+
+    /**
+     * Prints a message when user tries to mark an already done task as done again.
+     */
+    public void printTaskHasBeenMarkedPreviously() {
+        System.out.println("You have already marked this task as done previously.");
+    }
+
+    /**
+     * Prints a message when user tries to mark an already incomplete task as not done again.
+     */
+    public void printTaskHasBeenUnmarkedPreviously(){
+        System.out.println("This task was never marked as done!");
+    }
+
+    public void deadlineSuggestion(){
+        System.out.println("This todo seems to suggest that this is a deadline type task.\n" +"You could consider " +
+                "using the deadline command instead.\n");
+    }
+
 }

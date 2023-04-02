@@ -132,7 +132,11 @@ public class AddCommand extends Command implements LoggerInterface {
         try {
             addTask(taskList, calendar, ui);
         } catch (DateTimeParseException e) {
-            ui.printInvalidDateTime();
+            if(e.getMessage().contains("Invalid date")) {
+                ui.dateNotWithinCalender();
+            } else {
+                ui.printInvalidDateTime();
+            }
             return;
         } catch (DateOverException e) {
             ui.printDateOverException(e);
@@ -167,7 +171,12 @@ public class AddCommand extends Command implements LoggerInterface {
             throws DateTimeParseException, DateOverException, DateOrderException, UnexpectedException {
         switch (command) {
         case COMMAND_TODO_WORD:
-            taskList.add(new ToDo(desc));
+            ToDo todo = new ToDo(desc);
+            taskList.add(todo);
+            if (todo.getDescription().contains("by")||todo.getDescription().contains("/by")||
+                    todo.getDescription().contains("due")){
+                ui.deadlineSuggestion();
+            }
             break;
         case COMMAND_DEADLINE_WORD:
             Deadline deadline = new Deadline(desc, by);
@@ -186,6 +195,8 @@ public class AddCommand extends Command implements LoggerInterface {
             throw new UnexpectedException("Adding Task");
         }
     }
+
+
 
     /**
      * Prints warning message to user with all tasks and lessons that clash with the deadline.
@@ -280,7 +291,8 @@ public class AddCommand extends Command implements LoggerInterface {
             LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatter);
             LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatter);
 
-            if (isOverlap(eventStart, eventEnd, lessonStart, lessonEnd) && isDuringSemester(eventStart,eventEnd)) {
+            if (isEventLessonClashing(eventStart, eventEnd, lessonStart, lessonEnd) &&
+                    isDuringSemester(eventStart,eventEnd)) {
 
                 return true;
             }
@@ -315,8 +327,8 @@ public class AddCommand extends Command implements LoggerInterface {
      * @param lessonEnd   The end time of the lesson.
      * @return true if there is a clash, false otherwise.
      */
-    private boolean isOverlap(LocalDateTime eventStart, LocalDateTime eventEnd, LocalDateTime lessonStart,
-                              LocalDateTime lessonEnd) {
+    private boolean isEventLessonClashing(LocalDateTime eventStart, LocalDateTime eventEnd, LocalDateTime lessonStart,
+                                          LocalDateTime lessonEnd) {
 
         if (eventStart.isEqual(lessonStart) && eventEnd.isEqual(lessonEnd)) {
             return true;
