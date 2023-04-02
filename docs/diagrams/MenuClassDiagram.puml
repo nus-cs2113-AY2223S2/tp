@@ -13,8 +13,10 @@ class Menu {
     + {static} register(): void
     + {static} login(): void
     + {static} exit(): void
+    + {static} exitWithoutSaving(): void
     + {static} showAccountMenu(): void
     + {static} getUserSymptoms(): ArrayList<Symptom>
+    - {static} printExitLogo(): void
     - {static} addSymptomToSymptomList(scanner: Scanner, symptoms: ArrayList<symptoms>): void
     - {static} parseSymptomInput(symptoms: ArrayList<Symptom>, symptomChoices: String[]): void
     - {static} addSymptoms(symptom: Symptom, symptoms: ArrayList<Symptom>): void
