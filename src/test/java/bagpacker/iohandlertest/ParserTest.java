@@ -35,7 +35,7 @@ public class ParserTest {
 
     @Test
     public void addCommandTest() {
-        String userInput = "  add this item  ";
+        String userInput = "  add 500 /of this item  ";
         InputStream inStream = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(inStream);
         assertEquals(AddCommand.class, Parser.parse().getClass());
@@ -61,7 +61,7 @@ public class ParserTest {
 
     @Test
     public void deleteCommandTest() {
-        String userInput1 = "  add this item  ";
+        String userInput1 = "  add 3 /of this item  ";
         String userInput2 = "  delete 1 ";
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
         System.setIn(inStream);
@@ -74,8 +74,8 @@ public class ParserTest {
 
     @Test
     public void packCommandTest() {
-        String userInput1 = "  add this item  ";
-        String userInput2 = "  pack 1 ";
+        String userInput1 = "  add 3 /of this item  ";
+        String userInput2 = "  pack 1 /of 1";
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
         System.setIn(inStream);
         PackingList dummyPackingList = new PackingList();
@@ -87,9 +87,9 @@ public class ParserTest {
 
     @Test
     public void unpackCommandTest() {
-        String userInput1 = "  add this item  ";
-        String userInput2 = "  pack 1 ";
-        String userInput3 = "  Unpack 1 ";
+        String userInput1 = "  add 3 /of this item  ";
+        String userInput2 = "  pack 2 /of 1";
+        String userInput3 = "  Unpack 1 /of 1";
         PackingList dummyPackingList = new PackingList();
 
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
@@ -107,7 +107,7 @@ public class ParserTest {
 
     @Test
     public void listCommandTest() {
-        String userInput1 = "  add this item  ";
+        String userInput1 = "  add 1 /of this item  ";
         String userInput2 = "  lIST ";
         PackingList dummyPackingList = new PackingList();
 
