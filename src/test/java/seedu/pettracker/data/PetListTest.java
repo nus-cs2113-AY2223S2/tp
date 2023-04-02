@@ -1,6 +1,8 @@
 package seedu.pettracker.data;
 
 import org.junit.jupiter.api.Test;
+import seedu.pettracker.exceptions.EmptyPetNameException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PetListTest {
 
@@ -10,7 +12,7 @@ public class PetListTest {
         assertEquals(0, pl.getNumberOfPets());
     }
 
-    void addPetToList() {
+    void addPetToList() throws EmptyPetNameException {
         PetList.addPet("Bob");
         assertEquals(1, PetList.getNumberOfPets());
     }
