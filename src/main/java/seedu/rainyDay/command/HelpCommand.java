@@ -38,7 +38,8 @@ public class HelpCommand extends Command {
             "| -c <CATEGORY> | Optional    | Used to denote the category of the entry. Set to Misc if omitted     |\n" +
             "| -date <DATE>  | Optional    | Used to denote the date of the entry. Set to present date if omitted |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| Note: DESCRIPTION and CATEGORY cannot contain \"-\" character                                      |\n" +
+            "| Note: DESCRIPTION and CATEGORY cannot contain \"-\" character                                        |\n"
+            + //Note: the \ is used as an escape character for " in this case. The table will seem misaligned here only.
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
