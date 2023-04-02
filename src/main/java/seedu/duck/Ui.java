@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.Scanner;
+import java.util.Random;
 
 
 /**
@@ -37,6 +38,34 @@ public class Ui {
                 "   \\               `~~~'       ,'\n"+
                 "    `.                      _,'\n"+
                 "      `-._________,--'");
+    }
+    static void printMotivationalQuote(){
+        String[] quotes = {
+                "Believe you can and you're halfway there. -Theodore Roosevelt",
+                "Start where you are. Use what you have. Do what you can. -Arthur Ashe",
+                "You miss 100% of the shots you don't take. -Wayne Gretzky",
+                "Success is not final, failure is not fatal: it is the courage to continue that counts. -Winston Churchill",
+                "You are never too old to set another goal or to dream a new dream. -C.S. Lewis",
+                "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle. -Christian D. Larson",
+                "Success is not how high you have climbed, but how you make a positive difference to the world. -Roy T. Bennett",
+                "A journey of a thousand miles begins with a single step. -Lao Tzu",
+                "The only way to do great work is to love what you do. -Steve Jobs",
+                "You have brains in your head. You have feet in your shoes. You can steer yourself any direction you choose. -Dr. Seuss",
+                "Believe you can and you're halfway there. -Theodore Roosevelt",
+                "You never know how strong you are until being strong is your only choice. -Bob Marley",
+                "Do not wait for opportunities, create them. -Roy T. Bennett",
+                "Believe in yourself, take on your challenges, dig deep within yourself to conquer fears. Never let anyone bring you down. You got this. -Chantal Sutherland",
+                "The greatest glory in living lies not in never falling, but in rising every time we fall. -Nelson Mandela",
+                "Believe in your infinite potential. Your only limitations are those you set upon yourself. -Roy T. Bennett",
+                "What you get by achieving your goals is not as important as what you become by achieving your goals. -Zig Ziglar",
+                "Don't watch the clock; do what it does. Keep going. -Sam Levenson",
+                "Believe that you will succeed, and you will. -Dale Carnegie",
+                "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful. -Albert Schweitzer"
+        };
+        Random rand = new Random();
+        int index = rand.nextInt(quotes.length);
+        System.out.println("\t Have some motivation! Quack!" + "\n");
+        System.out.println("\t " + quotes[index]);
     }
 
     /**
@@ -667,6 +696,7 @@ public class Ui {
     static void greetingMessage() {
         printDuck();
         borderLine();
+        printMotivationalQuote();
         borderLine();
         System.out.println("\t Quack! Nice to meet you human. As you can see,  I'm a Duck.");
         System.out.println("\t As a Duck, I can only understand simple commands. Quack. " +
@@ -686,7 +716,7 @@ public class Ui {
                 System.out.println("\t \t" + (i + 1) + ". " + toBePrinted.get(i));
             }
         } else {
-            System.out.println("\tThere are no notes for this task!");
+            System.out.println("\t There are no notes for this task!");
         }
         borderLine();
     }
@@ -707,5 +737,6 @@ public class Ui {
         System.out.println("\t Bye. Hope to see you again soon!");
         borderLine();
     }
+
 
 }
