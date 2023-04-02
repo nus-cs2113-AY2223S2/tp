@@ -55,24 +55,32 @@ public class Parser {
             try {
                 //@@author tanyizhe
                 ArrayList<Symptom> symptoms = Menu.getUserSymptoms();
-                Menu.displayPossibleIllness(symptoms);
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                LocalDateTime now = LocalDateTime.now();
-                ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
-                ArrayList<String> diagnoses = new ArrayList<>();
-                for (IllnessMatch illnessMatch : possibleIllnesses) {
-                    diagnoses.add(illnessMatch.getIllness().getIllnessName());
-                    ArrayList<String> medicineArrayList = medicineManager
-                            .getRelevantMedicationInString(illnessMatch.getIllness().getIllnessName());
-                    if (!(medicineArrayList == null)) {
-                        user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
+                if (symptoms.isEmpty()) {
+                    System.out.println("You have not entered any symptoms!");
+                } else {
+                    Menu.displayPossibleIllness(symptoms);
+                    //@@author Geeeetyx
+                    System.out.println("Below are some recommended medications for you to purchase:");
+                    System.out.println("-----------------------------------------------------------");
+                    //@@author tanyizhe
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                    LocalDateTime now = LocalDateTime.now();
+                    ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
+                    ArrayList<String> diagnoses = new ArrayList<>();
+                    for (IllnessMatch illnessMatch : possibleIllnesses) {
+                        diagnoses.add(illnessMatch.getIllness().getIllnessName());
+                        ArrayList<String> medicineArrayList = medicineManager
+                                .getRelevantMedicationInString(illnessMatch.getIllness().getIllnessName());
+                        if (!(medicineArrayList == null)) {
+                            user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
+                        }
                     }
+                    if (diagnoses.size() > 0) {
+                        user.updatePatientDiagnosisHistory(dtf.format(now), diagnoses);
+                    }
+                    saveData();
+                    saveQueue();
                 }
-                if (diagnoses.size() > 0) {
-                    user.updatePatientDiagnosisHistory(dtf.format(now), diagnoses);
-                }
-                saveData();
-                saveQueue();
             } catch (Exception e) {
                 System.out.println("Invalid input!");
             }
@@ -90,6 +98,29 @@ public class Parser {
             break;
         case "5":
             Information.deleteSymptom(Menu.symptoms);
+
+            //@@author Geeeetyx
+            ArrayList<Symptom> symptoms = Menu.symptoms;
+
+            System.out.println("---------------------------------------------------");
+            System.out.println("Below is your new diagnosis:");
+
+
+            Menu.displayPossibleIllness(symptoms);
+            ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
+            for (IllnessMatch illnessMatch : possibleIllnesses) {
+                user.updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                LocalDateTime now = LocalDateTime.now();
+                ArrayList<String> medicineArrayList = medicineManager
+                        .getRelevantMedicationInString(illnessMatch.getIllness().getIllnessName());
+                if (!(medicineArrayList == null)) {
+                    user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
+                }
+            }
+            saveData();
+            //@@author
+
             break;
         case "6":
             Information.resetSymptomChoice(Menu.symptoms);
