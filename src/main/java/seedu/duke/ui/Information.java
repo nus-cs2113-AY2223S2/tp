@@ -6,6 +6,9 @@ import seedu.duke.patient.Patient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Collections;
+import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +41,7 @@ public class Information {
         return patientsList.get(hash);
     }
 
-    //@@Geeeetyx
+    //@@author Geeeetyx
 
     /**
      * Prints the diagnosis history of the Patient.
@@ -48,15 +51,21 @@ public class Information {
         logger.log(Level.INFO, "Printing diagnosis history");
 
         Patient patient = patientsList.get(hash);
+        Hashtable<String, ArrayList<String>> patientDiagnosisHistory = patient.getPatientDiagnosisHistory();
 
         System.out.println("---------------------------------------------------");
-        if (patient.getPatientDiagnosisHistory().isEmpty()) {
+        if (patientDiagnosisHistory.isEmpty()) {
             System.out.println("You have no past diagnoses");
         } else {
             System.out.println("Your diagnosis history is: ");
-            System.out.println("---------------------------------------------------");
-            for (int i = 0; i < patient.getPatientDiagnosisHistory().size(); i++) {
-                System.out.println(patient.getPatientDiagnosisHistory().get(i));
+            for (int i = 0; i < patientDiagnosisHistory.size(); i++) {
+                //@@author Thunderdragon221
+                List<String> dates = Collections.list(patientDiagnosisHistory.keys());
+                Collections.sort(dates);
+                for (String date : dates) {
+                    System.out.println(date + ": " + patientDiagnosisHistory.get(date));
+                }
+                //@@Geeeetyx
             }
         }
     }
@@ -79,7 +88,7 @@ public class Information {
         saveData();
     }
 
-    //@@Thunderdragon221
+    //@@author Thunderdragon221
 
     /**
      * Checks the existence of a password in Dr Duke.
@@ -102,7 +111,7 @@ public class Information {
         return patientsList;
     }
 
-    //@@Thunderdragon221
+    //@@author Thunderdragon221
 
     /**
      * Hashes the password keyed in by the user.
@@ -113,7 +122,7 @@ public class Information {
         return password.hashCode();
     }
 
-    //@@Jeraldchen
+    //@@author Jeraldchen
 
     /**
      * Resets the symptom choice of the patient.
@@ -122,14 +131,14 @@ public class Information {
     public static void resetSymptomChoice(ArrayList<Symptom> symptoms) {
         if (symptoms.size() != 0) {
             symptoms.clear();
-            //@@Geeeetyx
+            //@@author Geeeetyx
             System.out.println("---------------------------------------------------");
-            //@@JeraldChen
+            //@@author JeraldChen
             System.out.println("Your symptom choice has been reset.");
         } else {
-            //@@Geeeetyx
+            //@@author Geeeetyx
             System.out.println("---------------------------------------------------");
-            //@@JeraldChen
+            //@@authorJeraldChen
             System.out.println("You have not entered any symptoms. No symptoms to reset.");
         }
     }
@@ -143,8 +152,8 @@ public class Information {
         if (symptoms.size() == 0) {
             System.out.println("You have not entered any symptoms.");
         } else {
-            for (int i = 0; i < symptoms.size(); i++) {
-                System.out.println(symptoms.get(i));
+            for (Symptom symptom : symptoms) {
+                System.out.println(symptom);
             }
         }
     }

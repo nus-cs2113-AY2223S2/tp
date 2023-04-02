@@ -1,23 +1,29 @@
--453023646
+-1935103714
 49
 demo
-2
-Back Ache
-Insomnia
 1
-2023/04/02%Magnesium%Zolpidem %
+2023/04/02%Back Ache%Insomnia%
+1
+2023/04/02%Magnesium%Zolpidem%
 50
 1
+0
+0
+51
 2
-Stomach Ache
-Sore Throat
 1
-2023/04/02%Lozenges%Difflam Throat Spray%
+2023/04/02%Muscle Ache%Insomnia%General Flu%Pneumonia%Sore Throat%Fever%COVID-19%
+1
+2023/04/02%Naproxen%Magnesium%Zolpidem%Ibuprofen%Aspirin%Robitussin%Lozenges%Difflam Throat Spray%Paracetamol%
 99333
 abc
-0
-0
-63210002
-tester
-0
-0
+1
+2023/04/02%Sore Throat%Fever%
+1
+2023/04/02%Lozenges%Difflam Throat Spray%Paracetamol%
+1538209
+cs
+1
+2023/04/02%Sore Throat%Fever%
+1
+2023/04/02%Lozenges%Difflam Throat Spray%Paracetamol%

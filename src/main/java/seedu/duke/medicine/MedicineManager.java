@@ -21,125 +21,128 @@ public class MedicineManager {
     private static final Medicine PARACETAMOL = new Medicine(
             "Paracetamol", "1 or 2 pills up to 3 times a day",
             //@@author Geeeetyx
-            "Paracetamol is a commonly used medicine that can help treat pain and reduce a high temperature \n" +
+            "Description: Paracetamol is a commonly used medicine that can help treat pain and reduce a " +
+                    "high temperature \n" +
                     "    It's typically used to relieve mild or moderate pain, such as headaches, \n" +
                     "    toothache or sprains, and reduce fevers caused by illnesses such as colds and flu.");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine LOZENGE = new Medicine(
             "Lozenges", "When you feel pain from sore throat",
             //@@author Geeeetyx
-            "Lozenges are used to medicate the mouth and throat for the slow administration in digestion or \n" +
+            "Description: Lozenges are used to medicate the mouth and throat for the slow administration " +
+                    "in digestion or \n" +
                     "    cough remedies. Lozenges may contain an anesthetic, a demulcent, or an antiseptic.");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine ROBITUSSIN = new Medicine(
             "Robitussin", "20ml every 12 hours",
             //@@author Geeeetyx
-            "Robitussin is an expectorant. It helps loosen congestion in your chest and throat, \n" +
+            "Description: Robitussin is an expectorant. It helps loosen congestion in your chest and throat, \n" +
                     "    making it easier to cough out through your mouth. \n" +
                     "    Robitussin is used to reduce chest congestion caused by the common cold, \n" +
                     "    infections, or allergies.");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine IBUPROFEN = new Medicine(
             "Ibuprofen", "1 or 2 pills every 4 to 6 hours",
             //@@author Geeeetyx
-            "Ibuprofen eases mild to moderate pain – such as toothache, migraine and period pain, \n" +
+            "Description: Ibuprofen eases mild to moderate pain – such as toothache, migraine and period pain, \n" +
                     "    control a fever (high temperature) – for example, when someone has the flu (influenza), \n" +
                     "    eases pain and inflammation (redness and swelling) caused by conditions that affect the \n" +
                     "    joints, bones and muscles - such as rheumatoid arthritis and osteoarthritis and eases \n" +
                     "    pain and swelling caused by sprains and strains – such as sports injuries");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine ASPIRIN = new Medicine(
             "Aspirin", "1 or 2 pills every 4 to 6 hours",
             //@@author Geeeetyx
-            "A drug that reduces pain, fever, inflammation, and blood clotting.");
-    //@@author
+            "Description: A drug that reduces pain, fever, inflammation, and blood clotting.");
+    //@@author tanyizhe
     private static final Medicine MAGNESIUM = new Medicine(
             "Magnesium", "100 to 350mg before bed",
             //@@author Geeeetyx
-            "Magnesium is a mineral that is important for normal bone structure in the body. \n" +
+            "Description: Magnesium is a mineral that is important for normal bone structure in the body. \n" +
                     "    People get magnesium from their diet, but sometimes magnesium supplements are needed if \n" +
                     "    magnesium levels are too low. \n" +
                     "    Magnesium is most commonly used for constipation, as an antacid for heartburn, \n" +
                     "    for low magnesium levels, \n" +
                     "    for pregnancy complications called pre-eclampsia and eclampsia, \n" +
                     "    and for a certain type of irregular heartbeat.");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine EYE_DROPS = new Medicine(
             "Eye Drops", "When your eyes itch",
             //@@author Geeeetyx
-            "Eye Drops are a decongestant used to relieve redness in the eyes caused by minor eye irritations \n" +
+            "Description: Eye Drops are a decongestant used to relieve redness in the eyes caused by " +
+                    "minor eye irritations \n" +
                     "    (such as smog, swimming, dust, or smoke).");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine ULTRACARBON = new Medicine(
             "Ultracarbon", "1 250mg Tablet",
             //@@author Geeeetyx
-            "Ultracarbon is thought to offer several benefits, including less gas and flatulence, \n" +
+            "Description: Ultracarbon is thought to offer several benefits, including less gas and flatulence, \n" +
                     "    and is thus administered to treat diarrhoea.");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine DULCOLAX = new Medicine(
             "Dulcolax", "1 tablet every day",
             //@@author Geeeetyx
-            "Dulcolax is used to treat constipation. \n" +
+            "Description: Dulcolax is used to treat constipation. \n" +
                     "Swallow this medication whole. Do not crush, chew, or break the tablet or take it within \n" +
                     "    1 hour of antacids, milk, or milk products. Doing so can destroy the \n" +
                     "    coating on the tablet and may increase the risk of stomach upset and nausea.");
-    //@@author
+    //@@author tanyizhe
     private static final Medicine GUAIFENESIN = new Medicine(
             "Guaifenesin", "200-400 mg 4 hourly",
 
             //@@author Geeeetyx
-            "Guaifenesin is used to relieve chest congestion. \n" +
+            "Description: Guaifenesin is used to relieve chest congestion. \n" +
                     "    It works by thinning the mucus in the air passages to make it easier to \n" +
                     "    cough up the mucus and clear the airways.");
 
     private static final Medicine ZOLPIDEM = new Medicine(
-            "Zolpidem ", "taking it once every 2 or 3 nights",
-            "Zolpidem is used for short-term treatment of insomnia (difficulty sleeping). \n" +
+            "Zolpidem", "taking it once every 2 or 3 nights",
+            "Description: Zolpidem is used for short-term treatment of " +
+                    "insomnia (difficulty sleeping). \n" +
                     "    It helps you fall asleep faster and sleep through the night.");
 
     private static final Medicine DIPHENOXYLATE = new Medicine(
             "Diphenoxylate", "2 tablets 3-4 times daily",
-            "Diphenoxylate works by decreasing activity of the bowel, for the treatment of diarrhea.");
+            "Description: Diphenoxylate works by decreasing activity of the bowel, " +
+                    "for the treatment of diarrhea.");
 
     private static final Medicine LACTULOSE = new Medicine(
             "Lactulose", "15ml twice a day",
-            "This medication is used to treat constipation. \n" +
+            "Description: This medication is used to treat constipation. \n" +
                     "    It encourages bowel movement by drawing water into the bowel. \n" +
                     "    This helps to soften the stools and increase bowel movement.");
 
     private static final Medicine DECONGESTANT_SPRAY = new Medicine(
             "Decongestant", "1 to 4 times a day",
-            "Decongestants shrink the blood vessels (or decongest them) in the nose, \n" +
+            "Description: Decongestants shrink the blood vessels (or decongest them) in the nose, \n" +
                     "    reducing the swelling and allowing easier breathing. \n" +
                     "    Use the spray for 2 - 3 days and then wait 2 - 3 days before using the spray again.");
 
     private static final Medicine ZYRTEC_D = new Medicine(
             "Antihistamine", "1 5mg tablet every 12 hours",
-            "ZYRTEC-D® contains both an antihistamine and a decongestant for allergies. \n" +
+            "Description: ZYRTEC-D® contains both an antihistamine and a decongestant for allergies. \n" +
                     "    It clears your blocked nose and relieves other allergy symptoms.");
 
     private static final Medicine DIFFLAM_THROAT_SPRAY = new Medicine(
             "Difflam Throat Spray", "2 - 4 times every 1.5 - 3 hours until you feel better",
-            "This spray offers targeted and rapid symptom relief for hard-to-reach inflamed and \n" +
+            "Description: This spray offers targeted and rapid symptom relief for " +
+                    "hard-to-reach inflamed and \n" +
                     "    painful areas in your mouth and throat. It provides rapid relief from local inflammation \n" +
                     "    and pain from 60 seconds. ");
 
     private static final Medicine NAPROXEN = new Medicine(
             "Naproxen", "Dissolove 1-2 tablets in water, take for 1-2 days ONLY and only after meals",
-            "Naproxen is a non-steroidal anti-inflammatory drug (NSAID). \n" +
+            "Description: Naproxen is a non-steroidal anti-inflammatory drug (NSAID). \n" +
                     "    It reduces swelling (inflammation) and pain in joints and muscles, \n" +
                     "    which can help with muscle aches.");
 
-
-
-    //@@author
 
     //@@author tanyizhe
     public MedicineManager() {
@@ -194,7 +197,7 @@ public class MedicineManager {
                         .collect(Collectors.toCollection(ArrayList::new));
         medicationDict.put("Nasal Congestion", nasalCongestionMedications);
         medicationDict.put("Muscle Ache", muscleAcheMedications);
-        //@@author
+        //@@author tanyizhe
     }
 
     /**
@@ -221,7 +224,7 @@ public class MedicineManager {
         medicineDosages.put(ZYRTEC_D.toString(), ZYRTEC_D.getDosage());
         medicineDosages.put(DIFFLAM_THROAT_SPRAY.toString(), DIFFLAM_THROAT_SPRAY.getDosage());
         medicineDosages.put(NAPROXEN.toString(),NAPROXEN.getDosage());
-        //@@author
+        //@@author tanyizhe
 
         assert medicineDosages.isEmpty() == false : "Medicine dosage hashtable must not be empty";
     }
@@ -236,6 +239,10 @@ public class MedicineManager {
             ArrayList<Medicine> relevantMedications = getRelevantMedication(illnessMatch.getIllness().getIllnessName());
             printMedication(relevantMedications);
         }
+        System.out.println("End of diagnosis. Please proceed to your nearest pharmacy to purchase the " +
+                "above medications.");
+        System.out.println("==========================================================================" +
+                "==================");
         return possibleIllnesses;
     }
 
@@ -248,13 +255,14 @@ public class MedicineManager {
             for (Medicine medicine : relevantMedications) {
                 System.out.println("    " + medicine.toString() + " - Dosage: " + medicine.getDosage());
                 //@@author Geeeetyx
-                System.out.println("---------------------------------------------------");
+                System.out.println("-----------------------------------------------------------");
                 System.out.println("    " + medicine.getDescription());
-                System.out.println("---------------------------------------------------");
-                //@@author
+                System.out.println("-----------------------------------------------------------");
+                //@@author tanyizhe
             }
         } else {
             System.out.println("    No medication available. Please consult a doctor.");
+            System.out.println("-----------------------------------------------------------");
         }
     }
     //@@author tanyizhe
