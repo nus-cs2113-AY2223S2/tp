@@ -57,7 +57,8 @@ public class JsonStorage extends Storage {
         if (backupFileDir == null) {
             backupFileDir = ".";
         }
-        backupFilePath = backupFileDir + File.separator + "." + backupFilePath.substring(backupFilePath.lastIndexOf(File.separator) + 1);
+        backupFilePath = backupFileDir + File.separator + "." +
+                backupFilePath.substring(backupFilePath.lastIndexOf(File.separator) + 1);
         backupFile = new File(backupFilePath);
         gsonBuilder = new GsonBuilder();
 
@@ -236,7 +237,8 @@ public class JsonStorage extends Storage {
     }
 
     private void saveDataToFile(File file, JsonObject data) throws IOException {
-        try (FileWriter fileWriter = new FileWriter(file); BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+        try (FileWriter fileWriter = new FileWriter(file);
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
 
             Gson gson = gsonBuilder.setPrettyPrinting().create();
             String serialized = gson.toJson(data);

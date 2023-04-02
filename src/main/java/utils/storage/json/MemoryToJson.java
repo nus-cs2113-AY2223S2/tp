@@ -3,7 +3,14 @@ package utils.storage.json;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import model.*;
+import model.TagList;
+import model.CardList;
+import model.Tag;
+import model.Memory;
+import model.DeckList;
+import model.Card;
+import model.Deck;
+
 
 public class MemoryToJson {
 

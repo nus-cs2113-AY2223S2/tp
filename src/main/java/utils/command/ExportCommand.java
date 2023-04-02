@@ -2,7 +2,6 @@ package utils.command;
 
 import model.CardList;
 import model.DeckList;
-import model.Memory;
 import model.TagList;
 import utils.UserInterface;
 import utils.exceptions.InkaException;
