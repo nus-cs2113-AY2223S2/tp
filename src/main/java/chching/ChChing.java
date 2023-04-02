@@ -1,6 +1,7 @@
 package chching;
 
 import chching.parser.Parser;
+import chching.api.LiveCurrencyApi;
 import chching.command.Command;
 import chching.currency.Converter;
 import chching.currency.Selector;
@@ -15,6 +16,7 @@ public class ChChing {
     private ExpenseList expenses;
     private Selector selector;
     private Converter converter;
+    private LiveCurrencyApi liveCurrencyAPI;
     private TargetStorage targetStorage;
     private Target target = new Target(0);
     private Ui ui;
@@ -31,6 +33,7 @@ public class ChChing {
             this.expenses = new ExpenseList(storage.loadExpenses());
             this.selector = new Selector();
             this.converter = new Converter();
+            this.liveCurrencyAPI = new LiveCurrencyApi(selector, converter);
             this.targetStorage = new TargetStorage();
             this.targetStorage.addTarget(target);
         } catch (Exception e) {

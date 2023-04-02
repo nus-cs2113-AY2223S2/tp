@@ -58,31 +58,31 @@ public class IncomeList extends RecordList {
 
         // edit the according field
         switch (field) {
-            case "de":
-                income.setDescription(value);
-                break;
-            case "da":
-                LocalDate date = parseDate(value);
-                income.setDate(date);
-                break;
-            case "v":
-                try {
-                    double amount = Double.parseDouble(value);
-                    if (amount < 0.01) {
-                        throw new ChChingException("Income must be greater than or equals 0.01");
-                    }
-                    assert amount > 0.01 : "Income cannot be negative";
-                    income.setValue(amount);
-                } catch (Exception e) {
-                    if (e instanceof NumberFormatException) {
-                        throw new ChChingException("Income value must be a number");
-                    }
-                    throw new ChChingException(e.getMessage());
+        case "de":
+            income.setDescription(value);
+            break;
+        case "da":
+            LocalDate date = parseDate(value);
+            income.setDate(date);
+            break;
+        case "v":
+            try {
+                double amount = Double.parseDouble(value);
+                if (amount < 0.01) {
+                    throw new ChChingException("Income must be greater than or equals 0.01");
                 }
-                break;
-            default:
-                assert false : "No such field to enter here";
-                throw new ChChingException("No such field in income");
+                assert amount > 0.01 : "Income cannot be negative";
+                income.setValue(amount);
+            } catch (Exception e) {
+                if (e instanceof NumberFormatException) {
+                    throw new ChChingException("Income value must be a number");
+                }
+                throw new ChChingException(e.getMessage());
+            }
+            break;
+        default:
+            assert false : "No such field to enter here";
+            throw new ChChingException("No such field in income");
         }
     }
 
