@@ -80,7 +80,7 @@ public class Storage {
 
     //TODO: JSON
     /**
-     * Loads expenses from json file and save as ArrayList<Expenses>
+     * Loads expenses from json file and save as an ArrayList of Expenses
      * @param filePath Path at which the json file is stored.
      *
      * @return An arraylist of expenses.

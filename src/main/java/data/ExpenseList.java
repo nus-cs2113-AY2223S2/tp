@@ -3,7 +3,6 @@ package data;
 
 import parser.Parser;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ExpenseList {

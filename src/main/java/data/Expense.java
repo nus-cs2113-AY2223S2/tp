@@ -1,6 +1,5 @@
 package data;
 
-import java.io.Serializable;
 import java.math.RoundingMode;
 import java.util.Objects;
 import java.math.BigDecimal;

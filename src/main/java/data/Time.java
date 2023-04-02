@@ -1,6 +1,5 @@
 package data;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;

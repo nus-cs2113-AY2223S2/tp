@@ -1,6 +1,5 @@
 package parser;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Parser {

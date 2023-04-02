@@ -17,13 +17,14 @@ import java.util.Scanner;
 
 public class Duke {
 
+    protected static Storage storage;
     protected Parser parser;
     protected ExpenseList expenseList;
     protected Currency currency;
-    protected static Storage storage;
-    
+
     //TODO: arbitrary filePath
     protected String filePath = "test.json";
+
 
     /**
      * Initialize Duke and instantiate parser and expenseList objects.
