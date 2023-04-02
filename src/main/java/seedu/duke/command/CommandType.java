@@ -48,7 +48,14 @@ public enum CommandType {
      * Edit a ingredient in the recipe.
      */
     EDITINGREDIENT,
-    FIND,
+    /**
+     * Search dishes by name.
+     */
+    FINDNAME,
+    /**
+     * Search dishes by tag.
+     */
+    FINDTAG,
     /**
      * Command not recognized.
      */
