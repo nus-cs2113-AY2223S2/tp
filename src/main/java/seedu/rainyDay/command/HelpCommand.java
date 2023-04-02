@@ -19,6 +19,7 @@ public class HelpCommand extends Command {
             "| Unignore entry     | unignore  | [INDEX]                                                           |\n" +
             "| Export to .csv     | export    |                                                                   |\n" +
             "| Display a guide    | help      | {COMMAND}                                                         |\n" +
+            "| Close rainyDay     | bye       |                                                                   |\n" +
             "+====================================================================================================+\n" +
             "|[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |\n" +
             "|{} :  Denotes optional fields. Can be ignored                                                       |\n" +
@@ -37,8 +38,7 @@ public class HelpCommand extends Command {
             "| -c <CATEGORY> | Optional    | Used to denote the category of the entry. Set to Misc if omitted     |\n" +
             "| -date <DATE>  | Optional    | Used to denote the date of the entry. Set to present date if omitted |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
-            "| Note: DESCRIPTION and CATEGORY cannot contain \"-\" character                                        |\n"
-            +
+            "| Note: DESCRIPTION and CATEGORY cannot contain \"-\" character                                      |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
@@ -172,14 +172,14 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n" +
             "| Shortcut commands (3)       | Used to create custom commands to act as shortcuts                   |\n" +
             "+====================================================================================================+\n" +
-            "|   <shortcut add>            |                                                                      |\n" +
+            "|    <Adding a Shortcut>      |                                                                      |\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
             "| SHORTCUT   | Mandatory      | Used to denote the shortcut the user wants to use                    |\n" +
             "| -maps      | Mandatory      | Used to separate the shortcut from the actual command                |\n" +
             "| COMMAND    | Mandatory      | Used to denote the actual command                                    |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
-            "|   <shortcut delete>         |                                                                      |\n" +
+            "|  <Deleting a Shortcut>      |                                                                      |\n" +
             "| Details    | Requirement    | Description                                                          |\n" +
             "+------------+----------------+----------------------------------------------------------------------+\n" +
             "| SHORTCUT   | Mandatory      | Used to denote the shortcut the user wants to delete                 |\n" +
@@ -208,6 +208,14 @@ public class HelpCommand extends Command {
             "| unignore 7                  | Un-ignores the 7th entry from the list                               |\n" +
             "+====================================================================================================+\n";
 
+    private static final String HELP_BYE_COMMAND = "" +
+            "+====================================================================================================+\n" +
+            "| Bye command                 | Used to close rainyDay                                               |\n" +
+            "+====================================================================================================+\n" +
+            "| Example Usage               | Description                                                          |\n" +
+            "+-----------------------------+----------------------------------------------------------------------+\n" +
+            "| bye                         | Closes rainyDay                                                      |\n" +
+            "+====================================================================================================+\n";
     private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
 
     private final String description;
@@ -258,6 +266,9 @@ public class HelpCommand extends Command {
         }
         if (description.equals("ignore") || description.equalsIgnoreCase("unignore")) {
             return new CommandResult(HELP_IGNORE_COMMAND);
+        }
+        if (description.equals("bye")) {
+            return new CommandResult(HELP_BYE_COMMAND);
         }
         return new CommandResult(HELP_COMMAND);
     }
