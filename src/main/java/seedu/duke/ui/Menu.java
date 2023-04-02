@@ -67,6 +67,7 @@ public class Menu {
                     ArrayList<String> diagnosisHistory = new ArrayList<>();
                     Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
                     Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory, medicineHistory));
+                    Storage.saveData();
                     break;
                 } else {
                     //@@author Geeeetyx
@@ -104,8 +105,8 @@ public class Menu {
         }
     }
 
-    //@@author Geeeetyx
-    public static void exit() {
+    //@@author Thunderdragon221
+    private static void printExitLogo() {
         System.out.println("---------------------------------------------------");
         System.out.println("Thank you for using");
         String logo = " ____         ____        _        \n"
@@ -115,13 +116,21 @@ public class Menu {
                 + "|____/|_|    |____/ \\__,_|_|\\_\\___|\n";
         System.out.print(logo);
         System.out.println("---------------------------------------------------");
+    }
+    //@@author Geeeetyx
+    public static void exit() {
+        printExitLogo();
         Storage.saveData();
         Storage.saveQueue();
         System.exit(0);
     }
-    //@@author
 
     //@@author Thunderdragon221
+    public static void exitWithoutSaving() {
+        printExitLogo();
+        System.exit(0);
+    }
+
     public static void showAccountMenu() {
         System.out.println("---------------------------------------------------");
         System.out.println("What would you like to do? Please enter the number:");

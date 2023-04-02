@@ -5,6 +5,7 @@ import seedu.duke.diagnosis.Diagnosis;
 import seedu.duke.medicine.MedicineManager;
 import seedu.duke.patient.Patient;
 import seedu.duke.ui.Information;
+import seedu.duke.ui.Menu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -51,6 +52,7 @@ public class Storage {
      */
     public static void loadData() {
         try {
+            logger.setLevel(Level.SEVERE);
             createDirectory();
             createFile();
             readFile();
@@ -61,7 +63,9 @@ public class Storage {
         } catch (FileNotFoundException e) {
             System.out.println("ERROR: File not found.");
         } catch (CorruptedDataException e) {
-            System.out.println("ERROR: Data file is corrupted.");
+            System.out.println("ERROR: Data file is corrupted. Clear all data files " +
+                    "or restore data to uncorrupted state before trying again.");
+            Menu.exitWithoutSaving();
         } catch (IOException e) {
             System.out.println("ERROR: Failed to create files for storage");
         }
@@ -107,39 +111,40 @@ public class Storage {
         hashString = scanner.nextLine();
         if (((!hashString.matches("^[0-9]+$")) && (!hashString.matches("^-[0-9]+$"))) ||
                 hashString.matches("^0{2,}$")) {
-            logger.log(Level.WARNING, "Corrupted data file");
+            logger.log(Level.INFO, "Corrupted data file");
             throw new CorruptedDataException();
         }
         int fileHash = Integer.parseInt(hashString);
 
+        ArrayList<Patient> patientsList = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String password = scanner.nextLine();
             dataCompare += password + "\n";
             if (emptyField(password)) {
                 break;
             } else if ((!password.matches("^[0-9]+$")) && (!password.matches("^-[0-9]+$"))) {
-                logger.log(Level.WARNING, "Corrupted data file");
+                logger.log(Level.INFO, "Corrupted data file");
                 throw new CorruptedDataException();
             }
 
             if (!scanner.hasNextLine()) {
-                logger.log(Level.WARNING, "Corrupted data file");
+                logger.log(Level.INFO, "Corrupted data file");
                 throw new CorruptedDataException();
             }
             String name = scanner.nextLine();
             dataCompare += name + "\n";
             if (emptyField(name)) {
-                logger.log(Level.WARNING, "Corrupted data file");
+                logger.log(Level.INFO, "Corrupted data file");
                 throw new CorruptedDataException();
             }
 
             if (!scanner.hasNextLine()) {
-                logger.log(Level.WARNING, "Corrupted data file");
+                logger.log(Level.INFO, "Corrupted data file");
                 throw new CorruptedDataException();
             }
             String line = scanner.nextLine();
             if (emptyField(line) || (!line.matches("[0-9]+"))) {
-                logger.log(Level.WARNING, "Corrupted data file");
+                logger.log(Level.INFO, "Corrupted data file");
                 throw new CorruptedDataException();
             }
             int numberOfEntries = Integer.parseInt(line);
@@ -148,13 +153,13 @@ public class Storage {
 
             for (int i = 0; i < numberOfEntries; i++) {
                 if (!scanner.hasNextLine()) {
-                    logger.log(Level.WARNING, "Corrupted data file");
+                    logger.log(Level.INFO, "Corrupted data file");
                     throw new CorruptedDataException();
                 }
                 String diagnosis = scanner.nextLine();
                 dataCompare += diagnosis + "\n";
                 if (emptyField(diagnosis) || (!Diagnosis.isValidDiagnosis(diagnosis))) {
-                    logger.log(Level.WARNING, "Corrupted data file");
+                    logger.log(Level.INFO, "Corrupted data file");
                     throw new CorruptedDataException();
                 }
                 diagnosisHistory.add(diagnosis);
@@ -163,13 +168,17 @@ public class Storage {
 
             int hash = Integer.parseInt(password);
             Patient patient = new Patient(name, hash, diagnosisHistory, medicineHistory);
-            Information.storePatientInfo(hash, patient);
+            patientsList.add(patient);
         }
 
         int dataCompareHash = dataCompare.hashCode();
         if (dataCompareHash != fileHash) {
-            logger.log(Level.WARNING, "Corrupted data file");
+            logger.log(Level.INFO, "Corrupted data file");
             throw new CorruptedDataException();
+        }
+
+        for (Patient patient : patientsList) {
+            Information.storePatientInfo(patient.getPassword(), patient);
         }
         scanner.close();
     }
@@ -186,7 +195,7 @@ public class Storage {
         //@@author Thunderdragon221
         String line = scanner.nextLine();
         if (emptyField(line) || (!line.matches("[0-9]+"))) {
-            logger.log(Level.WARNING, "Corrupted data file");
+            logger.log(Level.INFO, "Corrupted data file");
             throw new CorruptedDataException();
         }
         //@@author tanyizhe
@@ -197,14 +206,14 @@ public class Storage {
         for (int entry = 0; entry < numberOfMedicineEntries; entry++) {
             //@@author Thunderdragon221
             if (!scanner.hasNextLine()) {
-                logger.log(Level.WARNING, "Corrupted data file");
+                logger.log(Level.INFO, "Corrupted data file");
                 throw new CorruptedDataException();
             }
             //@@author tanyizhe
             String dateMedicineString = scanner.nextLine();
             dataCompare += dateMedicineString + "\n";
             if (emptyField(dateMedicineString)) {
-                logger.log(Level.WARNING, "Corrupted data file");
+                logger.log(Level.INFO, "Corrupted data file");
                 throw new CorruptedDataException();
             }
             String[] splitDateMedicineStrings = dateMedicineString.split("%");
@@ -215,14 +224,14 @@ public class Storage {
             //@@author Thunderdragon221
             String date = splitDateMedicineStrings[0];
             if (!date.matches("^[0-9]{4}/[0-9]{2}/[0-9]{2}$")) {
-                logger.log(Level.WARNING, "Corrupted data file");
+                logger.log(Level.INFO, "Corrupted data file");
                 throw new CorruptedDataException();
             }
             int year = Integer.parseInt(date.substring(0, 4));
             int month = Integer.parseInt(date.substring(5, 7));
             int day = Integer.parseInt(date.substring(8, 10));
             if (!isValidDate(year, month, day)) {
-                logger.log(Level.WARNING, "Corrupted data file");
+                logger.log(Level.INFO, "Corrupted data file");
                 throw new CorruptedDataException();
             }
 
@@ -230,7 +239,7 @@ public class Storage {
             MedicineManager medicineManager = new MedicineManager();
             for (String medicine : medicines) {
                 if (!medicineManager.isValidMedicine(medicine)) {
-                    logger.log(Level.WARNING, "Corrupted data file");
+                    logger.log(Level.INFO, "Corrupted data file");
                     throw new CorruptedDataException();
                 }
             }
@@ -363,7 +372,7 @@ public class Storage {
         hashString = scanner.nextLine();
         if (((!hashString.matches("^[0-9]+$")) && (!hashString.matches("^-[0-9]+$"))) ||
                 hashString.matches("^0{2,}$")) {
-            logger.log(Level.WARNING, "Corrupted data file");
+            logger.log(Level.INFO, "Corrupted data file");
             throw new CorruptedDataException();
         }
         int fileHash = Integer.parseInt(hashString);
@@ -376,7 +385,7 @@ public class Storage {
         //@@author Thunderdragon221
         int queueDataHashCompare = queueDataCompare.hashCode();
         if (fileHash != queueDataHashCompare) {
-            logger.log(Level.WARNING, "Corrupted data file");
+            logger.log(Level.INFO, "Corrupted data file");
             throw new CorruptedDataException();
         }
         scanner.close();
