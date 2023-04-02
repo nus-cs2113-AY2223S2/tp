@@ -1,5 +1,6 @@
 package seedu.ui;
 
+import seedu.database.ExerciseData;
 import seedu.entities.Exercise;
 import seedu.entities.Meal;
 import seedu.storage.ExerciseStorage;
@@ -198,8 +199,21 @@ public class GeneralUi {
         } else if (netCalories == 0){
             System.out.println("Your net calories on " + date + "is zero.");
         } else {
-            System.out.println("You have lost " + netCalories + " calories on" + date);
+            System.out.println("You have lost " + netCalories + " calories on " + date);
         }
+    }
+
+    public void displayExerciseExamples() {
+        String[] exerciseData = ExerciseData.getExerciseData();
+        System.out.println("Here are some examples of exercises:");
+        for(String exercise: exerciseData) {
+            String[] exerciseInfo = exercise.split(",");
+            System.out.println(exerciseInfo[0].substring(0) + ": " + exerciseInfo[1] + ", " + exerciseInfo[2]);
+        }
+    }
+
+    public void displayMealExamples() {
+        System.out.println("Here are some examples of exercises:");
     }
 }
 

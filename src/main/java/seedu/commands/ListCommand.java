@@ -16,7 +16,7 @@ public class ListCommand extends Command {
         String[] commandParts = userInput.split(" ");
         if (commandWord.length() == userInput.length() || userInput.split(" ").length < 2) {
             throw new MissingArgumentsException(commandWord, "[meals/foods/exercises]");
-        } else if (commandParts.length > 2){
+        } else if (commandParts.length > 2) {
             throw new ExtraArgumentsException();
         }
         this.argument = userInput.split(" ")[1];
@@ -28,9 +28,9 @@ public class ListCommand extends Command {
             throws LifeTrackerException {
         if (argument.equals("meals")) {
             ui.printAllMeals(mealStorage);
-        } else if (argument.equals("foods")){
+        } else if (argument.equals("foods")) {
             ui.printAllFoods(foodStorage);
-        } else if (argument.equals("exercises")){
+        } else if (argument.equals("exercises")) {
             ui.printAllExercises(exerciseStorage);
         } else {
             throw new LifeTrackerException("You can only list foods/meals/exercises !");
