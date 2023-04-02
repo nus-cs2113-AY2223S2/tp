@@ -36,6 +36,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         meals = new ArrayList<Meal>();
         try {
             this.load();
+            System.out.println("Initialised Meal Storage");
         } catch (IOException e) {
             System.out.println("Error loading Meal Storage");
         }

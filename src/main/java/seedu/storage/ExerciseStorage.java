@@ -32,6 +32,7 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
         exercises = new ArrayList<Exercise>();
         try {
             this.load();
+            System.out.println("Initialised Exercise Storage");
         } catch (IOException e) {
             System.out.println("Error loading Exercise Storage");
         }
@@ -58,7 +59,6 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
             }
             br.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Exercise File not found. Creating new exercise file...");
             File newFile = new File(filePath);
             newFile.createNewFile();
         }
