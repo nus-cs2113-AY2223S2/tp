@@ -1,5 +1,6 @@
 package seedu.pettracker.data;
 
+import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 
 import java.util.logging.Level;
@@ -22,7 +23,8 @@ public class Pet {
         logger.log(Level.INFO, "Pet successfully created with pet name: " + petName + "\n");
     }
 
-    public void addStat(String statName, String statValue) throws NonPositiveIntegerException, NumberFormatException{
+    public void addStat(String statName, String statValue) throws NonPositiveIntegerException,
+            NumberFormatException, InvalidStatException{
         assert statName != null && statValue != null : "statName/statValue is null";
         switch (statName.toLowerCase()) {
         case "type":
@@ -35,7 +37,7 @@ public class Pet {
             setWeight(statValue);
             break;
         default:
-            System.out.println("ERROR: The only valid stats are type, age, or weight.");
+            throw new InvalidStatException();
         }
 
     }

@@ -152,13 +152,19 @@ public class Ui {
      * Message that prints when the storage experiences IO error.
      */
     public void fileIOErrorMessage() {
-        System.out.println("Error with File IO");
+        System.out.println("ERROR: Error with File IO");
     }
     public void nonIntegerMessage() {
-        System.out.println("Input should be an integer");
+        System.out.println("ERROR: Input should be an integer");
     }
     public void integerNotPositiveMessage() {
-        System.out.println("Integer provided should be above 0");
+        System.out.println("ERROR: Integer provided should be above 0");
+    }
+    public void invalidStatMessage(){
+        System.out.println("ERROR: The only valid stats are type, age, or weight.");
+    }
+    public void petNotFoundMessage() {
+        System.out.println("ERROR: Pet not Found");
     }
     /**
      * Print out help for all commands

@@ -6,19 +6,23 @@ Please enter a valid command!
 
 Successfully added new pet: Bob
 
-Input should be an integer
+ERROR: Input should be an integer
 
-Integer provided should be above 0
+ERROR: Integer provided should be above 0
 
-Integer provided should be above 0
+ERROR: Integer provided should be above 0
 
-Input should be an integer
+ERROR: Input should be an integer
 
-Integer provided should be above 0
+ERROR: Integer provided should be above 0
 
-Integer provided should be above 0
+ERROR: Integer provided should be above 0
 
 Updated Weight to 30 for Bob
+
+ERROR: Pet not Found
+
+ERROR: The only valid stats are type, age, or weight.
 
 Name: Bob
 Type: 

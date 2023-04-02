@@ -1,6 +1,8 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
+import seedu.pettracker.exceptions.PetNotFoundException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.PetList;
@@ -35,6 +37,10 @@ public class AddStatCommand extends Command {
             ui.integerNotPositiveMessage();
         } catch (NumberFormatException e) {
             ui.nonIntegerMessage();
+        } catch (InvalidStatException e) {
+            ui.invalidStatMessage();
+        } catch (PetNotFoundException e) {
+            ui.petNotFoundMessage();
         }
     }
 
