@@ -7,7 +7,7 @@
 
 ## Acknowledgements
 
-Adapted from AddressBook Level 3 Developer Guide (https://se-education.org/addressbook-level3/DeveloperGuide.html)
+Adapted from [AddressBook Level 3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 ## Setup
 
@@ -23,7 +23,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ## Design
 
-> The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](diagrams) folder.
+> The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](https://github.com/AY2223S2-CS2113-T11-4/tp/tree/master/docs/diagrams) folder.
 
 ### Architecture
 
@@ -39,7 +39,7 @@ The above diagram provides a high-level overview of the program's design, which 
 
 ### Manager Component
 
-The code for this component is found in [`ToDoListManager.java`](../src/main/java/seedu/todolist/ToDoListManager.java).
+The code for this component is found in [`ToDoListManager.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/ToDoListManager.java).
 
 ![ManagerClassDiagram](images/ManagerClassDiagram.png)
 
@@ -54,11 +54,11 @@ The `ToDoListManager` component,
 
 ### Ui component
 
-The code for this component is found in [`Ui.java`](../src/main/java/seedu/todolist/ui/Ui.java).
+The code for this component is found in [`Ui.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/ui/Ui.java).
 
 ### Logic component
 
-The main code for this component is found in [`Parser.java`](../src/main/java/seedu/todolist/logic/Parser.java).
+The main code for this component is found in [`Parser.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/logic/Parser.java).
 
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
@@ -72,11 +72,11 @@ component.
 
 ### TaskList component
 
-The code for this component is found in [`TaskList.java`](../src/main/java/seedu/todolist/task/TaskList.java).
+The code for this component is found in [`TaskList.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/task/TaskList.java).
 
 ### Storage component
 
-The code for this component is found in [`Storage.java`](../src/main/java/seedu/todolist/storage/Storage.java).
+The code for this component is found in [`Storage.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/storage/Storage.java).
 
 The Storage component can save the task list as TaskList objects in a .txt file format using Serialization and read it 
 back into a TaskList object.
@@ -150,6 +150,30 @@ which updates the value of deadline for the Task item saved at id 1 to the new u
 The following sequence diagram shows how the edit operations works:
 
 ![EditDeadlineCommandSequence](images/EditDeadlineCommandSequence.png)
+
+### Repeating tasks feature
+
+The repeating tasks function extends NUS To-Do List allowing tasks to be listed as repeating for a certain number of
+occurrences.
+It is facilitated by the TaskList, Storage and Command classes. It implements the `TaskList#setRepeatDuration()` 
+which sets the number of times the task is to repeat, and `TaskList#checkRepeatingTasks()` to check for tasks stored
+in the TaskList for repeat settings.
+
+Given below is an example usage scenario and how the repeating task mechanism will behave at each step.
+
+Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
+
+Step 2. The user executes `add survey -due 20-03-2023 23:59 -rep 3` command to add a task to the To-Do List.
+The `add` command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
+
+Step 3. The user then exits the program with the saved TaskList.
+
+Step 4. The user opens the program a week after the set deadline of the `survey` task. Upon program startup, it checks 
+if any tasks in the TaskList have a repeat count of > 0. Since the existing task fulfils the condition, a new task 
+with the same description `survey` will be created, with a deadline of 1 week from the original deadline appended to the 
+task. (i.e `27-03-2023 23:59`). The repeat count of the original `survey` task will be changed to 0, whilst the new `survey`
+task will have a repeat count of 2.
+
 
 ### List tasks sorted by deadline feature
 
@@ -269,7 +293,7 @@ Forgetful NUS students who used to rely on LumiNUS’s deadline reminders.
 
 #### Value proposition
 
-With the transition to Canvas, the most important feature of LumiNUS’s deadline reminders is gone! Our project aims to 
+With the transition to Canvas, the most important feature of LumiNUS’s deadline reminders is gone! Our project aims to
 bring an application to keep you aware of your deadlines and not miss them.
 
 ### User Stories
@@ -300,10 +324,14 @@ bring an application to keep you aware of your deadlines and not miss them.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
 able to accomplish most of the tasks faster using commands than using the mouse.
 
-### Glossary
-
-* *glossary item* - Definition
-
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+The following are instructions on how to test the program manually.
+
+### Startup/Exit
+
+- After downloading the jar file from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0),
+double-click on it or run `java -jar todolist.jar` in a terminal to start the program.
+  - Expected: The startup, save loading and startup reminder messages will be displayed in the terminal.
+- To exit, use the exit command: `exit`
+  - Expected: The exit message is displayed in the terminal and the program exits, returning control to the terminal.

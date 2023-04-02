@@ -12,6 +12,7 @@ public class Ui {
     private final Scanner input = new Scanner(System.in);
 
     public String getUserInput() {
+        System.out.print("> ");
         return input.nextLine();
     }
 
@@ -25,9 +26,11 @@ public class Ui {
      * @param strings The strings to print out.
      */
     private void println(String... strings) {
+        System.out.println(Messages.LINE.getMessage());
         for (String string : strings) {
             System.out.println(string);
         }
+        System.out.println(Messages.LINE.getMessage());
     }
 
     /**

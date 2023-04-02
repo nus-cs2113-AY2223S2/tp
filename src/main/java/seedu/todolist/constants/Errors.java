@@ -11,7 +11,7 @@ public enum Errors {
     INVALID_COMMAND("You need to provide a valid command."),
     INVALID_FLAGS("Unknown or duplicate flags are not allowed: "),
     INVALID_ID("Invalid task id: "),
-    INVALID_DATE("Invalid date: "),
+    INVALID_DATE("Invalid date-time: "),
     INVALID_EMAIL("Invalid email address: "),
     INVALID_PRIORITY("Invalid priority: "),
     INVALID_DURATION("Invalid repeat duration: "),
