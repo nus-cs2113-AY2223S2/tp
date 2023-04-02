@@ -3,6 +3,7 @@ package seedu.rainyDay;
 import com.google.gson.JsonParseException;
 import seedu.rainyDay.command.CommandResult;
 import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
@@ -75,7 +76,7 @@ public class RainyDay {
         }
     }
 
-    private void executeCommand(Command command) {
+    private void executeCommand(Command command) throws RainyDayException {
         command.setData(userData);
         CommandResult result = command.execute();
         if (result != null) {
