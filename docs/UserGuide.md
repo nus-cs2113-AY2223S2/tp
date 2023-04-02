@@ -47,6 +47,12 @@
 
 ## Features
 
+This user guide adopts the following conventions for the command-line syntax:
++ Angle brackets (`<>`) indicate that the enclosed arguments are mandatory.
++ Square brackets (`[]`) indicate that the enclosed arguments are optional.
++ Ellipsis (`...`) indicate that the preceding argument can be repeated several times in one command.
++ Pipe or vertical line (`|`) indicates a choice within an argument. You can select either one of them, but cannot select more than one.
+
 If you face any problems, do visit the [FAQ](#frequently-asked-questions) segment!
 
 | Command                                |                      Function                       |
@@ -66,20 +72,25 @@ If you face any problems, do visit the [FAQ](#frequently-asked-questions) segmen
 
 Adds an expense to your current expenditure.
 
-Format: `/add <-d | -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c | -category CATEGORY> <-p | -price PRICE>`
+Format: `/add -d <description> -c <category> -p <price>`
 
-- `DESCRIPTION`, `EXTRA_DESCRIPTION` can only contain alphabets, digits or spaces.
-- `CATEGORY` must be currently support in PocketPal.
-- `PRICE` can be in numeric or decimal format.
-- Flags can be used in any order, but they are all **required**.
+Options:
+- `-d | -description`: Description of the expense.
+  - All characters except comma (,) are valid.
+  - Multiple words are allowed. 
+- `-c | -category`: Category of the expense.
+  - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
+  - Non case-sensitive.
+- `-p | -price`: Price of the expense.
+    - Must be a non-negative numeric or decimal value.
+- The order of the options are interchangeable, but they are all **required**.
 
-Here is a [list](#supported-categories) of categories currently supported in PocketPal.
 
 Example of usage:
 
 `/add -d Lunch at McDonalds -category Food -price 19.9`
 
-`/add -d Apple Macbook Air -p 1300 -c Personal`
+`/add -d Apple Macbook Air -p 1300 -category Personal`
 
 `/add -p 1300 -c Personal -d Apple Macbook Air`
 
@@ -93,13 +104,17 @@ Deletes specified expense(s) from your current expenditure.
 
 The expense IDs can be obtained from the [`/view`](#view-an-expense-view) command.
 
-Format: `/delete <EXPENSE_ID> [ADDITIONAL_EXPENSE_ID...]`
+Format: `/delete <index> [additional_index...]`
 
-- `EXPENSE_ID`, `ADDITIONAL_EXPENSE_ID` must be a whole number.
+- `index`, `additional_index`: Index of the expense to be deleted.
+  - Index must be a positive integer. The maximum index allowed is the total number of existing expenses.
+  - Additional indexes must be separated by spaces.
 
 Example of usage:
 
 `/delete 5`
+
+`/delete 4 6 10`
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
@@ -109,22 +124,24 @@ Example of usage:
 
 Edits a specified expense in your current expenditure with the given flag(s).
 
-Format: `/edit <EXPENSE_ID> [-c | -category NEW_CATEGORY] [-p | -price NEW_PRICE] [-d | -description NEW_DESC]`
+Format: `/edit <index> [options]` 
 
-- `EXPENSE_ID` must be a whole number.
-- Flags can be specified in any order. If none are specified, the expense remains unmodified.
-- `NEW_CATEGORY`, `NEW_PRICE`, `NEW_DESC` must follow the required format as per the corresponding flag.
+- `index`: Index of the expense to be deleted.
+  - Must be a positive integer. The maximum index allowed is the number of existing expenses.
+  
+Options:
+- `-d | -description` `<description>`: New description of the expense.
+  - All characters except comma (,) are valid.
+  - Multiple words are allowed.
+- `-c | -category` `<category>`: New category of the expense.
+  - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
+  - Non case-sensitive.
+- `-p | -price` `<price>`: New price of the expense.
+  - Must be a non-negative numeric or decimal value.
 
-__Available flags__
+The order of the options are interchangeable.
 
-- `-d | -description DESCRIPTION`
-    - Replaces the current description of the expense with `DESCRIPTION`
-
-- `-c | -category CATEGORY`
-    - Replaces the current category of the expense with `CATEGORY`
-
-- `-p | -price PRICE`
-    - Replaces the current price of the expense with `PRICE`
+If none of the options are specified,or if they are provided with empty values, the corresponding expense fields will remain unchanged.
 
 Example of usage:
 
@@ -140,16 +157,38 @@ Example of usage:
 
 Displays a list of your current expenditure.
 
-Format: `/view [COUNT] [-c | -category CATEGORY] [-p | -price PRICE_MIN] [-p | -price PRICE_MAX]
-[<-sd | -startdate START_DATE -ed | -enddate END_DATE>]`
+Format: `/view [count] [filter_options]`
 
-- `COUNT` must be a whole number. If not specified, all the expenditures will be listed.
-- `CATEGORY` must be a supported category. If not specified, expenditures from all categories will be listed.
-- `PRICE_MIN`, `PRICE_MAX` must be more than 0. If `PRICE_MAX` is not specified, all expenses with a higher price than
-  `PRICE_MIN` price will be displayed. The first price entered must be less than that on the
-  right. i.e. **MIN_PRICE should be entered before MAX_PRICE.**
-- `START_DATE`, `END_DATE` must be in `dd/MM/yy` format. **Both flags are required if user wishes to use this
-  filter feature.**
+- `count`: Number of expenses to be listed. 
+  - Must be a positive integer. 
+  - If not specified, or if count is greater than number of existing expenses, all expenses will be listed.
+
+### Filter options
+**Filter by category**
+- `-c | -category`  `<category>`: Category of expenses to be listed.
+  - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
+  - Non case-sensitive.
+  - If not specified, expenses of all categories will be listed.
+
+**Filter by price**
+- `-p | -price` `<min_price>`: Minimum price of expenses to be listed.
+- `-p | -price` `<max_price>` Maximum price of expenses to be listed.
+
+Note:
+  - If `max_price` and `min_price` are both specified, all expenses between `min_price` and `max_price` **inclusive** will be listed. 
+  - If only `min_price` is specified, all expenses greater than or equal to `min_price` will be listed. 
+  - `min_price` must be smaller than `max_price`. i.e. **`min_price` should be entered before `max_price`.**
+
+**Filter by date range**
+- `-sd, -startdate` `<start_date>`: Starting date of expenses to be listed.
+- `-ed, -enddate` `<end_date>`: Ending date of expenses to be listed.
+
+Note:
+  - `start_date`, `end_date` must be in `dd/MM/yy` format. 
+  - Both flags are **required** if user wishes to use this
+    option.
+
+Order of options are interchangeable.
 
 Example of usage:
 
@@ -157,7 +196,7 @@ Example of usage:
 
 `/view -c food`
 
-`/view -c food -sd 12/03/23 -ed 11/04/23`
+`/view -sd 12/03/23 -ed 11/04/23 -c food`
 
 `/view -c food -p 2 -sd 12/03/23 -ed 11/04/23`
 
@@ -197,13 +236,14 @@ These are the categories currently supported by PocketPal:
 
 ## Command Summary
 
-| Command | Format                                                                                                                                                                   |
-| ------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-|    /add | /add <-d &#124; -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c &VerticalLine; -category CATEGORY> <-p &#124; -price PRICE>                                         |
-|   /view | /view [COUNT] [-c &#124; -category CATEGORY] [-p &#124; -price PRICE_MIN] [-p &#124; -price PRICE_MAX] [<-sd &#124; -startdate START_DATE -ed &#124; -enddate END_DATE>] |
-|   /edit | /edit <EXPENSE_ID> [-c &#124; -category NEW_CATEGORY] [-p &#124; -price NEW_PRICE] [-d &#124; -description NEW_DESC]                                                     |
-| /delete | /delete <EXPENSE_ID>                                                                                                                                                     |
-|   /help | /help                                                                                                                                                                    |
+| Command | Format                                                                                                   |
+|--------:|----------------------------------------------------------------------------------------------------------|
+|    /add | /add -d &lt;description&gt; -c &lt;category&gt; -p &lt;price&gt;                                         |
+|   /view | /view [count] [-c &lt;category&gt;] [-p &lt;price&gt;]<br/>[-sd &lt;start_date&gt; -ed &lt;end_date&gt;] |
+|   /edit | /edit &lt;index&gt; [-c &lt;category&gt;] [-p &lt;price&gt;]<br/>[-d &lt;description&gt;]                |
+| /delete | /delete &lt;index&gt; [additional_index...]                                                              |
+|   /help | /help                                                                                                    |
+|    /bye | /bye                                                                                                     |
 
 <!-- @@author -->
 
