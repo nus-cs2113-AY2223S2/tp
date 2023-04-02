@@ -209,8 +209,8 @@ public class GeneralUi {
         System.out.println("Calories Gained on " + date + " : " + caloricGain);
         System.out.println("Calories Lost on  " + date + " : " + caloricDeficit);
         if (netCalories > 0) {
-            System.out.println("You have gained " + netCalories + " calories on" + date);
-        } else if (netCalories == 0){
+            System.out.println("You have gained " + netCalories + " calories on " + date);
+        } else if (netCalories == 0) {
             System.out.println("Your net calories on " + date + "is zero.");
         } else {
             System.out.println("You have lost " + netCalories + " calories on " + date);
