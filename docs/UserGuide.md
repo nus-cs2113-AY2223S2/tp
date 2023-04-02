@@ -252,7 +252,7 @@ Here are the notes you are searching for:
 1. [LOW][N][0]Add
 ```
 
-### 15) Prioritize a note
+### 13) Prioritize a note
 Change the priority of a certain note in the notes list.
 
 Format: `<Priority Type>. Index`
@@ -281,13 +281,13 @@ You have changed its priority to MEDIUM
 3: [MEDIUM][N][0]Note 3
 ````
 
-### 13) Display all notes based on all priority types:
+### 14) Display all notes based on all priority types:
 Display all items stored in the Notes List based on the respective priority rankings.
 
 Format: `Rank. Priority`
 Example of usage: `Rank. Priority`
 
-### 14) Display all notes of a certain priority type:
+### 15) Display all notes of a certain priority type:
 Find all notes stored in the list based on priority that users are searching for
 
 Format: `FindPrior. <Priority Type>`
