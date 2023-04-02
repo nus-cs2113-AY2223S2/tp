@@ -75,6 +75,9 @@ public class Command {
                 if (isInvalidTodo(toDo)) {
                     throw new IllegalTodoException();
                 }
+                if(toDo.equals("null")) {
+                    throw new IllegalTodoException();
+                }
                 notes.add(toDo);
                 Ui.printAddNote(toDo, notes.getSize());
                 Storage.saveFile(filePath, notes.getAll());
