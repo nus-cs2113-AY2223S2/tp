@@ -1,5 +1,11 @@
 invalidcommand
 add-pet Bob
+add-stat Bob Age notNumber
+add-stat Bob Age -1
+add-stat Bob Age 0
+add-stat Bob Weight notNumber
+add-stat Bob Weight -1
+add-stat Bob Weight 0
 add-stat Bob Weight 30
 list
 remove-stat Bob Weight

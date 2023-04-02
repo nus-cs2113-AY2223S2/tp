@@ -4,6 +4,7 @@ import seedu.pettracker.data.Pet;
 import seedu.pettracker.data.PetList;
 import seedu.pettracker.data.Task;
 import seedu.pettracker.data.TaskList;
+import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.ui.Ui;
 
 import java.io.File;
@@ -143,18 +144,24 @@ public class Storage {
             PetList.addPet(petName);
 
             String petType = getPetType(line);
-            if (!petType.equals("")) {
-                PetList.addStat(petName, "type", petType);
-            }
+            try {
+                if (!petType.equals("")) {
+                    PetList.addStat(petName, "type", petType);
+                }
 
-            String age = getAge(line);
-            if (!age.equals("")) {
-                PetList.addStat(petName, "age", age);
-            }
+                String age = getAge(line);
+                if (!age.equals("")) {
+                    PetList.addStat(petName, "age", age);
+                }
 
-            String weight = getWeight(line);
-            if (!weight.equals("")) {
-                PetList.addStat(petName, "weight", weight);
+                String weight = getWeight(line);
+                if (!weight.equals("")) {
+                    PetList.addStat(petName, "weight", weight);
+                }
+            } catch(NumberFormatException e){
+                System.out.println("Output File has non-integer values for age/weight");
+            } catch(NonPositiveIntegerException e){
+                System.out.println("Output File has non-positive values for age/weight");
             }
         }
     }

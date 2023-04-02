@@ -1,5 +1,6 @@
 package seedu.pettracker.commands;
 
+import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.PetList;
@@ -21,14 +22,20 @@ public class AddStatCommand extends Command {
     /**
      * Executes the given command
      *
-     * @param ui Ui to do printing if required
+     * @param ui      Ui to do printing if required
      * @param storage Storage to save files if required
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        PetList.addStat(petName, statName, statValue);
-        PetList.savePetsToStorage(storage, ui);
-        ui.addStatCommandMessage(petName, statName, statValue);
+        try {
+            PetList.addStat(petName, statName, statValue);
+            PetList.savePetsToStorage(storage, ui);
+            ui.addStatCommandMessage(petName, statName, statValue);
+        } catch (NonPositiveIntegerException e) {
+            ui.integerNotPositiveMessage();
+        } catch (NumberFormatException e) {
+            ui.nonIntegerMessage();
+        }
     }
 
     /**

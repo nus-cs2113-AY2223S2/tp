@@ -154,7 +154,12 @@ public class Ui {
     public void fileIOErrorMessage() {
         System.out.println("Error with File IO");
     }
-
+    public void nonIntegerMessage() {
+        System.out.println("Input should be an integer");
+    }
+    public void integerNotPositiveMessage() {
+        System.out.println("Integer provided should be above 0");
+    }
     /**
      * Print out help for all commands
      */

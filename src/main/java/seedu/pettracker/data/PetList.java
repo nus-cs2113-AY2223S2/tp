@@ -1,5 +1,6 @@
 package seedu.pettracker.data;
 
+import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 
@@ -41,7 +42,8 @@ public class PetList {
         return petList.get(index);
     }
 
-    public static void addStat(String petName, String statName, String statValue) {
+    public static void addStat(String petName, String statName, String statValue)
+            throws NumberFormatException, NonPositiveIntegerException{
         int index = PetList.find(petName);
         if (index == -1) {
             System.out.println("ERROR: Pet not Found");
@@ -86,7 +88,8 @@ public class PetList {
         return numberOfPets;
     }
 
-    public static void editPetStats(String petName, String stat, String newValue) {
+    public static void editPetStats(String petName, String stat, String newValue)
+            throws NonPositiveIntegerException, NumberFormatException {
         int index = PetList.find(petName);
         Pet petToEdit = PetList.get(index);
         switch (stat.toLowerCase()) {
@@ -106,7 +109,8 @@ public class PetList {
             System.out.println("Invalid stat");
         }
     }
-    public static void savePetsToStorage(Storage storage, Ui ui){
-        storage.savePets(petList,ui);
+
+    public static void savePetsToStorage(Storage storage, Ui ui) {
+        storage.savePets(petList, ui);
     }
 }

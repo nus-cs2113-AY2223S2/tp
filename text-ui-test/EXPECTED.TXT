@@ -6,6 +6,18 @@ Please enter a valid command!
 
 Successfully added new pet: Bob
 
+Input should be an integer
+
+Integer provided should be above 0
+
+Integer provided should be above 0
+
+Input should be an integer
+
+Integer provided should be above 0
+
+Integer provided should be above 0
+
 Updated Weight to 30 for Bob
 
 Name: Bob
