@@ -26,8 +26,19 @@ public class User extends Person {
         this.isSuperUser = false;
     }
 
+    public User(String username, int passwordHash, String name) throws IllegalValueException {
+        super(name);
+        this.username = username;
+        this.passwordHash = passwordHash;
+        this.isSuperUser = false;
+    }
+
     public String getUsername() {
         return username;
+    }
+
+    public int getPasswordHash() {
+        return passwordHash;
     }
 
     public boolean isSuperUser() {

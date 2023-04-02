@@ -31,6 +31,10 @@ public class UserRecords {
         return internalRecord.get(username);
     }
 
+    public String getRootUsername() {
+        return ROOT_USERNAME;
+    }
+
     public User createAccount(String username, String password, String name)
             throws IllegalValueException {
         if (internalRecord.containsKey(username)) {
@@ -64,5 +68,22 @@ public class UserRecords {
             internalRecord.remove(username);
             return true;
         }
+    }
+
+    public boolean addUser(String username, int passwordHash, String name) {
+        if (internalRecord.containsKey(username)){
+            return false;
+        }
+        try {
+            User toAdd = new User(username, passwordHash, name);
+            internalRecord.put(username, toAdd);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Map<String, User> getInternalRecord() {
+        return internalRecord;
     }
 }

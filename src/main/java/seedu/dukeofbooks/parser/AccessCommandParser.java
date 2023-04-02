@@ -11,6 +11,8 @@ import seedu.dukeofbooks.data.user.UserRecords;
 
 
 public class AccessCommandParser implements IParser {
+    private static final String[] ILLEGAL_CHARS = new String[] {" ", "\"", ",", "%", "*"};
+    private static final String ILLEGAL_CHARS_MSG = "Only numbers and alphabetic letters allowed!";
     private final UserRecords userRecords;
 
     public AccessCommandParser(UserRecords userRecords) {
@@ -48,6 +50,15 @@ public class AccessCommandParser implements IParser {
         return -1;
     }
 
+    private boolean containsIllegalStrings(String toCheck) {
+        for (String illegalChar : ILLEGAL_CHARS) {
+            if (toCheck.contains(illegalChar)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private AccessCommand parseLoginCommand(String[] args) {
         assert args[0].equals(LoginCommand.COMMAND_WORD);
         int usernameIndex = indexOf(args, "-username");
@@ -70,6 +81,12 @@ public class AccessCommandParser implements IParser {
             String password = passwordBuilder.toString().trim();
             assert username.length() > 0;
             assert password.length() > 0;
+            if (containsIllegalStrings(username)) {
+                return new IncorrectAccessCommand("Invalid username: "+ ILLEGAL_CHARS_MSG);
+            }
+            if (containsIllegalStrings(password)) {
+                return new IncorrectAccessCommand("Invalid password: " + ILLEGAL_CHARS_MSG);
+            }
             return new LoginCommand(userRecords, username, password);
         } catch (IndexOutOfBoundsException | AssertionError e) {
             return new IncorrectAccessCommand("Username or password is empty!");
@@ -103,6 +120,12 @@ public class AccessCommandParser implements IParser {
             assert !username.isEmpty();
             assert !password.isEmpty();
             assert !name.isEmpty();
+            if (containsIllegalStrings(username)) {
+                return new IncorrectAccessCommand("Invalid username: "+ ILLEGAL_CHARS_MSG);
+            }
+            if (containsIllegalStrings(password)) {
+                return new IncorrectAccessCommand("Invalid password: " + ILLEGAL_CHARS_MSG);
+            }
             return new SignupCommand(userRecords, username, password, name);
         } catch (IndexOutOfBoundsException | AssertionError e) {
             return new IncorrectAccessCommand("Username or password or name is empty!");
