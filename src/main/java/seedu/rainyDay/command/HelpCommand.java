@@ -19,6 +19,7 @@ public class HelpCommand extends Command {
             "| Unignore entry     | unignore  | [INDEX]                                                           |\n" +
             "| Export to .csv     | export    |                                                                   |\n" +
             "| Display a guide    | help      | {COMMAND}                                                         |\n" +
+            "| Exits rainyDay     | bye       |                                                                   |\n" +
             "+====================================================================================================+\n" +
             "|[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |\n" +
             "|{} :  Denotes optional fields. Can be ignored                                                       |\n" +
@@ -209,6 +210,7 @@ public class HelpCommand extends Command {
             "+====================================================================================================+\n";
 
     private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
+    private static final String HELP_BYE_COMMAND = "(Hint:) Try typing this word to exit : 'bye' ";
 
     private final String description;
 
@@ -229,35 +231,38 @@ public class HelpCommand extends Command {
      */
     @Override
     public CommandResult execute() {
-        if (description.equals("add")) {
+        if (description.equalsIgnoreCase("add")) {
             return new CommandResult(HELP_ADD_COMMAND);
         }
-        if (description.equals("delete")) {
+        if (description.equalsIgnoreCase("delete")) {
             return new CommandResult(HELP_DELETE_COMMAND);
         }
-        if (description.equals("view")) {
+        if (description.equalsIgnoreCase("view")) {
             return new CommandResult(HELP_VIEW_COMMAND);
         }
-        if (description.equals("filter")) {
+        if (description.equalsIgnoreCase("filter")) {
             return new CommandResult(HELP_FILTER_COMMAND);
         }
-        if (description.equals("edit")) {
+        if (description.equalsIgnoreCase("edit")) {
             return new CommandResult(HELP_EDIT_COMMAND);
         }
-        if (description.equals("help")) {
+        if (description.equalsIgnoreCase("help")) {
             return new CommandResult(HELP_HELP_COMMAND);
         }
-        if (description.equals("export")) {
+        if (description.equalsIgnoreCase("export")) {
             return new CommandResult(HELP_EXPORT_COMMAND);
         }
-        if (description.equals("setbudget")) {
+        if (description.equalsIgnoreCase("setbudget")) {
             return new CommandResult(HELP_SET_BUDGET_COMMAND);
         }
-        if (description.equals("shortcut")) {
+        if (description.equalsIgnoreCase("shortcut")) {
             return new CommandResult(HELP_SHORTCUT_COMMAND);
         }
-        if (description.equals("ignore") || description.equalsIgnoreCase("unignore")) {
+        if (description.equalsIgnoreCase("ignore") || description.equalsIgnoreCase("unignore")) {
             return new CommandResult(HELP_IGNORE_COMMAND);
+        }
+        if (description.equalsIgnoreCase("bye")) {
+            return new CommandResult(HELP_BYE_COMMAND);
         }
         return new CommandResult(HELP_COMMAND);
     }
