@@ -9,6 +9,8 @@
 
 package seedu.badMaths;
 
+import seedu.badMaths.ui.Ui;
+
 public class Parser {
 
     protected String userInput;
@@ -18,19 +20,32 @@ public class Parser {
     }
 
     public String getCommand() {
-        if (userInput.contains(".")) {
-            return userInput.substring(0, userInput.indexOf(".")); // List
-        } else {
-            return "Invalid command";
+        try {
+            String trimmedInput = userInput.trim();
+            if (trimmedInput.contains(" ")) {
+                int indexOfSpace = trimmedInput.indexOf(" ");
+                String command = trimmedInput.substring(0, indexOfSpace);
+                return command;
+            } else {
+                return userInput;
+            }
+        } catch (IllegalArgumentException e) {
+            Ui.printIncorrectFormatEntered();
+            return null;
         }
     }
 
     public String getToDo() {
-        if (userInput.contains(".") && userInput.contains(" ")) {
-            return userInput.substring(userInput.indexOf(".") + 2); // 1
-        } else {
-            return "Invalid todo";
+        try {
+            String[] parts = userInput.split(" ", 2);
+            if (parts.length == 1) {
+                return "Invalid todo";
+            } else {
+                return parts[1].trim();
+            }
+        } catch (IllegalArgumentException e) {
+            Ui.printIncorrectFormatEntered();
+            return null;
         }
     }
-
 }
