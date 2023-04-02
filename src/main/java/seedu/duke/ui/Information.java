@@ -33,6 +33,7 @@ public class Information {
     }
 
     public static Patient getPatientInfo(int hash) {
+        logger.setLevel(Level.SEVERE);
         logger.log(Level.INFO, "Retrieving patient information");
         return patientsList.get(hash);
     }
