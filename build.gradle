@@ -17,6 +17,7 @@ dependencies {
     implementation 'org.json:json:20220924'
 
     implementation 'org.threeten:threeten-extra:1.7.2'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 
 test {

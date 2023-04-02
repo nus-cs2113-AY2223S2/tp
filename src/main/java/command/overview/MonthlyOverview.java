@@ -15,7 +15,6 @@ import static common.MessageList.PERIOD;
 
 public class MonthlyOverview {
 
-
     private static final String TITLE = "Monthly Overview for ";
     private static final String MONTHLY_OVERVIEW_TOTAL = "Total expenses: ";
     private static final String CATEGORY_TITLE =
