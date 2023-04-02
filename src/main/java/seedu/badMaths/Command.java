@@ -89,6 +89,7 @@ public class Command {
                     break;
                 }
                 int index = Integer.parseInt(toDo) - 1;
+
                 if (isInvalidIndex(index, notes)) {
                     throw new IllegalIndexException();
                 }

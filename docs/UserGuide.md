@@ -100,14 +100,13 @@ Example input:
  Matrix. [1,2;3,4] .* [4,5;6,7]
  ```
 ### 3) Store Notes: `Store`
-Adds a new item to the Notes list.
-
-Format: `Store <item description>`
+* Adds a new item to the Notes list.
+* Format: `Store <item description>`
 
 Example input:
-
-`Store isNote`
-
+```
+Store isNote
+```
 Expected output:
 ```
 You have added this note: 
@@ -116,9 +115,8 @@ Now you have <number> of notes in the list
 ```
 
 ### 4) Display All Notes: `List`
-Display a list of all items stored by user.
-
-Format: `List` 
+* Display a list of all items stored by user.
+* Format: `List`
 
 Example input:
 ```
@@ -133,9 +131,8 @@ Here are the notes you have stored:
 ```
 
 ### 5) Display A Specific Note: `List <index>`
-Display a particular item in the Notes list through index of list item.
-
-Format: `List <index of list item>`
+* Display a particular item in the Notes list through index of list item.
+* Format: `List <index of list item>`
 
 Example input:
 ```
@@ -148,9 +145,8 @@ Here is the note you are looking for
 ```
 
 ### 6) Delete Notes: `Delete <index>`
-Delete a particular item stored in the Notes list through index of list item.
-
-Format: `Delete. <index of list item>`
+* Delete a particular item stored in the Notes list through index of list item.
+* Format: `Delete. <index of list item>`
 
 Example input:
 ```
@@ -164,9 +160,8 @@ Now you have <number> notes in the list.
 ```
 
 ### 7) Clear All Notes Stored In Notes List `Clear`
-Delete all note items stored in Notes List.
-
-Format: `Clear.`
+* Delete all note items stored in Notes List.
+* Format: `Clear.`
 
 Example input:
 ```
@@ -177,10 +172,9 @@ Expected output:
 File content cleared successfully!
 ```
 ### 8) Mark Notes: `Mark`
-Mark a particular item in Notes List as completed.
-The mark bracket will change from `[N]` to `[Y]`.
-
-Format: `Mark <number>`
+* Mark a particular item in Notes List as completed.
+* The mark bracket will change from `[N]` to `[Y]`.
+* Format: `Mark <number>`
 
 Example input:
 ```
@@ -192,10 +186,10 @@ You have marked this note as done:
 [LOW][Y][0]note_item_2
 ```
 ### 9) Unmark Notes: `Unmark`
-Unmark a particular item in Notes List as incomplete.
-The mark bracket will change from `[Y]` to `[N]`.
+* Unmark a particular item in Notes List as incomplete.
+* The mark bracket will change from `[Y]` to `[N]`.
 
-Format: `Unmark <number>`
+* Format: `Unmark <number>`
 
 Example input:
 ```
@@ -207,10 +201,9 @@ You have unmarked this note:
 [LOW][N][0]note_item_2
 ```
 ### 10) List All Items Marked As Completed: `FindMark`
-Display a list of all note items marked as completed.
-i.e. items with mark bracket `[Y]`
-
-Format: `FindMark`
+* Display a list of all note items marked as completed.
+* All items with mark bracket `[Y]` will be displayed.
+* Format: `FindMark`
 
 Example input:
 ```
@@ -224,10 +217,9 @@ Here are the notes you are searching for:
 ```
 
 ### 11) List All Notes That Are Not Marked As Completed: `FindUnmark`
-Display a list of all incomplete note items.
-i.e. items with mark bracket `[N]`
-
-Format: `FindUnmark`
+* Display a list of all incomplete note items.
+* All items with mark bracket `[N]` will be displayed.
+* Format: `FindUnmark`
 
 Example input:
 ```
@@ -240,9 +232,8 @@ Here are the notes you are searching for:
 ```
 
 ### 12) Find Notes Using Keyword: `FindInfo`
-Find items stored in Notes by searching for a keyword.
-
-Format: `FindInfo <description>`
+* Find items stored in Notes by searching for a keyword.
+* Format: `FindInfo <description>`
 
 Assuming that the List is as follows:
 ```
@@ -295,10 +286,10 @@ Display all items stored in the Notes List based on the respective priority rank
 Format: `Rank. Priority`
 Example of usage: `Rank. Priority`
 
-### 15) Display All Notes Of A Certain Priority Type:
-Find all notes stored in the list based on priority that users are searching for
+### 15) Display All Notes Of A Certain Priority Type: `FindPrior`
+Find all notes stored in the list based on the priority that users are searching for.
 
-Format: `FindPrior. <Priority Type>`
+Format: `FindPrior <Priority Type>`
 * The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
   Example of usage: `FindPrior. <LOW>`
 
@@ -317,9 +308,8 @@ Examples:
 - Input: `Quadratic. x^2 + 4x - 5` Output: `x1 = 1.0 , x2 = -5.0`
 
 ### 17) Help Manual `Help`
-View the content of Help Manual.
-
-Format: `Help`
+* Display the content of Help Manual for BadMaths.
+* Format: `Help`
 
 Example input:
 ```
@@ -342,9 +332,8 @@ If you have any queries, please contact [wilsonleejunwei@u.nus.edu].
 ```
 
 ### 18) Exit BadMaths `Bye`
-Exit and leave BadMaths:
-
-Format: `Bye`
+* Exit and leave BadMaths:
+* Format: `Bye`
 
 Example input:
 ```
