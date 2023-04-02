@@ -6,6 +6,10 @@ import seedu.apollo.storage.Storage;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 /**
  * Week Command class that displays the user's schedule for the week
  */
@@ -14,7 +18,11 @@ public class WeekCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar) {
-        ui.printWeek(taskList, calendar);
+        ZoneId zid = ZoneId.of("Asia/Singapore");
+        LocalDate now = LocalDate.now(zid);
+        LocalDate startWeek = now.with(DayOfWeek.MONDAY);
+        LocalDate endWeek = now.with(DayOfWeek.SUNDAY);
+        ui.printWeek(taskList, calendar, startWeek, endWeek);
     }
 
 }
