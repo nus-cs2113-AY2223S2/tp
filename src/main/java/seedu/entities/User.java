@@ -146,7 +146,9 @@ public class User {
         assert !Objects.equals(height, "0"): "Height should be non 0";
         String age = Integer.toString(this.age);
         assert !Objects.equals(age, "0"): "Age should be non 0";
-        String[] value = { this.name, weight, height, age, this.gender };
+        String targetWeight = Float.toString(this.targetWeight);
+        assert !Objects.equals(targetWeight, "0"): "Target Weight should be non 0";
+        String[] value = { this.name, weight, height, age, this.gender, targetWeight };
         return value;
     }
 }

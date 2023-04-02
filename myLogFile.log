@@ -1,14 +1,6 @@
-Apr 02, 2023 1:37:47 AM seedu.logger.LogFileHandler logInfo
-INFO: Lunch was consumed on 1/1/2023
-Total Calories are: 411.0
+Apr 02, 2023 7:40:01 AM seedu.logger.LogFileHandler logInfo
+INFO: Lunch was consumed on 4/3/2023
+Total Calories are: 37.400001525878906
 Here are the foods you ate:
-1) Plain Chicken Rice from Chicken Rice
-
-Apr 02, 2023 1:38:08 AM seedu.logger.LogFileHandler logInfo
-INFO: Breakfast was consumed on 1/1/2023
-Total Calories are: 2271.0
-Here are the foods you ate:
-1) Black Pepper Chicken Chop  from Western
-2) Chicken Cutlet  from Western
-3) Grilled Dory Fish  from Western
+1) White Chicken (3 Pax) from Chicken Rice
 
