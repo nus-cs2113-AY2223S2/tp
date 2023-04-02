@@ -45,19 +45,21 @@ Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 * The `n/` parameter where `[item_name]`  must be alphanumeric. 
 * The `upc/` parameter for `[UPC]` must be a **non-negative numerical** value.
 * The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value.
-* The `p/` parameter for `[price]` must be a **non-negative numerical** value (decimals accepted).
+* The `p/` parameter for `[price]` must be a **non-negative numerical** value _(decimals accepted)_.
 
-OPTIONAL parameters:
+**OPTIONAL** parameters:
 * The `cat/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized`)
 
+!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
 
-Example of usage: 
+
+#### Example of usage
 
 `add n/HP Laptop upc/2142535453 qty/10 p/1299.99`
 
 `add n/iPhone 11 Pro Max Max upc/2987654323 qty/11 p/1099.99 c/electronics`
 
-Sample output:
+#### Sample output
 ```
 add n/iPhone 11 Pro Max Max upc/2987654323 qty/11 p/1099.99 c/electronics
 ____________________________________________________________
@@ -73,19 +75,21 @@ Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price]`
 **REQUIRED** parameters:
 * The `upc/` parameter where `[UPC]`  must be a numerical value and exists in the inventory.
 
-OPTIONAL parameters:
+**OPTIONAL** parameters:
 * The `n/` parameter where `[item_name]` must be alphanumeric.
 * The `qty/` parameter for `[quantity]` must be a numerical value.
 * The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
 * The `c/` parameter for `[category]` must be alphanumeric.
 
-Example of usage:
+!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
+
+#### Example of usage
 
 ``
 edit upc/2142535453 c/laptop
 ``
 
-Sample output:
+#### Sample output
 ```
 ____________________________________________________________
 Successfully edited the following item:
@@ -107,33 +111,37 @@ ____________________________________________________________
 
 ```
 ---
-### Removing an item from the inventory: `remove` <a name = "remove"></a>
+### Removing an item: `remove` <a name = "remove"></a>
 Removes an item from the inventory list using either its UPC or index in list.
 
 Format: `remove f/item upc/[UPC]` or `remove f/index [Index]`
 
+**REQUIRED** parameters:
+
 * The `UPC` can be only be a numerical value.
 * The `index` can only be a number.
 
-Example of usage:
+#### Example of usage
 
 `remove f/item upc/123456789`
 
 `remove f/index 0`
 
-Sample output:
+#### Sample output
 
 ---
-### List all items in the inventory: `list` <a name = "list"></a>
+### List all items: `list` 
 Lists all items in the inventory list.
 
 Format: `list`
 
-Example of usage:
+#### Example of usage
 
 `list`
 
-Sample output:  
+#### Sample output 
+**Case I:** When there are items in the inventory
+
 ```
 list
 ____________________________________________________________
@@ -155,41 +163,38 @@ Here are the items in your inventory:
 
 ____________________________________________________________
 
-``````
+```
+
+**Case II:** When there is no items in the inventory
+```
+list
+____________________________________________________________
+There are no items in your inventory.
+____________________________________________________________
+```
 ---
-### Search for an item in the inventory: `search` <a name = "search"></a>
-Search for item(s) in the inventory list using keywords or UPC.
+### Search for an item: `search` / `searchupc`
+Search for item(s) in the inventory list by keywords or UPC.
 
-Format: `search [Keywords]` or `searchupc [UPC]`
+| Format | Required parameter |
+| --- | --- |
+| `search [Keywords]` | `[Keywords]` can be an alphanumerical value. |
+| `searchupc [UPC]` | `[UPC]` can only be a **non-negative numerical** value. |
 
-Notes: `search` will find items with all keywords. Hence, the search term `sleeves` will find both `Laptop Sleeves`
-and `Clothes Sleeves`, but the search term `laptop sleee` will only return the item `Laptop Sleeves`
 
-Example of usage:
+!> Note: `search` will find items with all keywords. Hence, the search term `sleeves` will find both `Laptop Sleeves`
+and `Clothes Sleeves`, but the search term `laptop slee` will only return the item `Laptop Sleeves`
 
-``search sleeves``
+#### Example of usage:
 
-Sample output:
+`search laptop slee` or `searchupc 0123241`
 
+#### Sample output:
+
+
+**Case I:** Search by keywords
 ```
-____________________________________________________________
-+-----------------+--------------+----------+----------+
-| Name            | UPC          | Quantity | Price    |
-+-----------------+--------------+----------+----------+
-| laptop sleeves  | 1            | 10       | $15.0    |
-+-----------------+--------------+----------+----------+
-| shirt sleeves   | 3            | 10       | $5.0     |
-+-----------------+--------------+----------+----------+
-
-____________________________________________________________
-```
-
-Example of usage:
-
-``search laptop sleee``
-
-Sample output:
-```
+search laptop slee
 ____________________________________________________________
 +-----------------+--------------+----------+----------+
 | Name            | UPC          | Quantity | Price    |
@@ -199,13 +204,10 @@ ____________________________________________________________
 
 ____________________________________________________________
 ```
+**Case II:** Search by UPC
 
-Example of usage:
-
-``searchupc 0123241``
-
-Sample output:
 ```
+searchupc 0123241
 ____________________________________________________________
 Here is your item: 
 +-----------------+--------------+----------+----------+
@@ -217,26 +219,44 @@ Here is your item:
 ____________________________________________________________
 ```
 ---
-### Filtering by type: `filter` <a name = "filter"></a>
+### Filtering items: `filter`
 
-### Filtering inventory list by type: `filter`
 
-Filters items from the inventory list by price or category.
+Filters items from the inventory list by price OR category.
 
-Format: `filter f/{price/category} {p/[gt/get/lt/let] [Price] or [Category keywords]`
 
-Note: `gt` means `greater than`, `get` means `greater or equal than`, `lt` means `less than` and `let` means
-`less than or equal than`, which specifies which values the price filter will return.
-   
+| Filter By | Format              | Required parameter                                  |
+|-----------|---------------------|-----------------------------------------------------|
+| Price     | `filter f/price`    | `p/gt`/`p/get`/`p/lt`/`p/let` followed by `[price]` |
+| Category  | `filter f/category` | `[Category keywords]`                               |
 
-Example of usage:
+**REQUIRED** parameters:
+* For `filter f/price`, the `[price]` parameter must be a **non-negative numerical value** within a valid range
+* For `filter f/category`, the `[Category keywords]` parameter must be an **alphanumerical value**.
 
-``
-filter f/category fruits
-``
 
-Sample output:
+!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
+
+
+| Price Comparator | Required parameter |
+|------------------|--|
+| `p/gt`           | Items price greater than `[price]` |
+| `p/get`            | Items price greater/equals to`[price]` |
+| `p/lt`            | Items price less than `[price]` |
+|`p/let`            | Items price lesser/equals to `[price]`  |
+
+
+
+#### Example of usage:
+
+`filter f/category fruits` or `filter f/price p/gt 10.2`
+
+#### Sample output:
+
+**Case I:** Filter by category
+
 ```
+filter f/category fruits
 +-----------------+--------------+----------+----------+
 | Name            | UPC          | Quantity | Price    |
 +-----------------+--------------+----------+----------+
@@ -248,13 +268,10 @@ Sample output:
 ____________________________________________________________
 ```
 
-Example of usage:
-
-``filter f/price p/gt 10.2``
-
-Sample output:
+**Case II:** Filter by price
 
 ```
+filter f/price p/gt 10.2
 ____________________________________________________________
 +-----------------+--------------+----------+----------+
 | Name            | UPC          | Quantity | Price    |
@@ -270,16 +287,33 @@ ____________________________________________________________
 
 ```
 ---
-### List all available commands: `help` <a name = "help"></a>
+### List all available commands: `help`
 Lists all commands available and the command formats.
 
 Format: `help`
 
-Example of usage:
+#### Example of usage
 
 `help`
 
-Sample output:
+#### Sample output
+```agsl
+_________________________________________________________
+help
++---------------------------+---------------------------+
+| Command                   | Command Format            |
++---------------------------+---------------------------+
+| history: shows the        | history UPC               |
+| historical commands       |                           |
+| executed for an item      |                           |
++---------------------------+---------------------------+
+.........INTENTIONALLY TRUNCATED FOR DEMOSTRATION........
++---------------------------+---------------------------+
+| db: Displays the          | db                        |
+| dashboard of Magus-Stock  |                           |
++---------------------------+---------------------------+
+```
+
 
 ---
 ### Historical records of item: `history` <a name = "history"></a>
@@ -287,11 +321,12 @@ Lists historical changes to an item in the inventory list.
 
 Format: `history [UPC]`
 
-Example of usage:
+#### Example of usage
 
 ``history 0123241``
 
-Sample output:
+#### Sample output
+
 
 ```
 ____________________________________________________________
@@ -411,11 +446,11 @@ session configurations.
 
 Format: `db`
 
-Example of usage:
+Example of usage
 
 `db` - It's that simple
 
-Sample output:  
+Sample output
 ```
 db
 ____________________________________________________________
@@ -506,12 +541,12 @@ Successfully added a new alert.
 ____________________________________________________________
 ```
 
-Examples of usage:  
+Examples of usage: 
 `alert remove upc/1234 level/min`  
 `alert remove upc/1234 level/max`
 
 
-Sample output:
+Sample output
 ```
 ____________________________________________________________
 Successfully removed the alert.
