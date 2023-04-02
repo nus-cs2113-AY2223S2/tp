@@ -53,7 +53,6 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
             br.readLine();
 
             String[] userLine = br.readLine().split(csvDelimiter);
-            System.out.println(userLine.length);
             name = userLine[0];
             weight = Float.parseFloat(userLine[1]);
             height = Float.parseFloat(userLine[2]);
