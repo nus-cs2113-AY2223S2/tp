@@ -7,6 +7,7 @@ import seedu.commands.Command;
 import seedu.commands.CommandResult;
 import seedu.ui.Ui;
 import java.io.FileNotFoundException;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class MyLedger {
@@ -56,6 +57,10 @@ public class MyLedger {
             TxtFileStatus.initializeExpenditureList(expenditures);
         } catch (FileNotFoundException e) {
             System.out.println("Error finding save file during initialization");
+        } catch (DateTimeParseException s) {
+            System.out.println("Please try again");
+        } catch (NumberFormatException h) {
+            System.out.println("Please try again");
         }
     }
 }
