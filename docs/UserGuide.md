@@ -402,7 +402,9 @@ Format : `filter [FLAG] {FIELD}`
     * `-d` to filter by description
     * `-c` to filter by category
     * `-date` to filter by date
+* No `FIELD` is required when `-in` or `-out` flag is used 
 * date `FIELD` must be in the form DD/MM/YYYY
+
 
 Example of usage:
 
