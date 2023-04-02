@@ -66,7 +66,7 @@ Example of usage:
 Expected outcome:
 
 ```
-Company has been successfully confirmed/uncomfirmed!
+Company has been successfully confirmed!
 
 ```
 
@@ -79,7 +79,7 @@ Example of usage:
 Expected outcome:
 
 ```
-Company has been successfully confirmed/uncomfirmed!
+Company has been successfully uncomfirmed!
 
 ```
 ### `list unconfirmed` - Shows all stored companies marked with unconfirmed attendance
