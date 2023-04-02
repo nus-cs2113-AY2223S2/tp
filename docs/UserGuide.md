@@ -299,7 +299,8 @@ Format: `view {TIMESPAN} {-sort}`
     * `1w - 4w`  is used to view 1 to 4 weeks of history
     * `1m - 12m` is used to view 1 to 12 months of history
     * `1y - 10y` is used to view 1 to 10 years of history
-* `-sort` can be included to sort entries in ascending order, with inflows displayed before outflows.
+* `-sort` can be included to sort entries in ascending order of their absolute value, 
+  with inflows displayed before outflows.
 
 > 💡**Tip:** To view all entries you can use -all in place of a specific time in TIMESPAN
 
