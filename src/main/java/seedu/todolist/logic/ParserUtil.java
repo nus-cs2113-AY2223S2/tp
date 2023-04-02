@@ -9,7 +9,6 @@ import seedu.todolist.exception.InvalidDurationException;
 import seedu.todolist.exception.PassedDateException;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -95,8 +94,7 @@ public class ParserUtil {
         try {
             DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1.getFormat()
                             + Formats.TIME_IN_2.getFormat()).withResolverStyle(ResolverStyle.STRICT);
-            // check with Shanghai time - same timezone as SG
-            if (!LocalDateTime.parse(deadline, inputFormatter).isAfter(LocalDateTime.now(ZoneId.of("CTT")))) {
+            if (!LocalDateTime.parse(deadline, inputFormatter).isAfter(LocalDateTime.now())) {
                 throw new PassedDateException();
             }
             else {

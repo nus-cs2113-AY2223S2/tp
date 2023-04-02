@@ -40,8 +40,7 @@ Adds a new task to your To-Do list.
 
 Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [-tags LIST_OF_TAGS] [-rep REPEAT_DURATION] [-prio PRIORITY_LEVEL]`
 
-- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
-- The date and time provided for `DEADLINE` must be of a later time than the current GMT+8 time.
+- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`, and cannot be in the past.
 - `EMAIL_ADDRESS` must be of a valid email address format.
 - `LIST_OF_TAGS` can consist of multiple tags, separated by a space. A task cannot have multiple of the same tag. Tags will be sorted in lexicographic order.
 - `REPEAT_DURATION` must be an integer from 0 to 2147483647, and can only be used if a `DEADLINE` is also provided. A new task will be added every week starting from the `DEADLINE` for `REPEAT_DURATION` times.
@@ -151,8 +150,7 @@ Format: `due ID -edit DEADLINE` or `due ID -del`
 - Use `-edit` to replace the deadline of the task with the newly specified deadline, or `-del` to delete it instead.
 - If both flags are provided, `-edit` takes priority.
 - At least one of the two flags must be provided.
-- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
-- The date and time provided for `DEADLINE` must be of a later time than the current GMT+8 time.
+- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`, and cannot be in the past.
 
 Example of usage:
 
@@ -357,5 +355,4 @@ Here are the tasks which were completed in the past week:
 | List all tasks                       | `list`                                                                                                                      |
 | Check all details of a task          | `info`                                                                                                                      |
 | Check progress of current week tasks | `progress`                                                                                                                  |
-| Check for repeating tasks            | `check`                                                                                                                     |
 | Exit program                         | `exit`                                                                                                                      |
