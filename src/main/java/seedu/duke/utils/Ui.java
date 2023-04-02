@@ -102,7 +102,7 @@ public class Ui {
     public static final String INVALID_DEDUCT_QUANTITY_FORMAT = "Unable to sell item. REASON: Quantity inputs" +
             " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!" + "\n" +
             "Also ensure that the desired" + " quantity to be deducted is LESS THAN current stock levels.";
-    public static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
+    public static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Format! Please sell items in the " +
             "following format: " + "sell upc/[UPC] qty/[Quantity]";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
