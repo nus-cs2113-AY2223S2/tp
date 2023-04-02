@@ -248,7 +248,7 @@ When reading from the file, entries for income and expenses are stored in their 
 - Edit income list: `edit income /i INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`
 - Edit expense list: `edit expense /i INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
 - Exit: `exit`
-- Find entry: `find income /c CATEGORY /k DESCRIPTION`
+- Find entry: `find /c CATEGORY /k DESCRIPTION`
 - List Records: `list`
 - List Expenses: `list expense`
 - List Incomes: `list income`
