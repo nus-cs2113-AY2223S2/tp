@@ -144,7 +144,7 @@ The table below will be shown with the `help` command: <br>
 ```
 > help
 +====================================================================================================+
-| Welcome to RainyDay! Here is the overview of commands available                                    |
+| Welcome to rainyDay! Here is the overview of commands available                                    |
 +====================================================================================================+
 | Feature            | Command   | Additional Syntax                                                 |
 +--------------------+-----------+-------------------------------------------------------------------+
@@ -577,8 +577,8 @@ Done, edited entry 2 from the financial report
 ### Setting a Monthly Budget
 
 After you know how to manage your transactions, you can now set a monthly budget! In the process of keeping track of 
-your expenses, you might feel inclined to stick to a budget. RainyDay can help to give you reminders, and encourage you 
-to stick to your budget! With a set monthly budget, RainyDay will remind you how much you have spent for the month with
+your expenses, you might feel inclined to stick to a budget. rainyDay can help to give you reminders, and encourage you 
+to stick to your budget! With a set monthly budget, rainyDay will remind you how much you have spent for the month with
 every new expense in the same month.
 
 Format : `setbudget GOAL`
