@@ -97,6 +97,10 @@ public class Storage implements DatabaseInterface {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
+                if (row.length != 7) {
+                    UI.printModuleCorruptDeleteMessage();
+                    continue;
+                }
                 if (row[3].equals("N/A")) {
                     row[3] = "0";
                 }
@@ -109,13 +113,14 @@ public class Storage implements DatabaseInterface {
                     }
                     modules.add(module);
                 } catch (NumberFormatException e) {
-                    System.out.println("One Module Corrupted, will be deleted");
+                    UI.printModuleCorruptDeleteMessage();
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     private void readDeadlineData(String modulesDeadlinePath, ArrayList<Deadline> deadlines) {
         try (BufferedReader br = new BufferedReader(new FileReader(modulesDeadlinePath))) {

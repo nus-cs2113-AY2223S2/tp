@@ -245,6 +245,10 @@ public class UI {
         System.out.println("Storage is corrupted, corrupted modules have been deleted");
     }
 
+    public static void printModuleCorruptDeleteMessage() {
+        System.out.println("One Module Corrupted, will be deleted");
+    }
+
     public static void printReminderMessage() {
         System.out.println("REMINDER! The following task(s) is/are due soon: ");
     }
