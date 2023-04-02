@@ -395,7 +395,7 @@ public class Parser {
                 throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
             }
             int index = Integer.parseInt(tokens[1]);
-            if (index > lengthOfReport) {
+            if (index > lengthOfReport || index <= 0) {
                 logger.warning("invalid edit index from user");
                 throw new RainyDayException(String.format(ErrorMessage.WRONG_EDIT_INDEX.toString(),
                         lengthOfReport + "!"));
