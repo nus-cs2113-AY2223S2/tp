@@ -580,6 +580,8 @@ Step 5. Starting from Monday, the lessons and tasks occurring on each day of the
 - Step 5f. The current day is increased to the following day.
 - Step 5g. Go back to Step 5a, stop after all lessons and tasks on Sunday have been printed. 
 
+![](../docs/uml-diagrams/Week-WeekCommand.png)
+
 [*Return to TOC*](#table-of-contents)
 
 ### Storage
