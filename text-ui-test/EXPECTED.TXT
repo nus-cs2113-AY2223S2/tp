@@ -14,3 +14,4 @@ Welcome new user! What is your name?
 Welcome John
 Get started by providing the command "help" to learn the functions offered by rainyDay!
 
+>
