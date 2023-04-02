@@ -6,8 +6,8 @@ import parser.Parser;
 import java.util.ArrayList;
 
 public class ExpenseList {
-    private ArrayList<Expense> expenseList = new ArrayList<>();
     protected Parser parser = new Parser();
+    private ArrayList<Expense> expenseList = new ArrayList<>();
 
     public void setExpenseList(ArrayList<Expense> expenseList) {
         this.expenseList = expenseList;
