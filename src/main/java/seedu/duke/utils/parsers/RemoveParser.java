@@ -4,7 +4,6 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.RemoveCommand;
 import seedu.duke.exceptions.MissingParametersException;
 import seedu.duke.exceptions.RemoveErrorException;
-import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;

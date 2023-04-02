@@ -1,4 +1,5 @@
 # Developer Guide
+![img_12.png](img_12.png)
 ## Contents
 - [Acknowledgements](#acknowledgements)
 - [Design & Implementation](#design--implementation)
