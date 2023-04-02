@@ -10,6 +10,8 @@ import seedu.commands.TransportExpenditureCommand;
 import seedu.commands.TuitionExpenditureCommand;
 import seedu.commands.InvalidCommand;
 import seedu.exceptions.EmptyStringException;
+import seedu.exceptions.ExceptionChecker;
+import seedu.exceptions.NotPositiveValueException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -17,6 +19,7 @@ import java.time.format.DateTimeParseException;
 import static seedu.ui.ErrorMessages.ERROR_DATE_TIME_ERROR_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_NUMBER_FORMAT_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_NOT_POSITIVE_VALUE_MESSAGE;
 
 public class ParseAdd {
     public static final String BLANK = "";
@@ -29,7 +32,7 @@ public class ParseAdd {
         this.userInput = userInput;
     }
 
-    public Command addItem(String command) {
+    public Command addItem(String command) throws NotPositiveValueException {
 
         try {
             // Format: category d/date, a/amount, s/description
@@ -37,6 +40,7 @@ public class ParseAdd {
             String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
             String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
             double amount = Double.parseDouble(amountVal);
+            ExceptionChecker.checkPositiveAmount(amount);
             String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
             LocalDate date = LocalDate.parse(dateVal);
 
@@ -65,6 +69,8 @@ public class ParseAdd {
             return new InvalidCommand(ERROR_DATE_TIME_ERROR_MESSAGE.toString());
         } catch (StringIndexOutOfBoundsException | EmptyStringException s) {
             return new InvalidCommand(s.getMessage());
+        } catch (NotPositiveValueException p) {
+            return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
         }
     }
 }
