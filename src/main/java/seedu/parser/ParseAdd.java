@@ -19,7 +19,7 @@ import java.time.format.DateTimeParseException;
 import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_EMPTY_STRING_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_NUMBER_FORMAT_MESSAGE;
-import static seedu.ui.ErrorMessages.ERROR_NOT_POSITIVE_VALUE_MESSAGE;;
+import static seedu.ui.ErrorMessages.ERROR_NOT_POSITIVE_VALUE_MESSAGE;
 
 public class ParseAdd {
     public static final String BLANK = "";
