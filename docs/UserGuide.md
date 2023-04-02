@@ -254,6 +254,8 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
 >    * `MM` is a two-digit number representing the month
 >    * `YYYY` is a four-digit number representing the year
 
+> ⚠️ Amount has a maximum of $21,474,836.47 and will be rounded down to 2 decimal places!
+
 Example of usage:
 
 You had dinner at Haidilao for $500. To add it to rainyDay, the following command can be provided to rainyDay:
@@ -275,8 +277,6 @@ Done! Added: in for Allowance, +$20.00
 >
 > * `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY`
 > * `add -DIRECTION DESCRIPTION $AMOUNT -date DD/MM/YYYY`
-
-> ⚠️ Value has a maximum of $21,474,836.47 , and will be rounded down to 2 decimal places!
 
 Example of usage:
 
@@ -858,6 +858,10 @@ that "rainyDay.jar" is going to be stored in
 **Q**: What if I am not able to start up rainyDay? {not able to load the data..?}
 
 **A**: {to be added}
+
+**Q**: I tried to input a value, but it is not showing up as what I typed!
+
+**A**: The value of transactions has a maximum of $21,474,836.47 and will also be rounded down to 2 decimal places!
 
 ## Command Summary
 
