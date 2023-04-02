@@ -166,6 +166,9 @@ public class Ui {
     public void petNotFoundMessage() {
         System.out.println("ERROR: Pet not Found");
     }
+    public void petNameEmptyMessage() {
+        System.out.println("ERROR: Pet Name is empty");
+    }
     /**
      * Print out help for all commands
      */

@@ -4,6 +4,7 @@ import seedu.pettracker.data.Pet;
 import seedu.pettracker.data.PetList;
 import seedu.pettracker.data.Task;
 import seedu.pettracker.data.TaskList;
+import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
@@ -149,10 +150,9 @@ public class Storage {
     private void parsePetFile(ArrayList<String> data) {
         for (String line : data) {
             String petName = getPetName(line);
-            PetList.addPet(petName);
-
-            String petType = getPetType(line);
             try {
+                PetList.addPet(petName);
+                String petType = getPetType(line);
                 if (!petType.equals("")) {
                     PetList.addStat(petName, "type", petType);
                 }
@@ -174,6 +174,8 @@ public class Storage {
                 System.out.println("Output File has invalid Stats");
             } catch (PetNotFoundException e) {
                 System.out.println("Stat belongs to a pet that does not exist");
+            } catch (EmptyPetNameException e) {
+                System.out.println("Pet name in file is empty");
             }
         }
     }
