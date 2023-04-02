@@ -13,9 +13,11 @@ public class ExceptionChecker {
         }
     }
 
-    public static void checkPositiveAmount(double amountVal) throws NotPositiveValueException {
+    public static void checkValidAmount(double amountVal) throws NotPositiveValueException, SmallAmountException {
         if (amountVal <= 0) {
             throw new NotPositiveValueException();
+        } else if (amountVal < 0.01) {
+            throw new SmallAmountException();
         }
     }
 

@@ -12,6 +12,7 @@ import seedu.commands.InvalidCommand;
 import seedu.exceptions.EmptyStringException;
 import seedu.exceptions.ExceptionChecker;
 import seedu.exceptions.NotPositiveValueException;
+import seedu.exceptions.SmallAmountException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -36,11 +37,10 @@ public class ParseAdd {
 
         try {
             // Format: category d/date, a/amount, s/description
-
             String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
             String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
             double amount = Double.parseDouble(amountVal);
-            ExceptionChecker.checkPositiveAmount(amount);
+            ExceptionChecker.checkValidAmount(amount);
             String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
             LocalDate date = LocalDate.parse(dateVal);
 
@@ -65,8 +65,8 @@ public class ParseAdd {
 
         } catch (NumberFormatException n) {
             return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
-        } catch (DateTimeParseException d) {
-            return new InvalidCommand(d.getMessage());
+        } catch (DateTimeParseException | SmallAmountException e) {
+            return new InvalidCommand(e.getMessage());
         } catch (StringIndexOutOfBoundsException | EmptyStringException s) {
             return new InvalidCommand(ERROR_EMPTY_STRING_MESSAGE.toString());
         } catch (NotPositiveValueException p) {
