@@ -72,7 +72,7 @@ public class Storage {
      * @return The FinancialReport after deserialization from the file.
      * @throws FileNotFoundException If the file specified by the filePath is not found.
      */
-    public static UserData loadFromFile(String filePath) throws FileNotFoundException, RainyDayException, NoSuchFieldException {
+    public static UserData loadFromFile(String filePath) throws FileNotFoundException, RainyDayException {
         setupLogger();
         logger.log(Level.INFO, "starting LoadFromFile");
         Reader reader = new FileReader(filePath);
