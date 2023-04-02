@@ -26,7 +26,9 @@ Module Commands:
 - Enter "addmod [MODULE_CODE]" to add a Module to the Module list
 - Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
 - Enter "showmod [MODULE_CODE]" to see more information about the module
+- Enter "showmod [MODULE_CODE] -[FLAG]" to see schedule of specific lesson type for a module
 - Enter "delmod [MODULE_CODE]" to remove a Module you previously added
+- Enter "delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a task to a lesson
 
 Common Commands:
 - Enter "week" to see your schedule for the week
@@ -45,9 +47,9 @@ There are -FLAGS for the various lessons options per module:
 -ptut			PACKAGED TUTORIAL
 -rcit			RECITATION
 -lab			LABORATORY
--ws				WORKSHOP
+-ws 			WORKSHOP
 -smc			SEMINAR STYLE MODULE CLASS
--mp				MINI PROJECT
+-mp 			MINI PROJECT
 -tt2			TUTORIAL TYPE 2
 ____________________________________________________________
 ____________________________________________________________
@@ -187,30 +189,41 @@ Number of MC: 4
 Here are the lesson types for this module:
 Sectional Teaching (-st)
 Tutorial (-tut)
+
 Sectional Teaching 1
-   Friday 1200 - 1300
+   Wednesday 0900 - 1000
 Sectional Teaching 1
-   Wednesday 1200 - 1400
+   Thursday 1200 - 1400
+Tutorial 01
+   Wednesday 1000 - 1200
 Tutorial 02
    Monday 1000 - 1200
+Tutorial 03
+   Wednesday 1200 - 1400
 Tutorial 04
-   Monday 1400 - 1600
-Tutorial 05
-   Monday 1600 - 1800
-Tutorial 07
-   Tuesday 1000 - 1200
-Tutorial 08
    Tuesday 1200 - 1400
+Tutorial 05
+   Thursday 1000 - 1200
+Tutorial 06
+   Tuesday 1000 - 1200
+Tutorial 07
+   Thursday 1400 - 1600
+Tutorial 08
+   Wednesday 1400 - 1600
 Tutorial 09
-   Tuesday 1400 - 1600
-Tutorial 10
    Tuesday 1600 - 1800
+Tutorial 10
+   Monday 1200 - 1400
+Tutorial 11
+   Thursday 1600 - 1800
 Tutorial 12
+   Monday 1400 - 1600
+Tutorial 13
+   Tuesday 1400 - 1600
+Tutorial 14
    Wednesday 1600 - 1800
-Tutorial 17
-   Friday 1400 - 1600
-Tutorial 18
-   Friday 1600 - 1800
+Tutorial 15
+   Monday 1600 - 1800
 ____________________________________________________________
 ____________________________________________________________
 CG2023
@@ -218,6 +231,7 @@ Number of MC: 4
 Here are the lesson types for this module:
 Laboratory (-lab)
 Lecture (-lec)
+
 Laboratory 01
    Monday 1400 - 1700
 Laboratory 02
@@ -238,6 +252,11 @@ Lecture 02
    Thursday 1600 - 1800
 Lecture 02
    Tuesday 1600 - 1800
+____________________________________________________________
+____________________________________________________________
+Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
+Class Number: 1
+   Tuesday 1000 - 1200
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
@@ -261,7 +280,7 @@ Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
 Adding lesson type: TUTORIAL for Module: CS2113
-Class Number: 1
+Class Number: 01
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
@@ -294,50 +313,17 @@ Adding lesson type: LECTURE for Module: ST2334
 Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
-Here's your week from 2023-03-20 to 2023-03-26:
+Got it. I've added this event:
+  [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
+____________________________________________________________
+____________________________________________________________
+Heads up, your deadline occurs on the same day as these!
 ______________________
-MONDAY
-
-Lessons:
-
 Tasks:
+1. [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
 ______________________
-TUESDAY
-
-Lessons:
-1. ST2334 Lecture: 0800-1000
-
-Tasks:
-______________________
-WEDNESDAY
-
-Lessons:
-
-Tasks:
-______________________
-THURSDAY
-
-Lessons:
-
-Tasks:
-______________________
-FRIDAY
-
-Lessons:
-
-Tasks:
-______________________
-SATURDAY
-
-Lessons:
-
-Tasks:
-______________________
-SUNDAY
-
-Lessons:
-
-Tasks:
+Got it. I've added this deadline:
+  [D][ ] dummy2 (by: May 02 2023, 12:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(

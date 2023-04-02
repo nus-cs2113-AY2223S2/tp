@@ -64,7 +64,6 @@ public class ListCommand extends Command implements LoggerInterface {
                         Calendar calendar) {
         taskList.sortTaskByDay(taskList);
         ui.printList(taskList);
-
     }
 
 }

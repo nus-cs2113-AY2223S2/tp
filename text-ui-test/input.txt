@@ -33,17 +33,19 @@ date 2025-01-01
 date 2023-05-03
 showmod cs1231
 showmod cg2023
+showmod cs1010 -st
 addmod software engineering
 addmod cs2113
 addmod cs2113
 addmod cs2113 -lec 1
-addmod cs2113 -tut 1
+addmod cs2113 -tut 01
 addmod cs2040c
 listmod
 delmod 2
 delmod cs2040c
 listmod
 addmod st2334 -lec 1
-week
+event dummy /from 2023-04-01T00:00 /to 2023-06-01T00:00
+deadline dummy2 /by 2023-05-02T00:00
 hello
 bye
