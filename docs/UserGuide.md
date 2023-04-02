@@ -1,18 +1,36 @@
 # rainyDay User Guide
 
-Thank you for choosing rainyDay!
+Welcome to rainyDay's user guide! Thank you so much for choosing rainyDay. We sincerely hope that rainyDay can 
+successfully take you one step closer to reaching your financial goals!
+Should you have any feedback or enquiries, please do not hesitate to drop us an
+[email](mailto:rainydayfinancialtracker@gmail.com).
 
 ## Introduction
 
-rainyDay is a desktop application for managing your finances that runs on a Command Line Interface (CLI). rainyDay aims
-to provide a simple solution for young working adults to track your finances and achieve your financial goals.
+### Motivation of creating rainyDay
+In addition to rising costs of living, young adults just entering the workforce will also be exposed to a barrage of 
+new sources of expense and income. Thus, rainyDay was created to aid young working adults in keeping track and managing
+their finances well and reaching their financial goals, by providing an easy-to-use and convenient platform to track 
+their [inflows and outflows](#glossary).
+
+Despite the availability of several other financial tracking applications, only a handful of them have integrated a 
+[Command Line Interface (CLI)](#glossary) into their systems. However, the utilization of a CLI can significantly 
+improve the speed and accuracy of user-provided information, even though it may have a steep learning curve. 
+To learn more about CLI, please refer to this [resource](https://www.freecodecamp.org/news/command-line-for-beginners/).
+Considering the convenience and ease of use, we have decided to leverage the advantages of a CLI by developing rainyDay 
+with a CLI interface.
 
 This user guide provides an in-depth documentation on how to install and use rainyDay. This guide caters to all users of
-rainyDay, from people who are just starting out to advanced users looking for extra features they were unaware of.
+rainyDay, from users who are just starting out to advanced users who are looking for extra features they were unaware 
+of.
 
-We sincerely hope that rainyDay will make it easier for you to track your finances.
-Should you have any feedback or enquiries, please do not hesitate to drop us an 
-[email](mailto:rainydayfinancialtracker@gmail.com).
+### Features overview
+rainyDay supports a variety of features for users to input and view their [transactions](#glossary). Please refer to the
+basic overview below, for more in-depth information, refer to the [Features Overview](#features-overview) section.
+
+**Transaction related** - adding, deleting and editing transaction entries <br>
+**Viewing related** - View, filter or sort transactions based on criteria  <br>
+**Budget related** - Setting a budget to adhere to
 
 ## Content Page
 
@@ -32,22 +50,31 @@ Should you have any feedback or enquiries, please do not hesitate to drop us an
 
 ## How to use the user guide
 
-This section assumes that you are a new user of rainyDay and are interested in learning more about the basic features
-provided by rainyDay.
+The first step to using rainyDay effectively is to learn how to use the user guide. This section assumes that you are a 
+new user of rainyDay and are interested in learning more about the basic features provided by rainyDay.
 
 Please note the following about the format of commands given under each [feature](#features).
 
-* Words in CAPS are the parameters to be supplied by the user
+* CAPS are the parameters to be supplied by the user eg. DESCRIPTION
 
-* Words in `markdown` format are related to commands provided by the user
+* `markdown` format are related to commands provided by the user eg. `help`
 
-* Words in *italics* format are related to buttons that can be found on the screen
+* *italics* format are related to buttons that can be found on the screen *From Text/CSV*
 
-* Items surrounded by [square brackets] are mandatory fields, while the items in {curly brackets} are optional
+* Items surrounded by [square brackets] are mandatory fields, while the items in {curly brackets} are optional eg. 
+  [DESCRIPTION] {TIME} 
 
-* Words in "double quotation marks" are the names of items
+* Words in "double quotation marks" are the names of items eg. "beef noodles"
+
+* 💡 indicates helpful suggestions that will enhance your experience
+
+* ⚠️ highlights actions you should avoid
 
 ## Quick Start
+
+
+After you have learnt how to use this user guide, you are ready to begin! Next, we will run you through how to install
+rainyDay on your device and how to start using it. Please refer to the steps below:
 
 1. Ensure that you have Java 11 or above installed on your computer
     1. Click [here](https://www.java.com/en/download/help/version_manual.html) for steps on how to check your Java
@@ -67,40 +94,48 @@ Please note the following about the format of commands given under each [feature
 4. To run "rainyDay.jar" on the command line, we have to do the following:
     1. Open the folder containing "rainyDay.jar" and click on the address bar <br>
        ![folderpath.png](images/UserGuide/folderpath.png)
-    2. Type the words "cmd" in the folder path in the address bar <br>
+    2. We will need to open rainyDay in your CLI. This can be done by typing the word ["cmd"](#glossary) in the folder 
+path in the address bar as shown <br>
        ![cmd.png](images/UserGuide/cmd.png)
-    3. Press Enter. Your Command Prompt should now be open in the folder containing "rainyDay.jar".
+    3. Press Enter. Your Command Line should now be open in the folder containing "rainyDay.jar".
 5. Type `java -jar rainyDay.jar` and press Enter on your keyboard to start the application
+6. {todo add image of startup}
 
 ## Features Overview
 
 * [Viewing help](#viewing-help)
-* [Adding a transaction](#adding-a-transaction)
-* [Viewing the transactions](#viewing-the-transactions)
-* [Deleting a transaction](#deleting-a-transaction)
-* [Filter statements](#filter-statements)
-* [Editing a transaction](#editing-a-transaction)
+* [Transactions](#transactions)
+  * [Adding a transaction](#adding-a-transaction)
+  * [Viewing the transactions](#viewing-the-transactions)
+  * [Deleting a transaction](#deleting-a-transaction)
+  * [Editing a transaction](#editing-a-transaction)
+  * [Filter transactions](#filter-statements)
+  * [Ignoring a transaction](#ignoring-a-transaction)
 * [Setting a Monthly Budget](#setting-a-monthly-budget)
 * [Shortcuts](#shortcuts)
     * [Adding a shortcut](#adding-a-shortcut)
     * [Using a shortcut](#using-a-shortcut)
     * [Viewing a shortcut](#viewing-a-shortcut)
     * [Deleting a shortcut](#deleting-a-shortcut)
-* [Ignoring an entry](#ignoring-an-entry)
-* [Saving the data](#saving-the-data)
-* [Where is my saved file located?](#where-is-my-saved-file-located)
-    * [Loading saved data](#loading-saved-data)
-* [Exporting to CSV](#exporting-to-csv)
-    * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
-    * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
+* [Data Management](#data-management)
+  * [Saving the data](#saving-the-data)
+  * [Where is my saved file located?](#where-is-my-saved-file-located)
+      * [Loading saved data](#loading-saved-data)
+  * [Exporting to CSV](#exporting-to-csv)
+      * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
+      * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
 * [Exiting the application](#exiting-the-application)
 
 ## Features
 
 ### Viewing help
 
-In case you need a reminder of the capabilities of rainyDay, the help command will give you a comprehensive list of all
-the possible commands and their respective structures!
+Welcome to the help section of our rainyDay! Now that you have started rainyDay in [Quick Start](#quick-start), you will 
+need to know the format of inputs to send to rainyDay. Whenever you find yourself stuck to perform a certain task, don't
+worry! The help command is here to help you every step of the way!
+
+To get an overview of possible commands and their respective formats, you can use the `help` function as seen 
+below:
 
 Format: `help`
 
@@ -109,34 +144,40 @@ The table below will be shown with the `help` command: <br>
 ```
 > help
 +====================================================================================================+
-|Welcome to RainyDay! Here is the overview of commands available                                     |
+| Welcome to RainyDay! Here is the overview of commands available                                    |
 +====================================================================================================+
-|Feature          |Command  |Additional Syntax                                                       |
-+-----+-----------+--------+-------------------------------------------------------------------------+
-|Add entry        |add      |[-in/-out] [DESCRIPTION] $[VALUE] {-c CATEGORY} {-date DATE}            |
-|Delete entry     |delete   |[INDEX]                                                                 |
-|View entries     |view     |{TIME} {-sort}                                                          |
-|Filter entries   |filter   |{-in} {-out} {-d DESCRIPTION} {-c CATEGORY} {-date DATE}                |
-|Edit an entry    |edit     |[INDEX] [-in/ -out/ -d DESCRIPTION/ -v $VALUE/ -c CATEGORY/ -date DATE] |
-|Create Shortcuts |shortcut |[SHORTCUT COMMAND -maps VALID COMMAND]                                  |
-|Ignore entry     |ignore   |[INDEX]                                                                 |
-|Unignore entry   |unignore |[INDEX]                                                                 |
-|Export to .csv   |export   |                                                                        |
-|Display a guide  |help     |{COMMAND}                                                               |
-+=====+==============================================================================================+
+| Feature            | Command   | Additional Syntax                                                 |
++--------------------+-----------+-------------------------------------------------------------------+
+| Add entry          | add       | [-in/-out] [DESCRIPTION] $[VALUE] {-c CATEGORY} {-date DATE}      |
+| Delete entry       | delete    | [INDEX]                                                           |
+| View entries       | view      | {TIME} {-sort}                                                    |
+| Filter entries     | filter    | {-in} {-out} {-d DESCRIPTION} {-c CATEGORY} {-date DATE}          |
+| Edit an entry      | edit      | [INDEX] [-in/-out/-d DESCRIPTION/-v $VALUE/-c CATEGORY/-date DATE]|
+| Set monthly budget | setbudget | [VALUE]                                                           |
+| Create shortcuts   | shortcut  | [SHORTCUT COMMAND -maps VALID COMMAND]                            |
+| Ignore entry       | ignore    | [INDEX]                                                           |
+| Unignore entry     | unignore  | [INDEX]                                                           |
+| Export to .csv     | export    |                                                                   |
+| Display a guide    | help      | {COMMAND}                                                         |
++====================================================================================================+
 |[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |
 |{} :  Denotes optional fields. Can be ignored                                                       |
 |For more information on any command: type   < help {command} >   as shown above (e.g. help add)     |
 +====================================================================================================+
 ```
 
-For more information on each individual command, the help command can also provide a more detailed guide, including
-details such as input constraints and examples for you to refer to
+After reading the overview, suppose you require more details on any of the functions, you can use the following command.
 
 Format: `help {COMMAND}`
 
-For instance, the table below are details for the add command: <br>
+This command will give you more information on the particular command, such as input constraints and examples.
 
+For instance, suppose you want to find out more information on rainyDay's `add` command, you can type the following 
+command: <br>
+
+`> help add`
+
+the output will be shown as below:
 ```
 > help add
 +====================================================================================================+
@@ -166,6 +207,20 @@ For instance, the table below are details for the add command: <br>
 |                             | category set to Bills                                                |
 +====================================================================================================+
 ```
+
+### Transactions
+
+Here's the transaction management section of our guide! In this section, we'll cover all the key tasks you'll 
+need to perform to manage your transactions effectively. Whether you need to add, view, edit, or delete transactions, 
+we've got you covered. We'll also show you how to filter your transactions and ignore any that are irrelevant to your 
+needs. So, if you're ready to take control of your transactions and keep your records up-to-date, let's get started!
+
+* [Adding a transaction](#adding-a-transaction)
+* [Viewing the transactions](#viewing-the-transactions)
+* [Deleting a transaction](#deleting-a-transaction)
+* [Editing a transaction](#editing-a-transaction)
+* [Filter transactions](#filter-statements)
+* [Ignoring a transaction](#ignoring-a-transaction)
 
 ### Adding a transaction
 
@@ -507,9 +562,9 @@ Done, edited entry 2 from the financial report
 
 ### Setting a Monthly Budget
 
-In the process of keeping track of your expenses, you might feel inclined to stick to a budget. RainyDay can help
-to give you reminders, and encourage you to stick to your budget!
-With a set monthly budget, RainyDay will remind you how much you have spent for the month with
+After you know how to manage your transactions, you can now set a monthly budget! In the process of keeping track of 
+your expenses, you might feel inclined to stick to a budget. RainyDay can help to give you reminders, and encourage you 
+to stick to your budget! With a set monthly budget, RainyDay will remind you how much you have spent for the month with
 every new expense in the same month.
 
 Format : `setbudget GOAL`
@@ -542,6 +597,16 @@ Monthly Budget Goal removed!
 
 ### Shortcuts
 
+Welcome to the shortcuts section of our guide! Shortcuts can be a great way to save time! In this section, we'll show 
+you how to create and use shortcuts effectively. Whether you need to add a new shortcut, view an existing one, 
+or delete an old one, we'll cover them all. So, if you're ready to start working smarter, not harder, let's dive into 
+the world of shortcuts!
+
+ * [Adding a shortcut](#adding-a-shortcut)
+ * [Using a shortcut](#using-a-shortcut)
+ * [Viewing a shortcut](#viewing-a-shortcut)
+ * [Deleting a shortcut](#deleting-a-shortcut)
+  
 #### Adding a shortcut
 
 If you happen to have certain commands that you find yourself frequently using, rainyDay's shortcuts can make it much
@@ -630,7 +695,7 @@ command below:
 
 [Jump back to features overview](#features-overview)
 
-### Ignoring an entry
+### Ignoring a transaction
 
 Due to potential certain one-time payments or receivables that you encounter, rainyDay's ignore function can help you
 keep a more accurate track of your finances by allowing you to ignore certain transactions from the overall calculation
@@ -689,6 +754,21 @@ Done, Entry 4 ignored from overview calculations
 ```
 
 [Jump back to features overview](#features-overview)
+
+### Data Management
+
+Welcome to the data management section of our guide! Saving and loading your data is something you don't have to worry 
+as we have got it covered for you! In this section, we'll show you where to locate your saved files and 
+how to export your data to a CSV file, which is a widely-used file format that can be opened in a variety of 
+software applications. We'll show you how to export and view the exported CSV file using Microsoft Excel, 
+which is a popular spreadsheet program used by many people around the world. Let's get started!
+
+* [Saving the data](#saving-the-data)
+* [Where is my saved file located?](#where-is-my-saved-file-located)
+    * [Loading saved data](#loading-saved-data)
+* [Exporting to CSV](#exporting-to-csv)
+    * [Where to locate exported CSV file?](#where-to-locate-exported-csv-file)
+    * [How to view the CSV file using Microsoft Excel?](#how-to-view-the-csv-file-using-microsoft-excel)
 
 ### Saving the data
 
@@ -779,6 +859,7 @@ that "rainyDay.jar" is going to be stored in
 
 | Term                   | Explanation                                                                                                                                                      |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Cmd                    | acronym for Command, which is the command-line interpreter of Windows Operating Systems                                                                          |
 | Command Line Interface | An interface that uses text as the mode of interaction between the user and the program                                                                          |
 | CSV                    | Stands for Comma Separated Value, a type of file format that can be imported to other statistical software such as Microsoft Excel, R Commander or Google Sheets |
 | Filter                 | A function to narrow down the range of items to be shown                                                                                                         |

@@ -19,12 +19,16 @@ public class ViewCommand extends Command {
 
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
 
-    private final LocalDate timeLimit;
+    private final LocalDate lowerLimit;
+    private final LocalDate upperLimit;
     private final boolean sortingRequired;
+    private final boolean viewAll;
 
-    public ViewCommand(LocalDate timeLimit, boolean sortingRequired) {
-        this.timeLimit = timeLimit;
+    public ViewCommand(LocalDate startTime, LocalDate endTime, boolean sortingRequired, boolean viewAll) {
+        this.lowerLimit = startTime;
+        this.upperLimit = endTime;
         this.sortingRequired = sortingRequired;
+        this.viewAll = viewAll;
     }
 
     /**
@@ -56,7 +60,7 @@ public class ViewCommand extends Command {
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
             LocalDate statementDate = currentStatement.getDate();
-            if (statementDate.isAfter(timeLimit) && !statementDate.isAfter(LocalDate.now())) {
+            if (statementDate.isAfter(lowerLimit) && !statementDate.isAfter(upperLimit)) {
                 filteredIndexes.add(index);
             }
         }
@@ -91,7 +95,6 @@ public class ViewCommand extends Command {
         setupLogger();
         logger.log(Level.INFO, "starting ViewCommand.execute()");
         ArrayList<Integer> validIndexes;
-        boolean viewAll = timeLimit.equals(LocalDate.of(1800, 1, 1));
         validIndexes = filterIndexes();
         if (validIndexes.size() == 0) {
             assert userData.getStatementCount() == 0 : "statement count mismatch";
@@ -103,7 +106,7 @@ public class ViewCommand extends Command {
         if (sortingRequired) {
             validIndexes.sort(new sortByValue());
         }
-        ViewResult.printReport(validIndexes, timeLimit, sortingRequired, viewAll);
+        ViewResult.printReport(validIndexes, lowerLimit, upperLimit, sortingRequired, viewAll);
         return null;
     }
 }

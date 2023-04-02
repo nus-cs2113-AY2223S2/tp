@@ -109,10 +109,10 @@ public class ViewResult {
      * @param outflow the total outflow
      * @return a string with the formatted summary
      */
-    private static String formatSummary(double inflow, double outflow, LocalDate startDate,
+    private static String formatSummary(double inflow, double outflow, LocalDate startDate, LocalDate endDate,
                                         boolean isSorted, boolean viewAll) {
         assert (inflow != 0 || outflow != 0);
-        String timespanInfo = "|Viewing all entries from " + startDate + " till today";
+        String timespanInfo = "|Viewing all entries from " + startDate + " till " + endDate;
         if (viewAll) {
             timespanInfo = "|Viewing all entries from the start of time";
         }
@@ -175,7 +175,7 @@ public class ViewResult {
      *
      * @param validIndexes ArrayList of Integers with the indices of the entries to print from financialReport
      */
-    public static void printReport(ArrayList<Integer> validIndexes, LocalDate startDate,
+    public static void printReport(ArrayList<Integer> validIndexes, LocalDate startDate, LocalDate endDate,
                                    boolean isSorted, boolean viewAll) {
         double totalInflow = 0;
         double totalOutflow = 0;
@@ -196,7 +196,7 @@ public class ViewResult {
             logger.log(Level.INFO, "passed statement " + index);
         }
         System.out.print(TABLE_BORDER);
-        System.out.print(formatSummary(totalInflow, totalOutflow, startDate, isSorted, viewAll));
+        System.out.print(formatSummary(totalInflow, totalOutflow, startDate, endDate, isSorted, viewAll));
         System.out.print(TABLE_OUTSIDE_BORDER);
     }
 }
