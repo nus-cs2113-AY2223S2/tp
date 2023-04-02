@@ -17,6 +17,8 @@ public class EditCommandTest {
 
         AddParser addParser = new AddParser("n/orange upc/123 qty/5 p/5",inventory);
         addParser.run();
+        addParser = new AddParser("n/Cat upc/1111 qty/5 p/5",inventory);
+        addParser.run();
         EditParser editParser = new EditParser("upc/123 n/", inventory);
         editParser.run();
         editParser = new EditParser("upc/123 n/oranges qty/5", inventory);
@@ -38,6 +40,14 @@ public class EditCommandTest {
         editParser = new EditParser("upc/123 c/fruit and vegetables", inventory);
         editParser.run();
         editParser = new EditParser("upc/123 p/double", inventory);
+        editParser.run();
+        editParser = new EditParser("upc/1111 {n/capybara", inventory);
+        editParser.run();
+        editParser = new EditParser("upc/1111 n/capybara p/99999999999999 qty/6", inventory);
+        editParser.run();
+        editParser = new EditParser("upc/123 p/ p/45", inventory);
+        editParser.run();
+        editParser = new EditParser("upc/123 p/1 p/1 qty/5", inventory);
         editParser.run();
     }
 

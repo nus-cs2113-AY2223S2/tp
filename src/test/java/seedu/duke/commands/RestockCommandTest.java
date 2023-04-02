@@ -38,5 +38,9 @@ public class RestockCommandTest {
         restockParser.run();
         restockParser = new RestockParser("qty/5", inventory);
         restockParser.run();
+        restockParser = new RestockParser("upc/123 qty/5 qty/6", inventory);
+        restockParser.run();
+        restockParser = new RestockParser("upc/123 qty/99999999999999", inventory);
+        restockParser.run();
     }
 }
