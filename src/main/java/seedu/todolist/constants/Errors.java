@@ -18,6 +18,7 @@ public enum Errors {
     INVALID_DURATION("Invalid repeat duration: "),
     INVALID_EDIT("Task edit commands must have a " + Flags.EDIT.getName() + " or "
             + Flags.EDIT_DELETE.getName() + " flag."),
+    INVALID_FIND_TAG("Unable to find desired tag. Please try again."),
 
     FAILED_SAVE("Error when saving your data, please check that you have write permissions for "
             + Storage.DEFAULT_SAVE_PATH),
