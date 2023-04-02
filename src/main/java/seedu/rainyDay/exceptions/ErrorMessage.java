@@ -64,7 +64,8 @@ public enum ErrorMessage {
             "Add format is as follows: \n" +
             "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
             "Please refer to 'help' for more information!"),
-    INVALID_DATE_FORMAT("Date provided needs to be in the form of DD/MM/YYYY or D instead of DD and M instead of MM\n\n" +
+    INVALID_DATE_FORMAT("Date provided needs to be in the form of DD/MM/YYYY or D instead of DD and M " +
+            "instead of MM\n\n" +
             "Add format is as follows: \n" +
             "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
             "Please refer to 'help' for more information!"),
