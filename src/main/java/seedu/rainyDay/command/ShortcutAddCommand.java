@@ -34,19 +34,25 @@ public class ShortcutAddCommand extends Command {
                     + "exists.");
             throw new RainyDayException(ErrorMessage.SHORTCUT_ALREADY_EXISTS.toString());
         }
+
         if (key.equals(value)) {
             logger.log(Level.INFO, "ShortcutAddCommand.execute() did not add any shortcuts as a shortcut cannot be " +
                     "mapped to the same string.");
             throw new RainyDayException(ErrorMessage.SHORTCUT_MAPS_ITSELF.toString());
         }
+
+        if (shortcutCommands.containsKey(value)) {
+            logger.log(Level.INFO, "ShortcutAddCommand.execute() did not add any shortcuts as a shortcut cannot be " +
+                    "mapped to another shortcut");
+            throw new RainyDayException(ErrorMessage.SHORTCUT_MAPS_SHORTCUT.toString());
+        }
+
         String keyFirstWord = key.split(" ", 2)[0];
         if (Command.isValidCommand(keyFirstWord)) {
             logger.log(Level.INFO, "ShortcutAddCommand.execute() did not add any shortcuts as a shortcut cannot be " +
                     "named as an actual command");
             throw new RainyDayException(ErrorMessage.SHORTCUT_NAME_VALID_COMMAND.toString());
-
         }
-
     }
 
     @Override
