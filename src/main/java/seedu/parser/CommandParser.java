@@ -11,6 +11,7 @@ import seedu.commands.NutritionCommand;
 import seedu.commands.TrackCalorieCommand;
 import seedu.commands.AddExerciseCommand;
 import seedu.commands.FilterCaloriesCommand;
+import seedu.commands.HelpCommand;
 import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.LifeTrackerException;
 
@@ -50,6 +51,9 @@ public class CommandParser {
             break;
         case "track":
             command = new TrackCalorieCommand();
+            break;
+        case "help":
+            command = new HelpCommand();
             break;
         default:
             throw new InvalidCommandException();

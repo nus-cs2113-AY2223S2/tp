@@ -112,6 +112,7 @@ public class GeneralUi {
         this.printLogo();
         this.printLine();
         System.out.println(welcomeMessage);
+        System.out.println("Please enter command 'help' if you require assistance.");
     }
     public void requestWeight(){}
     public void showLatestWeight(int weight){}
@@ -200,6 +201,63 @@ public class GeneralUi {
         } else {
             System.out.println("You have lost " + netCalories + " calories on" + date);
         }
+    }
+    public void printHelpPage() {
+        System.out.println("Available commands are:");
+        System.out.println("view: Displays your user profile");
+        System.out.println("update: Updates your user profile");
+        System.out.println("add: Add a meal");
+        System.out.println("delete: Remove a meal");
+        System.out.println("list: List today's meals");
+        System.out.println("filter: Filter foods based on calories");
+        System.out.println("nutrition: Finds the nutrition of a food");
+        System.out.println("exercise: Input an exercise");
+        System.out.println("track: Shows your previous caloric intake");
+        System.out.println("bye: exits LifeTracker");
+        System.out.println("For more information on a specific command, type `help c/command'");
+    }
+
+    public void printHelpView() {
+        System.out.println("The syntax for the 'view' command is: ");
+
+    }
+    public void printHelpUpdate(){
+        System.out.println("The syntax for the 'update' command is: ");
+
+    }
+    public void printHelpAdd() {
+        System.out.println("The syntax for the 'add' command is: ");
+
+    }
+    public void printHelpDelete(){
+        System.out.println("The syntax for the 'delete' command is: ");
+
+    }
+    public void printHelpList() {
+        System.out.println("The syntax for the 'list' command is: ");
+
+    }
+    public void printHelpFilter(){
+        System.out.println("The syntax for the 'filter' command is: ");
+
+    }
+    public void printHelpNutrition() {
+        System.out.println("The syntax for the 'nutrition' command is: ");
+
+    }
+    public void printHelpExercise(){
+        System.out.println("The syntax for the 'exercise' command is: ");
+
+    }
+
+    public void printHelpTrack() {
+        System.out.println("The syntax for the 'track' command is: ");
+
+    }
+
+    public void printHelpBye(){
+        System.out.println("The syntax for the 'bye' command is: ");
+
     }
 }
 
