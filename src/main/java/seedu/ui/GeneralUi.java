@@ -1,6 +1,6 @@
 package seedu.ui;
 
-import seedu.database.ExerciseData;
+import seedu.database.ExampleData;
 import seedu.entities.Exercise;
 import seedu.entities.Meal;
 import seedu.storage.ExerciseStorage;
@@ -204,16 +204,21 @@ public class GeneralUi {
     }
 
     public void displayExerciseExamples() {
-        String[] exerciseData = ExerciseData.getExerciseData();
+        String[] exerciseExampleData = ExampleData.getExampleExerciseData();
         System.out.println("Here are some examples of exercises:");
-        for(String exercise: exerciseData) {
+        for (String exercise: exerciseExampleData) {
             String[] exerciseInfo = exercise.split(",");
             System.out.println(exerciseInfo[0].substring(0) + ": " + exerciseInfo[1] + ", " + exerciseInfo[2]);
         }
     }
 
     public void displayMealExamples() {
-        System.out.println("Here are some examples of exercises:");
+        String[] mealExampleData = ExampleData.getExampleMealData();
+        System.out.println("Here are some examples of meals that you can consider:");
+        for (String meal: mealExampleData) {
+            String[] mealInfo = meal.split(",");
+            System.out.println(mealInfo[0].substring(0));
+        }
     }
 }
 
