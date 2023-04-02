@@ -9,7 +9,10 @@ import seedu.dukeofbooks.data.loan.Loan;
 import seedu.dukeofbooks.data.loan.LoanRecords;
 import seedu.dukeofbooks.data.person.Person;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class LoanController {
     private static final String AVAILABLE_STATUS_FORMAT = "Status: Not borrowed";
@@ -20,6 +23,22 @@ public class LoanController {
     private static final String BORROWED_STATUS_STRING = "Status: Borrowed";
 
     private static final int DEFAULT_RENEW_DAYS = 30;
+
+    public static String checkBorrowingStatus(BorrowableItem item) {
+        if (!item.isBorrowed()) {
+            return AVAILABLE_STATUS_FORMAT;
+        } else {
+            Loan loan = LoanRecords.getLastActiveLoan(item);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+            String strDate = dateFormat.format(loan.getLoanEnd());
+            int daysOverdue = (int) ChronoUnit.DAYS.between(loan.getLoanEnd(), LocalDateTime.now());
+            if (daysOverdue <= 0) {
+                return String.format(BORROWED_STATUS_FORMAT, loan.getBorrower().getName().toString(), strDate);
+            } else {
+                return String.format(OVERDUE_STATUS_FORMAT, loan.getBorrower().getName().toString(), strDate);
+            }
+        }
+    }
 
     public static String checkItemAvailability(BorrowableItem item) {
         if (!item.isBorrowed()) {

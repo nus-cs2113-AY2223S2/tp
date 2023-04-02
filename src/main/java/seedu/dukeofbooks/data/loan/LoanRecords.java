@@ -1,4 +1,5 @@
 package seedu.dukeofbooks.data.loan;
+
 import seedu.dukeofbooks.data.person.Person;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.ListIterator;
 import seedu.dukeofbooks.data.book.BorrowableItem;
 
 public class LoanRecords {
-    private final List<Loan> internalList;
+    private static List<Loan> internalList;
 
     public LoanRecords() {
         internalList = new ArrayList<>();
@@ -54,7 +55,7 @@ public class LoanRecords {
         List<Loan> res = new ArrayList<>();
         for (Loan loan : internalList) {
             if (loan.getBorrower().equals(person)
-                && loan.getBorrowedItem().equals(item)) {
+                    && loan.getBorrowedItem().equals(item)) {
                 res.add(loan);
             }
         }
@@ -72,7 +73,7 @@ public class LoanRecords {
         return null;
     }
 
-    public Loan getLastActiveLoan(BorrowableItem item) {
+    public static Loan getLastActiveLoan(BorrowableItem item) {
         ListIterator<Loan> it = internalList.listIterator(internalList.size());
         while (it.hasPrevious()) {
             Loan loan = it.previous();
@@ -113,7 +114,6 @@ public class LoanRecords {
         return internalList.add(toAdd);
     }
 
-
     public boolean removeItem(Loan toRemove) {
         return internalList.remove(toRemove);
     }
@@ -122,7 +122,7 @@ public class LoanRecords {
         internalList.clear();
     }
 
-    public Loan get(int index) throws IndexOutOfBoundsException{
+    public Loan get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= internalList.size()) {
             throw new IndexOutOfBoundsException();
         }
