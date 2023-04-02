@@ -1,6 +1,12 @@
 # Developer Guide
 
 ## Acknowledgements
+[comment]: <> (//@@author tanyizhe)
+HealthHub Singapore - www.healthhub.sg
+Health Sciences Authority Singapore - www.hsa.giv.sg
+Guardian Pharmacy - www.guardian.com.sg
+Watsons Pharmacy - www.watsons.com.sg
+MayoClinic - www.mayoclinic.org
 
 ## Design & implementation
 
