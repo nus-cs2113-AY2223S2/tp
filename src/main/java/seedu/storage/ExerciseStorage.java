@@ -33,7 +33,6 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
         try {
             this.load();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
             System.out.println("Error loading Exercise Storage");
         }
     }
@@ -41,30 +40,30 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
     @Override
     public void load() throws IOException {
         String line = "";
-        
-        try {
-            br = new BufferedReader(new FileReader(filePath));
-            br.readLine();
-    
-            while ((line = br.readLine()) != null) {
-                String[] exerciseLine;
-                exerciseLine = line.split(CSV_DELIMITER);
-                try {
-                    String exerciseName = exerciseLine[0];
-                    String exerciseDescription = exerciseLine[1];
-                    float calorieBurnt = Float.parseFloat(exerciseLine[2]);
-                    LocalDate date = LocalDate.parse(exerciseLine[3], DTF);
-                    exercises.add(new Exercise(exerciseName, exerciseDescription, calorieBurnt, date));
-                } catch (Exception e) {
-                    LogFileHandler.logError("Invalid exercise format!");
-                }
-                br.close();
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Exercise File not found. Creating new exercise file...");
-            File newFile = new File(filePath);
-            newFile.createNewFile();
+
+        File storageFile = new File(filePath);
+        if (!storageFile.getParentFile().exists()) {
+            storageFile.getParentFile().mkdirs();
+            storageFile.createNewFile();
         }
+
+        br = new BufferedReader(new FileReader(filePath));
+        br.readLine();
+
+        while ((line = br.readLine()) != null) {
+            String[] exerciseLine = line.split(CSV_DELIMITER);
+            try {
+                String exerciseName = exerciseLine[0];
+                String exerciseDescription = exerciseLine[1];
+                float calorieBurnt = Float.parseFloat(exerciseLine[2]);
+                LocalDate date = LocalDate.parse(exerciseLine[3], DTF);
+                exercises.add(new Exercise(exerciseName, exerciseDescription, calorieBurnt, date));
+            } catch (Exception e) {
+                LogFileHandler.logError("Invalid exercise format!");
+            }
+        }
+        br.close();
+
     }
 
     @Override
