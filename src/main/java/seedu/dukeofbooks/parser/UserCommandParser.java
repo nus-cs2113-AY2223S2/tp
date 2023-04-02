@@ -49,30 +49,30 @@ public class UserCommandParser implements IParser {
         final String arguments = userInput.replaceFirst(commandWord, "").trim();
 
         switch (commandWord) {
-            case InventoryCommand.COMMAND_WORD:
-                return prepareInventoryCommand(arguments);
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
-            case LogoutCommand.COMMAND_WORD:
-                return new LogoutCommand();
-            case RenewCommand.COMMAND_WORD:
-                return prepareRenewCommand(arguments);
-            case BorrowCommand.COMMAND_WORD:
-                return prepareBorrowCommand(arguments);
-            case HistoryCommand.COMMAND_WORD:
-                return new HistoryCommand(currentUser);
-            case ReturnCommand.COMMAND_WORD:
-                return prepareReturnCommand(arguments);
-            case SearchCommand.COMMAND_WORD:
-                return prepareSearchCommand(arguments);
-            case CheckItemAvailabilityCommand.COMMAND_WORD:
-                return prepareCheckItemAvailabilityCommand(arguments);
-            case CheckBorrowingStatusCommand.COMMAND_WORD:
-                return prepareCheckBorrowingStatusCommand(arguments);
-            case UserExitCommand.COMMAND_WORD:
-                return new UserExitCommand();
-            default:
-                return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        case InventoryCommand.COMMAND_WORD:
+            return prepareInventoryCommand(arguments);
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+        case LogoutCommand.COMMAND_WORD:
+            return new LogoutCommand();
+        case RenewCommand.COMMAND_WORD:
+            return prepareRenewCommand(arguments);
+        case BorrowCommand.COMMAND_WORD:
+            return prepareBorrowCommand(arguments);
+        case HistoryCommand.COMMAND_WORD:
+            return new HistoryCommand(currentUser);
+        case ReturnCommand.COMMAND_WORD:
+            return prepareReturnCommand(arguments);
+        case SearchCommand.COMMAND_WORD:
+            return prepareSearchCommand(arguments);
+        case CheckItemAvailabilityCommand.COMMAND_WORD:
+            return prepareCheckItemAvailabilityCommand(arguments);
+        case CheckBorrowingStatusCommand.COMMAND_WORD:
+            return prepareCheckBorrowingStatusCommand(arguments);
+        case UserExitCommand.COMMAND_WORD:
+            return new UserExitCommand();
+        default:
+            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
 
