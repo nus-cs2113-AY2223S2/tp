@@ -32,6 +32,10 @@ ERROR: The only valid stats are type, age, or weight.
 
 ERROR: The only valid stats are type, age, or weight.
 
+ERROR: Pet not Found
+
+ERROR: Pet Name is empty
+
 Name: Bob
 Type: 
 Age: 

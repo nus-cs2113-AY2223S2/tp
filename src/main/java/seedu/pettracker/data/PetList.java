@@ -27,7 +27,7 @@ public class PetList {
      * @param petName Name of pet to be added
      */
     public static void addPet(String petName) throws EmptyPetNameException {
-        if(petName.trim().isEmpty()){
+        if (petName.trim().isEmpty()) {
             throw new EmptyPetNameException();
         }
         Pet newPet = new Pet(petName);
@@ -49,7 +49,7 @@ public class PetList {
     }
 
     public static void addStat(String petName, String statName, String statValue)
-            throws NumberFormatException, NonPositiveIntegerException, InvalidStatException, PetNotFoundException{
+            throws NumberFormatException, NonPositiveIntegerException, InvalidStatException, PetNotFoundException {
         int index = PetList.find(petName);
         if (index == -1) {
             throw new PetNotFoundException();
@@ -71,8 +71,11 @@ public class PetList {
      *
      * @param petName Name of pet(s) to be removed
      */
-    public static void removePet(String petName) {
+    public static void removePet(String petName) throws PetNotFoundException {
         int index = PetList.find(petName);
+        if (index == -1) {
+            throw new PetNotFoundException();
+        }
         assert (index >= 0) : "pet not in list";
         petList.remove(index);
         numberOfPets -= 1;

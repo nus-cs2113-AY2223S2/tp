@@ -13,6 +13,8 @@ remove-stat doesnotexist Weight
 add-stat Bob notAge 10
 edit-stat Bob notAge 10
 remove-stat Bob notAge
+remove-pet doesnotexist
+add-pet      
 list
 remove-stat Bob Weight
 remove-pet Bob
