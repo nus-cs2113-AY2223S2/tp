@@ -124,6 +124,8 @@ To remove all ingredients from Meal Companion's storage, use the `clear` command
 
 ![clear.png](images/clear.png)  
 <sub>Fig 8: Sample of Ingredients Clear command with user input highlighted.</sub>
+
+> **Warning**: This move cannot be undone.
  
 ##### [Back to table of contents](#table-of-contents)
 
@@ -246,6 +248,8 @@ Meal Companion automatically saves the ingredients you add to a text file named 
 ![save1.png](images/save1.png)  
 <sub>Fig 19: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
 
+> **Warning**:
+> Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program.
 
 ### Transferring Saved Data to Other Devices
 If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
