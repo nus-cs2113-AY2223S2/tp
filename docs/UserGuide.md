@@ -152,7 +152,7 @@ The table below will be shown with the `help` command: <br>
 ```
 > help
 +====================================================================================================+
-| Welcome to RainyDay! Here is the overview of commands available                                    |
+| Welcome to rainyDay! Here is the overview of commands available                                    |
 +====================================================================================================+
 | Feature            | Command   | Additional Syntax                                                 |
 +--------------------+-----------+-------------------------------------------------------------------+
@@ -302,12 +302,13 @@ command of rainyDay can list all the transaction added, and the resultant amount
 
 Format: `view {TIMESPAN} {-sort}`
 
-* `TIMESPAN` is used to denote how much history to show.
+* `TIMESPAN` is used to specifically denote how much history to show from the current day.
     * `1d - 31d` is used to view 1 to 31 days of history
     * `1w - 4w`  is used to view 1 to 4 weeks of history
     * `1m - 12m` is used to view 1 to 12 months of history
     * `1y - 10y` is used to view 1 to 10 years of history
-* `-sort` can be included to sort entries in ascending order, with inflows displayed before outflows.
+* `-sort` can be included to sort entries in ascending order of their absolute value, 
+  with inflows displayed before outflows.
 
 > 💡**Tip:** To view all entries you can use -all in place of a specific time in TIMESPAN
 
@@ -322,11 +323,25 @@ view
 |000003|beef noodles                                 | -$12.00      |Food and Drinks      |30/03/2023|
 |000004|pay                                          | +$50000.00   |miscellaneous        |26/03/2023|
 +------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
+|Viewing all entries from 2023-03-01 till 2023-03-31                                                 |
 |Total Inflow: $50020.00                                                                             |
 |Total Outflow: $512.00                                                                              |
 |Remaining value: $49508.00                                                                          |
 +====================================================================================================+
+```
+Example of usage:
+
+You would like to view all of your transactions for the current month, to check if you are staying within your budget.
+
+```
+> view
+```
+
+You vaguely remember you went out to eat at an expensive restaurant sometime in the past 3 months. You're unsure
+exactly when or what description you used, but you remember it was significantly more than your usual expenditures.
+
+```
+> view 3m -sort
 ```
 
 [Jump back to features overview](#features-overview)
@@ -571,8 +586,8 @@ Done, edited entry 2 from the financial report
 ### Setting a Monthly Budget
 
 After you know how to manage your transactions, you can now set a monthly budget! In the process of keeping track of 
-your expenses, you might feel inclined to stick to a budget. RainyDay can help to give you reminders, and encourage you 
-to stick to your budget! With a set monthly budget, RainyDay will remind you how much you have spent for the month with
+your expenses, you might feel inclined to stick to a budget. rainyDay can help to give you reminders, and encourage you 
+to stick to your budget! With a set monthly budget, rainyDay will remind you how much you have spent for the month with
 every new expense in the same month.
 
 Format : `setbudget GOAL`

@@ -119,9 +119,17 @@ public class ViewResult {
         if (isSorted) {
             timespanInfo += " in sorted order";
         }
+
         String inflowInfo = String.format("|Total Inflow: $%.2f", inflow);
         String outflowInfo = String.format("|Total Outflow: $%.2f", outflow);
-        String remainingValueInfo = String.format("|Remaining value: $%.2f", (inflow - outflow));
+        double remainingValue = inflow - outflow;
+        String remainingValueInfo;
+        if(remainingValue > 0) {
+            remainingValueInfo = String.format("|Remaining value: $%.2f", (inflow - outflow));
+        } else {
+            remainingValueInfo = String.format("|Remaining value: -$%.2f", (remainingValue* -1));
+        }
+
         timespanInfo = padSummaryLines(timespanInfo);
         inflowInfo = padSummaryLines(inflowInfo);
         outflowInfo = padSummaryLines(outflowInfo);
