@@ -58,7 +58,7 @@ public class UserStorage extends Storage implements FileReadable, FileWritable {
             weight = Float.parseFloat(userLine[1]);
             height = Float.parseFloat(userLine[2]);
             age = Integer.parseInt(userLine[3]);
-            gender = String.valueOf(userLine[4]);
+            gender = userLine[4];
             targetWeight = Float.parseFloat(userLine[5]);
             user = new User(name, weight, height, age, gender, targetWeight);
             br.close();
