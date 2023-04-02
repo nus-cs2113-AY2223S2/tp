@@ -82,10 +82,7 @@ public class Ui {
     public void printEditDeleteTaskMessage(String parameterType, String taskString) {
         println(String.format(Messages.EDIT_DELETE_TASK.getMessage(), parameterType), taskString);
     }
-        
-    public void printCheckRepeatingTaskMessage() {
-        println(Messages.CHECK_REPEATING.getMessage());
-    }
+
 
     public void printTaskList(int taskListSize, String taskListString) {
         if (taskListSize == 0) {

@@ -48,6 +48,7 @@ public class ToDoListManager {
             try {
                 Command command = parser.parseCommand(inputCommand);
                 command.execute(taskList, ui);
+                taskList.checkRepeatingTasks();
                 storage.saveData(taskList);
                 isRunning = !command.shouldExit();
             } catch (ToDoListException e) {

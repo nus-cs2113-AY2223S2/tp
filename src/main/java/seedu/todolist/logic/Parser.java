@@ -7,7 +7,6 @@ import seedu.todolist.exception.MissingArgumentException;
 import seedu.todolist.exception.ToDoListException;
 
 import seedu.todolist.logic.command.AddTaskCommand;
-import seedu.todolist.logic.command.CheckRepeatingTaskCommand;
 import seedu.todolist.logic.command.Command;
 import seedu.todolist.logic.command.DeleteTaskCommand;
 import seedu.todolist.logic.command.EditDeadlineCommand;
@@ -114,8 +113,6 @@ public class Parser {
             return new ListTagsCommand();
         case COMMAND_PROGRESS:
             return new ProgressBarCommand();
-        case COMMAND_CHECK:
-            return new CheckRepeatingTaskCommand();
         case COMMAND_ADD:
             return new AddTaskCommand(getArguments(splitInput, AddTaskCommand.EXPECTED_FLAGS));
         case COMMAND_MARK:
