@@ -59,7 +59,7 @@ Please note the following about the format of commands given under each [feature
 
 * CAPS are the parameters to be supplied by the user eg. DESCRIPTION
 
-* `markdown` format are related to commands provided by the user eg. `help`
+* `inline code` format are related to commands provided by the user eg. `help`
 
 * *italics* format are related to buttons that can be found on the screen *From Text/CSV*
 
