@@ -127,6 +127,7 @@ public class GeneralUi {
         this.printLogo();
         this.printLine();
         System.out.println(welcomeMessage);
+        System.out.println("Please enter command 'help' if you require assistance.");
     }
     public void requestWeight(){}
     public void showLatestWeight(int weight){}

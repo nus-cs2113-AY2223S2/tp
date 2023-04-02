@@ -8,6 +8,7 @@ import seedu.commands.UpdateUserCommand;
 import seedu.commands.ViewUserCommand;
 import seedu.commands.ListCommand;
 import seedu.commands.FilterCaloriesCommand;
+import seedu.commands.HelpCommand;
 import seedu.commands.NutritionCommand;
 import seedu.commands.AddExerciseCommand;
 import seedu.commands.TrackCalorieCommand;
@@ -51,6 +52,9 @@ public class CommandParser {
             break;
         case "track":
             command = new TrackCalorieCommand();
+            break;
+        case "help":
+            command = new HelpCommand();
             break;
         case "examples":
             command = new ExamplesCommand(commandWord, userInput);
