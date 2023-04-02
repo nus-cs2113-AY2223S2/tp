@@ -14,7 +14,8 @@ public enum ErrorMessage {
             "Please refer to 'help' for more information!"),
     WRONG_FILTER_FORMAT("Sorry, your filter command is invalid. Filter format is as follows: \n" +
             "filter {-in/-out} {-d DESCRIPTION} {-c CATEGORY} {-date DD/MM/YYYY} \n" +
-            "At least one of these flags must be present. Please refer to 'help' for more information!"),
+            "At least one of these flags must be present and in the order above.\n" +
+            "Please refer to 'help' for more information!"),
     WRONG_VIEW_FORMAT("Sorry, your view command is invalid. View format is as follows: \n" +
             "view {TIME} {-sort} \n" +
             "Please refer to 'help' for more information!"),
