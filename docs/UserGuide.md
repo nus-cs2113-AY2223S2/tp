@@ -560,10 +560,10 @@ Done, edited entry 1 from the financial report
 
 Suppose you want to edit multiple fields of an entry, and instead of deleting and adding a new entry, you can use
 this command:
-`edit 2 -out Beef noodles $15 -c Food -date 22/03/2023`
+`edit 2 -out -d Beef noodles $15 -c Food -date 22/03/2023`
 
 ```
-> edit 2 -out Beef noodles $15 -c Food -date 22/03/2023
+> edit 2 -out -d Beef noodles $15 -c Food -date 22/03/2023
 Done, edited entry 2 from the financial report
 > view
 +====================================================================================================+
