@@ -146,11 +146,7 @@ public class Parser {
             return new ExitCommand();
 
         case COMMAND_HELP_WORD:
-            if (!isOneWord(split) && (!split[1].equals("todo") &&!split[1].equals("deadline")&&!split[1].equals("event")
-                    &&!split[1].equals("mark")&&!split[1].equals("unmark")&&!split[1].equals("delete")
-                    &&!split[1].equals("find") &&!split[1].equals("date") &&!split[1].equals("addmod")
-                    &&!split[1].equals("delmod")&&!split[1].equals("week") &&!split[1].equals("showmod")
-                    &&!split[1].equals("listmod") &&!split[1].equals("list"))) {
+            if (!isOneWord(split) && (!isValidWord(split[1]))){
 
 
                 throw new IllegalCommandException();
@@ -221,6 +217,33 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if word given is a valid command in Apollo
+     * @param word
+     * @return
+     */
+    public static boolean isValidWord(String word){
+        switch(word) {
+        case "list":
+        case "todo":
+        case "deadline":
+        case "event":
+        case "mark":
+        case "unmark":
+        case "delete":
+        case "find":
+        case "date":
+        case "addmod":
+        case"showmod":
+        case"delmod":
+        case"week":
+        case"listmod":
+            return true;
+        default:
+            return false;
+        }
+
+    }
     /**
      * Method that selects which help command class to invoke
      * @param helpCommandName
