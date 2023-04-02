@@ -294,7 +294,7 @@ command of rainyDay can list all the transaction added, and the resultant amount
 
 Format: `view {TIMESPAN} {-sort}`
 
-* `TIMESPAN` is used to denote how much history to show.
+* `TIMESPAN` is used to specifically denote how much history to show from the current day.
     * `1d - 31d` is used to view 1 to 31 days of history
     * `1w - 4w`  is used to view 1 to 4 weeks of history
     * `1m - 12m` is used to view 1 to 12 months of history
@@ -314,11 +314,25 @@ view
 |000003|beef noodles                                 | -$12.00      |Food and Drinks      |30/03/2023|
 |000004|pay                                          | +$50000.00   |miscellaneous        |26/03/2023|
 +------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
+|Viewing all entries from 2023-03-01 till 2023-03-31                                                 |
 |Total Inflow: $50020.00                                                                             |
 |Total Outflow: $512.00                                                                              |
 |Remaining value: $49508.00                                                                          |
 +====================================================================================================+
+```
+Example of usage:
+
+You would like to view all of your transactions for the current month, to check if you are staying within your budget.
+
+```
+> view
+```
+
+You vaguely remember you went out to eat at an expensive restaurant sometime in the past 3 months. You're unsure
+exactly when or what description you used, but you remember it was significantly more than your usual expenditures.
+
+```
+> view 3m -sort
 ```
 
 [Jump back to features overview](#features-overview)
