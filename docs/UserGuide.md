@@ -183,7 +183,7 @@ Removes a task from the Task List.
 
 Format: `remove-task NUMBER`
 
-* The `NUMBER` must not be empty.
+* The `NUMBER` must not be empty. The NUMBER here refers to index in the list
 
 Example of usage:
 
@@ -216,6 +216,7 @@ Here are your tasks:
 View the current Task List and total number of tasks.
 
 Format: `edit-task NUMBER VALUE` or `edit-task NUMBER VALUE /by DATE`
+* The `NUMBER` must not be empty. The NUMBER here refers to index in the list
 * The `DATE` must be in the format `yyyy-mm-dd`.
 
 Example of usage:
@@ -250,7 +251,7 @@ Marks a task as done in the Task List.
 
 Format: `mark-task NUMBER`
 
-* The `NUMBER` must not be empty.
+* The `NUMBER` must not be empty. The NUMBER here refers to index in the list
 
 Example of usage:
 
@@ -267,7 +268,7 @@ Marks a task as not done in the Task List.
 
 Format: `unmark-task NUMBER`
 
-* The `NUMBER` must not be empty.
+* The `NUMBER` must not be empty. The NUMBER here refers to index in the list
 
 Example of usage:
 
