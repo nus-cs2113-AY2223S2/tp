@@ -64,9 +64,11 @@ Required parameters:
 * The `upc/` parameter where `[UPC]`  must be a numerical value and exists in the inventory.
 
 Optional parameters:
+* Parameters within the `{` and `}` are **OPTIONAL PARAMETERS**, however, at least **ONE** optional parameter must
+be typed.
 * The `n/` parameter where `[item_name]` must be alphanumeric.
-* The `qty/` parameter for `[quantity]` must be a numerical value.
-* The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
+* The `qty/` parameter for `[quantity]` must be a positive integer value.
+* The `p/` parameter for `[price]` must be either zero or a positive numerical value (decimals accepted).
 
 Example of usage:
 
