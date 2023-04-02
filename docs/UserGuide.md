@@ -17,8 +17,9 @@ The main features of Pet Tracker includes:
 
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `Pet Tracker` 
-from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTrackerV1.0/pettracker.jar).
-3. Launch a terminal and run the command `java -jar pettracker.jar`
+from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTrackerV2.0/pettracker.jar).
+3. Launch a terminal in the folder that the jar file is located in
+4. Run the command `java -jar pettracker.jar`
 
 ## Features 
 
@@ -55,7 +56,7 @@ Successfully added new pet: Bob
 ```
 
 ### Removing a pet: `remove-pet`
-Removes a pet to the Pet List.
+Removes a pet from the Pet List.
 
 Format: `remove-pet NAME`
 
