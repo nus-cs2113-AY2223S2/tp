@@ -6,15 +6,12 @@ import parser.Parser;
 import java.util.ArrayList;
 
 public class ExpenseList {
-
+    private ArrayList<Expense> expenseList = new ArrayList<>();
     protected Parser parser = new Parser();
 
     public void setExpenseList(ArrayList<Expense> expenseList) {
         this.expenseList = expenseList;
     }
-
-    private ArrayList<Expense> expenseList = new ArrayList<>();
-
 
     public ArrayList<Expense> getExpenseList() {
         return expenseList;
