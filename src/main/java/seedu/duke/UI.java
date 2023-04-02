@@ -241,6 +241,14 @@ public class UI {
         System.out.println(LINE);
     }
 
+    public static void printStorageCorruptedMessage() {
+        System.out.println("Storage is corrupted, corrupted modules have been deleted");
+    }
+
+    public static void printModuleCorruptDeleteMessage() {
+        System.out.println("One Module Corrupted, will be deleted");
+    }
+
     public static void printReminderMessage() {
         System.out.println("REMINDER! The following task(s) is/are due soon: ");
     }
@@ -359,6 +367,10 @@ public class UI {
         System.out.println("Entertainment cost: " + budgetPlanner.getEntertainmentTotalCost());
         System.out.println("Surplus/Deficit: " + budgetPlanner.getSurplus());
         System.out.println(LINE);
+    }
+
+    public static void printBudgetStorageCorruptedMessage() {
+        System.out.println("Budget Storage is corrupted, resetting budget");
     }
 
     /**
