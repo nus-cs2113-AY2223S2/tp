@@ -73,7 +73,7 @@ public class Parser {
      */
     public static Command getCommand(String userCommand, Ui ui, int size, ModuleList moduleData)
             throws UnexpectedException {
-        final String[] split = userCommand.trim().split("\\s+", 2);
+        final String[] split = userCommand.trim().split("\\s+", 3);
         try {
             return parseCommand(split, size, moduleData);
         } catch (IllegalCommandException e) {
@@ -88,6 +88,8 @@ public class Parser {
             ui.printEmptyDelMod();
         } catch (NumberFormatException e) {
             ui.printErrorForIdx(size);
+        } catch (IllegalArgumentException e) {
+            ui.printInvalidCommand();
         } catch (InvalidDeadline e) {
             ui.printInvalidDeadline();
         } catch (InvalidEvent e) {
@@ -123,7 +125,7 @@ public class Parser {
      */
     private static Command parseCommand(String[] split, int size, ModuleList moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
-            IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule,
+            IllegalCommandException, IllegalArgumentException,NumberFormatException, UnexpectedException, InvalidModule,
             EmptyAddModException, EmptyDelModException, EmptyShowModException {
         String command = split[0];
         switch (command) {
@@ -146,26 +148,18 @@ public class Parser {
             return new ExitCommand();
 
         case COMMAND_HELP_WORD:
-            if (isOneWord(split)){
+            if (split.length > 2) {
+                throw new IllegalCommandException();
+            }
+
+            if (isOneWord(split)) {
 
                 return new HelpCommand();
             }
 
+            HelpCommand newHelpCommand = chooseHelpCommand(split[1]);
 
-            if (isTwoWord(split)) {
-                String[] furthersplit = split[1].split(" ",2);
-                if(furthersplit.length > 1) {
-                    throw new IllegalCommandException();
-                }
-                else try {
-                    return chooseHelpCommand(furthersplit[0]);
-                } catch(IllegalArgumentException e){
-                    throw new IllegalCommandException();
-                }
-
-
-
-            }
+            return newHelpCommand;
 
 
         case COMMAND_LIST_WORD:
@@ -222,23 +216,21 @@ public class Parser {
             return new DeleteModuleCommand(moduleCode);
 
 
-
         default:
             throw new IllegalCommandException();
         }
     }
 
 
-
-
     /**
      * Method that selects which help command class to invoke
+     *
      * @param helpCommandName
      * @return The appropriate HelpCommandClass child
      * @throws IllegalArgumentException If an unknown command is input by the user.
      */
-    public static HelpCommand chooseHelpCommand(String helpCommandName) throws IllegalArgumentException{
-        switch(helpCommandName) {
+    public static HelpCommand chooseHelpCommand(String helpCommandName) throws IllegalArgumentException {
+        switch (helpCommandName) {
         case "list":
             return new ListHelpCommand();
         case "todo":
@@ -262,6 +254,7 @@ public class Parser {
 
         }
     }
+
     /**
      * Checks if the user's input parameter is empty.
      *
@@ -281,6 +274,7 @@ public class Parser {
     private static Boolean isOneWord(String[] split) {
         return (split.length == 1);
     }
+
     private static Boolean isTwoWord(String[] split) {
         return (split.length == 2);
     }
