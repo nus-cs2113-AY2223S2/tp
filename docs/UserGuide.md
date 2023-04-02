@@ -20,7 +20,7 @@ Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than 
 Example:
 
 ~~~
-java -jar "C:\Users\Albert\Desktop\Tp.main.jar"
+java -jar "C:\Users\Albert\Desktop\DrDuke.jar"
 ~~~
 
 # Features Guide
