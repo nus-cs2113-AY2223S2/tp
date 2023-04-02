@@ -48,7 +48,7 @@ Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 * The `p/` parameter for `[price]` must be a **non-negative numerical** value _(decimals accepted)_.
 
 **OPTIONAL** parameters:
-* The `cat/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized`)
+* The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized`)
 
 !> **Enforced** valid range for numerical parameters is **0** to **999999999**.
 
