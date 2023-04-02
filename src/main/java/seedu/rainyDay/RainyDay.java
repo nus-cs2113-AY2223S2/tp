@@ -47,7 +47,6 @@ public class RainyDay {
     private void run() {
         setUpDate();
         runCommand();
-        ui.sayFarewellToUser(userData.getReportOwner());
     }
 
     private void setUpDate() {
