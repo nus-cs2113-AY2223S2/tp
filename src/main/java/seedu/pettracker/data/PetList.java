@@ -54,8 +54,11 @@ public class PetList {
         }
     }
 
-    public static void removeStat(String petName, String statName) {
+    public static void removeStat(String petName, String statName) throws InvalidStatException, PetNotFoundException {
         int index = PetList.find(petName);
+        if (index == -1) {
+            throw new PetNotFoundException();
+        }
         petList.get(index).removeStat(statName);
     }
 
@@ -91,8 +94,11 @@ public class PetList {
     }
 
     public static void editPetStats(String petName, String stat, String newValue)
-            throws NonPositiveIntegerException, NumberFormatException {
+            throws NonPositiveIntegerException, NumberFormatException, InvalidStatException, PetNotFoundException {
         int index = PetList.find(petName);
+        if (index == -1) {
+            throw new PetNotFoundException();
+        }
         Pet petToEdit = PetList.get(index);
         switch (stat.toLowerCase()) {
         case "name":
@@ -108,7 +114,7 @@ public class PetList {
             petToEdit.setWeight(newValue);
             break;
         default:
-            System.out.println("Invalid stat");
+            throw new InvalidStatException();
         }
     }
 

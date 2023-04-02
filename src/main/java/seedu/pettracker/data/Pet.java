@@ -2,6 +2,7 @@ package seedu.pettracker.data;
 
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
+import seedu.pettracker.exceptions.PetNotFoundException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +43,7 @@ public class Pet {
 
     }
 
-    public void removeStat(String statName) {
+    public void removeStat(String statName) throws InvalidStatException {
         assert statName != null : "statName is null";
         switch (statName.toLowerCase()) {
         case "type":
@@ -55,7 +56,7 @@ public class Pet {
             removeWeight();
             break;
         default:
-            System.out.println("ERROR: The only valid stats are type, age, or weight.");
+            throw new InvalidStatException();
         }
     }
 
