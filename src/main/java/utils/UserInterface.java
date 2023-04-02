@@ -22,12 +22,12 @@ public class UserInterface {
     }
 
     public String getUserInput() {
+        System.out.print("> ");
         return scanner.nextLine().trim();
     }
 
     public void printDivider() {
         System.out.println("_".repeat(LINE_LENGTH));
-        System.out.print("> ");
     }
 
     public void printGreeting() {
@@ -85,7 +85,6 @@ public class UserInterface {
 
     public void printCard(Card card) {
         System.out.println(card);
-        printDivider();
     }
 
     public void printException(InkaException e) {
@@ -96,9 +95,9 @@ public class UserInterface {
         if (cardList.isEmpty()) {
             System.out.println("Your current list is empty.");
         } else {
-            System.out.println("Here is a list of your cards :");
+            System.out.println("Here is a list of your cards :\n");
             for (int i = 0; i < cardList.size(); ++i) {
-                System.out.println((i + 1) + "." + cardList.get(i)); // 1. question  answer
+                System.out.println("\t" + (i + 1) + "." + cardList.get(i)); // 1. question  answer
             }
         }
         printDivider();
@@ -116,6 +115,18 @@ public class UserInterface {
         printDivider();
     }
 
+    public void printTags(TagList tagList) {
+        if (tagList.isEmpty()) {
+            System.out.println("There is no tag.");
+        } else {
+            System.out.println("\tHere are your tags:");
+            for (int i = 0; i < tagList.size(); ++i) {
+                System.out.println("\t" + (i + 1) + "." + tagList.get(i));
+            }
+        }
+        System.out.println("");
+    }
+
     public void printDeckList(DeckList deckList) {
         if (deckList.isEmpty()) {
             System.out.println("Your current list of decks is empty.");
@@ -123,6 +134,18 @@ public class UserInterface {
             System.out.println("Here is your current list of decks:");
             for (int i = 0; i < deckList.size(); ++i) {
                 System.out.println((i + 1) + "." + deckList.get(i));
+            }
+        }
+        printDivider();
+    }
+
+    public void printDecks(DeckList deckList) {
+        if (deckList.isEmpty()) {
+            System.out.println("There is no deck.");
+        } else {
+            System.out.println("\tHere are your decks:");
+            for (int i = 0; i < deckList.size(); ++i) {
+                System.out.println("\t" + (i + 1) + "." + deckList.get(i));
             }
         }
         printDivider();

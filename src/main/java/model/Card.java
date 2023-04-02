@@ -96,28 +96,9 @@ public class Card {
         return this.tags.isEmpty();
     }
 
-    public String getTagsString() {
-        String tagsStr = "";
-        for (TagUUID tag : tags) {
-            tagsStr = tagsStr + "\n - " + tag.toString();
-        }
-        return tagsStr;
-    }
-
-    public String getDecksString() {
-        String decksStr = "";
-        for (DeckUUID deck : decks) {
-            decksStr = decksStr + "\n - " + deck.toString();
-        }
-        return decksStr;
-    }
-
     @Override
     public String toString() {
-        String tagsStr = this.tags.isEmpty() ? "None" : getTagsString();
-        String decksStr = this.decks.isEmpty() ? "None" : getDecksString();
-        return "[" + this.uuid + "]" +
-                "\n\n Tags: " + tagsStr + "\n\n Decks: " + decksStr +
-                "\n\n Qn:  " + this.question + "\n Ans:  " + this.answer + "\n";
+        return "\t[" + this.uuid + "]" +
+                "\n\tQn:  " + this.question + "\n\tAns:  " + this.answer + "\n";
     }
 }
