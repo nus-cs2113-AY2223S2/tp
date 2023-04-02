@@ -268,6 +268,8 @@ Done! Added: in for Allowance, +$20.00
 > * `add -DIRECTION DESCRIPTION $AMOUNT -c CATEGORY`
 > * `add -DIRECTION DESCRIPTION $AMOUNT -date DD/MM/YYYY`
 
+> ⚠️ Value has a maximum of $21,474,836.47 , and will be rounded down to 2 decimal places!
+
 Example of usage:
 
 You had beef noodles for $12. To add it to rainyDay, the following command can be provided to
@@ -386,7 +388,7 @@ will help you extract certain transactions based on a specific criteria
 
 Format : `filter [FLAG] {FIELD}`
 
-* The `FLAG` must be one of the following:
+* The `FLAG` must be at least one of the following:
     * `-in` to filter by inflows
     * `-out` to filter by outflows
     * `-d` to filter by description
@@ -808,7 +810,7 @@ Exports your financial statements into a [comma-separated values file](#glossary
 Format: `export`
 > **Background:** A CSV file allows data to be saved in a format which can be viewed as a table.
 >
->💡Saving your financial statements in a CSV file will allow you to view your statements in commonly use applications
+>💡Saving your financial statements in a CSV file will allow you to view your statements in commonly used applications
 > like *Microsoft Excel* and *Google Sheets*.
 
 #### Where to locate exported CSV file?
