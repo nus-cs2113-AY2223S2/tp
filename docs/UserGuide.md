@@ -4,7 +4,7 @@
 
 Keeping track of multiple pets can be daunting due to information overload. With Pet Tracker, keeping track of our
 furry friends will be easier! Pet owners can use this tool to monitor the health of their pet, including tracking their
-weight over time. This can help identify any nutritional or health needs.
+current weight. This can help identify any nutritional or health needs.
 
 <br>
 The main features of Pet Tracker includes:
@@ -30,9 +30,6 @@ Here is a list of features for Pet Tracker
 
 ## FAQ
 
-**Q**: Can I make my pet's data persistent after closing the app? 
-
-**A**: The team is currently planning on implementing that feature soon!
 
 ## Command Summary
 
