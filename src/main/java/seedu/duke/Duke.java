@@ -48,10 +48,8 @@ public class Duke {
             System.out.println("Hello " + in.nextLine());
         }
         String input = "";
-        if (in.hasNextLine()) {
+        while (in.hasNextLine() && !input.equals("exit")) {
             input = in.nextLine();
-        }
-        while (!input.equals("exit")) {
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
@@ -85,9 +83,6 @@ public class Duke {
             }
 //            storage.saveExpenseList();
             storage.saveExpenses(expenseList.getExpenseList(), "test.json");
-            if (in.hasNextLine()) {
-                input = in.nextLine();
-            }
         }
         in.close();
     }

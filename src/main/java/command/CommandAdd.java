@@ -46,7 +46,9 @@ public class CommandAdd extends Command {
         try {
             if (LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter).isAfter(LocalDate.now())) {
                 throw new FutureDateException();
-            } else {
+            } else if(Double.parseDouble(parsedInput[ParserAdd.AMOUNT_INDEX]) < 0){
+                throw new NumberFormatException();
+            }else {
                 Time date = new Time(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter));
                 String exchangeRateDate = LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter)
                         .with(Temporals.previousWorkingDay()).toString();

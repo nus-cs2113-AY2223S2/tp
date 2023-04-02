@@ -49,6 +49,9 @@ public class ParserAdd implements Serializable {
         if (word.startsWith("cat/")) {
             return CATEGORY_INDEX;
         }
+        else if(!word.startsWith("add")){
+            System.out.println("WARNING: Invalid input type for \"" + word + "\". Please check again.");
+        }
         return INVALID_INDEX;
     }
 
