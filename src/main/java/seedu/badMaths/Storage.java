@@ -58,7 +58,7 @@ public class Storage {
                 }
                 boolean isDone = isDoneStr.equals("Y");
 
-                /**
+                /*
                  * update notes if the file is valid
                  */
                 //update text, priority
@@ -90,7 +90,8 @@ public class Storage {
                     writer.close();
                     System.out.println("File contents have rest successfully.");
                     System.out.println("You can continue to use the application");
-                    System.out.println("If you want to read Help Manual, please type 'Help' to learn what I can do for you.");
+                    System.out.println("If you want to read Help Manual, " +
+                            "please type 'Help' to learn what I can do for you.");
                 } else if (userInput.equals("n")){
                     System.out.println("You choose not to rest the file.");
                     System.out.println("Please ensure your file status before using the application.");

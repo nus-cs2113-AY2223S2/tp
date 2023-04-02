@@ -227,7 +227,7 @@ public class Command {
                     throw new IllegalTodoException();
                 }
                 break;
-            /**
+            /*
              * The command "Clear" will continue to execute for as long as it is being entered,
              * without any other command or input interrupting it.
              */
@@ -235,7 +235,7 @@ public class Command {
                 notes.reset();
                 Storage.clearFile(filePath);
                 break;
-            /**
+            /*
              * The command "Help" will continue to execute for as long as it is being entered,
              * without any other command or input interrupting it.
              */
