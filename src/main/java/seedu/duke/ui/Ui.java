@@ -96,6 +96,14 @@ public class Ui {
         System.out.println("Company has been successfully uncomfirmed!");
     }
 
+    public void showExistingConfirmationMessage() {
+        System.out.println("This company is already confirmed!");
+    }
+
+    public void showExistingUnconfirmationMessage() {
+        System.out.println("This company is already unconfirmed!");
+    }
+
     public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList) {
         System.out.println("Here are the companies in <" + industry + "> field.");
         int i = 1;
