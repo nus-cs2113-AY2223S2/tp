@@ -4,21 +4,18 @@ package seedu.rainyDay.command;
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.exceptions.RainyDayException;
 
-import java.util.HashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import seedu.rainyDay.exceptions.ErrorMessage;
 
 
 //@@author KN-CY
-public class ShortcutAddCommand extends Command {
+public class ShortcutAddCommand extends ShortcutCommand {
     private static final Logger logger = Logger.getLogger(ShortcutAddCommand.class.getName());
     private static String key;
     private static String value;
-    private static HashMap<String, String> shortcutCommands;
     private static final String SHORTCUT_SUCCESSFULLY_ADDED = "Shortcut successfully added";
 
 
@@ -28,38 +25,15 @@ public class ShortcutAddCommand extends Command {
         shortcutCommands = RainyDay.userData.getShortcutCommands();
     }
 
-    private void checkShortcutValidity() throws RainyDayException {
-        if (shortcutCommands.containsKey(key)) {
-            logger.log(Level.INFO, "ShortcutAddCommand.execute() did not add any shortcuts as given shortcut already "
-                    + "exists.");
-            throw new RainyDayException(ErrorMessage.SHORTCUT_ALREADY_EXISTS.toString());
-        }
 
-        if (key.equals(value)) {
-            logger.log(Level.INFO, "ShortcutAddCommand.execute() did not add any shortcuts as a shortcut cannot be " +
-                    "mapped to the same string.");
-            throw new RainyDayException(ErrorMessage.SHORTCUT_MAPS_ITSELF.toString());
-        }
-
-        if (shortcutCommands.containsKey(value)) {
-            logger.log(Level.INFO, "ShortcutAddCommand.execute() did not add any shortcuts as a shortcut cannot be " +
-                    "mapped to another shortcut");
-            throw new RainyDayException(ErrorMessage.SHORTCUT_MAPS_SHORTCUT.toString());
-        }
-
-        String keyFirstWord = key.split(" ", 2)[0];
-        if (Command.isValidCommand(keyFirstWord)) {
-            logger.log(Level.INFO, "ShortcutAddCommand.execute() did not add any shortcuts as a shortcut cannot be " +
-                    "named as an actual command");
-            throw new RainyDayException(ErrorMessage.SHORTCUT_NAME_VALID_COMMAND.toString());
-        }
-    }
 
     @Override
     public CommandResult execute() throws RainyDayException {
         setupLogger();
         logger.log(Level.INFO, "starting ShortcutAddCommand.execute()");
-        checkShortcutValidity();
+        logger.log(Level.INFO, "checking for validity of shortcut");
+        checkShortcutValidity(shortcutCommands, key, value);
+        logger.log(Level.INFO, "shortcut confirmed as valid of shortcut");
 
         shortcutCommands.put(key, value);
         logger.log(Level.INFO, "Successful ShortcutAddCommand.execute()");
