@@ -9,19 +9,13 @@ participant WeekCommand as week
 
 Parser -> week : WeekCommand()
 activate week
-week -> LoggerInterface : setUpLogger()
-
-activate LoggerInterface
-deactivate LoggerInterface
-destroy LoggerInterface
 deactivate week
 
-Parser -> week : execute()
+ -> week : execute()
+activate week
 
 week -> Ui : printWeek()
 activate Ui
-
-activate week
 
 loop 7 times
     Ui -> DayTypeUtil : determineDay()
