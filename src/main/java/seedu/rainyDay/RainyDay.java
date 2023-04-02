@@ -1,15 +1,14 @@
 package seedu.rainyDay;
 
-import com.google.gson.JsonParseException;
 import seedu.rainyDay.command.CommandResult;
 import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.modules.Parser;
 
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +33,7 @@ public class RainyDay {
             ui.greetUser(userData.getReportOwner());
             assert userData != null : "Error loading from json file";
             logger.log(Level.INFO, "File loaded successfully.");
-        } catch (FileNotFoundException | JsonParseException e) {
+        } catch (Exception e) {
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
             String username = ui.readUserName();
@@ -48,7 +47,6 @@ public class RainyDay {
     private void run() {
         setUpDate();
         runCommand();
-        ui.sayFarewellToUser(userData.getReportOwner());
     }
 
     private void setUpDate() {
@@ -61,12 +59,12 @@ public class RainyDay {
         while (true) {
             try {
                 String userInput = ui.readUserCommand();
-                if (userInput.equalsIgnoreCase("bye")) {
-                    break;
-                }
                 specificCommand = new Parser().parseUserInput(userInput);
                 assert specificCommand != null : "Parser returned null";
                 executeCommand(specificCommand);
+                if(specificCommand.isExit()) {
+                    break;
+                }
             } catch (Exception e) {
                 logger.log(Level.WARNING, e.getMessage());
                 System.out.println(e.getMessage());
@@ -74,7 +72,7 @@ public class RainyDay {
         }
     }
 
-    private void executeCommand(Command command) {
+    private void executeCommand(Command command) throws RainyDayException {
         command.setData(userData);
         CommandResult result = command.execute();
         if (result != null) {

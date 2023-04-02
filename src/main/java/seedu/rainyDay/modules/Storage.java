@@ -2,14 +2,19 @@ package seedu.rainyDay.modules;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
+import org.apache.commons.lang3.EnumUtils;
+import seedu.rainyDay.command.ShortcutCommand;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
@@ -26,6 +31,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -33,6 +39,7 @@ import java.util.logging.Logger;
 
 import com.opencsv.CSVWriter;
 import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.exceptions.RainyDayException;
 
 //@@author KN-CY
 public class Storage {
@@ -59,6 +66,137 @@ public class Storage {
     }
 
     /**
+     * Uses deserialization to load the FinancialReport from a serialized file.
+     *
+     * @param filePath The file path where the FinancialReport will be loaded from.
+     * @return The FinancialReport after deserialization from the file.
+     * @throws FileNotFoundException If the file specified by the filePath is not found.
+     */
+    public static UserData loadFromFile(String filePath) throws FileNotFoundException, RainyDayException {
+        setupLogger();
+        logger.log(Level.INFO, "starting LoadFromFile");
+        Reader reader = new FileReader(filePath);
+
+        JsonElement fileElement = JsonParser.parseReader(reader);
+        JsonObject fileObject = fileElement.getAsJsonObject();
+
+        checkValidUserData(fileObject);
+
+        reader = new FileReader(filePath);
+        UserData userData = gson.fromJson(reader, UserData.class);
+        return userData;
+    }
+
+    /**
+     * Checks if the loaded userData is valid.
+     *
+     * @param userData The user data being loaded of JsonObject type.
+     * @throws RainyDayException If userData is invalid.
+     */
+    private static void checkValidUserData(JsonObject userData) throws RainyDayException {
+        // check that UserData has the required fields
+        if (!userData.has("financialReport")) {
+            throw new RainyDayException("");
+        }
+        if (!userData.has("shortcutCommands")) {
+            throw new RainyDayException("");
+        }
+        if (!userData.has("budgetGoal")) {
+            throw new RainyDayException("");
+        }
+        JsonObject financialReport = userData.getAsJsonObject("financialReport");
+        checkValidFinancialReport(financialReport);
+
+        JsonObject shortcutCommands = userData.getAsJsonObject("shortcutCommands");
+        checkValidShortcutCommands(shortcutCommands);
+    }
+
+
+    /**
+     * Checks if the financialReport in the UserData is valid.
+     *
+     * @param financialReport The financialReport being loaded of JsonObject type.
+     * @throws RainyDayException If financialReport is invalid.
+     */
+    private static void checkValidFinancialReport(JsonObject financialReport) throws RainyDayException {
+        if (!financialReport.has("financialStatements")) {
+            throw new RainyDayException("");
+        }
+        if (!financialReport.has("monthlyExpenditures")) {
+            throw new RainyDayException("");
+        }
+        if (!financialReport.has("reportOwner")) {
+            throw new RainyDayException("");
+        }
+
+        JsonArray financialStatements = financialReport.getAsJsonArray("financialStatements");
+        checkValidFinancialStatements(financialStatements);
+    }
+
+    /**
+     * Checks if the financialStatements in the UserData is valid.
+     *
+     * @param financialStatements The financialStatements being loaded of JsonObject type.
+     * @throws RainyDayException If financialStatements is invalid.
+     */
+    private static void checkValidFinancialStatements(JsonArray financialStatements) throws RainyDayException {
+        // check that every financial statement in the statements has the required fields
+        for (JsonElement financialStatementElement : financialStatements) {
+            JsonObject financialStatement = financialStatementElement.getAsJsonObject();
+            if (!financialStatement.has("description")) {
+                throw new RainyDayException("");
+            }
+
+            if (!financialStatement.has("flowDirection")) {
+                throw new RainyDayException("");
+            }
+            String flowDirection = financialStatement.get("flowDirection").getAsString();
+            if (!EnumUtils.isValidEnum(FlowDirection.class, flowDirection)) {
+                throw new RainyDayException("");
+            }
+
+            if (!financialStatement.has("value")) {
+                throw new RainyDayException("");
+            }
+            double value = financialStatement.get("value").getAsDouble();
+            if (value <= 0) {
+                throw new RainyDayException("");
+            }
+
+            if (!financialStatement.has("category")) {
+                throw new RainyDayException("");
+            }
+            if (!financialStatement.has("date")) {
+                throw new RainyDayException("");
+            }
+
+            if (!financialStatement.has("isIgnored")) {
+                throw new RainyDayException("");
+            }
+            String isIgnored = financialStatement.get("isIgnored").getAsString();
+            if (!isIgnored.equals("true") && !isIgnored.equals("false")) {
+                throw new RainyDayException("");
+            }
+        }
+    }
+
+    /**
+     * Checks if the shortcutCommands in the UserData is valid.
+     *
+     * @param shortcutCommands The shortcutCommands being loaded of JsonObject type.
+     * @throws RainyDayException If shortcutCommands is invalid.
+     */
+    private static void checkValidShortcutCommands(JsonObject shortcutCommands) throws RainyDayException {
+        HashMap<String, String> shortcutCommandsHashMap = new HashMap<>();
+        for (String key : shortcutCommands.keySet()) {
+            String value = shortcutCommands.get(key).getAsString();
+            ShortcutCommand.checkShortcutValidity(shortcutCommandsHashMap, key, value);
+            shortcutCommandsHashMap.put(key, value);
+        }
+    }
+
+
+    /**
      * Uses JSON serialization to save the FinancialReport object into a JSON file.
      *
      * @param userData The object containing the UserData to save.
@@ -82,23 +220,6 @@ public class Storage {
             e.printStackTrace();
         }
 
-    }
-
-    /**
-     * Uses deserialization to load the FinancialReport from a serialized file.
-     *
-     * @param filePath The file path where the FinancialReport will be loaded from.
-     * @return The FinancialReport after deserialization from the file.
-     * @throws FileNotFoundException If the file specified by the filePath is not found.
-     * @throws JsonParseException    If Json is given in invalid format and is unable to be parsed.
-     */
-    public static UserData loadFromFile(String filePath) throws FileNotFoundException
-            , JsonParseException {
-        setupLogger();
-        logger.log(Level.INFO, "starting LoadFromFile");
-        Reader reader = new FileReader(filePath);
-        UserData userData = gson.fromJson(reader, UserData.class);
-        return userData;
     }
 
     /**

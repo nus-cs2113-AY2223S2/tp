@@ -1,6 +1,7 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.exceptions.RainyDayException;
 
 //@@author lil1n
 
@@ -23,8 +24,22 @@ public abstract class Command {
     public static final String COMMAND_VIEW_SHORTCUT = "shortcut_view";
     public static final String COMMAND_IGNORE = "ignore";
     public static final String COMMAND_UNIGNORE = "unignore";
+    private static boolean isExit = false;
 
     protected UserData userData;
+
+    //@@author KN-CY
+    public static boolean isValidCommand(String word) {
+        return word.equalsIgnoreCase(COMMAND_ADD) || word.equalsIgnoreCase(COMMAND_DELETE) ||
+                word.equalsIgnoreCase(COMMAND_VIEW) || word.equalsIgnoreCase(COMMAND_HELP) ||
+                word.equalsIgnoreCase(COMMAND_EXIT) || word.equalsIgnoreCase(COMMAND_FILTER) ||
+                word.equalsIgnoreCase(COMMAND_EDIT) || word.equalsIgnoreCase(COMMAND_EXPORT) ||
+                word.equalsIgnoreCase(COMMAND_SHORTCUT) || word.equalsIgnoreCase(COMMAND_SET_BUDGET) ||
+                word.equalsIgnoreCase(COMMAND_DELETE_SHORTCUT) || word.equalsIgnoreCase(COMMAND_VIEW_SHORTCUT) ||
+                word.equalsIgnoreCase(COMMAND_IGNORE) || word.equalsIgnoreCase(COMMAND_UNIGNORE);
+    }
+
+
 
     /**
      * Sets the attribute to reference the financial report for execution of commands
@@ -43,5 +58,12 @@ public abstract class Command {
     /**
      * Executes the command and print the relevant output message
      */
-    public abstract CommandResult execute();
+    public abstract CommandResult execute() throws RainyDayException;
+
+    public boolean isExit() {
+        return isExit;
+    }
+    public void setExit() {
+        isExit = true;
+    }
 }

@@ -24,13 +24,15 @@ This user guide provides an in-depth documentation on how to install and use rai
 rainyDay, from users who are just starting out to advanced users who are looking for extra features they were unaware 
 of.
 
-### Features overview
+### What rainyDay can do for you
 rainyDay supports a variety of features for users to input and view their [transactions](#glossary). Please refer to the
 basic overview below, for more in-depth information, refer to the [Features Overview](#features-overview) section.
 
 **Transaction related** - adding, deleting and editing transaction entries <br>
 **Viewing related** - View, filter or sort transactions based on criteria  <br>
 **Budget related** - Setting a budget to adhere to
+
+You will be able to leverage on these features to efficiently track your finances and achieve your financial goals.
 
 ## Content Page
 
@@ -94,12 +96,18 @@ rainyDay on your device and how to start using it. Please refer to the steps bel
 4. To run "rainyDay.jar" on the command line, we have to do the following:
     1. Open the folder containing "rainyDay.jar" and click on the address bar <br>
        ![folderpath.png](images/UserGuide/folderpath.png)
-    2. We will need to open rainyDay in your CLI. This can be done by typing the word ["cmd"](#glossary) in the folder 
+    2. You will need to open rainyDay in your CLI. This can be done by typing the word ["cmd"](#glossary) in the folder 
 path in the address bar as shown <br>
        ![cmd.png](images/UserGuide/cmd.png)
-    3. Press Enter. Your Command Line should now be open in the folder containing "rainyDay.jar".
-5. Type `java -jar rainyDay.jar` and press Enter on your keyboard to start the application
-6. {todo add image of startup}
+    3. Press Enter. Your Command Line should now be open in the folder containing "rainyDay.jar" as shown below. The 
+location you saved rainyDay should be shown, in this example we saved it in the path "\Users\azriel\OneDrive - National 
+University of Singapore\Desktop\TP jar file"
+![cmd prompt open.png](images/UserGuide/cmd prompt open.png)
+5. Type `java -jar rainyDay.jar` in the terminal and press Enter on your keyboard to start the application. You should 
+see the following if the start up is successful.
+![cmd enter name.png](images/UserGuide/cmd enter name.png)
+6. Type your name and press Enter. The following will be shown:
+![cmd start up icon.png](images/UserGuide/cmd start up icon.png)
 
 ## Features Overview
 
@@ -137,7 +145,7 @@ worry! The help command is here to help you every step of the way!
 To get an overview of possible commands and their respective formats, you can use the `help` function as seen 
 below:
 
-Format: `help`
+Format: **`help`**
 
 The table below will be shown with the `help` command: <br>
 
@@ -646,8 +654,7 @@ command in full, you could configure the shortcut with the command below.
 Shortcut successfully added
 ```
 
-> ⚠️ Avoid adding a shortcut with the same name as an actual command. The actual command will take priority over your
-> configured shortcut.
+> ⚠️ Your configured shortcut should map to a valid full command for it to work correctly.
 
 #### Using a shortcut
 

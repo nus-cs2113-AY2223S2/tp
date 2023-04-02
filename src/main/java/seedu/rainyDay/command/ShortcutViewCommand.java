@@ -2,16 +2,14 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.RainyDay;
 
-import java.util.HashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 //@@author KN-CY
-public class ShortcutViewCommand extends Command {
+public class ShortcutViewCommand extends ShortcutCommand {
     private static final Logger logger = Logger.getLogger(ShortcutAddCommand.class.getName());
-    private static HashMap<String, String> shortcutCommands;
     private static final String TABLE_BORDER = "" +
             "+-----------------------------------+-------------------------------------------------------------+\n";
 
