@@ -4,6 +4,7 @@ package seedu.todolist.constants;
  * Enum that holds all the notification and help messages to be displayed.
  */
 public enum Messages {
+    LINE("_".repeat(90)),
     START("Hello, I am your To-Do list and I will help you remember the tasks you need to do!"),
     NEW_SAVE("No save data found, creating a new task list for you!"),
     LOAD_SAVE("Your saved task list was successfully loaded with "),

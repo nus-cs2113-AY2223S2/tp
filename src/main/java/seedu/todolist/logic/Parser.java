@@ -6,7 +6,25 @@ import seedu.todolist.exception.InvalidFlagException;
 import seedu.todolist.exception.MissingArgumentException;
 import seedu.todolist.exception.ToDoListException;
 
-import seedu.todolist.logic.command.*;
+import seedu.todolist.logic.command.AddTaskCommand;
+import seedu.todolist.logic.command.CheckRepeatingTaskCommand;
+import seedu.todolist.logic.command.Command;
+import seedu.todolist.logic.command.DeleteTaskCommand;
+import seedu.todolist.logic.command.EditDeadlineCommand;
+import seedu.todolist.logic.command.EditDescriptionCommand;
+import seedu.todolist.logic.command.EditEmailCommand;
+import seedu.todolist.logic.command.EditRepeatCommand;
+import seedu.todolist.logic.command.ExitCommand;
+import seedu.todolist.logic.command.ListFullInfoCommand;
+import seedu.todolist.logic.command.ListTagsCommand;
+import seedu.todolist.logic.command.ListTasksCommand;
+import seedu.todolist.logic.command.MarkTaskCommand;
+import seedu.todolist.logic.command.ProgressBarCommand;
+import seedu.todolist.logic.command.EditTagsCommand;
+import seedu.todolist.logic.command.UnmarkTaskCommand;
+import seedu.todolist.logic.command.EditPriorityCommand;
+import seedu.todolist.logic.command.FindByTag;
+import seedu.todolist.logic.command.FindByPriority;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,21 +35,40 @@ import java.util.StringJoiner;
  * Class containing a method for parsing the commands.
  */
 public class Parser {
+    private Flags parseFlag(String word, HashSet<Flags> allowedFlagsSet, Flags currentFlag,
+                            HashMap<Flags, String> arguments) throws InvalidFlagException {
+        Flags flag = Flags.fromString(word);
+        boolean isUnexpectedFlag = flag == null || !allowedFlagsSet.contains(flag);
+        boolean isRepeatedFlag = currentFlag.equals(flag) || arguments.containsKey(flag);
+        if (isUnexpectedFlag || isRepeatedFlag) {
+            throw new InvalidFlagException(word);
+        }
+        return flag;
+    }
+
+    private String getArgumentString(Flags flag, StringJoiner argument) throws MissingArgumentException {
+        if (argument.length() == 0 && !flag.canBeEmpty()) {
+            // Empty argument not allowed for this flag
+            throw new MissingArgumentException(flag);
+        }
+        return argument.toString();
+    }
+
     /**
      * Splits the initial command string into its arguments.
      *
      * @param splitInput The command string, split into words.
-     * @param flags Map of flags of the arguments that the command string are expected to contain.
+     * @param allowedFlags Array of flags that are allowed for this command.
      * @return Map of flags to arguments extracted from the command string.
      * @throws InvalidFlagException If there are multiple of the same flag or unexpected flags for this command.
      * @throws MissingArgumentException If arguments are not provided for flags that need them.
      */
-    public HashMap<Flags, String> getArguments(String[] splitInput, Flags[] flags)
+    private HashMap<Flags, String> getArguments(String[] splitInput, Flags[] allowedFlags)
             throws InvalidFlagException, MissingArgumentException {
         HashMap<Flags, String> arguments = new HashMap<>();
         StringJoiner currentArgument = new StringJoiner(" ");
-        Flags currentFlag = flags[0];
-        HashSet<Flags> flagsSet = new HashSet<>(Arrays.asList(flags));
+        Flags currentFlag = allowedFlags[0];
+        HashSet<Flags> allowedFlagsSet = new HashSet<>(Arrays.asList(allowedFlags));
 
         for (String word : Arrays.copyOfRange(splitInput, 1, splitInput.length)) {
             // Append to current argument if current word is not a new flag.
@@ -40,34 +77,19 @@ public class Parser {
                 continue;
             }
 
-            // Current word is a new flag
-            Flags flag = Flags.fromString(word);
-            // Unexpected and duplicate flags for this command are not allowed
-            boolean unexpectedFlag = flag == null || !flagsSet.contains(flag);
-            boolean duplicateFlag = currentFlag.equals(flag) || arguments.containsKey(flag);
-            if (unexpectedFlag || duplicateFlag) {
-                throw new InvalidFlagException(word);
-            }
-
+            // Current word is a new flag, check if it is valid
+            Flags flag = parseFlag(word, allowedFlagsSet, currentFlag, arguments);
             // Add current flag-argument combo to argument list and reset the argument string.
-            if (currentArgument.length() == 0 && !currentFlag.canBeEmpty()) {
-                // Empty argument not allowed for this flag
-                throw new MissingArgumentException(currentFlag);
-            }
-            arguments.put(currentFlag, currentArgument.toString());
+            arguments.put(currentFlag, getArgumentString(currentFlag, currentArgument));
             currentArgument = new StringJoiner(" ");
             currentFlag = flag;
         }
         // Add last flag-argument combo to argument list.
-        if (currentArgument.length() == 0 && !currentFlag.canBeEmpty()) {
-            throw new MissingArgumentException(currentFlag);
-        }
-        arguments.put(currentFlag, currentArgument.toString());
+        arguments.put(currentFlag, getArgumentString(currentFlag, currentArgument));
 
         return arguments;
     }
 
-    //@@author ERJUNZE
     /**
      * Parses the given command string into a command that can be executed.
      *

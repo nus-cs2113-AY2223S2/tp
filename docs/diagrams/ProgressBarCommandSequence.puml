@@ -48,8 +48,9 @@ activate Ui
 Ui --> ProgressBarCommand
 deactivate Ui
 
-ProgressBarCommand --> ToDoListManager : result
+ProgressBarCommand --> ToDoListManager
 deactivate ProgressBarCommand
 destroy ProgressBarCommand
-ToDoListManager --> User : Notify user of progress of tasks due this week
+ToDoListManager --> User
+deactivate ToDoListManager
 @enduml

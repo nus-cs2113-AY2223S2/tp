@@ -8,7 +8,7 @@ import seedu.todolist.task.TaskList;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.TreeSet;
 
 /**
  * Command class that will add a Task object to the given TaskList object.
@@ -20,7 +20,7 @@ public class AddTaskCommand extends Command {
     private String description;
     private String email;
     private LocalDateTime deadline;
-    private HashSet<String> tags;
+    private TreeSet<String> tags;
     private int repeatDuration;
     private int priority;
 
