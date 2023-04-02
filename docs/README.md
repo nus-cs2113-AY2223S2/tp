@@ -23,7 +23,7 @@ Line Interface (CLI).
 
 #### Task planner
 
-* Add 3 different types of tasks : todos,deadlines,events
+* Add 3 different types of tasks : todos, deadlines, events
 * Mark them as done or not done
 * Search for tasks by keyword
 * Filter tasks chronologically

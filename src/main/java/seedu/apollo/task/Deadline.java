@@ -32,6 +32,7 @@ public class Deadline extends Task {
         if (by.isBefore(LocalDateTime.now())) {
             throw new DateOverException(getType(), description, by, null, null);
         }
+
     }
 
     /**
@@ -47,22 +48,22 @@ public class Deadline extends Task {
     /**
      * {@inheritDoc}
      */
+
     @Override
     public String getType() {
         return "deadline";
     }
 
+    public LocalDateTime getByDate() {
+        return by;
+    }
     /**
      * {@inheritDoc}
      */
     @Override
     public Boolean isOnDate(LocalDate date) {
-        boolean byExists = (by != null);
-        LocalDate byDate = null;
-        if (byExists) {
-            byDate = by.toLocalDate();
-        }
-        return byExists && date.isEqual(byDate);
+        LocalDate byDate = by.toLocalDate();
+        return date.isEqual(byDate);
     }
 
     /**

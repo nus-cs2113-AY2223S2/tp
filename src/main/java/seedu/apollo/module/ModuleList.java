@@ -33,14 +33,16 @@ public class ModuleList extends ArrayList<Module> {
     }
 
     /**
-     * Prints the total modular credit in ArrayList of all modules.
+     * Calculate the total modular credit in ArrayList of all modules.
+     *
+     * @return Total modular credits.
      */
-    public void totalModuleCredits() {
+    public int getTotalModuleCredits() {
         int totalSemesterCredits = 0;
         for (Module module : this) {
             totalSemesterCredits += Integer.parseInt(module.getModuleCredits());
         }
-        System.out.println("Total modular credits you have in this semester: " + totalSemesterCredits);
+        return totalSemesterCredits;
     }
 
 }

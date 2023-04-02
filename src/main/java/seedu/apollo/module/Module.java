@@ -43,6 +43,11 @@ public class Module {
         return title;
     }
 
+    /**
+     * Retrieves a String with the module's credit.
+     *
+     * @return String of the module credit
+     */
     public String getModuleCredits() {
         return moduleCredits;
     }

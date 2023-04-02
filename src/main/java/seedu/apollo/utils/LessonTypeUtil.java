@@ -4,6 +4,12 @@ import seedu.apollo.module.LessonType;
 
 public class LessonTypeUtil {
 
+    /**
+     * Converts a lesson type string to a LessonType enum.
+     *
+     * @param lessonType The string to be converted.
+     * @return The LessonType enum representation of the string.
+     */
     public static LessonType determineLessonType(String lessonType) {
         switch (lessonType) {
         case "Lecture":
@@ -35,32 +41,39 @@ public class LessonTypeUtil {
         }
     }
 
-    public static String enumToString(LessonType lessonType){
+    /**
+     * Converts a LessonType enum to a string.
+     *
+     * @param lessonType The LessonType enum to be converted.
+     * @param isFlag Whether the string should be a flag.
+     * @return The string representation of the LessonType enum.
+     */
+    public static String enumToString(LessonType lessonType, Boolean isFlag){
         switch (lessonType) {
         case LECTURE:
-            return "Lecture";
+            return "Lecture" + (isFlag ? " (-lec)" : "");
         case PACKAGED_LECTURE:
-            return "Packaged Lecture";
+            return "Packaged Lecture" + (isFlag ? " (-plec)" : "");
         case SECTIONAL_TEACHING:
-            return "Sectional Teaching";
+            return "Sectional Teaching" + (isFlag ? " (-st)" : "");
         case DESIGN_LECTURE:
-            return "Design Lecture";
+            return "Design Lecture" + (isFlag ? " (-dlec)" : "");
         case TUTORIAL:
-            return "Tutorial";
+            return "Tutorial" + (isFlag ? " (-tut)" : "");
         case PACKAGED_TUTORIAL:
-            return "Packaged Tutorial";
+            return "Packaged Tutorial" + (isFlag ? " (-ptut)" : "");
         case RECITATION:
-            return "Recitation";
+            return "Recitation" + (isFlag ? " (-rcit)" : "");
         case LABORATORY:
-            return "Laboratory";
+            return "Laboratory" + (isFlag ? " (-lab)" : "");
         case WORKSHOP:
-            return "Workshop";
+            return "Workshop" + (isFlag ? " (-ws)" : "");
         case SEMINAR_STYLE_MODULE_CLASS:
-            return "Seminar-Style Module Class";
+            return "Seminar-Style Module Class" + (isFlag ? " (-smc)" : "");
         case MINI_PROJECT:
-            return "Mini-Project";
+            return "Mini-Project" + (isFlag ? " (-mp)" : "");
         case TUTORIAL_TYPE_2:
-            return "Tutorial Type 2";
+            return "Tutorial Type 2" + (isFlag ? " (-tt2)" : "");
         default:
             return null;
         }

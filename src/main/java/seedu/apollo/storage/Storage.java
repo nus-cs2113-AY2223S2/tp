@@ -11,6 +11,7 @@ import seedu.apollo.exception.task.DateOrderException;
 import seedu.apollo.exception.task.InvalidDeadline;
 import seedu.apollo.exception.task.InvalidEvent;
 import seedu.apollo.exception.utils.InvalidSaveFile;
+import seedu.apollo.exception.utils.DuplicateModuleInTextFileException;
 import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.Deadline;
@@ -18,6 +19,7 @@ import seedu.apollo.task.Event;
 import seedu.apollo.task.Task;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.task.ToDo;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
@@ -39,7 +42,7 @@ import java.util.logging.Logger;
 /**
  * Storage class that initialises the task list and updates the save file.
  */
-public class Storage implements seedu.apollo.utils.Logger {
+public class Storage implements LoggerInterface {
     // Location of save file
     protected static String filePath;
     protected static String moduleDataFilePath;
@@ -71,6 +74,7 @@ public class Storage implements seedu.apollo.utils.Logger {
      *
      * @throws IOException If logger file cannot be created.
      */
+    @Override
     public void setUpLogger() {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.ALL);
@@ -166,6 +170,12 @@ public class Storage implements seedu.apollo.utils.Logger {
         overwrite.close();
     }
 
+    /**
+     * Reads all lines in the moduleData file, initialises them as an ModuleList of Modules.
+     * @param overwrite
+     * @param module
+     * @throws IOException
+     */
     private void writeModules(FileWriter overwrite, Module module) throws IOException {
         ArrayList<Timetable> timetableList = module.getModuleTimetable();
         if (timetableList != null) {
@@ -264,18 +274,39 @@ public class Storage implements seedu.apollo.utils.Logger {
                 if (newModule == null) {
                     throw new InvalidSaveFile();
                 }
+
                 Module module = new Module(newModule.getCode(), newModule.getTitle(), newModule.getModuleCredits());
+                if (isAdded(newModuleList, module)) {
+                    throw new DuplicateModuleInTextFileException();
+                }
                 addLessons(module, newModule, moduleInfoArgs);
                 calendar.addModule(module);
                 newModuleList.add(module);
                 counter++;
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
+            } catch (DuplicateModuleInTextFileException e) {
+                ui.printDuplicateModuleInTextFile(counter);
             }
         }
         return newModuleList;
     }
 
+    /**
+     * Checks if the module is already in the module file.
+     *
+     * @param moduleList The list of modules.
+     * @param module The module to be checked.
+     * @return True if the module is already in the module file.
+     */
+    public static boolean isAdded(ModuleList moduleList, Module module) {
+        for (Module mod: moduleList) {
+            if (mod.getCode().equals(module.getCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
     private static void addLessons(Module module, Module searchModule, String[] moduleInfo) {
         module.createNewTimeTable();
 
@@ -305,9 +336,16 @@ public class Storage implements seedu.apollo.utils.Logger {
      * @throws InvalidSaveFile If any line in the input data is not of the right format.
      */
     private static Task newTask(String text) throws InvalidSaveFile, DateOverException {
-        char type = getType(text);
-        Boolean isDone = isStatusDone(text);
-        String param = getParam(text);
+        char type;
+        Boolean isDone;
+        String param;
+        try {
+            type = getType(text);
+            isDone = isStatusDone(text);
+            param = getParam(text);
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new InvalidSaveFile();
+        }
         switch (type) {
         case TXT_TODO_WORD:
             return newToDo(isDone, param);
@@ -345,9 +383,13 @@ public class Storage implements seedu.apollo.utils.Logger {
         } catch (InvalidDeadline e) {
             throw new InvalidSaveFile();
         }
-        Deadline newDeadline = new Deadline(paramAndBy[0], paramAndBy[1]);
-        newDeadline.setDone(isDone);
-        return newDeadline;
+        try {
+            Deadline newDeadline = new Deadline(paramAndBy[0], paramAndBy[1]);
+            newDeadline.setDone(isDone);
+            return newDeadline;
+        } catch (DateTimeParseException e) {
+            throw new InvalidSaveFile();
+        }
     }
 
     private static Event newEvent(Boolean isDone, String param) throws InvalidSaveFile, DateOverException {
@@ -361,7 +403,7 @@ public class Storage implements seedu.apollo.utils.Logger {
             Event newEvent = new Event(paramAndFromTo[0], paramAndFromTo[1], paramAndFromTo[2]);
             newEvent.setDone(isDone);
             return newEvent;
-        } catch (DateOrderException e) {
+        } catch (DateTimeParseException | DateOrderException e) {
             throw new InvalidSaveFile();
         }
     }
