@@ -26,7 +26,7 @@ import java.io.IOException;
  */
 public class DukeOfBooks {
 
-    public static final String VERSION = "DukeOfBooks - Version 1.0";
+    public static final String VERSION = "DukeOfBooks - Version 2.1";
     private LoanRecords allLoanRecords;
     private UserRecords userRecords;
     private SearchController searchController = new SearchController();

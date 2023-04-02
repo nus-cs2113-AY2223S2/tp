@@ -3,6 +3,7 @@ package seedu.dukeofbooks.parser;
 
 
 import seedu.dukeofbooks.command.BorrowCommand;
+import seedu.dukeofbooks.command.CheckItemAvailabilityCommand;
 import seedu.dukeofbooks.command.HistoryCommand;
 import seedu.dukeofbooks.command.IncorrectUserCommand;
 import seedu.dukeofbooks.command.InventoryCommand;
@@ -65,10 +66,38 @@ public class UserCommandParser implements IParser{
             return prepareReturnCommand(arguments);
         case SearchCommand.COMMAND_WORD:
             return prepareSearchCommand(arguments);
+        case CheckItemAvailabilityCommand.COMMAND_WORD:
+            return prepareCheckItemAvailabilityCommand(arguments);
         case UserExitCommand.COMMAND_WORD:
             return new UserExitCommand();
         default:
             return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+    }
+
+    private UserCommand prepareCheckItemAvailabilityCommand(String arguments) {
+        String[] parts = arguments.split(SPACE_CHAR);
+        int titleIndex = -1;
+        for (int i = 0; i < parts.length; ++i) {
+            if (parts[i].equals(TITLE_ARG)) {
+                titleIndex = i;
+                break;
+            }
+        }
+        if (titleIndex != -1) {
+            try {
+                StringBuilder sb = new StringBuilder();
+                for (int i = titleIndex + 1; i < parts.length; ++i) {
+                    sb.append(parts[i]).append(" ");
+                }
+                String title = sb.toString().trim();
+                BorrowableItem toCheck = SearchController.searchBookByTitle(title);
+                return new CheckItemAvailabilityCommand(toCheck);
+            } catch (IllegalValueException e) {
+                return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            }
+        } else {
+            return new IncorrectUserCommand(CheckItemAvailabilityCommand.INCORRECT_SYNTAX);
         }
     }
 

@@ -1,5 +1,6 @@
 package seedu.dukeofbooks.data.loan;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 import seedu.dukeofbooks.common.IVerifiable;
@@ -10,11 +11,13 @@ import seedu.dukeofbooks.data.exception.IllegalDateException;
 public class Loan implements IVerifiable {
     public static final String LOAN_DATE_IS_AFTER_LOAN_START =
             "Error: loan date after loan start date";
+    public static final double OVERDUE_FEE_PER_DAY = 1.0;
     private BorrowableItem item;
     private Person borrower;
     private LocalDateTime loanStart;
     private LocalDateTime loanEnd;
     private boolean isReturned;
+    
 
     public Loan(BorrowableItem toBorrow, Person borrower,
                 LocalDateTime loanStart, LocalDateTime loanEnd) {
@@ -57,6 +60,19 @@ public class Loan implements IVerifiable {
     }
     public void setReturned(boolean isReturned) {
         this.isReturned = isReturned;
+    }
+
+    public double getOverdueFeePerDay() {
+        return OVERDUE_FEE_PER_DAY;
+    }
+
+    public double calculateOverduePayment(LocalDateTime returnDate) {
+        long daysOverdue = ChronoUnit.DAYS.between(loanEnd, returnDate);
+        if (daysOverdue <= 0) {
+            return 0.0;
+        } else {
+            return daysOverdue * OVERDUE_FEE_PER_DAY;
+        }
     }
 
     @Override
