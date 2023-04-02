@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title WeekCommand
+
+participant Parser as Parser
+
+participant WeekCommand as week
+
+Parser -> week : WeekCommand()
+activate week
+week -> LoggerInterface : setUpLogger()
+
+activate LoggerInterface
+deactivate LoggerInterface
+destroy LoggerInterface
+deactivate week
+
+Parser -> week : execute()
+
+week -> Ui : printWeek()
+activate Ui
+
+activate week
+
+loop 7 times
+    Ui -> DayTypeUtil : determineDay()
+    activate DayTypeUtil
+    return
+    destroy DayTypeUtil
+    Ui -> Ui : printLessonsOnDay()
+    activate Ui
+        Ui -> Calendar : get()
+        activate Calendar
+        Calendar -> Ui : lessonsOnDay
+        destroy Calendar
+        alt lessonsOnDay.size() == 0
+            Ui -> Ui : false
+        else
+            Ui -> Ui : true
+        end
+    deactivate Ui
+
+    Ui -> Ui : printTasksOnDay()
+    activate Ui
+        Ui -> TaskList : getTasksOnDate()
+        activate TaskList
+        TaskList -> Ui : tasksOnDay
+        destroy TaskList
+        alt tasksOnDay.size() == 0
+            Ui -> Ui : false
+        else
+            Ui -> Ui : true
+        end
+    deactivate Ui
+end
+destroy Ui
+destroy week
+
+@enduml
