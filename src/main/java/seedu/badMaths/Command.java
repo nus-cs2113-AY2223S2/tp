@@ -190,9 +190,11 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Clear":
+            //@@author WilsonLee2000
                 if(!isInvalidTodo(toDo)) {
                     throw new IllegalTodoException();
                 }
+            //@@author ZiqiuZeng
                 notes.reset();
                 Storage.clearFile(filePath);
                 break;
