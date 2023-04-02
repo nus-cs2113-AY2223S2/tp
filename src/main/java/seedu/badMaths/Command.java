@@ -188,13 +188,17 @@ public class Command {
                     break;
                 }
                 break;
-            //@@author ZiqiuZeng
             case "Clear":
+                if(!isInvalidTodo(toDo)) { //@@author WilsonLee2000
+                    throw new IllegalTodoException(); //@@author WilsonLee2000
+                } //@@author WilsonLee2000
                 notes.reset();
                 Storage.clearFile(filePath);
                 break;
-            //@@author Khooyourun
             case "Help":
+                if(!isInvalidTodo(toDo)) { //@@author WilsonLee2000
+                    throw new IllegalTodoException(); //@@author WilsonLee2000
+                } //@@author WilsonLee2000
                 HelpManual.readHelpManual();
                 break;
             //@@author 0nandon
