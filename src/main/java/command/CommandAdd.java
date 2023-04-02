@@ -5,6 +5,8 @@ import data.Expense;
 import data.ExpenseList;
 import data.Time;
 import exception.FutureDateException;
+import exception.InvalidDateException;
+import exception.PastDateException;
 import org.threeten.extra.Temporals;
 import parser.ParserAdd;
 
@@ -46,12 +48,18 @@ public class CommandAdd extends Command {
         try {
             if (LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter).isAfter(LocalDate.now())) {
                 throw new FutureDateException();
-            } else if(Double.parseDouble(parsedInput[ParserAdd.AMOUNT_INDEX]) < 0){
+            } else if (LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter).isBefore(LocalDate.parse(
+                    "01-01-1981", formatter))) {
+                throw new PastDateException();
+            } else if (Double.parseDouble(parsedInput[ParserAdd.AMOUNT_INDEX]) < 0) {
                 throw new NumberFormatException();
-            }else {
+            } else {
                 Time date = new Time(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter));
                 String exchangeRateDate = LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter)
                         .with(Temporals.previousWorkingDay()).toString();
+                if(!date.toString().replace('/', '-').equals(parsedInput[ParserAdd.TIME_INDEX])) {
+                    throw new InvalidDateException();
+                }
                 Expense addedExpense = new Expense(currency.roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
                         date, parsedInput[ParserAdd.CATEGORY_INDEX],
                         Currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]),
@@ -67,9 +75,13 @@ public class CommandAdd extends Command {
             System.out.println("Please input both the amount and date with amt/ and t/ respectively.");
         } catch (DateTimeException e) {
             System.out.println("Invalid date. Please input the date in dd-MM-yyyy format.");
-        } catch (Exception e) {
+        } catch (FutureDateException e) {
             System.out.println("Invalid date. Please input a date before today's date.\nToday's date is: " +
                     LocalDate.now());
+        }catch (PastDateException e) {
+            System.out.println("Dates beyond 1981 are not supported. Please try again.");
+        }catch (InvalidDateException e) {
+            System.out.println("Date does not exist, please try again.");
         }
         return null;
     }

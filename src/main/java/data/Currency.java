@@ -2,6 +2,7 @@ package data;
 
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -101,9 +102,6 @@ public class Currency implements Serializable {
         if (currencyKey.equals("SGD")) {
             return new BigDecimal(1);
         }
-        if(date.isBefore(LocalDate.parse("1988-01-08"))) {
-            return getOfflineRate(currencyKey);
-        }
         try {
             String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8b" +
                     "c-4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date.toString() + "&limit=1";
@@ -139,6 +137,9 @@ public class Currency implements Serializable {
             //returns a preset offline rate if no internet connection is available
             System.out.println("get failed.");
             return getOfflineRate(currencyKey);
+        } catch (JSONException e) {
+            //catches JSON exception when API is down
+            return  getOfflineRate(currencyKey);
         }
         assert false;
         return null;
@@ -150,11 +151,11 @@ public class Currency implements Serializable {
     public static void generateOfflineRates() {
         offlineExchangeRate.put("eur_sgd", new BigDecimal(1.5395));
         offlineExchangeRate.put("gbp_sgd", new BigDecimal(1.8278));
-        offlineExchangeRate.put("usd_sgd", new BigDecimal(1.3431));
+        offlineExchangeRate.put("usd_sgd", new BigDecimal(1.3241));
         offlineExchangeRate.put("aud_sgd", new BigDecimal(0.9596));
         offlineExchangeRate.put("cad_sgd", new BigDecimal(1.0601));
         offlineExchangeRate.put("cny_sgd_100", new BigDecimal(0.2111));
-        offlineExchangeRate.put("hkd_sgd_100", new BigDecimal(0.1724));
+        offlineExchangeRate.put("hkd_sgd_100", new BigDecimal(0.1687));
         offlineExchangeRate.put("inr_sgd_100", new BigDecimal(0.017075));
         offlineExchangeRate.put("idr_sgd_100", new BigDecimal(0.00009342));
         offlineExchangeRate.put("jpy_sgd_100", new BigDecimal(0.011688));
