@@ -38,7 +38,7 @@ public class UI {
     private static final String CURRENT_DEADLINES_LIST_EMPTY = "The current deadlines list is empty";
     private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map "
             + "this NUS module code: ";
-    public static final String MODULE_ALREADY_EXIST_MESSAGE = "This module already exists in your list";
+    private static final String MODULE_ALREADY_EXIST_MESSAGE = "This module already exists in your list";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
