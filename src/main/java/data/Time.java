@@ -1,11 +1,16 @@
 package data;
 
+import com.google.gson.annotations.JsonAdapter;
+import utils.GsonLocalDateAdaptor;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
 public class Time implements Comparable<Time> {
     // This class is used to deal with the initialization, access, and change of DateTime
+
+    @JsonAdapter(GsonLocalDateAdaptor.class)
     protected LocalDate date;
 
     public Time(LocalDate date) {

@@ -1,21 +1,29 @@
 package storage;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.MalformedJsonException;
 import data.Expense;
 import data.ExpenseList;
-
+import utils.GsonLocalDateAdaptor;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Objects;
+
+import static common.MessageList.PERIOD;
+import static common.MessageList.WHITESPACE;
 
 
 // https://kodejava.org/how-do-i-store-objects-in-file/
@@ -33,7 +41,14 @@ public class Storage {
             "Save the remaining data to another location before deleting the current data file. " +
             "Restart the programme after deleting the corrupted data file to proceed.";
     private static final String CREATE_FILE_ERROR = "Error creating file.";
-    private static final Gson GSON = new Gson();
+    private static final String MORE_DP_ERROR = "More than 2 decimal places detected for Expense ";
+    private static final String LESS_DP_ERROR = "Less than 2 decimal places detected for Expense ";
+    private static final String ROUND_UP_WARNING = "Expense amount is rounded back to 2 decimal points by default.";
+
+    private static final Gson GSON = new GsonBuilder()
+            .setPrettyPrinting()
+            .registerTypeAdapter(LocalDate.class, new GsonLocalDateAdaptor())
+            .create();
 
     private ExpenseList expenseList;
 
@@ -79,10 +94,11 @@ public class Storage {
     }
 
     //TODO: JSON
+
     /**
      * Loads expenses from json file and save as an ArrayList of Expenses
-     * @param filePath Path at which the json file is stored.
      *
+     * @param filePath Path at which the json file is stored.
      * @return An arraylist of expenses.
      * @throws NullPointerException if json file is empty.
      */
@@ -92,16 +108,48 @@ public class Storage {
         createFile(filePath);
         try {
             Reader reader = Files.newBufferedReader(Paths.get(filePath));
-            Type typeOfObject = new TypeToken<ArrayList<Expense>>() {}.getType();
+            Type typeOfObject = new TypeToken<ArrayList<Expense>>() {
+            }.getType();
             expenses = GSON.fromJson(reader, typeOfObject);
-        } catch (JsonSyntaxException e) {
+        } catch (JsonSyntaxException | MalformedJsonException | DateTimeParseException e) {
             System.out.println(DATA_CORRUPTED_ERROR);
             System.exit(0);
         } catch (IOException e) {
             System.out.println(CREATE_FILE_ERROR);
         }
-
+        if (expenses != null) {
+            checkValidExpenseList(expenses, filePath);
+        }
         return Objects.requireNonNullElseGet(expenses, ArrayList::new);
+    }
+
+    private void checkValidExpenseList(ArrayList<Expense> expenses, String filePath) {
+        int index = 0;
+        for (Expense expense : expenses) {
+            try {
+                index++;
+                expense.toString();
+                if (expense.getDescription() == null | expense.getCurrencyType() == null | expense.getRate() == null) {
+                    throw new NullPointerException();
+                }
+                if (expense.getExpenseAmount().scale() > 2) {
+                    System.out.println(MORE_DP_ERROR + index + PERIOD + WHITESPACE + ROUND_UP_WARNING);
+                    expense.setExpenseAmount(expense.getExpenseAmount().setScale(2, RoundingMode.HALF_UP));
+                    expenseList.setExpenseList(expenses);
+                    saveExpenses(filePath);
+                } else if (expense.getExpenseAmount().scale() < 2) {
+                    System.out.println(LESS_DP_ERROR + index + PERIOD + WHITESPACE + ROUND_UP_WARNING);
+                    expense.setExpenseAmount(expense.getExpenseAmount().setScale(2, RoundingMode.HALF_UP));
+                    expenseList.setExpenseList(expenses);
+                    saveExpenses(filePath);
+                }
+            } catch (NullPointerException e) {
+                System.out.println("Expense " + index + " corrupted.");
+                System.out.println("Edit Expense " + index + " in data file to fix this error. " +
+                        "If problem persists, delete the current data file and restart the programme.");
+                System.exit(0);
+            }
+        }
     }
 
     public ExpenseList getExpenseList() {
