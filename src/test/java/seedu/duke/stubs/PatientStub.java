@@ -9,8 +9,10 @@ import java.util.Hashtable;
 public class PatientStub {
 
     public static Patient getDummyPatient() {
-        ArrayList<String> dummyPatientDiagnosisHistory = new ArrayList<>();
-        dummyPatientDiagnosisHistory.add("Fever");
+        Hashtable<String, ArrayList<String>> dummyPatientDiagnosisHistory = new Hashtable<>();
+        ArrayList<String> dummydiagnoses = new ArrayList<>();
+        dummydiagnoses.add("Fever");
+        dummyPatientDiagnosisHistory.put("2023/01/01", dummydiagnoses);
 
         Hashtable<String, ArrayList<String>> dummyPatientMedicineHistory = new Hashtable<>();
         ArrayList<String> dummyMedicines = new ArrayList<>();

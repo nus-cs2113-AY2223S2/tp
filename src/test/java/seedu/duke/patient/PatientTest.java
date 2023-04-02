@@ -17,13 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PatientTest {
     private final String testName = "Akshay";
     private final String testPassword = "iloveCS2113";
-    private final ArrayList<String> testDiagnosisHistory = new ArrayList<>();
+    private final Hashtable<String, ArrayList<String>> testDiagnosisHistory = new Hashtable<>();
     private final Hashtable<String, ArrayList<String>> testMedicineHistory = new Hashtable<>();
 
     @Test
     public void createNewPatientTest() {
 
-        ArrayList<String> dummyDiagnosisHistory = new ArrayList<>();
+        Hashtable<String, ArrayList<String>> dummyDiagnosisHistory = new Hashtable<>();
 
         Patient testPatient = new Patient(
                 testName, Information.hashPassword(testPassword), testDiagnosisHistory, testMedicineHistory);
@@ -34,25 +34,31 @@ public class PatientTest {
 
     }
 
+    //@@author Thunderdragon221
     @Test
     public void testUpdatePatientDiagnosisHistory() {
 
-        ArrayList<String> dummyPatientDiagnosisHistory = new ArrayList<>();
-        dummyPatientDiagnosisHistory.add("Flu");
-        dummyPatientDiagnosisHistory.add("Fever");
-        dummyPatientDiagnosisHistory.add("COVID-19");
+        Hashtable<String, ArrayList<String>> dummyPatientDiagnosisHistory = new Hashtable<>();
+        ArrayList<String> dummyPatientDiagnoses = new ArrayList<>();
+        dummyPatientDiagnoses.add("Flu");
+        dummyPatientDiagnoses.add("Fever");
+        dummyPatientDiagnoses.add("COVID-19");
+        dummyPatientDiagnosisHistory.put("2023/01/01", dummyPatientDiagnoses);
 
         Patient testPatient = new Patient(
                 testName, Information.hashPassword(testPassword), testDiagnosisHistory, testMedicineHistory);
 
-        testPatient.updatePatientDiagnosisHistory("Flu");
-        testPatient.updatePatientDiagnosisHistory("Fever");
-        testPatient.updatePatientDiagnosisHistory("COVID-19");
+        ArrayList<String> testPatientDiagnoses = new ArrayList<>();
+        testPatientDiagnoses.add("Flu");
+        testPatientDiagnoses.add("Fever");
+        testPatientDiagnoses.add("COVID-19");
+        testPatient.updatePatientDiagnosisHistory("2023/01/01", testPatientDiagnoses);
 
         assertEquals(dummyPatientDiagnosisHistory, testPatient.getPatientDiagnosisHistory());
 
     }
 
+    //@@author Geeeetyx
     @Test
     public void testUpdatePatientMedicineHistory() {
 

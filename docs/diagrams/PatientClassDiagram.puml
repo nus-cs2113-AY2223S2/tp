@@ -11,7 +11,7 @@ class Patient{
 #name: String
 #hash: int
 
-+Patient(name: String, hash: int, patientDiagnosisHistory: ArrayList<String>,
++Patient(name: String, hash: int, patientDiagnosisHistory: Hashtable<String, ArrayList<String>>,
          patientDiagnosisHistory: HashTable<String, ArrayList<String>>)
 
 +getName()
@@ -19,9 +19,9 @@ class Patient{
 +setName(name: String)
 +setPassword(hash: int)
 
-+setPatientDiagnosisHistory(diagnosisHistory: ArrayList<String>)
++setPatientDiagnosisHistory(diagnosisHistory: Hashtable<String, ArrayList<String>>)
 +getPatientDiagnosisHistory()
-+updatePatientDiagnosisHistory(diagnosis: String)
++updatePatientDiagnosisHistory(date: String, diagnoses: ArrayList<String>)
 
 +getPatientMedicineHistory()
 +setPatientMedicineHistory(patientMedicineHistory: Hashtable<String, ArrayList<String>>)
@@ -29,7 +29,7 @@ class Patient{
 +printPatientMedicineHistory()
 
 -appendMedicineToSameDate(date: String, medicines: ArrayList<String>)
-
+-appendDiagnosisToSameDate(date: String, diagnoses: ArrayList<String>)
 }
 
 @enduml

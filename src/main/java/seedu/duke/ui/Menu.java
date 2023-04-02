@@ -64,7 +64,7 @@ public class Menu {
                 if (password.equals(password2)) {
                     System.out.println("---------------------------------------------------");
                     System.out.println("Registration successful!");
-                    ArrayList<String> diagnosisHistory = new ArrayList<>();
+                    Hashtable<String, ArrayList<String>> diagnosisHistory = new Hashtable<>();
                     Hashtable<String, ArrayList<String>> medicineHistory = new Hashtable<>();
                     Information.storePatientInfo(hash, new Patient(name, hash, diagnosisHistory, medicineHistory));
                     Storage.saveData();

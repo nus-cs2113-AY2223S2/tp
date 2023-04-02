@@ -13,6 +13,7 @@ import java.util.Scanner;
 import java.time.LocalDateTime;
 
 import static seedu.duke.save.Storage.saveData;
+import static seedu.duke.save.Storage.saveQueue;
 
 public class Parser {
 
@@ -55,18 +56,23 @@ public class Parser {
                 //@@author tanyizhe
                 ArrayList<Symptom> symptoms = Menu.getUserSymptoms();
                 Menu.displayPossibleIllness(symptoms);
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                LocalDateTime now = LocalDateTime.now();
                 ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
+                ArrayList<String> diagnoses = new ArrayList<>();
                 for (IllnessMatch illnessMatch : possibleIllnesses) {
-                    user.updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
-                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                    LocalDateTime now = LocalDateTime.now();
+                    diagnoses.add(illnessMatch.getIllness().getIllnessName());
                     ArrayList<String> medicineArrayList = medicineManager
                             .getRelevantMedicationInString(illnessMatch.getIllness().getIllnessName());
                     if (!(medicineArrayList == null)) {
                         user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
                     }
                 }
+                if (diagnoses.size() > 0) {
+                    user.updatePatientDiagnosisHistory(dtf.format(now), diagnoses);
+                }
                 saveData();
+                saveQueue();
             } catch (Exception e) {
                 System.out.println("Invalid input!");
             }

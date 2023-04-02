@@ -10,7 +10,7 @@ import java.util.List;
  * The Patient Class contains methods related to the information of a Patient.
  */
 public class Patient {
-    protected ArrayList<String> patientDiagnosisHistory = new ArrayList<>();
+    protected Hashtable<String, ArrayList<String>> patientDiagnosisHistory = new Hashtable<>();
     protected Hashtable<String, ArrayList<String>> patientMedicineHistory = new Hashtable<>();
     protected String name;
     protected int hash;
@@ -22,7 +22,7 @@ public class Patient {
      * @param patientDiagnosisHistory Array containing the history of diagnoses of the patient.
      * @param patientMedicineHistory  Array containing the history of prescribed medications to the patient.
      */
-    public Patient(String name, int hash, ArrayList<String> patientDiagnosisHistory,
+    public Patient(String name, int hash, Hashtable<String, ArrayList<String>> patientDiagnosisHistory,
                    Hashtable<String, ArrayList<String>> patientMedicineHistory
                    //int queueNumber
                    ) {
@@ -49,18 +49,40 @@ public class Patient {
         this.hash = hash;
     }
 
-    public void setPatientDiagnosisHistory(ArrayList<String> diagnosisHistory) {
+    public void setPatientDiagnosisHistory(Hashtable<String, ArrayList<String>> diagnosisHistory) {
         patientDiagnosisHistory = diagnosisHistory;
     }
 
-    public ArrayList<String> getPatientDiagnosisHistory() {
+    public Hashtable<String, ArrayList<String>> getPatientDiagnosisHistory() {
         return patientDiagnosisHistory;
     }
 
-    public void updatePatientDiagnosisHistory(String diagnosis) {
-        patientDiagnosisHistory.add(diagnosis);
+    //@@author Thunderdragon221
+    /**
+     * Updates patient's diagnosis history.
+     * @param date date of use of Dr Duke.
+     * @param diagnoses ArrayList containing list of illnesses patient is diagnosed with.
+     */
+    public void updatePatientDiagnosisHistory(String date, ArrayList<String> diagnoses) {
+        if (patientDiagnosisHistory.containsKey(date)) {
+            appendDiagnosisToSameDate(date, diagnoses);
+        } else {
+            patientDiagnosisHistory.put(date, diagnoses);
+        }
     }
-    //@@author
+
+    /**
+     * Appends illnesses patient is diagnosed with if additional illnesses are diagnosed on the same day.
+     * @param diagnoses ArrayList of illnesses patient is diagnosed with.
+     * @param date String representing the date that patient was diagnosed.
+     */
+    private void appendDiagnosisToSameDate(String date, ArrayList<String> diagnoses) {
+        for (String diagnosis : diagnoses) {
+            if (!patientDiagnosisHistory.get(date).contains(diagnosis)) {
+                patientDiagnosisHistory.get(date).add(diagnosis);
+            }
+        }
+    }
 
     //@@author tanyizhe
     /**
