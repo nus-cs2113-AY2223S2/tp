@@ -10,4 +10,3 @@
 || Goodbye!
 || ===================================================
 Failed to save book data!
-Test failed!
