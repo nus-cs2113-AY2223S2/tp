@@ -107,7 +107,7 @@ public final class FoodData {
         "50,Side,Coleslaw,Western" +
             ",1,68,0.7,4.7,,,4.9,9.4,",
         "51,Dish,Signature Trio Eggs Spinach " +
-            "Soup (Regular),Ramen,10,256,,,,,,14,",
+            "Soup (Regular),Ramen,10,256,0.0,0.0,0.0,0.0,0.0,0.0,",
         "52,Dish,Signature Trio Eggs Spinach So" +
             "up (Small Portion),Ramen,10,119,,,,,,0,",
         "53,Dish,Seafood Spinach Soup " +
@@ -175,93 +175,93 @@ public final class FoodData {
         "84,Side,Ramen (side)" +
             ",Ramen,10,262,,,,,,4,",
         "85,Ingredient,Mala Sauce (Non-Spicy Bas" +
-            "e),Mala,4,46,1.7,0.1,0,0.4,9.7,5.3,1006",
+            "e),Mala,4,46,1.7,0.1,0,0.4,9.7,5.3,1.0",
         "86,Ingredient,Coriander," +
-            "Mala,4,0,0,0,0,0.1,0,0,1",
+            "Mala,4,0,0,0,0,0.1,0,0,0.0",
         "87,Ingredient,White Rice,Mala,4" +
-            ",237,4.7,0.8,0.2,0.7,52.6,0.2,8",
+            ",237,4.7,0.8,0.2,0.7,52.6,0.2,0.0",
         "88,Ingredient,Sotong Ring,Mala" +
-            ",4,51,8.6,0.8,0.2,0,1.7,1.7,24",
+            ",4,51,8.6,0.8,0.2,0,1.7,1.7,0.0",
         "89,Ingredient,Prawn,Mala," +
-            "4,34,7.8,0.2,0.1,0,0,0,134",
+            "4,34,7.8,0.2,0.1,0,0,0,0.1",
         "90,Ingredient,Fish Slice,Mala," +
-            "4,57,12.8,0.5,0.1,0,0.1,0.1,51",
+            "4,57,12.8,0.5,0.1,0,0.1,0.1,0.1",
         "91,Ingredient,Chicken Gizzard" +
-            ",Mala,4,45,8.5,1,0.3,0,0,0,33",
+            ",Mala,4,45,8.5,1,0.3,0,0,0,0.1",
         "92,Ingredient,Beef Slice,Mal" +
-            "a,4,109,11.8,6.9,3.3,0,0,0,32",
+            "a,4,109,11.8,6.9,3.3,0,0,0,0.1",
         "93,Ingredient,Shitake Mushroom" +
-            ",Mala,4,16,1,0.2,0,1.2,2,1.1,4",
+            ",Mala,4,16,1,0.2,0,1.2,2,1.1,0.0",
         "94,Ingredient,King Oyster Mushroom" +
-            ",Mala,4,13,1.3,0.2,0,0.7,1.4,0.7,2",
+            ",Mala,4,13,1.3,0.2,0,0.7,1.4,0.7,0.0",
         "95,Ingredient,Xiao Bai Cai,Mal" +
-            "a,4,7,0.8,0.1,0,0.5,0.6,0.6,36",
+            "a,4,7,0.8,0.1,0,0.5,0.6,0.6,0.1",
         "96,Ingredient,Wintermelon,Mala" +
-            ",4,31,0.3,2.4,0.6,0.9,1.7,1,195",
+            ",4,31,0.3,2.4,0.6,0.9,1.7,1,0.2",
         "97,Ingredient,Tomato,Mala," +
-            "4,16,1,0.1,0,0.4,2.6,2.6,11",
+            "4,16,1,0.1,0,0.4,2.6,2.6,0.0",
         "98,Ingredient,Potato,Mala,4" +
             ",45,1.5,0.1,0,1.1,8.6,0.4,3",
         "99,Ingredient,Lady's Finger,Mala" +
-            ",4,11.2,0.6,0,0,1.1,2.1,2.1,10.8",
+            ",4,11.2,0.6,0,0,1.1,2.1,2.1,0.0",
         "100,Ingredient,Kang Kong,Mal" +
-            "a,4,9,1.1,0.1,0,0.9,0.4,0,47",
+            "a,4,9,1.1,0.1,0,0.9,0.4,0,0.1",
         "101,Ingredient,Cucumber,Mal" +
-            "a,4,20,0.3,0,0,0.3,1.9,1.9,7",
+            "a,4,20,0.3,0,0,0.3,1.9,1.9,0.0",
         "102,Ingredient,Cauliflower," +
-            "Mala,4,15,2,0,0,1.4,3,2.9,35",
+            "Mala,4,15,2,0,0,1.4,3,2.9,0.1",
         "103,Ingredient,Cabbage,Mal" +
-            "a,4,9,1.4,0.3,0,0,2.8,0,14",
+            "a,4,9,1.4,0.3,0,0,2.8,0,0.0",
         "104,Ingredient,Broccoli,Mal" +
-            "a,4,12,1.3,0,0,1.2,0.9,0.9,4",
+            "a,4,12,1.3,0,0,1.2,0.9,0.9,0.0",
         "105,Ingredient,Brinjal,Mala" +
-            ",4,11,0.7,0,0,0.4,2.3,2.3,4",
+            ",4,11,0.7,0,0,0.4,2.3,2.3,0.0",
         "106,Ingredient,Taugay,Mala,4" +
-            ",437,1.5,0.1,0,0.9,0.8,0.5,1",
+            ",437,1.5,0.1,0,0.9,0.8,0.5,0.0",
         "107,Ingredient,Potato Starch Noo" +
             "dle,Mala,4,349,0,0,0,0,108.1,0,0",
         "108,Ingredient,Instant Noodle,Mala" +
-            ",4,170,8.1,11.7,5.9,0.6,52.9,2.4,85",
+            ",4,170,8.1,11.7,5.9,0.6,52.9,2.4,0.1",
         "109,Ingredient,Taiwan Sausage,Ma" +
-            "la,4,156,7.2,13,5.8,0,6.2,3.1,287",
+            "la,4,156,7.2,13,5.8,0,6.2,3.1,0.3",
         "110,Ingredient,Seaweed Chicken,M" +
-            "ala,4,82,7.5,12,2.5,1,4.9,1.4,307",
+            "ala,4,82,7.5,12,2.5,1,4.9,1.4,0.3",
         "111,Ingredient,Saito Fish Cake,Ma" +
-            "la,4,48,12.1,3,1.6,1.1,1.9,0.8,843",
+            "la,4,48,12.1,3,1.6,1.1,1.9,0.8,0.8",
         "112,Ingredient,Quail Egg,Mal" +
-            "a,4,46,4,3.4,1.1,0,0.1,0.1,43",
+            "a,4,46,4,3.4,1.1,0,0.1,0.1,0.0",
         "113,Ingredient,Mushroom Ball," +
             "Mala,4,47,5.8,0.5,0,0,3.9,0,0",
         "114,Ingredient,Mini Fish Ball,Mala" +
-            ",4,210,6.9,1.3,0.2,0.5,1.8,0.6,243",
+            ",4,210,6.9,1.3,0.2,0.5,1.8,0.6,0.2",
         "115,Ingredient,Luncheon Meat,Mala" +
-            ",4,107,6.2,19.3,7.4,0.5,2.8,0,559",
+            ",4,107,6.2,19.3,7.4,0.5,2.8,0,0.6",
         "116,Ingredient,Mini Sausage,Mala" +
-            ",4,141,4.5,8.3,3.6,0,3.9,1.9,178",
+            ",4,141,4.5,8.3,3.6,0,3.9,1.9,0.2",
         "117,Ingredient,Fish Ball (Fried),Ma" +
-            "la,4,99,10.5,9.8,1.2,0.7,2.8,0.9,370",
+            "la,4,99,10.5,9.8,1.2,0.7,2.8,0.9,0.4",
         "118,Ingredient,Fish Tau Foo,Mala" +
-            ",4,135,4.8,5.8,0.8,0.7,7,2.8,304",
+            ",4,135,4.8,5.8,0.8,0.7,7,2.8,0.3",
         "119,Ingredient,Cuttlefish Ball,Mal" +
-            "a,4,21,8.5,7.1,2.8,1.5,9.4,1.5,537",
+            "a,4,21,8.5,7.1,2.8,1.5,9.4,1.5,0.5",
         "120,Ingredient,Cuttlefish,Ma" +
-            "la,4,11,4.4,0.2,0,0,0.2,0,100",
+            "la,4,11,4.4,0.2,0,0,0.2,0,0.1",
         "121,Ingredient,Crabstick,Ma" +
-            "la,4,100,1.2,0,0,0,0.6,0,16",
+            "la,4,100,1.2,0,0,0,0.6,0,0.1",
         "122,Ingredient,Crab Claw,Mala" +
-            ",4,64,3.8,4.3,2,0,11.6,1.9,383",
+            ",4,64,3.8,4.3,2,0,11.6,1.9,0.4",
         "123,Ingredient,Crab Ball,Mala," +
-            "4,42,5.8,2,0.6,0.9,5.8,1.5,453",
+            "4,42,5.8,2,0.6,0.9,5.8,1.5,0.5",
         "124,Ingredient,Chickuwa,Mal" +
-            "a,4,95,5.5,0.5,0,0,3.2,0,377",
+            "a,4,95,5.5,0.5,0,0,3.2,0,0.4",
         "125,Ingredient,Chicken Hotdog,Mal" +
-            "a,4,122,5.5,7,1.9,0.5,2.4,0.8,450",
+            "a,4,122,5.5,7,1.9,0.5,2.4,0.8,0.5",
         "126,Ingredient,Cheese Tofu,Mala," +
-            "4,33,6.4,9.1,3.6,0.7,3.7,2.1,486",
+            "4,33,6.4,9.1,3.6,0.7,3.7,2.1,0.5",
         "127,Ingredient,Bermuda Triangle Tofu (Ta" +
             "upok),Mala,4,12,3.3,1.5,0.2,0.2,1.5,0.6,3",
         "128,Ingredient,White Radish,Mal" +
-            "a,4,126,0.6,0.1,0,0.8,2.2,2.2,47",
+            "a,4,126,0.6,0.1,0,0.8,2.2,2.2,0.1",
         "129,Ingredient,Peanut,Mala,4,17" +
             "0.5,7.4,14.1,2.1,2.5,2.7,1.5,0.3",
         "130,Ingredient,Thick Beehoon,Mala" +
@@ -271,7 +271,7 @@ public final class FoodData {
         "132,Ingredient,Lotus Root,Mala" +
             ",4,51,1.2,0.1,0,2.4,12.3,0.4,34",
         "133,Ingredient,Kelp,Mala,4,2" +
-            "7,1.8,0.4,0.1,0.3,5.2,0.4,526",
+            "7,1.8,0.4,0.1,0.3,5.2,0.4,0.5",
         "134,Ingredient,Enoki Mushroom,M" +
             "ala,4,13,0.9,0.1,0,0.9,1.8,0.1,1",
         "135,Ingredient,Black Fungus," +
@@ -287,93 +287,169 @@ public final class FoodData {
         "140,Ingredient,Mala Sauce (Slightly Spicy" +
             " Base),Mala,4,95,0.3,10.1,1.7,0.5,1,0.2,1",
         "141,Dish,White Chicken Rice,Chicken Ri" +
-            "ce,12,533,19.5,17.3,5.7,1.6,74.6,6,4991",
+            "ce,12,533,19.5,17.3,5.7,1.6,74.6,6,5.0",
         "142,Dish,Char Siew Rice,Chicken Rice,1" +
-            "2,697,21.9,29.6,11.2,1.6,86.1,16.7,3748",
+            "2,697,21.9,29.6,11.2,1.6,86.1,16.7,3.7",
         "143,Dish,Roasted Pork Rice,Chicken Ric" +
-            "e,12,680,22,29.6,11.1,3.1,80.3,5.6,4497",
+            "e,12,680,22,29.6,11.1,3.1,80.3,5.6,4.5",
         "144,Dish,Roasted Chicken Noodles (Egg Noodles) - Reg" +
-            "ular,Chicken Rice,12,320,17.1,7.7,2,2.9,43.3,2.3,1600",
+            "ular,Chicken Rice,12,320,17.1,7.7,2,2.9,43.3,2.3,1.6",
         "145,Dish,Roasted Chicken Noodles (Egg Noodles) - Lar" +
-            "ge,Chicken Rice,12,388,25.3,11.5,3.2,3,43.6,2.3,1724",
+            "ge,Chicken Rice,12,388,25.3,11.5,3.2,3,43.6,2.3,1.7",
         "146,Dish,Roasted Chicken Noodles (Hor Fun) - Regula" +
-            "r,Chicken Rice,12,341,12.8,6.9,2.5,1.5,56.7,1.7,1613",
+            "r,Chicken Rice,12,341,12.8,6.9,2.5,1.5,56.7,1.7,1.6",
         "147,Dish,Roasted Chicken Noodles (Hor Fun) - La" +
-            "rge,Chicken Rice,12,21,10.7,3.7,1.7,57,1.7,1738,",
+            "rge,Chicken Rice,12,21,10.7,3.7,1.7,57,1.7,1.7,",
         "148,Dish,White Chicken Noodles (Egg Noodles) - Regul" +
-            "ar,Chicken Rice,12,307,15.2,7.5,2.2,2.7,42.4,1.7,2583",
+            "ar,Chicken Rice,12,307,15.2,7.5,2.2,2.7,42.4,1.7,2.6",
         "149,Dish,White Chicken Noodles (Egg Noodles) - Large" +
-            ",Chicken Rice,12,365,21.3,11.1,3.6,2.7,42.4,1.7,2633",
+            ",Chicken Rice,12,365,21.3,11.1,3.6,2.7,42.4,1.7,2.6",
         "150,Dish,White Chicken Noodles (Hor Fun) - Regula" +
-            "r,Chicken Rice,12,328,10.9,6.7,2.7,1.4,55.8,1,2596",
+            "r,Chicken Rice,12,328,10.9,6.7,2.7,1.4,55.8,1,2.6",
         "151,Dish,White Chicken Noodles (Hor Fun) - Large" +
-            ",Chicken Rice,12,386,17,10.4,4.1,1.4,55.8,1,2646",
+            ",Chicken Rice,12,386,17,10.4,4.1,1.4,55.8,1,2.6",
         "152,Dish,Char Siew Noodles (Egg Noodles) - Regular" +
-            ",Chicken Rice,12,410,16.4,13.6,5,2.7,53.5,12.4,1254",
+            ",Chicken Rice,12,410,16.4,13.6,5,2.7,53.5,12.4,1.3",
         "153,Dish,Char Siew Noodles (Egg Noodles) - Large,C" +
-            "hicken Rice,12,529,23.7,23.4,9.1,2.7,53.8,12.4,1390",
+            "hicken Rice,12,529,23.7,23.4,9.1,2.7,53.8,12.4,1.4",
         "154,Dish,Char Siew Noodles (Hor Fun) - Regular,Ch" +
-            "icken Rice,12,431,12.1,12.9,5.5,1.4,66.9,11.7,1268",
+            "icken Rice,12,431,12.1,12.9,5.5,1.4,66.9,11.7,1.3",
         "155,Dish,Char Siew Noodles (Hor Fun) - Large,Chi" +
-            "cken Rice,12,550,19.4,22.7,9.6,1.4,67.2,11.7,1404",
+            "cken Rice,12,550,19.4,22.7,9.6,1.4,67.2,11.7,1.4",
         "156,Dish,Roasted Pork Noodles (Egg Noodles) - Regul" +
-            "ar,Chicken Rice,12,395,16.6,13.9,5,4.2,47.8,1.4,2006",
+            "ar,Chicken Rice,12,395,16.6,13.9,5,4.2,47.8,1.4,2.0",
         "157,Dish,Roasted Pork Noodles (Egg Noodles) - Large" +
-            ",Chicken Rice,12,511,23.7,23.4,9.1,4.2,48.1,1.4,2139",
+            ",Chicken Rice,12,511,23.7,23.4,9.1,4.2,48.1,1.4,2.1",
         "158,Dish,Roasted Pork Noodles (Hor Fun) - Regular," +
-            "Chicken Rice,12,416,12.3,13.1,5.5,2.8,61.2,0.7,2020",
+            "Chicken Rice,12,416,12.3,13.1,5.5,2.8,61.2,0.7,2.0",
         "159,Dish,Roasted Pork Noodles (Hor Fun) - Large,C" +
-            "hicken Rice,12,533,19.4,22.7,9.6,2.8,61.4,0.7,2153",
+            "hicken Rice,12,533,19.4,22.7,9.6,2.8,61.4,0.7,2.2",
         "160,Dish,Roasted Chicken Rice + Veg + Half Egg Set Me" +
-            "al,Chicken Rice,12,604,28.1,21.2,5.7,2.4,75.4,6.1,4243",
+            "al,Chicken Rice,12,604,28.1,21.2,5.7,2.4,75.4,6.1,4.2",
         "161,Dish,White Chicken Rice + Veg + Half Egg Set Mea" +
-            "l,Chicken Rice,12,582,24.1,20.9,6.1,2.1,74.2,5.5,5151",
+            "l,Chicken Rice,12,582,24.1,20.9,6.1,2.1,74.2,5.5,5.2",
         "162,Dish,Char Siew Rice + Veg + Half Egg Set Meal,C" +
-            "hicken Rice,12,746,26.5,33.2,11.6,2.1,85.6,16.2,3909",
+            "hicken Rice,12,746,26.5,33.2,11.6,2.1,85.6,16.2,3.9",
         "163,Dish,Roasted Pork Rice + Veg + Half Egg Set Meal" +
-            ",Chicken Rice,12,728,26.5,33.2,11.6,3.6,79.9,5.1,4658",
+            ",Chicken Rice,12,728,26.5,33.2,11.6,3.6,79.9,5.1,4.7",
         "164,Dish,Curry Chicken Bee Hoon,Chicken R" +
-            "ice,12,744,15.8,34.7,26.9,4.9,90.9,30,6334",
+            "ice,12,744,15.8,34.7,26.9,4.9,90.9,30,6.3",
         "165,Dish,Curry Chicken Noodles,Chicken Ri" +
-            "ce,12,777,21.7,37.8,27.6,6,85.8,28.7,6274",
+            "ce,12,777,21.7,37.8,27.6,6,85.8,28.7,6.3",
         "166,Dish,Chicken Shredded Porridge,Chick" +
-            "en Rice,12,8.3,3.8,1.4,0.2,20.6,0.9,2158,",
+            "en Rice,12,8.3,3.8,1.4,0.2,20.6,0.9,2.2,",
         "167,Dish,Roasted Pork Rice Soup,Chicke" +
-            "n Rice,12,9.7,10.2,4.2,1.7,26,0.6,1582,",
+            "n Rice,12,9.7,10.2,4.2,1.7,26,0.6,1.6,",
         "168,Side,Roasted Chicken,Chicken " +
-            "Rice,12,8.2,3.9,1.2,0.2,1.2,1,695,",
+            "Rice,12,8.2,3.9,1.2,0.2,1.2,1,7,",
         "169,Side,White Chicken,Chicken Ri" +
-            "ce,12,6.3,3.7,1.4,0,0.3,0.3,1678,",
+            "ce,12,6.3,3.7,1.4,0,0.3,0.3,1.7,",
         "170,Side,Char Siew,Chicken Ric" +
-            "e,12,7.5,9.8,4.2,0,11.4,11,350,",
+            "e,12,7.5,9.8,4.2,0,11.4,11,0.4,",
         "171,Side,Roasted Pork,Chicken Rice" +
-            ",12,264,14.9,19.6,8.2,1.5,6,0,1235",
+            ",12,264,14.9,19.6,8.2,1.5,6,0,1.3",
         "172,Side,Veg 1 (Cai Xin),Chicken " +
-            "Rice,12,0.8,0.1,0,0.7,0.4,0.5,258,",
+            "Rice,12,0.8,0.1,0,0.7,0.4,0.5,0.3,",
         "173,Side,Veg 2 (Nonya Chap Chye),Chick" +
-            "en Rice,12,2.1,1.1,0.2,0.6,1.3,0.7,247,",
+            "en Rice,12,2.1,1.1,0.2,0.6,1.3,0.7,0.2,",
         "174,Side,Braised Egg,Chicken " +
-            "Rice,12,8,7,0.9,0,0.6,0.6,296,",
+            "Rice,12,8,7,0.9,0,0.6,0.6,0.3,",
         "175,Side,Sausage,Chicken Rice," +
-            "12,6.2,9.6,3.8,0.4,2.4,0.5,322,",
+            "12,6.2,9.6,3.8,0.4,2.4,0.5,0.3,",
         "176,Side,Liver + Gizzards,Chicken" +
-            " Rice,12,17.5,2.6,0.8,0,0.3,0,34,",
+            " Rice,12,17.5,2.6,0.8,0,0.3,0,0.0,",
         "177,Side,Roasted Chicken (1 Pax),Chick" +
-            "en Rice,12,16.4,7.7,2.4,0.3,1.5,1,820,",
+            "en Rice,12,16.4,7.7,2.4,0.3,1.5,1.8,",
         "178,Side,Roasted Chicken (2 Pax),Chicke" +
-            "n Rice,12,32.8,15.4,4.7,0.7,3,2.1,1679,",
+            "n Rice,12,32.8,15.4,4.7,0.7,3,2.1,1.7,",
         "179,Side,Roasted Chicken (3 Pax),Chicke" +
-            "n Rice,12,49.3,23.1,7.1,1,4.5,3.1,2518,",
+            "n Rice,12,49.3,23.1,7.1,1,4.5,3.1,2.5,",
         "180,Side,White Chicken (1 Pax),Chicke" +
-            "n Rice,12,12.5,7.4,2.8,0,0.3,0.3,1729,",
+            "n Rice,12,12.5,7.4,2.8,0,0.3,0.3,1.7,",
         "181,Side,White Chicken (2 Pax),Chicken" +
-            " Rice,12,24.9,14.7,5.6,0,0.6,0.7,3445,",
+            " Rice,12,24.9,14.7,5.6,0,0.6,0.7,3.4,",
         "182,Side,White Chicken (3 Pax),Chicke" +
-            "n Rice,12,37.4,22.1,8.4,0,0.8,1,5167,",
+            "n Rice,12,37.4,22.1,8.4,0,0.8,1,5.2,",
         "183,Side,Plain Chicken Rice,Chicken Ri" +
-            "ce,12,411,6.9,10,2.9,1.4,73.4,4.7,3258",
+            "ce,12,411,6.9,10,2.9,1.4,73.4,4.7,3.3",
         "184,Side,White Rice,Chicken Rice" +
             ",12,5.9,1.1,0.2,0.8,65.8,0.2,11,",
+        "185,Dish,Mee Rebus,Nasi Padang," +
+            "13,372,19.8,15.3,,,37.6,4.4,0.0",
+        "186,Dish,Mee Siam,Nasi Padang," +
+            "13,317,15.5,13.0,,,33.8,5.2,0.0",
+        "187,Dish,Mee Soto,Nasi Padang," +
+            "13,557,21.6,36.1,,,37.1,7.2,0.0",
+        "188,Dish,Mee Bundung,Nasi Padang," +
+            "13,407,33.2,8.6,,,46.8,17.3,0.0",
+        "189,Dish,Lotong,Nasi Padang," +
+            "13,1187,33.9,33.7,,,184.7,11.8,0.0",
+        "190,Dish,Mee Goreng,Nasi Padang," +
+            "13,324, 14.6,14.4,,,32.8,4.4,0.0",
+        "191,Dish,Fried Kway Teow,Nasi Padang," +
+            "13,414, 31.6,14.3,,,39.6,3.9,0.0",
+        "192,Dish,Fried Been Hoon,Nasi Padang," +
+            "13,356,30.4,12.7,,,29.0,5.0,0.0",
+        "193,Dish,Mee Hong Kong,Nasi Padang," +
+            "13,291,15.6,8.7,,,36.1,4.2,0.0",
+        "194,Dish,Nasi Goreng Pattaya,Nasi Padang," +
+            "13,620,27.4,29.7,,,60.5,9.0,0.0",
+        "195,Dish,Chicken Briyani,Nasi Padang," +
+            "13,866,40.6,47.2,,,68.5,5.0,0.0",
+        "196,Dish,Nasi Lemak Set 1 (Chicken Wing + Egg),Nasi Padang," +
+            "13,1204,35.4,56.2,,,140.0,4.8,0.0",
+        "197,Dish,Nasi Lemak Set 2 (Fish Fillet + Hotdog + Ikan Bilis),Nasi Padang," +
+            "13,1211,48.5,50.2,,,141.2,4.5,0.0",
+        "198,Side,Curry Puff (Potato),Nasi Padang," +
+            "13,425,5.6, 1.2,,,29.2,2.0,0.0",
+        "199,Side,Curry Puff (Sardine),Nasi Padang," +
+            "13,461,11.4,35.7,,,22.2,1.1,0.0",
+        "200,Side,Curry Puff (Chicken),Nasi Padang," +
+            "13,409,8.4,30.6,,,23.4,0.7,0.0",
+        "201,Side,Spring Roll,Nasi Padang," +
+            "13,212,2.5,17.2,,,10.6,3.6,0.0",
+        "202,Side,Samosa,Nasi Padang," +
+            "13,156,2.9,11.2,,,9.3,1.8,0.0",
+        "203,Side,Tahu Goreng,Nasi Padang," +
+            "13,305,11.7,22.1,,,15.6,7.5,0.0",
+        "204,Side,Malay Cake (Ma lai Go),Nasi Padang," +
+            "13,214,4.9,6.2,,,35.0,26.2,0.0",
+        "205,Side,Kuih Lopes,Nasi Padang," +
+            "13,480,5.0,25.0,,,54.5,25.4,0.0",
+        "206,Side,Kuih Ongol Ubi (Ubi Kayu),Nasi Padang," +
+            "13,279,2.2,17.7,,,26.5,13.0,0.0",
+        "207,Side,Fried Chicken Wing,Nasi Padang," +
+            "13,348,15.1,29.8,,,4.9,0.0,0.0",
+        "208,Side,Stir-Fried Beansprouts,Nasi Padang," +
+            "13,25,1.6,1.5,,,1.0,0.6",
+        "209,Side, Kangkung Belacan,Nasi Padang," +
+            "13,39,1.3,3.0,,,1.4,0.6,0.0",
+        "210,Side,Braised Egg and Chicken,Nasi Padang," +
+            "13,209,31.1,7.8,,,3.5,3.0,0.0",
+        "211,Side,Beef Rendang,Nasi Padang," +
+            "13,260,18.2,18.1,,6.5,3.9,0.0",
+        "212,Side,Gulai Ayam (Chicken Curry),Nasi Padang," +
+            "13,265,23.8,16.8,,,5.4,3.5,0.0",
+        "213,Side,Sayur Lodeh (Vegetable Curry),Nasi Padang," +
+            "13,141,5.7,8.8,,,10.2,5.4,0.0",
+        "214,Side,Sambal Goreng Tempeh (Fried Spicy Tempeh),Nasi Padang," +
+            "13,776,6.8,76.7,,,15.7,11.9,0.0",
+        "215,Side,Chicken Porridge,Nasi Padang," +
+            "13,216,13.1,6.5,,,25.1,0.6,0.0",
+        "216,Side,Nasi Goreng,Nasi Padang," +
+            "13,544,11.6,13.8,,,91.4,3.7,0.0",
+        "217,Side,Assam Pedas,Nasi Padang," +
+            "13,86,12.3,3.2,,,1.7,1.1,0.0",
+        "218,Side,Sotong,Nasi Padang," +
+            "13,83,8.6,2.8,,,5.0,4.7",
+        "219,Side,Chicken Rendang,Nasi Padang," +
+            "13,238,22.6,12.8,,,7.2,4.3,0.0",
+        "220,Side,Fish Cutlet,Nasi Padang," +
+            "13,138,7.0,8.5,,,8.0,0.4,",
+        "221,Side,Chicken Ngoyang,Nasi Padang," +
+            "13,649,20.3,43.1,,,45.0,4.9,0.0",
+        "222,Side,Rissoles,Nasi Padang," +
+            "13,226,6.0,12.9,,,20.8,1.1,0.0",
     };
 
     public static String[] getFoodData() {
