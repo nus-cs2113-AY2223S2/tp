@@ -201,6 +201,10 @@ public class Parser {
             logger.warning("empty category name");
             throw new RainyDayException(ErrorMessage.EMPTY_CATEGORY_NAME.toString());
         }
+        if (category.length() - 5 == category.indexOf("-date")) {
+            logger.warning("empty category name");
+            throw new RainyDayException(ErrorMessage.NO_DATE_PROVIDED.toString());
+        }
         if (category.contains("-")) {
             logger.warning("unsupported category name");
             throw new RainyDayException(ErrorMessage.UNSUPPORTED_CATEGORY_NAME.toString());

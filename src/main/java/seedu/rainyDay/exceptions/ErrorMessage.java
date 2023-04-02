@@ -76,6 +76,10 @@ public enum ErrorMessage {
     INVALID_DATE("Date provided does not exist, please ensure that you have keyed the correct date\n\n" +
             "Add format is as follows: \n" +
             "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!"),
+    NO_DATE_PROVIDED("Please provide a date after the \"-date\" flag\n\n" +
+            "Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
             "Please refer to 'help' for more information!");
 
 
