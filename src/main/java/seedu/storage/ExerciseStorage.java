@@ -32,8 +32,8 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
         exercises = new ArrayList<Exercise>();
         try {
             this.load();
+            System.out.println("Initialised Exercise Storage");
         } catch (IOException e) {
-            System.out.println(e.getMessage());
             System.out.println("Error loading Exercise Storage");
         }
     }
@@ -41,14 +41,12 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
     @Override
     public void load() throws IOException {
         String line = "";
-        
+
         try {
             br = new BufferedReader(new FileReader(filePath));
             br.readLine();
-    
             while ((line = br.readLine()) != null) {
-                String[] exerciseLine;
-                exerciseLine = line.split(CSV_DELIMITER);
+                String[] exerciseLine = line.split(CSV_DELIMITER);
                 try {
                     String exerciseName = exerciseLine[0];
                     String exerciseDescription = exerciseLine[1];
@@ -58,10 +56,9 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
                 } catch (Exception e) {
                     LogFileHandler.logError("Invalid exercise format!");
                 }
-                br.close();
             }
+            br.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Exercise File not found. Creating new exercise file...");
             File newFile = new File(filePath);
             newFile.createNewFile();
         }

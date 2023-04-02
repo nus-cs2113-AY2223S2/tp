@@ -1,6 +1,13 @@
-Apr 02, 2023 7:40:01 AM seedu.logger.LogFileHandler logInfo
-INFO: Lunch was consumed on 4/3/2023
-Total Calories are: 37.400001525878906
+Apr 02, 2023 7:59:28 PM seedu.logger.LogFileHandler logInfo
+INFO: Lunch was consumed on 3/3/2023
+Total Calories are: 411.0
 Here are the foods you ate:
-1) White Chicken (3 Pax) from Chicken Rice
+1) Plain Chicken Rice from Chicken Rice
 
+Apr 02, 2023 7:59:32 PM seedu.logger.LogFileHandler logInfo
+INFO: Lunch was consumed on 3/3/2023
+Total Calories are: 0.0
+Here are the foods you ate:
+
+Apr 02, 2023 7:59:57 PM seedu.logger.LogFileHandler logInfo
+INFO: User exited the programme.

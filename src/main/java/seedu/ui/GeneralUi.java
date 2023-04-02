@@ -1,5 +1,6 @@
 package seedu.ui;
 
+import seedu.database.ExampleData;
 import seedu.entities.Exercise;
 import seedu.entities.Meal;
 import seedu.storage.ExerciseStorage;
@@ -49,6 +50,20 @@ public class GeneralUi {
             }
         }
         return Integer.parseInt(value);
+    }
+
+    public float readFloat() {
+        String value = "";
+        while (true) {
+            value = sc.nextLine();
+            if (value.length() == 0 || 
+                    !value.matches("^([0-9]+([.][0-9]*)?|[.][0-9]+)$")) {
+                System.out.println("Invalid input, input is not a positive float value");
+            } else {
+                break;
+            }
+        }
+        return Float.parseFloat(value);
     }
 
     /**
@@ -180,7 +195,7 @@ public class GeneralUi {
     }
     public void showWellDoneMessage(){
     }
-    public static void displayDayCalories(ExerciseStorage exerciseStorage, LocalDate date, MealStorage mealStorage) {
+    public void displayDayCalories(ExerciseStorage exerciseStorage, LocalDate date, MealStorage mealStorage) {
         List<Exercise> exercisesOnSpecificDate = exerciseStorage.getExercisesByDate(date);
         float caloricDeficit = 0;
         for (Exercise exercise: exercisesOnSpecificDate){
@@ -195,11 +210,29 @@ public class GeneralUi {
         System.out.println("Calories Gained on " + date + " : " + caloricGain);
         System.out.println("Calories Lost on  " + date + " : " + caloricDeficit);
         if (netCalories > 0) {
-            System.out.println("You have gained " + netCalories + " calories on" + date);
-        } else if (netCalories == 0){
+            System.out.println("You have gained " + netCalories + " calories on " + date);
+        } else if (netCalories == 0) {
             System.out.println("Your net calories on " + date + "is zero.");
         } else {
-            System.out.println("You have lost " + netCalories + " calories on" + date);
+            System.out.println("You have lost " + netCalories + " calories on " + date);
+        }
+    }
+
+    public void displayExerciseExamples() {
+        String[] exerciseExampleData = ExampleData.getExampleExerciseData();
+        System.out.println("Here are some examples of exercises:");
+        for (String exercise: exerciseExampleData) {
+            String[] exerciseInfo = exercise.split(",");
+            System.out.println(exerciseInfo[0].substring(0) + ": " + exerciseInfo[1] + ", " + exerciseInfo[2]);
+        }
+    }
+
+    public void displayMealExamples() {
+        String[] mealExampleData = ExampleData.getExampleMealData();
+        System.out.println("Here are some examples of meals that you can consider:");
+        for (String meal: mealExampleData) {
+            String[] mealInfo = meal.split(",");
+            System.out.println(mealInfo[0].substring(0));
         }
     }
 }

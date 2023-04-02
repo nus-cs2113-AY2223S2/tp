@@ -71,7 +71,6 @@ public class AddMealCommand extends Command {
             parseCommand(ui, foodStorage);
         }
 
-        
         meal = new Meal(foods, date, mealType);
         mealStorage.saveMeal(meal);
         ui.printNewMealAdded(meal);
@@ -176,7 +175,12 @@ public class AddMealCommand extends Command {
         foodList = foodString.split(", ");
 
         for (int i = 0; i < foodList.length; i++) {
+            foodList[i] = foodList[i].trim();
             List<Food> filteredFoods = foodStorage.getFoodsByName(foodList[i]);
+            if (filteredFoods.size() == 0) {
+                System.out.println(System.lineSeparator() + "No food found with " + foodList[i]);
+                continue;
+            }
             System.out.println(System.lineSeparator() + "These are the food with " + foodList[i]);
             System.out.println("Please select which food:");
             for (int j = 0; j < filteredFoods.size(); j++) {

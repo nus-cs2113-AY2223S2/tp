@@ -10,12 +10,7 @@ import seedu.ui.GeneralUi;
 import java.util.List;
 
 public class FilterCaloriesCommand extends Command {
-
-
-    int choice;
-
     private float caloriesLowerLimit;
-
     private float caloriesUpperLimit;
 
     private void showCaloriesFilteredFoods(FoodStorage foodStorage, List<Food> caloriesFilteredFoods)
@@ -24,12 +19,12 @@ public class FilterCaloriesCommand extends Command {
         if (caloriesFilteredFoods.size() == 0) {
             throw new LifeTrackerException(System.lineSeparator() + "No food found within calorie range");
         }
-        System.out.println("Please select which food:");
+        System.out.printf("Here are foods with calories between %.2f and %.2f\n", 
+                caloriesLowerLimit, caloriesUpperLimit);
         for (int i = 0; i < caloriesFilteredFoods.size(); i++) {
             System.out.printf("%d) %s" + System.lineSeparator(), i+1, caloriesFilteredFoods.get(i).toString());
         }
     }
-
 
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
@@ -37,19 +32,9 @@ public class FilterCaloriesCommand extends Command {
             throws LifeTrackerException {
 
         System.out.println("Please key in the lower calorie limit (float):");
-        String lower = ui.readLine();
-        try {
-            caloriesLowerLimit = Float.parseFloat(lower);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input, input is not a float value");
-        }
+        caloriesLowerLimit = ui.readFloat();
         System.out.println("Please key in the upper calorie limit (float):");
-        String upper = ui.readLine();
-        try {
-            caloriesUpperLimit = Float.parseFloat(upper);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input, input is not a float value");
-        }
+        caloriesUpperLimit = ui.readFloat();
         if (caloriesLowerLimit > caloriesUpperLimit) {
             throw new LifeTrackerException("Please enter valid lower and upper limits!");
         }

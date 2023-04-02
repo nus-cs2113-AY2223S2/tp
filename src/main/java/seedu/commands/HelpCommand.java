@@ -28,6 +28,7 @@ public class HelpCommand extends Command {
         System.out.println("Usage: exercise /type [exercise name] /description [exercise description] " +
                 "/calories [calories burnt] /on [date]");
         System.out.println("[track]: Returns your caloric intake from previous days.");
+        System.out.println("[examples]: Displays examples for inputs");
         System.out.println("[bye]: Exits the program.");
         System.out.println("For any other questions please visit out User Guide.");
     }
