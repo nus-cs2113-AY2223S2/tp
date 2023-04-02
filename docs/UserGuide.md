@@ -4,7 +4,7 @@
 
 Keeping track of multiple pets can be daunting due to information overload. With Pet Tracker, keeping track of our
 furry friends will be easier! Pet owners can use this tool to monitor the health of their pet, including tracking their
-weight over time. This can help identify any nutritional or health needs.
+current weight. This can help identify any nutritional or health needs.
 
 <br>
 The main features of Pet Tracker includes:
@@ -17,8 +17,9 @@ The main features of Pet Tracker includes:
 
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `Pet Tracker` 
-from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTrackerV1.0/pettracker.jar).
-3. Launch a terminal and run the command `java -jar pettracker.jar`
+from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTrackerV2.0/pettracker.jar).
+3. Launch a terminal in the folder that the jar file is located in
+4. Run the command `java -jar pettracker.jar`
 
 ## Features 
 
@@ -30,9 +31,6 @@ Here is a list of features for Pet Tracker
 
 ## FAQ
 
-**Q**: Can I make my pet's data persistent after closing the app? 
-
-**A**: The team is currently planning on implementing that feature soon!
 
 ## Command Summary
 
@@ -58,7 +56,7 @@ Successfully added new pet: Bob
 ```
 
 ### Removing a pet: `remove-pet`
-Removes a pet to the Pet List.
+Removes a pet from the Pet List.
 
 Format: `remove-pet NAME`
 
@@ -76,6 +74,7 @@ Successfully removed pet: Alice
 
 ### Adding a stat to a pet: `add-stat`
 Adds a stat to a pet in the Pet List.
+Currently, the only stats supported are Type, Age and Weight.
 
 Format: `add-stat NAME STAT VALUE`
 
@@ -144,7 +143,7 @@ Successfully updated Bob's Weight to 12
 
 
 ### Viewing Pet List: `list`
-View the current Pet List and total number of pets.
+Views the current Pet List and total number of pets.
 
 Format: `list`
 
@@ -185,7 +184,7 @@ Removes a task from the Task List.
 
 Format: `remove-task NUMBER`
 
-* The `NUMBER` must not be empty.
+* The `NUMBER` must not be empty. The NUMBER here refers to index in the list
 
 Example of usage:
 
@@ -198,7 +197,7 @@ Successfully removed task 1
 ```
 
 ### Viewing Task List: `list-tasks`
-View the current Task List and total number of tasks.
+Views the current Task List and total number of tasks.
 
 Format: `list-tasks`
 
@@ -210,15 +209,15 @@ Expected Output:
 
 ```
 Here are your tasks:
-1. [ ] Buy food
-  (Deadline: 2021-03-01)
+1. [ ] Buy food (Deadline: 2021-03-01)
 2. [ ] Feed the dog
 ```
 
 ### Editing tasks: `edit-task`
-View the current Task List and total number of tasks.
+Views the current Task List and total number of tasks.
 
 Format: `edit-task NUMBER VALUE` or `edit-task NUMBER VALUE /by DATE`
+* The `NUMBER` must not be empty. The NUMBER here refers to index in the list
 * The `DATE` must be in the format `yyyy-mm-dd`.
 
 Example of usage:
@@ -232,7 +231,7 @@ Updated task 2 to feed the cat.
 ```
 
 ### Print Task Schedule: `schedule`
-View the current list of tasks with an associated deadline, in order of deadline.
+Views the current list of tasks with an associated deadline, in order of deadline.
 
 Format: `schedule`
 
@@ -253,7 +252,7 @@ Marks a task as done in the Task List.
 
 Format: `mark-task NUMBER`
 
-* The `NUMBER` must not be empty.
+* The `NUMBER` must not be empty. The NUMBER here refers to index in the list
 
 Example of usage:
 
@@ -270,7 +269,7 @@ Marks a task as not done in the Task List.
 
 Format: `unmark-task NUMBER`
 
-* The `NUMBER` must not be empty.
+* The `NUMBER` must not be empty. The NUMBER here refers to index in the list
 
 Example of usage:
 
@@ -280,4 +279,19 @@ Expected Output:
 
 ```
 Task marked as not done
+```
+
+### Exiting the program: `exit`
+Exits the program.
+
+Format: `exit`
+
+Example of usage:
+
+`exit`
+
+Expected Output:
+
+```
+Goodbye! See you soon.
 ```
