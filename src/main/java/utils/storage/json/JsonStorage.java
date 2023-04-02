@@ -2,11 +2,9 @@ package utils.storage.json;
 
 import com.google.gson.JsonSyntaxException;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,7 +13,6 @@ import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import com.google.gson.Gson;
-
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -45,7 +42,6 @@ import utils.exceptions.StorageSaveFailure;
 import utils.storage.Storage;
 
 public class JsonStorage extends Storage {
-
 
     private static Logger logger = Logger.getLogger("storage.JsonStorage");
     private GsonBuilder gsonBuilder;
@@ -100,14 +96,11 @@ public class JsonStorage extends Storage {
                 JsonArray tagsArray = cardObject.getAsJsonArray("tags");
                 JsonArray decksArray = cardObject.getAsJsonArray("decks");
 
-
-
                 for (JsonElement tagListElement : tagsArray) {
                     JsonObject tagUuidObject = tagListElement.getAsJsonObject();
 
                     String tagUuidString = tagUuidObject.get("uuid").getAsString();
                     card.addTag(new TagUUID(UUID.fromString(tagUuidString)));
-
                 }
 
                 for (JsonElement deckListElement : decksArray) {
@@ -115,7 +108,6 @@ public class JsonStorage extends Storage {
                     JsonObject deckUuidObject = deckListElement.getAsJsonObject();
                     String deckUuidString = deckUuidObject.get("uuid").getAsString();
                     card.addDeck(new DeckUUID(UUID.fromString(deckUuidString)));
-
                 }
 
                 cards.add(card);
@@ -125,14 +117,14 @@ public class JsonStorage extends Storage {
 
             tagList = new TagList(); // construct empty taglist to append stuff to
             JsonArray tagJsonArray = saveDataObject.getAsJsonArray("tags");
-            for(JsonElement jsonTag : tagJsonArray) {
+            for (JsonElement jsonTag : tagJsonArray) {
                 JsonObject tagObject = jsonTag.getAsJsonObject();
                 JsonObject uuidObject = tagObject.getAsJsonObject("uuid");
                 String uuidString = uuidObject.get("uuid").getAsString();
 
                 String tagName = tagObject.get("tagName").getAsString();
                 JsonArray tagCardArray = tagObject.getAsJsonArray("cards");
-                Tag tag = new Tag(tagName, uuidString, "pw");
+                Tag tag = new Tag(tagName, uuidString);
 
                 for (JsonElement cardListElement : tagCardArray) {
                     JsonObject cardUuidObject = cardListElement.getAsJsonObject();
@@ -142,16 +134,11 @@ public class JsonStorage extends Storage {
                 }
 
                 tagList.addTag(tag);
-
-
-
-
-
             }
 
             deckList = new DeckList();
             JsonArray deckJsonArray = saveDataObject.getAsJsonArray("decks");
-            for(JsonElement jsonDeck : deckJsonArray) {
+            for (JsonElement jsonDeck : deckJsonArray) {
                 JsonObject deckObject = jsonDeck.getAsJsonObject();
                 JsonObject uuidObject = deckObject.getAsJsonObject("deckUUID");
                 String uuidString = uuidObject.get("uuid").getAsString();
@@ -160,10 +147,8 @@ public class JsonStorage extends Storage {
                 Deck deck = new Deck(deckName);
                 deck.setDeckUUID(uuidString);
 
-
                 //obtain cards from a jsonDeck
                 JsonArray deckCardArray = deckObject.getAsJsonArray("cards");
-
 
                 for (JsonElement deckListElement : deckCardArray) {
                     JsonObject cardUuidObject = deckListElement.getAsJsonObject();
@@ -180,11 +165,7 @@ public class JsonStorage extends Storage {
                 }
 
                 deckList.addDeck(deck);
-
-
-
             }
-
         } catch (IOException e) {
 
             String absolutePath = this.saveFile.getAbsolutePath();
@@ -282,7 +263,6 @@ public class JsonStorage extends Storage {
             logger.log(Level.WARNING, "Failed to save data to savedata.json" + absolutePath, e);
             throw new StorageSaveFailure(absolutePath);
         }
-
     }
 
     private void saveDataToFile(File file, JsonObject data) throws IOException {

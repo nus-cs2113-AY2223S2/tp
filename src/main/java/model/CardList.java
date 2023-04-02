@@ -60,7 +60,7 @@ public class CardList {
      *
      * @param cardUUID Card with UUID to find
      * @return The card with the cardUUID specified that exists in the cardList
-     * @throws CardNotFoundException No card with
+     * @throws CardNotFoundException No card with the specified cardUUID
      */
     public Card findCardFromUUID(CardUUID cardUUID) throws CardNotFoundException {
         for (Card card : cards) {

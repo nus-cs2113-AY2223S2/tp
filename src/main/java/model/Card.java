@@ -32,7 +32,11 @@ public class Card {
     private Card(String question, String answer, String uuidStr) throws InvalidUUIDException {
         this.question = question;
         this.answer = answer;
-        this.uuid = new CardUUID(UUID.fromString(uuidStr));
+        try {
+            this.uuid = new CardUUID(UUID.fromString(uuidStr));
+        } catch (IllegalArgumentException e) {
+            throw new InvalidUUIDException();
+        }
     }
 
     /**
