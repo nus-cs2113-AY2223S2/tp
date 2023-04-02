@@ -79,7 +79,7 @@ Registration successful!
 
 ### Logging In
 
-Format: Press ``2`` to register.
+Format: Press ``2`` to log in.
 
 Expected outcome: 
 ~~~
