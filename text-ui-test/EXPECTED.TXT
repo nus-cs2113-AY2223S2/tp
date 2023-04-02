@@ -27,7 +27,7 @@ Module Commands:
 - Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
 - Enter "showmod [MODULE_CODE]" to see more information about the module
 - Enter "showmod [MODULE_CODE] -[FLAG]" to see schedule of specific lesson type for a module
-- Enter "delmod [MODULE_CODE]" to remove a Module you previously added
+- Enter "delmod [MODULE_CODE / IDX]" to remove a Module you previously added
 - Enter "delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a task to a lesson
 
 Common Commands:
@@ -318,10 +318,10 @@ Got it. I've added this event:
 ____________________________________________________________
 ____________________________________________________________
 Heads up, your deadline occurs on the same day as these!
-______________________
+_____________________________
 Tasks:
-1. [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
-______________________
+ - [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
+_____________________________
 Got it. I've added this deadline:
   [D][ ] dummy2 (by: May 02 2023, 12:00AM)
 ____________________________________________________________

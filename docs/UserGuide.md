@@ -274,7 +274,8 @@ If this lesson clashes with any of your other lessons a warning message will be 
 Removes a module from Apollo. Can be done using either IDX or MODULE_CODE. 
 
 #### `delmod` IDX
-> Note: `IDX` can be obtained by using `listmod` to find the module's index.
+> Note: `IDX` can be obtained by using `listmod` to find the module's index.   
+> We assume that each user will take no more than the number of mods available in the current semester. 
 
 Format: `delmod IDX`
 

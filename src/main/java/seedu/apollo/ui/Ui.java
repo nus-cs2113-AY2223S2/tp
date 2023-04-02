@@ -46,6 +46,9 @@ public class Ui {
     public void showLine() {
         System.out.println("____________________________________________________________");
     }
+    public void showSmallLine() {
+        System.out.println("_____________________________");
+    }
 
     /**
      * Prints the welcome message.
@@ -93,7 +96,7 @@ public class Ui {
                 "- Enter \"addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a lesson\n" +
                 "- Enter \"showmod [MODULE_CODE]\" to see more information about the module\n" +
                 "- Enter \"showmod [MODULE_CODE] -[FLAG]\" to see schedule of specific lesson type for a module\n" +
-                "- Enter \"delmod [MODULE_CODE]\" to remove a Module you previously added\n" +
+                "- Enter \"delmod [MODULE_CODE / IDX]\" to remove a Module you previously added\n" +
                 "- Enter \"delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]\" to add a task to a lesson\n\n");
     }
 
@@ -165,7 +168,7 @@ public class Ui {
         LocalDate curr = startWeek;
         System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
         for (int i = 0; i < 7; i++) {
-            System.out.println("______________________");
+            showSmallLine();
             DayOfWeek day = determineDay(i);
             System.out.println(day + "\n");
 
@@ -207,28 +210,24 @@ public class Ui {
         if (clashTasks.size() == 0 & clashLessons.size() == 0) {
             return;
         }
-        System.out.println("Heads up, your deadline occurs on the same day as these!\n" +
-                "______________________");
+        System.out.println("Heads up, your deadline occurs on the same day as these!");
+        showSmallLine();
 
         if (clashLessons.size() != 0) {
             System.out.println("Lessons:");
-            int count = 0;
             for (CalendarModule module : clashLessons) {
-                count++;
-                System.out.println(count + ". " + module.getCode() + " " + module.getSchedule());
+                System.out.println( " - " + module.getCode() + " " + module.getSchedule());
             }
             System.out.println();
         }
 
         if (clashTasks.size() != 0) {
             System.out.println("Tasks:");
-            int count = 0;
             for (Task task : clashTasks) {
-                count++;
-                System.out.println(count + ". " + task);
+                System.out.println(" - " + task);
             }
         }
-        System.out.println("______________________");
+        showSmallLine();
 
     }
 

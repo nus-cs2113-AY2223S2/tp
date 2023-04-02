@@ -12,7 +12,7 @@
 - Add clash warning for deadlines with other tasks and lessons
 - JUnit tests with full branch coverage for ToDo, Deadline, Event
 - JUnit tests for Add, Help, Exit Commands, Parser
-- Patches
+- Patches, bug fixes
 #### Contributions to the UG
 - Original UG from Duke
   - Includes Duke's commands (help, list, add tasks, mark/unmark tasks, delete tasks, find with keyword/date)
