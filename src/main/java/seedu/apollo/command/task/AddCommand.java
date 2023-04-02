@@ -291,7 +291,8 @@ public class AddCommand extends Command implements LoggerInterface {
             LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatter);
             LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatter);
 
-            if (isOverlap(eventStart, eventEnd, lessonStart, lessonEnd) && isDuringSemester(eventStart,eventEnd)) {
+            if (isEventLessonClashing(eventStart, eventEnd, lessonStart, lessonEnd) &&
+                    isDuringSemester(eventStart,eventEnd)) {
 
                 return true;
             }
@@ -326,8 +327,8 @@ public class AddCommand extends Command implements LoggerInterface {
      * @param lessonEnd   The end time of the lesson.
      * @return true if there is a clash, false otherwise.
      */
-    private boolean isOverlap(LocalDateTime eventStart, LocalDateTime eventEnd, LocalDateTime lessonStart,
-                              LocalDateTime lessonEnd) {
+    private boolean isEventLessonClashing(LocalDateTime eventStart, LocalDateTime eventEnd, LocalDateTime lessonStart,
+                                          LocalDateTime lessonEnd) {
 
         if (eventStart.isEqual(lessonStart) && eventEnd.isEqual(lessonEnd)) {
             return true;

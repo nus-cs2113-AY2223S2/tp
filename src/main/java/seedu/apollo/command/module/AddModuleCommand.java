@@ -167,9 +167,9 @@ public class AddModuleCommand extends Command implements LoggerInterface {
 
         LessonType lessonType = this.getCommand(args[1]);
         Module searchModule = null;
-        for (Module module1: allModules){
-            if (module1.getCode().equalsIgnoreCase(this.module.getCode())){
-                searchModule = module1;
+        for (Module module: allModules){
+            if (module.getCode().equalsIgnoreCase(this.module.getCode())){
+                searchModule = module;
                 break;
             }
         }
@@ -200,8 +200,8 @@ public class AddModuleCommand extends Command implements LoggerInterface {
     private void addTimetable(Module searchModule, LessonType lessonType, String args, Ui ui, Calendar calendar)
             throws ClassNotFoundException {
         Boolean isFound = false;
-        ArrayList<Timetable> copyList = new ArrayList<>(searchModule.getModuleTimetable());
-        for (Timetable timetable: copyList){
+        ArrayList<Timetable> listCopy = new ArrayList<>(searchModule.getModuleTimetable());
+        for (Timetable timetable: listCopy){
             LessonType searchLessonType = determineLessonType(timetable.getLessonType());
             if (searchLessonType.equals(lessonType) && timetable.getClassnumber().equals(args)){
 
@@ -257,7 +257,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
 
         for (CalendarModule lessonModule: calendar.get(index)) {
             Timetable schedule = lessonModule.getSchedule();
-            if (isClashing(schedule, timetable)) {
+            if (isLessonClashing(schedule, timetable)) {
                 ui.printClashingLesson();
                 break;
             }
@@ -271,7 +271,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
      * @param timetable The lesson to be checked against.
      * @return True if the timetable clashes with another timetable.
      */
-    private boolean isClashing(Timetable schedule, Timetable timetable) {
+    private boolean isLessonClashing(Timetable schedule, Timetable timetable) {
 
         SimpleDateFormat format = new SimpleDateFormat("HHmm");
         try {
