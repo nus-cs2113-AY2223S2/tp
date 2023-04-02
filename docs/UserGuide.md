@@ -11,8 +11,8 @@ Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than 
 ## Start Guide
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of **Dr Duke** from [this GitHub repo](https://github.com/AY2223S2-CS2113-W13-1/tp/releases/tag/v1.0).
-3. Download the jar file from the latest release, labelled as **Tp.main.jar**.
+2. Down the latest version of **Dr Duke** from [this GitHub repo](https://github.com/AY2223S2-CS2113-W13-1/tp/releases/tag/v2.0).
+3. Download the jar file from the latest release, labelled as **DrDuke.jar**.
 4. Place the file in the folder you want to use as the home folder for your Duke.
 5. Run the jar file via double-clicking on the JAR file, or by copying the file path and entering the copied
    filepath command into your terminal:
@@ -20,7 +20,7 @@ Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than 
 Example:
 
 ~~~
-java -jar "C:\Users\Albert\Desktop\Tp.main.jar"
+java -jar "C:\Users\Albert\Desktop\DrDuke.jar"
 ~~~
 
 # Features Guide
@@ -79,7 +79,7 @@ Registration successful!
 
 ### Logging In
 
-Format: Press ``2`` to register.
+Format: Press ``2`` to log in.
 
 Expected outcome: 
 ~~~
