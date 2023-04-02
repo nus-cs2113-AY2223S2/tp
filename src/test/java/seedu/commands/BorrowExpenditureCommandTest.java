@@ -2,12 +2,12 @@ package seedu.commands;
 
 // import org.junit.jupiter.api.Test;
 // import seedu.expenditure.AcademicExpenditure;
-import seedu.expenditure.ExpenditureList;
+// import seedu.expenditure.ExpenditureList;
 // import java.time.LocalDate;
 // import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BorrowExpenditureCommandTest {
-    ExpenditureList testExpenditures = new ExpenditureList();
+    // ExpenditureList testExpenditures = new ExpenditureList();
 
     // @Test
     // public void test_borrowExpenditureCommand_execute() {
