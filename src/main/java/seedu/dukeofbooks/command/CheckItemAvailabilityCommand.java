@@ -5,8 +5,9 @@ import seedu.dukeofbooks.data.book.BorrowableItem;
 
 public class CheckItemAvailabilityCommand extends UserCommand {
     public static final String COMMAND_WORD = "check";
-    private static final String NOT_FOUND_MSG = "Item not found!";
     public static final String INCORRECT_SYNTAX = "INVALID SYNTAX\nExpected: check -title TITLE";
+    private static final String NOT_FOUND_MSG = "Item not found!";
+    
     private BorrowableItem item;
 
     public CheckItemAvailabilityCommand(BorrowableItem item) {
