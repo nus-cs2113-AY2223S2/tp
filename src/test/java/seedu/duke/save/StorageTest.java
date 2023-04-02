@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.List;
 import java.util.Collections;
 import java.util.Hashtable;
-import java.util.logging.Level;
 
 /**
  * Class containing test methods to test the methods in the Storage class.

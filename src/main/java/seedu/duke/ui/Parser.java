@@ -105,22 +105,27 @@ public class Parser {
             System.out.println("---------------------------------------------------");
             System.out.println("Below is your new diagnosis:");
 
-
             Menu.displayPossibleIllness(symptoms);
             ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
+            //@@author Thunderdragon221
+            ArrayList<String> diagnoses = new ArrayList<>();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDateTime now = LocalDateTime.now();
+            //@@author Geeeetyx
             for (IllnessMatch illnessMatch : possibleIllnesses) {
-                user.updatePatientDiagnosisHistory(illnessMatch.getIllness().getIllnessName());
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-                LocalDateTime now = LocalDateTime.now();
+                diagnoses.add(illnessMatch.getIllness().getIllnessName());
                 ArrayList<String> medicineArrayList = medicineManager
                         .getRelevantMedicationInString(illnessMatch.getIllness().getIllnessName());
                 if (!(medicineArrayList == null)) {
                     user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
                 }
             }
+            //@@author Thunderdragon221
+            if (diagnoses.size() > 0) {
+                user.updatePatientDiagnosisHistory(dtf.format(now), diagnoses);
+            }
             saveData();
-            //@@author
-
+            saveQueue();
             break;
         case "6":
             Information.resetSymptomChoice(Menu.symptoms);
