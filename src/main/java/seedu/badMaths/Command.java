@@ -43,7 +43,7 @@ public class Command {
     }
 
     public boolean isInvalidIndex(int index, NotesList notes) {
-        return (index < 0 && index > notes.getSize());
+        return (index < 0 || index >= notes.getSize());
     }
 
     public void executeCommand(NotesList notes) {
@@ -98,8 +98,8 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Delete":
-                int deleteIndex = Integer.parseInt(toDo) - 1;
-                if (isInvalidIndex(deleteIndex, notes)) {
+                int deleteIndex = Integer.parseInt(toDo) - 1; // deleteIndex == 3
+                if (isInvalidIndex(deleteIndex, notes) == true) { // if true
                     throw new IllegalIndexException();
                 }
                 Ui.printDelete(notes.getText(deleteIndex), notes.getSize());
