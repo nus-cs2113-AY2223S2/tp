@@ -28,3 +28,4 @@ Given below are my contributions to the project.
     + Authored documentation for over 90% of the supported features, providing comprehensive usage instructions and illustrative examples of expected and actual outputs.
   - **Developer Guide**:
     + Illustrated implementation details of the `Parser` class with detailed class and sequence diagrams.
+    + Wrote all test cases for manual testing.
