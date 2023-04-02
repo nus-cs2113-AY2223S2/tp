@@ -22,6 +22,8 @@ import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
 import seedu.commands.SortCommand;
+import seedu.exceptions.InvalidDateException;
+import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.WrongInputException;
 import seedu.commands.DuplicateCommand;
 import seedu.commands.SetBudgetCommand;
@@ -33,6 +35,7 @@ import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_LACK_OF_PARAMETERS_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_DATE_TIME_ERROR_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_INVALID_EXPENDITURE_TYPE_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_NOT_POSITIVE_VALUE_MESSAGE;
 
 public class MainInputParser {
     public static final int LIMIT = 2;
@@ -109,6 +112,10 @@ public class MainInputParser {
             return new InvalidCommand(ERROR_DATE_TIME_ERROR_MESSAGE.toString());
         } catch (WrongInputException e) {
             return new InvalidCommand(ERROR_INVALID_EXPENDITURE_TYPE_MESSAGE.toString());
+        } catch (NotPositiveValueException p) {
+            return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
+        } catch (InvalidDateException e) {
+            return new InvalidCommand(e.getMessage());
         }
     }
 }
