@@ -16,8 +16,8 @@ import seedu.exceptions.NotPositiveValueException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import static seedu.ui.ErrorMessages.ERROR_DATE_TIME_ERROR_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_EMPTY_STRING_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_NUMBER_FORMAT_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_NOT_POSITIVE_VALUE_MESSAGE;
 
@@ -66,9 +66,9 @@ public class ParseAdd {
         } catch (NumberFormatException n) {
             return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
         } catch (DateTimeParseException d) {
-            return new InvalidCommand(ERROR_DATE_TIME_ERROR_MESSAGE.toString());
+            return new InvalidCommand(d.getMessage());
         } catch (StringIndexOutOfBoundsException | EmptyStringException s) {
-            return new InvalidCommand(s.getMessage());
+            return new InvalidCommand(ERROR_EMPTY_STRING_MESSAGE.toString());
         } catch (NotPositiveValueException p) {
             return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
         }

@@ -62,7 +62,13 @@ public abstract class TxtFileStatus {
         }
     }
 
-    // initialize saved list, undone
+    /**
+     * Initializes expenditureList using text file.
+     * If text file has been corrupted such that it can't be read,
+     * ignores that save line is ignored.
+     * @param expenditures
+     * @throws FileNotFoundException
+     */
     public static void initializeExpenditureList(ExpenditureList expenditures) throws FileNotFoundException {
         File f = new File(filePath); // create a File for the given file path
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
