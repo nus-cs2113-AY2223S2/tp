@@ -199,7 +199,6 @@ public class Command {
                 if(!isInvalidTodo(toDo)) {
                     throw new IllegalTodoException();
                 }
-            //@@author Khooyourun
                 HelpManual.readHelpManual();
                 break;
             //@@author 0nandon
