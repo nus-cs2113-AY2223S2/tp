@@ -293,7 +293,7 @@ cook 5 minutes
 ```
 The first line is the name of the dish. And the second line is the tag of the dish. The third line is the ingredient list. The following lines are the ingredients until the line "Step list". The following lines are the steps until the end of the file.
 ***WARNING***:
-* Do **NOT** modify the save data.
+* Do **NOT** modify the save files.
 * If you modify the data file, and save data has **the wrong format**, the recipe manager will not process the data correctly.
 
 <h2 id='faq'> FAQ </h2>

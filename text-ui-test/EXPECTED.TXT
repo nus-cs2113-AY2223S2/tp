@@ -39,20 +39,16 @@ Please enter the description of step 4:
 
 Got it. I've added this recipe:
   [Chinese] Hotpot
-Now you have 1 recipes in the list.
+Now you have 0 recipes in the list.
 
-
-Data saved successfully!
 __________________________________________________________
 
 Please enter the description of step 1:
 
 Got it. I've added this recipe:
   [Chinese] MaLaXiangGuo
-Now you have 2 recipes in the list.
+Now you have 1 recipes in the list.
 
-
-Data saved successfully!
 __________________________________________________________
 
 RECIPE LIST
@@ -66,26 +62,20 @@ Please enter the description of step 1:
 
 Got it. I've added this recipe:
   [Italian] Spaghetti
-Now you have 3 recipes in the list.
+Now you have 2 recipes in the list.
 
-
-Data saved successfully!
 __________________________________________________________
 
 Got it. I've added this recipe:
   [Italian] Carbonara
-Now you have 4 recipes in the list.
+Now you have 3 recipes in the list.
 
-
-Data saved successfully!
 __________________________________________________________
 
 Got it. I've added this recipe:
   [Chinese] Beijing Duck
-Now you have 5 recipes in the list.
+Now you have 4 recipes in the list.
 
-
-Data saved successfully!
 __________________________________________________________
 
 Here are the matching items:
@@ -112,8 +102,6 @@ Noted. I've removed this recipe:
   [Chinese] Hotpot
 Now you have 4 recipes in the list.
 
-
-Data saved successfully!
 __________________________________________________________
 
 RECIPE LIST
@@ -151,20 +139,16 @@ __________________________________________________________
 
 Got it. I've added this recipe:
   [Chinese] XiaoLongBao
-Now you have 5 recipes in the list.
+Now you have 4 recipes in the list.
 
-
-Data saved successfully!
 __________________________________________________________
 
 Please enter the description of step 1:
 
 Got it. I've added this recipe:
   [Chinese] Guilinggao
-Now you have 6 recipes in the list.
+Now you have 5 recipes in the list.
 
-
-Data saved successfully!
 __________________________________________________________
 
 RECIPE LIST
@@ -198,8 +182,6 @@ Type 'quit' to exit the edit view
 Enter the description of the step:
 Step has been edited:
 1. go to haidilao
-
-Data saved successfully!
 __________________________________________________________
 Here is the recipe you requested, which is Chinese flavour:
 name: MaLaXiangGuo
@@ -226,10 +208,8 @@ Please enter the description of step 4:
 
 Got it. I've added this recipe:
   [Western] IceLemonTea
-Now you have 7 recipes in the list.
+Now you have 6 recipes in the list.
 
-
-Data saved successfully!
 __________________________________________________________
 
 RECIPE LIST
@@ -271,13 +251,9 @@ Type 'quit' to exit the edit view
 Enter the description of the step:
 Step has been edited:
 3. stir drink
-
-Data saved successfully!
 __________________________________________________________
 
 All recipes have been cleared!
-
-Data saved successfully!
 __________________________________________________________
 
 MATE! Your list is empty!
