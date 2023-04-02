@@ -52,8 +52,7 @@ public class RainyDay {
     }
 
     private void setUpDate() {
-        int currentMonthYear = LocalDate.now().getMonthValue() + LocalDate.now().getYear() * 12;
-        System.out.println(userData.checkUserBudgetLimit(currentMonthYear));
+        System.out.println(userData.checkUserBudgetLimit(LocalDate.now()));
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 

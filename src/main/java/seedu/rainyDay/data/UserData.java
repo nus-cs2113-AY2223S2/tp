@@ -1,6 +1,8 @@
 package seedu.rainyDay.data;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class UserData {
@@ -35,29 +37,29 @@ public class UserData {
     }
 
     /**
-     * Helper command used to check if the user's expenditure for the month has exceeded his set
-     * budget
-     * The progress is show if and only if a budget is present, and the changed entry is in the same
-     * month and year as the user. Otherwise, an empty string is returned
+     * Helper command used to check if the user's expenditure for the month has exceeded his set budget
+     * The progress is show if and only if a budget is present. Otherwise, an empty string is returned
      *
-     * @param statementMonthYear an integer denoting the MonthYear of the changed entry
+     * @param currentDate the date to be checked
      * @return A string denoting the progress if applicable
      */
-    public String checkUserBudgetLimit(int statementMonthYear) {
+    public String checkUserBudgetLimit(LocalDate currentDate) {
         double budgetLimit = getBudgetGoal();
-        double currentSpending = financialReport.getMonthlyExpenditure(statementMonthYear);
-        int currentMonthYear = LocalDate.now().getMonthValue() + LocalDate.now().getYear() * 12;
-        if (statementMonthYear != currentMonthYear) {
-            return "";
-        }
         if (budgetLimit == 0) {
             return "";
         }
+        int currentMonth = currentDate.getMonthValue();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("LLL uuuu");
+        String monthYearString = currentDate.format(formatter);
+        int currentYear = currentDate.getYear();
+        int monthYear = currentMonth + currentYear * 12;
+        double currentSpending = financialReport.getMonthlyExpenditure(monthYear);
         if (currentSpending >= budgetLimit) {
-            return String.format("\nYou've spent $%.2f/$%.2f and exceeded your budget! " +
-                    "Try harder next time :(",currentSpending, budgetLimit);
+            return String.format("\nYou've spent $%.2f/$%.2f for %s and exceeded your budget! " +
+                    "Try harder next time! :(",currentSpending, budgetLimit,monthYearString);
         }
-        return String.format("\nYou have spent $%.2f/$%.2f, Keep it up!", currentSpending, budgetLimit);
+        return String.format("\nYou have spent $%.2f/$%.2f for %s, Keep it up!",
+                currentSpending, budgetLimit, monthYearString);
     }
 
     public FinancialStatement getStatement(int statementIndex) {
