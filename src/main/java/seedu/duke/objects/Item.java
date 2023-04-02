@@ -14,7 +14,7 @@ public class Item implements Comparable<Item> {
     private String name;
     private Double price;
     private Integer quantity;
-    private String category = "Uncategorized";
+    private String category = "uncategorised";
     private ArrayList<String> tags = new ArrayList<>();
 
     public Item(String name, String upc, Integer qty, Double price) {
