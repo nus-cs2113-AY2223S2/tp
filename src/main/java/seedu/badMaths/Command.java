@@ -61,6 +61,9 @@ public class Command {
                     command.equals("Quadratic")) : "input has incorrect format required";
             switch (command) {
             case "Bye":
+                if(!isInvalidTodo(toDo)) {
+                    throw new IllegalTodoException();
+                }
                 System.out.println("Goodbye!");
                 break;
             case "Graph":
