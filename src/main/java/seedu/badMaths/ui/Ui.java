@@ -49,6 +49,10 @@ public class Ui {
         System.out.println("This is the freq (Hz): " + freq);
     }
 
+    //@@author WilsonLee2000
+    public static void printInvalidNumberEntered() {
+        System.out.println("Input must be a number!");
+    }
 
     //@@author ZiqiuZeng
     public static void printMark(String text) {
