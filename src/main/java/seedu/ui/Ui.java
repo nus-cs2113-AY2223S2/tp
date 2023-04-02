@@ -8,7 +8,7 @@ public class Ui {
     public static final String HORIZONTAL_LINE = "----------------------------------------------" + 
         "--------------------------------------------------------------------";
     public static final String WELCOME_MESSAGE = "Hello there, Welcome to\n";
-    public static final String INSTRUCTIONS = "\nHere are the list possible commands: "
+    public static final String INSTRUCTIONS = "\nHere are the list of possible commands: "
             + "add, delete, edit, list, borrow, lend, exit\n";
     public static final String HELP_MESSAGE = "If this is your first time here, "
             + "Type <help> to learn more about the commands\n";
