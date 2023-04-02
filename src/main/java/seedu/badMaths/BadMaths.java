@@ -65,7 +65,7 @@ public class BadMaths {
             }
 
             inputCommand.executeCommand(notes);
-            if (userInput.equals("Bye.")) {
+            if (userInput.equals("Bye")) {
                 break;
             }
         }
