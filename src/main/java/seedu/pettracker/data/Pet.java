@@ -2,7 +2,6 @@ package seedu.pettracker.data;
 
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
-import seedu.pettracker.exceptions.PetNotFoundException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

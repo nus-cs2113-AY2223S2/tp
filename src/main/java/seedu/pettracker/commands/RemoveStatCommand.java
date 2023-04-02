@@ -1,7 +1,6 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.exceptions.InvalidStatException;
-import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
