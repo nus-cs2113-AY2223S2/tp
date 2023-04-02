@@ -18,14 +18,10 @@ import static java.util.function.Predicate.not;
 public class ListTasksCommand extends Command {
     // @@author clement559
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_LIST,
-            Flags.FILTER_DONE, Flags.FILTER_UNDONE, Flags.FILTER_OVERDUE};
+        Flags.FILTER_DONE, Flags.FILTER_UNDONE, Flags.FILTER_OVERDUE};
 
     private TaskList filteredTaskList;
     private Predicate<Task> predicate = task -> true;
-
-    /**
-     * Displays the current task list.
-     */
 
     /**
      * Constructs an ListTaskCommand object by parsing the provided arguments.
@@ -45,6 +41,10 @@ public class ListTasksCommand extends Command {
             predicate = predicate.and(Task.isOverdue());
         }
     }
+
+    /**
+     * Displays the full or filtered task list, depending on filters chosen.
+     */
     public void execute(TaskList taskList, Ui ui) {
         if (predicate == null) {
             ui.printTaskList(taskList.size(), taskList.toString(Task.deadlineComparator));
