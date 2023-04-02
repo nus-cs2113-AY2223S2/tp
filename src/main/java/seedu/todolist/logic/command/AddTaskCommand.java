@@ -8,20 +8,21 @@ import seedu.todolist.task.TaskList;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.TreeSet;
 
 /**
  * Command class that will add a Task object to the given TaskList object.
  */
 public class AddTaskCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_ADD,
-        Flags.EMAIL, Flags.DEADLINE, Flags.TAG, Flags.REPEAT};
+        Flags.EMAIL, Flags.DEADLINE, Flags.TAG, Flags.REPEAT, Flags.PRIORITY};
 
     private String description;
     private String email;
     private LocalDateTime deadline;
-    private HashSet<String> tags;
+    private TreeSet<String> tags;
     private int repeatDuration;
+    private int priority;
 
     /**
      * Constructs an AddTaskCommand object by parsing the provided arguments.
@@ -36,11 +37,12 @@ public class AddTaskCommand extends Command {
         email = ParserUtil.parseEmail(args.get(Flags.EMAIL));
         tags = ParserUtil.parseTags(args.get(Flags.TAG));
         repeatDuration = ParserUtil.parseRepeatDuration(args.get(Flags.REPEAT), deadline);
+        priority = ParserUtil.parsePriority(args.get(Flags.PRIORITY));
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui) {
-        String taskString = taskList.addTask(description, deadline, email, tags, repeatDuration);
+        String taskString = taskList.addTask(description, deadline, email, tags, repeatDuration, priority);
         ui.printAddTaskMessage(taskString);
     }
 }

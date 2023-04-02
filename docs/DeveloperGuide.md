@@ -7,7 +7,7 @@
 
 ## Acknowledgements
 
-Adapted from AddressBook Level 3 Developer Guide (https://se-education.org/addressbook-level3/DeveloperGuide.html)
+Adapted from [AddressBook Level 3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
 
 ## Setup
 
@@ -23,7 +23,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ## Design
 
-> The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](diagrams) folder.
+> The `.puml` files used to create the diagrams in this guide can be found in the [diagrams](https://github.com/AY2223S2-CS2113-T11-4/tp/tree/master/docs/diagrams) folder.
 
 ### Architecture
 
@@ -39,7 +39,7 @@ The above diagram provides a high-level overview of the program's design, which 
 
 ### Manager Component
 
-The code for this component is found in [`ToDoListManager.java`](../src/main/java/seedu/todolist/ToDoListManager.java).
+The code for this component is found in [`ToDoListManager.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/ToDoListManager.java).
 
 ![ManagerClassDiagram](images/ManagerClassDiagram.png)
 
@@ -54,11 +54,11 @@ The `ToDoListManager` component,
 
 ### Ui component
 
-The code for this component is found in [`Ui.java`](../src/main/java/seedu/todolist/ui/Ui.java).
+The code for this component is found in [`Ui.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/ui/Ui.java).
 
 ### Logic component
 
-The main code for this component is found in [`Parser.java`](../src/main/java/seedu/todolist/logic/Parser.java).
+The main code for this component is found in [`Parser.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/logic/Parser.java).
 
 ![LogicClassDiagram](images/LogicClassDiagram.png)
 
@@ -72,11 +72,11 @@ component.
 
 ### TaskList component
 
-The code for this component is found in [`TaskList.java`](../src/main/java/seedu/todolist/task/TaskList.java).
+The code for this component is found in [`TaskList.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/task/TaskList.java).
 
 ### Storage component
 
-The code for this component is found in [`Storage.java`](../src/main/java/seedu/todolist/storage/Storage.java).
+The code for this component is found in [`Storage.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/storage/Storage.java).
 
 The Storage component can save the task list as TaskList objects in a .txt file format using Serialization and read it 
 back into a TaskList object.
@@ -183,29 +183,23 @@ The Storage class implements the following operations:
 - `Storage#saveData(TaskList)` --- Saves the current task list.
 - `Storage#loadData()` --- Loads a task list from the previously saved file, if there is one.
 
-Given below is an example usage scenario and how the Storage mechanism behaves at each step.
+Given below are 3 example usage scenarios and how the Storage mechanism behaves in each scenario.
 
-Step 1. The user launches the application (not for the first time). The program loads the previously saved task list 
-data as there is a saved file `'./data.txt'` that Storage can find.
+Scenario 1: The user launches the application and there is a valid save file found. Storage loads the file successfully
+and informs the user of the loaded task list (and how many tasks there are in it).
 
-![Step 1](images/StorageSequenceDiagramStep1.png)
+![StartUpStorageSequenceWithValidSaveFile](images/StartUpStorageWithValidSaveFile.png)
 
-Step 2. The user executes `list` command. The `list` command calls `Ui#printTaskList()` which lists all tasks in the 
-task list. `ToDoListManager` calls `storage#saveData()`, so the task list is saved into `'./data.txt'`.
+Scenario 2: The user launches the application and there is no save file found. Storage informs the user that there is no
+save file found and that a new one will be created for them later.
 
-![Step2](images/StorageSequenceDiagramStep2-Step_2.png)
+![StartUpStorageSequenceWithNoSaveFile](images/StartUpStorageSequenceWithNoSaveFile.png)
 
-Step 3. The user executes `add cg2023 assignment -due 18/12/2023` command. The `add` command calls `TaskList#addTask()`, 
-which adds a new Task to the existing task list. `ToDoListManager` calls `storage#saveData()`, so the task list is saved
-into `'./data.txt'`.
+Scenario 3: The user edits the task list or exits the program. Storage saves the changes automatically into the save 
+file. Note that the sequence diagram below shows what happens when the user exits the program, but the processes in
+Storage occur even when the user performs other commands to edit the task list.
 
-![Step3](images/StorageSequenceDiagramStep3-Step_3.png)
-
-Step 4. The user executes `exit` command and exits the program. The `exit` command calls `Ui#printGoodByeMessage` to 
-notify the user that (s)he is exiting the program. `ToDoListManager` calls `storage#saveData(taskList)`, so the task 
-list is saved into `'./data.txt'` again before the program exits.
-
-![Step4](images/StorageSequenceDiagramStep4-Step_4.png)
+![ExitProgramStorageSequence](images/ExitProgramStorageSequence.png)
 
 #### Design considerations:
 - **Option 1**: Save task list as a self-formatted .txt file which can be printed and used as a physical task list.
@@ -225,14 +219,28 @@ list is saved into `'./data.txt'` again before the program exits.
 Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives,
 and we found that the lack of a physical task list to use is not a very significant issue.
 
+### Progress Bar Feature
+The ProgressBarCommand extends NUS To-Do List with a progress bar feature for tracking the progress on tasks in the task 
+list that must be finished by the current week. It is facilitated by ToDoListManager, Parser, TaskList, TemporalField, 
+LocalDate and Ui classes. It implements the `Ui#printProgressBar()` operation, which informs the user of their progress 
+using a percentage (up to 2 decimal places) and a bar (where '=' denotes completion and '-' denotes incomplete).
+
+Given below is an example usage scenario and how the ProgressBarCommand mechanism behaves in this scenario.
+
+The user has a task list with 3 tasks that are due this week. Among the 3 tasks, 1 is marked as done. The user executes 
+the progress command, which will call `Ui#printProgressBar()`. The user now sees that they have completed 33.33% of 
+their tasks and a progress bar to help them visualize their progress.
+
+![ProgressBarCommandSequence](images/ProgressBarCommandSequence.png)
+
 ### [Proposed] History feature
 
-The proposed history feature is facilitated by the `Storage`, `TaskList` and `Command` classes. Internally, there will 
-be 2 task lists stored - `completedTasks` and `uncompletedTasks`. There will be a rework to how marking tasks as done 
+The proposed history feature is facilitated by the `Storage`, `TaskList` and `Command` classes. Internally, there will
+be 2 task lists stored - `completedTasks` and `uncompletedTasks`. There will be a rework to how marking tasks as done
 works, a removal of the operation `TaskList#setDone()` and a new command for users to input to the CLI: `history`.
 
 There will be 2 new operations:
-* `TaskList#markTask(id i)` - Moves the task at id i of `uncompletedTasks` to `completedTasks`.  
+* `TaskList#markTask(id i)` - Moves the task at id i of `uncompletedTasks` to `completedTasks`.
 * `TaskList#unmarkTask(id i)` - Moves the task at id i of `completedTasks` to `uncompletedTasks`.
 
 Given below is an example usage scenario and how the history mechanism works.
@@ -245,10 +253,10 @@ Step 2. The user executes `add cg2023 assignment -due 18/12/2023` command to add
 Step 3. The user executes `mark` command to mark a task that (s)he has completed. The `mark` command causes the task to
 be added to `completedTasks` and removed from `uncompletedTasks`.
 
-Step 4. The user executes `list` command to see what tasks (s)he has still not completed. The `list` command causes the 
+Step 4. The user executes `list` command to see what tasks (s)he has still not completed. The `list` command causes the
 tasks in `uncompletedTasks` to be listed for the user to see.
 
-Step 5. The user executes `history` command to see what tasks (s)he has already completed. The `history` command causes 
+Step 5. The user executes `history` command to see what tasks (s)he has already completed. The `history` command causes
 the tasks in `completedTasks` to be listed for the user to see.
 
 ## Appendix: Requirements
@@ -261,7 +269,7 @@ Forgetful NUS students who used to rely on LumiNUS’s deadline reminders.
 
 #### Value proposition
 
-With the transition to Canvas, the most important feature of LumiNUS’s deadline reminders is gone! Our project aims to 
+With the transition to Canvas, the most important feature of LumiNUS’s deadline reminders is gone! Our project aims to
 bring an application to keep you aware of your deadlines and not miss them.
 
 ### User Stories
@@ -292,10 +300,14 @@ bring an application to keep you aware of your deadlines and not miss them.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be 
 able to accomplish most of the tasks faster using commands than using the mouse.
 
-### Glossary
-
-* *glossary item* - Definition
-
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+The following are instructions on how to test the program manually.
+
+### Startup/Exit
+
+- After downloading the jar file from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0),
+double-click on it or run `java -jar todolist.jar` in a terminal to start the program.
+  - Expected: The startup, save loading and startup reminder messages will be displayed in the terminal.
+- To exit, use the exit command: `exit`
+  - Expected: The exit message is displayed in the terminal and the program exits, returning control to the terminal.

@@ -2,12 +2,14 @@ package seedu.todolist.ui;
 
 import seedu.todolist.constants.Messages;
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Ui {
     private final Scanner input = new Scanner(System.in);
 
     public String getUserInput() {
+        System.out.print("> ");
         return input.nextLine();
     }
 
@@ -21,9 +23,11 @@ public class Ui {
      * @param strings The strings to print out.
      */
     private void println(String... strings) {
+        System.out.println(Messages.LINE.getMessage());
         for (String string : strings) {
             System.out.println(string);
         }
+        System.out.println(Messages.LINE.getMessage());
     }
 
     /**
@@ -114,13 +118,14 @@ public class Ui {
             return;
         }
 
+        assert tasksThisWeek != 0;
         double progress = (double) completedTasksThisWeek / tasksThisWeek;
         int completedSections = (int) (progress * totalSections);
         int incompleteSections = totalSections - completedSections;
-
-        println("You have completed " + 100 * progress + "% of the "
-                + generateTaskCountString(tasksThisWeek) + " due this week!",
-                "Progress: |" + "=".repeat(completedSections) + "-".repeat(incompleteSections) + "|",
-                taskListString);
+        DecimalFormat twoDecimalPlaces = new DecimalFormat("0.00");
+        String progressPercentage = twoDecimalPlaces.format(100 * progress);
+        println("You have completed " + progressPercentage + "% of the " + generateTaskCountString(tasksThisWeek)
+                + " due this week!", "Progress: |" + "=".repeat(completedSections)
+                + "-".repeat(incompleteSections) + "|", taskListString);
     }
 }

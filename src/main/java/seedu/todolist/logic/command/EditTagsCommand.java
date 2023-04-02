@@ -10,13 +10,13 @@ import seedu.todolist.task.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.TreeSet;
 
 public class EditTagsCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_TAGS, Flags.EDIT, Flags.EDIT_DELETE};
 
     private int id;
-    private HashSet<String> tags;
+    private TreeSet<String> tags;
 
     public EditTagsCommand(HashMap<Flags, String> args) throws ToDoListException {
         id = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_TAGS));
@@ -30,7 +30,7 @@ public class EditTagsCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
         String taskString = taskList.setTags(id, tags);
-        if (tags.isEmpty()) {
+        if (tags == null) {
             ui.printEditDeleteTaskMessage("tags", taskString);
         } else {
             ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);

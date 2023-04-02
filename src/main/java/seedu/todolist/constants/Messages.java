@@ -4,6 +4,7 @@ package seedu.todolist.constants;
  * Enum that holds all the notification and help messages to be displayed.
  */
 public enum Messages {
+    LINE("_".repeat(90)),
     START("Hello, I am your To-Do list and I will help you remember the tasks you need to do!"),
     NEW_SAVE("No save data found, creating a new task list for you!"),
     LOAD_SAVE("Your saved task list was successfully loaded with "),
@@ -16,6 +17,7 @@ public enum Messages {
     CHECK_REPEATING("Okay, I have checked for any repeating tasks."),
     EDIT_TASK("Okay, I have edited the %s of this task to [%s]:"),
     EDIT_DELETE_TASK("Okay, I have deleted the %s of this task:"),
+    PRIORITY_LEVELS("Please enter a number from 1-3 (1:Low, 2:Medium, 3:High)"),
 
     LIST_TASKS("Okay, here is your task list, with "),
     TAGS_INFO("Okay, here are the tags associated with your task list:"),
