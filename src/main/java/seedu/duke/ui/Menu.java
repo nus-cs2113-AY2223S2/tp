@@ -165,9 +165,14 @@ public class Menu {
                 displaySymptomList();
                 addSymptomToSymptomList(scanner, symptoms);
             } else if (decision.equals("N") || decision.equals("n")) {
-                System.out.println("Your entered symptoms are: ");
-                System.out.println(symptoms);
-                break;
+                //@@author Geeeetyx
+                if (symptoms.isEmpty()) {
+                    break;
+                } else {
+                    System.out.println("Your entered symptoms are: ");
+                    System.out.println(symptoms);
+                    break;
+                }
             } else {
                 System.out.println("Invalid command! Please indicate Y/N.");
             }
@@ -443,13 +448,14 @@ public class Menu {
         ArrayList<IllnessMatch> possibleIllnesses = Diagnosis.getPossibleIllnesses(symptoms);
 
         if (!possibleIllnesses.isEmpty()) {
-            System.out.println("---------------------------------------------------");
+            System.out.println("==========================================================================" +
+                    "==================");
             System.out.println("You may have: ");
             for (IllnessMatch illnessMatch : possibleIllnesses) {
                 System.out.println(illnessMatch.getIllness().getIllnessName() + "    Match: "
                         + illnessMatch.getSimilarityPercentage() * 100 + "%");
             }
-            System.out.println("---------------------------------------------------");
+            System.out.println("-----------------------------------------------------------");
         } else {
             //@@author JeraldChen
             System.out.println("------------------------------------------------------------");
