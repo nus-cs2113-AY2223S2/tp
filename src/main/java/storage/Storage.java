@@ -1,14 +1,18 @@
 package storage;
 
+import com.google.gson.Gson;
+import data.Expense;
 import data.ExpenseList;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.EOFException;
+import java.util.ArrayList;
 
 
 // https://kodejava.org/how-do-i-store-objects-in-file/
@@ -20,14 +24,40 @@ public class Storage {
     private static final String WRITE_TO_EXPENSELIST_ERROR = "Error writing to expense list.";
     private static final String CREATE_FILE_ERROR = "Error creating file.";
     private static final String INITIAL_WELCOME_MESSAGE = "";
-
     private static final String NEW_EXPENSE = "New expense list created.";
+    private static final Gson GSON = new Gson();
 
     private ExpenseList expenseList;
+    private ArrayList<Expense> expenses;
 
+    public Storage(ArrayList<Expense> expenses) {
+        this.expenses = expenses;
+    }
 
     public Storage(ExpenseList expenseList) {
         this.expenseList = expenseList;
+    }
+
+    //json
+    public void saveExpenses(ArrayList<Expense> expenses, String filePath) {
+        File file = new File(filePath);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            System.out.println("Error creating account file.");
+        }
+
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(GSON.toJson(expenses));
+        } catch (IOException e) {
+            System.out.println("Error writing to account file");
+        }
+    }
+
+    public ArrayList<Expense> loadExpenses(String filePath) {
+        ArrayList<Expense> expenses = new ArrayList<>();
+        return expenses;
     }
 
 

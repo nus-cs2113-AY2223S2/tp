@@ -29,8 +29,9 @@ public class Duke {
         parser = new Parser();
         expenseList = new ExpenseList();
         currency = new Currency();
-        storage = new Storage(expenseList);
-        expenseList = storage.initialiseExpenseList();
+//        storage = new Storage(expenseList);
+//        expenseList = storage.initialiseExpenseList();
+        storage = new Storage(expenseList.getExpenseList());
     }
 
     public void run() {
@@ -82,7 +83,8 @@ public class Duke {
                 System.out.println("Unknown command.");
                 break;
             }
-            storage.saveExpenseList();
+//            storage.saveExpenseList();
+            storage.saveExpenses(expenseList.getExpenseList(), "test.json");
             if (in.hasNextLine()) {
                 input = in.nextLine();
             }
