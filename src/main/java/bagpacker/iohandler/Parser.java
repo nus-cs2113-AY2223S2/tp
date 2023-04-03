@@ -203,16 +203,16 @@ public class Parser {
      */
     public static Command createAddObj() {
         try {
-            String[] quantityAndDescription = getAddVariables();
-            int itemQuantity = Integer.parseInt(quantityAndDescription[0]);
-            String itemDescription = quantityAndDescription[1];
-            if (itemDescription == null) {
+            String[] quantityAndName = getAddVariables();
+            int itemQuantity = Integer.parseInt(quantityAndName[0]);
+            String itemName = quantityAndName[1];
+            if (itemName == null) {
                 throw new InvalidVariablesException();
             }
             if (itemQuantity < 1) {
                 throw new InvalidIndexException();
             }
-            return new AddCommand(new Item(itemQuantity, itemDescription));
+            return new AddCommand(new Item(itemQuantity, itemName));
         } catch (InvalidVariablesException | ArrayIndexOutOfBoundsException e) {
             return new IncorrectCommand("Invalid input format",
                     AddCommand.HELP_MSG);

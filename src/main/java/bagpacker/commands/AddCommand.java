@@ -21,7 +21,7 @@ public class AddCommand extends Command {
     @Override
     public void execute(PackingList packingList) {
         if(PackingList.itemFinder(item.getItemName())){
-            PackingList.addItemQuantity(item.getItemName(), item.getTotalQuantity());
+            PackingList.addToItemQuantity(item.getItemName(), item.getTotalQuantity());
             Ui.printToUser(String.format(MSG_SUCCESS_ADD_EXISTING, PackingList.getExistingItem(item.getItemName())));
             return;
         }

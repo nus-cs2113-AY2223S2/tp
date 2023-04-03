@@ -46,7 +46,7 @@ public class PackingList {
      * @param itemName name of the item to add total quantity to be packed
      * @param addQty the quantity to add to the old total
      */
-    public static void addItemQuantity(String itemName, int addQty) {
+    public static void addToItemQuantity(String itemName, int addQty) {
         Item itemToAdd = getExistingItem(itemName);
         int totalQuantity = itemToAdd.getTotalQuantity();
         itemToAdd.setTotalQuantity(totalQuantity + addQty);
