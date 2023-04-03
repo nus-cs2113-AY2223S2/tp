@@ -123,7 +123,7 @@ public class Storage {
     }
 
     /**
-     * Update the inventory with the item object provided. (History update)
+     * Update the inventory with the item object provided. (Takes into account duplicate entries from history)
      *
      * @param inventory Inventory object to be updated
      * @param item          Item object to be added
