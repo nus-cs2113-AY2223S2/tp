@@ -21,7 +21,7 @@ public class EditPriorityCommand extends Command{
         id = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_PRIORITY));
         if (args.containsKey(Flags.EDIT)) {
             priority = ParserUtil.parsePriority(args.get(Flags.EDIT));
-        } else if (!args.containsKey(Flags.EDIT_DELETE)) {
+        } else {
             throw new InvalidEditException();
         }
     }
