@@ -58,6 +58,7 @@ ____________________________________________________________
 |      Delete Module      |           `delmod IDX`           |
 | Show Module Information |            `showmod`             |
 |          Help           |              `help`              |
+|    Help for Command     |          `help COMMAND`          |
  |     Weekly Schedule     |              `week`              |
 |           Bye           |              `bye`               |
 
@@ -113,12 +114,12 @@ Adds a task with a due date to Apollo.
 If deadline clashes with any event or lesson type you will be alerted through a warning message. 
 However, you will still be able to add it into the tasklist. 
 
-Format: `deadline TASK /by DATE`
+Format: `deadline TASK -by DATE`
 
 > Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
 
 ```
->> deadline submit tutorial /by 2023-03-30T23:59
+>> deadline submit tutorial -by 2023-03-30T23:59
 Got it. I've added this deadline:
   [D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
 ```
@@ -129,12 +130,12 @@ Adds a task with a start and end date to Apollo.
 If there is an event in the tasklist that is clashing with any event added previously a warning message will be printed. 
 However, you will still be able to add it. 
 
-Format: `event TASK /from DATE /to DATE`
+Format: `event TASK -from DATE -to DATE`
 
 > Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
 
 ```
->> event holiday /from 2023-03-25T00:00 /to 2023-03-30T23:59
+>> event holiday -from 2023-03-25T00:00 -to 2023-03-30T23:59
 Got it. I've added this event:
   [E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
 ```
@@ -342,6 +343,60 @@ The ordering of lessons in the list are sorted as follows:
 Shows a menu of commands available in Apollo and their usage, as well as their required format/parameters.
 
 Format: `help`
+
+#### `help` for specific commands
+
+To see the help menu for a specific command instead of the longer help command or to find out more about a command, 
+you can do so by typing `help COMMAND`.
+The below is a list of commands that you can use with `help`.
+
+Format: `help COMMAND`
+
+|  Command   |                          Help/Information Message contains...                           |
+|:----------:|:---------------------------------------------------------------------------------------:|
+|   `list`   |                      information and format for list tasks command                      |
+|   `todo`   |                                 format for todo command                                 |
+| `deadline` |                               format for deadline command                               |
+|  `event`   |                                format for event command                                 |
+|   `mark`   |                                 format for mark command                                 |
+|  `unmark`  |                                format for unmark command                                |
+|  `delete`  |                             format for delete task command                              |
+|   `find`   |                     format for finding matching tasks with keyword                      |
+|   `date`   |                           format for finding tasks with date                            |
+| `listmod`  |                     information and format for list module command                      |
+|  `addmod`  | information and format of adding modules and module lessons commands, with flag options |
+|  `delmod`  |       information and format of delete module command options, with flag options        |
+| `showmod`  |                  information and format of show module command options                  |
+|   `bye`    |                         information and format for bye command                          |
+
+Format: `help COMMAND`
+
+```
+>> help showmod
+
+Shows the information of a module, including Modular Credits, lesson types, lesson numbers and times.
+Format: showmod MODULE_CODE
+
+If you would like to view timing information on a specific lesson type of a module, you can use flags.
+Format: showmod MODULE_CODE -FLAG
+Example: showmod CS1010 -st
+NOTE: Different modules have different lesson types.
+It is recomended to run `showmod MODULE_CODE` to see the lesson types available for that module.
+
+There are -FLAGS for the various lessons options per module:
+-lec			LECTURE
+-plec			PACKAGED LECTURE
+-st 			SECTIONAL TEACHING
+-dlec			DESIGN LECTURE
+-tut			TUTORIAL
+-ptut			PACKAGED TUTORIAL
+-rcit			RECITATION
+-lab			LABORATORY
+-ws 			WORKSHOP
+-smc			SEMINAR STYLE MODULE CLASS
+-mp 			MINI PROJECT
+-tt2			TUTORIAL TYPE 2
+```
 
 ### `week` - Viewing weekly schedule
 

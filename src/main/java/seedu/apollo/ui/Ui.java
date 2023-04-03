@@ -466,14 +466,14 @@ public class Ui {
      * Prints error message if the deadline entered does not fit the format.
      */
     public void printInvalidDeadline() {
-        System.out.println("Please enter deadline as \"deadline [task] /by [date]\".");
+        System.out.println("Please enter deadline as \"deadline [task] -by [date]\".");
     }
 
     /**
      * Prints error message if the event entered does not fit the format.
      */
     public void printInvalidEvent() {
-        System.out.println("Please enter event as \"event [task] /from [date] /to [date]\".");
+        System.out.println("Please enter event as \"event [task] -from [date] -to [date]\".");
     }
 
     /**
@@ -804,7 +804,7 @@ public class Ui {
                 "If there is an event in the tasklist that is clashing with any event added previously " +
                 "a warning message will be printed. \n" +
                 "However, you will still be able to add it.\n\n" +
-                "Format: event TASK /from DATE /to DATE\n" +
+                "Format: event TASK -from DATE -to DATE\n" +
                 "Note: DATE must be entered in the format yyyy-MM-ddThh:mm.");
     }
     /**
@@ -825,7 +825,7 @@ public class Ui {
      * Prints a help message for deadline command
      */
     public void printDeadlineHelpMessage() {
-        System.out.println("Adds a task with a due date to Apollo \n" + "Format: deadline TASK /by DATE\n" +
+        System.out.println("Adds a task with a due date to Apollo \n" + "Format: deadline TASK -by DATE\n" +
                 "Note: DATE must be entered in the format yyyy-MM-ddThh:mm.\n"+
                 "If deadline clashes with any event or lesson type you will be alerted through a warning message. \n" +
                 "However, you will still be able to add it into the tasklist.");

@@ -317,7 +317,7 @@ public class Parser {
      * @throws InvalidDeadline If the user did not input the due date in the right format.
      */
     public static String[] parseDeadline(String param) throws InvalidDeadline {
-        String[] split = param.trim().split("\\s/by\\s", 2);
+        String[] split = param.trim().split("\\s-by\\s", 2);
         if (split.length != 2) {
             throw new InvalidDeadline();
         }
@@ -332,9 +332,10 @@ public class Parser {
      * @throws InvalidEvent If the user did not input the start or end date in the right format.
      */
     public static String[] parseEvent(String param) throws InvalidEvent {
-        String[] split = param.trim().split("\\s/from\\s|\\s/to\\s", 3);
-        String[] checkFromToOrder = Arrays.copyOfRange(param.trim().split("/"), 1, 3);
-        if ((split.length != 3) || (!checkFromToOrder[0].startsWith("from") || !checkFromToOrder[1].startsWith("to"))) {
+        String[] split = param.trim().split("\\s-from\\s|\\s-to\\s", 3);
+        String[] checkFromToOrder = Arrays.copyOfRange(param.trim().split(" -"), 1, 3);
+
+        if ((split.length != 3)||(!checkFromToOrder[0].startsWith("from") || !checkFromToOrder[1].startsWith("to"))){
             throw new InvalidEvent();
         }
         return split;
