@@ -18,7 +18,7 @@ public abstract class CurrencyValue {
     private static final double TWD_CONVERSION = 22.98;
     private static final double USD_CONVERSION = 0.75;
 
-    public static double SGDConversion (double amount, String currencyType) throws WrongInputException {
+    public static double sgDConversion (double amount, String currencyType) throws WrongInputException {
         switch (currencyType) {
         case "AUS":
             return amount * AUS_CONVERSION;
