@@ -67,7 +67,7 @@ public class EventCommandTest extends CommandTest {
     void addEvent_emptyDescription_expectEmptyEventMessage() {
         setup();
         String terminalOutput = executeInput("event").toString();
-        assertEquals("☹ OOPS!!! The description of an event cannot be empty." +
+        assertEquals("OOPS!!! The description of an event cannot be empty." +
                 System.lineSeparator(), terminalOutput);
         assertEquals(2, food.events.size());
         clear();

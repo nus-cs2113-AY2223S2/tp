@@ -2,12 +2,11 @@ Creating file...
 Welcome to Moneymind
 [LOGO_PLACEHOLDER]
 How may I help you?
-Approaching expenses:
 
 ____________________________________________________________
 
 ____________________________________________________________
-☹ OOPS!!! I'm sorry, but I don't know what that means :-(
+OOPS!!! I'm sorry, but I don't know what that means :-(
 ____________________________________________________________
 
 ____________________________________________________________

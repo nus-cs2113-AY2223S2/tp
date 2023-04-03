@@ -48,13 +48,13 @@ public class Strings {
     public static final String EVENT = "event";
     public static final String CATEGORY = "category";
     public static final String SEARCH = "search";
-    public static final String INVALID_INPUT = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+    public static final String INVALID_INPUT = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String DELETE_FORMAT = "Please following the correct format: " +
             "delete c/<category name> [(optional) e/<event index>]";
     public static final String REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY = "Remember do not leave any things " +
             "inside the brackets empty!";
-    public static final String EMPTY_DELETION = "☹ OOPS!!! The description of a delete cannot be empty.";
-    public static final String SUBTLE_BUG_MESSAGE = "☹ OOPS!!! Something went wrong, please report to the developer.";
+    public static final String EMPTY_DELETION = "OOPS!!! The description of a delete cannot be empty.";
+    public static final String SUBTLE_BUG_MESSAGE = "OOPS!!! Something went wrong, please report to the developer.";
     public static final String EVENT_REGEX = "^(?<name>.*?)(?:\\s+e\\/(?<expense>\\S+))(?: +t\\/(?<time>.*))?$";
     public static final String CATEGORY_REGEX = "^(?!b\\/\\d)(?<name>.*?)(?:\\s+b\\/(?<budget>\\S+))?$";
     public static final String EDIT_REGEX = "c\\/(.+) e\\/(.+)";
@@ -65,8 +65,8 @@ public class Strings {
             "category NAME [(optional) b/<budget number>]";
     public static final String EDIT_FORMAT = "Please following the correct format: " +
             "edit c/<category name> e/<event index>";
-    public static final String EVENT_EMPTY = "☹ OOPS!!! The description of an event cannot be empty.";
-    public static final String CATEGORY_EMPTY = "☹ OOPS!!! The description of a category cannot be empty.";
+    public static final String EVENT_EMPTY = "OOPS!!! The description of an event cannot be empty.";
+    public static final String CATEGORY_EMPTY = "OOPS!!! The description of a category cannot be empty.";
     public static final String NULL_INPUT_ASSERTION = "Input cannot be null";
     public static final String NULL_DESCRIPTION = "Separated keyword and description cannot be null";
     public static final String STORAGE_NEXT_VARIABLE = "&&next_detail&&";

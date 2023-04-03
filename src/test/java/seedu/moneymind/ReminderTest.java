@@ -3,6 +3,7 @@ package seedu.moneymind;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.moneymind.Reminder.checkCategoryReminder;
 import static seedu.moneymind.string.Strings.NEW_LINE;
+import static seedu.moneymind.string.Strings.HORIZONTAL_LINE;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -35,6 +36,6 @@ public class ReminderTest {
         String expectedOutput = "Approaching expenses:" + NEW_LINE
                 + "transport has an event: Uber in 2 days" + NEW_LINE;
         String actualOutput = checkCategoryReminder(storageTestData());
-        assertEquals(expectedOutput, actualOutput, actualOutput);
+        assertEquals((HORIZONTAL_LINE + NEW_LINE + expectedOutput), actualOutput, actualOutput);
     }
 }
