@@ -12,6 +12,7 @@ import data.ExpenseList;
 import data.Currency;
 import parser.Parser;
 import storage.Storage;
+import common.WelcomeMessage;
 
 import java.util.Scanner;
 
@@ -38,12 +39,14 @@ public class Duke {
     }
 
     public void run() {
-        String logo = " ____        _\n"
+        String logo =
+                  " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from\n");
+        WelcomeMessage.printWelcomeLogo();
         System.out.println("What is your name?");
 
         Scanner in = new Scanner(System.in);

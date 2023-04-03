@@ -129,8 +129,7 @@ Format: `category CATEGORY`
 
 * CATEGORY represents the category that user want.
 * If the category doesn't belong to the categories that user have entered before, it will tell the user to switch to another one.
-* The method also will tell user how many categories they have, and also what are these categories,
-* so as to better help them with futuer obtaining purpose
+* The method also will tell user how many categories they have, and also what are these categories, so as to better help them with future obtaining purpose
 
 Example of usage:
 
