@@ -39,7 +39,7 @@ deactivate FlashcardList
 AddCommand -> Ui : printSuccessfulAddMessage(question, answer)
 activate Ui
 
-Main<- Ui : Display message
+Main <- Ui : Display message
 Ui -> AddCommand
 deactivate Ui
 
