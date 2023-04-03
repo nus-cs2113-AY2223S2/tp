@@ -90,10 +90,10 @@ public class RecipeList {
         }
     }
 		
-		public static void searchByTag(String tag) {
+    public static void searchByTag(String tag) {
         ArrayList<String> matches = new ArrayList<>();
         if (tag.equals("")) {
-            System.out.println(MISSING_KEYWORD);
+            System.out.println(MISSING_FIND_KEYWORD);
         } else if (getCurrRecipeNumber() == 0) {
             System.out.println(EMPTY_LIST_MESSAGE);
         } else {
@@ -112,6 +112,7 @@ public class RecipeList {
                 }
             }
         }
+    }
 
     public static Recipe viewRecipe(String term)
             throws DuplicateRecipeNameException,NoMatchingRecipeFound, OutOfIndexException {
