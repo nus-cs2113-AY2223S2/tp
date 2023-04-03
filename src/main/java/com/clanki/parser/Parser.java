@@ -49,7 +49,7 @@ public class Parser {
             return getReviewCommand(parsedInput);
         case "update":
             return getUpdateCommand(parsedInput);
-        case "del":
+        case "delete":
             return getDeleteCommand(parsedInput);
         case "bye":
             return getByeCommand(parsedInput);
