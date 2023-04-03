@@ -1,34 +1,50 @@
 package seedu.storage;
 
 
+import seedu.parser.DateFormatter;
+import seedu.workout.Day;
+import seedu.workout.Exercise;
+import seedu.workout.Workout;
+import seedu.workout.WorkoutList;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
 
 public class WriteFile extends Storage {
     private static final String SPACE = "          ";
 
-    public WriteFile() {
-        super();
-    }
 
-    public static void writeWorkoutToFile(String filePath) {
-        //WorkoutList workoutList = Command.getWorkoutList();
-       /* workoutArrayList = workoutList.getWorkoutArrayList();
+    private static HashMap<Date, Day> workouts;
+
+    private static HashMap<String, Workout> dailyWorkout;
+
+
+    public static void writeWorkoutToFile(String filePath, WorkoutList workoutList) {
 
         try {
             File savedFile = new File(filePath);
             FileWriter writeFile = new FileWriter(savedFile);
-            for(int index = 0; index < workoutArrayList.size(); index += 1) {
-                writeFile.write("Date:     ");
-                String formattedDate = DateFormatter.dateToString(workoutArrayList.get(index).getDate());
+            workouts = workoutList.getWorkouts();
+            for (Date date : workouts.keySet()) {
+                writeFile.write("Date    : ");
+                String formattedDate = DateFormatter.dateToString(date);
                 writeFile.write(formattedDate + System.lineSeparator());
-                //workoutExercises = workout.getExercises();
-                workoutList.setCurrentStorageWorkoutIndex(index);
-                workoutExercises = workoutList.getStorageCurrentWorkout().getExercises();
-                if (!workoutExercises.isEmpty()) {
+                Day workoutsOnOneDay = workouts.get(date);
+                dailyWorkout = workoutsOnOneDay.getWorkoutsByDate();
+                for (String workoutName : dailyWorkout.keySet()) {
+                    writeFile.write("Workout : " + workoutName + System.lineSeparator());
+                    int index = 1;
                     writeFile.write("Exercise: " + System.lineSeparator());
-                    for (int exerciseIndex = 0; exerciseIndex < workoutExercises.size(); exerciseIndex += 1) {
-                        writeFile.write(SPACE + (exerciseIndex + 1) + ". "
-                                + workoutExercises.get(exerciseIndex).toString()
-                                + System.lineSeparator());
+                    //  if(dailyWorkout.get(workoutName)) {
+                    for (Exercise exercises : dailyWorkout.get(workoutName).getExercises()) {
+                        String exerciseStr = String.format("%s. Name: %s, Weight: %s, Reps: %s", index,
+                                exercises.getName(), exercises.getWeight(), exercises.getRepsPerSet());
+                        writeFile.write(SPACE + exerciseStr + System.lineSeparator());
+                        index++;
+                        //  }
                     }
                 }
             }
@@ -36,9 +52,5 @@ public class WriteFile extends Storage {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-
-    }*/
     }
 }

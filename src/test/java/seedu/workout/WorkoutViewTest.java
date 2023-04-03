@@ -43,13 +43,16 @@ public class WorkoutViewTest {
 
         // Assert that the result contains the expected output
         String expectedOutput = "Workouts on " + DateFormatter.dateToString(date1) + ":" + System.lineSeparator()
-                + "Workout 1:" + System.lineSeparator()
-                + "1. " + exercise1.toString() + System.lineSeparator()
-                + "2. " + exercise2.toString() + System.lineSeparator()
-                + Ui.showSeparator();
+                + "Workout Name: " + "Workout 1" + System.lineSeparator()
+                + "Exercise Info: " + System.lineSeparator()
+                + "1. Name: " + exercise1.getName() + ", weight: "
+                + exercise1.getWeight() + ", rps: " + exercise1.getRepsPerSet()
+                + System.lineSeparator()
+                + "2. Name: " + exercise2.getName() + ", weight: "
+                + exercise2.getWeight() + ", rps: " + exercise2.getRepsPerSet()
+                + System.lineSeparator() + Ui.showSeparator() + System.lineSeparator();
         assertEquals(expectedOutput, result);
     }
-
     //@@ author ZIZI-czh
     @Test
     public void testExecute_noWorkoutFound_returnsErrorMessage() throws ParseException {

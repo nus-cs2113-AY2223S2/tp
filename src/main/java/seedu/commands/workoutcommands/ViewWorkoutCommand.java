@@ -16,7 +16,6 @@ public class ViewWorkoutCommand extends Command {
 
     private static final String FAIL_TO_FIND_DATE = " does not exit in the list";
     private final Date workoutToViewDate;
-    private HashMap<String, Workout> workout;
 
 
     //@@ author ZIZI-czh
@@ -50,14 +49,22 @@ public class ViewWorkoutCommand extends Command {
             string.append("Workouts on ").append(formattedDate).append(":").append(System.lineSeparator());
             // retrieve all workouts for the day and add them to the StringBuilder
             for (String workoutName : singleWorkout.keySet()) {
-                string.append(workoutName).append(":").append(System.lineSeparator());
+                string.append("Workout Name: ").append(workoutName).append(System.lineSeparator());
+                string.append("Exercise Info: ").append(System.lineSeparator());
                 int index = 1;
                 for (Exercise exercise : singleWorkout.get(workoutName).getExercises()) {
-                    string.append(index).append(". ").append(exercise.toString()).append(System.lineSeparator());
+                    string.append(index).append(". ").append("Name: ")
+                            .append(exercise.getName())
+                            .append(", weight: ")
+                            .append(exercise.getWeight())
+                            .append(", rps: ")
+                            .append(exercise.getRepsPerSet())
+                            .append(System.lineSeparator());
                     index++;
                 }
+                string.append(Ui.showSeparator()).append(System.lineSeparator());
             }
-            return string + Ui.showSeparator();
+            return string.toString();
         }
         // if the Day object doesn't exist, return an error message
         return formattedDate + FAIL_TO_FIND_DATE;

@@ -37,9 +37,13 @@ public class Ui {
         System.out.println(LOGO_MESSAGE);
     }
 
-    public static void showLine(){
+    public static String showLine(){
+        return LINE;
+    }
+    public static void showOneLine(){
         System.out.println(LINE);
     }
+
 
     public static String showSeparator(){
         return (LINE_SEPARATOR);
@@ -50,9 +54,9 @@ public class Ui {
     }
 
     public static void showWelcomeMessage() {
-        showLine();
+        showOneLine();
         showLogo();
-        showLine();
+        showOneLine();
         showGreeting();
     }
 

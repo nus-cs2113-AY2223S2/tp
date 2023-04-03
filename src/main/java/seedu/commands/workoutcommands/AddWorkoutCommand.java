@@ -22,6 +22,7 @@ public class AddWorkoutCommand extends Command {
             day = workoutList.getSingleWorkout();
             workoutForOneDay = day.getWorkout();
             workoutForOneDay.addExercise(exercise);
+
             return exercise + SHOW_EXERCISES_ADDED;
         } else {
             return MISSING_WORKOUT;

@@ -17,12 +17,13 @@ public class Command {
     protected CalorieTracker calorieTracker;
     protected HashMap<Date, Day> workouts;
     protected Workout workoutForOneDay = new Workout();
-    protected Day day = new Day();
+    protected Day day;
 
 
     //@@ author ZIZI-czh
     public Command() {
         workouts = new HashMap<>();
+        day = workoutList.getSingleWorkout();
     }
 
     //@@ author ZIZI-czh
@@ -35,6 +36,9 @@ public class Command {
         isWorkoutEntered = isWorkoutEnter;
     }
 
+    public WorkoutList getWorkoutList() {
+        return workoutList;
+    }
 
     public void setData(WorkoutList workoutList, CalorieTracker calorieTracker) throws IllegalArgumentException{
         if (workoutList == null || calorieTracker == null) {

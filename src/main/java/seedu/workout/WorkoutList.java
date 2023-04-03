@@ -2,6 +2,7 @@ package seedu.workout;
 
 
 import seedu.parser.DateFormatter;
+
 import seedu.ui.Ui;
 
 import java.util.ArrayList;
@@ -13,9 +14,15 @@ import java.util.HashMap;
 //@@ author ZIZI-czh
 public class WorkoutList {
 
+    public static final String EMPTY_WORKOUT = "There are no workouts reported during this week !";
+
+    public static final String INFORMATION = "Information of exercises for the week of ";
     public HashMap<String, Workout> workout;
     private HashMap<Date, Day> workouts;
     private Day day = new Day();
+    private Workout dailyWorkout = new Workout();
+    private Date date;
+
 
     //@@ author ZIZI-czh
     public WorkoutList() {
@@ -33,21 +40,29 @@ public class WorkoutList {
     public Day getSingleWorkout() {
         return day;
     }
-
+    //@@ author ZIZI-czh
+    public void setDay(Day day) {
+        this.day = day;
+    }
     //@@ author ZIZI-czh
     public HashMap<Date, Day> getWorkouts() {
         return workouts;
     }
 
-    //@@ author ZIZI-czh
-    public void setDay(Day day) {
-        this.day = day;
-    }
 
     //@@ author ZIZI-czh
     public void addWorkoutToList(Date date, Day day) {
         workouts.put(date, day);
         setDay(day);
+        setDate(date);
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     //@@ author ZIZI-czh
@@ -60,10 +75,16 @@ public class WorkoutList {
         this.workouts = workouts;
     }
 
+    /*public void addExerciseToWorkout(Date currentDate, String currentWorkoutName, Exercise exercise) {
+        dailyWorkout.addExercise(exercise);
+        day.addWorkout(currentWorkoutName, dailyWorkout);
+        addWorkoutToList(currentDate, day);
+    }*/
 
     //@@ author guillaume-grn
     //@@ author ZIZI-czh
     public ArrayList<Exercise> countSetsRepsPreparation(Date dayInSpecificWeekDate) {
+
         HashMap<Date, Day> workoutsInSpecificWeek = getWorkoutsInSpecificWeek(dayInSpecificWeekDate);
         Day workoutForDay = workoutsInSpecificWeek.get(dayInSpecificWeekDate);
         ArrayList<Exercise> distinctExercisesList = new ArrayList<>();
@@ -75,8 +96,7 @@ public class WorkoutList {
 
                 for (Exercise distinctExercise : distinctExercisesList) {
                     if (exercise.getName().equals(distinctExercise.getName())) {
-                        distinctExercise.setRepsPerSet(distinctExercise.getRepsPerSet() + " "
-                                + exercise.getRepsPerSet());
+                        distinctExercise.setRepsPerSet(exercise.getRepsPerSet());
                         isExistingExercise = true;
                         break;
                     }
@@ -102,22 +122,25 @@ public class WorkoutList {
     //@@ author ZIZI-czh
     public static String displayCountSetsReps(ArrayList<Exercise> distinctExercisesList, Date dayInSpecificWeekDate) {
         StringBuilder output = new StringBuilder();
+        if(distinctExercisesList == null){
+            return null;
+        }
         if (distinctExercisesList.isEmpty()) {
-            output.append("There are no workouts reported during this week !");
+            output.append(EMPTY_WORKOUT);
             return output.toString();
         }
-        output.append("Exercises and number of sets and reps for the week of ")
+
+        output.append(INFORMATION)
                 .append(DateFormatter.dateToString(dayInSpecificWeekDate))
                 .append(System.lineSeparator());
         //Ui.showSeparator();
         for (Exercise exercise : distinctExercisesList) {
-            output.append(exercise.getName())
-                    .append(" - ")
+            output.append("Name: ")
+                    .append(exercise.getName())
+                    .append(", sets: ")
                     .append(exercise.getSetsCount())
-                    .append(" sets")
-                    .append(" - ")
+                    .append(", rps:")
                     .append(exercise.getRepsCount())
-                    .append(" reps")
                     .append(System.lineSeparator());
         }
         return output + Ui.showSeparator();
@@ -126,7 +149,6 @@ public class WorkoutList {
     //@@ author guillaume-grn
     //@@ author ZIZI-czh
     public HashMap<Date, Day> getWorkoutsInSpecificWeek(Date dayInSpecificWeekDate) {
-
         HashMap<Date, Day> workoutsInSpecificWeek = new HashMap<>();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dayInSpecificWeekDate);

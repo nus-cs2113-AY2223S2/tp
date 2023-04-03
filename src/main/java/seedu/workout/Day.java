@@ -8,6 +8,9 @@ public class Day {
     private Date date;
     private HashMap<String, Workout> workoutsByDate;
     private Workout workout = new Workout();
+    private String workoutName;
+
+
 
     public Day(Date date) {
         this.date = date;
@@ -27,6 +30,13 @@ public class Day {
         setWorkoutsByDate(workoutsByDate);
     }
 
+    public String getWorkoutName() {
+        return workoutName;
+    }
+
+    public void setWorkoutName(String workoutName) {
+        this.workoutName = workoutName;
+    }
 
     //@@ author ZIZI-czh
     public Workout getWorkout() {
