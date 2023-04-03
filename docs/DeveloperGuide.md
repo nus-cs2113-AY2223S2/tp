@@ -260,7 +260,7 @@ state of the application as if it was never closed.
 Expected Outcome: Pet Tracker runs with a empty data file.
 
 - Corrupted Data File
-1. Delete some pipes in the `petoutput.txt` or `taskoutput.txt` file or change some pet names to be non-existent.
+1. Change pet age to be a non integer, or delete some pipes in the `petoutput.txt` or `taskoutput.txt` file.
 2. If the data files are corrupted, PetTracker will print out errors and
 may not be able to successfully import in previous states.
 
