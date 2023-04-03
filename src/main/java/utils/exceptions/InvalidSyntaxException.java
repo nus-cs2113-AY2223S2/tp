@@ -15,6 +15,11 @@ public class InvalidSyntaxException extends InkaException {
         return new InvalidSyntaxException("That command looks weird... Did you enter it correctly?");
     }
 
+    public static InvalidSyntaxException buildTooManyTokensMessage() {
+        return new InvalidSyntaxException(
+                "Your command seems to have too many parts... Please check your syntax again!");
+    }
+
     public static InvalidSyntaxException buildBadFormatMessage(String badInput) {
         return new InvalidSyntaxException("Your input \"" + badInput + "\" doesn't look right...");
     }
@@ -39,12 +44,12 @@ public class InvalidSyntaxException extends InkaException {
      * Custom error message when required options are missing
      */
     public static InvalidSyntaxException buildMissingOptionMessage(List<String> formattedFlags) {
-        String message = "Looks like you're missing some flags:" + System.lineSeparator();
+        StringBuilder message = new StringBuilder("Looks like you're missing some flags:" + System.lineSeparator());
         for (String flag : formattedFlags) {
-            message += "\t" + flag + System.lineSeparator();
+            message.append("\t").append(flag).append(System.lineSeparator());
         }
 
-        return new InvalidSyntaxException(message);
+        return new InvalidSyntaxException(message.toString());
     }
 
     /**

@@ -16,7 +16,7 @@ import utils.command.ListCardCommand;
 import utils.command.PrintHelpCommand;
 import utils.command.ViewCardCommand;
 import utils.exceptions.InkaException;
-import utils.exceptions.InvalidUUIDException;
+import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.UnrecognizedCommandException;
 
 public class CardKeywordParser extends KeywordParser {
@@ -52,9 +52,7 @@ public class CardKeywordParser extends KeywordParser {
     private static Options buildTagOptions() {
         Options options = new Options();
         options.addOptionGroup(buildCardSelectOption());
-
-        Option tag = buildMultipleTokenOption("t", "tag", true, "tag name", true);
-        options.addOption(tag);
+        options.addRequiredOption("t", "tag", true, "tag name");
 
         return options;
     }
@@ -97,8 +95,8 @@ public class CardKeywordParser extends KeywordParser {
         }
     }
 
-    private Command handleAdd(List<String> tokens) throws ParseException {
-        CommandLine cmd = parser.parse(buildAddOptions(), tokens.toArray(new String[0]));
+    private Command handleAdd(List<String> tokens) throws ParseException, InvalidSyntaxException {
+        CommandLine cmd = parseUsingOptions(buildAddOptions(), tokens);
 
         String question = String.join(" ", cmd.getOptionValues("q"));
         String answer = String.join(" ", cmd.getOptionValues("a"));
@@ -107,8 +105,8 @@ public class CardKeywordParser extends KeywordParser {
         return new AddCardCommand(card);
     }
 
-    private Command handleDelete(List<String> tokens) throws ParseException, InvalidUUIDException {
-        CommandLine cmd = parser.parse(buildDeleteOptions(), tokens.toArray(new String[0]));
+    private Command handleDelete(List<String> tokens) throws ParseException, InkaException {
+        CommandLine cmd = parseUsingOptions(buildDeleteOptions(), tokens);
         CardSelector cardSelector = getSelectedCard(cmd);
 
         return new DeleteCardCommand(cardSelector);
@@ -133,7 +131,7 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     private Command handleTag(List<String> tokens) throws ParseException, InkaException {
-        CommandLine cmd = parser.parse(buildTagOptions(), tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(buildTagOptions(), tokens);
         CardSelector cardSelector = getSelectedCard(cmd);
 
         String[] tagNameTokens = cmd.getOptionValues("t");
@@ -147,7 +145,7 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
-        CommandLine cmd = parser.parse(buildDeckOptions(), tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(buildDeckOptions(), tokens);
 
         CardSelector cardSelector = getSelectedCard(cmd);
         String deckName = cmd.getOptionValue("d");
@@ -156,7 +154,7 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     private Command handleView(List<String> tokens) throws ParseException, InkaException {
-        CommandLine cmd = parser.parse(buildViewOptions(), tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(buildViewOptions(), tokens);
         CardSelector cardSelector = getSelectedCard(cmd);
 
         return new ViewCardCommand(cardSelector);

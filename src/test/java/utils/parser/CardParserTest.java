@@ -1,5 +1,6 @@
 package utils.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import model.Card;
@@ -181,12 +182,10 @@ public class CardParserTest {
     }
 
     @Test
-    public void parse_card_tagWhitespaceName() throws InkaException {
-        cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
-        Command cmd = parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 -t tag name");
-        assert cmd instanceof AddCardToTagCommand;
-        cmd.execute(cardList, tagList, deckList, ui, storage);
-        assert tagList.findTagFromName("tag-name") != null;
+    public void parse_card_tagWhitespaceName() {
+        InkaException ex = assertThrows(InvalidSyntaxException.class,
+                () -> parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 -t tag name"));
+        assertEquals(ex.getUiMessage(), InvalidSyntaxException.buildTooManyTokensMessage().getUiMessage());
     }
 
     //endregion

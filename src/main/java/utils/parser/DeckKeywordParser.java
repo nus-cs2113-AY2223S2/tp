@@ -14,6 +14,7 @@ import utils.command.PrintHelpCommand;
 import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromDeckCommand;
 import utils.exceptions.InkaException;
+import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.UnrecognizedCommandException;
 
 public class DeckKeywordParser extends KeywordParser {
@@ -64,7 +65,7 @@ public class DeckKeywordParser extends KeywordParser {
     }
 
     private Command handleDelete(List<String> tokens) throws ParseException, InkaException {
-        CommandLine cmd = parser.parse(buildDeleteOptions(), tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(buildDeleteOptions(), tokens);
 
         String deckName = cmd.getOptionValue("d");
         if (cmd.hasOption("c")) {
@@ -76,8 +77,8 @@ public class DeckKeywordParser extends KeywordParser {
         }
     }
 
-    private Command handleList(List<String> tokens) throws ParseException {
-        CommandLine cmd = parser.parse(buildListOptions(), tokens.toArray(new String[0]));
+    private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {
+        CommandLine cmd = parseUsingOptions(buildListOptions(), tokens);
 
         if (cmd.hasOption("c")) {
             String deckName = cmd.getOptionValue("c");
@@ -90,8 +91,8 @@ public class DeckKeywordParser extends KeywordParser {
         }
     }
 
-    private Command handleEdit(List<String> tokens) throws ParseException {
-        CommandLine cmd = parser.parse(buildEditOptions(), tokens.toArray(new String[0]));
+    private Command handleEdit(List<String> tokens) throws ParseException, InvalidSyntaxException {
+        CommandLine cmd = parseUsingOptions(buildEditOptions(), tokens);
 
         String oldDeckName = cmd.getOptionValue("o");
         String newDeckName = cmd.getOptionValue("n");

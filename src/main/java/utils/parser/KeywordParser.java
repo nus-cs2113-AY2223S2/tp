@@ -37,7 +37,7 @@ public abstract class KeywordParser {
     protected static final int FORMAT_HELP_LEFT_PAD = 0;
     protected static final int FORMAT_HELP_DESC_PAD = 10;
 
-    protected DefaultParser parser;
+    private final DefaultParser parser;
 
     public KeywordParser() {
         parser = DefaultParser.builder().setAllowPartialMatching(false).setStripLeadingAndTrailingQuotes(false).build();
@@ -116,6 +116,20 @@ public abstract class KeywordParser {
 
     private static String formatOption(String option) {
         return "-" + option;
+    }
+
+    /**
+     * Wrapper around {@link DefaultParser#parse(Options, String[])}
+     */
+    protected CommandLine parseUsingOptions(Options options, List<String> tokens)
+            throws ParseException, InvalidSyntaxException {
+        CommandLine cmd = parser.parse(options, tokens.toArray(new String[0]));
+        if (cmd.getArgs().length != 0) {
+            // Has unrecognized arguments
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
+        return cmd;
     }
 
     public Command parseTokens(List<String> tokens) throws InkaException {
