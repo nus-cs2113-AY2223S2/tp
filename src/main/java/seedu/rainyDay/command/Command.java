@@ -39,7 +39,7 @@ public abstract class Command {
                 word.equalsIgnoreCase(COMMAND_IGNORE) || word.equalsIgnoreCase(COMMAND_UNIGNORE);
     }
 
-
+    //@@author lil1n
 
     /**
      * Sets the attribute to reference the financial report for execution of commands
@@ -60,9 +60,11 @@ public abstract class Command {
      */
     public abstract CommandResult execute() throws RainyDayException;
 
+    //@@author azriellee
     public boolean isExit() {
         return isExit;
     }
+
     public void setExit() {
         isExit = true;
     }
