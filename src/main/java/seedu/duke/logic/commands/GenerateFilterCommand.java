@@ -79,6 +79,7 @@ public class GenerateFilterCommand extends Command {
             case LEGS:
                 exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
                 break;
+
             default:
                 throw new DukeError(ErrorMessages.ERROR_FILTER_INPUT.toString());
             }

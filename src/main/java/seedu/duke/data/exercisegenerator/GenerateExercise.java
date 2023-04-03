@@ -24,6 +24,7 @@ public class GenerateExercise {
     private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
     private static ArrayList<ExerciseData> filteredExerciseList;
+    private static ArrayList<ExerciseData> ipptExercises;
     private final ArrayList<ExerciseData> exerciseDataList;
     private final Random random;
 
@@ -189,6 +190,17 @@ public class GenerateExercise {
             }
         }
         return filteredExerciseList;
+    }
+    //@@ghzr0
+    public ArrayList<ExerciseData> generateIPPTExercises (ArrayList<ExerciseData> exerciseList){
+        assert exerciseList != null : "Exercise List should not be null.";
+        ipptExercises = new ArrayList<>();
+        for (ExerciseData exercise : exerciseList) {
+            if (!exercise.getId().equals(NULL) && (exercise.getId().equals("563")  || exercise.getId().equals("686") || exercise.getId().equals("819")) ) {
+                ipptExercises.add(exercise);
+            }
+        }
+        return ipptExercises;
     }
 
     public ArrayList<ExerciseData> generateSetAll () {

@@ -37,7 +37,7 @@ public class ExerciseSearchCommand extends Command {
      * Filters the whole list of available exercises based off the
      * input from the user.
      *
-     * @param uiManager Prints out the respective exercises for a given keyword
+     * @param ui Prints out the respective exercises for a given keyword
      * @param exerciseGenerator Generates Exercise List with the relevant keyword
      */
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) {
