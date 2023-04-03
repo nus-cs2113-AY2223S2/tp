@@ -213,7 +213,7 @@ public class Ui {
         for (CalendarModule module : modulesOnDay) {
             Timetable schedule = module.getSchedule();
             System.out.println(schedule.getStartTime() + "-" + schedule.getEndTime() + ": " +
-                    module.getCode() + " " + schedule.getLessonType() + " (" + schedule.getClassnumber() + ")");
+                    module.getCode() + " " + schedule.getLessonType() + " (" + schedule.getClassNumber() + ")");
         }
     }
 
@@ -330,7 +330,7 @@ public class Ui {
         printLessonTypeMessage(lessonTypes);
         System.out.println();
         for (Timetable timetable : timetableList) {
-            System.out.println(timetable.getLessonType() + " " + timetable.getClassnumber() + '\n' +
+            System.out.println(timetable.getLessonType() + " " + timetable.getClassNumber() + '\n' +
                     "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " + timetable.getEndTime());
         }
     }
@@ -707,7 +707,7 @@ public class Ui {
                 + module.getCode() + ":");
 
         for (Timetable timetable : copyList) {
-            System.out.println("Class Number: " + timetable.getClassnumber());
+            System.out.println("Class Number: " + timetable.getClassNumber());
             System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
                     timetable.getEndTime());
         }

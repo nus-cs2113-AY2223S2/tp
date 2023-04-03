@@ -1,6 +1,7 @@
 package seedu.apollo.module;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -9,28 +10,29 @@ import java.util.Locale;
 public class Timetable {
     public static DateTimeFormatter parsePattern = DateTimeFormatter.ofPattern("HHmm", Locale.ENGLISH);
     public static DateTimeFormatter printPattern = DateTimeFormatter.ofPattern("hh:mma", Locale.ENGLISH);
-    private String classnumber;
+    private String classNumber;
     private String lessonType;
     private String day;
     private String startTime;
     private String endTime;
+    private ArrayList<Integer> weeks;
 
     /**
      * Gets the class number.
      *
      * @return The class number.
      */
-    public String getClassnumber() {
-        return classnumber;
+    public String getClassNumber() {
+        return classNumber;
     }
 
     /**
      * Sets the class number.
      *
-     * @param classnumber The class number to set.
+     * @param classNumber The class number to set.
      */
-    public void setClassnumber(String classnumber) {
-        this.classnumber = classnumber;
+    public void setClassNumber(String classNumber) {
+        this.classNumber = classNumber;
     }
 
     /**
@@ -53,6 +55,14 @@ public class Timetable {
 
     public String getEndTime() {
         return endTime;
+    }
+
+    public ArrayList<Integer> getWeeks() {
+        return weeks;
+    }
+
+    public void setWeeks(ArrayList<Integer> weeks) {
+        this.weeks = weeks;
     }
 
     @Override
