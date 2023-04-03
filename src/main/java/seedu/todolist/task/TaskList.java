@@ -4,11 +4,15 @@ import seedu.todolist.exception.InvalidIdException;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.HashSet;
+
+import static java.util.stream.Collectors.toList;
 
 /**
  * A list of Task objects representing the current list of tasks.
@@ -47,6 +51,10 @@ public class TaskList implements Serializable {
         return task.toString();
     }
 
+    public void addTask(Task task) {
+        tasks.put(id++, task);
+    }
+
     /**
      * Deletes the task at the given id of the task list.
      *
@@ -68,7 +76,7 @@ public class TaskList implements Serializable {
         return tasks.size();
     }
 
-    public int countTasksWithFilter(Predicate<Task> p) {
+    public int size(Predicate<Task> p) {
         return (int) tasks.values().stream().filter(p).count();
     }
 
@@ -105,6 +113,33 @@ public class TaskList implements Serializable {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
+    //@@author clement559
+    /**
+     * Filters the task list using a predicate and comparator before converting it
+     * into its sorted string representation.
+     *
+     * @param p The predicate to sort the task list with.
+     * @param c The comparator to sort the task list with.
+     * @return Filtered string representation of the task list.
+     */
+    public String toString(Predicate<Task> p, Comparator<Task> c) {
+        return tasks.values().stream().filter(p).sorted(c).map(Task::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    public ArrayList<Task> getTaskWithTag(String tag) {
+        return  (ArrayList<Task>) tasks.values().stream()
+                .filter(t -> t.getTags().contains(tag))
+                .collect(toList());
+    }
+
+    public ArrayList<Task> getTaskWithPriority(Integer priority) {
+        return (ArrayList<Task>) tasks.values().stream()
+                .filter(t -> t.getPriority() == priority)
+                .collect(toList());
+    }
+
+    //@@author ERJUNZE
     /**
      * Gets the string representation of the task at the given id of the task list.
      *
@@ -146,6 +181,12 @@ public class TaskList implements Serializable {
         return tags;
     }
 
+    public HashSet<Integer> getAllPrioritiesInTaskList() {
+        HashSet<Integer> priorities = new HashSet<>();
+        tasks.values().forEach(task -> priorities.add(task.getPriority()));
+        return priorities;
+    }
+
     public String setDescription(int id, String description) throws InvalidIdException {
         return getTask(id).setDescription(description);
     }
@@ -174,7 +215,7 @@ public class TaskList implements Serializable {
     public String setRepeatDuration(int id, int repeatDuration) throws InvalidIdException {
         return getTask(id).setRepeatDuration(repeatDuration);
     }
-
+    //@@author clement559
     public void checkRepeatingTasks() {
         for (Task task : tasks.values()) {
             int repeatDuration = task.getRepeatDuration();

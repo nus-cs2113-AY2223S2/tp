@@ -40,10 +40,10 @@ Adds a new task to your To-Do list.
 
 Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [-tags LIST_OF_TAGS] [-rep REPEAT_DURATION] [-prio PRIORITY_LEVEL]`
 
-- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
+- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`, and cannot be in the past.
 - `EMAIL_ADDRESS` must be of a valid email address format.
 - `LIST_OF_TAGS` can consist of multiple tags, separated by a space. A task cannot have multiple of the same tag. Tags will be sorted in lexicographic order.
-- `REPEAT_DURATION` must be an integer from 0 to 2147483647, and can only be used if a `DEADLINE` is also provided. The task will repeat every week starting from the `DEADLINE` for `REPEAT_DURATION` times.
+- `REPEAT_DURATION` must be an integer from 0 to 2147483647, and can only be used if a `DEADLINE` is also provided. A new task will be added every week starting from the `DEADLINE` for `REPEAT_DURATION` times.
 - `PRIORITY_LEVEL` must be either 1, 2, or 3 (1: `Low`, 2: `Medium`, 3: `High`).
 
 Example of usage and output: 
@@ -150,7 +150,7 @@ Format: `due ID -edit DEADLINE` or `due ID -del`
 - Use `-edit` to replace the deadline of the task with the newly specified deadline, or `-del` to delete it instead.
 - If both flags are provided, `-edit` takes priority.
 - At least one of the two flags must be provided.
-- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
+- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`, and cannot be in the past.
 
 Example of usage:
 
@@ -163,7 +163,7 @@ Okay, I have edited the deadline of this task to [30 Mar 2023 18:00]:
 `due 1 -del` deletes the deadline of the task of id 1 in the To-Do list.
 ```
 Okay, I have deleted the deadline of this task:
-[ID:1]	[ ][todo]
+[ID:1]	[ ][todo][Due: 30 Mar 2023 18:00]
 ```
 
 Example of usage:
@@ -210,6 +210,31 @@ Example of usage:
 ```
 Okay, I have edited the tags of this task to [difficult, later]:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+```
+
+### Edit/delete recurring count `rep`
+
+Edits or deletes the recurring count of a task with the given id in the To-Do List.
+
+Format: `rep ID -edit REPEAT_DURATION` or `rep ID -del`
+- The `ID` has to be an id of a task that can be found in the To-Do list.
+- Use `-edit` to replace the recurring count of the task with the newly specified count, or `-del` to delete it instead.
+- If both flags are provided, `-edit` takes priority.
+- At least one of the two flags must be provided.
+- `REPEAT_DURATION` must be an integer from 0 to 2147483647.
+
+Example of usage:
+
+`rep 1 -edit 3` changes the recurring count of the task of id 1 in the To-Do list to `3`.
+```
+Okay, I have edited the repeat duration of this task to [3]:
+[ID:1]	[ ][todo][Due: 30 Mar 2023 18:00]
+```
+
+`rep 1 -del` deletes the recurring count of the task of id 1 in the To-Do list.
+```
+Okay, I have deleted the repeat duration of this task:
+[ID:1]	[ ][todo][Due: 30 Mar 2023 18:00]
 ```
 
 ### View all tasks in To-Do list `list`
@@ -304,6 +329,10 @@ Here are the tasks which were completed in the past week:
 **How do I transfer my data to another computer?**
 - Your task list is saved in the generated `data.txt` file.
 - Copy the `save.txt` to the other computer and place it in the same location as the jar file for the program before running it. 
+
+**Why was my recurring task details not updated with the original task?**
+- The recurring tasks that are automatically added by the system are not linked to the original task.
+- If you wish to change the task details for future recurring tasks, you may edit the latest task added by the system before the current deadline.
 
 ## Command Summary
 

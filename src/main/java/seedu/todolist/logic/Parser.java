@@ -7,7 +7,6 @@ import seedu.todolist.exception.MissingArgumentException;
 import seedu.todolist.exception.ToDoListException;
 
 import seedu.todolist.logic.command.AddTaskCommand;
-import seedu.todolist.logic.command.CheckRepeatingTaskCommand;
 import seedu.todolist.logic.command.Command;
 import seedu.todolist.logic.command.DeleteTaskCommand;
 import seedu.todolist.logic.command.EditDeadlineCommand;
@@ -23,6 +22,8 @@ import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.logic.command.EditTagsCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
 import seedu.todolist.logic.command.EditPriorityCommand;
+import seedu.todolist.logic.command.FindByTag;
+import seedu.todolist.logic.command.FindByPriority;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -107,13 +108,11 @@ public class Parser {
         case COMMAND_EXIT:
             return new ExitCommand();
         case COMMAND_LIST:
-            return new ListTasksCommand();
+            return new ListTasksCommand(getArguments(splitInput, ListTasksCommand.EXPECTED_FLAGS));
         case COMMAND_TAG_LIST:
             return new ListTagsCommand();
         case COMMAND_PROGRESS:
             return new ProgressBarCommand();
-        case COMMAND_CHECK:
-            return new CheckRepeatingTaskCommand();
         case COMMAND_ADD:
             return new AddTaskCommand(getArguments(splitInput, AddTaskCommand.EXPECTED_FLAGS));
         case COMMAND_MARK:
@@ -136,6 +135,10 @@ public class Parser {
             return new EditPriorityCommand(getArguments(splitInput, EditPriorityCommand.EXPECTED_FLAGS));
         case COMMAND_FULL_INFO:
             return new ListFullInfoCommand(getArguments(splitInput, ListFullInfoCommand.EXPECTED_FLAGS));
+        case COMMAND_FIND_TAG:
+            return new FindByTag(getArguments(splitInput, FindByTag.EXPECTED_FLAGS));
+        case COMMAND_FIND_PRIORITY:
+            return new FindByPriority(getArguments(splitInput, FindByPriority.EXPECTED_FLAGS));
         default:
             throw new InvalidCommandException();
         }

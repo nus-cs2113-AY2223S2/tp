@@ -6,6 +6,7 @@ import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidEmailFormatException;
 import seedu.todolist.exception.InvalidDurationException;
+import seedu.todolist.exception.PassedDateException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -85,7 +86,7 @@ public class ParserUtil {
      * @throws InvalidDateException If the string is not in a valid date time format,
      *                              or if the parsed date is before the current time.
      */
-    public static LocalDateTime parseDeadline(String deadline) throws InvalidDateException {
+    public static LocalDateTime parseDeadline(String deadline) throws InvalidDateException, PassedDateException {
         if (deadline == null) {
             return null;
         }
@@ -93,7 +94,12 @@ public class ParserUtil {
         try {
             DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1.getFormat()
                             + Formats.TIME_IN_2.getFormat()).withResolverStyle(ResolverStyle.STRICT);
-            return LocalDateTime.parse(deadline, inputFormatter);
+            if (!LocalDateTime.parse(deadline, inputFormatter).isAfter(LocalDateTime.now())) {
+                throw new PassedDateException();
+            }
+            else {
+                return LocalDateTime.parse(deadline, inputFormatter);
+            }
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(deadline);
         }
@@ -163,4 +169,5 @@ public class ParserUtil {
             throw new InvalidDurationException(repeatDuration);
         }
     }
+
 }

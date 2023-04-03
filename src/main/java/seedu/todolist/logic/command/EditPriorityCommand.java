@@ -2,6 +2,7 @@
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
+import seedu.todolist.exception.InvalidEditException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.FormatterUtil;
 import seedu.todolist.logic.ParserUtil;
@@ -18,7 +19,11 @@ public class EditPriorityCommand extends Command{
 
     public EditPriorityCommand(HashMap<Flags, String> args) throws ToDoListException {
         id = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_PRIORITY));
-        priority = ParserUtil.parsePriority(args.get(Flags.EDIT));
+        if (args.containsKey(Flags.EDIT)) {
+            priority = ParserUtil.parsePriority(args.get(Flags.EDIT));
+        } else {
+            throw new InvalidEditException();
+        }
     }
 
     @Override

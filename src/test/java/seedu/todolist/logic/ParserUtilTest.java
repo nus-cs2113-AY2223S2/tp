@@ -6,6 +6,7 @@ import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidDurationException;
 import seedu.todolist.exception.InvalidEmailFormatException;
 import seedu.todolist.exception.InvalidIdException;
+import seedu.todolist.exception.PassedDateException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -45,7 +46,7 @@ class ParserUtilTest {
 
         // Valid dates get parsed successfully
         final LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
-        final LocalDateTime[] valid_deadlines = {now, now.plusDays(1), now.minusWeeks(1), now.plusYears(10)};
+        final LocalDateTime[] valid_deadlines = {now.plusDays(1), now.plusYears(10)};
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1.getFormat());
         try {
             for (LocalDateTime validDeadline : valid_deadlines) {
@@ -53,6 +54,8 @@ class ParserUtilTest {
             }
         } catch (InvalidDateException e) {
             fail("Valid deadline was not successfully parsed.");
+        } catch (PassedDateException e) {
+            fail("Valid dateline was not successfully parsed.");
         }
     }
 

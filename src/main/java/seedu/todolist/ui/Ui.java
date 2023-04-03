@@ -1,8 +1,10 @@
 package seedu.todolist.ui;
 
 import seedu.todolist.constants.Messages;
+import seedu.todolist.task.Task;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -80,10 +82,7 @@ public class Ui {
     public void printEditDeleteTaskMessage(String parameterType, String taskString) {
         println(String.format(Messages.EDIT_DELETE_TASK.getMessage(), parameterType), taskString);
     }
-        
-    public void printCheckRepeatingTaskMessage() {
-        println(Messages.CHECK_REPEATING.getMessage());
-    }
+
 
     public void printTaskList(int taskListSize, String taskListString) {
         if (taskListSize == 0) {
@@ -127,5 +126,14 @@ public class Ui {
         println("You have completed " + progressPercentage + "% of the " + generateTaskCountString(tasksThisWeek)
                 + " due this week!", "Progress: |" + "=".repeat(completedSections)
                 + "-".repeat(incompleteSections) + "|", taskListString);
+    }
+
+    //@@author KedrianLoh
+    public void printTasksWithTag(ArrayList<Task> taskList) {
+        taskList.forEach(System.out::println);
+    }
+    //@@author KedrianLoh
+    public void printTasksWithPriority(ArrayList<Task> taskList) {
+        taskList.forEach(System.out::println);
     }
 }
