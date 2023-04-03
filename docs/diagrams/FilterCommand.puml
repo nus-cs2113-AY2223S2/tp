@@ -114,12 +114,13 @@ loop filterFlagAndField.size()
     else equals "-in"
 
     else equals "-out"
+end
 
 FilterCommand -> ViewResult : printItemsInList(listToFilterStatementIndex)
 activate ViewResult
 ViewResult -> :Print to user
 deactivate ViewResult
-end
+
 
 [<--FilterCommand : : CommandResult
 deactivate FilterCommand

@@ -1,0 +1,42 @@
+@startuml
+participant ":EditCommand" as EditCommand
+activate EditCommand
+loop editFlagAndField.size()
+    alt flag equals "-d"
+    EditCommand -> EditCommand : setDescription(description : String)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+
+    else flag equals "-c"
+    EditCommand -> EditCommand : setCategory(category : String)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+
+    else flag equals "-v"
+    EditCommand -> EditCommand : setValue(value : Double)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+
+    else flag equals "-date"
+    EditCommand -> EditCommand : setValue(date : LocalDate)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+
+    else flag equals "-out"
+    EditCommand -> EditCommand : setFlowDirection(INFLOW : FlowDirection)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+
+    else flag equals "-in"
+    EditCommand -> EditCommand : setFlowDirection(INFLOW : FlowDirection)
+    activate EditCommand
+    EditCommand --> EditCommand
+    deactivate EditCommand
+    end
+end
+@enduml
