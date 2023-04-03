@@ -20,7 +20,6 @@ import org.apache.commons.cli.UnrecognizedOptionException;
 import utils.command.Command;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
-import utils.exceptions.InvalidUUIDException;
 import utils.exceptions.UnrecognizedCommandException;
 
 /**
@@ -85,14 +84,24 @@ public abstract class KeywordParser {
         return optionGroup;
     }
 
-    protected static CardSelector getSelectedCard(CommandLine cmd) throws ParseException, InvalidUUIDException {
+    protected static CardSelector getSelectedCard(CommandLine cmd) throws InkaException {
 
         if (cmd.hasOption(FLAG_CARD_UUID)) {
             String cardUUID = cmd.getOptionValue(FLAG_CARD_UUID);
             return new CardSelector(cardUUID);
         } else if (cmd.hasOption(FLAG_CARD_INDEX)) {
-            int index = ((Long) cmd.getParsedOptionValue(FLAG_CARD_INDEX)).intValue();
-            return new CardSelector(index);
+            String cardIndexStr = cmd.getOptionValue(FLAG_CARD_INDEX);
+            try {
+                int cardIndex = Integer.parseInt(cardIndexStr);
+                // Card list is 1-indexed, will definitely fail to find card
+                if (cardIndex <= 0) {
+                    throw InvalidSyntaxException.buildNotValidIndexMessage();
+                }
+
+                return new CardSelector(cardIndex);
+            } catch (NumberFormatException ex) {
+                throw InvalidSyntaxException.buildNotValidIndexMessage();
+            }
         }
 
         // Shouldn't be called

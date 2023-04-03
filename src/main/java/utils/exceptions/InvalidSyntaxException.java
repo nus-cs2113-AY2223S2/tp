@@ -20,8 +20,8 @@ public class InvalidSyntaxException extends InkaException {
                 "Your command seems to have too many parts... Please check your syntax again!");
     }
 
-    public static InvalidSyntaxException buildBadFormatMessage(String badInput) {
-        return new InvalidSyntaxException("Your input \"" + badInput + "\" doesn't look right...");
+    public static InvalidSyntaxException buildNotValidIndexMessage() {
+        return new InvalidSyntaxException("That isn't a valid index from the card list!");
     }
 
     /**
