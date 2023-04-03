@@ -46,7 +46,7 @@ public class Command {
         return (index < 0 || index >= notes.getSize());
     }
 
-    public boolean isNotAnInt(String todo) {
+    public boolean isAnInt(String todo) {
         try {
             Integer.parseInt(todo);
         } catch (NumberFormatException numberException) {
@@ -94,16 +94,18 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "List":
-                if (isNotAnInt(toDo) == false) {
-                    break;
+                if (!isInvalidTodo(toDo)) { // List absdsds
+                    if (isAnInt(toDo) == false) { // means is not an int
+                      throw new IllegalTodoException();
+                    }
                 }
-                if (isInvalidTodo(toDo)) {
-                    Ui.printNotes(notes.getAll());
+                if (isInvalidTodo(toDo)) { // means there is no todo
+                    Ui.printNotes(notes.getAll()); // print all
                     break;
                 }
                 int index = Integer.parseInt(toDo) - 1;
 
-                if (isInvalidIndex(index, notes)) {
+                if (isInvalidIndex(index, notes)) { // list 10 if got 5 notes only
                     throw new IllegalIndexException();
                 }
                 notes.review(index);
@@ -111,7 +113,7 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Delete":
-                if (isNotAnInt(toDo) == false) {
+                if (isAnInt(toDo) == false) {
                     break;
                 }
                 int deleteIndex = Integer.parseInt(toDo) - 1; // deleteIndex == 3
@@ -123,7 +125,7 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Mark":
-                if (isNotAnInt(toDo) == false) {
+                if (isAnInt(toDo) == false) {
                     break;
                 }
                 int markIndex = Integer.parseInt(toDo) - 1;
@@ -136,7 +138,7 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Unmark":
-                if (isNotAnInt(toDo) == false) {
+                if (isAnInt(toDo) == false) {
                     break;
                 }
                 int unmarkIndex = Integer.parseInt(toDo) - 1;

@@ -37,9 +37,9 @@ public class Parser {
 
     public String getToDo() {
         try {
-            String[] parts = userInput.split(" ", 2);
+            String[] parts = userInput.split(" ", 2); // List 5
             if (parts.length == 1) {
-                return "Invalid todo";
+                return "Invalid todo"; // means there is no todo
             } else {
                 return parts[1].trim();
             }
