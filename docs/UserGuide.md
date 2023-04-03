@@ -51,25 +51,60 @@ Before you start using BadMaths, make sure you have the following ready!
 This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
 It also displays the image of the corresponding graph. 
 
-Format: `Graph [Amplitude]*[Trigo]([sign][Frequency]*x[sign][PhaseShift])[sign][VerticalShift]`
+Format: `Graph [Amplitude]*[Trigo]([Frequency]*x[sign][PhaseShift])[sign][VerticalShift]`
 
-* `[Amplitude]` can be any positive number. E.g. `15.5`, `4`, `0`
-* `[Trigo]` can be sin, cos or tan. 
-* `[Frequency]` can be any positive integer (more than 0). E.g. `100`
+* `Amplitude` can be any positive number. E.g. `15.5`, `4`, `0`
+* `Trigo` can be sin, cos or tan. 
+* `Frequency` can be any positive integer (more than 0). E.g. `100`
   * When entering frequency, one can include 𝜋 by typing `2*pi*x` instead of `6.283*x`
-* `[PhaseShift],[VerticalShift]` can be any number. E.g. `15.1`, `4`, `0`,`-1`
-* `[sign]` can be + or - .
+* `PhaseShift`, `VerticalShift` can be any positive number. E.g. `15.1`, `4`, `0`,`1`
+* `sign` can be + or - .
 * `[` and `]` are not needed when entering the input.
+* Some form of elimination is possible: 
+  * When `Amplitude` is 1, `1*cos(1*x)` can be shortened to `cos(1*x)`
+  * When `PhaseShift` or `verticalShift` is 0, `[sign][PhaseShift]` or `[sign][VerticalShift]` are not needed.
 
 **Note: Accuracy of graph drawn is up to 4 digits (Thousand place) for numerical inputs. E.g. `9999`.**
 
-Example input:
+
+Example input 1:
 ```
 Graph 2985*sin(5999*x+2665)-8678
 ```
+Example output 1:
+```
+This is the amplitude: 2985.0
+This is the freq (Hz): 954.7705036082801
+This is the phase: 2665.0
+This is the vertical shift: -8678.0
+```
+![img_4.png](img_4.png)
+
+Example input 2:
 ```
 Graph 2*sin(5*pi*x-2)+5.6
 ```
+Example output 2:
+```
+This is the amplitude: 2.0
+This is the freq (Hz): 2.5
+This is the phase: -2.0
+This is the vertical shift: 5.6
+```
+![img_5.png](img_5.png)
+
+Example input 3: 
+```
+Graph cos(5*x)
+```
+Example output 3:
+```
+This is the amplitude: 1.0
+This is the freq (Hz): 0.7957747154594768
+This is the phase: 0.0
+This is the vertical shift: 0.0
+```
+![img_6.png](img_6.png)
 
 ### 2) Matrix Calculation: `Matrix`
 This feature accepts matrix equation and outputs calculation result.

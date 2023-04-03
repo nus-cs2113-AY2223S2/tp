@@ -8,28 +8,29 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class TrigoGraphAnalyserTest {
     @Test
-    void negativeAmplitudeShouldReturnIllegalArgumentException(){
+    void negativeAmplitudeShouldReturnIllegalArgumentException() {
         String equation = "-2*sin(2*pi*x+1)+3";
         TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(equation);
-        assertThrows(GraphException.class,()->{
+        assertThrows(GraphException.class, () -> {
             analyser.splitAmplitudeFromTrigoEqn();
         });
     }
+
     @Test
     void amplitudeOfOneShouldReturnOne() throws GraphException {
         String equation = "sin(2*pi*x+1)+3";
         TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(equation);
-        String [] input = analyser.splitAmplitudeFromTrigoEqn();
+        String[] input = analyser.splitAmplitudeFromTrigoEqn();
         analyser.findAmplitude(input);
-        assertEquals(1.0,analyser.getAmplitude());
+        assertEquals(1.0, analyser.getAmplitude());
     }
 
     @Test
-    void wrongFreqFormat_withMinus_expectsNegativeFrequencyException(){
+    void wrongFreqFormat_withMinus_expectsNegativeFrequencyException() {
         String eqn = "2*cos(-*x+5)-2";
         TrigoGraphAnalyser test = new TrigoGraphAnalyser(eqn);
-        assertThrows(NegativeFrequencyException.class,()->{
-            test.findFreq("-*x",true);
+        assertThrows(NegativeFrequencyException.class, () -> {
+            test.findFreq("-*x", true);
         });
     }
 
@@ -37,14 +38,15 @@ class TrigoGraphAnalyserTest {
     void freqWithNoPhasorsExpectNoException() {
         String freq = "5*x";
         TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(freq);
-        assertDoesNotThrow(()->{
+        assertDoesNotThrow(() -> {
             analyser.findFreqForNoPhasors(freq);
         });
     }
+
     @Test
     void tanHasNoAmplitude() {
         TrigoGraphAnalyser test = new TrigoGraphAnalyser("2*tan(2*x+5)-2");
         test.canStartAnalyser();
-        assertEquals("tan",test.getTrig());
+        assertEquals("tan", test.getTrig());
     }
 }
