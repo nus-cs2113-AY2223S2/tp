@@ -21,7 +21,6 @@ public class ListTasksCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_LIST,
         Flags.FILTER_DONE, Flags.FILTER_UNDONE, Flags.FILTER_OVERDUE, Flags.SORT_PRIORITY};
 
-    private TaskList filteredTaskList;
     private Predicate<Task> predicate = task -> true;
     private String sortMethod;
     private Comparator<Task> comparator = Task.deadlineComparator;
