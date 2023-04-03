@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.UUID;
 import model.Card;
 import model.CardUUID;
+import model.Deck;
+import model.DeckList;
 import model.DeckUUID;
 import model.Memory;
 import model.TagUUID;
@@ -36,6 +38,7 @@ public class JsonStorageTest {
     private static final int fileCard1TagSize = 1;
     private static final String fileCard1TagUuid = "03658854-e5d4-468f-8c41-74917e5d4515";
 
+    private static final int fileDeckSize = 2;
 
     private static final String card2Uuid = "619c689d-395a-4bb8-ab00-6ae9972bb929";
     private static final String card2Q = "question2";
@@ -79,7 +82,6 @@ public class JsonStorageTest {
 
     @Test
     public void load_validFile_cardUuid() throws InkaException {
-        //check if it is loading 2 cards
         Storage storage = new JsonStorage(VALID_FILE.toString());
         Memory memory = storage.load();
         CardList cardList = memory.getCardList();
@@ -166,6 +168,21 @@ public class JsonStorageTest {
 
 
         assertEquals(fileCard1DeckUuid, card1Deck1UuidObjStr);
+        //todo need to add case for checking for malformed UUID
+
+    }
+
+    @Test
+    public void load_validFile_deckList() throws InkaException {
+        //check if it is loading deckList
+        Storage storage = new JsonStorage(VALID_FILE.toString());
+        Memory memory = storage.load();
+        DeckList deckList = memory.getDeckList();
+        int testDeckSize = deckList.getDecks().size();
+
+
+
+        assertEquals(fileDeckSize, testDeckSize);
         //todo need to add case for checking for malformed UUID
 
     }
