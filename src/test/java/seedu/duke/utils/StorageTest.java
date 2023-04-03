@@ -21,6 +21,11 @@ class StorageTest {
         addCommand = new AddCommand(testInventory, testItem2);
         addCommand.run();
         Storage.writeCSV(testInventory);
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
         Assertions.assertTrue(Storage.readCSV(Types.SESSIONFILEPATH).getItemInventory().contains(testItem));
         Assertions.assertTrue(Storage.readCSV(Types.SESSIONFILEPATH).getItemInventory().contains(testItem2));
     }
