@@ -58,8 +58,6 @@ public class EditCommand extends Command {
             throw new MissingParametersException();
         } catch (NumberFormatException nfe) {
             throw new NumberFormatException();
-            //        } catch (CategoryFormatException e) {
-            //            //Ui.printInvalidCategory();
         }
     }
 

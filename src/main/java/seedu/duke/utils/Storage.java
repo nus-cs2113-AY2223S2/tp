@@ -61,10 +61,10 @@ public class Storage {
                 }
                 Item item = parseItem(fields);
                 updateInventory(tempInventory, item);
-                updateHistory(tempInventory, item);
+                updateHistory(inventory, item);
                 line = reader.readLine();
             }
-            updateInventoryHashes(tempInventory);
+            updateInventory(tempInventory);
         } catch (IOException | NumberFormatException e) {
             Ui.printEmptySessionFile();
             return new Inventory();
@@ -86,7 +86,7 @@ public class Storage {
     }
 
     /**
-     * Update the inventory with the item object provided.
+     * Update the inventory with the item object provided. (History update)
      *
      * @param tempInventory Inventory object to be updated
      * @param item          Item object to be added
@@ -125,7 +125,7 @@ public class Storage {
      *
      * @param tempInventory Inventory object to be updated
      */
-    private static void updateInventoryHashes(Inventory tempInventory) {
+    private static void updateInventory(Inventory tempInventory) {
         for (Item item : tempInventory.getItemInventory()) {
             inventory.getItemInventory().add(item);
             inventory.getUpcCodes().put(item.getUpc(), item);
