@@ -34,7 +34,7 @@ public class CommandParser {
     final String KEYWORD_SCHEDULE_TASKS = "schedule";
     final String KEYWORD_HELP = "help";
     final String COMMAND_STRING_BAD_FORMAT = "Command string is not in the correct format";
-    final String UNKNOWN_KEYWORD_MESSAGE = "Keyword is not recognized";
+    final String UNKNOWN_KEYWORD_MESSAGE = "Please enter a valid command!";
 
     public CommandParser() {
     }
