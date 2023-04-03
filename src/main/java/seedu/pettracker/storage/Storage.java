@@ -17,6 +17,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class Storage {
@@ -230,5 +232,11 @@ public class Storage {
         String[] words = line.split("\\|", 2);
         String taskStatus = words[0];
         return taskStatus;
+    }
+
+    private LocalDate getDeadline(String line) throws ArrayIndexOutOfBoundsException, DateTimeParseException {
+        String[] words = line.split("\\|", 3);
+        LocalDate deadline = LocalDate.parse(words[2]);
+        return deadline;
     }
 }
