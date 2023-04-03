@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class TestUi {
-    private static final String OPEN_BRACE = "[";
-    private static final String CLOSE_BRACE = "]";
     //@@author L-K-Chng
     /**
      * Checks if the ui.splitLine() method prints the correct output.
@@ -124,6 +122,16 @@ public class TestUi {
                     "\tFILTER stands for a specific requirement you want to include in your exercise\r\n" +
                     "[filters]\r\n" +
                     "\tView all available filters\r\n" +
+                    "[start]\r\n" +
+                    "\tStart a workout session\r\n" +
+                    "[history]\r\n" +
+                    "\tView the information on all workout sessions you have completed\r\n" +
+                    "[data]\r\n" +
+                    "\tView your completed exercises as well as the number of times" +
+                    " you have completed each exercise\r\n" +
+                    "[delete]\r\n" +
+                    "\tDelete a workout session you have within your workout history: delete NUMBER\r\n" +
+                    "\tNUMBER refers to the session number of the workout session you wish to delete\r\n" +
                     "[plans]\r\n" +
                     "\tShow all plans\r\n" +
                     "[planner]\r\n" +
@@ -142,6 +150,16 @@ public class TestUi {
                     "\tFILTER stands for a specific requirement you want to include in your exercise\n" +
                     "[filters]\n" +
                     "\tView all available filters\n" +
+                    "[start]\n" +
+                    "\tStart a workout session\n" +
+                    "[history]\n" +
+                    "\tView the information on all workout sessions you have completed\n" +
+                    "[data]\n" +
+                    "\tView your completed exercises as well as the number of times" +
+                    " you have completed each exercise\n" +
+                    "[delete]\n" +
+                    "\tDelete a workout session you have within your workout history: delete NUMBER\n" +
+                    "\tNUMBER refers to the session number of the workout session you wish to delete\n" +
                     "[plans]\n" +
                     "\tShow all plans\n" +
                     "[planner]\n" +
@@ -302,9 +320,7 @@ public class TestUi {
                     "[finish]\r\n" +
                     "\tComplete your current workout session!\r\n" +
                     "[cancel]\r\n" +
-                    "\tTerminate your current workout session.\r\n" +
-                    "[exit]\r\n" +
-                    "\tTerminate FitnessDuke program.\r\n";
+                    "\tTerminate your current workout session.\r\n";
         } else {
             expectedOutput = "These are some commands available: \n" +
                     "[current]\n" +
@@ -312,9 +328,7 @@ public class TestUi {
                     "[finish]\n" +
                     "\tComplete your current workout session!\n" +
                     "[cancel]\n" +
-                    "\tTerminate your current workout session.\n" +
-                    "[exit]\n" +
-                    "\tTerminate FitnessDuke program.\n";
+                    "\tTerminate your current workout session.\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }
