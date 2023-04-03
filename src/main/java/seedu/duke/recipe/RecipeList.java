@@ -89,7 +89,7 @@ public class RecipeList {
             }
         }
     }
-		
+
     public static void searchByTag(String tag) {
         ArrayList<String> matches = new ArrayList<>();
         if (tag.equals("")) {
