@@ -7,12 +7,28 @@ import seedu.apollo.command.module.AddModuleCommand;
 import seedu.apollo.command.Command;
 import seedu.apollo.command.task.DateCommand;
 import seedu.apollo.command.module.DeleteModuleCommand;
-import seedu.apollo.command.utils.ExitCommand;
 import seedu.apollo.command.task.FindCommand;
-import seedu.apollo.command.utils.HelpCommand;
 import seedu.apollo.command.task.ListCommand;
 import seedu.apollo.command.module.ListModuleCommand;
 import seedu.apollo.command.task.ModifyCommand;
+import seedu.apollo.command.utils.specifichelpcommand.AddModHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.DateHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.DeadlineHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.DeleteHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.DeleteModHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.EventHelpCommand;
+import seedu.apollo.command.utils.ExitCommand;
+import seedu.apollo.command.utils.specifichelpcommand.ExitHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.FindHelpCommand;
+import seedu.apollo.command.utils.HelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.ListHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.ListModuleHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.MarkHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.ShowModHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.SpecifiedAidHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.TodoHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.UnmarkHelpCommand;
+import seedu.apollo.command.utils.specifichelpcommand.WeekHelpCommand;
 import seedu.apollo.exception.module.EmptyAddModException;
 import seedu.apollo.exception.module.EmptyDelModException;
 import seedu.apollo.exception.module.EmptyShowModException;
@@ -52,6 +68,7 @@ public class Parser {
     public static final String COMMAND_DELETE_MODULE_WORD = "delmod";
     public static final String COMMAND_SHOW_MODULE_DETAILS_WORD = "showmod";
 
+
     /**
      * Returns the corresponding Command to the user input.
      *
@@ -78,6 +95,8 @@ public class Parser {
             ui.printEmptyDelMod();
         } catch (NumberFormatException e) {
             ui.printErrorForIdx(size);
+        } catch (IllegalArgumentException e) {
+            ui.printInvalidCommand();
         } catch (InvalidDeadline e) {
             ui.printInvalidDeadline();
         } catch (InvalidEvent e) {
@@ -113,8 +132,8 @@ public class Parser {
      */
     private static Command parseCommand(String[] split, int size, ModuleList moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
-            IllegalCommandException, NumberFormatException, UnexpectedException, InvalidModule,
-            EmptyAddModException, EmptyDelModException, EmptyShowModException {
+            IllegalCommandException, IllegalArgumentException, NumberFormatException, UnexpectedException,
+            InvalidModule, EmptyAddModException, EmptyDelModException, EmptyShowModException {
         String command = split[0];
         switch (command) {
         case COMMAND_SHOW_MODULE_DETAILS_WORD:
@@ -136,10 +155,17 @@ public class Parser {
             return new ExitCommand();
 
         case COMMAND_HELP_WORD:
-            if (!isOneWord(split)) {
+            if (isOneWord(split)) {
+
+                return new HelpCommand();
+            }
+            if (!isOneWordSecondClause(split[1])) {
                 throw new IllegalCommandException();
             }
-            return new HelpCommand();
+
+            HelpCommand newHelpCommand = chooseHelpCommand(split[1]);
+
+            return newHelpCommand;
 
         case COMMAND_LIST_WORD:
             if (!isOneWord(split)) {
@@ -194,8 +220,57 @@ public class Parser {
             String moduleCode = split[1];
             return new DeleteModuleCommand(moduleCode);
 
+
         default:
             throw new IllegalCommandException();
+        }
+    }
+
+
+    /**
+     * Method that selects which help command class to invoke
+     *
+     * @param helpCommandName
+     * @return The appropriate HelpCommandClass child
+     * @throws IllegalArgumentException If an unknown command is input by the user.
+     */
+    public static HelpCommand chooseHelpCommand(String helpCommandName) throws IllegalArgumentException {
+        switch (helpCommandName) {
+        case "list":
+            return new ListHelpCommand();
+        case "todo":
+            return new TodoHelpCommand();
+        case "deadline":
+            return new DeadlineHelpCommand();
+        case "event":
+            return new EventHelpCommand();
+        case "mark":
+            return new MarkHelpCommand();
+        case "unmark":
+            return new UnmarkHelpCommand();
+        case "delete":
+            return new DeleteHelpCommand();
+        case "find":
+            return new FindHelpCommand();
+        case "date":
+            return new DateHelpCommand();
+        case "listmod":
+            return new ListModuleHelpCommand();
+        case "help":
+            return new SpecifiedAidHelpCommand();
+        case "bye":
+            return new ExitHelpCommand();
+        case "week":
+            return new WeekHelpCommand();
+        case "delmod":
+            return new DeleteModHelpCommand();
+        case "showmod":
+            return new ShowModHelpCommand();
+        case "addmod":
+            return new AddModHelpCommand();
+        default:
+            throw new IllegalArgumentException("Invalid command name: " + helpCommandName);
+
         }
     }
 
@@ -219,6 +294,20 @@ public class Parser {
         return (split.length == 1);
     }
 
+    /**
+     * Checks if user input a one word [command] when using the help [command] function
+     * @param myString Second clause of user input with the command user needs help for
+     * @return {@code true} if user input a one word command,{@code false} otherwise
+     */
+    private static Boolean isOneWordSecondClause(String myString) {
+        String[] words = myString.split("\\s+");
+        return (words.length == 1);
+    }
+
+
+    private static Boolean isTwoWord(String[] split) {
+        return (split.length == 2);
+    }
 
     /**
      * Separates a Deadline's input data into its description, and due date.
