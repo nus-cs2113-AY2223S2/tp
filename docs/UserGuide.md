@@ -209,7 +209,7 @@ Format:
 
 Use case:
 
-- VALUE ranges from negative to postive
+- VALUE ranges from negative to positive
 
 Example of usage:
 <br> `set target /v 350`
