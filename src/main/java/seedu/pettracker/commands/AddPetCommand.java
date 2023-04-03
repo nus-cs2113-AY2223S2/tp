@@ -14,8 +14,6 @@ public class AddPetCommand extends Command {
         this.petName = commandArgs;
     }
 
-    //TODO: Implement this method
-
     /**
      * Executes the given command
      *
