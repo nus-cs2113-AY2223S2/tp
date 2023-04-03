@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 class StorageTest {
 
     @Test
-    synchronized void testCSVReadWrite() {
+    public synchronized void testCSVReadWrite() {
         Inventory testInventory = new Inventory();
         Item testItem = new Item("testItem", "123456789012", 10, 10.0, LocalDateTime.now());
         Item testItem2 = new Item("testItem2", "123456789013", 10, 10.0, LocalDateTime.now());

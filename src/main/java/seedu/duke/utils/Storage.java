@@ -51,7 +51,7 @@ public class Storage {
      *
      * @return Inventory object
      */
-    public static Inventory readCSV(String filePath) {
+    public static synchronized Inventory readCSV(String filePath) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             Types.FileHealth fileStatus = checkFileValid(filePath, VALID_DATAROW_REGEX);
@@ -137,7 +137,7 @@ public class Storage {
      *
      * @param currentInventory Current inventory
      */
-    public static void writeCSV(final Inventory currentInventory) {
+    public static synchronized void writeCSV(final Inventory currentInventory) {
         isStorageWriteDone = false;
         try {
             File dataFolder = new File("./data");
@@ -163,7 +163,7 @@ public class Storage {
         isStorageWriteDone = true;
     }
 
-    public static void writeCSV(final AlertList alertList) {
+    public static synchronized void writeCSV(final AlertList alertList) {
         try {
             File dataFolder = new File("./data");
             if (!dataFolder.exists()) {
@@ -192,7 +192,7 @@ public class Storage {
 
     }
 
-    public static AlertList readAlertCSV() {
+    public static synchronized AlertList readAlertCSV() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(Types.ALERTFILEPATH));
             String line = reader.readLine();
@@ -254,7 +254,7 @@ public class Storage {
      * @param path File path
      * @return FileHealth enum that indicates the state of the file (MISSING/CORRUPT/OK)
      */
-    public static Types.FileHealth checkFileValid(final String path, String validRow) {
+    public static synchronized Types.FileHealth checkFileValid(final String path, String validRow) {
         File file = new File(path);
 
         // Check if directory exists
@@ -293,7 +293,7 @@ public class Storage {
      *
      * @return String that will be printed which indicates the state of the file (MISSING/CORRUPT/OK/UNKNOWN)
      */
-    public static String checkDataFileExist(boolean isInventoryData) {
+    public static synchronized String checkDataFileExist(boolean isInventoryData) {
         Types.FileHealth fileHealth;
         if (isInventoryData) {
             fileHealth = checkFileValid(Types.SESSIONFILEPATH, VALID_DATAROW_REGEX);
