@@ -1,7 +1,6 @@
 package seedu.duke.recipe;
 
 import seedu.duke.exceptions.EditFormatException;
-import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.ui.StringLib;
 
@@ -11,7 +10,6 @@ import static seedu.duke.ui.StringLib.MISSING_KEYWORD;
 import static seedu.duke.ui.StringLib.EMPTY_LIST_MESSAGE;
 import static seedu.duke.ui.StringLib.NO_MATCHES;
 import static seedu.duke.ui.StringLib.MATCHING_ITEMS;
-import seedu.duke.ui.StringLib;
 
 public class RecipeList {
     protected static ArrayList<Recipe> recipeList;
