@@ -5,9 +5,12 @@ import org.junit.jupiter.api.Test;
 import seedu.parser.DateFormatter;
 import seedu.workout.Day;
 import seedu.workout.WorkoutList;
+
 import java.text.ParseException;
 import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class ListWorkoutCommandTest {
 
@@ -23,8 +26,8 @@ public class ListWorkoutCommandTest {
     @Test
     public void testExecute_withNonEmptyWorkoutList_returnsListOfDates() throws ParseException {
         WorkoutList workoutList = new WorkoutList();
-        String stringDate1 = "01/11/22";
-        String stringDate2 = "02/11/22";
+        String stringDate1 = "01/11/2022";
+        String stringDate2 = "02/11/2022";
         Date date1 = DateFormatter.stringToDate(stringDate1);
         Date date2 = DateFormatter.stringToDate(stringDate2);
         Day day1 = new Day(date1);
@@ -38,7 +41,6 @@ public class ListWorkoutCommandTest {
                 + DateFormatter.dateToString(date2) + System.lineSeparator()
                 + "----------------------------------";
         String actualOutput = listWorkoutCommand.execute();
-
         assertEquals(expectedOutput, actualOutput);
     }
 }
