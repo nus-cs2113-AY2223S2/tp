@@ -17,11 +17,11 @@ import java.util.logging.SimpleFormatter;
 public class PocketPal {
     private static final Logger logger = Logger.getLogger(PocketPal.class.getName());
     private static FileHandler fileHandler;
-    private static final Backend backend = new Backend();
-    private static final Frontend frontend = new Frontend(backend);
 
     public static void main(String[] args) {
         setupLogging();
+        final Backend backend = new Backend();
+        final Frontend frontend = new Frontend(backend);
         frontend.start();
         exitLogging();
     }
