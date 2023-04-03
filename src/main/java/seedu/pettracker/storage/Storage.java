@@ -17,6 +17,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class Storage {
@@ -185,13 +187,27 @@ public class Storage {
 
     private void parseTaskFile(ArrayList<String> data) {
         for (String line : data) {
-            String taskName = getTaskName(line);
-            TaskList.addTask(taskName);
+            try {
+                String taskName = getTaskName(line);
+                LocalDate deadline = getDeadline(line);
+                TaskList.addTask(taskName, deadline);
 
-            String taskStatus = getTaskStatus(line);
-            if (taskStatus.startsWith("1")) {
-                int taskNumber = TaskList.getNumberOfTasks();
-                TaskList.markTask(taskNumber, true);
+                String taskStatus = getTaskStatus(line);
+                if (taskStatus.startsWith("1")) {
+                    int taskNumber = TaskList.getNumberOfTasks();
+                    TaskList.markTask(taskNumber, true);
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String taskName = getTaskName(line);
+                TaskList.addTask(taskName);
+
+                String taskStatus = getTaskStatus(line);
+                if (taskStatus.startsWith("1")) {
+                    int taskNumber = TaskList.getNumberOfTasks();
+                    TaskList.markTask(taskNumber, true);
+                }
+            } catch (DateTimeParseException e) {
+                System.out.println("A task in output file has invalid date format");
             }
         }
     }
@@ -221,7 +237,7 @@ public class Storage {
     }
 
     private String getTaskName(String line) {
-        String[] words = line.split("\\|", 2);
+        String[] words = line.split("\\|", 3);
         String taskName = words[1];
         return taskName;
     }
@@ -230,5 +246,11 @@ public class Storage {
         String[] words = line.split("\\|", 2);
         String taskStatus = words[0];
         return taskStatus;
+    }
+
+    private LocalDate getDeadline(String line) throws ArrayIndexOutOfBoundsException, DateTimeParseException {
+        String[] words = line.split("\\|", 3);
+        LocalDate deadline = LocalDate.parse(words[2]);
+        return deadline;
     }
 }
