@@ -114,6 +114,7 @@ public class RecipeList {
             throw new EditFormatException(StringLib.INVALID_STEP_INDEX);
         }
         stepList.editStep(stepIndex - 1, newStep);
+    }
     public static void searchByTag(String tag) {
         ArrayList<String> matches = new ArrayList<>();
         tag = tag.trim().toLowerCase();

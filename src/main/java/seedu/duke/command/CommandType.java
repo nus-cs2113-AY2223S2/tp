@@ -58,9 +58,6 @@ public enum CommandType {
      */
     EDIT,
     /**
-     * Find a recipe in the recipe list.
-     */
-    FIND,
      * Search dishes by name.
      */
     FINDNAME,

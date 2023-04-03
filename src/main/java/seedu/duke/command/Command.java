@@ -137,13 +137,8 @@ public class Command {
                 ui.showViewingRecipeErrorMessage(e);
             }
             break;
-<<<<<<< HEAD
-        case FIND:
-            recipeList.searchRecipeList(fullDescription);
-=======
         case FINDNAME:
             RecipeList.searchRecipeList(fullDescription);
->>>>>>> 919a5e1977fca553efddd5c7e02b7b80e3e08cfd
             break;
         case FINDTAG:
             RecipeList.searchByTag(fullDescription);
