@@ -14,6 +14,7 @@ import seedu.duke.commands.SellCommand;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.types.Types;
+import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Storage;
 
 import java.util.ArrayList;
@@ -85,6 +86,7 @@ public class EfficiencyBenchmark {
     @Test
     @Order(4)
     public void crudTest(){
+        SessionManager.setAutoSave(false);
         long start = System.currentTimeMillis();
         Item item = new Item("test","10000",24,10.1);
         AddCommand addCommand = new AddCommand(inventory,item);
