@@ -135,7 +135,7 @@ public class CardParserTest {
     @Test
     public void parse_card_deleteInvalidIndex() {
         String[] testInputs = {"card delete -i -1", "card delete -i 0", "card delete -i 0.1", "card delete -i -0.1",
-                "card delete -i STRING"};
+            "card delete -i STRING"};
         for (String testInput : testInputs) {
             assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testInput),
                     "Should be invalid index");
