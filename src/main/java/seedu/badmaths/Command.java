@@ -7,10 +7,10 @@
  */
 
 package seedu.badmaths;
-
 import seedu.badmaths.trigograph.TrigoGraph;
 import seedu.badmaths.ui.Ui;
 import seedu.badmaths.matrix.Calculator;
+import seedu.badmaths.Store;
 
 public class Command {
     private static final String filePath = "data/notes.txt";
@@ -82,46 +82,15 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Store":
-                if (isInvalidTodo(toDo)) {
-                    throw new IllegalTodoException();
-                }
-                if(toDo.equals("null")) {
-                    throw new IllegalTodoException();
-                }
-                notes.add(toDo);
-                Ui.printAddNote(toDo, notes.getSize());
-                Storage.saveFile(filePath, notes.getAll());
+                Store.storeNotes(toDo);
                 break;
             //@@author WilsonLee2000
             case "List":
-
-                if ((!isInvalidTodo(toDo)) && (isAnInt(toDo) == false)) {
-                    throw new IllegalTodoException();
-                }
-
-                if (isInvalidTodo(toDo)) { // means there is no todo
-                    Ui.printNotes(notes.getAll()); // print all
-                    break;
-                }
-                int index = Integer.parseInt(toDo) - 1;
-
-                if (isInvalidIndex(index, notes)) { // list 10 if got 5 notes only
-                    throw new IllegalIndexException();
-                }
-                notes.review(index);
-                Ui.printSpecificNote(index, notes.getAll());
+                List.listNotes(toDo);
                 break;
             //@@author WilsonLee2000
             case "Delete":
-                if (isAnInt(toDo) == false) {
-                    break;
-                }
-                int deleteIndex = Integer.parseInt(toDo) - 1; // deleteIndex == 3
-                if (isInvalidIndex(deleteIndex, notes) == true) { // if true
-                    throw new IllegalIndexException();
-                }
-                Ui.printDelete(notes.getText(deleteIndex), notes.getSize());
-                notes.remove(deleteIndex);
+                Delete.deleteNotes();
                 break;
             //@@author ZiqiuZeng
             case "Mark":
