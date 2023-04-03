@@ -116,7 +116,8 @@ public class Storage {
      * @return Item object
      */
     private static Item parseItem(String[] fields) {
-        return new Item(Sanitizer.decode(fields[NAME_INDEX]), fields[UPC_INDEX], Integer.parseInt(fields[QUANTITY_INDEX]),
+        return new Item(Sanitizer.decode(fields[NAME_INDEX]), fields[UPC_INDEX],
+                Integer.parseInt(fields[QUANTITY_INDEX]),
                 Double.parseDouble(fields[PRICE_INDEX]), fields[CAT_INDEX],
                 LocalDateTime.parse(fields[DATE_INDEX]));
     }
@@ -199,8 +200,9 @@ public class Storage {
             for (int i = 0; i < currentInventory.getItemInventory().size(); i++) {
                 String itemUPC = currentInventory.getItemInventory().get(i).getUpc();
                 for (Item item : currentInventory.getUpcCodesHistory().get(itemUPC)) {
-                    writer.write(counter + "," + Sanitizer.encode(item.getName()) + "," + item.getUpc() + "," + item.getQuantity()
-                            + "," + item.getPrice() + "," + item.getCategory() + "," + item.getDateTime() + "\n");
+                    writer.write(counter + "," + Sanitizer.encode(item.getName()) + "," + item.getUpc()
+                            + "," + item.getQuantity() + "," + item.getPrice() + "," + item.getCategory() + ","
+                            + item.getDateTime() + "\n");
                     counter++;
                 }
             }
