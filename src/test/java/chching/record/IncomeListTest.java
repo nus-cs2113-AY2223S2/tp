@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 class IncomeListTest {
 
     static final String DESCRIPTION = "salary";
-    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
     static final LocalDate DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float INCOME_VALUE = (float) 1000000;
     private Income income;
@@ -71,15 +71,43 @@ class IncomeListTest {
      */
     @Test
     void editIncome_editDate_success() {
-        LocalDate expectedOutputDate = LocalDate.parse("05-04-2024", FORMATTER);
+        LocalDate expectedOutputDate = LocalDate.parse("05-04-2022", FORMATTER);
         try {
-            incomes.editIncome(1, "da", "05-04-2024");
+            incomes.editIncome(1, "da", "05-04-2022");
             assertEquals(DESCRIPTION, incomes.get(0).getDescription());
             assertEquals(expectedOutputDate, incomes.get(0).getDate());
             assertEquals(INCOME_VALUE, incomes.get(0).getValue());
         } catch (Exception e) {
             System.out.println(e.getMessage());
             fail(); // test should not reach this line
+        }
+    }
+    
+    /**
+     * Junit Test to test editIncome method with a date that is in the future.
+     * ChChing exception should be thrown.
+     */
+    @Test
+    void editIncome_editFutureDate_exceptionThrown() {
+        try {
+            incomes.editIncome(1, "da", "05-04-2029");
+            fail(); // test should not reach this line
+        } catch (Exception e) {
+            assertEquals("Date cannot be in the future", e.getMessage());
+        }
+    }
+    
+    /**
+     * Junit Test to test editIncome method with a date that is not possible.
+     * ChChing exception should be thrown.
+     */
+    @Test
+    void editIncome_editInvalidDate_exceptionThrown() {
+        try {
+            incomes.editIncome(1, "da", "31-02-2022");
+            fail(); // test should not reach this line
+        } catch (Exception e) {
+            assertEquals("Date must be valid with format: dd-MM-yyyy", e.getMessage());
         }
     }
     

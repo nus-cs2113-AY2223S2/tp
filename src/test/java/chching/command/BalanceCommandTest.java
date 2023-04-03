@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  */
 class BalanceCommandTest {
     static final String INCOME_DESCRIPTION = "salary";
-    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
     static final LocalDate INCOME_DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float INCOME_VALUE = (float) 5000;
     static final String EXPENSE_CATEGORY = "grocery";

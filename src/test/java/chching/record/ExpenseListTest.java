@@ -16,8 +16,8 @@ class ExpenseListTest {
     static final int EXPECTED_SIZE = 1;
     static final String CATEGORY = "entertainment";
     static final String DESCRIPTION = "beach party";
-    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    static final LocalDate DATE = LocalDate.parse("23-05-2023", FORMATTER);
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
+    static final LocalDate DATE = LocalDate.parse("23-05-2021", FORMATTER);
     static final float EXPENSE_VALUE = (float) 50;
     private Expense expense;
     private ExpenseList expenses;
@@ -90,15 +90,43 @@ class ExpenseListTest {
      */
     @Test
     void editExpense_editDate_success() {
-        LocalDate expectedOutputDate = LocalDate.parse("23-05-2024", FORMATTER);
+        LocalDate expectedOutputDate = LocalDate.parse("23-05-2022", FORMATTER);
         try {
-            expenses.editExpense(1, "da", "23-05-2024");
+            expenses.editExpense(1, "da", "23-05-2022");
             assertEquals(CATEGORY, expenses.get(0).getCategory());
             assertEquals(DESCRIPTION, expenses.get(0).getDescription());
             assertEquals(expectedOutputDate, expenses.get(0).getDate());
             assertEquals(EXPENSE_VALUE, expenses.get(0).getValue());
         } catch (Exception e) {
             fail(); // test should not reach this line
+        }
+    }
+    
+    /**
+     * Junit Test to test editExpense method with a date that is in the future.
+     * ChChing exception should be thrown.
+     */
+    @Test
+    void editExpense_editFutureDate_exceptionThrown() {
+        try {
+            expenses.editExpense(1, "da", "05-04-2029");
+            fail(); // test should not reach this line
+        } catch (Exception e) {
+            assertEquals("Date cannot be in the future", e.getMessage());
+        }
+    }
+    
+    /**
+     * Junit Test to test editExpense method with a date that is not possible.
+     * ChChing exception should be thrown.
+     */
+    @Test
+    void editExpense_editInvalidDate_exceptionThrown() {
+        try {
+            expenses.editExpense(1, "da", "30-02-2022");
+            fail(); // test should not reach this line
+        } catch (Exception e) {
+            assertEquals("Date must be valid with format: dd-MM-yyyy", e.getMessage());
         }
     }
     

@@ -32,7 +32,7 @@ class DeleteExpenseCommandTest {
 
     static final String SPENDING_CATEGORY = "entertainment";
     static final String SPENDING_DESCRIPTION = "movie";
-    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
     static final LocalDate SPENDING_DATE = LocalDate.parse("02-10-2023", FORMATTER);
     static final float SPENDING_EXPENSE_VALUE = (float) 10.50;
 
