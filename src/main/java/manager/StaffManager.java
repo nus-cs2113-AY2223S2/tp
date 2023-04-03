@@ -2,6 +2,7 @@ package manager;
 
 import common.Messages;
 import entity.Staff;
+import exceptions.DinerDirectorException;
 import ui.TextUi;
 import utils.StaffStorage;
 
@@ -20,12 +21,19 @@ public class StaffManager {
      * @param ui Ui object in if there is anything to be printed.
      */
     public static void addStaff(Staff staff, TextUi ui) {
-        staffs.add(staff);
         try {
+            for(Staff currStaff: staffs) {
+                if (currStaff.getName().equals(staff.getName())) {
+                    throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_ALREADY_EXISTS);
+                }
+            }
+            staffs.add(staff);
             StaffStorage staffStorage = new StaffStorage();
             staffStorage.writeToStaffFile(staffs);
         } catch (IOException e) {
             ui.printMessage(String.format(Messages.ERROR_STORAGE_INVALID_WRITE_LINE, staff));
+        } catch (DinerDirectorException e) {
+            ui.printMessage(e.getMessage());
         }
     }
 

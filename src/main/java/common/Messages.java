@@ -100,4 +100,5 @@ public class Messages {
     public static final String INVALID_STAFF_ADD_WORKING_DAY = "Invalid working day format";
     public static final String INVALID_STAFF_ADD_PHONE_NUMBER = "Format of phone number must consist of only numbers";
     public static final String INVALID_STAFF_ADD_DATE_OF_BIRTH = "Format of date of birth must be YYYY-MM-DD";
+    public static final String ERROR_STAFF_ADD_ALREADY_EXISTS = "Staff with that specific name already exists!";
 }
