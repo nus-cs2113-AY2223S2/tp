@@ -22,7 +22,7 @@ public class Messages {
     public static final String MESSAGE_DEADLINE_COMMANDS = "add_deadline n/<name> t/<time>\n" +
             "delete_deadline <integer>\n" +
             "view_deadlines\n" +
-            "find_deadlines <keyword>\n";
+            "find_deadline <keyword>\n";
     public static final String MESSAGE_RECIPE_COMMANDS = "add_dish n/<name> pc/<price in cents> " +
             "[<ingredient 1>;<ingredients 2>;<ingredient 3>; ... ]\n" +
             "delete_dish <integer>\n" +
