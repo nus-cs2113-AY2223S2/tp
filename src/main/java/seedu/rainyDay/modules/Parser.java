@@ -1,27 +1,27 @@
 package seedu.rainyDay.modules;
 
 import seedu.rainyDay.RainyDay;
-
-import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.AddCommand;
+import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.DeleteCommand;
-import seedu.rainyDay.command.ShortcutDeleteCommand;
 import seedu.rainyDay.command.EditCommand;
-import seedu.rainyDay.command.ExportCommand;
-import seedu.rainyDay.command.ShortcutAddCommand;
-import seedu.rainyDay.command.ViewCommand;
-import seedu.rainyDay.command.HelpCommand;
-import seedu.rainyDay.command.FilterCommand;
-import seedu.rainyDay.command.InvalidCommand;
-import seedu.rainyDay.command.ShortcutViewCommand;
-import seedu.rainyDay.command.SetBudgetCommand;
-import seedu.rainyDay.command.IgnoreCommand;
 import seedu.rainyDay.command.ExitCommand;
+import seedu.rainyDay.command.ExportCommand;
+import seedu.rainyDay.command.FilterCommand;
+import seedu.rainyDay.command.HelpCommand;
+import seedu.rainyDay.command.IgnoreCommand;
+import seedu.rainyDay.command.InvalidCommand;
+import seedu.rainyDay.command.SetBudgetCommand;
+import seedu.rainyDay.command.ShortcutAddCommand;
+import seedu.rainyDay.command.ShortcutDeleteCommand;
+import seedu.rainyDay.command.ShortcutViewCommand;
+import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Logger;
@@ -55,7 +55,7 @@ public class Parser {
                 return displayHelp(userInput.trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
                 logger.info("filter command executing");
-                return filterStatement(action[1]);
+                return filterStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EDIT)) {
                 logger.info("edit command executing");
                 return editStatement(userInput);
@@ -407,28 +407,44 @@ public class Parser {
     }
 
     //@@author ChongQiRong
-    private Command filterStatement(String input) throws RainyDayException {
-        int sizeOfFilterFlagAndField = 0;
-        String[] flagAndField = input.split("\\s");
-        for (String s : flagAndField) {
-            if (s.contains("-in")) {
-                sizeOfFilterFlagAndField += 1;
-            } else if (s.contains("-out")) {
-                sizeOfFilterFlagAndField += 1;
-            } else if (s.contains("-d")) {
-                sizeOfFilterFlagAndField += 2;
-            } else if (s.contains("-c")) {
-                sizeOfFilterFlagAndField += 2;
-            } else if (s.contains("-date")) {
-                sizeOfFilterFlagAndField += 2;
+    private Command filterStatement(String userInput) throws RainyDayException {
+        try {
+            String[] action = userInput.split("\\s+", 2);
+            if (action.length == 1) {
+                logger.warning("No flags in filter");
+                throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
             }
-        }
 
-        if (input.startsWith("-in") | input.startsWith("-out") | input.startsWith("-d")
-                | input.startsWith("-c") | input.startsWith("-date")) {
-            return new FilterCommand(parseFilterMultipleFlags(input, sizeOfFilterFlagAndField));
-        } else {
-            logger.warning("unrecognised input from user!");
+            int sizeOfFilterFlagAndField = 0;
+            String[] flagAndField = action[1].split("\\s");
+            for (String s : flagAndField) {
+                if (s.contains("-in")) {
+                    sizeOfFilterFlagAndField += 1;
+                } else if (s.contains("-out")) {
+                    sizeOfFilterFlagAndField += 1;
+                } else if (s.contains("-d")) {
+                    sizeOfFilterFlagAndField += 2;
+                } else if (s.contains("-c")) {
+                    sizeOfFilterFlagAndField += 2;
+                } else if (s.contains("-date")) {
+                    sizeOfFilterFlagAndField += 2;
+                }
+            }
+
+            if (action[1].startsWith("-in") | action[1].startsWith("-out") | action[1].startsWith("-d")
+                    | action[1].startsWith("-c") | action[1].startsWith("-date")) {
+                ArrayList<String> filterFlagAndField = parseFilterMultipleFlags(action[1], sizeOfFilterFlagAndField);
+                if (filterFlagAndField.contains("-date")) {
+                    LocalDate.parse(filterFlagAndField.get(filterFlagAndField.size() - 1),
+                            DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                }
+                return new FilterCommand(filterFlagAndField);
+            } else {
+                logger.warning("unrecognised input from user!");
+                throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+            }
+        } catch (DateTimeParseException e) {
+            logger.warning("date entered not valid for filter command");
             throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
@@ -466,50 +482,55 @@ public class Parser {
     }
 
     public Command editStatement(String userInput) throws RainyDayException {
-        String[] tokens = userInput.split("\\s+", 3);
-        int lengthOfReport = RainyDay.userData.getFinancialReport().getStatementCount();
-        if (tokens.length < 3) {
-            logger.warning("invalid edit index from user");
-            throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
-        }
-        if (lengthOfReport == 0) {
-            throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
-        }
-        int index = Integer.parseInt(tokens[1]);
-        if (index > lengthOfReport) {
-            logger.warning("invalid edit index from user");
-            throw new RainyDayException(String.format(ErrorMessage.WRONG_EDIT_INDEX.toString(),
-                    lengthOfReport + "!"));
-        }
-
-        int sizeOfEditFlagAndField = 0;
-        String[] flagAndField = tokens[2].split("\\s");
-        for (String s : flagAndField) {
-            if (s.equals("-in")) {
-                sizeOfEditFlagAndField += 1;
-            } else if (s.equals("-out")) {
-                sizeOfEditFlagAndField += 1;
-            } else if (s.equals("-d")) {
-                sizeOfEditFlagAndField += 2;
-            } else if (s.equals("-v")) {
-                sizeOfEditFlagAndField += 2;
-            } else if (s.equals("-c")) {
-                sizeOfEditFlagAndField += 2;
-            } else if (s.equals("-date")) {
-                sizeOfEditFlagAndField += 2;
+        try {
+            String[] tokens = userInput.split("\\s+", 3);
+            int lengthOfReport = RainyDay.userData.getFinancialReport().getStatementCount();
+            if (tokens.length < 3) {
+                logger.warning("invalid edit index from user");
+                throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
             }
-        }
-
-        if (tokens[2].startsWith("-in") | tokens[2].startsWith("-out") | tokens[2].startsWith("-d")
-                | tokens[2].startsWith("-c") | tokens[2].startsWith("-v") | tokens[2].startsWith("-date")) {
-            ArrayList<String> editFlagAndField = parseEditMultipleFlags(tokens[2], sizeOfEditFlagAndField);
-            if (editFlagAndField.contains("-date")) {
-                LocalDate.parse(editFlagAndField.get(editFlagAndField.size() - 1),
-                        DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            if (lengthOfReport == 0) {
+                throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
             }
-            return new EditCommand(index, editFlagAndField);
-        } else {
-            logger.warning("unrecognised edit input from user!");
+            int index = Integer.parseInt(tokens[1]);
+            if (index > lengthOfReport || index <= 0) {
+                logger.warning("invalid edit index from user");
+                throw new RainyDayException(String.format(ErrorMessage.WRONG_EDIT_INDEX.toString(),
+                        lengthOfReport + "!"));
+            }
+
+            int sizeOfEditFlagAndField = 0;
+            String[] flagAndField = tokens[2].split("\\s");
+            for (String s : flagAndField) {
+                if (s.equals("-in")) {
+                    sizeOfEditFlagAndField += 1;
+                } else if (s.equals("-out")) {
+                    sizeOfEditFlagAndField += 1;
+                } else if (s.equals("-d")) {
+                    sizeOfEditFlagAndField += 2;
+                } else if (s.equals("-v")) {
+                    sizeOfEditFlagAndField += 2;
+                } else if (s.equals("-c")) {
+                    sizeOfEditFlagAndField += 2;
+                } else if (s.equals("-date")) {
+                    sizeOfEditFlagAndField += 2;
+                }
+            }
+
+            if (tokens[2].startsWith("-in") | tokens[2].startsWith("-out") | tokens[2].startsWith("-d")
+                    | tokens[2].startsWith("-c") | tokens[2].startsWith("-v") | tokens[2].startsWith("-date")) {
+                ArrayList<String> editFlagAndField = parseEditMultipleFlags(tokens[2], sizeOfEditFlagAndField);
+                if (editFlagAndField.contains("-date")) {
+                    LocalDate.parse(editFlagAndField.get(editFlagAndField.size() - 1),
+                            DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                }
+                return new EditCommand(index, editFlagAndField);
+            } else {
+                logger.warning("unrecognised edit input from user!");
+                throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+            }
+        } catch (DateTimeParseException e) {
+            logger.warning("Date entered not valid for edit command");
             throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
         }
     }

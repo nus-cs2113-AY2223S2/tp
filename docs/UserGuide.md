@@ -59,7 +59,7 @@ Please note the following about the format of commands given under each [feature
 
 * CAPS are the parameters to be supplied by the user eg. DESCRIPTION
 
-* `markdown` format are related to commands provided by the user eg. `help`
+* `inline code` format are related to commands provided by the user eg. `help`
 
 * *italics* format are related to buttons that can be found on the screen *From Text/CSV*
 
@@ -402,7 +402,9 @@ Format : `filter [FLAG] {FIELD}`
     * `-d` to filter by description
     * `-c` to filter by category
     * `-date` to filter by date
+* No `FIELD` is required when `-in` or `-out` flag is used 
 * date `FIELD` must be in the form DD/MM/YYYY
+
 
 Example of usage:
 
@@ -558,10 +560,10 @@ Done, edited entry 1 from the financial report
 
 Suppose you want to edit multiple fields of an entry, and instead of deleting and adding a new entry, you can use
 this command:
-`edit 2 -out Beef noodles $15 -c Food -date 22/03/2023`
+`edit 2 -out -d Beef noodles $15 -c Food -date 22/03/2023`
 
 ```
-> edit 2 -out Beef noodles $15 -c Food -date 22/03/2023
+> edit 2 -out -d Beef noodles $15 -c Food -date 22/03/2023
 Done, edited entry 2 from the financial report
 > view
 +====================================================================================================+

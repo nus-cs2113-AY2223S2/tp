@@ -28,7 +28,7 @@ public class ViewCommandTest {
                 LocalDate.now(), LocalDate.now());
         assertEquals(expectedReport, viewList.execute().output);
     }
-
+   
     class sortByValue implements Comparator<Integer> {
         public int compare(Integer firstIndex, Integer secondIndex) {
             FinancialStatement firstStatement = userData.getStatement(firstIndex);
@@ -43,6 +43,7 @@ public class ViewCommandTest {
         }
     }
 
+
     @Test
     public void sortingComparatorTest() {
         financialReport.clearReport();
@@ -54,9 +55,11 @@ public class ViewCommandTest {
                 "Small Outflow (4)", "out", 1, "test", LocalDate.now()));
         financialReport.addStatement(new FinancialStatement(
                 "Small Inflow (2)", "in", 1, "test", LocalDate.now()));
+
         ArrayList<Integer> indexes = new ArrayList<>();
         for(int i = 0; i < financialReport.getStatementCount(); i++) {
             indexes.add(i);
+            System.out.println(financialReport.getFinancialStatement(i).getFullStatement());
         }
 
         indexes.sort(new sortByValue()); //to fix this garbage
