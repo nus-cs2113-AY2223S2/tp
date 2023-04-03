@@ -353,9 +353,9 @@ The main callable functions to be used are:
 - `writeToDatabase()` - Serializes `Entry` objects in `EntryLog` into text form.
 - `reset()` - Clears whatever is in the stored text file, without affecting what is in the current `EntryLog`.
 
-The structure of the Storage class is as follows:
+<!-- The structure of the Storage class is as follows:
 
-![StorageClassDiagram](static/backend/storage/StorageClassDiagram.png)
+![StorageClassDiagram](static/backend/storage/StorageClassDiagram.png) -->
 
 #### Reading from Database
 
@@ -448,8 +448,8 @@ Entry entry = EntryParser.deserialise(res.getData());
 
 `GET /entries`
 
-<details>
-   <summary>Sequence diagram</summary>
+<details markdown=1>
+   <summary markdown="span">Sequence diagram</summary>
 
    <img alt="Entries Endpoint [GET] Sequence Diagram" src="./static/backend/endpoint/EntriesEndpointGetSequence.png" />
 
@@ -501,8 +501,8 @@ __Responses__
 
 `POST /entry`
 
-<details>
-   <summary>Sequence diagram</summary>
+<details markdown=1>
+   <summary markdown="span">Sequence diagram</summary>
 
    <img alt="Entry Endpoint [POST] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointPostSequence.png" />
 
@@ -526,8 +526,8 @@ __Responses__
 
 `GET /entry`
 
-<details>
-   <summary>Sequence diagram</summary>
+<details markdown=1>
+   <summary markdown="span">Sequence diagram</summary>
 
    <img alt="Entry Endpoint [GET] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointGetSequence.png" />
 
@@ -552,8 +552,8 @@ __Responses__
 
 `DELETE /entry`
 
-<details>
-   <summary>Sequence diagram</summary>
+<details markdown=1>
+   <summary markdown="span">Sequence diagram</summary>
 
    <img alt="Entry Endpoint [DELETE] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointDeleteSequence.png" />
 
@@ -578,8 +578,8 @@ __Responses__
 
 `PATCH /entry`
 
-<details>
-   <summary>Sequence diagram</summary>
+<details markdown=1>
+   <summary markdown="span">Sequence diagram</summary>
 
    <img alt="Entry Endpoint [PATCH] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointPatchSequence.png" />
 
@@ -651,8 +651,8 @@ clear separation of the setup, operations and results.
 For backend testing, we use utility classes such as `EntryTestUtil` and `BackendTestUtil` to reduce code repetition and
 to simplify the testing process.
 
-<details>
-<summary>Example</summary>
+<details markdown=1>
+<summary markdown="span">Example</summary>
 
   ```java
 
@@ -714,7 +714,7 @@ for each major component is working, before they are combined and tested through
 
 ## Instructions for manual testing
 
-Refer to the [user guide](../docs/UserGuide.md#getting-started) on launching PocketPal.
+Refer to the [user guide](./UserGuide.md#getting-started) on launching PocketPal.
 
 ### Feature Testing
 
@@ -736,8 +736,8 @@ __Test Case 1 (All required flags are provided):__
 - **Prerequisites:** None
 - __Input:__ `/add -d McDonalds -c Food -p 10.50`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -758,8 +758,8 @@ __Test Case 2 (Missing price flag):__
 - **Prerequisites:** None
 - __Input:__ `/add -d McDonalds -c Food`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -780,8 +780,8 @@ __Test case 1 (No expenses exist):__
 - **Prerequisites:** None.
 - __Input:__ `/view`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -798,8 +798,8 @@ __Test case 2 (Multiple expenses exist):__
 - **Prerequisites:** At least **3** existing expenses.
 - __Input:__ ```/view 3```
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -819,8 +819,8 @@ __Test case 3 (View entries in price range)__
 - **Prerequisites:** At least **1** existing expense.
 - __Input:__ ```/view -p 120.50 -p 210.00```
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -846,8 +846,8 @@ __Test case 1:__
   in the example above.
 - __Input:__ `/delete 3`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -867,8 +867,8 @@ __Test case 2__
 - **Prerequisites:** Fewer than **5** expenses pre-added into the program
 - __Input:__ `/delete 20`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -885,8 +885,8 @@ __Test case 3__
 - **Prerequisites:** At least **2** expenses pre-added into the program
 - __Input:__ `/delete 1 2`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -916,8 +916,8 @@ __Test case 1 (Editing all flags)__
 - **Prerequisites:** At least **2** expenses pre-added into the program.
 - __Input:__ `/edit 2 -p 300.50 -c others -d MacBook Air`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -937,8 +937,8 @@ __Test case 2 (Editing price only)__
   the example above.
 - __Input:__ `/edit 2 -p 300.50`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -961,8 +961,8 @@ __Test case__
 - **Prerequisites:** None.
 - __Input:__ `/help`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -1002,8 +1002,8 @@ __Test case__
 - **Prerequisites:** None.
 - __Input:__ `/delete 3`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
