@@ -44,6 +44,14 @@ public class StepList {
         System.out.print((stepIndex + 1) + ". ");
         System.out.println(stepList.get(stepIndex).toString());
     }
+
+    public void editStep(int stepIndex, String description) {
+        Step newStep = new Step(description);
+        stepList.set(stepIndex, newStep);
+        System.out.println(StringLib.STEP_EDIT_SUCCESS);
+        System.out.print((stepIndex + 1) + ". ");
+        System.out.println(stepList.get(stepIndex).toString());
+    }
     public void showFullStepList() {
         System.out.println("There are " + currStepNumber + " steps in the list");
         for (int i = 0; i < currStepNumber; i++) {
