@@ -10,11 +10,11 @@ MyLedger is a desktop app for managing finances, designed for university student
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `MyLedger` from [here](https://github.com/AY2223S2-CS2113-T14-3/tp/releases/tag/v2.0).
-
+3. Open the command terminal on your device.
+4. Navigate to the folder in command terminal and run the command `java -jar [filename].jar`
+5. Alternatively, double click on the JAR file to run the app.
 ## Managing Transactions
 
 ### 4.1 Adding an expenditure
