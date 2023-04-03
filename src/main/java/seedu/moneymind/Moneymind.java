@@ -66,7 +66,9 @@ public class Moneymind {
     private void getInput() {
         System.out.println(Strings.HORIZONTAL_LINE);
         System.out.println();
-        userInput = in.nextLine();
+        do {
+            userInput = in.nextLine();
+        } while (userInput.trim().isEmpty());
         System.out.println(Strings.HORIZONTAL_LINE);
     }
 

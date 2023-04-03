@@ -13,9 +13,9 @@ public class Strings {
     public static final String HELP_INSTRUCTION = "1. help - show instructions on how to use the app\n"
             + "Format: help\n" + "Example: help\n";
     public static final String CATEGORY_INSTRUCTION = "2. category - add a category to your list\n" +
-            "Format: category NAME [(optional) b/<budget number>]\n" + "Example: category food b/2000\n";
+            "Format: category <name> [(optional) b/<budget number>]\n" + "Example: category food b/2000\n";
     public static final String EVENT_INSTRUCTION = "3. event - add an event to a category\n" +
-            "Format: event NAME e/<expense number> [(optional) t/<time>]" +
+            "Format: event <name> e/<expense number> [(optional) t/<time>]" +
             "Example: event lunch e/10 t/August\n";
     public static final String VIEW_INSTRUCTION =
             "4. view - view all the events in a category or all the categories\n" +
@@ -60,9 +60,9 @@ public class Strings {
     public static final String EDIT_REGEX = "c\\/(.+) e\\/(.+)";
     public static final String DELETE_REGEX = "^c/(?=\\S)(.*?)(?:\\s+e/(.*))?\\s*$";
     public static final String EVENT_FORMAT = "Please following the correct format: " +
-            "event NAME e/<expense number> [(optional) t/<time>]";
+            "event <name> e/<expense number> [(optional) t/<time>]";
     public static final String CATEGORY_FORMAT = "Please following the correct format: " +
-            "category NAME [(optional) b/<budget number>]";
+            "category <name> [(optional) b/<budget number>]";
     public static final String EDIT_FORMAT = "Please following the correct format: " +
             "edit c/<category name> e/<event index>";
     public static final String EVENT_EMPTY = "OOPS!!! The description of an event cannot be empty.";
