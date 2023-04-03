@@ -37,13 +37,19 @@ public class ParseAdd {
         try {
             // Format: category d/date, a/amount, s/description
 
+            // Removes indicators and backslashes from the user input
             String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
             String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
+            String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
+
+            // Converts string to double for numerical addition functionalities
             double amount = Double.parseDouble(amountVal);
             ExceptionChecker.checkPositiveAmount(amount);
-            String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
+
+            // Converts string to date to fit Command class
             LocalDate date = LocalDate.parse(dateVal);
 
+            // Checks for the specific expenditure according to command
             switch (command) {
             case AcademicExpenditureCommand.COMMAND_WORD:
                 return new AcademicExpenditureCommand(descriptionVal, amount, date);

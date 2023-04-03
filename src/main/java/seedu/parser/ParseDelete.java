@@ -18,7 +18,10 @@ public class ParseDelete {
 
     public Command deleteItem() {
         try {
+            // Removes empty space from the user input
             String details = ParseIndividualValue.parseIndividualValue(userInput, BLANK, BLANK);
+
+            // Converts from string to int for comparison
             int posToDelete = Integer.parseInt(details) - ExpenditureList.LIST_OFFSET;
             return new DeleteCommand(posToDelete);
         } catch (NumberFormatException numberFormatException) {

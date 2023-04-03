@@ -33,15 +33,21 @@ public class ParseLendBorrow {
     public Command addItem(String command) throws NotPositiveValueException, InvalidDateException {
         try {
             // Format: category d/date, n/name, a/amount, b/deadline, s/description
+            // Extracts the fields from user input
             String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
             String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, BSLASH);
+            String name = ParseIndividualValue.parseIndividualValue(userInput,NSLASH, ASLASH);
+
+            // Converts from string to double for numerical addition functionalities
             double amount = Double.parseDouble(amountVal);
             ExceptionChecker.checkPositiveAmount(amount);
-            String name = ParseIndividualValue.parseIndividualValue(userInput,NSLASH, ASLASH);
+
+            // Converts from string to date to fit Command class
             LocalDate lentDate = LocalDate.parse(ParseIndividualValue.parseIndividualValue(userInput,DSLASH, NSLASH));
             LocalDate deadline = LocalDate.parse(ParseIndividualValue.parseIndividualValue(userInput, BSLASH, SSLASH));
             ExceptionChecker.checkDate(lentDate, deadline);
-            
+
+            // Differentiates between lend and borrow
             switch (command) {
             case LendExpenditureCommand.COMMAND_WORD:
                 return new LendExpenditureCommand(descriptionVal, name, amount, lentDate, deadline);

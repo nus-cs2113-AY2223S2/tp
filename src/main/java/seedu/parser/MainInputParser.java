@@ -30,7 +30,6 @@ import seedu.commands.SetBudgetCommand;
 import seedu.commands.CheckBudgetCommand;
 
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 
 import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_LACK_OF_PARAMETERS_MESSAGE;

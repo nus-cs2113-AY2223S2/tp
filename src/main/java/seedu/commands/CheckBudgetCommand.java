@@ -17,10 +17,13 @@ public class CheckBudgetCommand extends Command {
         double lentAmount = 0;
         for (Expenditure individualExpenditure : expenditures.getExpenditures()){
             if (individualExpenditure.getExpenditureType().equals("B")) {
+                // For amounts classified under borrows, expenditure will be separated from totalAmount
                 borrowedAmount += individualExpenditure.getValue();
             } else if (individualExpenditure.getExpenditureType().equals("L")) {
+                // For amounts classified under lend, expenditure will be separated from totalAmount
                 lentAmount += individualExpenditure.getValue();
             } else if (!individualExpenditure.getPaidIcon().equals("[X]")) {
+                // For expenditures that are marked, it will not be included in totalAmount
                 totalAmount += individualExpenditure.getValue();
             }
         }
@@ -41,6 +44,7 @@ public class CheckBudgetCommand extends Command {
                     difference, budget, totalAmount, borrowedAmount, lentAmount
             ));
         } else {
+            // Amount of budget exceeded by
             double difference = totalAmount - budget;
             return new CommandResult(String.format(
                     "You have exceeded your budget of $%.2f by $%.2f! " + "\n" +
