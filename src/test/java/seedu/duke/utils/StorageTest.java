@@ -23,10 +23,10 @@ class StorageTest {
         Storage.writeCSV(testInventory);
         try {
             Thread.sleep(500);
+            Assertions.assertTrue(Storage.readCSV(Types.SESSIONFILEPATH).getItemInventory().contains(testItem));
+            Assertions.assertTrue(Storage.readCSV(Types.SESSIONFILEPATH).getItemInventory().contains(testItem2));
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
-        Assertions.assertTrue(Storage.readCSV(Types.SESSIONFILEPATH).getItemInventory().contains(testItem));
-        Assertions.assertTrue(Storage.readCSV(Types.SESSIONFILEPATH).getItemInventory().contains(testItem2));
     }
 }
