@@ -69,7 +69,8 @@ public class Storage {
      */
     private Entry readEntryLine(String line) throws InvalidReadFileException {
         try {
-            assert !line.isEmpty() : "Line to be read cannot be empty";
+            line = line.trim();
+            assert !line.isEmpty() : MiscellaneousConstants.NO_BLANK_STRING_ALLOWED;
             String[] lineArray = line.split(this.delimiter);
             String description = lineArray[0];
             String amountString = lineArray[1];
@@ -103,7 +104,7 @@ public class Storage {
                     line
                 )
             );
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ParseException e) {
             throw new InvalidReadFileException(
                 String.format(
                     "%s%s", 
@@ -124,14 +125,6 @@ public class Storage {
                 String.format(
                     "%s%s", 
                     MiscellaneousConstants.INVALID_DATE_ERROR_MESSAGE,
-                    line
-                )
-            );
-        } catch (ParseException e) {
-            throw new InvalidReadFileException(
-                String.format(
-                    "%s%s", 
-                    MiscellaneousConstants.INVALID_AMOUNT_ERROR_MESSAGE,
                     line
                 )
             );
