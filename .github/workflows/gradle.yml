@@ -48,11 +48,12 @@ jobs:
         working-directory:  ${{ github.workspace }}/text-ui-test
         shell: cmd
         run: runtest.bat
-        
+
       - name: Run Coverage
+        if: runner.os == 'Linux'
         run: ./gradlew check coverage
 
-      - name: Add Coverage to PR
+      - name: Update Codecov
         uses: codecov/codecov-action@v3
         if: runner.os == 'Linux'
         with:
