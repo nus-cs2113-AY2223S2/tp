@@ -73,7 +73,7 @@ public class Parser {
      */
     public static Command getCommand(String userCommand, Ui ui, int size, ModuleList moduleData)
             throws UnexpectedException {
-        final String[] split = userCommand.trim().split("\\s+", 3);
+        final String[] split = userCommand.trim().split("\\s+", 2);
         try {
             return parseCommand(split, size, moduleData);
         } catch (IllegalCommandException e) {
@@ -148,14 +148,16 @@ public class Parser {
             return new ExitCommand();
 
         case COMMAND_HELP_WORD:
-            if (split.length > 2) {
-                throw new IllegalCommandException();
-            }
-
             if (isOneWord(split)) {
 
                 return new HelpCommand();
             }
+
+            if (!isOneWordSecondClause(split[1])) {
+                throw new IllegalCommandException();
+            }
+
+
 
             HelpCommand newHelpCommand = chooseHelpCommand(split[1]);
 
@@ -274,6 +276,12 @@ public class Parser {
     private static Boolean isOneWord(String[] split) {
         return (split.length == 1);
     }
+
+    private static Boolean isOneWordSecondClause(String myString) {
+        String[] words = myString.split("\\s+");
+        return (words.length == 1);
+    }
+
 
     private static Boolean isTwoWord(String[] split) {
         return (split.length == 2);
