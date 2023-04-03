@@ -462,7 +462,8 @@ public class Menu {
             System.out.println("You may have: ");
             for (IllnessMatch illnessMatch : possibleIllnesses) {
                 System.out.println(illnessMatch.getIllness().getIllnessName() + "    Match: "
-                        + illnessMatch.getSimilarityPercentage() * 100 + "%");
+                        + String.format("%.2f", illnessMatch.getSimilarityPercentage() * 100)
+                        + "%");
             }
             System.out.println("-----------------------------------------------------------");
         } else {
@@ -488,6 +489,4 @@ public class Menu {
         System.out.println("---------------------------------------------------");
         System.out.println("Results for \"" + phrase + "\":");
     }
-
-
 }
