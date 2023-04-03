@@ -14,14 +14,13 @@ import java.util.Scanner;
 public class Storage {
     public static ArrayList<Note> loadFile(String path) {
         ArrayList<Note> notes = new ArrayList<>();
-        boolean isValidFile = true;
         try {
             Scanner scanner = new Scanner(new File(path));
             String noteScanner;
-            //text format: Priority | Note | Status | Count
+            //text format: Priority | Status | Count | Note
             while (scanner.hasNextLine()) {
                 noteScanner = scanner.nextLine();
-                String[] noteInfo = noteScanner.split("[|]");
+                String[] noteInfo = noteScanner.split("\\t");
 
                 if (noteInfo.length != 4) {
                     throw new InvalidFormatException();
@@ -37,7 +36,7 @@ public class Storage {
                 NotePriority.Priority priority = NotePriority.Priority.valueOf(priorityStr);
 
                 //note
-                String noteStr = noteInfo[1];
+                String noteStr = noteInfo[3];
 
                 //count
                 String reviewCountStr = noteInfo[2];
@@ -50,7 +49,7 @@ public class Storage {
                 }
 
                 //status
-                String isDoneStr = noteInfo[3];
+                String isDoneStr = noteInfo[1];
                 Set<String> validIsDoneStatus = Set.of("Y", "N");
                 if(!validIsDoneStatus.contains(isDoneStr)){
                     //isDoneStr is invalid, handle the error
@@ -118,20 +117,25 @@ public class Storage {
     private static String fileContent(ArrayList<Note> notes) {
         StringBuilder content = new StringBuilder();
         for(Note note : notes) {
+            //priority
             NotePriority.Priority priority = note.getPriority();
             String priorityStr = priority.name();
-            content.append(priorityStr).append("|");
-            String noteText = note.getText();
-            content.append(noteText).append("|");
-            int reviewCount = note.getReviewCount();
-            String reviewCountStr = String.valueOf(reviewCount);
-            content.append(reviewCountStr).append("|");
+            content.append(priorityStr).append("\t");
+            //status
             boolean isDone = note.getIsDone();
             String isDoneStatus = "N";
             if(isDone) {
                 isDoneStatus = "Y";
             }
-            content.append(isDoneStatus);
+            content.append(isDoneStatus).append("\t");
+            //count
+            int reviewCount = note.getReviewCount();
+            String reviewCountStr = String.valueOf(reviewCount);
+            content.append(reviewCountStr).append("\t");
+            //text
+            String noteText = note.getText();
+            content.append(noteText);
+            //line separator
             content.append(System.lineSeparator());
         }
         return content.toString();
