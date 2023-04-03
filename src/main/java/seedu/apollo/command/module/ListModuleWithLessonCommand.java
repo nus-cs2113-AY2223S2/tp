@@ -60,7 +60,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             throw new InvalidModule();
         }
 
-        module = checkMod;
+        module = new Module(checkMod.getCode(), checkMod.getTitle(), checkMod.getModuleCredits());
 
     }
 
