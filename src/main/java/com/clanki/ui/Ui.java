@@ -10,6 +10,8 @@ import java.util.Scanner;
  * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/ui/TextUi.java.
  */
 public class Ui {
+    public static final String AFTER_COMMAND_SPACING = "     ";
+    public static final String BEFORE_ELABORATION_SPACING = "         ";
     private final Scanner in;
     // private final PrintStream out;
 
@@ -22,13 +24,6 @@ public class Ui {
         // this.out = out;
     }
 
-    /**
-     * Prompts for the command and reads the text entered by the user. Ignores
-     * empty, pure whitespace, and comment lines. Echos the command back to the
-     * user.
-     *
-     * @return command (full line) entered by the user
-     */
     public String getUserCommand() {
         return in.nextLine();
     }
@@ -48,7 +43,8 @@ public class Ui {
     }
 
     public void printInvalidInput() {
-        System.out.println("The input is in an incorrect format.");
+        System.out.println("The input is in an incorrect format.\n" +
+                "You can view our user guide or type help to see the correct formats for commands.\n");
     }
 
     public void printSuccessfulDelete(int index) {
@@ -64,5 +60,28 @@ public class Ui {
         for (String m : message) {
             System.out.println(m);
         }
+    }
+
+    public void printHelpMessage() {
+        System.out.println(
+                "The following are the commands you can use:\n" +
+                        "add:" + AFTER_COMMAND_SPACING + "Adds a flashcard to the current list of flashcards.\n"
+                        + BEFORE_ELABORATION_SPACING + "Parameters: add /q QUESTION /a ANSWER\n"
+                        + BEFORE_ELABORATION_SPACING + "Example: add /q What is the worst fruit? /a Durian\n"
+                        + "update:  Changes the content of flashcard's question, answer or date.\n"
+                        + BEFORE_ELABORATION_SPACING + "Parameters: update /q QUERY\n"
+                        + BEFORE_ELABORATION_SPACING + "Example: update fruit \n"
+                        + BEFORE_ELABORATION_SPACING + BEFORE_ELABORATION_SPACING +
+                        "Which flashcard do you want to update? 1 /q What is the best fruit?\n"
+                        + "delete:  Removes a flashcard with specified string.\n"
+                        + BEFORE_ELABORATION_SPACING + "Parameters: delete /q QUERY\n"
+                        + BEFORE_ELABORATION_SPACING + "Example: delete fruit \n"
+                        + "review:  Go through all flashcards that are due today.\n"
+                        + "bye:     Exit the program.\n"
+        );
+    }
+
+    public void printSeparationLine() {
+        System.out.println("==========================================================");
     }
 }

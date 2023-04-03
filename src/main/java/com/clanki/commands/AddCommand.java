@@ -3,9 +3,6 @@ package com.clanki.commands;
 import com.clanki.objects.FlashcardList;
 import com.clanki.ui.Ui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  * A type of command that will instruct to add a new element into the ArrayList
  * of flashcards.

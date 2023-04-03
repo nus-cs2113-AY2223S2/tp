@@ -4,6 +4,7 @@ import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.DeleteCommand;
+import com.clanki.commands.HelpCommand;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
 import com.clanki.commands.UpdateCommand;
@@ -13,8 +14,6 @@ import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
 import com.clanki.exceptions.NoQueryInInputException;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Parser {
     private static final String QUESTION_OPTION_IDENTIFIER = "q";
@@ -54,6 +53,8 @@ public class Parser {
             return getDeleteCommand(parsedInput);
         case "bye":
             return getByeCommand(parsedInput);
+        case "help":
+            return new HelpCommand();
         default:
             return new UnknownCommand();
         }

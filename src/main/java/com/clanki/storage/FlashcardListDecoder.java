@@ -19,7 +19,8 @@ public class FlashcardListDecoder {
             Pattern.compile("q/(?<question>[^/]+)" + " a/(?<answer>[^/]+)"
                     + " d/(?<dueDate>[^/]+)"
                     + " p/(?<currentPeriod>[^/]+)");
-    public static final String ENCODED_FLASHCARD_IN_INVALID_FORMAT_UNABLE_TO_DECODE = "Encoded flashcard in invalid format. Unable to decode.";
+    public static final String ENCODED_FLASHCARD_IN_INVALID_FORMAT_UNABLE_TO_DECODE =
+            "Encoded flashcard in invalid format. Unable to decode.";
     public static final String GROUP_QUESTION = "question";
     public static final String GROUP_ANSWER = "answer";
     public static final String GROUP_DUE_DATE = "dueDate";
