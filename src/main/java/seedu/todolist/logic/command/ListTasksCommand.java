@@ -51,7 +51,7 @@ public class ListTasksCommand extends Command {
      * Displays the full or filtered task list, depending on filters chosen.
      */
     public void execute(TaskList taskList, Ui ui) {
-        if (sortMethod.equals("priority")) {
+        if (sortMethod != null && sortMethod.equals("priority")) {
             comparator = Task.priorityComparator;
         }
         if (predicate == null) {
