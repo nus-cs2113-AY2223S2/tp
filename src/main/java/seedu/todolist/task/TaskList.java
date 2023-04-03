@@ -76,7 +76,7 @@ public class TaskList implements Serializable {
         return tasks.size();
     }
 
-    public int countTasksWithFilter(Predicate<Task> p) {
+    public int size(Predicate<Task> p) {
         return (int) tasks.values().stream().filter(p).count();
     }
 
@@ -115,7 +115,8 @@ public class TaskList implements Serializable {
 
     //@@author clement559
     /**
-     * Filters the task list using a predicate and comparator before converting it into its sorted string representation.
+     * Filters the task list using a predicate and comparator before converting it
+     * into its sorted string representation.
      *
      * @param p The predicate to sort the task list with.
      * @param c The comparator to sort the task list with.
@@ -227,17 +228,5 @@ public class TaskList implements Serializable {
                 task.setRepeatDuration(0);
             }
         }
-    }
-
-    //@@author clement559
-    public int size(Predicate<Task> predicate) {
-        int taskListCount = 0;
-        TaskList filteredTaskList = new TaskList();
-        for (Task task : tasks.values()) {
-            if (predicate.test(task)) {
-                taskListCount++;
-            }
-        }
-        return taskListCount;
     }
 }
