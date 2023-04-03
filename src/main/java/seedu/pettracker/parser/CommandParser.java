@@ -17,7 +17,6 @@ import seedu.pettracker.commands.RemoveStatCommand;
 import seedu.pettracker.commands.RemoveTaskCommand;
 import seedu.pettracker.commands.UnMarkTaskCommand;
 import seedu.pettracker.commands.ScheduleCommand;
-//import seedu.pettracker.exceptions.UnknownKeywordException;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
