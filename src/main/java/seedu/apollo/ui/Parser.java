@@ -125,8 +125,8 @@ public class Parser {
      */
     private static Command parseCommand(String[] split, int size, ModuleList moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
-            IllegalCommandException, IllegalArgumentException, NumberFormatException, UnexpectedException, InvalidModule,
-            EmptyAddModException, EmptyDelModException, EmptyShowModException {
+            IllegalCommandException, IllegalArgumentException, NumberFormatException, UnexpectedException,
+            InvalidModule, EmptyAddModException, EmptyDelModException, EmptyShowModException {
         String command = split[0];
         switch (command) {
         case COMMAND_SHOW_MODULE_DETAILS_WORD:
@@ -274,7 +274,7 @@ public class Parser {
     }
 
     /**
-     * 
+     * Checks if user input a one word [command] when using the help [command] function
      * @param myString Second clause of user input with the command user needs help for
      * @return {@code true} if user input a one word command,{@code false} otherwise
      */
