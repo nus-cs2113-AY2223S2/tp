@@ -54,7 +54,6 @@ public class AddTaskCommand extends Command {
     @Override
     public String[] parseArgs(String commandArgs) {
         return commandArgs.split("\\at");
-
     }
 
     /**

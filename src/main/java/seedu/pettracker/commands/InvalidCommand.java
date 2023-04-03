@@ -4,6 +4,12 @@ import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 
 public class InvalidCommand extends Command{
+    protected String exceptionMessage;
+    public InvalidCommand(String exceptionMessage) {
+        super();
+        this.exceptionMessage = exceptionMessage;
+    }
+
     /**
      * Executes the given command
      *
@@ -12,7 +18,7 @@ public class InvalidCommand extends Command{
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        ui.invalidCommandMessage();
+        System.out.println(exceptionMessage);
     }
 
     /**
