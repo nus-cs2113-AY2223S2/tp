@@ -1,8 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-autonumber
-
 box Delete
 
 participant ":Duke" as Duke
@@ -24,7 +22,5 @@ CommandDelete -> Parser : extractIndex()
 activate Parser
 Parser --> CommandDelete : Integer
 deactivate Parser
-
-
 
 @enduml

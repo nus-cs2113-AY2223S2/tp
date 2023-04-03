@@ -1,11 +1,14 @@
 package data;
 
-import java.io.FileNotFoundException;
+import command.CommandAdd;
+import parser.Parser;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -20,11 +23,12 @@ public class Account {
     private static String passwordHash;
     protected static ExpenseList expenseList;
 
-    public Account(String accountName, String password) {
+
+    public Account(String accountName) {
         this.account = new ArrayList<>();
         accountSize = 0;
         this.accountName = accountName;
-        this.passwordHash = hashPassword(password);
+        this.passwordHash = hashPassword(passwordHash);
         accountNumber++;
         this.expenseList = new ExpenseList();
 
@@ -180,6 +184,5 @@ public class Account {
         System.out.println("Logout successful.");
     }
 }
-
 
 

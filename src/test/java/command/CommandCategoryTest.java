@@ -19,7 +19,7 @@ public class CommandCategoryTest {
     public Currency currency = new Currency();
 
     @Test
-    public void sortExpense_successful() {
+    public void categoryExpense_successful() {
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/2.5 " + "t/02-02-2012 cat/food"), currency).execute();
         new CommandAdd(expenseList.getExpenseList(),
@@ -41,8 +41,8 @@ public class CommandCategoryTest {
                 + "Totally there are 2 categories.\n"
                 + MESSAGE_DIVIDER_CATEGORY + "\n"
                 + "1.cat:food SGD2.50 date:02/02/2012\n"
-                + "1.cat:food USD2.50 date:02/02/2012\n"
-                + "1.cat:food USD2.50 date:02/02/2013\n"
+                + "2.cat:food USD2.50 date:02/02/2012\n"
+                + "3.cat:food USD2.50 date:02/02/2013\n"
                 + MESSAGE_DIVIDER + "\n";
 
         new CommandCategory(expenseList.getExpenseList(), input).execute();

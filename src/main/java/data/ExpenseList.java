@@ -7,8 +7,7 @@ import java.io.BufferedReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ExpenseList implements Serializable {
-
+public class ExpenseList {
     protected Parser parser = new Parser();
     public static ArrayList<Expense> expenseList = new ArrayList<>();
 
@@ -18,6 +17,9 @@ public class ExpenseList implements Serializable {
     public ExpenseList(BufferedReader br) {
     }
 
+    public void setExpenseList(ArrayList<Expense> expenseList) {
+        this.expenseList = expenseList;
+    }
 
     public ArrayList<Expense> getExpenseList() {
         if (expenseList == null) {
@@ -41,7 +43,7 @@ public class ExpenseList implements Serializable {
         return ((count == 1) ? "expense" : "expenses");
     }
 
-    public static void showToUser(String... message) {
+    private static void showToUser(String... message) {
         for (String i : message) {
             System.out.println(i);
         }
@@ -56,3 +58,4 @@ public class ExpenseList implements Serializable {
 
 
 }
+

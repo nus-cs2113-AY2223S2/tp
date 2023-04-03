@@ -1,8 +1,7 @@
 package parser;
 
-import java.io.Serializable;
 
-public class ParserAdd implements Serializable {
+public class ParserAdd {
 
     public static final int AMOUNT_INDEX = 0;
     public static final int TIME_INDEX = 1;
@@ -48,6 +47,8 @@ public class ParserAdd implements Serializable {
         }
         if (word.startsWith("cat/")) {
             return CATEGORY_INDEX;
+        } else if (!word.startsWith("add")) {
+            System.out.println("WARNING: Invalid input type for \"" + word + "\". Please check again.");
         }
         return INVALID_INDEX;
     }

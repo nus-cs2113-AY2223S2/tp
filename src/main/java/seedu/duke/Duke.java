@@ -1,12 +1,15 @@
 package seedu.duke;
 
 import command.CommandAdd;
+import command.CommandCategory;
 import command.CommandDelete;
 import command.CommandList;
-import command.CommandTotal;
 import command.CommandSort;
 import command.CommandCategory;
 import data.Account;
+import command.CommandTotal;
+import command.overview.CommandOverview;
+import command.CommandFind;
 import data.ExpenseList;
 import data.Currency;
 import parser.Parser;
@@ -19,16 +22,23 @@ import static common.MessageList.COMMAND_LIST_MESSAGE;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.NAME_QUESTION;
 import static data.Account.logout;
-import static data.ExpenseList.showToUser;
+//import static data.ExpenseList.showToUser;
 import static parser.ParserPassword.*;
 
 
 public class Duke {
 
+    protected static Storage storage;
     protected Parser parser;
     protected ExpenseList expenseList;
     protected Currency currency;
-    protected Storage storage;
+
+    //protected Storage storage;
+
+
+    //TODO: arbitrary filePath
+    protected String filePath = "test.json";
+
     /**
      * Initialize Duke and instantiate parser and expenseList objects.
      */
@@ -37,21 +47,29 @@ public class Duke {
         expenseList = new ExpenseList();
         currency = new Currency();
         storage = new Storage(expenseList);
-        expenseList = storage.initialiseExpenseList();
+        expenseList.setExpenseList(storage.loadExpenses(filePath));
     }
 
     public void run() {
-        showToUser(HELLO_MESSAGE, MESSAGE_DIVIDER, COMMAND_LIST_MESSAGE, MESSAGE_DIVIDER, NAME_QUESTION);
+        String logo = " ____        _\n"
+                + "|  _ \\ _   _| | _____\n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
+        System.out.println("What is your name?");
+
         Scanner in = new Scanner(System.in);
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
         }
         initialize(in);
         String input = "";
-        if (in.hasNextLine()) {
+        while (in.hasNextLine()) {
             input = in.nextLine();
-        }
-        while (!input.equals("exit")) {
+            if(input.equals("exit")) {
+                break;
+            }
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
@@ -74,14 +92,18 @@ public class Duke {
             case "logout":
                 logout();
                 initialize(in);
+            case "overview":
+                new CommandOverview(expenseList.getExpenseList(),
+                        parser.extractMonth(input), parser.extractYear(input)).execute();
+                break;
+            case "find":
+                // Use the same parser function as category as it also need the input string from user
+                new CommandFind(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
             default:
                 System.out.println("Unknown command.");
             }
-            storage.saveExpenseList();
-            if (in.hasNextLine()) {
-                input = in.nextLine();
-            }
+            storage.saveExpenses(filePath);
         }
         in.close();
     }
