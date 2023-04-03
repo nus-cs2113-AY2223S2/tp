@@ -19,6 +19,8 @@ public class UI {
     private static final String ADD_MOD_MESSAGE = "This module has been added to the current module list!";
     private static final String ADD_DEADLINE_MESSAGE = "This deadline has been added to the current deadlines";
     private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current module list!";
+    private static final String DELETE_DEADLINE_MESSAGE = "This deadline has been deleted from the current deadline " +
+            "list!";
     private static final String DELETE_NUM_ERROR = "Deletion failed :( Please check the index to be removed again";
 
     private static final String ADD_MOD_FAILURE_MESSAGE = "Save Module Failed";
@@ -238,6 +240,11 @@ public class UI {
 
     public void printAddDeadlineMessage() {
         System.out.println(ADD_DEADLINE_MESSAGE);
+        System.out.println(LINE);
+    }
+
+    public void printDeleteDeadlineMessage() {
+        System.out.println(DELETE_DEADLINE_MESSAGE);
         System.out.println(LINE);
     }
 

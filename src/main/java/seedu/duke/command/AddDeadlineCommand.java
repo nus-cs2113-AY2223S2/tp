@@ -1,29 +1,29 @@
 package seedu.duke.command;
 
 import seedu.duke.Deadline;
-import seedu.duke.Storage;
+import seedu.duke.DeadlineStorage;
 
 public class AddDeadlineCommand extends Command {
 
     private Deadline deadlineToAdd;
-    private Storage storage;
+    private DeadlineStorage deadlineStorage;
 
-    public AddDeadlineCommand(Deadline deadline, Storage storage) {
+    public AddDeadlineCommand(Deadline deadline, DeadlineStorage deadlineStorage) {
         deadlineToAdd = deadline;
-        this.storage = storage;
+        this.deadlineStorage = deadlineStorage;
     }
 
     public Deadline getDeadlineToAdd() {
         return deadlineToAdd;
     }
 
-    public Storage getStorage() {
-        return storage;
+    public DeadlineStorage getStorage() {
+        return deadlineStorage;
     }
 
     @Override
     public void execute() {
-        storage.addDeadlineToDeadlines(deadlineToAdd);
+        deadlineStorage.addDeadlineToDeadlines(deadlineToAdd);
         ui.printAddDeadlineMessage();
     }
 }
