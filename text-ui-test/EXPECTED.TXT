@@ -7,50 +7,47 @@ Hello from
 | | | | |  __/  | |_| | | |___  | |___  | |_| |
 |_| |_| |_|     \_____/ |_____| |_____| \_____/
 
+Your personal task and timetable manager!
 Enter "help" to see a list of commands.
 ____________________________________________________________
 ____________________________________________________________
-Task Commands:
-- Enter "list" to see all tasks
-- Enter "todo [task]" to add a task
-- Enter "deadline [task] /by [date]" to add a deadline
-- Enter "event [task] /from [date] /to [date]" to add an event
-- Enter "mark [idx]" to mark task as done
-- Enter "unmark [idx]" to mark task as not done
-- Enter "delete [idx]" to remove task from list
-- Enter "find [keyword]" to see all tasks containing [keyword]
-- Enter "date [yyyy-MM-dd]" to see all tasks occurring on that date
+The help menu gives a summary of all the commands available in Apollo!
+Input `help` to see all available commands.Input "help [COMMAND]" for usage help and more information for a specific command.
 
-Module Commands:
-- Enter "listmod" to see your module list
-- Enter "addmod [MODULE_CODE]" to add a Module to the Module list
-- Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
-- Enter "showmod [MODULE_CODE]" to see more information about the module
-- Enter "showmod [MODULE_CODE] -[FLAG]" to see schedule of specific lesson type for a module
-- Enter "delmod [MODULE_CODE / IDX]" to remove a Module you previously added
-- Enter "delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a task to a lesson
+These are the available Task Commands and their corresponding commands (in brackets):
 
-Common Commands:
-- Enter "week" to see your schedule for the week
-- Enter "bye" to exit the program
+1. List (list) - Track and organises your tasklist!
+2. Adding a ToDo (todo) - Adds a ToDo in your tasklist.
+3. Adding a Deadline (deadline) - Adds a Deadline in your tasklist.
+4. Adding an Event (event) - Adds an Event in your tasklist.
+5. Marking done (mark) - Marks a task in your tasklist as done!
+6. Unmark as incomplete (unmark) - Unmarks a task in your tasklist as incomplete.
+7. Delete a task (delete) - Deletes a task from your list.
+8. Finding a task (find) - Shows all tasks that contain a specified keyword.
+9. Find tasks on a date (date) - Shows all tasks that occur on the specified date.
 
-***NOTE***
-Please enter all [date]s in the format: "yyyy-MM-ddThh:mm"
-eg. "2023-10-30T23:59" represents Oct 20 2023, 11:59PM
+____________________________________________________________
+These are the available Module Commands and their corresponding commands (in brackets):
 
-There are -FLAGS for the various lessons options per module:
--lec			LECTURE
--plec			PACKAGED LECTURE
--st 			SECTIONAL TEACHING
--dlec			DESIGN LECTURE
--tut			TUTORIAL
--ptut			PACKAGED TUTORIAL
--rcit			RECITATION
--lab			LABORATORY
--ws 			WORKSHOP
--smc			SEMINAR STYLE MODULE CLASS
--mp 			MINI PROJECT
--tt2			TUTORIAL TYPE 2
+1. List all the modules taken (listmod) - Track and organise your academic plan for this semester!
+2. View module information (showmod [MODULE_CODE]) - See more information about the specified module.
+3. Schedule for lessons types (showmod [MODULE_CODE] -[FLAG]) - View timing of specific lesson type for a chosen module
+4. Add a module (addmod [MODULE_CODE]) - Adds a module to your module list.
+5. Add a module lesson (addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]) - Adds a chosen lesson of a specified module to your timetable!
+6. Remove a module (delmod [MODULE_CODE or IDX]) - Removes a Module you previously added by code or index in module list.
+7. Remove a module lesson (delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]) - Removes a lesson of a specified module from your timetable.
+
+NOTE: showmod, addmod, delmod are commands with flags included in them.
+Whatever in [THE SQUARE BRACKETS] are provided by you.For more information on the flags, please input "help [COMMAND]" exclusive of the square brackets.
+For example, if you want to know more about the addmod command and its flags, input "help addmod".
+
+____________________________________________________________
+These are the Utility Commands:
+
+1. View your timetable for the week (week) - Displays your schedule.
+2. Exit Apollo (bye) - Exit the program
+3. View entire help menu (help) - Get a summary of all the commands available on Apollo.
+View help for a specific command by inputting help [COMMAND]
 ____________________________________________________________
 ____________________________________________________________
 There are no tasks in your list!
@@ -184,81 +181,6 @@ Here are the tasks happening on May 03 2023:
 2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
-CS1231
-Number of MC: 4
-Here are the lesson types for this module:
-Sectional Teaching (-st)
-Tutorial (-tut)
-
-Sectional Teaching 1
-   Wednesday 0900 - 1000
-Sectional Teaching 1
-   Thursday 1200 - 1400
-Tutorial 01
-   Wednesday 1000 - 1200
-Tutorial 02
-   Monday 1000 - 1200
-Tutorial 03
-   Wednesday 1200 - 1400
-Tutorial 04
-   Tuesday 1200 - 1400
-Tutorial 05
-   Thursday 1000 - 1200
-Tutorial 06
-   Tuesday 1000 - 1200
-Tutorial 07
-   Thursday 1400 - 1600
-Tutorial 08
-   Wednesday 1400 - 1600
-Tutorial 09
-   Tuesday 1600 - 1800
-Tutorial 10
-   Monday 1200 - 1400
-Tutorial 11
-   Thursday 1600 - 1800
-Tutorial 12
-   Monday 1400 - 1600
-Tutorial 13
-   Tuesday 1400 - 1600
-Tutorial 14
-   Wednesday 1600 - 1800
-Tutorial 15
-   Monday 1600 - 1800
-____________________________________________________________
-____________________________________________________________
-CG2023
-Number of MC: 4
-Here are the lesson types for this module:
-Laboratory (-lab)
-Lecture (-lec)
-
-Laboratory 01
-   Monday 1400 - 1700
-Laboratory 02
-   Monday 1400 - 1700
-Laboratory 03
-   Tuesday 0900 - 1200
-Laboratory 04
-   Tuesday 0900 - 1200
-Laboratory 05
-   Friday 0900 - 1200
-Laboratory 06
-   Friday 0900 - 1200
-Lecture 01
-   Thursday 1600 - 1800
-Lecture 01
-   Tuesday 1600 - 1800
-Lecture 02
-   Thursday 1600 - 1800
-Lecture 02
-   Tuesday 1600 - 1800
-____________________________________________________________
-____________________________________________________________
-Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
-Class Number: 1
-   Tuesday 1000 - 1200
-____________________________________________________________
-____________________________________________________________
 Sorry, but I don't know what that means :(
 ____________________________________________________________
 ____________________________________________________________
@@ -280,7 +202,7 @@ Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
 Adding lesson type: TUTORIAL for Module: CS2113
-Class Number: 01
+Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
@@ -313,18 +235,50 @@ Adding lesson type: LECTURE for Module: ST2334
 Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
-This event clashes with a lesson in your timetable!
-Got it. I've added this event:
-  [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
-____________________________________________________________
-____________________________________________________________
-Heads up, your deadline occurs on the same day as these!
-_____________________________
+Here's your week from 2023-03-20 to 2023-03-26:
+______________________
+MONDAY
+
+Lessons:
+
 Tasks:
- - [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
-_____________________________
-Got it. I've added this deadline:
-  [D][ ] dummy2 (by: May 02 2023, 12:00AM)
+______________________
+TUESDAY
+
+Lessons:
+1. ST2334 Lecture: 0800-1000
+
+Tasks:
+______________________
+WEDNESDAY
+
+Lessons:
+
+Tasks:
+______________________
+THURSDAY
+
+Lessons:
+
+Tasks:
+______________________
+FRIDAY
+
+Lessons:
+
+Tasks:
+______________________
+SATURDAY
+
+Lessons:
+
+Tasks:
+______________________
+SUNDAY
+
+Lessons:
+
+Tasks:
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(

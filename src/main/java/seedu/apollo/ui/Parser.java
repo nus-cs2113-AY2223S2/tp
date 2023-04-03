@@ -7,21 +7,28 @@ import seedu.apollo.command.module.AddModuleCommand;
 import seedu.apollo.command.Command;
 import seedu.apollo.command.task.DateCommand;
 import seedu.apollo.command.module.DeleteModuleCommand;
-import seedu.apollo.command.utils.DeleteHelpCommand;
-import seedu.apollo.command.utils.ExitCommand;
 import seedu.apollo.command.task.FindCommand;
-import seedu.apollo.command.utils.FindHelpCommand;
-import seedu.apollo.command.utils.HelpCommand;
 import seedu.apollo.command.task.ListCommand;
 import seedu.apollo.command.module.ListModuleCommand;
 import seedu.apollo.command.task.ModifyCommand;
-import seedu.apollo.command.utils.ListHelpCommand;
-import seedu.apollo.command.utils.TodoHelpCommand;
-import seedu.apollo.command.utils.DeadlineHelpCommand;
-import seedu.apollo.command.utils.EventHelpCommand;
-import seedu.apollo.command.utils.MarkHelpCommand;
-import seedu.apollo.command.utils.UnmarkHelpCommand;
+import seedu.apollo.command.utils.AddModHelpCommand;
 import seedu.apollo.command.utils.DateHelpCommand;
+import seedu.apollo.command.utils.DeadlineHelpCommand;
+import seedu.apollo.command.utils.DeleteHelpCommand;
+import seedu.apollo.command.utils.DeleteModHelpCommand;
+import seedu.apollo.command.utils.EventHelpCommand;
+import seedu.apollo.command.utils.ExitCommand;
+import seedu.apollo.command.utils.ExitHelpCommand;
+import seedu.apollo.command.utils.FindHelpCommand;
+import seedu.apollo.command.utils.HelpCommand;
+import seedu.apollo.command.utils.ListHelpCommand;
+import seedu.apollo.command.utils.ListModuleHelpCommand;
+import seedu.apollo.command.utils.MarkHelpCommand;
+import seedu.apollo.command.utils.ShowModHelpCommand;
+import seedu.apollo.command.utils.SpecifiedAidHelpCommand;
+import seedu.apollo.command.utils.TodoHelpCommand;
+import seedu.apollo.command.utils.UnmarkHelpCommand;
+import seedu.apollo.command.utils.WeekHelpCommand;
 import seedu.apollo.exception.module.EmptyAddModException;
 import seedu.apollo.exception.module.EmptyDelModException;
 import seedu.apollo.exception.module.EmptyShowModException;
@@ -247,6 +254,20 @@ public class Parser {
             return new FindHelpCommand();
         case "date":
             return new DateHelpCommand();
+        case "listmod":
+            return new ListModuleHelpCommand();
+        case "help":
+            return new SpecifiedAidHelpCommand();
+        case "bye":
+            return new ExitHelpCommand();
+        case "week":
+            return new WeekHelpCommand();
+        case "delmod":
+            return new DeleteModHelpCommand();
+        case "showmod":
+            return new ShowModHelpCommand();
+        case "addmod":
+            return new AddModHelpCommand();
         default:
             throw new IllegalArgumentException("Invalid command name: " + helpCommandName);
 
