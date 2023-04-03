@@ -79,13 +79,13 @@ Adds a new expense to the list of expenses.
 
 * The `amount` should be double up to **2 decimal places** (dp). Digits beyond 2dp will be ignored.
 * The `description` can be in a natural language format.
-* The `time` should follow `YYYY MM HH mm` format.  
+* The `time` should follow `YYYY MM DD HH mm` format.  
 * The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
 
 Example of usage:
-`addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD`
+`addExpense a/ 4.5 d/ lunch t/ 2023 03 22 20 12 c/ FOOD`
 
 Example output:
 
@@ -112,7 +112,7 @@ Adds a new income to the list of incomes.
 
 * The `amount` should be double up to **2dp**. Digits beyond 2dp will be ignored.
 * The `description` can be in a natural language format.
-* The `time` should follow `YYYY MM HH mm` format.
+* The `time` should follow `YYYY MM DD HH mm` format.
 * The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
