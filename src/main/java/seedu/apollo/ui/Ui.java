@@ -42,10 +42,10 @@ public class Ui {
      * Prints out a line divider.
      */
     public void showLine() {
-        System.out.println("_________________________________________________________________________________________");
+        System.out.println("____________________________________________________________");
     }
     public void showSmallLine() {
-        System.out.println("________________________________________________");
+        System.out.println("_____________________________");
     }
 
     private void printApolloLogo() {
