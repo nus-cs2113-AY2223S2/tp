@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
+//@author EangJS
 public class ExerciseDataList {
     @SerializedName("exercises")
     @Expose

@@ -2,6 +2,7 @@ package seedu.duke.logic.commandhandler;
 
 import java.util.Scanner;
 import seedu.duke.achievements.AchievementListHandler;
+import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
@@ -23,9 +24,12 @@ public class CommandHandler {
     public void handleUserCommands (String rawUserCommands, Ui ui, GenerateExercise exerciseGenerator,
                                     UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
                                     Storage storage, UserPlan planner, AchievementListHandler achievementListHandler,
-                                    Scanner scanner) {
+                                    Scanner scanner) throws DukeError {
         StringSplitter stringSplitter = new StringSplitter();
         String[] userCommands = stringSplitter.splitString(rawUserCommands);
+        if (userCommands.length == 0) {
+            throw new DukeError("Empty input");
+        }
         if (exerciseStateHandler.workoutOngoing) {
             ExerciseSessionCommandHandler exerciseSessionCommandHandler = new ExerciseSessionCommandHandler();
             exerciseSessionCommandHandler.handleExerciseSessionUserCommands(userCommands, ui,

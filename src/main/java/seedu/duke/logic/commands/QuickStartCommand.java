@@ -18,7 +18,7 @@ public class QuickStartCommand extends Command {
         }
         String planName = userCommands[1];
         UserPlan.getPlan();
-        ArrayList<String> exercisePlans = UserPlan.getExercisePlan(planName);
+        ArrayList<String> exercisePlans = (ArrayList<String>) UserPlan.getExercisePlan(planName);
         if (exercisePlans == null) {
             System.out.println("no such plan");
             return;
@@ -38,7 +38,7 @@ public class QuickStartCommand extends Command {
         command.executeCommand(ui, exerciseGenerator);
 
         exerciseStateHandler
-                .storePreviousGeneratedWorkout(((GenerateFilterCommand) command).provideExerciseList());
+            .storePreviousGeneratedWorkout(((GenerateFilterCommand) command).provideExerciseList());
 
     }
 

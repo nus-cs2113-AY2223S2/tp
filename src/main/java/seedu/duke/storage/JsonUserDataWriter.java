@@ -8,6 +8,7 @@ import seedu.duke.data.userdata.UserCareerData;
 
 import java.io.FileWriter;
 import java.io.Writer;
+//@author EangJS
 
 /**
  * Class to write an ArrayList of completedWorkouts into a json file.
@@ -30,13 +31,11 @@ public class JsonUserDataWriter {
      * @throws DukeError Occurs when there is an error in writing the file
      */
     public boolean saveToJson (String userFilePath, UserCareerData userCareerData) throws DukeError {
-        try {
-            Writer writer = new FileWriter(userFilePath);
+        try (Writer writer = new FileWriter(userFilePath);) {
             JsonArray jsonArray = gson.toJsonTree(userCareerData.getTotalUserCareerSessions()).getAsJsonArray();
             JsonObject jsonObject = new JsonObject();
             jsonObject.add("History", jsonArray);
             writer.write(gson.toJson(jsonObject));
-            writer.close();
             return true;
         } catch (Exception e) {
             throw new DukeError("File Write Error");

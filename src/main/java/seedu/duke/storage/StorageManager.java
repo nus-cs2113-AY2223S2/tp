@@ -1,16 +1,14 @@
 package seedu.duke.storage;
 
-import java.util.logging.Logger;
-import seedu.duke.commons.LogMaster;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.data.userdata.userplan.UserPlan;
+//@author EangJS
 
 /**
  * Manages storage of Fitness Duke data into the local hard disk
  */
 public class StorageManager implements Storage {
-    private static final Logger logger = LogMaster.getLogger(StorageManager.class);
     private UserCareerStorage userCareerStorage;
     private UserPlansStorage userPlansStorage;
 
