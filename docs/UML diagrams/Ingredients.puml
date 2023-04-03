@@ -3,28 +3,29 @@
 
 IngredientList <-- MealCompanionSession
 Ingredient "*" <-- IngredientList
+hide circle
 
 class Ingredient {
--quantity: double
--name: String
-+getQuantity()
-+setQuantity(double)
-+getName()
+quantity: double
+name: String
+getQuantity()
+setQuantity(double)
+getName()
 }
 
 class IngredientList {
 
-+size(): int
-+remove(int)
-+get(int): Ingredient
-+getIngredients() : IngredientList
+size(): int
+remove(int)
+get(int): Ingredient
+getIngredients() : IngredientList
 }
 
 Class MealCompanionSession {
-- controlFLow: MealCompanionControlFlow
-- recipes: RecipeList
-- ui: MealCompanionUI
-- ingredientStorage: IngredientStorage
+ controlFLow: MealCompanionControlFlow
+ recipes: RecipeList
+ ui: MealCompanionUI
+ ingredientStorage: IngredientStorage
 
 }
 

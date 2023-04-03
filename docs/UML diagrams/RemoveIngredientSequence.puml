@@ -7,7 +7,7 @@ activate ":RemoveCommand"
 
 ":RemoveCommand" -> ":IngredientList": getIngredients()
 activate ":IngredientList"
-":RemoveCommand" <- ":IngredientList": ArrayList<Ingredient>: ingredients
+":RemoveCommand" <-- ":IngredientList": ArrayList<Ingredient>: ingredients
 deactivate ":IngredientList"
 
 ":RemoveCommand" -> ":RemoveCommand": findIndex("egg")
@@ -21,9 +21,9 @@ deactivate ":RemoveCommand"
 activate ":IngredientList"
 ":IngredientList" -> ":Ingredient": getQuantity()
 activate ":Ingredient"
-":IngredientList" <- ":Ingredient": return 5
+":IngredientList" <-- ":Ingredient": return 5
 deactivate ":Ingredient"
-":RemoveCommand" <- ":IngredientList": return 5
+":RemoveCommand" <-- ":IngredientList": return 5
 deactivate ":IngredientList"
 
 
@@ -37,5 +37,6 @@ deactivate ":Ingredient"
 deactivate ":IngredientList"
 
 [<- ":RemoveCommand": Done
+destroy ":RemoveCommand"
 deactivate ":RemoveCommand"
 @enduml
