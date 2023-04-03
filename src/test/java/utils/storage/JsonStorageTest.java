@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.UUID;
 import model.Card;
 import model.CardUUID;
-import model.Deck;
 import model.DeckList;
 import model.DeckUUID;
 import model.Memory;
