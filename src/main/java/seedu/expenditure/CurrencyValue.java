@@ -1,6 +1,8 @@
 package seedu.expenditure;
 
-public class CurrenyValue {
+import seedu.exceptions.WrongInputException;
+
+public abstract class CurrencyValue {
     private static final double AUS_CONVERSION = 1.11;
     private static final double CAD_CONVERSION = 1.01;
     private static final double CNY_CONVERSION = 5.07;
@@ -14,7 +16,40 @@ public class CurrenyValue {
     private static final double NZD_CONVERSION = 1.20;
     private static final double SEK_CONVERSION = 7.80;
     private static final double TWD_CONVERSION = 22.98;
-    private static final double USD_CONVERSION = 7.78;
+    private static final double USD_CONVERSION = 0.75;
 
-
+    public static double SGDConversion (double amount, String currencyType) throws WrongInputException {
+        switch (currencyType) {
+        case "AUS":
+            return amount * AUS_CONVERSION;
+        case "CAD":
+            return amount * CAD_CONVERSION;
+        case "DKK":
+            return amount * DKK_CONVERSION;
+        case "EUR":
+            return amount * EUR_CONVERSION;
+        case "GBP":
+            return amount * GBP_CONVERSION;
+        case "ILS":
+            return amount * ILS_CONVERSION;
+        case "JPY":
+            return amount * JPY_CONVERSION;
+        case "KRW":
+            return amount * KRW_CONVERSION;
+        case "NOK":
+            return amount * NOK_CONVERSION;
+        case "NZD":
+            return amount * NZD_CONVERSION;
+        case "SEK":
+            return amount * SEK_CONVERSION;
+        case "TWD":
+            return amount * TWD_CONVERSION;
+        case "USD":
+            return amount * USD_CONVERSION;
+        case "SGD":
+            return amount;
+        default:
+            throw new WrongInputException();
+        }
+    }
 }
