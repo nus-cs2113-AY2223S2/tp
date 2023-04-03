@@ -15,7 +15,6 @@ public class Item implements Comparable<Item> {
     private Double price;
     private Integer quantity;
     private String category = "Uncategorized";
-    private ArrayList<String> tags = new ArrayList<>();
 
     public Item(String name, String upc, Integer qty, Double price) {
         this.name = name;
@@ -216,9 +215,8 @@ public class Item implements Comparable<Item> {
 
     @Override
     public String toString() {
-        String returnString = "Name: " + name + '\n' + "UPC: " + upc + '\n' + "Price: " + price + '\n'
+        return "Name: " + name + '\n' + "UPC: " + upc + '\n' + "Price: " + price + '\n'
                 + "Quantity: " + quantity + '\n' + "Category: " + category;
-        return returnString;
     }
 
     @Override
