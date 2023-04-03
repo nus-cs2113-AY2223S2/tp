@@ -29,7 +29,7 @@ Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managin
 1. Enusure you have `Java 11` installed on your Computer.
 2. Download the latest `tp.main.jar` from [here](https://github.com/AY2223S2-CS2113-F13-1/tp/releases).
 3. Copy the file to the folder you want to use as home folder for the recipe manager.
-4. Use `Win+R` to open the command prompt and type `cmd` and press Enter.
+4. Open the command prompt.
 5. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`
 6. Type `java -jar tp.main.jar` and press Enter to start the program.
 <h2 id="features"> Features</h2>
