@@ -1,7 +1,28 @@
 # Developer Guide
 
-* Table of Contents
-{:toc}
+<!-- TOC -->
+* [Developer Guide](#developer-guide)
+  * [Acknowledgements](#acknowledgements)
+  * [Design](#design)
+    * [Architecture](#architecture)
+  * [Implementations](#implementations)
+    * [Exit Command](#exit-command)
+    * [List Pet Command](#list-pet-command)
+    * [[Added] Add Pet Stat Feature](#added-add-pet-stat-feature)
+      * [Implementation](#implementation)
+    * [Remove Pet Stat Command](#remove-pet-stat-command)
+* [Appendix: Requirements](#appendix--requirements)
+  * [Product scope](#product-scope)
+    * [Target user profile](#target-user-profile)
+    * [Value proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+  * [Instructions for manual testing](#instructions-for-manual-testing)
+    * [Launch and Shutdown](#launch-and-shutdown)
+    * [Testing Storage](#testing-storage)
+  * [Extras](#extras)
+<!-- TOC -->
 
 ## Acknowledgements
 
@@ -226,7 +247,7 @@ using the mouse.
 
 ## Instructions for manual testing
 
-# Launch and Shutdown
+### Launch and Shutdown
 - Initial Launch
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `Pet Tracker`
@@ -242,7 +263,7 @@ Expected Outcome: The program should run in the terminal.
 Expected Outcome: Pet Tracker will terminate and display `Goodbye! See you soon.
 `
 
-# Testing Storage
+### Testing Storage
 - Saving and Loading Data
 1. Launch the application and add pets/tasks
 2. All changes will be automatically saved to the output file.
