@@ -4,7 +4,6 @@ import java.util.List;
 import model.Card;
 import model.CardSelector;
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
@@ -30,12 +29,6 @@ public class CardKeywordParser extends KeywordParser {
     public static final String VIEW_ACTION = "view";
 
     public static final String DECK_ACTION = "deck";
-
-    private DefaultParser parser;
-
-    public CardKeywordParser() {
-        this.parser = new DefaultParser(false);
-    }
 
     private static Options buildAddOptions() {
         Options options = new Options();

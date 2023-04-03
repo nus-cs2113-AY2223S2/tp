@@ -2,7 +2,6 @@ package utils.parser;
 
 import java.util.List;
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
@@ -24,18 +23,13 @@ public class TagKeywordParser extends KeywordParser {
     public static final String LIST_ACTION = "list";
     public static final String DECK_ACTION = "deck";
 
-    private DefaultParser parser;
-
-    public TagKeywordParser() {
-        this.parser = new DefaultParser(false);
-    }
-
     private static Options buildDeleteOptions() {
         Options options = new Options();
         options.addRequiredOption("t", "tag", true, "tag name");
 
         return options;
     }
+
     private static Options buildDeckOptions() {
         Options options = new Options();
         options.addRequiredOption("t", "tag", true, "tag name");
@@ -115,6 +109,7 @@ public class TagKeywordParser extends KeywordParser {
             return new ListTagsCommand();
         }
     }
+
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
         CommandLine cmd = parser.parse(buildDeckOptions(), tokens.toArray(new String[0]));
 

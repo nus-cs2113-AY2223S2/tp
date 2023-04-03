@@ -2,7 +2,6 @@ package utils.parser;
 
 import java.util.List;
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import utils.command.Command;
@@ -17,15 +16,11 @@ import utils.command.RemoveTagFromDeckCommand;
 import utils.exceptions.InkaException;
 import utils.exceptions.UnrecognizedCommandException;
 
-public class DeckKeywordParser extends KeywordParser{
+public class DeckKeywordParser extends KeywordParser {
     public static final String DELETE_ACTION = "delete";
     public static final String EDIT_ACTION = "edit";
     public static final String HELP_ACTION = "help";
     public static final String LIST_ACTION = "list";
-    private DefaultParser parser;
-    public DeckKeywordParser() {
-        this.parser = new DefaultParser(false);
-    }
 
     private static Options buildDeleteOptions() {
         Options options = new Options();
@@ -35,6 +30,7 @@ public class DeckKeywordParser extends KeywordParser{
 
         return options;
     }
+
     private static Options buildEditOptions() {
         Options options = new Options();
         options.addRequiredOption("o", "old", true, "Old deck name");
@@ -42,15 +38,17 @@ public class DeckKeywordParser extends KeywordParser{
 
         return options;
     }
+
     private static Options buildListOptions() {
         Options options = new Options();
         options.addOption("c", "cards", true, "deck name to list cards from (optional)");
         options.addOption("t", "tags", true, "deck name to list tags from (optional)");
         return options;
     }
+
     @Override
     protected Command handleAction(String action, List<String> tokens)
-            throws ParseException, UnrecognizedCommandException, InkaException {
+            throws ParseException, InkaException {
         switch (action) {
         case DELETE_ACTION:
             return handleDelete(tokens);
@@ -69,7 +67,7 @@ public class DeckKeywordParser extends KeywordParser{
         CommandLine cmd = parser.parse(buildDeleteOptions(), tokens.toArray(new String[0]));
 
         String deckName = cmd.getOptionValue("d");
-        if(cmd.hasOption("c")) {
+        if (cmd.hasOption("c")) {
             return new RemoveCardFromDeckCommand(cmd.getOptionValue("c"), deckName);
         } else if (cmd.hasOption("t")) {
             return new RemoveTagFromDeckCommand(cmd.getOptionValue("t"), deckName);
@@ -84,13 +82,14 @@ public class DeckKeywordParser extends KeywordParser{
         if (cmd.hasOption("c")) {
             String deckName = cmd.getOptionValue("c");
             return new ListCardsUnderDeckCommand(deckName);
-        } else if(cmd.hasOption("t")) {
+        } else if (cmd.hasOption("t")) {
             String deckName = cmd.getOptionValue("t");
             return new ListTagsUnderDeckCommand(deckName);
         } else {
             return new ListDecksCommand();
         }
     }
+
     private Command handleEdit(List<String> tokens) throws ParseException {
         CommandLine cmd = parser.parse(buildEditOptions(), tokens.toArray(new String[0]));
 

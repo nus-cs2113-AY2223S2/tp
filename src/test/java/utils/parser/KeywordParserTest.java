@@ -3,37 +3,23 @@ package utils.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import model.CardList;
-import model.DeckList;
-import model.TagList;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.UserInterface;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
-import utils.storage.FakeStorage;
-import utils.storage.Storage;
 
 public class KeywordParserTest {
 
-    private CardList cardList;
-    private TagList tagList;
-    private UserInterface ui;
-    private Storage storage;
     private Parser parser;
-    private DeckList deckList;
 
     /**
      * Each test should have a new instance of all these
      */
     @BeforeEach
     void init() {
-        cardList = new CardList();
-        tagList = new TagList();
-        ui = new UserInterface();
-        storage = new FakeStorage();
         parser = new Parser();
-        deckList = new DeckList();
     }
 
     //
@@ -41,7 +27,7 @@ public class KeywordParserTest {
     //
 
     @Test
-    public void parse_alreadySelected_format() throws InkaException {
+    public void parse_alreadySelected_format() {
         String testInput = "card delete -i 1 -c 00000000-0000-0000-0000-000000000000";
         String expectedMessage = InvalidSyntaxException.buildAlreadySelectedMessage("-c / -i").getUiMessage();
 
@@ -54,33 +40,46 @@ public class KeywordParserTest {
     @Test
     public void parse_missingArgument_format() {
         String[] testInputs = {"card add -q QUESTION -a", "card add -q -a ANSWER"};
-        String[] expectedMessages = {
-                InvalidSyntaxException.buildMissingArgumentMessage("-a").getUiMessage(),
-                InvalidSyntaxException.buildMissingArgumentMessage("-q").getUiMessage()
-        };
-        assert testInputs.length == expectedMessages.length;
+        String[] expectedFlags = {"-a", "-q"};
 
         for (int i = 0; i < testInputs.length; i++) {
             final String testInput = testInputs[i];
             InkaException ex = assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testInput));
-            assertEquals(ex.getUiMessage(), expectedMessages[i]);
+
+            String expected = InvalidSyntaxException.buildMissingArgumentMessage(expectedFlags[i]).getUiMessage();
+            assertEquals(ex.getUiMessage(), expected);
+        }
+    }
+
+    @Test
+    public void parse_missingOption_format() {
+        String[] testInputs = {"card add -q QUESTION", "card delete", "tag edit"};
+        List<List<String>> expectedFlags = Arrays.asList(
+                List.of("-a"),
+                List.of("-c / -i"),
+                Arrays.asList("-o", "-n")
+        );
+
+        for (int i = 0; i < testInputs.length; i++) {
+            final String testInput = testInputs[i];
+            InkaException ex = assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testInput));
+
+            String expected = InvalidSyntaxException.buildMissingOptionMessage(expectedFlags.get(i)).getUiMessage();
+            assertEquals(ex.getUiMessage(), expected);
         }
     }
 
     @Test
     public void parse_unrecognizedOption_format() {
         String[] testInputs = {"card add -i 1 -q QUESTION -a ANSWER", "card add -c -q -a ANSWER", "card delete -x 1"};
-        String[] expectedMessages = {
-                InvalidSyntaxException.buildUnrecognizedOptionMessage("-i").getUiMessage(),
-                InvalidSyntaxException.buildUnrecognizedOptionMessage("-c").getUiMessage(),
-                InvalidSyntaxException.buildUnrecognizedOptionMessage("-x").getUiMessage()
-        };
-        assert testInputs.length == expectedMessages.length;
+        String[] expectedFlags = {"-i", "-c", "-x"};
 
         for (int i = 0; i < testInputs.length; i++) {
             final String testInput = testInputs[i];
             InkaException ex = assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testInput));
-            assertEquals(ex.getUiMessage(), expectedMessages[i]);
+
+            String expected = InvalidSyntaxException.buildUnrecognizedOptionMessage(expectedFlags[i]).getUiMessage();
+            assertEquals(ex.getUiMessage(), expected);
         }
     }
 }

@@ -2,11 +2,13 @@ package utils.parser;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.CardSelector;
 import org.apache.commons.cli.AlreadySelectedException;
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.MissingArgumentException;
 import org.apache.commons.cli.MissingOptionException;
@@ -34,6 +36,12 @@ public abstract class KeywordParser {
     protected static final int FORMAT_HELP_WIDTH = 200;
     protected static final int FORMAT_HELP_LEFT_PAD = 0;
     protected static final int FORMAT_HELP_DESC_PAD = 10;
+
+    protected DefaultParser parser;
+
+    public KeywordParser() {
+        parser = DefaultParser.builder().setAllowPartialMatching(false).setStripLeadingAndTrailingQuotes(false).build();
+    }
 
     /**
      * Wrapper around {@link Option} constructor to set option to accept multiple tokens (whitespace-separated
@@ -105,6 +113,7 @@ public abstract class KeywordParser {
     private static String formatOption(Option option) {
         return "-" + option.getOpt();
     }
+
     private static String formatOption(String option) {
         return "-" + option;
     }
@@ -176,25 +185,21 @@ public abstract class KeywordParser {
      * @return Converted custom exception
      */
     private InkaException convertMissingOptionException(MissingOptionException ex) {
-        // TODO: Cleanup
-        return InvalidSyntaxException.buildGenericMessage();
         // Apache will return an untyped List containing either String or OptionGroup
-//        List<String> missingOptions = new ArrayList<>();
-//        for (Object obj : ex.getMissingOptions()) {
-//            if (obj instanceof String) {
-//                // Single option
-//                missingOptions.add((String) obj);
-//            } else if (obj instanceof OptionGroup) {
-//                // Mutually exclusive options
-//                OptionGroup optionGroup = (OptionGroup) obj;
-//                String optionsInGroup = optionGroup.getOptions().stream().map(option -> "-" + option.getOpt())
-//                        .collect(Collectors.joining("/"));
-//                missingOptions.add(optionsInGroup);
-//            }
-//        }
-//
-//        String missingOptionsStr = String.join(", ", missingOptions);
-//        return InvalidSyntaxException.buildMissingOptionMessage(missingOptionsStr);
+        List<String> formattedFlags = new ArrayList<>();
+        for (Object obj : ex.getMissingOptions()) {
+            if (obj instanceof String) {
+                // Single option
+                String formattedFlag = formatOption((String) obj);
+                formattedFlags.add(formattedFlag);
+            } else if (obj instanceof OptionGroup) {
+                // Mutually exclusive options
+                String formattedFlag = formatOptionGroup((OptionGroup) obj);
+                formattedFlags.add(formattedFlag);
+            }
+        }
+
+        return InvalidSyntaxException.buildMissingOptionMessage(formattedFlags);
     }
 
     /**
