@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import seedu.duke.commons.LogMaster;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.UserCareerData;
+//@author EangJS
 
 /**
  * This class is responsible to save all user career into a json file for storage on the hard disk.
@@ -68,7 +69,7 @@ public class JsonUserCareerStorage implements UserCareerStorage {
                            "Data file has been corrupted or missing, we will create a new file and reset " +
                                "your progress.");
             } catch (DukeError error) {
-                System.out.println(error.getMessage());
+                System.out.println("Something went wrong saving your data!");
                 logger.log(Level.SEVERE, "Unable to write new user data file to hard disk!");
             }
         }

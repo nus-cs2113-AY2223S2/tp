@@ -215,6 +215,8 @@ Here are the exercises matching your keyword:
 ________________________________________
 ```
 
+## Workout Plans
+
 ### Getting into the fitness planner: ```planner```
 
 Enters another interface where you can configure your workout plans and save them for the week.
@@ -227,6 +229,33 @@ Example Command: ```planner```
 ### Viewing plans: ```plans```
 
 Displays all workout plans which have been created by the user.
+
+```
+YOUR WORKOUT PLAN:
+_________
+MONDAY
+1. home_leg_day
+Filters: legs static
+_________
+TUESDAY
+_________
+WEDNESDAY
+1. gym_with_tom
+Filters: gym upper legs hard
+_________
+THURSDAY
+_________
+FRIDAY
+1. tabata_with_ben
+Filters: static hard
+_________
+SATURDAY
+1. chill_day
+Filters: easy static
+_________
+SUNDAY
+________________________________________
+```
 
 Example Command: ```plans```
 

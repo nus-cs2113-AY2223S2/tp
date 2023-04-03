@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@author EangJS
 public class TestWriting {
     /**
      * Tests the mapping of data into the UserCareerData class such that all sessionExercises are mapped accordingly.

@@ -12,7 +12,6 @@ public class LogMaster {
     private static final String LOG_FILE = "fitness_duke.log";
     private static ConsoleHandler consoleHandler;
     private static FileHandler fileHandler;
-    private static final Logger logger = LogMaster.getLogger(LogMaster.class);
 
     public static Logger getLogger (String name) {
         Logger logger = Logger.getLogger(name);

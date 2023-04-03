@@ -24,6 +24,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+//@author EangJS
+
 /**
  * Tests the writing of a sample set of Completed workouts by ensuring that the current session workouts are copied
  * into an ArrayList of CompletedWorkouts in which identity codes of saved and completed workouts are the same.

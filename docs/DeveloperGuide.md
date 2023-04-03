@@ -11,6 +11,8 @@ title: Developer Guide
 
 * The CS2113 Team (Professor and Teaching Assistants) For their guidance in teaching us concepts of Software
   Engineering and OOP
+* [AddressBook3](https://github.com/se-edu/addressbook-level3) Guidance and examples for OOP and project aspects were 
+  used from this repository.
 
 * Exercise Data retrieved from: [Wrkout](https://github.com/wrkout/exercises.json) (open source MIT license)
   Used to generate the data.json file containing all the exercises data used
@@ -80,7 +82,7 @@ Figure 1.3
 
 ### Storage Component
 
-API: [```StorageHandler.java```](https://github.com/AY2223S2-CS2113-W13-2/tp/blob/master/src/main/java/seedu/duke/storage/StorageHandler.java)
+API: ```Storagejava```
 
 The *Storage* component handles the reading and writing of user data to and from the local hard disk in the form of
 a json file.
@@ -100,8 +102,8 @@ Figure 1.4
 </p>
 </div>
 
-The StorageHandler interacts with the other classes as shown in the *Sequence Diagram*
-where it shows how the StorageHandler loads the local user data json file as well as the user plans json file upon the 
+The Storage API interacts with the other classes as shown in the *Sequence Diagram*
+where it shows how the Storage API loads the local user data json file as well as the user plans json file upon the 
 resumption of the program.
 <div align="center">
 <img src="UML/Images/LoadingUserCareerData.png"/>

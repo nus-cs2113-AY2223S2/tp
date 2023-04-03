@@ -2,6 +2,7 @@ package seedu.duke.storage;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.UserCareerData;
+//@author EangJS
 
 /**
  * Represents a storage for {@code UserCareerData}
