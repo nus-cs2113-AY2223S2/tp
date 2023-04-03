@@ -79,7 +79,7 @@ public class StorageTest {
                 Patient patient = entry.getValue();
                 String name = patient.getName();
                 int password = patient.getPassword();
-                ArrayList<String> diagnosisHistory = patient.getPatientDiagnosisHistory();
+                Hashtable<String, ArrayList<String>>  diagnosisHistory = patient.getPatientDiagnosisHistory();
                 int numberOfDiagnoses = diagnosisHistory.size();
                 Hashtable<String, ArrayList<String>> medicineHistory = patient.getPatientMedicineHistory();
                 int numberOfMedicines = medicineHistory.size();
@@ -87,8 +87,16 @@ public class StorageTest {
                 data += password + "\n";
                 data += name + "\n";
                 data += numberOfDiagnoses + "\n";
-                for (String diagnosis : diagnosisHistory) {
-                    data += diagnosis + "\n";
+                List<String> diagnosisDates = Collections.list(diagnosisHistory.keys());
+                Collections.sort(diagnosisDates);
+                for (String date : diagnosisDates) {
+                    data += date + "%";
+                    for (String diagnosisString : diagnosisHistory.get(date)) {
+                        data += diagnosisString + "%";
+                    }
+                }
+                if (diagnosisDates.size() > 0) {
+                    data += "\n";
                 }
                 data += numberOfMedicines + "\n";
                 List<String> dates = Collections.list(medicineHistory.keys());
@@ -115,7 +123,7 @@ public class StorageTest {
             Files.createFile(path);
             FileWriter writerTest = new FileWriter(DUMMY_FILE_PATH_TEST);
             String dataTest = "";
-            dataTest += 1 + "\nJerry\n" + 1 + "Fever\n" + 1 + "\n2023/01/01%Paracetamol%\n";
+            dataTest += 1 + "\nJerry\n" + 1 + "\n2023/01/01%Fever%\n" + 1 + "\n2023/01/01%Paracetamol%\n";
             int fileHashTest = dataTest.hashCode();
             dataTest = fileHashTest + "\n" + dataTest;
             writerTest.write(dataTest);
@@ -150,11 +158,18 @@ public class StorageTest {
 
                 int numberOfEntries = Integer.parseInt(scanner.nextLine());
                 dataCompare += numberOfEntries + "\n";
-                ArrayList<String> diagnosisHistory = new ArrayList<>();
+                Hashtable<String, ArrayList<String>>  diagnosisHistory = new Hashtable<>();
                 for (int i = 0; i < numberOfEntries; i++) {
-                    String diagnosis = scanner.nextLine();
-                    dataCompare += diagnosis + "\n";
-                    diagnosisHistory.add(diagnosis);
+                    String dateDiagnosisString = scanner.nextLine();
+                    dataCompare += dateDiagnosisString + "\n";
+                    String[] splitDateDiagnosisStrings = dateDiagnosisString.split("%");
+                    ArrayList<String> diagnoses = new ArrayList<>();
+                    for (int diagnosisStringCount = 1; diagnosisStringCount < splitDateDiagnosisStrings.length;
+                         diagnosisStringCount++) {
+                        diagnoses.add(splitDateDiagnosisStrings[diagnosisStringCount]);
+                    }
+                    String date = splitDateDiagnosisStrings[0];
+                    diagnosisHistory.put(date, diagnoses);
                 }
 
                 int numberOfMedicineEntries = Integer.parseInt(scanner.nextLine());
@@ -176,7 +191,9 @@ public class StorageTest {
                 Assertions.assertEquals(hash, 1);
                 Assertions.assertEquals(numberOfEntries, 1);
                 Assertions.assertEquals(diagnosisHistory.size(), 1);
-                Assertions.assertEquals(diagnosisHistory.get(0), "Fever");
+                Assertions.assertTrue(diagnosisHistory.containsKey("2023/01/01"));
+                Assertions.assertEquals(diagnosisHistory.get("2023/01/01").size(), 1);
+                Assertions.assertTrue(diagnosisHistory.get("2023/01/01").get(0).equals("Fever"));
                 Assertions.assertEquals(numberOfMedicineEntries, 1);
                 Assertions.assertEquals(medicineHistory.size(), 1);
                 Assertions.assertTrue(medicineHistory.containsKey("2023/01/01"));

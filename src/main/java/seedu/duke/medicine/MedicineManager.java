@@ -25,7 +25,7 @@ public class MedicineManager {
                     "high temperature \n" +
                     "    It's typically used to relieve mild or moderate pain, such as headaches, \n" +
                     "    toothache or sprains, and reduce fevers caused by illnesses such as colds and flu.");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine LOZENGE = new Medicine(
             "Lozenges", "When you feel pain from sore throat",
@@ -33,7 +33,7 @@ public class MedicineManager {
             "Description: Lozenges are used to medicate the mouth and throat for the slow administration " +
                     "in digestion or \n" +
                     "    cough remedies. Lozenges may contain an anesthetic, a demulcent, or an antiseptic.");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine ROBITUSSIN = new Medicine(
             "Robitussin", "20ml every 12 hours",
@@ -42,7 +42,7 @@ public class MedicineManager {
                     "    making it easier to cough out through your mouth. \n" +
                     "    Robitussin is used to reduce chest congestion caused by the common cold, \n" +
                     "    infections, or allergies.");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine IBUPROFEN = new Medicine(
             "Ibuprofen", "1 or 2 pills every 4 to 6 hours",
@@ -52,13 +52,13 @@ public class MedicineManager {
                     "    eases pain and inflammation (redness and swelling) caused by conditions that affect the \n" +
                     "    joints, bones and muscles - such as rheumatoid arthritis and osteoarthritis and eases \n" +
                     "    pain and swelling caused by sprains and strains – such as sports injuries");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine ASPIRIN = new Medicine(
             "Aspirin", "1 or 2 pills every 4 to 6 hours",
             //@@author Geeeetyx
             "Description: A drug that reduces pain, fever, inflammation, and blood clotting.");
-    //@@author
+    //@@author tanyizhe
     private static final Medicine MAGNESIUM = new Medicine(
             "Magnesium", "100 to 350mg before bed",
             //@@author Geeeetyx
@@ -69,7 +69,7 @@ public class MedicineManager {
                     "    for low magnesium levels, \n" +
                     "    for pregnancy complications called pre-eclampsia and eclampsia, \n" +
                     "    and for a certain type of irregular heartbeat.");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine EYE_DROPS = new Medicine(
             "Eye Drops", "When your eyes itch",
@@ -77,14 +77,14 @@ public class MedicineManager {
             "Description: Eye Drops are a decongestant used to relieve redness in the eyes caused by " +
                     "minor eye irritations \n" +
                     "    (such as smog, swimming, dust, or smoke).");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine ULTRACARBON = new Medicine(
             "Ultracarbon", "1 250mg Tablet",
             //@@author Geeeetyx
             "Description: Ultracarbon is thought to offer several benefits, including less gas and flatulence, \n" +
                     "    and is thus administered to treat diarrhoea.");
-    //@@author
+    //@@author tanyizhe
 
     private static final Medicine DULCOLAX = new Medicine(
             "Dulcolax", "1 tablet every day",
@@ -93,7 +93,7 @@ public class MedicineManager {
                     "Swallow this medication whole. Do not crush, chew, or break the tablet or take it within \n" +
                     "    1 hour of antacids, milk, or milk products. Doing so can destroy the \n" +
                     "    coating on the tablet and may increase the risk of stomach upset and nausea.");
-    //@@author
+    //@@author tanyizhe
     private static final Medicine GUAIFENESIN = new Medicine(
             "Guaifenesin", "200-400 mg 4 hourly",
 
@@ -103,7 +103,7 @@ public class MedicineManager {
                     "    cough up the mucus and clear the airways.");
 
     private static final Medicine ZOLPIDEM = new Medicine(
-            "Zolpidem ", "taking it once every 2 or 3 nights",
+            "Zolpidem", "taking it once every 2 or 3 nights",
             "Description: Zolpidem is used for short-term treatment of " +
                     "insomnia (difficulty sleeping). \n" +
                     "    It helps you fall asleep faster and sleep through the night.");
@@ -143,9 +143,6 @@ public class MedicineManager {
                     "    It reduces swelling (inflammation) and pain in joints and muscles, \n" +
                     "    which can help with muscle aches.");
 
-
-
-    //@@author
 
     //@@author tanyizhe
     public MedicineManager() {
@@ -200,7 +197,7 @@ public class MedicineManager {
                         .collect(Collectors.toCollection(ArrayList::new));
         medicationDict.put("Nasal Congestion", nasalCongestionMedications);
         medicationDict.put("Muscle Ache", muscleAcheMedications);
-        //@@author
+        //@@author tanyizhe
     }
 
     /**
@@ -227,7 +224,7 @@ public class MedicineManager {
         medicineDosages.put(ZYRTEC_D.toString(), ZYRTEC_D.getDosage());
         medicineDosages.put(DIFFLAM_THROAT_SPRAY.toString(), DIFFLAM_THROAT_SPRAY.getDosage());
         medicineDosages.put(NAPROXEN.toString(),NAPROXEN.getDosage());
-        //@@author
+        //@@author tanyizhe
 
         assert medicineDosages.isEmpty() == false : "Medicine dosage hashtable must not be empty";
     }
@@ -261,7 +258,7 @@ public class MedicineManager {
                 System.out.println("-----------------------------------------------------------");
                 System.out.println("    " + medicine.getDescription());
                 System.out.println("-----------------------------------------------------------");
-                //@@author
+                //@@author tanyizhe
             }
         } else {
             System.out.println("    No medication available. Please consult a doctor.");
