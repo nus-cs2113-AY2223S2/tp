@@ -5,11 +5,13 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+The format of our developer guide is adapted from 
+[SE-EDU AddressBook Level 3](https://github.com/se-edu/addressbook-level3/blob/master/docs/DeveloperGuide.md). 
+Code used in this project is reused and adapted from our team's individual project during this module.
 
 ## Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+All `.puml` files used to create the UML diagrams can be found in our diagrams folder.
 
 ### Architecture
 
@@ -34,16 +36,6 @@ The rest of the App consists of four components.
 * [**`Command`**](): The command executor.
 * [**`Data`**](): Holds the data of the App in memory.
 * [**`Storage`**](): Reads data from, and writes data to, the hard disk.
-
-## Product scope
-### Target user profile
-
-{Describe the target user profile}
-
-### Value proposition
-
-{Describe the value proposition: what problem does it solve?}
-
 
 ## Implementations
 ### Exit Command
@@ -181,6 +173,20 @@ This feature was implemented like this in order to maximize use of the OOP parad
     <i>Figure 7: Sequence Diagram for Remove Pet Stat Command</i>
 </p>
 
+# Appendix: Requirements
+## Product scope
+### Target user profile
+
+Pet Tracker is developed for people who take care of multiple pets (Pet Hotels/Pet Sitters) who prefer
+to use CLI applications to quickly track and update details relating to their pet.
+
+### Value proposition
+
+Pet Tracker will allow for fast-typing users to save more time when keeping track of pets.
+Users will be able to quickly update any of their existing pet details or add in new ones, while being able to
+review all current information of all the pets they have at a glance. In addition, Pet Tracker allows users to
+add tasks for errands that even has a reminder feature so that users will not forget.
+
 ## User Stories
 
 | Version | As a ...         | I want to ...                                           | So that I can ...                                        |
@@ -203,12 +209,64 @@ This feature was implemented like this in order to maximize use of the OOP parad
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Pet Tracker should work on mainstream OS as long as Java 11 is installed.
+2. User with higher typing speed compared to an average person should be able to accomplish most tasks faster than
+using the mouse.
+3. Does not require internet to run
+4. Should be able to hold up to 1000 pets/tasks without any noticeable sluggishness in performance
+
 
 ## Glossary
 
-* *glossary item* - Definition
+* *Mainstream OS* - Windows / MacOS / Linux
+* *Pet* - Domestic/Tamed animal
+* *Task* - A task to be carried out (e.g. Feeding a pet)
+* *Stat* - Statistic of a pet such as Pet Type(Dog / Cat), Age or Weight
+* *Value* - Result of the statistic (e.g. 5,10,15)
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+# Launch and Shutdown
+- Initial Launch
+1. Ensure that you have Java 11 or above installed.
+2. Download the latest version of `Pet Tracker`
+   from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTrackerV2.0/pettracker.jar).
+3. Launch a terminal in the folder that the jar file is located in
+4. Run the command `java -jar pettracker.jar`
+
+Expected Outcome: The program should run in the terminal.
+
+- Shutdown
+1. Type `exit` to quit the application
+
+Expected Outcome: Pet Tracker will terminate and display `Goodbye! See you soon.
+`
+
+# Testing Storage
+- Saving and Loading Data
+1. Launch the application and add pets/tasks
+2. All changes will be automatically saved to the output file.
+3. Upon terminating and re-launching the application, Pet Tracker will load the files from
+the `output` folder named as `petoutput.txt` and `taskoutput.txt`
+
+Expected Outcome: Pet Tracker will successfully load both data files and restore the
+state of the application as if it was never closed.
+
+- Missing Data File
+1. Delete the `petoutput.txt` or `taskoutput.txt` file in the `output` folder
+2. In the event that the data file is missing, Pet Tracker will not see the former state of the application.
+3. Pet Tracker will run as if it is the first time launching this program.
+
+Expected Outcome: Pet Tracker runs with a empty data file.
+
+- Corrupted Data File
+1. Change pet age to be a non integer, or delete some pipes in the `petoutput.txt` or `taskoutput.txt` file.
+2. If the data files are corrupted, PetTracker will print out errors and
+may not be able to successfully import in previous states.
+
+Expected Outcome: Pet Tracker may start with a partially loaded state. 
+
+
+## Extras
+
+1. Users should not try to corrupt the data output file by changing the data directly.
