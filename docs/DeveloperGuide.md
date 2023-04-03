@@ -37,16 +37,6 @@ The rest of the App consists of four components.
 * [**`Data`**](): Holds the data of the App in memory.
 * [**`Storage`**](): Reads data from, and writes data to, the hard disk.
 
-## Product scope
-### Target user profile
-
-{Describe the target user profile}
-
-### Value proposition
-
-{Describe the value proposition: what problem does it solve?}
-
-
 ## Implementations
 ### Exit Command
 
@@ -182,6 +172,20 @@ This feature was implemented like this in order to maximize use of the OOP parad
     <br />
     <i>Figure 7: Sequence Diagram for Remove Pet Stat Command</i>
 </p>
+
+# Appendix: Requirements
+## Product scope
+### Target user profile
+
+Pet Tracker is developed for people who take care of multiple pets (Pet Hotels/Pet Sitters) who prefer
+to use CLI applications to quickly track and update details relating to their pet.
+
+### Value proposition
+
+Pet Tracker will allow for fast-typing users to save more time when keeping track of pets.
+Users will be able to quickly update any of their existing pet details or add in new ones, while being able to
+review all current information of all the pets they have at a glance. In addition, Pet Tracker allows users to
+add tasks for errands that even has a reminder feature so that users will not forget.
 
 ## User Stories
 
