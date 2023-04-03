@@ -63,7 +63,7 @@ public class RecipeList {
 
     public static void searchRecipeList(String term) {
         ArrayList<String> matches = new ArrayList<>();
-        if (term.equals("")) {
+        if (term.trim().equals("")) {
             System.out.println(MISSING_KEYWORD);
             return;
         }
@@ -89,7 +89,7 @@ public class RecipeList {
 
     public static void searchByTag(String tag) {
         ArrayList<String> matches = new ArrayList<>();
-        if (tag.equals("")) {
+        if (tag.trim().equals("")) {
             System.out.println(MISSING_KEYWORD);
         } else if (getCurrRecipeNumber() == 0) {
             System.out.println(EMPTY_LIST_MESSAGE);
