@@ -492,4 +492,11 @@ public class Menu {
         System.out.println("---------------------------------------------------");
         System.out.println("Results for \"" + phrase + "\":");
     }
+    //@@author Geeeetyx
+    public static void displayEndOfDiagnosisMessage() {
+        System.out.println("End of diagnosis. Please proceed to your nearest pharmacy to purchase the " +
+                "above medications if applicable.");
+        System.out.println("==========================================================================" +
+                "==================");
+    }
 }
