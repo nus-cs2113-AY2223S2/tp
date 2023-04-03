@@ -8,6 +8,7 @@ import seedu.moneymind.event.Event;
 import static seedu.moneymind.string.Strings.STORAGE_CATEGORY_NAME;
 import static seedu.moneymind.string.Strings.STORAGE_NEXT_VARIABLE;
 import static seedu.moneymind.string.Strings.NEW_LINE;
+import static seedu.moneymind.string.Strings.checkForStorageDelimiter;
 
 /**
  * Converts the ArrayList of categories to a String.
@@ -23,7 +24,8 @@ public class CategoriesToString {
     public static String categoriesToString(ArrayList<Category> categories) {
         String categoriesAsString = "";
         for (Category category : categories) {
-            categoriesAsString += STORAGE_CATEGORY_NAME + category.getName();
+            categoriesAsString += STORAGE_CATEGORY_NAME + 
+                    checkForStorageDelimiter(category.getName());
             if (category.getBudget() != 0) {
                 categoriesAsString += STORAGE_CATEGORY_NAME + category.getBudget();
             }
@@ -42,11 +44,11 @@ public class CategoriesToString {
         String eventsAsString = "";
         for (Event event : events) {
             if (event.getTime() != null) {
-                eventsAsString += STORAGE_NEXT_VARIABLE + event.getDescription() 
+                eventsAsString += STORAGE_NEXT_VARIABLE + checkForStorageDelimiter(event.getDescription()) 
                         + STORAGE_NEXT_VARIABLE + event.getExpense() + STORAGE_NEXT_VARIABLE 
                         + event.getTime() + NEW_LINE;
             } else {
-                eventsAsString += STORAGE_NEXT_VARIABLE + event.getDescription() 
+                eventsAsString += STORAGE_NEXT_VARIABLE + checkForStorageDelimiter(event.getDescription()) 
                         + STORAGE_NEXT_VARIABLE + event.getExpense() + NEW_LINE;
             }
         }

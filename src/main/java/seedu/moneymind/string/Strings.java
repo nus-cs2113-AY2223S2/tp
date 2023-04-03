@@ -72,7 +72,7 @@ public class Strings {
     public static final String STORAGE_NEXT_VARIABLE = "&&next_detail&&";
     public static final String NEW_LINE = System.lineSeparator();
     public static final String STORAGE_CATEGORY_NAME = "&&new_category&&";
-    public static final String STORAGE_CATEGORY_MAP = "&&category_map&&";
+    public static final String STORAGE_DEFAULT_STRING = "&&default_value&&";
     public static final String EXISTED_CATEGORY = "Category already exists";
     public static final String EXTRA_SPACE_REGEX_FORMAT = "\\s+";
     public static final String HELP = "help";
@@ -88,4 +88,20 @@ public class Strings {
     public static final String CATEGORY_DOES_NOT_EXIST_MESSAGE = "Category does not exist!";
     public static final String ENTERING_POSITIVE_NUMBER_MESSAGE =
             "Please enter a positive number or enter back to go back to the main program";
+
+    /**
+     * Returns the input string with all the storage delimiter replaced with the default string.
+     *
+     * @param input The input string.
+     * @return The input string with all the storage delimiter replaced with the default string.
+     */
+    public static String checkForStorageDelimiter(String input) {
+        if (input.contains(STORAGE_CATEGORY_NAME) || input.contains(STORAGE_NEXT_VARIABLE)) {
+            System.out.println("Storage delimiter detected and replaced with: &&default_value&&");
+            return input.replace(STORAGE_CATEGORY_NAME, STORAGE_DEFAULT_STRING)
+                    .replace(STORAGE_NEXT_VARIABLE, STORAGE_DEFAULT_STRING);
+        } else {
+            return input;
+        }
+    }
 }
