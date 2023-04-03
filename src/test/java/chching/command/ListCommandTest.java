@@ -25,7 +25,7 @@ public class ListCommandTest {
     static final String CATEGORY = "transport";
     static final String EXPENSE_DESCRIPTION = "public transport";
     static final String INCOME_DESCRIPTION = "ALLOWANCE";
-    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
     static final LocalDate DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float EXPENSE_VALUE = (float) 1.50;
     static final float INCOME_VALUE = (float) 200;

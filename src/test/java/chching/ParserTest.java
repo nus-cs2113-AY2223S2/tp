@@ -1,5 +1,4 @@
 /* @@author avielcx */
-
 package chching;
 
 import chching.parser.Parser;
@@ -110,7 +109,7 @@ public class ParserTest {
             new Parser().sortArguments(input);
             fail(); // the test should not reach this line
         } catch (ChChingException e) {
-            assertEquals("arguments not inputted correctly or missing a value", e.getMessage());
+            assertEquals("Arguments not inputted correctly", e.getMessage());
         }
     }
 

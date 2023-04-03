@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class EditExpenseCommandTest {
     static final String GROCERIES_CATEGORY = "grocery";
     static final String GROCERIES_DESCRIPTION = "too much groceries";
-    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
     static final LocalDate GROCERIES_DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float GROCERIES_VALUE = 500;
     static final String INDEX_FIELD = "in";
