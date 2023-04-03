@@ -10,12 +10,11 @@ public class RemoveStatCommand extends Command {
     protected String petName;
     protected String statName;
 
-    public RemoveStatCommand(String commandArgs) {
+    public RemoveStatCommand(String petName, String statName) {
         super();
-        this.petName = parseArgs(commandArgs)[0];
-        this.statName = parseArgs(commandArgs)[1];
+        this.petName = petName;
+        this.statName = statName;
     }
-    // TODO: Implement this method
 
     /**
      * Executes the given command
@@ -34,12 +33,6 @@ public class RemoveStatCommand extends Command {
         } catch (PetNotFoundException e) {
             ui.petNotFoundMessage();
         }
-    }
-
-    // TODO: Implement this method
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        return commandArgs.split(" ", 2);
     }
 
     /**

@@ -9,7 +9,6 @@ public class ListPetCommand extends Command {
         super();
     }
 
-    //TODO: Implement this method
 
     /**
      * Executes the given command
@@ -20,13 +19,6 @@ public class ListPetCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage) {
         PetList.list();
-    }
-
-    //TODO: Implement this method
-
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        return new String[0];
     }
 
     /**

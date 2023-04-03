@@ -14,30 +14,22 @@ public class EditTaskCommand extends Command {
     protected LocalDate deadline;
 
 
-    public EditTaskCommand(String commandArgs) {
+    public EditTaskCommand(int taskNumber, String newDescription) {
         super();
-        String[] parsed = parseArgs(commandArgs);
-        assert parsed.length > 0 : "no arguments";
-        this.taskNumber = Integer.parseInt(parsed[0]);
-        this.newDescription = parsed[1];
-        if(parsed.length > 2) {
-            try {
-                this.deadline = LocalDate.parse(parsed[2]);
-            } catch (Exception e) {
-                this.deadline = null;
-            }
-        }
-        else {
-            this.deadline = null;
-        }
+        this.taskNumber = taskNumber;
+        this.newDescription = newDescription;
     }
-
-    // TODO: Implement this method
+    public EditTaskCommand(int taskNumber, String newDescription, LocalDate deadline) {
+        super();
+        this.taskNumber = taskNumber;
+        this.newDescription = newDescription;
+        this.deadline = deadline;
+    }
 
     /**
      * Executes the given command
      *
-     * @param ui Ui to do printing if required
+     * @param ui      Ui to do printing if required
      * @param storage Storage to save files if required
      */
     @Override
@@ -45,24 +37,6 @@ public class EditTaskCommand extends Command {
         TaskList.editTask(taskNumber, newDescription, deadline);
         TaskList.saveTasksToStorage(storage, ui);
         ui.editTaskCommandMessage(taskNumber, newDescription);
-    }
-
-    /**
-     * Parses the arguments of the command
-     *
-     * @param commandArgs String containing the arguments of the command
-     * @return String array containing the arguments of the command
-     */
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        String[] split = commandArgs.split(" ", 2);
-        String[] timeSplit = split[1].split("/by");
-        if (timeSplit.length > 1) {
-            return new String[] {split[0], timeSplit[0], timeSplit[1]};
-        } else {
-            return new String[] {split[0], split[1]};
-        }
-
     }
 
     /**

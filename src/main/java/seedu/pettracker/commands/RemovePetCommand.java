@@ -13,7 +13,6 @@ public class RemovePetCommand extends Command {
         this.petName = commandArgs;
     }
 
-    //TODO: Implement this method
 
     /**
      * Executes the given command
@@ -30,19 +29,6 @@ public class RemovePetCommand extends Command {
         } catch (PetNotFoundException e) {
             ui.petNotFoundMessage();
         }
-    }
-
-    //TODO: Implement this method
-
-    /**
-     * Parses the arguments of the command
-     *
-     * @param commandArgs String containing the arguments of the command
-     * @return String array containing the arguments of the command
-     */
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        return new String[0];
     }
 
     /**

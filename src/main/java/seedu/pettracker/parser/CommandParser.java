@@ -1,29 +1,23 @@
 package seedu.pettracker.parser;
 
-import seedu.pettracker.commands.AddPetCommand;
-import seedu.pettracker.commands.AddStatCommand;
-import seedu.pettracker.commands.AddTaskCommand;
 import seedu.pettracker.commands.Command;
-import seedu.pettracker.commands.EditStatCommand;
-import seedu.pettracker.commands.EditTaskCommand;
 import seedu.pettracker.commands.ExitCommand;
 import seedu.pettracker.commands.HelpCommand;
 import seedu.pettracker.commands.InvalidCommand;
 import seedu.pettracker.commands.ListPetCommand;
 import seedu.pettracker.commands.ListTasksCommand;
-import seedu.pettracker.commands.MarkTaskCommand;
-import seedu.pettracker.commands.RemovePetCommand;
-import seedu.pettracker.commands.RemoveStatCommand;
-import seedu.pettracker.commands.RemoveTaskCommand;
-import seedu.pettracker.commands.UnMarkTaskCommand;
 import seedu.pettracker.commands.ScheduleCommand;
-//import seedu.pettracker.exceptions.UnknownKeywordException;
+
+import seedu.pettracker.exceptions.UnknownKeywordException;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CommandParser {
     private static final Logger logger = Logger.getLogger("CommandLogger");
+    private static final Pattern COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)(?<arguments>.*)");
     final String KEYWORD_EXIT = "exit";
     final String KEYWORD_ADD_PET = "add-pet";
     final String KEYWORD_REMOVE_PET = "remove-pet";
@@ -39,37 +33,19 @@ public class CommandParser {
     final String KEYWORD_UNMARK_TASK = "unmark-task";
     final String KEYWORD_SCHEDULE_TASKS = "schedule";
     final String KEYWORD_HELP = "help";
-
+    final String COMMAND_STRING_BAD_FORMAT = "Command string is not in the correct format";
+    final String UNKNOWN_KEYWORD_MESSAGE = "Please enter a valid command!";
 
     public CommandParser() {
     }
 
     public Command parseCommand(String commandString) {
         logger.log(Level.INFO, "Parser received: " + commandString + "\n");
-        return newCommand(commandString);
-    }
-
-    /**
-     * Separates the command keyword from the rest of the string
-     *
-     * @param commandString User input string
-     * @return Command keyword
-     */
-    private static String parseKeyword(String commandString) {
-        logger.log(Level.INFO, "Parsing keyword: " + commandString.split(" ", 2)[0] + "\n");
-        assert commandString.split(" ", 2).length > 0 : "No keyword";
-        return commandString.split(" ", 2)[0];
-    }
-
-    /**
-     * Separates the arguments from the rest of the string
-     *
-     * @param commandString User input string
-     * @return Arguments
-     */
-    private static String parseArgs(String commandString) throws ArrayIndexOutOfBoundsException {
-        assert commandString.split(" ", 2).length > 1 : "No arguments";
-        return commandString.split(" ", 2)[1];
+        try {
+            return newCommand(commandString);
+        } catch (Exception e) {
+            return new InvalidCommand(e.getMessage());
+        }
     }
 
     /**
@@ -78,96 +54,48 @@ public class CommandParser {
      * @param commandString Initial String that the user typed in
      * @return new Command object
      */
-    public Command newCommand(String commandString) {
-        switch (parseKeyword(commandString)) {
+    public Command newCommand(String commandString) throws Exception {
+        final Matcher matcher = COMMAND_FORMAT.matcher(commandString.trim());
+        if (!matcher.matches()) {
+            return new InvalidCommand(COMMAND_STRING_BAD_FORMAT);
+        }
+
+        final String keyword = matcher.group("keyword");
+        final String arguments = matcher.group("arguments").trim();
+
+        switch (keyword) {
         case KEYWORD_EXIT:
             return new ExitCommand();
         case KEYWORD_ADD_PET:
-            try {
-                return new AddPetCommand(parseArgs(commandString));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO,"bounds error");
-                break;
-            }
+            return new AddPetParser().parse(arguments);
         case KEYWORD_REMOVE_PET:
-            try {
-                return new RemovePetCommand(parseArgs(commandString));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO,"bounds error");
-                break;
-            }
+            return new RemovePetParser().parse(arguments);
         case KEYWORD_LIST_PET:
             return new ListPetCommand();
         case KEYWORD_ADD_STAT:
-            try {
-                return new AddStatCommand(parseArgs(commandString));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO,"bounds error");
-                break;
-            }
+            return new AddStatParser().parse(arguments);
         case KEYWORD_REMOVE_STAT:
-            try {
-                return new RemoveStatCommand(parseArgs(commandString));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO,"bounds error");
-                break;
-            }
+            return new RemoveStatParser().parse(arguments);
         case KEYWORD_EDIT_STAT:
-            try {
-                return new EditStatCommand(parseArgs(commandString));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO,"bounds error");
-                break;
-            }
+            return new EditStatParser().parse(arguments);
         case KEYWORD_EDIT_TASK:
-            try {
-                return new EditTaskCommand(parseArgs(commandString));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO, "bounds error");
-                break;
-            }
+            return new EditTaskParser().parse(arguments);
         case KEYWORD_ADD_TASK:
-            try {
-                return new AddTaskCommand(parseArgs(commandString));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO,"bounds error");
-                break;
-            }
+            return new AddTaskParser().parse(arguments);
         case KEYWORD_REMOVE_TASK:
-            try {
-                return new RemoveTaskCommand(parseArgs(commandString));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO,"bounds error");
-                break;
-            }
+            return new RemoveTaskParser().parse(arguments);
         case KEYWORD_LIST_TASKS:
             return new ListTasksCommand();
         case KEYWORD_MARK_TASK:
-            try {
-                return new MarkTaskCommand(parseArgs(commandString));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO,"bounds error");
-                break;
-            }
+            return new MarkTaskParser().parse(arguments);
         case KEYWORD_UNMARK_TASK:
-            try {
-                return new UnMarkTaskCommand(parseArgs(commandString));
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO,"bounds error");
-                break;
-            }
+            return new UnMarkTaskParser().parse(arguments);
         case KEYWORD_SCHEDULE_TASKS: 
-            try {
-                return new ScheduleCommand();
-            } catch (ArrayIndexOutOfBoundsException e) {
-                logger.log(Level.INFO, "bounds error");
-                break;
-            }
+            return new ScheduleCommand();
         case KEYWORD_HELP:
             return new HelpCommand();
         default:
-            return new InvalidCommand();
+            throw new UnknownKeywordException(UNKNOWN_KEYWORD_MESSAGE);
         }
-        return new InvalidCommand();
     }
 }

@@ -10,27 +10,21 @@ public class AddTaskCommand extends Command {
     protected String todoDescription;
     protected LocalDate deadline;
 
-    public AddTaskCommand(String commandArgs) {
+    public AddTaskCommand(String description) {
         super();
-        if (commandArgs.contains(" /by ")) {
-            String[] args = commandArgs.split(" /by ");
-            try {
-                this.todoDescription = args[0];
-                this.deadline = LocalDate.parse(args[1]);
-            } catch (Exception e) {
-                this.todoDescription = args[0];
-                this.deadline = null;
-            }
-        } else {
-            this.todoDescription = commandArgs;
-            this.deadline = null;
-        }
+        this.todoDescription = description;
+    }
+
+    public AddTaskCommand(String description, LocalDate deadline) {
+        super();
+        this.todoDescription = description;
+        this.deadline = deadline;
     }
 
     /**
      * Executes the given command
      *
-     * @param ui Ui to do printing if required
+     * @param ui      Ui to do printing if required
      * @param storage Storage to save files if required
      */
     @Override
@@ -42,18 +36,6 @@ public class AddTaskCommand extends Command {
         }
         TaskList.saveTasksToStorage(storage, ui);
         ui.addTodoCommandMessage();
-    }
-
-    /**
-     * Parses the arguments of the command
-     *
-     * @param commandArgs String containing the arguments of the command
-     * @return String array containing the arguments of the command
-     */
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        return commandArgs.split("\\at");
-
     }
 
     /**

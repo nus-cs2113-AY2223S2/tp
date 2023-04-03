@@ -8,9 +8,9 @@ public class RemoveTaskCommand extends Command{
 
     protected int taskNumber;
 
-    public RemoveTaskCommand(String commandArgs) {
+    public RemoveTaskCommand(int taskNumber) {
         super();
-        this.taskNumber = Integer.parseInt(commandArgs);
+        this.taskNumber = taskNumber;
     }
 
     /**
@@ -24,17 +24,6 @@ public class RemoveTaskCommand extends Command{
         TaskList.removeTask(taskNumber);
         TaskList.saveTasksToStorage(storage, ui);
         ui.removeTaskCommandMessage(taskNumber);
-    }
-
-    /**
-     * Parses the arguments of the command
-     *
-     * @param commandArgs String containing the arguments of the command
-     * @return String array containing the arguments of the command
-     */
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        return new String[0];
     }
 
     /**

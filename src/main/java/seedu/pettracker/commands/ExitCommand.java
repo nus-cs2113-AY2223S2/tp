@@ -20,18 +20,6 @@ public class ExitCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-
-    }
-
-    /**
-     * Parses the arguments of the command
-     *
-     * @param commandArgs String containing the arguments of the command
-     * @return String array containing the arguments of the command
-     */
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        return new String[0];
     }
 
     /**
