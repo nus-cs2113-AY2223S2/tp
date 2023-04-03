@@ -1,7 +1,6 @@
 package utils.storage.json;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -18,7 +17,7 @@ import model.Card;
 import model.Deck;
 import model.TagUUID;
 import utils.exceptions.InkaException;
-import utils.exceptions.InvalidUUIDException;
+
 
 public class JsonToMemory {
     public static Memory convert(JsonObject saveDataObject) throws InkaException {

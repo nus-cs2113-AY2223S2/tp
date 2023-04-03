@@ -9,32 +9,21 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import com.google.gson.Gson;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 import model.TagList;
 import model.CardList;
 import model.TagUUID;
-import model.Tag;
 import model.Memory;
 import model.DeckList;
-import model.Card;
-import model.Deck;
 import model.CardUUID;
-import model.DeckUUID;
 
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageCorrupted;
