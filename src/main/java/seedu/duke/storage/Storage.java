@@ -7,7 +7,6 @@ import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.recipe.Step;
 import seedu.duke.recipe.StepList;
-import seedu.duke.ui.StringLib;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -137,7 +136,8 @@ public class Storage {
             String tag = reader.nextLine();
             ArrayList<Ingredient> ingredientList = new ArrayList<>();
             ArrayList<Step> stepList = new ArrayList<>();
-            int numOfIngredients, numOfSteps;
+            int numOfIngredients;
+            int numOfSteps;
             numOfIngredients = Integer.parseInt(reader.nextLine());
             for (int i = 0; i < numOfIngredients; i++) {
                 String ingredient = reader.nextLine();
