@@ -41,10 +41,11 @@ public class Parser {
      */
     static void processCommand(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes, String line, Scanner in) throws IOException {
         while (!line.trim().equals("bye")) {
+            line = line.trim().replaceAll("\\s{2,}", " ");
             String[] words = line.split(" ");
-            line = line.trim();
             if (line.isBlank()) {
                 Ui.emptyCommandMessage();
+                line = in.nextLine();
             } else {
                 switch (words[0]) {
                 case "list":
@@ -161,16 +162,18 @@ public class Parser {
                         Ui.unknownCommandMessage();
                     }
                     break;
-                case "add_note":
+                case "add_notes":
                     if(words.length == 2 && isNumeric(words[1])){
                         TaskList.addNote(tasks, words);
+                        Storage.trySave(tasks, classes);
                     }else{
                         Ui.unknownCommandMessage();
                     }
                     break;
-                case "delete_note":
+                case "delete_notes":
                     if(words.length == 3){
                         TaskList.deleteNotes(tasks,words);
+                        Storage.trySave(tasks, classes);
                     } else{
                         Ui.unknownCommandMessage();
                     }
@@ -182,9 +185,10 @@ public class Parser {
                         Ui.unknownCommandMessage();
                     }
                     break;
-                case "edit_note":
+                case "edit_notes":
                     if(words.length == 3){
                         TaskList.editNote(tasks, words);
+                        Storage.trySave(tasks, classes);
                     }else{
                         Ui.unknownCommandMessage();
                     }
@@ -209,7 +213,7 @@ public class Parser {
                 default:
                     TaskList.addTask(line, tasks, classes);
                     Storage.trySave(tasks, classes);
-
+                    break;
                 }
                 line = in.nextLine();
             }

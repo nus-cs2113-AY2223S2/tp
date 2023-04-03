@@ -6,13 +6,16 @@ public class Task {
     private String description;
     private int priority;
     private boolean isDone;
-    private ArrayList<String> additionalNotes;
+    private final ArrayList<String> additionalNotes = new ArrayList<String>();
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
         this.priority = 1; //automatically set to low priority
+<<<<<<< HEAD
         this.additionalNotes = new ArrayList<>();
+=======
+>>>>>>> Print-By-Priority
     }
 
     public void setDescription(String description) {
@@ -45,13 +48,20 @@ public class Task {
         }
         return " ";
     }
-
-    public String savedNotes(){
+    public String hasNotes(){
+        if (additionalNotes.isEmpty()){
+            return "0";
+        } else {
+            return "1";
+        }
+    }
+    public String getSavedNotes(){
         String save = "";
+        save += hasNotes();
         for (int i = 0; i < additionalNotes.size(); i++){
-            save += this.additionalNotes.get(i);
+            save += additionalNotes.get(i);
             if (!(i==additionalNotes.size()-1)) {
-                save += "||";
+                save += "@";
             }
         }
         return save;
