@@ -144,7 +144,10 @@ public class Parser {
         }
     }
     //@@author tanyizhe
-    private static void formatMedicineDate(Patient user, MedicineManager medicineManager, DateTimeFormatter dtf, LocalDateTime now, ArrayList<IllnessMatch> possibleIllnesses, ArrayList<String> diagnoses) {
+    private static void formatMedicineDate(Patient user, MedicineManager medicineManager,
+                                           DateTimeFormatter dtf, LocalDateTime now,
+                                           ArrayList<IllnessMatch> possibleIllnesses,
+                                           ArrayList<String> diagnoses) {
         for (IllnessMatch illnessMatch : possibleIllnesses) {
             diagnoses.add(illnessMatch.getIllness().getIllnessName());
             ArrayList<String> medicineArrayList = medicineManager
