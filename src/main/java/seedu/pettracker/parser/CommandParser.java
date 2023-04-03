@@ -39,7 +39,8 @@ public class CommandParser {
     final String KEYWORD_UNMARK_TASK = "unmark-task";
     final String KEYWORD_SCHEDULE_TASKS = "schedule";
     final String KEYWORD_HELP = "help";
-
+    final String PARSER_LOG_MESSAGE = "Parser received: ";
+    final int COMMAND_STRING_SPLIT_LIMIT = 2;
 
     public CommandParser() {
     }
@@ -55,10 +56,9 @@ public class CommandParser {
      * @param commandString User input string
      * @return Command keyword
      */
-    private static String parseKeyword(String commandString) {
-        logger.log(Level.INFO, "Parsing keyword: " + commandString.split(" ", 2)[0] + "\n");
-        assert commandString.split(" ", 2).length > 0 : "No keyword";
-        return commandString.split(" ", 2)[0];
+    private String parseKeyword(String commandString) {
+        logger.log(Level.INFO, PARSER_LOG_MESSAGE + commandString.split(" ", COMMAND_STRING_SPLIT_LIMIT)[0] + "\n");
+        return commandString.split(" ", COMMAND_STRING_SPLIT_LIMIT)[0];
     }
 
     /**

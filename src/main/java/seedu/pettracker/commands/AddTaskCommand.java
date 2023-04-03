@@ -9,11 +9,12 @@ import java.time.LocalDate;
 public class AddTaskCommand extends Command {
     protected String todoDescription;
     protected LocalDate deadline;
+    final String DEADLINE_REGEX = " /by ";
 
     public AddTaskCommand(String commandArgs) {
         super();
-        if (commandArgs.contains(" /by ")) {
-            String[] args = commandArgs.split(" /by ");
+        if (commandArgs.contains(DEADLINE_REGEX)) {
+            String[] args = commandArgs.split(DEADLINE_REGEX);
             try {
                 this.todoDescription = args[0];
                 this.deadline = LocalDate.parse(args[1]);
@@ -30,7 +31,7 @@ public class AddTaskCommand extends Command {
     /**
      * Executes the given command
      *
-     * @param ui Ui to do printing if required
+     * @param ui      Ui to do printing if required
      * @param storage Storage to save files if required
      */
     @Override
