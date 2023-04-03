@@ -7,7 +7,9 @@ import seedu.duke.objects.Inventory;
 import seedu.duke.types.Types;
 
 public class SearchParser extends Parser{
-    private Types.SearchType searchType;
+    protected static final int SEARCH_UPC_COMMAND_LENGTH = 1;
+    protected static final int EMPTY = 0;
+    protected Types.SearchType searchType;
     public SearchParser(String rawInput, Inventory inventory, Types.SearchType searchType){
         super(rawInput, inventory);
         this.searchType = searchType;
@@ -21,9 +23,9 @@ public class SearchParser extends Parser{
      * @param inventory The inventory in which the search is done
      * @param searchType The type of search to be conducted
      */
-    public void parseSearchUPC(String rawInput, Inventory inventory, Types.SearchType searchType) {
+    protected void parseSearchUPC(String rawInput, Inventory inventory, Types.SearchType searchType) {
         try {
-            if (rawInput.split(" ").length > 1 || rawInput.length() == 0) {
+            if (rawInput.split(" ").length > SEARCH_UPC_COMMAND_LENGTH || rawInput.length() == EMPTY) {
                 throw new SearchFilterErrorException();
             }
             Command searchCommand = new SearchCommand(inventory, rawInput, searchType);
@@ -41,9 +43,9 @@ public class SearchParser extends Parser{
      * @param inventory The inventory in which the search is done
      * @param searchType The type of search to be conducted
      */
-    public void parseSearch(String rawInput, Inventory inventory, Types.SearchType searchType) {
+    protected void parseSearch(String rawInput, Inventory inventory, Types.SearchType searchType) {
         try {
-            if (rawInput == null || rawInput.length() == 0) {
+            if (rawInput == null || rawInput.length() == EMPTY) {
                 throw new SearchFilterErrorException();
             }
             Command searchCommand = new SearchCommand(inventory, rawInput, searchType);
