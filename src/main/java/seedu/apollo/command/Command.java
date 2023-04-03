@@ -1,6 +1,7 @@
 package seedu.apollo.command;
 
 import seedu.apollo.calendar.Calendar;
+import seedu.apollo.exception.module.LessonNotAddedException;
 import seedu.apollo.exception.utils.IllegalCommandException;
 import seedu.apollo.module.LessonType;
 import seedu.apollo.storage.Storage;
