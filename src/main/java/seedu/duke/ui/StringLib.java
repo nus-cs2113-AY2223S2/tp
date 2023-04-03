@@ -146,6 +146,6 @@ public interface StringLib {
     String POS_INT = "\nPlease enter a valid index!";
     String EMPTY_STRING = "";
     String[] FORBIDDEN_CHARS = {"!","@","#","$","%","&","*","(",")","+",",",
-            ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};
+                                ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};
     String SAVE_SEPARATOR = "#######";
 }
