@@ -2,6 +2,7 @@
 package seedu.duke.ui;
 
 import seedu.duke.diagnosis.symptoms.Symptom;
+import seedu.duke.diagnosis.symptoms.SymptomHandler;
 import seedu.duke.patient.Patient;
 
 import java.util.ArrayList;
@@ -153,7 +154,7 @@ public class Information {
             System.out.println("You have not entered any symptoms.");
         } else {
             for (Symptom symptom : symptoms) {
-                System.out.println(symptom);
+                System.out.println(SymptomHandler.toString(symptom));
             }
         }
     }
@@ -175,7 +176,7 @@ public class Information {
         System.out.println("---------------------------------------------------");
         System.out.println("Here is the list of your symptoms:");
         for (int i = 0; i < symptoms.size(); i++) {
-            System.out.println((i + 1) + ". " + symptoms.get(i));
+            System.out.println((i + 1) + ". " + SymptomHandler.toString(symptoms.get(i)));
         }
         System.out.println("Please enter the number of the symptom you want to delete.");
         System.out.println("---------------------------------------------------");
@@ -187,7 +188,7 @@ public class Information {
                 System.out.println("Successfully deleted symptom!");
                 System.out.println("Here is the updated list of your symptoms:");
                 for (int i = 0; i < symptoms.size(); i++) {
-                    System.out.println((i + 1) + ". " + symptoms.get(i));
+                    System.out.println((i + 1) + ". " + SymptomHandler.toString(symptoms.get(i)));
                 }
             } else {
                 System.out.println("Invalid command! Please enter a valid symptom.");
