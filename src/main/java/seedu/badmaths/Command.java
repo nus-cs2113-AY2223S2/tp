@@ -94,8 +94,9 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "List":
-                if (!isInvalidTodo(toDo) && (isAnInt(toDo) == false)) {
-                      throw new IllegalTodoException();
+
+                if ((!isInvalidTodo(toDo)) && (isAnInt(toDo) == false)) {
+                    throw new IllegalTodoException();
                 }
 
                 if (isInvalidTodo(toDo)) { // means there is no todo
