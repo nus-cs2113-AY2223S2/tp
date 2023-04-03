@@ -95,7 +95,7 @@ public class Storage {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Unfortunately, income list file can't be found. I'll make a new one!");
+            System.out.println("Unfortunately, expense list file can't be found. I'll make a new one!");
         }
 
         return expenses;
