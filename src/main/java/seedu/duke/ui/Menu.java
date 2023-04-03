@@ -388,9 +388,10 @@ public class Menu {
             //@@Geeeetyx
             case " ":
                 break;
-            //@@Thunderdragon221
+            //@@author Jeraldchen
             default:
-                System.out.println("Invalid command! Please enter a valid symptom.");
+                System.out.println(symptomChoice + " is not a valid symptom! Please enter a valid symptom.");
+                break;
             }
         }
     }
