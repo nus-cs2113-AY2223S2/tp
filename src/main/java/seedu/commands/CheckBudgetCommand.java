@@ -33,6 +33,7 @@ public class CheckBudgetCommand extends Command {
     private static CommandResult getCheckCommandResult(double budget, double totalAmount,
                                                        double borrowedAmount, double lentAmount) {
         if (budget == 0) {
+            // Prevents the user from checking when budget is 0, as it does not provide any insight
             return new CommandResult("Your current budget is set at 0, please use the 'set' command to set a budget.");
         } else if (budget >= totalAmount) {
             // Remaining budget available
