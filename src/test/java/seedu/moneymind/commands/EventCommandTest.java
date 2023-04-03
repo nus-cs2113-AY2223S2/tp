@@ -56,7 +56,7 @@ public class EventCommandTest extends CommandTest {
     void addEvent_oneEventWithNoExpense_expectCorrectFormatMessage() {
         setup();
         String terminalOutput = executeInput("event banana").toString();
-        assertEquals("Please following the correct format: event NAME e/<expense number> [(optional) t/<time>]\n"
+        assertEquals("Please following the correct format: event <name> e/<expense number> [(optional) t/<time>]\n"
                 + "Remember do not leave any things inside the brackets empty!"
                 + System.lineSeparator(), terminalOutput);
         assertEquals(2, food.events.size());
@@ -77,7 +77,7 @@ public class EventCommandTest extends CommandTest {
     void addEvent_emptyEventName_expectCorrectFormatMessage() {
         setup();
         String terminalOutput = executeInput("event e/20").toString();
-        assertEquals("Please following the correct format: event NAME e/<expense number> [(optional) t/<time>]\n"
+        assertEquals("Please following the correct format: event <name> e/<expense number> [(optional) t/<time>]\n"
                 + "Remember do not leave any things inside the brackets empty!"
                 + System.lineSeparator(), terminalOutput);
         assertEquals(2, food.events.size());
@@ -89,7 +89,7 @@ public class EventCommandTest extends CommandTest {
         setup();
         String terminalOutput = executeInput("event banana e/").toString();
         assertEquals(2, food.events.size());
-        assertEquals("Please following the correct format: event NAME e/<expense number> [(optional) t/<time>]\n"
+        assertEquals("Please following the correct format: event <name> e/<expense number> [(optional) t/<time>]\n"
                         + "Remember do not leave any things inside the brackets empty!" + System.lineSeparator(),
                 terminalOutput);
         clear();

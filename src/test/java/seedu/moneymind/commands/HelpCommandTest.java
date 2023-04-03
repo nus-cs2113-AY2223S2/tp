@@ -18,10 +18,10 @@ public class HelpCommandTest extends CommandTest {
                 + "1. help - show instructions on how to use the app\n" +
                 "Format: help\n" + "Example: help\n" + System.lineSeparator()
                 + "2. category - add a category to your list\n" +
-                "Format: category NAME [(optional) b/<budget number>]\n" +
+                "Format: category <name> [(optional) b/<budget number>]\n" +
                 "Example: category food b/2000\n" + System.lineSeparator()
                 + "3. event - add an event to a category\n" +
-                "Format: event NAME e/<expense number> [(optional) t/<time>]Example: event lunch e/10 t/August\n"
+                "Format: event <name> e/<expense number> [(optional) t/<time>]Example: event lunch e/10 t/August\n"
                 + System.lineSeparator()
                 + "4. view - view all the events in a category or all the categories\n" +
                 "You can view all the categories by entering view without any category name\n" +
