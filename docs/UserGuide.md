@@ -144,7 +144,7 @@ Example:
 1. fix water pipes by: 10 Apr
 2. need to buy more potatoes deal by: 9 Apr 2PM
 3. fix fridge by: 15 Apr
->>find_deadline fridge
+>>find_deadline fix
 1. fix water pipes by: 10 Apr
 2. fix fridge by: 15 Apr
 ```
