@@ -94,11 +94,10 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "List":
-                if (!isInvalidTodo(toDo)) { // List absdsds
-                    if (isAnInt(toDo) == false) { // means is not an int
+                if (!isInvalidTodo(toDo) && (isAnInt(toDo) == false)) {
                       throw new IllegalTodoException();
-                    }
                 }
+
                 if (isInvalidTodo(toDo)) { // means there is no todo
                     Ui.printNotes(notes.getAll()); // print all
                     break;
