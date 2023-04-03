@@ -11,45 +11,6 @@ Your personal task and timetable manager!
 Enter "help" to see a list of commands.
 ____________________________________________________________
 ____________________________________________________________
-The help menu gives a summary of all the commands available in Apollo!
-Input `help` to see all available commands.Input "help [COMMAND]" for usage help and more information for a specific command.
-
-These are the available Task Commands and their corresponding commands (in brackets):
-
-1. List (list) - Track and organises your tasklist!
-2. Adding a ToDo (todo) - Adds a ToDo in your tasklist.
-3. Adding a Deadline (deadline) - Adds a Deadline in your tasklist.
-4. Adding an Event (event) - Adds an Event in your tasklist.
-5. Marking done (mark) - Marks a task in your tasklist as done!
-6. Unmark as incomplete (unmark) - Unmarks a task in your tasklist as incomplete.
-7. Delete a task (delete) - Deletes a task from your list.
-8. Finding a task (find) - Shows all tasks that contain a specified keyword.
-9. Find tasks on a date (date) - Shows all tasks that occur on the specified date.
-
-____________________________________________________________
-These are the available Module Commands and their corresponding commands (in brackets):
-
-1. List all the modules taken (listmod) - Track and organise your academic plan for this semester!
-2. View module information (showmod [MODULE_CODE]) - See more information about the specified module.
-3. Schedule for lessons types (showmod [MODULE_CODE] -[FLAG]) - View timing of specific lesson type for a chosen module
-4. Add a module (addmod [MODULE_CODE]) - Adds a module to your module list.
-5. Add a module lesson (addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]) - Adds a chosen lesson of a specified module to your timetable!
-6. Remove a module (delmod [MODULE_CODE or IDX]) - Removes a Module you previously added by code or index in module list.
-7. Remove a module lesson (delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]) - Removes a lesson of a specified module from your timetable.
-
-NOTE: showmod, addmod, delmod are commands with flags included in them.
-Whatever in [THE SQUARE BRACKETS] are provided by you.For more information on the flags, please input "help [COMMAND]" exclusive of the square brackets.
-For example, if you want to know more about the addmod command and its flags, input "help addmod".
-
-____________________________________________________________
-These are the Utility Commands:
-
-1. View your timetable for the week (week) - Displays your schedule.
-2. Exit Apollo (bye) - Exit the program
-3. View entire help menu (help) - Get a summary of all the commands available on Apollo.
-View help for a specific command by inputting help [COMMAND]
-____________________________________________________________
-____________________________________________________________
 There are no tasks in your list!
 ____________________________________________________________
 ____________________________________________________________
