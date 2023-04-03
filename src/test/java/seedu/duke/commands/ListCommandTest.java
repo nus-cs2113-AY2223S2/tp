@@ -35,7 +35,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| apples          | 012345678    | 5000     | $12.0    | uncategorised   |" +
+                        "| apples          | 012345678    | 5000     | $12.0    | Uncategorized   |" +
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
@@ -45,7 +45,6 @@ class ListCommandTest {
                         System.lineSeparator();
 
         assertEquals(Ui.printTable(inventory.getItemInventory()), expectedOutput);
-
     }
 
     @Test
@@ -65,7 +64,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| applesorangesgr | 012345678    | 5000     | $12.0    | uncategorised   |" +
+                        "| applesorangesgr | 012345678    | 5000     | $12.0    | Uncategorized   |" +
                         System.lineSeparator() +
                         "| eenbeansredbean |              |          |          |                 |" +
                         System.lineSeparator() +
@@ -94,7 +93,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| red orange      | 012345678    | 5000     | $12.0    | uncategorised   |" +
+                        "| red orange      | 012345678    | 5000     | $12.0    | Uncategorized   |" +
                         System.lineSeparator() +
                         "| yellow green    |              |          |          |                 |" +
                         System.lineSeparator() +
