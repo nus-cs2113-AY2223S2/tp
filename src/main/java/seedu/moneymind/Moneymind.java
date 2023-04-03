@@ -57,8 +57,8 @@ public class Moneymind {
             } catch (Exception e) {
                 ui.error(e);
             }
+            storage.save(CategoryList.categories);
         }
-        storage.save(CategoryList.categories);
     }
 
     private void getInput() {
