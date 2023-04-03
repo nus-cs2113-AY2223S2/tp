@@ -6,13 +6,14 @@ import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidEmailFormatException;
 import seedu.todolist.exception.InvalidDurationException;
+import seedu.todolist.exception.PassedDateException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 /**
@@ -49,6 +50,32 @@ public class ParserUtil {
         return description;
     }
 
+    //@@author RuiShengGit
+    /**
+     * Parses the priority string into an integer from 1 to 3, if it exists.
+     * If the priority is null because it is not provided, it will default to 1.
+     *
+     * @param priorityString The priority string.
+     * @return The priority, as an integer.
+     * @throws InvalidPriorityException If the priority cannot be parsed to an integer, or if is not from 1 to 3.
+     */
+    public static int parsePriority(String priorityString) throws InvalidPriorityException {
+        if (priorityString == null) {
+            return 1;
+        }
+
+        try {
+            int priority = Integer.parseInt(priorityString);
+            if (priority < 1 || priority > 3){
+                throw new InvalidPriorityException(priorityString);
+            }
+            return priority;
+        } catch (NumberFormatException e) {
+            throw new InvalidPriorityException(priorityString);
+        }
+    }
+
+    //@@author clement559
     /**
      * Parses the deadline string into a LocalDateTime object.
      * The deadline is allowed to be null as it is an optional parameter.
@@ -59,8 +86,7 @@ public class ParserUtil {
      * @throws InvalidDateException If the string is not in a valid date time format,
      *                              or if the parsed date is before the current time.
      */
-    //@@author clement559
-    public static LocalDateTime parseDeadline(String deadline) throws InvalidDateException {
+    public static LocalDateTime parseDeadline(String deadline) throws InvalidDateException, PassedDateException {
         if (deadline == null) {
             return null;
         }
@@ -68,7 +94,12 @@ public class ParserUtil {
         try {
             DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1.getFormat()
                             + Formats.TIME_IN_2.getFormat()).withResolverStyle(ResolverStyle.STRICT);
-            return LocalDateTime.parse(deadline, inputFormatter);
+            if (!LocalDateTime.parse(deadline, inputFormatter).isAfter(LocalDateTime.now())) {
+                throw new PassedDateException();
+            }
+            else {
+                return LocalDateTime.parse(deadline, inputFormatter);
+            }
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(deadline);
         }
@@ -103,11 +134,11 @@ public class ParserUtil {
      * @param tags The string containing multiple tags.
      * @return A hashset containing the extracted tags.
      */
-    public static HashSet<String> parseTags(String tags) {
+    public static TreeSet<String> parseTags(String tags) {
         if (tags == null) {
-            return new HashSet<>();
+            return new TreeSet<>();
         }
-        return new HashSet<>(Arrays.asList(tags.split(" ")));
+        return new TreeSet<>(Arrays.asList(tags.split(" ")));
     }
 
     //@@author clement559
@@ -139,18 +170,4 @@ public class ParserUtil {
         }
     }
 
-    public static int parsePriority(String priority) throws InvalidPriorityException {
-        if (priority == null) {
-            return 1;
-        }
-
-        try {
-            if (Integer.parseInt(priority) > 3){
-                throw new InvalidPriorityException(priority);
-            }
-            return Integer.parseInt(priority);
-        } catch (NumberFormatException e) {
-            throw new InvalidPriorityException(priority);
-        }
-    }
 }
