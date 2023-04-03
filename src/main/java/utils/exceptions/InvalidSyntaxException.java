@@ -1,8 +1,6 @@
 package utils.exceptions;
 
-import java.io.StringWriter;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Provide custom error messages for exceptions thrown during parsing
@@ -23,12 +21,10 @@ public class InvalidSyntaxException extends InkaException {
 
     /**
      * Custom error message when multiple mutually exclusive options are selected
-     *
-     * @param options List of offending option flags
      */
-    public static InvalidSyntaxException buildAlreadySelectedMessage(List<String> options) {
+    public static InvalidSyntaxException buildAlreadySelectedMessage(String formattedFlags) {
         return new InvalidSyntaxException(
-                "These flags are mutually exclusive! Please use only one at a time: " + formatOptions(options));
+                "These flags are mutually exclusive! Please use only one at a time: " + formattedFlags);
     }
 
     /**
@@ -38,7 +34,7 @@ public class InvalidSyntaxException extends InkaException {
      */
     public static InvalidSyntaxException buildMissingArgumentMessage(String option) {
         return new InvalidSyntaxException(
-                "Looks like you're missing an argument for " + formatOptions(option) + "...");
+                "Looks like you're missing an argument for " + option + "...");
     }
 
     /**

@@ -2,7 +2,6 @@ package utils.parser;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.CardSelector;
@@ -104,7 +103,7 @@ public abstract class KeywordParser {
      * Formats option as '-flag'
      */
     private static String formatOption(Option option) {
-        return "-" + option;
+        return "-" + option.getOpt();
     }
 
     public Command parseTokens(List<String> tokens) throws InkaException {
@@ -152,7 +151,8 @@ public abstract class KeywordParser {
      * @return Converted custom exception
      */
     private InkaException convertAlreadySelectedException(AlreadySelectedException ex) {
-        // TODO
+        String formattedFlags = formatOptionGroup(ex.getOptionGroup());
+        return InvalidSyntaxException.buildAlreadySelectedMessage(formattedFlags);
     }
 
     /**
@@ -162,10 +162,8 @@ public abstract class KeywordParser {
      * @return Converted custom exception
      */
     private InkaException convertMissingArgumentException(MissingArgumentException ex) {
-        Option missingArgumentOption = ex.getOption();
-        String optionFlag = missingArgumentOption.getOpt();
-
-        return InvalidSyntaxException.buildMissingArgumentMessage(optionFlag);
+        String formattedFlag = formatOption(ex.getOption());
+        return InvalidSyntaxException.buildMissingArgumentMessage(formattedFlag);
     }
 
     /**
@@ -176,23 +174,24 @@ public abstract class KeywordParser {
      */
     private InkaException convertMissingOptionException(MissingOptionException ex) {
         // TODO: Cleanup
+        return InvalidSyntaxException.buildGenericMessage();
         // Apache will return an untyped List containing either String or OptionGroup
-        List<String> missingOptions = new ArrayList<>();
-        for (Object obj : ex.getMissingOptions()) {
-            if (obj instanceof String) {
-                // Single option
-                missingOptions.add((String) obj);
-            } else if (obj instanceof OptionGroup) {
-                // Mutually exclusive options
-                OptionGroup optionGroup = (OptionGroup) obj;
-                String optionsInGroup = optionGroup.getOptions().stream().map(option -> "-" + option.getOpt())
-                        .collect(Collectors.joining("/"));
-                missingOptions.add(optionsInGroup);
-            }
-        }
-
-        String missingOptionsStr = String.join(", ", missingOptions);
-        return InvalidSyntaxException.buildMissingOptionMessage(missingOptionsStr);
+//        List<String> missingOptions = new ArrayList<>();
+//        for (Object obj : ex.getMissingOptions()) {
+//            if (obj instanceof String) {
+//                // Single option
+//                missingOptions.add((String) obj);
+//            } else if (obj instanceof OptionGroup) {
+//                // Mutually exclusive options
+//                OptionGroup optionGroup = (OptionGroup) obj;
+//                String optionsInGroup = optionGroup.getOptions().stream().map(option -> "-" + option.getOpt())
+//                        .collect(Collectors.joining("/"));
+//                missingOptions.add(optionsInGroup);
+//            }
+//        }
+//
+//        String missingOptionsStr = String.join(", ", missingOptions);
+//        return InvalidSyntaxException.buildMissingOptionMessage(missingOptionsStr);
     }
 
     /**
@@ -203,6 +202,7 @@ public abstract class KeywordParser {
      */
     private InkaException convertUnrecognizedOptionException(UnrecognizedOptionException ex) {
         // TODO
+        return InvalidSyntaxException.buildGenericMessage();
     }
 
     /**

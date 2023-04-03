@@ -1,15 +1,16 @@
 package utils.parser;
 
-import model.Card;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import model.CardList;
 import model.DeckList;
 import model.TagList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
-import utils.command.Command;
-import utils.command.ViewCardCommand;
 import utils.exceptions.InkaException;
+import utils.exceptions.InvalidSyntaxException;
 import utils.storage.FakeStorage;
 import utils.storage.Storage;
 
@@ -35,9 +36,34 @@ public class KeywordParserTest {
         deckList = new DeckList();
     }
 
-    @Test
-    public void parse_missingArgs() throws InkaException {
+    //
+    //  Formatting tests for error messages
+    //
 
+    @Test
+    public void parse_alreadySelected_format() throws InkaException {
+        String testInput = "card delete -i 1 -c 00000000-0000-0000-0000-000000000000";
+        String expectedMessage = InvalidSyntaxException.buildAlreadySelectedMessage("-c / -i").getUiMessage();
+
+        InkaException ex = assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testInput),
+                "Should be invalid syntax");
+
+        assertEquals(ex.getUiMessage(), expectedMessage);
     }
 
+    @Test
+    public void parse_missingArgument_format() {
+        String[] testInputs = {"card add -q QUESTION -a", "card add -q -a ANSWER"};
+        String[] expectedMessages = {
+                InvalidSyntaxException.buildMissingArgumentMessage("-a").getUiMessage(),
+                InvalidSyntaxException.buildMissingArgumentMessage("-q").getUiMessage()
+        };
+        assert testInputs.length == expectedMessages.length;
+
+        for (int i = 0; i < testInputs.length; i++) {
+            final String testInput = testInputs[i];
+            InkaException ex = assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testInput));
+            assertEquals(ex.getUiMessage(), expectedMessages[i]);
+        }
+    }
 }
