@@ -630,4 +630,19 @@ Thank you for using
 |____/|_|    |____/ \__,_|_|\_\___|
 ---------------------------------------------------
 ~~~
-[comment]: <> (//@@author)
+[comment]: <> (//@@author Thunderdragon221)
+### Appendix: Corrupted data
+Once corruption is detected in any of the data files upon start 
+up, Dr Duke will automatically exit WITHOUT SAVING with the 
+following error message:
+~~~
+ERROR: Data file is corrupted. Clear all data files or 
+restore data to uncorrupted state before trying again.
+~~~
+This is to give the user a chance to restore the data file(s) and
+undo any tampering previously carried out, instead of 
+mercilessly wiping all data from existence. The option is thus
+given to the user to either restore the data or clear it entirely.
+
+Should the corruption be undone, Dr Duke will next start up
+successfully as if no corruption had ever existed.
