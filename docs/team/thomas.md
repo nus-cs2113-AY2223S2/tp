@@ -25,6 +25,8 @@ Given below are my contributions to the project.
 
 #### Contributions to the UG:
 * Updated and contributed to the `Quick Start` guide.
+* Contributed to the `Updating an entry` feature.
+* Contributed to the `Setting currency` feature.
 * Contributed to the `Command Summary` section.
 
 #### Contributions to the DG:
@@ -32,9 +34,9 @@ Given below are my contributions to the project.
 * Added implementation details for the edit expense command.
 
 #### Contributions to team-based tasks:
-* Ensuring GitHub's Java CI checks are passing
-* Ensure JUnit test code is well written and has consistent format
+* Ensuring GitHub's Java CI checks are passing.
+* Ensure JUnit test code is well written and has consistent format.
 
 #### Review/monitoring contributions
-* PRs reviewed for the following team: [CS2113-F10-1](https://github.com/AY2223S2-CS2113-F10-1/tp/pull/55) [CS2113-T14-3](https://github.com/nus-cs2113-AY2223S2/tp/pull/31/files/12c169b4ab991a2d549761120feb1c63c7c3ae72#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b)
-* Reported bugs and suggestions for other team in the class: [CS2113-T13-1](https://github.com/thomasjlalba/ped/issues)
+* PRs reviewed for the following team: [CS2113-F10-1](https://github.com/AY2223S2-CS2113-F10-1/tp/pull/55), [CS2113-T14-3](https://github.com/nus-cs2113-AY2223S2/tp/pull/31/files/12c169b4ab991a2d549761120feb1c63c7c3ae72#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b).
+* Reported bugs and suggestions for other team in the class: [CS2113-T13-1](https://github.com/thomasjlalba/ped/issues).
