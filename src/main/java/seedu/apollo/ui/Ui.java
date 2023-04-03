@@ -271,6 +271,67 @@ public class Ui {
     }
 
     /**
+     * Prints out the timetable of a module added by the user in the module list.
+     *
+     * @param newModule Module that has just been added.
+     */
+    public void printModuleListWithLesson(Module newModule, ArrayList<Timetable> timetableList) {
+        System.out.println("This are your classes for Module " + newModule.getCode() + ": \n");
+        for (Timetable timetable : timetableList) {
+            System.out.println(timetable.getLessonType() + " " + timetable.getClassnumber() + '\n' +
+                    "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
+                    timetable.getEndTime());
+        }
+
+    }
+
+    /**
+     * Prints out message to inform user no lesson has been added to this module.
+     *
+     * @param moduleCode The code of the module checked.
+     */
+    public void printLessonsNotAdded(String moduleCode) {
+        System.out.println("You have not added any lessons or classes to this module: " + moduleCode);
+    }
+
+    /**
+     * Prints out message to inform user the specific lesson type has not been added to this module.
+     *
+     * @param moduleCode The code of the module checked.
+     * @param lessonType The lesson type of this module to be checked.
+     */
+    public void printLessonTypeNotAdded(String moduleCode, LessonType lessonType) {
+        System.out.println("You have not added " + lessonType + " lesson type for this module: " + moduleCode);
+
+    }
+
+    /**
+     * Prints out message to inform user that this module is not added into the module list.
+     *
+     * @param moduleCode The code of the module checked.
+     */
+    public void printLessonNotInList(String moduleCode) {
+        System.out.println("This module " + moduleCode + " is not in your Module List.\n");
+    }
+
+    /**
+     * Prints out the timetable of a specific lesson type for a module in the module list.
+     *
+     * @param module The module to be checked.
+     * @param lessonType The lesson type of the module to be checked.
+     */
+    public void printSpecificTimetable(Module module, LessonType lessonType, ArrayList<Timetable> copyList) {
+        System.out.println("Here is your lesson of type: " + lessonType.toString() + " for "
+                + module.getCode() + ":");
+
+        for (Timetable timetable : copyList) {
+            System.out.println("Class Number: " + timetable.getClassnumber());
+            System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
+                    timetable.getEndTime());
+        }
+    }
+
+    /**
      * For {@code delmod} command.
      * Prints message for successful deletion of Module.
      *
