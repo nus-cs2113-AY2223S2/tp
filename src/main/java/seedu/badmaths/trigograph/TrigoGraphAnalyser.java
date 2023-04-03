@@ -225,7 +225,7 @@ public class TrigoGraphAnalyser {
         findFreq(phasors, isFreqNegative);
     }
 
-    /**
+    /*
      * In the event that the phase is positive, this method will find the phase and frequency.
      * @param phasors contain frequency and phase
      * @throws NegativeFrequencyException
@@ -239,7 +239,7 @@ public class TrigoGraphAnalyser {
     }
 
     private void findFreqForMinus(String phasors) throws NegativeFrequencyException, ZeroFrequencyException {
-        /**
+        /*
          * If both phase and frequency are negative, empty string will be in index 0,freq will be in index 1,
          * and phase will be in index 2 of freqAndShift.
          * However, if only phase is negative, freq will be in index 0, phase will be in index 1, and empty string will
@@ -292,7 +292,7 @@ public class TrigoGraphAnalyser {
             if (freqWithX.equals("x")) {
                 freq = ONE_HERTZ;
             } else {
-                /**
+                /*
                  *  freqWithX can have 1 or 2 "*", e.g. 5*pi*x or 5*x, simply split to get "5" will suffice as checks
                  *  below will take "pi" into account, if any.
                  */
