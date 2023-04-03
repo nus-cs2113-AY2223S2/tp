@@ -1,19 +1,15 @@
 package seedu.workout;
 
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.parser.DateFormatter;
-import seedu.workout.Day;
-import seedu.workout.WorkoutList;
-
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.testng.AssertJUnit.assertFalse;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class WorkoutListTest {
 
@@ -39,9 +35,8 @@ public class WorkoutListTest {
 
     //@@ author ZIZI-czh
     @Test
-    public void testGetWorkoutsInSpecificWeek() throws ParseException {
-        String stringDate = "01/11/22";
-        Date date = DateFormatter.stringToDate(stringDate);
+    public void testGetWorkoutsInSpecificWeek() {
+        Date date = new Date();
         Day day = new Day(date);
         workoutList.addWorkoutToList(date, day);
         Calendar calendar = Calendar.getInstance();
@@ -51,8 +46,9 @@ public class WorkoutListTest {
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
         Date endOfWeekDate = calendar.getTime();
         HashMap<Date, Day> workoutsInSpecificWeek = workoutList.getWorkoutsInSpecificWeek(startOfWeekDate);
-        Assertions.assertTrue(workoutsInSpecificWeek.containsKey(date));
-        Assertions.assertFalse(workoutsInSpecificWeek.containsKey(endOfWeekDate));
+        assertTrue(workoutsInSpecificWeek.containsKey(date));
+        assertFalse(workoutsInSpecificWeek.containsKey(endOfWeekDate));
     }
 
 }
+
