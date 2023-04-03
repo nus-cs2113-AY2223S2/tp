@@ -50,6 +50,7 @@ public class Storage {
      * @return Inventory object
      */
     public static synchronized Inventory readCSV(String filePath) {
+        inventory = new Inventory();
         isRaceConditionDetected = false;
         while(!isStorageWriteDone){
             try {
