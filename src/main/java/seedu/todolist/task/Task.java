@@ -27,6 +27,21 @@ public class Task implements Serializable {
         return task1.deadline.compareTo(task2.deadline);
     };
 
+    //@@author clement559
+    /**
+     * Comparator for the task class, used for sorting the task list by deadline.
+     * Tasks without deadlines are placed at the bottom.
+     */
+    public static Comparator<Task> priorityComparator = (task1, task2) -> {
+        if (task1.priority > task2.priority) {
+            return -1;
+        } else if (task1.priority == task2.priority) {
+            return 0;
+        } else {
+            return 1;
+        }
+    };
+
     //@@author jeromeongithub
     private int id;
     private String description;
