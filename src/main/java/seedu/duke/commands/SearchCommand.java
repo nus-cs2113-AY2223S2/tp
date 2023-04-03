@@ -12,6 +12,7 @@ import java.util.HashMap;
  * Represents the command to search for an item in the inventory.
  */
 public class SearchCommand extends Command {
+    public static final int FIRST_FOUND = 1;
     private String input;
     private Types.SearchType searchType;
 
@@ -59,7 +60,7 @@ public class SearchCommand extends Command {
             }
             for(Item item: resultItems){
                 if(!resultItemsCount.containsKey(item)){
-                    resultItemsCount.put(item, 1);
+                    resultItemsCount.put(item, FIRST_FOUND);
                 }else{
                     int count = resultItemsCount.get(item);
                     resultItemsCount.replace(item, count+1);
