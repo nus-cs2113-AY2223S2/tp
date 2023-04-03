@@ -132,6 +132,10 @@ public class WorkoutList {
         calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
         Date startOfWeekDate1 = calendar.getTime();
         calendar.add(Calendar.DAY_OF_WEEK, 6);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        Date startOfWeekDate = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        Date endOfWeekDate = calendar.getTime();
         Date endOfWeekDate1 = calendar.getTime();
         for (Date workoutDate : workouts.keySet()) {
             if (workoutDate.compareTo(startOfWeekDate1) >= 0 && workoutDate.compareTo(endOfWeekDate1) <= 0) {
