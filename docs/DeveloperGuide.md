@@ -82,7 +82,18 @@ Step 4. Finally, `addExercise()` is called and `toAdd` is added to `currentWorko
 ###### [Back to table of contents](#table-of-contents)
 
 ### List component
+The deletion mechanism is facilitated by 'Parser', 'ListCommand', 'WorkoutList' and 'UI', where a Workout object will be deleted according to the command inputted by the user and removed from the workout list.
 
+<img src="images/ListWorkoutDiagram.png" width="450" />
+
+Below is an example usage scenario and how the List mechanism behaves at each step:
+
+Step 1: Assume that the user has already added a workout on 21/03/23 into the WorkoutList using the following command, /start 21/03/23
+        Assume the user add another workout on 22/03/23 by entering /start 22/03/23
+
+Step 2: The user input of /list will be taken in for the parser and an object of class ListCommand will be returned.
+
+Step 3: The execute method in the ListWorkoutCommand class that is overrides will be called and print out all the dates that while iterating the workoutList.
 ###### [Back to table of contents](#table-of-contents)
 
 ### View component

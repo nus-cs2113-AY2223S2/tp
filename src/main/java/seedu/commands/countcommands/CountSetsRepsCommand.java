@@ -1,24 +1,26 @@
 package seedu.commands.countcommands;
 
-
 import seedu.commands.Command;
-import seedu.workout.WorkoutList;
 
 import java.util.Date;
 
 //@@ author guillaume-grn
 public class CountSetsRepsCommand extends Command {
+
+    public static final String EMPTY_DAY = "You haven't create a record for this day!";
     Date dayInSpecificWeekDate;
+
+
     public CountSetsRepsCommand(Date dayInSpecificWeekDate) {
         this.dayInSpecificWeekDate = dayInSpecificWeekDate;
     }
 
     @Override
     public String execute() {
-        if (workoutList.getCurrentWorkoutIndex() == WorkoutList.NO_CURRENT_WORKOUT) {
-            workoutList.countSetsReps(dayInSpecificWeekDate);
-            return "";
+        workouts = workoutList.getWorkouts();
+        if(!workouts.containsKey(dayInSpecificWeekDate)){
+            return EMPTY_DAY;
         }
-        return "End your current workout before asking for Count command";
+        return workoutList.countSetsReps(dayInSpecificWeekDate);
     }
 }
