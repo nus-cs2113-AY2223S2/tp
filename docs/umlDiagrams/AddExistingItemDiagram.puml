@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+":BagPacker" -> ":AddCommand": AddCommand.execute()
+activate ":BagPacker"
+note left
+Executing a valid
+add command on a
+repeated/existing item
+end note
+activate ":AddCommand" #yellow
+":AddCommand" -> ":PackingList": PackingList.itemFinder(itemName)
+activate ":PackingList" #orange
+":AddCommand" <-- ":PackingList": isItemFound
+deactivate ":PackingList"
+
+Alt #lightblue isItemFound
+    ":AddCommand" -> ":PackingList": PackingList.AddToItemQty(itemName, addQty)
+    activate ":PackingList" #orange
+    ":AddCommand" <-- ":PackingList":
+    deactivate ":PackingList"
+
+
+else !isItemFound
+    ":AddCommand" -> ":PackingList": PackingList.AddItem(Item)
+        activate ":PackingList" #orange
+        ":AddCommand" <-- ":PackingList":
+        deactivate ":PackingList"
+end
+":BagPacker" <-- ":AddCommand"
+
+@enduml
