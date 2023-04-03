@@ -12,11 +12,11 @@ public class AddStatCommand extends Command {
     protected String statName;
     protected String statValue;
 
-    public AddStatCommand(String commandArgs) {
+    public AddStatCommand(String petName, String statName, String statValue) {
         super();
-        this.petName = parseArgs(commandArgs)[0];
-        this.statName = parseArgs(commandArgs)[1];
-        this.statValue = parseArgs(commandArgs)[2];
+        this.petName = petName;
+        this.statName = statName;
+        this.statValue = statValue;
     }
 
     /**
@@ -40,17 +40,6 @@ public class AddStatCommand extends Command {
         } catch (PetNotFoundException e) {
             ui.petNotFoundMessage();
         }
-    }
-
-    /**
-     * Parses the arguments of the command
-     *
-     * @param commandArgs String containing the arguments of the command
-     * @return String array containing the arguments of the command
-     */
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        return commandArgs.split(" ", 3);
     }
 
     /**

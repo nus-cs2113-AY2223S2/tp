@@ -1,6 +1,5 @@
 package seedu.pettracker.parser;
 
-import seedu.pettracker.commands.AddStatCommand;
 import seedu.pettracker.commands.AddTaskCommand;
 import seedu.pettracker.commands.Command;
 import seedu.pettracker.commands.EditStatCommand;
@@ -11,8 +10,6 @@ import seedu.pettracker.commands.InvalidCommand;
 import seedu.pettracker.commands.ListPetCommand;
 import seedu.pettracker.commands.ListTasksCommand;
 import seedu.pettracker.commands.MarkTaskCommand;
-import seedu.pettracker.commands.RemovePetCommand;
-import seedu.pettracker.commands.RemoveStatCommand;
 import seedu.pettracker.commands.RemoveTaskCommand;
 import seedu.pettracker.commands.UnMarkTaskCommand;
 import seedu.pettracker.commands.ScheduleCommand;
@@ -78,13 +75,13 @@ public class CommandParser {
         case KEYWORD_ADD_PET:
             return new AddPetParser().parse(arguments);
         case KEYWORD_REMOVE_PET:
-            return new RemovePetCommand(arguments);
+            return new RemovePetParser().parse(arguments);
         case KEYWORD_LIST_PET:
             return new ListPetCommand();
         case KEYWORD_ADD_STAT:
-            return new AddStatCommand(arguments);
+            return new AddStatParser().parse(arguments);
         case KEYWORD_REMOVE_STAT:
-            return new RemoveStatCommand(arguments);
+            return new RemoveStatParser().parse(arguments);
         case KEYWORD_EDIT_STAT:
             return new EditStatCommand(arguments);
         case KEYWORD_EDIT_TASK:
