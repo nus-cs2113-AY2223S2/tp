@@ -31,6 +31,7 @@ public class Duke {
             Menu.showAccountMenu();
             Scanner in = new Scanner(System.in);
             String input = in.nextLine();
+            input = input.trim();
             Parser.parseAccountCommand(input);
         }
     }
