@@ -358,7 +358,7 @@ public class Ui {
             String name = item.getName();
             String upc = item.getUpc();
             String qty = Integer.toString(item.getQuantity());
-            String price = Double.toString(item.getPrice());
+            String price = String.format("%.2f", item.getPrice());
             String category = item.getCategory();
 
             table.append(printRow(name, upc, qty, price, category, columnWidths));
