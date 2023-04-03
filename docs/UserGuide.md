@@ -110,7 +110,7 @@ ____________________________________________________________
 ### Sorting all current expenses: `sort`
 Soring all current expenses in the expense list based on sortBy criteria.
 
-Format: `delete SORTBY`
+Format: `sort SORTBY`
 
 * SORTBY represents the criteria the user want to sort their expenses list and display by.
 * If user wants to sort the expenses list by Date, he/she should enter "D".
