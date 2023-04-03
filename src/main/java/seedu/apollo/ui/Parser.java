@@ -125,7 +125,7 @@ public class Parser {
      */
     private static Command parseCommand(String[] split, int size, ModuleList moduleData)
             throws InvalidDateTime, EmptyKeywordException, EmptyTaskDescException, InvalidDeadline, InvalidEvent,
-            IllegalCommandException, IllegalArgumentException,NumberFormatException, UnexpectedException, InvalidModule,
+            IllegalCommandException, IllegalArgumentException, NumberFormatException, UnexpectedException, InvalidModule,
             EmptyAddModException, EmptyDelModException, EmptyShowModException {
         String command = split[0];
         switch (command) {
@@ -152,17 +152,13 @@ public class Parser {
 
                 return new HelpCommand();
             }
-
             if (!isOneWordSecondClause(split[1])) {
                 throw new IllegalCommandException();
             }
 
-
-
             HelpCommand newHelpCommand = chooseHelpCommand(split[1]);
 
             return newHelpCommand;
-
 
         case COMMAND_LIST_WORD:
             if (!isOneWord(split)) {
@@ -277,6 +273,11 @@ public class Parser {
         return (split.length == 1);
     }
 
+    /**
+     * 
+     * @param myString Second clause of user input with the command user needs help for
+     * @return {@code true} if user input a one word command,{@code false} otherwise
+     */
     private static Boolean isOneWordSecondClause(String myString) {
         String[] words = myString.split("\\s+");
         return (words.length == 1);
