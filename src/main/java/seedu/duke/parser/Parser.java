@@ -56,10 +56,12 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             input = input.replaceFirst("add", "").trim();
-            if(input.indexOf("n/")+1 != input.lastIndexOf("n/")){
+
+            if(input.indexOf("n/") != input.lastIndexOf("n/")){//Assume that multiple additions are not allowed
                 ui.multipleAdditionErrorMessage();
                 throw new WrongFormatException();
             }
+
             int indexOfName = input.indexOf("n/");
             int indexOfIndustry = input.indexOf("i/");
             int indexOfContactNumber = input.indexOf("c/");
@@ -78,7 +80,7 @@ public interface Parser {
                 ui.emptyInputErrorMessage("industry");
                 throw new WrongFormatException();
             }
-            if(contactNumberString.length()!=8){ //assume valid 8-digit Singaporean Number.
+            if(contactNumberString.length()!=8){ //Assume valid 8-digit Singaporean Number.
                 ui.invalidInputFormatErrorMessage("contact number");
                 throw new WrongFormatException();
             }
