@@ -9,6 +9,7 @@
 - Created specific help commands for each command
 - Sorting of module list according to EduRec standards
 - Display of total modular credits taken by user
+- Provide suggestion for deadline format if user insinuates deadline task in todo task
 - Junit Tests for Parser, ModifyCommand, DateCommand, FindCommand, AddModuleCommand and Ui.
 - Patches 
 - Bug fixes

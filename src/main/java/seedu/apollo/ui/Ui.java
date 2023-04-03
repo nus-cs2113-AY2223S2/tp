@@ -98,40 +98,40 @@ public class Ui {
     }
     private void printTaskCommands(){
         System.out.print("These are the available Task Commands and their corresponding commands (in brackets):\n\n" +
-                "1. List (list) - Track and organises your tasklist!\n" +
-                "2. Adding a ToDo (todo) - Adds a ToDo in your tasklist.\n" +
-                "3. Adding a Deadline (deadline) - Adds a Deadline in your tasklist.\n" +
-                "4. Adding an Event (event) - Adds an Event in your tasklist.\n" +
-                "5. Marking done (mark) - Marks a task in your tasklist as done!\n" +
-                "6. Unmark as incomplete (unmark) - Unmarks a task in your tasklist as incomplete.\n" +
-                "7. Delete a task (delete) - Deletes a task from your list.\n" +
-                "8. Finding a task (find) - Shows all tasks that contain a specified keyword.\n" +
-                "9. Find tasks on a date (date) - Shows all tasks that occur on the specified date.\n\n");
+                "1. `list` - Track and organises your tasklist!\n" +
+                "2. `todo` - Adds a ToDo in your tasklist.\n" +
+                "3. `deadline` - Adds a Deadline in your tasklist.\n" +
+                "4. `event` - Adds an Event in your tasklist.\n" +
+                "5. `mark` - Marks a task in your tasklist as done!\n" +
+                "6. `unmark` - Unmarks a task in your tasklist as incomplete.\n" +
+                "7. `delete` - Deletes a task from your list.\n" +
+                "8. `find` - Shows all tasks that contain a specified keyword.\n" +
+                "9. `date` - Shows all tasks that occur on the specified date.\n\n");
     }
 
     private void printModuleCommands(){
         System.out.print("These are the available Module Commands and their corresponding commands (in brackets):\n\n" +
-                "1. List all the modules taken (listmod) - Track and organise your academic plan for this semester!\n" +
-                "2. View module information (showmod [MODULE_CODE]) - " +
+                "1. `listmod` - Track and organise your academic plan for this semester!\n" +
+                "2. `showmod [MODULE_CODE]` - " +
                 "See more information about the specified module.\n"
                 +
-                "3. Schedule for lessons types (showmod [MODULE_CODE] -[FLAG]) - " +
+                "3. `showmod [MODULE_CODE] -[FLAG]` - " +
                 "View timing of specific" + " lesson type for a chosen module\n"
                 +
-                "4. Add a module (addmod [MODULE_CODE]) - Adds a module to your module list.\n" +
-                "5. Add a module lesson (addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]) - Adds a chosen lesson of a " +
+                "4. `addmod [MODULE_CODE]` - Adds a module to your module list.\n" +
+                "5. `addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]` - Adds a chosen lesson of a " +
                 "specified module to your timetable! \n" +
-                "6. Remove a module (delmod [MODULE_CODE or IDX]) - Removes a Module you previously added by code " +
+                "6. `Remove a module (delmod [MODULE_CODE or IDX]` - Removes a Module you previously added by code " +
                 "or index in module list.\n" +
-                "7. Remove a module lesson (delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]) " +
+                "7. `delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]` " +
                 "- Removes a lesson of a specified module from your timetable. \n\n");
     }
 
     private void printUtility() {
         System.out.print("These are the Utility Commands:\n\n" +
-                "1. View your timetable for the week (week) - Displays your schedule.\n" +
-                "2. Exit Apollo (bye) - Exit the program\n" +
-                "3. View entire help menu (help) - Get a summary of all the commands available on Apollo.\n" +
+                "1. `week` - Displays your schedule for the week.\n" +
+                "2. `bye` - Exit the program\n" +
+                "3. `help` - Get a summary of all the commands available on Apollo.\n" +
                 "View help for a specific command by inputting help [COMMAND] \n"
 
         );
