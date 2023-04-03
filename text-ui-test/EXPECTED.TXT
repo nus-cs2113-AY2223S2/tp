@@ -181,6 +181,81 @@ Here are the tasks happening on May 03 2023:
 2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
+CS1231
+Number of MC: 4
+Here are the lesson types for this module:
+Sectional Teaching (-st)
+Tutorial (-tut)
+
+Sectional Teaching 1
+   Wednesday 0900 - 1000
+Sectional Teaching 1
+   Thursday 1200 - 1400
+Tutorial 01
+   Wednesday 1000 - 1200
+Tutorial 02
+   Monday 1000 - 1200
+Tutorial 03
+   Wednesday 1200 - 1400
+Tutorial 04
+   Tuesday 1200 - 1400
+Tutorial 05
+   Thursday 1000 - 1200
+Tutorial 06
+   Tuesday 1000 - 1200
+Tutorial 07
+   Thursday 1400 - 1600
+Tutorial 08
+   Wednesday 1400 - 1600
+Tutorial 09
+   Tuesday 1600 - 1800
+Tutorial 10
+   Monday 1200 - 1400
+Tutorial 11
+   Thursday 1600 - 1800
+Tutorial 12
+   Monday 1400 - 1600
+Tutorial 13
+   Tuesday 1400 - 1600
+Tutorial 14
+   Wednesday 1600 - 1800
+Tutorial 15
+   Monday 1600 - 1800
+____________________________________________________________
+____________________________________________________________
+CG2023
+Number of MC: 4
+Here are the lesson types for this module:
+Laboratory (-lab)
+Lecture (-lec)
+
+Laboratory 01
+   Monday 1400 - 1700
+Laboratory 02
+   Monday 1400 - 1700
+Laboratory 03
+   Tuesday 0900 - 1200
+Laboratory 04
+   Tuesday 0900 - 1200
+Laboratory 05
+   Friday 0900 - 1200
+Laboratory 06
+   Friday 0900 - 1200
+Lecture 01
+   Thursday 1600 - 1800
+Lecture 01
+   Tuesday 1600 - 1800
+Lecture 02
+   Thursday 1600 - 1800
+Lecture 02
+   Tuesday 1600 - 1800
+____________________________________________________________
+____________________________________________________________
+Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
+Class Number: 1
+   Tuesday 1000 - 1200
+____________________________________________________________
+____________________________________________________________
 Sorry, but I don't know what that means :(
 ____________________________________________________________
 ____________________________________________________________
@@ -202,7 +277,7 @@ Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
 Adding lesson type: TUTORIAL for Module: CS2113
-Class Number: 1
+Class Number: 01
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
@@ -235,50 +310,18 @@ Adding lesson type: LECTURE for Module: ST2334
 Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
-Here's your week from 2023-03-20 to 2023-03-26:
-______________________
-MONDAY
-
-Lessons:
-
+This event clashes with a lesson in your timetable!
+Got it. I've added this event:
+  [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
+____________________________________________________________
+____________________________________________________________
+Heads up, your deadline occurs on the same day as these!
+_____________________________
 Tasks:
-______________________
-TUESDAY
-
-Lessons:
-1. ST2334 Lecture: 0800-1000
-
-Tasks:
-______________________
-WEDNESDAY
-
-Lessons:
-
-Tasks:
-______________________
-THURSDAY
-
-Lessons:
-
-Tasks:
-______________________
-FRIDAY
-
-Lessons:
-
-Tasks:
-______________________
-SATURDAY
-
-Lessons:
-
-Tasks:
-______________________
-SUNDAY
-
-Lessons:
-
-Tasks:
+ - [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
+_____________________________
+Got it. I've added this deadline:
+  [D][ ] dummy2 (by: May 02 2023, 12:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
