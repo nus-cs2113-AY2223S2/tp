@@ -820,15 +820,15 @@ public class Ui {
     }
 
     public static void printExistingMinAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(EXISTING_MIN_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printExistingMaxAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(EXISTING_MAX_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidAddAlertCommand() {
