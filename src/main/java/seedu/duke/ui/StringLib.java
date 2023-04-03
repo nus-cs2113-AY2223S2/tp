@@ -138,4 +138,7 @@ public interface StringLib {
             "Please enter a valid step below:";
     String POS_INT = "\nPlease enter a valid index!";
     String EMPTY_STRING = "";
+    String[] FORBIDDEN_CHARS = {"!","@","#","$","%","&","*","(",")","+",",",
+            ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};
+    String SAVE_SEPARATOR = "#######";
 }

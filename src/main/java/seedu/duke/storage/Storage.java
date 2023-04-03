@@ -100,6 +100,7 @@ public class Storage {
                 for (Ingredient ingredient : dish.getIngredientList().getList()) {
                     saveWriter.write( ingredient.getName() + "\n");
                 }
+                saveWriter.write(StringLib.SAVE_SEPARATOR + "\n");
                 saveWriter.write(StringLib.STEP_LIST + "\n");
                 for (Step step : dish.getStepList().getList()) {
                     saveWriter.write(step.getStep() + "\n");
@@ -140,7 +141,7 @@ public class Storage {
             while (reader.hasNextLine()) {
                 String ingredient = reader.nextLine();
                 if (ingredient.equals(StringLib.INGREDIENT_LIST)) {
-                } else if (ingredient.equals(StringLib.STEP_LIST)) {
+                } else if (ingredient.equals(StringLib.SAVE_SEPARATOR)) {
                     break;
                 } else {
                     ingredientList.add(new Ingredient(ingredient));

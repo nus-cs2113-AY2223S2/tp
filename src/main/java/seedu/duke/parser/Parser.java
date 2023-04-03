@@ -156,7 +156,7 @@ public class Parser {
         ArrayList<Ingredient> parsed = new ArrayList<>();
         String[] parsedIngredients = inputIngredients.split(",");
         for (String ingredient : parsedIngredients) {
-            parsed.add(new Ingredient(ingredient.trim()));
+            parsed.add(new Ingredient(removeForbiddenChars(ingredient.trim())));
         }
         return new IngredientList(parsed);
     }
@@ -174,5 +174,14 @@ public class Parser {
             parsedStepList.add(new Step(inputStep));
         }
         return new StepList(parsedStepList);
+    }
+
+    public static String removeForbiddenChars(String ingredient) {
+        for (String chara : StringLib.FORBIDDEN_CHARS) {
+            if (ingredient.contains(chara)) {
+                ingredient.replaceAll(chara,"");
+            }
+        }
+        return ingredient;
     }
 }
