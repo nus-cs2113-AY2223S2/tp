@@ -82,7 +82,8 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Store":
-                Store.storeNotes(toDo);
+                Store store = new Store();
+                store.storeNotes(toDo);
                 break;
             //@@author WilsonLee2000
             case "List":
