@@ -20,24 +20,21 @@ public class EditTaskCommand extends Command {
         assert parsed.length > 0 : "no arguments";
         this.taskNumber = Integer.parseInt(parsed[0]);
         this.newDescription = parsed[1];
-        if(parsed.length > 2) {
+        if (parsed.length > 2) {
             try {
                 this.deadline = LocalDate.parse(parsed[2]);
             } catch (Exception e) {
                 this.deadline = null;
             }
-        }
-        else {
+        } else {
             this.deadline = null;
         }
     }
 
-    // TODO: Implement this method
-
     /**
      * Executes the given command
      *
-     * @param ui Ui to do printing if required
+     * @param ui      Ui to do printing if required
      * @param storage Storage to save files if required
      */
     @Override
@@ -58,9 +55,9 @@ public class EditTaskCommand extends Command {
         String[] split = commandArgs.split(" ", 2);
         String[] timeSplit = split[1].split("/by");
         if (timeSplit.length > 1) {
-            return new String[] {split[0], timeSplit[0], timeSplit[1]};
+            return new String[]{split[0], timeSplit[0], timeSplit[1]};
         } else {
-            return new String[] {split[0], split[1]};
+            return new String[]{split[0], split[1]};
         }
 
     }

@@ -35,8 +35,6 @@ public class AddPetCommand extends Command {
         }
     }
 
-    //TODO: Implement this method
-
     /**
      * Parses the arguments of the command
      *

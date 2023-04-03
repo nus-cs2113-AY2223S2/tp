@@ -19,8 +19,6 @@ public class AddStatCommand extends Command {
         this.statValue = parseArgs(commandArgs)[2];
     }
 
-    // TODO: Implement this method
-
     /**
      * Executes the given command
      *

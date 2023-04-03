@@ -19,7 +19,6 @@ public class HelpCommand extends Command {
         ui.showHelpMessage();
     }
 
-    //TODO: Implement this method
 
     @Override
     public String[] parseArgs(String commandArgs) {

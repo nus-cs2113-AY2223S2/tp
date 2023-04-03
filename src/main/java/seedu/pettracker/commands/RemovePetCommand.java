@@ -13,7 +13,6 @@ public class RemovePetCommand extends Command {
         this.petName = commandArgs;
     }
 
-    //TODO: Implement this method
 
     /**
      * Executes the given command
@@ -32,7 +31,6 @@ public class RemovePetCommand extends Command {
         }
     }
 
-    //TODO: Implement this method
 
     /**
      * Parses the arguments of the command

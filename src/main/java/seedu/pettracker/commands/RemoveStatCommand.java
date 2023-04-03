@@ -15,7 +15,6 @@ public class RemoveStatCommand extends Command {
         this.petName = parseArgs(commandArgs)[0];
         this.statName = parseArgs(commandArgs)[1];
     }
-    // TODO: Implement this method
 
     /**
      * Executes the given command
