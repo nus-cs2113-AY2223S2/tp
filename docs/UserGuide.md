@@ -9,7 +9,7 @@ FitnessDuke is a **Command Line Application for tracking and managing workouts, 
 * TOC
 {:toc}
 
-## Getting Started   
+# Getting Started   
 
 1. Ensure you have Java 11 or later installed in your PC.
 2. Download the latest version of ```duke.jar``` from our GitHub releases
@@ -25,23 +25,23 @@ Some example commands you can try:
    * ```history```: Lists all finished exercises.
 6. Refer to [FitnessDuke's Features](#fitnessdukes-features) below for details of each command.
 
-## FitnessDuke's Features
+# FitnessDuke's Features
 
-## *General*
+# *General*
 
-### Viewing help: ```help```
+## Viewing help: ```help```
 
 Shows a list of basic commands that the user can input.
 
 Example Command: ```help```
 
-### Exiting the program: ```exit```
+## Exiting the program: ```exit```
 
 Gracefully exits the program and prints bye message.
 
 Example Command: ```exit```
 
-### Getting the filters to generate workout: ```filters```
+## Getting the filters to generate workout: ```filters```
 
 Shows a list of filters available and their description.
 
@@ -61,7 +61,7 @@ The filters are shown here:
 
 
 
-### Generating a list of workouts according to filters: ```generate [arguments] [number]```
+## Generating a list of workouts according to filters: ```generate [arguments] [number]```
 
 *Easter Egg: Having the [number] as 1337 would always generate the first 3 workouts no matter the filters*
 
@@ -77,7 +77,7 @@ Shows a list containing *number* of _random_ workouts that suits the arguments f
 
 Example Command: ```generate easy 3```, ```generate hard upper 4```
 
-#### **Do note that the exercises that you generate might not be the same as the exercises in the example below! This is due to the 800+ exercises that we have in our library!
+### **Do note that the exercises that you generate might not be the same as the exercises in the example below! This is due to the 800+ exercises that we have in our library!
 
 Examples:
 ```
@@ -97,7 +97,7 @@ Position a bar in a rack at upper body height., Standing, take a shoulder width 
 ________________________________________
 ```
 
-### Getting into a workout: ```start```
+## Getting into a workout: ```start```
 
 Enters a workout session with the **previously (latest) generated** workout session.
 
@@ -107,10 +107,10 @@ Enters a workout session with the **previously (latest) generated** workout sess
 
 Example Command: ```start```
 
-### Within your workout session
+## Within your workout session
 **Click **[here](UG_features/workout_session.md)** to learn more about using our workouts feature.
 
-### Seeing your workout history: ```history```
+## Seeing your workout history: ```history```
 
 Displays your entire career history in using Fitness Duke. 
 Each history will give you details on the sessions you completed with the date and time as well
@@ -118,13 +118,13 @@ as the exercises that you completed.
 
 Example Command: ```history```
 
-### Seeing your workout summary: ```data```
+## Seeing your workout summary: ```data```
 
 Displays the list of exercises which you have completed, along with the number of times of completion for each exercise.
 
 Example Command: ```data```
 
-### Deleting a workout session: ```delete [number]```
+## Deleting a workout session: ```delete [number]```
 
 Deletes a completed workout session according to the session number which the user specifies.
 
@@ -172,7 +172,7 @@ Begin with a box or bench 1-2 feet in front of you. Stand with your feet shoulde
 ________________________________________
 ```
 
-### Searching for a workout: ```find [keyword]```
+## Searching for a workout: ```find [keyword]```
 
 Finds existing exercises whose names contain the input keyword.
 
@@ -198,18 +198,18 @@ Here are the exercises matching your keyword:
 ________________________________________
 ```
 
-## Workout Plans
+# Workout Plans
 
-### Getting into the fitness planner: ```planner```
+## Getting into the fitness planner: ```planner```
 
 Enters another interface where you can configure your workout plans and save them for the week.
 
 Example Command: ```planner```
 
-### Within your fitness planner
+## Within your fitness planner
 **Click **[here](UG_features/planner.md)** to learn more about using our planner feature.
 
-### Viewing plans: ```plans```
+## Viewing plans: ```plans```
 
 Displays all workout plans which have been created by the user.
 
@@ -243,7 +243,7 @@ ________________________________________
 Example Command: ```plans```
 
 
-### Generating a list of planned exercises: ```quick [plan_name] [number]```
+## Generating a list of planned exercises: ```quick [plan_name] [number]```
 
 
 Generates a list of exercises planned by the user.
@@ -300,7 +300,7 @@ Begin in a pushup position on the floor. This will be your starting position., U
 ________________________________________
 ```
 
-## Saving the data
+# Saving the data
 
 User data files are saved in the hard disk automatically after any command that changes the data. There is no need to 
 save manually. :-)
@@ -308,7 +308,7 @@ Advanced users are welcome to update data directly by editing that data file.
 
 **Caution: If your changes to the data file makes its format invalid, FitnessDuke will discard all data and start with an empty data file at the next run.**
 
-## Resource data
+# Resource data
 
 FitnessDuke's exercise data are saved as a JSON file within the jar package. Please do not unpack the jar file and 
 modify its contents and attempt to re-jar it. We will not guarantee the promised features if the jar file is 
@@ -318,13 +318,13 @@ The achievement data is also stored as a text file not to be tampered with. On t
 tampered with, the data will not be loaded in, and the achievement will not be loaded in on a line-by-line basis (i.e.
 if a specific line of data is corrupt, that specific achievement is not loaded, but the rest will work.)
 
-## FAQ
+# FAQ
 
 **Q**: Can I add my own workouts to the program?
 
 **A**: This is a very intuitive feature, but we have not implemented it yet.
 
-## Command Summary
+# Command Summary
 
 | Action       | Example Command, Examples                                               |
 |--------------|-------------------------------------------------------------------------|
