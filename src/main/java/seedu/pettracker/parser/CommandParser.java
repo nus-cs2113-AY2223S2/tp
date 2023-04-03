@@ -61,7 +61,7 @@ public class CommandParser {
         }
 
         final String keyword = matcher.group("keyword");
-        final String arguments = matcher.group("arguments");
+        final String arguments = matcher.group("arguments").trim();
 
         switch (keyword) {
         case KEYWORD_EXIT:
