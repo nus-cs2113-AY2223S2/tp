@@ -470,7 +470,7 @@ public class Ui {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
         String[] qtyLines = wrapText(qty, QTY_COL_WIDTH);
-        String [] catLines = wrapText(category, CATEGORY_COL_WIDTH);
+        String[] catLines = wrapText(category, CATEGORY_COL_WIDTH);
         String[] priceLines = wrapText(DOLLAR_SIGN + price, PRICE_COL_WIDTH);
         StringBuilder row = new StringBuilder();
 
@@ -640,7 +640,9 @@ public class Ui {
                 throw new EditErrorException();
             }
             printUpdatedItemDetails(oldItem, updatedItem);
-            assert Objects.equals(oldItem.getUpc(), updatedItem.getUpc()) : "Both items should be of same UPC Code.";
+            if (!Objects.equals(oldItem.getUpc(), updatedItem.getUpc())) {
+                throw new AssertionError("Both items should be of same UPC Code.");
+            }
         } catch (EditErrorException eee) {
             printItemNotUpdatedError();
         }
@@ -719,7 +721,7 @@ public class Ui {
      * Prints an error message to inform the user that item is not updated due to wrong quantity/price input type.
      */
     public static void printInvalidPriceOrQuantityEditInput() {
-        printLine();;
+        printLine();
         System.out.println(ITEM_NOT_EDITED);
         System.out.println("REASON:");
         System.out.println(WRONG_QUANTITY_INPUT);
@@ -954,11 +956,11 @@ public class Ui {
      * Prints out a corresponding string for an item when it is changed.
      *
      * @param editType The type of edit that was made to the item
-     * @param oldItem Item before change
-     * @param newItem Item after change
+     * @param oldItem  Item before change
+     * @param newItem  Item after change
      */
 
-    private static void printItemChange(Types.EditType editType, Item oldItem, Item newItem){
+    private static void printItemChange(Types.EditType editType, Item oldItem, Item newItem) {
         switch (editType) {
         case RECATEGORIZE:
             System.out.println(CATEGORY_CHANGED_TO + newItem.getCategory());
@@ -1001,7 +1003,7 @@ public class Ui {
         int changesMade = 0;
         for (int i = 1; i < results.size(); i++) {
             ArrayList<Types.EditType> edits = results.get(i - 1).getEditTypes(results.get(i));
-            if(edits.size()==0){
+            if (edits.isEmpty()) {
                 System.out.println(NO_CHANGES_WERE_RECORDED);
                 continue;
             }
