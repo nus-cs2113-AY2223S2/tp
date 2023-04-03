@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * of flashcards.
  */
 public class AddCommand extends Command {
-    private static Logger logger = Logger.getLogger("AddCommand");
+    //private static Logger logger = Logger.getLogger("AddCommand");
     String questionText;
     String answerText;
 
@@ -32,9 +32,7 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(FlashcardList flashcardList, Ui display) {
-        logger.log(Level.INFO, "Start to add new flashcard to list of flashcards.");
         flashcardList.addNewFlashcard(questionText, answerText);
-        logger.log(Level.INFO, "Start to print when flashcard successfully added.");
         display.printSuccessfulAddMessage(questionText, answerText);
     }
 }
