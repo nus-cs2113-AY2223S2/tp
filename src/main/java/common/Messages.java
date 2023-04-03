@@ -95,4 +95,9 @@ public class Messages {
     public static final String ERROR_STAFF_INVALID_INDEX = "Invalid staff index number";
     public static final String ERROR_STAFF_EXCESS_VIEW_PARAM = "Excessive parameter given to view staff command!";
     public static final String ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER = "Phone number length is at most 15!";
+    public static final String ERROR_STAFF_ADD_FUTURE_DOB = "Date of birth must be earlier than current date!";
+    public static final String INVALID_STAFF_ADD_NAME = "Invalid name given for staff";
+    public static final String INVALID_STAFF_ADD_WORKING_DAY = "Invalid working day format";
+    public static final String INVALID_STAFF_ADD_PHONE_NUMBER = "Format of phone number must consist of only numbers";
+    public static final String INVALID_STAFF_ADD_DATE_OF_BIRTH = "Format of date of birth must be YYYY-MM-DD";
 }

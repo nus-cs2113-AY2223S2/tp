@@ -298,8 +298,8 @@ public class DinerDirectorTest {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("add_staff");
         listOfCommands.add("add_staff n/John Doe");
-        listOfCommands.add("add_staff p/123-456-7890 d/1990-01-01 w/Monday");
-        listOfCommands.add("add_staff n/John Doe p/123-456-7890 w/Monday d/1990-01-01");
+        listOfCommands.add("add_staff p/82813828 d/1990-01-01 w/Monday");
+        listOfCommands.add("add_staff n/John Doe p/12838238283812828213i33188 w/Monday d/1990-01-01");
         listOfCommands.add("view_staff");
         listOfCommands.add("find_staff John");
         listOfCommands.add("find_staff");
