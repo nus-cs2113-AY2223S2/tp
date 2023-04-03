@@ -158,7 +158,22 @@ The value proposition of ChChing is its ability to track income and expenses on 
 
 ## Glossary
 
-* *glossary item* - Definition
+
+
+| Terminology  | Definition                   |
+|--------------|------------------------------|
+| Income       | Debit entry                  |
+| Expense      | Credit entry                 |
+| Balance      | Net Amount                   |
+| Target       | Desired Net Amount           |
+ | Parser       | Class to take in inputs      |
+| UI           | Class to interact with users |
+
+
+
+
+ 
+
 
 ## Instructions for manual testing
 
