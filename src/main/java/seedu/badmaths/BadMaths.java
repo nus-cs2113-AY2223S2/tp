@@ -52,7 +52,8 @@ public class BadMaths {
 
             Parser parser = new Parser(userInput);
             String command = parser.getCommand();
-            String toDo = parser.getToDo();
+            String toDo = parser.getToDo(); // asdsasad
+
             commandChecker(command);
 
             if (inputCommand == null) {
@@ -64,7 +65,7 @@ public class BadMaths {
             }
 
             inputCommand.executeCommand(notes);
-            if (userInput.equals("Bye.")) {
+            if (userInput.equals("Bye")) {
                 break;
             }
         }

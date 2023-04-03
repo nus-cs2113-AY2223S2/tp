@@ -43,7 +43,17 @@ public class Command {
     }
 
     public boolean isInvalidIndex(int index, NotesList notes) {
-        return (index < 0 && index > notes.getSize());
+        return (index < 0 || index >= notes.getSize());
+    }
+
+    public boolean isNotAnInt(String todo) {
+        try {
+            Integer.parseInt(todo);
+        } catch (NumberFormatException numberException) {
+            Ui.printInvalidNumberEntered();
+            return false;
+        }
+        return true;
     }
 
     public void executeCommand(NotesList notes) {
@@ -59,8 +69,12 @@ public class Command {
                     command.equals("FindMark") || command.equals("FindUnmark") || command.equals("Rank") ||
                     command.equals("Clear") || command.equals("Help") || command.equals("Matrix") ||
                     command.equals("Quadratic")) : "input has incorrect format required";
+            //@@author Khooyourun
             switch (command) {
             case "Bye":
+                if(!isInvalidTodo(toDo)) {
+                    throw new IllegalTodoException();
+                }
                 System.out.println("Goodbye!");
                 break;
             case "Graph":
@@ -71,17 +85,24 @@ public class Command {
                 if (isInvalidTodo(toDo)) {
                     throw new IllegalTodoException();
                 }
+                if(toDo.equals("null")) {
+                    throw new IllegalTodoException();
+                }
                 notes.add(toDo);
                 Ui.printAddNote(toDo, notes.getSize());
                 Storage.saveFile(filePath, notes.getAll());
                 break;
             //@@author WilsonLee2000
             case "List":
+                if (isNotAnInt(toDo) == false) {
+                    break;
+                }
                 if (isInvalidTodo(toDo)) {
                     Ui.printNotes(notes.getAll());
                     break;
                 }
                 int index = Integer.parseInt(toDo) - 1;
+
                 if (isInvalidIndex(index, notes)) {
                     throw new IllegalIndexException();
                 }
@@ -90,8 +111,11 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Delete":
-                int deleteIndex = Integer.parseInt(toDo) - 1;
-                if (isInvalidIndex(deleteIndex, notes)) {
+                if (isNotAnInt(toDo) == false) {
+                    break;
+                }
+                int deleteIndex = Integer.parseInt(toDo) - 1; // deleteIndex == 3
+                if (isInvalidIndex(deleteIndex, notes) == true) { // if true
                     throw new IllegalIndexException();
                 }
                 Ui.printDelete(notes.getText(deleteIndex), notes.getSize());
@@ -99,21 +123,29 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Mark":
+                if (isNotAnInt(toDo) == false) {
+                    break;
+                }
                 int markIndex = Integer.parseInt(toDo) - 1;
                 if (isInvalidIndex(markIndex, notes)) {
                     throw new IllegalIndexException();
                 }
                 notes.markAsDone(markIndex);
                 Ui.printMark(notes.getText(markIndex));
+                Storage.saveFile(filePath, notes.getAll());
                 break;
             //@@author ZiqiuZeng
             case "Unmark":
+                if (isNotAnInt(toDo) == false) {
+                    break;
+                }
                 int unmarkIndex = Integer.parseInt(toDo) - 1;
                 if (isInvalidIndex(unmarkIndex, notes)) {
                     throw new IllegalIndexException();
                 }
                 notes.markAsUndone(unmarkIndex);
                 Ui.printUnmark(notes.getText(unmarkIndex));
+                Storage.saveFile(filePath, notes.getAll());
                 break;
             //@@author ZiqiuZeng
             case "Low":
@@ -123,6 +155,7 @@ public class Command {
                 }
                 notes.setPriority(lowIndex, NotePriority.Priority.LOW);
                 Ui.printPriority(lowIndex, notes.getAll());
+                Storage.saveFile(filePath, notes.getAll());
                 break;
             //@@author ZiqiuZeng
             case "Medium":
@@ -132,6 +165,7 @@ public class Command {
                 }
                 notes.setPriority(mediumIndex, NotePriority.Priority.MEDIUM);
                 Ui.printPriority(mediumIndex, notes.getAll());
+                Storage.saveFile(filePath, notes.getAll());
                 break;
             //@@author ZiqiuZeng
             case "High":
@@ -141,6 +175,7 @@ public class Command {
                 }
                 notes.setPriority(highIndex, NotePriority.Priority.HIGH);
                 Ui.printPriority(highIndex, notes.getAll());
+                Storage.saveFile(filePath, notes.getAll());
                 break;
             //@@author ZiqiuZeng
             case "FindInfo":
@@ -149,14 +184,23 @@ public class Command {
                 }
                 String keyword = toDo;
                 Ui.printFindNotes(notes.relevantInfo(keyword));
+                Storage.saveFile(filePath, notes.getAll());
                 break;
             //@@author ZiqiuZeng
             case "FindPrior":
-                if (isInvalidTodo(toDo)) {
+                switch (toDo.toLowerCase()) {
+                case "low":
+                    Ui.printFindNotes(notes.relevantPriority(NotePriority.Priority.LOW.name()));
+                    break;
+                case "medium":
+                    Ui.printFindNotes(notes.relevantPriority(NotePriority.Priority.MEDIUM.name()));
+                    break;
+                case "high":
+                    Ui.printFindNotes(notes.relevantPriority(NotePriority.Priority.HIGH.name()));
+                    break;
+                default:
                     throw new IllegalTodoException();
                 }
-                String priorityStr = toDo;
-                Ui.printFindNotes(notes.relevantPriority(priorityStr));
                 break;
             //@@author ZiqiuZeng
             case "FindMark":
@@ -168,28 +212,33 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Rank":
-                if (isInvalidTodo(toDo) || !(toDo.equals("Review Count") || toDo.equals("Priority"))) {
-                    throw new IllegalArgumentException();
-                }
                 switch (toDo) {
                 case "Review Count":
                     notes.rankByReviewCount();
                     Ui.printNotesByReviewCount(notes.getAll());
+                    Storage.saveFile(filePath, notes.getAll());
                     break;
                 case "Priority":
                     notes.rankByPriority();
                     Ui.printNotesByPriority(notes.getAll());
+                    Storage.saveFile(filePath, notes.getAll());
                     break;
                 default:
-                    break;
+                    throw new IllegalTodoException();
                 }
                 break;
-            //@@author ZiqiuZeng
+            /*
+             * The command "Clear" will continue to execute for as long as it is being entered,
+             * without any other command or input interrupting it.
+             */
             case "Clear":
                 notes.reset();
                 Storage.clearFile(filePath);
                 break;
-            //@@author Khooyourun
+            /*
+             * The command "Help" will continue to execute for as long as it is being entered,
+             * without any other command or input interrupting it.
+             */
             case "Help":
                 HelpManual.readHelpManual();
                 break;
