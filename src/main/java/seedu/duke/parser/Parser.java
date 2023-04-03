@@ -56,14 +56,36 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             input = input.replaceFirst("add", "").trim();
+            if(input.indexOf("n/")+1 != input.lastIndexOf("n/")){
+                ui.multipleAdditionErrorMessage();
+                throw new WrongFormatException();
+            }
             int indexOfName = input.indexOf("n/");
             int indexOfIndustry = input.indexOf("i/");
             int indexOfContactNumber = input.indexOf("c/");
             int indexOfContactEmail = input.indexOf("e/");
             String companyName = input.substring(indexOfName+2, indexOfIndustry).trim();
             String industry = input.substring(indexOfIndustry+2, indexOfContactNumber).trim();
-            int contactNumber = Integer.parseInt(input.substring(indexOfContactNumber+2, indexOfContactEmail).trim());
+            String contactNumberString = input.substring(indexOfContactNumber+2, indexOfContactEmail).trim();
+            int contactNumber = Integer.parseInt(contactNumberString);
             String contactEmail = input.substring(indexOfContactEmail+2).trim();
+
+            if(companyName.equals("")){
+                ui.emptyInputErrorMessage("company name");
+                throw new WrongFormatException();
+            }
+            if(industry.equals("")){
+                ui.emptyInputErrorMessage("industry");
+                throw new WrongFormatException();
+            }
+            if(contactNumberString.length()!=8){ //assume valid 8-digit Singaporean Number.
+                ui.invalidInputFormatErrorMessage("contact number");
+                throw new WrongFormatException();
+            }
+            if(!contactEmail.contains("@") || contactEmail.contains(" ") || contactEmail.endsWith("@")){
+                ui.invalidInputFormatErrorMessage("email address");
+                throw new WrongFormatException();
+            }
             AddCommand addCommand = new AddCommand(command, industry, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
