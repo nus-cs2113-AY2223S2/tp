@@ -136,6 +136,13 @@ public interface StringLib {
     String INPUT_INGREDIENTS_INDEX_EXCEEDED = "Input index exceeds the number of ingredients!";
     String INVALID_STEP = "\nThe step you have entered is invalid!\n" +
             "Please enter a valid step below:";
+    String SAVE_SUCCESS = "\nData saved successfully!";
+    String EDIT_TYPE_ERROR = "\nPlease enter a edit type (--s/--i) !\n";
+    String EDIT_INGREDIENT_ERROR = "\nPlease keep format as edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT\n";
+    String INVALID_RECIPE_INDEX = "\nPlease enter a valid recipe index!";
+    String INVALID_INGREDIENT_INDEX = "\nPlease enter a valid ingredient index!";
+    String EDIT_STEP_ERROR = "\nPlease keep format as edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP\n";
+    String INVALID_STEP_INDEX = "\nPlease enter a valid step index!";
     String POS_INT = "\nPlease enter a valid index!";
     String EMPTY_STRING = "";
     String[] FORBIDDEN_CHARS = {"!","@","#","$","%","&","*","(",")","+",",",

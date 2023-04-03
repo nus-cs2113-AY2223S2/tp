@@ -234,6 +234,24 @@ public class Command {
                 ui.showEditErrorMessage(e);
             }
             break;
+        case EDIT:
+            try {
+                EditType editType = Parser.parseEditType(fullDescription);
+                boolean isEditIngredient = editType == EditType.INGREDIENT;
+                boolean isEditStep = editType == EditType.STEP;
+                Object[] parsed = Parser.parseEditRecipeIndex(fullDescription.substring(4),editType);
+                int recipeIndex = (int) parsed[0];
+                String editDescription = (String) parsed[1];
+                if(isEditIngredient) {
+                    Parser.parseEditIngredient(recipeList, recipeIndex, editDescription);
+                } else if (isEditStep) {
+                    Parser.parseEditStep(recipeList, recipeIndex, editDescription);
+                }
+            } catch (Exception e) {
+                ui.showErrorMessage(e);
+            }
+            Storage.writeSavedFile();
+            break;
         case HELP:
             ui.showHelp();
             break;
