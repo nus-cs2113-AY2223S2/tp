@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 class StorageTest {
 
     @Test
-    void testCSVReadWrite() {
+    synchronized void testCSVReadWrite() {
         Inventory testInventory = new Inventory();
         Item testItem = new Item("testItem", "123456789012", 10, 10.0, LocalDateTime.now());
         Item testItem2 = new Item("testItem2", "123456789013", 10, 10.0, LocalDateTime.now());
@@ -21,12 +21,14 @@ class StorageTest {
         addCommand = new AddCommand(testInventory, testItem2);
         addCommand.run();
         Storage.writeCSV(testInventory);
-        try {
-            Thread.sleep(500);
-            Assertions.assertTrue(Storage.readCSV(Types.SESSIONFILEPATH).getItemInventory().contains(testItem));
-            Assertions.assertTrue(Storage.readCSV(Types.SESSIONFILEPATH).getItemInventory().contains(testItem2));
-        } catch (InterruptedException ie) {
-            Thread.currentThread().interrupt();
+        while(!Storage.isStorageWriteDone()){
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+            }
         }
+        Assertions.assertTrue(Storage.readCSV(Types.SESSIONFILEPATH).getItemInventory().contains(testItem));
+        Assertions.assertTrue(Storage.readCSV(Types.SESSIONFILEPATH).getItemInventory().contains(testItem2));
     }
 }

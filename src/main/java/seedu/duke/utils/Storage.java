@@ -40,6 +40,10 @@ public class Storage {
     private static final String VALID_DATAROW_REGEX =
             "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+,\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{9}$";
     private static final String VALID_ALERT_REGEX = "(.+),\\d+,(min|max)$";
+    private static boolean isStorageWriteDone;
+    public static boolean isStorageWriteDone(){
+        return isStorageWriteDone;
+    }
 
     /**
      * Reads the CSV file from Types.SESSIONFILEPATH and
@@ -123,6 +127,7 @@ public class Storage {
             Ui.printEmptySessionFile();
             return new Inventory();
         }
+
         Ui.printRecoveredSessionFile();
         return inventory;
     }
@@ -133,6 +138,7 @@ public class Storage {
      * @param currentInventory Current inventory
      */
     public static void writeCSV(final Inventory currentInventory) {
+        isStorageWriteDone = false;
         try {
             File dataFolder = new File("./data");
             if (!dataFolder.exists()) {
@@ -151,8 +157,10 @@ public class Storage {
             }
             writer.close();
         } catch (IOException e) {
+            isStorageWriteDone = true;
             System.out.println("Critical: An error occurred when writing to the file.");
         }
+        isStorageWriteDone = true;
     }
 
     public static void writeCSV(final AlertList alertList) {
