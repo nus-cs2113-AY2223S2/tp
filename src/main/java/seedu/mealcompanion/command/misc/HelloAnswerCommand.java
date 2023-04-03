@@ -3,8 +3,8 @@ package seedu.mealcompanion.command.misc;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 
+//@@author Jjzeng123
 public class HelloAnswerCommand extends ExecutableCommand {
-
     public void execute(MealCompanionSession mealCompanionSession) {
         mealCompanionSession.getUi().printMessage("Congratulations! You have solved our puzzle and unlocked our "
                 + "hidden easter egg!");

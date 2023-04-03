@@ -6,6 +6,7 @@ import seedu.mealcompanion.command.ExecutableCommand;
 /**
  * Represents the Easter egg "hello world" command.
  */
+//@@author Jjzeng123
 public class HelloWorldCommand extends ExecutableCommand {
     String name;
 
