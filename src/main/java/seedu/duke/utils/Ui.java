@@ -297,6 +297,13 @@ public class Ui {
         printLine();
     }
 
+    public static void printRaceCondition(){
+        printLine();
+        System.out.println("A rare race condition occurred. Please try restarting the program");
+        System.out.println("If this happens often, check that other programs are not interfering with this one");
+        printLine();
+    }
+
     public static void printSuccessList() {
         printLine();
         System.out.println(INVENTORYLOGO);

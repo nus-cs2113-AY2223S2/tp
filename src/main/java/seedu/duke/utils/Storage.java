@@ -41,9 +41,7 @@ public class Storage {
             "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+,\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{9}$";
     private static final String VALID_ALERT_REGEX = "(.+),\\d+,(min|max)$";
     private static boolean isStorageWriteDone;
-    public static boolean isStorageWriteDone(){
-        return isStorageWriteDone;
-    }
+    private static boolean isRaceConditionDetected;
 
     /**
      * Reads the CSV file from Types.SESSIONFILEPATH and
@@ -52,13 +50,21 @@ public class Storage {
      * @return Inventory object
      */
     public static synchronized Inventory readCSV(String filePath) {
+        isRaceConditionDetected = false;
+        while(!isStorageWriteDone){
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+                isRaceConditionDetected = true;
+                Ui.printRaceCondition();
+                return new Inventory();
+            }
+        }
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             Types.FileHealth fileStatus = checkFileValid(filePath, VALID_DATAROW_REGEX);
             switch(fileStatus){
-            case CORRUPT:
-                Ui.printInvalidSessionFile();
-                return new Inventory();
             case MISSING:
                 //fallthrough
             case EMPTY:
@@ -82,6 +88,7 @@ public class Storage {
                 try {
                     LocalDateTime.parse(fields[DATE_INDEX]);
                     Integer.parseInt(fields[QUANTITY_INDEX]);
+                    Double.parseDouble(fields[PRICE_INDEX]);
                 } catch(DateTimeParseException | NumberFormatException e){
                     Ui.printInvalidSessionFile();
                     return new Inventory();
