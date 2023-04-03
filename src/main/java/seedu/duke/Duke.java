@@ -53,6 +53,7 @@ public class Duke {
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
         }
+        WelcomeMessage.welcomeHelper();
         String input = "";
         while (in.hasNextLine()) {
             input = in.nextLine();
