@@ -22,7 +22,6 @@ import seedu.rainyDay.exceptions.RainyDayException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Logger;
@@ -173,9 +172,10 @@ public class Parser {
         }
     }
 
+    //@@author lil1n
     private String setCategory(String input) throws RainyDayException {
         int flag = 0;
-        Pattern pattern = Pattern.compile("-c\\s+(.+)\\s+-date\\s+(\\d{2}/\\d{2}/\\d{4})");
+        Pattern pattern = Pattern.compile("-c\\s+(.+)\\s+-date\\s+(.*)");
         Matcher matcher = pattern.matcher(input);
         if (!matcher.matches()) {
             flag = 1;
@@ -187,10 +187,7 @@ public class Parser {
             }
         }
         this.category = matcher.group(1);
-        if (this.category.contains("-")) {
-            logger.warning("unsupported category name");
-            throw new RainyDayException(ErrorMessage.UNSUPPORTED_CATEGORY_NAME.toString());
-        }
+        checkCategoryName(this.category);
         if (flag == 0) {
             logger.info("obtaining category");
             return "-date " + matcher.group(2);
@@ -199,23 +196,118 @@ public class Parser {
         return "";
     }
 
-    private void setDate(String input) throws RainyDayException {
-        Pattern pattern = Pattern.compile("-date\\s+(\\d{2}/\\d{2}/\\d{4})");
-        Matcher matcher = pattern.matcher(input);
-        if (matcher.matches()) {
-            try {
-                this.date = LocalDate.parse(matcher.group(1).trim(), DateTimeFormatter.ofPattern("dd/MM/uuuu"));
-                logger.info("obtaining date");
-            } catch (DateTimeParseException e) {
-                logger.warning("add command given by user in the wrong format");
-                throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
-            }
-        } else {
-            logger.warning("add command given by user in the wrong format");
-            throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+    private void checkCategoryName(String category) throws RainyDayException {
+        if (category.indexOf("-date") == 0) {
+            logger.warning("empty category name");
+            throw new RainyDayException(ErrorMessage.EMPTY_CATEGORY_NAME.toString());
+        }
+        if (category.length() - "-date".length() == category.indexOf("-date")) {
+            logger.warning("empty category name");
+            throw new RainyDayException(ErrorMessage.NO_DATE_PROVIDED.toString());
+        }
+        if (category.contains("-")) {
+            logger.warning("unsupported category name");
+            throw new RainyDayException(ErrorMessage.UNSUPPORTED_CATEGORY_NAME.toString());
         }
     }
 
+    private void setDate(String input) throws RainyDayException {
+        Pattern pattern = Pattern.compile("-date\\s+(.*)");
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.matches()) {
+            String inputDate = matcher.group(1);
+            String[] dateMonthYear = inputDate.split("/");
+            checkValidDateAndSet(dateMonthYear);
+        } else {
+            logger.warning("add command given by user in the wrong format");
+            throw new RainyDayException(ErrorMessage.INVALID_DATE_FORMAT.toString());
+        }
+    }
+
+    public void checkValidDateAndSet(String[] dateMonthYear) throws RainyDayException {
+        if (dateMonthYear.length != 3) {
+            logger.warning("add command given by user in the wrong format");
+            throw new RainyDayException(ErrorMessage.INVALID_DATE_FORMAT.toString());
+        }
+        String day = getDay(dateMonthYear[0]);
+        String month = getMonth(dateMonthYear[1]);
+        String year = getYear(dateMonthYear[2]);
+        String inputDate = day + "/" + month + "/" + year;
+        this.date = LocalDate.parse(inputDate, DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        checkMatchDate(day, month, year, this.date);
+    }
+
+    private String getDay(String day) throws RainyDayException {
+        if (!isStringOfInteger(day)) {
+            logger.warning("add command given by user in the wrong format");
+            throw new RainyDayException(ErrorMessage.INVALID_DAY.toString());
+        }
+        if (day.length() == 1) {
+            return "0" + day;
+        }
+        int dayInt = Integer.parseInt(day);
+        if (dayInt > 31) {
+            logger.warning("add command given by user in the wrong format");
+            throw new RainyDayException(ErrorMessage.INVALID_DAY.toString());
+        }
+        return day;
+    }
+
+    private String getMonth(String month) throws RainyDayException {
+        if (!isStringOfInteger(month)) {
+            logger.warning("add command given by user in the wrong format");
+            throw new RainyDayException(ErrorMessage.INVALID_MONTH.toString());
+        }
+        if (month.length() == 1) {
+            return "0" + month;
+        }
+        int monthInt = Integer.parseInt(month);
+        if (monthInt > 12) {
+            logger.warning("add command given by user in the wrong format");
+            throw new RainyDayException(ErrorMessage.INVALID_MONTH.toString());
+        }
+        return month;
+    }
+
+    private String getYear(String year) throws RainyDayException {
+        if (!isStringOfInteger(year)) {
+            logger.warning("add command given by user in the wrong format");
+            throw new RainyDayException(ErrorMessage.INVALID_YEAR.toString());
+        }
+        if (year.length() != 4) {
+            logger.warning("add command given by user in the wrong format");
+            throw new RainyDayException(ErrorMessage.INVALID_YEAR.toString());
+        }
+        return String.format("%04d", Integer.parseInt(year));
+    }
+
+    /**
+     * Checks whether a given string only contains digit characters
+     *
+     * @param input input given by the user
+     * @return true if input only contains digit characters, false otherwise
+     */
+    private boolean isStringOfInteger(String input) {
+        input = input.trim();
+        char[] inputInArray = input.toCharArray();
+        for (char c : inputInArray) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void checkMatchDate(String day, String month, String year, LocalDate date) throws RainyDayException {
+        boolean isMatchDay = Integer.parseInt(day) == date.getDayOfMonth();
+        boolean isMatchMonth = Integer.parseInt(month) == date.getMonthValue();
+        boolean isMatchYear = Integer.parseInt(year) == date.getYear();
+        if (!isMatchDay || !isMatchMonth || !isMatchYear) {
+            throw new RainyDayException(ErrorMessage.INVALID_DATE.toString());
+        }
+    }
+
+    //@@author azriellee
     public Command parseDeleteStatement(String userInput) throws RainyDayException {
         String[] tokens = userInput.split("\\s+");
         if (tokens.length != 2) {
