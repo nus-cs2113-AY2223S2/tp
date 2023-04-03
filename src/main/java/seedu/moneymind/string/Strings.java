@@ -38,7 +38,7 @@ public class Strings {
     public static final String NULL_EVENT_ASSERTION = "Event name cannot be null";
     public static final String NON_NEGATIVE_BUDGET_ASSERTION = "Budget cannot be negative";
     public static final String NON_NEGATIVE_EXPENSE_ASSERTION = "Expense cannot be negative";
-    public static final String NO_EVENTS_IN_THIS_CATEGORY_MESSAGE = "Opps! You have no events in this category.";
+    public static final String NO_EVENTS_IN_THIS_CATEGORY_MESSAGE = "Oops! You have no events in this category.";
     public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
     public static final String HORIZONTAL_LINE = "____________________________________________________________";
     public static final String WHITE_SPACE = " ";
