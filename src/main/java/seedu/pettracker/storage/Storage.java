@@ -223,7 +223,7 @@ public class Storage {
     }
 
     private String getTaskName(String line) {
-        String[] words = line.split("\\|", 2);
+        String[] words = line.split("\\|", 3);
         String taskName = words[1];
         return taskName;
     }
