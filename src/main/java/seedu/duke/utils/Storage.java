@@ -40,7 +40,7 @@ public class Storage {
     private static final String VALID_DATAROW_REGEX =
             "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+,\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{9}$";
     private static final String VALID_ALERT_REGEX = "(.+),\\d+,(min|max)$";
-    private static boolean isStorageWriteDone;
+    private static boolean isStorageWriteDone = true;
     private static boolean isRaceConditionDetected;
 
     /**
@@ -93,42 +93,12 @@ public class Storage {
                     Ui.printInvalidSessionFile();
                     return new Inventory();
                 }
-                Item item = new Item(fields[NAME_INDEX], fields[UPC_INDEX], Integer.parseInt(fields[QUANTITY_INDEX]),
-                        Double.parseDouble(fields[PRICE_INDEX]), fields[CAT_INDEX],
-                        LocalDateTime.parse(fields[DATE_INDEX]));
-                if (tempInventory.getUpcCodes().containsKey(fields[UPC_INDEX])) {
-                    if (tempInventory.getUpcCodes().get(fields[UPC_INDEX]).compareTo(item) == BEFORE_INDEX) {
-                        tempInventory.getItemInventory().remove(tempInventory.getUpcCodes().get(fields[UPC_INDEX]));
-                        tempInventory.getItemInventory().add(item);
-                        tempInventory.getUpcCodes().remove(fields[UPC_INDEX]);
-                        tempInventory.getUpcCodes().put(fields[UPC_INDEX], item);
-                    }
-                } else {
-                    tempInventory.getItemInventory().add(item);
-                    tempInventory.getUpcCodes().put(fields[UPC_INDEX], item);
-                }
-                if (!inventory.getUpcCodesHistory().containsKey(item.getUpc())) {
-                    inventory.getUpcCodesHistory().put(item.getUpc(), new ArrayList<>());
-                }
-                inventory.getUpcCodesHistory().get(item.getUpc()).add(new Item(item));
+                Item item = parseItem(fields);
+                updateInventory(tempInventory, item);
+                updateHistory(inventory, item);
                 line = reader.readLine();
             }
-            for (Item item : tempInventory.getItemInventory()) {
-                inventory.getItemInventory().add(item);
-                inventory.getUpcCodes().put(item.getUpc(), item);
-                String[] itemNames = item.getName().toLowerCase().split(" ");
-                for (String itemName : itemNames) {
-                    if (!inventory.getItemNameHash().containsKey(itemName)) {
-                        inventory.getItemNameHash().put(itemName, new ArrayList<>());
-                    }
-                    inventory.getItemNameHash().get(itemName).add(item);
-                    inventory.getTrie().add(itemName);
-                }
-                if (!inventory.getCategoryHash().containsKey(item.getCategory().toLowerCase())) {
-                    inventory.getCategoryHash().put(item.getCategory().toLowerCase(), new ArrayList<>());
-                }
-                inventory.getCategoryHash().get(item.getCategory().toLowerCase()).add(item);
-            }
+            updateInventory(tempInventory);
             reader.close();
         } catch (IOException | NumberFormatException e) {
             Ui.printEmptySessionFile();
@@ -138,6 +108,78 @@ public class Storage {
         Ui.printRecoveredSessionFile();
         return inventory;
     }
+
+    /**
+     * Creates an Item object from the fields in the CSV file.
+     *
+     * @param fields String array of fields delimited by commas
+     * @return Item object
+     */
+    private static Item parseItem(String[] fields) {
+        return new Item(fields[NAME_INDEX], fields[UPC_INDEX], Integer.parseInt(fields[QUANTITY_INDEX]),
+                Double.parseDouble(fields[PRICE_INDEX]), fields[CAT_INDEX],
+                LocalDateTime.parse(fields[DATE_INDEX]));
+    }
+
+    /**
+     * Update the inventory with the item object provided. (History update)
+     *
+     * @param inventory Inventory object to be updated
+     * @param item          Item object to be added
+     */
+
+    private static void updateInventory(Inventory inventory, Item item) {
+        if (inventory.getUpcCodes().containsKey(item.getUpc())) {
+            Item existingItem = inventory.getUpcCodes().get(item.getUpc());
+            if (existingItem.compareTo(item) == BEFORE_INDEX) {
+                inventory.getItemInventory().remove(existingItem);
+                inventory.getUpcCodes().remove(item.getUpc());
+                inventory.getItemInventory().add(item);
+                inventory.getUpcCodes().put(item.getUpc(), item);
+            }
+        } else {
+            inventory.getItemInventory().add(item);
+            inventory.getUpcCodes().put(item.getUpc(), item);
+        }
+    }
+    /**
+     * Updates the hashes.
+     *
+     * @param tempInventory Inventory object to be updated from
+     */
+    private static void updateInventory(Inventory tempInventory) {
+        for (Item item : tempInventory.getItemInventory()) {
+            Storage.inventory.getItemInventory().add(item);
+            Storage.inventory.getUpcCodes().put(item.getUpc(), item);
+            String[] itemNames = item.getName().toLowerCase().split(" ");
+            for (String itemName : itemNames) {
+                if (!Storage.inventory.getItemNameHash().containsKey(itemName)) {
+                    Storage.inventory.getItemNameHash().put(itemName, new ArrayList<>());
+                }
+                Storage.inventory.getItemNameHash().get(itemName).add(item);
+                Storage.inventory.getTrie().add(itemName);
+            }
+            String category = item.getCategory().toLowerCase();
+            if (!Storage.inventory.getCategoryHash().containsKey(category)) {
+                Storage.inventory.getCategoryHash().put(category, new ArrayList<>());
+            }
+            Storage.inventory.getCategoryHash().get(category).add(item);
+        }
+    }
+    /**
+     * Updates the history of the item.
+     *
+     * @param inventory Inventory object to be updated
+     * @param item          Item object to be added
+     */
+    private static void updateHistory(Inventory inventory, Item item) {
+        if (!inventory.getUpcCodesHistory().containsKey(item.getUpc())) {
+            inventory.getUpcCodesHistory().put(item.getUpc(), new ArrayList<>());
+        }
+        inventory.getUpcCodesHistory().get(item.getUpc()).add(new Item(item));
+    }
+
+
 
     /**
      * Writes the current inventory to the CSV file.
@@ -182,13 +224,13 @@ public class Storage {
             for (Map.Entry<String, Integer> entry : alertList.getMinAlertUpcs().entrySet()) {
                 String key = entry.getKey();
                 Integer value = entry.getValue();
-                writer.write(key + "," + Integer.toString(value) + "," + "min" + "\n");
+                writer.write(key + "," + value + "," + "min" + "\n");
             }
 
             for (Map.Entry<String, Integer> entry : alertList.getMaxAlertUpcs().entrySet()) {
                 String key = entry.getKey();
                 Integer value = entry.getValue();
-                writer.write(key + "," + Integer.toString(value) + "," + "max" + "\n");
+                writer.write(key + "," + value + "," + "max" + "\n");
             }
 
             writer.close();
