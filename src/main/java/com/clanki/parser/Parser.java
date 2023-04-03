@@ -13,6 +13,7 @@ import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
 import com.clanki.exceptions.NoQueryInInputException;
+import com.clanki.exceptions.UpdatedContentIsEmptyException;
 
 
 public class Parser {
@@ -114,4 +115,54 @@ public class Parser {
     public static ByeCommand getByeCommand(ParsedInput parsedInput) {
         return new ByeCommand();
     }
+
+    public static int getIndexForUpdateCommand(String userInput) {
+        ParsedInput parsedInput = new ParsedInput(userInput);
+        String index = parsedInput.getCommand();
+        return Integer.parseInt(index) - 1;
+    }
+
+    public static String getIdentifierForUpdateCommand(String userInput) throws InvalidIdentifierException {
+        String[] userTexts = userInput.split(" ", 3);
+        String identifier = null;
+        if (userTexts[1] == null) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        if (userTexts[1].equals("/q")) {
+            identifier = "q";
+        }
+        if (userTexts[1].equals("/a")) {
+            identifier = "a";
+        }
+        if (userTexts[1].equals("/d")) {
+            identifier = "d";
+        }
+        return identifier;
+    }
+
+    public static String parseInputForUpdateCommand(String userInput) throws InvalidIdentifierException, UpdatedContentIsEmptyException {
+        ParsedInput parsedInput = new ParsedInput(userInput);
+        String identifier = getIdentifierForUpdateCommand(userInput);
+        String updatedContent = null;
+        if (identifier == null) {
+            throw new InvalidIdentifierException();
+        }
+        if (identifier.equals("q")) {
+            updatedContent = parsedInput.getOptionByName("q");
+        }
+        if (identifier.equals("a")) {
+            updatedContent = parsedInput.getOptionByName("a");
+        }
+        if (identifier.equals("d")) {
+            updatedContent = parsedInput.getOptionByName("d");
+        }
+        if (updatedContent.isEmpty()) {
+            throw new UpdatedContentIsEmptyException();
+        }
+        if (updatedContent == null) {
+            throw new InvalidIdentifierException();
+        }
+        return updatedContent;
+    }
+
 }
