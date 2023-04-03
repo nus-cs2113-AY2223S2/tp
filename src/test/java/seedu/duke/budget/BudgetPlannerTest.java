@@ -1,12 +1,15 @@
 package seedu.duke.budget;
 
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BudgetPlannerTest {
 
     private static final String BUDGET_PATH = "data/budget.txt";
@@ -175,7 +178,7 @@ class BudgetPlannerTest {
 
     @Test
     @Order(22)
-    void getSurplus() {
+    void getSurplus_correctInteger_success() {
         int testPrice = 12;
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertEquals(0, budgetPlanner.getSurplus());
@@ -186,7 +189,7 @@ class BudgetPlannerTest {
 
     @Test
     @Order(18)
-    void getAccommodationTotalCost() {
+    void getAccommodationTotalCost_correctInteger_success() {
         int testPrice = 12;
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertEquals(0, budgetPlanner.getAccommodationTotalCost());
@@ -197,7 +200,7 @@ class BudgetPlannerTest {
 
     @Test
     @Order(19)
-    void getAirplaneTicketTotalCost() {
+    void getAirplaneTicketTotalCost_correctInteger_success() {
         int testPrice = 12;
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertEquals(0, budgetPlanner.getAirplaneTicketTotalCost());
@@ -208,7 +211,7 @@ class BudgetPlannerTest {
 
     @Test
     @Order(20)
-    void getFoodTotalCost() {
+    void getFoodTotalCost_correctInteger_success() {
         int testPrice = 12;
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertEquals(0, budgetPlanner.getFoodTotalCost());
@@ -219,7 +222,7 @@ class BudgetPlannerTest {
 
     @Test
     @Order(21)
-    void getEntertainmentTotalCost() {
+    void getEntertainmentTotalCost_correctInteger_success() {
         int testPrice = 12;
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertEquals(0, budgetPlanner.getEntertainmentTotalCost());
