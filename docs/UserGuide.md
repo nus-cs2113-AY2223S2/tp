@@ -357,11 +357,6 @@ Expected outcome:
 Goodbye!
 ````
 
-### 18) View Help Manual: `Help.`
-
-View the content of Help Manual.
-Format: `Help.`
-
 ## FAQ
 
 **Q**: How do I start and run BadMaths?
