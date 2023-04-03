@@ -13,6 +13,7 @@ import seedu.pettracker.commands.ListTasksCommand;
 import seedu.pettracker.commands.MarkTaskCommand;
 import seedu.pettracker.commands.UnMarkTaskCommand;
 import seedu.pettracker.exceptions.EmptyArgException;
+import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.exceptions.UnknownKeywordException;
 
 
@@ -51,7 +52,7 @@ class CommandParserTest {
     @Test
     void parseAddPetNoArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(EmptyArgException.class, () -> cp.newCommand("add-pet"));
+        assertThrows(EmptyPetNameException.class, () -> cp.newCommand("add-pet"));
     }
 
     @Test
@@ -63,7 +64,7 @@ class CommandParserTest {
     @Test
     void parseRemovePetNoArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(EmptyArgException.class, () -> cp.newCommand("remove-pet"));
+        assertThrows(EmptyPetNameException.class, () -> cp.newCommand("remove-pet"));
     }
 
     @Test
@@ -87,7 +88,7 @@ class CommandParserTest {
     @Test
     void parseRemoveStatNoArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(AssertionError.class, () -> cp.newCommand("remove-stat"));
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("remove-stat"));
     }
 
     @Test
