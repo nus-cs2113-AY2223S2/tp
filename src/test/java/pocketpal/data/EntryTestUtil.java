@@ -30,4 +30,9 @@ public abstract class EntryTestUtil extends BackendTestUtil {
             399,
             Category.MEDICAL);
 
+    protected static final Entry ENTRY_7 = new Entry(
+            "January salary",
+            5600,
+            Category.INCOME);
+
 }

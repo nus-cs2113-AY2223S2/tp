@@ -19,8 +19,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Represents the add feature in PocketPal. Users must specify a description,
- * a corresponding price and category of their entry
+ * Represents the add feature in PocketPal. Users may provide
+ * a description and specify the corresponding price and
+ * category of their entry
  * e.g., <code>/add lunch -d chicken rice -p 15 -c food</code>
  */
 public class AddCommand extends Command {
