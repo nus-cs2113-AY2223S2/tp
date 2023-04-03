@@ -14,11 +14,11 @@ Dr. Duke is a medical commandline interface (CLI) software designed for clinics 
 * **Added features** :
 
   * Added symptom repository [#22](https://github.com/AY2223S2-CS2113-W13-1/tp/pull/22):
-    * **What it does**: Holds information of all 59 common symptoms of which includes, but is not limited to: throat irritation, headache, sleeplessness, loss of taste or smell and many more.
+    * **What it does**: Holds information of all 59 common symptoms of which includes, but is not limited to: throat irritation, headache, sleeplessness, loss of taste or smell and many more. Uses actual symptoms from common illnesses.
     * **Justification**: These common symptoms will be used in higher levels in the software and allows the illnesses that commonly share them to reuse this clearly defined library. This will also be used in the main user interface and symptom history for the patient to indicate their symptoms and have them be stored.
 
   * Added illness repository [#22](https://github.com/AY2223S2-CS2113-W13-1/tp/pull/22):
-    * **What it does**: Holds information of all 39 common and non-sever classified illnesses which includes but is not limited to: common cold, coronavirus, migraine, conjunctivitis, and many more.
+    * **What it does**: Holds information of all 39 common and non-sever classified illnesses which includes but is not limited to: common cold, coronavirus, migraine, conjunctivitis, and many more. List many actual common illnesses.
     * **Justification**: Each illness contains information about their common symptoms and severity and is useful for the diagnosis process to easily identify what each illness entails. This clearly defined list of illnesses will be useful for keeping records on the patient's medical history.
 
   * Added the diagnosis process [#22](https://github.com/AY2223S2-CS2113-W13-1/tp/pull/22):
