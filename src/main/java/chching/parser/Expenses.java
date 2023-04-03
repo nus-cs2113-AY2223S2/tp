@@ -21,14 +21,18 @@ public class Expenses {
      * @param expenseDateString     Input from users
      */
     public static LocalDate parseDate(String expenseDateString) throws ChChingException {
+        LocalDate expenseDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                .withResolverStyle(ResolverStyle.STRICT);
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
-                    .withResolverStyle(ResolverStyle.STRICT);
-            LocalDate expenseDate = LocalDate.parse(expenseDateString, formatter);
-            return expenseDate;
+            expenseDate = LocalDate.parse(expenseDateString, formatter);
         } catch (DateTimeParseException e) {
             throw new ChChingException("Date must be valid with format: dd-MM-yyyy");
         }
+        if (expenseDate.isAfter(LocalDate.now())) {
+            throw new ChChingException("Date cannot be in the future");
+        }
+        return expenseDate;
     }
 
     /**

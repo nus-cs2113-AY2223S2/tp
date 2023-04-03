@@ -11,14 +11,18 @@ import java.util.HashMap;
 
 public class Incomes {
     public static LocalDate parseDate(String incomeDateString) throws ChChingException {
+        LocalDate incomeDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                .withResolverStyle(ResolverStyle.STRICT);
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
-                    .withResolverStyle(ResolverStyle.STRICT);
-            LocalDate incomeDate = LocalDate.parse(incomeDateString, formatter);
-            return incomeDate;
+            incomeDate = LocalDate.parse(incomeDateString, formatter);
         } catch (DateTimeParseException e) {
             throw new ChChingException("Date must be valid with format: dd-MM-yyyy");
         }
+        if (incomeDate.isAfter(LocalDate.now())) {
+            throw new ChChingException("Date cannot be in the future");
+        }
+        return incomeDate;
     }
 
     /**
