@@ -215,7 +215,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
 
         for (Timetable timetable : timetableList) {
             LessonType checkType = determineLessonType(timetable.getLessonType());
-            assert (checkType != null) : "ShowModuleCommand: Lesson type should not be null!";
+            assert (checkType != null) : "ListModuleWithLessonCommand: Lesson type should not be null!";
 
             if (checkType.equals(lessonType)) {
                 copyList.add(timetable);
