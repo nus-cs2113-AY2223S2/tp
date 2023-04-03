@@ -38,10 +38,20 @@ public class Reminder {
         for (Event event : category.getEvents()) {
             if (event.getTime() != null && isApproaching(event.getTime())) {
                 reminder += category.getName() + " has an event: " + event.getDescription() 
-                        + " in " + numberDaysAway(event.getTime()) + " days" + NEW_LINE;
+                        + stringOfDaysAway(event);
             }
         }
         return reminder;
+    }
+
+    private static String stringOfDaysAway(Event event) {
+        if (numberDaysAway(event.getTime()) > 1) {
+            return " in " + numberDaysAway(event.getTime()) + " days" + NEW_LINE;
+        } else if (numberDaysAway(event.getTime()) == 1) {
+            return "in 1 day" + NEW_LINE;
+        } else {
+            return "today" + NEW_LINE;
+        }
     }
     
 }
