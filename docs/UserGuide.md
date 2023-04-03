@@ -1,28 +1,30 @@
 <!-- omit in toc -->
+
 # User Guide
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
 - [Features](#features)
-  - [Adding an expense: `/add`](#adding-an-expense-add)
-  - [Deleting an expense: `/delete`](#deleting-an-expense-delete)
-  - [Edit an expense: `/edit`](#edit-an-expense-edit)
-  - [View an expense: `/view`](#view-an-expense-view)
-  - [Show help menu: `/help`](#show-help-menu-help)
-  - [Exit Program: `/bye`](#exit-program-bye)
-  - [Supported Categories](#supported-categories)
+    - [Adding an expense: `/add`](#adding-an-expense-add)
+    - [Deleting an expense: `/delete`](#deleting-an-expense-delete)
+    - [Edit an expense: `/edit`](#edit-an-expense-edit)
+    - [View an expense: `/view`](#view-an-expense-view)
+    - [Show help menu: `/help`](#show-help-menu-help)
+    - [Exit Program: `/bye`](#exit-program-bye)
+    - [Supported Categories](#supported-categories)
 - [Command Summary](#command-summary)
 - [Frequently Asked Questions](#frequently-asked-questions)
 
 ## Getting Started
 
 1. Ensure that you have Java `11` and above
-  installed [(Installation Guide)](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
+   installed [(Installation Guide)](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
 2. Download our latest release of `PocketPal.jar` [here](https://github.com/AY2223S2-CS2113-W15-2/tp/releases)
 3. Run the application
-  with `java -jar PocketPal.jar` [(Running JAR Guide)](https://se-education.org/guides/tutorials/jar.html#running-jar-files)
+   with `java -jar PocketPal.jar` [(Running JAR Guide)](https://se-education.org/guides/tutorials/jar.html#running-jar-files)
 4. You should see the following welcome screen
    ```
    Welcome to
@@ -38,7 +40,7 @@
    Enter a command or /help to see the list of commands available.
    > 
    ```
-5. To enter an entry, you may use [`/add`](#adding-an-expense-add-add), 
+5. To enter an entry, you may use [`/add`](#adding-an-expense-add-add),
    or enter [`/help`](#show-help-menu-help-help) to view the help menu.
 
 <!-- @@author adenteo -->
@@ -48,15 +50,19 @@
 ## Features
 
 This user guide adopts the following conventions for the command-line syntax:
+
 + Angle brackets (`<>`) indicate that the enclosed arguments are mandatory.
 + Square brackets (`[]`) indicate that the enclosed arguments are optional.
 + Ellipsis (`...`) indicate that the preceding argument can be repeated several times in one command.
-+ Pipe or vertical line (`|`) indicates a choice within an argument. You can select either one of them, but cannot select more than one.
++ Pipe or vertical line (`|`) indicates a choice within an argument. You can select either one of them, but cannot
+  select more than one.
+
+All arguments starting with a single dash (`-`) will be treated as options.
 
 If you face any problems, do visit the [FAQ](#frequently-asked-questions) segment!
 
 | Command                                |                      Function                       |
-| -------------------------------------- | :-------------------------------------------------: |
+|----------------------------------------|:---------------------------------------------------:|
 | [/add](#adding-an-expense-add)         |                   Adds an expense                   |
 | [/delete](#deleting-an-expense-delete) |                 Deletes an expense                  |
 | [/edit](#edit-an-expense-edit)         |                  Edits an expense                   |
@@ -75,16 +81,17 @@ Adds an expense to your current expenditure.
 Format: `/add -d <description> -c <category> -p <price>`
 
 Options:
+
 - `-d | -description`: Description of the expense.
-  - All characters except comma (,) are valid.
-  - Multiple words are allowed. 
+    - All characters except comma (,) are valid.
+    - Multiple words separated by spaces are allowed. However, a word should not start with dash (`-`) or it will be
+      treated as an option.
 - `-c | -category`: Category of the expense.
-  - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
-  - Non case-sensitive.
+    - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
+    - Non case-sensitive.
 - `-p | -price`: Price of the expense.
     - Must be a non-negative numeric or decimal value.
 - The order of the options are interchangeable, but they are all **required**.
-
 
 Example of usage:
 
@@ -107,8 +114,8 @@ The expense IDs can be obtained from the [`/view`](#view-an-expense-view) comman
 Format: `/delete <index> [additional_index...]`
 
 - `index`, `additional_index`: Index of the expense to be deleted.
-  - Index must be a positive integer. The maximum index allowed is the total number of existing expenses.
-  - Additional indexes must be separated by spaces.
+    - Index must be a positive integer. The maximum index allowed is the total number of existing expenses.
+    - Additional indexes must be separated by spaces.
 
 Example of usage:
 
@@ -124,24 +131,26 @@ Example of usage:
 
 Edits a specified expense in your current expenditure with the given flag(s).
 
-Format: `/edit <index> [options]` 
+Format: `/edit <index> [options]`
 
 - `index`: Index of the expense to be deleted.
-  - Must be a positive integer. The maximum index allowed is the number of existing expenses.
-  
+    - Must be a positive integer. The maximum index allowed is the number of existing expenses.
+
 Options:
+
 - `-d | -description` `<description>`: New description of the expense.
-  - All characters except comma (,) are valid.
-  - Multiple words are allowed.
+    - All characters except comma (,) are valid.
+    - Multiple words are allowed.
 - `-c | -category` `<category>`: New category of the expense.
-  - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
-  - Non case-sensitive.
+    - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
+    - Non case-sensitive.
 - `-p | -price` `<price>`: New price of the expense.
-  - Must be a non-negative numeric or decimal value.
+    - Must be a non-negative numeric or decimal value.
 
 The order of the options are interchangeable.
 
-If none of the options are specified,or if they are provided with empty values, the corresponding expense fields will remain unchanged.
+If none of the options are specified,or if they are provided with empty values, the corresponding expense fields will
+remain unchanged.
 
 Example of usage:
 
@@ -159,34 +168,41 @@ Displays a list of your current expenditure.
 
 Format: `/view [count] [filter_options]`
 
-- `count`: Number of expenses to be listed. 
-  - Must be a positive integer. 
-  - If not specified, or if count is greater than number of existing expenses, all expenses will be listed.
+- `count`: Number of expenses to be listed.
+    - Must be a positive integer.
+    - If not specified, or if count is greater than number of existing expenses, all expenses will be listed.
 
 ### Filter options
+
 **Filter by category**
+
 - `-c | -category`  `<category>`: Category of expenses to be listed.
-  - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
-  - Non case-sensitive.
-  - If not specified, expenses of all categories will be listed.
+    - Must be a **one-word** category currently [supported](#supported-categories) in PocketPal.
+    - Non case-sensitive.
+    - If not specified, expenses of all categories will be listed.
 
 **Filter by price**
+
 - `-p | -price` `<min_price>`: Minimum price of expenses to be listed.
 - `-p | -price` `<max_price>` Maximum price of expenses to be listed.
 
 Note:
-  - If `max_price` and `min_price` are both specified, all expenses between `min_price` and `max_price` **inclusive** will be listed. 
-  - If only `min_price` is specified, all expenses greater than or equal to `min_price` will be listed. 
-  - `min_price` must be smaller than `max_price`. i.e. **`min_price` should be entered before `max_price`.**
+
+- If `max_price` and `min_price` are both specified, all expenses between `min_price` and `max_price` **inclusive** will
+  be listed.
+- If only `min_price` is specified, all expenses greater than or equal to `min_price` will be listed.
+- `min_price` must be smaller than `max_price`. i.e. **`min_price` should be entered before `max_price`.**
 
 **Filter by date range**
+
 - `-sd, -startdate` `<start_date>`: Starting date of expenses to be listed.
 - `-ed, -enddate` `<end_date>`: Ending date of expenses to be listed.
 
 Note:
-  - `start_date`, `end_date` must be in `dd/MM/yy` format. 
-  - Both flags are **required** if user wishes to use this
-    option.
+
+- `start_date`, `end_date` must be in `dd/MM/yy` format.
+- Both flags are **required** if user wishes to use this
+  option.
 
 Order of options are interchangeable.
 
@@ -256,30 +272,30 @@ These are the categories currently supported by PocketPal:
 > __Q:__ I am facing trouble starting the application. Do you know what might be the issue?
 >
 > __A:__ Please ensure that you have Java `11` and above installed on your machine.
->        You may find more instructions at the [Getting Started](#getting-started) section
+> You may find more instructions at the [Getting Started](#getting-started) section
 
 > __Q:__ How do I know whether the data entered is saved?
 >
 > __A:__ Your data is saved automatically when you interact with the application.
->        There is no need to manually perform the save operation.
+> There is no need to manually perform the save operation.
 
 > __Q:__ How do I transfer my application data to another computer?
-> 
+>
 > __A:__ Your application data stored in `data/storage.txt`. To use PocketPal on another device,
->        simply copy the `data` folder to the same directory as `PocketPal.jar` and start the
->        application as per normal. Your stored entries will be automatically loaded.
+> simply copy the `data` folder to the same directory as `PocketPal.jar` and start the
+> application as per normal. Your stored entries will be automatically loaded.
 
 > __Q:__ My application crashed. How do I report the problem to the developers?
 >
 > __A:__ We are sorry for the unpleasant experience with PocketPal, and we would be more than happy
->        to solve the issue. You may file an issue on our GitHub stating how you arrived at the 
->        problem, so that our developers can assist you with the issue. Please also attach the application 
->        logs, which can be found at `logs/pocketpal.txt`
+> to solve the issue. You may file an issue on our GitHub stating how you arrived at the
+> problem, so that our developers can assist you with the issue. Please also attach the application
+> logs, which can be found at `logs/pocketpal.txt`
 
 > __Q:__ I am developer. How can I find the source code and contribute to PocketPal?
 >
 > __A:__ PocketPal is an open-source application, and we welcome developers to share their ideas.
->        You may find the source code on [GitHub](https://github.com/AY2223S2-CS2113-W15-2/tp/).
+> You may find the source code on [GitHub](https://github.com/AY2223S2-CS2113-W15-2/tp/).
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
