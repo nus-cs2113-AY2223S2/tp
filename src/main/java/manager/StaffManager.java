@@ -30,6 +30,7 @@ public class StaffManager {
             staffs.add(staff);
             StaffStorage staffStorage = new StaffStorage();
             staffStorage.writeToStaffFile(staffs);
+            ui.printMessage(staff + " added!");
         } catch (IOException e) {
             ui.printMessage(String.format(Messages.ERROR_STORAGE_INVALID_WRITE_LINE, staff));
         } catch (DinerDirectorException e) {

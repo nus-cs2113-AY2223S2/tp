@@ -34,7 +34,6 @@ public class AddStaffCommand extends Command {
     public void execute(TextUi ui) {
         Staff staff = new Staff(this.name, this.workingDay, this.dateOfBirth, this.phoneNumber);
         StaffManager.addStaff(staff, ui);
-        ui.printMessage(staff + " added!");
     }
 
     /**

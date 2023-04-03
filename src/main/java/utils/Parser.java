@@ -191,9 +191,10 @@ public class Parser {
                     throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_PHONE_NUMBER);
                 }
                 staffDateOfBirth = matcher.group("dateOfBirth");
-                if (staffWorkingDay.equals("")) {
+                if (staffDateOfBirth.equals("") || staffDateOfBirth.length() != 10) {
                     throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_DATE_OF_BIRTH);
                 }
+
                 LocalDate today = LocalDate.now();
                 LocalDate parsedStaffDateOfBirth = LocalDate.parse(staffDateOfBirth);
                 if (parsedStaffDateOfBirth.isAfter(today)) {
