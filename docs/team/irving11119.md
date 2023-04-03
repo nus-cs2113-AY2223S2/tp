@@ -9,7 +9,7 @@
 - Added the ability to add modules to the module list and add classes to timetable
 - Added the ability to delete modules by index and delete classes from timetable
 - Added the ability to show class information for a module
-  - Added backend data integration with NUSMods API
+- Added backend data integration with NUSMods API
 - Contributed to JUnit tests with full branch coverage for AddModuleCommand, DeleteModuleCommand, AddClassCommand, DeleteClassCommand, ShowModuleCommand
 #### Contributions to the UG
 - Added/Elaborated on the following sections to the UG:
