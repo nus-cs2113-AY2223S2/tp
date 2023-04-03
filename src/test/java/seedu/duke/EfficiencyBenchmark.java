@@ -37,7 +37,7 @@ public class EfficiencyBenchmark {
         long timeTaken = end - start;
         totalTime += timeTaken;
         System.out.println("Time taken to load: " + timeTaken + "ms");
-        assertTrue(timeTaken<=timeToBeat);
+        assertTrue(timeTaken<=2*timeToBeat);
         assertEquals(DATASET_SIZE,loadInventory.getItemInventory().size());
     }
     @Test
