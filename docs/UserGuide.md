@@ -121,7 +121,6 @@ View the deadline list.
 
 Format: `view_deadlines`
 
-Note: The price of dishes will be shown in dollars.
 
 #### Delete a deadline:
 Format: `delete_deadline <index>`
