@@ -1,0 +1,21 @@
+.markdown-section p.tip {
+   color: #ffffff;
+}
+
+.markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section strong {
+
+   color: #f66;
+}
+
+.markdown-section code {
+   color: #fff;
+}
+.markdown-section pre > code {
+    color: #9eadb3;
+}
+
+.markdown-section p.tip code {
+background-color: #f66;}
+
+.markdown-section tr:nth-child(2n) {
+    background-color: #3f3f3f;

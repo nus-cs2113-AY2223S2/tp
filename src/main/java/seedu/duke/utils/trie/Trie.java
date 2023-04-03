@@ -28,6 +28,7 @@ public class Trie {
 
     /**
      * Removes a word from the trie object.
+     * Does not actually delete any nodes from memory, only sets the word boolean in the endpoint node to false.
      *
      * @param word The word to be removed.
      */

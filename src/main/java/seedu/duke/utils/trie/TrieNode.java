@@ -16,7 +16,7 @@ public class TrieNode {
     }
 
     /**
-     * Returns an ArrayList of children for the node.
+     * Returns an ArrayList of children for the node. Returns an empty ArrayList if there are none.
      *
      * @return An ArrayList of children for the node.
      */
@@ -30,7 +30,7 @@ public class TrieNode {
     }
 
     /**
-     * Returns the content of the node.
+     * Returns the content of the node, or the string stored at this node.
      *
      * @return The content of the node in a string.
      */
@@ -58,6 +58,7 @@ public class TrieNode {
 
     /**
      * Checks if a child exists under the node.
+     * For example, if this "abc" leads to "abcd", doesChildExist('d') would return true.
      *
      * @param key Child to check if it exists under the node.
      * @return True if the child exists, false otherwise.
@@ -68,6 +69,7 @@ public class TrieNode {
 
     /**
      * Adds a child to the node.
+     * For example, if this "abc" leads to "abcd", use addChild('d').
      *
      * @param key Child to be added to the node.
      */

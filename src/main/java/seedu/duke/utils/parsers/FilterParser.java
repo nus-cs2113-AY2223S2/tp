@@ -40,14 +40,14 @@ public class FilterParser extends Parser{
     }
 
     /**
-     * Handles the "filter f/[category/tag]" command by checking the validity of search term provided before
+     * Handles the "filter f/[category]" command by checking the validity of search term provided before
      * passing to the relevant command.
      *
      * @param commands keywords in a string array
      * @param mode filter mode
      * @param inventory inventory to filter items from
      */
-    private void parseFilterCategoryOrTag(String[] commands, String mode, Inventory inventory) {
+    private void parseFilterCategory(String[] commands, String mode, Inventory inventory) {
         String keyword = "";
         for (int i = 1; i < commands.length; i++) {
             keyword += commands[i];
@@ -78,11 +78,10 @@ public class FilterParser extends Parser{
                 parseFilterPrice(commands, inventory);
                 break;
             case "f/category":
-            case "f/tag":
                 if (commands.length < 2) {
                     throw new SearchFilterErrorException();
                 }
-                parseFilterCategoryOrTag(commands, commands[0], inventory);
+                parseFilterCategory(commands, commands[0], inventory);
                 break;
             default:
                 throw new SearchFilterErrorException();

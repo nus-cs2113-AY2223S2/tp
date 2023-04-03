@@ -18,7 +18,6 @@ public class Types {
         PRICE_DECREASE,
         RENAME,
         RECATEGORIZE,
-        CHANGE_TAG,
         SOLD,
         BOUGHT
     }
