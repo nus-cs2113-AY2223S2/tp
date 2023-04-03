@@ -727,4 +727,84 @@ public class Ui {
                 "using the deadline command instead.\n");
     }
 
+
+    /**
+     * Prints a help message for date command
+     */
+    public void printDateHelpMessage() {
+        System.out.println("Shows all tasks in Apollo that occur on the specified date.\n" +
+                "\n" +
+                "Format: `date DATE`\n" +
+                "\n" +
+                "Note: `DATE` should be entered in the format `yyyy-MM-dd`.");
+    }
+    /**
+     * Prints a help message for find command
+     */
+    public void printFindHelpMessage() {
+        System.out.println("Shows all tasks in Apollo that contain the specified keyword.\n" +
+                "\n" +
+                "Format: `find KEYWORD`");
+    }
+    /**
+     * Prints a help message for delete command
+     */
+    public void printDeleteHelpMessage() {
+        System.out.println("Deletes the specified task from Apollo.\n" +
+                "\n" +
+                "Format: `delete IDX`\n" +
+                "\n" +
+                "Note: `IDX` can be obtained by using `list` to find the task's index.\n");
+    }
+    /**
+     * Prints a help message for unmark command
+     */
+    public void printUnmarkHelpMessage() {
+        System.out.println("Marks the specified task as not completed.  \n" +
+                "\n" +
+                "Format: `unmark IDX`\n" +
+                "\n" +
+                "Note: `IDX` can be obtained by using `list` to find the task's index.");
+    }
+    /**
+     * Prints a help message for mark command
+     */
+    public void printMarkHelpMessage() {
+        System.out.println("Marks the specified task as completed.\n" +
+                "\n" +
+                "Format: `mark IDX`\n" +
+                "\n" +
+                "Note: `IDX` can be obtained by using `list` to find the task's index.");
+    }
+    /**
+     * Prints a help message for event command
+     */
+    public void printEventHelpMessage() {
+        System.out.println("Adds a task with a start and end date to Apollo.\n" +
+                "If there is an event in the tasklist that is clashing with any event added previously " +
+                "a warning message will be printed. \n" +
+                "However, you will still be able to add it. ");
+    }
+    /**
+     * Prints a help message for list command
+     */
+    public void printListHelpCommand() {
+        System.out.println("Shows a numbered list of all tasks (Todos, Events, Deadlines) in Apollo. " +
+                "`list` automatically sorts the tasks by type, \n" +
+                "then date within each type.");
+    }
+    /**
+     * Prints a help message for todo command
+     */
+    public void printTodoHelpMessage() {
+        System.out.println("Adds a normal task to Apollo with format: `todo TASK`");
+    }
+    /**
+     * Prints a help message for deadline command
+     */
+    public void printDeadlineHelpMessage() {
+        System.out.println("Adds a task with a due date to Apollo with format: `deadline TASK /by DATE` \n" +
+                "If deadline clashes with any event or lesson type you will be alerted through a warning message. \n" +
+                "However, you will still be able to add it into the tasklist.");
+    }
 }
