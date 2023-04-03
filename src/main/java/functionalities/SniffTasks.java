@@ -60,7 +60,6 @@ public class SniffTasks {
             assert newAppointment.animal.name == animal.name : "consultation animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
-            appointmentCount++;
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" Invalid consultation description!");
         }
@@ -81,7 +80,6 @@ public class SniffTasks {
             assert newAppointment.animal.name == animal.name : "vaccination animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
-            appointmentCount++;
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" Invalid vaccination description!");
         }
@@ -104,7 +102,6 @@ public class SniffTasks {
             assert newAppointment.animal.name == animal.name : "surgery animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
-            appointmentCount++;
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" Invalid surgery description!");
         }
@@ -116,7 +113,7 @@ public class SniffTasks {
                 throw new SniffException(" There are no appointments with this ID.");
             }
             int index = 0;
-            for (int i = 0; i < appointmentCount; i++) {
+            for (int i = 0; i < APPOINTMENTS.size(); i++) {
                 if (uid.equals(APPOINTMENTS.get(i).uid)) {
                     index = i;
                     break;
@@ -126,7 +123,6 @@ public class SniffTasks {
             APPOINTMENTS.remove(index);
             UIDS.remove(uid);
             Ui.printAppointmentRemovedMessage(temp);
-            appointmentCount--;
             assert appointmentCount >= 0 : "Appointment count cannot be less than 0";
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The remove command entry is invalid!");
@@ -195,13 +191,14 @@ public class SniffTasks {
         }
     }
 
+    //@@author 11-Navya
     public void markAppointment(String uid) throws SniffException {
         try {
             if (!UIDS.contains(uid)) {
                 throw new SniffException(" There are no appointments with this ID.");
             }
             int index = 0;
-            for (int i = 0; i < appointmentCount; i++) {
+            for (int i = 0; i < APPOINTMENTS.size(); i++) {
                 if (uid.equals(APPOINTMENTS.get(i).uid)) {
                     index = i;
                     break;
@@ -216,13 +213,14 @@ public class SniffTasks {
 
     }
 
+
     public void unmarkAppointment(String uid) throws SniffException {
         try {
             if (!UIDS.contains(uid)) {
                 throw new SniffException(" There are no appointments with this ID.");
             }
             int index = 0;
-            for (int i = 0; i < appointmentCount; i++) {
+            for (int i = 0; i < APPOINTMENTS.size(); i++) {
                 if (uid.equals(APPOINTMENTS.get(i).uid)) {
                     index = i;
                     break;
