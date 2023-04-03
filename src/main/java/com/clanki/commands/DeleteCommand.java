@@ -10,11 +10,9 @@ public class DeleteCommand extends Command {
 
     ArrayList<Flashcard> matchingFlashcards = new ArrayList<>();
     String query;
-    int index;
 
     public DeleteCommand(String query) {
         this.query = query;
-        this.index = index;
     }
 
     public void findFlashcard(ArrayList<Flashcard> flashcards, String query) {
@@ -43,7 +41,8 @@ public class DeleteCommand extends Command {
     public void execute(FlashcardList flashcardList, Ui display) {
         ArrayList<Flashcard> flashcards = flashcardList.getFlashCards();
         findFlashcard(flashcards, query);
-        System.out.println("Found " + matchingFlashcards.size() + " cards with query \"" + query + "\":");
+        System.out.println(
+                "Found " + matchingFlashcards.size() + " cards with query \"" + query + "\":");
         printFlashCardList(matchingFlashcards);
         System.out.println("Which one do you want to delete?");
 
