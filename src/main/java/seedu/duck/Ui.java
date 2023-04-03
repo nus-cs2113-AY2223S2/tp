@@ -63,7 +63,7 @@ public class Ui {
         borderLine();
         System.out.println("\t Here is your class schedule:\n");
         while (iterator.hasNext()) {
-            System.out.println("\t"+iterator.next());
+            System.out.println("\t" + iterator.next());
         }
         borderLine();
     }
@@ -285,7 +285,7 @@ public class Ui {
     static void displayUpcomingDeadline(ArrayList<Task> tasks) {
         System.out.println("\t Here are the upcoming deadline:  ");
         int count = 0;
-        for (Task t:tasks) {
+        for (Task t : tasks) {
             if (t instanceof Deadline && !(t instanceof RecurringDeadline)) {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
                 String deadline = ((Deadline) t).getDeadline();
@@ -295,8 +295,37 @@ public class Ui {
                     d = format.parse(deadline);
                     long diff = d.getTime() - n.getTime();
                     String di = getTimeDiff(diff);
-                    String description = t.getDescription().replace("deadline ", "");
+                    String description = t.getDescription().replace("Deadlines", "");
                     System.out.println("\t " + (count + 1) + "." + description + " (" + di + "before the deadline)");
+                    count++;
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        borderLine();
+    }
+
+    /**
+     * Display upcoming event
+     *
+     * @param tasks tasks store in the file
+     */
+    static void displayUpcomingEvent(ArrayList<Task> tasks) {
+        System.out.println("\t Here are the upcoming event:  ");
+        int count = 0;
+        for (Task t : tasks) {
+            if (t instanceof Event && !(t instanceof RecurringEvent)) {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+                String deadline = ((Event) t).getStart();
+                Date d;
+                Date n = new Date();
+                try {
+                    d = format.parse(deadline);
+                    long diff = d.getTime() - n.getTime();
+                    String di = getTimeDiff(diff);
+                    String description = t.getDescription().replace("Events", "");
+                    System.out.println("\t " + (count + 1) + "." + description + " (" + di + "before the event start)");
                     count++;
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -319,7 +348,7 @@ public class Ui {
         Date d;
         Date n = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
-        for (Task t:tasks) {
+        for (Task t : tasks) {
             String timeUntilTask = null;
             if (t instanceof Deadline && !(t instanceof RecurringDeadline)) {
                 timeUntilTask = ((Deadline) t).getDeadline();
@@ -344,6 +373,88 @@ public class Ui {
                     e.printStackTrace();
                 }
             }
+        }
+        borderLine();
+    }
+
+    /**
+     * Prints the list of events in x days in the future
+     *
+     * @param tasks the array list of all the tasks
+     * @param days  the required the number of days x from now onwards
+     */
+    static void printUpcomingEvents(ArrayList<Task> tasks, String days) {
+        borderLine();
+        System.out.println("\t Here are your events in " + days + " days:");
+        int count = 0;
+        Date d;
+        Date n = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        boolean noEvent = true;
+        for (Task t:tasks) {
+            String timeUntilTask;
+            if (t instanceof Event && !(t instanceof RecurringEvent)) {
+                noEvent = false;
+                timeUntilTask = ((Event) t).getStart();
+                try {
+                    d = format.parse(timeUntilTask);
+                    long diff = d.getTime() - n.getTime();
+                    String di = getTimeDiff(diff);
+                    String[] diffSplit = di.split(" ");
+                    if (diffSplit.length >= 2 && ((diffSplit[1].contains("day") && Integer.parseInt(diffSplit[0])
+                            <= Integer.parseInt(days)) || diffSplit[1].contains("hour")
+                            || diffSplit[1].contains("minute"))) {
+                        count++;
+                        System.out.println("\t " + count + "." + t);
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (noEvent) {
+            System.out.println("\t No Upcoming Events!");
+        }
+        borderLine();
+    }
+
+    /**
+     * Prints the list of deadlines in x days in the future
+     *
+     * @param tasks the array list of all the tasks
+     * @param days  the required the number of days x from now onwards
+     */
+    static void printUpcomingDeadline(ArrayList<Task> tasks, String days) {
+        borderLine();
+        System.out.println("\t Here are your deadlines in " + days + " days:");
+        int count = 0;
+        Date d;
+        Date n = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        boolean noDeadline = true;
+        for (Task t:tasks) {
+            String timeUntilTask;
+            if (t instanceof Deadline && !(t instanceof RecurringDeadline)) {
+                noDeadline = false;
+                timeUntilTask = ((Deadline) t).getDeadline();
+                try {
+                    d = format.parse(timeUntilTask);
+                    long diff = d.getTime() - n.getTime();
+                    String di = getTimeDiff(diff);
+                    String[] diffSplit = di.split(" ");
+                    if (diffSplit.length >= 2 && ((diffSplit[1].contains("day") && Integer.parseInt(diffSplit[0])
+                            <= Integer.parseInt(days)) || diffSplit[1].contains("hour")
+                            || diffSplit[1].contains("minute"))) {
+                        count++;
+                        System.out.println("\t " + count + "." + t);
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (noDeadline) {
+            System.out.println("\t No Upcoming Deadline!");
         }
         borderLine();
     }
@@ -407,20 +518,74 @@ public class Ui {
     /**
      * Display Next Upcoming Class
      *
-     * @param classes the array list of all the tasks
+     * @param classes the priority queue of all the classes
      */
     static void displayNextUpcomingClass(PriorityQueue<SchoolClass> classes) {
         borderLine();
         ArrayList<SchoolClass> result = new ArrayList<>(classes);
         System.out.println("\t Here are your next upcoming class: ");
         if (result.isEmpty()) {
-            System.out.println("\t \t No upcoming class!");
+            System.out.println("\t No upcoming class!");
         } else {
-            for (SchoolClass c:result) {
+            for (SchoolClass c : result) {
                 if (c.getStatusIcon() != "X") {
-                    System.out.println("\t"+c);
+                    System.out.println("\t" + c);
                 }
             }
+        }
+        borderLine();
+    }
+
+    /**
+     * Display Next Upcoming Event
+     *
+     * @param tasks the array list of all the tasks
+     */
+    static void displayNextUpcomingEvent(ArrayList<Task> tasks) {
+        borderLine();
+        System.out.println("\t Here are your next upcoming event: ");
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i) instanceof Event && tasks.get(i).getStatusIcon()!="X") {
+                System.out.println("\t " + tasks.get(i));
+                break;
+            } else if (i == tasks.size() - 1) {
+                System.out.println("\t No upcoming event!");
+            }
+        }
+        borderLine();
+    }
+
+    /**
+     * Display Next Upcoming Deadline
+     *
+     * @param tasks the array list of all the tasks
+     */
+    static void displayNextUpcomingDeadline(ArrayList<Task> tasks) {
+        borderLine();
+        System.out.println("\t Here are your next upcoming event: ");
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i) instanceof Deadline && tasks.get(i).getStatusIcon()!="X") {
+                System.out.println("\t" + tasks.get(i));
+                break;
+            } else if (i == tasks.size() - 1) {
+                System.out.println("\t No upcoming deadline!");
+            }
+        }
+        borderLine();
+    }
+
+    /**
+     * Display Next Upcoming Task
+     *
+     * @param tasks the array list of all the tasks
+     */
+    static void displayNextUpcomingTask(ArrayList<Task> tasks) {
+        borderLine();
+        System.out.println("\t Here are your next upcoming event: ");
+        if (tasks.isEmpty()) {
+            System.out.println("\t no upcoming task");
+        } else {
+            System.out.println("\t" + tasks.get(0));
         }
         borderLine();
     }

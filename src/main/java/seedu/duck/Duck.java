@@ -18,6 +18,7 @@ public class Duck {
         Storage.tryLoad(tasks, classes);
         TaskList.purge(tasks, classes);
         Ui.displayUpcomingDeadline(tasks);
+        Ui.displayUpcomingEvent(tasks);
         String line;
         Scanner in = new Scanner(System.in);
         line = in.nextLine();

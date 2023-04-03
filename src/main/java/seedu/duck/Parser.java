@@ -56,6 +56,20 @@ public class Parser {
                         Ui.unknownCommandMessage();
                     }
                     break;
+                case "event":
+                    if(words.length==2 && isNumeric(words[1])){
+                        Ui.printUpcomingEvents(tasks,words[1]);
+                    } else{
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
+                case "deadline":
+                    if(words.length==2 && isNumeric(words[1])){
+                        Ui.printUpcomingDeadline(tasks,words[1]);
+                    } else{
+                        Ui.unknownCommandMessage();
+                    }
+                    break;
                 case "list_today":
                     Ui.listToday(tasks, classes);
                     break;
@@ -79,6 +93,15 @@ public class Parser {
                     break;
                 case "upcoming_class":
                     Ui.displayNextUpcomingClass(classes);
+                    break;
+                case "upcoming_event":
+                    Ui.displayNextUpcomingEvent(tasks);
+                    break;
+                case "upcoming_deadline":
+                    Ui.displayNextUpcomingDeadline(tasks);
+                    break;
+                case "upcoming_task":
+                    Ui.displayNextUpcomingTask(tasks);
                     break;
                 case "unmark":
                     if (words.length == 2 && isNumeric(words[1])) {
