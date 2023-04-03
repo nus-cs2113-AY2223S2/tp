@@ -360,11 +360,13 @@ COUGH_WITH_PHLEGM
 FEVER
 ---------------------------------------------------
 ```
+[comment]: <> (//@@author tanyizhe)
 ### 5. Delete Symptom Choice
 
-The patient can choose to delete a symptom from the list of symptoms that she has entered into Dr Duke.
+The patient can choose to delete symptom(s) from the list of symptoms that they have
+entered into Dr Duke.
 
-Format: Enter `5` to choose to delete a symptom.
+Format: Enter `5` to choose to delete symptom(s).
 
 Expected outcome (if no symptoms were entered prior):
 ```
@@ -373,29 +375,22 @@ You have not entered any symptoms.
 ---------------------------------------------------
 ```
 
-Else, expected outcome after entering some symptoms:
+If some symptoms have already been entered:
 ```
----------------------------------------------------
 Here is the list of your symptoms:
-1. FEVER
-2. DRY_COUGH
-3. COUGH_WITH_PHLEGM
-4. THROAT_IRRITATION
-5. LOSS_OF_TASTE_OR_SMELL
-6. RUNNY_NOSE
-Please enter the number of the symptom you want to delete.
+1. nausea
+2. runny nose
+3. headache
+4. throat irritation
+Please enter the numbers of the symptom you want to delete.
+Please put a space between each number to delete multiple symptoms.
 ---------------------------------------------------
-4
----------------------------------------------------
-Successfully deleted symptom!
+1 2
+Successfully deleted symptom(s)!
 Here is the updated list of your symptoms:
-1. FEVER
-2. DRY_COUGH
-3. COUGH_WITH_PHLEGM
-4. LOSS_OF_TASTE_OR_SMELL
-5. RUNNY_NOSE
+1. headache
+2. throat irritation
 ---------------------------------------------------
-
 ```
 
 [comment]: <> (//@@author Geeeetyx)
