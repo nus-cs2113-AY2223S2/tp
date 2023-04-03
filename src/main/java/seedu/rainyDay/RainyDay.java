@@ -1,6 +1,7 @@
 package seedu.rainyDay;
 
 import seedu.rainyDay.command.CommandResult;
+import seedu.rainyDay.data.MonthlyExpenditures;
 import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Storage;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 public class RainyDay {
     public static String filePath = "./data/rainyDay.json";
     public static UserData userData;
+    public static MonthlyExpenditures monthlyExpenditures;
 
     private static Logger logger = Logger.getLogger(RainyDay.class.getName());
 
@@ -30,6 +32,8 @@ public class RainyDay {
         try {
             ui.printLogo();
             userData = Storage.loadFromFile(filePath);
+            monthlyExpenditures = new MonthlyExpenditures(new HashMap<>());
+            monthlyExpenditures.loadAllExpenditures(userData.getFinancialReport());
             ui.greetUser(userData.getReportOwner());
             assert userData != null : "Error loading from json file";
             logger.log(Level.INFO, "File loaded successfully.");
@@ -38,7 +42,7 @@ public class RainyDay {
             ui.noFileExist();
             String username = ui.readUserName();
             assert username != null : "Inputted username should not be null";
-            FinancialReport financialReport = new FinancialReport(new ArrayList<>(), new HashMap<>());
+            FinancialReport financialReport = new FinancialReport(new ArrayList<>());
             userData = new UserData(financialReport);
             financialReport.setReportOwner(username);
         }
