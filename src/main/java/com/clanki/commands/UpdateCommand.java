@@ -36,9 +36,13 @@ public class UpdateCommand extends Command {
     public void findFlashcard(ArrayList<Flashcard> flashcards, String query) {
         for (int i = 0; i < flashcards.size(); i++) {
             Flashcard currentFlashcard = flashcards.get(i);
-            if (currentFlashcard.getQuestion().toLowerCase().contains(query.toLowerCase())
-                    || currentFlashcard.getAnswer().toLowerCase().contains(query.toLowerCase()) ||
-                    currentFlashcard.getDueDate().toString().equals(query)) {
+            if (currentFlashcard.getQuestion().toLowerCase().contains(query.toLowerCase())) {
+                matchingFlashcards.add(currentFlashcard);
+            }
+            if (currentFlashcard.getAnswer().toLowerCase().contains(query.toLowerCase())) {
+                matchingFlashcards.add(currentFlashcard);
+            }
+            if (currentFlashcard.getDueDate().toString().equals(query)) {
                 matchingFlashcards.add(currentFlashcard);
             }
         }
