@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 
 public class CommandParser {
     private static final Logger logger = Logger.getLogger("CommandLogger");
+    private static final Pattern COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)(?<arguments>.*)");
     final String KEYWORD_EXIT = "exit";
     final String KEYWORD_ADD_PET = "add-pet";
     final String KEYWORD_REMOVE_PET = "remove-pet";
@@ -34,7 +35,6 @@ public class CommandParser {
     final String KEYWORD_HELP = "help";
     final String COMMAND_STRING_BAD_FORMAT = "Command string is not in the correct format";
     final String UNKNOWN_KEYWORD_MESSAGE = "Keyword is not recognized";
-    private static final Pattern COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)(?<arguments>.*)");
 
     public CommandParser() {
     }
