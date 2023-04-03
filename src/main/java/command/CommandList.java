@@ -19,19 +19,23 @@ public class CommandList extends Command {
     }
 
     public boolean run() {
-        if (expenseList.size() == 0) {
-            System.out.println("Sorry, there are no expenses tracked currently.");
-            System.out.println(MESSAGE_DIVIDER);
-            return false;
-        } else {
-            System.out.println("Here are the tasks in your list:\n");
-            System.out.println(MESSAGE_DIVIDER_LIST);
-            for (int i = 0; i < expenseList.size(); i++) {
-                System.out.print((i + 1) + ".");
-                System.out.println(expenseList.get(i).toString());
+        try {
+            if (expenseList.size() == 0) {
+                System.out.println("Sorry, there are no expenses tracked currently.");
+                System.out.println(MESSAGE_DIVIDER);
+                return false;
+            } else {
+                System.out.println("Here are the tasks in your list:\n");
+                System.out.println(MESSAGE_DIVIDER_LIST);
+                for (int i = 0; i < expenseList.size(); i++) {
+                    System.out.print((i + 1) + ".");
+                    System.out.println(expenseList.get(i).toString());
+                }
+                System.out.println(ExpenseList.getAllMessage(expenseList));
+                System.out.println(MESSAGE_DIVIDER);
             }
-            System.out.println(ExpenseList.getAllMessage(expenseList));
-            System.out.println(MESSAGE_DIVIDER);
+        } catch (NullPointerException e) {
+            System.out.println("Sorry, there are no expenses tracked currently.");
         }
         return true;
     }
