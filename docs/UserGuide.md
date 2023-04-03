@@ -27,6 +27,7 @@ Meal Companion is designed by computing students, for computing students, especi
        - [Random Recipe](#random-recipe)
        - [Check Ingredients for Recipe](#check-ingredients-for-recipe)
        - [Almost Completed Recipe](#almost-completed-recipe)
+       - [Make Recipe](#make-recipe)
    5. [Saving Data](#saving-data)
        - [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
    6. [Help](#help)
@@ -63,14 +64,17 @@ Click on `mealcompanion.jar` to automatically download the file. Place the file 
 ![startup.png](images/startup.png)  
 <sub>Fig 2: Command to start using Meal Companion.</sub>
 
+7. To get started using Meal Companion, take a look at the [`add`](#add-ingredients) command to let the app know what ingredients you have available to you, then use the [`recipe possible`](#possible-recipes) command to figure out what recipes you can make!
+8. Alternatively, if you don't have any ingredients on hand but are interested in learning a new recipe, you can use the [`recipe all`](#all-recipes) command to browse through our recipe book and find a recipe you're interested in making, then use the [`recipe details`](#recipe-details) command to view how to make it.
+
 Meal Companion uses a Command Line Interface (CLI), as the current version is just a proof of concept. We have plans to further develop Meal Companion to include a Graphical User Interface (GUI), or even to a mobile application platform. However as we have not yet reached that stage in our development, the CLI will suffice as the input method to operate Meal Companion. We apologize for any inconvenience caused.
 
-##### [Back to table of contents](#table-of-contents)
+##### [Back to table of contents](#table-of-contents)  
 
 
 
 # Features
-This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and recipe functions. 
+This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and Recipe functions. 
 
 
 ## Ingredients
@@ -81,6 +85,8 @@ Meal Companion will assist you in tracking the items in your refrigerator, and i
 To add an ingredient of a certain quantity to Meal Companion's storage, use the command `add <ingredient> /qty <quantity>`.
 The `/qty` portion of the command is necessary for Meal Companion to distinguish between the sections of the command. 
 For example, `add ground chicken /qty 300`.
+
+Note that the ingredient you add must be in the list of known ingredient names. If you're not sure what an ingredient is called, you can utilize the [`ingredients search`](#search-ingredients) command to figure it out.
 
 ![add1.png](images/add1.png)  
 <sub>Fig 3: Sample of Add Ingredients command with user input highlighted.</sub>
@@ -118,6 +124,8 @@ To remove all ingredients from Meal Companion's storage, use the `clear` command
 
 ![clear.png](images/clear.png)  
 <sub>Fig 8: Sample of Ingredients Clear command with user input highlighted.</sub>
+
+> **Warning**: This move cannot be undone.
  
 ##### [Back to table of contents](#table-of-contents)
 
@@ -125,6 +133,8 @@ To remove all ingredients from Meal Companion's storage, use the `clear` command
 
 ## Allergens
 Meal Companion recognizes that you may have certain dietary restrictions. As such, we have provided a feature that allows you to track your allergens and block Meal Companion from showing you recipes that contain said allergens. We will go into more detail on the Allergens function below.
+
+Note that all allergens must be known ingredient names, similar to the `add` command.
 
 Once your allergies are added to Meal Companion, you may refer to the section on [Possible Recipes](#possible-recipes) to see how this will affect the recipes available to you.
 
@@ -221,6 +231,13 @@ If you would like to find out which recipes you are almost able to make with the
 <sub>Fig 18: Sample of Recipe Almost command with 3 ingredients missing for Recipe 1 (Beef Burger) and 1 ingredient missing for Recipe 2 (Cup of Water), with user input highlighted.</sub>
 
 
+### Make Recipe
+If you decide to cook one of the recipes and you have sufficient ingredients, you do not need to manually remove all the ingredients you used. Meal Companion provides you with the functionality to remove all those ingredients at once if they are used to cook a recipe. Simply use the command `make <index_number>` to do so. For example, `make 1` (Recipe for Beef Burger).
+
+![make.png](images/make.png)  
+<sub>Fig 19: Sample of Make command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
+
+
 ##### [Back to table of contents](#table-of-contents)
 
 
@@ -231,6 +248,8 @@ Meal Companion automatically saves the ingredients you add to a text file named 
 ![save1.png](images/save1.png)  
 <sub>Fig 19: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
 
+> **Warning**:
+> Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program.
 
 ### Transferring Saved Data to Other Devices
 If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
@@ -271,6 +290,8 @@ Please see the below table for the list of available commands.
 | Randomly choose a recipe from the stored list | `recipe random` | `recipe random` |
 | Check if current list of ingredients is sufficient to cook a recipe | `recipe need <index_number>` | `recipe need 1` (recipe for Beef Burger) |
 | See which recipe is lacking the fewest ingredients to complete | `recipe almost` | `recipe almost` |
+| Remove all the ingredients that you used to cook a recipe | `make <index_number>` | `make 1` (recipe for Beef Burger) |
+| Terminate the program | `bye` | `bye` |
 
 ##### [Back to table of contents](#table-of-contents)
 

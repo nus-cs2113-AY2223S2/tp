@@ -44,8 +44,8 @@ If you wish to view the source code, you may click on either `Source code (zip)`
 
 3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file path>` commands as necessary.
 4. Ensure the terminal is within the correct folder.
-5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.
-![startup1.png](images/startup1.png)
+5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.   
+![startup.png](images/startup.png)
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
 Please be advised that we cannot guarantee complete functionality of Meal Companion if you have modified the source code in your own local IDE. If you have any queries, feel free to reach out to any member of the development team and we will do our best to assist you.
