@@ -29,7 +29,7 @@ public class Event extends Task {
     @Override
     public String toSaveString() {
         return super.toSaveString() + " /from " + getStart() + " /to " + getEnd() +
-                " <p>" + getPriorityIndex() + System.lineSeparator();
+                " <p>" + getPriorityIndex() + " <n>" + getSavedNotes()  + System.lineSeparator();
     }
 
     @Override

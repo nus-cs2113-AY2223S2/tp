@@ -372,8 +372,14 @@ Bring own recyclable bag
     ____________________________________________________________
 ```
 
+<<<<<<< HEAD
 ## **Deleting notes for a specific task : `delete_note`**
 Deletes the 
+=======
+## **Print notes for a specific task : `delete_note`**
+Deletes the specified note for the task
+
+>>>>>>> Print-By-Priority
 
 **Input:** `delete_note <Task_Number> <Note_number>`  
 **Output: Demonstrated below to delete 1 task**
