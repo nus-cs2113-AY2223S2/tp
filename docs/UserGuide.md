@@ -197,23 +197,36 @@ __________________________________________________________
 ```
 <p>App will remove the recipe with the corresponding index.</p>
 
-<h2 id="finding-recipes-find"> Finding recipes: <code class="language-plaintext highlighter-rouge">find</code></h2>
+<h2 id="finding-recipes-findname"> Finding recipes: <code class="language-plaintext highlighter-rouge">findname</code></h2>
 
 Find recipes whose names contain any of the given keywords. The results will be displayed in a list, telling you the index of the recipe in the recipe list. Only the name of the recipe will be searched.<br>
 
-**Format**: `find KEYWORD`<br>
+**Format**: `findname KEYWORD`<br>
 **constraints**: `KEYWORD` cannot be empty.<br>
 **Examples**:<br>
 ```
 __________________________________________________________
-find hotpot
+findname hotpot
 
 Here are the matching items:
   [Chinese] Hotpot [Index: 2]
 __________________________________________________________
 ```
 
+<h2 id="finding-recipes-findtag"> Finding recipes: <code class="language-plaintext highlighter-rouge">findtag</code></h2>
 
+Find recipes whose tag contain any of the given keywords. The results will be displayed in a list, telling you the index of the recipe in the recipe list. Only the tag of the recipe will be searched.<br>
+**Format**: `findtag KEYWORD`<br>
+**constraints**: `KEYWORD` cannot be empty.<br>
+**Examples**:<br>
+```
+__________________________________________________________
+findtag chinese
+
+Here are the matching items:
+  [Chinese] Hotpot [Index: 2]
+__________________________________________________________
+```
 <h2 id="viewing-a-recipe-view"> Viewing a recipe: <code class="language-plaintext highlighter-rouge">view</code></h2>
 
 <div>Views a detailed recipe from the recipe manager if INDEX is entered.</div>

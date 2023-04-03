@@ -55,8 +55,11 @@ public class Parser {
         case "view":
             type = CommandType.VIEW;
             break;
-        case "find":
-            type = CommandType.FIND;
+        case "findname":
+            type = CommandType.FINDNAME;
+            break;
+        case "findtag":
+            type = CommandType.FINDTAG;
             break;
         case "editstep":
             type = CommandType.EDITSTEP;

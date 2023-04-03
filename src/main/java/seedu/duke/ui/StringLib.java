@@ -144,4 +144,5 @@ public interface StringLib {
     String EDIT_STEP_ERROR = "\nPlease keep format as edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP\n";
     String INVALID_STEP_INDEX = "\nPlease enter a valid step index!";
     String POS_INT = "\nPlease enter a valid index!";
+    String EMPTY_STRING = "";
 }

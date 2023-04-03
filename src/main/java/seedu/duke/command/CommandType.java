@@ -61,6 +61,13 @@ public enum CommandType {
      * Find a recipe in the recipe list.
      */
     FIND,
+     * Search dishes by name.
+     */
+    FINDNAME,
+    /**
+     * Search dishes by tag.
+     */
+    FINDTAG,
     /**
      * Command not recognized.
      */
