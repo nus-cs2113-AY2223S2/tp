@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static bagpacker.commands.PackCommand.HELP_MSG;
-
 /**
  * Parser class contains methods to manipulate user input
  */
@@ -201,7 +199,7 @@ public class Parser {
      * Attempts to create AddCommand object to be executed where it is called from
      *
      * @return AddCommand the command to be executed to add an item to the packing list, else
-     *          an IncorrectCommand is created to be executed
+     *              an IncorrectCommand is created to be executed
      */
     public static Command createAddObj() {
         try {
@@ -237,7 +235,7 @@ public class Parser {
      * Attempts to create DeleteCommand object to be executed where it is called from
      *
      * @return DeleteCommand the command to be executed to delete an item to the packing list, else
-     *          an IncorrectCommand is created to be executed
+     *              an IncorrectCommand is created to be executed
      */
     public static Command createDeleteObj() {
         try {
@@ -275,7 +273,7 @@ public class Parser {
      * Attempts to create PackCommand object to be executed where it is called from
      *
      * @return PackCommand the command to be executed to Pack an item in the packing list, else
-     *          an IncorrectCommand is created to be executed
+     *              an IncorrectCommand is created to be executed
      */
     public static Command createPackObj() {
         int quantityNotPacked = 0;
@@ -284,7 +282,7 @@ public class Parser {
             int itemQuantity = Integer.parseInt(quantityAndIndex[0]);
             int itemIndex = Integer.parseInt(quantityAndIndex[1]);
             quantityNotPacked = PackingList.get(itemIndex - 1).getUnpackedQuantity();
-            if(itemQuantity < 1 | itemQuantity > quantityNotPacked){
+            if (itemQuantity < 1 | itemQuantity > quantityNotPacked) {
                 throw new InvalidVariablesException();
             }
             return new PackCommand(itemQuantity, itemIndex);
@@ -300,8 +298,8 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException e) {
             return new IncorrectCommand("Invalid Input Variables",
                     PackCommand.HELP_MSG);
-        } catch (InvalidVariablesException e){
-            if(quantityNotPacked == 0){
+        } catch (InvalidVariablesException e) {
+            if (quantityNotPacked == 0) {
                 return new IncorrectCommand("Invalid Pack Usage",
                         "This item is fully packed");
             }
@@ -315,7 +313,7 @@ public class Parser {
      * Attempts to create PackCommand object to be executed where it is called from
      *
      * @return PackCommand the command to be executed to Pack an item in the packing list, else
-     *          an IncorrectCommand is created to be executed
+     *              an IncorrectCommand is created to be executed
      */
 
     public static String[] getPackVariables() throws InvalidIndexException {
@@ -365,13 +363,11 @@ public class Parser {
     }
 
 
-
-
     /**
      * Attempts to create UnpackCommand object to be executed where it is called from
      *
      * @return UnpackCommand the command to be executed to unpack an item in the packing list, else
-     *          an IncorrectCommand is created to be executed
+     *              an IncorrectCommand is created to be executed
      */
     public static Command createUnpackObj() {
         int quantityPacked = 0;
@@ -393,7 +389,7 @@ public class Parser {
 
 
             quantityPacked = PackingList.get(itemIndex - 1).getPackedQuantity();
-            if(itemQuantity < 1 | itemQuantity > quantityPacked){
+            if (itemQuantity < 1 | itemQuantity > quantityPacked) {
                 throw new InvalidVariablesException();
             }
 
@@ -410,14 +406,14 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException e) {
             return new IncorrectCommand("Invalid Input Variables",
                     UnpackCommand.HELP_MSG);
-        }  catch (InvalidVariablesException e){
-        if(quantityPacked == 0){
-            return new IncorrectCommand("Invalid Unpack Usage",
-                    "This item is not even packed yet");
+        } catch (InvalidVariablesException e) {
+            if (quantityPacked == 0) {
+                return new IncorrectCommand("Invalid Unpack Usage",
+                        "This item is not even packed yet");
+            }
+            return new IncorrectCommand("Invalid Input Quantity",
+                    "Try to input a positive quantity that does not exceed " + quantityPacked);
         }
-        return new IncorrectCommand("Invalid Input Quantity",
-                "Try to input a positive quantity that does not exceed "+ quantityPacked +" to be packed");
-    }
     }
 
     public static Command listCommand() {
