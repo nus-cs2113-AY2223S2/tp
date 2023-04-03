@@ -30,10 +30,11 @@ public class Messages {
             "find_dish <keyword>\n";
 
     public static final String MESSAGE_STAFF_COMMANDS =
-            "add_staff n/<name> w/<working day> d/<date of birth> p/phone\n" +
+            "add_staff n/<name> w/<working day> d/<date of birth> p/<phone_number>\n" +
             "delete_staff <staff index>\n" +
             "view_staff\n" +
-            "find_staff <keyword>\n";
+            "find_staff <keyword>\n" +
+            "Note that date of birth format: YYYY-MM-DD. Phone number only takes integers.\n";
     public static final String MESSAGE_COMMAND_EXIT = "Thank you for using DinerDirector!";
     public static final String MESSAGE_DEADLINE_ADDED = "Got it! This deadline has been successfully added.\n";
     public static final String MESSAGE_DEADLINE_EMPTY_LIST = "Your deadline list is empty!";
