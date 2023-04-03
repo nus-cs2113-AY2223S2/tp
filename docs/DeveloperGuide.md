@@ -22,6 +22,7 @@
     + [Find Task](#find-task)
     + [List Task](#list-task)
     + [Find Task on Date](#find-task-on-date)
+    + [View Week](#view-week)
     + [Storage](#storage)
     + [Logging](#logging)
 4. [Documentation, logging, testing, configuration, dev-ops](#documentations-logging-testing-configuration-dev-ops)
@@ -131,6 +132,8 @@ Step 6:
 Print the confirmation message :
 A confirmation message is printed to the user indicating that the module lesson has been successfully added.
 
+[*Return to TOC*](#table-of-contents)
+
 ### Delete Module
 
 The DeleteModule functionality allows users to remove either a module from the ModuleList or a lesson associated with 
@@ -205,6 +208,8 @@ is printed by calling the `printModuleLessonDeleteMessage()` method of the `Ui` 
 the message is printed by calling the `printModuleNotFoundMessage()` method of the `Ui` class. If the 
 argument is invalid, the message is printed by calling the `printInvalidCommand()` method of the `Ui` class.
 
+[*Return to TOC*](#table-of-contents)
+
 ### List Modules
 
 The ListModule functionality allows users to list the modules that are in the ModuleList. It is facilitated by 
@@ -234,6 +239,9 @@ and  total modular credits the user is taking this semester.
 UML Diagram for ListModuleCommand
 
 ![](../docs/uml-diagrams/ListMod-ListModuleCommand.png)
+
+[*Return to TOC*](#table-of-contents)
+
 ### Show Module
 
 The ShowModule functionality allows users to see all the information of a specific module. The information includes 
@@ -293,6 +301,7 @@ Step 6. Print the confirmation message: A confirmation message is printed to the
 of the module requested by the user. The message includes the `ModuleCode`, the specific `LessonType` of the module, 
 `Classnumber`of requested `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
 
+[*Return to TOC*](#table-of-contents)
 
 ### Add Task
 
@@ -332,6 +341,8 @@ updated to reflect these changes.
 
 Step 7. Apollo waits for the next CLI command to be input by the user.
 
+[*Return to TOC*](#table-of-contents)
+
 ### Delete Task
 
 The DeleteTask functionality allows users to remove a task (todo, event and deadline) from the TaskList.
@@ -365,6 +376,8 @@ It also includes the updated size of the `TaskList`, obtained with the `size()` 
 
 Step 7: Update the storage: The storage is updated with the new TaskList without the deleted task.
 
+[*Return to TOC*](#table-of-contents)
+
 ### Mark Task As Done
 
 The MarkTask functionality allows users to mark a task (todo, event and deadline) as done in their TaskList.
@@ -395,6 +408,8 @@ successfully marked as done from the user-provided index of the `TaskList`. The 
 description (and date of the task deleted if the task is either an event or a deadline).
 
 Step 7: Update the storage: The storage is updated with the new TaskList with the task marked with a cross next to it.
+
+[*Return to TOC*](#table-of-contents)
 
 ### Unmark Task 
 
@@ -429,6 +444,8 @@ description (and date of the task deleted if the task is either an event or a de
 Step 7: Update the storage: The storage is updated with the new TaskList with the task marked without a cross next to
 it.
 
+[*Return to TOC*](#table-of-contents)
+
 ### Find Task
 
 The FindTask functionality allows user to search for a task (todo, event and deadline) from the TaskList using a 
@@ -458,6 +475,8 @@ in `TaskList`, a message is printed to the user indicating that there are no mat
 Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the list of 
 tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description and
 date of the task containing `KEYWORD` if the matching task is either an event or a deadline task.
+
+[*Return to TOC*](#table-of-contents)
 
 ### List Task
 
@@ -497,6 +516,8 @@ Step 4. Print the confirmation message: A confirmation message is printed to the
 in `TaskList` that the user updated and the total number of unmarked tasks. The message includes the task type, 
 description and date of all tasks if the tasks are either an event or a deadline task.
 
+[*Return to TOC*](#table-of-contents)
+
 ### Find Task on Date
 
 The Find Task on Date functionality allows user to search for a list of tasks (event and deadline) that are happening
@@ -531,6 +552,38 @@ indicating that there are no tasks on that day.
 Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the list of tasks in 
 `TaskList` that are occurring on the `date` input by the user. The message includes the task type, description, date
 and time of the task if the task is either an event or a deadline task.
+
+[*Return to TOC*](#table-of-contents)
+
+### View Week
+The `week` command allows the user to view their weekly schedule at a glance, including lessons, deadlines, and events.
+It is facilitated by `WeekCommand` which is an extension of the `Command` class.
+
+Given below is an example usage scenario and how the add task mechanism behaves at each step.
+
+Step 1. The user executes the command `week`. It is parsed by the `Parser` class which then creates a new `WeekCommand`.
+
+Step 2. The `execute()` method of `WeekCommand` is called. 
+
+Step 3. The dates of Monday and Sunday of the current week (`startWeek`, `endWeek`) are determined using `LocalDate`.
+
+Step 4. The parameters `startWeek`, `endWeek`, `taskList` (all tasks), and `calendar` (all lessons) are passed into `Ui`
+
+Step 5. Starting from Monday, the lessons and tasks occurring on each day of the week are printed out. 
+- Step 5a. The day of week is printed using the `determineDay()` method in `DayTypeUtil`. 
+- Step 5b. All lessons on that day are stored in an `ArrayList<CalendarModule> lessonsOnDay` using `calender.get()`. 
+  If no lessons occur on that day, Step 5c is skipped.
+- Step 5c. `lessonsOnDay` is passed into the method `printLessonsOnDay()` in `Ui`. 
+  The schedule of each lesson is stored in a new `Timetable`, then printed out in the desired format. 
+- Step 5d. Similarly, All tasks on that day are stored in an `TaskList tasksOnDay` using `taskList.getTasksOnDay()`.
+  If no lessons occur on that day, Step 5e is skipped.
+- Step 5e. `tasksOnDay` is passed into the method `printTasksOnDay()` in `Ui`. Each task is printed out.
+- Step 5f. The current day is increased to the following day.
+- Step 5g. Go back to Step 5a, stop after all lessons and tasks on Sunday have been printed. 
+
+![](../docs/uml-diagrams/Week-WeekCommand.png)
+
+[*Return to TOC*](#table-of-contents)
 
 ### Storage
 (TO BE ADDED SOON)
@@ -616,4 +669,6 @@ Priority Legend:
 
 Given below are instructions to test the app manually.
 > Note: These instructions only provide a starting point for testers to work on;
-> testers are expected to do more *exploratory* testing. 
+> testers are expected to do more *exploratory* testing.
+
+[*Return to TOC*](#table-of-contents)

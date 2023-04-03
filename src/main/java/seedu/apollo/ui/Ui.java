@@ -12,9 +12,7 @@ import seedu.apollo.task.TaskList;
 import seedu.apollo.utils.LessonTypeUtil;
 
 import java.rmi.UnexpectedException;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -160,50 +158,51 @@ public class Ui {
      * @param taskList Contains details about the user's tasks during the week.
      * @param calendar Contains details about the user's lessons during the week.
      */
-    public void printWeek(TaskList taskList, Calendar calendar) {
-        ZoneId zid = ZoneId.of("Asia/Singapore");
-        LocalDate now = LocalDate.now(zid);
-        LocalDate startWeek = now.with(DayOfWeek.MONDAY);
-        LocalDate endWeek = now.with(DayOfWeek.SUNDAY);
+    public void printWeek(TaskList taskList, Calendar calendar, LocalDate startWeek, LocalDate endWeek) {
         LocalDate curr = startWeek;
         System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
         for (int i = 0; i < 7; i++) {
             showSmallLine();
-            DayOfWeek day = determineDay(i);
-            System.out.println(day + "\n");
+            System.out.println(determineDay(i) + "\n");
 
-            if (printLessonsOnDay(calendar, i)) {
+            // lessons
+            ArrayList<CalendarModule> modulesOnDay = calendar.get(i);
+            if (modulesOnDay.size() == 0) {
                 System.out.println("There are no lessons on this day.");
+            } else {
+                printLessonsOnDay(modulesOnDay);
             }
-            if (printTasksOnDay(taskList, curr)) {
+            System.out.println();
+
+            // tasks
+            TaskList tasksOnDay = taskList.getTasksOnDate(curr);
+            if (tasksOnDay.size() == 0) {
                 System.out.println("There are no tasks on this day.");
+            } else {
+                printTasksOnDay(tasksOnDay);
             }
 
+            // go to next day
             curr = curr.plusDays(1);
         }
     }
 
-    private boolean printLessonsOnDay(Calendar calendar, int i) {
+    private void printLessonsOnDay(ArrayList<CalendarModule> modulesOnDay) {
         System.out.println("Lessons:");
-        int count = 0;
-        for (CalendarModule module : calendar.get(i)) {
-            count++;
+        for (CalendarModule module : modulesOnDay) {
             Timetable schedule = module.getSchedule();
             System.out.println(schedule.getStartTime() + "-" + schedule.getEndTime() + ": " +
                     module.getCode() + " " + schedule.getLessonType() + " (" + schedule.getClassnumber() + ")");
         }
-        return (count <= 0);
     }
 
-    private boolean printTasksOnDay(TaskList taskList, LocalDate curr) {
-        System.out.println("\nTasks:");
-        TaskList tasksOnDay = taskList.getTasksOnDate(curr);
+    private void printTasksOnDay(TaskList tasksOnDay) {
+        System.out.println("Tasks:");
         int count = 0;
         for (Task task : tasksOnDay) {
             count++;
             System.out.println(count + ". " + task);
         }
-        return (count <= 0);
     }
 
     public void printClashingDeadlineMessage(TaskList clashTasks, ArrayList<CalendarModule> clashLessons) {
