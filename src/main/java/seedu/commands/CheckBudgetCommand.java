@@ -27,7 +27,8 @@ public class CheckBudgetCommand extends Command {
         return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
     }
 
-    private static CommandResult getCheckCommandResult(double budget, double totalAmount, double borrowedAmount, double lentAmount) {
+    private static CommandResult getCheckCommandResult(double budget, double totalAmount,
+                                                       double borrowedAmount, double lentAmount) {
         if (budget == 0) {
             return new CommandResult("Your current budget is set at 0, please use the 'set' command to set a budget.");
         } else if (budget >= totalAmount) {

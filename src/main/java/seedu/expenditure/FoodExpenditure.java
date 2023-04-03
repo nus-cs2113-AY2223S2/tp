@@ -9,11 +9,12 @@ public class FoodExpenditure extends Expenditure {
     public static String iconUnpaid = "[ ]";
     boolean isPaid;
 
-    public String getPaidIcon() {
-        return (isPaid) ? iconPaid : iconUnpaid;
-    }
     public FoodExpenditure(String description, double value, LocalDate date) {
         super(description, value, date);
+    }
+
+    public String getPaidIcon() {
+        return (isPaid) ? iconPaid : iconUnpaid;
     }
 
     @Override

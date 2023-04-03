@@ -5,16 +5,11 @@ import java.time.format.DateTimeFormatter;
 
 public class BorrowExpenditure extends Expenditure {
     public static final String EXPENDITURE_TYPE = "B";
-    private LocalDate deadline;
-    private String borrowerName;
-
     public static String iconPaid = "[X]";
     public static String iconUnpaid = "[ ]";
+    private LocalDate deadline;
+    private String borrowerName;
     boolean isPaid;
-
-    public String getPaidIcon() {
-        return (isPaid) ? iconPaid : iconUnpaid;
-    }
 
     public BorrowExpenditure(String description, String borrowerName, double borrowValue, LocalDate date,
             LocalDate deadline) {
@@ -34,7 +29,9 @@ public class BorrowExpenditure extends Expenditure {
     public String getBorrowerName() {
         return borrowerName;
     }
-
+    public String getPaidIcon() {
+        return (isPaid) ? iconPaid : iconUnpaid;
+    }
     public void setBorrowerName(String borrowerName) {
         this.borrowerName = borrowerName;
     }

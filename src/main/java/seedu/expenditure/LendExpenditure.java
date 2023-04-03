@@ -12,10 +12,6 @@ public class LendExpenditure extends Expenditure {
     public static String iconUnpaid = "[ ]";
     boolean isPaid;
 
-    public String getPaidIcon() {
-        return (isPaid) ? iconPaid : iconUnpaid;
-    }
-
     public LendExpenditure(String description, String lenderName, double lendValue, LocalDate date,
             LocalDate deadline) {
         super(description, lendValue, date);
@@ -33,6 +29,10 @@ public class LendExpenditure extends Expenditure {
 
     public String getLenderName() {
         return lenderName;
+    }
+
+    public String getPaidIcon() {
+        return (isPaid) ? iconPaid : iconUnpaid;
     }
 
     public void setLenderName(String lenderName) {
