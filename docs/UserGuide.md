@@ -7,7 +7,7 @@
   * [Introduction 🧮](#introduction-)
   * [Quick Start](#quick-start)
   * [Features](#features)
-    * [1) Graph analyser and visualiser: `Graph. `](#1--graph-analyser-and-visualiser--graph-)
+    * [1) Graph analyser and visualiser: `Graph `](#1--graph-analyser-and-visualiser--graph-)
     * [2) Matrix calculation: `Matrix. `](#2--matrix-calculation--matrix-)
     * [3) Store Notes: `Store. `](#3--store-notes--store-)
     * [4) Display all Notes: `List. `](#4--display-all-notes--list-)
@@ -49,27 +49,27 @@ Before you start using BadMaths, make sure you have the following ready!
 
 ### 1) Graph Analyser and Visualiser: `Graph`
 This feature accepts a trigonometry equation (Sinusoidal signal) and outputs the amplitude, frequency, phase, and vertical shift.
-It also displays the image of the corresponding graph.
+It also displays the image of the corresponding graph. 
 
-Format: `Graph. [Amplitude]*[Trigo]([Frequency]*x+[PhaseShift])+[VerticalShift]`
+Format: `Graph [Amplitude]*[Trigo]([sign][Frequency]*x[sign][PhaseShift])[sign][VerticalShift]`
 
-* `[Amplitude]` can be any positive number.
-* `[Trigo]` can be sin, cos or tan.
-* `[Frequency],[PhaseShift],[VerticalShift]` can be any number.
-* `[]` is not needed when entering the input.
+* `[Amplitude]` can be any positive number. E.g. `15.5`, `4`, `0`
+* `[Trigo]` can be sin, cos or tan. 
+* `[Frequency]` can be any positive integer (more than 0). E.g. `100`
+  * When entering frequency, one can include 𝜋 by typing `2*pi*x` instead of `6.283*x`
+* `[PhaseShift],[VerticalShift]` can be any number. E.g. `15.1`, `4`, `0`,`-1`
+* `[sign]` can be + or - .
+* `[` and `]` are not needed when entering the input.
+
+**Note: Accuracy of graph drawn is up to 4 digits (Thousand place) for numerical inputs. E.g. `9999`.**
 
 Example input:
 ```
-Graph. 2*sin(5*x+2)-8
+Graph 2985*sin(5999*x+2665)-8678
 ```
-Expected output:
 ```
-This is the amplitude: 2.0
-This is the freq (Hz): 0.7957747154594768
-This is the phase: 2.0
-This is the vertical shift: -8.0
+Graph 2*sin(5*pi*x-2)+5.6
 ```
-![Alt Text](https://raw.githubusercontent.com/AY2223S2-CS2113-F10-2/tp/fa918f3fa579d26aef963f1b134d818af9e955a5/trigo.JPG)
 
 ### 2) Matrix Calculation: `Matrix`
 This feature accepts matrix equation and outputs calculation result.
@@ -352,6 +352,7 @@ Example input:
 Bye
 ```
 Expected outcome:
+
 ````
 Goodbye!
 ````
@@ -360,8 +361,7 @@ Goodbye!
 
 **Q**: How do I start and run BadMaths?
 
-**A**: To start and run BadMaths:
- 
+**A**: {your answer here}
 
 **Q**: How do I exit and leave BadMaths?
 

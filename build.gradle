@@ -29,11 +29,11 @@ test {
 }
 
 application {
-    mainClass = "seedu.badMaths.BadMaths"
+    mainClass = "seedu.badmaths.BadMaths"
 }
 
 shadowJar {
-    archiveBaseName = "badMaths"
+    archiveBaseName = "badmaths"
     archiveClassifier = null
 }
 
@@ -51,7 +51,7 @@ run {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'seedu.badMaths.BadMaths'
+        attributes 'Main-Class': 'seedu.badmaths.BadMaths'
     }
     duplicatesStrategy = 'exclude' // or 'fail', 'warn', 'preserve'
     from sourceSets.main.output
