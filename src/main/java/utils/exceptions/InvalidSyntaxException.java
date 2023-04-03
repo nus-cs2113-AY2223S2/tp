@@ -1,5 +1,12 @@
 package utils.exceptions;
 
+import java.io.StringWriter;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Provide custom error messages for exceptions thrown during parsing
+ */
 public class InvalidSyntaxException extends InkaException {
 
     private InvalidSyntaxException(String message) {
@@ -14,11 +21,37 @@ public class InvalidSyntaxException extends InkaException {
         return new InvalidSyntaxException("Your input \"" + badInput + "\" doesn't look right...");
     }
 
-    public static InvalidSyntaxException buildMissingOptionMessage(String option) {
-        return new InvalidSyntaxException("Looks like you're missing some flags: " + option);
+    /**
+     * Custom error message when multiple mutually exclusive options are selected
+     *
+     * @param options List of offending option flags
+     */
+    public static InvalidSyntaxException buildAlreadySelectedMessage(List<String> options) {
+        return new InvalidSyntaxException(
+                "These flags are mutually exclusive! Please use only one at a time: " + formatOptions(options));
     }
 
+    /**
+     * Custom error message when option is missing required argument
+     *
+     * @param option Flag of option with missing argument
+     */
     public static InvalidSyntaxException buildMissingArgumentMessage(String option) {
-        return new InvalidSyntaxException("Looks like you're missing an argument for \"" + option + "\"...");
+        return new InvalidSyntaxException(
+                "Looks like you're missing an argument for " + formatOptions(option) + "...");
+    }
+
+    /**
+     * Custom error message when required options are missing
+     *
+     * @param options Flag of missing options
+     */
+    public static InvalidSyntaxException buildMissingOptionMessage(List<String> options) {
+        String message = "Looks like you're missing some flags:" + System.lineSeparator();
+        for (String option : options) {
+            message += "\t" + option + System.lineSeparator();
+        }
+
+        return new InvalidSyntaxException(message);
     }
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import model.CardSelector;
+import org.apache.commons.cli.AlreadySelectedException;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.MissingArgumentException;
@@ -14,6 +15,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.UnrecognizedOptionException;
 import utils.command.Command;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
@@ -91,7 +93,20 @@ public abstract class KeywordParser {
         return null;
     }
 
-    @SuppressWarnings("unchecked") // Safe, CLI library just returns List instead of List<String>
+    /**
+     * Formats mutually exclusive options as '-flag1 / -flag2 / -flag3'
+     */
+    private static String formatOptionGroup(OptionGroup optionGroup) {
+        return optionGroup.getNames().stream().map(flag -> "-" + flag).collect(Collectors.joining(" / "));
+    }
+
+    /**
+     * Formats option as '-flag'
+     */
+    private static String formatOption(Option option) {
+        return "-" + option;
+    }
+
     public Command parseTokens(List<String> tokens) throws InkaException {
         if (tokens.size() == 0) {
             throw InvalidSyntaxException.buildGenericMessage();
@@ -102,28 +117,92 @@ public abstract class KeywordParser {
 
         try {
             return handleAction(action, flags);
-        } catch (MissingArgumentException e) {
-            String missingArgumentOption = e.getOption().getArgName();
-            throw InvalidSyntaxException.buildMissingArgumentMessage(missingArgumentOption);
-        } catch (MissingOptionException e) {
-            // Apache will return a List containing either String or OptionGroup
-            List<String> missingOptions = new ArrayList<>();
-            for (Object obj : e.getMissingOptions()) {
-                if (obj instanceof String) {
-                    missingOptions.add((String) obj);
-                } else if (obj instanceof OptionGroup) {
-                    OptionGroup optionGroup = (OptionGroup) obj;
-                    String optionsInGroup = optionGroup.getOptions().stream().map(option -> "-" + option.getOpt())
-                            .collect(Collectors.joining("/"));
-                    missingOptions.add(optionsInGroup);
-                }
-            }
-
-            String missingOptionsStr = String.join(", ", missingOptions);
-            throw InvalidSyntaxException.buildMissingOptionMessage(missingOptionsStr);
-        } catch (ParseException e) {
-            throw InvalidSyntaxException.buildGenericMessage();
+        } catch (ParseException ex) {
+            throw handleException(ex);
         }
+    }
+
+    /**
+     * Handler to convert {@link ParseException} to the relevant {@link InkaException}
+     *
+     * @param ex Exception thrown by Apache CLI parser
+     * @return Converted custom exception
+     */
+    private InkaException handleException(ParseException ex) {
+
+        // No pattern matching :(
+        if (ex instanceof AlreadySelectedException) {
+            return convertAlreadySelectedException((AlreadySelectedException) ex);
+        } else if (ex instanceof MissingArgumentException) {
+            return convertMissingArgumentException((MissingArgumentException) ex);
+        } else if (ex instanceof MissingOptionException) {
+            return convertMissingOptionException((MissingOptionException) ex);
+        } else if (ex instanceof UnrecognizedOptionException) {
+            return convertUnrecognizedOptionException((UnrecognizedOptionException) ex);
+        } else {
+            // Something else has somehow broken
+            return InvalidSyntaxException.buildGenericMessage();
+        }
+    }
+
+    /**
+     * Converter for {@link AlreadySelectedException}
+     *
+     * @param ex Exception thrown when multiple mutually exclusive options in {@link OptionGroup} are selected
+     * @return Converted custom exception
+     */
+    private InkaException convertAlreadySelectedException(AlreadySelectedException ex) {
+        // TODO
+    }
+
+    /**
+     * Converter for {@link MissingArgumentException}
+     *
+     * @param ex Exception thrown when {@link Option} is missing an argument
+     * @return Converted custom exception
+     */
+    private InkaException convertMissingArgumentException(MissingArgumentException ex) {
+        Option missingArgumentOption = ex.getOption();
+        String optionFlag = missingArgumentOption.getOpt();
+
+        return InvalidSyntaxException.buildMissingArgumentMessage(optionFlag);
+    }
+
+    /**
+     * Converter for {@link MissingOptionException}
+     *
+     * @param ex Exception thrown when a required {@link Option} is not present
+     * @return Converted custom exception
+     */
+    private InkaException convertMissingOptionException(MissingOptionException ex) {
+        // TODO: Cleanup
+        // Apache will return an untyped List containing either String or OptionGroup
+        List<String> missingOptions = new ArrayList<>();
+        for (Object obj : ex.getMissingOptions()) {
+            if (obj instanceof String) {
+                // Single option
+                missingOptions.add((String) obj);
+            } else if (obj instanceof OptionGroup) {
+                // Mutually exclusive options
+                OptionGroup optionGroup = (OptionGroup) obj;
+                String optionsInGroup = optionGroup.getOptions().stream().map(option -> "-" + option.getOpt())
+                        .collect(Collectors.joining("/"));
+                missingOptions.add(optionsInGroup);
+            }
+        }
+
+        String missingOptionsStr = String.join(", ", missingOptions);
+        return InvalidSyntaxException.buildMissingOptionMessage(missingOptionsStr);
+    }
+
+    /**
+     * Converter for {@link UnrecognizedOptionException}
+     *
+     * @param ex Exception thrown when an unrecognized {@link Option} is present
+     * @return Converted custom exception
+     */
+    private InkaException convertUnrecognizedOptionException(UnrecognizedOptionException ex) {
+        // TODO
     }
 
     /**
