@@ -2,7 +2,21 @@ package seedu.rainyDay.modules;
 
 import seedu.rainyDay.RainyDay;
 
-import seedu.rainyDay.command.*;
+import seedu.rainyDay.command.Command;
+import seedu.rainyDay.command.AddCommand;
+import seedu.rainyDay.command.DeleteCommand;
+import seedu.rainyDay.command.ShortcutDeleteCommand;
+import seedu.rainyDay.command.EditCommand;
+import seedu.rainyDay.command.ExportCommand;
+import seedu.rainyDay.command.ShortcutAddCommand;
+import seedu.rainyDay.command.ViewCommand;
+import seedu.rainyDay.command.HelpCommand;
+import seedu.rainyDay.command.FilterCommand;
+import seedu.rainyDay.command.InvalidCommand;
+import seedu.rainyDay.command.ShortcutViewCommand;
+import seedu.rainyDay.command.SetBudgetCommand;
+import seedu.rainyDay.command.IgnoreCommand;
+import seedu.rainyDay.command.ExitCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
@@ -408,8 +422,8 @@ public class Parser {
         }
     }
 
-    private ArrayList<String> parseEditMultipleFlags(String input, int sizeOfEditFlagAndField)
-    throws RainyDayException {
+    private ArrayList<String> parseEditMultipleFlags(String input, int sizeOfEditFlagAndField) throws
+            RainyDayException {
         Pattern pattern = Pattern.compile("(?:(-in|-out)\\s*)?\\s*" +
                 "(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
                 "(?:(-v)\\s+\\$([\\d]+(?:\\.?[\\d]){0,2})\\s*)?" +

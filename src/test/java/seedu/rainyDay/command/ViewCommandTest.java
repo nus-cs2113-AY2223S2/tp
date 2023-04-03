@@ -23,7 +23,7 @@ public class ViewCommandTest {
         LocalDate startDate = LocalDate.now().minusYears(10);
         ViewCommand viewList = new ViewCommand(startDate, LocalDate.now(), false, true);
         viewList.setData(userData);
-        String expectedReport = "Your financial report is empty";
+        String expectedReport = "Your financial report is empty for 2013-04-02 till 2023-04-02";
         assertEquals(expectedReport, viewList.execute().output);
     }
 

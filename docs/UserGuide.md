@@ -152,7 +152,7 @@ The table below will be shown with the `help` command: <br>
 ```
 > help
 +====================================================================================================+
-| Welcome to RainyDay! Here is the overview of commands available                                    |
+| Welcome to rainyDay! Here is the overview of commands available                                    |
 +====================================================================================================+
 | Feature            | Command   | Additional Syntax                                                 |
 +--------------------+-----------+-------------------------------------------------------------------+
@@ -254,6 +254,8 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
 >    * `MM` is a two-digit number representing the month
 >    * `YYYY` is a four-digit number representing the year
 
+> ⚠️ Amount has a maximum of $21,474,836.47 and will be rounded down to 2 decimal places!
+
 Example of usage:
 
 You had dinner at Haidilao for $500. To add it to rainyDay, the following command can be provided to rainyDay:
@@ -302,12 +304,13 @@ command of rainyDay can list all the transaction added, and the resultant amount
 
 Format: `view {TIMESPAN} {-sort}`
 
-* `TIMESPAN` is used to denote how much history to show.
+* `TIMESPAN` is used to specifically denote how much history to show from the current day.
     * `1d - 31d` is used to view 1 to 31 days of history
     * `1w - 4w`  is used to view 1 to 4 weeks of history
     * `1m - 12m` is used to view 1 to 12 months of history
     * `1y - 10y` is used to view 1 to 10 years of history
-* `-sort` can be included to sort entries in ascending order, with inflows displayed before outflows.
+* `-sort` can be included to sort entries in ascending order of their absolute value, 
+  with inflows displayed before outflows.
 
 > 💡**Tip:** To view all entries you can use -all in place of a specific time in TIMESPAN
 
@@ -322,11 +325,25 @@ view
 |000003|beef noodles                                 | -$12.00      |Food and Drinks      |30/03/2023|
 |000004|pay                                          | +$50000.00   |miscellaneous        |26/03/2023|
 +------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
+|Viewing all entries from 2023-03-01 till 2023-03-31                                                 |
 |Total Inflow: $50020.00                                                                             |
 |Total Outflow: $512.00                                                                              |
 |Remaining value: $49508.00                                                                          |
 +====================================================================================================+
+```
+Example of usage:
+
+You would like to view all of your transactions for the current month, to check if you are staying within your budget.
+
+```
+> view
+```
+
+You vaguely remember you went out to eat at an expensive restaurant sometime in the past 3 months. You're unsure
+exactly when or what description you used, but you remember it was significantly more than your usual expenditures.
+
+```
+> view 3m -sort
 ```
 
 [Jump back to features overview](#features-overview)
@@ -379,7 +396,7 @@ will help you extract certain transactions based on a specific criteria
 
 Format : `filter [FLAG] {FIELD}`
 
-* The `FLAG` must be one of the following:
+* The `FLAG` must be at least one of the following:
     * `-in` to filter by inflows
     * `-out` to filter by outflows
     * `-d` to filter by description
@@ -571,8 +588,8 @@ Done, edited entry 2 from the financial report
 ### Setting a Monthly Budget
 
 After you know how to manage your transactions, you can now set a monthly budget! In the process of keeping track of 
-your expenses, you might feel inclined to stick to a budget. RainyDay can help to give you reminders, and encourage you 
-to stick to your budget! With a set monthly budget, RainyDay will remind you how much you have spent for the month with
+your expenses, you might feel inclined to stick to a budget. rainyDay can help to give you reminders, and encourage you 
+to stick to your budget! With a set monthly budget, rainyDay will remind you how much you have spent for the month with
 every new expense in the same month.
 
 Format : `setbudget GOAL`
@@ -800,7 +817,7 @@ Exports your financial statements into a [comma-separated values file](#glossary
 Format: `export`
 > **Background:** A CSV file allows data to be saved in a format which can be viewed as a table.
 >
->💡Saving your financial statements in a CSV file will allow you to view your statements in commonly use applications
+>💡Saving your financial statements in a CSV file will allow you to view your statements in commonly used applications
 > like *Microsoft Excel* and *Google Sheets*.
 
 #### Where to locate exported CSV file?
@@ -841,6 +858,10 @@ that "rainyDay.jar" is going to be stored in
 **Q**: What if I am not able to start up rainyDay? {not able to load the data..?}
 
 **A**: {to be added}
+
+**Q**: I tried to input a value, but it is not showing up as what I typed!
+
+**A**: The value of transactions has a maximum of $21,474,836.47 and will also be rounded down to 2 decimal places!
 
 ## Command Summary
 

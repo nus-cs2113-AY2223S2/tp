@@ -8,19 +8,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FinancialReport {
-    private final ArrayList<FinancialStatement> financialReport;
+    private final ArrayList<FinancialStatement> financialStatements;
+
+
     private final HashMap<Integer, Double> monthlyExpenditures;
     private String reportOwner;
 
-    public FinancialReport(ArrayList<FinancialStatement> financialReport, HashMap<Integer, Double> monthlyOutflow) {
-        this.financialReport = financialReport;
+    public FinancialReport(ArrayList<FinancialStatement> financialStatements, HashMap<Integer, Double> monthlyOutflow) {
+        this.financialStatements = financialStatements;
         this.monthlyExpenditures = monthlyOutflow;
     }
 
     public String getReportOwner() {
-        if (this.reportOwner == null) {
-            return "no name";
-        }
         return reportOwner;
     }
 
@@ -29,27 +28,31 @@ public class FinancialReport {
     }
 
     public int getStatementCount() {
-        return financialReport.size();
+        return financialStatements.size();
     }
 
     public void addStatement(FinancialStatement statement) {
-        financialReport.add(statement);
+        financialStatements.add(statement);
         addToMonthlyExpenditure(statement);
         Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
     }
 
+    public HashMap<Integer, Double> getMonthlyExpenditures() {
+        return monthlyExpenditures;
+    }
+
     public void addStatementAtIndex(FinancialStatement statement, int index) {
-        financialReport.add(index, statement);
+        financialStatements.add(index, statement);
         addToMonthlyExpenditure(statement);
     }
 
     public void deleteStatement(int statementNumber) {
-        removeFromMonthlyExpenditure(financialReport.get(statementNumber));
-        financialReport.remove(statementNumber);
+        removeFromMonthlyExpenditure(financialStatements.get(statementNumber));
+        financialStatements.remove(statementNumber);
     }
 
     public String getFullStatement(int statementNumber) {
-        return financialReport.get(statementNumber).getStatementForList();
+        return financialStatements.get(statementNumber).getStatementForList();
     }
 
     public double getMonthlyExpenditure(int monthAndYear) {
@@ -60,19 +63,19 @@ public class FinancialReport {
     }
 
     public void clearReport() {
-        financialReport.clear();
+        financialStatements.clear();
     }
 
     public FinancialStatement getFinancialStatement(int statementNumber) {
-        return financialReport.get(statementNumber);
+        return financialStatements.get(statementNumber);
     }
 
-    public ArrayList<FinancialStatement> getFinancialReport() {
-        return this.financialReport;
+    public ArrayList<FinancialStatement> getFinancialStatements() {
+        return this.financialStatements;
     }
 
     public LocalDate getStatementDate(int statementNumber) {
-        return financialReport.get(statementNumber).getDate();
+        return financialStatements.get(statementNumber).getDate();
     }
 
     public void addToMonthlyExpenditure(FinancialStatement statement) {
