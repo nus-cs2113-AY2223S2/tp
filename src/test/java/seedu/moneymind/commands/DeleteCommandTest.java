@@ -42,7 +42,7 @@ public class DeleteCommandTest extends CommandTest {
     void deleteCommand_emptyDescription_expectEmptyDeleteMessage() {
         setup();
         String terminalOutput = executeInput("delete").toString();
-        assertEquals("☹ OOPS!!! The description of a delete cannot be empty." +
+        assertEquals("OOPS!!! The description of a delete cannot be empty." +
                 System.lineSeparator(), terminalOutput);
         assertEquals(2, food.events.size());
         clear();

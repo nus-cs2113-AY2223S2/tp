@@ -6,7 +6,7 @@ import static seedu.moneymind.string.Strings.HORIZONTAL_LINE;
 public class Ui {
     private static final String LOGO = "[LOGO_PLACEHOLDER]\n";
     private static final String GREETING = "Welcome to Moneymind\n" + LOGO + "How may I help you?";
-    private static final String ERROR = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+    private static final String ERROR = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     private static final String LIST = "Here are the events in your list:";
 
     public void greet() {

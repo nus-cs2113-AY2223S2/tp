@@ -64,7 +64,7 @@ public class CategoryCommandTest extends CommandTest {
     void addCategory_emptyDescription_expectEmptyDescriptionMessage() {
         setup();
         String terminalOutput = executeInput("category").toString();
-        assertEquals("☹ OOPS!!! The description of a category cannot be empty."
+        assertEquals("OOPS!!! The description of a category cannot be empty."
                 + System.lineSeparator(), terminalOutput);
         assertEquals(2, CategoryList.categories.size());
         clear();
