@@ -18,7 +18,7 @@ public class AddTaskCommand extends Command {
             try {
                 this.todoDescription = args[0];
                 this.deadline = LocalDate.parse(args[1]);
-            } catch (Exception e) {
+            } catch (Exception ArrayIndexOutOfBoundsException) {
                 this.todoDescription = args[0];
                 this.deadline = null;
             }
