@@ -187,13 +187,27 @@ public class Storage {
 
     private void parseTaskFile(ArrayList<String> data) {
         for (String line : data) {
-            String taskName = getTaskName(line);
-            TaskList.addTask(taskName);
+            try {
+                String taskName = getTaskName(line);
+                LocalDate deadline = getDeadline(line);
+                TaskList.addTask(taskName, deadline);
 
-            String taskStatus = getTaskStatus(line);
-            if (taskStatus.startsWith("1")) {
-                int taskNumber = TaskList.getNumberOfTasks();
-                TaskList.markTask(taskNumber, true);
+                String taskStatus = getTaskStatus(line);
+                if (taskStatus.startsWith("1")) {
+                    int taskNumber = TaskList.getNumberOfTasks();
+                    TaskList.markTask(taskNumber, true);
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                String taskName = getTaskName(line);
+                TaskList.addTask(taskName);
+
+                String taskStatus = getTaskStatus(line);
+                if (taskStatus.startsWith("1")) {
+                    int taskNumber = TaskList.getNumberOfTasks();
+                    TaskList.markTask(taskNumber, true);
+                }
+            } catch (DateTimeParseException e) {
+                System.out.println("A task in output file has invalid date format");
             }
         }
     }
