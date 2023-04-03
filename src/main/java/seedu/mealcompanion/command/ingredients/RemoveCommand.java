@@ -57,7 +57,7 @@ public class RemoveCommand extends ExecutableCommand {
         int newQuantity = fridgeQuantity - quantity;
         mealCompanionSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
         mealCompanionSession.getUi().printMessage(
-                String.format("Success! new quantity of %s is %f", name, newQuantity));
+                String.format("Success! new quantity of %s is %d", name, newQuantity));
         if (newQuantity == 0) {
             mealCompanionSession.getIngredients().remove(indexOfExistingIngredient);
             mealCompanionSession.getUi().printMessage(String.format("All %s has been removed", name));

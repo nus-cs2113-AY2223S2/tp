@@ -34,7 +34,7 @@ public class MakeCommand extends RecipeCommand {
         int newQuantity = fridgeQuantity - quantity;
         mealCompanionSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
         mealCompanionSession.getUi().printMessage(
-                String.format("%s has been consumed. New quantity of %s is %f", name, name, newQuantity));
+                String.format("%s has been consumed. New quantity of %s is %d", name, name, newQuantity));
         if (newQuantity == 0) {
             mealCompanionSession.getIngredients().remove(indexOfExistingIngredient);
             mealCompanionSession.getUi().printMessage(String.format("All %s has been removed", name));
