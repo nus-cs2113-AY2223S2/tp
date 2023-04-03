@@ -10,8 +10,8 @@
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `NUS To-Do List` from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0).
-1. Double-click the downloaded jar file to run the program.
+2. Down the latest version of `NUS To-Do List` from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0).
+3. Double-click the downloaded jar file to run the program.
 
 ## Features 
 
@@ -37,7 +37,7 @@
 
 Adds a new task to your To-Do list.
 
-Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-repeat REPEAT_DURATION]`
+Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [tags LIST_OF_TAGS] [-rep REPEAT_DURATION]`
 
 - The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
 - `EMAIL_ADDRESS` must be a valid email address.
@@ -143,6 +143,63 @@ Okay, I have edited the tags of this task to [later difficult]:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
 ```
 
+### View all tasks in To-Do list `list`
+
+Display all tasks stored in the To-Do List.
+
+Format: `list`
+- Tasks found will be displayed in ascending order, sorted by deadline.
+- Tasks without deadline will be placed at the bottom.
+
+Example of usage:
+
+`list`
+```
+Okay, here is your task list, with 3 tasks
+[ID:2]	[ ][assignment][Due: 23 Mar 2023 18:00]
+[ID:3]	[ ][coursemology homework][Due: 24 Mar 2023 13:00]
+[ID:1]	[ ][homework]
+```
+### Edit/delete deadline `due`
+
+Edits or deletes the deadline of a task with a given id in the To-Do List.
+
+Format: `due ID -edit DEADLINE` or `due ID -del`
+- The `ID` has to be an id of a task that can be found in the To-Do list. 
+- Use `-edit` to replace the deadline of the task with the newly specified deadline, or `-del` to delete it instead.
+- If both flags are provided, `-edit` takes priority.
+- At least one of the two flags must be provided.
+- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
+
+
+Example of usage:
+
+`due 1 -edit 30-03-2023 18:00` changes the deadline of the task of id 1 in the To-Do list to `30-03-2023 18:00`.
+```
+Okay, I have edited the deadline of this task to [30 Mar 2023 18:00]:
+[ID:1]	[ ][todo][Due: 30 Mar 2023 18:00]
+```
+`due 1 -del` deletes the deadline of the task of id 1 in the To-Do list.
+```
+Okay, I have deleted the deadline of this task:
+[ID:1]	[ ][todo]
+```
+
+### List completion history `history` (*Coming Soon*)
+
+Lists the task that have been completed before in the To-Do List.
+
+Format: `history`
+- Displays the tasks which were marked as completed in the previous week
+
+Example of usage:
+
+`history`
+```
+Here are the tasks which were completed in the past week:
+[ID:1]	[X][todo][Due: 20 Mar 2023 18:00]
+```
+
 ### `priority` - Edit a priority of a task
 Edits, or deletes the priority level of a task with a given id in the ToDo List.
 
@@ -165,6 +222,25 @@ Okay, I have edited the priority level of this task to [Medium]:
 [ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
 ```
 
+### Show progress of tasks that are due this week `progress`
+
+Displays the progress of and lists tasks that are due this week in To-Do list. Progress is shown in the form of a 
+percentage (up to 2 decimal places) and a progress bar (where "=" denotes the proportion of tasks completed and "-" 
+denotes the proportion of tasks that are left undone.
+
+Format: `progress`
+
+Example of usage:
+
+`progress` displays the progress of and lists tasks that are due this week
+```
+You have completed 33.33% of the 3 tasks due this week!
+Progress: |================----------------------------------|
+[ID:1]	[X][task1][Due: 30 Mar 2023 18:00]
+[ID:2]	[ ][task2][Due: 30 Mar 2023 19:00]
+[ID:3]	[ ][task3][Due: 31 Mar 2023 20:00]
+```
+
 ## FAQ
 
 **How do I transfer my data to another computer?**
@@ -182,3 +258,4 @@ Okay, I have edited the priority level of this task to [Medium]:
 | Delete email from a task    | `email ID -del`                                                                                     |
 | Add/edit tags to a task     | `tags ID -edit LIST_OF_TAGS`                                                                        |
 | Delete all tags from a task | `tags ID -del`                                                                                      |
+| List all tasks              | `list`                                                                                              |
