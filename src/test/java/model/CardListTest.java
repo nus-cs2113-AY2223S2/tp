@@ -7,17 +7,28 @@ import java.util.Arrays;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import utils.exceptions.CardNotFoundException;
+import utils.exceptions.InvalidUUIDException;
 
 class CardListTest {
     private static final String UUID_1 = "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454";
     private static final String UUID_2 = "00000000-0000-0000-0000-000000000001";
-    private static final Card card1 = Card.createCardWithUUID("is akhil a dirty commie", "yes", UUID_1);
-    private static final Card card2 = Card.createCardWithUUID("why do other groups keep attackin ian",
-            "he is not a dirty commie",
-            UUID_2);
+
+    private Card card1;
+    private Card card2;
+
+    protected void createDummyCards() {
+        try {
+            this.card1 = Card.createCardWithUUID("is akhil a dirty commie", "yes", UUID_1);
+            this.card2 = Card.createCardWithUUID("why do other groups keep attackin ian", "he is not a dirty commie",
+                    UUID_2);
+        } catch (InvalidUUIDException e) {
+            System.out.println(e);
+        }
+    }
 
     @Test
     void findCardFromUUID() {
+        createDummyCards();
         ArrayList<Card> cards = new ArrayList<Card>(Arrays.asList(card1, card2));
         CardList cardList = new CardList(cards);
         try {

@@ -8,13 +8,13 @@ import model.Deck;
 import model.DeckList;
 import model.TagList;
 import utils.UserInterface;
-import utils.exceptions.CardNeverWasInDeck;
+import utils.exceptions.CardNotInDeck;
 import utils.exceptions.DeckNotFoundException;
 import utils.exceptions.InkaException;
 import utils.exceptions.UUIDWrongFormatException;
 import utils.storage.IDataStorage;
 
-public class RemoveCardFromDeckCommand extends Command{
+public class RemoveCardFromDeckCommand extends Command {
     private CardUUID cardUUID;
 
     private String deckName;
@@ -29,24 +29,24 @@ public class RemoveCardFromDeckCommand extends Command{
         }
     }
 
-    public void removeCardFromDeck(DeckList deckList,String deckName, CardUUID cardUUID)
+    public void removeCardFromDeck(DeckList deckList, String deckName, CardUUID cardUUID)
             throws InkaException {
         Deck deck = deckList.findDeckFromName(deckName);
-        if(deck==null) {
+        if (deck == null) {
             throw new DeckNotFoundException();
         }
         ArrayList<CardUUID> deckCardList = deck.getCardsUUID();
         boolean wasCardInDeck = deckCardList.removeIf(card -> card.equals(cardUUID));
-        if(wasCardInDeck==false) {
-            throw new CardNeverWasInDeck();
+        if (wasCardInDeck == false) {
+            throw new CardNotInDeck();
         }
         deck.setCards(deckCardList);
     }
+
     @Override
     public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {
         removeCardFromDeck(deckList, deckName, cardUUID);
         ui.printRemoveCardFromDeckSuccess(cardUUID, deckName);
     }
-
 }

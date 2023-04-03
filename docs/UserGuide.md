@@ -17,54 +17,144 @@ Enjoy your revision!
 
 ## Features
 
-### Adding a card: `card add -q {question} -a {answer}`
+### Get help manual :
 
-Adds a new Card with its question and answer.
-
-Example of usage:
-
-`card add -q "how do i use this command? -a "by referring to this user guide"`
-
-### Listing all cards : `card list`
-
-List all existing cards
+Users can run `help` command to see the list of commands available for each feature.
 
 Sample output :
 
 ```
-
-Here is a list of your cards :
-1.Qn: is akhil a dirty commie
-Ans: yes
-UUID:  f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
-2.Qn: why do other groups keep attackin ian
-Ans: he is not a dirty commie
-UUID:  00000000-0000-0000-0000-000000000001
+Welcome to Inka! Type help at any time to show this message
+== Deck Management (run `<keyword> help` for more info) ===
+card         - Card-related functionality
+tag          - Tag-related functionality
+deck         - Deck-related functionality
+================== Miscellaneous Commands =================
+export       - Saves your deck
+bye          - Exits Inka
 ```
 
-### Deleting a card : `card delete -i {cardUUID}`
+Users can then run :
 
-Deletes a Card based on the cardUUID
+- `card help` for features related to cards
+- `tag help` for features related to tags
+- `deck help` for features related to decks
+
+Sample output for `tag help` :
+
+```
+usage: `tag edit`
+Edit existing tags
+-n,--new <arg>          New tag name
+-o,--old <arg>          Old tag name
+
+usage: `tag delete`
+Delete tags
+-t,--tag <arg>          tag name
+
+usage: `tag list`
+List tags
+-t,--tag <arg>          tag name (optional)
+```
+
+### Adding a card:
+
+`card add -q {question} -a {answer}`
+
+Adds a new Card with its question and answer.
+The flags can be listed in ***any*** order and must be followed by strings.
 
 Example of usage:
 
-`card delete -i f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454`
+`card add -q how do i use this command? -a by referring to this user guide`
 
-### Tagging a card : `card tag -c {cardUUID} -t {tagName}`
+### Listing all cards :
+
+`card list`
+
+List all existing cards. The UUID enclosed in the `[]` is the cardUUID. The `Tags` and `Decks` show the tagUUIDs and
+deckUUIDs
+that the cards are currently under.
+
+Sample output :
+
+```
+Here is a list of your cards :
+1.[1ddd9a67-f56c-4914-99c0-2f90c580f0e9]
+
+ Tags: 
+ - 03658854-e5d4-468f-8c41-74917e5d4515
+ - c8259fee-125d-4700-829c-0da79eba1e91
+
+ Decks: 
+ - c83e08ad-e5b7-4812-9dd1-4b44504386ad
+
+ Qn:  What is the formula of force?
+ Ans:  F = ma
+
+2.[619c689d-395a-4bb8-ab00-6ae9972bb929]
+
+ Tags: None
+
+ Decks: None
+
+ Qn:  How efficient is binary search?
+ Ans:  O(log n)
+
+
+```
+
+### Deleting a card :
+
+`card delete -c {cardUUID}`
+`card delete -i {cardIndex}`
+
+User has the option to delete the card based on card index or card UUID.
+The card index can be found by running `card list`.
+
+Example of usage:
+
+`card delete -c f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454`
+
+`card delete -i 3`
+
+Sample output :
+
+```
+Too easy ha? You won't see that question again!
+You now have 2 questions in the bank.
+```
+
+### Tagging a card :
+
+`card tag -c {cardUUID} -t {tagName}`
+
+Tags a card by specifying the cardUUID and tag name.
+
+The flags `-c` and `-d` can be listed in any order, but they must ***not*** contain any whitespaces.
+and they cannot be empty.
 
 Example of usage :
 `card tag -c f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 -t physics`
 
 Sample output :
 
-```agsl
+```
 Tag does not exist.. creating a new tag: physics
 Successfully added tag 83f26992-09d7-496b-b7a8-3ad05e43c8b7 to card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
 ```
 
-### Putting a card into a deck : `card deck -c {cardUUID} -d {deckName}`
+### Putting a card into a deck :
+
+`card deck -c {cardUUID} -d {deckName}`
+
+Specify the card based on its cardUUID and put it in the deck.
+
+The flags `-c` and `-d` can be listed in any order, but they must ***not*** contain any whitespaces.
+and they cannot be empty.
 
 Example of usage :
+
 `card deck -c f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 -d deckTest`
 
 Sample output :
@@ -74,35 +164,53 @@ Deck does not exist.. creating a new one
 Successfully added card f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454 to deck fd2df33d-4bbe-4be7-83df-5ddaecd3f1ca
 ```
 
-### Viewing a card : `card view -c {cardUUID}`
+### Viewing a card :
 
-View the content of a Card based on its cardUUID
+`card view (-c {cardUUID} | -i {cardIndex}) `
+
+View the content of a Card based on its cardUUID or the cardIndex.
+
+The cardIndex can be found by running `card list`. The flags `-c` and `-i` must ***not*** be empty.
 
 Example of usage :
+
 `card view -c f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454`
+
+`card view -i 3`
 
 Sample output :
 
-```agsl
-Qn: is akhil a dirty commie
-Ans: yes
-UUID:  f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454
-Here are the tags : 
-1.Tag name : physics, tag uuid : 83f26992-09d7-496b-b7a8-3ad05e43c8b7
 ```
+[1ddd9a67-f56c-4914-99c0-2f90c580f0e9]
+
+ Tags: 
+ - 03658854-e5d4-468f-8c41-74917e5d4515
+ - c8259fee-125d-4700-829c-0da79eba1e91
+
+ Decks: 
+ - c83e08ad-e5b7-4812-9dd1-4b44504386ad
+
+ Qn:  What is the formula of force?
+ Ans:  F = ma
+```
+
+The UUID enclosed within `[]` refers to the cardUUID that the user is currently viewing.
 
 ---
 
 ### Editing a tag : `tag edit -o {tagNameOld} -n {tagNameNew}`
 
-Edit the name of an existing tag
+Edit the name of an existing tag by specifying the old name and new name"
+
+The flags `-o` and `-n` can be listed in any order, but they must ***not*** contain any whitespaces.
+and they cannot be empty.
 
 Example of usage :
 `tag edit -o CS2113 -n CS2113T`
 
 Sample output :
 
-```agsl
+```
 Tag 7a130cd5-8154-4aa7-870f-45d7d92970f9tag name has been changed from CS2113 to CS2113T
 ```
 
@@ -110,26 +218,29 @@ Tag 7a130cd5-8154-4aa7-870f-45d7d92970f9tag name has been changed from CS2113 to
 
 Delete an existing tag by name, and remove the tag from all the cards which are previously under it.
 
+The flag `t` must ***not*** contain any whitespaces.
+and it cannot be empty.
+
 Example of usage :
 `tag delete -t CS2113T`
 
 Sample output :
 
-```agsl
+```
 Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from card 3b86b31c-6289-4716-a5c6-5afd43b9bbd3
 Successfully removed tag 7a130cd5-8154-4aa7-870f-45d7d92970f9 from the tag list.
 ```
 
 ### List all tags : `tag list`
 
-List all current tags
+List all current tags in the `tagList`
 
 Example of usage :
 `tag list`
 
 Sample output :
 
-```agsl
+```
 Here is your current list of tags:
 1.Tag name : CS2113, tag uuid : 15df3d00-d0ad-48e0-bd28-1f640b74789f
 2.Tag name : CS2040C, tag uuid : 5d14dd29-e7e4-4b17-945a-ebf8598d4152
@@ -144,7 +255,7 @@ Example of usage :
 
 Sample output :
 
-```agsl
+```
 Here is a list of your cards :
 1.Qn: fdf
 Ans: ffffffffff
@@ -160,17 +271,21 @@ Rename an existing deck
 Example of usage: `deck edit -o old-deck-name -n new-deck-name`
 
 Sample output:
+
 ```
 Deck 9dc5ab5f-75af-4b0d-b554-341f59ac829bdeck name has been changed from old-deck-name to new-deck-name
 ```
 
 ### [WIP] Delete a card/tag from deck: `deck delete -d {deckName} (-c {cardUUID} | -t {tagUUID})`
 
-Delete a card from an existing deck
+Delete a card from an existing deck either by specifying the cardUUID or tagUUID to delete.
+
+To delete a card from an existing deck
 
 Example of usage: `deck delete -c c2c61475-df53-4656-94c4-c2e36933d359 -d my-deck`
 
 Sample output:
+
 ```
 Successfully removed card c2c61475-df53-4656-94c4-c2e36933d359 from deck my-deck
 ```
@@ -180,6 +295,7 @@ Alternatively, delete a tag from an existing deck
 Example of usage: `deck delete -t 833249f3-a090-474c-a3de-c1b5f25609d4 -d my-deck`
 
 Sample output:
+
 ```
 Successfully removed tag 833249f3-a090-474c-a3de-c1b5f25609d4 from deck my-deck
 ```
@@ -189,6 +305,7 @@ The entire deck can also be deleted (cards and tags that were in the deck are no
 Example of usage: `deck delete -d my-deck`
 
 Sample output:
+
 ```
 Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from card c2c61475-df53-4656-94c4-c2e36933d359
 Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from the deck list.
@@ -201,14 +318,31 @@ List all decks that have been created
 Example usage: `deck list`
 
 Sample output:
+
 ```
 Here is your current list of decks:
 1.Deck name : test-deck, deck uuid : 9dc5ab5f-75af-4b0d-b554-341f59ac829b
 2.Deck name : another-deck, deck uuid : b7fa870a-e92c-4a74-90de-cfeafd6ec141```
 ```
 
-## FAQ
+---
 
+### Exit the program :
+
+User simply needs to run `bye`
+
+Sample output :
+
+```
+ ____  _  _  ____    _   
+(  _ \( \/ )(  __)  / \  
+ ) _ ( )  /  ) _)   \_/  
+(____/(__/  (____)  (_) 
+
+ Bye! All the best for your exams man!!!
+```
+
+## FAQ
 
 **Q**: Will deleting a card from a tag delete it from multiple decks?
 
@@ -237,4 +371,31 @@ Your file will be loaded the next time you run Inka!
 
 {Give a 'cheat sheet' of commands here}
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| **Command**                   | **Format**                                                                          |
+|-------------------------------|-------------------------------------------------------------------------------------|
+| Create a `Card`               | `card add -q {question_here} -a {answer_here}`                                      |
+| Create a `Tag`                | `card tag -c {cardUUID} -t {tag_name}`                                              |
+| Create a `Deck`               | `card deck -c {cardUUID} -d {deck_name}` OR `card deck -t {tagUUID} -d {deckName}`  |
+| Add a `Card` to a `Deck`      | `card deck -c {cardUUID} -d {deckName}` OR `card deck -i {cardIndex} -d {deckName}` |
+| Add a `Tag` to a `Deck`       | `tag deck -t {tagUUID} -d {deckName}`                                               |
+| Add a `Card` to a `Tag`       | `card tag -c {cardUUID} -t {tagName}`                                               |
+| Delete a `Card`               | `card delete -i {cardUUID}`                                                         |
+| Delete a `Tag`                | `tag delete -t {tagName}`                                                           |
+| Delete a `Deck`               | `deck delete -d {deckName}`                                                         |
+| Delete a `Card` from a `Deck` | `deck delete -d {deckName} -c {cardUUID}`                                           |
+| Delete a `Tag` from a `Deck`  | `deck delete -d {deckName} -t {tagUUID}`                                            |
+| List `Cards`                  | `card list`                                                                         |
+| List `Tags`                   | `tag list`                                                                          |
+| List `Decks`                  | `deck list`                                                                         |
+| List `Cards` under a `Deck`   | `deck list -c {deckName}`                                                           |
+| List `Cards` under a `Tag`    | `tag list -t {tagName}`                                                             |
+| List `Tags` under a `Deck`    | `deck list -d {deckName}`                                                           |
+| Edit a `Tag`                  | `tag edit -n {newTagName} -o {oldTagName}`                                          |
+| Edit a `Card`                 | `card edit -n {newTagName} -o {oldTagName}`                                         |
+| Edit a `Deck`                 | `deck edit -n {newTagName} -o {oldTagName}`                                         |
+| View a `Card`                 | `card view -c {cardUUID}`                                                           |
+| Exits the program             | `bye`                                                                               |
+| Help about `Deck`             | `deck help`                                                                         |
+| Help about `Tag`              | `tag help`                                                                          |
+| Help about `Card`             | `card help`                                                                         |
+| Help in general               | `help`                                                                              |

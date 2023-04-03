@@ -9,19 +9,15 @@ public class Tag {
     private ArrayList<CardUUID> cards = new ArrayList<>();
     private ArrayList<DeckUUID> decks = new ArrayList<>();
 
-
     public Tag(String tagName, CardUUID cardUUID) {
         this.tagName = tagName;
         this.uuid = new TagUUID(UUID.randomUUID());
         cards.add(cardUUID);
     }
 
-    public Tag(String tagName, String uuidStr, String password) {
-        if(password.equals("pw")) {
-
-            this.tagName = tagName;
-            this.uuid = new TagUUID(UUID.fromString(uuidStr));
-        }
+    public Tag(String tagName, String uuidStr) {
+        this.tagName = tagName;
+        this.uuid = new TagUUID(UUID.fromString(uuidStr));
     }
 
     public ArrayList<DeckUUID> getDecks() {
@@ -43,9 +39,10 @@ public class Tag {
     public void editTagName(String newTagName) {
         this.tagName = newTagName;
     }
+
     public boolean cardIsInTag(CardUUID cardUUID) {
-        for(CardUUID cardUUIDList : cards) {
-            if(cardUUIDList.equals(cardUUID)) {
+        for (CardUUID cardUUIDList : cards) {
+            if (cardUUIDList.equals(cardUUID)) {
                 return true;
             }
         }
@@ -59,6 +56,7 @@ public class Tag {
     public void addCard(CardUUID cardUUID) {
         cards.add(cardUUID);
     }
+
     public void removeDecks(DeckUUID deckUUID) {
         decks.remove(deckUUID);
     }
