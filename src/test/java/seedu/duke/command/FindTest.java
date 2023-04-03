@@ -67,8 +67,8 @@ public class FindTest {
     }
     @Test
     public void testFindByTagEmpty2() throws Exception {
-        recipeList.searchByTag("  ");
-        String s = "View is missing KEYWORDS!";
+        recipeList.searchByTag("Chinese ");
+        String s = "No dishes matches what you are looking for! :(";
         assertEquals(s,output.toString().trim());
     }
     @Test
