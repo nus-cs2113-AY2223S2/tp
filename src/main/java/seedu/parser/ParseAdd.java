@@ -45,6 +45,7 @@ public class ParseAdd {
             double amount = fetchDouble();
             String descriptionVal = fetchDescription();
 
+            // Checks for the specific expenditure according to command
             switch (command) {
             case AcademicExpenditureCommand.COMMAND_WORD:
                 return new AcademicExpenditureCommand(descriptionVal, amount, date);
@@ -78,11 +79,13 @@ public class ParseAdd {
     }
 
     public String fetchDescription() throws EmptyStringException, StringIndexOutOfBoundsException {
+        // Removes indicators and backslashes from the user input
         return ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
     }
 
     public double fetchDouble() throws InvalidCharacterInAmount, EmptyStringException,
             StringIndexOutOfBoundsException, SmallAmountException, NotPositiveValueException, NumberFormatException {
+        // Converts string to double for numerical addition functionalities
         String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
         ExceptionChecker.checkValidDoubleInput(amountVal);
         double amount = Double.parseDouble(amountVal);
@@ -92,6 +95,7 @@ public class ParseAdd {
 
     public LocalDate fetchDate() throws EmptyStringException, StringIndexOutOfBoundsException,
             DateTimeParseException {
+        // Converts string to date to fit Command class
         String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
         return LocalDate.parse(dateVal);
     }
