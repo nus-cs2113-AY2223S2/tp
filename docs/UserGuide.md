@@ -2,7 +2,8 @@
 
 ## Introduction
 
-{Give a product intro}
+Our Expense Tracker CLI software ("ET" for short) allows users to create their own bookmakers and helps 
+them keep track of their expense based on category, time, amount, and currency.
 
 ## Quick Start
 
