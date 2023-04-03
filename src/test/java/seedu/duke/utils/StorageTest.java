@@ -22,7 +22,7 @@ class StorageTest {
         addCommand.run();
         Storage.writeCSV(testInventory);
         try {
-            Thread.sleep(100);
+            Thread.sleep(500);
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
