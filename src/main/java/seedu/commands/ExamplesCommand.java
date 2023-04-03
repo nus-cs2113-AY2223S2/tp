@@ -7,6 +7,7 @@ import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
 import seedu.storage.UserStorage;
+import seedu.ui.ExampleUi;
 import seedu.ui.GeneralUi;
 
 public class ExamplesCommand extends Command{
@@ -24,10 +25,11 @@ public class ExamplesCommand extends Command{
     }
 
     public void printExamples(String input, GeneralUi ui) throws LifeTrackerException {
+        ExampleUi exampleUi = new ExampleUi();
         if(input.equals("meal")) {
-            ui.displayMealExamples();
+            exampleUi.displayMealExamples();
         } else if (input.equals("exercise")) {
-            ui.displayExerciseExamples();
+            exampleUi.displayExerciseExamples();
         } else {
             throw new LifeTrackerException("You can only input exercise/meal for this command!");
         }

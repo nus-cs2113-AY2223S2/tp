@@ -217,24 +217,6 @@ public class GeneralUi {
             System.out.println("You have lost " + netCalories + " calories on " + date);
         }
     }
-
-    public void displayExerciseExamples() {
-        String[] exerciseExampleData = ExampleData.getExampleExerciseData();
-        System.out.println("Here are some examples of exercises:");
-        for (String exercise: exerciseExampleData) {
-            String[] exerciseInfo = exercise.split(",");
-            System.out.println(exerciseInfo[0].substring(0) + ": " + exerciseInfo[1] + ", " + exerciseInfo[2]);
-        }
-    }
-
-    public void displayMealExamples() {
-        String[] mealExampleData = ExampleData.getExampleMealData();
-        System.out.println("Here are some examples of meals that you can consider:");
-        for (String meal: mealExampleData) {
-            String[] mealInfo = meal.split(",");
-            System.out.println(mealInfo[0].substring(0));
-        }
-    }
 }
 
 
