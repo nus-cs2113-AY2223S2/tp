@@ -47,7 +47,8 @@ public class Menu {
                     continue;
                 }
             }
-            System.out.println("---------------------------------------------------");
+            System.out.println("---------------------------------------------------------------");
+            System.out.println("Note: Any whitespaces in passwords entered will be stripped off");
             System.out.println("Please enter your password: ");
             String password = scanner.nextLine();
 
@@ -64,6 +65,7 @@ public class Menu {
                 System.out.println("---------------------------------------------------");
                 System.out.println("Please re-enter your password: ");
                 String password2 = new Scanner(System.in).nextLine();
+                password2 = password2.replaceAll("\\s", "");
                 if (password.equals(password2)) {
                     System.out.println("---------------------------------------------------");
                     System.out.println("Registration successful!");

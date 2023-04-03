@@ -8,6 +8,9 @@ optimised for use via a Command Line Interface (CLI).
 
 Doctor Duke can diagnose illnesses and suggest medicine accordingly faster than visiting a General Practitioner.
 
+Note: Dr Duke is NOT a multi-user application as defined by CS2113 rules, and does not violate any of the conditions
+listed of a multi-user application by CS2113 definition.
+
 ## Start Guide
 
 1. Ensure that you have Java 11 or above installed.
@@ -53,6 +56,8 @@ What would you like to do? Please enter the number:
 A new patient can register him/herself into Doctor Duke, by keying in his/her name and a password.
 
 Format: Enter ``1`` to register.
+
+Note: When keying in passwords, any white spaces in the passwords keyed in will be stripped.
 
 Expected Outcome: 
 ~~~
