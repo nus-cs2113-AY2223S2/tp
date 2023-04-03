@@ -134,7 +134,7 @@
       },
       {
         "name": "dried dill",
-        "amount": 1.5
+        "amount": 2
       },
       {
         "name": "salt",
@@ -171,7 +171,7 @@
       },
       {
         "name": "olive oil",
-        "amount": 4.5
+        "amount": 5
       },
       {
         "name": "onion",
@@ -187,7 +187,7 @@
       },
       {
         "name": "dried basil",
-        "amount": 0.4
+        "amount": 1
       },
       {
         "name": "salt",
@@ -195,7 +195,7 @@
       },
       {
         "name": "black pepper",
-        "amount": 1.5
+        "amount": 2
       }
     ],
     "instructions": [
@@ -264,7 +264,7 @@
       },
       {
         "name": "turmeric powder",
-        "amount": 0.5
+        "amount": 1
       },
       {
         "name": "ginger",
@@ -312,7 +312,7 @@
       },
       {
         "name": "garlic",
-        "amount": 4.2
+        "amount": 5
       },
       {
         "name": "egg",
