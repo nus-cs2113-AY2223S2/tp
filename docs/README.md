@@ -1,5 +1,5 @@
 
-![Magnus Stock Logo](logo.jpg)
+![img_10.png](img_10.png)
 
 MagusStock is a Java command-line interface (CLI) application designed for inventory management. With MagusStock, you can perform CRUD operations on inventory items, generate history reports, and read/write inventory data in CSV format.
 

@@ -1,4 +1,5 @@
 # User Guide
+![img_11.png](img_11.png)
 ## Contents
 - [Introduction](#introduction)
 - [Quick Start](#quick_start)
@@ -34,96 +35,119 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 - [Autosave of Inventory: `autosave`](#autosave)
 - [Exiting the program: `exit`](#exit)
 
-
+---
 ### Adding an item: `add` <a name = "add"></a>
 Adds a new item to the inventory list.
 
 Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 
-Required parameters:
+**REQUIRED** parameters:
 * The `n/` parameter where `[item_name]`  must be alphanumeric. 
-* The `upc/` parameter for `[UPC]` must be a numerical value.
-* The `qty/` parameter for `[quantity]` must be a numerical value.
-* The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
+* The `upc/` parameter for `[UPC]` must be a **non-negative numerical** value.
+* The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value.
+* The `p/` parameter for `[price]` must be a **non-negative numerical** value _(decimals accepted)_.
 
-Optional parameters:
-* The `c/` parameter for `[category]` must be alphanumeric.
+**OPTIONAL** parameters:
+* The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized`)
 
 Example of usage: 
+=======
+
+
+!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
+
+
+#### Example of usage
 
 `add n/HP Laptop upc/2142535453 qty/10 p/1299.99`
 
-`add n/iPhone 11 Pro Max Max upc/2987654323 qty/11 p/1099.99`
+`add n/iPhone 11 Pro Max Max upc/2987654323 qty/11 p/1099.99 c/electronics`
 
-Sample output:
-
-![img.png](img.png)
+#### Sample output
+```
+add n/iPhone 11 Pro Max Max upc/2987654323 qty/11 p/1099.99 c/electronics
+____________________________________________________________
+Successfully added the item(s) into the system!
+____________________________________________________________
+```
+---
 ### Editing an item: `edit` <a name = "edit"></a>
 Edit an item's details in the inventory.
 
+
 Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
 
-Required parameters:
+
+**REQUIRED** parameters:
 * The `upc/` parameter where `[UPC]`  must be a numerical value and exists in the inventory.
 
-Optional parameters:
+**OPTIONAL** parameters:
 * The `n/` parameter where `[item_name]` must be alphanumeric.
 * The `qty/` parameter for `[quantity]` must be a numerical value.
 * The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
 * The `c/` parameter for `[category]` must be alphanumeric.
 
-Example of usage:
+!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
+
+#### Example of usage
 
 ``
-edit upc/2142535453 n/HP Laptop Pro qty/10 p/1299.99
+edit upc/2142535453 c/laptop
 ``
 
-Sample output:
+#### Sample output
 ```
+____________________________________________________________
 Successfully edited the following item:
 
-Before Update:
-Name: HP Laptop
-UPC: 2142535453
-Price: 1299.99
-Quantity: 10
-Category: uncategorized
-
-After Update:
+Before Update: 
 Name: HP Laptop Pro
 UPC: 2142535453
 Price: 1299.99
 Quantity: 10
-Category: uncategorized
+Category: uncategorised
+
+After Update: 
+Name: HP Laptop Pro
+UPC: 2142535453
+Price: 1299.99
+Quantity: 10
+Category: laptop
+____________________________________________________________
 
 ```
-
-### Removing an item from the inventory: `remove` <a name = "remove"></a>
+---
+### Removing an item: `remove` <a name = "remove"></a>
 Removes an item from the inventory list using either its UPC or index in list.
 
 Format: `remove f/item upc/[UPC]` or `remove f/index [Index]`
 
+**REQUIRED** parameters:
+
 * The `UPC` can be only be a numerical value.
 * The `index` can only be a number.
 
-Example of usage:
+#### Example of usage
 
 `remove f/item upc/123456789`
 
 `remove f/index 0`
 
-Sample output:
+#### Sample output
 
-### List all items in the inventory: `list` <a name = "list"></a>
+---
+### List all items: `list` 
 Lists all items in the inventory list.
 
 Format: `list`
 
-Example of usage:
+#### Example of usage
 
 `list`
 
-Sample output:  
+#### Sample output 
+**Case I:** When there are items in the inventory
+
 ```
 list
 ____________________________________________________________
@@ -145,57 +169,51 @@ Here are the items in your inventory:
 
 ____________________________________________________________
 
-``````
-
-### Search for an item in the inventory: `search` <a name = "search"></a>
-Search for item(s) in the inventory list using keywords or UPC.
-
-Format: `search [Keywords]` or `searchupc [UPC]`
-
-Notes: `search` will find items with all keywords. Hence, the search term `sleeves` will find both `Laptop Sleeves`
-and `Clothes Sleeves`, but the search term `laptop sleee` will only return the item `Laptop Sleeves`
-
-Example of usage:
-
-``search sleeves``
-
-Sample output:
-
 ```
+
+**Case II:** When there is no items in the inventory
+```
+list
+____________________________________________________________
+There are no items in your inventory.
+____________________________________________________________
+```
+---
+### Search for an item: `search` / `searchupc`
+Search for item(s) in the inventory list by keywords or UPC.
+
+| Format | Required parameter |
+| --- | --- |
+| `search [Keywords]` | `[Keywords]` can be an alphanumerical value. |
+| `searchupc [UPC]` | `[UPC]` can only be a **non-negative numerical** value. |
+
+
+!> Note: `search` will find items with all keywords. Hence, the search term `sleeves` will find both `Laptop Sleeves`
+and `Clothes Sleeves`, but the search term `laptop slee` will only return the item `Laptop Sleeves`
+
+#### Example of usage:
+
+`search laptop slee` or `searchupc 0123241`
+
+#### Sample output:
+
+
+**Case I:** Search by keywords
+```
+search laptop slee
 ____________________________________________________________
 +-----------------+--------------+----------+----------+
 | Name            | UPC          | Quantity | Price    |
 +-----------------+--------------+----------+----------+
 | laptop sleeves  | 1            | 10       | $15.0    |
 +-----------------+--------------+----------+----------+
-| shirt sleeves   | 3            | 10       | $5.0     |
-+-----------------+--------------+----------+----------+
 
 ____________________________________________________________
 ```
+**Case II:** Search by UPC
 
-Example of usage:
-
-``search laptop sleee``
-
-Sample output:
 ```
-____________________________________________________________
-+-----------------+--------------+----------+----------+
-| Name            | UPC          | Quantity | Price    |
-+-----------------+--------------+----------+----------+
-| laptop sleeves  | 1            | 10       | $15.0    |
-+-----------------+--------------+----------+----------+
-
-____________________________________________________________
-```
-
-Example of usage:
-
-``searchupc 0123241``
-
-Sample output:
-```
+searchupc 0123241
 ____________________________________________________________
 Here is your item: 
 +-----------------+--------------+----------+----------+
@@ -206,27 +224,46 @@ Here is your item:
 
 ____________________________________________________________
 ```
+---
+### Filtering items: `filter`
 
-### Filtering by type: `filter` <a name = "filter"></a>
 
-### Filtering inventory list by type: `filter`
+Filters items from the inventory list by price OR category.
 
-Filters items from the inventory list by price or category.
 
-Format: `filter f/[price/category] p/[gt/get/lt/let] [Price]/[Category keywords]`
+| Filter By | Format              | Required parameter                                  |
+|-----------|---------------------|-----------------------------------------------------|
+| Price     | `filter f/price`    | `p/gt`/`p/get`/`p/lt`/`p/let` followed by `[price]` |
+| Category  | `filter f/category` | `[Category keywords]`                               |
 
-Note: `gt` means `greater than`, `get` means `greater or equal than`, `lt` means `less than` and `let` means
-`less than or equal than`, which specifies which values the price filter will return.
-   
 
-Example of usage:
+**REQUIRED** parameters:
+* For `filter f/price`, the `[price]` parameter must be a **non-negative numerical value** within a valid range
+* For `filter f/category`, the `[Category keywords]` parameter must be an **alphanumerical value**.
 
-``
-filter f/category fruits
-``
 
-Sample output:
+!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
+
+
+| Price Comparator | Required parameter                     |
+|------------------|----------------------------------------|
+| `p/gt`           | Items price greater than `[price]`     |
+| `p/get`          | Items price greater/equals to`[price]` |
+| `p/lt`           | Items price less than `[price]`        |
+| `p/let`          | Items price lesser/equals to `[price]` |
+
+
+
+#### Example of usage:
+
+`filter f/category fruits` or `filter f/price p/gt 10.2`
+
+#### Sample output:
+
+**Case I:** Filter by category
+
 ```
+filter f/category fruits
 +-----------------+--------------+----------+----------+
 | Name            | UPC          | Quantity | Price    |
 +-----------------+--------------+----------+----------+
@@ -238,13 +275,10 @@ Sample output:
 ____________________________________________________________
 ```
 
-Example of usage:
-
-``filter f/price p/gt 10.2``
-
-Sample output:
+**Case II:** Filter by price
 
 ```
+filter f/price p/gt 10.2
 ____________________________________________________________
 +-----------------+--------------+----------+----------+
 | Name            | UPC          | Quantity | Price    |
@@ -259,28 +293,47 @@ ____________________________________________________________
 ____________________________________________________________
 
 ```
-
-### List all available commands: `help` <a name = "help"></a>
+---
+### List all available commands: `help`
 Lists all commands available and the command formats.
 
 Format: `help`
 
-Example of usage:
+#### Example of usage
 
 `help`
 
-Sample output:
+#### Sample output
+```agsl
+_________________________________________________________
+help
++---------------------------+---------------------------+
+| Command                   | Command Format            |
++---------------------------+---------------------------+
+| history: shows the        | history UPC               |
+| historical commands       |                           |
+| executed for an item      |                           |
++---------------------------+---------------------------+
+.........INTENTIONALLY TRUNCATED FOR DEMOSTRATION........
++---------------------------+---------------------------+
+| db: Displays the          | db                        |
+| dashboard of Magus-Stock  |                           |
++---------------------------+---------------------------+
+```
 
+
+---
 ### Historical records of item: `history` <a name = "history"></a>
 Lists historical changes to an item in the inventory list.
 
 Format: `history [UPC]`
 
-Example of usage:
+#### Example of usage
 
 ``history 0123241``
 
-Sample output:
+#### Sample output
+
 
 ```
 ____________________________________________________________
@@ -316,6 +369,7 @@ Category: fruits
 ____________________________________________________________
 ```
 
+---
 ### Sell quantity of item: `sell` <a name = "sell"></a>
 Reduces the quantity of an item in the inventory list.
 
@@ -354,6 +408,7 @@ Sold 5 orange and apples at a price of $6.0.
 ____________________________________________________________
 ````
 
+---
 ### Restock an item: `restock` <a name = "restock"></a>
 Restock quantities of an item in the inventory list.
 
@@ -391,17 +446,18 @@ Quantity Available: 105
 ____________________________________________________________
 ```
 
+---
 ### Dashboard: `db` <a name = "db"></a>
 Shows a dashboard of information related to the system's inventory, user insights and 
 session configurations.
 
 Format: `db`
 
-Example of usage:
+Example of usage
 
 `db` - It's that simple
 
-Sample output:  
+Sample output
 ```
 db
 ____________________________________________________________
@@ -430,6 +486,8 @@ List of active alerts:
 No alerts to print.
 ____________________________________________________________
 ```
+
+---
 ### Category: `cat` <a name = "cat"></a>
 Shows list of categories, and/or its items, or a specified category of items.
 
@@ -477,17 +535,19 @@ Successfully added a new alert.
 ____________________________________________________________
 ```
 
-Examples of usage:  
+Examples of usage: 
 `alert remove upc/1234 level/min`  
 `alert remove upc/1234 level/max`
 
 
-Sample output:
+Sample output
 ```
 ____________________________________________________________
 Successfully removed the alert.
 ____________________________________________________________
 ``` 
+
+---
 ### Change Autosave Mode: `autosave` <a name = "autosave"></a>
 
 Set whether the program should automatically save the updated inventory to the inventory data file after every successful
@@ -513,7 +573,7 @@ Auto-save has been disabled!
 ____________________________________________________________
 ```
 
-
+---
 ### Exiting the program: `exit` <a name = "exit"></a>
 Exits the MagusStock program.
 
@@ -525,6 +585,8 @@ ____________________________________________________________
 Hope you had an enjoyable experience. See you next time!
 ____________________________________________________________
 ```
+
+---
 
 <a name = "faq"></a>
 <a name = "command_summary"></a>
