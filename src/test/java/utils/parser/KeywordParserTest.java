@@ -66,4 +66,21 @@ public class KeywordParserTest {
             assertEquals(ex.getUiMessage(), expectedMessages[i]);
         }
     }
+
+    @Test
+    public void parse_unrecognizedOption_format() {
+        String[] testInputs = {"card add -i 1 -q QUESTION -a ANSWER", "card add -c -q -a ANSWER", "card delete -x 1"};
+        String[] expectedMessages = {
+                InvalidSyntaxException.buildUnrecognizedOptionMessage("-i").getUiMessage(),
+                InvalidSyntaxException.buildUnrecognizedOptionMessage("-c").getUiMessage(),
+                InvalidSyntaxException.buildUnrecognizedOptionMessage("-x").getUiMessage()
+        };
+        assert testInputs.length == expectedMessages.length;
+
+        for (int i = 0; i < testInputs.length; i++) {
+            final String testInput = testInputs[i];
+            InkaException ex = assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testInput));
+            assertEquals(ex.getUiMessage(), expectedMessages[i]);
+        }
+    }
 }

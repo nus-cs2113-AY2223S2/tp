@@ -29,25 +29,28 @@ public class InvalidSyntaxException extends InkaException {
 
     /**
      * Custom error message when option is missing required argument
-     *
-     * @param option Flag of option with missing argument
      */
-    public static InvalidSyntaxException buildMissingArgumentMessage(String option) {
+    public static InvalidSyntaxException buildMissingArgumentMessage(String formattedFlag) {
         return new InvalidSyntaxException(
-                "Looks like you're missing an argument for " + option + "...");
+                "Looks like you're missing an argument for " + formattedFlag + "...");
     }
 
     /**
      * Custom error message when required options are missing
-     *
-     * @param options Flag of missing options
      */
-    public static InvalidSyntaxException buildMissingOptionMessage(List<String> options) {
+    public static InvalidSyntaxException buildMissingOptionMessage(List<String> formattedFlags) {
         String message = "Looks like you're missing some flags:" + System.lineSeparator();
-        for (String option : options) {
-            message += "\t" + option + System.lineSeparator();
+        for (String flag : formattedFlags) {
+            message += "\t" + flag + System.lineSeparator();
         }
 
         return new InvalidSyntaxException(message);
+    }
+
+    /**
+     * Custom error message for unrecognized option
+     */
+    public static InvalidSyntaxException buildUnrecognizedOptionMessage(String formattedFlag) {
+        return new InvalidSyntaxException("Not sure what the " + formattedFlag + " flag means here...");
     }
 }

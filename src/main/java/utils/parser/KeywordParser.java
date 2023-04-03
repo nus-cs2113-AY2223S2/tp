@@ -105,6 +105,9 @@ public abstract class KeywordParser {
     private static String formatOption(Option option) {
         return "-" + option.getOpt();
     }
+    private static String formatOption(String option) {
+        return "-" + option;
+    }
 
     public Command parseTokens(List<String> tokens) throws InkaException {
         if (tokens.size() == 0) {
@@ -201,8 +204,8 @@ public abstract class KeywordParser {
      * @return Converted custom exception
      */
     private InkaException convertUnrecognizedOptionException(UnrecognizedOptionException ex) {
-        // TODO
-        return InvalidSyntaxException.buildGenericMessage();
+        // Option should already be formatted properly formatted
+        return InvalidSyntaxException.buildUnrecognizedOptionMessage(ex.getOption());
     }
 
     /**
