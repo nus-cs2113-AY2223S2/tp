@@ -210,7 +210,7 @@ public class AddCommand extends Command implements LoggerInterface {
     private void warnDeadlineClash(Ui ui, TaskList taskList, Calendar calendar, LocalDateTime by) {
         TaskList clashTasks = taskList.getTasksOnDate(by.toLocalDate());
         DayOfWeek day = by.getDayOfWeek();
-        int dayNum = determineDay(day);
+        int dayNum = day.getValue() - 1;
         ArrayList<CalendarModule> clashLessons = calendar.get(dayNum);
         taskList.sortTaskByDay(clashTasks);
         ui.printClashingDeadlineMessage(clashTasks, clashLessons);
@@ -253,7 +253,7 @@ public class AddCommand extends Command implements LoggerInterface {
 
         do {
             DayOfWeek currentDayOfWeek = currentDay.getDayOfWeek();
-            int currentDayIndex = determineDay(currentDayOfWeek);
+            int currentDayIndex = currentDayOfWeek.getValue() - 1;
             String currentDayString = currentDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             if (isClashingEventModule(calendar.get(currentDayIndex), eventStart, eventEnd, currentDayString)) {
                 ui.printClashingEventModuleMessage();

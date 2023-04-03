@@ -19,6 +19,7 @@ import java.util.Comparator;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static seedu.apollo.calendar.SemesterUtils.getWeekNumber;
 import static seedu.apollo.utils.DayTypeUtil.determineDay;
 
 /**
@@ -181,13 +182,14 @@ public class Ui {
      */
     public void printWeek(TaskList taskList, Calendar calendar, LocalDate startWeek, LocalDate endWeek) {
         LocalDate curr = startWeek;
+        int weekNumber = getWeekNumber(curr);
         System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
         for (int i = 0; i < 7; i++) {
             showSmallLine();
             System.out.println(determineDay(i) + "\n");
 
             // lessons
-            ArrayList<CalendarModule> modulesOnDay = calendar.get(i);
+            ArrayList<CalendarModule> modulesOnDay = calendar.getModulesForDay(weekNumber, i);
             if (modulesOnDay.size() == 0) {
                 System.out.println("There are no lessons on this day.");
             } else {

@@ -197,6 +197,14 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         }
     }
 
+    /**
+     * Adds the timetable to the module.
+     *
+     * @param searchModule The module to be searched.
+     * @param lessonType The lesson type to be added.
+     * @param args The arguments of the command.
+     * @throws ClassNotFoundException If the lesson type is invalid.
+     */
     private void addTimetable(Module searchModule, LessonType lessonType, String args, Ui ui, Calendar calendar)
             throws ClassNotFoundException {
         Boolean isFound = false;
