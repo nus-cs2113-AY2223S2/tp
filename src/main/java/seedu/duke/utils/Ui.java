@@ -49,7 +49,7 @@ public class Ui {
             "enable/disable auto-save";
     public static final String AUTOSAVE_ON = "Auto-save has been enabled!";
     public static final String AUTOSAVE_OFF = "Auto-save has been disabled!";
-    public static final String DUPLICATE_ADD = "Duplicate item found! Please add another item with a different UPC";
+    public static final String DUPLICATE_ADD = "Duplicate UPC found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
 
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
