@@ -8,6 +8,14 @@ public class BorrowExpenditure extends Expenditure {
     private LocalDate deadline;
     private String borrowerName;
 
+    public static String iconPaid = "[X]";
+    public static String iconUnpaid = "[ ]";
+    boolean isPaid;
+
+    public String getPaidIcon() {
+        return (isPaid) ? iconPaid : iconUnpaid;
+    }
+
     public BorrowExpenditure(String description, String borrowerName, double borrowValue, LocalDate date,
             LocalDate deadline) {
         super(description, borrowValue, date);

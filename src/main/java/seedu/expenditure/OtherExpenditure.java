@@ -4,6 +4,14 @@ import java.time.LocalDate;
 
 public class OtherExpenditure extends Expenditure {
     public static final String EXPENDITURE_TYPE = "O";
+
+    public static String iconPaid = "[X]";
+    public static String iconUnpaid = "[ ]";
+    boolean isPaid;
+
+    public String getPaidIcon() {
+        return (isPaid) ? iconPaid : iconUnpaid;
+    }
     public OtherExpenditure(String description, double value, LocalDate date) {
         super(description, value, date);
     }

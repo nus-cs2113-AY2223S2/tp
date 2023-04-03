@@ -20,7 +20,7 @@ public class CheckBudgetCommand extends Command {
                 borrowedAmount += individualExpenditure.getValue();
             } else if (individualExpenditure.getExpenditureType().equals("L")) {
                 lentAmount += individualExpenditure.getValue();
-            } else {
+            } else if (!individualExpenditure.getPaidIcon().equals("[X]")) {
                 totalAmount += individualExpenditure.getValue();
             }
         }
