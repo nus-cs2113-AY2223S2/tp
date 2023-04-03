@@ -89,6 +89,8 @@ public interface StringLib {
             + "\nException occurred: ";
     String RECIPE_VIEWING_DEFAULT_ERROR = "\nError in viewing recipe!"
             + "\nException occurred: ";
+    String RECIPE_EDITING_DEFAULT_ERROR = "\nError in editing recipe!"
+            + "\nException occurred: ";
     String FORMAT_CONVERT_ERROR = "\nError in inputs!"
             + "\nException occurred: The number is too big to process or the inputs contains words when "
             + "it is supposed to be numbers."
@@ -137,4 +139,5 @@ public interface StringLib {
     String INVALID_STEP = "\nThe step you have entered is invalid!\n" +
             "Please enter a valid step below:";
     String POS_INT = "\nPlease enter a valid index!";
+    String INVALID_INPUT_VALID_RANGE_PREFIX = "Invalid Input! Valid Range: ";
 }
