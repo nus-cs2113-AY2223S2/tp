@@ -1,17 +1,7 @@
 package bagpacker.iohandler;
 
 
-import bagpacker.commands.AddCommand;
-import bagpacker.commands.ByeCommand;
-import bagpacker.commands.Command;
-import bagpacker.commands.DeleteCommand;
-import bagpacker.commands.DeleteListCommand;
-import bagpacker.commands.HelpCommand;
-import bagpacker.commands.IncorrectCommand;
-import bagpacker.commands.ListCommand;
-import bagpacker.commands.PackCommand;
-import bagpacker.commands.UnpackCommand;
-import bagpacker.commands.PackAllCommand;
+import bagpacker.commands.*;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.exception.InvalidIndexException;
 import bagpacker.exception.InvalidVariablesException;
@@ -81,6 +71,8 @@ public class Parser {
             return createDeletelistObj();
         case "packall":
             return createPackAllObj();
+        case "find":
+            return createFindObj();
         case "bye":
             return createByeObj();
         default:
@@ -173,6 +165,8 @@ public class Parser {
         try {
             if (command.equals("add")) {
                 itemVariable = getItemName();
+            } else if (command.equals("find")) {
+                itemVariable = getKeyword();
             } else {
                 itemVariable = getItemIndex();
             }
@@ -184,6 +178,19 @@ public class Parser {
         return itemVariable;
     }
 
+    private static String getKeyword() throws InvalidVariablesException {
+        String keyword;
+        if (inputStringArray.size() <= 1) {
+            throw new InvalidVariablesException();
+        }
+        try {
+            int itemIndStart = fullInput.indexOf(" ") + 1;
+            keyword = fullInput.substring(itemIndStart).trim();
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidVariablesException();
+        }
+        return keyword;
+    }
 
     /**
      * Returns the user item description
@@ -413,6 +420,19 @@ public class Parser {
             }
             return new IncorrectCommand("Invalid Input Quantity",
                     "Try to input a positive quantity that does not exceed " + quantityPacked);
+        }
+    }
+
+    /**
+     * Attempts to create a FindCommand object with the given keyword.
+     * @return FindCommand
+     */
+    public static Command createFindObj() {
+        try {
+            return new FindCommand(getKeyword());
+        } catch (InvalidVariablesException e) {
+            return new IncorrectCommand("Blank keyword",
+                    "Try to input a keyword to be searched in the list");
         }
     }
 
