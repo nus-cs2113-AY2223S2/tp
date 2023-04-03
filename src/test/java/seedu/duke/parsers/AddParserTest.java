@@ -1,7 +1,8 @@
-package seedu.duke.utils.parsers;
+package seedu.duke.parsers;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.objects.Inventory;
+import seedu.duke.utils.parsers.AddParser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

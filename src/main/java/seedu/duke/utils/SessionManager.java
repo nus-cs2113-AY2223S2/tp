@@ -2,6 +2,7 @@ package seedu.duke.utils;
 
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
+import seedu.duke.types.Types;
 
 /**
  * Class to manage the session of the program and its storage features.
@@ -18,7 +19,7 @@ public class SessionManager {
     }
 
     public static Inventory getSession() {
-        return Storage.readCSV();
+        return Storage.readCSV(Types.SESSIONFILEPATH);
     }
 
     public static AlertList getSessionAlerts() {
