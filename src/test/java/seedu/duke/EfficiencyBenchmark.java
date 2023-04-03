@@ -23,7 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class EfficiencyBenchmark {
-    private static long timeToBeat = 1000;
+    private static final long timeToBeat = 1000;
+    private static final int DATASET_SIZE = 10000;
     private static long totalTime = 0;
     Inventory inventory = Storage.readCSV("./src/test/data/BenchmarkData.csv");
     @Test
@@ -36,8 +37,8 @@ public class EfficiencyBenchmark {
         long timeTaken = end - start;
         totalTime += timeTaken;
         System.out.println("Time taken to load: " + timeTaken + "ms");
-        assertTrue(timeTaken<=1000);
-        assertEquals(10000,loadInventory.getItemInventory().size());
+        assertTrue(timeTaken<=timeToBeat);
+        assertEquals(DATASET_SIZE,loadInventory.getItemInventory().size());
     }
     @Test
     @Order(2)
@@ -49,7 +50,7 @@ public class EfficiencyBenchmark {
         long timeTaken = end - start;
         totalTime += timeTaken;
         System.out.println("Time taken to find " + results.size() + " items: " + timeTaken + "ms");
-        assertTrue(timeTaken<=1000);
+        assertTrue(timeTaken<=timeToBeat);
         assertTrue(results.size()>0);
         start = System.currentTimeMillis();
         searchCommand = new SearchCommand(inventory, "123", Types.SearchType.UPC);
@@ -58,7 +59,7 @@ public class EfficiencyBenchmark {
         timeTaken = end - start;
         System.out.println("Time taken to find item: " + timeTaken + "ms");
         assertTrue(result != null);
-        assertTrue(timeTaken <= 1000);
+        assertTrue(timeTaken <= timeToBeat);
     }
 
     @Test
@@ -71,7 +72,7 @@ public class EfficiencyBenchmark {
         long timeTaken = end - start;
         totalTime += timeTaken;
         System.out.println("Time taken to filter " + results.size() + " items: " + timeTaken + "ms");
-        assertTrue(timeTaken<=1000);
+        assertTrue(timeTaken<=timeToBeat);
         assertTrue(results.size()>0);
         start = System.currentTimeMillis();
         filterCommand = new FilterCommand(inventory, 10.25, "p/gt");
@@ -79,7 +80,7 @@ public class EfficiencyBenchmark {
         end = System.currentTimeMillis();
         timeTaken = end - start;
         System.out.println("Time taken to filter " + results.size() + " items: " + timeTaken + "ms");
-        assertTrue(timeTaken<=1000);
+        assertTrue(timeTaken<=timeToBeat);
         assertTrue(results.size()>0);
     }
 
@@ -104,6 +105,6 @@ public class EfficiencyBenchmark {
         totalTime += timeTaken;
         System.out.println("Time taken for all CRUD commands: " + timeTaken + "ms");
         System.out.println("Time taken for tests: " + totalTime + "ms");
-        assertTrue(timeTaken<=1000);
+        assertTrue(timeTaken<=timeToBeat);
     }
 }
