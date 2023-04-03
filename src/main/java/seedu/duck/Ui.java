@@ -2,6 +2,7 @@ package seedu.duck;
 
 import seedu.duck.task.*;
 
+import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -472,6 +473,7 @@ public class Ui {
         Scanner in = new Scanner(System.in);
         String line;
         line = in.nextLine();
+        line = line.toUpperCase();
         return Objects.equals(line, "Y");
     }
 
@@ -519,8 +521,8 @@ public class Ui {
         System.out.println("\t   Quack! Here are the commands you can give me:");
         System.out.println("\t - list: I'll list out all the tasks you have recorded.");
         System.out.println("\t - list <number_of_days>: I'll list out all the tasks in that number of days.");
-        System.out.println("\t - list classes: I'll list out the classes you have on your schedule.");
-        System.out.println("\t - list today: I'll list out all the classes, deadlines and events you have today.");
+        System.out.println("\t - list_classes: I'll list out the classes you have on your schedule.");
+        System.out.println("\t - list_today: I'll list out all the classes, deadlines and events you have today.");
         System.out.println("\t - priority_list: " +
                 "I'll list out all the tasks you have recorded arranged by their priority.");
         System.out.println("\t - low_priority: I'll list out all the tasks you have that are low in priority.");
@@ -534,12 +536,13 @@ public class Ui {
                 "/day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>");
         System.out.println("\t   (/description can be followed by whitespace if the class has no description.");
         System.out.println("\t   : I'll remove this class from your class schedule.");
-        System.out.println("\t - add_note <task_number>: I'll add an additional note to that task!" );
-        System.out.println("\t - delete_note <task_number> <note_number>: I'll delete the note to that task!" );
-        System.out.println("\t - edit_note <task_number> <note_number>: I'll edit the note for that task!" );
+        System.out.println("\t - add_notes <task_number>: I'll add an additional note to that task!" );
+        System.out.println("\t - delete_notes <task_number> <note_number>: I'll delete the note to that task!" );
+        System.out.println("\t - edit_notes <task_number> <note_number>: I'll edit the note for that task!" );
         System.out.println("\t - view_notes <task_number>: I'll print the additional notes for that task!" );
         System.out.println("\t - purge: I'll delete all expired tasks from your list after a confirmation.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
+        System.out.println("\t - The index of the item will also be displayed.");
         System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
         System.out.println("\t                                   1:Low, 2:Medium and 3:High.");
         System.out.println("\t                                   Default: Low priority.");
@@ -707,18 +710,22 @@ public class Ui {
     }
     static void printNotes(ArrayList<Task> tasks, String []words) {
         int index = Integer.parseInt(words[1]);
-        ArrayList<String> toBePrinted = tasks.get(index-1).getAdditionalNotes();
-        borderLine();
-        System.out.println("\t Here are the notes for that task quack!");
-        System.out.println(tasks.get(index-1).toString());
-        if (!toBePrinted.isEmpty()) {
-            for (int i = 0; i < toBePrinted.size(); i++) {
-                System.out.println("\t \t" + (i + 1) + ". " + toBePrinted.get(i));
-            }
+        if(index > tasks.size() || index <= 0) {
+            Ui.exceedTaskNumberMessage(index);
         } else {
-            System.out.println("\t There are no notes for this task!");
+            ArrayList<String> toBePrinted = tasks.get(index-1).getAdditionalNotes();
+            borderLine();
+            if (!toBePrinted.isEmpty()) {
+                for (int i = 0; i < toBePrinted.size(); i++) {
+                    System.out.println("\t Here are the notes for that task quack!");
+                    System.out.println(tasks.get(index - 1).toString());
+                    System.out.println("\t \t" + (i + 1) + ". " + toBePrinted.get(i));
+                }
+            } else {
+                System.out.println("\t There are no notes for this task!");
+            }
+            borderLine();
         }
-        borderLine();
     }
 
     static void printList(ArrayList<Task> tasks,int index){

@@ -313,7 +313,8 @@ Bring own recyclable bag
 ```
 
 ## **Print notes for a specific task : `delete_note`**
-Deletes the 
+Deletes the specified note for the task
+
 
 **Input:** `delete_note <Task_Number> <Note_number>`  
 **Output: Demonstrated below to delete 1 task**

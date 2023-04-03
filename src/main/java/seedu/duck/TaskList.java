@@ -120,17 +120,24 @@ public class TaskList {
      * @param tasks The array list of tasks
      */
     static void setPriority(ArrayList<Task> tasks, String[] words) {
-        int taskNumber = Integer.parseInt(words[1]);
-        int taskCount = Task.getTaskCount();
-        if (taskNumber > taskCount || taskNumber < 0) {
-            // Input task number exceeds the number of tasks in the list
-            Ui.exceedTaskNumberMessage(taskNumber);
+        words[1] = words[1].trim();
+        if (!words[1].equals("1")||!words[1].equals("2")||!words[1].equals("3")) {
+            int taskNumber = Integer.parseInt(words[1]);
+            int taskCount = Task.getTaskCount();
+            if (taskNumber > taskCount || taskNumber <= 0) {
+                // Input task number exceeds the number of tasks in the list
+                Ui.exceedTaskNumberMessage(taskNumber);
+            } else {
+                tasks.get(taskNumber - 1).setPriority(words[2]);
+                // Printing out marked as done message
+                Ui.borderLine();
+                System.out.println("\t Understood. The task's new priority is:");
+                System.out.println("\t " + tasks.get(taskNumber - 1).getPriority());
+                Ui.borderLine();
+            }
         } else {
-            tasks.get(taskNumber - 1).setPriority(words[2]);
-            // Printing out marked as done message
             Ui.borderLine();
-            System.out.println("\t Understood. The task's new priority is:");
-            System.out.println("\t " + tasks.get(taskNumber - 1).getPriority());
+            System.out.println("\t Please enter a priority from 1 to 3!");
             Ui.borderLine();
         }
     }
@@ -270,7 +277,7 @@ public class TaskList {
     static void markTask(ArrayList<Task> tasks, String[] words) {
         int taskNumber = Integer.parseInt(words[1]);
         int taskCount = Task.getTaskCount();
-        if (taskNumber > taskCount || taskNumber < 0) {
+        if (taskNumber > taskCount || taskNumber <= 0) {
             // Input task number exceeds the number of tasks in the list
             Ui.exceedTaskNumberMessage(taskNumber);
         } else {
@@ -292,7 +299,7 @@ public class TaskList {
     static void unmarkTask(ArrayList<Task> tasks, String[] words) {
         int taskNumber = Integer.parseInt(words[1]);
         int taskCount = Task.getTaskCount();
-        if (taskNumber > taskCount || taskNumber < 0) {
+        if (taskNumber > taskCount || taskNumber <= 0) {
             // Input task number exceeds the number of tasks in the list
             Ui.exceedTaskNumberMessage(taskNumber);
         } else {
@@ -316,7 +323,7 @@ public class TaskList {
         int taskCount = Task.getTaskCount();
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HHmm");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        if (taskNumber > taskCount) {
+        if (taskNumber > taskCount || taskNumber <= 0) {
             Ui.exceedTaskNumberMessage(taskNumber);
             return;
         }
@@ -470,7 +477,7 @@ public class TaskList {
     static void deleteTask(ArrayList<Task> tasks, String[] words) {
         int taskNumber = Integer.parseInt(words[1]);
         int taskCount = Task.getTaskCount();
-        if (taskNumber > taskCount || taskNumber < 0) {
+        if (taskNumber > taskCount || taskNumber <= 0) {
             // Input task number exceeds the number of tasks in the list
             Ui.exceedTaskNumberMessage(taskNumber);
         } else {
