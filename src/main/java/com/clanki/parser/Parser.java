@@ -4,21 +4,21 @@ import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.DeleteCommand;
+import com.clanki.commands.HelpCommand;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
 import com.clanki.commands.UpdateCommand;
+import com.clanki.commands.VoidCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
 import com.clanki.exceptions.NoQueryInInputException;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Parser {
     private static final String QUESTION_OPTION_IDENTIFIER = "q";
     private static final String ANSWER_OPTION_IDENTIFIER = "a";
-    private static Logger logger = Logger.getLogger("Parser");
+    //private static Logger logger = Logger.getLogger("Parser");
 
     public static Command parseCommand(String userInput) {
         try {
@@ -33,7 +33,7 @@ public class Parser {
         } catch (NoQueryInInputException e) {
             System.out.println("Please enter a query to be searched in the list of flashcards.");
         }
-        return new UnknownCommand();
+        return new VoidCommand();
     }
 
     public static Command parseCommandStrict(String userInput)
@@ -53,6 +53,8 @@ public class Parser {
             return getDeleteCommand(parsedInput);
         case "bye":
             return getByeCommand(parsedInput);
+        case "help":
+            return new HelpCommand();
         default:
             return new UnknownCommand();
         }
@@ -75,19 +77,19 @@ public class Parser {
     public static AddCommand getAddCommand(ParsedInput parsedInput)
             throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException,
             EmptyFlashcardAnswerException {
-        logger.log(Level.INFO, "Start to parse input to obtain question text.");
+        //logger.log(Level.INFO, "Start to parse input to obtain question text.");
         String questionText = parsedInput.getOptionByName(QUESTION_OPTION_IDENTIFIER);
-        logger.log(Level.INFO, "Start to parse input to obtain answer text.");
+        //logger.log(Level.INFO, "Start to parse input to obtain answer text.");
         String answerText = parsedInput.getOptionByName(ANSWER_OPTION_IDENTIFIER);
         if (questionText == null || answerText == null) {
             throw new InvalidAddFlashcardInputException();
         }
         if (questionText.isEmpty()) {
-            logger.log(Level.INFO, "No input at question text detected.");
+            //logger.log(Level.INFO, "No input at question text detected.");
             throw new EmptyFlashcardQuestionException();
         }
         if (answerText.isEmpty()) {
-            logger.log(Level.INFO, "No input at answer text detected.");
+            //logger.log(Level.INFO, "No input at answer text detected.");
             throw new EmptyFlashcardAnswerException();
         }
         return new AddCommand(questionText, answerText);

@@ -19,6 +19,12 @@ public class FlashcardListDecoder {
             Pattern.compile("q/(?<question>[^/]+)" + " a/(?<answer>[^/]+)"
                     + " d/(?<dueDate>[^/]+)"
                     + " p/(?<currentPeriod>[^/]+)");
+    public static final String ENCODED_FLASHCARD_IN_INVALID_FORMAT_UNABLE_TO_DECODE =
+            "Encoded flashcard in invalid format. Unable to decode.";
+    public static final String GROUP_QUESTION = "question";
+    public static final String GROUP_ANSWER = "answer";
+    public static final String GROUP_DUE_DATE = "dueDate";
+    public static final String GROUP_CURRENT_PERIOD = "currentPeriod";
 
 
     /**
@@ -32,7 +38,7 @@ public class FlashcardListDecoder {
             try {
                 decodedFlashcard.add(decodeFlashcardFromString(encodedFlashcard));
             } catch (StorageOperationException e) {
-                System.out.println("Some flashcards are formatted incorrectly, they will be deleted.");
+                System.out.println("A flashcard is formatted incorrectly, they will be deleted.");
             }
         }
         return decodedFlashcard;
@@ -47,12 +53,12 @@ public class FlashcardListDecoder {
             throws StorageOperationException {
         final Matcher matcher = FLASHCARD_ARGS_FORMAT.matcher(encodedFlashcard);
         if (!matcher.matches()) {
-            throw new StorageOperationException("Encoded person in invalid format. Unable to decode.");
+            throw new StorageOperationException(ENCODED_FLASHCARD_IN_INVALID_FORMAT_UNABLE_TO_DECODE);
         }
 
-        return new Flashcard(matcher.group("question"), matcher.group("answer"),
-                LocalDate.parse(matcher.group("dueDate")),
-                Integer.parseInt(matcher.group("currentPeriod"))
+        return new Flashcard(matcher.group(GROUP_QUESTION), matcher.group(GROUP_ANSWER),
+                LocalDate.parse(matcher.group(GROUP_DUE_DATE)),
+                Integer.parseInt(matcher.group(GROUP_CURRENT_PERIOD))
         );
     }
 
