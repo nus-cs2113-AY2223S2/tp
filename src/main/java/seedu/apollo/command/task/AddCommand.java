@@ -38,7 +38,6 @@ import java.util.logging.Logger;
 import static seedu.apollo.ui.Parser.COMMAND_DEADLINE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_EVENT_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
-import static seedu.apollo.utils.DayTypeUtil.determineDay;
 
 
 /**
