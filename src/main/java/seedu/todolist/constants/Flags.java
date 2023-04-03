@@ -42,7 +42,8 @@ public enum Flags {
     EDIT_DELETE("-del", true),
     FILTER_DONE("-done", true),
     FILTER_UNDONE("-undone", true),
-    FILTER_OVERDUE("-overdue", true);
+    FILTER_OVERDUE("-overdue", true),
+    SORT_PRIORITY("-priority", true);
 
 
     private static final HashMap<String, Flags> map = new HashMap<>();
