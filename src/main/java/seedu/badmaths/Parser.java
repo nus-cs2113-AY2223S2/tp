@@ -9,7 +9,7 @@
 
 package seedu.badmaths;
 
-import seedu.badMaths.ui.Ui;
+import seedu.badmaths.ui.Ui;
 
 public class Parser {
 
