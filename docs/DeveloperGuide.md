@@ -11,6 +11,10 @@ original source as well}
 
 ### Add Flashcard Feature
 
+The image below shows a partial class diagram involving only the relevant classes when an AddCommand is
+created and executed:
+![AddFlashcardClassDiagram.png](umlDiagrams%2FAddFlashcardClassDiagram.png)
+
 #### Current implementation
 
 The current add flashcard allows the user to add a flashcard to the list of flashcards,
