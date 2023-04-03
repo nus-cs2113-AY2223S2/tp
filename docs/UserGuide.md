@@ -79,7 +79,7 @@ Adds a new expense to the list of expenses.
 
 * The `amount` should be double up to **2 decimal places** (dp). Digits beyond 2dp will be ignored.
 * The `description` can be in a natural language format.
-* The `time` should follow `YYYY MM DD HH mm` format.  (Note: entering 3 instead of 03 still works for March, Users can enter one digit, where apt, for simplicity sake)
+* The `time` should follow `YYYY MM DD HH mm` format.  (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
 * The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
@@ -112,7 +112,7 @@ Adds a new income to the list of incomes.
 
 * The `amount` should be double up to **2dp**. Digits beyond 2dp will be ignored.
 * The `description` can be in a natural language format.
-* The `time` should follow `YYYY MM DD HH mm` format. (Note: entering 3 instead of 03 still works for March, Users can enter one digit, where apt, for simplicity sake)
+* The `time` should follow `YYYY MM DD HH mm` format. (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
 * The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
@@ -205,7 +205,7 @@ The index must be a positive integer 1, 2, 3, …​
 * The `type` can be: amount, description, time, or category.
   * amount (of type **double** up to **2dp**. Digits beyond 2dp will be ignored.): edits the expense
   * info (of type **String**): edits the description of expense
-  * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense. (Note: entering 3 instead of 03 still works for March, Users can enter one digit, where apt, for simplicity sake)
+  * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense. (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
   * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that expense
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
@@ -240,7 +240,7 @@ Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
 * The `type` can be: amount, info, time, or category.
   * amount (of type **double** up to **2dp**. Digits beyond 2dp will be ignored.): edits the income
   * info (of type **String**): edits the description of income
-  * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned. (Note: entering 3 instead of 03 still works for March, Users can enter one digit, where apt, for simplicity sake)
+  * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned. (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
   * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that income
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
