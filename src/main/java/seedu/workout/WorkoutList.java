@@ -127,19 +127,19 @@ public class WorkoutList {
     //@@ author ZIZI-czh
     public HashMap<Date, Day> getWorkoutsInSpecificWeek(Date dayInSpecificWeekDate) {
 
-            HashMap<Date, Day> workoutsInSpecificWeek = new HashMap<>();
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(dayInSpecificWeekDate);
-            calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
-            Date startOfWeekDate = calendar.getTime();
-            calendar.add(Calendar.DAY_OF_WEEK, 6);
-            Date endOfWeekDate = calendar.getTime();
-            for (Date workoutDate : workouts.keySet()) {
-                if (workoutDate.compareTo(startOfWeekDate) >= 0 && workoutDate.compareTo(endOfWeekDate) <= 0) {
-                    workoutsInSpecificWeek.put(workoutDate, workouts.get(workoutDate));
-                }
+        HashMap<Date, Day> workoutsInSpecificWeek = new HashMap<>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dayInSpecificWeekDate);
+        calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
+        Date startOfWeekDate = calendar.getTime();
+        calendar.add(Calendar.DAY_OF_WEEK, 6);
+        Date endOfWeekDate = calendar.getTime();
+        for (Date workoutDate : workouts.keySet()) {
+            if (workoutDate.compareTo(startOfWeekDate) >= 0 && workoutDate.compareTo(endOfWeekDate) <= 0) {
+                workoutsInSpecificWeek.put(workoutDate, workouts.get(workoutDate));
             }
-            return workoutsInSpecificWeek;
         }
+        return workoutsInSpecificWeek;
+    }
 }
 
