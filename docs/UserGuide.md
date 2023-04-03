@@ -21,8 +21,6 @@ expenses, and categorize them for better organization.
 
 ## Features 
 
-{Give detailed description of each feature}
-
 ### Add an Event: `event`
 Add an event which is to be recorded by Moneymind.
 
@@ -47,7 +45,7 @@ Example of usage:
 
 `event bubble tea e/6`
 
-### Add a category: `category`
+### Add a Category: `category`
 
 Add a category of event  to be recorded on Moneymind
 
@@ -64,7 +62,7 @@ Example of usage:
 
 `category travel to Thailand b/2000`
 
-### Delete an event or category: `delete`
+### Delete an Event or Category: `delete`
 
 Delete an event or category from Moneymind.
 
@@ -80,7 +78,7 @@ Example of usage:
 
 `delete c/food e/1`
 
-### Edit an event: `edit`
+### Edit an Event: `edit`
 
 Edit the details of an event on Moneymind.
 
@@ -102,7 +100,7 @@ Your new expense would be:
 
 Ok, the new expense is now changed to: 100 sgd
 
-### View events in categories: `view`
+### View Events in Categories: `view`
 
 This commands allows the user to view all events in one category or view all categories in moneymind.
 
@@ -117,7 +115,7 @@ Example of usage:
 
 `view` : view all categories in moneymind
 
-### Search for a category or event: `search`
+### Search for a Category or Event: `search`
 
 Finds and displays all categories and events that contain a specified keyword.
 
@@ -129,6 +127,15 @@ Example of usage:
 
 `search bill`
 
+### Reminders
+
+When starting up the program, it will remind the user of the 
+upcoming events in the next 5 days.
+
+`Appoaching expenses:`<br>
+`Category_Name has an event: Event_Name in 2 days`<br>
+`Category_Name_2 has an event: Event_Name_2 in 3 days`<br>
+
 ### Check the Instruction Menu: `help`
 
 This command allows the user to view the instruction menu.
@@ -139,7 +146,7 @@ Example of usage:
 
 `help`
 
-### Exit the program: `bye`
+### Exit the Program: `bye`
 
 This command allows the user to exit the program.
 
@@ -150,12 +157,6 @@ Example of usage:
 `bye`
 
 ## FAQ
-
-**Q**: How do I get good in cs2113? 
-
-**A**: spend more time on this module
-
----
 
 **Q**: Am I able to keep my data after I exit the program?
 
