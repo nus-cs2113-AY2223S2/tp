@@ -116,7 +116,6 @@ public class Ui {
     public static final String PRICE_DECREASED_FROM = "Price decreased from $";
     public static final String PRICE_INCREASED_FROM = "Price increased from $";
     public static final String TO_DOLLAR_SIGN = " to $";
-    public static final String TAGS_CHANGED_TO = "Tags changed to: ";
 
     private static final String NAME_HEADING = "Name";
     private static final String UPC_HEADING = "UPC";
@@ -180,6 +179,8 @@ public class Ui {
     private static final String INVALID_CATEGORY_FIND = "The category you are looking for does not exist.";
     private static final String INVALID_CATEGORY = "The category does not exist.";
     private static final String NEW_CATEGORY_ADDED = "A new category has been added.";
+    private static final String NO_CHANGES_WERE_RECORDED = "An edit attempt was made, but no changes were recorded.";
+    private static final int ORIGINAL_ITEM_INDEX = 0;
 
 
     public static void printLine() {
@@ -191,122 +192,121 @@ public class Ui {
     }
 
     public static void printEmptySearch() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(NO_SEARCH_RESULTS);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSearchUPCItem(Item item) {
-        System.out.println(LINE);
+        printLine();
         System.out.println("Here is your item: ");
         ArrayList<Item> singleItem = new ArrayList<>();
         singleItem.add(item);
         System.out.println(printTable(singleItem));
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSearchItems(ArrayList<Item> items) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(printTable(items));
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printExitMessage() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(EXIT_MESSAGE);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void greetUser() {
-        System.out.println(LINE);
-        System.out.println(
-                LOGO);
+        printLine();
+        System.out.println(LOGO);
         System.out.println(GREET_MESSAGE);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidSessionFile() {
         System.out.println(INVALID_SESSION_FILE);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printRecoveredSessionFile() {
         System.out.println(RECOVERED_SESSION_FILE);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printEmptySessionFile() {
         System.out.println(EMPTY_SESSION_FILE);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidAlertFile() {
         System.out.println(INVALID_ALERT_FILE);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printEmptyAlertFile() {
         System.out.println(EMPTY_ALERT_FILE);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printRecoveredAlertFile() {
         System.out.println(RECOVERED_ALERT_FILE);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printUnknownCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(UNKNOWN_COMMAND);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidAddCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_ADD);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidAutoSaveInput() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_AUTO_SAVE_INPUT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printAutoSaveEnabled() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(AUTOSAVE_ON);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printAutoSaveDisabled() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(AUTOSAVE_OFF);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printDuplicateAdd() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(DUPLICATE_ADD);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSuccessAdd() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(SUCCESS_ADD);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSuccessList() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVENTORYLOGO);
         System.out.println(SUCCESS_LIST);
     }
 
     public static void printEmptyList() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(EMPTY_LIST);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static String printTable(HashMap<String, ArrayList<Item>> categoryHash) {
@@ -612,18 +612,18 @@ public class Ui {
      * format instead.
      */
     public static void printInvalidEditCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_EDIT_FORMAT);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints a string to inform the user that the item with the specified UPC code cannot be found inside the database.
      */
     public static void printItemNotFound() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ITEM_NOT_FOUND);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
@@ -655,13 +655,13 @@ public class Ui {
      * @param updatedItem The same item but with new attributes as defined by the user.
      */
     private static void printUpdatedItemDetails(Item oldItem, Item updatedItem) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(SUCCESS_EDIT + "\n");
         System.out.println("Before Update: ");
         System.out.println(oldItem.toString());
         System.out.println("\n" + "After Update: ");
         System.out.println(updatedItem.toString());
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
@@ -672,7 +672,7 @@ public class Ui {
      * @param updatedItem The same item but with new attributes as defined by the user.
      */
     public static void printRestockDetails(Item oldItem, Item updatedItem) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(SUCCESS_RESTOCK + "\n");
         System.out.println("Before Restocking: ");
         System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
@@ -680,7 +680,7 @@ public class Ui {
         System.out.println("\n" + "After Restocking: ");
         System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
                 "Quantity Available: " + updatedItem.getQuantity());
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
@@ -691,7 +691,7 @@ public class Ui {
      * @param updatedItem The same item but with new attributes as defined by the user.
      */
     public static void printSellDetails(Item oldItem, Item updatedItem) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(SUCCESS_SELL + "\n");
         System.out.println("Before Selling: ");
         System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
@@ -702,38 +702,38 @@ public class Ui {
         System.out.println("\n" + "Sold " + (oldItem.getQuantity() - updatedItem.getQuantity())
                 + " " + updatedItem.getName() + " at a price of $" + updatedItem.getPrice() +
                 ".");
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints an error message to inform the user that the item is not updated.
      */
     private static void printItemNotUpdatedError() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(ITEM_NOT_EDITED);
         System.out.println("REASON: Item's name/price/quantity is the same as user's input.");
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints an error message to inform the user that item is not updated due to wrong quantity/price input type.
      */
     public static void printInvalidPriceOrQuantityEditInput() {
-        System.out.println(LINE);
+        printLine();;
         System.out.println(ITEM_NOT_EDITED);
         System.out.println("REASON:");
         System.out.println(WRONG_QUANTITY_INPUT);
         System.out.println(WRONG_PRICE_INPUT);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints an error message to inform the user that the user command for restock is invalid.
      */
     public static void printInvalidRestockCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_RESTOCK_FORMAT);
-        System.out.println(LINE);
+        printLine();
 
     }
 
@@ -741,57 +741,57 @@ public class Ui {
      * Prints an error message to inform the user that the "restock" command contains negative values or strings.
      */
     public static void printInvalidAddQuantityInput() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_ADD_QUANTITY_FORMAT);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints an error message to inform the user that the "sell" command contains negative values or strings.
      */
     public static void printInvalidDeductQuantityInput() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_DEDUCT_QUANTITY_FORMAT);
-        System.out.println(LINE);
+        printLine();
     }
 
     /**
      * Prints an error message to inform the user that the user command for selling is invalid.
      */
     public static void printInvalidSellCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_SELL_FORMAT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidReply() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_REPLY);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printNotRemoving() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(NOT_REMOVING);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSuccessRemove(Item itemToRemove) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(SUCCESS_REMOVE);
         System.out.println(itemToRemove.toString());
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printConfirmMessage(Item itemToRemove) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(CONFIRM_MESSAGE);
         System.out.println(itemToRemove.toString());
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidIndex(Inventory inventory) {
-        System.out.println(LINE);
+        printLine();
         int listSize = inventory.getItemInventory().size();
         switch (listSize) {
         case 0:
@@ -805,78 +805,78 @@ public class Ui {
                     " to remove item successfully.");
             break;
         }
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidUpc(Inventory inventory) {
-        System.out.println(LINE);
+        printLine();
         int listSize = inventory.getItemInventory().size();
         if (listSize == 0) {
             System.out.println(EMPTY_LIST);
         } else {
             System.out.println("This UPC is invalid. Try again.");
         }
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printExistingMinAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(EXISTING_MIN_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printExistingMaxAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(EXISTING_MAX_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidAddAlertCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_ADD_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidMinAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_MIN_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidMaxAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_MAX_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSuccessAddAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(SUCCESS_ADD_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidAlertKeyword() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_ALERT_KEYWORD);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidRemoveAlertCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_REMOVE_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printSuccessRemoveAlertCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(SUCCESS_REMOVE_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printNonExistentRemoveAlert() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(NONEXISTENT_REMOVE_ALERT);
-        System.out.println(LINE);
+        printLine();
     }
 
     private static String printAlerts(Inventory inventory, AlertList alertList) {
@@ -914,10 +914,10 @@ public class Ui {
     public static void printDashboard(Inventory inventory, AlertList alertList) {
         Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithMostQuantity());
         Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithLeastQuantity());
-        System.out.println(LINE);
+        printLine();
         System.out.println(DASHBOARDLOGO);
         System.out.println("Overview:");
-        System.out.println(LINE);
+        printLine();
         System.out.println("Total number of items: " +
                 inventory.getItemInventory().size());
         System.out.println("Total number of active alerts: " +
@@ -931,9 +931,9 @@ public class Ui {
             System.out.println("Item with least quantity: " + leastQuantityItem.getName() +
                     " (" + leastQuantityItem.getQuantity() + ") ");
         }
-        System.out.println(LINE);
+        printLine();
         System.out.println("Current Session Configurations:");
-        System.out.println(LINE);
+        printLine();
         if (SessionManager.getAutoSave()) {
             System.out.println("AutoSave Mode: " + "TRUE");
         } else {
@@ -941,118 +941,132 @@ public class Ui {
         }
         System.out.println("Inventory Data File Status: " + SessionManager.inventoryDataFileExist());
         System.out.println("Alerts Data File Status: " + SessionManager.alertDataFileExist());
-        System.out.println(LINE);
+        printLine();
         System.out.println("List of active alerts:");
 
         String alertTable = printAlerts(inventory, alertList);
 
         System.out.println(alertTable);
-        System.out.println(LINE);
+        printLine();
     }
 
-    public static void printHistory(ArrayList<Item> results) {
-        System.out.println(LINE);
-        System.out.println(ITEM_ADDED_AT + results.get(0).getDateTimeString());
-        System.out.println(results.get(0).toString());
-        System.out.println(LINE);
-        for (int i = 1; i < results.size(); i++) {
-            System.out.println(LINE);
-            System.out.println(AT + results.get(i).getDateTimeString());
-            ArrayList<Types.EditType> edits = results.get(i - 1).getEditTypes(results.get(i));
-            for (Types.EditType editType : edits) {
-                switch (editType) {
-                case RECATEGORIZE:
-                    System.out.println(CATEGORY_CHANGED_TO + results.get(i).getCategory());
-                    break;
-                case SOLD:
-                    System.out.print(SOLD + (results.get(i - 1).getQuantity() - results.get(i).getQuantity()));
-                    System.out.println(ITEMS);
-                    break;
-                case BOUGHT:
-                    System.out.print(BOUGHT + (results.get(i).getQuantity() - results.get(i - 1).getQuantity()));
-                    System.out.println(ITEMS);
-                    break;
-                case RENAME:
-                    System.out.println(RENAMED_TO + results.get(i).getName());
-                    break;
-                case PRICE_DECREASE:
-                    System.out.print(PRICE_DECREASED_FROM + results.get(i - 1).getPrice());
-                    System.out.println(TO_DOLLAR_SIGN + results.get(i).getPrice());
-                    break;
-                case PRICE_INCREASE:
-                    System.out.print(PRICE_INCREASED_FROM + results.get(i - 1).getPrice());
-                    System.out.println(TO_DOLLAR_SIGN + results.get(i).getPrice());
-                    break;
-                case CHANGE_TAG:
-                    ArrayList<String> tags = results.get(i - 1).getTags();
-                    if (!tags.isEmpty()) {
-                        System.out.print(TAGS_CHANGED_TO);
-                        for (int j = 0; j < tags.size() - 1; j++) {
-                            System.out.print(tags.get(j) + ", ");
-                        }
-                        System.out.println(tags.get(tags.size() - 1));
-                    }
-                    break;
-                default:
-                    break;
-                }
-            }
-            System.out.println(LINE);
+    /**
+     * Prints out a corresponding string for an item when it is changed.
+     *
+     * @param editType The type of edit that was made to the item
+     * @param oldItem Item before change
+     * @param newItem Item after change
+     */
+
+    private static void printItemChange(Types.EditType editType, Item oldItem, Item newItem){
+        switch (editType) {
+        case RECATEGORIZE:
+            System.out.println(CATEGORY_CHANGED_TO + newItem.getCategory());
+            break;
+        case SOLD:
+            System.out.print(SOLD + (oldItem.getQuantity() - newItem.getQuantity()));
+            System.out.println(ITEMS);
+            break;
+        case BOUGHT:
+            System.out.print(BOUGHT + (newItem.getQuantity() - oldItem.getQuantity()));
+            System.out.println(ITEMS);
+            break;
+        case RENAME:
+            System.out.println(RENAMED_TO + newItem.getName());
+            break;
+        case PRICE_DECREASE:
+            System.out.print(PRICE_DECREASED_FROM + oldItem.getPrice());
+            System.out.println(TO_DOLLAR_SIGN + newItem.getPrice());
+            break;
+        case PRICE_INCREASE:
+            System.out.print(PRICE_INCREASED_FROM + oldItem.getPrice());
+            System.out.println(TO_DOLLAR_SIGN + newItem.getPrice());
+            break;
+        default:
+            break;
         }
-        if (results.size() > 1) {
-            System.out.println(LINE);
+    }
+
+    /**
+     * Prints out the history of an item in chronological order. Also prints out the end result if there were changes.
+     *
+     * @param results An ArrayList of instances of the item.
+     */
+
+    public static void printHistory(ArrayList<Item> results) {
+        printLine();
+        System.out.println(ITEM_ADDED_AT + results.get(ORIGINAL_ITEM_INDEX).getDateTimeString());
+        System.out.println(results.get(ORIGINAL_ITEM_INDEX).toString());
+        printLine();
+        int changesMade = 0;
+        for (int i = 1; i < results.size(); i++) {
+            ArrayList<Types.EditType> edits = results.get(i - 1).getEditTypes(results.get(i));
+            if(edits.size()==0){
+                System.out.println(NO_CHANGES_WERE_RECORDED);
+                continue;
+            }
+            changesMade++;
+            printLine();
+            System.out.println(AT + results.get(i).getDateTimeString());
+            for (Types.EditType editType : edits) {
+                printItemChange(editType, results.get(i - 1), results.get(i));
+            }
+            printLine();
+        }
+        if (changesMade > 0) {
+            printLine();
             System.out.println(results.get(results.size() - 1).toString());
-            System.out.println(LINE);
+            printLine();
         }
     }
 
     public static void printMinAlertWarning(String name, int alertLevel) {
         System.out.println("ALERT: The quantity of " + name +
                 " is below the minimum level of " + alertLevel + ".");
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printMaxAlertWarning(String name, int alertLevel) {
         System.out.println("ALERT: The quantity of " + name +
                 " is above the maximum level of " + alertLevel + ".");
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidCategoryCommand() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_CATEGORY_FORMAT);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printCategory(HashMap<String, ArrayList<Item>> categoryHash) {
-        System.out.println(LINE);
+        printLine();
         System.out.println(printTable(categoryHash));
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printNoCategoryList() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(NO_CATEGORY_LIST);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printInvalidCategory() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_CATEGORY_FIND);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printNewCategory() {
-        System.out.println(LINE);
+        printLine();
         System.out.println(INVALID_CATEGORY + NEW_CATEGORY_ADDED);
-        System.out.println(LINE);
+        printLine();
     }
 
     public static void printCategoryList(HashMap<String, ArrayList<Item>> categoryHash) {
-        System.out.println(LINE);
+        printLine();
         System.out.println("Here is the list of categories you have: ");
         categoryHash.forEach((cat, items) -> System.out.println(cat));
-        System.out.println(LINE);
+        printLine();
     }
 }
 

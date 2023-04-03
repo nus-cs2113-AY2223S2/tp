@@ -50,6 +50,10 @@ Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 **OPTIONAL** parameters:
 * The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized`)
 
+Example of usage: 
+=======
+
+
 !> **Enforced** valid range for numerical parameters is **0** to **999999999**.
 
 
@@ -70,7 +74,9 @@ ____________________________________________________________
 ### Editing an item: `edit` <a name = "edit"></a>
 Edit an item's details in the inventory.
 
-Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price]`
+
+Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
+
 
 **REQUIRED** parameters:
 * The `upc/` parameter where `[UPC]`  must be a numerical value and exists in the inventory.
@@ -230,6 +236,7 @@ Filters items from the inventory list by price OR category.
 | Price     | `filter f/price`    | `p/gt`/`p/get`/`p/lt`/`p/let` followed by `[price]` |
 | Category  | `filter f/category` | `[Category keywords]`                               |
 
+
 **REQUIRED** parameters:
 * For `filter f/price`, the `[price]` parameter must be a **non-negative numerical value** within a valid range
 * For `filter f/category`, the `[Category keywords]` parameter must be an **alphanumerical value**.
@@ -238,12 +245,12 @@ Filters items from the inventory list by price OR category.
 !> **Enforced** valid range for numerical parameters is **0** to **999999999**.
 
 
-| Price Comparator | Required parameter |
-|------------------|--|
-| `p/gt`           | Items price greater than `[price]` |
-| `p/get`            | Items price greater/equals to`[price]` |
-| `p/lt`            | Items price less than `[price]` |
-|`p/let`            | Items price lesser/equals to `[price]`  |
+| Price Comparator | Required parameter                     |
+|------------------|----------------------------------------|
+| `p/gt`           | Items price greater than `[price]`     |
+| `p/get`          | Items price greater/equals to`[price]` |
+| `p/lt`           | Items price less than `[price]`        |
+| `p/let`          | Items price lesser/equals to `[price]` |
 
 
 
@@ -487,7 +494,6 @@ Shows list of categories, and/or its items, or a specified category of items.
 Format: 
 * `cat list`: shows list of all categories in the inventory.
 * `cat table`: shows table of all categories and all items in each category.
-* `cat [Category]`: shows list of all items in a specified category.
 
 Example of Usage & Expected Output:
 ```
@@ -509,18 +515,6 @@ cat table
 +-----------------+--------------------------------+
 ```
 
-```
-cat fruit
-+-----------------+--------------------------------+
-| Category        | Name: UPC                      |
-+-----------------+--------------------------------+
-| fruit           | apple:123456789012,            |
-|                 | pear:123456789013,             |
-|                 | oranges:123456789555           |
-+-----------------+--------------------------------+
-```
-
----
 ### Alert for an item: `alert` <a name = "alert"></a>
 Add alerts that will display when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
@@ -558,6 +552,9 @@ ____________________________________________________________
 
 Set whether the program should automatically save the updated inventory to the inventory data file after every successful
 write command issued.
+
+Note: if autosave is disabled, the program will not save on exit. This is because autosave off functions similarly to 
+incognito mode on a browser.
 
 Format: `autosave [on/off]`
 

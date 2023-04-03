@@ -14,7 +14,7 @@ public class Item implements Comparable<Item> {
     private String name;
     private Double price;
     private Integer quantity;
-    private String category = "uncategorised";
+    private String category = "Uncategorized";
     private ArrayList<String> tags = new ArrayList<>();
 
     public Item(String name, String upc, Integer qty, Double price) {
@@ -25,18 +25,6 @@ public class Item implements Comparable<Item> {
         this.dateTime = LocalDateTime.now();
     }
 
-    public Item(final String name, final String upc, final Integer qty,
-                final Double price, final String category, final ArrayList<String> tags) {
-        this.name = name;
-        this.upc = upc;
-        this.price = price;
-        this.quantity = qty;
-        this.category = category;
-        for (String tag : tags) {
-            this.tags.add(tag);
-        }
-        this.dateTime = LocalDateTime.now();
-    }
 
     public Item(final String name, final String upc, final Integer qty,
                 final Double price, final String category, final LocalDateTime dateTime) {
@@ -73,18 +61,9 @@ public class Item implements Comparable<Item> {
         this.price = item.getPrice();
         this.quantity = item.getQuantity();
         this.category = item.getCategory();
-        for (String tag : item.getTags()) {
-            tags.add(tag);
-        }
     }
 
-    public ArrayList<String> getTags() {
-        return tags;
-    }
 
-    public void setTags(final ArrayList<String> tags) {
-        this.tags = tags;
-    }
 
     public LocalDateTime getDateTime() {
         return dateTime;
@@ -182,9 +161,6 @@ public class Item implements Comparable<Item> {
         if (price > item.getPrice()) {
             results.add(Types.EditType.PRICE_DECREASE);
         }
-        if (!tags.equals(item.getTags())) {
-            results.add(Types.EditType.CHANGE_TAG);
-        }
         return results;
     }
 
@@ -242,15 +218,6 @@ public class Item implements Comparable<Item> {
     public String toString() {
         String returnString = "Name: " + name + '\n' + "UPC: " + upc + '\n' + "Price: " + price + '\n'
                 + "Quantity: " + quantity + '\n' + "Category: " + category;
-        if (!tags.isEmpty()) {
-            returnString += "\nTags: ";
-        }
-        for (int i = 0; i < tags.size(); i++) {
-            returnString += tags.get(i);
-            if (i < tags.size() - 1) {
-                returnString += ", ";
-            }
-        }
         return returnString;
     }
 
