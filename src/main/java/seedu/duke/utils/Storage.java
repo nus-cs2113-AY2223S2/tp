@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
@@ -22,6 +23,7 @@ import java.util.regex.Pattern;
 
 
 public class Storage {
+    public static final int BEFORE_INDEX = -1;
     private static Inventory inventory = new Inventory();
     private static final Integer MAX_NUMBER_OF_FIELDS = 7;
     private static final Integer NAME_INDEX = 1;
@@ -45,10 +47,22 @@ public class Storage {
      *
      * @return Inventory object
      */
-    public static Inventory readCSV() {
-
+    public static Inventory readCSV(String filePath) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(Types.SESSIONFILEPATH));
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            Types.FileHealth fileStatus = checkFileValid(filePath, VALID_DATAROW_REGEX);
+            switch(fileStatus){
+            case CORRUPT:
+                Ui.printInvalidSessionFile();
+                return new Inventory();
+            case MISSING:
+                //fallthrough
+            case EMPTY:
+                Ui.printEmptySearch();
+                return new Inventory();
+            default:
+                break;
+            }
             String line = reader.readLine();
             if (line == null) {
                 Ui.printEmptySessionFile();
@@ -56,8 +70,15 @@ public class Storage {
             }
             Inventory tempInventory = new Inventory();
             while (line != null) {
-                String[] fields = line.split(",");
+                String[] fields = line.trim().split(",");
                 if (fields.length != MAX_NUMBER_OF_FIELDS) {
+                    Ui.printInvalidSessionFile();
+                    return new Inventory();
+                }
+                try {
+                    LocalDateTime.parse(fields[DATE_INDEX]);
+                    Integer.parseInt(fields[QUANTITY_INDEX]);
+                } catch(DateTimeParseException | NumberFormatException e){
                     Ui.printInvalidSessionFile();
                     return new Inventory();
                 }
@@ -65,7 +86,7 @@ public class Storage {
                         Double.parseDouble(fields[PRICE_INDEX]), fields[CAT_INDEX],
                         LocalDateTime.parse(fields[DATE_INDEX]));
                 if (tempInventory.getUpcCodes().containsKey(fields[UPC_INDEX])) {
-                    if (tempInventory.getUpcCodes().get(fields[UPC_INDEX]).compareTo(item) == -1) {
+                    if (tempInventory.getUpcCodes().get(fields[UPC_INDEX]).compareTo(item) == BEFORE_INDEX) {
                         tempInventory.getItemInventory().remove(tempInventory.getUpcCodes().get(fields[UPC_INDEX]));
                         tempInventory.getItemInventory().add(item);
                         tempInventory.getUpcCodes().remove(fields[UPC_INDEX]);
@@ -174,18 +195,26 @@ public class Storage {
 
             AlertList tempAlertList = new AlertList(); //can set min and max hash maps in here
             while (line != null) {
+                line = line.trim();
                 String[] fields = line.split(",");
                 if (fields.length != ALERT_FIELDS) {
                     Ui.printInvalidAlertFile();
                     return new AlertList();
                 }
-
+                String upc = fields[ALERT_UPC_INDEX];
+                if(!inventory.getUpcCodes().containsKey(upc)){
+                    Ui.printInvalidAlertFile();
+                    return new AlertList();
+                }
                 Alert alert = new Alert(fields[ALERT_UPC_INDEX], fields[ALERT_MINMAX_INDEX], fields[ALERT_QTY_INDEX]);
 
                 if (fields[ALERT_MINMAX_INDEX].equals("min")) {
                     tempAlertList.setMinAlertUpcs(fields[ALERT_UPC_INDEX], Integer.parseInt(fields[ALERT_QTY_INDEX]));
                 } else if (fields[ALERT_MINMAX_INDEX].equals("max")) {
                     tempAlertList.setMaxAlertUpcs(fields[ALERT_UPC_INDEX], Integer.parseInt(fields[ALERT_QTY_INDEX]));
+                } else{
+                    Ui.printInvalidAlertFile();
+                    return new AlertList();
                 }
 
                 line = reader.readLine();
@@ -199,8 +228,11 @@ public class Storage {
                 inventory.getAlertList().setMaxAlertUpcs(entry.getKey(), entry.getValue());
             }
             reader.close();
-        } catch (IOException | NumberFormatException e) {
+        } catch (IOException ioException) {
             Ui.printEmptyAlertFile();
+            return new AlertList();
+        } catch (NumberFormatException numberFormatException){
+            Ui.printInvalidAlertFile();
             return new AlertList();
         }
         Ui.printRecoveredAlertFile();
