@@ -27,18 +27,18 @@ public class ListWorkoutCommandTest {
     public void testExecute_withNonEmptyWorkoutList_returnsListOfDates() throws ParseException {
         WorkoutList workoutList = new WorkoutList();
         String stringDate1 = "01/11/2022";
-       // String stringDate2 = "02/11/2022";
+        // String stringDate2 = "02/11/2022";
         Date date1 = DateFormatter.stringToDate(stringDate1);
-       // Date date2 = DateFormatter.stringToDate(stringDate2);
+        // Date date2 = DateFormatter.stringToDate(stringDate2);
         Day day1 = new Day(date1);
-     //   Day day2 = new Day(date2);
+        //   Day day2 = new Day(date2);
         workoutList.addWorkoutToList(date1, day1);
         // workoutList.addWorkoutToList(date2, day2);
         ListWorkoutCommand listWorkoutCommand = new ListWorkoutCommand(workoutList);
 
         String expectedOutput = "Here is the list of dates of your workouts:" + System.lineSeparator()
                 + DateFormatter.dateToString(date1) + System.lineSeparator()
-          //      + DateFormatter.dateToString(date2) + System.lineSeparator()
+                // + DateFormatter.dateToString(date2) + System.lineSeparator()
                 + "----------------------------------";
         String actualOutput = listWorkoutCommand.execute();
         assertEquals(expectedOutput, actualOutput);
