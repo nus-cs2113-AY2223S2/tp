@@ -45,7 +45,7 @@ class RecipePossibleCommandTest {
         IngredientList hamSandwichIngredients = new IngredientList();
         hamSandwichIngredients.add(new Ingredient("bread", 2.0));
         hamSandwichIngredients.add(new Ingredient("ham", 1.0));
-        Recipe hamSandwich = new Recipe("ham sandwich", 200, 30, 10,
+        Recipe hamSandwich = new Recipe("ham sandwich", false,200, 30, 10,
                 hamSandwichIngredients, new InstructionList());
         mealCompanionSession.getRecipes().add(hamSandwich);
 
@@ -54,7 +54,7 @@ class RecipePossibleCommandTest {
         IngredientList eggSandwichIngredients = new IngredientList();
         eggSandwichIngredients.add(new Ingredient("bread", 2.0));
         eggSandwichIngredients.add(new Ingredient("egg", 1.0));
-        Recipe eggSandwich = new Recipe("egg sandwich", 200, 30, 10,
+        Recipe eggSandwich = new Recipe("egg sandwich", false,200, 30, 10,
                 eggSandwichIngredients, new InstructionList());
         mealCompanionSession.getRecipes().add(eggSandwich);
     }
@@ -83,7 +83,8 @@ class RecipePossibleCommandTest {
         RecipePossibleCommand command = new RecipePossibleCommand();
         IngredientList waterIngredients = new IngredientList();
         waterIngredients.add(new Ingredient("water", 100.00));
-        Recipe cupOfWater = new Recipe("Cup of Water", 0, 0, 0, waterIngredients, new InstructionList());
+        Recipe cupOfWater = new Recipe("Cup of Water", false, 0, 0, 0,
+                waterIngredients, new InstructionList());
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("water", 100.00));
         fridgeIngredients.add(new Ingredient("chicken", 5.00));
@@ -95,7 +96,8 @@ class RecipePossibleCommandTest {
         RecipePossibleCommand command = new RecipePossibleCommand();
         IngredientList waterIngredients = new IngredientList();
         waterIngredients.add(new Ingredient("water", 100.00));
-        Recipe cupOfWater = new Recipe("Cup of Water", 0, 0, 0, waterIngredients, new InstructionList());
+        Recipe cupOfWater = new Recipe("Cup of Water", false,0, 0, 0,
+                waterIngredients, new InstructionList());
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("water", 90.00));
         fridgeIngredients.add(new Ingredient("chicken", 5.00));
@@ -107,7 +109,8 @@ class RecipePossibleCommandTest {
         RecipePossibleCommand command = new RecipePossibleCommand();
         IngredientList waterIngredients = new IngredientList();
         waterIngredients.add(new Ingredient("water", 100.00));
-        Recipe cupOfWater = new Recipe("Cup of Water", 0, 0, 0, waterIngredients, new InstructionList());
+        Recipe cupOfWater = new Recipe("Cup of Water", false,0, 0, 0,
+                waterIngredients, new InstructionList());
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("apple", 9.00));
         fridgeIngredients.add(new Ingredient("chicken", 5.00));
