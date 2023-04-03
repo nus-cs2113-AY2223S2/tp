@@ -3,6 +3,7 @@ package seedu.duke.command;
 
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.OutOfIndexException;
+import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.parser.Parser;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
@@ -107,10 +108,12 @@ public class Command {
         case VIEW:
             try {
                 if (fullDescription.isEmpty()) {
-                    throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
+                    throw new IncompleteInputException("The KEYWORDS of " + type + " cannot be empty.\n");
                 }
-                int recipeListNum = Integer.parseInt(fullDescription);
-                Recipe recipeToBeViewed = recipeList.getRecipeFromList(recipeListNum);
+                if (recipeList.isEmpty()) {
+                    throw new RecipeListEmptyException();
+                }
+                Recipe recipeToBeViewed = recipeList.viewRecipe(fullDescription);
                 ui.showRecipeViewed(recipeToBeViewed, ui);
             } catch (Exception e) {
                 ui.showViewingRecipeErrorMessage(e);

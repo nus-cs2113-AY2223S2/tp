@@ -1,13 +1,19 @@
 package seedu.duke.recipe;
 
+import seedu.duke.exceptions.DuplicateRecipeNameException;
+import seedu.duke.exceptions.NoMatchingRecipeFound;
+import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.RecipeListEmptyException;
 
 import java.util.ArrayList;
 
-import static seedu.duke.ui.StringLib.MISSING_KEYWORD;
+import static seedu.duke.ui.StringLib.DUPLICATE_RECIPE_NAMES_ERROR;
+import static seedu.duke.ui.StringLib.INVALID_RANGE;
+import static seedu.duke.ui.StringLib.MISSING_FIND_KEYWORD;
 import static seedu.duke.ui.StringLib.EMPTY_LIST_MESSAGE;
 import static seedu.duke.ui.StringLib.NO_MATCHES;
 import static seedu.duke.ui.StringLib.MATCHING_ITEMS;
+import static seedu.duke.ui.StringLib.NO_MATCHING_RECIPE_ERROR;
 
 public class RecipeList {
     protected static ArrayList<Recipe> recipeList;
@@ -19,10 +25,7 @@ public class RecipeList {
         currRecipeNumber = 0;
     }
 
-    public RecipeList(ArrayList<Recipe> inputRecipeList) {
-        recipeList = inputRecipeList;
-        currRecipeNumber = inputRecipeList.size();
-    }
+    public static boolean isEmpty() { return recipeList.isEmpty(); }
 
     public static ArrayList<Recipe> getRecipeList() {
         return recipeList;
@@ -64,7 +67,7 @@ public class RecipeList {
     public static void searchRecipeList(String term) {
         ArrayList<String> matches = new ArrayList<>();
         if (term.equals("")) {
-            System.out.println(MISSING_KEYWORD);
+            System.out.println(MISSING_FIND_KEYWORD);
             return;
         }
         if (getCurrRecipeNumber() == 0) {
@@ -85,5 +88,33 @@ public class RecipeList {
                 System.out.println("  " + match);
             }
         }
+    }
+
+    public static Recipe viewRecipe(String term)
+            throws DuplicateRecipeNameException,NoMatchingRecipeFound, OutOfIndexException {
+        Recipe recipeToBeViewed;
+        try {
+            int recipeListIndex = Integer.parseInt(term);
+            if (recipeListIndex <= 0 || recipeListIndex > getCurrRecipeNumber()) {
+                throw new OutOfIndexException(INVALID_RANGE + "1 to " + getCurrRecipeNumber() + '\n');
+            }
+            recipeToBeViewed = recipeList.get(recipeListIndex - 1);
+        } catch (NumberFormatException e) {
+            ArrayList<Recipe> viewRecipeResults = new ArrayList<>();
+            for (Recipe recipe : recipeList) {
+                if (recipe.getName().equalsIgnoreCase(term)) {
+                    viewRecipeResults.add(recipe);
+                }
+            }
+            if (viewRecipeResults.isEmpty()) {
+                throw new NoMatchingRecipeFound(NO_MATCHING_RECIPE_ERROR);
+            }
+            else if (viewRecipeResults.size() == 1) {
+                recipeToBeViewed = viewRecipeResults.get(0);
+            } else {
+                throw new DuplicateRecipeNameException(DUPLICATE_RECIPE_NAMES_ERROR);
+            }
+        }
+        return recipeToBeViewed;
     }
 }
