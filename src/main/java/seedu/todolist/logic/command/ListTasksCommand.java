@@ -49,8 +49,9 @@ public class ListTasksCommand extends Command {
         if (predicate == null) {
             ui.printTaskList(taskList.size(), taskList.toString(Task.deadlineComparator));
         } else {
-            filteredTaskList = taskList.getFilteredTasks(predicate);
-            ui.printTaskList(filteredTaskList.size(), filteredTaskList.toString(Task.deadlineComparator));
+            int taskListCount = taskList.size(predicate);
+            String taskListString = taskList.toString(predicate, Task.deadlineComparator);
+            ui.printTaskList(taskListCount, taskListString);
         }
     }
 }

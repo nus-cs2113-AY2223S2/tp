@@ -113,6 +113,19 @@ public class TaskList implements Serializable {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
+    //@@author clement559
+    /**
+     * Filters the task list using a predicate and comparator before converting it into its sorted string representation.
+     *
+     * @param p The predicate to sort the task list with.
+     * @param c The comparator to sort the task list with.
+     * @return Filtered string representation of the task list.
+     */
+    public String toString(Predicate<Task> p, Comparator<Task> c) {
+        return tasks.values().stream().filter(p).sorted(c).map(Task::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
     public ArrayList<Task> getTaskWithTag(String tag) {
         return  (ArrayList<Task>) tasks.values().stream()
                 .filter(t -> t.getTags().contains(tag))
@@ -217,13 +230,14 @@ public class TaskList implements Serializable {
     }
 
     //@@author clement559
-    public TaskList getFilteredTasks(Predicate<Task> predicate) {
+    public int size(Predicate<Task> predicate) {
+        int taskListCount = 0;
         TaskList filteredTaskList = new TaskList();
         for (Task task : tasks.values()) {
             if (predicate.test(task)) {
-                filteredTaskList.addTask(task);
+                taskListCount++;
             }
         }
-        return filteredTaskList;
+        return taskListCount;
     }
 }
