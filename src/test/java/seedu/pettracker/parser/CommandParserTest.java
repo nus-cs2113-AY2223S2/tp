@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import seedu.pettracker.commands.AddPetCommand;
 import seedu.pettracker.commands.AddStatCommand;
 import seedu.pettracker.commands.ExitCommand;
-import seedu.pettracker.commands.InvalidCommand;
 import seedu.pettracker.commands.ListPetCommand;
 import seedu.pettracker.commands.RemovePetCommand;
 import seedu.pettracker.commands.RemoveStatCommand;
@@ -13,6 +12,8 @@ import seedu.pettracker.commands.RemoveTaskCommand;
 import seedu.pettracker.commands.ListTasksCommand;
 import seedu.pettracker.commands.MarkTaskCommand;
 import seedu.pettracker.commands.UnMarkTaskCommand;
+import seedu.pettracker.exceptions.EmptyArgException;
+import seedu.pettracker.exceptions.UnknownKeywordException;
 
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -50,7 +51,7 @@ class CommandParserTest {
     @Test
     void parseAddPetNoArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(AssertionError.class, () -> cp.newCommand("add-pet"));
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("add-pet"));
     }
 
     @Test
@@ -62,7 +63,7 @@ class CommandParserTest {
     @Test
     void parseRemovePetNoArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(AssertionError.class, () -> cp.newCommand("remove-pet"));
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("remove-pet"));
     }
 
     @Test
@@ -74,7 +75,7 @@ class CommandParserTest {
     @Test
     void parseAddStatNoArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(AssertionError.class, () -> cp.newCommand("add-stat"));
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("add-stat"));
     }
 
     @Test
@@ -98,7 +99,7 @@ class CommandParserTest {
     @Test
     void parseAddTaskNoArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(AssertionError.class, () -> cp.newCommand("add-task"));
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("add-task"));
     }
 
     @Test
@@ -116,7 +117,7 @@ class CommandParserTest {
     @Test
     void parseRemoveTaskNoArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(AssertionError.class, () -> cp.newCommand("remove-task"));
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("remove-task"));
     }
 
     @Test
@@ -140,7 +141,7 @@ class CommandParserTest {
     @Test
     void parseMarkTaskNoArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(AssertionError.class, () -> cp.newCommand("mark-task"));
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("mark-task"));
     }
 
     @Test
@@ -152,19 +153,19 @@ class CommandParserTest {
     @Test
     void parseUnmarkTaskNoArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(AssertionError.class, () -> cp.newCommand("unmark-task"));
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("unmark-task"));
     }
 
     @Test
     void parseNonsense() {
         CommandParser cp = new CommandParser();
-        assertAll(() -> assertTrue(cp.newCommand("nonsense") instanceof InvalidCommand));
+        assertThrows(UnknownKeywordException.class, () -> cp.newCommand("nonsense"));
     }
 
     @Test
     void parseNonsenseWithArgs() {
         CommandParser cp = new CommandParser();
-        assertAll(() -> assertTrue(cp.newCommand("nonsense 1") instanceof InvalidCommand));
+        assertThrows(UnknownKeywordException.class, () -> cp.newCommand("nonsense 1"));
     }
     
 }
