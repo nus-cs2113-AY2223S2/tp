@@ -67,14 +67,7 @@ public class Parser {
                     LocalDateTime now = LocalDateTime.now();
                     ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
                     ArrayList<String> diagnoses = new ArrayList<>();
-                    for (IllnessMatch illnessMatch : possibleIllnesses) {
-                        diagnoses.add(illnessMatch.getIllness().getIllnessName());
-                        ArrayList<String> medicineArrayList = medicineManager
-                                .getRelevantMedicationInString(illnessMatch.getIllness().getIllnessName());
-                        if (!(medicineArrayList == null)) {
-                            user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
-                        }
-                    }
+                    formatMedicineDate(user, medicineManager, dtf, now, possibleIllnesses, diagnoses);
                     if (diagnoses.size() > 0) {
                         user.updatePatientDiagnosisHistory(dtf.format(now), diagnoses);
                     }
@@ -97,35 +90,29 @@ public class Parser {
             Information.viewSymptomHistory(Menu.symptoms);
             break;
         case "5":
-            Information.deleteSymptom(Menu.symptoms);
-
-            //@@author Geeeetyx
-            ArrayList<Symptom> symptoms = Menu.symptoms;
-
-            System.out.println("---------------------------------------------------");
-            System.out.println("Below is your new diagnosis:");
-
-            Menu.displayPossibleIllness(symptoms);
-            ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
-            //@@author Thunderdragon221
-            ArrayList<String> diagnoses = new ArrayList<>();
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-            LocalDateTime now = LocalDateTime.now();
-            //@@author Geeeetyx
-            for (IllnessMatch illnessMatch : possibleIllnesses) {
-                diagnoses.add(illnessMatch.getIllness().getIllnessName());
-                ArrayList<String> medicineArrayList = medicineManager
-                        .getRelevantMedicationInString(illnessMatch.getIllness().getIllnessName());
-                if (!(medicineArrayList == null)) {
-                    user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
+            boolean deleted = Information.deleteSymptom(Menu.symptoms);
+            if (deleted) {
+                //@@author Geeeetyx
+                ArrayList<Symptom> symptoms = Menu.symptoms;
+                if (!symptoms.isEmpty()) {
+                    System.out.println("---------------------------------------------------");
+                    System.out.println("Below is your new diagnosis:");
+                    Menu.displayPossibleIllness(symptoms);
                 }
+                ArrayList<IllnessMatch> possibleIllnesses = medicineManager.analyseIllness(symptoms);
+                //@@author Thunderdragon221
+                ArrayList<String> diagnoses = new ArrayList<>();
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                LocalDateTime now = LocalDateTime.now();
+                //@@author Geeeetyx
+                formatMedicineDate(user, medicineManager, dtf, now, possibleIllnesses, diagnoses);
+                //@@author Thunderdragon221
+                if (diagnoses.size() > 0) {
+                    user.updatePatientDiagnosisHistory(dtf.format(now), diagnoses);
+                }
+                saveData();
+                saveQueue();
             }
-            //@@author Thunderdragon221
-            if (diagnoses.size() > 0) {
-                user.updatePatientDiagnosisHistory(dtf.format(now), diagnoses);
-            }
-            saveData();
-            saveQueue();
             break;
         case "6":
             Information.resetSymptomChoice(Menu.symptoms);
@@ -154,6 +141,17 @@ public class Parser {
         default:
             System.out.println("Invalid input!");
             break;
+        }
+    }
+    //@@author tanyizhe
+    private static void formatMedicineDate(Patient user, MedicineManager medicineManager, DateTimeFormatter dtf, LocalDateTime now, ArrayList<IllnessMatch> possibleIllnesses, ArrayList<String> diagnoses) {
+        for (IllnessMatch illnessMatch : possibleIllnesses) {
+            diagnoses.add(illnessMatch.getIllness().getIllnessName());
+            ArrayList<String> medicineArrayList = medicineManager
+                    .getRelevantMedicationInString(illnessMatch.getIllness().getIllnessName());
+            if (!(medicineArrayList == null)) {
+                user.updatePatientMedicineHistory(dtf.format(now), medicineArrayList);
+            }
         }
     }
 }

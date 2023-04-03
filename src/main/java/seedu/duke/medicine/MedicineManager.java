@@ -3,6 +3,7 @@ package seedu.duke.medicine;
 import seedu.duke.diagnosis.Diagnosis;
 import seedu.duke.diagnosis.IllnessMatch;
 import seedu.duke.diagnosis.symptoms.Symptom;
+import seedu.duke.ui.Menu;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -239,12 +240,12 @@ public class MedicineManager {
             ArrayList<Medicine> relevantMedications = getRelevantMedication(illnessMatch.getIllness().getIllnessName());
             printMedication(relevantMedications);
         }
-        System.out.println("End of diagnosis. Please proceed to your nearest pharmacy to purchase the " +
-                "above medications.");
-        System.out.println("==========================================================================" +
-                "==================");
+
+        Menu.displayEndOfDiagnosisMessage();
         return possibleIllnesses;
     }
+
+
 
     /**
      * Prints medications if they are available over the counter. Otherwise, recommends patient to consult doctor.
@@ -312,7 +313,6 @@ public class MedicineManager {
             System.out.println(medicationKey);
         }
     }
-
     /**
      * Looks for medicine using a keyword or phrase.
      * @param phrase String user has inputted to find medicine.
