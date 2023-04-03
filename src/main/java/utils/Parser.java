@@ -180,6 +180,9 @@ public class Parser {
                 staffPhoneNumber = matcher.group("phoneNumber");
                 staffDateOfBirth = matcher.group("dateOfBirth");
             }
+            if (staffPhoneNumber.length() > 15) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER);
+            }
 
             return new AddStaffCommand(staffName, staffWorkingDay, staffDateOfBirth, staffPhoneNumber);
         } catch (DinerDirectorException e) {

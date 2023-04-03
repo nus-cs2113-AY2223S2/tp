@@ -94,4 +94,5 @@ public class Messages {
 
     public static final String ERROR_STAFF_INVALID_INDEX = "Invalid staff index number";
     public static final String ERROR_STAFF_EXCESS_VIEW_PARAM = "Excessive parameter given to view staff command!";
+    public static final String ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER = "Phone number length is at most 15!";
 }
