@@ -304,15 +304,40 @@ Our product targets students who would like to save money on buying or ordering 
 ## Glossary
 
 * *glossary item* - Definition
+* **Mainstream OS:** Windows, Linux, Unix, OS-X
 
 ###### [Back to table of contents](#table-of-contents)
 
 ## Appendix: Instructions for manual testing
 
+Given below are instructions to test the app manually.
+
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 ### Launch and Shutdown
 
+1. Initial Launch
+   * Download the jar file and copy into an empty folder.
+
+### Make a Recipe
+
+1. Prerequisites: List all possible recipes using the `recipes list` command. Recipe of index `1`  is in the list.
+<br/><br/>
+2. Test Case: `make 1`
+Expected: All ingredients needed to make the recipe is removed from the ingredients list. User is informed of each ingredient that is removed.
+<br/><br/>
+3. Test Case: `make 0`
+Expected: Error message is shown and no changes are made to the ingredients list.
+<br/><br/>
+4. Other incorrect delete commands to try: `delete`, `delete abc`, `delete x`, `...` (where x is a large integer) <br>
+Expected: Similar to previous.
+<br/><br/>
+
+
 ### Saving Data
+1. Dealing with corrupted data file
+   * To simulate a corrupted data file, ...(to be completed) <br>
+   Expected: MealCompanion to throw error message notifying users of corrupted data file.
+2. 
 
 ###### [Back to the top](#developer-guide)
