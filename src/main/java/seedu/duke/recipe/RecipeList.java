@@ -76,7 +76,7 @@ public class RecipeList {
         }
         for (int i = 1; i <= getCurrRecipeNumber(); i++) {
             Recipe dish = getRecipeFromList(i);
-            if (dish.getName().toLowerCase().contains(term.toLowerCase())) {
+            if (dish.getName().trim().toLowerCase().contains(term.toLowerCase().trim())) {
                 matches.add(dish + " [Index: " + i + "]");
             }
         }
@@ -89,6 +89,29 @@ public class RecipeList {
             }
         }
     }
+		
+		public static void searchByTag(String tag) {
+        ArrayList<String> matches = new ArrayList<>();
+        if (tag.equals("")) {
+            System.out.println(MISSING_KEYWORD);
+        } else if (getCurrRecipeNumber() == 0) {
+            System.out.println(EMPTY_LIST_MESSAGE);
+        } else {
+            for (int i = 1; i <= getCurrRecipeNumber(); i++) {
+                Recipe dish = getRecipeFromList(i);
+                if (dish.getTag().trim().toLowerCase().contains(tag.toLowerCase().trim())) {
+                    matches.add(dish + " [Index: " + i + "]");
+                }
+            }
+            if (matches.isEmpty()) {
+                System.out.println(NO_MATCHES);
+            } else {
+                System.out.println(MATCHING_ITEMS);
+                for (String match : matches) {
+                    System.out.println("  " + match);
+                }
+            }
+        }
 
     public static Recipe viewRecipe(String term)
             throws DuplicateRecipeNameException,NoMatchingRecipeFound, OutOfIndexException {

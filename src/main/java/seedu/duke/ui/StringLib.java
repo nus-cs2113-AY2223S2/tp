@@ -141,4 +141,5 @@ public interface StringLib {
     String DUPLICATE_RECIPE_NAMES_ERROR = "There appears to be duplicate recipe names that exist. \nPlease use the " +
             "FIND feature to get the specific recipe index to be viewed instead.\n";
     String NO_MATCHING_RECIPE_ERROR = "There are no matching recipes found.\n";
+    String POS_INT = "\nPlease enter a valid index!";
 }

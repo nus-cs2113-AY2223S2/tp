@@ -89,12 +89,10 @@ public class Storage {
             return;
         }
         try {
-            File saveFile;
             FileWriter saveWriter;
             int dishIndex = 1;
             for (Recipe dish : RecipeList.getRecipeList()) {
-                saveFile = new File("data/" + dishIndex + "-" + dish.getName());
-                saveWriter = new FileWriter("data/" + dishIndex + "-" + dish.getName() + ".txt");
+                saveWriter = new FileWriter("data/" + dishIndex + ".txt");
                 saveWriter.write(dish.getName() + "\n");
                 saveWriter.write(dish.getTag() + "\n");
                 saveWriter.write(StringLib.INGREDIENT_LIST + "\n");

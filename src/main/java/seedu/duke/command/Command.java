@@ -62,7 +62,7 @@ public class Command {
     public void execute(RecipeList recipeList, UI ui) throws IOException {
 
         int recipeListIndex;
-
+        int recipeCount = recipeList.getCurrRecipeNumber();
         switch (type) {
         case LIST:
             ui.showRecipeList(recipeList.getRecipeList());
@@ -80,11 +80,12 @@ public class Command {
                 int sumOfSteps = Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
                 StepList recipeSteps = Parser.parseSteps(ui,sumOfSteps);
                 recipeList.addNewRecipe(new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps));
-                ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeList.getCurrRecipeNumber());
+                recipeCount = recipeList.getCurrRecipeNumber();
+                ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeCount);
+                Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showAddingRecipeErrorMessage(e);
             }
-            Storage.writeSavedFile();
             break;
         case DELETE:
             try {
@@ -92,13 +93,23 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 recipeListIndex = Integer.parseInt(fullDescription);
+                if (recipeCount == 0) {
+                    System.out.println(StringLib.EMPTY_LIST_MESSAGE);
+                    break;
+                }
+                if (recipeListIndex <= 0 || recipeListIndex > recipeCount) {
+                    System.out.println(StringLib.POS_INT);
+                    System.out.println("Valid range: " + 1 + " to " + recipeCount);
+                    break;
+                }
                 Recipe recipeToBeDeleted = recipeList.getRecipeFromList(recipeListIndex);
-                ui.showRecipeDeleted(recipeToBeDeleted, recipeList.getCurrRecipeNumber() - 1);
                 recipeList.removeRecipe(recipeListIndex);
+                recipeCount = recipeList.getCurrRecipeNumber();
+                ui.showRecipeDeleted(recipeToBeDeleted, recipeCount);
+                Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showDeletingTaskErrorMessage(e, type);
             }
-            Storage.writeSavedFile();
             break;
         case CLEAR:
             recipeList.clearRecipeList();
@@ -119,8 +130,11 @@ public class Command {
                 ui.showViewingRecipeErrorMessage(e);
             }
             break;
-        case FIND:
+        case FINDNAME:
             RecipeList.searchRecipeList(fullDescription);
+            break;
+        case FINDTAG:
+            RecipeList.searchByTag(fullDescription);
             break;
         case EDITSTEP:
             try {
@@ -128,6 +142,15 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
+                if (recipeCount == 0) {
+                    System.out.println(StringLib.EMPTY_LIST_MESSAGE);
+                    break;
+                }
+                if (recipeListNum <= 0 || recipeListNum > recipeCount) {
+                    System.out.println(StringLib.POS_INT);
+                    System.out.println("Valid range: " + 1 + " to " + recipeCount);
+                    break;
+                }
                 Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
                 StepList recipeToEditStepList = recipeToEdit.getStepList();
                 int maxSteps = recipeToEditStepList.getCurrStepNumber();
@@ -140,20 +163,25 @@ public class Command {
                 recipeToEditStepList.showFullStepList();
                 ui.showEditRecipeStepPrompt();
                 String input = ui.readCommand();
-                if (input.equals("quit")) {
+                if (input.trim().equals(StringLib.STEP_VIEW_QUIT_KEYWORD) ||
+                        input.contains(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
                     break;
                 }
                 int stepIndex = Integer.parseInt(input) - 1;
-                if (stepIndex < maxSteps) {
+                if (stepIndex < maxSteps && stepIndex >= 0) {
                     assert (maxSteps - stepIndex > 0);
-                    recipeToEditStepList.editStep(stepIndex,ui);
+                    recipeToEditStepList.editStep(stepIndex, ui);
+                } else if (stepIndex <= 0) {
+                    System.out.println(StringLib.POS_INT);
+                    System.out.println("Valid range: " + 1 + " to " + maxSteps);
                 } else {
-                    throw new OutOfIndexException(StringLib.INPUT_STEPS_INDEX_EXCEEDED);
+                    throw new OutOfIndexException(StringLib.INPUT_STEPS_INDEX_EXCEEDED +
+                            "\nValid Range: 1 to " + maxSteps);
                 }
+                Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }
-            Storage.writeSavedFile();
             break;
             
         case EDITINGREDIENT:
@@ -162,6 +190,15 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
+                if (recipeCount == 0) {
+                    System.out.println(StringLib.EMPTY_LIST_MESSAGE);
+                    break;
+                }
+                if (recipeListNum <= 0 || recipeListNum > recipeCount) {
+                    System.out.println(StringLib.POS_INT);
+                    System.out.println("Valid range: " + 1 + " to " + recipeCount);
+                    break;
+                }
                 Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
                 IngredientList recipeToEditIngredientList = recipeToEdit.getIngredientList();
                 int maxSteps = recipeToEditIngredientList.getCurrIngredientNumber();
@@ -171,19 +208,25 @@ public class Command {
                 recipeToEditIngredientList.showList();
                 ui.showEditRecipeIngredientPrompt();
                 String input = ui.readCommand();
-                if (input.equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
+                if (input.trim().equals(StringLib.STEP_VIEW_QUIT_KEYWORD) ||
+                        input.contains(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
                     break;
                 }
                 int ingredientIndex = Integer.parseInt(input) - 1;
 
                 if (ingredientIndex >= maxSteps) {
-                    throw new OutOfIndexException(StringLib.INPUT_INGREDIENTS_INDEX_EXCEEDED);
+                    throw new OutOfIndexException(StringLib.INPUT_INGREDIENTS_INDEX_EXCEEDED +
+                            "\nValid Range: 1 to " + maxSteps);
+                }
+                if (ingredientIndex <= 0) {
+                    System.out.println(StringLib.POS_INT);
+                    System.out.println("Valid Range: 1 to " + maxSteps);
                 }
                 recipeToEditIngredientList.editIngredient(ui, ingredientIndex);
+                Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }
-            Storage.writeSavedFile();
             break;
         case HELP:
             ui.showHelp();

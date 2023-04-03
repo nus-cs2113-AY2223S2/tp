@@ -11,9 +11,9 @@ add n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/1
 add spaghetti
 add n/Carbonara i/Pasta, Bacon, Egg, Cheese t/Italian s/0
 add n/Beijing Duck i/Duck, Pancakes t/Chinese s/0
-find duck
-find capybara
-find
+findname duck
+findname capybara
+findname
 list
 delete 1
 list
@@ -25,6 +25,9 @@ add n/XiaoLongBao i/Pork, Soup, Dumplings t/Chinese s/0
 add n/Guilinggao i/Tea, Milk, Sugar t/Chinese s/1
 brew tea
 list
+findtag chi
+findtag nomz
+findtag
 view 1
 no
 editstep 1
