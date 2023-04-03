@@ -12,6 +12,12 @@ import java.util.List;
  * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookEncoder.java
  */
 public class FlashcardListEncoder {
+
+    public static final String QUESTION_APPEND = "q/";
+    public static final String ANSWER_APPEND = " a/";
+    public static final String DUE_DATE_APPEND = " d/";
+    public static final String PERIOD_APPEND = " p/";
+
     /**
      * Encodes all the {@code Flashcards} in the {@code toSave} into a list of decodable and readable
      * string presentation for storage.
@@ -28,12 +34,12 @@ public class FlashcardListEncoder {
     private static String encodeFlashcardToString(Flashcard flashcard) {
         final StringBuilder encodedFlashcardBuilder = new StringBuilder();
 
-        encodedFlashcardBuilder.append("q/").append(flashcard.getQuestion());
-        encodedFlashcardBuilder.append(" a/").append(flashcard.getAnswer());
+        encodedFlashcardBuilder.append(QUESTION_APPEND).append(flashcard.getQuestion());
+        encodedFlashcardBuilder.append(ANSWER_APPEND).append(flashcard.getAnswer());
 
-        encodedFlashcardBuilder.append(" d/").append(flashcard.getDueDate().toString());
+        encodedFlashcardBuilder.append(DUE_DATE_APPEND).append(flashcard.getDueDate().toString());
 
-        encodedFlashcardBuilder.append(" p/").append(flashcard.getCurrentPeriodInDays());
+        encodedFlashcardBuilder.append(PERIOD_APPEND).append(flashcard.getCurrentPeriodInDays());
 
         return encodedFlashcardBuilder.toString();
     }
