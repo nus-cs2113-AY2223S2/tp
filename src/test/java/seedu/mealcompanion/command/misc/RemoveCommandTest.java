@@ -13,7 +13,7 @@ public class RemoveCommandTest {
     @Test
     public void removeSameNumberAsQuantity() throws MealCompanionException {
         MealCompanionSession mealCompanionSession = new MealCompanionSession();
-        Ingredient ingredient = new Ingredient("apple", 2.0);
+        Ingredient ingredient = new Ingredient("apple", 2);
         mealCompanionSession.getIngredients().add(ingredient);
         assertEquals(1, mealCompanionSession.getIngredients().size());
         new RemoveCommand("apple", "2").execute(mealCompanionSession);
@@ -23,7 +23,7 @@ public class RemoveCommandTest {
     @Test
     public void removeLesserThanFridgeQuantity() throws MealCompanionException {
         MealCompanionSession mealCompanionSession = new MealCompanionSession();
-        Ingredient ingredient = new Ingredient("apple", 9.0);
+        Ingredient ingredient = new Ingredient("apple", 9);
         mealCompanionSession.getIngredients().add(ingredient);
         assertEquals(9, mealCompanionSession.getIngredients().get(0).getQuantity());
         new RemoveCommand("apple", "2").execute(mealCompanionSession);

@@ -9,8 +9,8 @@ public class IngredientListTest {
     @Test
     public void findIndexTest() throws MealCompanionException {
         IngredientList ingredients = new IngredientList();
-        Ingredient ingredient1 = new Ingredient("apple", 2.0);
-        Ingredient ingredient2 = new Ingredient("egg", 1.9);
+        Ingredient ingredient1 = new Ingredient("apple", 2);
+        Ingredient ingredient2 = new Ingredient("egg", 1);
 
         ingredients.add(ingredient1);
         ingredients.add(ingredient2);

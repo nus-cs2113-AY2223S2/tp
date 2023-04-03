@@ -28,8 +28,8 @@ public class AddCommand extends ExecutableCommand {
      * @param index the index of the ingredient in the ingredients list
      */
 
-    private void addToExistingIngredients(MealCompanionSession mealCompanionSession, Double quantity, int index) {
-        double newQuantity = mealCompanionSession.getIngredients().get(index).getQuantity() + quantity;
+    private void addToExistingIngredients(MealCompanionSession mealCompanionSession, int quantity, int index) {
+        int newQuantity = mealCompanionSession.getIngredients().get(index).getQuantity() + quantity;
         mealCompanionSession.getIngredients().get(index).setQuantity(newQuantity);
         mealCompanionSession.getUi().printMessage("Here is the new quantity of the ingredient:");
         mealCompanionSession.getUi().printMessage(String.valueOf(mealCompanionSession.getIngredients().get(index)));
@@ -44,7 +44,7 @@ public class AddCommand extends ExecutableCommand {
      * @param name the name of the ingredient
      */
 
-    private void addNewIngredient(MealCompanionSession mealCompanionSession, Double quantity, String name)
+    private void addNewIngredient(MealCompanionSession mealCompanionSession, int quantity, String name)
             throws MealCompanionException {
         IngredientDatabase db = IngredientDatabase.getDbInstance();
         if (!db.getKnownIngredients().containsKey(name)) {
@@ -66,7 +66,7 @@ public class AddCommand extends ExecutableCommand {
 
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
-            Double quantity = Double.parseDouble(amount);
+            int quantity = Integer.parseInt(amount);
             if (quantity <= 0) {
                 throw new MealCompanionException("OOPS, quantity must be greater than 0");
             }

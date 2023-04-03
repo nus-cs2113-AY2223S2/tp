@@ -6,9 +6,9 @@ import seedu.mealcompanion.recipe.IngredientMetadata;
 
 public class Ingredient {
     protected IngredientMetadata metadata;
-    protected double quantity;
+    protected int quantity;
 
-    public Ingredient(String name, double quantity) throws MealCompanionException {
+    public Ingredient(String name, int quantity) throws MealCompanionException {
         IngredientDatabase db = IngredientDatabase.getDbInstance();
 
         if (!db.getKnownIngredients().containsKey(name)) {
@@ -29,11 +29,11 @@ public class Ingredient {
         return metadata;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 }
