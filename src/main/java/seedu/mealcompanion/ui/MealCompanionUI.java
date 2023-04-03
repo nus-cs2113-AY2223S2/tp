@@ -7,8 +7,8 @@ import java.util.Scanner;
  */
 public class MealCompanionUI {
 
-    private static final String DIVIDER = "\n_______________________________________________________________________"
-            + "____________________________________\n";
+    private static final String DIVIDER = "_______________________________________________________________________"
+            + "__________________________________________";
 
     private Scanner scanner;
 
@@ -44,6 +44,8 @@ public class MealCompanionUI {
         System.out.println(message);
     }
 
+    //@@author TJW0911
+
     /**
      * Prints help messages for the "help" command.
      */
@@ -52,7 +54,32 @@ public class MealCompanionUI {
         printHelpMessageHeader();
         printIngredientHelp();
         printRecipeHelp();
+        printAllergenHelp();
         printByeCommandHelp();
+    }
+
+    private static void printAllergenHelp() {
+        printAllergenAddHelp();
+        printAllergenRemoveHelp();
+        printAllergenListHelp();
+    }
+
+    private static void printAllergenListHelp() {
+        System.out.println("Command: allergen list");
+        System.out.println("List out all the allergens the user currently has");
+        System.out.println(DIVIDER);
+    }
+
+    private static void printAllergenRemoveHelp() {
+        System.out.println("Command: allergen remove <ingredient>");
+        System.out.println("Removes the ingredient from the users list of allergens");
+        System.out.println(DIVIDER);
+    }
+
+    private static void printAllergenAddHelp() {
+        System.out.println("Command: allergen add <ingredient>");
+        System.out.println("Adds the ingredient to the users list of allergens");
+        System.out.println(DIVIDER);
     }
 
     private static void printIngredientHelp() {
@@ -87,7 +114,7 @@ public class MealCompanionUI {
     }
 
     private static void printRecipeDetailHelp() {
-        System.out.println("Command: recipe detail <recipe number>");
+        System.out.println("Command: recipe <recipe number>");
         System.out.println("Prints all the details of the specified recipe");
         System.out.println(DIVIDER);
     }
@@ -152,6 +179,7 @@ public class MealCompanionUI {
         System.out.println(DIVIDER);
     }
 
+    //@@author EthanYidong
     private static void printSearchIngredientsHelp() {
         System.out.println("Command: ingredients search");
         System.out.println("Searches the ingredients database for the specified keyword.");
