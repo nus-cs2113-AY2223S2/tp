@@ -1,0 +1,29 @@
+@startuml
+!include ../../Style.puml
+
+' autonumber
+title Resetting data in storage
+
+participant "backend:Backend" as Backend
+participant "storage:Storage" as Storage
+participant "Database" as Database
+
+ref over Backend
+Reset data in Storage
+end ref
+
+Backend -> Storage: clearData()
+activate Storage
+Storage -> Database: reset()
+activate Database
+alt Reset successful
+    Database --> Storage: ok
+    Storage -> Storage: makeFileIfNotExists()
+    Backend <-- Storage: ok
+else IOexception
+    Database --> Storage: IOException
+    Backend <-- Storage: IOException
+end
+
+
+@enduml

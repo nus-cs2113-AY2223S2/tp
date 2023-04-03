@@ -24,6 +24,8 @@ public class CategoryUtil {
             return Category.UTILITIES;
         case EntryConstants.TRANSPORTATION:
             return Category.TRANSPORTATION;
+        case EntryConstants.INCOME:
+            return Category.INCOME;
         default:
             throw new InvalidCategoryException(MessageConstants.MESSAGE_INVALID_CATEGORY);
         }
