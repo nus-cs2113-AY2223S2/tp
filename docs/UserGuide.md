@@ -108,10 +108,10 @@ Format: `add_deadline n/<name> t/<time>`
 
 Example: 
 ```
->view_deadline
+>view_deadlines
 1. fix water pipes by: 10 Apr
 >add_deadline n/need to buy more potatoes t/9 Apr 2PM
->view_deadline
+>view_deadlines
 1. fix water pipes by: 10 Apr
 2. need to buy more potatoes deal by: 9 Apr 2PM
 ```
@@ -119,7 +119,7 @@ Example:
 #### View all deadlines:
 View the deadline list.
 
-Format: `view_deadline`
+Format: `view_deadlines`
 
 Note: The price of dishes will be shown in dollars.
 
@@ -128,11 +128,11 @@ Format: `delete_deadline <index>`
 
 Example:
 ```
->>view_deadline
+>>view_deadlines
 1. fix water pipes by: 10 Apr
 2. need to buy more potatoes deal by: 9 Apr 2PM
 >>delete_deadline 2
->>view_deadline
+>>view_deadlines
 1. fix water pipes by: 10 Apr
 ```
 
@@ -141,7 +141,7 @@ Format: `find_deadline <keyword>`
 
 Example: 
 ```
->>view_deadline
+>>view_deadlines
 1. fix water pipes by: 10 Apr
 2. need to buy more potatoes deal by: 9 Apr 2PM
 3. fix fridge by: 15 Apr
@@ -330,7 +330,7 @@ The data stored in those files are in plaintext format and the user can copy out
 | delete_dish     | `delete_dish <index_number>`                                                                                   |
 | find_dish       | `find_dish <keyword>`                                                                                          |
 | add_deadline    | `add_deadline n/<name> t/<time>`                                                                               |
-| view_deadline   | `view_deadline`                                                                                                |
+| view_deadlines  | `view_deadlines`                                                                                               |
 | delete_deadline | `delete_deadline <index>`                                                                                      |
 | find_deadline   | `find_deadline <keyword>`                                                                                      |
 | add_staff       | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                                 |
