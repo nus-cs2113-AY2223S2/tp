@@ -14,7 +14,7 @@ import seedu.duke.data.userdata.userplan.UserPlan;
  * This class is responsible to save all user plans into a json file for storage on the hard disk
  */
 public class JsonUserPlansStorage implements UserPlansStorage {
-    private static final Logger logger = LogMaster.getLogger(JsonUserCareerStorage.class);
+    private static final Logger logger = LogMaster.getLogger(JsonUserPlansStorage.class);
     private final String userPlansFilePath;
     private final Gson gson;
     private final JsonUserPlansLoader jsonUserPlansLoader;

@@ -35,8 +35,7 @@ public class JsonUserDataLoader {
      */
     public UserCareerData loadFromJson (String userFilePath) throws DukeError {
         UserCareerData userCareerData = new UserCareerData();
-        try {
-            Reader reader = new FileReader(userFilePath);
+        try (Reader reader = new FileReader(userFilePath)) {
             JsonElement jsonTree = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("History");
             for (JsonElement element : jsonArray) {
@@ -49,7 +48,6 @@ public class JsonUserDataLoader {
             assert jsonArray.size() == userCareerData.getTotalUserCareerSessions()
                                                      .size() : "All elements from json must be written" +
                 "into arrayList";
-            reader.close();
         } catch (Exception e) {
             throw new DukeError(ErrorMessages.ERROR_FILE_READ.toString());
         }

@@ -33,8 +33,7 @@ public class JsonUserPlansLoader {
      */
     public UserPlan loadPlanFromJson (String plansFilePath) throws DukeError {
         UserPlan userPlan = new UserPlan();
-        try {
-            Reader reader = new FileReader(plansFilePath);
+        try (Reader reader = new FileReader(plansFilePath)) {
             JsonElement jsonTree = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("UserPlans");
             for (int i = 0; i < jsonArray.size(); i++) {

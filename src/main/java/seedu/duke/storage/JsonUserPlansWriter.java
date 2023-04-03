@@ -31,13 +31,11 @@ public class JsonUserPlansWriter {
      * @throws DukeError Occurs when there is an error in writing the file
      */
     public boolean saveToJson (String plansFilePath, UserPlan userPlans) throws DukeError {
-        try {
-            Writer writer = new FileWriter(plansFilePath);
+        try (Writer writer = new FileWriter(plansFilePath)) {
             JsonArray jsonArray = gson.toJsonTree(UserPlan.getPlan()).getAsJsonArray();
             JsonObject jsonObject = new JsonObject();
             jsonObject.add("UserPlans", jsonArray);
             writer.write(gson.toJson(jsonObject));
-            writer.close();
             return true;
         } catch (IOException error) {
             throw new DukeError("Plans save error");
