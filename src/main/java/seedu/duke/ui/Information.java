@@ -195,6 +195,7 @@ public class Information {
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println("Invalid number! Please enter a valid symptom number.");
+            Parser.parseAccountCommand("5");
         }
     }
 

@@ -390,7 +390,7 @@ public class Menu {
                 break;
             //@@author Jeraldchen
             default:
-                System.out.println(symptomChoice + " is not a valid symptom! Please enter a valid symptom.");
+                System.out.println(symptomChoice + " is not a valid symptom! " + symptomChoice + " will be ignored");
                 break;
             }
         }
