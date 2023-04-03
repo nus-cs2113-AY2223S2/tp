@@ -45,8 +45,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             IllegalCommandException {
 
         setUpLogger();
-        assert (params != null) : "ListModuleWithLessonCommand: ModuleCode should not be null";
-        assert (allModules != null) : "ListModuleWithLessonCommand: Module list should not be null";
+        assert (params != null) : "ListModuleWithLessonCommand: ModuleCode should not be null!";
 
         args = params.split("\\s+");
 
@@ -134,8 +133,8 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
 
         int index = 0;
         for (Module module1 : moduleList) {
-            if (module1.getCode().equals(this.module.getCode())) {
-                this.module.setTimetable(module1.getModuleTimetable());
+            if (module1.getCode().equals(module.getCode())) {
+                module.setTimetable(module1.getModuleTimetable());
                 break;
             }
             index++;
@@ -210,11 +209,10 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             throw new IllegalCommandException();
         }
 
+        ArrayList<Timetable> timetableList = new ArrayList<>(module.getModuleTimetable());
+
         ArrayList<Timetable> copyList = new ArrayList<>();
-        ArrayList<Timetable> timetableList = module.getModuleTimetable();
-        if (timetableList == null) {
-            throw new IllegalCommandException();
-        }
+
         for (Timetable timetable : timetableList) {
             LessonType checkType = determineLessonType(timetable.getLessonType());
             assert (checkType != null) : "ShowModuleCommand: Lesson type should not be null!";

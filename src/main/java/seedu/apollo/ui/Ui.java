@@ -276,7 +276,7 @@ public class Ui {
      * @param newModule Module that has just been added.
      */
     public void printModuleListWithLesson(Module newModule, ArrayList<Timetable> timetableList) {
-        System.out.println("This are your classes for Module " + newModule.getCode() + ": \n");
+        System.out.println("These are your classes for Module " + newModule.getCode() + ": \n");
         for (Timetable timetable : timetableList) {
             System.out.println(timetable.getLessonType() + " " + timetable.getClassnumber() + '\n' +
                     "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
