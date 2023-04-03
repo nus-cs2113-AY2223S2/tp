@@ -4,7 +4,8 @@ import static seedu.moneymind.string.Strings.BYE_MESSAGE;
 import static seedu.moneymind.string.Strings.HORIZONTAL_LINE;
 
 public class Ui {
-    private static final String LOAD_ERROR_RISK_MESSAGE = "Please correct the save file and restart the program, or risk data loss.";
+    private static final String LOAD_ERROR_RISK_MESSAGE = 
+            "Please correct the save file and restart the program, or risk data loss.";
     private static final String ERROR_LOADING_FILE = "Error loading file. ";
     private static final String LOGO = "[LOGO_PLACEHOLDER]\n";
     private static final String GREETING = "Welcome to Moneymind\n" + LOGO + "How may I help you?";
