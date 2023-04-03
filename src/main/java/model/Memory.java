@@ -19,6 +19,13 @@ public class Memory {
 
     }
 
+    public Memory(CardList cardList, TagList tagList, DeckList deckList){
+        this.tagList = tagList;
+        this.deckList = deckList;
+        this.cardList = cardList;
+
+    }
+
     public CardList getCardList() {
         return cardList;
     }

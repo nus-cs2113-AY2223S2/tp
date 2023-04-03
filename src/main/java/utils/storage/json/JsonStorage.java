@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+
 import com.google.gson.Gson;
 
 import com.google.gson.GsonBuilder;
@@ -56,8 +57,8 @@ public class JsonStorage extends Storage {
         if (backupFileDir == null) {
             backupFileDir = ".";
         }
-        backupFilePath = backupFileDir + File.separator + "." + backupFilePath.substring(
-                backupFilePath.lastIndexOf(File.separator) + 1);
+        backupFilePath = backupFileDir + File.separator + "." +
+                backupFilePath.substring(backupFilePath.lastIndexOf(File.separator) + 1);
         backupFile = new File(backupFilePath);
         gsonBuilder = new GsonBuilder();
 
@@ -209,54 +210,24 @@ public class JsonStorage extends Storage {
         return savedMemory;
     }
 
+    public static Memory makeMemory(CardList cardList, TagList tagList, DeckList deckList) {
+        Memory memory = new Memory();
+        memory.setCardList(cardList);
+        memory.setTagList(tagList);
+        memory.setDeckList(deckList);
+
+        return memory;
+    }
+
+
     @Override
     public void save(CardList cardList, TagList tagList, DeckList deckList) throws StorageSaveFailure {
 
-        JsonObject exportData = new JsonObject();
-        Gson gson = new Gson();
-        // Serialize cards
-        JsonArray cardData = new JsonArray();
-        for (int i = 0; i < cardList.size(); i++) {
-            // Convert the card object to a JsonObject using Gson
-            Card card = cardList.get(i);
-
-            JsonObject cardObject = gson.toJsonTree(card).getAsJsonObject();
-
-            // Add the card object to the cardData array
-            cardData.add(cardObject);
-        }
-        exportData.add("cards", cardData);
-
-        // Serialize Tags
-
-        JsonArray tagData = new JsonArray();
-        for (int i = 0; i < tagList.size(); i++) {
-            // Convert the card object to a JsonObject using Gson
-            Tag tag = tagList.get(i);
-
-            JsonObject tagObject = gson.toJsonTree(tag).getAsJsonObject();
-
-            // Add the card object to the cardData array
-            tagData.add(tagObject);
-        }
-        exportData.add("tags", tagData);
-
-        JsonArray deckData = new JsonArray();
-        for (int i = 0; i < deckList.size(); i++) {
-            // Convert the card object to a JsonObject using Gson
-            Deck deck = deckList.get(i);
-
-            JsonObject deckObject = gson.toJsonTree(deck).getAsJsonObject();
-
-            // Add the card object to the cardData array
-            deckData.add(deckObject);
-        }
-        exportData.add("decks", deckData);
+        Memory memory = new Memory(cardList, tagList, deckList);
+        JsonObject exportData = MemoryToJson.convert(memory);
 
         try {
             saveDataToFile(saveFile, exportData);
-
-            // Save data to the backup file
             saveDataToFile(backupFile, exportData);
         } catch (IOException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
@@ -267,7 +238,7 @@ public class JsonStorage extends Storage {
 
     private void saveDataToFile(File file, JsonObject data) throws IOException {
         try (FileWriter fileWriter = new FileWriter(file);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
 
             Gson gson = gsonBuilder.setPrettyPrinting().create();
             String serialized = gson.toJson(data);
