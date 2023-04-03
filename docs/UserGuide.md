@@ -517,6 +517,10 @@ Example output without optional time flag:
 ### Help command: `help`
 Format: `help` Shows all the help messages for all features.
 
+**Help message will appear when invalid command is entered.**
+
+**This is to help users maximize their benefit from the application by utilizing it as designed.**
+
 Example of usage: `help`
 
 Example output:
