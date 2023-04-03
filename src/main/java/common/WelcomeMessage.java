@@ -1,5 +1,8 @@
 package common;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Font;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 public class WelcomeMessage {
