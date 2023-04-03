@@ -24,7 +24,7 @@ ____________________________________________________________
 Oops! The description of a task cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
-Please enter deadline as "deadline [task] /by [date]".
+Please enter deadline as "deadline [task] -by [date]".
 ____________________________________________________________
 ____________________________________________________________
 Please enter [date]s in the format of yyyy-MM-ddThh:mm.
@@ -41,7 +41,7 @@ ____________________________________________________________
 Oops! The description of a task cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
-Please enter event as "event [task] /from [date] /to [date]".
+Please enter event as "event [task] -from [date] -to [date]".
 ____________________________________________________________
 ____________________________________________________________
 Oops, the start date for your event occurs after the end date!
