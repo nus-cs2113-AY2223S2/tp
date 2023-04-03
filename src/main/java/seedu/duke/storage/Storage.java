@@ -96,12 +96,11 @@ public class Storage {
                 saveWriter = new FileWriter("data/" + dishIndex + ".txt");
                 saveWriter.write(dish.getName() + "\n");
                 saveWriter.write(dish.getTag() + "\n");
-                saveWriter.write(StringLib.INGREDIENT_LIST + "\n");
+                saveWriter.write(dish.getIngredientList().getCurrIngredientNumber() + "\n");
                 for (Ingredient ingredient : dish.getIngredientList().getList()) {
                     saveWriter.write( ingredient.getName() + "\n");
                 }
-                saveWriter.write(StringLib.SAVE_SEPARATOR + "\n");
-                saveWriter.write(StringLib.STEP_LIST + "\n");
+                saveWriter.write(dish.getStepList().getCurrStepNumber() + "\n");
                 for (Step step : dish.getStepList().getList()) {
                     saveWriter.write(step.getStep() + "\n");
                 }
@@ -138,23 +137,16 @@ public class Storage {
             String tag = reader.nextLine();
             ArrayList<Ingredient> ingredientList = new ArrayList<>();
             ArrayList<Step> stepList = new ArrayList<>();
-            while (reader.hasNextLine()) {
+            int numOfIngredients, numOfSteps;
+            numOfIngredients = Integer.parseInt(reader.nextLine());
+            for (int i = 0; i < numOfIngredients; i++) {
                 String ingredient = reader.nextLine();
-                if (ingredient.equals(StringLib.INGREDIENT_LIST)) {
-                } else if (ingredient.equals(StringLib.SAVE_SEPARATOR)) {
-                    break;
-                } else {
-                    ingredientList.add(new Ingredient(ingredient));
-                }
+                ingredientList.add(new Ingredient(ingredient));
             }
-            while (reader.hasNextLine()) {
+            numOfSteps = Integer.parseInt(reader.nextLine());
+            for (int i = 0; i < numOfSteps; i++) {
                 String step = reader.nextLine();
-                if (step.equals(StringLib.IMPORT_END_RECIPE)) {
-                    break;
-                } else if (step.equals(StringLib.STEP_LIST)) {
-                } else {
-                    stepList.add(new Step(step));
-                }
+                stepList.add(new Step(step));
             }
             recipeList.add(new Recipe(
                     name,

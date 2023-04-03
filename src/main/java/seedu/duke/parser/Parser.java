@@ -162,7 +162,7 @@ public class Parser {
         ArrayList<Ingredient> parsed = new ArrayList<>();
         String[] parsedIngredients = inputIngredients.split(",");
         for (String ingredient : parsedIngredients) {
-            parsed.add(new Ingredient(removeForbiddenChars(ingredient).trim()));
+            parsed.add(new Ingredient(ingredient.trim()));
         }
         return new IngredientList(parsed);
     }
@@ -220,7 +220,7 @@ public class Parser {
         }
         try{
             int ingredientIndex = Integer.parseInt(parsedDescription[0].trim());
-            String newIngredient = removeForbiddenChars(parsedDescription[1].trim());
+            String newIngredient = parsedDescription[1].trim();
             if (newIngredient.isEmpty()) {
                 throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
             }
@@ -256,7 +256,7 @@ public class Parser {
     }
     public static String removeForbiddenChars(String ingredient) {
         for (String chara : StringLib.FORBIDDEN_CHARS) {
-            ingredient.replace(chara, "");
+            ingredient.replaceAll(chara, "");
         }
         return ingredient;
     }
