@@ -19,12 +19,6 @@ public class HelpCommand extends Command {
         ui.showHelpMessage();
     }
 
-
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        return new String[0];
-    }
-
     /**
      * Sets isExit to be true to exit the program
      * @return isExit boolean value for program to exit
