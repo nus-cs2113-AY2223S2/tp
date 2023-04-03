@@ -79,6 +79,7 @@ public class Command {
                 int sumOfSteps = Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
                 StepList recipeSteps = Parser.parseSteps(ui,sumOfSteps);
                 recipeList.addNewRecipe(new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps));
+                recipeCount = recipeList.getCurrRecipeNumber();
                 ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeCount);
                 Storage.writeSavedFile();
             } catch (Exception e) {
@@ -101,8 +102,9 @@ public class Command {
                     break;
                 }
                 Recipe recipeToBeDeleted = recipeList.getRecipeFromList(recipeListIndex);
-                ui.showRecipeDeleted(recipeToBeDeleted, recipeCount - 1);
                 recipeList.removeRecipe(recipeListIndex);
+                recipeCount = recipeList.getCurrRecipeNumber();
+                ui.showRecipeDeleted(recipeToBeDeleted, recipeCount);
                 Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showDeletingTaskErrorMessage(e, type);
@@ -134,8 +136,11 @@ public class Command {
                 ui.showViewingRecipeErrorMessage(e);
             }
             break;
-        case FIND:
+        case FINDNAME:
             RecipeList.searchRecipeList(fullDescription);
+            break;
+        case FINDTAG:
+            RecipeList.searchByTag(fullDescription);
             break;
         case EDITSTEP:
             try {
