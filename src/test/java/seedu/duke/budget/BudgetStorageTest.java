@@ -1,13 +1,19 @@
 package seedu.duke.budget;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BudgetStorageTest {
 
     private static final int TEST_INT = 12;
@@ -62,6 +68,25 @@ class BudgetStorageTest {
         assertEquals(TEST_INT, budgetStorage.getFoodCost());
         assertEquals(TEST_INT, budgetStorage.getAccommodationCost());
         assertEquals(TEST_INT, budgetStorage.getAirplaneTicketCost());
+        f.delete();
+    }
+
+    @Test
+    @Order(14)
+    void initialiseDatabase_CorruptFile_readSuccess() {
+        f.delete();
+        try {
+            FileWriter fw = new FileWriter(BUDGET_PATH);
+            fw.write("-1\n200000000000\nasdf\n120");
+        } catch (IOException e) {
+            fail("Filewriter creation failed");
+        }
+        BudgetStorage budgetStorage = new BudgetStorage();
+        assertEquals(0, budgetStorage.getBudget());
+        assertEquals(0, budgetStorage.getEntertainmentCost());
+        assertEquals(0, budgetStorage.getFoodCost());
+        assertEquals(0, budgetStorage.getAccommodationCost());
+        assertEquals(0, budgetStorage.getAirplaneTicketCost());
         f.delete();
     }
 
