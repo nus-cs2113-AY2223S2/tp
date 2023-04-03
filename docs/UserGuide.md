@@ -1,39 +1,39 @@
 # User Guide
 ![img_11.png](img_11.png)
 ## Contents
-- [Introduction](#introduction)
-- [Quick Start](#quick_start)
+- [Introduction](#introduction-)
+- [Quick Start](#quick-start-)
 - [Features](#features)
 - [FAQ](#faq)
-- [Command Summary](#command_summary)
+- [Command Summary](#command-summary)
 
-## Introduction <a name = "introduction"></a>
+## Introduction
 
 MagusStock is a Java command-line interface (CLI) application designed for inventory management.
 
-## Quick Start <a name = "quick_start"></a>
+## Quick Start
 
 1. Ensure that you have Java 11 or above installed. 
 2. Download the latest version of MagusStock from [here](https://github.com/AY2223S2-CS2113-W12-3/tp/releases).
 3. Move the `.jar` file to an empty folder.
 4. Run the file with the command `java -jar magusstock.jar`.
 
-<a name = "features"></a>
-- [Adding an item: `add`](#add)
-- [Editing an item: `edit`](#edit)
-- [Removing an item: `remove`](#remove)
-- [Listing all items: `list`](#list)
-- [Searching for item(s): `search`](#search)
-- [Filtering item(s) by type: `filter`](#filter)
-- [Listing all commands: `help`](#help)
-- [History of item: `history`](#history)
-- [Selling an item: `sell`](#sell)
-- [Restocking an item: `restock`](#restock)
-- [Dashboard: `db`](#db)
-- [Category: `cat`](#cat)
-- [Alert for item(s): `alert`](#alert)
-- [Autosave of Inventory: `autosave`](#autosave)
-- [Exiting the program: `exit`](#exit)
+## Features
+- [Adding an item: `add`](#adding-an-item-add-)
+- [Editing an item: `edit`](#editing-an-item-edit-)
+- [Removing an item: `remove`](#removing-an-item-remove-)
+- [Listing all items: `list`](#list-all-items-list)
+- [Searching for item(s): `search`](#search-for-an-item-search-searchupc)
+- [Filtering item(s) by type: `filter`](#filtering-items-filter)
+- [Listing all commands: `help`](#list-all-available-commands-help)
+- [History of item: `history`](#historical-records-of-item-history-)
+- [Selling an item: `sell`](#sell-quantity-of-item-sell-)
+- [Restocking an item: `restock`](#restock-an-item-restock-)
+- [Dashboard: `db`](#dashboard-db-)
+- [Category: `cat`](#category-cat-)
+- [Alert for item(s): `alert`](#alert-for-an-item-alert-)
+- [Autosave of Inventory: `autosave`](#change-autosave-mode-autosave-)
+- [Exiting the program: `exit`](#exiting-the-program-exit-)
 
 ---
 ### Adding an item: `add` <a name = "add"></a>
@@ -126,6 +126,8 @@ Format: `remove f/item upc/[UPC]` or `remove f/index [Index]`
 
 * The `UPC` can be only be a numerical value.
 * The `index` can only be a number.
+
+!> **index** follows 0-indexing. (i.e The first item in the list is at index 0.)
 
 #### Example of usage
 
