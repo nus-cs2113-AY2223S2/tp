@@ -7,9 +7,9 @@ import seedu.pettracker.data.TaskList;
 public class MarkTaskCommand extends Command{
     protected int taskNumber;
 
-    public MarkTaskCommand(String commandArgs) {
+    public MarkTaskCommand(int taskNumber) {
         super();
-        this.taskNumber = Integer.parseInt(commandArgs);
+        this.taskNumber = taskNumber;
     }
 
     /**
@@ -23,17 +23,6 @@ public class MarkTaskCommand extends Command{
         TaskList.markTask(taskNumber, true);
         TaskList.saveTasksToStorage(storage, ui);
         ui.markTaskCommandMessage();
-    }
-
-    /**
-     * Parses the arguments of the command
-     *
-     * @param commandArgs String containing the arguments of the command
-     * @return String array containing the arguments of the command
-     */
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        return new String[0];
     }
 
     /**

@@ -9,23 +9,16 @@ import java.time.LocalDate;
 public class AddTaskCommand extends Command {
     protected String todoDescription;
     protected LocalDate deadline;
-    final String DEADLINE_REGEX = " /by ";
 
-    public AddTaskCommand(String commandArgs) {
+    public AddTaskCommand(String description) {
         super();
-        if (commandArgs.contains(DEADLINE_REGEX)) {
-            String[] args = commandArgs.split(DEADLINE_REGEX);
-            try {
-                this.todoDescription = args[0];
-                this.deadline = LocalDate.parse(args[1]);
-            } catch (Exception ArrayIndexOutOfBoundsException) {
-                this.todoDescription = args[0];
-                this.deadline = null;
-            }
-        } else {
-            this.todoDescription = commandArgs;
-            this.deadline = null;
-        }
+        this.todoDescription = description;
+    }
+
+    public AddTaskCommand(String description, LocalDate deadline) {
+        super();
+        this.todoDescription = description;
+        this.deadline = deadline;
     }
 
     /**
@@ -43,17 +36,6 @@ public class AddTaskCommand extends Command {
         }
         TaskList.saveTasksToStorage(storage, ui);
         ui.addTodoCommandMessage();
-    }
-
-    /**
-     * Parses the arguments of the command
-     *
-     * @param commandArgs String containing the arguments of the command
-     * @return String array containing the arguments of the command
-     */
-    @Override
-    public String[] parseArgs(String commandArgs) {
-        return commandArgs.split("\\at");
     }
 
     /**

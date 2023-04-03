@@ -1,17 +1,11 @@
 package seedu.pettracker.parser;
 
-import seedu.pettracker.commands.AddTaskCommand;
 import seedu.pettracker.commands.Command;
-import seedu.pettracker.commands.EditStatCommand;
-import seedu.pettracker.commands.EditTaskCommand;
 import seedu.pettracker.commands.ExitCommand;
 import seedu.pettracker.commands.HelpCommand;
 import seedu.pettracker.commands.InvalidCommand;
 import seedu.pettracker.commands.ListPetCommand;
 import seedu.pettracker.commands.ListTasksCommand;
-import seedu.pettracker.commands.MarkTaskCommand;
-import seedu.pettracker.commands.RemoveTaskCommand;
-import seedu.pettracker.commands.UnMarkTaskCommand;
 import seedu.pettracker.commands.ScheduleCommand;
 
 import seedu.pettracker.exceptions.UnknownKeywordException;
@@ -83,25 +77,24 @@ public class CommandParser {
         case KEYWORD_REMOVE_STAT:
             return new RemoveStatParser().parse(arguments);
         case KEYWORD_EDIT_STAT:
-            return new EditStatCommand(arguments);
+            return new EditStatParser().parse(arguments);
         case KEYWORD_EDIT_TASK:
-            return new EditTaskCommand(arguments);
+            return new EditTaskParser().parse(arguments);
         case KEYWORD_ADD_TASK:
-            return new AddTaskCommand(arguments);
+            return new AddTaskParser().parse(arguments);
         case KEYWORD_REMOVE_TASK:
-            return new RemoveTaskCommand(arguments);
+            return new RemoveTaskParser().parse(arguments);
         case KEYWORD_LIST_TASKS:
             return new ListTasksCommand();
         case KEYWORD_MARK_TASK:
-            return new MarkTaskCommand(arguments);
+            return new MarkTaskParser().parse(arguments);
         case KEYWORD_UNMARK_TASK:
-            return new UnMarkTaskCommand(arguments);
+            return new UnMarkTaskParser().parse(arguments);
         case KEYWORD_SCHEDULE_TASKS: 
             return new ScheduleCommand();
         case KEYWORD_HELP:
             return new HelpCommand();
         default:
-
             throw new UnknownKeywordException(UNKNOWN_KEYWORD_MESSAGE);
         }
     }
