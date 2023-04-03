@@ -11,7 +11,6 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.MissingArgumentException;
 import org.apache.commons.cli.MissingOptionException;
-import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
@@ -19,6 +18,7 @@ import utils.command.Command;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.InvalidUUIDException;
+import utils.exceptions.UUIDWrongFormatException;
 import utils.exceptions.UnrecognizedCommandException;
 
 /**
@@ -33,7 +33,9 @@ public abstract class KeywordParser {
     protected static final int FORMAT_HELP_LEFT_PAD = 0;
     protected static final int FORMAT_HELP_DESC_PAD = 10;
 
-    protected static CardSelector getSelectedCard(CommandLine cmd) throws ParseException, InvalidUUIDException {
+
+    protected static CardSelector getSelectedCard(CommandLine cmd)
+            throws ParseException, UUIDWrongFormatException, InvalidUUIDException {
         if (cmd.hasOption(FLAG_CARD_UUID)) {
             String cardUUID = cmd.getOptionValue(FLAG_CARD_UUID);
             return new CardSelector(cardUUID);

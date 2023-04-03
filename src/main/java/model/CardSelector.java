@@ -3,6 +3,7 @@ package model;
 import java.util.Optional;
 import java.util.UUID;
 import utils.exceptions.InvalidUUIDException;
+import utils.exceptions.UUIDWrongFormatException;
 
 public class CardSelector {
     private Optional<CardUUID> uuid = Optional.empty();
