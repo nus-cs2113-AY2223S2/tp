@@ -38,13 +38,16 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 ### Adding an item: `add` <a name = "add"></a>
 Adds a new item to the inventory list.
 
-Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price]`
+Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 
 Required parameters:
 * The `n/` parameter where `[item_name]`  must be alphanumeric. 
 * The `upc/` parameter for `[UPC]` must be a numerical value.
 * The `qty/` parameter for `[quantity]` must be a numerical value.
 * The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
+
+Optional parameters:
+* The `c/` parameter for `[category]` must be alphanumeric.
 
 Example of usage: 
 
@@ -58,7 +61,7 @@ Sample output:
 ### Editing an item: `edit` <a name = "edit"></a>
 Edit an item's details in the inventory.
 
-Format: `edit upc/[UPC] {n/[item_name] qty/[quantity] p/[price]}`
+Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
 
 Required parameters:
 * The `upc/` parameter where `[UPC]`  must be a numerical value and exists in the inventory.
@@ -67,6 +70,7 @@ Optional parameters:
 * The `n/` parameter where `[item_name]` must be alphanumeric.
 * The `qty/` parameter for `[quantity]` must be a numerical value.
 * The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
+* The `c/` parameter for `[category]` must be alphanumeric.
 
 Example of usage:
 
@@ -209,7 +213,7 @@ ____________________________________________________________
 
 Filters items from the inventory list by price or category.
 
-Format: `filter f/{price/category} {p/[gt/get/lt/let] [Price] or [Category keywords]`
+Format: `filter f/[price/category] p/[gt/get/lt/let] [Price]/[Category keywords]`
 
 Note: `gt` means `greater than`, `get` means `greater or equal than`, `lt` means `less than` and `let` means
 `less than or equal than`, which specifies which values the price filter will return.
@@ -432,7 +436,6 @@ Shows list of categories, and/or its items, or a specified category of items.
 Format: 
 * `cat list`: shows list of all categories in the inventory.
 * `cat table`: shows table of all categories and all items in each category.
-* `cat [Category]`: shows list of all items in a specified category.
 
 Example of Usage & Expected Output:
 ```
@@ -454,16 +457,6 @@ cat table
 +-----------------+--------------------------------+
 ```
 
-```
-cat fruit
-+-----------------+--------------------------------+
-| Category        | Name: UPC                      |
-+-----------------+--------------------------------+
-| fruit           | apple:123456789012,            |
-|                 | pear:123456789013,             |
-|                 | oranges:123456789555           |
-+-----------------+--------------------------------+
-```
 ### Alert for an item: `alert` <a name = "alert"></a>
 Add alerts that will display when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
@@ -499,6 +492,9 @@ ____________________________________________________________
 
 Set whether the program should automatically save the updated inventory to the inventory data file after every successful
 write command issued.
+
+Note: if autosave is disabled, the program will not save on exit. This is because autosave off functions similarly to 
+incognito mode on a browser.
 
 Format: `autosave [on/off]`
 

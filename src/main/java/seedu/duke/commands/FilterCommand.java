@@ -58,28 +58,6 @@ public class FilterCommand extends Command {
         return filteredItems;
     }
 
-    /**
-     * Filter items in the inventory by tag.
-     *
-     * @param tag String tag to filter items by.
-     */
-    private ArrayList<Item> filterTags(final String tag) {
-        ArrayList<Item> filteredItems = new ArrayList<>();
-        for (Item item : itemInventory) {
-            if (item.getTags().isEmpty()) {
-                continue;
-            }
-            for (String itemTag : item.getTags()) {
-                if (itemTag.equals(tag)) {
-                    filteredItems.add(item);
-                }
-            }
-        }
-        if (filteredItems.isEmpty()) {
-            return null;
-        }
-        return filteredItems;
-    }
 
     /**
      * Filter items in the inventory by price.
@@ -136,9 +114,6 @@ public class FilterCommand extends Command {
         switch (filterType) {
         case "f/category":
             filteredItems = filterCategory(filterValue);
-            break;
-        case "f/tag":
-            filteredItems = filterTags(filterValue);
             break;
         case "p/lt":
         case "p/gt":

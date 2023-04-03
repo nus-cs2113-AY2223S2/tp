@@ -8,7 +8,6 @@ import seedu.duke.utils.parsers.EditParser;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HistoryCommandTest {
     Inventory inventory;

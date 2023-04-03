@@ -277,11 +277,11 @@ the `FilterParser` class, which extends the `Parser` class.
 ![FilterStep1.png](UML%2FFilter%2FFilterStep1.png)
 
 **Step 2**. The `run` method in `FilterParser` is called which overrides the `run` method in `Parser`. This leads the
-`FilterParser` to call either the `parseFilterCategoryOrTag` or `parseFilterPrice` method, depending on whether the 
+`FilterParser` to call either the `parseFilterCategory` or `parseFilterPrice` method, depending on whether the 
 `f` flag is `category` or `tag` or `price` respectively. If the `f` flag is invalid, an error message is printed 
 instead.
 
-**Step 3**. The method `parseFilterCategoryOrTag` will take the keyword from the user input, create a new `FilterCommand`
+**Step 3**. The method `parseFilterCategory` will take the keyword from the user input, create a new `FilterCommand`
 object and pass to it the relevant `Inventory`, `value` and `filterMode`. The `filterMode` is the `f` flag. The method 
 `parseFilterPrice` will check if the `p` flag is set correctly. If it is not set correctly, an error message will be 
 printed out and execution of the method will halt. Otherwise, a new `FilterCommand` object is created and passed the 
@@ -291,7 +291,7 @@ printed out and execution of the method will halt. Otherwise, a new `FilterComma
 ![FilterStep3Tag.png](UML%2FFilter%2FFilterStep3Tag.png)
 
 **Step 4**. The `run` method in the `FilterCommand` object is called which overrides the `run` method in the
-`Command` object. This calls either the `filterCategory` method, `filterTags` method, or `filterPrice` which returns 
+`Command` object. This calls either the `filterCategory` method or `filterPrice` which returns 
 `ArrayList<Item>`, depending on the `filterMode`, which is set to either `filterMode` or `FilterPriceMode`. If there are no
 filtered items, the methods will return `null`.
 

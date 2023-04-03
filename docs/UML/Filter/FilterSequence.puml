@@ -32,18 +32,18 @@ alt first command == "f/price"
         filter price
     end ref
     return
-else first command == "f/category" || "f/tag"
+else first command == "f/category""
     alt command length < 2
         ref over ":FilterParser"
             handle input error
         end ref
         ":FilterParser" --> User
     end
-    ":FilterParser" -> ":FilterParser": parseFilterCategoryOrTag()
+    ":FilterParser" -> ":FilterParser": parseFilterCategory()
     activate ":FilterParser" #cyan
     ref over ":FilterParser"
         get user keyword from user input by excluding command word
-        filter category or tag
+        filter category
     end ref
     return
 else

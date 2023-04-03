@@ -101,11 +101,11 @@ public class SellCommand extends Command{
             EditCommand itemToSell = new EditCommand(inventory, sellInfo);
             Item updatedItem = itemToSell.retrieveItemFromHashMap(sellInfo);
             Item oldItem = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
-                    updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
+                    updatedItem.getPrice(), updatedItem.getCategory());
             checkSellCommandLength(sellInfo);
             updateItemQuantity(updatedItem, sellInfo[1]);
             Item itemForHistory =  new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
-                    updatedItem.getPrice(), updatedItem.getCategory(), updatedItem.getTags());
+                    updatedItem.getPrice(), updatedItem.getCategory());
             itemToSell.handleTrie(updatedItem, oldItem);
             upcCodes.remove(oldItem.getUpc());
             upcCodes.put(updatedItem.getUpc(), updatedItem);
