@@ -108,7 +108,7 @@ public class Parser {
         case COMMAND_EXIT:
             return new ExitCommand();
         case COMMAND_LIST:
-            return new ListTasksCommand();
+            return new ListTasksCommand(getArguments(splitInput, ListTasksCommand.EXPECTED_FLAGS));
         case COMMAND_TAG_LIST:
             return new ListTagsCommand();
         case COMMAND_PROGRESS:

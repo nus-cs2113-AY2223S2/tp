@@ -39,7 +39,10 @@ public enum Flags {
     REPEAT("-rep", false),
     TAG("-tags", false),
     EDIT("-edit", false),
-    EDIT_DELETE("-del", true);
+    EDIT_DELETE("-del", true),
+    FILTER_DONE("-done", true),
+    FILTER_UNDONE("-undone", true),
+    FILTER_OVERDUE("-overdue", true);
 
 
     private static final HashMap<String, Flags> map = new HashMap<>();

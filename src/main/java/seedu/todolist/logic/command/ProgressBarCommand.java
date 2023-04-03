@@ -23,8 +23,8 @@ public class ProgressBarCommand extends Command {
         LocalDate afterEndOfWeek = beforeStartOfWeek.plusDays(8);
         Predicate<Task> inThisWeek = Task.afterDate(beforeStartOfWeek).and(Task.beforeDate(afterEndOfWeek));
 
-        int tasksThisWeek = taskList.countTasksWithFilter(inThisWeek);
-        int completedTasksThisWeek = taskList.countTasksWithFilter(inThisWeek.and(Task.isDonePredicate()));
+        int tasksThisWeek = taskList.size(inThisWeek);
+        int completedTasksThisWeek = taskList.size(inThisWeek.and(Task.isDonePredicate()));
         ui.printProgressBar(completedTasksThisWeek, tasksThisWeek,
                 PROGRESS_BAR_SECTIONS, taskList.toString(inThisWeek));
     }

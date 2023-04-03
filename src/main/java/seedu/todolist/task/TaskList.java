@@ -51,6 +51,10 @@ public class TaskList implements Serializable {
         return task.toString();
     }
 
+    public void addTask(Task task) {
+        tasks.put(id++, task);
+    }
+
     /**
      * Deletes the task at the given id of the task list.
      *
@@ -72,7 +76,7 @@ public class TaskList implements Serializable {
         return tasks.size();
     }
 
-    public int countTasksWithFilter(Predicate<Task> p) {
+    public int size(Predicate<Task> p) {
         return (int) tasks.values().stream().filter(p).count();
     }
 
@@ -106,6 +110,20 @@ public class TaskList implements Serializable {
      */
     public String toString(Comparator<Task> c) {
         return tasks.values().stream().sorted(c).map(Task::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    //@@author clement559
+    /**
+     * Filters the task list using a predicate and comparator before converting it
+     * into its sorted string representation.
+     *
+     * @param p The predicate to sort the task list with.
+     * @param c The comparator to sort the task list with.
+     * @return Filtered string representation of the task list.
+     */
+    public String toString(Predicate<Task> p, Comparator<Task> c) {
+        return tasks.values().stream().filter(p).sorted(c).map(Task::toString)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
@@ -197,7 +215,7 @@ public class TaskList implements Serializable {
     public String setRepeatDuration(int id, int repeatDuration) throws InvalidIdException {
         return getTask(id).setRepeatDuration(repeatDuration);
     }
-
+    //@@author clement559
     public void checkRepeatingTasks() {
         for (Task task : tasks.values()) {
             int repeatDuration = task.getRepeatDuration();
