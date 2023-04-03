@@ -1,6 +1,7 @@
 package seedu.duke.recipe;
 
 import seedu.duke.exceptions.RecipeListEmptyException;
+import seedu.duke.ui.StringLib;
 
 import java.util.ArrayList;
 
@@ -63,7 +64,8 @@ public class RecipeList {
 
     public static void searchRecipeList(String term) {
         ArrayList<String> matches = new ArrayList<>();
-        if (term.equals("")) {
+        term = term.trim().toLowerCase();
+        if (term.equals(StringLib.EMPTY_STRING)) {
             System.out.println(MISSING_KEYWORD);
             return;
         }
@@ -73,7 +75,7 @@ public class RecipeList {
         }
         for (int i = 1; i <= getCurrRecipeNumber(); i++) {
             Recipe dish = getRecipeFromList(i);
-            if (dish.getName().trim().toLowerCase().contains(term.toLowerCase().trim())) {
+            if (dish.getName().trim().toLowerCase().contains(term)) {
                 matches.add(dish + " [Index: " + i + "]");
             }
         }
@@ -89,14 +91,15 @@ public class RecipeList {
 
     public static void searchByTag(String tag) {
         ArrayList<String> matches = new ArrayList<>();
-        if (tag.equals("")) {
+        tag = tag.trim().toLowerCase();
+        if (tag.equals(StringLib.EMPTY_STRING)) {
             System.out.println(MISSING_KEYWORD);
         } else if (getCurrRecipeNumber() == 0) {
             System.out.println(EMPTY_LIST_MESSAGE);
         } else {
             for (int i = 1; i <= getCurrRecipeNumber(); i++) {
                 Recipe dish = getRecipeFromList(i);
-                if (dish.getTag().trim().toLowerCase().contains(tag.toLowerCase().trim())) {
+                if (dish.getTag().trim().toLowerCase().contains(tag)) {
                     matches.add(dish + " [Index: " + i + "]");
                 }
             }
