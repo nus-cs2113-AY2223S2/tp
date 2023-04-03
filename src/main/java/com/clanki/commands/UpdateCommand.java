@@ -1,16 +1,12 @@
 package com.clanki.commands;
 
-import com.clanki.exceptions.InvalidInputException;
-import com.clanki.exceptions.NoQueryInInputException;
 import com.clanki.exceptions.UpdatedContentIsEmptyException;
 import com.clanki.objects.Flashcard;
 import com.clanki.objects.FlashcardList;
 import com.clanki.parser.InvalidIdentifierException;
-import com.clanki.parser.ParsedInput;
 import com.clanki.parser.Parser;
 import com.clanki.ui.Ui;
 
-import javax.swing.text.html.HTMLEditorKit;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -27,7 +23,7 @@ public class UpdateCommand extends Command {
     public void printFlashCard(Flashcard flashcard) {
         System.out.println("Q: " + flashcard.getQuestion());
         System.out.println("A: " + flashcard.getAnswer());
-        System.out.println("D: " + flashcard.getDueDate());
+//        System.out.println("D: " + flashcard.getDueDate());
     }
 
     public void printFlashCards(ArrayList<Flashcard> flashcards) {
@@ -95,7 +91,7 @@ public class UpdateCommand extends Command {
                 } catch (NumberFormatException e) {
                     System.out.println("Please enter the index of the flashcard you want to update.");
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.print("You have selected an index out of the list. ");
+                    System.out.print("You have selected an index out of the list.");
                     System.out.println("There are only " + matchingFlashcards.size() + " flashcards that match the query.");
                 } catch (DateTimeParseException e) {
                     System.out.println("Please enter the date in the format: yyyy-mm-dd");
