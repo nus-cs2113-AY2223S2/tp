@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 class IncomeListTest {
 
     static final String DESCRIPTION = "salary";
-    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
     static final LocalDate DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float INCOME_VALUE = (float) 1000000;
     private Income income;

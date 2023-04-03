@@ -30,7 +30,7 @@ class DeleteIncomeCommandTest {
     static final int TOO_LARGE_INDEX = 5;
     static final int NEGATIVE_INDEX = -1;
     static final String SALARY_DESCRIPTION = "salary";
-    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
     static final LocalDate SALARY_DATE = LocalDate.parse("01-04-2023", FORMATTER);
     static final float SALARY_INCOME_VALUE = (float) 5000;
     static final String BONUS_DESCRIPTION = "salary";

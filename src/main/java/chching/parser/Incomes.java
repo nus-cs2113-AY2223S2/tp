@@ -6,16 +6,18 @@ import chching.record.Income;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.HashMap;
 
 public class Incomes {
     public static LocalDate parseDate(String incomeDateString) throws ChChingException {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                    .withResolverStyle(ResolverStyle.STRICT);
             LocalDate incomeDate = LocalDate.parse(incomeDateString, formatter);
             return incomeDate;
         } catch (DateTimeParseException e) {
-            throw new ChChingException("Date format should be: dd-MM-yyyy");
+            throw new ChChingException("Date must be valid with format: dd-MM-yyyy");
         }
     }
 

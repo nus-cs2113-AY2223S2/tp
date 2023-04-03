@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class EditIncomeCommandTest {
     public static final String SALARY_DESCRIPTION = "salary";
     public static final int SALARY_VALUE = 5000;
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
     public static final LocalDate SALARY_DATE = LocalDate.parse("02-04-2023", FORMATTER);
     public static final String DESCRIPTION_VALUE = "bonus";
     public static final String DATE_VALUE = "03-04-2023";

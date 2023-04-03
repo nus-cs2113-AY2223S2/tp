@@ -16,7 +16,7 @@ class ExpenseListTest {
     static final int EXPECTED_SIZE = 1;
     static final String CATEGORY = "entertainment";
     static final String DESCRIPTION = "beach party";
-    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
     static final LocalDate DATE = LocalDate.parse("23-05-2023", FORMATTER);
     static final float EXPENSE_VALUE = (float) 50;
     private Expense expense;
