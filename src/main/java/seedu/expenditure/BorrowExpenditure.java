@@ -7,9 +7,9 @@ public class BorrowExpenditure extends Expenditure {
     public static final String EXPENDITURE_TYPE = "B";
     public static String iconPaid = "[X]";
     public static String iconUnpaid = "[ ]";
+    boolean isPaid;
     private LocalDate deadline;
     private String borrowerName;
-    boolean isPaid;
 
     public BorrowExpenditure(String description, String borrowerName, double borrowValue, LocalDate date,
             LocalDate deadline) {
