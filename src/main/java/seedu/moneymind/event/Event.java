@@ -4,6 +4,7 @@ import static seedu.moneymind.UserDate.isValidDate;
 import static seedu.moneymind.UserDate.getSystemDate;
 
 public class Event {
+    private static final String INVALID_DATE_MESSAGE = "Invalid date format. Using system date instead.";
     private static final int DEFAULT_EXPENSE = 0;
     private String description;
     private String time;
@@ -28,6 +29,7 @@ public class Event {
         if (isValidDate(time)) {
             this.time = time;
         } else {
+            System.out.println(INVALID_DATE_MESSAGE);
             this.time = getSystemDate();
         }
     }
