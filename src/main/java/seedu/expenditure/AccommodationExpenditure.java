@@ -18,6 +18,10 @@ public class AccommodationExpenditure extends Expenditure {
         isPaid = true;
     }
 
+    public String getPaidIcon() {
+        return (isPaid) ? iconPaid : iconUnpaid;
+    }
+
     public void resetPaid() {
         isPaid = false;
     }
