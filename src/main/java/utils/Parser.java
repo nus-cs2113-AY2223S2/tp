@@ -395,7 +395,12 @@ public class Parser {
         try {
             if (parsedDishInput.matches()) {
                 name = parsedDishInput.group(1);
-                price = Integer.parseInt(parsedDishInput.group(2));
+                try {
+                    price = Integer.parseInt(parsedDishInput.group(2));
+                } catch (NumberFormatException e) {
+                    throw new DinerDirectorException("The maximum must not be greater than " + Integer.MAX_VALUE
+                            + " cents");
+                }
                 String[] ingredientList = parsedDishInput.group(3).split(";");
                 for (String ingredient : ingredientList) {
                     if (!ingredient.isBlank()) {
@@ -406,6 +411,7 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
             }
         } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         return new AddDishCommand(name, price, ingredients);
