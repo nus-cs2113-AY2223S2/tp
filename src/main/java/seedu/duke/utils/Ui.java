@@ -49,7 +49,7 @@ public class Ui {
             "enable/disable auto-save";
     public static final String AUTOSAVE_ON = "Auto-save has been enabled!";
     public static final String AUTOSAVE_OFF = "Auto-save has been disabled!";
-    public static final String DUPLICATE_ADD = "Duplicate item found! Please add another item with a different UPC";
+    public static final String DUPLICATE_ADD = "Duplicate UPC found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
 
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
@@ -362,7 +362,7 @@ public class Ui {
             String name = item.getName();
             String upc = item.getUpc();
             String qty = Integer.toString(item.getQuantity());
-            String price = Double.toString(item.getPrice());
+            String price = String.format("%.2f", item.getPrice());
             String category = item.getCategory();
             String index = Integer.toString(items.indexOf(item));
 
@@ -929,8 +929,8 @@ public class Ui {
     }
 
     public static void printDashboard(Inventory inventory, AlertList alertList) {
-        Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithMostQuantity());
-        Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithLeastQuantity());
+        Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithQuantityExtremes(true));
+        Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithQuantityExtremes(false));
         printLine();
         System.out.println(DASHBOARDLOGO);
         System.out.println("Overview:");
