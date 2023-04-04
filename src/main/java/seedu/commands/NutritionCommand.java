@@ -19,8 +19,6 @@ public class NutritionCommand extends Command {
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
                         ExerciseStorage exerciseStorage)
             throws LifeTrackerException {
-        boolean toContinue = true;
-        do {
             System.out.println(System.lineSeparator() + "What food would you like to see the nutrients for?");
             foodName = ui.readLine();
 
@@ -56,11 +54,5 @@ public class NutritionCommand extends Command {
             float sodium = foodToBeAnalysed.getSodium();
             System.out.println("Sodium(g): " + sodium);
 
-            System.out.println(System.lineSeparator() + "Type 1 to add more food. Type any other number to quit");
-            choice = ui.readInt();
-            if (choice != 1) {
-                toContinue = false;
-            }
-        } while (toContinue);
     }
 }
