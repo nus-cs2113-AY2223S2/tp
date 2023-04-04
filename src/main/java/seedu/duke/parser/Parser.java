@@ -3,6 +3,7 @@ package seedu.duke.parser;
 import seedu.duke.command.Command;
 import seedu.duke.command.CommandType;
 import seedu.duke.exceptions.IncompleteInputException;
+import seedu.duke.exceptions.MissingIngredientInputException;
 import seedu.duke.recipe.Ingredient;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Step;
@@ -149,12 +150,20 @@ public class Parser {
         }
     }
 
-    public static IngredientList parseIngredients(String inputIngredients) {
+    public static IngredientList parseIngredients(String inputIngredients) throws MissingIngredientInputException{
         ArrayList<Ingredient> parsed = new ArrayList<>();
         String[] parsedIngredients = inputIngredients.split(",");
-        for (String ingredient : parsedIngredients) {
-            parsed.add(new Ingredient(ingredient.trim()));
+        if (parsedIngredients.length == 0) {
+            throw new MissingIngredientInputException();
         }
+        for (String ingredient : parsedIngredients) {
+            if (ingredient.trim().isEmpty()) {
+                throw new MissingIngredientInputException();
+            } else {
+                parsed.add(new Ingredient(ingredient.trim()));
+            }
+        }
+        assert (parsed.size() != 0);
         return new IngredientList(parsed);
     }
 

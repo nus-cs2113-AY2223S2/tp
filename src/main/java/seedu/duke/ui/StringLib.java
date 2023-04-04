@@ -140,4 +140,5 @@ public interface StringLib {
             "Please enter a valid step below:";
     String POS_INT = "\nPlease enter a valid index!";
     String INVALID_INPUT_VALID_RANGE_PREFIX = "Invalid Input! Valid Range: ";
+    String MISSING_INGREDIENT_INPUT = "Ingredient cannot be empty!";
 }
