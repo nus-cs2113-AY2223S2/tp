@@ -17,32 +17,33 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.duke.command.CommandType.VIEW;
 
 public class ViewTest {
-    ByteArrayOutputStream output;
-    PrintStream console;
-    RecipeList recipeList;
-    UI ui;
 
-    private final static String VIEW_HOTPOT = "Here is the recipe you requested, which is Chinese flavour:" +
+    private static final String VIEW_HOTPOT = "Here is the recipe you requested, which is Chinese flavour:" +
             System.lineSeparator() + "name: Hotpot" + System.lineSeparator() +
             "__________________________________________________________" + System.lineSeparator() +
             "There are 0 ingredients in the list:" + System.lineSeparator() +
             "__________________________________________________________" + System.lineSeparator() +
             "This recipe has no steps!";
-    private final static String DUPLICATE_RECIPE_NAMES_ERROR = "There appears to be duplicate recipe names " +
+    private static final String DUPLICATE_RECIPE_NAMES_ERROR = "There appears to be duplicate recipe names " +
             "that exist. \nPlease use the FIND feature to get the specific recipe index to be viewed instead.";
-    private final static String NO_MATCHING_RECIPE_ERROR = "There are no matching recipes found.";
-    private final static String RECIPE_VIEWING_DEFAULT_ERROR = "Error in viewing recipe!"
+    private static final String NO_MATCHING_RECIPE_ERROR = "There are no matching recipes found.";
+    private static final String RECIPE_VIEWING_DEFAULT_ERROR = "Error in viewing recipe!"
             + "\nException occurred: ";
-    private final static String MISSING_DESCRIPTION_ERROR = "Error in description of inputs!"
+    private static final String MISSING_DESCRIPTION_ERROR = "Error in description of inputs!"
             + "\nException occurred: The KEYWORDS of VIEW cannot be empty.";
-    private final static String PREFIX_EMPTY_LIMIT_LIST_ERROR = "Error in finding index!"
+    private static final String PREFIX_EMPTY_LIMIT_LIST_ERROR = "Error in finding index!"
             + "\nException occurred: Your list is either EMPTY or does not contain "
             + "recipes up to the index you inputted yet,\n"
             + "so you cannot use the ";
-    private final static String SUFFIX_EMPTY_LIMIT_LIST_ERROR = " command yet! Try filling up the list first!";
-    private final static String INVALID_RANGE = "The range you have entered for the index is invalid!\n\n" +
+    private static final String SUFFIX_EMPTY_LIMIT_LIST_ERROR = " command yet! Try filling up the list first!";
+    private static final String INVALID_RANGE = "The range you have entered for the index is invalid!\n\n" +
             "Valid Range: 1 to 3";
 
+    ByteArrayOutputStream output;
+    PrintStream console;
+    RecipeList recipeList;
+    UI ui;
+    
     @BeforeEach
     public void setup() throws Exception {
         recipeList = new RecipeList();
