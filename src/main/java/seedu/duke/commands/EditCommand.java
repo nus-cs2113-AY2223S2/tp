@@ -22,6 +22,8 @@ public class EditCommand extends Command {
     private static final String QUANTITY_LABEL = "qty/";
     private static final String PRICE_LABEL = "p/";
     private static final String CATEGORY_LABEL = "c/";
+    private static final Long MAX_VALUE_RANGE = 99999999L;
+    private static final int MIN_VALUE_RANGE = 0;
     private final String[] editInfo;
 
     public EditCommand(Inventory inventory, String[] editInfo) {
@@ -49,9 +51,11 @@ public class EditCommand extends Command {
      * inputs were incorrectly written.
      *
      * @param item The target item in which the user wants to edit.
+     * @param oldItem The object containing the old attributes of the same item.
      * @param data The user input which contains the information to be used to update the item attributes.
      * @throws MissingParametersException Exception related to all errors due to missing parameters.
      * @throws NumberFormatException      Exception related to all invalid number formats inputted.
+     * @throws OutOfRangeException        Exception related to out of range value errors.
      */
     public void updateItemInfo(final Item item, final Item oldItem, final String[] data) throws
             MissingParametersException, NumberFormatException, OutOfRangeException {
@@ -71,6 +75,7 @@ public class EditCommand extends Command {
      * (i.e, Name, Quantity, Price) based on the first few chars detected in the individual string.
      *
      * @param item The target item in which the user wants to edit.
+     * @param oldItem The object containing the old attributes of the same item.
      * @param data The user input which contains the information to be used to update the item attributes.
      * @throws MissingParametersException Exception related to all errors due to missing parameters.
      * @throws NumberFormatException      Exception related to all invalid number formats inputted.
@@ -203,15 +208,13 @@ public class EditCommand extends Command {
      */
     private static void setItemPrice(Item item, String updatedPrice) throws NumberFormatException,
             OutOfRangeException {
-        double maxPrice = 99999999;
-        double minPrice = 0;
         try {
             double newPrice = Double.parseDouble(updatedPrice);
             BigDecimal newPriceRange = new BigDecimal(updatedPrice);
-            if (newPrice >= minPrice && newPrice <= maxPrice) {
+            if (newPrice >= MIN_VALUE_RANGE && newPrice <= MAX_VALUE_RANGE) {
                 item.setPrice(newPrice);
             } else if (newPriceRange.compareTo(BigDecimal.valueOf(0.01)) < 0 ||
-                    newPriceRange.compareTo(BigDecimal.valueOf(99999999)) > 0) {
+                    newPriceRange.compareTo(BigDecimal.valueOf(MAX_VALUE_RANGE)) > 0) {
                 throw new OutOfRangeException();
             } else {
                 throw new NumberFormatException();
@@ -236,10 +239,10 @@ public class EditCommand extends Command {
         try {
             int newQuantity = Integer.parseInt(updatedQuantity);
             BigInteger newQuantityRange = new BigInteger(updatedQuantity);
-            if (newQuantity >= 0 && newQuantity <= 99999999) {
+            if (newQuantity >= MIN_VALUE_RANGE && newQuantity <= MAX_VALUE_RANGE) {
                 item.setQuantity(newQuantity);
             } else if (newQuantityRange.compareTo(BigInteger.ONE) < 0 ||
-                    newQuantityRange.compareTo(BigInteger.valueOf(99999999)) > 0) {
+                    newQuantityRange.compareTo(BigInteger.valueOf(MAX_VALUE_RANGE)) > 0) {
                 throw new OutOfRangeException();
             } else {
                 throw new NumberFormatException();
@@ -289,6 +292,12 @@ public class EditCommand extends Command {
         }
     }
 
+    /**
+     * Updates the data structure responsible for storing information about the items found in the inventory list.
+     *
+     * @param updatedItem The item object containing the newest attributes of the specified item.
+     * @param oldItem The previous attributes of the item are contained in this item object.
+     */
     public void handleTrie(Item updatedItem, Item oldItem) {
         String[] oldItemNames = oldItem.getName().toLowerCase().split(" ");
         String newItemNamesFull = updatedItem.getName().toLowerCase();
