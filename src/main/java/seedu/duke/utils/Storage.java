@@ -52,7 +52,7 @@ public class Storage {
     public static synchronized Inventory readCSV(String filePath) {
         inventory = new Inventory();
         isRaceConditionDetected = false;
-        while(!isStorageWriteDone){
+        while (!isStorageWriteDone) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ie) {
@@ -65,7 +65,7 @@ public class Storage {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             Types.FileHealth fileStatus = checkFileValid(filePath, VALID_DATAROW_REGEX);
-            switch(fileStatus){
+            switch (fileStatus) {
             case MISSING:
                 //fallthrough
             case EMPTY:
@@ -90,7 +90,7 @@ public class Storage {
                     LocalDateTime.parse(fields[DATE_INDEX]);
                     Integer.parseInt(fields[QUANTITY_INDEX]);
                     Double.parseDouble(fields[PRICE_INDEX]);
-                } catch(DateTimeParseException | NumberFormatException e){
+                } catch (DateTimeParseException | NumberFormatException e) {
                     Ui.printInvalidSessionFile();
                     return new Inventory();
                 }
@@ -127,7 +127,7 @@ public class Storage {
      * Update the inventory with the item object provided. (Takes into account duplicate entries from history)
      *
      * @param inventory Inventory object to be updated
-     * @param item          Item object to be added
+     * @param item      Item object to be added
      */
 
     private static void updateInventory(Inventory inventory, Item item) {
@@ -144,6 +144,7 @@ public class Storage {
             inventory.getUpcCodes().put(item.getUpc(), item);
         }
     }
+
     /**
      * Updates the hashes.
      *
@@ -168,11 +169,12 @@ public class Storage {
             Storage.inventory.getCategoryHash().get(category).add(item);
         }
     }
+
     /**
      * Updates the history of the item.
      *
      * @param inventory Inventory object to be updated
-     * @param item          Item object to be added
+     * @param item      Item object to be added
      */
     private static void updateHistory(Inventory inventory, Item item) {
         if (!inventory.getUpcCodesHistory().containsKey(item.getUpc())) {
@@ -180,7 +182,6 @@ public class Storage {
         }
         inventory.getUpcCodesHistory().get(item.getUpc()).add(new Item(item));
     }
-
 
 
     /**
@@ -215,6 +216,11 @@ public class Storage {
         isStorageWriteDone = true;
     }
 
+    /**
+     * Writes the current alert list to the AlertData CSV file.
+     *
+     * @param alertList Current alert list
+     */
     public static synchronized void writeCSV(final AlertList alertList) {
         try {
             File dataFolder = new File("./data");
@@ -244,6 +250,7 @@ public class Storage {
 
     }
 
+
     public static synchronized AlertList readAlertCSV() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(Types.ALERTFILEPATH));
@@ -262,7 +269,7 @@ public class Storage {
                     return new AlertList();
                 }
                 String upc = fields[ALERT_UPC_INDEX];
-                if(!inventory.getUpcCodes().containsKey(upc)){
+                if (!inventory.getUpcCodes().containsKey(upc)) {
                     Ui.printInvalidAlertFile();
                     return new AlertList();
                 }
@@ -272,7 +279,7 @@ public class Storage {
                     tempAlertList.setMinAlertUpcs(fields[ALERT_UPC_INDEX], Integer.parseInt(fields[ALERT_QTY_INDEX]));
                 } else if (fields[ALERT_MINMAX_INDEX].equals("max")) {
                     tempAlertList.setMaxAlertUpcs(fields[ALERT_UPC_INDEX], Integer.parseInt(fields[ALERT_QTY_INDEX]));
-                } else{
+                } else {
                     Ui.printInvalidAlertFile();
                     return new AlertList();
                 }
@@ -291,7 +298,7 @@ public class Storage {
         } catch (IOException ioException) {
             Ui.printEmptyAlertFile();
             return new AlertList();
-        } catch (NumberFormatException numberFormatException){
+        } catch (NumberFormatException numberFormatException) {
             Ui.printInvalidAlertFile();
             return new AlertList();
         }

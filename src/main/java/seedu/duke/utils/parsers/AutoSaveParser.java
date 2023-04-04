@@ -10,6 +10,9 @@ public class AutoSaveParser extends Parser {
         super(rawInput, inventory);
     }
 
+    /**
+     * Processes the "autosave" command and prints an error message if wrong inputs from the user are detected.
+     */
     public void run() {
         if (rawInput.equals("on")) {
             SessionManager.setAutoSave(true);

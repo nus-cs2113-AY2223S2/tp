@@ -48,13 +48,12 @@ Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 * The `p/` parameter for `[price]` must be a **non-negative numerical** value _(decimals accepted)_.
 
 **OPTIONAL** parameters:
-* The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `Uncategorized`)
-
-Example of usage: 
-=======
+* The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `Uncategorized` if not specified.)
 
 
-!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
+
+
+!> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
 
 
 #### Example of usage
@@ -88,7 +87,7 @@ limit.
 * The `p/` parameter for `[price]` must be a **non-negative numerical value** (decimals accepted).
 * The `c/` parameter for `[category]` must be alphanumeric.
 
-!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
+!> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
 
 #### Example of usage
 
@@ -99,10 +98,9 @@ its `Category` type to `laptop`. <br />
 `edit upc/123 n/Orange qty/5 p/2.00`: Searches for the item in the inventory with a `UPC` code of `123`, and change
 its `Name` to `Orange`, `quantity` to be set to `5` and `price` will be set to `2.00`.
 
-
-
 #### Sample output
 ```
+edit upc/2142535453 c/laptop
 ____________________________________________________________
 Successfully edited the following item:
 
@@ -426,9 +424,11 @@ Format: `restock upc/[UPC] qty/[Quantity]`
 2. `Quantity` refers to the amount of stock to be **ADDED** from the current stock levels recorded.
 3. `UPC` has to be valid, that is, it **EXISTS** in the database, and has to be a **POSITIVE NUMBER** and
    **NOT EMPTY**.
-4. `Quantity` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**.
+4.`Quantity` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**.
 
-Example of Usage:
+!> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
+
+5. Example of Usage:
 `restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a **quantity** of `5`
 items to its current stock levels.
 

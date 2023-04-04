@@ -11,13 +11,21 @@ import seedu.duke.utils.Ui;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class RemoveParser extends Parser{
+public class RemoveParser extends Parser {
     private static Scanner in = new Scanner(System.in);
 
 
     public RemoveParser(String rawInput, Inventory inventory) {
         super(rawInput, inventory);
     }
+
+    /**
+     * Parses the user input for the "remove" command by index.
+     *
+     * @param commands  The user input split into an array of strings.
+     * @param inventory The inventory to be modified.
+     * @throws MissingParametersException
+     */
     private static void parseRemoveByIndex(final String[] commands, Inventory inventory)
             throws MissingParametersException {
         if (commands.length == 1) {
@@ -33,6 +41,14 @@ public class RemoveParser extends Parser{
         removeCommand.run();
     }
 
+    /**
+     * Parses the user input for the "remove" command by UPC.
+     *
+     * @param commands  The user input split into an array of strings.
+     * @param inventory The inventory to be modified.
+     * @throws MissingParametersException
+     * @throws RemoveErrorException
+     */
     private static void parseRemoveByUpc(final String[] commands, Inventory inventory)
             throws MissingParametersException, RemoveErrorException {
         String confirmation;
@@ -51,11 +67,12 @@ public class RemoveParser extends Parser{
         Command removeCommand = new RemoveCommand(inventory, upcCode, confirmation);
         removeCommand.run();
     }
+
     /**
      * Handles the "remove" command by making sure that formatting is correct, before passing the user inputs
      */
     @Override
-    public void run(){
+    public void run() {
         try {
             if (rawInput == null) {
                 throw new MissingParametersException();
