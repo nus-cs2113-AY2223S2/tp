@@ -167,7 +167,7 @@ public class DiagnosisTest {
         ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
         assertTrue(testIllnesses.stream()
                 .anyMatch(illnessMatch ->
-                        illnessMatch.getIllness().getIllnessName().equals("General Tooth Ache")
+                        illnessMatch.getIllness().getIllnessName().equals("Tooth Ache")
                 ));
     }
 
@@ -195,7 +195,7 @@ public class DiagnosisTest {
         ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
         assertTrue(testIllnesses.stream()
                 .anyMatch(illnessMatch ->
-                        illnessMatch.getIllness().getIllnessName().equals("General Rash")
+                        illnessMatch.getIllness().getIllnessName().equals("Rashes")
                 ));
     }
 
@@ -283,7 +283,7 @@ public class DiagnosisTest {
         ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
         assertTrue(testIllnesses.stream()
                 .anyMatch(illnessMatch ->
-                        illnessMatch.getIllness().getIllnessName().equals("General Stomach Ache")
+                        illnessMatch.getIllness().getIllnessName().equals("Stomach Ache")
                 ));
     }
 
