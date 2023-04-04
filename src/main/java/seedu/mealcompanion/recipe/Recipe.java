@@ -77,12 +77,13 @@ public class Recipe {
         return instructions;
     }
 
-    @Override
+
     //@@author ngyida
     /**
      * Get a formatted string of recipe details.
      * @return string of recipe details
      */
+    @Override
     public String toString() {
         StringBuilder recipeDetails = new StringBuilder();
         recipeDetails.append("Recipe for " + this.name + System.lineSeparator());
