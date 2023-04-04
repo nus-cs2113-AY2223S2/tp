@@ -28,6 +28,9 @@ Did you get it right? (y/n) Great, you got it right!
 Q: Q2 (ENTER to view answer)A: A1
 Did you get it right? (y/n) Please enter 'y' or 'n': (y/n) Please enter 'y' or 'n': (y/n) No worries, we will try again later today.
 ---
+Q: Q2 (ENTER to view answer)A: A1
+Did you get it right? (y/n) Great, you got it right!
+---
 Congrats! You have reviewed all the flashcards due today!
 ==========================================================
 The input is in an incorrect format.
