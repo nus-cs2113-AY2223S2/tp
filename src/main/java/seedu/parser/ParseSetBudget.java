@@ -20,7 +20,9 @@ public class ParseSetBudget {
 
     public Command setBudget() {
         try {
+            // Removes empty space from the user input
             String amount = ParseIndividualValue.parseIndividualValue(budget,BLANK,BLANK);
+            // Converts from string to double for numerical addition functionalities
             double budgetAmount = Double.parseDouble(amount);
             ExceptionChecker.checkValidAmount(budgetAmount);
             return new SetBudgetCommand(budgetAmount);

@@ -38,6 +38,7 @@ public class ParseLendBorrow {
     public Command addItem(String command) throws NotPositiveValueException, InvalidDateException {
         try {
             // Format: category d/date, n/name, a/amount, b/deadline, s/description
+            
             LocalDate date = fetchDate();
             String name = fetchName();
             double amount = fetchDouble();

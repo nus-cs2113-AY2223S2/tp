@@ -53,6 +53,8 @@ public abstract class Expenditure {
         return String.format("Date: %s || Value: %s || Description: %s", getFullDate(), getValue(), getDescription());
     }
 
+    public abstract String getPaidIcon();
+
     /**
      * @return String representing the type of expenditure
      */

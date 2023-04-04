@@ -4,8 +4,17 @@ import java.time.LocalDate;
 
 public class FoodExpenditure extends Expenditure {
     public static final String EXPENDITURE_TYPE = "F";
+
+    public static String iconPaid = "[X]";
+    public static String iconUnpaid = "[ ]";
+    boolean isPaid;
+
     public FoodExpenditure(String description, double value, LocalDate date) {
         super(description, value, date);
+    }
+
+    public String getPaidIcon() {
+        return (isPaid) ? iconPaid : iconUnpaid;
     }
 
     @Override

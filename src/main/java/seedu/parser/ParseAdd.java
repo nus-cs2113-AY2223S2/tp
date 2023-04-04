@@ -44,7 +44,7 @@ public class ParseAdd {
             LocalDate date = fetchDate();
             double amount = fetchDouble();
             String descriptionVal = fetchDescription();
-
+            
             // Checks for the specific expenditure according to command
             switch (command) {
             case AcademicExpenditureCommand.COMMAND_WORD:
