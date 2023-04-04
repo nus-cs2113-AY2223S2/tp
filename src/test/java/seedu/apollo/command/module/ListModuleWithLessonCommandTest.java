@@ -56,7 +56,7 @@ public class ListModuleWithLessonCommandTest {
     }
 
     @Test
-    void testExecute_ModuleNotAdded_expectsNoException() {
+    void testExecute_moduleNotAdded_expectsNoException() {
         assertDoesNotThrow(() -> new ListModuleWithLessonCommand("CG2023", allModules)
                 .execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
