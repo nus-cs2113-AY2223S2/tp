@@ -245,7 +245,7 @@ public class Ui {
     }
 
     /**
-     * Print out help for remove-pet command
+     * Print out help for list command
      */
     private void showPetListCommandHelp() {
         System.out.println("Command: list");
