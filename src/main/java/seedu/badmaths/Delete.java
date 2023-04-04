@@ -28,11 +28,11 @@ public class Delete {
 
     public void deleteNotes() {
         try {
-            if (isAnInt(toDo) == false) {
+            if (!isAnInt(toDo)) {
                 throw new IllegalTodoException();
             }
             int deleteIndex = Integer.parseInt(toDo) - 1; // deleteIndex == 3
-            if (isInvalidIndex(deleteIndex, notes) == true) { // if true
+            if (isInvalidIndex(deleteIndex, notes)) { // if true
                 throw new IllegalIndexException();
             }
             Ui.printDelete(notes.getText(deleteIndex), notes.getSize());

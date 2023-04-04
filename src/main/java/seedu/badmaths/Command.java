@@ -97,7 +97,7 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Mark":
-                if (isAnInt(toDo) == false) {
+                if (isAnInt(toDo)) {
                     break;
                 }
                 int markIndex = Integer.parseInt(toDo) - 1;
@@ -110,7 +110,7 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Unmark":
-                if (isAnInt(toDo) == false) {
+                if (!isAnInt(toDo)) {
                     break;
                 }
                 int unmarkIndex = Integer.parseInt(toDo) - 1;
