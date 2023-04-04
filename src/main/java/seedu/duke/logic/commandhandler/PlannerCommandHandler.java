@@ -26,7 +26,6 @@ public class PlannerCommandHandler implements CommandList {
                 additionalDescription = additionalDescription + " " + userCommands[i];
             }
             try {
-
                 switch (userCommands[0]) {
                 case HELP_COMMAND:
                     if (additionalDescription.length() != 0) {
@@ -66,9 +65,12 @@ public class PlannerCommandHandler implements CommandList {
                     ui.unknownCommand();
                 }
                 ui.plannerMode();
+                ui.splitLine();
                 storage.writeToJson(planner);
+            } catch (DukeError dukeException) {
+                System.out.println(dukeException.getMessage());
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("Oops Something went wrong!");
             }
 
         }

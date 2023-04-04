@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.achievements.AchievementListHandler;
+import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.logic.commandhandler.CommandHandler;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.storage.JsonUserCareerStorage;
@@ -58,8 +59,10 @@ public class Duke {
                 String rawInput = in.nextLine();
                 commandHandler.handleUserCommands(rawInput, ui, exerciseGenerator, userCareerData, exerciseHandler,
                                                   storage, planner, achievementListHandler, in);
+            } catch (DukeError dukeError) {
+                System.out.println(dukeError.getMessage());
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("An unexpected error has occurred");
             }
         }
     }

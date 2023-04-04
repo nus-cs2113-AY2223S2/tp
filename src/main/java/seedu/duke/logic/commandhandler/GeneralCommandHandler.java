@@ -1,5 +1,6 @@
 package seedu.duke.logic.commandhandler;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
@@ -124,6 +125,7 @@ public class GeneralCommandHandler implements CommandList {
                     errorExists = true;
                 } else {
                     exerciseStateHandler.startWorkout();
+                    ui.workoutMode();
                 }
                 break;
             case CURRENT_COMMAND:
@@ -141,7 +143,7 @@ public class GeneralCommandHandler implements CommandList {
                 }
                 break;
             case FIND_COMMAND:
-                command = new ExerciseSearchCommand(userCommands);
+                command = new ExerciseSearchCommand(Arrays.copyOfRange(userCommands, 1, userCommands.length));
                 break;
             case EXERCISE_DATA_COMMAND:
                 if (additionalDescription.length() != 0) {

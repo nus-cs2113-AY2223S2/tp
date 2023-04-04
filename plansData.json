@@ -1,6 +1,14 @@
 {
   "UserPlans": [
-    [],
+    [
+      {
+        "exercisePlans": [
+          "legs"
+        ],
+        "planName": "test",
+        "noOfExercise": 0
+      }
+    ],
     [],
     [],
     [],

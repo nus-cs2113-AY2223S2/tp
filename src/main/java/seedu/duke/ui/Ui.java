@@ -59,6 +59,7 @@ public class Ui {
 
     public void printPlannerGreeting () {
         PrintPlanner.printPlannerGreeting();
+        this.plannerMode();
     }
 
     public void printExerciseSessionHelp () {

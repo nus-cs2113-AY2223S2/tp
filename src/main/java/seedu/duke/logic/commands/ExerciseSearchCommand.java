@@ -1,5 +1,6 @@
 package seedu.duke.logic.commands;
 
+import java.util.StringJoiner;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
@@ -16,17 +17,17 @@ public class ExerciseSearchCommand extends Command {
      * Parses the user input into data required
      * for generating the list of relevant exercises with the specified keyword
      *
-     * @param userCommands
+     * @param userQuery
      * @throws DukeError (if user did not key in a keyword to search)
      */
-    public ExerciseSearchCommand (String[] userCommands) throws DukeError {
+    public ExerciseSearchCommand (String[] userQuery) throws DukeError {
 
-        if (userCommands.length > 2) {
-            for (int i = 1; i < userCommands.length; i++) {
-                keyword = keyword + userCommands[i] + " ";
+        if (userQuery.length > 0) {
+            StringJoiner joiner = new StringJoiner(" ");
+            for (String wordQuery : userQuery) {
+                joiner.add(wordQuery);
             }
-        } else if (userCommands.length == 2) {
-            keyword = userCommands[1];
+            keyword = joiner.toString();
         } else {
             throw new DukeError(ErrorMessages.ERROR_EMPTY_KEYWORD.toString());
         }
@@ -46,7 +47,7 @@ public class ExerciseSearchCommand extends Command {
         int index = 1;
         System.out.println("Here are the exercises matching your keyword:");
         for (ExerciseData exercise : exercisesList) {
-            if (exercise.getName().contains(keyword)) {
+            if (exercise.getName().toLowerCase().contains(keyword)) {
                 System.out.println(index + "." + exercise.getName());
                 index++;
             }
