@@ -7,7 +7,7 @@ import pocketpal.communication.Response;
 
 import java.util.logging.Logger;
 
-public abstract class Endpoint implements Requestable {
+public abstract class Endpoint extends EndpointUtil implements Requestable {
     private static final Logger logger = Logger.getLogger(Endpoint.class.getName());
 
     /**

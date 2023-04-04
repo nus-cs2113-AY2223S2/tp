@@ -181,6 +181,7 @@ public class EntriesEndpointTest extends EntryTestUtil {
             addEntry(ENTRY_3); // Food poisoning
             addEntry(ENTRY_4); // Mango juice
             addEntry(ENTRY_5); // Bus ride home
+            expectedEntryLog.addEntry(ENTRY_2);
             expectedEntryLog.addEntry(ENTRY_4);
 
             Request request = new Request(RequestMethod.GET); // recent 3 entries
