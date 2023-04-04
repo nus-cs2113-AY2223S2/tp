@@ -1,6 +1,5 @@
 package seedu.apollo;
 
-
 import org.junit.jupiter.api.Test;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.task.InvalidDeadline;
