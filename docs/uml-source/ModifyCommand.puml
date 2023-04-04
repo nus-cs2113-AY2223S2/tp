@@ -2,7 +2,7 @@
 'https://plantuml.com/sequence-diagram
 
 skinparam maxMessageSize 150
-title ModifyCommand (for Tasks)
+title ModifyCommand (Unmark Tasks)
 
 actor User
 participant ":Apollo" as Apollo
@@ -13,7 +13,7 @@ participant ":TaskList" as TaskList
 participant ":Ui" as Ui
 participant ":Storage" as Storage
 
-User -> Apollo : "mark 1"
+User -> Apollo : "Unmark 1"
 activate Apollo
 Apollo -> Parser : getCommand()
 activate Parser
