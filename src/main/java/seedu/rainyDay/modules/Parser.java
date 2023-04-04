@@ -418,15 +418,15 @@ public class Parser {
             int sizeOfFilterFlagAndField = 0;
             String[] flagAndField = action[1].split("\\s");
             for (String s : flagAndField) {
-                if (s.contains("-in")) {
+                if (s.equals("-in")) {
                     sizeOfFilterFlagAndField += 1;
-                } else if (s.contains("-out")) {
+                } else if (s.equals("-out")) {
                     sizeOfFilterFlagAndField += 1;
-                } else if (s.contains("-d")) {
+                } else if (s.equals("-d")) {
                     sizeOfFilterFlagAndField += 2;
-                } else if (s.contains("-c")) {
+                } else if (s.equals("-c")) {
                     sizeOfFilterFlagAndField += 2;
-                } else if (s.contains("-date")) {
+                } else if (s.equals("-date")) {
                     sizeOfFilterFlagAndField += 2;
                 }
             }
@@ -481,17 +481,19 @@ public class Parser {
         }
     }
 
-    public Command editStatement(String userInput) throws RainyDayException {
+    private Command editStatement(String userInput) throws RainyDayException {
         try {
             String[] tokens = userInput.split("\\s+", 3);
-            int lengthOfReport = RainyDay.userData.getFinancialReport().getStatementCount();
             if (tokens.length < 3) {
                 logger.warning("invalid edit index from user");
                 throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
             }
+
+            int lengthOfReport = RainyDay.userData.getFinancialReport().getStatementCount();
             if (lengthOfReport == 0) {
                 throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
             }
+
             int index = Integer.parseInt(tokens[1]);
             if (index > lengthOfReport || index <= 0) {
                 logger.warning("invalid edit index from user");
@@ -566,7 +568,6 @@ public class Parser {
             logger.warning("edit command given by user in the wrong format");
             throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
         }
-
     }
 
     //@@author KN-CY

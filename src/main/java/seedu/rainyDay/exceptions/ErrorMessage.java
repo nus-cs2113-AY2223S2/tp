@@ -83,7 +83,6 @@ public enum ErrorMessage {
             "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
             "Please refer to 'help' for more information!");
 
-
     private final String error;
 
     ErrorMessage(String error) {

@@ -16,14 +16,11 @@ public class ShortcutAddCommand extends ShortcutCommand {
     private static String value;
     private static final String SHORTCUT_SUCCESSFULLY_ADDED = "Shortcut successfully added";
 
-
     public ShortcutAddCommand(String key, String value) {
         this.key = key;
         this.value = value;
         shortcutCommands = RainyDay.userData.getShortcutCommands();
     }
-
-
 
     @Override
     public CommandResult execute() throws RainyDayException {

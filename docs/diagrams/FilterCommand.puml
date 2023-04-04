@@ -10,45 +10,9 @@ participant ":ViewResult" as ViewResult
 [-> FilterCommand : execute()
 activate FilterCommand
 
-'FilterCommand -> ArrayList : ArrayList()
-'ArrayList --> FilterCommand : :filteredList
-'FilterCommand -> ArrayList : ArrayList()
-'ArrayList --> FilterCommand : :statementIndex
-'FilterCommand -> ArrayList : ArrayList()
-'ArrayList --> FilterCommand : :listToFilter
-'FilterCommand -> ArrayList : ArrayList()
-'ArrayList --> FilterCommand : :listToFilterStatementIndex
-
 loop filterFlagAndField.size()
     alt equals "-d"
-'        FilterCommand -> FilterCommand : filterByDescriptionFirstFlag()
-'        activate FilterCommand
-'        FilterCommand -> UserData :getStatementCount()
-'        activate UserData
-'        UserData -> FilterCommand :statementCount
-'        deactivate UserData
-'
-'        loop statementCount
-'            FilterCommand -> UserData : getStatement()
-'            activate UserData
-'            UserData -> FinancialStatement : getDescription
-'            activate FinancialStatement
-'            FinancialStatement -> UserData : String
-'            deactivate FinancialStatement
-'            UserData -> FilterCommand : FinancialStatement
-'            deactivate UserData
-'
-'            FilterCommand -> FilterCommand : filterFlagAndField.get()
-'            activate FilterCommand
-'            FilterCommand -> FilterCommand : description
-'            deactivate FilterCommand
-'
-'            opt FinancialStatement contains description
-'                FilterCommand -> FilterCommand : add:filteredList
-'                FilterCommand -> FilterCommand : add:FinancialStatement
-'            end
-'            deactivate FilterCommand
-'        end
+
     else equals "-c"
         alt isFirstFlag
             FilterCommand -> FilterCommand : filterByCategoryFirstFlag()
@@ -79,47 +43,18 @@ loop filterFlagAndField.size()
                 end
                 deactivate FilterCommand
         end
-'        else
-'            FilterCommand -> FilterCommand : filterByCategory()
-'            activate FilterCommand
-'            FilterCommand -> UserData :getStatementCount()
-'            activate UserData
-'            UserData -> FilterCommand :statementCount
-'            deactivate UserData
-'
-'            loop statementCount
-'                FilterCommand -> UserData : getStatement()
-'                activate UserData
-'                UserData -> FinancialStatement : getCategory
-'                activate FinancialStatement
-'                FinancialStatement -> UserData : category
-'                deactivate FinancialStatement
-'                UserData -> FilterCommand : FinancialStatement
-'                deactivate UserData
-'
-'                FilterCommand -> FilterCommand : filterFlagAndField.get()
-'                activate FilterCommand
-'                FilterCommand -> FilterCommand : category
-'                deactivate FilterCommand
-'
-'                opt FinancialStatement contains description
-'                    FilterCommand -> FilterCommand : add:filteredList
-'                    FilterCommand -> FilterCommand : add:FinancialStatement
-'                end
-'                deactivate FilterCommand
-'        end
     end
     else equals "-date"
 
     else equals "-in"
 
     else equals "-out"
+end
 
 FilterCommand -> ViewResult : printItemsInList(listToFilterStatementIndex)
 activate ViewResult
 ViewResult -> :Print to user
 deactivate ViewResult
-end
 
 [<--FilterCommand : : CommandResult
 deactivate FilterCommand

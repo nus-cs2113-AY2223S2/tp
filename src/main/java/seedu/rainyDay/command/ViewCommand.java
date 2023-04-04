@@ -18,7 +18,6 @@ import static seedu.rainyDay.RainyDay.userData;
  * Represents a command to view the financial report
  */
 public class ViewCommand extends Command {
-
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
     private final LocalDate lowerLimit;
     private final LocalDate upperLimit;
@@ -85,7 +84,6 @@ public class ViewCommand extends Command {
             return (int) ((firstStatement.getValue() * 100) - (secondStatement.getValue() * 100));
         }
     }
-
 
     /**
      * Executes the command and print the relevant statements by calling ViewResult

@@ -257,26 +257,32 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 
 ### Editing an entry `edit`
 
-- When a command is given to edit a statement, the command is first parsed to check whether it follows the format of an
-  edit command: `edit INDEX ADDCOMMAND` or `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` with the use of regex.
-- If the statement contains "add", then a check will be done on the remaining fields to see if it is a valid add
-  command.
-- Otherwise, methods specific to the flags will be used to validate the remaining fields using regex pattern
-- Commands in the correct format will then be used to create a FilterCommand object.
-- `RainyDay` will then call `execute` method in `Command`, where the transaction's specific field be edited or deleted
-  then added
-  into the financial report.
+- When a command is given to edit a statement, the command is first parsed by the parser.
+- The parser checks whether the command follows the format of an edit command: `edit INDEX FLAG NEWFIELD` 
+  or `edit INDEX FLAG` with the use of regex. The regex pattern also checks whether the flags are in the correct order.
+- Commands in the correct format will then be used to create an `EditCommand` object.
+- `RainyDay` will then call the `Command.execute()`, where the fields in the indicated financial statement
+will be edited.
+
+The sequence diagram for the implementation of edit is as shown below:
 
 ![EditCommand.png](images\DeveloperGuide\EditCommand.png)
 
+![EditCommandRefFrame.png](images\DeveloperGuide\EditCommandRefFrame.png)
+
+### Design considerations
+
+- The flags accepted are currently fixed by this order -in/-out -> -d DESCRIPTION -> -v $VALUE -> -c CATEGORY -> 
+-date DATE. While accepting any order of flags would increase convenience for the user, since add command currently also
+fixes the flag orders, it would be easier and more intuitive for users to remember and use the same flag order for edit.
+
 ### Filtering your data `filter`
 
-- When a command is given to filter a report by certain conditions, the command is first parsed to check whether it
-  follows the format of a filter command with the use of regex pattern
-    - Valid patterns are `filter -in`, `filter -out` , `filter -c <category>`,
-      `filter -d <description>` and `filter -date <DD/MM/YYYY>`
-- Commands in the correct format will then be parsed to create a FilterCommand object.
-- RainyDay will then call Command.execute(), where every entry in the financial report with the matching
+- When a command is given to filter the financial report by certain conditions, the command is first parsed to check 
+whether it follows the format of a filter command with the use of regex. The regex pattern also checks whether the 
+- flags are in the correct order.
+- Commands in the correct format will then be parsed to create a `FilterCommand` object.
+- RainyDay will then call `Command.execute()`, where every entry in the financial report with the matching
   conditions will be printed.
 - Information will be presented in a table format to help improve clarity for users.
 
@@ -284,7 +290,9 @@ The sequence diagram for the implementation of filter is as shown below:
 
 ![FilterCommand.png](images\DeveloperGuide\FilterCommand.png)
 
-{TODO: Mention file path after implementing issue #137}
+### Design considerations
+
+- Flags being accepted in a fixed order has the same considerations as the edit command above.
 
 ### Adding a shortcut `shortcut`
 
@@ -331,6 +339,8 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
 The sequence diagram for the implementation of viewing a shortcut is as shown below:
 
 ![ShortcutViewCommand.png](images%2FDeveloperGuide%2FShortcutViewCommand.png)
+
+{TODO: Mention file path after implementing issue #137}
 
 ### Saving Data
 
@@ -438,18 +448,21 @@ Help people who are just starting out working and troubled by financial issues s
 
 ## User Stories
 
-| Version | As a ...                            | I want to ...                                                | So that I can ...                                      |
-|---------|-------------------------------------|--------------------------------------------------------------|--------------------------------------------------------|
-| v1.0    | working adult                       | track my outflows by adding new entries                      | where my money is going                                |
-| v1.0    | working adult                       | track my inflows by adding new entries                       | know how much I am earning                             |
-| v1.0    | diligent user                       | view my inflow and outflow                                   | know where my money is going                           |
-| v1.0    | careless user                       | delete my entries                                            | recover after making wrong entries                     |
-| v1.0    | returning user                      | continue from my previous data                               | re-enter all the entries                               |
-| v2.0    | new user                            | see usage instructions                                       | refer to them when I forget how to use the application |
-| v2.0    | user who uses multiple applications | access the data I saved in RainyDay in my other applications | avoid having to re-enter the same data                 |
-| v2.0    | lazy user                           | use shortcuts                                                | avoid having to type in lengthy commands               |
-| v2.0    | diligent user                       | filter my data                                               | view my past expense with ease                         |
-| v2.0    | lazy user                           | edit my entries                                              | amend my wrong entries                                 |
+| Version | As a ...                                    | I want to ...                                                | So that I can ...                                      |
+|---------|---------------------------------------------|--------------------------------------------------------------|--------------------------------------------------------|
+| v1.0    | working adult                               | track my outflows by adding new entries                      | where my money is going                                |
+| v1.0    | working adult                               | track my inflows by adding new entries                       | know how much I am earning                             |
+| v1.0    | diligent user                               | view my inflow and outflow                                   | know where my money is going                           |
+| v1.0    | careless user                               | delete my entries                                            | recover after making wrong entries                     |
+| v1.0    | returning user                              | continue from my previous data                               | re-enter all the entries                               |
+| v2.0    | new user                                    | see usage instructions                                       | refer to them when I forget how to use the application |
+| v2.0    | user who uses multiple applications         | access the data I saved in RainyDay in my other applications | avoid having to re-enter the same data                 |
+| v2.0    | lazy user                                   | use shortcuts                                                | avoid having to type in lengthy commands               |
+| v2.0    | diligent user                               | filter my data                                               | view my past expense with ease                         |
+| v2.0    | careless user                               | edit my entries                                              | amend my wrong entries                                 |
+| v2.0    | careful user                                | ignore certain entries                                       | I can have a more accurate track of my finances        |
+| v2.0    | user who is serious in managing my finances | set up a budget                                              | know whether my outflows exceeds my inflows            |
+| v2.0    | advanced user                               | export my data                                               | view my expenses in charts and diagrams in excel       |
 
 ## Non-Functional Requirements
 

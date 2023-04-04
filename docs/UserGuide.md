@@ -43,6 +43,7 @@ You will be able to leverage on these features to efficiently track your finance
 * [Content Page](#content-page)
 * [How to use the user guide](#how-to-use-the-user-guide)
 * [Quick Start](#quick-start)
+* [Understanding CLI](#understanding-cli)
 * [Features Overview](#features-overview)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -73,7 +74,6 @@ Please note the following about the format of commands given under each [feature
 * ⚠️ highlights actions you should avoid
 
 ## Quick Start
-
 
 After you have learnt how to use this user guide, you are ready to begin! Next, we will run you through how to install
 rainyDay on your device and how to start using it. Please refer to the steps below:
@@ -108,6 +108,15 @@ see the following if the start up is successful.
 ![cmd start up.png](images/UserGuide/cmdstartup.png)
 6. Type your name and press Enter. The following will be shown:
 ![cmd enter name.png](images/UserGuide/cmdentername.png)
+
+## Understanding CLI
+
+- For those who are familiar with what a CLI is, go ahead and proceed to view the [features](#features-overview) we 
+offer!
+- A [CLI](#glossary) receive commands from a user, that is you, in the form of lines of text.
+- In RainyDay, we make it simple for you. Whenever we require you to input, we will prompt you with a `>` as shown below
+with a sample input boxed in red.
+![understandingCLI.png](/images/UserGuide/understandingCLI.png)
 
 ## Features Overview
 
