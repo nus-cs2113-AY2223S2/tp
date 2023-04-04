@@ -112,6 +112,7 @@ public class FilterCommandTest {
         filterFlagAndField.add("-out");
         filterFlagAndField.add("-date");
         filterFlagAndField.add("01/02/2023");
-        assertEquals("We could not find any matches for your description in your report", filterCommand.execute().output);
+        assertEquals("We could not find any matches for your description in your report",
+                filterCommand.execute().output);
     }
 }
