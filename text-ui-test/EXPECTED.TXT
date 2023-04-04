@@ -1,5 +1,5 @@
 Unfortunately, income list file can't be found. I'll make a new one!
-Unfortunately, income list file can't be found. I'll make a new one!
+Unfortunately, expense list file can't be found. I'll make a new one!
     ____________________________________________________________
     Hello! I'm ChChing.
     What can I do for you?
