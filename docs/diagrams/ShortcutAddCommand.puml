@@ -5,14 +5,21 @@ participant "shortcutCommands:HashMap" as shortcutCommands
 [-> ShortcutAddCommand : execute()
 activate ShortcutAddCommand
 
+ShortcutAddCommand -> ShortcutAddCommand : checkShortcutValidity(shortcutCommands, key, value)
+activate ShortcutAddCommand
+
 ShortcutAddCommand -> shortcutCommands : containsKey(key)
 activate shortcutCommands
 shortcutCommands --> ShortcutAddCommand
 
 deactivate shortcutCommands
 
+ShortcutAddCommand --> ShortcutAddCommand
+deactivate ShortcutAddCommand
 
-opt does not contain key
+
+
+opt valid shortcut
 
 
 ShortcutAddCommand -> shortcutCommands : puts(key, value)
