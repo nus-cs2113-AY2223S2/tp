@@ -19,21 +19,21 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 4. Run the file with the command `java -jar magusstock.jar`.
 
 ## Features
-- [Adding an item: `add`](#adding-an-item-add-)
-- [Editing an item: `edit`](#editing-an-item-edit-)
-- [Removing an item: `remove`](#removing-an-item-remove-)
-- [Listing all items: `list`](#list-all-items-list)
-- [Searching for item(s): `search`](#search-for-an-item-search-searchupc)
-- [Filtering item(s) by type: `filter`](#filtering-items-filter)
-- [Listing all commands: `help`](#list-all-available-commands-help)
-- [History of item: `history`](#historical-records-of-item-history-)
-- [Selling an item: `sell`](#sell-quantity-of-item-sell-)
-- [Restocking an item: `restock`](#restock-an-item-restock-)
-- [Dashboard: `db`](#dashboard-db-)
-- [Category: `cat`](#category-cat-)
-- [Alert for item(s): `alert`](#alert-for-an-item-alert-)
-- [Autosave of Inventory: `autosave`](#change-autosave-mode-autosave-)
-- [Exiting the program: `exit`](#exiting-the-program-exit-)
+- [Adding an item: `add`](#adding-an-item--add-a-name--add-a)
+- [Editing an item: `edit`](#editing-an-item--edit-a-name--edit-a)
+- [Removing an item: `remove`](#removing-an-item--remove-a-name--remove-a)
+- [Listing all items: `list`](#list-all-items--list)
+- [Searching for item(s): `search`](#search-for-an-item--search--searchupc)
+- [Filtering item(s) by type: `filter`](#filtering-items--filter)
+- [Listing all commands: `help`](#list-all-available-commands--help)
+- [History of item: `history`](#historical-records-of-item--history-a-name--history-a)
+- [Selling an item: `sell`](#sell-quantity-of-item--sell-a-name--sell-a)
+- [Restocking an item: `restock`](#restock-an-item--restock-a-name--restock-a)
+- [Dashboard: `db`](#dashboard--db-a-name--db-a)
+- [Category: `cat`](#category--cat-a-name--cat-a)
+- [Alert for item(s): `alert`](#alert-for-an-item--alert-a-name--alert-a)
+- [Autosave of Inventory: `autosave`](#change-autosave-mode--autosave-a-name--autosave-a)
+- [Exiting the program: `exit`](#exiting-the-program--exit-a-name--exit-a)
 
 ---
 ### Adding an item: `add` <a name = "add"></a>
@@ -264,14 +264,15 @@ Filters items from the inventory list by price OR category.
 **Case I:** Filter by category
 
 ```
-filter f/category fruits
-+-----------------+--------------+----------+----------+
-| Name            | UPC          | Quantity | Price    |
-+-----------------+--------------+----------+----------+
-| Apples          | 0123241      | 10       | $15.0    |
-+-----------------+--------------+----------+----------+
-| Large Apples    | 012321       | 10       | $15.0    |
-+-----------------+--------------+----------+----------+
+filter f/category fruit
++-------+-----------------+--------------+----------+----------+-----------------+
+| Index | Name            | UPC          | Quantity | Price    | Category        |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 0     | apples          | 1235678910   | 10       | $10.00   | fruit           |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 1     | watermelon      | 103437378374 | 15       | $50.00   | fruit           |
+|       |                 | 2            |          |          |                 |
++-------+-----------------+--------------+----------+----------+-----------------+
 
 ____________________________________________________________
 ```
@@ -492,7 +493,7 @@ ____________________________________________________________
 
 ---
 ### Category: `cat` <a name = "cat"></a>
-Shows list of categories, and/or its items, or a specified category of items.
+Shows list of categories, or a summary table of all categories and their items.
 
 Format: 
 * `cat list`: shows list of all categories in the inventory.
@@ -512,9 +513,10 @@ cat table
 +-----------------+--------------------------------+
 | Category        | Name: UPC                      |
 +-----------------+--------------------------------+
-| uncategorized   | testItem:123456789012,         |
-|                 | testItem2:123456789013,        |
-|                 | asdsadsa:1231                  |
+| fruit           | apples:1235678910,             |
+|                 | watermelon:1034373783742       |
++-----------------+--------------------------------+
+| uncategorized   | oranges:1029348576             |
 +-----------------+--------------------------------+
 ```
 
