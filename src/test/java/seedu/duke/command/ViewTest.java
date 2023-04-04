@@ -33,7 +33,7 @@ public class ViewTest {
     private static final String NO_MATCHING_RECIPE_ERROR = "There are no matching recipes found.";
     private static final String RECIPE_VIEWING_DEFAULT_ERROR = "Error in viewing recipe!"
             + "\nException occurred: ";
-    String MISSING_DESCRIPTION_ERROR = "Error in description of inputs!"
+    private static final String MISSING_DESCRIPTION_ERROR = "Error in description of inputs!"
             + "\nException occurred: The KEYWORDS of VIEW cannot be empty.";
     private static final String PREFIX_EMPTY_LIMIT_LIST_ERROR = "Error in finding index!"
             + "\nException occurred: Your list is either EMPTY or does not contain "
