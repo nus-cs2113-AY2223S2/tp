@@ -2,6 +2,7 @@ package seedu.apollo.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.calendar.Calendar;
+import seedu.apollo.command.utils.WeekCommand;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.task.TaskList;
