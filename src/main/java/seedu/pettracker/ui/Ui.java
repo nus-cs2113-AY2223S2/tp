@@ -364,4 +364,12 @@ public class Ui {
         System.out.println("Example: exit");
         System.out.println(DIVIDER);
     }
+
+    public void taskNumberOutOfBoundsMessage() {
+        System.out.println("Task number does not exist.");
+    }
+
+    public void invalidTaskNumber() {
+        System.out.println("Invalid task number.");
+    }
 }
