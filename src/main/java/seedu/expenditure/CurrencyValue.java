@@ -18,40 +18,38 @@ public abstract class CurrencyValue {
     private static final double TWD_CONVERSION = 22.98;
     private static final double USD_CONVERSION = 0.75;
 
-    public static double sgDConversion(double amount, String currencyType) throws WrongInputException {
+    public static double sgDConversion (double amount, String currencyType) throws WrongInputException {
         switch (currencyType) {
-            case "AUS":
-                return amount * AUS_CONVERSION;
-            case "CAD":
-                return amount * CAD_CONVERSION;
-            case "DKK":
-                return amount * DKK_CONVERSION;
-            case "EUR":
-                return amount * EUR_CONVERSION;
-            case "GBP":
-                return amount * GBP_CONVERSION;
-            case "ILS":
-                return amount * ILS_CONVERSION;
-            case "JPY":
-                return amount * JPY_CONVERSION;
-            case "KRW":
-                return amount * KRW_CONVERSION;
-            case "NOK":
-                return amount * NOK_CONVERSION;
-            case "NZD":
-                return amount * NZD_CONVERSION;
-            case "SEK":
-                return amount * SEK_CONVERSION;
-            case "TWD":
-                return amount * TWD_CONVERSION;
-            case "USD":
-                return amount * USD_CONVERSION;
-            case "CNY":
-                return amount * CNY_CONVERSION;
-            case "SGD":
-                return amount;
-            default:
-                throw new WrongInputException();
+        case "AUS":
+            return amount * AUS_CONVERSION;
+        case "CAD":
+            return amount * CAD_CONVERSION;
+        case "DKK":
+            return amount * DKK_CONVERSION;
+        case "EUR":
+            return amount * EUR_CONVERSION;
+        case "GBP":
+            return amount * GBP_CONVERSION;
+        case "ILS":
+            return amount * ILS_CONVERSION;
+        case "JPY":
+            return amount * JPY_CONVERSION;
+        case "KRW":
+            return amount * KRW_CONVERSION;
+        case "NOK":
+            return amount * NOK_CONVERSION;
+        case "NZD":
+            return amount * NZD_CONVERSION;
+        case "SEK":
+            return amount * SEK_CONVERSION;
+        case "TWD":
+            return amount * TWD_CONVERSION;
+        case "USD":
+            return amount * USD_CONVERSION;
+        case "SGD":
+            return amount;
+        default:
+            throw new WrongInputException();
         }
     }
 }
