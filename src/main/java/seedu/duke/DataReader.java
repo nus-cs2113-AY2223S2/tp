@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class DataReader {
     private static final String MODULES_FILE_PATH = "modules.txt";
@@ -51,6 +52,7 @@ public class DataReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        modules.sort(Comparator.comparing(Module::getPrintingLength));
     }
 
     public ArrayList<University> getUniversities() {

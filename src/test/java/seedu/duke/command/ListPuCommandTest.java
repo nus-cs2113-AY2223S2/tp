@@ -32,14 +32,15 @@ class ListPuCommandTest {
     void execute_correctLines_success() {
         ListPuCommand listPuCommand = new ListPuCommand();
         listPuCommand.execute();
-        assertEquals("This is the list of PUs:" + System.lineSeparator()
-                + LINE + System.lineSeparator() +
-                "1. KOREA UNIVERSITY KU" + System.lineSeparator() +
-                "2. KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY KAIST" + System.lineSeparator() +
-                "3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY POSTECH" + System.lineSeparator() +
-                "4. SEOUL NATIONAL UNIVERSITY SNU" + System.lineSeparator() +
-                "5. YONSEI UNIVERSITY YU" + System.lineSeparator() +
-                "____________________________________________________________".stripTrailing()
+        assertEquals("This is the list of PUs:" + System.lineSeparator() +
+                        "____________________________________________________________" + System.lineSeparator() +
+                        "   Partner University Name                           PU Abb    " + System.lineSeparator() +
+                        "1. KOREA UNIVERSITY                                  KU" + System.lineSeparator() +
+                        "2. KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY  KAIST" + System.lineSeparator() +
+                        "3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY         POSTECH" + System.lineSeparator() +
+                        "4. SEOUL NATIONAL UNIVERSITY                         SNU" + System.lineSeparator() +
+                        "5. YONSEI UNIVERSITY                                 YU" + System.lineSeparator() +
+                        "____________________________________________________________".stripTrailing()
                 , outContent.toString().stripTrailing());
         outContent.reset();
     }
