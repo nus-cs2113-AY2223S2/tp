@@ -9,7 +9,7 @@ public class PrintHelpMessage {
         System.out.println("[generate]");
         System.out.println("\tGenerate a specific list of exercises: generate FILTER1 FILTER2 ... x");
         System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
-        System.out.println("\tor starts an IPPT session: generate ippt");
+        //System.out.println("\tor starts an IPPT session: generate ippt");
         System.out.println("[filters]");
         System.out.println("\tView all available filters");
         System.out.println("[plans]");
