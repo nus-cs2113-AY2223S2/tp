@@ -27,7 +27,7 @@ public class AddExpenseCommand extends Command {
         } else if (expense.getCategory() == null) {
             throw new ChChingException("Missing category field");
         } else if(expense.getCategory().length() > 30) {
-            throw new ChChingException("Character limit of 99 for category field exceeded");
+            throw new ChChingException("Character limit of 30 for category field exceeded");
         } else if (expense.getDescription() == null) {
             throw new ChChingException("Missing description field");
         } else if(expense.getDescription().length() > 99) {
