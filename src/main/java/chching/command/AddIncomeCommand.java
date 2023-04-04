@@ -26,6 +26,8 @@ public class AddIncomeCommand extends Command {
             throw new ChChingException("No fields found");
         } else if (income.getDescription() == null) {
             throw new ChChingException("Missing description field");
+        } else if(income.getDescription().length() > 99) {
+            throw new ChChingException("Character limit of 99 for description field exceeded");
         } else if (income.getDate() == null) {
             throw new ChChingException("Missing date field");
         } else if (income.getValue() <= 0) {
