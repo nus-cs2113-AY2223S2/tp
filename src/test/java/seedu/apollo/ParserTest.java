@@ -276,5 +276,15 @@ class ParserTest {
         assertDoesNotThrow(() -> Parser.getCommand(userCommand, ui, size, null));
     }
 
+    @Test
+    void parseHelpCommand_extraWord_expectException() throws UnexpectedException {
+        String userCommand = "help event hi";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
+
+
 
 }
