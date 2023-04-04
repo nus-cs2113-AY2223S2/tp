@@ -280,7 +280,7 @@ public class Ui {
     public void printModuleListWithLesson(Module newModule, ArrayList<Timetable> timetableList) {
         System.out.println("These are your classes for Module " + newModule.getCode() + ": \n");
         for (Timetable timetable : timetableList) {
-            System.out.println(timetable.getLessonType() + " " + timetable.getClassnumber() + '\n' +
+            System.out.println(timetable.getLessonType() + " " + timetable.getClassNumber() + '\n' +
                     "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
                     timetable.getEndTime());
         }
@@ -327,7 +327,7 @@ public class Ui {
                 + module.getCode() + ":");
 
         for (Timetable timetable : copyList) {
-            System.out.println("Class Number: " + timetable.getClassnumber());
+            System.out.println("Class Number: " + timetable.getClassNumber());
             System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
                     timetable.getEndTime());
         }
