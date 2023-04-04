@@ -481,7 +481,7 @@ public class Parser {
         }
     }
 
-    public Command editStatement(String userInput) throws RainyDayException {
+    private Command editStatement(String userInput) throws RainyDayException {
         try {
             String[] tokens = userInput.split("\\s+", 3);
             int lengthOfReport = RainyDay.userData.getFinancialReport().getStatementCount();
@@ -492,6 +492,7 @@ public class Parser {
             if (lengthOfReport == 0) {
                 throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
             }
+
             int index = Integer.parseInt(tokens[1]);
             if (index > lengthOfReport || index <= 0) {
                 logger.warning("invalid edit index from user");
