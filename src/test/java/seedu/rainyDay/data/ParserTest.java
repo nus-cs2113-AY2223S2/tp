@@ -24,6 +24,7 @@ class ParserTest {
     UserData userData = new UserData(financialReport);
     HashMap<Integer, Double> expenditures = new HashMap<>();
     MonthlyExpenditures monthlyExpenditures = new MonthlyExpenditures(expenditures);
+
     // todo add more test cases
     @Test
     public void parseAddInCommand() {
@@ -135,7 +136,7 @@ class ParserTest {
     }
 
     @Test
-    public void parseEditCommand() throws RainyDayException{
+    public void parseEditCommand() throws RainyDayException {
         RainyDay.userData = userData;
         userData.getFinancialReport().clearReport();
         assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit 1 -out"));
@@ -154,7 +155,7 @@ class ParserTest {
     }
 
     @Test
-    public void parseSetBudgetCommand() throws RainyDayException{
+    public void parseSetBudgetCommand() throws RainyDayException {
         assertEquals(SetBudgetCommand.class, new Parser().parseUserInput("setbudget 1000").getClass());
         assertThrows(Exception.class, () -> new Parser().parseUserInput("setbudget -1000"));
     }
