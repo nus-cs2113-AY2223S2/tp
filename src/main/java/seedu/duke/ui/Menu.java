@@ -47,7 +47,8 @@ public class Menu {
                     continue;
                 }
             }
-            System.out.println("---------------------------------------------------");
+            System.out.println("---------------------------------------------------------------");
+            System.out.println("Note: Any whitespaces in passwords entered will be stripped off");
             System.out.println("Please enter your password: ");
             String password = scanner.nextLine();
 
@@ -64,6 +65,7 @@ public class Menu {
                 System.out.println("---------------------------------------------------");
                 System.out.println("Please re-enter your password: ");
                 String password2 = new Scanner(System.in).nextLine();
+                password2 = password2.replaceAll("\\s", "");
                 if (password.equals(password2)) {
                     System.out.println("---------------------------------------------------");
                     System.out.println("Registration successful!");
@@ -489,5 +491,12 @@ public class Menu {
     public static void displayFindMedicineMessage(String phrase) {
         System.out.println("---------------------------------------------------");
         System.out.println("Results for \"" + phrase + "\":");
+    }
+    //@@author Geeeetyx
+    public static void displayEndOfDiagnosisMessage() {
+        System.out.println("End of diagnosis. Please proceed to your nearest pharmacy to purchase the " +
+                "above medications if applicable.");
+        System.out.println("==========================================================================" +
+                "==================");
     }
 }
