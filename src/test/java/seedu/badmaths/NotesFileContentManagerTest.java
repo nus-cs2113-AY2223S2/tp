@@ -33,7 +33,11 @@ public class NotesFileContentManagerTest {
         String expectedContent = "HIGH\tY\t1\tNote 1\n" +
                 "MEDIUM\tN\t0\tNote 2\n" +
                 "LOW\tY\t2\tNote 3\n";
+        expectedContent = expectedContent.replace("\r\n", "\n").replace("\r", "\n");
+
         String actualContent = NotesFileContentManager.fileContent(notes);
+        actualContent = actualContent.replace("\r\n", "\n").replace("\r", "\n");
+
         assertEquals(expectedContent, actualContent);
     }
 }
