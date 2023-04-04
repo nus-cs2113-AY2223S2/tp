@@ -65,10 +65,17 @@ public class DishManager {
         }
 
         String dishesWithStringToFindInList = "";
-        for (int i = 0; i < dishesMatchingKeyword.size(); i++) {
-            dishesWithStringToFindInList += stringOfDishWithIndex(indexes.get(i), dishesMatchingKeyword.get(i))
-                    + System.lineSeparator();
+
+        if (dishesMatchingKeyword.size() == 0) {
+           dishesWithStringToFindInList = "There are no dishes matching the keyword you have entered."
+                   + System.lineSeparator();
+        } else {
+            for (int i = 0; i < dishesMatchingKeyword.size(); i++) {
+                dishesWithStringToFindInList += stringOfDishWithIndex(indexes.get(i), dishesMatchingKeyword.get(i))
+                        + System.lineSeparator();
+            }
         }
+
         return dishesWithStringToFindInList;
     }
 
