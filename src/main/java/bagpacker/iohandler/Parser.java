@@ -376,7 +376,7 @@ public class Parser {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             return new IncorrectCommand("Invalid Input Variables",
-                    PackCommand.HELP_MSG);
+                    PackAllCommand.HELP_MSG);
         }
     }
 
