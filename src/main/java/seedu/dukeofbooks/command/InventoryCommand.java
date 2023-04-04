@@ -6,12 +6,12 @@ import seedu.dukeofbooks.data.book.BorrowableItem;
 import seedu.dukeofbooks.data.exception.IllegalOperationException;
 
 public class InventoryCommand extends UserCommand {
-    // librarian -title tester -topic python -author me -isbn 1567890 -action add
-    // librarian -title tester -topic python -author me -isbn 1567890 -action delete
     public static final String COMMAND_WORD = "librarian";
     public static final String ADD_WORD = "add";
     public static final String DELETE_WORD = "delete";
     public static final String INVALID_ACTION = "ERROR: Action only search by add or delete";
+    public static final String INCORRECT_SYNTAX = "INVALID SYNTAX\nExpected: librarian -title"
+            + " TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action add";
     public static final String INVALID_ITEM = "ERROR: Item is not valid";
     public static final String ACTION_SUCCESS = "Action: %s is successful. %s updated";
     private String action;
