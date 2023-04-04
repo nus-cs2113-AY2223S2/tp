@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.rmi.UnexpectedException;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.time.format.DateTimeFormatter;
@@ -35,6 +36,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import static seedu.apollo.calendar.SemesterUtils.getWeekNumber;
 import static seedu.apollo.ui.Parser.COMMAND_DEADLINE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_EVENT_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
@@ -275,15 +277,26 @@ public class AddCommand extends Command implements LoggerInterface {
     private boolean isClashingEventModule(ArrayList<CalendarModule> calendarModule, LocalDateTime eventStart,
                                           LocalDateTime eventEnd, String currentDate) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        DateTimeFormatter formatterFull = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         for (CalendarModule module : calendarModule) {
             if (module.getSchedule() == null) {
                 continue;
             }
+
+            LocalDate date = LocalDate.parse(currentDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+            int currentWeek = getWeekNumber(date);
+
+            ArrayList<Integer> weeks = module.getSchedule().getWeeks();
+
+            if (!weeks.contains(currentWeek)) {
+                continue;
+            }
+
             String moduleStartString = currentDate + " " + module.getSchedule().getStartTime();
             String moduleEndString = currentDate + " " + module.getSchedule().getEndTime();
-            LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatter);
-            LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatter);
+            LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatterFull);
+            LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatterFull);
 
             if (isEventLessonClashing(eventStart, eventEnd, lessonStart, lessonEnd) &&
                     isDuringSemester(eventStart,eventEnd)) {
