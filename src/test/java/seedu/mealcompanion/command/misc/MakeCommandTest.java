@@ -14,7 +14,7 @@ public class MakeCommandTest {
     @Test
     public void makeCupOfWater() throws MealCompanionException {
         MealCompanionSession mealCompanionSession = new MealCompanionSession();
-        Ingredient ingredient = new Ingredient("water", 2000.0);
+        Ingredient ingredient = new Ingredient("water", 2000);
         mealCompanionSession.getIngredients().add(ingredient);
         assertEquals(2000, mealCompanionSession.getIngredients().get(0).getQuantity());
         new MakeCommand("2").execute(mealCompanionSession);

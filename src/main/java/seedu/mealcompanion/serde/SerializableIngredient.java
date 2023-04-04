@@ -5,13 +5,13 @@ package seedu.mealcompanion.serde;
  */
 public class SerializableIngredient {
     private String name;
-    private double amount;
+    private int amount;
 
     public String getName() {
         return name;
     }
 
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
 }

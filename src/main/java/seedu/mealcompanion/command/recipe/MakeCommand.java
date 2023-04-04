@@ -27,14 +27,14 @@ public class MakeCommand extends RecipeCommand {
      * @param name                 the name of the ingredient to be removed
      */
 
-    private void removeIngredient(MealCompanionSession mealCompanionSession, Double quantity, String name) {
+    private void removeIngredient(MealCompanionSession mealCompanionSession, int quantity, String name) {
         int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
-        double fridgeQuantity = mealCompanionSession.getIngredients().get(indexOfExistingIngredient).getQuantity();
+        int fridgeQuantity = mealCompanionSession.getIngredients().get(indexOfExistingIngredient).getQuantity();
         assert fridgeQuantity >= quantity : "fridgeQuantity should be more than quantity to be removed";
-        double newQuantity = fridgeQuantity - quantity;
+        int newQuantity = fridgeQuantity - quantity;
         mealCompanionSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
         mealCompanionSession.getUi().printMessage(
-                String.format("%s has been consumed. New quantity of %s is %f", name, name, newQuantity));
+                String.format("%s has been consumed. New quantity of %s is %d", name, name, newQuantity));
         if (newQuantity == 0) {
             mealCompanionSession.getIngredients().remove(indexOfExistingIngredient);
             mealCompanionSession.getUi().printMessage(String.format("All %s has been removed", name));
@@ -51,7 +51,7 @@ public class MakeCommand extends RecipeCommand {
     private void makeRecipe(MealCompanionSession mealCompanionSession, Recipe recipe) {
         IngredientList recipeIngredients = recipe.getIngredients();
         for (int i = 0; i < recipeIngredients.size(); i += 1) {
-            double quantityToRemove = recipeIngredients.get(i).getQuantity();
+            int quantityToRemove = recipeIngredients.get(i).getQuantity();
             String name = recipeIngredients.get(i).getMetadata().getName();
             removeIngredient(mealCompanionSession, quantityToRemove, name);
         }

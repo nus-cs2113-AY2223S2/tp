@@ -26,11 +26,11 @@ public class RecipeNeedCommand extends RecipeCommand {
      * @param ingredientInFridge ingredient list containing user's ingredients to check in
      * @return additional quantity needed
      */
-    private double additionalQuantityNeeded(Ingredient targetIngredient, IngredientList ingredientInFridge) {
+    private int additionalQuantityNeeded(Ingredient targetIngredient, IngredientList ingredientInFridge) {
         try {
-            double quantityPossessed;
+            int quantityPossessed;
             quantityPossessed = ingredientInFridge.get(targetIngredient.getMetadata().getName()).getQuantity();
-            double quantityNeeded = targetIngredient.getQuantity();
+            int quantityNeeded = targetIngredient.getQuantity();
             if (quantityNeeded > quantityPossessed) {
                 return quantityNeeded - quantityPossessed;
             }
@@ -56,11 +56,11 @@ public class RecipeNeedCommand extends RecipeCommand {
             int index = 1;
             mealCompanionSession.getUi().printMessage("These are the ingredient(s) you are missing:");
             for (Ingredient ingredient : ingredientsInRecipe) {
-                double quantityNeeded = additionalQuantityNeeded(ingredient, ingredientsInFridge);
+                int quantityNeeded = additionalQuantityNeeded(ingredient, ingredientsInFridge);
                 if (quantityNeeded > 0) {
                     mealCompanionSession.getUi().printMessage(Integer.toString(index) +
                             ". " + ingredient.getMetadata().getName() + " (quantity: " +
-                            Double.toString(quantityNeeded) + ")");
+                            Integer.toString(quantityNeeded) + ")");
                     isMissing = true;
                     index++;
                 }

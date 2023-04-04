@@ -31,17 +31,17 @@ class RecipeNeedCommandTest {
         command.execute(mealCompanionSession);
         String expectedOutput = "These are the ingredient(s) you are missing:"
                 + System.lineSeparator()
-                + "1. water (quantity: 300.0)"
+                + "1. water (quantity: 300)"
                 + System.lineSeparator();
         assertEquals(expectedOutput, newOutStream.toString());
 
-        AddCommand addCommand = new AddCommand("water", "150.0");
+        AddCommand addCommand = new AddCommand("water", "150");
         addCommand.execute(mealCompanionSession);
         newOutStream.reset();
         command.execute(mealCompanionSession);
         expectedOutput = "These are the ingredient(s) you are missing:"
                 + System.lineSeparator()
-                + "1. water (quantity: 150.0)"
+                + "1. water (quantity: 150)"
                 + System.lineSeparator();
         assertEquals(expectedOutput, newOutStream.toString());
 

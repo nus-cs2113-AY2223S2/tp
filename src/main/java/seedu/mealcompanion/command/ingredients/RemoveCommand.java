@@ -30,7 +30,7 @@ public class RemoveCommand extends ExecutableCommand {
      * @param name the name of the ingredient to be removed
      * @throws MealCompanionException when user input results in unexpected behaviour
      */
-    private static void validateInput(MealCompanionSession mealCompanionSession, Double quantity, String name)
+    private static void validateInput(MealCompanionSession mealCompanionSession, int quantity, String name)
             throws MealCompanionException {
         if (quantity <= 0) {
             throw new MealCompanionException("OOPS, quantity must be greater than 0");
@@ -51,13 +51,13 @@ public class RemoveCommand extends ExecutableCommand {
      * @param name the name of the ingredient to be removed
      */
 
-    private static void removeIngredient(MealCompanionSession mealCompanionSession, Double quantity, String name) {
-        double fridgeQuantity = mealCompanionSession.getIngredients().get(indexOfExistingIngredient).getQuantity();
+    private static void removeIngredient(MealCompanionSession mealCompanionSession, int quantity, String name) {
+        int fridgeQuantity = mealCompanionSession.getIngredients().get(indexOfExistingIngredient).getQuantity();
         assert fridgeQuantity >= quantity: "fridgeQuantity should be more than quantity to be removed";
-        double newQuantity = fridgeQuantity - quantity;
+        int newQuantity = fridgeQuantity - quantity;
         mealCompanionSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
         mealCompanionSession.getUi().printMessage(
-                String.format("Success! new quantity of %s is %f", name, newQuantity));
+                String.format("Success! new quantity of %s is %d", name, newQuantity));
         if (newQuantity == 0) {
             mealCompanionSession.getIngredients().remove(indexOfExistingIngredient);
             mealCompanionSession.getUi().printMessage(String.format("All %s has been removed", name));
@@ -73,7 +73,7 @@ public class RemoveCommand extends ExecutableCommand {
 
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
-            Double quantity = Double.parseDouble(amount);
+            int quantity = Integer.parseInt(amount);
             indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
             validateInput(mealCompanionSession, quantity, name);
             removeIngredient(mealCompanionSession, quantity, name);
