@@ -276,7 +276,7 @@ class ParserTest {
     }
 
     @Test
-    void parseHelpCommand_extraWord_expectException() throws UnexpectedException {
+    void parseHelpCommand_extraWord_expectNull() throws UnexpectedException {
         String userCommand = "help event hi";
         Ui ui = new Ui();
         int size = 1;
@@ -284,3 +284,4 @@ class ParserTest {
         assertNull(newCommand);
     }
 }
+
