@@ -36,7 +36,7 @@ public class RainyDay {
             userData = Storage.loadFromFile(filePath);
             monthlyExpenditures = new MonthlyExpenditures(new HashMap<>());
             monthlyExpenditures.loadAllExpenditures(userData.getFinancialReport());
-            allData = new AllData(userData,monthlyExpenditures);
+            allData = new AllData(userData, monthlyExpenditures);
             ui.greetUser(userData.getReportOwner());
             assert userData != null : "Error loading from json file";
             logger.log(Level.INFO, "File loaded successfully.");
@@ -49,7 +49,7 @@ public class RainyDay {
             userData = new UserData(financialReport);
             HashMap<Integer, Double> expenditures = new HashMap<>();
             monthlyExpenditures = new MonthlyExpenditures(expenditures);
-            allData = new AllData(userData,monthlyExpenditures);
+            allData = new AllData(userData, monthlyExpenditures);
             financialReport.setReportOwner(username);
         }
     }
@@ -72,7 +72,7 @@ public class RainyDay {
                 specificCommand = new Parser().parseUserInput(userInput);
                 assert specificCommand != null : "Parser returned null";
                 executeCommand(specificCommand);
-                if(specificCommand.isExit()) {
+                if (specificCommand.isExit()) {
                     break;
                 }
             } catch (Exception e) {
@@ -82,7 +82,7 @@ public class RainyDay {
         }
     }
 
-        private void executeCommand(Command command) throws RainyDayException {
+    private void executeCommand(Command command) throws RainyDayException {
         command.setData(allData);
         CommandResult result = command.execute();
         if (result != null) {
