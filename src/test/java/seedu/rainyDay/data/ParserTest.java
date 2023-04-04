@@ -1,19 +1,27 @@
 package seedu.rainyDay.data;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
+import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.command.EditCommand;
+import seedu.rainyDay.command.ExitCommand;
+import seedu.rainyDay.command.FilterCommand;
+import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
+import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Parser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 class ParserTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
     HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
     FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
+    UserData userData = new UserData(financialReport);
 
     // todo add more test cases
     @Test
@@ -90,9 +98,67 @@ class ParserTest {
     public void parseWrongDeleteFormat() {
         try {
             new Parser().parseUserInput("delete");
-
         } catch (Exception e) {
             assertEquals(e.getMessage().toString(), ErrorMessage.NO_DELETE_INDEX.toString());
         }
+    }
+
+    //@@author ChongQiRong
+    @Test
+    public void parseWrongFilterCommand() {
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter 1 -in"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter -in -out"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter -in -c -d -date 23/01/2023"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter -date 32/01/2023"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter -d -c -date 32/01/2023"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter -date 24/01/2023 test"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter -d"));
+
+    }
+
+    @Test
+    public void parseValidFilterCommand() throws RainyDayException {
+        assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -in").getClass());
+        assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -out").getClass());
+        assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -d chicken").getClass());
+        assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -c Food and Drinks").getClass());
+        assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -date 23/01/2023").getClass());
+        assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -d rice -c Food -date 04/04/2023")
+                .getClass());
+    }
+
+    @Test
+    public void parseWrongEditCommand() {
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit 1"));
+    }
+
+    @Test
+    public void parseEditCommand() throws RainyDayException{
+        RainyDay.userData = userData;
+        userData.getFinancialReport().clearReport();
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit 1 -out"));
+
+        userData.addStatement(new FinancialStatement("noodles", "in", 5, "miscellaneous",
+                LocalDate.now()));
+        assertEquals(EditCommand.class, new Parser().parseUserInput("edit 1 -out").getClass());
+        assertEquals(EditCommand.class, new Parser().parseUserInput("edit 1 -out -d Beef noodles -v $15 -c Food and " +
+                "Drinks -date 01/04/2023").getClass());
+
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit -1 -out"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit 1 -test"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit 1 -date 32/01/2034"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit 1 -in test"));
+    }
+
+    @Test
+    public void parseHelpCommand() throws RainyDayException {
+        assertEquals(HelpCommand.class, new Parser().parseUserInput("help").getClass());
+    }
+
+    @Test
+    public void parseByeCommand() throws RainyDayException {
+        assertEquals(ExitCommand.class, new Parser().parseUserInput("bye").getClass());
     }
 }
