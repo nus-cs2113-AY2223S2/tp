@@ -37,20 +37,24 @@ public class IngredientList {
      * Adds a new ingredient to the list.
      *
      * @param item - the ingredient to be added to the list.
+     * @param ingredientIndex - position to be added. Current Ingredient at this position is
+     *              shifted towards the back.
      */
-    private void addIngredient(Ingredient item) {
-        list.add(item);
+    private void addIngredient(Ingredient item, int ingredientIndex) {
+        list.add(ingredientIndex, item);
         currIngredientNumber++;
+        assert (currIngredientNumber == list.size());
     }
 
     /**
-     * Removes a new ingredient to the list.
+     * Removes an ingredient from the list.
      *
-     * @param index - the index of the ingredient to be removed from the list.
+     * @param ingredientIndex - the index of the ingredient to be removed from the list.
      */
-    private void removeIngredient(int index) {
-        list.remove(index-1);
+    private void removeIngredient(int ingredientIndex) {
+        list.remove(ingredientIndex-1);
         currIngredientNumber--;
+        assert (currIngredientNumber == list.size());
     }
     public void showList() {
         System.out.println("There are " + currIngredientNumber + " ingredients in the list:");

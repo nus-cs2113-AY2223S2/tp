@@ -20,21 +20,41 @@ public class StepList {
      * is used as the argument
      *
      * @param stepList - list of all steps in the recipe.
+     *
      */
     public StepList(ArrayList<Step> stepList) {
         this.stepList = stepList;
         currStepNumber = stepList.size();
     }
-    private void addStep(Step step) {
-        stepList.add(step);
+
+    /**
+     * Adds a new step to the list.
+     *
+     * @param step - the step to be added to the list.
+     * @param index - position to be added. Current step object at this position is
+     *              shifted towards the back.
+     */
+    private void addStep(Step step, int index) {
+        stepList.add(index, step);
         currStepNumber++;
         assert (currStepNumber == stepList.size());
     }
+    /**
+     * Removes a step from the list.
+     *
+     * @param stepIndex - the index of the step to be removed from the list.
+     */
     private void removeStep(int stepIndex) {
         stepList.remove(stepIndex - 1);
         currStepNumber--;
         assert (currStepNumber == stepList.size());
     }
+
+    /**
+     * Replaces a specified step in the list with a new step object
+     * @param stepIndex index of the step to be replaced
+     * @param ui scanner class
+     */
     public void editStep(int stepIndex, UI ui) {
         System.out.println(StringLib.ENTER_STEP_DESCRIPTION);
         String description = ui.readCommand();
