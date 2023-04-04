@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class DishStorage {
@@ -32,14 +31,6 @@ public class DishStorage {
             String text = in.nextLine();
             String[] components = text.split("~\\|~");
             try {
-//                if (components.length != 3 || components[0].equals("")) {
-//                    throw new DinerDirectorException(Messages.ERROR_STORAGE_INVALID_READ_LINE);
-//                } else {
-//                    ArrayList<String> ingredientsList = new ArrayList<>(Arrays.asList(components[2]));
-//                    dish = new Dish(components[0], Integer.parseInt(components[1]), ingredientsList);
-//                    listOfDishes.add(dish);
-//                }
-
                 if (components.length == 3 && !components[0].equals("") && !components[1].equals("")) {
                     ArrayList<String> ingredients = new ArrayList<>();
                     System.out.println(components[0] + ' ' + components[1] + ' ' + components[2]);
