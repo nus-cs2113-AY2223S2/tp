@@ -10,13 +10,10 @@ import seedu.pettracker.commands.ScheduleCommand;
 
 import seedu.pettracker.exceptions.UnknownKeywordException;
 
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommandParser {
-    private static final Logger logger = Logger.getLogger("CommandLogger");
     private static final Pattern COMMAND_FORMAT = Pattern.compile("(?<keyword>\\S+)(?<arguments>.*)");
     final String KEYWORD_EXIT = "exit";
     final String KEYWORD_ADD_PET = "add-pet";
@@ -40,7 +37,6 @@ public class CommandParser {
     }
 
     public Command parseCommand(String commandString) {
-        logger.log(Level.INFO, "Parser received: " + commandString + "\n");
         try {
             return newCommand(commandString);
         } catch (Exception e) {

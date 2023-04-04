@@ -9,14 +9,11 @@ import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class PetList {
     public static final String LINE = "____________________";
     private static ArrayList<Pet> petList = new ArrayList<>();
     private static int numberOfPets;
-    private static final Logger logger = Logger.getLogger("petListLogger");
 
     public PetList() {
         numberOfPets = 0;
@@ -104,7 +101,6 @@ public class PetList {
         assert (index >= 0) : "pet not in list";
         petList.remove(index);
         numberOfPets -= 1;
-        logger.log(Level.INFO, petName + " removed from pet list\n");
     }
 
     /**
