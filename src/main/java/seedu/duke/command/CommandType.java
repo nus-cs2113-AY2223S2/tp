@@ -8,6 +8,11 @@ package seedu.duke.command;
  *  {@link #VIEW}
  *  {@link #DELETE}
  *  {@link #HELP}
+ *  {@link #CLEAR}
+ *  {@link #EDITSTEP}
+ *  {@link #EDITINGREDIENT}
+ *  {@link #EDIT}
+ *  {@link #FIND}
  *  {@link #EXIT}
  *  {@link #UNKNOWN}
  */
@@ -48,6 +53,10 @@ public enum CommandType {
      * Edit a ingredient in the recipe.
      */
     EDITINGREDIENT,
+    /**
+     * Edit in one line
+     */
+    EDIT,
     /**
      * Search dishes by name.
      */

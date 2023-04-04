@@ -155,4 +155,8 @@ public class UI {
     public void showInvalidStepMessage() {
         System.out.println(StringLib.INVALID_STEP);
     }
+
+    public void showErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }

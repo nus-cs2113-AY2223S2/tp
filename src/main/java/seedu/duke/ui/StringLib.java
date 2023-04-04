@@ -141,5 +141,13 @@ public interface StringLib {
     String DUPLICATE_RECIPE_NAMES_ERROR = "There appears to be duplicate recipe names that exist. \nPlease use the " +
             "FIND feature to get the specific recipe index to be viewed instead.\n";
     String NO_MATCHING_RECIPE_ERROR = "There are no matching recipes found.\n";
+    String SAVE_SUCCESS = "\nData saved successfully!";
+    String EDIT_TYPE_ERROR = "\nPlease enter a edit type (--s/--i) !\n";
+    String EDIT_INGREDIENT_ERROR = "\nPlease keep format as edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT\n";
+    String INVALID_RECIPE_INDEX = "\nPlease enter a valid recipe index!";
+    String INVALID_INGREDIENT_INDEX = "\nPlease enter a valid ingredient index!";
+    String EDIT_STEP_ERROR = "\nPlease keep format as edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP\n";
+    String INVALID_STEP_INDEX = "\nPlease enter a valid step index!";
     String POS_INT = "\nPlease enter a valid index!";
+    String EMPTY_STRING = "";
 }

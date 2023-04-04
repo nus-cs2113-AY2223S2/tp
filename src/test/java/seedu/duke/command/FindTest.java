@@ -42,6 +42,12 @@ public class FindTest {
         String s = "Find is missing KEYWORDS!";
         assertEquals(s,output.toString().trim());
     }
+    @Test
+    public void testResultC() throws Exception {
+        recipeList.searchRecipeList("  ");
+        String s = "View is missing KEYWORDS!";
+        assertEquals(s,output.toString().trim());
+    }
 
     /**
      * Test the result of no find
@@ -52,5 +58,23 @@ public class FindTest {
         recipeList.searchRecipeList("Pasta");
         String s = "No dishes matches what you are looking for! :(";
         assertEquals(s,output.toString().trim());
+    }
+    @Test
+    public void testFindByTagEmpty1() throws Exception {
+        recipeList.searchByTag("");
+        String s = "View is missing KEYWORDS!";
+        assertEquals(s,output.toString().trim());
+    }
+    @Test
+    public void testFindByTagEmpty2() throws Exception {
+        recipeList.searchByTag("Chinese ");
+        String s = "No dishes matches what you are looking for! :(";
+        assertEquals(s,output.toString().trim());
+    }
+    @Test
+    public void testFindByTagNoMatch() throws Exception {
+        recipeList.searchByTag("XXX");
+        String s = "No dishes matches what you are looking for! :(";
+        assertEquals(s, output.toString().trim());
     }
 }
