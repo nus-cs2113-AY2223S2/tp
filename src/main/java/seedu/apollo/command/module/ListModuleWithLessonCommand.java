@@ -149,7 +149,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             index++;
         }
         module.setTimetable(moduleList.get(index).getModuleTimetable());
-        if (module.getModuleTimetable().isEmpty()) {
+        if (module.getModuleTimetable() == null) {
             throw new LessonTypeNotAddedException();
         }
 
