@@ -356,7 +356,7 @@ Examples:
 - Input: `Quadratic x^2 + 3` Output: `Please use the format as shown below:
   ax^2 + bx + c`
 
-### 17) Command History History
+### 17) Command History `History`
 * Display a list of Command History that users have
   entered during the current programme run session.
 * Format: History
