@@ -48,6 +48,9 @@ public class DishManager {
             everyDishInList += stringOfDishWithIndex(index, dish) + System.lineSeparator();
             index++;
         }
+        if (everyDishInList.isEmpty()) {
+            everyDishInList = Messages.MESSAGES_THE_LIST_OF_DISHES_IS_EMPTY;
+        }
         return everyDishInList;
     }
 
