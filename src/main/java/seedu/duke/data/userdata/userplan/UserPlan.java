@@ -46,11 +46,8 @@ public class UserPlan {
      * @return the exercise plan or null if not found
      */
     public static ArrayList<String> getExercisePlan (String planName) {
-        //System.out.println("1:" + planName);
-        //System.out.println(planName);
         for (int day = 0; day < DAYSINAWEEK; day++) {
             for (int exercisePlan = 0; exercisePlan < plan[day].size(); exercisePlan++) {
-                //System.out.println(plan[day].get(exercisePlan).getPlanName());
                 if (plan[day].get(exercisePlan).getPlanName().equals(planName)) {
                     return plan[day].get(exercisePlan).getExercisePlans();
                 }
