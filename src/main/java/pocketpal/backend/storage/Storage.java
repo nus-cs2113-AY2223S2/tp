@@ -27,10 +27,10 @@ import pocketpal.frontend.exceptions.InvalidDateException;
 import pocketpal.backend.exceptions.InvalidReadFileException;
 
 public class Storage {
-    private final String filePath;
-    private final String delimiter;
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
     private static final Logger logger = Logger.getLogger(Storage.class.getName());
+    private final String filePath;
+    private final String delimiter;
 
     public Storage() {
         this(Config.RELATIVE_FILE_NAME);
