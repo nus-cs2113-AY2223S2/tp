@@ -52,6 +52,9 @@ public class Ui {
     public static final String DUPLICATE_ADD = "Duplicate UPC found! Please add another item with a different UPC";
     public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
 
+    public static final String INVALID_LIST = "Wrong/Incomplete Format! Please list items in the following format : " +
+            "\nFormat: list\nThere should not be any other characters behind the command word";
+
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
     public static final String EMPTY_LIST = "There are no items in your inventory.";
@@ -316,6 +319,12 @@ public class Ui {
     public static void printEmptyList() {
         printLine();
         System.out.println(EMPTY_LIST);
+        printLine();
+    }
+
+    public static void printInvalidList() {
+        printLine();
+        System.out.println(INVALID_LIST);
         printLine();
     }
 
