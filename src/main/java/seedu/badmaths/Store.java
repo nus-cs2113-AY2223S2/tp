@@ -2,8 +2,8 @@ package seedu.badmaths;
 import seedu.badmaths.ui.Ui;
 
 public class Store {
-    protected String toDo;
     public NotesList notes;
+    protected String toDo;
     private static final String filePath = "data/notes.txt";
 
     public static boolean isInvalidTodo(String todo) {

@@ -10,7 +10,6 @@ package seedu.badmaths;
 import seedu.badmaths.trigograph.TrigoGraph;
 import seedu.badmaths.ui.Ui;
 import seedu.badmaths.matrix.Calculator;
-import seedu.badmaths.Store;
 
 public class Command {
     private static final String filePath = "data/notes.txt";

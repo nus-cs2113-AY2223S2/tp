@@ -2,8 +2,10 @@ package seedu.badmaths;
 import seedu.badmaths.ui.Ui;
 
 public class List {
-    protected  String toDo;
+
     public  NotesList notes;
+    protected  String toDo;
+
     public List(NotesList notes, String toDo) {
         this.notes = notes;
         this.toDo = toDo;
