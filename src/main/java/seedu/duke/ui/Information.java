@@ -243,7 +243,6 @@ public class Information {
     private static void displayInvalidSymptomChoiceErrorMessage() {
         System.out.println("Invalid number! Please enter a valid symptom number.");
         System.out.println("Returning to main menu.");
-        //Parser.parseAccountCommand("5");
     }
 
 
