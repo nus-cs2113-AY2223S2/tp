@@ -7,3 +7,7 @@ ad sf~|~1234~|~curry, ruic, cuimin
 ad sf~|~1234~|~curry| ruic| cuimin
 name~|~123~|~1,2,er32,32r,3r
 Chicken Burger~|~1099~|~tomatoes, chicken fillet, cheese, bread with sesame seeds
+Chicken Burger~|~1099~|~tomatoes, chicken fillet, cheese, bread with sesame seeds
+hamburger~|~1099~|~tomatoes, chicken fillet, cheese, bread with sesame seeds
+Chicken Burger~|~1099~|~tomatoes, chicken fillet, cheese, bread with sesame seeds
+Chicken Burger~|~1099~|~tomatoes, chicken fillet, cheese, bread with sesame seeds

@@ -72,7 +72,7 @@ public class DishManager {
         return dishesWithStringToFindInList;
     }
 
-    private static String stringOfDishWithIndex(int index, Dish dish) {
+    public static String stringOfDishWithIndex(int index, Dish dish) {
         return index + ". " + stringOfDish(dish);
     }
 
@@ -81,8 +81,5 @@ public class DishManager {
                 + dish.getPriceOfDishInDollars() + "; "
                 + dish.getIngredientsList();
     }
-
-
-
 
 }
