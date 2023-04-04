@@ -92,7 +92,7 @@ public class EfficiencyBenchmark {
         Item item = new Item("test","10000",24,10.1);
         AddCommand addCommand = new AddCommand(inventory,item);
         addCommand.run();
-        RemoveCommand removeCommand = new RemoveCommand(inventory,"10000","Y");
+        RemoveCommand removeCommand = new RemoveCommand(inventory,"10000");
         removeCommand.run();
         EditCommand editCommand = new EditCommand(inventory, "upc/9999 n/newtest".split(" "));
         editCommand.run();

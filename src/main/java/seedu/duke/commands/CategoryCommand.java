@@ -9,8 +9,6 @@ import java.util.ArrayList;
 
 public class CategoryCommand extends Command {
     private final String rawInput;
-    //private final String[] categoryCommandType;
-
 
     /**
      * Constructor for the CategoryCommand class.

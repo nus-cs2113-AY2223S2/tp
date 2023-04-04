@@ -31,13 +31,8 @@ public class RemoveParser extends Parser {
         if (commands.length == 1) {
             throw new MissingParametersException();
         }
-        Item itemToRemove;
-        String confirmation;
         int itemIndex = Integer.parseInt(commands[1]);
-        itemToRemove = inventory.getItemInventory().get(itemIndex);
-        Ui.printConfirmMessage(itemToRemove);
-        confirmation = in.nextLine();
-        Command removeCommand = new RemoveCommand(inventory, itemIndex, confirmation);
+        Command removeCommand = new RemoveCommand(inventory, itemIndex);
         removeCommand.run();
     }
 
@@ -51,7 +46,6 @@ public class RemoveParser extends Parser {
      */
     private static void parseRemoveByUpc(final String[] commands, Inventory inventory)
             throws MissingParametersException, RemoveErrorException {
-        String confirmation;
         Item itemToRemove;
         if (commands.length == 1 || !commands[1].startsWith("upc/")) {
             throw new MissingParametersException();
@@ -61,10 +55,7 @@ public class RemoveParser extends Parser {
         if (!upcCode.matches("(\\d+)") || !upcCodes.containsKey(upcCode)) {
             throw new RemoveErrorException();
         }
-        itemToRemove = upcCodes.get(upcCode);
-        Ui.printConfirmMessage(itemToRemove);
-        confirmation = in.nextLine();
-        Command removeCommand = new RemoveCommand(inventory, upcCode, confirmation);
+        Command removeCommand = new RemoveCommand(inventory, upcCode);
         removeCommand.run();
     }
 

@@ -48,9 +48,9 @@ public class SearchCommandTest {
         addParser.run();
         addParser = new AddParser("n/laptops upc/2 qty/5 p/5",inventory);
         addParser.run();
-        Command removeCommand = new RemoveCommand(inventory, "2", "Y");
+        Command removeCommand = new RemoveCommand(inventory, "2");
         removeCommand.run();
-        removeCommand = new RemoveCommand(inventory, "1", "Y");
+        removeCommand = new RemoveCommand(inventory, "1");
         removeCommand.run();
         SearchCommand searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         ArrayList<Item> searchResults = searchCommand.searchKeyword();
@@ -59,7 +59,7 @@ public class SearchCommandTest {
         addParser.run();
         addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
         addParser.run();
-        removeCommand = new RemoveCommand(inventory, "2", "Y");
+        removeCommand = new RemoveCommand(inventory, "2");
         removeCommand.run();
         searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         searchResults = searchCommand.searchKeyword();
@@ -78,11 +78,11 @@ public class SearchCommandTest {
         addParser.run();
         EditParser editParser = new EditParser("upc/2 n/laptops", inventory);
         editParser.run();
-        RemoveCommand removeCommand = new RemoveCommand(inventory, "2", "Y");
+        RemoveCommand removeCommand = new RemoveCommand(inventory, "2");
         removeCommand.run();
         addParser = new AddParser("n/orange upc/2 qty/5 p/5",inventory);
         addParser.run();
-        removeCommand = new RemoveCommand(inventory, "2", "Y");
+        removeCommand = new RemoveCommand(inventory, "2");
         removeCommand.run();
         SearchCommand searchCommand = new SearchCommand(inventory, "orange", Types.SearchType.KEYWORD);
         ArrayList<Item> searchResults = searchCommand.searchKeyword();
@@ -147,7 +147,7 @@ public class SearchCommandTest {
         searchCommand = new SearchCommand(inventory, "3", Types.SearchType.UPC);
         searchResult = searchCommand.searchUPC();
         assertNull(searchResult);
-        Command removeCommand = new RemoveCommand(inventory, "2", "Y");
+        Command removeCommand = new RemoveCommand(inventory, "2");
         removeCommand.run();
         searchCommand = new SearchCommand(inventory, "2", Types.SearchType.UPC);
         searchResult = searchCommand.searchUPC();

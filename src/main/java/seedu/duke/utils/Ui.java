@@ -55,8 +55,6 @@ public class Ui {
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
     public static final String EMPTY_LIST = "There are no items in your inventory.";
-    public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
-
     public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. " +
             "\n" + "      Please delete the corrupt .csv file.";
     public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
@@ -793,13 +791,6 @@ public class Ui {
     public static void printSuccessRemove(Item itemToRemove) {
         printLine();
         System.out.println(SUCCESS_REMOVE);
-        System.out.println(itemToRemove.toString());
-        printLine();
-    }
-
-    public static void printConfirmMessage(Item itemToRemove) {
-        printLine();
-        System.out.println(CONFIRM_MESSAGE);
         System.out.println(itemToRemove.toString());
         printLine();
     }

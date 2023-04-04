@@ -51,7 +51,7 @@ public class HistoryCommandTest {
         HistoryCommand historyCommand = new HistoryCommand(inventory, "1");
         ArrayList<Item> results = historyCommand.getHistoryResults();
         assertEquals(1, results.size());
-        RemoveCommand removeCommand = new RemoveCommand(inventory, "1", "Y");
+        RemoveCommand removeCommand = new RemoveCommand(inventory, "1");
         removeCommand.run();
         historyCommand = new HistoryCommand(inventory, "1");
         results = historyCommand.getHistoryResults();
