@@ -170,7 +170,7 @@ public class Ui {
             "does not exist.";
     private static final String INVALID_ALERT_TYPE = "Alert is not a valid type (min/max)";
     private static final int CATEGORY_COL_WIDTH = 15;
-    private static final int ITEMS_COL_WIDTH = 30;
+    private static final int ITEMS_COL_WIDTH = 45;
     private static final String NO_CATEGORY_LIST = "Category list is empty. There are no items in the inventory.";
     private static final String INVALID_CATEGORY_FIND = "The category you are looking for does not exist.";
     private static final String INVALID_CATEGORY = "The category does not exist.";
@@ -345,7 +345,7 @@ public class Ui {
 
     public static String printTable(ArrayList<Item> items) {
         int[] columnWidths = {INDEX_COL_WIDTH, NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH,
-            CATEGORY_COL_WIDTH,};
+                CATEGORY_COL_WIDTH,};
 
         StringBuilder table = new StringBuilder();
 
@@ -386,14 +386,14 @@ public class Ui {
     private static String printHeadings(int[] columnWidths) {
         String[] headings = {};
         if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
-            headings = new String[] {INDEX_HEADING, NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING,
-                CATEGORY_HEADING};
+            headings = new String[]{INDEX_HEADING, NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING,
+                    CATEGORY_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
-            headings = new String[] {COMMAND_HEADING, FORMAT_HEADING};
+            headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
-            headings = new String[] {"Name", "UPC", "Stock"};
+            headings = new String[]{"Name", "UPC", "Stock"};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == CATEGORY_COL_WIDTH) {
-            headings = new String[] {CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
+            headings = new String[]{CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
         }
         StringBuilder allHeadings = new StringBuilder();
 
@@ -453,7 +453,8 @@ public class Ui {
         for (Item item : items) {
             String name = item.getName();
             String upc = item.getUpc();
-            itemLines.add(name + ":" + upc);
+            name = name.replaceAll(" ", "_");
+            itemLines.add(name + ":_" + upc);
         }
         String[] itemListLines = wrapText(itemLines.toString(), ITEMS_COL_WIDTH);
         int rowHeight = findRowHeight(categoryLines, itemListLines);
@@ -579,6 +580,9 @@ public class Ui {
 
     private static StringBuilder addWordWithoutWrap(StringBuilder line, String[] words, ArrayList<String> lines,
                                                     int current, int width) {
+        if (words[current].contains("_")) {
+            words[current] = words[current].replaceAll("_", " ");
+        }
         line.append(words[current]);
 
         if (words[current].contains(",")) {
@@ -599,6 +603,9 @@ public class Ui {
 
     private static void addWordWithWrap(String[] words, ArrayList<String> lines, int current, int width) {
         int start = 0;
+        if (words[current].contains("_")) {
+            words[current] = words[current].replaceAll("_", " ");
+        }
         while (start < words[current].length()) {
             int end = Math.min(start + width, words[current].length());
             lines.add(words[current].substring(start, end));
@@ -1038,6 +1045,7 @@ public class Ui {
         System.out.println(printTable(categoryHash));
         printLine();
     }
+
     public static void printCategory(ArrayList<Item> categoryHash) {
         printLine();
         System.out.println(printTable(categoryHash));
@@ -1058,7 +1066,7 @@ public class Ui {
 
     public static void printNewCategory() {
         printLine();
-        System.out.println(INVALID_CATEGORY + " " +NEW_CATEGORY_ADDED);
+        System.out.println(INVALID_CATEGORY + " " + NEW_CATEGORY_ADDED);
         printLine();
     }
 
