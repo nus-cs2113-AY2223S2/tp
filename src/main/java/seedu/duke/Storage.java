@@ -206,58 +206,6 @@ public class Storage implements DatabaseInterface {
         return modules;
     }
 
-//    public ArrayList<Deadline> getDeadlines() {
-//        return deadlines;
-//    }
-//
-//    public void addDeadlineToDeadlines(Deadline deadlineToAdd) {
-//        if (deadlineToAdd == null) {
-//            UI.printAddDeadlineFailureMessage();
-//            return;
-//        }
-//        deadlines.add(deadlineToAdd);
-//        try {
-//            saveDeadlineToStorage(deadlineToAdd.toString());
-//        } catch (IOException e) {
-//            UI.printAddDeadlineFailureMessage();
-//        }
-//    }
-//
-//    private void saveDeadlineToStorage(String saveDeadlineString) throws IOException {
-//        FileWriter fw = new FileWriter(SAVED_DEADLINES_FILE_PATH, true);
-//        fw.write(writeTaskPreparation(saveDeadlineString));
-//        fw.close();
-//    }
-//
-//    public void compareDeadlines(ArrayList<Deadline> deadlines) {
-//        Date date = new Date();
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-//        String todayDate = formatter.format(date);
-//        int counter = 1;
-//        try {
-//            boolean hasReminderMsgPrinted = false;
-//            for (Deadline deadline : deadlines) {
-//                Date today = formatter.parse(todayDate);
-//                Date deadlineDue = formatter.parse(deadline.getDueDate());
-//                long timeDiff = Math.abs(deadlineDue.getTime() - today.getTime());
-//                long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-//                if (daysDiff <= 7) {
-//                    if (!hasReminderMsgPrinted) {
-//                        UI.printReminderMessage();
-//                        hasReminderMsgPrinted = true;
-//                    }
-//                    UI.printReminderDeadline(deadline, counter);
-//                    counter++;
-//                }
-//            }
-//            if (hasReminderMsgPrinted) {
-//                UI.printLine();
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     /**
      * Sorts modules according to printing length.
      * @param modules Module to be printed to User Console
