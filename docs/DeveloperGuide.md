@@ -44,7 +44,7 @@
 
 ## Acknowledgements
 
-We would like to acknowledge:
+We would like to acknowledge Hong Lin Shang, whose Duke we built upon for our project.
 
 ## Design & implementation
 
