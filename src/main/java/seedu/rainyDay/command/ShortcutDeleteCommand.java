@@ -15,7 +15,6 @@ public class ShortcutDeleteCommand extends ShortcutCommand {
     private static final String SHORTCUT_SUCCESSFULLY_DELETED = "Shortcut successfully deleted.";
     private static final String SHORTCUT_DOES_NOT_EXIST = "The shortcut does not exist.";
 
-
     public ShortcutDeleteCommand(String key) {
         this.keyToDelete = key;
         shortcutCommands = RainyDay.userData.getShortcutCommands();
