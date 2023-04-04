@@ -1,3 +1,5 @@
+//@@author WilsonLee2000
+
 package seedu.badmaths;
 import seedu.badmaths.ui.Ui;
 

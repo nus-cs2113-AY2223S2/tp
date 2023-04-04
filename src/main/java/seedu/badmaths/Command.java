@@ -11,11 +11,15 @@ import seedu.badmaths.trigograph.TrigoGraph;
 import seedu.badmaths.ui.Ui;
 import seedu.badmaths.matrix.Calculator;
 import seedu.badmaths.Quadratic.Quadratic;
+import java.util.ArrayList;
+
 
 public class Command {
     private static final String filePath = "data/notes.txt";
     protected String command;
     protected String toDo;
+    ArrayList<String> historyCommand = new ArrayList<>();
+
 
     public Command(String command, String toDo) {
         this.command = command;
@@ -56,10 +60,14 @@ public class Command {
         return true;
     }
 
-    public void executeCommand(NotesList notes) {
+
+
+    public void executeCommand(NotesList notes, ArrayList<String> historyCommand) {
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
         Calculator calculator = new Calculator();
         Quadratic quadratic = new Quadratic(toDo);
+        CommandHistory commandHist = new CommandHistory(historyCommand);
+
 
         try {
             //@@author WilsonLee2000
@@ -69,7 +77,7 @@ public class Command {
                     command.equals("High") || command.equals("FindInfo") || command.equals("FindPrior") ||
                     command.equals("FindMark") || command.equals("FindUnmark") || command.equals("Rank") ||
                     command.equals("Clear") || command.equals("Help") || command.equals("Matrix") ||
-                    command.equals("Quadratic")) : "input has incorrect format required";
+                    command.equals("Quadratic") || command.equals("History")) : "input has incorrect format required";
             //@@author Khooyourun
             switch (command) {
             case "Bye":
@@ -95,6 +103,11 @@ public class Command {
             case "Delete":
                 Delete deletes = new Delete(notes, toDo);
                 deletes.deleteNotes();
+                break;
+            case "History":
+                // print out all commands typed in the list
+                //CommandHistory commandHist = new CommandHistory(command);
+                commandHist.displayHistory();
                 break;
             //@@author ZiqiuZeng
             case "Mark":
