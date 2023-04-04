@@ -51,7 +51,7 @@ public class RecipeDetailCommand extends RecipeCommand {
             Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
             mealCompanionSession.getUi().printMessage(recipe.toString());
         } catch (MealCompanionException e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+            mealCompanionSession.getUi().printMessage(e.getMessage());
         }
     }
 }

@@ -42,7 +42,7 @@ public class RecipePossibleCommand extends RecipeCommand {
                 mealCompanionSession.getUi().printMessage(Integer.toString(index + 1) + ". " + recipeName);
             }
         } catch (MealCompanionException e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+            mealCompanionSession.getUi().printMessage(e.getMessage());
         }
     }
 }

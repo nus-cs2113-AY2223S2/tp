@@ -46,7 +46,7 @@ public class RecipeRandomCommand extends RecipeCommand {
             }
             mealCompanionSession.getUi().printMessage(recipe.toString());
         } catch (MealCompanionException e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+            mealCompanionSession.getUi().printMessage(e.getMessage());
         }
     }
 }
