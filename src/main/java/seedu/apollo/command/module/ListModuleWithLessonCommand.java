@@ -2,10 +2,11 @@ package seedu.apollo.command.module;
 
 import seedu.apollo.calendar.Calendar;
 import seedu.apollo.command.Command;
+import seedu.apollo.exception.module.EmptyLessonTypesInTimetable;
 import seedu.apollo.exception.module.InvalidModule;
-import seedu.apollo.exception.module.LessonNotAddedException;
 import seedu.apollo.exception.module.LessonTypeNotAddedException;
 import seedu.apollo.exception.module.LessonTypeNotInModuleException;
+import seedu.apollo.exception.module.ModuleNotAddedException;
 import seedu.apollo.exception.utils.IllegalCommandException;
 import seedu.apollo.module.LessonType;
 import seedu.apollo.module.Module;
@@ -106,7 +107,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
                 handleSingleCommand(ui);
             }
 
-        } catch (LessonNotAddedException e) {
+        } catch (ModuleNotAddedException e) {
             ui.printLessonNotInList(module.getCode());
         } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
@@ -114,6 +115,8 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             ui.printLessonsNotAdded(module.getCode());
         } catch (LessonTypeNotInModuleException e) {
             ui.printLessonTypeNotInModule();
+        } catch (EmptyLessonTypesInTimetable e) {
+            ui.printEmptyLessonTypeInModuleList();
         }
 
     }
@@ -123,7 +126,11 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      *
      * @param ui The Ui object to print the timetable.
      */
-    private void handleSingleCommand(Ui ui) {
+    private void handleSingleCommand(Ui ui) throws EmptyLessonTypesInTimetable {
+        ArrayList<LessonType> checkLessonTypes = getLessonTypes(module);
+        if (checkLessonTypes.isEmpty()) {
+            throw new EmptyLessonTypesInTimetable();
+        }
         ArrayList<Timetable> copyList = new ArrayList<>(module.getModuleTimetable());
         ArrayList<Timetable> parseList = sortTimetable(copyList);
         ui.printModuleListWithLesson(module, parseList);
@@ -134,13 +141,13 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      *
      * @param moduleList The list of modules.
      * @throws LessonTypeNotAddedException If a lesson type has not been added into module list.
-     * @throws LessonNotAddedException If the lessons have not been added into module list.
+     * @throws ModuleNotAddedException If the lessons have not been added into module list.
      */
     private void copyModuleListData(ModuleList moduleList) throws LessonTypeNotAddedException,
-            LessonNotAddedException {
+            ModuleNotAddedException {
 
         if (!isInModuleList(moduleList, module)) {
-            throw new LessonNotAddedException();
+            throw new ModuleNotAddedException();
         }
 
         int index = 0;
@@ -249,15 +256,14 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
     }
 
     private boolean isExistLessonType(ModuleList allModules, LessonType lessonType) {
-        boolean existInModuleLessonType = false;
         Module checkMod = allModules.findModule(args[0]);
         ArrayList<LessonType> checkLesson = getLessonTypes(checkMod);
         for (LessonType toCheckType : checkLesson) {
             if (toCheckType.equals(lessonType)) {
-                existInModuleLessonType = true;
+                return true;
             }
         }
-        return existInModuleLessonType;
+        return false;
     }
 
 }
