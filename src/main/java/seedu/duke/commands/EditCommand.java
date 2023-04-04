@@ -58,8 +58,6 @@ public class EditCommand extends Command {
             throw new MissingParametersException();
         } catch (NumberFormatException nfe) {
             throw new NumberFormatException();
-        } catch (CategoryFormatException e) {
-            Ui.printInvalidCategory();
         }
     }
 
@@ -73,7 +71,7 @@ public class EditCommand extends Command {
      * @throws NumberFormatException      Exception related to all invalid number formats inputted.
      */
     private void handleUserEditCommands(Item item, Item oldItem, String[] data) throws
-            MissingParametersException, NumberFormatException, CategoryFormatException {
+            MissingParametersException, NumberFormatException {
         String currentLabel = "null";
         try {
             validateUserEditCommands(data);

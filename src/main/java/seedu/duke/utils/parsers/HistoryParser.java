@@ -5,6 +5,9 @@ import seedu.duke.exceptions.HistoryErrorException;
 import seedu.duke.objects.Inventory;
 
 public class HistoryParser extends Parser{
+
+    protected static final int HISTORY_COMMAND_LENGTH = 1;
+
     public HistoryParser(String rawInput, Inventory inventory){
         super(rawInput, inventory);
     }
@@ -25,7 +28,7 @@ public class HistoryParser extends Parser{
      */
     private void parseHistory() {
         try{
-            if(rawInput.split(" ").length!=1 || rawInput.length()<1){
+            if(rawInput.split(" ").length!= HISTORY_COMMAND_LENGTH || rawInput.length()<HISTORY_COMMAND_LENGTH){
                 throw new HistoryErrorException();
             }
         }catch(HistoryErrorException e){

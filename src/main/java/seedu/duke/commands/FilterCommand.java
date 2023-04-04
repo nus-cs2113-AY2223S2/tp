@@ -10,6 +10,10 @@ import java.util.ArrayList;
  * Represents the command to filter items in the inventory.
  */
 public class FilterCommand extends Command {
+    private static final String LESS_THAN_FLAG = "p/lt";
+    private static final String GREATER_THAN_FLAG = "p/gt";
+    private static final String LESS_OR_EQUAL_THAN_FLAG = "p/let";
+    private static final String GREATER_OR_EQUAL_THAN_FLAG = "p/get";
     private String filterType;
     private String filterValue;
     private Double filterPrice;
@@ -46,6 +50,7 @@ public class FilterCommand extends Command {
      * @param category String category to filter items by.
      */
     private ArrayList<Item> filterCategory(String category) {
+        category = category.toLowerCase();
         ArrayList<Item> filteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
             if (item.getCategory().toLowerCase().equals(category)) {
@@ -73,22 +78,22 @@ public class FilterCommand extends Command {
         ArrayList<Item> filteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
             switch (mode) {
-            case "p/lt":
+            case LESS_THAN_FLAG:
                 if (item.getPrice() < price) {
                     filteredItems.add(item);
                 }
                 break;
-            case "p/gt":
+            case GREATER_THAN_FLAG:
                 if (item.getPrice() > price) {
                     filteredItems.add(item);
                 }
                 break;
-            case "p/let":
+            case LESS_OR_EQUAL_THAN_FLAG:
                 if (item.getPrice() <= price) {
                     filteredItems.add(item);
                 }
                 break;
-            case "p/get":
+            case GREATER_OR_EQUAL_THAN_FLAG:
                 if (item.getPrice() >= price) {
                     filteredItems.add(item);
                 }
