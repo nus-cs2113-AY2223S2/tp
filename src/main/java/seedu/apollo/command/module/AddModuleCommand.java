@@ -259,13 +259,15 @@ public class AddModuleCommand extends Command implements LoggerInterface {
             return;
         }
 
-        if (calendar.get(index).size() == 0) {
+        ArrayList<CalendarModule> calendarModules = calendar.get(index);
+
+        if (calendarModules.size() == 0) {
             return;
         }
 
-        for (CalendarModule lessonModule: calendar.get(index)) {
+        for (CalendarModule lessonModule: calendarModules) {
             Timetable schedule = lessonModule.getSchedule();
-            if (isLessonClashing(schedule, timetable)) {
+            if (isLessonClashing(schedule, timetable) && isSameWeek(schedule, timetable)) {
                 ui.printClashingLesson();
                 break;
             }
@@ -303,6 +305,27 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         } catch (ParseException e) {
             return false;
         }
+        return false;
+    }
+
+    /**
+     * Checks if the two lessons occur is in the same week.
+     *
+     * @param timetable1 The timetable to be checked.
+     * @param timetable2 The timetable to be checked against.
+     * @return True if the timetable is in the same week.
+     */
+    private boolean isSameWeek(Timetable timetable1, Timetable timetable2) {
+
+        ArrayList<Integer> week1 = timetable1.getWeeks();
+        ArrayList<Integer> week2 = timetable2.getWeeks();
+
+        for (int week: week1) {
+            if (week2.contains(week)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
