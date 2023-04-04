@@ -95,6 +95,7 @@ Shows a list containing *number* of _random_ workouts that suits the arguments f
 Example Command: ```generate easy 3```, ```generate hard upper 4```
 
 #### **Do note that the exercises that you generate might not be the same as the exercises in the example below! This is due to the 800+ exercises that we have in our library!
+#### **Do also note that you can only generate a maximum of 873 exercises at a time! Any more and the program will not generate your exercises for you!
 
 Examples:
 ```
