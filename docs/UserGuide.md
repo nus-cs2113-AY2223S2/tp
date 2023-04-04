@@ -356,7 +356,23 @@ Examples:
 - Input: `Quadratic x^2 + 3` Output: `Please use the format as shown below:
   ax^2 + bx + c`
 
+### 17) Command History History
+* Display a list of Command History that users have
+  entered during the current programme run session.
+* Format: History
 
+Assuming that user have input `Store index` after starting badMaths:
+
+Example input:
+```
+History
+```
+Expected output:
+```
+Here are the list of commands that you have entered so far:
+Store index
+History
+```
 
 ### 18) Help Manual `Help`
 * Display the content of Help Manual for BadMaths.
