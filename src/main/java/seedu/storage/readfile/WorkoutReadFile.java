@@ -1,4 +1,4 @@
-package seedu.storage;
+package seedu.storage.readfile;
 
 
 import seedu.parser.DateFormatter;
@@ -12,19 +12,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Scanner;
 
 
-public class ReadFile extends Storage {
+public class WorkoutReadFile {
     private static final String SPACE = " ";
 
-    private static WorkoutList workoutList;
-    private static HashMap<String, Workout> workoutHashMap = new HashMap<>();
-    private static Day day = new Day();
 
     public static WorkoutList readWorkoutFromFile(String filePath) {
-        workoutList = new WorkoutList();
+        WorkoutList workoutList = new WorkoutList();
         File savedFile = new File(filePath);
         if (!savedFile.getParentFile().exists()) {
             savedFile.getParentFile().mkdirs();
@@ -65,7 +61,7 @@ public class ReadFile extends Storage {
                     Exercise exercise = new Exercise(exerciseName, weight, repsString);
                     /* System.out.println("name: " + exerciseName + " weight: "  + weight + "reps: " + repsString);*/
                     // workoutList.addExerciseToWorkout(currentDate, currentWorkoutName, exercise);
-                    day = workoutList.getSingleWorkout();
+                    Day day = workoutList.getSingleWorkout();
                     Workout workoutForOneDay = day.getWorkout();
                     workoutForOneDay.addExercise(exercise);
                 }
@@ -80,5 +76,4 @@ public class ReadFile extends Storage {
         return workoutList;
     }
 }
-
 

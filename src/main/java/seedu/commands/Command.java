@@ -2,9 +2,11 @@ package seedu.commands;
 
 
 import seedu.calorietracker.CalorieTracker;
+import seedu.calorietracker.FoodList;
 import seedu.workout.Day;
 import seedu.workout.Workout;
 import seedu.workout.WorkoutList;
+
 import java.util.Date;
 import java.util.HashMap;
 
@@ -13,8 +15,9 @@ public class Command {
     protected static boolean isDayEntered;
     protected static Date date;
     protected static boolean isWorkoutEntered;
-    protected  WorkoutList workoutList = new WorkoutList();
+    protected WorkoutList workoutList = new WorkoutList();
     protected CalorieTracker calorieTracker;
+    protected FoodList foodList;
     protected HashMap<Date, Day> workouts;
     protected Workout workoutForOneDay = new Workout();
     protected Day day;
@@ -40,15 +43,18 @@ public class Command {
         return workoutList;
     }
 
-    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker) throws IllegalArgumentException{
+    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker, FoodList foodList)
+            throws IllegalArgumentException {
         if (workoutList == null || calorieTracker == null) {
             throw new IllegalArgumentException("WorkoutList cannot be null.");
         }
         this.workoutList = workoutList;
         this.calorieTracker = calorieTracker;
-
+        this.foodList = foodList;
 
     }
+
+
     public String execute() {
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }

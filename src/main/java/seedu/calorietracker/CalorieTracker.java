@@ -8,17 +8,32 @@ import static seedu.commands.caloriecommands.AddCalorieCommand.CALORIES_NOT_GIVE
 
 public class CalorieTracker {
     public static final int CALORIES_NOT_TRACKED = -1;
-    private final HashMap<Date, Integer> totalCaloriesConsumedInDay;
-    private final FoodList foodList;
+    private HashMap<Date, Integer> totalCaloriesConsumedInDay;
+    private FoodList foodList = new FoodList();
 
     public CalorieTracker() {
         totalCaloriesConsumedInDay = new HashMap<>();
-        foodList = new FoodList();
     }
-    public CalorieTracker(FoodList foodlist) {
+
+    public void setFoodList(FoodList foodList) {
+        this.foodList = foodList;
+    }
+
+    public HashMap<Date, Integer> getTotalCaloriesConsumedInDay() {
+        return totalCaloriesConsumedInDay;
+    }
+
+    public void updateTotalCalories(Date date, int calories){
+        totalCaloriesConsumedInDay.put(date, calories);
+        //setTotalCaloriesConsumedInDay(totalCaloriesConsumedInDay);
+    }
+    /*public void setTotalCaloriesConsumedInDay(HashMap<Date, Integer> totalCaloriesConsumedInDay) {
+        this.totalCaloriesConsumedInDay = totalCaloriesConsumedInDay;
+    }*/
+    /* public CalorieTracker(FoodList foodlist) {
         totalCaloriesConsumedInDay = new HashMap<>();
         this.foodList = foodlist;
-    }
+    }*/
 
     public String addCalories(Date date, String food, int calories) {
         if (calories == CALORIES_NOT_GIVEN && !foodList.contains(food)) {
