@@ -14,7 +14,6 @@ import seedu.badmaths.Quadratic.Quadratic;
 import java.util.ArrayList;
 
 
-
 public class Command {
     private static final String filePath = "data/notes.txt";
     protected String command;
