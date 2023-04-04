@@ -401,7 +401,7 @@ Done, deleted "beef noodles" from the financial report
 ### Filter statements
 
 To ease your time searching through all the entries in the financial report, the "filter" function of rainyDay
-will help you extract certain transactions based on a specific criteria
+will help you extract certain transactions based on a specific criteria.
 
 Format : `filter [FLAG] {FIELD}`
 
@@ -413,7 +413,6 @@ Format : `filter [FLAG] {FIELD}`
     * `-date` to filter by date
 * No `FIELD` is required when `-in` or `-out` flag is used 
 * date `FIELD` must be in the form DD/MM/YYYY
-
 
 Example of usage:
 
