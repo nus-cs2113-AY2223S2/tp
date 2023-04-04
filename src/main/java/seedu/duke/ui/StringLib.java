@@ -41,8 +41,8 @@ public interface StringLib {
             + "## View ## \n"
             + "Description : Displays the details of a particular recipe from the recipe list. "
             + "Requires either the recipe name or index as the input. \n"
-            + "Format      : \"view n/<insert recipe name>\" or \"view <insert recipe index on list>\" \n"
-            + "Example use : \"view n/Hotpot\" or \"view 1\" \n \n"
+            + "Format      : \"view <insert recipe name>\" or \"view <insert recipe index on list>\" \n"
+            + "Example use : \"view Hotpot\" or \"view 1\" \n \n"
             + "## Find ## \n"
             + "Description : Finds all recipes names containing keywords inputted in the description. "
             + "Requires keywords as an input. \n"
@@ -121,7 +121,7 @@ public interface StringLib {
     String RECIPE_SAVED = "\nRecipe list saved!";
     String RECIPE_LOADED = "\nSaved recipes loaded!";
     String MISSING_NUM = "\nPlease enter a valid number for the sum of steps!\n";
-    String MISSING_KEYWORD = "\nView is missing KEYWORDS!";
+    String MISSING_FIND_KEYWORD = "\nFind is missing KEYWORDS!";
     String MATCHING_ITEMS = "\nHere are the matching items:";
     String NO_MATCHES = "\nNo dishes matches what you are looking for! :(";
     String ENTER_STEP_DESCRIPTION = "Enter the description of the step:";
@@ -138,7 +138,24 @@ public interface StringLib {
     String INPUT_INGREDIENTS_INDEX_EXCEEDED = "Input index exceeds the number of ingredients!";
     String INVALID_STEP = "\nThe step you have entered is invalid!\n" +
             "Please enter a valid step below:";
+    String INVALID_RANGE = "The range you have entered for the index is invalid!\n\n" +
+            "Valid Range: ";
+    String DUPLICATE_RECIPE_NAMES_ERROR = "There appears to be duplicate recipe names that exist. \nPlease use the " +
+            "FIND feature to get the specific recipe index to be viewed instead.\n";
+    String NO_MATCHING_RECIPE_ERROR = "There are no matching recipes found.\n";
+    String SAVE_SUCCESS = "\nData saved successfully!";
+    String EDIT_TYPE_ERROR = "\nPlease enter a edit type (--s/--i) !\n";
+    String EDIT_INGREDIENT_ERROR = "\nPlease keep format as edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT\n";
+    String INVALID_RECIPE_INDEX = "\nPlease enter a valid recipe index!";
+    String INVALID_INGREDIENT_INDEX = "\nPlease enter a valid ingredient index!";
+    String EDIT_STEP_ERROR = "\nPlease keep format as edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP\n";
+    String INVALID_STEP_INDEX = "\nPlease enter a valid step index!";
     String POS_INT = "\nPlease enter a valid index!";
+
     String INVALID_INPUT_VALID_RANGE_PREFIX = "Invalid Input! Valid Range: ";
     String MISSING_INGREDIENT_INPUT = "Ingredient cannot be empty!";
+    String EMPTY_STRING = "";
+    String[] FORBIDDEN_CHARS = {"!","@","#","$","%","&","*","(",")","+",",",
+                                ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};
+    String SAVE_SEPARATOR = "#######";
 }

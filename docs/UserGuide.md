@@ -13,8 +13,10 @@ Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managin
     * **[Adding a recipe: `add`](#adding-a-recipe-add)**
     * **[Editing steps for a recipe: `editstep`](#editing-a-recipe-step-editstep)**
     * **[Editing ingredients for a recipe: `editingredient`](#editing-a-recipe-ingredient-editingredient)**
+    * **[Editing recipe with one line command:`edit`](#editing-a-recipe-edit)**
     * **[Deleting a recipe: `delete`](#deleting-a-recipe-delete)**
-    * **[Finding recipes: `find`](#finding-recipes-find)**
+    * **[Finding recipes by name: `findname`](#finding-recipes-findname)**
+    * **[Finding recipes by tag: `findtag`](#finding-recipes-findtag)**
     * **[Viewing a recipe: `view`](#viewing-a-recipe-view)**
     * **[Listing all recipes: `list`](#listing-all-recipes-list)**
     * **[Clearing all entries: `clear`](#clearing-all-entries-clear)**
@@ -28,7 +30,7 @@ Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managin
 1. Enusure you have `Java 11` installed on your Computer.
 2. Download the latest `tp.main.jar` from [here](https://github.com/AY2223S2-CS2113-F13-1/tp/releases).
 3. Copy the file to the folder you want to use as home folder for the recipe manager.
-4. Use `Win+R` to open the command prompt and type `cmd` and press Enter.
+4. Open the command prompt.
 5. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`
 6. Type `java -jar tp.main.jar` and press Enter to start the program.
 <h2 id="features"> Features</h2>
@@ -55,7 +57,7 @@ Shows a message explaining how to access the help page.<br>
 
 <h2 id="adding-a-recipe-add"> Adding a recipe: <code class="language-plaintext highlighter-rouge">add</code></h2>
 
-Adds a recipe to the recipe manager.<br>
+Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
 **Format**: `add n/NAME i/INGREDIENTS t/TAG s/NUMBEROFSTEPS`<br>
 **Hint**: Number of steps is the number of steps in the recipe, then you will be prompted to enter the steps.<br>
 **Examples**:<br>
@@ -82,7 +84,6 @@ Now you have 2 recipes in the list.
 Data saved successfully!
 __________________________________________________________
 ```
-<p>App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.</p>
 
 <h2 id="editing-a-recipe-step-editstep"> Editing a recipe's steps: <code class="language-plaintext highlighter-rouge">editstep</code></h2>
 
@@ -170,6 +171,14 @@ Following which, type in the description for the ingredient. </p>
 
 Note that to `exit` the whole program from the edit window, you have to `quit` first then `exit`. 
 
+<h2 id="editing-a-recipe-edit"> Editing a recipe with one line command: <code class="language-plaintext highlighter-rouge">edit</code></h2>
+
+For expert users, you can edit a recipe with one line command.<br>
+For editing ingredients, you can use `edit --i` to edit ingredients.<br>
+**Format**: `edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT`<br>
+For editing steps, you can use `edit --s` to edit steps.<br>
+**Format**: `edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP`<br>
+
 <h2 id="deleting-a-recipe-delete"> Deleting a recipe: <code class="language-plaintext highlighter-rouge">delete</code></h2>
 
 Deletes a recipe from the recipe list.<br>
@@ -189,23 +198,36 @@ __________________________________________________________
 ```
 <p>App will remove the recipe with the corresponding index.</p>
 
-<h2 id="finding-recipes-find"> Finding recipes: <code class="language-plaintext highlighter-rouge">find</code></h2>
+<h2 id="finding-recipes-findname"> Finding recipes: <code class="language-plaintext highlighter-rouge">findname</code></h2>
 
 Find recipes whose names contain any of the given keywords. The results will be displayed in a list, telling you the index of the recipe in the recipe list. Only the name of the recipe will be searched.<br>
 
-**Format**: `find KEYWORD`<br>
+**Format**: `findname KEYWORD`<br>
 **constraints**: `KEYWORD` cannot be empty.<br>
 **Examples**:<br>
 ```
 __________________________________________________________
-find hotpot
+findname hotpot
 
 Here are the matching items:
   [Chinese] Hotpot [Index: 2]
 __________________________________________________________
 ```
 
+<h2 id="finding-recipes-findtag"> Finding recipes: <code class="language-plaintext highlighter-rouge">findtag</code></h2>
 
+Find recipes whose tag contain any of the given keywords. The results will be displayed in a list, telling you the index of the recipe in the recipe list. Only the tag of the recipe will be searched.<br>
+**Format**: `findtag KEYWORD`<br>
+**constraints**: `KEYWORD` cannot be empty.<br>
+**Examples**:<br>
+```
+__________________________________________________________
+findtag chinese
+
+Here are the matching items:
+  [Chinese] Hotpot [Index: 2]
+__________________________________________________________
+```
 <h2 id="viewing-a-recipe-view"> Viewing a recipe: <code class="language-plaintext highlighter-rouge">view</code></h2>
 
 <div>Views a detailed recipe from the recipe manager if INDEX is entered.</div>
@@ -295,16 +317,16 @@ The first line is the name of the dish. And the second line is the tag of the di
 <h2 id='command-summary'> Command Summary </h2>
 
 
-|  Action   | 	Format  | Example |
-|  ----  | ----  | ----  |
-| [**help**](#viewing-help-help)  | `help` | |
-| [**add**](#adding-a-recipe-add) | `add n/NAME t/TAG i/INGREDIENT ... s/SUMOFSTEP [STEP]...` | `add n/Hotpot t/Chinese i/Beef i/Potatoes i/Carrots s/2` `add carrots` `cook 5 minutes` |
-| [**editingredient**](#editing-a-recipe-ingredient-editingredient)  | `editingredient INDEX` | |
-| [**editstep**](#editing-steps-editstep)  | `editstep INDEX` | |
-| [**delete**](#deleting-a-recipe-delete)  | `delete INDEX` | `delete 1` |
-| [**find**](#finding-recipes-find)  | `find KEYWORD ` | `find Hotpot` |
-| [**view**](#viewing-a-recipe-view)  | `view INDEX` | `view 1` |
-| [**list**](#listing-all-recipes-list)  | `list` | |
-| [**clear**](#clearing-all-entries-clear)  | `clear` | |
-| [**exit**](#exiting-the-program-exit)  | `exit` | |
+|  Action   | 	Format  | Example                                                                               |
+|  ----  | ----  |---------------------------------------------------------------------------------------|
+| [**help**](#viewing-help-help)  | `help` |                                                                                       |
+| [**add**](#adding-a-recipe-add) | `add n/NAME t/TAG i/INGREDIENT ... s/SUMOFSTEP [STEP]...` | `add n/Hotpot t/Chinese i/Beef, Potatoes, Carrots s/2` `add carrots` `cook 5 minutes` |
+| [**editingredient**](#editing-a-recipe-ingredient-editingredient)  | `editingredient INDEX` |                                                                                       |
+| [**editstep**](#editing-steps-editstep)  | `editstep INDEX` |                                                                                       |
+| [**delete**](#deleting-a-recipe-delete)  | `delete INDEX` | `delete 1`                                                                            |
+| [**find**](#finding-recipes-find)  | `find KEYWORD ` | `find Hotpot`                                                                         |
+| [**view**](#viewing-a-recipe-view)  | `view INDEX` | `view 1`                                                                              |
+| [**list**](#listing-all-recipes-list)  | `list` |                                                                                       |
+| [**clear**](#clearing-all-entries-clear)  | `clear` |                                                                                       |
+| [**exit**](#exiting-the-program-exit)  | `exit` |                                                                                       |
 

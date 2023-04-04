@@ -113,27 +113,25 @@ public class UI {
     public void showRecipeViewed(Recipe recipe, UI ui) {
         System.out.println("Here is the recipe you requested, which is "+ recipe.getTag() + " flavour:");
         System.out.println("name: " + recipe.getName());
-        System.out.println(StringLib.LINE);
+        showLine();
         IngredientList ingredients = recipe.getIngredientList();
         ingredients.showList();
-        System.out.println(StringLib.LINE);
+        showLine();
         StepList steps = recipe.getStepList();
         steps.showStepList(ui);
     }
     public void showViewingRecipeErrorMessage(Exception e) {
         if (e instanceof IncompleteInputException) {
             System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
-        } else if (e instanceof IndexOutOfBoundsException || e instanceof NullPointerException ||
-                e instanceof RecipeListEmptyException) {
+        } else if (e instanceof OutOfIndexException) {
+            System.out.println(StringLib.RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
+        } else if (e instanceof NullPointerException || e instanceof RecipeListEmptyException) {
             System.out.println(StringLib.PREFIX_EMPTY_LIMIT_LIST_ERROR +
                     CommandType.VIEW +
                     StringLib.SUFFIX_EMPTY_LIMIT_LIST_ERROR);
         } else {
             System.out.println(StringLib.RECIPE_VIEWING_DEFAULT_ERROR + e.getMessage());
         }
-    }
-    public void showSave() {
-        System.out.println(StringLib.RECIPE_SAVED);
     }
     public void showLoad() {
         System.out.println(StringLib.RECIPE_LOADED);
@@ -156,5 +154,9 @@ public class UI {
     }
     public void showInvalidStepMessage() {
         System.out.println(StringLib.INVALID_STEP);
+    }
+
+    public void showErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
     }
 }

@@ -39,7 +39,7 @@ Please enter the description of step 4:
 
 Got it. I've added this recipe:
   [Chinese] Hotpot
-Now you have 0 recipes in the list.
+Now you have 1 recipes in the list.
 
 __________________________________________________________
 
@@ -47,7 +47,7 @@ Please enter the description of step 1:
 
 Got it. I've added this recipe:
   [Chinese] MaLaXiangGuo
-Now you have 1 recipes in the list.
+Now you have 2 recipes in the list.
 
 __________________________________________________________
 
@@ -62,19 +62,19 @@ Please enter the description of step 1:
 
 Got it. I've added this recipe:
   [Italian] Spaghetti
-Now you have 2 recipes in the list.
-
-__________________________________________________________
-
-Got it. I've added this recipe:
-  [Italian] Carbonara
 Now you have 3 recipes in the list.
 
 __________________________________________________________
 
 Got it. I've added this recipe:
-  [Chinese] Beijing Duck
+  [Italian] Carbonara
 Now you have 4 recipes in the list.
+
+__________________________________________________________
+
+Got it. I've added this recipe:
+  [Chinese] Beijing Duck
+Now you have 5 recipes in the list.
 
 __________________________________________________________
 
@@ -85,7 +85,7 @@ __________________________________________________________
 No dishes matches what you are looking for! :(
 __________________________________________________________
 
-View is missing KEYWORDS!
+Find is missing KEYWORDS!
 __________________________________________________________
 
 RECIPE LIST
@@ -139,7 +139,7 @@ __________________________________________________________
 
 Got it. I've added this recipe:
   [Chinese] XiaoLongBao
-Now you have 4 recipes in the list.
+Now you have 5 recipes in the list.
 
 __________________________________________________________
 
@@ -147,7 +147,7 @@ Please enter the description of step 1:
 
 Got it. I've added this recipe:
   [Chinese] Guilinggao
-Now you have 5 recipes in the list.
+Now you have 6 recipes in the list.
 
 __________________________________________________________
 
@@ -160,6 +160,19 @@ RECIPE LIST
 5. [Chinese] XiaoLongBao
 6. [Chinese] Guilinggao
 
+__________________________________________________________
+
+Here are the matching items:
+  [Chinese] MaLaXiangGuo [Index: 1]
+  [Chinese] Beijing Duck [Index: 4]
+  [Chinese] XiaoLongBao [Index: 5]
+  [Chinese] Guilinggao [Index: 6]
+__________________________________________________________
+
+No dishes matches what you are looking for! :(
+__________________________________________________________
+
+Find is missing KEYWORDS!
 __________________________________________________________
 Here is the recipe you requested, which is Chinese flavour:
 name: MaLaXiangGuo
@@ -208,7 +221,7 @@ Please enter the description of step 4:
 
 Got it. I've added this recipe:
   [Western] IceLemonTea
-Now you have 6 recipes in the list.
+Now you have 7 recipes in the list.
 
 __________________________________________________________
 

@@ -4,6 +4,7 @@ package seedu.duke.command;
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.InvalidIndexRangeException;
 import seedu.duke.exceptions.OutOfIndexException;
+import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.parser.Parser;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
@@ -81,6 +82,7 @@ public class Command {
                 int sumOfSteps = Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
                 StepList recipeSteps = Parser.parseSteps(ui,sumOfSteps);
                 recipeList.addNewRecipe(new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps));
+                recipeCount = recipeList.getCurrRecipeNumber();
                 ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeCount);
                 Storage.writeSavedFile();
             } catch (Exception e) {
@@ -103,8 +105,9 @@ public class Command {
                     break;
                 }
                 Recipe recipeToBeDeleted = recipeList.getRecipeFromList(recipeListIndex);
-                ui.showRecipeDeleted(recipeToBeDeleted, recipeCount - 1);
                 recipeList.removeRecipe(recipeListIndex);
+                recipeCount = recipeList.getCurrRecipeNumber();
+                ui.showRecipeDeleted(recipeToBeDeleted, recipeCount);
                 Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showDeletingTaskErrorMessage(e, type);
@@ -118,26 +121,22 @@ public class Command {
         case VIEW:
             try {
                 if (fullDescription.isEmpty()) {
-                    throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
+                    throw new IncompleteInputException("The KEYWORDS of " + type + " cannot be empty.\n");
                 }
-                int recipeListNum = Integer.parseInt(fullDescription);
-                if (recipeCount == 0) {
-                    System.out.println(StringLib.EMPTY_LIST_MESSAGE);
-                    break;
+                if (recipeList.isEmpty()) {
+                    throw new RecipeListEmptyException();
                 }
-                if (recipeListNum <= 0 || recipeListNum > recipeCount) {
-                    System.out.println(StringLib.POS_INT);
-                    System.out.println("Valid range: " + 1 + " to " + recipeCount);
-                    break;
-                }
-                Recipe recipeToBeViewed = recipeList.getRecipeFromList(recipeListNum);
+                Recipe recipeToBeViewed = recipeList.viewRecipe(fullDescription);
                 ui.showRecipeViewed(recipeToBeViewed, ui);
             } catch (Exception e) {
                 ui.showViewingRecipeErrorMessage(e);
             }
             break;
-        case FIND:
+        case FINDNAME:
             RecipeList.searchRecipeList(fullDescription);
+            break;
+        case FINDTAG:
+            RecipeList.searchByTag(fullDescription);
             break;
         case EDITSTEP:
             try {
@@ -225,6 +224,24 @@ public class Command {
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }
+            break;
+        case EDIT:
+            try {
+                EditType editType = Parser.parseEditType(fullDescription);
+                boolean isEditIngredient = editType == EditType.INGREDIENT;
+                boolean isEditStep = editType == EditType.STEP;
+                Object[] parsed = Parser.parseEditRecipeIndex(fullDescription.substring(4),editType);
+                int recipeIndex = (int) parsed[0];
+                String editDescription = (String) parsed[1];
+                if(isEditIngredient) {
+                    Parser.parseEditIngredient(recipeList, recipeIndex, editDescription);
+                } else if (isEditStep) {
+                    Parser.parseEditStep(recipeList, recipeIndex, editDescription);
+                }
+            } catch (Exception e) {
+                ui.showErrorMessage(e);
+            }
+            Storage.writeSavedFile();
             break;
         case HELP:
             ui.showHelp();
