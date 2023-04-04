@@ -85,7 +85,7 @@ __________________________________________________________
 No dishes matches what you are looking for! :(
 __________________________________________________________
 
-View is missing KEYWORDS!
+Find is missing KEYWORDS!
 __________________________________________________________
 
 RECIPE LIST
@@ -172,7 +172,7 @@ __________________________________________________________
 No dishes matches what you are looking for! :(
 __________________________________________________________
 
-View is missing KEYWORDS!
+Find is missing KEYWORDS!
 __________________________________________________________
 Here is the recipe you requested, which is Chinese flavour:
 name: MaLaXiangGuo
