@@ -8,7 +8,7 @@ actor User
 participant ":Apollo" as Apollo
 participant ":Parser" as Parser
 participant ":ModifyCommand" as modify
-participant "LoggerInterface" as Logger
+
 participant ":TaskList" as TaskList
 participant ":Ui" as Ui
 participant ":Storage" as Storage
@@ -21,10 +21,6 @@ Parser -> modify** : ModifyCommand()
 modify++
 return
 return
-modify -> Logger: setUpLogger()
-activate Logger
-deactivate Logger
-destroy Logger
 
 Apollo -> modify : execute()
 Apollo--
@@ -42,8 +38,8 @@ modify -> Ui : ui.printMarkNotDone()
 modify -> Storage ++: updateTask()
 destroy Storage
 return
-end
-alt Task marked as incomplete previously
+
+else Task marked as incomplete previously
 modify -> Ui : ui.printTaskHasBeenMarkedPreviously()
 end
 destroy modify
