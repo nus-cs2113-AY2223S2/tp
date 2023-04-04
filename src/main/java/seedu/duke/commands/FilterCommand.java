@@ -50,6 +50,7 @@ public class FilterCommand extends Command {
      * @param category String category to filter items by.
      */
     private ArrayList<Item> filterCategory(String category) {
+        category = category.toLowerCase();
         ArrayList<Item> filteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
             if (item.getCategory().toLowerCase().equals(category)) {

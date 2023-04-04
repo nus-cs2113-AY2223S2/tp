@@ -50,6 +50,7 @@ public class Storage {
      * @return Inventory object
      */
     public static synchronized Inventory readCSV(String filePath) {
+        inventory = new Inventory();
         isRaceConditionDetected = false;
         while(!isStorageWriteDone){
             try {
@@ -116,13 +117,14 @@ public class Storage {
      * @return Item object
      */
     private static Item parseItem(String[] fields) {
-        return new Item(fields[NAME_INDEX], fields[UPC_INDEX], Integer.parseInt(fields[QUANTITY_INDEX]),
+        return new Item(Sanitizer.decode(fields[NAME_INDEX]), fields[UPC_INDEX],
+                Integer.parseInt(fields[QUANTITY_INDEX]),
                 Double.parseDouble(fields[PRICE_INDEX]), fields[CAT_INDEX],
                 LocalDateTime.parse(fields[DATE_INDEX]));
     }
 
     /**
-     * Update the inventory with the item object provided. (History update)
+     * Update the inventory with the item object provided. (Takes into account duplicate entries from history)
      *
      * @param inventory Inventory object to be updated
      * @param item          Item object to be added
@@ -199,8 +201,9 @@ public class Storage {
             for (int i = 0; i < currentInventory.getItemInventory().size(); i++) {
                 String itemUPC = currentInventory.getItemInventory().get(i).getUpc();
                 for (Item item : currentInventory.getUpcCodesHistory().get(itemUPC)) {
-                    writer.write(counter + "," + item.getName() + "," + item.getUpc() + "," + item.getQuantity()
-                            + "," + item.getPrice() + "," + item.getCategory() + "," + item.getDateTime() + "\n");
+                    writer.write(counter + "," + Sanitizer.encode(item.getName()) + "," + item.getUpc()
+                            + "," + item.getQuantity() + "," + item.getPrice() + "," + item.getCategory() + ","
+                            + item.getDateTime() + "\n");
                     counter++;
                 }
             }
