@@ -492,14 +492,14 @@ class UITest {
     void printPUList_correctLines_success() {
         UI ui = new UI();
         ui.printPUList();
-        assertEquals("____________________________________________________________" +
-                System.lineSeparator() +
-                "1. KOREA UNIVERSITY KU" + System.lineSeparator() +
-                "2. KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY KAIST" + System.lineSeparator() +
-                "3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY POSTECH" + System.lineSeparator() +
-                "4. SEOUL NATIONAL UNIVERSITY SNU" + System.lineSeparator() +
-                "5. YONSEI UNIVERSITY YU" + System.lineSeparator() +
-                "____________________________________________________________".stripTrailing()
+        assertEquals("____________________________________________________________" + System.lineSeparator() +
+                        "   Partner University Name                           PU Abb    " + System.lineSeparator() +
+                        "1. KOREA UNIVERSITY                                  KU" + System.lineSeparator() +
+                        "2. KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY  KAIST" + System.lineSeparator() +
+                        "3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY         POSTECH" + System.lineSeparator() +
+                        "4. SEOUL NATIONAL UNIVERSITY                         SNU" + System.lineSeparator() +
+                        "5. YONSEI UNIVERSITY                                 YU" + System.lineSeparator() +
+                        "____________________________________________________________".stripTrailing()
                 , outContent.toString().stripTrailing());
         outContent.reset();
     }

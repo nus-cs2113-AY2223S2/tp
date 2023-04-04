@@ -9,6 +9,9 @@ import seedu.duke.budget.GoodsAndServices;
 import java.util.ArrayList;
 
 public class UI {
+    private static final int LIST_PU_LENGTH_FOR_PU_ABB = 52;
+    private static final String LIST_PU_HEADER_MESSAGE = "   Partner University Name                  " +
+            "         PU Abb    ";
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
     private static final String LIST_CURRENT_PU_MESSAGE = "List of Added Modules for: ";
     private static final String CURRENT_LIST_PU_EMPTY = "The current module list is empty for: ";
@@ -185,11 +188,20 @@ public class UI {
 
     public void printPUList() {
         System.out.println(LINE);
+        System.out.println(LIST_PU_HEADER_MESSAGE);
         for (University university : universities) {
             int uniId = university.getUnivId();
             String uniName = university.getUnivName();
             String uniAbbName = university.getUnivAbbName();
-            System.out.println(uniId + ". " + uniName + " " + uniAbbName);
+            String uniIDAndName = uniId + ". " + uniName;
+            System.out.print(uniIDAndName);
+            int uniIDAndNameLength = uniIDAndName.length();
+            int counter = LIST_PU_LENGTH_FOR_PU_ABB - uniIDAndNameLength;
+            while(counter >= 0) {
+                System.out.print(" ");
+                counter--;
+            }
+            System.out.println(uniAbbName);
         }
         System.out.println(LINE);
     }
