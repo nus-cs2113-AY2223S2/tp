@@ -3,6 +3,7 @@ package seedu.apollo;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.command.Command;
+import seedu.apollo.command.utils.HelpCommand;
 import seedu.apollo.exception.task.InvalidDeadline;
 import seedu.apollo.exception.task.InvalidEvent;
 import seedu.apollo.module.ModuleList;

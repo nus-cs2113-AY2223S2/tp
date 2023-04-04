@@ -15,7 +15,8 @@
 - Added functionality to handle duplicates in storage class
 - Implemented code to detect events clashing with other events 
 - Added code to detect duplicate modules in moduleList and its exception 
-- Added some tests for Parser class 
+- Added some JUnit tests for Parser class 
+- Added Junit tests for task command portion of help command class 
 - Patches 
 
 - 
