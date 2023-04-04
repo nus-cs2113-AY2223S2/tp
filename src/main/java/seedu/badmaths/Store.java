@@ -2,18 +2,19 @@ package seedu.badmaths;
 import seedu.badmaths.ui.Ui;
 
 public class Store {
-    private static String toDo;
-    private static NotesList notes;
+    protected String toDo;
+    public NotesList notes;
     private static final String filePath = "data/notes.txt";
 
     public static boolean isInvalidTodo(String todo) {
         return todo.equals("Invalid todo");
     }
-    public Store() {
+    public Store(NotesList notes, String toDo) {
         this.toDo = toDo;
+        this.notes = notes;
     }
 
-    public static void storeNotes(String toDo) { // this is a method
+    public void storeNotes() { // this is a method
         try {
             if (isInvalidTodo(toDo)) {
                 throw new IllegalTodoException();

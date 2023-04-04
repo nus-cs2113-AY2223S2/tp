@@ -60,6 +60,7 @@ public class Command {
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
         Calculator calculator = new Calculator();
         Quadratic quadratic = new Quadratic(toDo);
+
         try {
             //@@author WilsonLee2000
             assert (command.equals("Bye") || command.equals("Graph") || command.equals("Store") ||
@@ -82,12 +83,13 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Store":
-                Store store = new Store();
-                store.storeNotes(toDo);
+                Store store = new Store(notes, toDo);
+                store.storeNotes();
                 break;
             //@@author WilsonLee2000
             case "List":
-                List.listNotes(toDo);
+                List lists = new List(notes,toDo);
+                lists.listNotes();
                 break;
             //@@author WilsonLee2000
             case "Delete":

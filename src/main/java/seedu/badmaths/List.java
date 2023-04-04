@@ -2,18 +2,19 @@ package seedu.badmaths;
 import seedu.badmaths.ui.Ui;
 
 public class List {
-    protected static String toDo;
-    public static NotesList notes;
-    public List(NotesList notes) {
+    protected  String toDo;
+    public  NotesList notes;
+    public List(NotesList notes, String toDo) {
         this.notes = notes;
+        this.toDo = toDo;
     }
-    public static boolean isInvalidIndex(int index, NotesList notes) {
+    public  boolean isInvalidIndex(int index, NotesList notes) {
         return (index < 0 || index >= notes.getSize());
     }
-    public static boolean isInvalidTodo(String todo) {
+    public  boolean isInvalidTodo(String todo) {
         return todo.equals("Invalid todo");
     }
-    public static boolean isAnInt(String todo) {
+    public  boolean isAnInt(String todo) {
         try {
             Integer.parseInt(todo);
         } catch (NumberFormatException numberException) {
@@ -23,7 +24,7 @@ public class List {
         return true;
     }
 
-    public static void listNotes(String toDo) {
+    public void listNotes() {
         try {
             if ((!isInvalidTodo(toDo)) && (isAnInt(toDo) == false)) {
                 throw new IllegalTodoException();
