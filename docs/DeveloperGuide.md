@@ -49,6 +49,13 @@ We would like to acknowledge Hong Lin Shang, whose Duke we built upon for our pr
 ## Design & implementation
 
 ### Architecture
+Below is the overall architecture diagram for Apollo.
+
+The program will first load the plaintext files (save and moduleData) and files in the Resources folder to populate its internal memory of 
+ModuleList and TaskList. This will be stored in its DataStorage. The user's (NUS_Student) interaction with the UI will be 
+parsed into a command which would update the DataStorage and eventually update the UI which is displayed back 
+to the user. This would continue until the user exits the program, which would result in the data stored in DataStorage 
+being saved into the the plaintext files.
 
 ### UI Component
 

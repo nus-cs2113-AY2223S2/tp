@@ -33,6 +33,7 @@ file moduleData.txt
 NUS_Student <-.-> [UI]
 [UI] --> [Parser]
 [Parser] --> [Command]
+[Command] --> [UI]
 [Command] --> [Data Storage]
 NUSMods_API -right-> [Resources]
 [Resources] -right-> [Data Storage]
