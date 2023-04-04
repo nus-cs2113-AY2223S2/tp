@@ -254,4 +254,10 @@ public class Parser {
             throw new Exception("error in edit step:\n" + e.getMessage());
         }
     }
+    public static String removeForbiddenChars(String ingredient) {
+        for (String chara : StringLib.FORBIDDEN_CHARS) {
+            ingredient.replaceAll(chara, "");
+        }
+        return ingredient;
+    }
 }

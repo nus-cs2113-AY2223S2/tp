@@ -150,4 +150,7 @@ public interface StringLib {
     String INVALID_STEP_INDEX = "\nPlease enter a valid step index!";
     String POS_INT = "\nPlease enter a valid index!";
     String EMPTY_STRING = "";
+    String[] FORBIDDEN_CHARS = {"!","@","#","$","%","&","*","(",")","+",",",
+                                ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};
+    String SAVE_SEPARATOR = "#######";
 }

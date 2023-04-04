@@ -15,7 +15,8 @@ Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managin
     * **[Editing ingredients for a recipe: `editingredient`](#editing-a-recipe-ingredient-editingredient)**
     * **[Editing recipe with one line command:`edit`](#editing-a-recipe-edit)**
     * **[Deleting a recipe: `delete`](#deleting-a-recipe-delete)**
-    * **[Finding recipes: `find`](#finding-recipes-find)**
+    * **[Finding recipes by name: `findname`](#finding-recipes-findname)**
+    * **[Finding recipes by tag: `findtag`](#finding-recipes-findtag)**
     * **[Viewing a recipe: `view`](#viewing-a-recipe-view)**
     * **[Listing all recipes: `list`](#listing-all-recipes-list)**
     * **[Clearing all entries: `clear`](#clearing-all-entries-clear)**
