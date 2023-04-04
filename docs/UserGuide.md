@@ -73,7 +73,7 @@ Meal Companion uses a Command Line Interface (CLI), as the current version is ju
 
 
 
-# Features
+# Features   
 This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and Recipe functions. 
 
 
