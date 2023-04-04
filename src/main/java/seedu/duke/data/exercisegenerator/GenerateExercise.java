@@ -196,7 +196,7 @@ public class GenerateExercise {
         assert exerciseList != null : "Exercise List should not be null.";
         ipptExercises = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (!exercise.getId().equals(NULL) && (exercise.getId().equals("563")  || exercise.getId().equals("686") || exercise.getId().equals("819")) ) {
+            if (exercise.getId().equals("563")  || exercise.getId().equals("686") || exercise.getId().equals("819")) {
                 ipptExercises.add(exercise);
             }
         }
