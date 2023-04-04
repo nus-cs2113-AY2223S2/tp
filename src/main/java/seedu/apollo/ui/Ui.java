@@ -316,8 +316,18 @@ public class Ui {
         System.out.println("This module " + moduleCode + " is not in your Module List.");
     }
 
+    /**
+     * Prints out message to inform user that the module does not have this lesson type.
+     */
     public void printLessonTypeNotInModule() {
         System.out.println("This lesson type does not exist in this module!");
+    }
+
+    /**
+     * Prints out message to inform user that user has not added any classes.
+     */
+    public void printEmptyLessonTypeInModuleList() {
+        System.out.println("You have not any classes to this module.");
     }
 
     /**
