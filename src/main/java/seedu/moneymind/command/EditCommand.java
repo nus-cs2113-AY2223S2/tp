@@ -30,12 +30,14 @@ public class EditCommand implements Command {
         if (CategoryCommand.categoryMap.get(categoryName) == null) {
             System.out.println(NO_CATEGORY_MESSAGE);
             isReady = false;
+            return;
         }
         categoryIndex = CategoryCommand.categoryMap.get(categoryName);
         Category category = CategoryList.categories.get(categoryIndex);
         if (eventIndex >= category.getEvents().size()) {
             System.out.println(NON_EXISTENT_EVENT);
             isReady = false;
+            return;
         }
         if (isReady) {
             String eventName = category.getEvents().get(eventIndex).getDescription();
@@ -69,7 +71,8 @@ public class EditCommand implements Command {
             int newExpense = Integer.parseInt(userInput);
             checkNegative(newExpense);
             return true;
-        } catch (IntegerOverflowException error) {
+        }
+        catch (IntegerOverflowException error) {
             System.out.println(EXPENSE_LIMIT_MESSAGE);
         } catch (NumberFormatException | NegativeNumberException error) {
             System.out.println(ENTERING_POSITIVE_NUMBER_MESSAGE);
