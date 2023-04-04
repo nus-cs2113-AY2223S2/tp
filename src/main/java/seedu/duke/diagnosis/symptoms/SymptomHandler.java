@@ -1,6 +1,19 @@
 package seedu.duke.diagnosis.symptoms;
 
+import java.util.ArrayList;
+
+/**
+ * A tool to format symptoms.
+ *
+ * @author Brennanzuz
+ */
 public class SymptomHandler {
+
+    /**
+     * @author Brennanzuz
+     * @param symptom ArrayList of symptoms
+     * @return the name of the symptom in a readable format without capitalisation and underlines.
+     */
     public static String toString(Symptom symptom) {
         switch (symptom) {
         case DIFFICULTY_BREATHING:
@@ -122,7 +135,19 @@ public class SymptomHandler {
         case SNEEZING:
             return "persistent sneezing";
         default:
-            return String.valueOf(symptom);
+            return String.valueOf(symptom).toLowerCase().replace('_', ' ');
+        }
+    }
+
+    /**
+     * Prints all symptoms in an array in a readable format.
+     *
+     * @author Brennanzuz
+     * @param symptoms ArrayList of symptoms.
+     */
+    public static void printSymptoms(ArrayList<Symptom> symptoms) {
+        for (Symptom symptom : symptoms) {
+            System.out.println(toString(symptom));
         }
     }
 }
