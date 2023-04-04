@@ -1,6 +1,8 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.AllData;
+import seedu.rainyDay.data.MonthlyExpenditures;
+import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.exceptions.RainyDayException;
 
 //@@author lil1n
@@ -27,6 +29,8 @@ public abstract class Command {
     private static boolean isExit = false;
 
     protected AllData allData;
+    protected UserData userData;
+    protected MonthlyExpenditures monthlyExpenditures;
 
     //@@author KN-CY
     public static boolean isValidCommand(String word) {
@@ -48,6 +52,8 @@ public abstract class Command {
      */
     public void setData(AllData allData) {
         this.allData = allData;
+        this.userData = allData.getUserData();
+        this.monthlyExpenditures = allData.getMonthlyExpenditures();
     }
 
     /**

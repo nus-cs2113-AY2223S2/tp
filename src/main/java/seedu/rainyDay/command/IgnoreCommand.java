@@ -36,7 +36,6 @@ public class IgnoreCommand extends Command {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting IgnoreCommand.execute()");
-        UserData userData = allData.getUserData();
         String output;
         index -= 1;
 

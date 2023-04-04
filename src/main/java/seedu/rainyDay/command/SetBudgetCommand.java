@@ -45,7 +45,6 @@ public class SetBudgetCommand extends Command {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "Starting SetBudgetCommand.execute()");
-        UserData userData = allData.getUserData();
         userData.setBudgetGoal(goal);
         String output;
         if (goal > 0) {

@@ -21,7 +21,7 @@ public class ShortcutViewCommand extends ShortcutCommand {
     private static final String NO_SHORTCUTS = "You do not have any shortcuts configured.";
 
     public ShortcutViewCommand() {
-        shortcutCommands = RainyDay.userData.getShortcutCommands();
+        shortcutCommands =  userData.getShortcutCommands();
     }
 
     private static void printShortcutMapping(String key, String value) {

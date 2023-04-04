@@ -19,7 +19,7 @@ public class ShortcutAddCommand extends ShortcutCommand {
     public ShortcutAddCommand(String key, String value) {
         this.key = key;
         this.value = value;
-        shortcutCommands = RainyDay.userData.getShortcutCommands();
+        shortcutCommands = userData.getShortcutCommands();
     }
 
     @Override

@@ -53,7 +53,6 @@ public class EditCommand extends Command {
     public CommandResult execute() { // todo add -date
         setupLogger();
         logger.log(Level.INFO, "starting EditCommand.execute()");
-        UserData userData = allData.getUserData();
 
         index -= 1;
         int previousStatementCount = userData.getStatementCount();

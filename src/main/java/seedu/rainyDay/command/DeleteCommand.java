@@ -49,7 +49,6 @@ public class DeleteCommand extends Command {
 
         index -= 1;
 
-        UserData userData = allData.getUserData();
         int previousStatementCount = userData.getStatementCount(); // only used for assertion
         assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for delete";
 

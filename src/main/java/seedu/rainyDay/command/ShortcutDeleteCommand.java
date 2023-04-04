@@ -17,7 +17,7 @@ public class ShortcutDeleteCommand extends ShortcutCommand {
 
     public ShortcutDeleteCommand(String key) {
         this.keyToDelete = key;
-        shortcutCommands = RainyDay.userData.getShortcutCommands();
+        shortcutCommands = userData.getShortcutCommands();
     }
 
     @Override
