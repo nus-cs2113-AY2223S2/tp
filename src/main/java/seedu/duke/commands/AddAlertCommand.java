@@ -33,10 +33,10 @@ public class AddAlertCommand extends Command  {
     private void addAlert() {
         if (alert.getMinmax().equals(MIN_KEYWORD)) {
             addMinAlert();
-        }
-
-        if (alert.getMinmax().equals(MAX_KEYWORD)) {
+        } else if (alert.getMinmax().equals(MAX_KEYWORD)) {
             addMaxAlert();
+        } else {
+            assert false: Ui.printInvalidAlertType();
         }
     }
 
@@ -46,6 +46,9 @@ public class AddAlertCommand extends Command  {
                 alertList.setMinAlertUpcs(alert.getUpc(), alert.getStock());
                 Ui.printSuccessAddAlert();
                 SessionManager.writeSession(alertList);
+
+                alertList.checkAlerts(alert.getUpc(), inventory.getUpcCodes().get(alert.getUpc()).getName(),
+                        inventory.getUpcCodes().get(alert.getUpc()).getQuantity());
 
             } else {
                 Ui.printInvalidMinAlert();
@@ -62,6 +65,9 @@ public class AddAlertCommand extends Command  {
                 alertList.setMaxAlertUpcs(alert.getUpc(), alert.getStock());
                 Ui.printSuccessAddAlert();
                 SessionManager.writeSession(alertList);
+
+                alertList.checkAlerts(alert.getUpc(), inventory.getUpcCodes().get(alert.getUpc()).getName(),
+                        inventory.getUpcCodes().get(alert.getUpc()).getQuantity());
             } else {
                 Ui.printInvalidMaxAlert();
             }
