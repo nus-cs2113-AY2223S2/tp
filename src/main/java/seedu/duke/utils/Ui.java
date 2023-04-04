@@ -82,6 +82,9 @@ public class Ui {
     public static final int INDEX_COL_WIDTH = 5;
     public static final int COMMAND_COL_WIDTH = 25;
     public static final int FORMAT_COL_WIDTH = 25;
+    public static final String QUANTITY_AVAILABLE_LABEL = "Quantity Available: ";
+    public static final String UPC_CODE_LABEL = "UPC Code: ";
+    public static final String ITEM_NAME_LABEL = "Item Name: ";
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
             "format: \nFormat: edit upc/[UPC] n/[Name] qty/[Quantity] p/[Price] c/[Category]\nREQUIRED fields: upc/\n" +
             "OPTIONAL fields: n/ qty/ p/ c/\nTip: Ensure that your UPC, quantity and price are all positive numbers " +
@@ -98,11 +101,13 @@ public class Ui {
     public static final String INVALID_RESTOCK_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
             "following format: " + "restock upc/[UPC] qty/[Quantity]";
     public static final String INVALID_ADD_QUANTITY_FORMAT = "Unable to restock item. REASON: Quantity inputs" +
-            " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!";
-    public static final String INVALID_DEDUCT_QUANTITY_FORMAT = "Unable to sell item. REASON: Quantity inputs" +
             " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!" + "\n" +
+            "Also ensure that the desired quantity to be added does not cause current stock levels to exceed MAX" +
+            "\n" + "quantity limit of 99,999,999.";
+    public static final String INVALID_DEDUCT_QUANTITY_FORMAT = "Unable to sell item. REASON: Quantity inputs" +
+            " SHOULD NOT contain NEGATIVE integers, DECIMALS, ZERO(0), or STRING inputs!" + "\n" +
             "Also ensure that the desired" + " quantity to be deducted is LESS THAN current stock levels.";
-    public static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
+    public static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Format! Please sell items in the " +
             "following format: " + "sell upc/[UPC] qty/[Quantity]";
     public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
     public static final String MISSING_PRICE = "Please enter a number for the price!";
@@ -694,11 +699,11 @@ public class Ui {
         printLine();
         System.out.println(SUCCESS_RESTOCK + "\n");
         System.out.println("Before Restocking: ");
-        System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
-                "Quantity Available: " + oldItem.getQuantity());
+        System.out.println(ITEM_NAME_LABEL + oldItem.getName() + "\n" + UPC_CODE_LABEL + oldItem.getUpc() + "\n" +
+                QUANTITY_AVAILABLE_LABEL + oldItem.getQuantity());
         System.out.println("\n" + "After Restocking: ");
-        System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
-                "Quantity Available: " + updatedItem.getQuantity());
+        System.out.println(ITEM_NAME_LABEL + updatedItem.getName() + "\n" + UPC_CODE_LABEL + updatedItem.getUpc() +
+                "\n" + QUANTITY_AVAILABLE_LABEL + updatedItem.getQuantity());
         printLine();
     }
 
@@ -713,11 +718,11 @@ public class Ui {
         printLine();
         System.out.println(SUCCESS_SELL + "\n");
         System.out.println("Before Selling: ");
-        System.out.println("Item Name: " + oldItem.getName() + "\n" + "UPC Code: " + oldItem.getUpc() + "\n" +
-                "Quantity Available: " + oldItem.getQuantity());
+        System.out.println(ITEM_NAME_LABEL + oldItem.getName() + "\n" + UPC_CODE_LABEL + oldItem.getUpc() + "\n" +
+                QUANTITY_AVAILABLE_LABEL + oldItem.getQuantity());
         System.out.println("\n" + "After Selling: ");
-        System.out.println("Item Name: " + updatedItem.getName() + "\n" + "UPC Code: " + updatedItem.getUpc() + "\n" +
-                "Quantity Available: " + updatedItem.getQuantity());
+        System.out.println(ITEM_NAME_LABEL + updatedItem.getName() + "\n" + UPC_CODE_LABEL + updatedItem.getUpc() +
+                "\n" + QUANTITY_AVAILABLE_LABEL + updatedItem.getQuantity());
         System.out.println("\n" + "Sold " + (oldItem.getQuantity() - updatedItem.getQuantity())
                 + " " + updatedItem.getName() + " at a price of $" + updatedItem.getPrice() +
                 ".");

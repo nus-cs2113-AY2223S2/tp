@@ -9,7 +9,6 @@ import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 
 public class RestockCommand extends Command{
-
     private final String[] restockInfo;
 
     public RestockCommand(Inventory inventory, String[] restockInfo) {
@@ -18,13 +17,17 @@ public class RestockCommand extends Command{
     }
 
     /**
-     * Check for wrong quantity inputs by the user, such as negative and zero values.
+     * Check for wrong quantity inputs by the user, such as negative values, zero values and integers exceeding
+     * the 100 million limit.
      *
      * @param quantity The user input for how much is to be added to the existing quantity of the item.
+     * @param oldQuantity The previous quantity count of the item.
      * @throws RestockErrorException Exception related to all errors associated with the "restock" command.
      */
-    private void checkQuantityValidity(int quantity) throws RestockErrorException {
-        if (quantity <= 0) {
+    private void checkQuantityValidity(int quantity, int oldQuantity) throws RestockErrorException {
+        int maxQuantity = 99999999;
+        int minQuantity = 0;
+        if (quantity <= minQuantity || quantity + oldQuantity < minQuantity || quantity + oldQuantity > maxQuantity) {
             throw new RestockErrorException();
         }
     }
@@ -40,12 +43,12 @@ public class RestockCommand extends Command{
      */
     private void handleUserRestockCommands(Item item, String data) throws MissingParametersException,
             NumberFormatException, RestockErrorException {
-        if (data.contains("qty/")) {
+        if (data.startsWith("qty/")) {
             String updatedQuantity = data.replaceFirst("qty/", "");
             try {
                 int quantityToAdd = Integer.parseInt(updatedQuantity);
-                checkQuantityValidity(quantityToAdd);
                 int oldQuantity = item.getQuantity();
+                checkQuantityValidity(quantityToAdd, oldQuantity);
                 item.setQuantity(oldQuantity + quantityToAdd);
             } catch (NumberFormatException nfe) {
                 throw new NumberFormatException();

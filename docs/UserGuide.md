@@ -49,10 +49,11 @@ Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 **OPTIONAL** parameters:
 * The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized` if not specified.)
 
+Example of usage: 
+=======
 
 
-
-!> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
+!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
 
 
 #### Example of usage
@@ -81,20 +82,23 @@ Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
 
 **OPTIONAL** parameters:
 * The `n/` parameter where `[item_name]` must be alphanumeric.
-* The `qty/` parameter for `[quantity]` must be a numerical value.
-* The `p/` parameter for `[price]` must be a numerical value (decimals accepted).
+* The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value.
+* The `p/` parameter for `[price]` must be a **non-negative numerical value** (decimals accepted).
 * The `c/` parameter for `[category]` must be alphanumeric.
 
 !> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
 
 #### Example of usage
 
-``
-edit upc/2142535453 c/laptop
-``
+`edit upc/2142535453 c/laptop`: Searches for the item in the inventory with a `UPC` code of `2142535453`, and change
+its `Category` type to `laptop`. <br />
+
+`edit upc/123 n/Orange qty/5 p/2.00`: Searches for the item in the inventory with a `UPC` code of `123`, and change
+its `Name` to `Orange`, `quantity` to be set to `5` and `price` will be set to `2.00`.
 
 #### Sample output
 ```
+edit upc/2142535453 c/laptop
 ____________________________________________________________
 Successfully edited the following item:
 
@@ -125,7 +129,7 @@ Format: `remove f/upc [UPC]` or `remove f/index [Index]`
 * The `UPC` can be only be a numerical value.
 * The `index` can only be a number.
 
-!> **index** follows 0-indexing. (i.e The first item in the list is at index 0.)
+!> **index** follows 0-indexing. (i.e. The first item in the list is at index 0.)
 
 #### Example of usage
 
@@ -395,18 +399,26 @@ ____________________________________________________________
 Reduces the quantity of an item in the inventory list.
 
 Format: `sell upc/[UPC] qty/[Quantity]`
-1. `UPC` refers to the identification number assigned to the item at the point of **initial addition** of the item.
-2. `Quantity` refers to the amount of stock to be **DEDUCTED** from the current stock levels recorded.
-3. `UPC` has to be valid, that is, it **EXISTS** in the database, and has to be a **POSITIVE NUMBER** and 
-**NOT EMPTY**.
-4. `Quantity` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
 
-Example of Usage:
-`sell upc/123 qty/5`: Searches for the item of `UPC` code `123`, and if it exists, **DEDUCT** a **quantity** of `5`
-items from its current stock levels.
+**REQUIRED** Parameters:
+
+* The `upc/` parameter whereby `[UPC]` refers to the identification number assigned to the item at the point 
+of **initial addition** of the item. `[UPC]` has to be valid, that is, it **EXISTS** in the database, and has to be 
+a **POSITIVE NUMBER** and **NOT EMPTY**. Do **NOT** include `[` and `]` in the input.
+* The `qty/` parameter whereby `[Quantity]` refers to the amount of stock to be **DEDUCTED** from the current 
+stock levels recorded. `[Quantity]` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
+Do **NOT** include `[` and `]` in the input.
+
+!> **Enforced** valid `[Quantity]` input range to be from **1** up to the **Current Quantity Level** of the item,
+provided that the **Current Quantity Level** is **NOT ZERO**.
+
+Example of Usage: <br />
+`sell upc/123 qty/5`: Searches for the item of `UPC` code `123`, and if it exists, **DEDUCT** a `quantity` of `5`
+items from its current stock levels, provided that the total quantity after selling does not go below 0.
 
 `sell upc/987612345 qty/10`: Searches for the item of `UPC` code `987612345`, and if it exists, **DEDUCT** a 
-**quantity** of `10` items from its current stock levels.
+`quantity` of `10` items from its current stock levels. provided that the total quantity after selling does not go
+below 0.
 
 Sample output:
 ````
@@ -435,20 +447,24 @@ Restock quantities of an item in the inventory list.
 
 Format: `restock upc/[UPC] qty/[Quantity]`
 
-1. `UPC` refers to the identification number assigned to the item at the point of **initial addition** of the item.
-2. `Quantity` refers to the amount of stock to be **ADDED** from the current stock levels recorded.
-3. `UPC` has to be valid, that is, it **EXISTS** in the database, and has to be a **POSITIVE NUMBER** and
-   **NOT EMPTY**.
-4.`Quantity` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**.
+**Required** Parameters:
+* The `upc/` parameter  whereby `[UPC]` refers to the identification number assigned to the item at the point of 
+**initial addition** of the item. `[UPC]` has to be valid, that is, it **EXISTS** in the database, and has to be
+a **POSITIVE NUMBER** and **NOT EMPTY**. Do **NOT** include `[` and `]` in the input.
+* The `qty/` parameter whereby `[Quantity]` refers to the amount of stock to be **ADDED** from the current stock 
+levels recorded. `[Quantity]` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
+Do **NOT** include `[` and `]` in the input.
 
-!> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
+!> **Enforced** valid `[Quantity]` input range to be from **1** to **99,999,999**. Ensure that the post-restock 
+quantity does not add up to above 99,999,999.
 
-5. Example of Usage:
-`restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a **quantity** of `5`
-items to its current stock levels.
+Example of Usage: <br />
+`restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a `quantity` of `5`
+items to its current stock levels, provided that the total quantity after restocking does **not** exceed 99,999,999.
 
 `restock upc/999 qty/10`: Searches for the item of `UPC` code `999`, and if it exists, **ADD** a
-**quantity** of `10` items to its current stock levels.
+`quantity` of `10` items to its current stock levels, provided that the total quantity after restocking does **not**
+exceed 99,999,999.
 
 Sample output:
 ```
@@ -476,9 +492,13 @@ session configurations.
 
 Format: `db`
 
-Example of usage
+**Required** Parameters:
+* Only the `db` command keyword is needed. 
 
-`db` - It's that simple
+!> Note: There should **NOT** contain any further user inputs after typing `db`.
+
+Example of usage: <br />
+`db`: Opens the dashboard.
 
 Sample output
 ```
@@ -514,10 +534,19 @@ ____________________________________________________________
 ### Category: `cat` <a name = "cat"></a>
 Shows list of categories, or a summary table of all categories and their items.
 
-Format: 
-* `cat list`: shows list of all categories in the inventory.
-* `cat table`: shows table of all categories and all items in each category.
+Format: <br /> 
+`cat list`: Shows list of all categories in the inventory. <br />
+`cat table`: Shows table of all categories and all items in each category.
 
+**Required** Parameters:
+* The `list` which tells the program to show a list of categories, **OR**
+* The `table` keyword, which tells the program to show a table of all categories and items in each category.
+
+!> Note: There should **NOT** be any additional user inputs after typing `cat list` or `cat table`. `list` and `table`
+should **NOT** be used concurrently.
+
+
+=======
 
 #### Example of Usage 
 
@@ -567,6 +596,8 @@ Successfully added a new alert.
 ____________________________________________________________
 ```
 
+
+=======
 #### Examples of usage 
 `alert remove upc/1234 level/min`  
 `alert remove upc/1234 level/max`
@@ -581,16 +612,21 @@ ____________________________________________________________
 ``` 
 
 ---
-### Change Autosave Mode: `autosave` <a name = "autosave"></a>
+### Change Auto save Mode: `autosave` <a name = "autosave"></a>
 
-Set whether the program should automatically save the updated inventory to the inventory data file after every successful
-write command issued.
-
-Note: if autosave is disabled, the program will not save on exit. This is because autosave off functions similarly to 
-incognito mode on a browser.
+Set whether the program should automatically save the updated inventory to the inventory data file after every 
+successful write command issued.
 
 Format: `autosave [on/off]`
 
+
+**Required** Parameters:
+* The `on` **OR** `off` parameter, whereby it toggles the auto save function **ON** and **OFF** respectively.
+
+!> Note: if auto save is disabled, the program will **NOT** save on exit. This is because auto save `off` functions
+similarly to incognito mode on a browser.
+
+=======
 #### Example of usage
 
 `autosave on`
@@ -598,6 +634,7 @@ Format: `autosave [on/off]`
 `autosave off`
 
 #### Sample output
+
 ```
 autosave on
 ____________________________________________________________
@@ -618,6 +655,9 @@ Exits the MagusStock program.
 
 Format: `exit` or `bye`
 
+
+!> Note: Do **NOT** type additional parameters after typing `exit` or `bye`. 
+
 #### Example of usage
 
 `bye`
@@ -625,6 +665,7 @@ Format: `exit` or `bye`
 `exit`
 
 #### Sample output:
+
 ```
 bye
 ____________________________________________________________

@@ -2,12 +2,15 @@ package seedu.duke.commands;
 
 import seedu.duke.exceptions.CategoryFormatException;
 import seedu.duke.exceptions.MissingParametersException;
+import seedu.duke.exceptions.OutOfRangeException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.SessionManager;
 import seedu.duke.utils.Ui;
 import seedu.duke.exceptions.EditErrorException;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +22,8 @@ public class EditCommand extends Command {
     private static final String QUANTITY_LABEL = "qty/";
     private static final String PRICE_LABEL = "p/";
     private static final String CATEGORY_LABEL = "c/";
+    private static final Long MAX_VALUE_RANGE = 99999999L;
+    private static final int MIN_VALUE_RANGE = 0;
     private final String[] editInfo;
 
     public EditCommand(Inventory inventory, String[] editInfo) {
@@ -46,18 +51,22 @@ public class EditCommand extends Command {
      * inputs were incorrectly written.
      *
      * @param item The target item in which the user wants to edit.
+     * @param oldItem The object containing the old attributes of the same item.
      * @param data The user input which contains the information to be used to update the item attributes.
      * @throws MissingParametersException Exception related to all errors due to missing parameters.
      * @throws NumberFormatException      Exception related to all invalid number formats inputted.
+     * @throws OutOfRangeException        Exception related to out of range value errors.
      */
     public void updateItemInfo(final Item item, final Item oldItem, final String[] data) throws
-            MissingParametersException, NumberFormatException {
+            MissingParametersException, NumberFormatException, OutOfRangeException {
         try {
             handleUserEditCommands(item, oldItem, data);
         } catch (MissingParametersException mpe) {
             throw new MissingParametersException();
         } catch (NumberFormatException nfe) {
             throw new NumberFormatException();
+        } catch (OutOfRangeException ore) {
+            throw new OutOfRangeException();
         }
     }
 
@@ -66,12 +75,14 @@ public class EditCommand extends Command {
      * (i.e, Name, Quantity, Price) based on the first few chars detected in the individual string.
      *
      * @param item The target item in which the user wants to edit.
+     * @param oldItem The object containing the old attributes of the same item.
      * @param data The user input which contains the information to be used to update the item attributes.
      * @throws MissingParametersException Exception related to all errors due to missing parameters.
      * @throws NumberFormatException      Exception related to all invalid number formats inputted.
+     * @throws OutOfRangeException        Exception related to out of range value errors.
      */
     private void handleUserEditCommands(Item item, Item oldItem, String[] data) throws
-            MissingParametersException, NumberFormatException {
+            MissingParametersException, NumberFormatException, OutOfRangeException {
         String currentLabel = "null";
         try {
             validateUserEditCommands(data);
@@ -83,6 +94,9 @@ public class EditCommand extends Command {
         } catch (NumberFormatException nfe) {
             revertChanges(item, oldItem);
             throw new NumberFormatException();
+        } catch (OutOfRangeException ore) {
+            revertChanges(item, oldItem);
+            throw new OutOfRangeException();
         }
     }
 
@@ -109,32 +123,37 @@ public class EditCommand extends Command {
      * @param dataSequence The numerical index of the string array containing the user commands.
      * @return String containing the name of the attribute type currently being edited.
      * @throws MissingParametersException Exception related to all errors due to missing parameters.
+     * @throws OutOfRangeException Exception related to out of range value errors.
      */
     private static String makeEdits(Item item, String[] data, String currentLabel, int dataSequence)
-            throws MissingParametersException {
-        if (data[dataSequence].contains("n/")) {
-            String newName = data[dataSequence].replaceFirst("n/", "");
-            item.setName(newName);
-            currentLabel = NAME_LABEL;
-        } else if (data[dataSequence].contains("qty/")) {
-            String updatedQuantity = data[dataSequence].replaceFirst("qty/", "");
-            setItemQuantity(item, updatedQuantity);
-            currentLabel = QUANTITY_LABEL;
-        } else if (data[dataSequence].contains("p/")) {
-            String updatedPrice = data[dataSequence].replaceFirst("p/", "");
-            setItemPrice(item, updatedPrice);
-            currentLabel = PRICE_LABEL;
-        } else if (data[dataSequence].contains("c/")) {
-            String updatedCategory = data[dataSequence].replaceFirst("c/", "");
-            updatedCategory = updatedCategory.toLowerCase();
-            item.setCategory(updatedCategory);
-            currentLabel = CATEGORY_LABEL;
-        } else {
-            if (currentLabel.equals(NAME_LABEL)) {
-                item.setName(item.getName() + " " + data[dataSequence]);
+            throws MissingParametersException, OutOfRangeException {
+        try{
+            if (data[dataSequence].startsWith("n/")) {
+                String newName = data[dataSequence].replaceFirst("n/", "");
+                item.setName(newName);
+                currentLabel = NAME_LABEL;
+            } else if (data[dataSequence].startsWith("qty/")) {
+                String updatedQuantity = data[dataSequence].replaceFirst("qty/", "");
+                setItemQuantity(item, updatedQuantity);
+                currentLabel = QUANTITY_LABEL;
+            } else if (data[dataSequence].startsWith("p/")) {
+                String updatedPrice = data[dataSequence].replaceFirst("p/", "");
+                setItemPrice(item, updatedPrice);
+                currentLabel = PRICE_LABEL;
+            } else if (data[dataSequence].startsWith("c/")) {
+                String updatedCategory = data[dataSequence].replaceFirst("c/", "");
+                updatedCategory = updatedCategory.toLowerCase();
+                item.setCategory(updatedCategory);
+                currentLabel = CATEGORY_LABEL;
             } else {
-                throw new MissingParametersException();
+                if (currentLabel.equals(NAME_LABEL)) {
+                    item.setName(item.getName() + " " + data[dataSequence]);
+                } else {
+                    throw new MissingParametersException();
+                }
             }
+        } catch (OutOfRangeException ore) {
+            throw new OutOfRangeException();
         }
         return currentLabel;
     }
@@ -153,18 +172,18 @@ public class EditCommand extends Command {
         int categoryEditCount = 0;
         String currentLabel = "null";
         for (int dataSequence = 1; dataSequence < data.length; dataSequence += 1) {
-            if (data[dataSequence].contains("n/")) {
+            if (data[dataSequence].startsWith("n/")) {
                 nameEditCount += 1;
                 currentLabel = NAME_LABEL;
-            } else if (data[dataSequence].contains("qty/")) {
+            } else if (data[dataSequence].startsWith("qty/")) {
                 quantityEditCount += 1;
                 currentLabel = QUANTITY_LABEL;
-            } else if (data[dataSequence].contains("p/")) {
+            } else if (data[dataSequence].startsWith("p/")) {
                 priceEditCount += 1;
                 currentLabel = PRICE_LABEL;
-            } else if (data[dataSequence].contains("upc/")) {
+            } else if (data[dataSequence].startsWith("upc/")) {
                 upcEditCount += 1;
-            } else if (data[dataSequence].contains("c/")) {
+            } else if (data[dataSequence].startsWith("c/")) {
                 categoryEditCount += 1;
                 currentLabel = CATEGORY_LABEL;
             } else {
@@ -185,17 +204,25 @@ public class EditCommand extends Command {
      * @param item         The target item in which the user wants to edit.
      * @param updatedPrice The new price of the item.
      * @throws NumberFormatException Exception related to all number conversion errors.
+     * @throws OutOfRangeException Exception related to out of range value errors.
      */
-    private static void setItemPrice(Item item, String updatedPrice) throws NumberFormatException {
+    private static void setItemPrice(Item item, String updatedPrice) throws NumberFormatException,
+            OutOfRangeException {
         try {
             double newPrice = Double.parseDouble(updatedPrice);
-            if (newPrice >= 0) {
+            BigDecimal newPriceRange = new BigDecimal(updatedPrice);
+            if (newPrice >= MIN_VALUE_RANGE && newPrice <= MAX_VALUE_RANGE) {
                 item.setPrice(newPrice);
+            } else if (newPriceRange.compareTo(BigDecimal.valueOf(0.01)) < 0 ||
+                    newPriceRange.compareTo(BigDecimal.valueOf(MAX_VALUE_RANGE)) > 0) {
+                throw new OutOfRangeException();
             } else {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException nfe) {
             throw new NumberFormatException();
+        } catch (OutOfRangeException ore) {
+            throw new OutOfRangeException();
         }
     }
 
@@ -205,17 +232,25 @@ public class EditCommand extends Command {
      * @param item            The target item in which the user wants to edit.
      * @param updatedQuantity The new quantity of the item.
      * @throws NumberFormatException Exception related to all number conversion errors.
+     * @throws OutOfRangeException Exception related to out of range value errors.
      */
-    private static void setItemQuantity(Item item, String updatedQuantity) throws NumberFormatException {
+    private static void setItemQuantity(Item item, String updatedQuantity) throws NumberFormatException,
+            OutOfRangeException {
         try {
             int newQuantity = Integer.parseInt(updatedQuantity);
-            if (newQuantity >= 0) {
+            BigInteger newQuantityRange = new BigInteger(updatedQuantity);
+            if (newQuantity >= MIN_VALUE_RANGE && newQuantity <= MAX_VALUE_RANGE) {
                 item.setQuantity(newQuantity);
+            } else if (newQuantityRange.compareTo(BigInteger.ONE) < 0 ||
+                    newQuantityRange.compareTo(BigInteger.valueOf(MAX_VALUE_RANGE)) > 0) {
+                throw new OutOfRangeException();
             } else {
                 throw new NumberFormatException();
             }
         } catch (NumberFormatException nfe) {
             throw new NumberFormatException();
+        } catch (OutOfRangeException ore) {
+            throw new OutOfRangeException();
         }
     }
 
@@ -252,9 +287,17 @@ public class EditCommand extends Command {
             Ui.printInvalidPriceOrQuantityEditInput();
         } catch (CategoryFormatException e) {
             Ui.printInvalidCategory();
+        } catch (OutOfRangeException ore) {
+            ore.printOutOfRange();
         }
     }
 
+    /**
+     * Updates the data structure responsible for storing information about the items found in the inventory list.
+     *
+     * @param updatedItem The item object containing the newest attributes of the specified item.
+     * @param oldItem The previous attributes of the item are contained in this item object.
+     */
     public void handleTrie(Item updatedItem, Item oldItem) {
         String[] oldItemNames = oldItem.getName().toLowerCase().split(" ");
         String newItemNamesFull = updatedItem.getName().toLowerCase();
