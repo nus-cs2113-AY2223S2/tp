@@ -83,8 +83,7 @@ Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
 
 **OPTIONAL** parameters:
 * The `n/` parameter where `[item_name]` must be alphanumeric.
-* The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value not exceeding the 32-bit integer 
-limit.
+* The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value.
 * The `p/` parameter for `[price]` must be a **non-negative numerical value** (decimals accepted).
 * The `c/` parameter for `[category]` must be alphanumeric.
 
@@ -92,14 +91,11 @@ limit.
 
 #### Example of usage
 
-Example of usage: <br />
 `edit upc/2142535453 c/laptop`: Searches for the item in the inventory with a `UPC` code of `2142535453`, and change
 its `Category` type to `laptop`. <br />
 
 `edit upc/123 n/Orange qty/5 p/2.00`: Searches for the item in the inventory with a `UPC` code of `123`, and change
 its `Name` to `Orange`, `quantity` to be set to `5` and `price` will be set to `2.00`.
-
-
 
 #### Sample output
 ```
@@ -133,7 +129,7 @@ Format: `remove f/item upc/[UPC]` or `remove f/index [Index]`
 * The `UPC` can be only be a numerical value.
 * The `index` can only be a number.
 
-!> **index** follows 0-indexing. (i.e The first item in the list is at index 0.)
+!> **index** follows 0-indexing. (i.e. The first item in the list is at index 0.)
 
 #### Example of usage
 
@@ -382,18 +378,26 @@ ____________________________________________________________
 Reduces the quantity of an item in the inventory list.
 
 Format: `sell upc/[UPC] qty/[Quantity]`
-1. `UPC` refers to the identification number assigned to the item at the point of **initial addition** of the item.
-2. `Quantity` refers to the amount of stock to be **DEDUCTED** from the current stock levels recorded.
-3. `UPC` has to be valid, that is, it **EXISTS** in the database, and has to be a **POSITIVE NUMBER** and 
-**NOT EMPTY**.
-4. `Quantity` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
 
-Example of Usage:
-`sell upc/123 qty/5`: Searches for the item of `UPC` code `123`, and if it exists, **DEDUCT** a **quantity** of `5`
-items from its current stock levels.
+**REQUIRED** Parameters:
+
+* The `upc/` parameter whereby `[UPC]` refers to the identification number assigned to the item at the point 
+of **initial addition** of the item. `[UPC]` has to be valid, that is, it **EXISTS** in the database, and has to be 
+a **POSITIVE NUMBER** and **NOT EMPTY**. Do **NOT** include `[` and `]` in the input.
+* The `qty/` parameter whereby `[Quantity]` refers to the amount of stock to be **DEDUCTED** from the current 
+stock levels recorded. `[Quantity]` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
+Do **NOT** include `[` and `]` in the input.
+
+!> **Enforced** valid `[Quantity]` input range to be from **1** up to the **Current Quantity Level** of the item,
+provided that the **Current Quantity Level** is **NOT ZERO**.
+
+Example of Usage: <br />
+`sell upc/123 qty/5`: Searches for the item of `UPC` code `123`, and if it exists, **DEDUCT** a `quantity` of `5`
+items from its current stock levels, provided that the total quantity after selling does not go below 0.
 
 `sell upc/987612345 qty/10`: Searches for the item of `UPC` code `987612345`, and if it exists, **DEDUCT** a 
-**quantity** of `10` items from its current stock levels.
+`quantity` of `10` items from its current stock levels. provided that the total quantity after selling does not go
+below 0.
 
 Sample output:
 ````
@@ -422,18 +426,24 @@ Restock quantities of an item in the inventory list.
 
 Format: `restock upc/[UPC] qty/[Quantity]`
 
-1. `UPC` refers to the identification number assigned to the item at the point of **initial addition** of the item.
-2. `Quantity` refers to the amount of stock to be **ADDED** from the current stock levels recorded.
-3. `UPC` has to be valid, that is, it **EXISTS** in the database, and has to be a **POSITIVE NUMBER** and
-   **NOT EMPTY**.
-4. `Quantity` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**.
+**Required** Parameters:
+* The `upc/` parameter  whereby `[UPC]` refers to the identification number assigned to the item at the point of 
+**initial addition** of the item. `[UPC]` has to be valid, that is, it **EXISTS** in the database, and has to be
+a **POSITIVE NUMBER** and **NOT EMPTY**. Do **NOT** include `[` and `]` in the input.
+* The `qty/` parameter whereby `[Quantity]` refers to the amount of stock to be **ADDED** from the current stock 
+levels recorded. `[Quantity]` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
+Do **NOT** include `[` and `]` in the input.
 
-Example of Usage:
-`restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a **quantity** of `5`
-items to its current stock levels.
+!> **Enforced** valid `[Quantity]` input range to be from **1** to **99,999,999**. Ensure that the post-restock 
+quantity does not add up to above 99,999,999.
+
+Example of Usage: <br />
+`restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a `quantity` of `5`
+items to its current stock levels, provided that the total quantity after restocking does **not** exceed 99,999,999.
 
 `restock upc/999 qty/10`: Searches for the item of `UPC` code `999`, and if it exists, **ADD** a
-**quantity** of `10` items to its current stock levels.
+`quantity` of `10` items to its current stock levels, provided that the total quantity after restocking does **not**
+exceed 99,999,999.
 
 Sample output:
 ```
@@ -461,9 +471,11 @@ session configurations.
 
 Format: `db`
 
-Example of usage
+**Required** Parameters:
+* The `db` command keyword, which should **NOT** contain any further user inputs after typing it. 
 
-`db` - It's that simple
+Example of usage: <br />
+`db`: Opens the dashboard.
 
 Sample output
 ```
@@ -500,7 +512,7 @@ ____________________________________________________________
 Shows list of categories, and/or its items, or a specified category of items.
 
 Format: 
-* `cat list`: shows list of all categories in the inventory.
+`cat list`shows list of all categories in the inventory.
 * `cat table`: shows table of all categories and all items in each category.
 
 Example of Usage & Expected Output:
