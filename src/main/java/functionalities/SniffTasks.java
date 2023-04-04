@@ -147,9 +147,6 @@ public class SniffTasks {
         if (uId.equals("")) {
             throw new SniffException(" No appointment ID provided!");
         }
-        if (!uId.matches("\\d+")) {
-            throw new SniffException(" Appointment ID must consist of integers!");
-        }
         if (counter == 1) {
             Ui.showUserMessage(" There are no appointments with this ID!");
         }
