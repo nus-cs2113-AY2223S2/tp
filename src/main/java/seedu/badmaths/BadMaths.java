@@ -2,10 +2,7 @@ package seedu.badmaths;
 
 import seedu.badmaths.ui.Ui;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,7 +11,7 @@ public class BadMaths {
 
     private static final Set<String> VALID_COMMANDS = new HashSet<>(Arrays.asList(
             "Graph", "Bye", "List", "Store", "Matrix", "Help", "FindInfo", "FindPrior", "FindMark", "FindUnmark", "Low",
-            "Medium", "High", "Delete", "Mark", "Unmark", "Clear", "Rank", "Quadratic"
+            "Medium", "High", "Delete", "Mark", "Unmark", "Clear", "Rank", "Quadratic", "History"
     ));
     public static void commandChecker(String command) {
         try {
@@ -45,6 +42,8 @@ public class BadMaths {
         Ui.printWelcomeMessage();
         notesCreator(path);
         NotesList notes = new NotesList(Storage.loadFile(path));
+        ArrayList<String> historyCommand = new ArrayList<>();
+        CommandHistory commandHist = new CommandHistory(historyCommand);
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -53,6 +52,8 @@ public class BadMaths {
             Parser parser = new Parser(userInput);
             String command = parser.getCommand();
             String toDo = parser.getToDo(); // asdsasad
+            //CommandHistory commandHist = new CommandHistory(userInput);
+            commandHist.storeCommand(userInput);
 
             commandChecker(command);
 
@@ -64,7 +65,7 @@ public class BadMaths {
                 inputCommand.setToDo(toDo);
             }
 
-            inputCommand.executeCommand(notes);
+            inputCommand.executeCommand(notes, historyCommand);
             if (userInput.equals("Bye")) {
                 break;
             }
