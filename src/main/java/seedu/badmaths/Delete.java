@@ -4,14 +4,13 @@ import seedu.badmaths.ui.Ui;
 public class Delete {
 
     private static final String filePath = "data/notes.txt";
+    public NotesList notes;
+    protected String toDo;
 
     public Delete (NotesList notes, String toDo) {
         this.toDo = toDo;
         this.notes = notes;
     }
-
-    public static NotesList notes;
-    protected static String toDo;
 
     public static boolean isInvalidIndex(int index, NotesList notes) {
         return (index < 0 || index >= notes.getSize());
@@ -27,7 +26,7 @@ public class Delete {
         return true;
     }
 
-    public static void deleteNotes() {
+    public void deleteNotes() {
         try {
             if (isAnInt(toDo) == false) {
                 throw new IllegalTodoException();
