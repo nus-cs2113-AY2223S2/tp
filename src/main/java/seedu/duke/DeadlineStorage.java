@@ -1,11 +1,15 @@
 package seedu.duke;
 
+import seedu.duke.exceptions.InvalidCommandException;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -34,6 +38,11 @@ public class DeadlineStorage implements DatabaseInterface {
             return;
         }
         readDeadlineData(SAVED_DEADLINES_FILE_PATH, deadlines);
+        boolean isCorrupted = checkDatabaseCorrupted();
+        if (isCorrupted) {
+            UI.printDeadlineStorageCorruptedMessage();
+        }
+        writeDeadlinesToFile(deadlines);
     }
 
     private void readDeadlineData(String deadlineFilePath, ArrayList<Deadline> deadlines) {
@@ -41,6 +50,10 @@ public class DeadlineStorage implements DatabaseInterface {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split("//");
+                if (row.length != 2 || row[0].isBlank()) {
+                    System.out.println("One deadline is corrupted, will be removed");
+                    return;
+                }
                 Deadline deadline = new Deadline(row[0], row[1]);
                 deadlines.add(deadline);
             }
@@ -146,6 +159,53 @@ public class DeadlineStorage implements DatabaseInterface {
 
     @Override
     public boolean checkDatabaseCorrupted() {
-        return false;
+        boolean isCorrupted = false;
+        ArrayList<Deadline> copyDeadlines = new ArrayList<>();
+        for (Deadline deadline : deadlines) {
+            String dueDate = deadline.getDueDate().trim();
+            String task = deadline.getTask().trim();
+            String[] dueDateFormat = dueDate.split("-");
+            if (dueDateFormat.length != 3) {
+                isCorrupted = true;
+                continue;
+            }
+            String dueDateDate = dueDateFormat[0];
+            String dueDateMonth = dueDateFormat[1];
+            String dueDateYear = dueDateFormat[2];
+            boolean isValidDate = checkValidDate(dueDateDate, dueDateMonth, dueDateYear);
+            if (!isValidDate) {
+                continue;
+            }
+            Deadline deadlineTypeToAdd = new Deadline(task, dueDate);
+            copyDeadlines.add(deadlineTypeToAdd);
+        }
+        deadlines.clear();
+        for (Deadline copyDeadline : copyDeadlines) {
+            deadlines.add(copyDeadline);
+        }
+        return isCorrupted;
     }
+
+    private boolean checkValidDate(String dueDateDate, String dueDateMonth, String dueDateYear) {
+        if (dueDateDate.length() != 2 || dueDateMonth.length() != 2 || dueDateYear.length() != 4) {
+            return false;
+        }
+        int date;
+        int month;
+        int year;
+        try {
+            date = Integer.parseInt(dueDateDate);
+            month = Integer.parseInt(dueDateMonth);
+            year = Integer.parseInt(dueDateYear);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        try {
+            LocalDate.of(year, month, date);
+        } catch (DateTimeException e) {
+            return false;
+        }
+        return true;
+    }
+
 }

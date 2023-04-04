@@ -384,7 +384,7 @@ public class UI {
     }
 
     public static void printDeadlineStorageCorruptedMessage() {
-        System.out.println("Deadline Storage is corrupted, resetting budget");
+        System.out.println("Deadline Storage is corrupted, deleting corrupted deadlines");
     }
 
     public static void printInvalidBudgetAmountMessage() {
