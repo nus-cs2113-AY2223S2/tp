@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class CommandFormat {
     public static final String ADD_FORMAT = "add n/[Name] upc/[UPC] qty/[Quantity] p/[Price] c/[Category]";
     public static final String EDIT_FORMAT = "edit upc/[UPC] {n/[Name] qty/[Quantity] p/[Price]}";
-    public static final String REMOVE_FORMAT = "remove f/item upc/[UPC]\nremove f/index [Index]";
+    public static final String REMOVE_FORMAT = "remove f/upc [UPC], remove f/index [Index]";
     public static final String RESTOCK_FORMAT = "restock upc/[UPC] qty/[Quantity]";
     public static final String SELL_FORMAT = "sell upc/[UPC] qty/[Quantity]";
     public static final String HELP_FORMAT = "help";
@@ -16,27 +16,29 @@ public class CommandFormat {
     public static final String ALERT_ADD_FORMAT = "alert add upc/[UPC] {min/[Minimum] or max/[Maximum]}";
 
     public static final String ALERT_REMOVE_FORMAT = "alert remove upc/[UPC] level/[Min or Max]";
-    public static final String CATEGORY_FORMAT = "cat {list/table/[Category]}";
+    public static final String CATEGORY_FORMAT = "cat [list or table]";
     public static final String HISTORY_FORMAT = "history [UPC]";
+    public static final String EXIT_FORMAT = "exit or bye";
 
     public static final String DASHBOARD_FORMAT = "db";
-    public static final String ADD_DESCRIPTION = "add:\nadds an item to the inventory list";
-    public static final String EDIT_DESCRIPTION = "edit:\nedits relevant information of an item";
-    public static final String REMOVE_DESCRIPTION = "remove:\nremoves an item from the inventory list";
-    public static final String RESTOCK_DESCRIPTION = "restock:\nincreases the quantity of an item";
-    public static final String SELL_DESCRIPTION = "sell:\ndecreases the quantity of an item";
-    public static final String HELP_DESCRIPTION = "help:\nshows you this list of commands";
-    public static final String LIST_DESCRIPTION = "list:\nshows you the inventory list of items";
-    public static final String SEARCH_KEYWORD_DESCRIPTION = "search:\n search existing items by keywords";
-    public static final String SEARCH_UPC_DESCRIPTION = "searchupc:\nsearch existing items by UPC";
-    public static final String FILTER_DESCRIPTION = "filter:\nfilters items by category or price or tag";
-    public static final String ALERT_ADD_DESCRIPTION = "alert add:\nadds new alert for an item to "
+    public static final String ADD_DESCRIPTION = "add: adds an item to the inventory list";
+    public static final String EDIT_DESCRIPTION = "edit: edits relevant information of an item";
+    public static final String REMOVE_DESCRIPTION = "remove: removes an item from the inventory list";
+    public static final String RESTOCK_DESCRIPTION = "restock: increases the quantity of an item";
+    public static final String SELL_DESCRIPTION = "sell: decreases the quantity of an item";
+    public static final String HELP_DESCRIPTION = "help: shows you this list of commands";
+    public static final String LIST_DESCRIPTION = "list: shows you the inventory list of items";
+    public static final String SEARCH_KEYWORD_DESCRIPTION = "search: search existing items by keywords";
+    public static final String SEARCH_UPC_DESCRIPTION = "searchupc: search existing items by UPC";
+    public static final String FILTER_DESCRIPTION = "filter: filters items by category or price or tag";
+    public static final String ALERT_ADD_DESCRIPTION = "alert add: adds new alert for an item to "
             + "track its stock count";
-    public static final String ALERT_REMOVE_DESCRIPTION = "alert remove:\nremoves existing alert for an item";
-    public static final String CATEGORY_DESCRIPTION = "cat list: list all categories\n" + "cat table: list table " +
-            "of categories and items\n" + "cat [Category]: list items in a specified category";
-    public static final String HISTORY_DESCRIPTION = "history:\nshows the historical commands executed for an item";
-    public static final String DASHBOARD_DESCRIPTION = "db:\nDisplays the dashboard of Magus-Stock";
+    public static final String ALERT_REMOVE_DESCRIPTION = "alert remove: removes existing alert for an item";
+    public static final String CATEGORY_DESCRIPTION = "cat: list all categories or list table " +
+            "of categories and items respectively";
+    public static final String HISTORY_DESCRIPTION = "history: shows the historical commands executed for an item";
+    public static final String DASHBOARD_DESCRIPTION = "db: displays the dashboard of Magus-Stock";
+    public static final String EXIT_DESCRIPTION = "exit: exits the Magus-Stock program";
 
 
     protected HashMap<String, String> commandsHashMap;
@@ -61,7 +63,7 @@ public class CommandFormat {
         commands.put(HELP_FORMAT, HELP_DESCRIPTION);
         commands.put(HISTORY_FORMAT, HISTORY_DESCRIPTION);
         commands.put(DASHBOARD_FORMAT, DASHBOARD_DESCRIPTION);
-
+        commands.put(EXIT_FORMAT, EXIT_DESCRIPTION);
         return commands;
     }
 }
