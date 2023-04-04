@@ -6,6 +6,7 @@ import seedu.rainyDay.command.EditCommand;
 import seedu.rainyDay.command.ExitCommand;
 import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.HelpCommand;
+import seedu.rainyDay.command.SetBudgetCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Parser;
@@ -150,6 +151,12 @@ class ParserTest {
         assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit 1 -test"));
         assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit 1 -date 32/01/2034"));
         assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit 1 -in test"));
+    }
+
+    @Test
+    public void parseSetBudgetCommand() throws RainyDayException{
+        assertEquals(SetBudgetCommand.class, new Parser().parseUserInput("setbudget 1000").getClass());
+        assertThrows(Exception.class, () -> new Parser().parseUserInput("setbudget -1000"));
     }
 
     @Test
