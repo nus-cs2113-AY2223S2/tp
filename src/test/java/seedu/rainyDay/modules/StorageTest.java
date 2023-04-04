@@ -22,8 +22,7 @@ public class StorageTest {
     @Test
     public void writeToFileTest_fileExists() {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
-        HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
-        FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
+        FinancialReport financialReport = new FinancialReport(statements);
         String filePath = "rainyDay.txt";
         UserData userData = new UserData(financialReport);
         Storage.writeToFile(userData, filePath);
@@ -33,8 +32,7 @@ public class StorageTest {
     @Test
     public void writeToFileTest_contentMatch() throws IOException, RainyDayException {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
-        HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
-        FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
+        FinancialReport financialReport = new FinancialReport(statements);
         financialReport.setReportOwner("bob");
         financialReport.addStatement(
                 new FinancialStatement("noodles", "in", 5, "Default", LocalDate.now()));

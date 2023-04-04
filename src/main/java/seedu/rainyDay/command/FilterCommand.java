@@ -10,6 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import static seedu.rainyDay.RainyDay.userData;
+
 //@@author ChongQiRong
 
 /**
@@ -18,7 +20,6 @@ import java.util.logging.Logger;
 public class FilterCommand extends Command {
     private static final Logger logger = Logger.getLogger(FilterCommand.class.getName());
     private final ArrayList<String> filterFlagAndField;
-
     public FilterCommand(ArrayList<String> filterFlagAndField) {
         this.filterFlagAndField = filterFlagAndField;
     }

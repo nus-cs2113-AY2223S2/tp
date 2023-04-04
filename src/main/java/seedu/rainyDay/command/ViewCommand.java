@@ -10,6 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import static seedu.rainyDay.RainyDay.userData;
+
 //@@author BenjaminPoh
 
 /**
@@ -18,7 +20,6 @@ import java.util.logging.Logger;
 public class ViewCommand extends Command {
 
     private static final Logger logger = Logger.getLogger(ViewCommand.class.getName());
-
     private final LocalDate lowerLimit;
     private final LocalDate upperLimit;
     private final boolean sortingRequired;
@@ -57,6 +58,8 @@ public class ViewCommand extends Command {
      */
     private ArrayList<Integer> filterIndexes() {
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
+        int x = userData.getStatementCount();
+        System.out.println(x);
         for (int index = 0; index < userData.getStatementCount(); index++) {
             FinancialStatement currentStatement = userData.getStatement(index);
             LocalDate statementDate = currentStatement.getDate();

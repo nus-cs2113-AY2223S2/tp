@@ -1,5 +1,6 @@
 package seedu.rainyDay.command;
 
+import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.modules.Storage;
 
 import java.io.IOException;
@@ -33,8 +34,9 @@ public class ExportCommand extends Command {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ExportCommand.execute()");
-
+        UserData userData = allData.getUserData();
         String output;
+
         if (userData.getStatementCount() == 0) {
             logger.log(Level.INFO, "empty financial report, export aborted.");
             output = EMPTY_STATEMENT;
