@@ -1,15 +1,16 @@
 package seedu.apollo.ui;
 
 import seedu.apollo.command.WeekCommand;
+import seedu.apollo.command.module.AddModuleCommand;
+import seedu.apollo.command.module.DeleteModuleCommand;
+import seedu.apollo.command.module.ListModuleCommand;
+import seedu.apollo.command.module.ListModuleWithLessonCommand;
 import seedu.apollo.command.module.ShowModuleCommand;
 import seedu.apollo.command.task.AddCommand;
-import seedu.apollo.command.module.AddModuleCommand;
 import seedu.apollo.command.Command;
 import seedu.apollo.command.task.DateCommand;
-import seedu.apollo.command.module.DeleteModuleCommand;
 import seedu.apollo.command.task.FindCommand;
 import seedu.apollo.command.task.ListCommand;
-import seedu.apollo.command.module.ListModuleCommand;
 import seedu.apollo.command.task.ModifyCommand;
 import seedu.apollo.command.utils.specifichelpcommand.AddModHelpCommand;
 import seedu.apollo.command.utils.specifichelpcommand.DateHelpCommand;
@@ -143,10 +144,10 @@ public class Parser {
             return new ShowModuleCommand(split[1], moduleData);
 
         case COMMAND_LIST_MODULE_WORD:
-            if (!isOneWord(split)) {
-                throw new IllegalCommandException();
+            if (isOneWord(split)) {
+                return new ListModuleCommand();
             }
-            return new ListModuleCommand();
+            return new ListModuleWithLessonCommand(split[1], moduleData);
 
         case COMMAND_EXIT_WORD:
             if (!isOneWord(split)) {
