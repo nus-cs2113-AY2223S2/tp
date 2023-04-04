@@ -56,13 +56,13 @@ public class PetList {
     /**
      * Retrieves a pet in the PetList to add a stat to
      *
-     * @param petName Name of pet to edit
-     * @param statName Name of stat to add
+     * @param petName   Name of pet to edit
+     * @param statName  Name of stat to add
      * @param statValue New stat Value
-     * @throws NumberFormatException When stat is Age/Weight and is not a number
+     * @throws NumberFormatException       When stat is Age/Weight and is not a number
      * @throws NonPositiveIntegerException When stat is Age/Weight and is non-positive
-     * @throws InvalidStatException When stat is not Type/Age/Weight
-     * @throws PetNotFoundException When Pet is not in PetList
+     * @throws InvalidStatException        When stat is not Type/Age/Weight
+     * @throws PetNotFoundException        When Pet is not in PetList
      */
     public static void addStat(String petName, String statName, String statValue)
             throws NumberFormatException, NonPositiveIntegerException, InvalidStatException, PetNotFoundException {
@@ -77,7 +77,7 @@ public class PetList {
     /**
      * Retrieves a pet in the PetList and remove a stat
      *
-     * @param petName Name of pet to remove from
+     * @param petName  Name of pet to remove from
      * @param statName Name of stat to remove
      * @throws InvalidStatException When the stat does not exist
      * @throws PetNotFoundException When Pet is not in PetList
@@ -128,13 +128,13 @@ public class PetList {
     /**
      * Edit pet stats of a pet in the PetList to change the previous value to a new value
      *
-     * @param petName Name of pet to edit
-     * @param stat Name of stat to edit
+     * @param petName  Name of pet to edit
+     * @param stat     Name of stat to edit
      * @param newValue New stat Value
      * @throws NonPositiveIntegerException When stat is Age/Weight and is non-positive
-     * @throws NumberFormatException When stat is Age/Weight and is not a number
-     * @throws InvalidStatException When stat is not Type/Age/Weight
-     * @throws PetNotFoundException When Pet is not in PetList
+     * @throws NumberFormatException       When stat is Age/Weight and is not a number
+     * @throws InvalidStatException        When stat is not Type/Age/Weight
+     * @throws PetNotFoundException        When Pet is not in PetList
      */
     public static void editPetStats(String petName, String stat, String newValue)
             throws NonPositiveIntegerException, NumberFormatException, InvalidStatException, PetNotFoundException {
@@ -163,9 +163,9 @@ public class PetList {
 
     /**
      * Saves the current PetList to the output file
-     * 
+     *
      * @param storage Storage to save file to
-     * @param ui Ui for any prints
+     * @param ui      Ui for any prints
      */
     public static void savePetsToStorage(Storage storage, Ui ui) {
         storage.savePets(petList, ui);

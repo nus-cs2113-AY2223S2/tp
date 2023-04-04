@@ -26,11 +26,11 @@ public class Pet {
     /**
      * Add Stat to a pet
      *
-     * @param statName Stat Name to add
+     * @param statName  Stat Name to add
      * @param statValue Stat Value to add
      * @throws NonPositiveIntegerException When stat is Age/Weight and is non-positive
-     * @throws NumberFormatException When stat is Age/Weight and is not a number
-     * @throws InvalidStatException When stat is not Type/Age/Weight
+     * @throws NumberFormatException       When stat is Age/Weight and is not a number
+     * @throws InvalidStatException        When stat is not Type/Age/Weight
      */
     public void addStat(String statName, String statValue) throws NonPositiveIntegerException,
             NumberFormatException, InvalidStatException {
@@ -107,7 +107,7 @@ public class Pet {
      *
      * @param age String of age to set to
      * @throws NonPositiveIntegerException When stat is non-positive
-     * @throws NumberFormatException When stat is not a number
+     * @throws NumberFormatException       When stat is not a number
      */
     public void setAge(String age) throws NonPositiveIntegerException, NumberFormatException {
         int ageInt = Integer.parseInt(age);
@@ -126,7 +126,7 @@ public class Pet {
      *
      * @param weight String of weight to set to
      * @throws NonPositiveIntegerException When stat is non-positive
-     * @throws NumberFormatException When stat is not a number
+     * @throws NumberFormatException       When stat is not a number
      */
     public void setWeight(String weight) throws NonPositiveIntegerException, NumberFormatException {
         int weightInt = Integer.parseInt(weight);

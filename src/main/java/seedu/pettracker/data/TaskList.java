@@ -65,7 +65,7 @@ public class TaskList {
 
             if (taskList.get(i).deadline != null) {
                 System.out.println(" (Deadline: " + taskList.get(i).deadline + ")");
-            } else { 
+            } else {
                 System.out.println();
             }
         }
@@ -78,7 +78,8 @@ public class TaskList {
         System.out.println("Here are your tasks due today:");
         boolean isDueSoon = false;
         for (int i = 0; i < numberOfTasks; i++) {
-            if (taskList.get(i).deadline != null && taskList.get(i).deadline.equals(LocalDate.now())) {
+            LocalDate taskDeadline = taskList.get(i).deadline;
+            if (taskDeadline != null && taskDeadline.equals(LocalDate.now())) {
                 System.out.println(taskList.get(i).getStatusIcon() + " " + taskList.get(i).description);
                 isDueSoon = true;
             }
@@ -90,7 +91,6 @@ public class TaskList {
 
     /**
      * Print a schedule sorted by deadline
-     * 
      */
     public static void printSchedule() {
         Comparator<Task> deadlineComparator = (task1, task2) -> task1.deadline
@@ -123,6 +123,12 @@ public class TaskList {
         logger.log(Level.INFO, "Task marked as " + isDone + " : " + taskNumber);
     }
 
+    /**
+     * Saves the current TaskList to the output file
+     *
+     * @param storage Storage to save file to
+     * @param ui      Ui for any prints
+     */
     public static void saveTasksToStorage(Storage storage, Ui ui) {
         storage.saveTasks(taskList, ui);
     }
