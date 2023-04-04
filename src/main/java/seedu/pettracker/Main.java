@@ -6,16 +6,12 @@ import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
 
-import java.util.logging.Logger;
-import java.util.logging.Level;
-
 /**
  * Entry point for the Pet Tracker Application
  * Initializes required classes of the application and begins
  */
 
 public class Main {
-    private static final Logger logger = Logger.getLogger("MainLogger");
     private final Ui ui;
     private final CommandParser commandParser;
 
@@ -61,7 +57,6 @@ public class Main {
             command.execute(ui, storage);
             isExit = command.isExit();
         }
-        logger.log(Level.INFO, "End of processing commands");
     }
 
     public static void main(String[] args) {
