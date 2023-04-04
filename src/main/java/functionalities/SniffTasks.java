@@ -20,10 +20,6 @@ public class SniffTasks {
     private static final HashSet<String> UIDS = new HashSet<>();
     private static int appointmentCount = 0;
 
-    public static void setAppointmentCount(int count) {
-        appointmentCount = count;
-    }
-
     public static void addAppointmentUID(String UID) {
         UIDS.add(UID);
     }
@@ -32,12 +28,8 @@ public class SniffTasks {
         APPOINTMENTS.add(appointment);
     }
 
-    public static int getAppointmentCount() {
-        return appointmentCount;
-    }
-
     public static void retrieveTask(FileWriter savedFile) throws IOException {
-        for (int index = 0; index < SniffTasks.getAppointmentCount(); index++) {
+        for (int index = 0; index < SniffTasks.APPOINTMENTS.size(); index++) {
             if (APPOINTMENTS.get(index).getStatus().equals(" ")) {
                 savedFile.write(APPOINTMENTS.get(index).retrieveStorageInfo());
                 savedFile.write(System.getProperty("line.separator"));
