@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.rmi.UnexpectedException;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.time.format.DateTimeFormatter;
@@ -35,10 +36,10 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import static seedu.apollo.calendar.SemesterUtils.getWeekNumber;
 import static seedu.apollo.ui.Parser.COMMAND_DEADLINE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_EVENT_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
-import static seedu.apollo.utils.DayTypeUtil.determineDay;
 
 
 /**
@@ -210,8 +211,9 @@ public class AddCommand extends Command implements LoggerInterface {
     private void warnDeadlineClash(Ui ui, TaskList taskList, Calendar calendar, LocalDateTime by) {
         TaskList clashTasks = taskList.getTasksOnDate(by.toLocalDate());
         DayOfWeek day = by.getDayOfWeek();
-        int dayNum = determineDay(day);
-        ArrayList<CalendarModule> clashLessons = calendar.get(dayNum);
+        int dayNum = day.getValue() - 1;
+        int week = getWeekNumber(by.toLocalDate());
+        ArrayList<CalendarModule> clashLessons = calendar.getModulesForDay(week, dayNum);
         taskList.sortTaskByDay(clashTasks);
         ui.printClashingDeadlineMessage(clashTasks, clashLessons);
     }
@@ -253,7 +255,7 @@ public class AddCommand extends Command implements LoggerInterface {
 
         do {
             DayOfWeek currentDayOfWeek = currentDay.getDayOfWeek();
-            int currentDayIndex = determineDay(currentDayOfWeek);
+            int currentDayIndex = currentDayOfWeek.getValue() - 1;
             String currentDayString = currentDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             if (isClashingEventModule(calendar.get(currentDayIndex), eventStart, eventEnd, currentDayString)) {
                 ui.printClashingEventModuleMessage();
@@ -276,15 +278,27 @@ public class AddCommand extends Command implements LoggerInterface {
     private boolean isClashingEventModule(ArrayList<CalendarModule> calendarModule, LocalDateTime eventStart,
                                           LocalDateTime eventEnd, String currentDate) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        DateTimeFormatter formatterFull = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        DateTimeFormatter formatterPartial = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (CalendarModule module : calendarModule) {
             if (module.getSchedule() == null) {
                 continue;
             }
+
+            LocalDate date = LocalDate.parse(currentDate, formatterPartial);
+
+            int currentWeek = getWeekNumber(date);
+
+            ArrayList<Integer> weeks = module.getSchedule().getWeeks();
+
+            if (!weeks.contains(currentWeek)) {
+                continue;
+            }
+
             String moduleStartString = currentDate + " " + module.getSchedule().getStartTime();
             String moduleEndString = currentDate + " " + module.getSchedule().getEndTime();
-            LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatter);
-            LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatter);
+            LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatterFull);
+            LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatterFull);
 
             if (isEventLessonClashing(eventStart, eventEnd, lessonStart, lessonEnd) &&
                     isDuringSemester(eventStart,eventEnd)) {
