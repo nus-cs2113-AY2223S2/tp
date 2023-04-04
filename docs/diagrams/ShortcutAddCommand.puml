@@ -11,26 +11,17 @@ activate ShortcutAddCommand
 ShortcutAddCommand -> shortcutCommands : containsKey(key)
 activate shortcutCommands
 shortcutCommands --> ShortcutAddCommand
-
 deactivate shortcutCommands
-
 ShortcutAddCommand --> ShortcutAddCommand
 deactivate ShortcutAddCommand
 
-
-
 opt valid shortcut
-
-
 ShortcutAddCommand -> shortcutCommands : puts(key, value)
 activate shortcutCommands
 shortcutCommands --> ShortcutAddCommand
-
 deactivate shortcutCommands
-
 end
+
 [<--ShortcutAddCommand
 deactivate ShortcutAddCommand
-
-
 @enduml

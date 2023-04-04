@@ -58,7 +58,6 @@ Class ShortcutDeleteCommand{
 }
 Class ShortcutViewCommand
 
-
 Command <|-- AddCommand
 Command <|-- DeleteCommand
 Command <|-- EditCommand
@@ -76,5 +75,4 @@ ShortcutCommand <|-- ShortcutDeleteCommand
 ViewCommand ..> ViewResult
 FilterCommand ..> ViewResult
 }
-
 @enduml
