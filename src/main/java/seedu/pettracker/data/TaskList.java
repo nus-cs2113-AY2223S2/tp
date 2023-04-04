@@ -5,13 +5,10 @@ import seedu.pettracker.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import java.util.Comparator;
 import java.util.Collections;
 
 public class TaskList {
-    private static final Logger logger = Logger.getLogger("TaskListLogger");
     private static final ArrayList<Task> taskList = new ArrayList<>();
     private static int numberOfTasks;
 
@@ -27,14 +24,12 @@ public class TaskList {
 
     public static void addTask(String todoDescription, LocalDate time) {
         Task newTask = new Task(todoDescription, time);
-        logger.log(Level.INFO, "New task added with deadline: " + todoDescription);
         taskList.add(newTask);
         numberOfTasks += 1;
     }
 
     public static void addTask(String todoDescription) {
         Task newTask = new Task(todoDescription, null);
-        logger.log(Level.INFO, "New task added: " + todoDescription);
         taskList.add(newTask);
         numberOfTasks += 1;
     }
@@ -52,7 +47,6 @@ public class TaskList {
      */
     public static void removeTask(int taskNumber) {
         taskList.remove(taskNumber - 1);
-        logger.log(Level.INFO, "Task removed: " + taskNumber);
         numberOfTasks -= 1;
     }
 
@@ -120,7 +114,6 @@ public class TaskList {
      */
     public static void markTask(int taskNumber, boolean isDone) {
         taskList.get(taskNumber - 1).isDone = isDone;
-        logger.log(Level.INFO, "Task marked as " + isDone + " : " + taskNumber);
     }
 
     /**
