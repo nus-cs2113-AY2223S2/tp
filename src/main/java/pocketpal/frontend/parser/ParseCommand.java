@@ -24,17 +24,29 @@ public abstract class ParseCommand {
             System.out.println("grp 3: " + matcher.group(3));
             String option = matcher.group(ParserConstants.OPTION_GROUP);
             detail = matcher.group(ParserConstants.DETAIL_GROUP);
-            if ((detail == null || detail.isEmpty()) && option != null) { //option specified with 0 arguments
+            if (detail != null) {
+                detail = detail.trim();
+            }
+            if ((detail == null || detail.isEmpty()) && (option != null)) { //option specified with 0 arguments
                 throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_OPTION_ARG + option);
             }
-        }
-        if (detail != null) {
-            detail = detail.trim();
         }
         return detail;
     }
 
+    public String extractId(String input, Pattern pattern) {
+        String id = null;
+        Matcher matcher = pattern.matcher(input);
+        if (matcher.find()) {
+            id = matcher.group(1).trim();
+        }
+        return id;
+    }
+
     public void checkIdValidity(String id) throws InvalidArgumentsException {
+        if (id == null) {
+            return;
+        }
         try {
             Integer.parseInt(id);
         } catch (NumberFormatException e) {
