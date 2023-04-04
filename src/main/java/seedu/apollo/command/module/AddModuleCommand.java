@@ -309,7 +309,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
     }
 
     /**
-     * Checks if the two lessons occur is in the same week.
+     * Checks if the two lessons occur in the same week.
      *
      * @param timetable1 The timetable to be checked.
      * @param timetable2 The timetable to be checked against.
