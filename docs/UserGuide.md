@@ -377,7 +377,7 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 
 Sorts the expenditure list by ascending or descending amount, or from earliest to latest date added. It will then display the sorted expenditure list.
 
-**Format:** `viewtype DATE`
+**Format:** `viewdate DATE`
 
 | Parameter     | Description                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|

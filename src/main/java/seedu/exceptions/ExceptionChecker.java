@@ -13,16 +13,26 @@ public class ExceptionChecker {
         }
     }
 
-    public static void checkPositiveAmount(double amountVal) throws NotPositiveValueException {
+    public static void checkValidAmount(double amountVal) throws NotPositiveValueException, SmallAmountException {
         if (amountVal <= 0) {
             throw new NotPositiveValueException();
+        } else if (amountVal < 0.01) {
+            throw new SmallAmountException();
+        }
+    }
+
+    public static void checkValidDoubleInput(String amountVal) throws InvalidCharacterInAmount {
+        String lowerCaseAmountVal = amountVal.toLowerCase();
+        boolean containsSpecialCharacter = (lowerCaseAmountVal.contains("f") || lowerCaseAmountVal.contains("d"));
+        if (containsSpecialCharacter) {
+            throw new InvalidCharacterInAmount();
         }
     }
 
     public static void checkDate(LocalDate startDate, LocalDate endDate)
             throws InvalidDateException, InvalidDeadlineException {
         LocalDate currentDate = LocalDate.now();
-        if (startDate.compareTo(endDate) > 0) {
+        if (startDate.isAfter(endDate)) {
             throw new InvalidDateException();
         }
         if (endDate.isBefore(currentDate)) {
