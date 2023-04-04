@@ -1,8 +1,10 @@
 package seedu.duke.data.exercisegenerator.exersisedata;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import seedu.duke.commons.exceptions.DukeError;
 
 public class ExerciseData {
     @SerializedName("id")
@@ -41,7 +43,7 @@ public class ExerciseData {
     }
 
     //added setId for junit test.
-    public void setId(String id) {
+    public void setId (String id) {
         this.id = id;
     }
 
@@ -115,6 +117,19 @@ public class ExerciseData {
 
     public void setCategory (String category) {
         this.category = category;
+    }
+
+    public boolean checkExerciseNullity () throws DukeError {
+        for (Field f : getClass().getDeclaredFields()) {
+            try {
+                if (f.get(this) == null) {
+                    return false;
+                }
+            } catch (Exception e) {
+                throw new DukeError("Illegal access");
+            }
+        }
+        return true;
     }
 
 }

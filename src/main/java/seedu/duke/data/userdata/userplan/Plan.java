@@ -1,6 +1,8 @@
 package seedu.duke.data.userdata.userplan;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import seedu.duke.commons.exceptions.DukeError;
 
 //@@author Khulon
 public class Plan {
@@ -36,6 +38,18 @@ public class Plan {
      */
     public ArrayList<String> getExercisePlans () {
         return this.exercisePlans;
+    }
+
+    public void checkDayPlanNullity () throws DukeError {
+        for (Field f : getClass().getDeclaredFields()) {
+            try {
+                if (f.get(this) == null) {
+                    throw new DukeError("Null element in day plan");
+                }
+            } catch (Exception e) {
+                throw new DukeError("Illegal access");
+            }
+        }
     }
 
 }

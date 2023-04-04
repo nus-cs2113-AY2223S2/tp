@@ -10,6 +10,7 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.userplan.Plan;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.ui.ErrorMessages;
+//@author EangJS
 
 /**
  * Class to read and parse the json file containing {@code userPlans} into an ArrayList of completed workouts.
@@ -32,16 +33,18 @@ public class JsonUserPlansLoader {
      */
     public UserPlan loadPlanFromJson (String plansFilePath) throws DukeError {
         UserPlan userPlan = new UserPlan();
-        try {
-            Reader reader = new FileReader(plansFilePath);
+        try (Reader reader = new FileReader(plansFilePath)) {
             JsonElement jsonTree = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("UserPlans");
             for (int i = 0; i < jsonArray.size(); i++) {
                 JsonElement jsonWeekElements = jsonArray.get(i);
                 JsonArray jsonDayPlans = jsonWeekElements.getAsJsonArray();
                 for (JsonElement element : jsonDayPlans) {
-                    userPlan.addDayPlan(gson.fromJson(element, Plan.class), i);
+                    Plan planFromFile = gson.fromJson(element, Plan.class);
+                    planFromFile.checkDayPlanNullity();
+                    userPlan.addDayPlan(planFromFile, i);
                 }
+                userPlan.checkPlansNullity();
             }
             return userPlan;
         } catch (Exception e) {

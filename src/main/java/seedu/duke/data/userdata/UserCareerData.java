@@ -52,19 +52,22 @@ public class UserCareerData {
 
     //@@author ChubbsBunns
     public void printAllFinishedWorkoutSessions () {
-        PrintExercises exercisePrinter = new PrintExercises();
-        for (int i = 0; i < totalUserCareerSessions.size(); i++) {
-            System.out.println("Session " + (i + 1));
-            String dateTime = totalUserCareerSessions.get(i).getDateAdded().toString();
-            String[] dateSplit = dateTime.split("T", 2);
-            assert dateSplit.length == 2;
-            System.out.println("On this date: " + dateSplit[0]);
-            exercisePrinter.printExercise(totalUserCareerSessions.get(i).getSessionExercises());
-            if (i != totalUserCareerSessions.size() - 1) {
-                System.out.println("\n ");
+        if (totalUserCareerSessions.isEmpty()) {
+            System.out.println("You have not completed any exercises ☹");
+            System.out.println("Add on to this list by completing a workout session!");
+        } else {
+            PrintExercises exercisePrinter = new PrintExercises();
+            for (int i = 0; i < totalUserCareerSessions.size(); i++) {
+                System.out.println("Session " + (i + 1));
+                String dateTime = totalUserCareerSessions.get(i).getDateAdded().toString();
+                String[] dateSplit = dateTime.split("T", 2);
+                assert dateSplit.length == 2;
+                System.out.println("On this date: " + dateSplit[0]);
+                exercisePrinter.printExercise(totalUserCareerSessions.get(i).getSessionExercises());
+                if (i != totalUserCareerSessions.size() - 1) {
+                    System.out.println("\n ");
+                }
             }
         }
-
     }
-
 }

@@ -30,5 +30,4 @@ public class PrintExercises {
             System.out.println(getInstructionsFinal + System.lineSeparator());
         }
     }
-
 }

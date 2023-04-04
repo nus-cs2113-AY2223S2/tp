@@ -54,8 +54,13 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         ui.greetUser();
         while (true) {
-            commandHandler.handleUserCommands(in.nextLine(), ui, exerciseGenerator, userCareerData, exerciseHandler,
-                                              storage, planner, achievementListHandler, in);
+            try {
+                String rawInput = in.nextLine();
+                commandHandler.handleUserCommands(rawInput, ui, exerciseGenerator, userCareerData, exerciseHandler,
+                                                  storage, planner, achievementListHandler, in);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
