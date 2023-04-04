@@ -68,7 +68,7 @@ public class EventCommand implements Command {
      * @param userInput The user input.
      * @return True if the user input is valid.
      */
-    private boolean isChooseCategorySuccessful(String userInput) {
+    private boolean isAddEventSuccessful(String userInput) {
         try {
             if (time == "") {
                 addEventToCategory(userInput, new Event(eventName, expense));
@@ -89,7 +89,7 @@ public class EventCommand implements Command {
         System.out.println(SELECTING_CATEGORY_MESSAGE);
         String userInput;
         userInput = Moneymind.in.nextLine();
-        while (!isChooseCategorySuccessful(userInput)) {
+        while (!isAddEventSuccessful(userInput)) {
             System.out.println(GO_BACK_MESSAGE);
             userInput = Moneymind.in.nextLine();
             if (userInput.equals(BACK)) {
