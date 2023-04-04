@@ -12,7 +12,7 @@ public class AddIncomeCommand extends Command {
             "|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>\n" +
             "|  Valid categories are: FOOD, SHOPPING, GROCERIES, " +
             "TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS\n" +
-            "|  Example: " + COMMAND_WORD + " a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY";
+            "|  Example: " + COMMAND_WORD + " a/ 3000 d/ salary t/ 2023 03 10 10 10 c/ SALARY";
     private final Income income;
 
     public AddIncomeCommand(double amount, String info, LocalDateTime time, Category category) {
