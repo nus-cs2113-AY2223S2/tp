@@ -244,8 +244,8 @@ public class Storage implements LoggerInterface {
         int counter = 0;
         while (s.hasNext()) {
             try {
-                newTaskList.add(newTask(s.nextLine()));
                 counter++;
+                newTaskList.add(newTask(s.nextLine()));
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
                 logger.log(Level.INFO, "Error in reading data from file");
@@ -358,12 +358,23 @@ public class Storage implements LoggerInterface {
         }
     }
 
-    private static char getType(String text) {
-        return text.charAt(TYPE_POS);
+    private static char getType(String text) throws InvalidSaveFile {
+        char type = text.charAt(TYPE_POS);
+        if (type != TXT_TODO_WORD & type != TXT_DEADLINE_WORD & type != TXT_EVENT_WORD) {
+            throw new InvalidSaveFile();
+        }
+        return type;
     }
 
-    private static Boolean isStatusDone(String text) {
-        return text.charAt(STATUS_POS) == 'X';
+    private static Boolean isStatusDone(String text) throws InvalidSaveFile {
+        char status = text.charAt(STATUS_POS);
+        if (status == 'X') {
+            return true;
+        } else if (status == ' ') {
+            return false;
+        } else {
+            throw new InvalidSaveFile();
+        }
     }
 
     private static String getParam(String text) {

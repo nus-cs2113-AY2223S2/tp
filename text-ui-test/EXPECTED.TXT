@@ -7,50 +7,8 @@ Hello from
 | | | | |  __/  | |_| | | |___  | |___  | |_| |
 |_| |_| |_|     \_____/ |_____| |_____| \_____/
 
+Your personal task and timetable manager!
 Enter "help" to see a list of commands.
-____________________________________________________________
-____________________________________________________________
-Task Commands:
-- Enter "list" to see all tasks
-- Enter "todo [task]" to add a task
-- Enter "deadline [task] /by [date]" to add a deadline
-- Enter "event [task] /from [date] /to [date]" to add an event
-- Enter "mark [idx]" to mark task as done
-- Enter "unmark [idx]" to mark task as not done
-- Enter "delete [idx]" to remove task from list
-- Enter "find [keyword]" to see all tasks containing [keyword]
-- Enter "date [yyyy-MM-dd]" to see all tasks occurring on that date
-
-Module Commands:
-- Enter "listmod" to see your module list
-- Enter "addmod [MODULE_CODE]" to add a Module to the Module list
-- Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
-- Enter "showmod [MODULE_CODE]" to see more information about the module
-- Enter "showmod [MODULE_CODE] -[FLAG]" to see schedule of specific lesson type for a module
-- Enter "delmod [MODULE_CODE / IDX]" to remove a Module you previously added
-- Enter "delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a task to a lesson
-
-Common Commands:
-- Enter "week" to see your schedule for the week
-- Enter "bye" to exit the program
-
-***NOTE***
-Please enter all [date]s in the format: "yyyy-MM-ddThh:mm"
-eg. "2023-10-30T23:59" represents Oct 20 2023, 11:59PM
-
-There are -FLAGS for the various lessons options per module:
--lec			LECTURE
--plec			PACKAGED LECTURE
--st 			SECTIONAL TEACHING
--dlec			DESIGN LECTURE
--tut			TUTORIAL
--ptut			PACKAGED TUTORIAL
--rcit			RECITATION
--lab			LABORATORY
--ws 			WORKSHOP
--smc			SEMINAR STYLE MODULE CLASS
--mp 			MINI PROJECT
--tt2			TUTORIAL TYPE 2
 ____________________________________________________________
 ____________________________________________________________
 There are no tasks in your list!
@@ -66,7 +24,7 @@ ____________________________________________________________
 Oops! The description of a task cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
-Please enter deadline as "deadline [task] /by [date]".
+Please enter deadline as "deadline [task] -by [date]".
 ____________________________________________________________
 ____________________________________________________________
 Please enter [date]s in the format of yyyy-MM-ddThh:mm.
@@ -83,7 +41,7 @@ ____________________________________________________________
 Oops! The description of a task cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
-Please enter event as "event [task] /from [date] /to [date]".
+Please enter event as "event [task] -from [date] -to [date]".
 ____________________________________________________________
 ____________________________________________________________
 Oops, the start date for your event occurs after the end date!
@@ -313,6 +271,7 @@ Adding lesson type: LECTURE for Module: ST2334
 Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
+This event clashes with a lesson in your timetable!
 Got it. I've added this event:
   [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
 ____________________________________________________________

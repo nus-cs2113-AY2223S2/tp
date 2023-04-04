@@ -251,22 +251,17 @@ public class AddCommand extends Command implements LoggerInterface {
         LocalDateTime eventEnd = event.getToDate();
         LocalDateTime currentDay = eventStart;
 
-        DayOfWeek startDay = eventStart.getDayOfWeek();
-        DayOfWeek endDay = eventEnd.getDayOfWeek();
-
-        int startIndex = determineDay(startDay);
-        int endIndex = determineDay(endDay);
-
-        int index = startIndex;
         do {
+            DayOfWeek currentDayOfWeek = currentDay.getDayOfWeek();
+            int currentDayIndex = determineDay(currentDayOfWeek);
             String currentDayString = currentDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            if (isClashingEventModule(calendar.get(index), eventStart, eventEnd, currentDayString)) {
+            if (isClashingEventModule(calendar.get(currentDayIndex), eventStart, eventEnd, currentDayString)) {
                 ui.printClashingEventModuleMessage();
                 return;
             }
-            index = (index + 1) % 7;
+
             currentDay = currentDay.plusDays(1);
-        } while (index != endIndex);
+        } while (!currentDay.isAfter(eventEnd));
     }
 
     /**
