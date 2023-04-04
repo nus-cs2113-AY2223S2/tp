@@ -30,12 +30,21 @@ public class CommandCategory extends Command {
         }
     }
 
+    /**
+     * To deal with case sensitivity problem, all categories will be stored in this Set in lower case
+     */
     public CommandCategory(ArrayList<Expense> expenseList, String category) {
         super(COMMAND_NAME);
         this.expenseList = expenseList;
-        this.category = category;
+        // If user doesn't enter any category, it will return all expenses with uncategorized by default
+        if (category.equals("")) {
+            this. category = "uncategorized";
+        } else {
+            this.category = category.toLowerCase();
+        }
+
         for (Expense e : expenseList) {
-            String categoryOfe = e.getDescription();
+            String categoryOfe = e.getDescription().toLowerCase();
             if (!categorySet.contains(categoryOfe)) {
                 categorySet.add(categoryOfe);
             }
@@ -46,6 +55,7 @@ public class CommandCategory extends Command {
      * Execution of to classify the expenses based on all categories.
      * It will display all the categories within it.
      * It will also display all the expenses with the specified category.
+     * If no category found, it will also tell the user the categories they stored in the system.
      *
      * @return printing the list of command
      */
@@ -56,6 +66,7 @@ public class CommandCategory extends Command {
             System.out.println(MESSAGE_DIVIDER);
         } else if (!categorySet.contains(category)) {
             System.out.println("Sorry, none of your previous expenses corresponds to this category.");
+            displayAllCategories();
             System.out.println(MESSAGE_DIVIDER);
         } else {
             displayAllCategories();

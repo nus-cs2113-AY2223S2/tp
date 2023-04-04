@@ -126,6 +126,34 @@ public class CommandFindTest {
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
 
+
+        // Check whether case sensitivity problem is solved
+        // And won't get the expense with currency equals to SGD
+        input = "uSd";
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        expected = MESSAGE_DIVIDER_FIND + "\n"
+                + "1.USD2.50 cat:food date:02/02/2012\n"
+                + "2.USD2.50 cat:eat date:02/02/2013\n"
+                + "3.USD2.50 cat:food date:02/02/2013\n"
+                + MESSAGE_DIVIDER + "\n";
+        new CommandFind(expenseList.getExpenseList(), input).execute();
+        actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
+        assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
+
+        input = "FOOD";
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        expected = MESSAGE_DIVIDER_FIND + "\n"
+                + "1.SGD2.50 cat:food date:02/02/2012\n"
+                + "2.USD2.50 cat:food date:02/02/2012\n"
+                + "3.USD2.50 cat:food date:02/02/2013\n"
+                + MESSAGE_DIVIDER + "\n";
+        new CommandFind(expenseList.getExpenseList(), input).execute();
+        actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
+        assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
+
+
         expenseList.clear();
     }
 
