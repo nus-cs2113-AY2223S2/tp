@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
@@ -14,18 +15,19 @@ public class LogMaster {
     private static FileHandler fileHandler;
 
     public static Logger getLogger (String name) {
+        LogManager.getLogManager().reset(); //remove this line to enable logger
         Logger logger = Logger.getLogger(name);
         logger.setUseParentHandlers(false);
         removeHandlers(logger);
         if (consoleHandler == null) {
             consoleHandler = createConsoleHandler();
         }
-        logger.addHandler(consoleHandler);
+        //logger.addHandler(consoleHandler);
         try {
             if (fileHandler == null) {
                 fileHandler = createFileHandler();
             }
-            logger.addHandler(fileHandler);
+            //logger.addHandler(fileHandler);
         } catch (IOException e) {
             logger.warning("Unable to create file handler for logger");
         }
