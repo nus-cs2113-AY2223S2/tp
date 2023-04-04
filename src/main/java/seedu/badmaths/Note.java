@@ -15,6 +15,9 @@ public class Note {
         this.priority = priority;
     }
 
+    public Note() {
+    }
+
     // getters and setters
     public String getText() {
         return text;
