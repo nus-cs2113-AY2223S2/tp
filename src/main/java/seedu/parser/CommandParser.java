@@ -42,7 +42,7 @@ public class CommandParser {
             command = new ListCommand(commandWord, userInput);
             break;
         case "filter":
-            command = new FilterCaloriesCommand();
+            command = new FilterCaloriesCommand(commandWord, userInput);
             break;
         case "nutrition":
             command = new NutritionCommand();
