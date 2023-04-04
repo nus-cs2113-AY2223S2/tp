@@ -45,7 +45,7 @@ public class FindTest {
     @Test
     public void testResultC() throws Exception {
         recipeList.searchRecipeList("  ");
-        String s = "View is missing KEYWORDS!";
+        String s = "Find is missing KEYWORDS!";
         assertEquals(s,output.toString().trim());
     }
 
