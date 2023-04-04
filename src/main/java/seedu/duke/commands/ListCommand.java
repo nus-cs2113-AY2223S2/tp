@@ -17,13 +17,19 @@ public class ListCommand extends Command {
     private void listItems() {
         if (!itemInventory.isEmpty()) {
             Ui.printSuccessList();
-            String table = Ui.printTable(itemInventory);
-            System.out.println(table);
-            System.out.println(Ui.LINE);
+            printList();
+            Ui.printLine();
         } else {
             Ui.printEmptyList();
         }
     }
+
+    private void printList() {
+        String table = Ui.printTable(itemInventory);
+        System.out.println(table);
+
+    }
+
 
     /**
      * Executes the list command.
