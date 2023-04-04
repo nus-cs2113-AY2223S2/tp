@@ -70,8 +70,4 @@ public class Ui {
         UILogger.log(Level.INFO, userInput);
         return userInput.trim();
     }
-
-    public void sayFarewellToUser(String username) {
-        System.out.println("Bye " + username);
-    }
 }
