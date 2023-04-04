@@ -120,7 +120,7 @@ public class Storage implements DatabaseInterface {
     public boolean doesModuleExist(Module moduleToAdd) {
         for (Module module : modules) {
             if ((moduleToAdd.getUnivId() == module.getUnivId()) &&
-                    moduleToAdd.getModuleCode().equalsIgnoreCase(module.getModuleCode())) {
+                    moduleToAdd.toString().equalsIgnoreCase(module.toString())) {
                 return true;
             }
         }

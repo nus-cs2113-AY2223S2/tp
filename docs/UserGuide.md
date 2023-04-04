@@ -391,13 +391,13 @@ All Budget Planner commands start with /budget.
 
 Edits the current total budget to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget budget [AMOUNT]`
+Format: `/budget /budget /[AMOUNT]`
 
 - The `AMOUNT` is the user's input budget for his/her SEP trip in SGD.
 - Initial budget is set to 0 when user has not set any budget before.
 
 Example of Usage:
-`/budget budget 2000`
+`/budget /budget /2000`
 
 Expected Outcome:
 
@@ -418,13 +418,13 @@ ____________________________________________________________
 
 Edits the current accommodation planned cost to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget accommodation [AMOUNT]`
+Format: `/budget /accommodation /[AMOUNT]`
 
 - The `AMOUNT` is the user's input accommodation cost for his/her SEP trip in SGD.
 - Initial accommodation cost is set to 0 when user has not set any accommodation cost before.
 
 Example of usage:
-`/budget accommodation 2000`
+`/budget /accommodation /2000`
 
 Expected outcome:
 
@@ -445,13 +445,13 @@ ____________________________________________________________
 
 Edits the current Airplane Ticket planned cost to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget airplane [AMOUNT]`
+Format: `/budget /airplane /[AMOUNT]`
 
 - The `AMOUNT` is the user's input airplane ticket cost for his/her SEP trip in SGD.
 - Initial airplane ticket cost is set to 0 when user has not set any airplane ticket cost before.
 
 Example of usage:
-`/budget airplane 2000`
+`/budget /airplane /2000`
 
 Expected outcome:
 
@@ -472,13 +472,13 @@ ____________________________________________________________
 
 Edits the current Food planned cost to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget food [AMOUNT]`
+Format: `/budget /food /[AMOUNT]`
 
 - The `AMOUNT` is the user's input food cost for his/her SEP trip in SGD.
 - Initial food cost is set to 0 when user has not set any food cost before.
 
 Example of usage:
-`/budget food 2000`
+`/budget /food /2000`
 
 Expected outcome:
 
@@ -499,13 +499,13 @@ ____________________________________________________________
 
 Edits the current Entertainment planned cost to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget entertainment [AMOUNT]`
+Format: `/budget /entertainment /[AMOUNT]`
 
 - The `AMOUNT` is the user's input entertainment cost for his/her SEP trip in SGD.
 - Initial entertainment cost is set to 0 when user has not set any entertainment cost before.
 
 Example of usage:
-`/budget entertainment 2000`
+`/budget /entertainment /2000`
 
 Expected outcome:
 
@@ -526,10 +526,10 @@ ____________________________________________________________
 
 Provides an overview of what the budget consists of.
 
-Format: `/budget view`
+Format: `/budget /view`
 
 Example of usage:
-`/budget view`
+`/budget /view`
 
 Expected outcome:
 

@@ -49,10 +49,10 @@ class BudgetPlannerTest {
 
     @Test
     @Order(4)
-    void setBudget_exceedingAmount_successBudgetCapped() {
+    void setBudget_exceedingAmount_successBudgetNotChanged() {
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         budgetPlanner.setBudget(100000000);
-        assertEquals(BudgetPlanner.MAX_BUDGET, budgetPlanner.getBudget());
+        assertEquals(0, budgetPlanner.getBudget());
         f.delete();
     }
 
@@ -77,10 +77,10 @@ class BudgetPlannerTest {
 
     @Test
     @Order(7)
-    void setAccommodation_exceedingAmount_successBudgetCapped() {
+    void setAccommodation_exceedingAmount_successBudgetNotChanged() {
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         budgetPlanner.setAccommodationTotalCost(100000000);
-        assertEquals(BudgetPlanner.MAX_BUDGET, budgetPlanner.getAccommodationTotalCost());
+        assertEquals(0, budgetPlanner.getAccommodationTotalCost());
         f.delete();
     }
 
@@ -104,10 +104,10 @@ class BudgetPlannerTest {
 
     @Test
     @Order(10)
-    void setAirplaneTicket_exceedingAmount_successBudgetCapped() {
+    void setAirplaneTicket_exceedingAmount_successBudgetNotChanged() {
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         budgetPlanner.setAirplaneTicketTotalCost(100000000);
-        assertEquals(BudgetPlanner.MAX_BUDGET, budgetPlanner.getAirplaneTicketTotalCost());
+        assertEquals(0, budgetPlanner.getAirplaneTicketTotalCost());
         f.delete();
     }
 
@@ -131,10 +131,10 @@ class BudgetPlannerTest {
 
     @Test
     @Order(13)
-    void setFood_exceedingAmount_successBudgetCapped() {
+    void setFood_exceedingAmount_successBudgetNotChanged() {
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         budgetPlanner.setFoodTotalCost(100000000);
-        assertEquals(BudgetPlanner.MAX_BUDGET, budgetPlanner.getFoodTotalCost());
+        assertEquals(0, budgetPlanner.getFoodTotalCost());
         f.delete();
     }
 
@@ -158,10 +158,10 @@ class BudgetPlannerTest {
 
     @Test
     @Order(16)
-    void setEntertainment_exceedingAmount_successBudgetCapped() {
+    void setEntertainment_exceedingAmount_successBudgetNotChanged() {
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         budgetPlanner.setEntertainmentTotalCost(100000000);
-        assertEquals(budgetPlanner.MAX_BUDGET, budgetPlanner.getEntertainmentTotalCost());
+        assertEquals(0, budgetPlanner.getEntertainmentTotalCost());
         f.delete();
     }
 
