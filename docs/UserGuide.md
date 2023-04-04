@@ -473,7 +473,9 @@ session configurations.
 Format: `db`
 
 **Required** Parameters:
-* The `db` command keyword, which should **NOT** contain any further user inputs after typing it. 
+* Only the `db` command keyword is needed. 
+
+!> Note: There should **NOT** contain any further user inputs after typing `db`.
 
 Example of usage: <br />
 `db`: Opens the dashboard.
@@ -512,11 +514,18 @@ ____________________________________________________________
 ### Category: `cat` <a name = "cat"></a>
 Shows list of categories, and/or its items, or a specified category of items.
 
-Format: 
-`cat list`shows list of all categories in the inventory.
-* `cat table`: shows table of all categories and all items in each category.
+Format: <br /> 
+`cat list`: Shows list of all categories in the inventory. <br />
+`cat table`: Shows table of all categories and all items in each category.
 
-Example of Usage & Expected Output:
+**Required** Parameters:
+* The `list` which tells the program to show a list of categories, **OR**
+* The `table` keyword, which tells the program to show a table of all categories and items in each category.
+
+!> Note: There should **NOT** be any additional user inputs after typing `cat list` or `cat table`. `list` and `table`
+should **NOT** be used concurrently.
+
+Sample Outputs:
 ```
 cat list
 ____________________________________________________________
@@ -556,7 +565,7 @@ Successfully added a new alert.
 ____________________________________________________________
 ```
 
-Examples of usage: 
+Sample Outputs: 
 `alert remove upc/1234 level/min`  
 `alert remove upc/1234 level/max`
 
@@ -569,17 +578,20 @@ ____________________________________________________________
 ``` 
 
 ---
-### Change Autosave Mode: `autosave` <a name = "autosave"></a>
+### Change Auto save Mode: `autosave` <a name = "autosave"></a>
 
-Set whether the program should automatically save the updated inventory to the inventory data file after every successful
-write command issued.
-
-Note: if autosave is disabled, the program will not save on exit. This is because autosave off functions similarly to 
-incognito mode on a browser.
+Set whether the program should automatically save the updated inventory to the inventory data file after every 
+successful write command issued.
 
 Format: `autosave [on/off]`
 
-Sample input and expected output:
+**Required** Parameters:
+* The `on` **OR** `off` parameter, whereby it toggles the auto save function **ON** and **OFF** respectively.
+
+!> Note: if auto save is disabled, the program will **NOT** save on exit. This is because auto save `off` functions
+similarly to incognito mode on a browser.
+
+Sample Outputs:
 ```
 autosave on
 ____________________________________________________________
@@ -600,8 +612,11 @@ Exits the MagusStock program.
 
 Format: `exit` or `bye`
 
+!> Note: Do **NOT** type additional parameters after typing `exit` or `bye`. 
+
 Sample output:
 ```
+bye
 ____________________________________________________________
 Hope you had an enjoyable experience. See you next time!
 ____________________________________________________________
