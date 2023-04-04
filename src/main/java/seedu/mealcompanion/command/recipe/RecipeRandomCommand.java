@@ -29,7 +29,7 @@ public class RecipeRandomCommand extends RecipeCommand {
     }
 
     /**
-     * Executes the recipe random command
+     * Get a random number as index and print out the recipe specified by the index.
      *
      * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
      */

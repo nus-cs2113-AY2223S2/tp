@@ -16,10 +16,17 @@ import java.util.List;
 public class RecipeList {
     public ArrayList<Recipe> recipes;
 
+    /**
+     * Constructor for RecipeList class with no recipe initialized.
+     */
     public RecipeList() {
         this.recipes = new ArrayList<>();
     }
 
+    /**
+     * Constructor for RecipeList class with recipes initialized from saved file.
+     * @param file file containing recipes
+     */
     public RecipeList(String file) {
         this.recipes = new ArrayList<>();
         Gson gson = new Gson();
@@ -39,14 +46,27 @@ public class RecipeList {
         }
     }
 
+    /**
+     * Get ArrayList of Recipes
+     * @return ArrayList of Recipes
+     */
     public ArrayList<Recipe> getRecipes() {
         return recipes;
     }
 
+    /**
+     * Add a recipe into RecipeList.
+     * @param recipe the recipe to be added
+     */
     public void add(Recipe recipe) {
         recipes.add(recipe);
     }
 
+    /**
+     * Get a recipe from RecipeList using an index.
+     * @param index the index of the recipe to be retrieved
+     * @return the recipe specified by the index
+     */
     public Recipe getRecipe(int index) {
         return recipes.get(index);
     }
@@ -83,11 +103,19 @@ public class RecipeList {
         }
         throw new MealCompanionException("Recipe not found!");
     }
-    
+
+    /**
+     * Get the number of recipes in RecipeList.
+     * @return the number of recipes
+     */
     public int size() {
         return recipes.size();
     }
 
+    /**
+     * Check if RecipeList contains any recipe.
+     * @return True if RecipeList does not contain any recipe. Else, false.
+     */
     public boolean isEmpty() {
         return recipes.isEmpty();
     }

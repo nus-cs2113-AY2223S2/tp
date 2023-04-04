@@ -53,23 +53,4 @@ public abstract class RecipeCommand extends ExecutableCommand {
         }
         return true;
     }
-
-    /**
-     * List all recipes that can be made using ingredients that are available and do not contain any allergens.
-     *
-     * @param mealCompanionSession the MealCompanionSession containing the list of recipes, ingredients, and allergens
-     */
-    @Override
-    public void execute(MealCompanionSession mealCompanionSession) {
-        IngredientList fridgeIngredients = mealCompanionSession.getIngredients();
-        RecipeList recipes = mealCompanionSession.getRecipes();
-        int index = 1;
-        mealCompanionSession.getUi().printMessage("Here are the recipe(s) that you can make:");
-        for (Recipe recipe : recipes.getRecipes()) {
-            if (canMakeRecipe(recipe, fridgeIngredients, mealCompanionSession.getAllergens())) {
-                mealCompanionSession.getUi().printMessage(index + ". " + recipe.getName());
-                index++;
-            }
-        }
-    }
 }
