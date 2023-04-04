@@ -72,9 +72,9 @@ Displays all tasks currently stored in the application.
 
 ```
 Here are the tasks in your list:
-	 1.	 [T][ ] todo (No priority established.)
-	 2.	 [D][ ] deadline (by: 2023-03-25 2359) (No priority established.)
-	 3.	 [E][ ] event (from: 2023-03-25 1200 to: 2023-03-26 2359) (No priority established.)
+	 1.	 [T][ ] todo (Low priority.)
+	 2.	 [D][ ] deadline (by: 2023-03-25 2359) (Low priority.)
+	 3.	 [E][ ] event (from: 2023-03-25 1200 to: 2023-03-26 2359) (Low priority.)
 ```
 
 ## **Listing all tasks and classes happening today : `list_today`**
@@ -92,10 +92,10 @@ Displays all deadlines, events and classes happening today.
 	 [WEDNESDAY][X] cs2113 (from: 1200 to: 1300)
 
 	 Here are your tasks today
-	 [D][ ] sleep (by: 2023-03-29 2000) (No priority established.)
-	 [D][ ] shower (by: 2000) (every WEDNESDAY) (No priority established.)
-	 [E][ ] study (from: 2023-03-29 2100 to: 2023-04-23 2300) (No priority established.)
-	 [E][ ] study (from: 0800 to: 2300) (every WEDNESDAY) (No priority established.)
+	 [D][ ] sleep (by: 2023-03-29 2000) (Low priority.)
+	 [D][ ] shower (by: 2000) (every WEDNESDAY) (Low priority.)
+	 [E][ ] study (from: 2023-03-29 2100 to: 2023-04-23 2300) (Low priority.)
+	 [E][ ] study (from: 0800 to: 2300) (every WEDNESDAY) (Low priority.)
 	____________________________________________________________
 ```
 ## **Displaying upcoming deadline**
@@ -238,7 +238,7 @@ For instance <code>list 0<strong></strong></code>returns all tasks that are star
 
 ```
  Here are your tasks in 0 days:
-	 1.	 [E][ ] event (from: 2023-03-25 1200 to: 2023-03-26 2359) (No priority established.)
+	 1.	 [E][ ] event (from: 2023-03-25 1200 to: 2023-03-26 2359) (Low priority.)
 	 2.	 [D][ ] Submit CS2113 quiz (by: 2023-03-31 2359) (Low priority.)
 ```
 
@@ -255,7 +255,7 @@ Marks a task from the tasklist as complete.
 
 ```
 Understood. I've marked this task as done:
-	 	 [T][X] todo (No priority established.)
+	 	 [T][X] todo (Low priority.)
 ```
 
 
@@ -271,7 +271,7 @@ Unmarks a task from the tasklist as not complete.
 
 ```
  Understood. I've marked this task as not done yet:
-	 	 [T][ ] todo (No priority established.)
+	 	 [T][ ] todo (Low priority.)
 ```
 
 ## **Editing a task : `edit <Task_Number>`**
@@ -312,7 +312,7 @@ Removes a task from the tasklist.
 
 ```
 Understood. I have removed this task:
-	  [T][ ] todo (No priority established.)
+	  [T][ ] todo (Low priority.)
 You now have 3 tasks in your list.
 ```
 
@@ -438,7 +438,7 @@ Prompts the user for confirmation. Proceeds to remove all expired tasks from sto
 ```
  Displaying all expired tasks below...
 
-	 [D][ ] deadline (by: 2023-03-24 1100) (No priority established.)
+	 [D][ ] deadline (by: 2023-03-24 1100) (Low priority.)
 ____________________________________________________________
 	 Quack! A total of 1 task has expired!
 	 Should I remove these tasks from the pending list human?
@@ -490,7 +490,7 @@ Traverses through the stored tasks to return all tasks that contain the keyword
 
 ```
 Here are the matching tasks in your list:
-1.	 [T][ ] todo (No priority established.)
+1.	 [T][ ] todo (Low priority.)
 ```
 
 
@@ -506,7 +506,7 @@ Adds a ToDo task to the storage of Duck
 
 ```
 Alright, I have added this task: 
-	[T][ ] todo (No priority established.)
+	[T][ ] todo (Low priority.)
 You now have 2 tasks in your list.
 ```
 
@@ -523,7 +523,7 @@ Adds a Deadline task to the storage of Duck
 
 ```
 Alright, I have added this task: 
-	[D][ ] deadline (by: 2023-03-25 2359) (No priority established.)
+	[D][ ] deadline (by: 2023-03-25 2359) (Low priority.)
 You now have 3 tasks in your list.
 ```
 
@@ -554,7 +554,7 @@ Adds an Event task to the storage of Duck
 
 ```
 Alright, I have added this task: 
-	[E][ ] event (from: 2023-03-25 2359 to: 2023-03-26 1100) (No priority established.)
+	[E][ ] event (from: 2023-03-25 2359 to: 2023-03-26 1100) (Low priority.)
 You now have 5 tasks in your list.
 ```
 
@@ -569,7 +569,7 @@ Adds a RecurringEvent task to the storage of Duck
 
 ```
 Alright, I have added this task: 
-	[E][ ] new_event (from: 2000 to: 2300) (every MONDAY) (No priority established.)
+	[E][ ] new_event (from: 2000 to: 2300) (every MONDAY) (Low priority.)
 You now have 6 tasks in your list.
 ```
 
