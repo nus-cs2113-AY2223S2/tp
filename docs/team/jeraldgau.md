@@ -14,7 +14,8 @@ Duck is a desktop task and class tracker for users to keep track of their schedu
 <br />
 
 ### New Feature: Implementation of the ```SchoolClass``` Task
-- Added a new Task class called SchoolClass, which are added to a separate list from the other tasks to facilitate schedule tracking
+- Added a new Task class called SchoolClass, which are added to a separate list from the other tasks to facilitate schedule tracking.
+- Makes use of the jave.time package for registering valid start/end timings, as well as java.time.DayOfWeek to register valid days in a week. This facilitates the time tracking feature.
 - Revamped how saving and loading from savefile works from the iP base code, in order to account for the new SchoolClass Task. The saving and loading of task priorities was also tweaked in order for it to work with adding SchoolClasses to the savefile.
 
 <br />
