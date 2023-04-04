@@ -92,7 +92,8 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Delete":
-                Delete.deleteNotes();
+                Delete deletes = new Delete(notes, toDo);
+                deletes.deleteNotes();
                 break;
             //@@author ZiqiuZeng
             case "Mark":

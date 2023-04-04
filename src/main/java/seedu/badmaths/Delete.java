@@ -2,8 +2,14 @@ package seedu.badmaths;
 import seedu.badmaths.ui.Ui;
 
 public class Delete {
+    private static final String filePath = "data/notes.txt";
     protected static String toDo;
-    private static NotesList notes;
+    public static NotesList notes;
+
+    public Delete (NotesList notes, String toDo) {
+        this.toDo = toDo;
+        this.notes = notes;
+    }
 
     public static boolean isInvalidIndex(int index, NotesList notes) {
         return (index < 0 || index >= notes.getSize());
