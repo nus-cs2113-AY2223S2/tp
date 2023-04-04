@@ -189,7 +189,7 @@ public class DiagnosisTest {
     @Test
     public void diagnoseGeneralRash() {
         ArrayList<Symptom> testSymptoms = new ArrayList<>(
-                List.of(Symptom.ITCHY_EYE,
+                List.of(Symptom.ITCHY_SKIN,
                         Symptom.RED_SKIN
                 ));
         ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
