@@ -6,9 +6,6 @@ import seedu.todolist.storage.Storage;
  * Enum that holds all the error messages to be displayed.
  */
 public final class Errors {
-    private Errors() {
-    }
-
     public static final String MISSING_ARGUMENT = "Missing argument after: ";
 
     public static final String INVALID_COMMAND = "You need to provide a valid command.";
@@ -28,4 +25,7 @@ public final class Errors {
     public static final String FAILED_LOAD = "Error when loading your data; "
             + "please check that you have read permissions for " + Storage.DEFAULT_SAVE_PATH + System.lineSeparator()
             + "and do not modify it yourself. A new task list will be created for you!";
+
+    private Errors() {
+    }
 }

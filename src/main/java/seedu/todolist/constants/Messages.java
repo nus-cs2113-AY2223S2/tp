@@ -4,9 +4,6 @@ package seedu.todolist.constants;
  * Enum that holds all the notification and help messages to be displayed.
  */
 public final class Messages {
-    private Messages() {
-    }
-    
     public static final String LINE = "_".repeat(90);
     public static final String START = "Hello, I am your To-Do List " +
             "and I will help you remember the tasks you need to do!";
@@ -28,4 +25,7 @@ public final class Messages {
     public static final String FULL_INFO = "Okay, here is the detailed information of this task:";
 
     public static final String PRIORITY_HELP = "Please enter a number from 1-3  = 1:Low, 2:Medium, 3:High)";
+
+    private Messages() {
+    }
 }
