@@ -212,7 +212,8 @@ public class AddCommand extends Command implements LoggerInterface {
         TaskList clashTasks = taskList.getTasksOnDate(by.toLocalDate());
         DayOfWeek day = by.getDayOfWeek();
         int dayNum = day.getValue() - 1;
-        ArrayList<CalendarModule> clashLessons = calendar.get(dayNum);
+        int week = getWeekNumber(by.toLocalDate());
+        ArrayList<CalendarModule> clashLessons = calendar.getModulesForDay(week, dayNum);
         taskList.sortTaskByDay(clashTasks);
         ui.printClashingDeadlineMessage(clashTasks, clashLessons);
     }
@@ -278,12 +279,13 @@ public class AddCommand extends Command implements LoggerInterface {
                                           LocalDateTime eventEnd, String currentDate) {
 
         DateTimeFormatter formatterFull = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        DateTimeFormatter formatterPartial = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (CalendarModule module : calendarModule) {
             if (module.getSchedule() == null) {
                 continue;
             }
 
-            LocalDate date = LocalDate.parse(currentDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            LocalDate date = LocalDate.parse(currentDate, formatterPartial);
 
             int currentWeek = getWeekNumber(date);
 
