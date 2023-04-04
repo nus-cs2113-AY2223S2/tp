@@ -38,7 +38,7 @@ public class CommandFormat {
             "of categories and items respectively";
     public static final String HISTORY_DESCRIPTION = "history: shows the historical commands executed for an item";
     public static final String DASHBOARD_DESCRIPTION = "db: displays the dashboard of Magus-Stock";
-    public static final String EXIT_DESCRIPTION = "exit: exits the Magus-Stock program";
+    public static final String EXIT_DESCRIPTION = "exit: exits the MagusStock program";
 
 
     protected HashMap<String, String> commandsHashMap;
