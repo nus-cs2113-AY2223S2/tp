@@ -1,0 +1,2 @@
+Food Calories Look Up Table: 
+ chicken: 100 kcal
