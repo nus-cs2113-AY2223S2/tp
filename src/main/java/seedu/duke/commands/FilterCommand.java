@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.SearchFilterErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
@@ -14,6 +15,7 @@ public class FilterCommand extends Command {
     private static final String GREATER_THAN_FLAG = "p/gt";
     private static final String LESS_OR_EQUAL_THAN_FLAG = "p/let";
     private static final String GREATER_OR_EQUAL_THAN_FLAG = "p/get";
+    private static ArrayList<Item> filteredCategory;
     private String filterType;
     private String filterValue;
     private Double filterPrice;
@@ -49,20 +51,35 @@ public class FilterCommand extends Command {
      *
      * @param category String category to filter items by.
      */
-    private ArrayList<Item> filterCategory(String category) {
-        category = category.toLowerCase();
-        ArrayList<Item> filteredItems = new ArrayList<>();
+    private void filterCategory(String category) throws SearchFilterErrorException {
+        if (categoryHash.isEmpty()) {
+            throw new NullPointerException();
+        }
+        if (category.isEmpty()) {
+            throw new SearchFilterErrorException();
+        } else if (!categoryHash.containsKey(category)) {
+            throw new NullPointerException();
+        }
+        ArrayList<Item> tempFilteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
             if (item.getCategory().toLowerCase().equals(category)) {
-                filteredItems.add(item);
+                tempFilteredItems.add(item);
             }
         }
-        if (filteredItems.isEmpty()) {
-            return null;
-        }
-        return filteredItems;
+        setFilteredCategory(tempFilteredItems);
     }
 
+    public void setFilteredCategory(ArrayList<Item> filteredCategory) {
+        this.filteredCategory = filteredCategory;
+    }
+
+    private static ArrayList<Item> getFilteredCategory() {
+        if (filteredCategory.isEmpty()) {
+            return null;
+        }
+
+        return filteredCategory;
+    }
 
     /**
      * Filter items in the inventory by price.
@@ -118,7 +135,16 @@ public class FilterCommand extends Command {
         ArrayList<Item> filteredItems = new ArrayList<>();
         switch (filterType) {
         case "f/category":
-            filteredItems = filterCategory(filterValue);
+            try {
+                filterCategory(filterValue);
+                filteredItems = getFilteredCategory();
+            } catch (NullPointerException e) {
+                Ui.printInvalidCategory();
+                return null;
+            } catch (SearchFilterErrorException e) {
+                e.missingCategoryParameters();
+                return null;
+            }
             break;
         case "p/lt":
         case "p/gt":
@@ -138,7 +164,11 @@ public class FilterCommand extends Command {
     @Override
     public void run() {
         ArrayList<Item> filteredItems = getFilteredItems();
-        if (filteredItems == null) {
+        if (filterType.startsWith("f/category")) {
+            if (filteredItems != null) {
+                Ui.printCategory(filteredItems);
+            }
+        } else if (filteredItems == null) {
             Ui.printEmptySearch();
         } else {
             Ui.printSearchItems(filteredItems);

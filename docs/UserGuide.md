@@ -1,10 +1,9 @@
 # User Guide
 ![img_11.png](img_11.png)
 ## Contents
-- [Introduction](#introduction-)
-- [Quick Start](#quick-start-)
+- [Introduction](#introduction)
+- [Quick Start](#quick-start)
 - [Features](#features)
-- [FAQ](#faq)
 - [Command Summary](#command-summary)
 
 ## Introduction
@@ -22,10 +21,10 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 - [Adding an item: `add`](#adding-an-item-add-)
 - [Editing an item: `edit`](#editing-an-item-edit-)
 - [Removing an item: `remove`](#removing-an-item-remove-)
-- [Listing all items: `list`](#list-all-items-list)
-- [Searching for item(s): `search`](#search-for-an-item-search-searchupc)
-- [Filtering item(s) by type: `filter`](#filtering-items-filter)
-- [Listing all commands: `help`](#list-all-available-commands-help)
+- [Listing all items: `list`](#list-all-items-list-)
+- [Searching for item(s): `search`](#search-for-an-item-search-searchupc-)
+- [Filtering item(s) by type: `filter`](#filtering-items-filter-)
+- [Listing all commands: `help`](#list-all-available-commands-help-)
 - [History of item: `history`](#historical-records-of-item-history-)
 - [Selling an item: `sell`](#sell-quantity-of-item-sell-)
 - [Restocking an item: `restock`](#restock-an-item-restock-)
@@ -48,7 +47,7 @@ Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 * The `p/` parameter for `[price]` must be a **non-negative numerical** value _(decimals accepted)_.
 
 **OPTIONAL** parameters:
-* The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `Uncategorized` if not specified.)
+* The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized` if not specified.)
 
 
 
@@ -90,7 +89,7 @@ Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
 
 #### Example of usage
 
-``s
+``
 edit upc/2142535453 c/laptop
 ``
 
@@ -137,7 +136,7 @@ Format: `remove f/upc [UPC]` or `remove f/index [Index]`
 #### Sample output
 
 ---
-### List all items: `list` 
+### List all items: `list` <a name = "list"></a>
 Lists all items in the inventory list.
 
 Format: `list`
@@ -163,9 +162,19 @@ Here are the items in your inventory:
 +-------+-----------------+--------------+----------+----------+-----------------+
 | Index | Name            | UPC          | Quantity | Price    | Category        |
 +-------+-----------------+--------------+----------+----------+-----------------+
-| 0     | laptop          | 12           | 33       | $2.3     | electronics     |
+| 0     | apples          | 1235678910   | 10       | $10.00   | fruit           |
 +-------+-----------------+--------------+----------+----------+-----------------+
-| 1     | laptop sleeves  | 1212         | 33       | $2.4     | Uncategorized   |
+| 1     | oranges         | 1029348576   | 15       | $10.00   | uncategorized   |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 2     | watermelon      | 103437378374 | 15       | $50.00   | fruit           |
+|       |                 | 2            |          |          |                 |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 3     | TV              | 1            | 1        | $10999.0 | appliances      |
+|       |                 |              |          | 0        |                 |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 4     | large apples    | 012321       | 10       | $15.00   | uncategorized   |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 5     | laptop          | 12           | 33       | $2.3     | electronics     |
 +-------+-----------------+--------------+----------+----------+-----------------+
 
 ____________________________________________________________
@@ -180,7 +189,7 @@ There are no items in your inventory.
 ____________________________________________________________
 ```
 ---
-### Search for an item: `search` / `searchupc`
+### Search for an item: `search` / `searchupc` <a name = "search"></a>
 Search for item(s) in the inventory list by keywords or UPC.
 
 | Format | Required parameter |
@@ -206,7 +215,7 @@ ____________________________________________________________
 +-------+-----------------+--------------+----------+----------+-----------------+
 | Index | Name            | UPC          | Quantity | Price    | Category        |
 +-------+-----------------+--------------+----------+----------+-----------------+
-| 0     | laptop sleeves  | 1212         | 33       | $2.4     | Uncategorized   |
+| 0     | laptop sleeves  | 123          | 10       | $40.00   | uncategorized   |
 +-------+-----------------+--------------+----------+----------+-----------------+
 
 ____________________________________________________________
@@ -220,13 +229,13 @@ Here is your item:
 +-------+-----------------+--------------+----------+----------+-----------------+
 | Index | Name            | UPC          | Quantity | Price    | Category        |
 +-------+-----------------+--------------+----------+----------+-----------------+
-| 0     | Apples          | 0123241      | 10       | $15.0    | Fruits          |
+| 0     | apples          | 1235678910   | 10       | $10.00   | fruit           |
 +-------+-----------------+--------------+----------+----------+-----------------+
 
 ____________________________________________________________
 ```
 ---
-### Filtering items: `filter`
+### Filtering items: `filter` <a name = "filter"></a>
 
 
 Filters items from the inventory list by price OR category.
@@ -264,14 +273,17 @@ Filters items from the inventory list by price OR category.
 **Case I:** Filter by category
 
 ```
-filter f/category fruits
-____________________________________________________________
+filter f/category fruit
 +-------+-----------------+--------------+----------+----------+-----------------+
 | Index | Name            | UPC          | Quantity | Price    | Category        |
 +-------+-----------------+--------------+----------+----------+-----------------+
-| 0     | Apples          | 0123241      | 10       | $15.0    | fruits          |
+| 0     | apples          | 1235678910   | 10       | $10.00   | fruit           |
 +-------+-----------------+--------------+----------+----------+-----------------+
-| 1     | Large Apples    | 012321       | 10       | $15.0    | fruits          |
+| 1     | watermelon      | 103437378374 | 15       | $50.00   | fruit           |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 2     | Apples          | 0123241      | 10       | $15.0    | fruits          |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 3     | Large Apples    | 012321       | 10       | $15.0    | fruits          |
 +-------+-----------------+--------------+----------+----------+-----------------+
 
 ____________________________________________________________
@@ -285,16 +297,25 @@ ____________________________________________________________
 +-------+-----------------+--------------+----------+----------+-----------------+
 | Index | Name            | UPC          | Quantity | Price    | Category        |
 +-------+-----------------+--------------+----------+----------+-----------------+
+| 0     | watermelon      | 103437378374 | 15       | $50.00   | fruit           |
+|       |                 | 2            |          |          |                 |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 1     | TV              | 1            | 1        | $10999.0 | appliances      |
+|       |                 |              |          | 0        |                 |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 2     | large apples    | 012321       | 10       | $15.00   | uncategorized   |
++-------+-----------------+--------------+----------+----------+-----------------+
 | 0     | Apples          | 0123241      | 10       | $15.0    | fruits          |
 +-------+-----------------+--------------+----------+----------+-----------------+
 | 1     | Large Apples    | 012321       | 10       | $15.0    | fruits          |
 +-------+-----------------+--------------+----------+----------+-----------------+
-| 2     | TV              | 1            | 1        | $10999.0 | Uncategorized   |
+| 2     | TV              | 1            | 1        | $10999.0 | uncategorized   |
 +-------+-----------------+--------------+----------+----------+-----------------+
+
 ____________________________________________________________
 ```
 ---
-### List all available commands: `help`
+### List all available commands: `help` <a name = "help"></a>
 Lists all commands available and the command formats.
 
 Format: `help`
@@ -491,13 +512,20 @@ ____________________________________________________________
 
 ---
 ### Category: `cat` <a name = "cat"></a>
-Shows list of categories, and/or its items, or a specified category of items.
+Shows list of categories, or a summary table of all categories and their items.
 
 Format: 
 * `cat list`: shows list of all categories in the inventory.
 * `cat table`: shows table of all categories and all items in each category.
 
-Example of Usage & Expected Output:
+
+#### Example of Usage 
+
+`cat list`
+
+`cat table`
+
+#### Sample output
 ```
 cat list
 ____________________________________________________________
@@ -511,9 +539,10 @@ cat table
 +-----------------+--------------------------------+
 | Category        | Name: UPC                      |
 +-----------------+--------------------------------+
-| uncategorized   | testItem:123456789012,         |
-|                 | testItem2:123456789013,        |
-|                 | asdsadsa:1231                  |
+| fruit           | apples:1235678910,             |
+|                 | watermelon:1034373783742       |
++-----------------+--------------------------------+
+| uncategorized   | oranges:1029348576             |
 +-----------------+--------------------------------+
 ```
 
@@ -526,24 +555,26 @@ Format:
 `alert remove upc/{upc} level/min` to remove an alert for the minimum quantity of an item  
 `alert remove upc/{upc} level/max` to remove an alert for the maximum quantity of an item  
 
-Examples of usage:  
+#### Examples of usage
 `alert add upc/1234 min/55`  
 `alert add upc/1234 max/100`
 
-Sample output:
+#### Sample output
 ```
+alert add upc/1234 min/55
 ____________________________________________________________
 Successfully added a new alert.
 ____________________________________________________________
 ```
 
-Examples of usage: 
+#### Examples of usage 
 `alert remove upc/1234 level/min`  
 `alert remove upc/1234 level/max`
 
 
-Sample output
+#### Sample output
 ```
+alert remove upc/1234 level/min
 ____________________________________________________________
 Successfully removed the alert.
 ____________________________________________________________
@@ -560,7 +591,13 @@ incognito mode on a browser.
 
 Format: `autosave [on/off]`
 
-Sample input and expected output:
+#### Example of usage
+
+`autosave on`
+
+`autosave off`
+
+#### Sample output
 ```
 autosave on
 ____________________________________________________________
@@ -581,8 +618,15 @@ Exits the MagusStock program.
 
 Format: `exit` or `bye`
 
-Sample output:
+#### Example of usage
+
+`bye`
+
+`exit`
+
+#### Sample output:
 ```
+bye
 ____________________________________________________________
 Hope you had an enjoyable experience. See you next time!
 ____________________________________________________________

@@ -28,7 +28,7 @@ public class MissingParametersException extends Exception {
     public void missingRemoveItemParameters() {
         System.out.println(LINE);
         System.out.println("Remove parameters incomplete! Please follow the format(s) below\n" +
-                "Remove by UPC: remove f/item upc/[UPC]\n" + "Remove by item index: remove f/index [INDEX]");
+                "Remove by UPC: remove f/upc [UPC]\n" + "Remove by item index: remove f/index [INDEX]");
         System.out.println(LINE);
     }
 

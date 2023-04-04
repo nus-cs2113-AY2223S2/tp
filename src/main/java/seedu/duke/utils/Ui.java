@@ -55,8 +55,6 @@ public class Ui {
     public static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
     public static final String EMPTY_LIST = "There are no items in your inventory.";
-    public static final String CONFIRM_MESSAGE = "Are you sure you want this item to be permanently deleted?\n(Y/N)";
-
     public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. " +
             "\n" + "      Please delete the corrupt .csv file.";
     public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
@@ -137,10 +135,7 @@ public class Ui {
 
     private static final String DOLLAR_SIGN = "$";
     private static final String SUCCESS_REMOVE = "Successfully removed the following item: ";
-    private static final String NOT_REMOVING = "Ok...You changed your mind really quickly.";
-    private static final String INVALID_REPLY = "Invalid response, only yes (Y) or no (N) answer is allowed.\n" +
-            "Please try again :(";
-    private static final String INVALID_INDEX = "This index is invalid.\nPlease enter a number ";
+    private static final String INVALID_INDEX = "This index is invalid.\nPlease enter number ";
 
     private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" " +
             "\"or list\".";
@@ -173,20 +168,17 @@ public class Ui {
 
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
             "does not exist.";
-
     private static final String INVALID_ALERT_TYPE = "Alert is not a valid type (min/max)";
-
-    private static final String INVALID_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please enter category commands " +
-            "as shown below.\n" + "List all categories: cat list\n" + "List all items in a category: cat [Category]\n" +
-            "List all items and all categories: cat table";
     private static final int CATEGORY_COL_WIDTH = 15;
-    private static final int ITEMS_COL_WIDTH = 30;
+    private static final int ITEMS_COL_WIDTH = 45;
     private static final String NO_CATEGORY_LIST = "Category list is empty. There are no items in the inventory.";
     private static final String INVALID_CATEGORY_FIND = "The category you are looking for does not exist.";
     private static final String INVALID_CATEGORY = "The category does not exist.";
     private static final String NEW_CATEGORY_ADDED = "A new category has been added.";
     private static final String NO_CHANGES_WERE_RECORDED = "An edit attempt was made, but no changes were recorded.";
     private static final int ORIGINAL_ITEM_INDEX = 0;
+    private static final String INVALID_UPC = "This UPC is invalid. Try again.";
+    private static final String CATEGORY_LISTING = "Here is the list of categories you have: ";
 
 
     public static void printLine() {
@@ -353,7 +345,7 @@ public class Ui {
 
     public static String printTable(ArrayList<Item> items) {
         int[] columnWidths = {INDEX_COL_WIDTH, NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH,
-            CATEGORY_COL_WIDTH,};
+                              CATEGORY_COL_WIDTH};
 
         StringBuilder table = new StringBuilder();
 
@@ -394,14 +386,14 @@ public class Ui {
     private static String printHeadings(int[] columnWidths) {
         String[] headings = {};
         if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
-            headings = new String[] {INDEX_HEADING, NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING,
-                CATEGORY_HEADING};
+            headings = new String[]{INDEX_HEADING, NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING,
+                                    CATEGORY_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
-            headings = new String[] {COMMAND_HEADING, FORMAT_HEADING};
+            headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
-            headings = new String[] {"Name", "UPC", "Stock"};
+            headings = new String[]{"Name", "UPC", "Stock"};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == CATEGORY_COL_WIDTH) {
-            headings = new String[] {CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
+            headings = new String[]{CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
         }
         StringBuilder allHeadings = new StringBuilder();
 
@@ -461,7 +453,8 @@ public class Ui {
         for (Item item : items) {
             String name = item.getName();
             String upc = item.getUpc();
-            itemLines.add(name + ":" + upc);
+            name = name.replaceAll(" ", "_");
+            itemLines.add(name + ":_" + upc);
         }
         String[] itemListLines = wrapText(itemLines.toString(), ITEMS_COL_WIDTH);
         int rowHeight = findRowHeight(categoryLines, itemListLines);
@@ -587,16 +580,18 @@ public class Ui {
 
     private static StringBuilder addWordWithoutWrap(StringBuilder line, String[] words, ArrayList<String> lines,
                                                     int current, int width) {
+        if (words[current].contains("_")) {
+            words[current] = words[current].replaceAll("_", " ");
+        }
         line.append(words[current]);
 
-        if (line.length() < width) {
-            line.append(" ");
-        }
-
-        if (words[current].equals(",")) {
-            for (int i = 0; i < width - line.length(); i++) {
+        if (words[current].contains(",")) {
+            for (int i = 0; i <= width - line.length(); i++) {
                 line.append(" ");
             }
+        }
+        if (line.length() < width) {
+            line.append(" ");
         }
 
         if (current + 1 != words.length && line.length() + words[current + 1].length() > width) {
@@ -608,6 +603,9 @@ public class Ui {
 
     private static void addWordWithWrap(String[] words, ArrayList<String> lines, int current, int width) {
         int start = 0;
+        if (words[current].contains("_")) {
+            words[current] = words[current].replaceAll("_", " ");
+        }
         while (start < words[current].length()) {
             int end = Math.min(start + width, words[current].length());
             lines.add(words[current].substring(start, end));
@@ -785,28 +783,9 @@ public class Ui {
         printLine();
     }
 
-    public static void printInvalidReply() {
-        printLine();
-        System.out.println(INVALID_REPLY);
-        printLine();
-    }
-
-    public static void printNotRemoving() {
-        printLine();
-        System.out.println(NOT_REMOVING);
-        printLine();
-    }
-
     public static void printSuccessRemove(Item itemToRemove) {
         printLine();
         System.out.println(SUCCESS_REMOVE);
-        System.out.println(itemToRemove.toString());
-        printLine();
-    }
-
-    public static void printConfirmMessage(Item itemToRemove) {
-        printLine();
-        System.out.println(CONFIRM_MESSAGE);
         System.out.println(itemToRemove.toString());
         printLine();
     }
@@ -835,7 +814,7 @@ public class Ui {
         if (listSize == 0) {
             System.out.println(EMPTY_LIST);
         } else {
-            System.out.println("This UPC is invalid. Try again.");
+            System.out.println(INVALID_UPC);
         }
         printLine();
     }
@@ -1061,13 +1040,13 @@ public class Ui {
         printLine();
     }
 
-    public static void printInvalidCategoryCommand() {
+    public static void printCategory(HashMap<String, ArrayList<Item>> categoryHash) {
         printLine();
-        System.out.println(INVALID_CATEGORY_FORMAT);
+        System.out.println(printTable(categoryHash));
         printLine();
     }
 
-    public static void printCategory(HashMap<String, ArrayList<Item>> categoryHash) {
+    public static void printCategory(ArrayList<Item> categoryHash) {
         printLine();
         System.out.println(printTable(categoryHash));
         printLine();
@@ -1087,13 +1066,13 @@ public class Ui {
 
     public static void printNewCategory() {
         printLine();
-        System.out.println(INVALID_CATEGORY + NEW_CATEGORY_ADDED);
+        System.out.println(INVALID_CATEGORY + " " + NEW_CATEGORY_ADDED);
         printLine();
     }
 
     public static void printCategoryList(HashMap<String, ArrayList<Item>> categoryHash) {
         printLine();
-        System.out.println("Here is the list of categories you have: ");
+        System.out.println(CATEGORY_LISTING);
         categoryHash.forEach((cat, items) -> System.out.println(cat));
         printLine();
     }

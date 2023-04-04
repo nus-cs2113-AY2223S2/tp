@@ -36,7 +36,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-------+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| 0     | apples          | 012345678    | 5000     | $12.00   | Uncategorized   |" +
+                        "| 0     | apples          | 012345678    | 5000     | $12.00   | uncategorized   |" +
                         System.lineSeparator() +
                         "+-------+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
@@ -67,7 +67,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-------+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| 0     | applesorangesgr | 012345678    | 5000     | $12.00   | Uncategorized   |" +
+                        "| 0     | applesorangesgr | 012345678    | 5000     | $12.00   | uncategorized   |" +
                         System.lineSeparator() +
                         "|       | eenbeansredbean |              |          |          |                 |" +
                         System.lineSeparator() +
@@ -96,7 +96,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-------+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| 0     | red orange      | 012345678    | 5000     | $12.00   | Uncategorized   |" +
+                        "| 0     | red orange      | 012345678    | 5000     | $12.00   | uncategorized   |" +
                         System.lineSeparator() +
                         "|       | yellow green    |              |          |          |                 |" +
                         System.lineSeparator() +
