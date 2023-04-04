@@ -26,7 +26,9 @@ public class ParseEdit {
 
     public Command editItem() {
         try {
+            // Removes empty space from the user input
             String displayIndexVal = ParseIndividualValue.parseIndividualValue(userInput, BLANK, DSLASH);
+            // Converts from string to int for comparison
             int targetIndex = Integer.parseInt(displayIndexVal) - ExpenditureList.LIST_OFFSET;
             return new EditCommand(targetIndex, userInput);
         } catch (NumberFormatException | DateTimeParseException e) {

@@ -18,7 +18,9 @@ public class ParseDuplicate {
 
     public Command duplicateItem() {
         try {
+            // Removes empty space from the user input
             String details = ParseIndividualValue.parseIndividualValue(userInput, BLANK, BLANK);
+            // Converts from string to int for comparison
             int posToDuplicate = Integer.parseInt(details) - ExpenditureList.LIST_OFFSET;
             return new DuplicateCommand(posToDuplicate);
         } catch (NumberFormatException numberFormatException) {
