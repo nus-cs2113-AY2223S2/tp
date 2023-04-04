@@ -35,7 +35,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| apples          | 012345678    | 5000     | $12.0    | Uncategorized   |" +
+                        "| apples          | 012345678    | 5000     | $12.00   | Uncategorized   |" +
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
@@ -64,7 +64,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| applesorangesgr | 012345678    | 5000     | $12.0    | Uncategorized   |" +
+                        "| applesorangesgr | 012345678    | 5000     | $12.00   | Uncategorized   |" +
                         System.lineSeparator() +
                         "| eenbeansredbean |              |          |          |                 |" +
                         System.lineSeparator() +
@@ -93,7 +93,7 @@ class ListCommandTest {
                         System.lineSeparator() +
                         "+-----------------+--------------+----------+----------+-----------------+" +
                         System.lineSeparator() +
-                        "| red orange      | 012345678    | 5000     | $12.0    | Uncategorized   |" +
+                        "| red orange      | 012345678    | 5000     | $12.00   | Uncategorized   |" +
                         System.lineSeparator() +
                         "| yellow green    |              |          |          |                 |" +
                         System.lineSeparator() +

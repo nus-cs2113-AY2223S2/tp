@@ -79,8 +79,20 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "Tip: Ensure that your UPC, quantity and price are all positive numbers and within " +
-                "valid range";
+        String expectedOutput = "The number you have entered is out of range! (Accepted range is 0 to 99999999)";
+        assertTrue(outContent.toString().contains(expectedOutput));
+    }
+
+    @Test
+    void addItemWithOutOfRangePrice() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        String commandInfo = "n/Test Item 1 upc/12345678910 qty/5 p/123456789123456.52";
+        Inventory inventory = new Inventory();
+        AddParser addParser = new AddParser(commandInfo, inventory);
+        addParser.run();
+        assertEquals(0, inventory.getItemInventory().size());
+        String expectedOutput = "The number you have entered is out of range! (Accepted range is 0 to 99999999)";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 

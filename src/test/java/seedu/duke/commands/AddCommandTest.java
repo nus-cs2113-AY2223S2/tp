@@ -88,7 +88,7 @@ class AddCommandTest {
         for (String itemName : newItem.getName().toLowerCase().split(" ")) {
             assertTrue(inventory.getItemNameHash().containsKey(itemName));
         }
-        String expectedOutput = "Duplicate item found! Please add another item with a different UPC";
+        String expectedOutput = "Duplicate UPC found! Please add another item with a different UPC";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 
@@ -109,7 +109,7 @@ class AddCommandTest {
         for (String itemName : newItem.getName().toLowerCase().split(" ")) {
             assertTrue(inventory.getItemNameHash().containsKey(itemName));
         }
-        String expectedOutput = "Duplicate item found! Please add another item with a different UPC";
+        String expectedOutput = "Duplicate UPC found! Please add another item with a different UPC";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 
