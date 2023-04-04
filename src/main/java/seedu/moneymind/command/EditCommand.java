@@ -18,6 +18,7 @@ public class EditCommand implements Command {
     public static final String EXPENSE = "The expense limit is 999999999$, please give a smaller expense";
     private String categoryName;
     private int eventIndex;
+    private String userInput;
     private boolean isReady = true;
     private int categoryIndex;
     public EditCommand (String categoryName, int eventIndex) {
@@ -84,10 +85,9 @@ public class EditCommand implements Command {
         if (!isReady) {
             return;
         }
-        String userInput;
-        userInput = Moneymind.in.nextLine();
+        getUserInputUntilNonEmpty();
         while (!isEditSuccessful(userInput)) {
-            userInput = Moneymind.in.nextLine();
+            getUserInputUntilNonEmpty();
             if (userInput.equals(BACK)) {
                 break;
             }
@@ -97,6 +97,12 @@ public class EditCommand implements Command {
             CategoryList.categories.get(categoryIndex).getEvents().
                     get(eventIndex).setExpense(Integer.parseInt(userInput));
         }
+    }
+
+    private void getUserInputUntilNonEmpty() {
+        do {
+            userInput = Moneymind.in.nextLine();
+        } while (userInput.equals(""));
     }
 
     @Override
