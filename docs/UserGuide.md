@@ -10,7 +10,8 @@ current weight. This can help identify any nutritional or health needs.
 The main features of Pet Tracker includes:
 
 * Tracking multiple pets at once
-* Viewing the full list of pets
+* Add Tasks with deadlines
+* Viewing the full list of pets and tasks
 
 
 ## Quick Start
@@ -25,12 +26,24 @@ from [here](https://github.com/AY2223S2-CS2113-T11-3/tp/releases/download/PetTra
 
 Here is a list of features for Pet Tracker
 
-* Tracking multiple pets at once
-* Viewing the full list of pets
+### Tracking multiple pets at once
+Pet Tracker allows you to track multiple pets, saving important statistics like their Type, Age and Weight.
 
+Related Commands: `add-pet` and `add-stat`
 
-## FAQ
+### Add Tasks with deadlines
+Apart from pets, tasks can also be added to track things to do such as feeding your pet, setting a deadline for when
+the task should be completed.
 
+Related Commands: `add-task`
+
+### Reminder feature for expired tasks
+When a task is not done and past the deadline, Pet Tracker will remind you about this task upon starting the program.
+
+### Viewing the full list of pets and tasks
+Conveniently view the full list of your pets and tasks
+
+Related Commands: `list` and `list-tasks`
 
 ## Command Summary
 
@@ -295,3 +308,14 @@ Expected Output:
 ```
 Goodbye! See you soon.
 ```
+
+## FAQ
+
+**Q**: Can I edit the saved files directly?
+
+**A**: It is strongly advised not to do so to prevent data corruption which will disrupt
+the retrieval of previous data
+
+**Q**: Can I get help with the commands while the program is running?
+
+**A**: Yes, you can run `help` to view all commands and its usage.
