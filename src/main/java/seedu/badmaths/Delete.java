@@ -4,8 +4,8 @@ import seedu.badmaths.ui.Ui;
 public class Delete {
 
     private static final String filePath = "data/notes.txt";
-    public static NotesList notes;
     protected static String toDo;
+    public static NotesList notes;
 
     public Delete (NotesList notes, String toDo) {
         this.toDo = toDo;
