@@ -16,7 +16,8 @@ public class DiagnosisTest {
     //@@BrennanZuz
     @Test
     public void diagnoseGeneralCold() {
-        ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(Symptom.FATIGUE,
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(
+                Symptom.FATIGUE,
                 Symptom.RUNNY_NOSE,
                 Symptom.SNEEZING,
                 Symptom.CHILLS,
