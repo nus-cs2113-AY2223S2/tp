@@ -345,7 +345,7 @@ public class Ui {
 
     public static String printTable(ArrayList<Item> items) {
         int[] columnWidths = {INDEX_COL_WIDTH, NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH,
-                CATEGORY_COL_WIDTH,};
+                              CATEGORY_COL_WIDTH};
 
         StringBuilder table = new StringBuilder();
 
@@ -387,7 +387,7 @@ public class Ui {
         String[] headings = {};
         if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
             headings = new String[]{INDEX_HEADING, NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING,
-                    CATEGORY_HEADING};
+                                    CATEGORY_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
