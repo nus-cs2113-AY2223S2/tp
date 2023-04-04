@@ -23,7 +23,6 @@ import java.rmi.UnexpectedException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class SpecificHelpCommandTest {
@@ -55,9 +54,11 @@ class SpecificHelpCommandTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(ListHelpCommand.class, newCommand.getClass());
         ListHelpCommand newListHelpCommand = new ListHelpCommand();
-        assertDoesNotThrow(() -> newListHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+        assertDoesNotThrow(() ->
+                newListHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
+
     @Test
     void parseHelpCommand_todoHelpCommand_expectNoException() throws UnexpectedException {
 
@@ -68,7 +69,8 @@ class SpecificHelpCommandTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(TodoHelpCommand.class, newCommand.getClass());
         TodoHelpCommand newTodoHelpCommand = new TodoHelpCommand();
-        assertDoesNotThrow(() -> newTodoHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+        assertDoesNotThrow(() ->
+                newTodoHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -82,7 +84,8 @@ class SpecificHelpCommandTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(EventHelpCommand.class, newCommand.getClass());
         EventHelpCommand newEventHelpCommand = new EventHelpCommand();
-        assertDoesNotThrow(() -> newEventHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+        assertDoesNotThrow(() ->
+                newEventHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -96,7 +99,8 @@ class SpecificHelpCommandTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(DeadlineHelpCommand.class, newCommand.getClass());
         DeadlineHelpCommand newDeadlineHelpCommand = new DeadlineHelpCommand();
-        assertDoesNotThrow(() -> newDeadlineHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+        assertDoesNotThrow(() ->
+                newDeadlineHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -110,9 +114,11 @@ class SpecificHelpCommandTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(MarkHelpCommand.class, newCommand.getClass());
         MarkHelpCommand newMarkHelpCommand = new MarkHelpCommand();
-        assertDoesNotThrow(() -> newMarkHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+        assertDoesNotThrow(() ->
+                newMarkHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
+
     @Test
     void parseHelpCommand_unMarkHelpCommand_expectNoException() throws UnexpectedException {
 
@@ -123,7 +129,8 @@ class SpecificHelpCommandTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(UnmarkHelpCommand.class, newCommand.getClass());
         UnmarkHelpCommand newUnmarkHelpCommand = new UnmarkHelpCommand();
-        assertDoesNotThrow(() -> newUnmarkHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+        assertDoesNotThrow(() ->
+                newUnmarkHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -137,7 +144,8 @@ class SpecificHelpCommandTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(DeleteHelpCommand.class, newCommand.getClass());
         DeleteHelpCommand newDeleteHelpCommand = new DeleteHelpCommand();
-        assertDoesNotThrow(() -> newDeleteHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+        assertDoesNotThrow(() ->
+                newDeleteHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -151,7 +159,8 @@ class SpecificHelpCommandTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(FindHelpCommand.class, newCommand.getClass());
         FindHelpCommand newFindHelpCommand = new FindHelpCommand();
-        assertDoesNotThrow(() -> newFindHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+        assertDoesNotThrow(() ->
+                newFindHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -165,11 +174,9 @@ class SpecificHelpCommandTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(DateHelpCommand.class, newCommand.getClass());
         DateHelpCommand newDateHelpCommand = new DateHelpCommand();
-        assertDoesNotThrow(() -> newDateHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+        assertDoesNotThrow(() ->
+                newDateHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
-
-
-
 
 
 }
