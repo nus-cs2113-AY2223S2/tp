@@ -84,7 +84,8 @@ public class ExpenditureList {
         StringBuilder stringOfExpenditures = new StringBuilder();
         for (int i = 0; i < expenditures.size(); i++) {
             final int expenditureNumber = i + LIST_OFFSET;
-            stringOfExpenditures.append(String.format("%d. %s\n", expenditureNumber, expenditures.get(i).expenditureString(currency)));
+            stringOfExpenditures.append(String.format("%d. %s\n",
+                    expenditureNumber, expenditures.get(i).expenditureString(currency)));
         }
         return stringOfExpenditures.toString().stripTrailing();
     }
