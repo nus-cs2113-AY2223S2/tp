@@ -74,7 +74,7 @@ public class CategoryCommandTest extends CommandTest {
     void addCategory_emptyCategoryName_expectCorrectFormatMessage() {
         setup();
         String terminalOutput = executeInput("category b/100").toString();
-        assertEquals("Please following the correct format: category NAME [(optional) b/<budget number>]\n" +
+        assertEquals("Please following the correct format: category <name> [(optional) b/<budget number>]\n" +
                 "Remember do not leave any things inside the brackets empty!"
                 + System.lineSeparator(), terminalOutput);
         assertEquals(2, CategoryList.categories.size());

@@ -104,14 +104,14 @@ Ok, the new expense is now changed to: 100 sgd
 
 This commands allows the user to view all events in one category or view all categories in moneymind.
 
-Format: `view [(optional) c/<category name>]`
+Format: `view [(optional) <category name>]`
 
 * `<category name>` is the name of the category that the user wants to view.
 * The user can view all the categories by entering `view` without any category name
 
 Example of usage:
 
-`view c/food` : view all events in the food category
+`view food` : view all events in the food category
 
 `view` : view all categories in moneymind
 

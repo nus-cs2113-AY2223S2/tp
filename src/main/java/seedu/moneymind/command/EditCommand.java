@@ -67,20 +67,23 @@ public class EditCommand implements Command {
     @Override
     public void execute(Ui ui) {
         editEvent();
+        boolean isBack = false;
+        String userInput;
         if (isReady) {
-            String userInput;
             userInput = Moneymind.in.nextLine();
             while (!isEditSuccessful(userInput)) {
                 userInput = Moneymind.in.nextLine();
                 if (userInput.equals(BACK)) {
+                    isBack = true;
                     break;
                 }
             }
-            System.out.println("Ok, the new expense is now changed to: " + userInput);
-            CategoryList.categories.get(categoryIndex).getEvents().
-                    get(eventIndex).setExpense(Integer.parseInt(userInput));
+            if (!isBack) {
+                System.out.println("Ok, the new expense is now changed to: " + userInput);
+                CategoryList.categories.get(categoryIndex).getEvents().
+                        get(eventIndex).setExpense(Integer.parseInt(userInput));
+            }
         }
-
     }
 
     @Override
