@@ -38,6 +38,7 @@ public class AddExerciseCommand extends Command {
         this.parseCommand();
         Exercise newExercise = new Exercise(exerciseName, exerciseDescription, calorieBurnt, date);
         exerciseStorage.saveExercise(newExercise);
+        ui.printMotivateMessage();
         ExerciseUi.addedExercise(newExercise);
         ui.displayDayCalories(exerciseStorage, date, mealStorage);
     }

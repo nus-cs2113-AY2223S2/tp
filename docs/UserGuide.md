@@ -45,9 +45,10 @@ Format: `view`
 
 Menu Output:
 
-![view-menu](./UG-images/view-menu.png)
+![view-menu](./UG-images/view-menu.PNG)
 
 User can input a value from **1 to 8** to view their current profile:
+
 1. Name
 2. Weight
 3. Height
@@ -59,7 +60,7 @@ User can input a value from **1 to 8** to view their current profile:
 
 Example:
 
-![view-example](./UG-images/view-example.png)
+![view-example](./UG-images/view-example.PNG)
 
 User then can input **1** to continue viewing their profile or **2** to exit
 
@@ -73,7 +74,7 @@ Format: `update`
 
 Menu Output:
 
-![update-menu](./UG-images/update-menu.png)
+![update-menu](./UG-images/update-menu.PNG)
 
 User can input a value from **1 to 5** to customise their profile:
 1. Name
@@ -85,7 +86,7 @@ User can input a value from **1 to 5** to customise their profile:
 
 Example:
 
-![update-example](./UG-images/update-example.png)
+![update-example](./UG-images/update-example.PNG)
 
 User then can input **1** to continue updating their profile or **2** to exit
 
@@ -95,7 +96,7 @@ Adds a new meal to database
 
 Format: `add /on [date] /type [MealType] /foods [foods]`
 
-* The `date` should be in `dd/mm/yy` format
+* The `date` should be in `d/M/yyyy` format
 * The `MealType` can be one of the following
   * Breakfast
   * Lunch
@@ -106,7 +107,7 @@ Example of usage:
 
 `add /on 3/3/2023 /type Lunch /foods Spaghetti, Alfredo (Small)`
 
-![add-example](./UG-images/add-example.png)
+![add-example](./UG-images/add-example.PNG)
 
 #### Alternatives
 
@@ -114,7 +115,7 @@ For Users who are not experienced with typing fast on keyboards, *LifeTracker* o
 
 Format: `add`
 
-![add-alt-example](./UG-images/add-example2.png)
+![add-alt-example](./UG-images/add-example2.PNG)
 
 ### Listing foods: `list`
 
@@ -123,7 +124,7 @@ For uses to view all foods currently supported in the *LifeTracker* database
 Format: `list foods`
 
 Example:
-![list-foods-example](./UG-images/list-foods-example.png)
+![list-foods-example](./UG-images/list-foods-example.PNG)
 
 ### Listing meals: `list`
 
@@ -132,7 +133,7 @@ For users to view previously added meals
 Format: `list meals`
 
 Example:
-![list-meals-example](./UG-images/list-meals-example.png)
+![list-meals-example](./UG-images/list-meals-example.PNG)
 
 ### Deleting meals: `delete`
 
@@ -144,7 +145,7 @@ Format: `delete [index]`
 * It is recommended to run `list meals` beforehand to get the index of the meal you want to delete
 
 Example:
-![delete-example](./UG-images/delete-example.png)
+![delete-example](./UG-images/delete-example.PNG)
 
 ### Filtering foods: `filter`
 
@@ -156,9 +157,10 @@ The list of food within the range will then be displayed, from which the user ca
 Format: `filter`
 
 * The lower and upper bound should be a `float`
+* The lower bound should be lower than or equal to the upper bound
 
 Example:
-![filter-example](./UG-images/filter-example.png)
+![filter-example](./UG-images/filter-example.PNG)
 
 ### View Nutrition Content of food: `nutrition`
 
@@ -171,7 +173,7 @@ Format: `nutrition`
 * To continue searching for more food, **1** should be inputted when prompted after, else input any number to exit
 
 Example:
-![nutrition-example](./UG-images/nutrition-example.png)
+![nutrition-example](./UG-images/nutrition-example.PNG)
 
 ### Add Exercise: `exercise`
 
@@ -181,10 +183,10 @@ Format: `exercise /type [exercise name] /description [exercise description] /cal
 
 * The `exercise name` and `exercise description` accepts any input
 * The `calories` should be in `float` format
-* The `date` should be in `dd/mm/yy` format
+* The `date` should be in `d/M/yyyy` format
 
 Example:
-![exercise-example](./UG-images/exercise-example.png)
+![exercise-example](./UG-images/exercise-example.PNG)
 
 ### Track net calorie intake: `track`
 
@@ -193,7 +195,7 @@ For user to track their previous net calorie intake
 Format: `track`
 
 Output:
-![track-example](./UG-images/track-example.png)
+![track-example](./UG-images/track-example.PNG)
 
 ### Exiting the program: `bye`
 Allows user to exit the program.
@@ -201,7 +203,7 @@ Allows user to exit the program.
 Format: `bye`
 
 Output:
-![bye-example](./UG-images/bye-example.png)
+![bye-example](./UG-images/bye-example.PNG)
 
 ## FAQ
 

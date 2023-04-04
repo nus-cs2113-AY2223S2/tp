@@ -9,12 +9,15 @@ import seedu.exceptions.UnableToSaveDatabaseException;
 import seedu.logger.LogFileHandler;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,6 +32,7 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
         exercises = new ArrayList<Exercise>();
         try {
             this.load();
+            System.out.println("Initialised Exercise Storage");
         } catch (IOException e) {
             System.out.println("Error loading Exercise Storage");
         }
@@ -37,24 +41,27 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
     @Override
     public void load() throws IOException {
         String line = "";
-        br = new BufferedReader(new FileReader(filePath));
-        br.readLine();
 
-        while ((line = br.readLine()) != null) {
-            String[] exerciseLine;
-            exerciseLine = line.split(CSV_DELIMITER);
-            try {
-                String exerciseName = exerciseLine[0];
-                String exerciseDescription = exerciseLine[1];
-                float calorieBurnt = Float.parseFloat(exerciseLine[2]);
-                LocalDate date = LocalDate.parse(exerciseLine[3], DTF);
-                exercises.add(new Exercise(exerciseName, exerciseDescription, calorieBurnt, date));
-            } catch (Exception e) {
-                LogFileHandler.logError("Invalid exercise format!");
+        try {
+            br = new BufferedReader(new FileReader(filePath));
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] exerciseLine = line.split(CSV_DELIMITER);
+                try {
+                    String exerciseName = exerciseLine[0];
+                    String exerciseDescription = exerciseLine[1];
+                    float calorieBurnt = Float.parseFloat(exerciseLine[2]);
+                    LocalDate date = LocalDate.parse(exerciseLine[3], DTF);
+                    exercises.add(new Exercise(exerciseName, exerciseDescription, calorieBurnt, date));
+                } catch (Exception e) {
+                    LogFileHandler.logError("Invalid exercise format!");
+                }
             }
+            br.close();
+        } catch (FileNotFoundException e) {
+            File newFile = new File(filePath);
+            newFile.createNewFile();
         }
-
-        br.close();
     }
 
     @Override
@@ -66,6 +73,7 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
                 CSVWriter.RFC4180_LINE_END);
         String[] header = { "Exercise Name", "Exercise Description", "Calories Burnt" };
         writer.writeNext(header);
+        Collections.sort(exercises);
         for (Exercise exercise : exercises) {
             writer.writeNext(exercise.toWriteFormat(CSV_DELIMITER, DTF));
         }
@@ -91,6 +99,10 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
         }
     }
 
+    public int getExercisesCount() {
+        return this.exercises.size();
+    }
+
     public ArrayList<Exercise> getExercises() {
         return this.exercises;
     }
@@ -100,5 +112,13 @@ public class ExerciseStorage extends Storage implements FileReadable, FileWritab
                 .filter(e -> e.getDate().equals(date))
                 .collect(Collectors.toList());
         return filteredExercises;
+    }
+
+    public Exercise getExerciseById(int id) {
+        return this.exercises.get(id);
+    }
+
+    public Exercise deleteExercise(int index) {
+        return exercises.remove(index);
     }
 }

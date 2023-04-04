@@ -32,8 +32,9 @@ public class UserStorageTest {
             float height = (float) 175.0;
             int age = 21;
             String gender = "male";
+            float targetWeight = (float) 50.0;
 
-            User newUser = new User(name, weight, height, age, gender);
+            User newUser = new User(name, weight, height, age, gender, targetWeight);
 
             assertDoesNotThrow(() -> userStorage.updateUser(newUser));
             User retrievedUser = retrieveUser_emptyInput_expectNoException();
@@ -43,6 +44,7 @@ public class UserStorageTest {
             assertEquals(height, retrievedUser.getHeight());
             assertEquals(age, retrievedUser.getAge());
             assertEquals(gender, retrievedUser.getGender());
+            assertEquals(targetWeight, retrievedUser.getTargetWeight());
         }
     }
 

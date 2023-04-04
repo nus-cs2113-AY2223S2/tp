@@ -10,6 +10,9 @@ import seedu.storage.MealStorage;
 import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
 
+/**
+ * For exiting the program
+ */
 public class ExitCommand extends Command{
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,

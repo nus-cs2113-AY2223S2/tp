@@ -34,7 +34,8 @@ public class ViewUserCommand extends Command {
             System.out.println("5. View Gender");
             System.out.println("6. View Daily Caloric limit");
             System.out.println("7. View Calories Remaining Today");
-            System.out.println("8. Exit");
+            System.out.println("8. View Target Weight");
+            System.out.println("9. Exit");
             System.out.println();
 
             choice = ui.readInt();
@@ -72,6 +73,10 @@ public class ViewUserCommand extends Command {
                 System.out.println(caloriesLeft + " Kcal");
                 break;
             case 8:
+                float targetWeight = user.getTargetWeight();
+                System.out.println("Target Weight: " + targetWeight + " kg");
+                break;
+            case 9:
                 break;
             default:
                 System.out.println("Invalid Choice!");
