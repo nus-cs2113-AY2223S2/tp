@@ -1,6 +1,5 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.modules.Storage;
 
 import java.io.IOException;

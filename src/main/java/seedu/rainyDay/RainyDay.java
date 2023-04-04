@@ -82,7 +82,7 @@ public class RainyDay {
         }
     }
 
-    private void executeCommand(Command command) throws RainyDayException {
+        private void executeCommand(Command command) throws RainyDayException {
         command.setData(allData);
         CommandResult result = command.execute();
         if (result != null) {

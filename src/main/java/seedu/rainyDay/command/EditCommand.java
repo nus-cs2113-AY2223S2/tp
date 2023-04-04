@@ -3,7 +3,6 @@ package seedu.rainyDay.command;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
 import seedu.rainyDay.data.MonthlyExpenditures;
-import seedu.rainyDay.data.UserData;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

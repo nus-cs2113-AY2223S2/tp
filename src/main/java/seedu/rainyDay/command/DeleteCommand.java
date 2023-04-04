@@ -1,7 +1,6 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.data.UserData;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Level;

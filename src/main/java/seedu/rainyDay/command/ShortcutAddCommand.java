@@ -1,7 +1,5 @@
 package seedu.rainyDay.command;
 
-
-import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.exceptions.RainyDayException;
 
 import java.util.logging.FileHandler;
@@ -19,7 +17,6 @@ public class ShortcutAddCommand extends ShortcutCommand {
     public ShortcutAddCommand(String key, String value) {
         this.key = key;
         this.value = value;
-        shortcutCommands = userData.getShortcutCommands();
     }
 
     @Override
@@ -27,13 +24,13 @@ public class ShortcutAddCommand extends ShortcutCommand {
         setupLogger();
         logger.log(Level.INFO, "starting ShortcutAddCommand.execute()");
         logger.log(Level.INFO, "checking for validity of shortcut");
+        shortcutCommands = userData.getShortcutCommands();
         checkShortcutValidity(shortcutCommands, key, value);
         logger.log(Level.INFO, "shortcut confirmed as valid of shortcut");
 
         shortcutCommands.put(key, value);
         logger.log(Level.INFO, "Successful ShortcutAddCommand.execute()");
         return new CommandResult(SHORTCUT_SUCCESSFULLY_ADDED);
-
     }
 
     /**
