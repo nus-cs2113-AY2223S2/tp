@@ -110,7 +110,7 @@ Use case:
 
 Example of usage:
 `edit expense /in 1 /de Lunch @Technoedge /v 5.20`
-`edit income /in 2 /da 12-12-2022 /v 100`
+<br> `edit income /in 2 /da 12-12-2022 /v 100`
 
 ### Setting currency to be converted: `set currency`
 
@@ -148,11 +148,13 @@ Example of usage:
 ### Finding an entry: `find`
 
 Find an existing expense/income that is currently in the list.
+<br> The program will search for the keywords in your entries.
+<br> Vague keywords will render less specific results.
 
 - CATEGORY is specified as either `income` or `expense`
 
 Format:
-<br> `find /c CATEGORY /k DESCRIPTION`
+<br> `find /c CATEGORY /k KEYWORD`
 
 Use case:
 
