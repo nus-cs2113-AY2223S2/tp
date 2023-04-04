@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class TestUiManager {
+public class TestUi {
     private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
     //@@author L-K-Chng

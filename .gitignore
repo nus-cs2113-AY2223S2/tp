@@ -28,5 +28,5 @@ bin/
 **/testPlans.json
 **/userPlans.json
 
-/text-uiManager-test/ACTUAL.TXT
-text-uiManager-test/EXPECTED-UNIX.TXT
+/text-ui-test/ACTUAL.TXT
+text-ui-test/EXPECTED-UNIX.TXT
