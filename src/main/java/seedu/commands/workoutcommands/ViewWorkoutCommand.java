@@ -6,7 +6,7 @@ import seedu.parser.DateFormatter;
 import seedu.workout.Workout;
 
 import java.util.Date;
-
+//@@author Richardtok
 public class ViewWorkoutCommand extends Command {
     private static final String WORKOUT_NOT_FOUND_MESSAGE = "No workout done on ";
     private final Date workoutToViewDate;
