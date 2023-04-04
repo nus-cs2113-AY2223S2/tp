@@ -43,34 +43,52 @@ public class ViewUserCommand extends Command {
             switch (choice) {
             case 1:
                 String name = user.getName();
-                System.out.println("Name: " + name);
+                if(name.isBlank()){
+                    ui.printFieldNotStored();
+                }else{
+                    ui.printName(name);
+                }
                 break;
             case 2:
                 float weight = user.getWeight();
-                System.out.println("Weight: " + weight + " kg");
+                if(weight == 0.0){
+                    ui.printFieldNotStored();
+                }else {
+                    ui.printWeight(weight);
+                }
                 break;
             case 3:
                 float height = user.getHeight();
-                System.out.println("Height: " + height + " cm");
+                if(height == 0.0){
+                    ui.printFieldNotStored();
+                }else {
+                    ui.printHeight(height);
+                }
                 break;
             case 4:
                 int age = user.getAge();
-                System.out.println("Age: " + age + " years old");
+                if(age == 0){
+                    ui.printFieldNotStored();
+                }else{
+                    ui.printAge(age);
+                }
                 break;
             case 5:
                 String gender = user.getGender();
-                System.out.println("Gender: " + gender);
+                if(gender.isBlank()){
+                    ui.printFieldNotStored();
+                }else {
+                    ui.printGender(gender);
+                }
                 break;
             case 6:
                 double caloricLimit = user.getCaloricLimit();
-                calorieUi.showDailyCaloricLimit();
-                System.out.println(caloricLimit + " Kcal");
+                calorieUi.showDailyCaloricLimit(caloricLimit);
                 break;
             case 7:
                 double calorieIntake = meals.getTotalDailyCalories();
                 double caloriesLeft = user.getCaloriesLeft(calorieIntake);
-                calorieUi.showRemainingIntake();
-                System.out.println(caloriesLeft + " Kcal");
+                calorieUi.showRemainingIntake(caloriesLeft);
                 break;
             case 8:
                 float targetWeight = user.getTargetWeight();
