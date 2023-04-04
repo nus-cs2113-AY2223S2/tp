@@ -63,10 +63,6 @@ public class Timetable {
 
     /**
      * This method compresses the weeks of a lesson into a String that can be used for the UI.
-     * If a lesson occurs on weekly and spans the whole semester then
-     * the method will return [Weekly]. If a lesson does not occur for consecutive weeks, then
-     * it will print out all weeks that the lesson occurs on.  Lastly if a lesson occurs on
-     * consecutive weeks but does not span the entire semester, then the method will return the first and last weeks.
      * @param   timetable       The timetable of the lesson.
      * @return  The formatted String representation of the weeks.
      */
