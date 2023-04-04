@@ -17,7 +17,6 @@ import seedu.dukeofbooks.common.Messages;
 import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.book.BorrowableItem;
-import seedu.dukeofbooks.data.exception.DukeOfBooksException;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.loan.LoanRecords;
 import seedu.dukeofbooks.data.person.Person;
@@ -113,11 +112,9 @@ public class UserCommandParser implements IParser{
 
             if (action.equals(InventoryCommand.ADD_WORD)) {
                 return new InventoryCommand(target, InventoryCommand.ADD_WORD);
-            }
-            else if (action.equals(InventoryCommand.DELETE_WORD)) {
+            } else if (action.equals(InventoryCommand.DELETE_WORD)) {
                 return new InventoryCommand(target, InventoryCommand.DELETE_WORD);
-            }
-            else {
+            } else {
                 throw new IllegalValueException(InventoryCommand.INCORRECT_SYNTAX);
             }
         } catch (IllegalValueException e) {
