@@ -80,6 +80,17 @@ public class ExpenditureList {
         return expenditures.size();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringOfExpenditures = new StringBuilder();
+        for (int i = 0; i < expenditures.size(); i++) {
+            final int expenditureNumber = i + LIST_OFFSET;
+            stringOfExpenditures.append(String.format("%d. %s\n",
+                    expenditureNumber, expenditures.get(i)));
+        }
+        return stringOfExpenditures.toString().stripTrailing();
+    }
+
     public String listString(String currency) {
         StringBuilder stringOfExpenditures = new StringBuilder();
         for (int i = 0; i < expenditures.size(); i++) {

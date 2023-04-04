@@ -1,4 +1,4 @@
-package seedu.commands;
+//package seedu.commands;
 
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ package seedu.commands;
 //import java.time.LocalDate;
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ViewDateExpenditureCommandTest {
+//public class ViewDateExpenditureCommandTest {
 //    ExpenditureList testExpenditures = new ExpenditureList();
 //
 //    @BeforeEach
@@ -56,4 +56,4 @@ public class ViewDateExpenditureCommandTest {
 //                        "Total amount: 3002.20",
 //                testViewDateTwoDate.execute(testExpenditures).getCommandResult());
 //    }
-}
+//}
