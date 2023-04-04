@@ -14,6 +14,7 @@ public class FilterCommand extends Command {
     private static final String GREATER_THAN_FLAG = "p/gt";
     private static final String LESS_OR_EQUAL_THAN_FLAG = "p/let";
     private static final String GREATER_OR_EQUAL_THAN_FLAG = "p/get";
+    private static ArrayList<Item> filteredCategory;
     private String filterType;
     private String filterValue;
     private Double filterPrice;
@@ -47,22 +48,53 @@ public class FilterCommand extends Command {
     /**
      * Filter items in the inventory by category/tag.
      *
-     * @param category String category to filter items by.
+     * @param categoryType String category to filter items by.
      */
-    private ArrayList<Item> filterCategory(String category) {
-        category = category.toLowerCase();
-        ArrayList<Item> filteredItems = new ArrayList<>();
-        for (Item item : itemInventory) {
-            if (item.getCategory().toLowerCase().equals(category)) {
-                filteredItems.add(item);
+    private void filterCategory(String categoryType) {
+        // filter f/category list: prints list
+        // filter f/category table: prints table
+        // filter f/category c/[Keywords]: find category with keyword(s)
+        try {
+            if (categoryHash.isEmpty()) {
+                throw new NullPointerException();
             }
+            if (categoryType.equals("list")) {
+                Ui.printCategoryList(categoryHash);
+            } else if (categoryType.equals("table")) {
+                Ui.printCategory(categoryHash);
+            } else if (categoryType.startsWith("c/")) {
+                //System.out.println("finding keyword");
+                String keyword = categoryType.replaceFirst("c/", "");
+                //System.out.println("keyword is " + keyword);
+                ArrayList<Item> tempFilteredItems = new ArrayList<>();
+                for (Item item : itemInventory) {
+                    if (item.getCategory().toLowerCase().equals(keyword)) {
+                        //filteredItems.add(item);
+                        tempFilteredItems.add(item);
+                        //System.out.println("item added: " + item.getName());
+                    }
+                }
+                setFilteredCategory(tempFilteredItems);
+            }
+        } catch (NullPointerException e) { // no categories == no items in list
+            Ui.printNoCategoryList(); //for now means no categories
         }
-        if (filteredItems.isEmpty()) {
-            return null;
-        }
-        return filteredItems;
+        //categoryType = categoryType.toLowerCase();
     }
 
+    public void setFilteredCategory(ArrayList<Item> filteredCategory) {
+        //System.out.println("setting arraylist category");
+        this.filteredCategory = filteredCategory;
+        //Ui.printCategory(filteredCategory);
+    }
+
+    private static ArrayList<Item> getFilteredCategory() {
+        if (filteredCategory.isEmpty()) {
+            return null;
+        }
+
+        return filteredCategory;
+    }
 
     /**
      * Filter items in the inventory by price.
@@ -118,7 +150,12 @@ public class FilterCommand extends Command {
         ArrayList<Item> filteredItems = new ArrayList<>();
         switch (filterType) {
         case "f/category":
-            filteredItems = filterCategory(filterValue);
+            //System.out.println(filterValue + " is passed to filter category");
+            filterCategory(filterValue); //filterValue = "list"/"table"/"c/[keyword(s)]"
+            if (filterValue.startsWith("c/")) {
+                //System.out.println("trying to get filtered category...");
+                filteredItems = getFilteredCategory();
+            }
             break;
         case "p/lt":
         case "p/gt":
@@ -140,7 +177,9 @@ public class FilterCommand extends Command {
         ArrayList<Item> filteredItems = getFilteredItems();
         if(filteredItems == null){
             Ui.printEmptySearch();
-        }else{
+        } else if (filterType.startsWith("f/category")) {
+            System.out.println("executed accordingly");
+        } else {
             Ui.printSearchItems(filteredItems);
         }
     }

@@ -1052,6 +1052,11 @@ public class Ui {
         System.out.println(printTable(categoryHash));
         printLine();
     }
+    public static void printCategory(ArrayList<Item> categoryHash) {
+        printLine();
+        System.out.println(printTable(categoryHash));
+        printLine();
+    }
 
     public static void printNoCategoryList() {
         printLine();
