@@ -311,7 +311,11 @@ public class Ui {
      * @param moduleCode The code of the module checked.
      */
     public void printLessonNotInList(String moduleCode) {
-        System.out.println("This module " + moduleCode + " is not in your Module List.\n");
+        System.out.println("This module " + moduleCode + " is not in your Module List.");
+    }
+
+    public void printLessonTypeNotInModule() {
+        System.out.println("This lesson type does not exist in this module!");
     }
 
     /**
