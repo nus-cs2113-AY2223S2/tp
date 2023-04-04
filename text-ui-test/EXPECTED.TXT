@@ -95,7 +95,7 @@
 |  addIncome: add income to the income list.
 |  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
 |  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
-|  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 03 10 10 10 c/ SALARY
 |
 |  -----------------------------------------------------------------------
 |
@@ -104,7 +104,7 @@
 |  addIncome: add income to the income list.
 |  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
 |  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
-|  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 03 10 10 10 c/ SALARY
 |
 |  -----------------------------------------------------------------------
 |
@@ -163,8 +163,14 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have set your budget as $1800.00 for 2023/MARCH.
-|  The amount of budget left is $1800.00
+|  Enter command: |  You have not set your budget.
+|
+|  setBudget: sets your budget for current month.
+|  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
+|  Compulsory Parameter: <amount>
+|  Optional Parameter: t/ <date in YYYY/MM>
+|  Example: setBudget 500
+|  Example: setBudget 500 t/ 2023/03
 |
 |  -----------------------------------------------------------------------
 |
@@ -179,7 +185,7 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have successfully set $500.00 as your budget for 2023/MARCH.
+|  Enter command: |  You have successfully set $500.00 as your budget for 2023/APRIL.
 |
 |  -----------------------------------------------------------------------
 |
@@ -210,8 +216,8 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have set your budget as $500.00 for 2023/MARCH.
-|  The amount of budget left is $500.00
+|  Enter command: |  You have set your budget as $2000.00 for 2023/APRIL.
+|  The amount of budget left is $2000.00
 |
 |  -----------------------------------------------------------------------
 |
@@ -243,9 +249,9 @@
 |  Enter command: |  Invalid add command format.
 |
 |  addExpense: add expense to the expense list.
-|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM HH mm> c/ <category>
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
 |  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
-|  Example: addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD
+|  Example: addExpense a/ 4.5 d/ lunch t/ 2023 03 22 20 12 c/ FOOD
 |
 |  -----------------------------------------------------------------------
 |
@@ -254,7 +260,7 @@
 |  addIncome: add income to the income list.
 |  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
 |  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
-|  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 03 10 10 10 c/ SALARY
 |
 |  -----------------------------------------------------------------------
 |
