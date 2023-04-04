@@ -4,23 +4,52 @@ import seedu.dukeofbooks.data.book.BorrowableItem;
 import seedu.dukeofbooks.data.exception.DuplicateActionException;
 import seedu.dukeofbooks.data.exception.IllegalDateException;
 import seedu.dukeofbooks.data.exception.LoanRecordNotFoundException;
+import seedu.dukeofbooks.data.exception.PaymentUnsuccessfulException;
 import seedu.dukeofbooks.data.loan.Loan;
 import seedu.dukeofbooks.data.loan.LoanRecords;
 import seedu.dukeofbooks.data.person.Person;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class LoanController {
-    private static final String AVAILABLE_STATUS_FORMAT =
-            "Status: Not borrowed";
-    private static final String BORROWED_STATUS_FORMAT =
-            "Status: Borrowed (borrower: %s, due: %s)";
-    private static final String OVERDUE_STATUS_FORMAT =
-            "Status: Overdue (borrower: %s, due: %s)";
+    private static final String AVAILABLE_STATUS_FORMAT = "Status: Not borrowed";
+    private static final String BORROWED_STATUS_FORMAT = "Status: Borrowed (borrower: %s, due: %s)";
+    private static final String OVERDUE_STATUS_FORMAT = "Status: Overdue (borrower: %s, due: %s)";
+
+    private static final String AVAILABLE_STATUS_STRING = "Status: Not borrowed";
+    private static final String BORROWED_STATUS_STRING = "Status: Borrowed";
+
     private static final int DEFAULT_RENEW_DAYS = 30;
 
+    public static String checkBorrowingStatus(BorrowableItem item) {
+        if (!item.isBorrowed()) {
+            return AVAILABLE_STATUS_FORMAT;
+        } else {
+            Loan loan = LoanRecords.getLastActiveLoan(item);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+            String strDate = dateFormat.format(loan.getLoanEnd());
+            int daysOverdue = (int) ChronoUnit.DAYS.between(loan.getLoanEnd(), LocalDateTime.now());
+            if (daysOverdue <= 0) {
+                return String.format(BORROWED_STATUS_FORMAT, loan.getBorrower().getName().toString(), strDate);
+            } else {
+                return String.format(OVERDUE_STATUS_FORMAT, loan.getBorrower().getName().toString(), strDate);
+            }
+        }
+    }
+
+    public static String checkItemAvailability(BorrowableItem item) {
+        if (!item.isBorrowed()) {
+            return AVAILABLE_STATUS_STRING;
+        } else {
+            return BORROWED_STATUS_STRING;
+        }
+    }
+
     public static void borrowItem(LoanRecords loanRecords, Person borrower,
-                                  BorrowableItem toBorrow, LocalDateTime borrowTime)
+            BorrowableItem toBorrow, LocalDateTime borrowTime)
             throws DuplicateActionException {
         if (toBorrow.isBorrowed()) {
             throw new DuplicateActionException("Book is not available!");
@@ -33,9 +62,8 @@ public class LoanController {
         borrower.addLoan(newLoan);
     }
 
-    public static void returnItem(LoanRecords loanRecords, Person borrower,
-                                  BorrowableItem toReturn)
-            throws LoanRecordNotFoundException {
+    public static void returnItem(LoanRecords loanRecords, Person borrower, BorrowableItem toReturn)
+            throws LoanRecordNotFoundException, PaymentUnsuccessfulException {
         if (!toReturn.isBorrowed()) {
             throw new LoanRecordNotFoundException("Book is not borrowed!");
         }
@@ -45,12 +73,17 @@ public class LoanController {
             throw new LoanRecordNotFoundException("Cannot find an active loan!");
         }
 
+        double dueAmount = loan.calculateOverduePayment(LocalDateTime.now());
+        if (dueAmount > 0.0) {
+            PaymentController.makePayment(toReturn, dueAmount);
+        }
+
         loan.setReturned(true);
         toReturn.returnItem();
     }
 
     public static void renewItem(LoanRecords loanRecords, Person person,
-                                 BorrowableItem toRenew)
+            BorrowableItem toRenew)
             throws LoanRecordNotFoundException {
         LocalDateTime newDue = LocalDateTime.now().plusDays(DEFAULT_RENEW_DAYS);
         try {
@@ -61,7 +94,7 @@ public class LoanController {
     }
 
     public static void renewItem(LoanRecords loanRecords, Person person,
-                                 BorrowableItem toRenew, LocalDateTime newDue)
+            BorrowableItem toRenew, LocalDateTime newDue)
             throws IllegalDateException, LoanRecordNotFoundException {
         Loan loan = loanRecords.getLastActiveLoan(person, toRenew);
         if (loan == null) {

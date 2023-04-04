@@ -9,6 +9,7 @@ import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.exception.DuplicateActionException;
 import seedu.dukeofbooks.data.exception.IllegalValueException;
 import seedu.dukeofbooks.data.exception.LoanRecordNotFoundException;
+import seedu.dukeofbooks.data.exception.PaymentUnsuccessfulException;
 import seedu.dukeofbooks.data.loan.LoanRecords;
 import seedu.dukeofbooks.data.person.Person;
 
@@ -72,7 +73,7 @@ public class ReturnCommandTest {
     }
 
     @Test
-    public void returnCommand_fail() {
+    public void returnCommand_fail() throws PaymentUnsuccessfulException {
         assertTrue(sampleBook.isBorrowed());
         assertFalse(loanRecords.get(0).isReturned());
         try {

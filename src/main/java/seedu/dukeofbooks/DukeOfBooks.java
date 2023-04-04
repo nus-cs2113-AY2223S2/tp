@@ -1,6 +1,5 @@
 package seedu.dukeofbooks;
 
-
 import seedu.dukeofbooks.command.AccessCommand;
 import seedu.dukeofbooks.command.AccessHelpCommand;
 import seedu.dukeofbooks.command.AccessResponse;
@@ -26,7 +25,7 @@ import java.io.IOException;
  */
 public class DukeOfBooks {
 
-    public static final String VERSION = "DukeOfBooks - Version 1.0";
+    public static final String VERSION = "DukeOfBooks - Version 2.1";
     private LoanRecords allLoanRecords;
     private UserRecords userRecords;
     private SearchController searchController = new SearchController();
@@ -83,7 +82,7 @@ public class DukeOfBooks {
 
     private void runCommandLoopUntilSystemExit() {
         AccessCommand accessCommand;
-        do{
+        do {
             ui.showLoginMessage();
             String commandText = ui.getUserCommand();
             accessCommand = new AccessCommandParser(userRecords).parseCommand(commandText);
@@ -115,7 +114,7 @@ public class DukeOfBooks {
 
         try {
             AccessResponse response = accessCommand.execute();
-            ui.showToUser(response.message == null  ? "" : response.message);
+            ui.showToUser(response.message == null ? "" : response.message);
             return response.user;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());

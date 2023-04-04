@@ -1,8 +1,8 @@
 package seedu.dukeofbooks.parser;
 
-
-
 import seedu.dukeofbooks.command.BorrowCommand;
+import seedu.dukeofbooks.command.CheckBorrowingStatusCommand;
+import seedu.dukeofbooks.command.CheckItemAvailabilityCommand;
 import seedu.dukeofbooks.command.HistoryCommand;
 import seedu.dukeofbooks.command.IncorrectUserCommand;
 import seedu.dukeofbooks.command.InventoryCommand;
@@ -28,7 +28,7 @@ import static seedu.dukeofbooks.common.Messages.ISBN_ARG;
 import static seedu.dukeofbooks.common.Messages.SPACE_CHAR;
 import static seedu.dukeofbooks.common.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-public class UserCommandParser implements IParser{
+public class UserCommandParser implements IParser {
     private final Person currentUser;
     // todo set loan records
     private final LoanRecords loanRecords;
@@ -65,10 +65,66 @@ public class UserCommandParser implements IParser{
             return prepareReturnCommand(arguments);
         case SearchCommand.COMMAND_WORD:
             return prepareSearchCommand(arguments);
+        case CheckItemAvailabilityCommand.COMMAND_WORD:
+            return prepareCheckItemAvailabilityCommand(arguments);
+        case CheckBorrowingStatusCommand.COMMAND_WORD:
+            return prepareCheckBorrowingStatusCommand(arguments);
         case UserExitCommand.COMMAND_WORD:
             return new UserExitCommand();
         default:
             return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        }
+    }
+
+    private UserCommand prepareCheckBorrowingStatusCommand(String arguments) {
+        String[] parts = arguments.split(SPACE_CHAR);
+        int titleIndex = -1;
+        for (int i = 0; i < parts.length; ++i) {
+            if (parts[i].equals(TITLE_ARG)) {
+                titleIndex = i;
+                break;
+            }
+        }
+        if (titleIndex != -1) {
+            try {
+                StringBuilder sb = new StringBuilder();
+                for (int i = titleIndex + 1; i < parts.length; ++i) {
+                    sb.append(parts[i]).append(" ");
+                }
+                String title = sb.toString().trim();
+                BorrowableItem toCheckStatus = SearchController.searchBookByTitle(title);
+                return new CheckBorrowingStatusCommand(toCheckStatus);
+            } catch (IllegalValueException e) {
+                return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            }
+        } else {
+            return new IncorrectUserCommand(CheckItemAvailabilityCommand.INCORRECT_SYNTAX);
+        }
+    }
+
+    private UserCommand prepareCheckItemAvailabilityCommand(String arguments) {
+        String[] parts = arguments.split(SPACE_CHAR);
+        int titleIndex = -1;
+        for (int i = 0; i < parts.length; ++i) {
+            if (parts[i].equals(TITLE_ARG)) {
+                titleIndex = i;
+                break;
+            }
+        }
+        if (titleIndex != -1) {
+            try {
+                StringBuilder sb = new StringBuilder();
+                for (int i = titleIndex + 1; i < parts.length; ++i) {
+                    sb.append(parts[i]).append(" ");
+                }
+                String title = sb.toString().trim();
+                BorrowableItem toCheck = SearchController.searchBookByTitle(title);
+                return new CheckItemAvailabilityCommand(toCheck);
+            } catch (IllegalValueException e) {
+                return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+            }
+        } else {
+            return new IncorrectUserCommand(CheckItemAvailabilityCommand.INCORRECT_SYNTAX);
         }
     }
 
@@ -108,7 +164,8 @@ public class UserCommandParser implements IParser{
             String author = getWord(authorIndex, parts);
             String action = getWord(actionIndex, parts);
             String isbn = getWord(isbnIndex, parts);
-            Book target =  new Book(isbn, title, topic, author);
+            
+            Book target = new Book(isbn, title, topic, author);
 
             if (action.equals(InventoryCommand.ADD_WORD)) {
                 return new InventoryCommand(target, InventoryCommand.ADD_WORD);
@@ -210,17 +267,16 @@ public class UserCommandParser implements IParser{
             }
         }
 
-        if ((titleIndex != -1) && (topicIndex!=-1)) {
+        if ((titleIndex != -1) && (topicIndex != -1)) {
             String title = getWord(titleIndex, parts);
             String topic = getWord(topicIndex, parts);
-            return new SearchCommand(title.concat(Messages.NEW_LINE).
-                    concat(topic),SearchCommand.COMBINED_SEARCH);
+            return new SearchCommand(title.concat(Messages.NEW_LINE).concat(topic), SearchCommand.COMBINED_SEARCH);
         } else if (titleIndex != -1) {
             String title = getWord(titleIndex, parts);
-            return new SearchCommand(title,SearchCommand.TITLE_SEARCH);
+            return new SearchCommand(title, SearchCommand.TITLE_SEARCH);
         } else if (topicIndex != -1) {
             String topic = getWord(topicIndex, parts);
-            return new SearchCommand(topic,SearchCommand.TOPIC_SEARCH);
+            return new SearchCommand(topic, SearchCommand.TOPIC_SEARCH);
         } else {
             return new IncorrectUserCommand(SearchCommand.INCORRECT_SYNTAX);
         }
@@ -239,7 +295,7 @@ public class UserCommandParser implements IParser{
     }
 
     private boolean checkIfArg(String word) {
-        if (word.startsWith("-")){
+        if (word.startsWith("-")) {
             return true;
         }
         return false;
