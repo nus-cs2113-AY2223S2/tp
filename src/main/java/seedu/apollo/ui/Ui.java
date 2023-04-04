@@ -19,6 +19,7 @@ import java.util.Comparator;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static seedu.apollo.calendar.SemesterUtils.getWeekNumber;
 import static seedu.apollo.utils.DayTypeUtil.determineDay;
 
 /**
@@ -181,13 +182,14 @@ public class Ui {
      */
     public void printWeek(TaskList taskList, Calendar calendar, LocalDate startWeek, LocalDate endWeek) {
         LocalDate curr = startWeek;
+        int weekNumber = getWeekNumber(curr);
         System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
         for (int i = 0; i < 7; i++) {
             showSmallLine();
             System.out.println(determineDay(i) + "\n");
 
             // lessons
-            ArrayList<CalendarModule> modulesOnDay = calendar.get(i);
+            ArrayList<CalendarModule> modulesOnDay = calendar.getModulesForDay(weekNumber, i);
             if (modulesOnDay.size() == 0) {
                 System.out.println("There are no lessons on this day.");
             } else {
@@ -213,7 +215,7 @@ public class Ui {
         for (CalendarModule module : modulesOnDay) {
             Timetable schedule = module.getSchedule();
             System.out.println(schedule.getStartTime() + "-" + schedule.getEndTime() + ": " +
-                    module.getCode() + " " + schedule.getLessonType() + " (" + schedule.getClassnumber() + ")");
+                    module.getCode() + " " + schedule.getLessonType() + " (" + schedule.getClassNumber() + ")");
         }
     }
 
@@ -278,7 +280,7 @@ public class Ui {
     public void printModuleListWithLesson(Module newModule, ArrayList<Timetable> timetableList) {
         System.out.println("These are your classes for Module " + newModule.getCode() + ": \n");
         for (Timetable timetable : timetableList) {
-            System.out.println(timetable.getLessonType() + " " + timetable.getClassnumber() + '\n' +
+            System.out.println(timetable.getLessonType() + " " + timetable.getClassNumber() + '\n' +
                     "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
                     timetable.getEndTime());
         }
@@ -325,7 +327,7 @@ public class Ui {
                 + module.getCode() + ":");
 
         for (Timetable timetable : copyList) {
-            System.out.println("Class Number: " + timetable.getClassnumber());
+            System.out.println("Class Number: " + timetable.getClassNumber());
             System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
                     timetable.getEndTime());
         }
@@ -391,7 +393,7 @@ public class Ui {
         printLessonTypeMessage(lessonTypes);
         System.out.println();
         for (Timetable timetable : timetableList) {
-            System.out.println(timetable.getLessonType() + " " + timetable.getClassnumber() + '\n' +
+            System.out.println(timetable.getLessonType() + " " + timetable.getClassNumber() + '\n' +
                     "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " + timetable.getEndTime());
         }
     }
@@ -767,7 +769,7 @@ public class Ui {
                 + module.getCode() + ":");
 
         for (Timetable timetable : copyList) {
-            System.out.println("Class Number: " + timetable.getClassnumber());
+            System.out.println("Class Number: " + timetable.getClassNumber());
             System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
                     timetable.getEndTime());
         }

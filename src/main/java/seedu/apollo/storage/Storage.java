@@ -180,7 +180,7 @@ public class Storage implements LoggerInterface {
         ArrayList<Timetable> timetableList = module.getModuleTimetable();
         if (timetableList != null) {
             for (Timetable timetable : timetableList) {
-                overwrite.write(timetable.getLessonType() + ":" + timetable.getClassnumber() + "|");
+                overwrite.write(timetable.getLessonType() + ":" + timetable.getClassNumber() + "|");
             }
         }
         overwrite.write("\n");
@@ -315,7 +315,7 @@ public class Storage implements LoggerInterface {
 
             for (Timetable timetable: searchModule.getModuleTimetable()) {
                 if (timetable.getLessonType().equals(lessonInfo[0])
-                        && timetable.getClassnumber().equals(lessonInfo[1])) {
+                        && timetable.getClassNumber().equals(lessonInfo[1])) {
 
                     if (!module.getModuleTimetable().contains(timetable)) {
                         module.getModuleTimetable().add(timetable);

@@ -180,7 +180,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      */
     private ArrayList<Timetable> sortTimetable(ArrayList<Timetable> copyList) {
         Comparator<Timetable> compareByLessonType = Comparator.comparing(Timetable::getLessonType);
-        Comparator<Timetable> compareByClassNumber = Comparator.comparing(Timetable::getClassnumber);
+        Comparator<Timetable> compareByClassNumber = Comparator.comparing(Timetable::getClassNumber);
         Comparator<Timetable> compareAll = compareByLessonType.thenComparing(compareByClassNumber);
         ArrayList<Timetable> parseList =
                 copyList.stream().sorted(compareAll).collect(Collectors.toCollection(ArrayList::new));
