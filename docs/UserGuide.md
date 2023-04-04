@@ -37,8 +37,8 @@ Format:
 - librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action delete
 
 Examples:
-- librarian -title Introduction to OOP -topic java -author Java legends -isbn 1234567890123 -action -add
-- librarian -title Introduction to OOP -topic java -author Java legends -isbn 1234567890123 -action -delete
+- librarian -title Introduction to OOP -topic java -author Java legends -isbn 1234567890123 -action add
+- librarian -title Introduction to OOP -topic java -author Java legends -isbn 1234567890123 -action delete
 
 ## FAQ
 
