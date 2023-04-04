@@ -2,7 +2,8 @@
 
 ## Introduction
 
-{Give a product intro}
+Our Expense Tracker CLI software ("ET" for short) allows users to create their own bookmakers and helps 
+them keep track of their expense based on category, time, amount, and currency.
 
 ## Quick Start
 
@@ -110,7 +111,7 @@ ____________________________________________________________
 ### Sorting all current expenses: `sort`
 Soring all current expenses in the expense list based on sortBy criteria.
 
-Format: `delete SORTBY`
+Format: `sort SORTBY`
 
 * SORTBY represents the criteria the user want to sort their expenses list and display by.
 * If user wants to sort the expenses list by Date, he/she should enter "D".
@@ -129,8 +130,7 @@ Format: `category CATEGORY`
 
 * CATEGORY represents the category that user want.
 * If the category doesn't belong to the categories that user have entered before, it will tell the user to switch to another one.
-* The method also will tell user how many categories they have, and also what are these categories,
-* so as to better help them with futuer obtaining purpose
+* The method also will tell user how many categories they have, and also what are these categories, so as to better help them with future obtaining purpose
 
 Example of usage:
 
