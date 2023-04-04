@@ -7,24 +7,24 @@
   * [Introduction 🧮](#introduction-)
   * [Quick Start](#quick-start)
   * [Features](#features)
-    * [1) Graph analyser and visualiser: `Graph `](#1--graph-analyser-and-visualiser--graph-)
-    * [2) Matrix calculation: `Matrix. `](#2--matrix-calculation--matrix-)
-    * [3) Store Notes: `Store. `](#3--store-notes--store-)
-    * [4) Display all Notes: `List. `](#4--display-all-notes--list-)
-    * [5) Display a specific note:](#5--display-a-specific-note-)
-    * [6) Delete Notes:](#6--delete-notes-)
-    * [7) Clear all notes stored in Notes List:](#7--clear-all-notes-stored-in-notes-list-)
-    * [8) Mark Notes:](#8--mark-notes-)
-    * [9) Unmark Notes:](#9--unmark-notes-)
-    * [10) List all completed items:](#10--list-all-completed-items-)
-    * [11) List all uncompleted notes:](#11--list-all-uncompleted-notes-)
-    * [12) Find notes using keyword:](#12--find-notes-using-keyword-)
-    * [15) Prioritize a note](#15--prioritize-a-note)
-    * [13) Display all notes based on all priority types:](#13--display-all-notes-based-on-all-priority-types-)
-    * [14) Display all notes of a certain priority type:](#14--display-all-notes-of-a-certain-priority-type-)
-    * [16) Solving Quadratic Equations: `Quadratic.`](#16--solving-quadratic-equations--quadratic)
-    * [17) View Help Manual: `Help.`](#17--view-help-manual--help)
-    * [18) Exit BadMaths:](#18--exit-badmaths-)
+    * [1) Graph Analyser and Visualiser: `Graph`](#1--graph-analyser-and-visualiser--graph)
+    * [2) Matrix Calculation: `Matrix`](#2--matrix-calculation--matrix)
+    * [3) Store Notes: `Store`](#3--store-notes--store)
+    * [4) Display All Notes: `List`](#4--display-all-notes--list)
+    * [5) Display A Specific Note: `List <index>`](#5--display-a-specific-note--list-index)
+    * [6) Delete Notes: `Delete <index>`](#6--delete-notes--delete-index)
+    * [7) Clear All Notes Stored In Notes List `Clear`](#7--clear-all-notes-stored-in-notes-list-clear)
+    * [8) Mark Notes: `Mark`](#8--mark-notes--mark)
+    * [9) Unmark Notes: `Unmark`](#9--unmark-notes--unmark)
+    * [10) List All Items Marked As Completed: `FindMark`](#10--list-all-items-marked-as-completed--findmark)
+    * [11) List All Notes That Are Not Marked As Completed: `FindUnmark`](#11--list-all-notes-that-are-not-marked-as-completed--findunmark)
+    * [12) Find Notes Using Keyword: `FindInfo`](#12--find-notes-using-keyword--findinfo)
+    * [13) Prioritize A Note](#13--prioritize-a-note)
+    * [14) Display All Notes Based On All Priority Types:](#14--display-all-notes-based-on-all-priority-types-)
+    * [15) Display All Notes Of A Certain Priority Type: `FindPrior`](#15--display-all-notes-of-a-certain-priority-type--findprior)
+    * [16) Solving Quadratic Equations: `Quadratic`](#16--solving-quadratic-equations--quadratic)
+    * [17) Help Manual `Help`](#17--help-manual-help)
+    * [18) Exit BadMaths `Bye`](#18--exit-badmaths-bye)
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
 <!-- TOC -->
@@ -340,12 +340,12 @@ Here are the notes you are searching for:
 3. [LOW][N][0]note_item_3
 ````
 
-### 16) Solving Quadratic Equations: `Quadratic.`
+### 16) Solving Quadratic Equations: `Quadratic`
 Solves for `x` in a quadratic equation.
 
-Format: `Quadratic. [quadratic equation]`
+Format: `Quadratic [quadratic equation]`
 
-- `Quadratic.` must be in this exact format (With uppercase Q and full stop at the end)
+- `Quadratic` must be in this exact format (With uppercase Q)
 - The quadratic equation must look like this: `2x^2 + 2x + 1` with spaces between each value. Both double and int
   numbers are acceptable (eg. `-2.5x^2 + 3 + 1`). Inputting just the sign is also acceptable (eg. `-x^2 + x - 1`).
 
@@ -353,6 +353,8 @@ Examples:
 
 - Input: `Quadratic. 2x^2 + 2x + 1` Output: `x is imaginary.`
 - Input: `Quadratic. x^2 + 4x - 5` Output: `x1 = 1.0 , x2 = -5.0`
+- Input: `Quadratic x^2 + 3` Output: `Please use the format as shown below:
+  ax^2 + bx + c`
 
 ### 17) Help Manual `Help`
 * Display the content of Help Manual for BadMaths.
@@ -396,12 +398,19 @@ Goodbye!
 
 **Q**: How do I start and run BadMaths?
 
-**A**: {your answer here}
+**A**: 
+
+- Download the latest release of BadMaths [here](https://github.com/AY2223S2-CS2113-F10-2/tp/releases).
+- Save the java file to a new folder.
+- Open command prompt by typing `cmd` in the Windows search bar.
+- Navigate to the folder via `cd "folder path"`. (eg. `cd C:\Users\your_name\Desktop\BadMaths`).
+- Type `java -jar BadMaths.jar` to run BadMaths.
+- Follow the `User Guide` to begin testing.
 
 **Q**: How do I exit and leave BadMaths?
 
 **A**: You can terminate the MathHelp programme by simply typing
-`Bye.` in the command.
+`Bye` in the command.
 
 ## Command Summary
 
