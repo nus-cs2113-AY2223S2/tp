@@ -108,7 +108,7 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 break;
             case FINISH_COMMAND:
                 if(additionalDescription.equals("ippt")) {
-                exerciseStateHandler.endIPPT(COMPLETED_EXERCISE, userCareerData, achievementListHandler);
+                    exerciseStateHandler.endIPPT(COMPLETED_EXERCISE, userCareerData, achievementListHandler);
                 }
                 if (additionalDescription.length() != 0) {
                     ui.unknownCommand();

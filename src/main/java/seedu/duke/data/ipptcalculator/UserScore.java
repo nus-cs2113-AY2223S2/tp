@@ -8,31 +8,31 @@ public class UserScore {
     private int runScore;
 
     public int getRunScore () {
-            return runScore;
-        }
+        return runScore;
+    }
 
     public void setRunScore (int runScore) {
-            this.runScore = runScore;
-        }
+        this.runScore = runScore;
+    }
 
     public int getSitupScore () {
-            return situpScore;
-        }
+        return situpScore;
+    }
 
     public void setSitupScore (int situpScore) {
-            this.situpScore = situpScore;
-        }
+        this.situpScore = situpScore;
+    }
 
     public int getPushupScore () {
-            return pushupScore;
-        }
+        return pushupScore;
+    }
 
     public void setPushupScore (int pushupScore) {
-            this.pushupScore = pushupScore;
-        }
+        this.pushupScore = pushupScore;
+    }
 
     public int getTotalScore () {
-            return this.pushupScore + this.runScore + this.situpScore;
-        }
+        return this.pushupScore + this.runScore + this.situpScore;
+    }
 
 }
