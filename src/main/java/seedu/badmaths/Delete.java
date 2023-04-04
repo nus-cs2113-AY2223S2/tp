@@ -9,9 +9,10 @@ public class Delete {
         this.toDo = toDo;
         this.notes = notes;
     }
-    protected static String toDo;
+
     public static NotesList notes;
-    
+    protected static String toDo;
+
     public static boolean isInvalidIndex(int index, NotesList notes) {
         return (index < 0 || index >= notes.getSize());
     }
