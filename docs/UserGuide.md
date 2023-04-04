@@ -59,9 +59,23 @@ Format: `add QUANTITY /of NAME`
 * `NAME` is the name of the item to be packed.  
   * `NAME` is case-sensitive.
 
-Examples of usage: 
+<h5> Examples of usage: </h5>
+
 * `add 3 /of jackets`
+
 * `add 2 /of water bottles`
+
+<h5> Expected outcomes: </h5>
+
+BagPacker will add a quantity of 3 jackets to the packing list
+
+```
+New item added: [0/3] jackets
+```
+BagPacker will add a quantity of 2 water bottles to the packing list
+```
+New item added: [0/2] water bottles
+```
 
 ### <span style="color:#6495ED">Deleting an item:</span> `delete`
 Deletes an item from the packing list.
@@ -72,8 +86,17 @@ Format: `delete INDEX`
   * It must be more than 0, but no more than the number of items in the list.
   * An invalid index will result in an error message.
 
-Examples of usage:
+<h5> Example of usage: </h5>
+
 * `delete 2`
+
+<h5> Expected outcome: </h5>
+
+BagPacker will remove the second item from the packing list
+
+```
+[0/2] water bottles removed from the list
+```
 
 ### <span style="color:#6495ED">Packing some items:</span> `pack`
 Packs the given amount of that item in the packing list.
