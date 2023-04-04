@@ -44,13 +44,37 @@
 
 ## Acknowledgements
 
-We would like to acknowledge:
+We would like to acknowledge Hong Lin Shang, whose Duke we built upon for our project.
 
 ## Design & implementation
 
 ### Architecture
+Below is the overall architecture diagram for Apollo.
+
+<insert diagram>
+
+Given below is a quick overview of the main components of Apollo and how they interact with one another.
+
+`Apollo` is the main class and it is responsible for:
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* Load the plaintext files (save and moduleData) and files in the Resources folder to populate its internal memory of
+  ModuleList and TaskList.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary. Updates the plaintext files
+  (save and moduleData) and files in the Resources folder to reflect the current state of Apollo.
+
+The rest of the App consists of the following components:
+* `UI`: The UI of the App.
+* `Parser`: Parses the user input.
+* `Command`: The command executer.
+* `Data Storage`: Reads data from, and writes data to, the hard disk.
+* `Resources`: Contains relevant module data scraped from NUSMods_API, which is a database.
+
+The user's (NUS_Student) interaction with the UI will be parsed into a command which would update the DataStorage 
+and eventually update the UI which is displayed back to the user. This would continue until the user exits the program, 
+which would result in the latest data stored in DataStorage being saved into the plaintext files.
 
 ### UI Component
+
 
 ### Logic Component
 
@@ -59,6 +83,7 @@ We would like to acknowledge:
 ### Storage Component
 
 ### Common Classes
+
 
 ## Implementation
 
