@@ -154,9 +154,7 @@ public class Information {
         if (symptoms.size() == 0) {
             System.out.println("You have not entered any symptoms.");
         } else {
-            for (Symptom symptom : symptoms) {
-                System.out.println(SymptomHandler.toString(symptom));
-            }
+            SymptomHandler.printSymptoms(symptoms);
         }
     }
 
