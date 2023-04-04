@@ -300,17 +300,31 @@ public class Parser {
         return new AddDeadlineCommand(deadlineTypeToAdd, deadlineStorage);
     }
 
+    //2147483647
     private Command prepareBudgetCommand(String userInput, BudgetPlanner budgetPlanner) throws InvalidCommandException {
-        userInput = userInput.replaceFirst("/budget ", "").trim();
-        String[] commandWords = userInput.split((" "), 2);
-        if (userInput.trim().equalsIgnoreCase("view")) {
+        userInput = userInput.replaceFirst("/budget", "").trim();
+        String[] commandWords = userInput.split(("/"), 3);
+        trimStringArray(commandWords);
+        if (userInput.trim().equalsIgnoreCase("/view")) {
             return new ViewBudgetCommand(budgetPlanner);
         }
-        if (commandWords.length != 2) {
+        if (commandWords.length != 3) {
             throw new InvalidCommandException(ui.getInvalidBudgetMessage());
         }
-        String budgetCommand = commandWords[0].toLowerCase();
-        int amount = stringToInt(commandWords[1]);
+        String budgetCommand = commandWords[1].toLowerCase();
+        String stringAmount = commandWords[2];
+        if (stringAmount.startsWith("-") || stringAmount.length() > 10) {
+            throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+        }
+        try {
+            Long longAmount = Long.parseLong(stringAmount);
+            if (longAmount > BudgetPlanner.MAX_BUDGET) {
+                throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+            }
+        } catch (NumberFormatException e) {
+            throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+        }
+        int amount = stringToInt(stringAmount);
         switch (budgetCommand) {
         case "budget":
             return new EditBudgetCommand(amount, budgetPlanner);
@@ -324,6 +338,12 @@ public class Parser {
             return new EditEntertainmentCommand(amount, budgetPlanner);
         default:
             throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+        }
+    }
+
+    private void trimStringArray(String[] commandWords) {
+        for (int i = 0; i < commandWords.length; ++i) {
+            commandWords[i] = commandWords[i].trim();
         }
     }
 
