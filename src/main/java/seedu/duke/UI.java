@@ -12,6 +12,8 @@ public class UI {
     private static final int LIST_PU_LENGTH_FOR_PU_ABB = 52;
     private static final String LIST_PU_HEADER_MESSAGE = "   Partner University Name                  " +
             "         PU Abb    ";
+    public static final String INVALID_BUDGET_AMOUNT_MESSAGE = "Please input a valid amount which is positive whole " +
+            "number more than equals to 0 and less than " + BudgetPlanner.MAX_BUDGET;
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
     private static final String LIST_CURRENT_PU_MESSAGE = "List of Added Modules for: ";
     private static final String CURRENT_LIST_PU_EMPTY = "The current module list is empty for: ";
@@ -21,6 +23,8 @@ public class UI {
     private static final String ADD_MOD_MESSAGE = "This module has been added to the current module list!";
     private static final String ADD_DEADLINE_MESSAGE = "This deadline has been added to the current deadlines";
     private static final String DELETE_MOD_MESSAGE = "This module has been deleted from the current module list!";
+    private static final String DELETE_DEADLINE_MESSAGE = "This deadline has been deleted from the current deadline " +
+            "list!";
     private static final String DELETE_NUM_ERROR = "Deletion failed :( Please check the index to be removed again";
 
     private static final String ADD_MOD_FAILURE_MESSAGE = "Save Module Failed";
@@ -237,6 +241,11 @@ public class UI {
         System.out.println(LINE);
     }
 
+    public void printDeleteDeadlineMessage() {
+        System.out.println(DELETE_DEADLINE_MESSAGE);
+        System.out.println(LINE);
+    }
+
     public static void printStorageCorruptedMessage() {
         System.out.println("Storage is corrupted, corrupted modules have been deleted");
     }
@@ -367,6 +376,14 @@ public class UI {
 
     public static void printBudgetStorageCorruptedMessage() {
         System.out.println("Budget Storage is corrupted, resetting budget");
+    }
+
+    public static void printDeadlineStorageCorruptedMessage() {
+        System.out.println("Deadline Storage is corrupted, deleting corrupted deadlines");
+    }
+
+    public static void printInvalidBudgetAmountMessage() {
+        System.out.println(INVALID_BUDGET_AMOUNT_MESSAGE);
     }
 
     /**

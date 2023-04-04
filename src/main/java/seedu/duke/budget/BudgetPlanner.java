@@ -22,7 +22,6 @@ public class BudgetPlanner {
         if (isInvalidAmount) {
             return;
         }
-        budget = checkExceedMaxAmount(budget);
         this.budget = budget;
         budgetStorage.setBudget(budget);
     }
@@ -32,7 +31,6 @@ public class BudgetPlanner {
         if (isInvalidAmount) {
             return;
         }
-        accommodationTotalCost = checkExceedMaxAmount(accommodationTotalCost);
         this.accommodationTotalCost = accommodationTotalCost;
         budgetStorage.setAccommodationCost(accommodationTotalCost);
     }
@@ -42,7 +40,6 @@ public class BudgetPlanner {
         if (isInvalidAmount) {
             return;
         }
-        airplaneTicketTotalCost = checkExceedMaxAmount(airplaneTicketTotalCost);
         this.airplaneTicketTotalCost = airplaneTicketTotalCost;
         budgetStorage.setAirplaneTicketCost(airplaneTicketTotalCost);
     }
@@ -52,7 +49,6 @@ public class BudgetPlanner {
         if (isInvalidAmount) {
             return;
         }
-        foodTotalCost = checkExceedMaxAmount(foodTotalCost);
         this.foodTotalCost = foodTotalCost;
         budgetStorage.setFoodCost(foodTotalCost);
     }
@@ -62,7 +58,6 @@ public class BudgetPlanner {
         if (isInvalidAmount) {
             return;
         }
-        entertainmentTotalCost = checkExceedMaxAmount(entertainmentTotalCost);
         this.entertainmentTotalCost = entertainmentTotalCost;
         budgetStorage.setEntertainmentCost(entertainmentTotalCost);
     }
@@ -85,19 +80,12 @@ public class BudgetPlanner {
     }
 
     private boolean checkInvalidAmount(int amount) {
-        if (amount < 0) {
+        if (amount < 0 || amount > MAX_BUDGET) {
             return true;
         }
         return false;
     }
 
-    private int checkExceedMaxAmount(int amount) {
-        int newBudget = Math.min(amount, MAX_BUDGET);
-        if (newBudget < amount) {
-            System.out.println("Maximum budget of " + MAX_BUDGET + " allowed");
-        }
-        return newBudget;
-    }
 
     public int getBudget() {
         return budget;

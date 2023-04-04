@@ -33,8 +33,8 @@ public class Parser {
     private static UI ui = new UI();
 
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
-                                    ArrayList<Module> puModules, Storage storage, BudgetPlanner budgetPlanner,
-                                    ArrayList<Deadline> deadlines) {
+                                    ArrayList<Module> puModules, Storage storage, DeadlineStorage deadlineStorage,
+                                    BudgetPlanner budgetPlanner, ArrayList<Deadline> deadlines) {
 
         ArrayList<String> userInputWords = parseCommand(userInput.trim());
         String userCommandFirstKeyword = userInputWords.get(0);
@@ -67,11 +67,10 @@ public class Parser {
             case "/deadline/list":
                 return new ListDeadlinesCommand(deadlines);
             case "/deadline/add":
-                String deadlineTaskAndDueDate = userInputWords.get(1) + " " + userInputWords.get(2);
-                return prepareAddDeadlineCommand(storage, deadlineTaskAndDueDate);
+                return prepareAddDeadlineCommand(deadlineStorage, userInputWords);
             case "/deadline/remove":
                 int indexDeadlineToRemove = stringToInt(userCommandSecondKeyword);
-                return new DeleteDeadlineCommand(storage, indexDeadlineToRemove, deadlines);
+                return new DeleteDeadlineCommand(deadlineStorage, indexDeadlineToRemove, deadlines);
             default:
                 throw new InvalidCommandException(ui.getCommandInputError());
             }
@@ -257,9 +256,9 @@ public class Parser {
         return new AddModuleCommand(moduleToAdd, storage);
     }
 
-    private Command prepareAddDeadlineCommand(Storage storage, String deadlineToAdd) {
+    private Command prepareAddDeadlineCommand(DeadlineStorage deadlineStorage, ArrayList<String> userInputWords) {
         try {
-            return handleAddDeadlineCommand(storage, deadlineToAdd);
+            return handleAddDeadlineCommand(deadlineStorage, userInputWords);
         } catch (InvalidCommandException e) {
             return new ExceptionHandleCommand(e);
         }
@@ -267,9 +266,14 @@ public class Parser {
 
     // Format of user input is: task /by dueDate
     // Format of dueDate is: dd-MM-yyyy
-    private Command handleAddDeadlineCommand(Storage storage, String deadlineToAdd) throws InvalidCommandException {
+    private Command handleAddDeadlineCommand(DeadlineStorage deadlineStorage, ArrayList<String> userInputWords)
+            throws InvalidCommandException {
+        if (userInputWords.size() < 2) {
+            throw new InvalidCommandException(ui.getCommandInputError());
+        }
+        String deadlineToAdd = userInputWords.get(1) + " " + userInputWords.get(2);
         String[] stringSplit = deadlineToAdd.split(" /by");
-        if (stringSplit.length != 2) {
+        if (stringSplit.length != 2 || stringSplit[0].isBlank()) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
         String task = stringSplit[0].trim();
@@ -281,7 +285,7 @@ public class Parser {
         String dueDateDate = dueDateFormat[0];
         String dueDateMonth = dueDateFormat[1];
         String dueDateYear = dueDateFormat[2];
-        if (dueDateDate.length() != 2 ||dueDateMonth.length() != 2 || dueDateYear.length() != 4) {
+        if (dueDateDate.length() != 2 || dueDateMonth.length() != 2 || dueDateYear.length() != 4) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
         if (stringToInt(dueDateMonth) > 12) {
@@ -293,20 +297,39 @@ public class Parser {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
         Deadline deadlineTypeToAdd = new Deadline(task, dueDate);
-        return new AddDeadlineCommand(deadlineTypeToAdd, storage);
+        return new AddDeadlineCommand(deadlineTypeToAdd, deadlineStorage);
     }
 
+    //2147483647
     private Command prepareBudgetCommand(String userInput, BudgetPlanner budgetPlanner) throws InvalidCommandException {
-        userInput = userInput.replaceFirst("/budget ", "").trim();
-        String[] commandWords = userInput.split((" "), 2);
-        if (userInput.trim().equalsIgnoreCase("view")) {
+        userInput = userInput.replaceFirst("/budget", "").trim();
+        String[] commandWords = userInput.split(("/"), 3);
+        trimStringArray(commandWords);
+        if (userInput.trim().equalsIgnoreCase("/view")) {
             return new ViewBudgetCommand(budgetPlanner);
         }
-        if (commandWords.length != 2) {
+        if (commandWords.length != 3) {
             throw new InvalidCommandException(ui.getInvalidBudgetMessage());
         }
-        String budgetCommand = commandWords[0].toLowerCase();
-        int amount = stringToInt(commandWords[1]);
+        String budgetCommand = commandWords[1].toLowerCase();
+        String stringAmount = commandWords[2];
+        if (!budgetCommand.equals("budget") && !budgetCommand.equals("accommodation") &&
+                !budgetCommand.equals("airplane") && !budgetCommand.equals("food") &&
+                !budgetCommand.equals("entertainment")) {
+            throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+        }
+        if (stringAmount.startsWith("-") || stringAmount.length() > 10) {
+            throw new InvalidCommandException(UI.INVALID_BUDGET_AMOUNT_MESSAGE);
+        }
+        try {
+            Long longAmount = Long.parseLong(stringAmount);
+            if (longAmount > BudgetPlanner.MAX_BUDGET) {
+                throw new InvalidCommandException(UI.INVALID_BUDGET_AMOUNT_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            throw new InvalidCommandException(UI.INVALID_BUDGET_AMOUNT_MESSAGE);
+        }
+        int amount = stringToInt(stringAmount);
         switch (budgetCommand) {
         case "budget":
             return new EditBudgetCommand(amount, budgetPlanner);
@@ -320,6 +343,12 @@ public class Parser {
             return new EditEntertainmentCommand(amount, budgetPlanner);
         default:
             throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+        }
+    }
+
+    private void trimStringArray(String[] commandWords) {
+        for (int i = 0; i < commandWords.length; ++i) {
+            commandWords[i] = commandWords[i].trim();
         }
     }
 

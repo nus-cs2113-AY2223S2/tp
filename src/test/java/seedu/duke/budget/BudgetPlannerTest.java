@@ -1,12 +1,15 @@
 package seedu.duke.budget;
 
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class BudgetPlannerTest {
 
     private static final String BUDGET_PATH = "data/budget.txt";
@@ -46,10 +49,10 @@ class BudgetPlannerTest {
 
     @Test
     @Order(4)
-    void setBudget_exceedingAmount_successBudgetCapped() {
+    void setBudget_exceedingAmount_successBudgetNotChanged() {
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         budgetPlanner.setBudget(100000000);
-        assertEquals(BudgetPlanner.MAX_BUDGET, budgetPlanner.getBudget());
+        assertEquals(0, budgetPlanner.getBudget());
         f.delete();
     }
 
@@ -74,10 +77,10 @@ class BudgetPlannerTest {
 
     @Test
     @Order(7)
-    void setAccommodation_exceedingAmount_successBudgetCapped() {
+    void setAccommodation_exceedingAmount_successBudgetNotChanged() {
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         budgetPlanner.setAccommodationTotalCost(100000000);
-        assertEquals(BudgetPlanner.MAX_BUDGET, budgetPlanner.getAccommodationTotalCost());
+        assertEquals(0, budgetPlanner.getAccommodationTotalCost());
         f.delete();
     }
 
@@ -101,10 +104,10 @@ class BudgetPlannerTest {
 
     @Test
     @Order(10)
-    void setAirplaneTicket_exceedingAmount_successBudgetCapped() {
+    void setAirplaneTicket_exceedingAmount_successBudgetNotChanged() {
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         budgetPlanner.setAirplaneTicketTotalCost(100000000);
-        assertEquals(BudgetPlanner.MAX_BUDGET, budgetPlanner.getAirplaneTicketTotalCost());
+        assertEquals(0, budgetPlanner.getAirplaneTicketTotalCost());
         f.delete();
     }
 
@@ -128,10 +131,10 @@ class BudgetPlannerTest {
 
     @Test
     @Order(13)
-    void setFood_exceedingAmount_successBudgetCapped() {
+    void setFood_exceedingAmount_successBudgetNotChanged() {
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         budgetPlanner.setFoodTotalCost(100000000);
-        assertEquals(BudgetPlanner.MAX_BUDGET, budgetPlanner.getFoodTotalCost());
+        assertEquals(0, budgetPlanner.getFoodTotalCost());
         f.delete();
     }
 
@@ -155,10 +158,10 @@ class BudgetPlannerTest {
 
     @Test
     @Order(16)
-    void setEntertainment_exceedingAmount_successBudgetCapped() {
+    void setEntertainment_exceedingAmount_successBudgetNotChanged() {
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         budgetPlanner.setEntertainmentTotalCost(100000000);
-        assertEquals(budgetPlanner.MAX_BUDGET, budgetPlanner.getEntertainmentTotalCost());
+        assertEquals(0, budgetPlanner.getEntertainmentTotalCost());
         f.delete();
     }
 
@@ -175,7 +178,7 @@ class BudgetPlannerTest {
 
     @Test
     @Order(22)
-    void getSurplus() {
+    void getSurplus_correctInteger_success() {
         int testPrice = 12;
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertEquals(0, budgetPlanner.getSurplus());
@@ -186,7 +189,7 @@ class BudgetPlannerTest {
 
     @Test
     @Order(18)
-    void getAccommodationTotalCost() {
+    void getAccommodationTotalCost_correctInteger_success() {
         int testPrice = 12;
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertEquals(0, budgetPlanner.getAccommodationTotalCost());
@@ -197,7 +200,7 @@ class BudgetPlannerTest {
 
     @Test
     @Order(19)
-    void getAirplaneTicketTotalCost() {
+    void getAirplaneTicketTotalCost_correctInteger_success() {
         int testPrice = 12;
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertEquals(0, budgetPlanner.getAirplaneTicketTotalCost());
@@ -208,7 +211,7 @@ class BudgetPlannerTest {
 
     @Test
     @Order(20)
-    void getFoodTotalCost() {
+    void getFoodTotalCost_correctInteger_success() {
         int testPrice = 12;
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertEquals(0, budgetPlanner.getFoodTotalCost());
@@ -219,7 +222,7 @@ class BudgetPlannerTest {
 
     @Test
     @Order(21)
-    void getEntertainmentTotalCost() {
+    void getEntertainmentTotalCost_correctInteger_success() {
         int testPrice = 12;
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertEquals(0, budgetPlanner.getEntertainmentTotalCost());
