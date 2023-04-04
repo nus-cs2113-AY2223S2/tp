@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam maxMessageSize 150
+title ModifyCommand (for Tasks)
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":ModifyCommand" as modify
+participant "LoggerInterface" as Logger
+participant ":TaskList" as TaskList
+participant ":Ui" as Ui
+participant ":Storage" as Storage
+
+User -> Apollo : "mark 1"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+Parser -> modify** : ModifyCommand()
+modify++
+return
+return
+modify -> Logger: setUpLogger()
+activate Logger
+deactivate Logger
+destroy Logger
+
+Apollo -> modify : execute()
+Apollo--
+activate modify
+modify -> modify++ : unmarkTask()
+TaskList --> modify
+modify --
+alt Task marked as complete previously
+modify -> TaskList++: get()
+TaskList -> TaskList ++ :setDone()
+return
+modify <-- TaskList--
+destroy TaskList
+modify -> Ui : ui.printMarkNotDone()
+modify -> Storage ++: updateTask()
+destroy Storage
+return
+end
+alt Task marked as incomplete previously
+modify -> Ui : ui.printTaskHasBeenMarkedPreviously()
+end
+destroy modify
+
+
+@enduml
