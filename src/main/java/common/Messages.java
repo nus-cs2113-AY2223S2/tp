@@ -94,4 +94,6 @@ public class Messages {
 
     public static final String ERROR_STAFF_INVALID_INDEX = "Invalid staff index number";
     public static final String ERROR_STAFF_EXCESS_VIEW_PARAM = "Excessive parameter given to view staff command!";
+    public static final String ERROR_PRICE_EXCEED_INTEGER_BOUNDS = "The maximum must not be greater than "
+            + Integer.MAX_VALUE + " cents";
 }

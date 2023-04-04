@@ -398,8 +398,7 @@ public class Parser {
                 try {
                     price = Integer.parseInt(parsedDishInput.group(2));
                 } catch (NumberFormatException e) {
-                    throw new DinerDirectorException("The maximum must not be greater than " + Integer.MAX_VALUE
-                            + " cents");
+                    throw new DinerDirectorException(Messages.ERROR_PRICE_EXCEED_INTEGER_BOUNDS);
                 }
                 String[] ingredientList = parsedDishInput.group(3).split(";");
                 for (String ingredient : ingredientList) {
@@ -411,7 +410,9 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e.getMessage());
+            if (e.getMessage() != Messages.ERROR_COMMAND_INVALID) {
+                System.out.println(e.getMessage());
+            }
             return new IncorrectCommand();
         }
         return new AddDishCommand(name, price, ingredients);

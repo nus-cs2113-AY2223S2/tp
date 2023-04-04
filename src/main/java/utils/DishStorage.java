@@ -32,12 +32,30 @@ public class DishStorage {
             String text = in.nextLine();
             String[] components = text.split("~\\|~");
             try {
-                if (components.length != 3 || components[0].equals("")) {
-                    throw new DinerDirectorException(Messages.ERROR_STORAGE_INVALID_READ_LINE);
-                } else {
-                    ArrayList<String> ingredientsList = new ArrayList<>(Arrays.asList(components[2]));
-                    dish = new Dish(components[0], Integer.parseInt(components[1]), ingredientsList);
+//                if (components.length != 3 || components[0].equals("")) {
+//                    throw new DinerDirectorException(Messages.ERROR_STORAGE_INVALID_READ_LINE);
+//                } else {
+//                    ArrayList<String> ingredientsList = new ArrayList<>(Arrays.asList(components[2]));
+//                    dish = new Dish(components[0], Integer.parseInt(components[1]), ingredientsList);
+//                    listOfDishes.add(dish);
+//                }
+
+                if (components.length == 3 && !components[0].equals("") && !components[1].equals("")) {
+                    ArrayList<String> ingredients = new ArrayList<>();
+                    System.out.println(components[0] + ' ' + components[1] + ' ' + components[2]);
+                    String[] ingredientList = components[2].split(";");
+                    for (String ingredient : ingredientList) {
+                        if (!ingredient.isBlank()) {
+                            ingredients.add(ingredient);
+                        }
+                    }
+                    dish = new Dish(components[0], Integer.parseInt(components[1]), ingredients);
                     listOfDishes.add(dish);
+                } else if (components.length == 2 && !components[0].equals("")) {
+                    dish = new Dish(components[0], Integer.parseInt(components[1]), new ArrayList<String>());
+                    listOfDishes.add(dish);
+                } else {
+                    throw new DinerDirectorException(Messages.ERROR_STORAGE_INVALID_READ_LINE);
                 }
             } catch (DinerDirectorException e) {
                 System.out.println(String.format(Messages.ERROR_STORAGE_INVALID_READ_LINE, text));
