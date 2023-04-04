@@ -32,6 +32,7 @@ class UITest {
     private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n"
             + "Please ensure that you have typed in the correct NUS Module Code";
     private static final String PU_UNI_NAME_MAPS_TO_NUS_MESSAGE = " Module] maps to ----> [NUS Module]";
+    private static final String INVALID_MODULE_INDEX_MESSAGE = "Module not found :( Please type in a correct index";
 
     /*
         Testing below sets up an ByteArrayOutputStream where prints to System.out would go to.
@@ -118,7 +119,7 @@ class UITest {
     void getInvalidModuleMessage_correctLines_success() {
         UI ui = new UI();
         String invalidModuleMessage = ui.getInvalidModuleMessage();
-        assertEquals(INVALID_MODULE_MESSAGE, invalidModuleMessage.stripTrailing());
+        assertEquals(INVALID_MODULE_INDEX_MESSAGE, invalidModuleMessage.stripTrailing());
         outContent.reset();
     }
 
