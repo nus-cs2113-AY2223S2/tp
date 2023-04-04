@@ -30,22 +30,24 @@ class ListCommandTest {
         inventory.getTrie().add(item2.getName().toLowerCase());
 
         String expectedOutput =
-                "+-----------------+--------------+----------+----------+-----------------+" + System.lineSeparator() +
-                        "| Name            | UPC          | Quantity | Price    | Category        |" +
+                "+-----------------+--------------+----------+----------+-----------------+-------+" +
                         System.lineSeparator() +
-                        "+-----------------+--------------+----------+----------+-----------------+" +
+                        "| Name            | UPC          | Quantity | Price    | Category        | Index |" +
                         System.lineSeparator() +
-                        "| apples          | 012345678    | 5000     | $12.0    | Uncategorized   |" +
+                        "+-----------------+--------------+----------+----------+-----------------+-------+" +
                         System.lineSeparator() +
-                        "+-----------------+--------------+----------+----------+-----------------+" +
+                        "| apples          | 012345678    | 5000     | $12.0    | Uncategorized   | 0     |" +
                         System.lineSeparator() +
-                        "| oranges         | 876543210    | 3000     | $0.32    | citrus          |" +
+                        "+-----------------+--------------+----------+----------+-----------------+-------+" +
                         System.lineSeparator() +
-                        "+-----------------+--------------+----------+----------+-----------------+" +
+                        "| oranges         | 876543210    | 3000     | $0.32    | citrus          | 1     |" +
+                        System.lineSeparator() +
+                        "+-----------------+--------------+----------+----------+-----------------+-------+" +
                         System.lineSeparator();
 
         assertEquals(Ui.printTable(inventory.getItemInventory()), expectedOutput);
     }
+
 
     @Test
     public void printWithWrapping() {
@@ -59,18 +61,19 @@ class ListCommandTest {
         inventory.getTrie().add(item1.getName().toLowerCase());
 
         String expectedOutput =
-                "+-----------------+--------------+----------+----------+-----------------+" + System.lineSeparator() +
-                        "| Name            | UPC          | Quantity | Price    | Category        |" +
+                "+-----------------+--------------+----------+----------+-----------------+-------+" +
                         System.lineSeparator() +
-                        "+-----------------+--------------+----------+----------+-----------------+" +
+                        "| Name            | UPC          | Quantity | Price    | Category        | Index |" +
                         System.lineSeparator() +
-                        "| applesorangesgr | 012345678    | 5000     | $12.0    | Uncategorized   |" +
+                        "+-----------------+--------------+----------+----------+-----------------+-------+" +
                         System.lineSeparator() +
-                        "| eenbeansredbean |              |          |          |                 |" +
+                        "| applesorangesgr | 012345678    | 5000     | $12.0    | Uncategorized   | 0     |" +
                         System.lineSeparator() +
-                        "| s               |              |          |          |                 |" +
+                        "| eenbeansredbean |              |          |          |                 |       |" +
                         System.lineSeparator() +
-                        "+-----------------+--------------+----------+----------+-----------------+" +
+                        "| s               |              |          |          |                 |       |" +
+                        System.lineSeparator() +
+                        "+-----------------+--------------+----------+----------+-----------------+-------+" +
                         System.lineSeparator();
         assertEquals(Ui.printTable(inventory.getItemInventory()), expectedOutput);
     }
@@ -87,19 +90,19 @@ class ListCommandTest {
         inventory.getTrie().add(item1.getName().toLowerCase());
 
         String expectedOutput =
-                "+-----------------+--------------+----------+----------+-----------------+" +
+                "+-----------------+--------------+----------+----------+-----------------+-------+" +
                         System.lineSeparator() +
-                        "| Name            | UPC          | Quantity | Price    | Category        |" +
+                        "| Name            | UPC          | Quantity | Price    | Category        | Index |" +
                         System.lineSeparator() +
-                        "+-----------------+--------------+----------+----------+-----------------+" +
+                        "+-----------------+--------------+----------+----------+-----------------+-------+" +
                         System.lineSeparator() +
-                        "| red orange      | 012345678    | 5000     | $12.0    | Uncategorized   |" +
+                        "| red orange      | 012345678    | 5000     | $12.0    | Uncategorized   | 0     |" +
                         System.lineSeparator() +
-                        "| yellow green    |              |          |          |                 |" +
+                        "| yellow green    |              |          |          |                 |       |" +
                         System.lineSeparator() +
-                        "| blue violet     |              |          |          |                 |" +
+                        "| blue violet     |              |          |          |                 |       |" +
                         System.lineSeparator() +
-                        "+-----------------+--------------+----------+----------+-----------------+" +
+                        "+-----------------+--------------+----------+----------+-----------------+-------+" +
                         System.lineSeparator();
         assertEquals(Ui.printTable(inventory.getItemInventory()), expectedOutput);
     }

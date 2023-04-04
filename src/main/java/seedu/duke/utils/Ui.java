@@ -71,7 +71,7 @@ public class Ui {
     public static final String RECOVERED_ALERT_FILE = "INFO: Session Alert Data recovered." +
             " The list of active alerts has been updated.";
 
-    public static final int INVENTORY_ATTRIBUTE_COUNT = 5;
+    public static final int INVENTORY_ATTRIBUTE_COUNT = 6;
     public static final int HELP_ATTRIBUTE_COUNT = 2;
     public static final int ALERT_ATTRIBUTE_COUNT = 3;
 
@@ -80,6 +80,8 @@ public class Ui {
     public static final int QTY_COL_WIDTH = 8;
 
     public static final int PRICE_COL_WIDTH = 8;
+
+    public static final int INDEX_COL_WIDTH = 5;
     public static final int COMMAND_COL_WIDTH = 25;
     public static final int FORMAT_COL_WIDTH = 25;
     public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
@@ -123,6 +125,7 @@ public class Ui {
     private static final String PRICE_HEADING = "Price";
 
     private static final String CATEGORY_HEADING = "Category";
+    private static final String INDEX_HEADING = "Index";
     private static final String COMMAND_HEADING = "Command";
     private static final String FORMAT_HEADING = "Command Format";
 
@@ -297,7 +300,7 @@ public class Ui {
         printLine();
     }
 
-    public static void printRaceCondition(){
+    public static void printRaceCondition() {
         printLine();
         System.out.println("A rare race condition occurred. Please try restarting the program");
         System.out.println("If this happens often, check that other programs are not interfering with this one");
@@ -346,7 +349,8 @@ public class Ui {
     }
 
     public static String printTable(ArrayList<Item> items) {
-        int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH, CATEGORY_COL_WIDTH};
+        int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH, CATEGORY_COL_WIDTH,
+            INDEX_COL_WIDTH};
 
         StringBuilder table = new StringBuilder();
 
@@ -360,8 +364,9 @@ public class Ui {
             String qty = Integer.toString(item.getQuantity());
             String price = Double.toString(item.getPrice());
             String category = item.getCategory();
+            String index = Integer.toString(items.indexOf(item));
 
-            table.append(printRow(name, upc, qty, price, category, columnWidths));
+            table.append(printRow(name, upc, qty, price, category, index, columnWidths));
         }
         return table.toString();
     }
@@ -386,7 +391,8 @@ public class Ui {
     private static String printHeadings(int[] columnWidths) {
         String[] headings = {};
         if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
-            headings = new String[]{NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING, CATEGORY_HEADING};
+            headings = new String[] {NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING, CATEGORY_HEADING,
+                INDEX_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
@@ -472,16 +478,17 @@ public class Ui {
         return row.toString();
     }
 
-    private static String printRow(String name, String upc, String qty, String price, String category,
+    private static String printRow(String name, String upc, String qty, String price, String category, String index,
                                    int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
         String[] qtyLines = wrapText(qty, QTY_COL_WIDTH);
         String[] catLines = wrapText(category, CATEGORY_COL_WIDTH);
         String[] priceLines = wrapText(DOLLAR_SIGN + price, PRICE_COL_WIDTH);
+        String[] indexLines = wrapText(index, INDEX_COL_WIDTH);
         StringBuilder row = new StringBuilder();
 
-        int rowHeight = findRowHeight(nameLines, upcLines, qtyLines, priceLines);
+        int rowHeight = findRowHeight(nameLines, upcLines, qtyLines, priceLines, catLines, indexLines);
 
         for (int i = 0; i < rowHeight; i += 1) {
             row.append(TABLE_LEFT);
@@ -494,6 +501,8 @@ public class Ui {
             row.append(printAttribute(priceLines, PRICE_COL_WIDTH, i));
             row.append(TABLE_MIDDLE);
             row.append(printAttribute(catLines, CATEGORY_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
+            row.append(printAttribute(indexLines, INDEX_COL_WIDTH, i));
             row.append(TABLE_RIGHT);
             row.append(System.lineSeparator());
 
