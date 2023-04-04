@@ -7,7 +7,6 @@
  */
 
 package seedu.badmaths;
-
 import seedu.badmaths.trigograph.TrigoGraph;
 import seedu.badmaths.ui.Ui;
 import seedu.badmaths.matrix.Calculator;
@@ -60,6 +59,7 @@ public class Command {
         TrigoGraph trigoGraph = new TrigoGraph(toDo);
         Calculator calculator = new Calculator();
         Quadratic quadratic = new Quadratic(toDo);
+
         try {
             //@@author WilsonLee2000
             assert (command.equals("Bye") || command.equals("Graph") || command.equals("Store") ||
@@ -82,50 +82,22 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "Store":
-                if (isInvalidTodo(toDo)) {
-                    throw new IllegalTodoException();
-                }
-                if(toDo.equals("null")) {
-                    throw new IllegalTodoException();
-                }
-                notes.add(toDo);
-                Ui.printAddNote(toDo, notes.getSize());
-                Storage.saveFile(filePath, notes.getAll());
+                Store store = new Store(notes, toDo);
+                store.storeNotes();
                 break;
             //@@author WilsonLee2000
             case "List":
-
-                if ((!isInvalidTodo(toDo)) && (isAnInt(toDo) == false)) {
-                    throw new IllegalTodoException();
-                }
-
-                if (isInvalidTodo(toDo)) { // means there is no todo
-                    Ui.printNotes(notes.getAll()); // print all
-                    break;
-                }
-                int index = Integer.parseInt(toDo) - 1;
-
-                if (isInvalidIndex(index, notes)) { // list 10 if got 5 notes only
-                    throw new IllegalIndexException();
-                }
-                notes.review(index);
-                Ui.printSpecificNote(index, notes.getAll());
+                List lists = new List(notes,toDo);
+                lists.listNotes();
                 break;
             //@@author WilsonLee2000
             case "Delete":
-                if (isAnInt(toDo) == false) {
-                    break;
-                }
-                int deleteIndex = Integer.parseInt(toDo) - 1; // deleteIndex == 3
-                if (isInvalidIndex(deleteIndex, notes) == true) { // if true
-                    throw new IllegalIndexException();
-                }
-                Ui.printDelete(notes.getText(deleteIndex), notes.getSize());
-                notes.remove(deleteIndex);
+                Delete deletes = new Delete(notes, toDo);
+                deletes.deleteNotes();
                 break;
             //@@author ZiqiuZeng
             case "Mark":
-                if (isAnInt(toDo) == false) {
+                if (isAnInt(toDo)) {
                     break;
                 }
                 int markIndex = Integer.parseInt(toDo) - 1;
@@ -138,7 +110,7 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Unmark":
-                if (isAnInt(toDo) == false) {
+                if (!isAnInt(toDo)) {
                     break;
                 }
                 int unmarkIndex = Integer.parseInt(toDo) - 1;
