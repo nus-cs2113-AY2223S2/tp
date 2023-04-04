@@ -57,7 +57,7 @@ public class DishManager {
         for (int i = 0; i < getDishesSize(); i++) {
             String[] words = dishes.get(i).getDishName().split(" ");
             for (String word : words) {
-                if (word.equals(stringToFind)) {
+                if (word.equals(stringToFind) || word.contains(stringToFind)) {
                     dishesMatchingKeyword.add(dishes.get(i));
                     indexes.add(i + 1);
                 }
