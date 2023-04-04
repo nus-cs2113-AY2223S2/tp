@@ -189,13 +189,21 @@ public class Ui {
     }
 
     public void showExpenseList(ExpenseList expenses, Selector selector, Converter converter) {
-        System.out.println("    Here are the expenses in your list:");
-        expenses.printExpenseList(selector, converter);
+        if(expenses.size() == 0) {
+            showEmptyListMessage();
+        } else {
+            System.out.println("    Here are the expenses in your list:");
+            expenses.printExpenseList(selector, converter);
+        }
     }
 
     public void showIncomeList(IncomeList income, Selector selector, Converter converter) {
-        System.out.println("    Here are the incomes in your list:");
-        income.printIncomeList(selector, converter);
+        if(income.size() == 0) {
+            showEmptyListMessage();
+        } else {
+            System.out.println("    Here are the incomes in your list:");
+            income.printIncomeList(selector, converter);
+        }
     }
 
     public void showEmptyListMessage() {
