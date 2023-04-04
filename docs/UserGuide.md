@@ -1,5 +1,30 @@
 # Pet Tracker User Guide
-
+<!-- TOC -->
+* [Pet Tracker User Guide](#pet-tracker-user-guide)
+  * [Introduction](#introduction)
+  * [Quick Start](#quick-start)
+  * [Features](#features)
+    * [Tracking multiple pets at once](#tracking-multiple-pets-at-once)
+    * [Add Tasks with deadlines](#add-tasks-with-deadlines)
+    * [Reminder feature for expired tasks](#reminder-feature-for-expired-tasks)
+    * [Viewing the full list of pets and tasks](#viewing-the-full-list-of-pets-and-tasks)
+  * [Command Summary](#command-summary)
+    * [Adding a pet: `add-pet`](#adding-a-pet--add-pet)
+    * [Removing a pet: `remove-pet`](#removing-a-pet--remove-pet)
+    * [Adding a stat to a pet: `add-stat`](#adding-a-stat-to-a-pet--add-stat)
+    * [Removing a stat from a pet: `remove-stat`](#removing-a-stat-from-a-pet--remove-stat)
+    * [Editing a stat of a pet: `edit-stat`](#editing-a-stat-of-a-pet--edit-stat)
+    * [Viewing Pet List: `list`](#viewing-pet-list--list)
+    * [Adding a Task: `add-task`](#adding-a-task--add-task)
+    * [Removing a Task: `remove-task`](#removing-a-task--remove-task)
+    * [Viewing Task List: `list-tasks`](#viewing-task-list--list-tasks)
+    * [Editing tasks: `edit-task`](#editing-tasks--edit-task)
+    * [Print Task Schedule: `schedule`](#print-task-schedule--schedule)
+    * [Marking a Task as Done: `mark-task`](#marking-a-task-as-done--mark-task)
+    * [Marking a Task as Not Done: `unmark-task`](#marking-a-task-as-not-done--unmark-task)
+    * [Exiting the program: `exit`](#exiting-the-program--exit)
+  * [FAQ](#faq)
+<!-- TOC -->
 ## Introduction
 
 Keeping track of multiple pets can be daunting due to information overload. With Pet Tracker, keeping track of our
