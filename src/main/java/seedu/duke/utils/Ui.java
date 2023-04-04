@@ -349,8 +349,8 @@ public class Ui {
     }
 
     public static String printTable(ArrayList<Item> items) {
-        int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH, CATEGORY_COL_WIDTH,
-            INDEX_COL_WIDTH};
+        int[] columnWidths = {INDEX_COL_WIDTH, NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH,
+            CATEGORY_COL_WIDTH,};
 
         StringBuilder table = new StringBuilder();
 
@@ -391,8 +391,8 @@ public class Ui {
     private static String printHeadings(int[] columnWidths) {
         String[] headings = {};
         if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
-            headings = new String[] {NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING, CATEGORY_HEADING,
-                INDEX_HEADING};
+            headings = new String[] {INDEX_HEADING, NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING,
+                CATEGORY_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
@@ -492,6 +492,8 @@ public class Ui {
 
         for (int i = 0; i < rowHeight; i += 1) {
             row.append(TABLE_LEFT);
+            row.append(printAttribute(indexLines, INDEX_COL_WIDTH, i));
+            row.append(TABLE_MIDDLE);
             row.append(printAttribute(nameLines, NAME_COL_WIDTH, i));
             row.append(TABLE_MIDDLE);
             row.append(printAttribute(upcLines, UPC_COL_WIDTH, i));
@@ -501,8 +503,6 @@ public class Ui {
             row.append(printAttribute(priceLines, PRICE_COL_WIDTH, i));
             row.append(TABLE_MIDDLE);
             row.append(printAttribute(catLines, CATEGORY_COL_WIDTH, i));
-            row.append(TABLE_MIDDLE);
-            row.append(printAttribute(indexLines, INDEX_COL_WIDTH, i));
             row.append(TABLE_RIGHT);
             row.append(System.lineSeparator());
 
