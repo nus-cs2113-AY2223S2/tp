@@ -217,16 +217,16 @@ Output:
 
 ## Command Summary
 
-| Action  | Format, Examples |
-| ------------- | ------------- |
-| View | view  |
-| Update  | update  |
-| add  | add /on [date] /type [MealType] /foods [foods]  |
-| list  | list foods or list meals  |
-| delete  | delete INDEX e.g delete 3  |
-| filter  | filter  |
-| nutrition  | nutrition  |
-| exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date]  |
-| track  | track  |
-| bye  | bye  |
+| Action    | Format, Examples                                                                                         |
+|-----------|----------------------------------------------------------------------------------------------------------|
+| View      | view                                                                                                     |
+| Update    | update                                                                                                   |
+| Add       | add /on [date] /type [MealType] /foods [foods]                                                           |
+| List      | list foods or list meals                                                                                 |
+| Delete    | delete INDEX e.g delete 3                                                                                |
+| Filter    | filter                                                                                                   |
+| Nutrition | nutrition                                                                                                |
+| Exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date] |
+| Track     | track                                                                                                    |
+| Bye       | bye                                                                                                      |
 
