@@ -21,9 +21,17 @@ public class RemoveTaskCommand extends Command{
      */
     @Override
     public void execute(Ui ui, Storage storage) {
+        if (taskNumber <= 0) {
+            ui.invalidTaskNumber();
+            return;
+        }
+        try {
         TaskList.removeTask(taskNumber);
         TaskList.saveTasksToStorage(storage, ui);
         ui.removeTaskCommandMessage(taskNumber);
+        } catch (IndexOutOfBoundsException e) {
+            ui.taskNumberOutOfBoundsMessage();
+        }
     }
 
     /**

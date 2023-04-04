@@ -34,9 +34,17 @@ public class EditTaskCommand extends Command {
      */
     @Override
     public void execute(Ui ui, Storage storage) {
+        if (taskNumber <= 0) {
+            ui.invalidTaskNumber();
+            return;
+        }
+        try {
         TaskList.editTask(taskNumber, newDescription, deadline);
         TaskList.saveTasksToStorage(storage, ui);
         ui.editTaskCommandMessage(taskNumber, newDescription);
+        } catch (IndexOutOfBoundsException e) {
+            ui.taskNumberOutOfBoundsMessage();
+        }
     }
 
     /**
