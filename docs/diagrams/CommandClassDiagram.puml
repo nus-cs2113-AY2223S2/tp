@@ -1,0 +1,80 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 2
+hide circle
+hide empty methods
+hide empty fields
+
+package command {
+
+abstract class Command{
+#userData: UserData
++{static}isValidCommand(String): boolean
++{abstract}execute(): CommandResult
+}
+
+Class AddCommand{
+-description: String
+-flowDirection: String
+-value: double
+-category: String
+-date: LocalDate
+}
+
+Class DeleteCommand{
+-index : int
+}
+Class EditCommand{
+-index: int
+-editFlagAndField: ArrayList<String>
+}
+Class ExitCommand
+Class ExportCommand
+Class FilterCommand {
+-filterFlagAndField: ArrayList<String>
+
+}
+Class HelpCommand
+Class IgnoreCommand {
+-index: int
+}
+Class SetBudgetCommand{
+-goal: double
+}
+Class ViewCommand {
+}
+Class ViewResult
+
+abstract Class ShortcutCommand {
+{static}#shortcutCommands: HashMap<String, String> shortcutCommands
+{static}+checkShortcutValidity(HashMap<String, String>, String, String)
+}
+Class ShortcutAddCommand {
+{static}-key: String
+{static}-value: String
+}
+Class ShortcutDeleteCommand{
+{static}-keyToDelete: String
+}
+Class ShortcutViewCommand
+
+
+Command <|-- AddCommand
+Command <|-- DeleteCommand
+Command <|-- EditCommand
+Command <|-- ExitCommand
+Command <|-- ExportCommand
+Command <|-- FilterCommand
+Command <|-- HelpCommand
+Command <|-- IgnoreCommand
+Command <|-- SetBudgetCommand
+Command <|-- ShortcutCommand
+Command <|-- ViewCommand
+ShortcutCommand <|-- ShortcutAddCommand
+ShortcutCommand <|-- ShortcutViewCommand
+ShortcutCommand <|-- ShortcutDeleteCommand
+ViewCommand ..> ViewResult
+FilterCommand ..> ViewResult
+}
+
+@enduml

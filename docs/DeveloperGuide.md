@@ -47,12 +47,12 @@ of rainyDay. <br> If you are a user looking for instructions on how to use rainy
 
 The diagram given below explains the high-level design of rainyDay, and how the components are related to one another.
 
-![architecture.png](images%2Farchitecture.png)
+![architecture.png](images\DeveloperGuide\architecture.png)
 
 The Sequence Diagram below shows the timeline of how the different components will interact with one another, we will
 illustrate a 'delete' command, e.g. `delete 1`.
 
-![ArchitectureSequence.png](images%2FArchitectureSequence.png)
+![ArchitectureSequence.png](images\DeveloperGuide\ArchitectureSequence.png)
 
 ### Modules component
 
@@ -76,9 +76,7 @@ illustrate a 'delete' command, e.g. `delete 1`.
 
 
 ### Command component
-
-{insert diagrams}
-
+![CommandClassDiagram.png](images\DeveloperGuide\CommandClassDiagram.png)
 1. When a command is parsed, a command object specific to the command given will be created, with the necessary
    parameters stored as attributes in the command specific class
 2. RainyDay will then call method execute() in the command class to return a CommandResult object, which contains
@@ -213,7 +211,7 @@ down the instructions.
       structure`[-date] [whitespace] [date in DD/MM/YYYY format]`
 
 These steps will ultimately parse the user's input and extract the necessary information. If any pattern does not match,
-our parser will throw a `RainDayException` indicating the wrong input format.
+our parser will throw a `RainyDayException` indicating the wrong input format.
 
 #### Alternatives considered
 
