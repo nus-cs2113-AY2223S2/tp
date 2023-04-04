@@ -25,7 +25,7 @@ public class NotesFileContentManager {
             String noteText = note.getText();
             content.append(noteText);
             //line separator
-            content.append(System.lineSeparator());
+            content.append(System.getProperty("line.separator"));
         }
         return content.toString();
     }
