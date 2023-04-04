@@ -7,12 +7,13 @@ public class Store {
     public NotesList notes;
     protected String toDo;
 
-    public static boolean isInvalidTodo(String todo) {
-        return todo.equals("Invalid todo");
-    }
     public Store(NotesList notes, String toDo) {
         this.toDo = toDo;
         this.notes = notes;
+    }
+
+    public static boolean isInvalidTodo(String todo) {
+        return todo.equals("Invalid todo");
     }
 
     public void storeNotes() { // this is a method
