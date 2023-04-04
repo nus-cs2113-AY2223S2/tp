@@ -30,8 +30,8 @@ public class PetListTest {
             PetList.addPet("Alice");
             PetList.addPet("Alice");
             fail();
-        } catch (Exception e){
-            assertEquals("ERROR: Pet already exists",e.getMessage());
+        } catch (Exception e) {
+            assertEquals("ERROR: Pet already exists", e.getMessage());
         }
     }
 
@@ -40,8 +40,8 @@ public class PetListTest {
         try {
             PetList.addPet("");
             fail();
-        } catch (Exception e){
-            assertEquals("ERROR: Pet Name is empty",e.getMessage());
+        } catch (Exception e) {
+            assertEquals("ERROR: Pet Name is empty", e.getMessage());
         }
     }
 
@@ -49,17 +49,17 @@ public class PetListTest {
     public void addStatToPet_correctStat_success() throws NonPositiveIntegerException,
             InvalidStatException, PetNotFoundException, DuplicatePetException, EmptyPetNameException {
         PetList.addPet("Candy");
-        PetList.addStat("Candy","Weight","10");
+        PetList.addStat("Candy", "Weight", "10");
     }
 
     @Test
     public void addStatToPet_nonPositiveInteger_exceptionThrown() {
         try {
             PetList.addPet("Dylan");
-            PetList.addStat("Dylan","Weight","-1");
+            PetList.addStat("Dylan", "Weight", "-1");
             fail();
-        } catch (Exception e){
-            assertEquals("ERROR: Integer provided should be above 0",e.getMessage());
+        } catch (Exception e) {
+            assertEquals("ERROR: Integer provided should be above 0", e.getMessage());
         }
     }
 
@@ -67,10 +67,10 @@ public class PetListTest {
     public void addStatToPet_invalidStat_exceptionThrown() {
         try {
             PetList.addPet("Ellie");
-            PetList.addStat("Ellie","invalid","10");
+            PetList.addStat("Ellie", "invalid", "10");
             fail();
-        } catch (Exception e){
-            assertEquals("ERROR: The only valid stats are type, age, or weight.",e.getMessage());
+        } catch (Exception e) {
+            assertEquals("ERROR: The only valid stats are type, age, or weight.", e.getMessage());
         }
     }
 
@@ -78,10 +78,27 @@ public class PetListTest {
     public void addStatToPet_petNotFound_exceptionThrown() {
         try {
             PetList.addPet("Freddy");
-            PetList.addStat("invalid","Weight","10");
+            PetList.addStat("invalid", "Weight", "10");
             fail();
-        } catch (Exception e){
-            assertEquals("ERROR: Pet not Found",e.getMessage());
+        } catch (Exception e) {
+            assertEquals("ERROR: Pet not Found", e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void removePet_petFound_success() throws PetNotFoundException, DuplicatePetException,
+            EmptyPetNameException {
+        PetList.addPet("George");
+        PetList.removePet("George");
+    }
+
+    @Test
+    public void removePet_petNotFound_exceptionThrown() {
+        try {
+            PetList.removePet("doesnotexist");
+        } catch (Exception e) {
+            assertEquals("ERROR: Pet not Found", e.getMessage());
         }
     }
 }
