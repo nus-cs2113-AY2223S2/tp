@@ -105,7 +105,8 @@ public class FilterCommand extends Command {
             output = "We could not find any matches for your description in your report";
             return new CommandResult(output);
         }
-        output = "Here are the list of matching items!"; // todo
+        output = String.format("We found %s ", listToFilterStatementIndex.size()) + String.format(
+                listToFilterStatementIndex.size() == 1 ? "matching item!" : "matching items!");
         CommandResult result = new CommandResult(output);
         ViewResult.printItemsInList(listToFilterStatementIndex);
         return result;
