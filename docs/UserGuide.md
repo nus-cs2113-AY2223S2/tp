@@ -102,12 +102,12 @@ path in the address bar as shown <br>
     3. Press Enter. Your Command Line should now be open in the folder containing "rainyDay.jar" as shown below. The 
 location you saved rainyDay should be shown, in this example we saved it in the path "\Users\azriel\OneDrive - National 
 University of Singapore\Desktop\TP jar file"
-![cmd prompt open.png](images/UserGuide/cmd prompt open.png)
+![cmd prompt open.png](images/UserGuide/cmdpromptopen.png)
 5. Type `java -jar rainyDay.jar` in the terminal and press Enter on your keyboard to start the application. You should 
 see the following if the start up is successful.
-![cmd start up.png](images/UserGuide/cmd start up.png)
+![cmd start up.png](images/UserGuide/cmdstartup.png)
 6. Type your name and press Enter. The following will be shown:
-![cmd enter name.png](images/UserGuide/cmd enter name.png)
+![cmd enter name.png](images/UserGuide/cmdentername.png)
 
 ## Features Overview
 
