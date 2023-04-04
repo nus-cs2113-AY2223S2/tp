@@ -27,6 +27,6 @@ public class ListIncomeCommand extends Command {
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
             Converter converter, TargetStorage targetStorage) throws ChChingException {
-            ui.showIncomeList(incomes, selector, converter);
+        ui.showIncomeList(incomes, selector, converter);
     }
 }
