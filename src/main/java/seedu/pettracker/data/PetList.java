@@ -54,7 +54,7 @@ public class PetList {
     }
 
     /**
-     * Adds a stat to the pet provided
+     * Retrieves a pet in the PetList to add a stat to
      *
      * @param petName Name of pet to edit
      * @param statName Name of stat to add
@@ -75,6 +75,8 @@ public class PetList {
     }
 
     /**
+     * Retrieves a pet in the PetList and remove a stat
+     *
      * @param petName Name of pet to remove from
      * @param statName Name of stat to remove
      * @throws InvalidStatException When the stat does not exist
@@ -124,7 +126,8 @@ public class PetList {
     }
 
     /**
-     * Edit pet stats to change the previous value to a new value
+     * Edit pet stats of a pet in the PetList to change the previous value to a new value
+     *
      * @param petName Name of pet to edit
      * @param stat Name of stat to edit
      * @param newValue New stat Value
@@ -160,6 +163,7 @@ public class PetList {
 
     /**
      * Saves the current PetList to the output file
+     * 
      * @param storage Storage to save file to
      * @param ui Ui for any prints
      */

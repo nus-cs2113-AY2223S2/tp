@@ -23,6 +23,15 @@ public class Pet {
         logger.log(Level.INFO, "Pet successfully created with pet name: " + petName + "\n");
     }
 
+    /**
+     * Add Stat to a pet
+     *
+     * @param statName Stat Name to add
+     * @param statValue Stat Value to add
+     * @throws NonPositiveIntegerException When stat is Age/Weight and is non-positive
+     * @throws NumberFormatException When stat is Age/Weight and is not a number
+     * @throws InvalidStatException When stat is not Type/Age/Weight
+     */
     public void addStat(String statName, String statValue) throws NonPositiveIntegerException,
             NumberFormatException, InvalidStatException {
         assert statName != null && statValue != null : "statName/statValue is null";
@@ -42,6 +51,12 @@ public class Pet {
 
     }
 
+    /**
+     * Removes a stat from a pet
+     *
+     * @param statName Stat Name to add
+     * @throws InvalidStatException When stat is not Type/Age/Weight
+     */
     public void removeStat(String statName) throws InvalidStatException {
         assert statName != null : "statName is null";
         switch (statName.toLowerCase()) {
@@ -87,6 +102,13 @@ public class Pet {
         return age;
     }
 
+    /**
+     * Set the pet Age
+     *
+     * @param age String of age to set to
+     * @throws NonPositiveIntegerException When stat is non-positive
+     * @throws NumberFormatException When stat is not a number
+     */
     public void setAge(String age) throws NonPositiveIntegerException, NumberFormatException {
         int ageInt = Integer.parseInt(age);
         if (ageInt <= 0) {
@@ -99,6 +121,13 @@ public class Pet {
         return weight;
     }
 
+    /**
+     * Set the pet Weight
+     *
+     * @param weight String of weight to set to
+     * @throws NonPositiveIntegerException When stat is non-positive
+     * @throws NumberFormatException When stat is not a number
+     */
     public void setWeight(String weight) throws NonPositiveIntegerException, NumberFormatException {
         int weightInt = Integer.parseInt(weight);
         if (weightInt <= 0) {
@@ -118,6 +147,11 @@ public class Pet {
         return getPetName() + "\nType: " + getPetType() + "\nAge: " + getAge() + "\nWeight: " + getWeight();
     }
 
+    /**
+     * Converts a pet to a formatted string to save into the output file
+     *
+     * @return String that contains pet name, type, age and weight seperated by pipes
+     */
     public String saveFormat() {
         return getPetName() + "|" + getPetType() + "|" + getAge() + "|" + getWeight();
     }
