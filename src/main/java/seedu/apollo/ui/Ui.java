@@ -578,9 +578,8 @@ public class Ui {
      */
     public void printInvalidSaveFile(int counter, String filePath) {
         showLine();
-        System.out.println("There is an error in save.txt at line " + (counter + 1) + "\n" +
-                "Task " + (counter + 1) + " has been excluded. You can edit the save file at:\n" +
-                filePath);
+        System.out.println("There is an error in save.txt at line " + counter + "\n" +
+                "Task " + counter + " has been excluded. You can view the save file at:" + filePath);
         showLine();
     }
 

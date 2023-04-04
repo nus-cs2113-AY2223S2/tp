@@ -1,10 +1,10 @@
 package seedu.apollo.ui;
 
-import seedu.apollo.command.WeekCommand;
 import seedu.apollo.command.module.AddModuleCommand;
 import seedu.apollo.command.module.DeleteModuleCommand;
 import seedu.apollo.command.module.ListModuleCommand;
 import seedu.apollo.command.module.ListModuleWithLessonCommand;
+import seedu.apollo.command.utils.WeekCommand;
 import seedu.apollo.command.module.ShowModuleCommand;
 import seedu.apollo.command.task.AddCommand;
 import seedu.apollo.command.Command;
