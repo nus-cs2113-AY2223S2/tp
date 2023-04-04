@@ -40,7 +40,7 @@ public class PetList {
         numberOfPets += 1;
     }
 
-    public static int find(String petName) {
+    private static int find(String petName) {
         for (int i = 0; i < petList.size(); i++) {
             if (petList.get(i).getPetName().equals(petName)) {
                 return i;
@@ -49,10 +49,21 @@ public class PetList {
         return -1;
     }
 
-    public static Pet get(int index) {
+    private static Pet get(int index) {
         return petList.get(index);
     }
 
+    /**
+     * Retrieves a pet in the PetList to add a stat to
+     *
+     * @param petName   Name of pet to edit
+     * @param statName  Name of stat to add
+     * @param statValue New stat Value
+     * @throws NumberFormatException       When stat is Age/Weight and is not a number
+     * @throws NonPositiveIntegerException When stat is Age/Weight and is non-positive
+     * @throws InvalidStatException        When stat is not Type/Age/Weight
+     * @throws PetNotFoundException        When Pet is not in PetList
+     */
     public static void addStat(String petName, String statName, String statValue)
             throws NumberFormatException, NonPositiveIntegerException, InvalidStatException, PetNotFoundException {
         int index = PetList.find(petName);
@@ -63,6 +74,14 @@ public class PetList {
         }
     }
 
+    /**
+     * Retrieves a pet in the PetList and remove a stat
+     *
+     * @param petName  Name of pet to remove from
+     * @param statName Name of stat to remove
+     * @throws InvalidStatException When the stat does not exist
+     * @throws PetNotFoundException When Pet is not in PetList
+     */
     public static void removeStat(String petName, String statName) throws InvalidStatException, PetNotFoundException {
         int index = PetList.find(petName);
         if (index == -1) {
@@ -72,9 +91,10 @@ public class PetList {
     }
 
     /**
-     * Removes all pets with the provided name from the pet list
+     * Removes pet with the provided name from the pet list
      *
-     * @param petName Name of pet(s) to be removed
+     * @param petName Name of pet to be removed
+     * @throws PetNotFoundException When Pet is not in PetList
      */
     public static void removePet(String petName) throws PetNotFoundException {
         int index = PetList.find(petName);
@@ -105,6 +125,17 @@ public class PetList {
         return numberOfPets;
     }
 
+    /**
+     * Edit pet stats of a pet in the PetList to change the previous value to a new value
+     *
+     * @param petName  Name of pet to edit
+     * @param stat     Name of stat to edit
+     * @param newValue New stat Value
+     * @throws NonPositiveIntegerException When stat is Age/Weight and is non-positive
+     * @throws NumberFormatException       When stat is Age/Weight and is not a number
+     * @throws InvalidStatException        When stat is not Type/Age/Weight
+     * @throws PetNotFoundException        When Pet is not in PetList
+     */
     public static void editPetStats(String petName, String stat, String newValue)
             throws NonPositiveIntegerException, NumberFormatException, InvalidStatException, PetNotFoundException {
         int index = PetList.find(petName);
@@ -130,6 +161,12 @@ public class PetList {
         }
     }
 
+    /**
+     * Saves the current PetList to the output file
+     *
+     * @param storage Storage to save file to
+     * @param ui      Ui for any prints
+     */
     public static void savePetsToStorage(Storage storage, Ui ui) {
         storage.savePets(petList, ui);
     }

@@ -32,11 +32,11 @@ public class EditStatCommand extends Command {
             PetList.savePetsToStorage(storage, ui);
             ui.editStatCommandMessage(petName, statName, statValue);
         } catch (NonPositiveIntegerException e) {
-            ui.integerNotPositiveMessage();
+            ui.printIntegerNotPositiveMessage();
         } catch (NumberFormatException e) {
-            ui.nonIntegerMessage();
+            ui.printNonIntegerMessage();
         } catch (InvalidStatException e) {
-            ui.invalidStatMessage();
+            ui.printInvalidStatMessage();
         } catch (PetNotFoundException e) {
             ui.petNotFoundMessage();
         }

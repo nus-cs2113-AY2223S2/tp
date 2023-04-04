@@ -46,7 +46,7 @@ public class Storage {
             }
             file.createNewFile();
         } catch (IOException e) {
-            ui.fileIOErrorMessage();
+            ui.printFileIOErrorMessage();
         }
     }
 
@@ -55,7 +55,7 @@ public class Storage {
             ArrayList<String> data = readFile(petFilePath);
             parsePetFile(data);
         } catch (IOException e) {
-            ui.fileIOErrorMessage();
+            ui.printFileIOErrorMessage();
         }
     }
 
@@ -75,7 +75,7 @@ public class Storage {
             }
             file.createNewFile();
         } catch (IOException e) {
-            ui.fileIOErrorMessage();
+            ui.printFileIOErrorMessage();
         }
     }
 
@@ -84,7 +84,7 @@ public class Storage {
             ArrayList<String> data = readFile(taskFilePath);
             parseTaskFile(data);
         } catch (IOException e) {
-            ui.fileIOErrorMessage();
+            ui.printFileIOErrorMessage();
         }
     }
 
@@ -110,7 +110,7 @@ public class Storage {
         try {
             writePetsToFile(petList);
         } catch (IOException e) {
-            ui.fileIOErrorMessage();
+            ui.printFileIOErrorMessage();
         }
     }
 
@@ -135,7 +135,7 @@ public class Storage {
         try {
             writeTasksToFile(taskList);
         } catch (IOException e) {
-            ui.fileIOErrorMessage();
+            ui.printFileIOErrorMessage();
         }
     }
 

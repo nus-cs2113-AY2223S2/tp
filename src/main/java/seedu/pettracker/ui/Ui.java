@@ -8,6 +8,13 @@ import java.util.Scanner;
 public class Ui {
     private static final String DIVIDER = "\n_________________________________________________________________________"
             + "_______________________________\n";
+    private static final String FILE_IO_ERROR = "ERROR: Error with File IO";
+    private static final String NON_INTEGER_ERROR = "ERROR: Input should be an integer";
+    private static final String NON_POSITIVE_INTEGER_ERROR = "ERROR: Integer provided should be above 0";
+    private static final String INVALID_STAT_ERROR = "ERROR: The only valid stats are type, age, or weight.";
+    private static final String PET_NOT_FOUND_ERROR = "ERROR: Pet not Found";
+    private static final String EMPTY_PET_NAME_ERROR = "ERROR: Pet Name is empty";
+    private static final String DUPLICATE_PET_ERROR = "ERROR: Pet already exists";
 
 
     Scanner in;
@@ -151,27 +158,34 @@ public class Ui {
     /**
      * Message that prints when the storage experiences IO error.
      */
-    public void fileIOErrorMessage() {
-        System.out.println("ERROR: Error with File IO");
+    public void printFileIOErrorMessage() {
+        System.out.println(FILE_IO_ERROR);
     }
-    public void nonIntegerMessage() {
-        System.out.println("ERROR: Input should be an integer");
+
+    public void printNonIntegerMessage() {
+        System.out.println(NON_INTEGER_ERROR);
     }
-    public void integerNotPositiveMessage() {
-        System.out.println("ERROR: Integer provided should be above 0");
+
+    public void printIntegerNotPositiveMessage() {
+        System.out.println(NON_POSITIVE_INTEGER_ERROR);
     }
-    public void invalidStatMessage(){
-        System.out.println("ERROR: The only valid stats are type, age, or weight.");
+
+    public void printInvalidStatMessage() {
+        System.out.println(INVALID_STAT_ERROR);
     }
+
     public void petNotFoundMessage() {
-        System.out.println("ERROR: Pet not Found");
+        System.out.println(PET_NOT_FOUND_ERROR);
     }
+
     public void petNameEmptyMessage() {
-        System.out.println("ERROR: Pet Name is empty");
+        System.out.println(EMPTY_PET_NAME_ERROR);
     }
+
     public void duplicatePetMessage() {
-        System.out.println("ERROR: Pet already exists");
+        System.out.println(DUPLICATE_PET_ERROR);
     }
+
     /**
      * Print out help for all commands
      */
@@ -231,7 +245,7 @@ public class Ui {
     }
 
     /**
-     * Print out help for remove-pet command
+     * Print out help for list command
      */
     private void showPetListCommandHelp() {
         System.out.println("Command: list");
@@ -340,6 +354,7 @@ public class Ui {
         System.out.println("Example: unmark-task 2");
         System.out.println(DIVIDER);
     }
+
     /**
      * Print out help for exit command
      */
