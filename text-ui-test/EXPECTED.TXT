@@ -149,39 +149,39 @@ Sectional Teaching (-st)
 Tutorial (-tut)
 
 Sectional Teaching 1
-   Wednesday 0900 - 1000
+   Wednesday 0900 - 1000 [Weekly]
 Sectional Teaching 1
-   Thursday 1200 - 1400
+   Thursday 1200 - 1400 [Weekly]
 Tutorial 01
-   Wednesday 1000 - 1200
+   Wednesday 1000 - 1200 [Weeks: 3-13]
 Tutorial 02
-   Monday 1000 - 1200
+   Monday 1000 - 1200 [Weeks: 3-13]
 Tutorial 03
-   Wednesday 1200 - 1400
+   Wednesday 1200 - 1400 [Weeks: 3-13]
 Tutorial 04
-   Tuesday 1200 - 1400
+   Tuesday 1200 - 1400 [Weeks: 3-13]
 Tutorial 05
-   Thursday 1000 - 1200
+   Thursday 1000 - 1200 [Weeks: 3-13]
 Tutorial 06
-   Tuesday 1000 - 1200
+   Tuesday 1000 - 1200 [Weeks: 3-13]
 Tutorial 07
-   Thursday 1400 - 1600
+   Thursday 1400 - 1600 [Weeks: 3-13]
 Tutorial 08
-   Wednesday 1400 - 1600
+   Wednesday 1400 - 1600 [Weeks: 3-13]
 Tutorial 09
-   Tuesday 1600 - 1800
+   Tuesday 1600 - 1800 [Weeks: 3-13]
 Tutorial 10
-   Monday 1200 - 1400
+   Monday 1200 - 1400 [Weeks: 3-13]
 Tutorial 11
-   Thursday 1600 - 1800
+   Thursday 1600 - 1800 [Weeks: 3-13]
 Tutorial 12
-   Monday 1400 - 1600
+   Monday 1400 - 1600 [Weeks: 3-13]
 Tutorial 13
-   Tuesday 1400 - 1600
+   Tuesday 1400 - 1600 [Weeks: 3-13]
 Tutorial 14
-   Wednesday 1600 - 1800
+   Wednesday 1600 - 1800 [Weeks: 3-13]
 Tutorial 15
-   Monday 1600 - 1800
+   Monday 1600 - 1800 [Weeks: 3-13]
 ____________________________________________________________
 ____________________________________________________________
 CG2023
@@ -191,30 +191,30 @@ Laboratory (-lab)
 Lecture (-lec)
 
 Laboratory 01
-   Monday 1400 - 1700
+   Monday 1400 - 1700 [Weeks: 5, 7, 9, 11]
 Laboratory 02
-   Monday 1400 - 1700
+   Monday 1400 - 1700 [Weeks: 6, 8, 10, 12]
 Laboratory 03
-   Tuesday 0900 - 1200
+   Tuesday 0900 - 1200 [Weeks: 5, 7, 9, 11]
 Laboratory 04
-   Tuesday 0900 - 1200
+   Tuesday 0900 - 1200 [Weeks: 6, 8, 10, 12]
 Laboratory 05
-   Friday 0900 - 1200
+   Friday 0900 - 1200 [Weeks: 5, 7, 9, 11]
 Laboratory 06
-   Friday 0900 - 1200
+   Friday 0900 - 1200 [Weeks: 6, 8, 10, 12]
 Lecture 01
-   Thursday 1600 - 1800
+   Thursday 1600 - 1800 [Weekly]
 Lecture 01
-   Tuesday 1600 - 1800
+   Tuesday 1600 - 1800 [Weekly]
 Lecture 02
-   Thursday 1600 - 1800
+   Thursday 1600 - 1800 [Weekly]
 Lecture 02
-   Tuesday 1600 - 1800
+   Tuesday 1600 - 1800 [Weekly]
 ____________________________________________________________
 ____________________________________________________________
 Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
 Class Number: 1
-   Tuesday 1000 - 1200
+   Tuesday 1000 - 1200 [Weekly]
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
