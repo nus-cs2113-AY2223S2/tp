@@ -2,6 +2,7 @@ package seedu.apollo.command.module;
 
 import org.junit.jupiter.api.Test;
 import seedu.apollo.calendar.Calendar;
+import seedu.apollo.exception.module.InvalidModule;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.task.TaskList;
@@ -10,6 +11,7 @@ import seedu.apollo.ui.Ui;
 import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ListModuleCommandTest {
 
@@ -29,4 +31,5 @@ class ListModuleCommandTest {
         assertDoesNotThrow(() -> new ListModuleCommand()
                 .execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
+
 }
