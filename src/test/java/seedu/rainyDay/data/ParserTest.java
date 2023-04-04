@@ -7,6 +7,7 @@ import seedu.rainyDay.command.ExitCommand;
 import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.SetBudgetCommand;
+import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Parser;
@@ -103,6 +104,23 @@ class ParserTest {
         } catch (Exception e) {
             assertEquals(e.getMessage().toString(), ErrorMessage.NO_DELETE_INDEX.toString());
         }
+    }
+
+    @Test
+    public void parseGenerateReport() throws RainyDayException {
+        assertEquals(ViewCommand.class, new Parser().parseUserInput("view").getClass());
+        assertEquals(ViewCommand.class, new Parser().parseUserInput("view -sort").getClass());
+        assertEquals(ViewCommand.class, new Parser().parseUserInput("view -all -sort").getClass());
+        assertEquals(ViewCommand.class, new Parser().parseUserInput("view 21d -sort").getClass());
+        assertEquals(ViewCommand.class, new Parser().parseUserInput("view 2w -sort").getClass());
+        assertEquals(ViewCommand.class, new Parser().parseUserInput("view 1m -sort").getClass());
+        assertEquals(ViewCommand.class, new Parser().parseUserInput("view 5y -sort").getClass());
+
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("view -test"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("view 32d -sort"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("view 5w -sort"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("view 13m -sort"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("view 11y -sort"));
     }
 
     //@@author ChongQiRong
