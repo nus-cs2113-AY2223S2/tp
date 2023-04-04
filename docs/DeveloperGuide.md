@@ -234,8 +234,6 @@ progress.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
 ### Launch and shutdown of program
 1. Download the latest version of the .jar file and copy the file to the folder where you want the Fitness Duke program to run.
 2. Run the .jar file based on the instructions on the User Guide.
