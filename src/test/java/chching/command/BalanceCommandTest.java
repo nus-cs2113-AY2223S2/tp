@@ -1,4 +1,5 @@
-/* @@author avielcx, thomasjlalba */
+/* @@author avielcx
+   @@thomasjlalba */
 package chching.command;
 
 import chching.Storage;

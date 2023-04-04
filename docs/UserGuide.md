@@ -30,7 +30,7 @@ ChChing is a desktop app for tracking spending, and it uses a Command Line Inter
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `ChChing` from [here](https://github.com/AY2223S2-CS2113-T12-1/tp/releases).
+2. Download the latest version of `ChChing` from [here](https://github.com/AY2223S2-CS2113-T12-1/tp/releases).
 3. Copy downloaded `tp.jar` file to the desired home folder of choice.
 4. Open a command terminal and `cd` into the folder mentioned in step 3.
 5. Type in the following to run the application:
@@ -39,7 +39,7 @@ ChChing is a desktop app for tracking spending, and it uses a Command Line Inter
 java -jar tp.jar
 ```
 
-6. If successful, the following greeting should appear:
+6. If successful, the following greetings should appear:
 <br> For first time users:
 ```
 Unfortunately, income list file can't be found. I'll make a new one!
@@ -76,10 +76,11 @@ Use case:
 - Re-prompts user if any field is not provided properly.
 - VALUE will be stored as a positive float.
 - Format for DATE will be dd-MM-yyyy.
+- DATE needs to be a valid date, and it cannot be a date in the future.
 
 Example of usage:
 <br>`add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50`
-<br>`add income /c salary /de salary /da 22-03-2023 /v 500`
+<br>`add income /de salary /da 22-03-2023 /v 500`
 
 ### Listing all expenses and incomes: `list`
 
@@ -103,7 +104,7 @@ Format:
 Use case:
 
 - Edits the item at the specified INDEX, where INDEX is a positive integer.
-- At least one of the fields must be provided.
+- At least one of the optional fields must be provided.
 - User inputs desired fields to be edited.
 - Existing values will be updated to the input values.
 
@@ -208,7 +209,7 @@ Format:
 
 Use case:
 
-- VALUE ranges from negative to postive
+- VALUE ranges from negative to positive
 
 Example of usage:
 <br> `set target /v 350`
@@ -235,34 +236,39 @@ Format:
 <br> `help`
 
 ### Exit: `exit`
+
 Exit the program
 
 Format:
 <br> `exit`
+
 ### Saving and loading of data
 
 Record entries are saved in `data/chching.txt` file. This file is updated upon exit.
 When reading from the file, entries for income and expenses are stored in their respective arrayList.
 
+
 ## Command Summary (Alphabetical Order)
 
-- Add Expense: `add expense /c CATEGORY /de DESCRIPTION /da DATE /v VALUE`
-- Add Income: `add income /de DESCRIPTION /da DATE /v VALUE`
-- Clear income list: `clear income`
-- Clear expense list: `clear expense`
-- Clear both income and expense lists: `clear all`
-- Delete Expense: `delete expense /in INDEX`
-- Delete Income: `delete income /in INDEX`
-- Edit income list: `edit income /i INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`
-- Edit expense list: `edit expense /i INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
-- Exit: `exit`
-- Find entry: `find /c CATEGORY /k DESCRIPTION`
-- List Records: `list`
-- List Expenses: `list expense`
-- List Incomes: `list income`
-- Set Target: `set target /v Value`
-- Show Target: `show target`
-- Show Balance: `balance`
-- Set Currency: `set currency /cr CURRENCY`
-- Show help: `help`
-- Unset Currency: `unset currency /cr CURRENCY`
+| **Command**        | **Format & Examples**                                                                                                                      |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| Add Expense        | `add expense /c CATEGORY /de DESCRIPTION /da DATE /v VALUE`<br>e.g. `add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50` |
+| Add Income         | `add income /de DESCRIPTION /da DATE /v VALUE`<br>e.g. `add income /de salary /da 22-03-2023 /v 500`                                       |
+| Clear All Lists    | `clear all`                                                                                                                                |
+| Clear Expense List | `clear expense`                                                                                                                            |
+| Clear Income List  | `clear income`                                                                                                                             |
+| Delete Expense     | `delete expense /in INDEX`<br>e.g. `delete expense /in 1`                                                                                  |
+| Delete Income      | `delete income /in INDEX`<br>e.g. `delete income /in 2`                                                                                    |
+| Edit Expense       | `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit expense /in 1 /de Lunch @Technoedge /v 5.20`  |
+| Edit Income        | `edit income /in INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit income /in 2 /da 12-12-2022 /v 100`                          |
+| Exit               | `exit`                                                                                                                                     |
+| Find               | `find /c CATEGORY /k DESCRIPTION`<br>e.g. `find /c expense /k beef`<br>e.g. `find /c income /k salary`                                     |
+| Help               | `help`                                                                                                                                     |
+| List All Lists     | `list`                                                                                                                                     |
+| List Expense List  | `list expense`                                                                                                                             |
+| List Income List   | `list income`                                                                                                                              |
+| Set Currency       | `set currency /cr CURRENCY`<br>e.g. `set currency /cr HKD`                                                                                 |
+| Set Target         | `set target /v VALUE`<br>e.g. `set target /v 350`                                                                                          |
+| Show Target        | `show target`                                                                                                                              |
+| Show Balance       | `balance`                                                                                                                                  |
+| Unset Currency     | `unset currency /cr CURRENCY`<br>e.g. `unset currency /cr HKD`                                                                             |

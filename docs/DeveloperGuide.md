@@ -154,11 +154,47 @@ The value proposition of ChChing is its ability to track income and expenses on 
 | v2.0    | user      | reset my income/expense lists or both   | have a fresh list                                                                       |
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+* Domain rules:
+  * ChChing should not crash under normal circumstances.
+  * Dates should be in the format of dd/mm/yyyy, it should be a valid date, and it should not be a future date.
+  * Amount should be a positive number.
+
+* Constraints:
+  * Total Expense and Total Income should not exceed 2^31 - 1.
+  * The '/' should not be used within any of the inputs, unless it is for specifying a category.
+
+* Technical Requirements:
+  * ChChing should be able to run on Windows, Mac, or Linux as long as it has Java 11 or above installed.
+
+* Quality requirements:
+  * ChChing should be usable to users of all skill and proficiency levels.
+
+* Others:
+  * Should user input additional arguments that are not within the scope of the command's input, ChChing would ignore them.
+  <br> e.g. category field would be ignored for command: `add income /c income /de salary /da 12-12-2022 /v 3.50`
+  * Should the arguments be in the wrong order, ChChing would still be able to parse the arguments correctly. <br>However, should the command not be written first, ChChing would not be able to parse the command.
+   <br> e.g. `add income /de salary /c income /v 3.50 /da 12-12-2022` would successfully add an income entry.
+  <br> e.g. `/c income /de salary /da 12-12-2022 /v 3.50 add income` would return an error since command is not written first.
+
 
 ## Glossary
 
-* *glossary item* - Definition
+
+
+| Terminology  | Definition                   |
+|--------------|------------------------------|
+| Income       | Debit entry                  |
+| Expense      | Credit entry                 |
+| Balance      | Net Amount                   |
+| Target       | Desired Net Amount           |
+ | Parser       | Class to take in inputs      |
+| UI           | Class to interact with users |
+
+
+
+
+ 
+
 
 ## Instructions for manual testing
 
