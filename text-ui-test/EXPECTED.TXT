@@ -1,4 +1,3 @@
-A flashcard is formatted incorrectly, they will be deleted.
 Welcome to Clanki! Time to start studying!
 ==========================================================
 You have added the following card:
