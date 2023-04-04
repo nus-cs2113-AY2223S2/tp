@@ -39,13 +39,13 @@ public class FindTest {
     @Test
     public void testResultA() throws Exception {
         recipeList.searchRecipeList("");
-        String s = "View is missing KEYWORDS!";
+        String s = "Find is missing KEYWORDS!";
         assertEquals(s,output.toString().trim());
     }
     @Test
     public void testResultC() throws Exception {
         recipeList.searchRecipeList("  ");
-        String s = "View is missing KEYWORDS!";
+        String s = "Find is missing KEYWORDS!";
         assertEquals(s,output.toString().trim());
     }
 
@@ -62,7 +62,7 @@ public class FindTest {
     @Test
     public void testFindByTagEmpty1() throws Exception {
         recipeList.searchByTag("");
-        String s = "View is missing KEYWORDS!";
+        String s = "Find is missing KEYWORDS!";
         assertEquals(s,output.toString().trim());
     }
     @Test

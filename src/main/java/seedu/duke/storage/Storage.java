@@ -79,7 +79,6 @@ public class Storage {
      * list ingredients
      * "Step list"
      * list steps
-     * @throws IOException
      */
     public static void writeSavedFile() {
         File folder = new File(filePath);
@@ -126,7 +125,7 @@ public class Storage {
     /**
      * Loads all saved recipes into recipe list.
      *
-     * @throws FileNotFoundException
+     * @throws FileNotFoundException when file is not present or corrupted.
      */
     public static void loadSaveFiles() throws FileNotFoundException {
         ArrayList<File> validSaves = findValidSaveFiles();
