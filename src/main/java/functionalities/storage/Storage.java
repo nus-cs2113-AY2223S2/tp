@@ -21,7 +21,7 @@ public class Storage {
             savedFile.write(System.getProperty("line.separator"));
             savedFile.close();
         } catch (IOException a) {
-            throw new SniffException("Save file not found!");
+            throw new SniffException(" Save file not found!");
         }
     }
 
@@ -36,7 +36,7 @@ public class Storage {
         } catch (IOException e) {
             Ui.printFileCreated(false);
         } catch (IndexOutOfBoundsException e) {
-            throw new SniffException("\tFile \"SniffAppointments.txt\" saved in incorrect format!");
+            throw new SniffException(" File \"SniffAppointments.txt\" saved in incorrect format!");
         }
     }
 
@@ -53,10 +53,10 @@ public class Storage {
             } else if (appointmentType == 'V') {
                 FileParser.addVaccination(currentLine);
             } else {
-                throw new SniffException("Appointments saved in wrong format!");
+                throw new SniffException(" File \"SniffAppointments.txt\" saved in incorrect format!");
+
             }
             count++;
         }
-        SniffTasks.setAppointmentCount(count);
     }
 }
