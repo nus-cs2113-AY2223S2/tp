@@ -52,9 +52,8 @@ class SpecificHelpCommandTest {
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(ListHelpCommand.class, newCommand.getClass());
-        ListHelpCommand newListHelpCommand = new ListHelpCommand();
         assertDoesNotThrow(() ->
-                newListHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+                newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -66,9 +65,8 @@ class SpecificHelpCommandTest {
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(TodoHelpCommand.class, newCommand.getClass());
-        TodoHelpCommand newTodoHelpCommand = new TodoHelpCommand();
         assertDoesNotThrow(() ->
-                newTodoHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+                newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -80,9 +78,8 @@ class SpecificHelpCommandTest {
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(EventHelpCommand.class, newCommand.getClass());
-        EventHelpCommand newEventHelpCommand = new EventHelpCommand();
         assertDoesNotThrow(() ->
-                newEventHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+                newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -94,9 +91,8 @@ class SpecificHelpCommandTest {
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(DeadlineHelpCommand.class, newCommand.getClass());
-        DeadlineHelpCommand newDeadlineHelpCommand = new DeadlineHelpCommand();
         assertDoesNotThrow(() ->
-                newDeadlineHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+                newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -108,9 +104,8 @@ class SpecificHelpCommandTest {
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(MarkHelpCommand.class, newCommand.getClass());
-        MarkHelpCommand newMarkHelpCommand = new MarkHelpCommand();
         assertDoesNotThrow(() ->
-                newMarkHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+                newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -122,9 +117,8 @@ class SpecificHelpCommandTest {
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(UnmarkHelpCommand.class, newCommand.getClass());
-        UnmarkHelpCommand newUnmarkHelpCommand = new UnmarkHelpCommand();
         assertDoesNotThrow(() ->
-                newUnmarkHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+                newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -136,9 +130,8 @@ class SpecificHelpCommandTest {
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(DeleteHelpCommand.class, newCommand.getClass());
-        DeleteHelpCommand newDeleteHelpCommand = new DeleteHelpCommand();
         assertDoesNotThrow(() ->
-                newDeleteHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+                newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -150,9 +143,8 @@ class SpecificHelpCommandTest {
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(FindHelpCommand.class, newCommand.getClass());
-        FindHelpCommand newFindHelpCommand = new FindHelpCommand();
         assertDoesNotThrow(() ->
-                newFindHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+                newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
 
     }
 
@@ -164,10 +156,10 @@ class SpecificHelpCommandTest {
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(DateHelpCommand.class, newCommand.getClass());
-        DateHelpCommand newDateHelpCommand = new DateHelpCommand();
         assertDoesNotThrow(() ->
-                newDateHelpCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
+                newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
 
 }
+
