@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes unmark command;
+
+if () then ([validformat])
+  :Create new ModifyCommand Object;
+  :Execute ModifyCommand;
+  :Iterate to corresponding index in TaskList;
+  if(done == true) then (true)
+    :Mark task as incomplete;
+    :Set done to false;
+    :Update TaskList;
+    :Update Storage;
+    :Print success message;
+  else (false)
+    :Print message that task has never been marked as done;
+    endif
+
+else([invalidformat])
+    :Print error message;
+endif
+
+stop
+
+@enduml

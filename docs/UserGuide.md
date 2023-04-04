@@ -13,7 +13,7 @@ If you can type fast, Apollo can get your timetable management done faster than 
 2. [Features](#features)
     + [Task Commands](#task-commands)
     + [Module Commands](#module-commands)
-    + [Common Commands](#common-commands)
+    + [Utility Commands](#utility-commands)
     + [Loading and saving of data](#loading-and-saving-of-data)
 
 3. [Command summary](#command-summary)
@@ -22,7 +22,7 @@ If you can type fast, Apollo can get your timetable management done faster than 
 ## Quick Start
 
 1. Ensure that you have Java `11` or above installed on your Personal Computer.
-2. Download the latest `tp.jar` from [here]().
+2. Download the latest `tp.jar` from [here](https://github.com/AY2223S2-CS2113-T13-4/tp/releases).
 3. Copy the file to the folder you want to use as the home folder for your Apollo. This folder must be *empty*.
 4. Open a command terminal, cd into the directory you put the jar file in and run the command `java -jar tp.jar`.
 5. On opening, Apollo should greet you with this:
@@ -35,10 +35,20 @@ Hello from
 | |_| | | |_| | | | | | | |     | |     | | | |
 | | | | |  __/  | |_| | | |___  | |___  | |_| |
 |_| |_| |_|     \_____/ |_____| |_____| \_____/
+
+Your personal task and timetable manager!
 Enter "help" to see a list of commands.
 ____________________________________________________________
 
 ```
+
+**IMPORTANT:** 
+- It is recommended that users **not** mutate the logger files. If the logger file is corrupted, severe errors will be logged
+on the console by design. However, the application will still run normally and error messages thrown by the logger is not considered a bug.
+- Users may edit the save.txt and the moduleData.txt files directly on a plaintext file editor but it is recommended 
+  that users edit it with the application. This is to ensure that save data in the correct format so that the data can be
+  correctly loaded upon relaunch.
+
 
 ## Command Summary
 
@@ -58,6 +68,7 @@ ____________________________________________________________
 |      Delete Module      |           `delmod IDX`           |
 | Show Module Information |            `showmod`             |
 |          Help           |              `help`              |
+|    Help for Command     |          `help COMMAND`          |
  |     Weekly Schedule     |              `week`              |
 |           Bye           |              `bye`               |
 
@@ -113,12 +124,12 @@ Adds a task with a due date to Apollo.
 If deadline clashes with any event or lesson type you will be alerted through a warning message. 
 However, you will still be able to add it into the tasklist. 
 
-Format: `deadline TASK /by DATE`
+Format: `deadline TASK -by DATE`
 
 > Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
 
 ```
->> deadline submit tutorial /by 2023-03-30T23:59
+>> deadline submit tutorial -by 2023-03-30T23:59
 Got it. I've added this deadline:
   [D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
 ```
@@ -129,12 +140,12 @@ Adds a task with a start and end date to Apollo.
 If there is an event in the tasklist that is clashing with any event added previously a warning message will be printed. 
 However, you will still be able to add it. 
 
-Format: `event TASK /from DATE /to DATE`
+Format: `event TASK -from DATE -to DATE`
 
 > Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
 
 ```
->> event holiday /from 2023-03-25T00:00 /to 2023-03-30T23:59
+>> event holiday -from 2023-03-25T00:00 -to 2023-03-30T23:59
 Got it. I've added this event:
   [E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
 ```
@@ -145,7 +156,7 @@ Marks the specified task as completed.
 
 Format: `mark IDX`
 
-> Note: `IDX` can be obtained by using `list` to find the task's index.
+> Note: `IDX` can be obtained by using `list` to find the task's index. You can only mark the same task as done once.
 
 ```
 >> mark 4
@@ -159,7 +170,7 @@ Marks the specified task as not completed.
 
 Format: `unmark IDX`
 
-> Note: `IDX` can be obtained by using `list` to find the task's index.
+> Note: `IDX` can be obtained by using `list` to find the task's index. You can only unmark the same task as incomplete once.
 
 ```
 >> unmark 4
@@ -335,13 +346,67 @@ The ordering of lessons in the list are sorted as follows:
 2. Lesson Number (lexicographically)
 3. Lesson Day and time
 
-## *Common Commands*
+## *Utility Commands*
 
 ### `help` - Viewing help
 
 Shows a menu of commands available in Apollo and their usage, as well as their required format/parameters.
 
 Format: `help`
+
+#### `help` for specific commands
+
+To see a shorter help menu for a specific command instead of the longer help command or to find out more about a command, 
+you can do so by typing `help COMMAND`.
+The below is a list of commands that you can use with `help`.
+
+Format: `help COMMAND`
+
+|  Command   |                          Help/Information Message contains...                           |
+|:----------:|:---------------------------------------------------------------------------------------:|
+|   `list`   |                      information and format for list tasks command                      |
+|   `todo`   |                                 format for todo command                                 |
+| `deadline` |                               format for deadline command                               |
+|  `event`   |                                format for event command                                 |
+|   `mark`   |                                 format for mark command                                 |
+|  `unmark`  |                                format for unmark command                                |
+|  `delete`  |                             format for delete task command                              |
+|   `find`   |                     format for finding matching tasks with keyword                      |
+|   `date`   |                           format for finding tasks with date                            |
+| `listmod`  |                     information and format for list module command                      |
+|  `addmod`  | information and format of adding modules and module lessons commands, with flag options |
+|  `delmod`  |       information and format of delete module command options, with flag options        |
+| `showmod`  |                  information and format of show module command options                  |
+|   `bye`    |                         information and format for bye command                          |
+
+Format: `help COMMAND`
+
+```
+>> help showmod
+
+Shows the information of a module, including Modular Credits, lesson types, lesson numbers and times.
+Format: showmod MODULE_CODE
+
+If you would like to view timing information on a specific lesson type of a module, you can use flags.
+Format: showmod MODULE_CODE -FLAG
+Example: showmod CS1010 -st
+NOTE: Different modules have different lesson types.
+It is recomended to run `showmod MODULE_CODE` to see the lesson types available for that module.
+
+There are -FLAGS for the various lessons options per module:
+-lec			LECTURE
+-plec			PACKAGED LECTURE
+-st 			SECTIONAL TEACHING
+-dlec			DESIGN LECTURE
+-tut			TUTORIAL
+-ptut			PACKAGED TUTORIAL
+-rcit			RECITATION
+-lab			LABORATORY
+-ws 			WORKSHOP
+-smc			SEMINAR STYLE MODULE CLASS
+-mp 			MINI PROJECT
+-tt2			TUTORIAL TYPE 2
+```
 
 ### `week` - Viewing weekly schedule
 
@@ -360,14 +425,34 @@ Bye. Hope to see you again soon!
 
 ## *Loading and saving of data*
 
-Apollo automatically loads up your todo and module lists on start-up.
+- Apollo automatically loads up your todo and module lists on start-up.
 
-After any command that changes the data, Apollo will save the changes into your hard disk automatically.
-No need to save manually!
+- After any command that changes the data, Apollo will save the changes into your hard disk automatically.
+  No need to save manually!
 
-The save file for your tasks is located at save.txt within the *home folder* for Apollo.
-The save file for your modules is located at moduleData.txt within the *home folder* for Apollo.
-If either file is corrupted, Apollo will show you a warning before the welcome message.
+- The save file for your tasks is located at save.txt within the *home folder* for Apollo.
+- The save file for your modules is located at moduleData.txt within the *home folder* for Apollo.
+- If either file is corrupted or has errors, Apollo will show you a warning before the welcome message.
+Example message when save.txt has errors:
+```
+Module Data loaded
+____________________________________________________________
+There is an error in save.txt at line 1
+Task 1 has been excluded. You can edit the save file at:
+save.txt
+____________________________________________________________
+____________________________________________________________
+Hello from
+ ____    ____    _____  __      __       _____
+|  _  | |  _ \  | ___ | | |     | |     | ___ |
+| |_| | | |_| | | | | | | |     | |     | | | |
+| | | | |  __/  | |_| | | |___  | |___  | |_| |
+|_| |_| |_|     \_____/ |_____| |_____| \_____/
+
+Your personal task and timetable manager!
+Enter "help" to see a list of commands.
+____________________________________________________________
+```
 
 
 
