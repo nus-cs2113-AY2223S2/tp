@@ -53,7 +53,7 @@ public class Storage {
             } else if (appointmentType == 'V') {
                 FileParser.addVaccination(currentLine);
             } else {
-                throw new SniffException(" Appointments saved in wrong format!");
+                throw new SniffException(" File \"SniffAppointments.txt\" saved in incorrect format!");
 
             }
             count++;
