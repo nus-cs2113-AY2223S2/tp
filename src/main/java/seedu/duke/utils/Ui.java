@@ -577,14 +577,13 @@ public class Ui {
                                                     int current, int width) {
         line.append(words[current]);
 
-        if (line.length() < width) {
-            line.append(" ");
-        }
-
-        if (words[current].equals(",")) {
-            for (int i = 0; i < width - line.length(); i++) {
+        if (words[current].contains(",")) {
+            for (int i = 0; i <= width - line.length(); i++) {
                 line.append(" ");
             }
+        }
+        if (line.length() < width) {
+            line.append(" ");
         }
 
         if (current + 1 != words.length && line.length() + words[current + 1].length() > width) {

@@ -6,7 +6,6 @@ import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CategoryCommand extends Command {
     private final String rawInput;
@@ -67,25 +66,6 @@ public class CategoryCommand extends Command {
         Ui.printCategory(categoryHash);
     }
 
-    private void findCategory(String category) {
-        try {
-            if (categoryHash.containsKey(category)) {
-                ArrayList<Item> items = categoryHash.get(category);
-                HashMap<String, ArrayList<Item>> itemsInCategory = new HashMap<>();
-                itemsInCategory.put(category, items);
-                Ui.printCategory(itemsInCategory);
-            } else {
-                throw new CategoryFormatException();
-            }
-        } catch (CategoryFormatException e) {
-            if (categoryHash.isEmpty()) {
-                Ui.printNoCategoryList();
-            } else {
-                Ui.printInvalidCategory();
-            }
-        }
-    }
-
     private void listAllCategories() {
         if (categoryHash.isEmpty()) {
             throw new NullPointerException();
@@ -101,8 +81,6 @@ public class CategoryCommand extends Command {
                 listAllCategories();
             } else if (categoryCommandType[0].equals("table")) {
                 listCategoryAndItems();
-            } else {
-                findCategory(rawInput);
             }
         } catch (NullPointerException npe) {
             Ui.printNoCategoryList();

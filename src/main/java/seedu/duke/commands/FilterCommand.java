@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.SearchFilterErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
@@ -48,44 +49,28 @@ public class FilterCommand extends Command {
     /**
      * Filter items in the inventory by category/tag.
      *
-     * @param categoryType String category to filter items by.
+     * @param category String category to filter items by.
      */
-    private void filterCategory(String categoryType) {
-        // filter f/category list: prints list
-        // filter f/category table: prints table
-        // filter f/category c/[Keywords]: find category with keyword(s)
-        try {
-            if (categoryHash.isEmpty()) {
-                throw new NullPointerException();
-            }
-            if (categoryType.equals("list")) {
-                Ui.printCategoryList(categoryHash);
-            } else if (categoryType.equals("table")) {
-                Ui.printCategory(categoryHash);
-            } else if (categoryType.startsWith("c/")) {
-                //System.out.println("finding keyword");
-                String keyword = categoryType.replaceFirst("c/", "");
-                //System.out.println("keyword is " + keyword);
-                ArrayList<Item> tempFilteredItems = new ArrayList<>();
-                for (Item item : itemInventory) {
-                    if (item.getCategory().toLowerCase().equals(keyword)) {
-                        //filteredItems.add(item);
-                        tempFilteredItems.add(item);
-                        //System.out.println("item added: " + item.getName());
-                    }
-                }
-                setFilteredCategory(tempFilteredItems);
-            }
-        } catch (NullPointerException e) { // no categories == no items in list
-            Ui.printNoCategoryList(); //for now means no categories
+    private void filterCategory(String category) throws SearchFilterErrorException {
+        if (categoryHash.isEmpty()) {
+            throw new NullPointerException();
         }
-        //categoryType = categoryType.toLowerCase();
+        if (category.isEmpty()) {
+            throw new SearchFilterErrorException();
+        } else if (!categoryHash.containsKey(category)) {
+            throw new NullPointerException();
+        }
+        ArrayList<Item> tempFilteredItems = new ArrayList<>();
+        for (Item item : itemInventory) {
+            if (item.getCategory().toLowerCase().equals(category)) {
+                tempFilteredItems.add(item);
+            }
+        }
+        setFilteredCategory(tempFilteredItems);
     }
 
     public void setFilteredCategory(ArrayList<Item> filteredCategory) {
-        //System.out.println("setting arraylist category");
         this.filteredCategory = filteredCategory;
-        //Ui.printCategory(filteredCategory);
     }
 
     private static ArrayList<Item> getFilteredCategory() {
@@ -146,15 +131,21 @@ public class FilterCommand extends Command {
      * @return ArrayList Item of filtered items. If no items are found, returns null instead.
      */
 
-    public ArrayList<Item> getFilteredItems(){
+    public ArrayList<Item> getFilteredItems() {
         ArrayList<Item> filteredItems = new ArrayList<>();
         switch (filterType) {
         case "f/category":
-            //System.out.println(filterValue + " is passed to filter category");
-            filterCategory(filterValue); //filterValue = "list"/"table"/"c/[keyword(s)]"
-            if (filterValue.startsWith("c/")) {
-                //System.out.println("trying to get filtered category...");
+
+            try {
+                filterCategory(filterValue); //filterValue = "list"/"table"/"c/[keyword(s)]"
+                //System.out.println("get filtered category");
                 filteredItems = getFilteredCategory();
+            } catch (NullPointerException e) {
+                Ui.printInvalidCategory();
+                return null;
+            } catch (SearchFilterErrorException e) {
+                e.missingCategoryParameters();
+                return null;
             }
             break;
         case "p/lt":
@@ -175,10 +166,12 @@ public class FilterCommand extends Command {
     @Override
     public void run() {
         ArrayList<Item> filteredItems = getFilteredItems();
-        if(filteredItems == null){
+        if (filterType.startsWith("f/category")) {
+            if (filteredItems != null) {
+                Ui.printCategory(filteredItems);
+            }
+        } else if (filteredItems == null) {
             Ui.printEmptySearch();
-        } else if (filterType.startsWith("f/category")) {
-            System.out.println("executed accordingly");
         } else {
             Ui.printSearchItems(filteredItems);
         }

@@ -6,6 +6,7 @@ import seedu.duke.types.Types;
 import seedu.duke.utils.parsers.AddParser;
 import seedu.duke.utils.parsers.AlertParser;
 import seedu.duke.utils.parsers.AutoSaveParser;
+import seedu.duke.utils.parsers.CategoryParser;
 import seedu.duke.utils.parsers.EditParser;
 import seedu.duke.utils.parsers.FilterParser;
 import seedu.duke.utils.parsers.HelpParser;
@@ -103,10 +104,10 @@ public class ParserHandler {
             HistoryParser historyParser = new HistoryParser(commandInfo, inventory);
             historyParser.run();
             break;
-//        case "cat":
-//            CategoryParser categoryParser = new CategoryParser(commandInfo, inventory);
-//            categoryParser.run();
-//            break;
+        case "cat":
+            CategoryParser categoryParser = new CategoryParser(commandInfo, inventory);
+            categoryParser.run();
+            break;
         default:
             Ui.printUnknownCommand();
             break;
