@@ -137,7 +137,7 @@ public class RemoveCommand extends Command {
                 SessionManager.writeSession(inventory);
             }
         } catch (NullPointerException | NumberFormatException e) {
-            System.out.println("NULL");
+            Ui.printItemNotFound();
         }
 
     }

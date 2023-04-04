@@ -135,7 +135,6 @@ public class FilterCommand extends Command {
         ArrayList<Item> filteredItems = new ArrayList<>();
         switch (filterType) {
         case "f/category":
-
             try {
                 filterCategory(filterValue);
                 filteredItems = getFilteredCategory();

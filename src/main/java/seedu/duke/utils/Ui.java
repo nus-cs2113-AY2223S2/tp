@@ -138,7 +138,7 @@ public class Ui {
     private static final String NOT_REMOVING = "Ok...You changed your mind really quickly.";
     private static final String INVALID_REPLY = "Invalid response, only yes (Y) or no (N) answer is allowed.\n" +
             "Please try again :(";
-    private static final String INVALID_INDEX = "This index is invalid.\nPlease enter a number ";
+    private static final String INVALID_INDEX = "This index is invalid.\nPlease enter number ";
 
     private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" " +
             "\"or list\".";
@@ -179,6 +179,8 @@ public class Ui {
     private static final String NEW_CATEGORY_ADDED = "A new category has been added.";
     private static final String NO_CHANGES_WERE_RECORDED = "An edit attempt was made, but no changes were recorded.";
     private static final int ORIGINAL_ITEM_INDEX = 0;
+    private static final String INVALID_UPC = "This UPC is invalid. Try again.";
+    private static final String CATEGORY_LISTING = "Here is the list of categories you have: ";
 
 
     public static void printLine() {
@@ -776,18 +778,6 @@ public class Ui {
         printLine();
     }
 
-    public static void printInvalidReply() {
-        printLine();
-        System.out.println(INVALID_REPLY);
-        printLine();
-    }
-
-    public static void printNotRemoving() {
-        printLine();
-        System.out.println(NOT_REMOVING);
-        printLine();
-    }
-
     public static void printSuccessRemove(Item itemToRemove) {
         printLine();
         System.out.println(SUCCESS_REMOVE);
@@ -819,7 +809,7 @@ public class Ui {
         if (listSize == 0) {
             System.out.println(EMPTY_LIST);
         } else {
-            System.out.println("This UPC is invalid. Try again.");
+            System.out.println(INVALID_UPC);
         }
         printLine();
     }
@@ -1062,13 +1052,13 @@ public class Ui {
 
     public static void printNewCategory() {
         printLine();
-        System.out.println(INVALID_CATEGORY + NEW_CATEGORY_ADDED);
+        System.out.println(INVALID_CATEGORY + " " +NEW_CATEGORY_ADDED);
         printLine();
     }
 
     public static void printCategoryList(HashMap<String, ArrayList<Item>> categoryHash) {
         printLine();
-        System.out.println("Here is the list of categories you have: ");
+        System.out.println(CATEGORY_LISTING);
         categoryHash.forEach((cat, items) -> System.out.println(cat));
         printLine();
     }
