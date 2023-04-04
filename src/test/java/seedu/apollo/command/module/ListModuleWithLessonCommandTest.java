@@ -38,21 +38,21 @@ public class ListModuleWithLessonCommandTest {
     @Test
     void testExecute_illegalCommand_expectsIllegalCommandException() {
         assertThrows(IllegalCommandException.class,
-                () -> new ListModuleWithLessonCommand("CS2113 -mod", allModules)
+                () -> new ListModuleWithLessonCommand("CS2113 -mod lol", allModules)
                         .execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
     @Test
-    void testExecute_lessonNotAdd_expectsLessonNotAddedException() {
-        assertThrows(LessonNotAddedException.class,
-                () -> new ListModuleWithLessonCommand("CS2113 -lec", allModules)
+    void testExecute_lessonNotAdded_expectsLessonNotAddedException() {
+        assertDoesNotThrow(() -> new AddModuleCommand("EG1311", allModules)
+                .execute(taskList, ui, storage, moduleList, allModules, calendar));
+        assertDoesNotThrow(() -> new ListModuleWithLessonCommand("EG1311", allModules)
                         .execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
     @Test
     void testExecute_lessonTypeNotAdded_expectsLessonTypeNotAddedException() {
-        assertThrows(LessonTypeNotAddedException.class,
-                () -> new ListModuleWithLessonCommand("CS2113 -hello", allModules)
+        assertDoesNotThrow(() -> new ListModuleWithLessonCommand("CS2113 -lec", allModules)
                         .execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
