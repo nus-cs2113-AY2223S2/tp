@@ -5,6 +5,7 @@ import seedu.apollo.command.Command;
 import seedu.apollo.exception.module.InvalidModule;
 import seedu.apollo.exception.module.LessonNotAddedException;
 import seedu.apollo.exception.module.LessonTypeNotAddedException;
+import seedu.apollo.exception.module.LessonTypeNotInModuleException;
 import seedu.apollo.exception.utils.IllegalCommandException;
 import seedu.apollo.module.LessonType;
 import seedu.apollo.module.Module;
@@ -100,7 +101,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             copyModuleListData(moduleList);
 
             if (args.length == 2) {
-                handleMultiCommand(ui);
+                handleMultiCommand(ui, allModules);
             } else {
                 handleSingleCommand(ui);
             }
@@ -111,6 +112,8 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             ui.printInvalidCommand();
         } catch (LessonTypeNotAddedException e) {
             ui.printLessonsNotAdded(module.getCode());
+        } catch (LessonTypeNotInModuleException e) {
+            ui.printLessonTypeNotInModule();
         }
 
     }
@@ -149,7 +152,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             index++;
         }
         module.setTimetable(moduleList.get(index).getModuleTimetable());
-        if (module.getModuleTimetable().isEmpty()) {
+        if (module.getModuleTimetable() == null) {
             throw new LessonTypeNotAddedException();
         }
 
@@ -209,13 +212,18 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      * @param ui The Ui object to print the timetable.
      * @throws IllegalCommandException If the command is invalid.
      */
-    private void handleMultiCommand(Ui ui) throws IllegalCommandException {
+    private void handleMultiCommand(Ui ui, ModuleList allModules) throws IllegalCommandException,
+            LessonTypeNotInModuleException {
 
         String type = args[1];
 
         LessonType lessonType = getCommand(type);
         if (lessonType == null) {
             throw new IllegalCommandException();
+        }
+
+        if (!isExistLessonType(allModules, lessonType)) {
+            throw new LessonTypeNotInModuleException();
         }
 
         ArrayList<Timetable> timetableList = new ArrayList<>(module.getModuleTimetable());
@@ -238,6 +246,18 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             ui.printSpecificTimetable(module, lessonType, timetableInModuleList);
         }
 
+    }
+
+    private boolean isExistLessonType(ModuleList allModules, LessonType lessonType) {
+        boolean existInModuleLessonType = false;
+        Module checkMod = allModules.findModule(args[0]);
+        ArrayList<LessonType> checkLesson = getLessonTypes(checkMod);
+        for (LessonType toCheckType : checkLesson) {
+            if (toCheckType.equals(lessonType)) {
+                existInModuleLessonType = true;
+            }
+        }
+        return existInModuleLessonType;
     }
 
 }
