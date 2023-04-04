@@ -1,12 +1,11 @@
 package seedu.mealcompanion.command.recipe;
 
-import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.recipe.IngredientMetadata;
 import seedu.mealcompanion.recipe.Recipe;
-import seedu.mealcompanion.recipe.RecipeList;
+
 import java.util.List;
 
 /**
@@ -34,19 +33,31 @@ public abstract class RecipeCommand extends ExecutableCommand {
     }
 
     /**
+     * Check if a recipe contains any allergen.
+     * @param recipe the recipe to check for allergen
+     * @param allergens the allergens to be checked against
+     * @return false if recipe has no allergen. Else, true.
+     */
+    public boolean hasAllergen(Recipe recipe, List<IngredientMetadata> allergens) {
+        IngredientList recipeIngredients = recipe.getIngredients();
+        for (Ingredient recipeIngredient : recipeIngredients.getIngredients()) {
+            if (allergens.contains(recipeIngredient.getMetadata())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Check if a recipe can be made using a list of ingredients given and exclude recipes that contain any allergens.
      *
      * @param recipe the recipe to be made
      * @param fridgeIngredients the list of ingredients used to make the recipe
-     * @param allergens the list of allergens specified by the user
      * @return true if the recipe can be made using the list of ingredients without any allergens, false otherwise
      */
-    public boolean canMakeRecipe(Recipe recipe, IngredientList fridgeIngredients, List<IngredientMetadata> allergens) {
+    public boolean canMakeRecipe(Recipe recipe, IngredientList fridgeIngredients) {
         IngredientList recipeIngredients = recipe.getIngredients();
         for (Ingredient recipeIngredient : recipeIngredients.getIngredients()) {
-            if (allergens.contains(recipeIngredient.getMetadata())) {
-                return false;
-            }
             if (!hasEnoughIngredient(recipeIngredient, fridgeIngredients)) {
                 return false;
             }
