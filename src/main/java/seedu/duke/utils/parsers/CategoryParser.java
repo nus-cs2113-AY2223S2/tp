@@ -13,9 +13,6 @@ public class CategoryParser extends Parser {
 
     @Override
     public void run() {
-        // 'table' to show categories with all items in it
-        // 'list' to list all categories
-        // [Category] to list all items (name and upc) in a specific category for quick lookup
         try {
             String[] categoryCommandType = rawInput.split(" ", 2);
             if (categoryCommandType[0].equals("list") || categoryCommandType[0].equals("table")
@@ -24,8 +21,6 @@ public class CategoryParser extends Parser {
                 categoryCommand.run();
             } else if (!categoryCommandType[0].equals("list") && !categoryCommandType[0].equals("table")
                     || categoryCommandType.length < 1) {
-                //assert categoryCommandType[0].equals("list") : "Keyword 'list' is not present in
-                //user category command";
                 throw new CategoryFormatException();
             }
         } catch (CategoryFormatException e) {

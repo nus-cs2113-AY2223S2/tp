@@ -508,7 +508,14 @@ Format:
 * `cat list`: shows list of all categories in the inventory.
 * `cat table`: shows table of all categories and all items in each category.
 
-Example of Usage & Expected Output:
+
+#### Example of Usage 
+
+`cat list`
+
+`cat table`
+
+#### Sample output
 ```
 cat list
 ____________________________________________________________
@@ -538,24 +545,26 @@ Format:
 `alert remove upc/{upc} level/min` to remove an alert for the minimum quantity of an item  
 `alert remove upc/{upc} level/max` to remove an alert for the maximum quantity of an item  
 
-Examples of usage:  
+#### Examples of usage
 `alert add upc/1234 min/55`  
 `alert add upc/1234 max/100`
 
-Sample output:
+#### Sample output
 ```
+alert add upc/1234 min/55
 ____________________________________________________________
 Successfully added a new alert.
 ____________________________________________________________
 ```
 
-Examples of usage: 
+#### Examples of usage 
 `alert remove upc/1234 level/min`  
 `alert remove upc/1234 level/max`
 
 
-Sample output
+#### Sample output
 ```
+alert remove upc/1234 level/min
 ____________________________________________________________
 Successfully removed the alert.
 ____________________________________________________________
@@ -572,7 +581,13 @@ incognito mode on a browser.
 
 Format: `autosave [on/off]`
 
-Sample input and expected output:
+#### Example of usage
+
+`autosave on`
+
+`autosave off`
+
+#### Sample output
 ```
 autosave on
 ____________________________________________________________
@@ -593,8 +608,15 @@ Exits the MagusStock program.
 
 Format: `exit` or `bye`
 
-Sample output:
+#### Example of usage
+
+`bye`
+
+`exit`
+
+#### Sample output:
 ```
+bye
 ____________________________________________________________
 Hope you had an enjoyable experience. See you next time!
 ____________________________________________________________
