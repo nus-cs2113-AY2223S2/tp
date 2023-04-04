@@ -3,7 +3,6 @@ package bagpacker.commands;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static bagpacker.iohandler.Ui.printToUser;
@@ -13,7 +12,8 @@ public class FindCommand extends Command {
             "find: Displays all items in the packingList as a list that contains tha keyword used in the command.\n"
                     + "Example: find jacket";
     private static final String MSG_FIND_HEADER = "There are %d items(s) in your list containing %s: ";
-    private static final String MSG_NO_FOUND_ITEM = "An item containing the description %s does not exist. Please try again.";
+    private static final String MSG_NO_FOUND_ITEM =
+            "An item containing the description %s does not exist. Please try again.";
     private static String keyword;
 
     public FindCommand(String keyword) {
