@@ -20,9 +20,17 @@ public class UnMarkTaskCommand extends Command{
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        TaskList.markTask(taskNumber, false);
-        TaskList.saveTasksToStorage(storage, ui);
-        ui.unmarkTaskCommandMessage();
+        if (taskNumber <= 0) {
+            ui.invalidTaskNumber();
+            return;
+        }
+        try {
+            TaskList.markTask(taskNumber, false);
+            TaskList.saveTasksToStorage(storage, ui);
+            ui.unmarkTaskCommandMessage();
+        } catch (IndexOutOfBoundsException e) {
+            ui.taskNumberOutOfBoundsMessage();
+        }
     }
 
     /**
