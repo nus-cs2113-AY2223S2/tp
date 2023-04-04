@@ -55,15 +55,36 @@ public class CommandSort extends Command {
             System.out.println(MESSAGE_DIVIDER_LIST);
             if (sortBy.equals("C")) {
                 sortByCategory();
+                String currentCategory = expenseListCategory.get(0).getDescription();
+                System.out.println("Category: " + currentCategory);
+                int index = 0;
                 for (int i = 0; i < expenseListCategory.size(); i++) {
-                    System.out.print((i + 1) + ".");
+                    if (expenseListCategory.get(i).getDescription().compareTo(currentCategory) > 0) {
+                        currentCategory = expenseListCategory.get(i).getDescription();
+                        System.out.println("Category: " + currentCategory);
+                        index = 0;
+                    }
+                    System.out.print((index + 1) + ".");
                     System.out.println(expenseListCategory.get(i).sortedDisplay(sortBy));
+                    index++;
                 }
             } else {
                 sortByDate();
+                // Refactor the display format to be more user-friendly
+                String currentTimeString = expenseListDate.get(0).getExpenseTime();
+                Time currentTime = Time.toTime(currentTimeString);
+                System.out.println("Date: " + currentTimeString);
+                int index = 0;
                 for (int i = 0; i < expenseListDate.size(); i++) {
-                    System.out.print((i + 1) + ".");
+                    if (Time.toTime(expenseListDate.get(i).getExpenseTime()).compareTo(currentTime) > 0) {
+                        currentTimeString = expenseListDate.get(i).getExpenseTime();
+                        currentTime = Time.toTime(currentTimeString);
+                        System.out.println("Date: " + currentTimeString);
+                        index = 0;
+                    }
+                    System.out.print((index + 1) + ".");
                     System.out.println(expenseListDate.get(i).sortedDisplay(sortBy));
+                    index++;
                 }
             }
             System.out.println(MESSAGE_DIVIDER);
