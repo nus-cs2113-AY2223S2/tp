@@ -65,6 +65,7 @@ public class ViewTest {
 
     /**
      * Test the result of viewing Hotpot recipe.
+     *
      * @throws Exception if there is an error in the test.
      */
     @Test
@@ -75,6 +76,7 @@ public class ViewTest {
 
     /**
      * Test the result of empty view description.
+     *
      * @throws Exception if there is an error in the test.
      */
     @Test
@@ -85,6 +87,7 @@ public class ViewTest {
 
     /**
      * Test the result of NULL view description.
+     *
      * @throws Exception if there is an error in the test.
      */
     @Test
@@ -96,16 +99,18 @@ public class ViewTest {
 
     /**
      * Test the result of viewing recipe not in the list.
+     *
      * @throws Exception if there is an error in the test.
      */
     @Test
     public void noMatchingRecipe() throws Exception {
-        new Command(VIEW,"Gyudon").execute(recipeList, ui);
+        new Command(VIEW, "Gyudon").execute(recipeList, ui);
         assertEquals(RECIPE_VIEWING_DEFAULT_ERROR + NO_MATCHING_RECIPE_ERROR, output.toString().trim());
     }
 
     /**
      * Test the result of viewing recipes with duplicate names.
+     *
      * @throws Exception if there is an error in the test.
      */
     @Test
@@ -116,6 +121,7 @@ public class ViewTest {
 
     /**
      * Test the result of viewing recipe index that is not in valid range.
+     *
      * @throws Exception if there is an error in the test.
      */
     @Test
@@ -128,6 +134,7 @@ public class ViewTest {
 
     /**
      * Test the result of viewing by index on an empty list.
+     *
      * @throws Exception if there is an error in the test.
      */
     @Test
@@ -140,6 +147,7 @@ public class ViewTest {
 
     /**
      * Test the result of viewing by name on an empty list.
+     *
      * @throws Exception if there is an error in the test.
      */
     @Test

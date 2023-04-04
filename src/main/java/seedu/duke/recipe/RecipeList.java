@@ -25,43 +25,46 @@ public class RecipeList {
         currRecipeNumber = 0;
     }
 
-    public static boolean isEmpty() { return recipeList.isEmpty(); }
+    public static boolean isEmpty() {
+        return recipeList.isEmpty();
+    }
 
     public static ArrayList<Recipe> getRecipeList() {
         return recipeList;
     }
 
     public static int getCurrRecipeNumber() {
-        assert(currRecipeNumber == recipeList.size());
+        assert (currRecipeNumber == recipeList.size());
         return currRecipeNumber;
     }
 
     public static Recipe getRecipeFromList(int itemNum) {
-        return recipeList.get(itemNum- 1);
+        return recipeList.get(itemNum - 1);
     }
 
     public static Recipe getNewestRecipe() {
-        return recipeList.get(currRecipeNumber-1);
+        return recipeList.get(currRecipeNumber - 1);
     }
 
     public static void addNewRecipe(Recipe recipe) {
         recipeList.add(recipe);
         currRecipeNumber++;
-        assert(currRecipeNumber == recipeList.size());
+        assert (currRecipeNumber == recipeList.size());
     }
 
     public static void removeRecipe(int index) throws RecipeListEmptyException {
         if (recipeList.isEmpty()) {
             throw new RecipeListEmptyException();
         }
-        recipeList.remove(index-1);
+        recipeList.remove(index - 1);
         currRecipeNumber--;
-        assert(currRecipeNumber == recipeList.size());
+        assert (currRecipeNumber == recipeList.size());
     }
+
     public static void clearRecipeList() {
         recipeList.clear();
         currRecipeNumber = 0;
-        assert(recipeList.size() == 0);
+        assert (recipeList.size() == 0);
     }
 
     public static void searchRecipeList(String term) {
@@ -115,7 +118,7 @@ public class RecipeList {
     }
 
     public static Recipe viewRecipe(String term)
-            throws DuplicateRecipeNameException,NoMatchingRecipeFound, OutOfIndexException {
+            throws DuplicateRecipeNameException, NoMatchingRecipeFound, OutOfIndexException {
         Recipe recipeToBeViewed;
         try {
             int recipeListIndex = Integer.parseInt(term);
@@ -132,8 +135,7 @@ public class RecipeList {
             }
             if (viewRecipeResults.isEmpty()) {
                 throw new NoMatchingRecipeFound(NO_MATCHING_RECIPE_ERROR);
-            }
-            else if (viewRecipeResults.size() == 1) {
+            } else if (viewRecipeResults.size() == 1) {
                 recipeToBeViewed = viewRecipeResults.get(0);
             } else {
                 throw new DuplicateRecipeNameException(DUPLICATE_RECIPE_NAMES_ERROR);
