@@ -1,7 +1,5 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.RainyDay;
-
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -17,13 +15,13 @@ public class ShortcutDeleteCommand extends ShortcutCommand {
 
     public ShortcutDeleteCommand(String key) {
         this.keyToDelete = key;
-        shortcutCommands = RainyDay.userData.getShortcutCommands();
     }
 
     @Override
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ShortcutDeleteCommand.execute()");
+        shortcutCommands = userData.getShortcutCommands();
         if (shortcutCommands.containsKey(keyToDelete)) {
             shortcutCommands.remove(keyToDelete);
             logger.log(Level.INFO, "Successful ShortcutDeleteCommand.execute()");

@@ -1,7 +1,5 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.data.UserData;
-
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -27,7 +25,6 @@ public class ExitCommand extends Command {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ExitCommand.execute()");
-        UserData userData = allData.getUserData();
         String output = "We hope that you enjoyed using rainyDay, goodbye " + userData.getReportOwner();
         setExit();
 

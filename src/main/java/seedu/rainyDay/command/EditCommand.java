@@ -3,7 +3,6 @@ package seedu.rainyDay.command;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
 import seedu.rainyDay.data.MonthlyExpenditures;
-import seedu.rainyDay.data.UserData;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -53,7 +52,6 @@ public class EditCommand extends Command {
     public CommandResult execute() { // todo add -date
         setupLogger();
         logger.log(Level.INFO, "starting EditCommand.execute()");
-        UserData userData = allData.getUserData();
 
         index -= 1;
         int previousStatementCount = userData.getStatementCount();

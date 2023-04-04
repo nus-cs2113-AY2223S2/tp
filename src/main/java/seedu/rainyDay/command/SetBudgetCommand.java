@@ -1,7 +1,5 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.data.UserData;
-
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -45,7 +43,6 @@ public class SetBudgetCommand extends Command {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "Starting SetBudgetCommand.execute()");
-        UserData userData = allData.getUserData();
         userData.setBudgetGoal(goal);
         String output;
         if (goal > 0) {

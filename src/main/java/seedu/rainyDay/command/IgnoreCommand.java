@@ -2,7 +2,6 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.MonthlyExpenditures;
-import seedu.rainyDay.data.UserData;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -36,7 +35,6 @@ public class IgnoreCommand extends Command {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting IgnoreCommand.execute()");
-        UserData userData = allData.getUserData();
         String output;
         index -= 1;
 

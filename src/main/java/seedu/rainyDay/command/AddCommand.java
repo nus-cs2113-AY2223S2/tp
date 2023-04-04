@@ -1,7 +1,6 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.data.UserData;
 
 import java.time.LocalDate;
 import java.util.logging.FileHandler;
@@ -55,7 +54,6 @@ public class AddCommand extends Command {
         setupLogger();
         logger.log(Level.INFO, "starting AddCommand.execute()");
 
-        UserData userData = allData.getUserData();
         int totalStatementCount = userData.getStatementCount(); // only used for assertion
         FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
         userData.addStatement(newStatement);

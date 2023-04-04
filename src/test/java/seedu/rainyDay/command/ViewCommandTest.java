@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ViewCommandTest {
 
@@ -30,7 +30,7 @@ public class ViewCommandTest {
         viewList.setData(allData);
         String expectedReport = String.format("Your financial report is empty for %s till %s",
                 LocalDate.now(), LocalDate.now());
-        //assertEquals(expectedReport, viewList.execute().output);
+        assertEquals(expectedReport, viewList.execute().output);
     }
 
     class sortByValue implements Comparator<Integer> {
