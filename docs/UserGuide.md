@@ -102,12 +102,12 @@ path in the address bar as shown <br>
     3. Press Enter. Your Command Line should now be open in the folder containing "rainyDay.jar" as shown below. The 
 location you saved rainyDay should be shown, in this example we saved it in the path "\Users\azriel\OneDrive - National 
 University of Singapore\Desktop\TP jar file"
-![cmd prompt open.png](images/UserGuide/cmd prompt open.png)
+![cmd prompt open.png](images/UserGuide/cmdpromptopen.png)
 5. Type `java -jar rainyDay.jar` in the terminal and press Enter on your keyboard to start the application. You should 
 see the following if the start up is successful.
-![cmd enter name.png](images/UserGuide/cmd enter name.png)
+![cmd start up.png](images/UserGuide/cmdstartup.png)
 6. Type your name and press Enter. The following will be shown:
-![cmd start up icon.png](images/UserGuide/cmd start up icon.png)
+![cmd enter name.png](images/UserGuide/cmdentername.png)
 
 ## Understanding CLI
 
@@ -126,7 +126,7 @@ with a sample input boxed in red.
   * [Viewing the transactions](#viewing-the-transactions)
   * [Deleting a transaction](#deleting-a-transaction)
   * [Editing a transaction](#editing-a-transaction)
-  * [Filter transactions](#filter-statements)
+  * [Filter transactions](#filter-transactions)
   * [Ignoring a transaction](#ignoring-a-transaction)
 * [Setting a Monthly Budget](#setting-a-monthly-budget)
 * [Shortcuts](#shortcuts)
@@ -236,7 +236,7 @@ needs. So, if you're ready to take control of your transactions and keep your re
 * [Viewing the transactions](#viewing-the-transactions)
 * [Deleting a transaction](#deleting-a-transaction)
 * [Editing a transaction](#editing-a-transaction)
-* [Filter transactions](#filter-statements)
+* [Filter transactions](#filter-transactions)
 * [Ignoring a transaction](#ignoring-a-transaction)
 
 ### Adding a transaction
@@ -398,100 +398,6 @@ Done, deleted "beef noodles" from the financial report
 
 [Jump back to features overview](#features-overview)
 
-### Filter statements
-
-To ease your time searching through all the entries in the financial report, the "filter" function of rainyDay
-will help you extract certain transactions based on a specific criteria.
-
-Format : `filter [FLAG] {FIELD}`
-
-* The `FLAG` must be at least one of the following:
-    * `-in` to filter by inflows
-    * `-out` to filter by outflows
-    * `-d` to filter by description
-    * `-c` to filter by category
-    * `-date` to filter by date
-* No `FIELD` is required when `-in` or `-out` flag is used 
-* date `FIELD` must be in the form DD/MM/YYYY
-
-Example of usage:
-
-After requesting to view the transactions from rainyDay, the following is shown to you:
-
-```
-> view
-+====================================================================================================+
-|Here is your financial report!                                                                      |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food                 |25/03/2023|
-|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
-|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
-|000004|Pay                                          | +$50000.00   |miscellaneous        |26/03/2023|
-|000005|Allowance                                    | +$20.00      |Allowance            |01/03/2023|
-|000006|Angpao                                       | +$2000.00    |Chinese New Year     |26/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
-|Total Inflow: $52020.00                                                                             |
-|Total Outflow: $539.00                                                                              |
-|Remaining value: $51481.00                                                                          |
-+====================================================================================================+
-```
-
-Suppose you want to find out transactions related to chicken, you can use this command:
-
-`filter -d chicken`
-
-```
-> filter -d chicken
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Here is your filtered financial report!                                                             |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food                 |25/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-```
-
-Suppose you want to check your outflows only, you can use this command:
-
-`filter -out`
-
-```
-> filter -out
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Here is your filtered financial report!                                                             |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food                 |25/03/2023|
-|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
-|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-```
-
-> 💡**Tip:** Multiple flags may be used at once but must be in this order:
->
-> `-in` or `out` -> `-d` -> `-c` -> `-date`
-
-Suppose you want to find out what food you ate on a particular day, you can use this command:
-
-`filter -c Food and Drinks -date 26/03/2023`
-
- ```
- > filter -c Food and Drinks -date 26/03/2023
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Here is your filtered financial report!                                                             |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-```
-
-[Jump back to features overview](#features-overview)
-
 ### Editing a transaction
 
 Should you need to update details in a previous transaction, rainyDay's "edit" function supports changing the details of
@@ -590,6 +496,161 @@ Done, edited entry 2 from the financial report
 |Total Inflow: $52020.00                                                                             |
 |Total Outflow: $539.00                                                                              |
 |Remaining value: $51481.00                                                                          |
++====================================================================================================+
+```
+
+[Jump back to features overview](#features-overview)
+
+### Filter transactions
+
+To ease your time searching through all the entries in the financial report, the "filter" function of rainyDay
+will help you extract certain transactions based on a specific criteria
+
+Format : `filter [FLAG] {FIELD}`
+
+* The `FLAG` must be at least one of the following:
+    * `-in` to filter by inflows
+    * `-out` to filter by outflows
+    * `-d` to filter by description
+    * `-c` to filter by category
+    * `-date` to filter by date
+* No `FIELD` is required when `-in` or `-out` flag is used 
+* date `FIELD` must be in the form DD/MM/YYYY
+
+
+Example of usage:
+
+After requesting to view the transactions from rainyDay, the following is shown to you:
+
+```
+> view
++====================================================================================================+
+|Here is your financial report!                                                                      |
++------+---------------------------------------------+--------------+---------------------+----------+
+|Index |Description                                  |Amount        |Category             |Date      |
+|000001|chicken rice                                 | -$5.00       |Food                 |25/03/2023|
+|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
+|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
+|000004|Pay                                          | +$50000.00   |miscellaneous        |26/03/2023|
+|000005|Allowance                                    | +$20.00      |Allowance            |01/03/2023|
+|000006|Angpao                                       | +$2000.00    |Chinese New Year     |26/03/2023|
+|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
++------+---------------------------------------------+--------------+---------------------+----------+
+|Viewing all entries from 2023-02-28 till today                                                      |
+|Total Inflow: $52020.00                                                                             |
+|Total Outflow: $539.00                                                                              |
+|Remaining value: $51481.00                                                                          |
++====================================================================================================+
+```
+
+Suppose you want to find out transactions related to chicken, you can use this command:
+
+`filter -d chicken`
+
+```
+> filter -d chicken
++------+---------------------------------------------+--------------+---------------------+----------+
+|Here is your filtered financial report!                                                             |
++------+---------------------------------------------+--------------+---------------------+----------+
+|Index |Description                                  |Amount        |Category             |Date      |
+|000001|chicken rice                                 | -$5.00       |Food                 |25/03/2023|
+|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
++------+---------------------------------------------+--------------+---------------------+----------+
+```
+
+Suppose you want to check your outflows only, you can use this command:
+
+`filter -out`
+
+```
+> filter -out
++------+---------------------------------------------+--------------+---------------------+----------+
+|Here is your filtered financial report!                                                             |
++------+---------------------------------------------+--------------+---------------------+----------+
+|Index |Description                                  |Amount        |Category             |Date      |
+|000001|chicken rice                                 | -$5.00       |Food                 |25/03/2023|
+|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
+|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
+|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
++------+---------------------------------------------+--------------+---------------------+----------+
+```
+
+> 💡**Tip:** Multiple flags may be used at once but must be in this order:
+>
+> `-in` or `out` -> `-d` -> `-c` -> `-date`
+
+Suppose you want to find out what food you ate on a particular day, you can use this command:
+
+`filter -c Food and Drinks -date 26/03/2023`
+
+ ```
+ > filter -c Food and Drinks -date 26/03/2023
++------+---------------------------------------------+--------------+---------------------+----------+
+|Here is your filtered financial report!                                                             |
++------+---------------------------------------------+--------------+---------------------+----------+
+|Index |Description                                  |Amount        |Category             |Date      |
+|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
+|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
++------+---------------------------------------------+--------------+---------------------+----------+
+```
+
+[Jump back to features overview](#features-overview)
+
+### Ignoring a transaction
+
+Due to potential certain one-time payments or receivables that you encounter, rainyDay's ignore function can help you
+keep a more accurate track of your finances by allowing you to ignore certain transactions from the overall calculation
+of your inflow and outflow.
+Conversely, the unignore function is to include a transaction that was previously ignored.
+
+Format: `ignore [index]` or `unignore [index]`
+
+* `index` The index of the entry you want to ignore, obtained by using the `view` command
+
+Example of Usage:
+
+You have received a one-time payment from government GST refunds. You would like to keep track of it however do not want
+to include it in your budget calculations. After executing the add command, input view to find its index.
+
+```
+view
++====================================================================================================+
+|Here is your financial report!                                                                      |
++------+---------------------------------------------+--------------+---------------------+----------+
+|Index |Description                                  |Amount        |Category             |Date      |
+|000001|chicken rice                                 | -$5.00       |Food and Drinks      |25/03/2023|
+|000002|beef noodles                                 | -$12.00      |Food                 |22/03/2023|
+|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
+|000004|GST refund                                   | +$500.00     |grants               |30/03/2023|
++------+---------------------------------------------+--------------+---------------------+----------+
+|Viewing all entries from 2023-02-28 till today                                                      |
+|Total Inflow: $500.00                                                                               |
+|Total Outflow: $517.00                                                                              |
+|Remaining value: $-17.00                                                                            |
++====================================================================================================+
+```
+
+You can then execute the following command to ignore the entry:
+
+`ignore 4`
+
+```
+> ignore 4
+Done, Entry 4 ignored from overview calculations
+> view
++====================================================================================================+
+|Here is your financial report!                                                                      |
++------+---------------------------------------------+--------------+---------------------+----------+
+|Index |Description                                  |Amount        |Category             |Date      |
+|000001|chicken rice                                 | -$5.00       |Food and Drinks      |25/03/2023|
+|000002|beef noodles                                 | -$12.00      |Food                 |22/03/2023|
+|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
+|000004|GST refund                                   | Ignored      |grants               |30/03/2023|
++------+---------------------------------------------+--------------+---------------------+----------+
+|Viewing all entries from 2023-02-28 till today                                                      |
+|Total Inflow: $0.00                                                                                 |
+|Total Outflow: $517.00                                                                              |
+|Remaining value: $-517.00                                                                           |
 +====================================================================================================+
 ```
 
@@ -726,66 +787,6 @@ dish. Now the shortcut you previously configured is no longer useful. All you ha
 command below:
 
 `shortcut_delete FavLunch`
-
-[Jump back to features overview](#features-overview)
-
-### Ignoring a transaction
-
-Due to potential certain one-time payments or receivables that you encounter, rainyDay's ignore function can help you
-keep a more accurate track of your finances by allowing you to ignore certain transactions from the overall calculation
-of your inflow and outflow.
-Conversely, the unignore function is to include a transaction that was previously ignored.
-
-Format: `ignore [index]` or `unignore [index]`
-
-* `index` The index of the entry you want to ignore, obtained by using the `view` command
-
-Example of Usage:
-
-You have received a one-time payment from government GST refunds. You would like to keep track of it however do not want
-to include it in your budget calculations. After executing the add command, input view to find its index.
-
-```
-view
-+====================================================================================================+
-|Here is your financial report!                                                                      |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food and Drinks      |25/03/2023|
-|000002|beef noodles                                 | -$12.00      |Food                 |22/03/2023|
-|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
-|000004|GST refund                                   | +$500.00     |grants               |30/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
-|Total Inflow: $500.00                                                                               |
-|Total Outflow: $517.00                                                                              |
-|Remaining value: $-17.00                                                                            |
-+====================================================================================================+
-```
-
-You can then execute the following command to ignore the entry:
-
-`ignore 4`
-
-```
-> ignore 4
-Done, Entry 4 ignored from overview calculations
-> view
-+====================================================================================================+
-|Here is your financial report!                                                                      |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food and Drinks      |25/03/2023|
-|000002|beef noodles                                 | -$12.00      |Food                 |22/03/2023|
-|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
-|000004|GST refund                                   | Ignored      |grants               |30/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
-|Total Inflow: $0.00                                                                                 |
-|Total Outflow: $517.00                                                                              |
-|Remaining value: $-517.00                                                                           |
-+====================================================================================================+
-```
 
 [Jump back to features overview](#features-overview)
 

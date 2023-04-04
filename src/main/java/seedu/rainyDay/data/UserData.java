@@ -55,7 +55,7 @@ public class UserData {
         String monthYearString = currentDate.format(formatter);
         int currentYear = currentDate.getYear();
         int monthYear = currentMonth + currentYear * 12;
-        double currentSpending = financialReport.getMonthlyExpenditure(monthYear);
+        double currentSpending = MonthlyExpenditures.getMonthlyExpenditure(monthYear);
         if (currentSpending >= budgetLimit) {
             return String.format("\nYou've spent $%.2f/$%.2f for %s and exceeded your budget! " +
                     "Try harder next time! :(",currentSpending, budgetLimit,monthYearString);
@@ -74,14 +74,6 @@ public class UserData {
 
     public void addStatementAtIndex(FinancialStatement newStatement, int index) {
         financialReport.addStatementAtIndex(newStatement, index);
-    }
-
-    public void removeFromMonthlyExpenditure(FinancialStatement statement) {
-        financialReport.removeFromMonthlyExpenditure(statement);
-    }
-
-    public void addToMonthlyExpenditure(FinancialStatement statement) {
-        financialReport.addToMonthlyExpenditure(statement);
     }
 
     public LocalDate getStatementDate(int statementIndex) {

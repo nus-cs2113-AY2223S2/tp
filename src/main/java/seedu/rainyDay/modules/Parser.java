@@ -201,7 +201,7 @@ public class Parser {
             logger.warning("empty category name");
             throw new RainyDayException(ErrorMessage.EMPTY_CATEGORY_NAME.toString());
         }
-        if (category.length() - "-date".length() == category.indexOf("-date")) {
+        if (category.contains("-date") && category.trim().length() - "-date".length() == category.indexOf("-date")) {
             logger.warning("empty category name");
             throw new RainyDayException(ErrorMessage.NO_DATE_PROVIDED.toString());
         }
@@ -614,6 +614,7 @@ public class Parser {
         }
     }
 
+    //@@author azriellee
     public Command ignoreStatement(String userInput) throws RainyDayException {
         String[] tokens = userInput.split("\\s+", 2);
         if (tokens.length < 2) {

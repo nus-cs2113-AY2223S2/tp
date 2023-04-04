@@ -1,6 +1,7 @@
 package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
+import seedu.rainyDay.data.UserData;
 
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -48,6 +49,7 @@ public class DeleteCommand extends Command {
 
         index -= 1;
 
+        UserData userData = allData.getUserData();
         int previousStatementCount = userData.getStatementCount(); // only used for assertion
         assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for delete";
 
