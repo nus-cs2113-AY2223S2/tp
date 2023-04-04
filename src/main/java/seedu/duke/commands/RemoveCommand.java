@@ -13,22 +13,18 @@ import seedu.duke.utils.Ui;
 public class RemoveCommand extends Command {
 
     private String upcCode;
-    private String userConfirmation;
 
     private int itemIndex;
 
     /**
      * Constructor for RemoveCommand where item is removed from the inventory by its index
      *
-     * @param inventory        the inventory which item is to be removed from
-     * @param itemIndex        the index of the item to be removed
-     * @param userConfirmation Y/N confirmation from user input
+     * @param inventory the inventory which item is to be removed from
+     * @param itemIndex the index of the item to be removed
      */
-    public RemoveCommand(Inventory inventory, int itemIndex, String userConfirmation) {
+    public RemoveCommand(Inventory inventory, int itemIndex) {
         super(inventory);
         this.itemIndex = itemIndex;
-        this.userConfirmation = userConfirmation;
-
     }
 
     /**
@@ -36,12 +32,10 @@ public class RemoveCommand extends Command {
      *
      * @param inventory        the inventory which item is to be removed from
      * @param upcCode          the upc code of the item to be removed
-     * @param userConfirmation Y/N confirmation from user input
      */
-    public RemoveCommand(Inventory inventory, String upcCode, String userConfirmation) {
+    public RemoveCommand(Inventory inventory, String upcCode) {
         super(inventory);
         this.upcCode = upcCode;
-        this.userConfirmation = userConfirmation;
     }
 
     /**
@@ -57,30 +51,20 @@ public class RemoveCommand extends Command {
             Ui.printItemNotFound();
             return;
         }
-
         Item itemToRemove = new Item(upcCodes.get(upcCode));
-        switch (userConfirmation.toUpperCase()) {
-        case "Y":
-            int indexOfItem = itemInventory.indexOf(itemToRemove);
-            String category = itemToRemove.getCategory();
-            inventory.getUpcCodesHistory().remove(upcCode);
-            itemInventory.remove(indexOfItem);
-            upcCodes.remove(upcCode);
-            String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
-            for (String itemName : itemNames) {
-                removeItemFromHashTrie(itemToRemove, itemName);
-            }
-            removeItemFromCategoryHash(itemToRemove, category);
-            removeAlert(upcCode);
-            Ui.printSuccessRemove(itemToRemove);
-            break;
-        case "N":
-            Ui.printNotRemoving();
-            break;
-        default:
-            Ui.printInvalidReply();
-            break;
+        int indexOfItem = itemInventory.indexOf(itemToRemove);
+        String category = itemToRemove.getCategory();
+        inventory.getUpcCodesHistory().remove(upcCode);
+        itemInventory.remove(indexOfItem);
+        upcCodes.remove(upcCode);
+        String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
+        for (String itemName : itemNames) {
+            removeItemFromHashTrie(itemToRemove, itemName);
         }
+        removeItemFromCategoryHash(itemToRemove, category);
+        removeAlert(upcCode);
+        Ui.printSuccessRemove(itemToRemove);
+
     }
 
     /**
@@ -94,29 +78,19 @@ public class RemoveCommand extends Command {
             Ui.printItemNotFound();
             return;
         }
-        switch (userConfirmation.toUpperCase()) {
-        case "Y":
-            String upcCode = itemToRemove.getUpc();
-            String category = itemToRemove.getCategory();
-            int i = itemInventory.indexOf(itemToRemove);
-            upcCodes.remove(upcCode);
-            inventory.getUpcCodesHistory().remove(upcCode);
-            itemInventory.remove(i);
-            String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
-            for (String name : itemNames) {
-                removeItemFromHashTrie(itemToRemove, name);
-            }
-            removeItemFromCategoryHash(itemToRemove, category);
-            removeAlert(upcCode);
-            Ui.printSuccessRemove(itemToRemove);
-            break;
-        case "N":
-            Ui.printNotRemoving();
-            break;
-        default:
-            Ui.printInvalidReply();
-            break;
+        String upcCode = itemToRemove.getUpc();
+        String category = itemToRemove.getCategory();
+        int i = itemInventory.indexOf(itemToRemove);
+        upcCodes.remove(upcCode);
+        inventory.getUpcCodesHistory().remove(upcCode);
+        itemInventory.remove(i);
+        String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
+        for (String name : itemNames) {
+            removeItemFromHashTrie(itemToRemove, name);
         }
+        removeItemFromCategoryHash(itemToRemove, category);
+        removeAlert(upcCode);
+        Ui.printSuccessRemove(itemToRemove);
     }
 
     private void removeItemFromHashTrie(Item itemToRemove, String itemName) {
@@ -163,7 +137,7 @@ public class RemoveCommand extends Command {
                 SessionManager.writeSession(inventory);
             }
         } catch (NullPointerException | NumberFormatException e) {
-            System.out.println("NULL");
+            Ui.printItemNotFound();
         }
 
     }

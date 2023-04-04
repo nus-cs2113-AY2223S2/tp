@@ -24,7 +24,7 @@ class RemoveTest {
         Command addCommand2 = new AddCommand(inventory, item3);
         addCommand2.run();
 
-        Command removeCommand = new RemoveCommand(inventory, 2, "Y");
+        Command removeCommand = new RemoveCommand(inventory, 2);
         removeCommand.run();
 
         assertEquals(2, inventory.getItemInventory().size());
@@ -44,17 +44,17 @@ class RemoveTest {
         Command addCommand2 = new AddCommand(inventory, item3);
         addCommand2.run();
 
-        Command removeCommand = new RemoveCommand(inventory,"876543210" , "Y");
+        Command removeCommand = new RemoveCommand(inventory,"876543210");
         removeCommand.run();
         assertEquals(2, inventory.getItemInventory().size());
-        Command removeCommand1 = new RemoveCommand(inventory,"012345678" , "reply");
+        Command removeCommand1 = new RemoveCommand(inventory,"012345678");
         removeCommand1.run();
-        assertEquals(2, inventory.getItemInventory().size());
-        Command removeCommand2 = new RemoveCommand(inventory,"012345678" , "Y");
+        assertEquals(1, inventory.getItemInventory().size());
+        Command removeCommand2 = new RemoveCommand(inventory,"012345678");
         removeCommand2.run();
         assertEquals(1, inventory.getItemInventory().size());
-        Command removeCommand3 = new RemoveCommand(inventory,"012345678" , "Y");
+        Command removeCommand3 = new RemoveCommand(inventory,"123");
         removeCommand3.run();
-        assertEquals(1, inventory.getItemInventory().size());
+        assertEquals(0, inventory.getItemInventory().size());
     }
 }

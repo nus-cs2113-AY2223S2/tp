@@ -13,6 +13,7 @@ import java.util.Scanner;
 
 public class RemoveParser extends Parser {
     private static Scanner in = new Scanner(System.in);
+    private static final int VALID_COMMAND_LENGTH = 2;
 
 
     public RemoveParser(String rawInput, Inventory inventory) {
@@ -28,16 +29,11 @@ public class RemoveParser extends Parser {
      */
     private static void parseRemoveByIndex(final String[] commands, Inventory inventory)
             throws MissingParametersException {
-        if (commands.length == 1) {
+        if (commands.length < VALID_COMMAND_LENGTH) {
             throw new MissingParametersException();
         }
-        Item itemToRemove;
-        String confirmation;
         int itemIndex = Integer.parseInt(commands[1]);
-        itemToRemove = inventory.getItemInventory().get(itemIndex);
-        Ui.printConfirmMessage(itemToRemove);
-        confirmation = in.nextLine();
-        Command removeCommand = new RemoveCommand(inventory, itemIndex, confirmation);
+        Command removeCommand = new RemoveCommand(inventory, itemIndex);
         removeCommand.run();
     }
 
@@ -51,20 +47,15 @@ public class RemoveParser extends Parser {
      */
     private static void parseRemoveByUpc(final String[] commands, Inventory inventory)
             throws MissingParametersException, RemoveErrorException {
-        String confirmation;
-        Item itemToRemove;
-        if (commands.length == 1 || !commands[1].startsWith("upc/")) {
+        if (commands.length < VALID_COMMAND_LENGTH) {
             throw new MissingParametersException();
         }
-        String upcCode = commands[1].replaceFirst("upc/", "");
+        String upcCode = commands[1];
         HashMap<String, Item> upcCodes = inventory.getUpcCodes();
         if (!upcCode.matches("(\\d+)") || !upcCodes.containsKey(upcCode)) {
             throw new RemoveErrorException();
         }
-        itemToRemove = upcCodes.get(upcCode);
-        Ui.printConfirmMessage(itemToRemove);
-        confirmation = in.nextLine();
-        Command removeCommand = new RemoveCommand(inventory, upcCode, confirmation);
+        Command removeCommand = new RemoveCommand(inventory, upcCode);
         removeCommand.run();
     }
 
@@ -79,7 +70,7 @@ public class RemoveParser extends Parser {
             }
             String[] commands = rawInput.split(" ");
             switch (commands[0]) {
-            case "f/item":
+            case "f/upc":
                 parseRemoveByUpc(commands, inventory);
                 break;
             case "f/index":

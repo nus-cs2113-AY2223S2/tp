@@ -6,19 +6,27 @@ import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CategoryCommand extends Command {
     private final String rawInput;
-    private final String[] categoryCommandType;
 
-
-    public CategoryCommand(Inventory inventory, String rawInput, String[] categoryCommandType) {
+    /**
+     * Constructor for the CategoryCommand class.
+     * @param inventory the inventory to be initialised in the Command class.
+     * @param rawInput the input given by user to execute
+     */
+    public CategoryCommand(Inventory inventory, String rawInput) {
         super(inventory);
-        this.categoryCommandType = categoryCommandType;
         this.rawInput = rawInput;
     }
 
+    /**
+     * Updates an item's category.
+     * @param item the item to be updated.
+     * @param oldCategory the current category the item is in.
+     * @param newCategory the new category the item is going to be in.
+     * @throws CategoryFormatException if category provided is invalid.
+     */
     public static void updateItemCategory(Item item, String oldCategory, String newCategory)
             throws CategoryFormatException {
         try {
@@ -31,6 +39,12 @@ public class CategoryCommand extends Command {
         }
     }
 
+    /**
+     * Checks for existing category when about to update an item's category.
+     * @param item the item which its category is being updated.
+     * @param oldCategory the current category the item belongs to.
+     * @param newCategory the new category the item is going to belong to.
+     */
     private static void checkExistingCategory(Item item, String oldCategory, String newCategory) {
         try {
             removeItemFromCategory(item, oldCategory);
@@ -41,6 +55,11 @@ public class CategoryCommand extends Command {
         }
     }
 
+    /**
+     * Remove an item from its category upon removal of item or editing its category.
+     * @param item the item to be removed from the category hashmap.
+     * @param oldCategory the category that the item currently belongs to.
+     */
     private static void removeItemFromCategory(Item item, String oldCategory) {
         if (!categoryHash.containsKey(oldCategory)) {
             return;
@@ -53,6 +72,11 @@ public class CategoryCommand extends Command {
         }
     }
 
+    /**
+     * Adds an item into the specified category.
+     * @param categoryToAdd the specified category to add item to.
+     * @param item the item to be added to a category.
+     */
     private static void addItemToCategory(String categoryToAdd, Item item) {
         if (!categoryHash.containsKey(categoryToAdd.toLowerCase())) {
             categoryHash.put(categoryToAdd, new ArrayList<>());
@@ -60,32 +84,19 @@ public class CategoryCommand extends Command {
         categoryHash.get(categoryToAdd).add(item);
     }
 
-    private void listCategoryAndItems() throws NullPointerException {
+    /**
+     * Prints a table of categories and all items in the categories with their name and UPC.
+     */
+    private void listCategoryAndItems() {
         if (categoryHash.isEmpty()) {
             throw new NullPointerException();
         }
         Ui.printCategory(categoryHash);
     }
 
-    private void findCategory(String category) {
-        try {
-            if (categoryHash.containsKey(category)) {
-                ArrayList<Item> items = categoryHash.get(category);
-                HashMap<String, ArrayList<Item>> itemsInCategory = new HashMap<>();
-                itemsInCategory.put(category, items);
-                Ui.printCategory(itemsInCategory);
-            } else {
-                throw new CategoryFormatException();
-            }
-        } catch (CategoryFormatException e) {
-            if (categoryHash.isEmpty()) {
-                Ui.printNoCategoryList();
-            } else {
-                Ui.printInvalidCategory();
-            }
-        }
-    }
-
+    /**
+     * Prints a list of all categories in the inventory.
+     */
     private void listAllCategories() {
         if (categoryHash.isEmpty()) {
             throw new NullPointerException();
@@ -94,15 +105,16 @@ public class CategoryCommand extends Command {
         }
     }
 
+    /**
+     * Executes the category command.
+     */
     @Override
     public void run() {
         try {
-            if (categoryCommandType[0].equals("list")) {
+            if (rawInput.equals("list")) {
                 listAllCategories();
-            } else if (categoryCommandType[0].equals("table")) {
+            } else if (rawInput.equals("table")) {
                 listCategoryAndItems();
-            } else {
-                findCategory(rawInput);
             }
         } catch (NullPointerException npe) {
             Ui.printNoCategoryList();
