@@ -64,11 +64,12 @@ public class SaveExpense {
                             StringToCategory.convertStringToCategory(strExpense[3]));
                     ExpenseList.expenseList.add(expense);
 
-                } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                } catch (NumberFormatException | CategoryNotCorrectException | IndexOutOfBoundsException e) {
                     continue;
-                } catch (CategoryNotCorrectException e) {
-                    throw new RuntimeException(e);
                 }
+//                } catch (CategoryNotCorrectException e) {
+//                    throw new RuntimeException(e);
+//                }
             }
         } catch (IOException ioe) {
             try {

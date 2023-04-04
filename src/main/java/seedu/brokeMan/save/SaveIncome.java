@@ -64,11 +64,12 @@ public class SaveIncome {
                             LocalDateTime.parse(strIncome[2]),
                             StringToCategory.convertStringToCategory(strIncome[3]));
                     IncomeList.incomeList.add(income);
-                } catch (NumberFormatException | IndexOutOfBoundsException e) {
+                } catch (NumberFormatException | IndexOutOfBoundsException | CategoryNotCorrectException e) {
                     continue;
-                } catch (CategoryNotCorrectException e) {
-                    throw new RuntimeException(e);
                 }
+//                } catch (CategoryNotCorrectException e) {
+//                    throw new RuntimeException(e);
+//                }
             }
         } catch (IOException ioe) {
             try {
