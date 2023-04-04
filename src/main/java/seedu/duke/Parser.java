@@ -313,16 +313,21 @@ public class Parser {
         }
         String budgetCommand = commandWords[1].toLowerCase();
         String stringAmount = commandWords[2];
-        if (stringAmount.startsWith("-") || stringAmount.length() > 10) {
+        if (!budgetCommand.equals("budget") && !budgetCommand.equals("accommodation") &&
+                !budgetCommand.equals("airplane") && !budgetCommand.equals("food") &&
+                !budgetCommand.equals("entertainment")) {
             throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+        }
+        if (stringAmount.startsWith("-") || stringAmount.length() > 10) {
+            throw new InvalidCommandException(UI.INVALID_BUDGET_AMOUNT_MESSAGE);
         }
         try {
             Long longAmount = Long.parseLong(stringAmount);
             if (longAmount > BudgetPlanner.MAX_BUDGET) {
-                throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+                throw new InvalidCommandException(UI.INVALID_BUDGET_AMOUNT_MESSAGE);
             }
         } catch (NumberFormatException e) {
-            throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+            throw new InvalidCommandException(UI.INVALID_BUDGET_AMOUNT_MESSAGE);
         }
         int amount = stringToInt(stringAmount);
         switch (budgetCommand) {
