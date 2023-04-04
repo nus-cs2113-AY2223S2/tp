@@ -18,21 +18,21 @@ MagusStock is a Java command-line interface (CLI) application designed for inven
 4. Run the file with the command `java -jar magusstock.jar`.
 
 ## Features
-- [Adding an item: `add`](#adding-an-item--add-a-name--add-a)
-- [Editing an item: `edit`](#editing-an-item--edit-a-name--edit-a)
-- [Removing an item: `remove`](#removing-an-item--remove-a-name--remove-a)
-- [Listing all items: `list`](#list-all-items--list)
-- [Searching for item(s): `search`](#search-for-an-item--search--searchupc)
-- [Filtering item(s) by type: `filter`](#filtering-items--filter)
-- [Listing all commands: `help`](#list-all-available-commands--help)
-- [History of item: `history`](#historical-records-of-item--history-a-name--history-a)
-- [Selling an item: `sell`](#sell-quantity-of-item--sell-a-name--sell-a)
-- [Restocking an item: `restock`](#restock-an-item--restock-a-name--restock-a)
-- [Dashboard: `db`](#dashboard--db-a-name--db-a)
-- [Category: `cat`](#category--cat-a-name--cat-a)
-- [Alert for item(s): `alert`](#alert-for-an-item--alert-a-name--alert-a)
-- [Autosave of Inventory: `autosave`](#change-autosave-mode--autosave-a-name--autosave-a)
-- [Exiting the program: `exit`](#exiting-the-program--exit-a-name--exit-a)
+- [Adding an item: `add`](#adding-an-item-add-)
+- [Editing an item: `edit`](#editing-an-item-edit-)
+- [Removing an item: `remove`](#removing-an-item-remove-)
+- [Listing all items: `list`](#list-all-items-list-)
+- [Searching for item(s): `search`](#search-for-an-item-search-searchupc-)
+- [Filtering item(s) by type: `filter`](#filtering-items-filter-)
+- [Listing all commands: `help`](#list-all-available-commands-help-)
+- [History of item: `history`](#historical-records-of-item-history-)
+- [Selling an item: `sell`](#sell-quantity-of-item-sell-)
+- [Restocking an item: `restock`](#restock-an-item-restock-)
+- [Dashboard: `db`](#dashboard-db-)
+- [Category: `cat`](#category-cat-)
+- [Alert for item(s): `alert`](#alert-for-an-item-alert-)
+- [Autosave of Inventory: `autosave`](#change-autosave-mode-autosave-)
+- [Exiting the program: `exit`](#exiting-the-program-exit-)
 
 ---
 ### Adding an item: `add` <a name = "add"></a>
@@ -47,7 +47,7 @@ Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 * The `p/` parameter for `[price]` must be a **non-negative numerical** value _(decimals accepted)_.
 
 **OPTIONAL** parameters:
-* The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `Uncategorized` if not specified.)
+* The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized` if not specified.)
 
 
 
@@ -136,7 +136,7 @@ Format: `remove f/item upc/[UPC]` or `remove f/index [Index]`
 #### Sample output
 
 ---
-### List all items: `list` 
+### List all items: `list` <a name = "list"></a>
 Lists all items in the inventory list.
 
 Format: `list`
@@ -187,7 +187,7 @@ There are no items in your inventory.
 ____________________________________________________________
 ```
 ---
-### Search for an item: `search` / `searchupc`
+### Search for an item: `search` / `searchupc` <a name = "search"></a>
 Search for item(s) in the inventory list by keywords or UPC.
 
 | Format | Required parameter |
@@ -233,7 +233,7 @@ Here is your item:
 ____________________________________________________________
 ```
 ---
-### Filtering items: `filter`
+### Filtering items: `filter` <a name = "filter"></a>
 
 
 Filters items from the inventory list by price OR category.
@@ -305,7 +305,7 @@ ____________________________________________________________
 
 ```
 ---
-### List all available commands: `help`
+### List all available commands: `help` <a name = "help"></a>
 Lists all commands available and the command formats.
 
 Format: `help`
