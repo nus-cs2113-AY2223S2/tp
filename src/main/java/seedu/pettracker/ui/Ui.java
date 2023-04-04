@@ -9,13 +9,12 @@ public class Ui {
     private static final String DIVIDER = "\n_________________________________________________________________________"
             + "_______________________________\n";
     private static final String FILE_IO_ERROR = "ERROR: Error with File IO";
-    public static final String NON_INTEGER_ERROR = "ERROR: Input should be an integer";
-    public static final String NON_POSITIVE_INTEGER_ERROR = "ERROR: Integer provided should be above 0";
-    public static final String INVALID_STAT_ERROR = "ERROR: The only valid stats are type, age, or weight.";
-    public static final String PET_NOT_FOUND_MESSAGE = "ERROR: Pet not Found";
-    public static final String PET_NOT_FOUND_ERROR = PET_NOT_FOUND_MESSAGE;
-    public static final String EMPTY_PET_NAME_ERROR = "ERROR: Pet Name is empty";
-    public static final String DUPLICATE_PET_ERROR = "ERROR: Pet already exists";
+    private static final String NON_INTEGER_ERROR = "ERROR: Input should be an integer";
+    private static final String NON_POSITIVE_INTEGER_ERROR = "ERROR: Integer provided should be above 0";
+    private static final String INVALID_STAT_ERROR = "ERROR: The only valid stats are type, age, or weight.";
+    private static final String PET_NOT_FOUND_ERROR = "ERROR: Pet not Found";
+    private static final String EMPTY_PET_NAME_ERROR = "ERROR: Pet Name is empty";
+    private static final String DUPLICATE_PET_ERROR = "ERROR: Pet already exists";
 
 
     Scanner in;
