@@ -72,7 +72,7 @@ public class IPPTCalc {
             String[] runTime = userRunTimeInput.split(":");
             int mins = Integer.parseInt(runTime[0]);
             int secs = Integer.parseInt(runTime[1]);
-            int rounded_secs = (int) (Math.round(secs / 10.0) * 10) + mins * 60;
+            int rounded_secs = (int) ((Math.round(secs / 10.0) * 10) + mins * 60);
             this.runReps = scores.runTimeInSecs.indexOf(rounded_secs);
         } catch (Exception e){
             throw new DukeError(ErrorMessages.ERROR_IPPT_INVALID_TIMING.toString());

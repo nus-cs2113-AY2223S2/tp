@@ -7,6 +7,7 @@ import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
+import seedu.duke.ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -64,11 +65,11 @@ public class GenerateExerciseTest {
     void testGenerateCommand () throws DukeError {
         String sampleUserCommand = "upper medium 99";
         GenerateFilterCommand generateFilterCommand = new GenerateFilterCommand(sampleUserCommand.split(" "));
-        UiManager uiManager = new UiManager();
+        Ui ui = new Ui();
         GenerateExercise generateExercise = new GenerateExercise(RANDOM_SEED);
-        assertDoesNotThrow(() -> generateFilterCommand.executeCommand(uiManager, generateExercise), "GenerateFilterCommand " +
+        assertDoesNotThrow(() -> generateFilterCommand.executeCommand(ui, generateExercise), "GenerateFilterCommand " +
             "throws an error");
-        generateFilterCommand.executeCommand(uiManager, generateExercise);
+        generateFilterCommand.executeCommand(ui, generateExercise);
     }
 
     /**
@@ -81,9 +82,9 @@ public class GenerateExerciseTest {
     void testGenerateCommandLargeSet () throws DukeError {
         String sampleUserCommand = "medium legs 9999999";
         GenerateFilterCommand generateFilterCommand = new GenerateFilterCommand(sampleUserCommand.split(" "));
-        UiManager uiManager = new UiManager();
+        Ui ui = new Ui();
         GenerateExercise generateExercise = new GenerateExercise(RANDOM_SEED);
-        assertThrows(DukeError.class, () -> generateFilterCommand.executeCommand(uiManager, generateExercise));
+        assertThrows(DukeError.class, () -> generateFilterCommand.executeCommand(ui, generateExercise));
     }
 
     /**
@@ -97,9 +98,9 @@ public class GenerateExerciseTest {
     void testGenerateCommandManyFilter () throws DukeError {
         String sampleUserCommand = "medium legs core upper 100";
         GenerateFilterCommand generateFilterCommand = new GenerateFilterCommand(sampleUserCommand.split(" "));
-        UiManager uiManager = new UiManager();
+        Ui ui = new Ui();
         GenerateExercise generateExercise = new GenerateExercise(RANDOM_SEED);
-        assertThrows(DukeError.class, () -> generateFilterCommand.executeCommand(uiManager, generateExercise));
+        assertThrows(DukeError.class, () -> generateFilterCommand.executeCommand(ui, generateExercise));
     }
 
     /**

@@ -22,8 +22,8 @@ public class TestUiManager {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        UiManager uiManager = new UiManager();
-        uiManager.splitLine();
+        Ui ui = new Ui();
+        ui.splitLine();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -45,8 +45,8 @@ public class TestUiManager {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        UiManager uiManager = new UiManager();
-        uiManager.printFilters();
+        Ui ui = new Ui();
+        ui.printFilters();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -88,8 +88,8 @@ public class TestUiManager {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        UiManager uiManager = new UiManager();
-        uiManager.unknownCommand();
+        Ui ui = new Ui();
+        ui.unknownCommand();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -111,8 +111,8 @@ public class TestUiManager {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        UiManager uiManager = new UiManager();
-        uiManager.printHelp();
+        Ui ui = new Ui();
+        ui.printHelp();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -166,8 +166,8 @@ public class TestUiManager {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        UiManager uiManager = new UiManager();
-        uiManager.greetUser();
+        Ui ui = new Ui();
+        ui.greetUser();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -202,8 +202,8 @@ public class TestUiManager {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        UiManager uiManager = new UiManager();
-        uiManager.byeUser();
+        Ui ui = new Ui();
+        ui.byeUser();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -243,8 +243,8 @@ public class TestUiManager {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
-        UiManager uiManager = new UiManager();
-        uiManager.printPlannerHelp();
+        Ui ui = new Ui();
+        ui.printPlannerHelp();
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -342,8 +342,8 @@ public class TestUiManager {
             userExerciseDataMap.put(exerciseName, 1);
         }
 
-        UiManager uiManager = new UiManager();
-        uiManager.printUserExerciseHistory(userExerciseDataMap);
+        Ui ui = new Ui();
+        ui.printUserExerciseHistory(userExerciseDataMap);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -378,8 +378,8 @@ public class TestUiManager {
         System.setOut(new PrintStream(actualOutput));
 
         UserPlan planner = new UserPlan();
-        UiManager uiManager = new UiManager();
-        uiManager.showPlan(planner);
+        Ui ui = new Ui();
+        ui.showPlan(planner);
 
         String os = System.getProperty("os.name");
         String expectedOutput = "";
@@ -454,7 +454,7 @@ public class TestUiManager {
         ArrayList<ExerciseData> exercises = new ArrayList<>();
         exercises.add(exerciseData);
 
-        UiManager uiManager = new UiManager();
+        Ui uiManager = new Ui();
         uiManager.printExerciseFromList(exercises);
 
         if (os.contains("Windows")) {
