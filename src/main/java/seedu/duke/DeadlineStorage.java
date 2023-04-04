@@ -1,7 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.exceptions.InvalidCommandException;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
