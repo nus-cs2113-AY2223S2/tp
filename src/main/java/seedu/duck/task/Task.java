@@ -12,10 +12,6 @@ public class Task {
         this.description = description;
         this.isDone = false;
         this.priority = 1; //automatically set to low priority
-<<<<<<< HEAD
-        this.additionalNotes = new ArrayList<>();
-=======
->>>>>>> Print-By-Priority
     }
 
     public void setDescription(String description) {
