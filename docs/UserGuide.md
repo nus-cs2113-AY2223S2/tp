@@ -49,12 +49,7 @@ Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 **OPTIONAL** parameters:
 * The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized` if not specified.)
 
-Example of usage: 
-=======
-
-
-!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
-
+!> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
 
 #### Example of usage
 
@@ -133,11 +128,22 @@ Format: `remove f/upc [UPC]` or `remove f/index [Index]`
 
 #### Example of usage
 
-`remove f/upc 123456789`
+`remove f/upc 123456789`: Removes the item with `UPC` code of `123456789`.
 
-`remove f/index 0`
+`remove f/index 0`: Removes the item with the `index` of `0` inside the inventory list.
 
 #### Sample output
+```
+remove f/upc 123
+---------------------------------------------------------------------------
+Successfully removed the following item: 
+Name: orange
+UPC: 123
+Price: 5.0
+Quantity: 5
+Category: uncategorized
+---------------------------------------------------------------------------
+```
 
 ---
 ### List all items: `list` <a name = "list"></a>
@@ -147,7 +153,7 @@ Format: `list`
 
 #### Example of usage
 
-`list`
+`list`: Lists all the items found in the inventory.
 
 #### Sample output 
 **Case I:** When there are items in the inventory
@@ -209,7 +215,7 @@ and `Clothes Sleeves`, but the search term `laptop slee` will only return the it
 
 `search laptop slee` or `searchupc 0123241`
 
-#### Sample output:
+#### Sample output
 
 
 **Case I:** Search by keywords
@@ -268,11 +274,11 @@ Filters items from the inventory list by price OR category.
 
 
 
-#### Example of usage:
+#### Example of usage
 
 `filter f/category fruits` or `filter f/price p/gt 10.2`
 
-#### Sample output:
+#### Sample output
 
 **Case I:** Filter by category
 
@@ -545,9 +551,6 @@ Format: <br />
 !> Note: There should **NOT** be any additional user inputs after typing `cat list` or `cat table`. `list` and `table`
 should **NOT** be used concurrently.
 
-
-=======
-
 #### Example of Usage 
 
 `cat list`
@@ -555,6 +558,7 @@ should **NOT** be used concurrently.
 `cat table`
 
 #### Sample output
+**CASE I:**Show the list of all categories in the inventory.
 ```
 cat list
 ____________________________________________________________
@@ -563,6 +567,7 @@ uncategorized
 fruits
 ____________________________________________________________
 ```
+**CASE II:**Show all the categories in the inventory as well as their respective items
 ```
 cat table
 +-----------------+--------------------------------+
@@ -587,8 +592,11 @@ Format:
 #### Examples of usage
 `alert add upc/1234 min/55`  
 `alert add upc/1234 max/100`
+`alert remove upc/1234 level/min`  
+`alert remove upc/1234 level/max`
 
 #### Sample output
+**Sample I:** Addition of a minimum quantity alert to an item
 ```
 alert add upc/1234 min/55
 ____________________________________________________________
@@ -596,14 +604,7 @@ Successfully added a new alert.
 ____________________________________________________________
 ```
 
-
-=======
-#### Examples of usage 
-`alert remove upc/1234 level/min`  
-`alert remove upc/1234 level/max`
-
-
-#### Sample output
+**SAMPLE II:** Removal of a minimum quantity alert for an item
 ```
 alert remove upc/1234 level/min
 ____________________________________________________________
@@ -619,19 +620,17 @@ successful write command issued.
 
 Format: `autosave [on/off]`
 
-
 **Required** Parameters:
 * The `on` **OR** `off` parameter, whereby it toggles the auto save function **ON** and **OFF** respectively.
 
 !> Note: if auto save is disabled, the program will **NOT** save on exit. This is because auto save `off` functions
 similarly to incognito mode on a browser.
 
-=======
 #### Example of usage
 
-`autosave on`
+`autosave on`: Turns the `autosave` function `on`.
 
-`autosave off`
+`autosave off`: Turns the `autosave` function `off`.
 
 #### Sample output
 
@@ -660,9 +659,9 @@ Format: `exit` or `bye`
 
 #### Example of usage
 
-`bye`
+`bye`: Terminates the program.
 
-`exit`
+`exit`: Terminates the program.
 
 #### Sample output:
 
