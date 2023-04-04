@@ -34,7 +34,8 @@ public abstract class CurrencyValue {
     /**
      * Converts SGD to specified currency and returns the value.
      * @param amount
-     * @param currency should be checked for non-valid inputs when command that would call sgDConversion is instantiated.
+     * @param currency should be checked for non-valid inputs when command that would call
+     *        sgDConversion is instantiated.
      * @return
      */
     public static double sgDConversion (double amount, String currency) {

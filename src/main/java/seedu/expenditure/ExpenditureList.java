@@ -97,7 +97,8 @@ public class ExpenditureList {
             Expenditure expenditure = expenditures.get(i);
             if (date.equals(expenditure.getDate())) {
                 totalValue += expenditure.getConvertedValue(currency);
-                stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure.expenditureString(currency)));
+                stringOfExpenditures.append(
+                        String.format("%d. %s\n", counter, expenditure.expenditureString(currency)));
                 counter += 1;
             }
         }
@@ -113,7 +114,8 @@ public class ExpenditureList {
             Expenditure expenditure = expenditures.get(i);
             if (expenditureType.equals(expenditure.getExpenditureType())) {
                 totalValue += expenditure.getConvertedValue(currency);
-                stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure.expenditureString(currency)));
+                stringOfExpenditures.append(
+                        String.format("%d. %s\n", counter, expenditure.expenditureString(currency)));
                 counter += 1;
             }
         }

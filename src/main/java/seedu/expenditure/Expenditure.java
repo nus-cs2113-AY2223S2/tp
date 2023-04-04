@@ -1,7 +1,5 @@
 package seedu.expenditure;
 
-import seedu.exceptions.WrongInputException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import static seedu.expenditure.CurrencyValue.sgDConversion;
@@ -67,7 +65,8 @@ public abstract class Expenditure {
      * @return
      */
     public String expenditureString(String currency) {
-        return String.format("Date: %s || Value: %.2f || Description: %s", getFullDate(), getConvertedValue(currency), getDescription());
+        return String.format("Date: %s || Value: %.2f || Description: %s",
+                getFullDate(), getConvertedValue(currency), getDescription());
     }
 
     public abstract String getPaidIcon();
