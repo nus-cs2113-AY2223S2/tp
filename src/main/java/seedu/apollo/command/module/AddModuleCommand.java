@@ -320,8 +320,8 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         ArrayList<Integer> week1 = timetable1.getWeeks();
         ArrayList<Integer> week2 = timetable2.getWeeks();
 
-        for (int week: week1) {
-            if (week2.contains(week)) {
+        for (int weeks: week1) {
+            if (week2.contains(weeks)) {
                 return true;
             }
         }
