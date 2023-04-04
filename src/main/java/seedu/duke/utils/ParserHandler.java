@@ -66,7 +66,7 @@ public class ParserHandler {
             sellParser.run();
             break;
         case "list":
-            ListParser listParser = new ListParser(inventory);
+            ListParser listParser = new ListParser(commandInfo, inventory);
             listParser.run();
             break;
         case "search":

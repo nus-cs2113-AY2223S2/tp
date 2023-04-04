@@ -11,7 +11,6 @@ public abstract class Parser {
     protected static final Integer QTY_INDEX = 3;
     protected static final Integer PRICE_INDEX = 4;
     protected static final Integer CAT_INDEX = 5;
-
     protected static final String ALERT_REGEX = "(add|remove|list)\\s+([\\w\\s\\/]+)";
     protected static final Integer ALERT_COMMAND_INDEX = 1;
     protected static final Integer ALERT_DETAILS_INDEX = 2;
