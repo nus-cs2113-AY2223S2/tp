@@ -53,6 +53,9 @@ public class CommandCategoryTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         expected = "Sorry, none of your previous expenses corresponds to this category.\n"
+                + "Here are all your expense categories: \n"
+                + "eat food \n"
+                + "Totally there are 2 categories.\n"
                 + MESSAGE_DIVIDER + "\n";
         new CommandCategory(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
@@ -92,7 +95,6 @@ public class CommandCategoryTest {
         new CommandCategory(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
-
 
         expenseList.clear();
 

@@ -55,6 +55,7 @@ public class CommandCategory extends Command {
      * Execution of to classify the expenses based on all categories.
      * It will display all the categories within it.
      * It will also display all the expenses with the specified category.
+     * If no category found, it will also tell the user the categories they stored in the system.
      *
      * @return printing the list of command
      */
@@ -65,6 +66,7 @@ public class CommandCategory extends Command {
             System.out.println(MESSAGE_DIVIDER);
         } else if (!categorySet.contains(category)) {
             System.out.println("Sorry, none of your previous expenses corresponds to this category.");
+            displayAllCategories();
             System.out.println(MESSAGE_DIVIDER);
         } else {
             displayAllCategories();
