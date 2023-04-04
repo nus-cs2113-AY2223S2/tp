@@ -114,7 +114,7 @@ public class FilterCommand extends Command {
      * @return ArrayList Item of filtered items. If no items are found, returns null instead.
      */
 
-    public ArrayList<Item> getFilteredItems(){
+    public ArrayList<Item> getFilteredItems() {
         ArrayList<Item> filteredItems = new ArrayList<>();
         switch (filterType) {
         case "f/category":
@@ -138,9 +138,9 @@ public class FilterCommand extends Command {
     @Override
     public void run() {
         ArrayList<Item> filteredItems = getFilteredItems();
-        if(filteredItems == null){
+        if (filteredItems == null) {
             Ui.printEmptySearch();
-        }else{
+        } else {
             Ui.printSearchItems(filteredItems);
         }
     }

@@ -26,6 +26,21 @@ public class AddCommand extends Command {
         this.item = item;
     }
 
+    private void addCategory() {
+        try {
+            if (!item.getCategory().isEmpty()) {
+                String category = item.getCategory().replaceFirst("c/", "");
+                item.setCategory(category);
+            }
+        } catch (NullPointerException e) {
+            item.setCategory("Uncategorized");
+        }
+        try {
+            CategoryCommand.updateItemCategory(item, item.getCategory(), item.getCategory());
+        } catch (CategoryFormatException e) {
+            //Ui.printNewCategory();
+        }
+    }
     /**
      * Adds an item to the inventory.
      */
@@ -35,20 +50,7 @@ public class AddCommand extends Command {
         } else {
             upcCodes.put(item.getUpc(), item);
             itemInventory.add(item);
-            try {
-                if (!item.getCategory().isEmpty()) {
-                    String category = item.getCategory().replaceFirst("c/", "");
-                    item.setCategory(category);
-                }
-            } catch (NullPointerException e) {
-                item.setCategory("Uncategorized");
-            }
-            try {
-                CategoryCommand.updateItemCategory(item, item.getCategory(), item.getCategory());
-            } catch (CategoryFormatException e) {
-                //Ui.printNewCategory();
-            }
-
+            addCategory();
             Ui.printSuccessAdd();
             String[] itemNames = item.getName().toLowerCase().split(" ");
             for (String itemName : itemNames) {

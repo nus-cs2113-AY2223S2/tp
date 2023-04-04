@@ -3,10 +3,13 @@ package seedu.duke.utils.parsers;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.exceptions.MissingParametersException;
+import seedu.duke.exceptions.OutOfRangeException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,15 +34,27 @@ public class AddParser extends Parser {
                 Ui.printInvalidAddCommand();
                 return;
             }
-            Item newItem = new Item(matcher.group(NAME_INDEX), matcher.group(UPC_INDEX),
-                    Integer.parseInt(matcher.group(QTY_INDEX)), Double.parseDouble(matcher.group(PRICE_INDEX)),
-                    matcher.group(CAT_INDEX));
+            String name = matcher.group(NAME_INDEX);
+            String upc = matcher.group(UPC_INDEX);
+            BigInteger quantity = new BigInteger(matcher.group(QTY_INDEX));
+            BigDecimal price = new BigDecimal(matcher.group(PRICE_INDEX));
+            String category = matcher.group(CAT_INDEX);
+
+            if (quantity.compareTo(BigInteger.ONE) < 0 ||
+                    quantity.compareTo(new BigInteger("99999999")) > 0 ||
+                    price.compareTo(BigDecimal.valueOf(0.01)) < 0 ||
+                    price.compareTo(BigDecimal.valueOf(99999999)) > 0) {
+                throw new OutOfRangeException();
+            }
+            Item newItem = new Item(name, upc, quantity.intValue(), price.doubleValue(), category);
             Command addCommand = new AddCommand(inventory, newItem);
             addCommand.run();
         } catch (MissingParametersException e) {
             e.missingAddItemParameters();
         } catch (NumberFormatException e) {
             Ui.printInvalidAddCommand();
+        } catch (OutOfRangeException e) {
+            e.printOutOfRange();
         }
     }
 }
