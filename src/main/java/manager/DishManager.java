@@ -67,8 +67,8 @@ public class DishManager {
         String dishesWithStringToFindInList = "";
 
         if (dishesMatchingKeyword.size() == 0) {
-           dishesWithStringToFindInList = "There are no dishes matching the keyword you have entered."
-                   + System.lineSeparator();
+            dishesWithStringToFindInList = "There are no dishes matching the keyword you have entered."
+                    + System.lineSeparator();
         } else {
             for (int i = 0; i < dishesMatchingKeyword.size(); i++) {
                 dishesWithStringToFindInList += stringOfDishWithIndex(indexes.get(i), dishesMatchingKeyword.get(i))
