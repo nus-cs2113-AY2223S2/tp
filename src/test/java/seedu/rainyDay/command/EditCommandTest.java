@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EditCommandTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
@@ -68,7 +68,7 @@ public class EditCommandTest {
         editCommand.setData(allData);
         editCommand.execute();
         assertEquals(new FinancialStatement("Fried Chicken", "in", 15, "Fast Food",
-                LocalDate.parse("01/04/2023", DateTimeFormatter.ofPattern("dd/MM/yyyy"))).getFullStatement(),
+                        LocalDate.parse("01/04/2023", DateTimeFormatter.ofPattern("dd/MM/yyyy"))).getFullStatement(),
                 financialReport.getFinancialStatement(0).getFullStatement());
 
         editFlagAndField.clear();
