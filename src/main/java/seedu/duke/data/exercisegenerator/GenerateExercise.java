@@ -191,12 +191,13 @@ public class GenerateExercise {
         }
         return filteredExerciseList;
     }
-    //@@ghzr0
+    //@@author ghzr0
     public ArrayList<ExerciseData> generateIPPTExercises (ArrayList<ExerciseData> exerciseList){
         assert exerciseList != null : "Exercise List should not be null.";
         ipptExercises = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            if (exercise.getId().equals("563")  || exercise.getId().equals("686") || exercise.getId().equals("819")) {
+            // 563 -> push-up wide , 686 -> sit-up , 999 -> timed 2.4km run
+            if (exercise.getId().equals("563")  || exercise.getId().equals("686") || exercise.getId().equals("999")) {
                 ipptExercises.add(exercise);
             }
         }

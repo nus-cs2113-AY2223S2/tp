@@ -10,18 +10,16 @@ import java.util.Scanner;
 public class ParserIPPT {
     public static void main(String[] args){
         Gson gson = new Gson();
-        while (true) {
-            try {
-                Reader reader = new FileReader("/scores.json");
-                Scores scores = gson.fromJson(reader, Scores.class);
-                System.out.println("Input age , run time, pushup rep, situp rep");
-                Scanner scanner = new Scanner(System.in);
-                String[] userInput = scanner.nextLine().split(" ");
-                IPPTCmd ipptCommand = new IPPTCmd(userInput);
-                ipptCommand.executeCommand();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
+        try {
+            Reader reader = new FileReader("/scores.json");
+            Scores scores = gson.fromJson(reader, Scores.class);
+            System.out.println("Input age , run time, pushup rep, situp rep");
+            Scanner scanner = new Scanner(System.in);
+            String[] userInput = scanner.nextLine().split(" ");
+            IPPTCmd ipptCommand = new IPPTCmd(userInput);
+            ipptCommand.executeCommand();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 }

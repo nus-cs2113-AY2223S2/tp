@@ -101,19 +101,6 @@ public class ExerciseStateHandler {
         currentSessionWorkout = null;
     }
 
-    public void endIPPT (boolean workoutCompleted, UserCareerData userCareerData,
-                            AchievementListHandler achievementListHandler) throws DukeError {
-        assert userCareerData != null;
-        workoutOngoing = false;
-        if (workoutCompleted) {
-            saveWorkoutSession(currentSessionWorkout, userCareerData);
-            updateWorkoutAchievements(currentSessionWorkout, achievementListHandler);
-        } else {
-            printCancelWorkoutSessionMessage();
-        }
-        currentSessionWorkout = null;
-    }
-
     //@@author L-K-Chng
     /**
      * Deletes the completed workout session which the user specifies.

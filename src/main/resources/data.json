@@ -19122,6 +19122,28 @@
         "Repeat for the recommended amount of repetitions."
       ],
       "category": "strength"
+    },
+    {
+      "id": "999",
+      "name": "Timed 2.4km Run",
+      "force": "null",
+      "level": "intermediate",
+      "mechanic": "null",
+      "equipment": "null",
+      "workoutType": [
+        "legs"
+      ],
+      "secondaryMuscles": [
+        "legs",
+        "legs",
+        "legs"
+      ],
+      "instructions": [
+        "Run for a distance of 2.4km and time your run.",
+        "This exercise is part of the IPPT exercises set.",
+        "See scores.json for points scoring."
+      ],
+      "category": "cardio"
     }
   ]
 }
