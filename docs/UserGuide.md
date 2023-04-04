@@ -201,7 +201,7 @@ Supposed that we have the following list of dishes:
 1. Chicken Burger; $4.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
 2. McSpicy Burger; $8.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
 ```
-When the `delete_recipe 1` is entered as a command:
+When the `delete_dish 1` is entered as a command:
 
 Outcome:
 ```
