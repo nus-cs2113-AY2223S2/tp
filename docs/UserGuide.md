@@ -490,7 +490,7 @@ Traverses through the stored tasks to return all tasks that contain the keyword
 
 ```
 Here are the matching tasks in your list:
-1.	 [T][ ] todo (Low priority.)
+1.	 [T][ ] todo (Low priority.)   || The index of this item is 1
 ```
 
 
