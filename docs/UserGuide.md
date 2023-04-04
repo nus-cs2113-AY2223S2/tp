@@ -48,7 +48,7 @@ Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 * The `p/` parameter for `[price]` must be a **non-negative numerical** value _(decimals accepted)_.
 
 **OPTIONAL** parameters:
-* The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `Uncategorized`)
+* The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `Uncategorized` if not specified.)
 
 Example of usage: 
 =======
@@ -87,7 +87,7 @@ Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
 * The `p/` parameter for `[price]` must be a **non-negative numerical value** (decimals accepted).
 * The `c/` parameter for `[category]` must be alphanumeric.
 
-!> **Enforced** valid range for numerical parameters is **0** to **999999999**.
+!> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
 
 #### Example of usage
 
@@ -99,6 +99,7 @@ its `Name` to `Orange`, `quantity` to be set to `5` and `price` will be set to `
 
 #### Sample output
 ```
+edit upc/2142535453 c/laptop
 ____________________________________________________________
 Successfully edited the following item:
 
