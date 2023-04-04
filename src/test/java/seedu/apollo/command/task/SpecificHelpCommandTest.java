@@ -49,7 +49,6 @@ class SpecificHelpCommandTest {
 
 
         String userCommand = "help list";
-        Ui ui = new Ui();
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(ListHelpCommand.class, newCommand.getClass());
@@ -64,7 +63,6 @@ class SpecificHelpCommandTest {
 
 
         String userCommand = "help todo";
-        Ui ui = new Ui();
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(TodoHelpCommand.class, newCommand.getClass());
@@ -79,7 +77,6 @@ class SpecificHelpCommandTest {
 
 
         String userCommand = "help event";
-        Ui ui = new Ui();
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(EventHelpCommand.class, newCommand.getClass());
@@ -94,7 +91,6 @@ class SpecificHelpCommandTest {
 
 
         String userCommand = "help deadline";
-        Ui ui = new Ui();
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(DeadlineHelpCommand.class, newCommand.getClass());
@@ -109,7 +105,6 @@ class SpecificHelpCommandTest {
 
 
         String userCommand = "help mark";
-        Ui ui = new Ui();
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(MarkHelpCommand.class, newCommand.getClass());
@@ -124,7 +119,6 @@ class SpecificHelpCommandTest {
 
 
         String userCommand = "help unmark";
-        Ui ui = new Ui();
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(UnmarkHelpCommand.class, newCommand.getClass());
@@ -139,7 +133,6 @@ class SpecificHelpCommandTest {
 
 
         String userCommand = "help delete";
-        Ui ui = new Ui();
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(DeleteHelpCommand.class, newCommand.getClass());
@@ -154,7 +147,6 @@ class SpecificHelpCommandTest {
 
 
         String userCommand = "help find";
-        Ui ui = new Ui();
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(FindHelpCommand.class, newCommand.getClass());
@@ -169,7 +161,6 @@ class SpecificHelpCommandTest {
 
 
         String userCommand = "help date";
-        Ui ui = new Ui();
         int size = 1;
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertEquals(DateHelpCommand.class, newCommand.getClass());
