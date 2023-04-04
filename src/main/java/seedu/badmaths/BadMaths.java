@@ -2,7 +2,6 @@ package seedu.badmaths;
 
 import seedu.badmaths.ui.Ui;
 
-//import java.util.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,8 +55,7 @@ public class BadMaths {
 
             Parser parser = new Parser(userInput);
             String command = parser.getCommand();
-            String toDo = parser.getToDo(); // asdsasad
-            //CommandHistory commandHist = new CommandHistory(userInput);
+            String toDo = parser.getToDo();
             commandHist.storeCommand(userInput);
 
             commandChecker(command);

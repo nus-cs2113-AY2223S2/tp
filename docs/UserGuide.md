@@ -354,7 +354,25 @@ Examples:
 - Input: `Quadratic. 2x^2 + 2x + 1` Output: `x is imaginary.`
 - Input: `Quadratic. x^2 + 4x - 5` Output: `x1 = 1.0 , x2 = -5.0`
 
-### 17) Help Manual `Help`
+### 17) Command History `History`
+* Display a list of Command History that users have 
+entered during the current programme run session.
+* Format: `History`
+
+Assuming that user have input `Store index` after starting badMaths:
+
+Example input:
+```
+History
+```
+Expected output:
+```
+Here are the list of commands that you have entered so far:
+Store index
+History
+```
+
+### 18) Help Manual `Help`
 * Display the content of Help Manual for BadMaths.
 * Format: `Help`
 

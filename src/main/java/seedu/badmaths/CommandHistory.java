@@ -1,3 +1,5 @@
+//@@author WilsonLee2000
+
 package seedu.badmaths;
 import java.util.ArrayList;
 
@@ -13,6 +15,7 @@ public class CommandHistory {
     }
 
     public void displayHistory() {
+        System.out.println("Here are the list of commands that you have entered so far:");
         for (String command : historyCommand) {
             System.out.println(command);
         }
