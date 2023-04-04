@@ -17,6 +17,12 @@ public class AlertParser extends Parser {
         super(rawInput, inventory);
     }
 
+    /**
+     * Parses the add alert command and prints an error message if wrong inputs from the user are detected.
+     *
+     * @param rawInput  The user input.
+     * @param inventory The inventory to be modified.
+     */
     private void parseAddAlert(String rawInput, Inventory inventory) {
         Pattern pattern = Pattern.compile(ALERT_ADD_REGEX);
         Matcher matcher = pattern.matcher(rawInput);
@@ -33,6 +39,12 @@ public class AlertParser extends Parser {
         }
     }
 
+    /**
+     * Parses the remove alert command and prints an error message if wrong inputs from the user are detected.
+     *
+     * @param rawInput  The user input.
+     * @param inventory The inventory to be modified.
+     */
     private void parseRemoveAlert(String rawInput, Inventory inventory) {
         Pattern pattern = Pattern.compile(ALERT_REMOVE_REGEX);
         Matcher matcher = pattern.matcher(rawInput);
@@ -46,6 +58,11 @@ public class AlertParser extends Parser {
         }
 
     }
+
+    /**
+     * Processes the "alert" command by delegating it to either add or remove alert parsing functions and prints an
+     * error message if wrong inputs from the user are detected.
+     */
 
     @Override
     public void run() {
