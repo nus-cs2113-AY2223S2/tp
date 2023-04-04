@@ -110,6 +110,7 @@ see the following if the start up is successful.
 ![cmd start up icon.png](images/UserGuide/cmd start up icon.png)
 
 ## Understanding CLI
+
 - For those who are familiar with what a CLI is, go ahead and proceed to view the [features](#features-overview) we 
 offer!
 - A [CLI](#glossary) receive commands from a user, that is you, in the form of lines of text.
