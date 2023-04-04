@@ -27,7 +27,10 @@ public class ListIncomeCommand extends Command {
     @Override
     public void execute(IncomeList incomes, ExpenseList expenses, Ui ui, Storage storage, Selector selector,
             Converter converter, TargetStorage targetStorage) throws ChChingException {
-        System.out.println("    Income:");
-        incomes.printIncomeList(selector, converter);
+        if (incomes.size() == 0) {
+            ui.showEmptyListMessage();
+        } else {
+            ui.showIncomeList(incomes, selector, converter);
+        }
     }
 }
