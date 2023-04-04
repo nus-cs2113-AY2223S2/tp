@@ -12,12 +12,14 @@ public class CalorieUi extends GeneralUi {
     }
 
     @Override
-    public void showRemainingIntake() {
+    public void showRemainingIntake(double caloriesLeft) {
         System.out.println("This is the amount of calories that " +
                 "you can consume before exceeding your limit for today: ");
+        System.out.println(caloriesLeft + " Kcal");
     }
-    public void showDailyCaloricLimit(){
+    public void showDailyCaloricLimit(double caloricLimit){
         System.out.println("This is your daily caloric limit: ");
+        System.out.println(caloricLimit + " Kcal");
     }
     public void showWellDoneMessage() {
         System.out.println("Congratulations! Your daily calorie intake for today is within the set limit.");
