@@ -6,7 +6,6 @@ import seedu.duke.budget.BudgetPlanner;
 import seedu.duke.budget.Entertainment;
 import seedu.duke.budget.Food;
 import seedu.duke.budget.GoodsAndServices;
-
 import java.util.ArrayList;
 
 public class UI {
@@ -151,30 +150,6 @@ public class UI {
         }
     }
 
-    public void printPUModules(int univID) {
-        ArrayList<Module> puModulesToPrint = new ArrayList<>();
-        for (Module puModule : puModules) {
-            if ((puModule.getUnivId() == univID)) {
-                puModulesToPrint.add(puModule);
-            }
-        }
-        int puModulesIndex = 0;
-        for (Module puModuleToPrint : puModulesToPrint) {
-            puModulesIndex++;
-            String moduleCode = puModuleToPrint.getModuleCode();
-            String moduleName = puModuleToPrint.getModuleName();
-            int moduleMCs = puModuleToPrint.getModuleMCs();
-            String nusModuleCode = puModuleToPrint.getNusModuleCode();
-            String nusModuleName = puModuleToPrint.getNusModuleName();
-            int nusModuleMCs = puModuleToPrint.getNusModuleMCs();
-            System.out.print(puModulesIndex + ". ");
-            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
-            System.out.print("   maps to ----> ");
-            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
-        }
-        System.out.println(LINE);
-    }
-
     public void printPUModules(int univID, String filter) {
         ArrayList<Module> puModulesToPrint = new ArrayList<>();
         for (Module puModule : puModules) {
@@ -192,7 +167,7 @@ public class UI {
             String nusModuleName = puModuleToPrint.getNusModuleName();
             int nusModuleMCs = puModuleToPrint.getNusModuleMCs();
             System.out.print(puModulesIndex + ". ");
-            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+            System.out.print("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             System.out.print("   maps to ----> ");
             System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
         }
@@ -415,7 +390,7 @@ public class UI {
                 String nusModuleName = module.getNusModuleName();
                 int nusModuleMCs = module.getNusModuleMCs();
                 System.out.print(listIndex + ".");
-                System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+                System.out.print("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
                 System.out.print("   maps to ----> ");
                 System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
             }

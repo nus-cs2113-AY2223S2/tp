@@ -44,7 +44,7 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 1. Ensure that you have Java 11 or above installed in your computer, if not proceed to download from the link:
    https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
 2. Download the latest version of `SEPHelper.jar` from [here](http://link.to/duke).
-3. Double-click the file to start the app.
+3. Using command prompt type `"java -jar [FILE PATH OF JAR]"` to start app.
 4. Type the command in the terminal and press enter to execute it. E.g. entering `/help` will show the help page
 
 ---
@@ -553,14 +553,10 @@ Surplus/Deficit: -6000
 ____________________________________________________________
 ```
 ---
-## 4 FAQ
 
-**Q**: How do I transfer my data to another computer?
-
-**A**: {your answer here}
 
 ---
-## 5 Command Summary
+## 4 Command Summary
 
 {Give a 'cheat sheet' of commands here}
 

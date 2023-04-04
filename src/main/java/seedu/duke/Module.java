@@ -74,4 +74,18 @@ public class Module {
         }
         return true;
     }
+
+    /**
+     * Returns the length of the line to be printed to User Console for a module information.
+     * @param module Module to be printed to User Console
+     * @return Length of line printed when module information is printed out
+     */
+    public static int getPrintingLength(Module module) {
+        String module1ModuleCode = module.getModuleCode();
+        String module1ModuleName = module.getModuleName();
+        int module1ModuleMCs = module.getModuleMCs();
+        int module1PrintingLength = module1ModuleCode.length() + module1ModuleName.length()
+                + String.valueOf(module1ModuleMCs).length();
+        return module1PrintingLength;
+    }
 }

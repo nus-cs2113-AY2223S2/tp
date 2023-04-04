@@ -36,7 +36,8 @@ class ListCurrentCommandTest {
         ArrayList<Module> modules = new ArrayList<>();
         Module module1 = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
-        Module module2 = new Module(4, "M2794.0073", "Finite Element Analysis", 3,
+        Module module2 = new Module(4, "M2794.0073", "Finite Element Analysis"
+                , 3,
                 "ME4291", "Finite Element Analysis", 4);
         modules.add(module1);
         modules.add(module2);
@@ -44,8 +45,8 @@ class ListCurrentCommandTest {
         listCurrentCommand.execute();
         assertEquals("List of Added Modules for: KOREA UNIVERSITY" + System.lineSeparator() +
                         "____________________________________________________________" + System.lineSeparator() +
-                        "1.[AE320][Aerodynamics II][3]" + System.lineSeparator() +
-                        "   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
+                        "1.[AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]"
+                        + System.lineSeparator() +
                         "____________________________________________________________" + System.lineSeparator() +
                         System.lineSeparator() +
                         "The current module list is empty for: KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY"
@@ -60,8 +61,8 @@ class ListCurrentCommandTest {
                         System.lineSeparator() +
                         "List of Added Modules for: SEOUL NATIONAL UNIVERSITY" + System.lineSeparator() +
                         "____________________________________________________________" + System.lineSeparator() +
-                        "1.[M2794.0073][Finite Element Analysis][3]" + System.lineSeparator() +
-                        "   maps to ----> [ME4291][Finite Element Analysis][4]" + System.lineSeparator() +
+                        "1.[M2794.0073][Finite Element Analysis][3]   maps to ----> " +
+                        "[ME4291][Finite Element Analysis][4]" + System.lineSeparator() +
                         "____________________________________________________________" + System.lineSeparator() +
                         System.lineSeparator() +
                         "The current module list is empty for: YONSEI UNIVERSITY" + System.lineSeparator() +
