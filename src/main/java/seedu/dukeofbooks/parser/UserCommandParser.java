@@ -153,9 +153,9 @@ public class UserCommandParser implements IParser {
             }
         }
 
-        if (titleIndex == -1 && topicIndex == -1 && authorIndex == -1
-                && actionIndex == -1 && actionIndex == -1) {
-            return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
+        if (titleIndex == -1 || topicIndex == -1 || authorIndex == -1
+                || actionIndex == -1 || isbnIndex == -1) {
+            return new IncorrectUserCommand(InventoryCommand.INCORRECT_SYNTAX);
         }
 
         try {
@@ -164,19 +164,19 @@ public class UserCommandParser implements IParser {
             String author = getWord(authorIndex, parts);
             String action = getWord(actionIndex, parts);
             String isbn = getWord(isbnIndex, parts);
-            // String isbn = Book.createISBN();
+            
             Book target = new Book(isbn, title, topic, author);
 
             if (action.equals(InventoryCommand.ADD_WORD)) {
                 return new InventoryCommand(target, InventoryCommand.ADD_WORD);
-            } else {
+            } else if (action.equals(InventoryCommand.DELETE_WORD)) {
                 return new InventoryCommand(target, InventoryCommand.DELETE_WORD);
+            } else {
+                throw new IllegalValueException(InventoryCommand.INCORRECT_SYNTAX);
             }
-        } catch (Exception e) {
-            // TODO: handle exception
+        } catch (IllegalValueException e) {
+            return new IncorrectUserCommand(e.getMessage());
         }
-
-        return new IncorrectUserCommand(MESSAGE_INVALID_COMMAND_FORMAT);
     }
 
     private UserCommand prepareRenewCommand(String arguments) {
