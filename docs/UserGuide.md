@@ -264,7 +264,7 @@ When reading from the file, entries for income and expenses are stored in their 
 | Edit Expense       | `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit expense /in 1 /de Lunch @Technoedge /v 5.20`  |
 | Edit Income        | `edit income /in INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit income /in 2 /da 12-12-2022 /v 100`                          |
 | Exit               | `exit`                                                                                                                                     |
-| Find               | `find /c CATEGORY /k DESCRIPTION`<br>e.g. `find /c expense /k beef`<br>e.g. `find /c income /k salary`                                     |
+| Find               | `find /c CATEGORY /k KEYWORD`<br>e.g. `find /c expense /k beef`<br>e.g. `find /c income /k salary`                                         |
 | Help               | `help`                                                                                                                                     |
 | List All Lists     | `list`                                                                                                                                     |
 | List Expense List  | `list expense`                                                                                                                             |
