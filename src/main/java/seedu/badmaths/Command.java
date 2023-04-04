@@ -10,7 +10,10 @@ package seedu.badmaths;
 import seedu.badmaths.trigograph.TrigoGraph;
 import seedu.badmaths.ui.Ui;
 import seedu.badmaths.matrix.Calculator;
+import seedu.badmaths.Quadratic.Quadratic;
 import java.util.ArrayList;
+
+
 
 public class Command {
     private static final String filePath = "data/notes.txt";
