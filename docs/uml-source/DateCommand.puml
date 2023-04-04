@@ -9,10 +9,7 @@ participant ":Parser" as Parser
 participant ":DateCommand" as Date
 participant ":TaskList" as TaskList
 participant ":Task" as Task
-participant ":moduleList" as ModuleList
-participant ":Calendar" as Calendar
 participant ":Ui" as Ui
-participant ":Storage" as Storage
 participant ":LocalDate" as LocalDate
 
 User -> Apollo : "date 2023-03-30"
@@ -21,11 +18,9 @@ Apollo -> Parser : getCommand()
 activate Parser
 Parser ->  Date** : DateCommand()
 Date++
-Date -> LoggerInterface : setUpLogger()
+Date -> Date++ : setUpLogger()
 
-activate LoggerInterface
-deactivate LoggerInterface
-destroy LoggerInterface
+
 Date -> LocalDate: parse(2023-03-30)
 activate LocalDate
 LocalDate --> Date: date
@@ -37,13 +32,13 @@ return
 Apollo -> Date : execute()
 Apollo --
 activate Date
-Date --> TaskList : getTasksOnDate(date)
+Date --> TaskList : getTasksOnDate()
 activate TaskList
 TaskList -> TaskList++ : tasksOnDate = new TaskList()
-loop TaskList.size() times
+loop for each Task in TaskList
     TaskList -> Task: isOnDate()
     activate Task
-    Task --> TaskList : date
+    Task --> TaskList :
     deactivate Task
     destroy Task
     alt task occurs during date

@@ -7,10 +7,7 @@ participant ":Parser" as Parser
 participant ":FindCommand" as Find
 participant ":TaskList" as TaskList
 participant ":Task" as Task
-participant ":moduleList" as ModuleList
-participant ":Calendar" as Calendar
 participant ":Ui" as Ui
-participant ":Storage" as Storage
 participant ":String" as String
 
 User -> Apollo : "find book"
@@ -19,32 +16,33 @@ Apollo -> Parser : getCommand()
 activate Parser
 Parser -> Find** : FindCommand()
 Find++
-Find -> LoggerInterface : setUpLogger()
+Find -> Find++ : setUpLogger()
 
-activate LoggerInterface
-deactivate LoggerInterface
-destroy LoggerInterface
+
 return
 return
 
 Apollo -> Find : execute()
 Apollo --
 activate Find
-Find --> TaskList : findTasks(Book)
+Find --> TaskList : findTasks("Book")
 activate TaskList
 TaskList -> String : toLowerCase()
 activate String
-String --> TaskList : book
+String --> TaskList : "book"
 deactivate String
 destroy String
 TaskList -> Task : getdescription()
 activate Task
 Task --> TaskList
 deactivate Task
-TaskList --> Find: (ArrayList<Task>) filteredTasks
+TaskList --> Find: filteredTasks
 deactivate TaskList
 Find -> Ui : printFoundList()
+activate Ui
 Ui --> Find
+deactivate Ui
+destroy Ui
 destroy Find
 
 
