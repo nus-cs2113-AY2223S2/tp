@@ -3,12 +3,9 @@ package seedu.apollo.command.module;
 import org.junit.jupiter.api.Test;
 import seedu.apollo.calendar.Calendar;
 import seedu.apollo.exception.module.InvalidModule;
-import seedu.apollo.exception.module.LessonNotAddedException;
-import seedu.apollo.exception.module.LessonTypeNotAddedException;
 import seedu.apollo.exception.utils.IllegalCommandException;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.storage.Storage;
-import seedu.apollo.task.Task;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
 
@@ -38,12 +35,12 @@ public class ListModuleWithLessonCommandTest {
     @Test
     void testExecute_illegalCommand_expectsIllegalCommandException() {
         assertThrows(IllegalCommandException.class,
-                () -> new ListModuleWithLessonCommand("CS2113 -mod lol", allModules)
+                () -> new ListModuleWithLessonCommand("CS2113 -mod 1", allModules)
                         .execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
     @Test
-    void testExecute_lessonNotAdded_expectsLessonNotAddedException() {
+    void testExecute_lessonNotAdded_expectsNoException() {
         assertDoesNotThrow(() -> new AddModuleCommand("EG1311", allModules)
                 .execute(taskList, ui, storage, moduleList, allModules, calendar));
         assertDoesNotThrow(() -> new ListModuleWithLessonCommand("EG1311", allModules)
@@ -51,9 +48,17 @@ public class ListModuleWithLessonCommandTest {
     }
 
     @Test
-    void testExecute_lessonTypeNotAdded_expectsLessonTypeNotAddedException() {
+    void testExecute_lessonTypeNotAdded_expectsNoException() {
+        assertDoesNotThrow(() -> new AddModuleCommand("CS2113 -tut 02", allModules)
+                .execute(taskList, ui, storage, moduleList, allModules, calendar));
         assertDoesNotThrow(() -> new ListModuleWithLessonCommand("CS2113 -lec", allModules)
                         .execute(taskList, ui, storage, moduleList, allModules, calendar));
+    }
+
+    @Test
+    void testExecute_ModuleNotAdded_expectsNoException() {
+        assertDoesNotThrow(() -> new ListModuleWithLessonCommand("CG2023", allModules)
+                .execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
 }
