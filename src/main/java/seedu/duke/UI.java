@@ -6,13 +6,14 @@ import seedu.duke.budget.BudgetPlanner;
 import seedu.duke.budget.Entertainment;
 import seedu.duke.budget.Food;
 import seedu.duke.budget.GoodsAndServices;
-
 import java.util.ArrayList;
 
 public class UI {
-
     public static final String INVALID_BUDGET_AMOUNT_MESSAGE = "Please input a valid amount which is positive whole " +
             "number more than equals to 0 and less than " + BudgetPlanner.MAX_BUDGET;
+    private static final int LIST_PU_LENGTH_FOR_PU_ABB = 52;
+    private static final String LIST_PU_HEADER_MESSAGE = "   Partner University Name                  " +
+            "         PU Abb    ";
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
     private static final String LIST_CURRENT_PU_MESSAGE = "List of Added Modules for: ";
     private static final String CURRENT_LIST_PU_EMPTY = "The current module list is empty for: ";
@@ -44,6 +45,7 @@ public class UI {
     private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map "
             + "this NUS module code: ";
     private static final String MODULE_ALREADY_EXIST_MESSAGE = "This module already exists in your list";
+    private static final String PU_UNI_NAME_MAPS_TO_NUS_MESSAGE = " Module] maps to ----> [NUS Module]";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
@@ -60,7 +62,15 @@ public class UI {
 
     public void printPUModListMessage(String univName) {
         System.out.println(univName + " Modules");
+        System.out.println("[" + univName + PU_UNI_NAME_MAPS_TO_NUS_MESSAGE);
         System.out.println(LINE);
+    }
+
+    /**
+     * Prints [NUS Modules] maps to --> [PU Modules]. A general message without specific PU name
+     */
+    public void printNUSModulesMapsToPUModulesGeneralMessage() {
+        System.out.println("[NUS Modules]" + PU_UNI_NAME_MAPS_TO_NUS_MESSAGE);
     }
 
     public void printAddModMessage() {
@@ -156,30 +166,6 @@ public class UI {
         }
     }
 
-    public void printPUModules(int univID) {
-        ArrayList<Module> puModulesToPrint = new ArrayList<>();
-        for (Module puModule : puModules) {
-            if ((puModule.getUnivId() == univID)) {
-                puModulesToPrint.add(puModule);
-            }
-        }
-        int puModulesIndex = 0;
-        for (Module puModuleToPrint : puModulesToPrint) {
-            puModulesIndex++;
-            String moduleCode = puModuleToPrint.getModuleCode();
-            String moduleName = puModuleToPrint.getModuleName();
-            int moduleMCs = puModuleToPrint.getModuleMCs();
-            String nusModuleCode = puModuleToPrint.getNusModuleCode();
-            String nusModuleName = puModuleToPrint.getNusModuleName();
-            int nusModuleMCs = puModuleToPrint.getNusModuleMCs();
-            System.out.print(puModulesIndex + ". ");
-            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
-            System.out.print("   maps to ----> ");
-            System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
-        }
-        System.out.println(LINE);
-    }
-
     public void printPUModules(int univID, String filter) {
         ArrayList<Module> puModulesToPrint = new ArrayList<>();
         for (Module puModule : puModules) {
@@ -197,7 +183,7 @@ public class UI {
             String nusModuleName = puModuleToPrint.getNusModuleName();
             int nusModuleMCs = puModuleToPrint.getNusModuleMCs();
             System.out.print(puModulesIndex + ". ");
-            System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+            System.out.print("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
             System.out.print("   maps to ----> ");
             System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
         }
@@ -206,11 +192,20 @@ public class UI {
 
     public void printPUList() {
         System.out.println(LINE);
+        System.out.println(LIST_PU_HEADER_MESSAGE);
         for (University university : universities) {
             int uniId = university.getUnivId();
             String uniName = university.getUnivName();
             String uniAbbName = university.getUnivAbbName();
-            System.out.println(uniId + ". " + uniName + " " + uniAbbName);
+            String uniIDAndName = uniId + ". " + uniName;
+            System.out.print(uniIDAndName);
+            int uniIDAndNameLength = uniIDAndName.length();
+            int counter = LIST_PU_LENGTH_FOR_PU_ABB - uniIDAndNameLength;
+            while(counter >= 0) {
+                System.out.print(" ");
+                counter--;
+            }
+            System.out.println(uniAbbName);
         }
         System.out.println(LINE);
     }
@@ -423,6 +418,7 @@ public class UI {
             System.out.println(LINE);
         } else {
             System.out.println(LIST_CURRENT_PU_MESSAGE + universityName);
+            System.out.println("[" + universityName + PU_UNI_NAME_MAPS_TO_NUS_MESSAGE);
             System.out.println(LINE);
             for (Module module : puModulesToPrint) {
                 listIndex++;
@@ -433,7 +429,7 @@ public class UI {
                 String nusModuleName = module.getNusModuleName();
                 int nusModuleMCs = module.getNusModuleMCs();
                 System.out.print(listIndex + ".");
-                System.out.println("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
+                System.out.print("[" + moduleCode + "]" + "[" + moduleName + "]" + "[" + moduleMCs + "]");
                 System.out.print("   maps to ----> ");
                 System.out.println("[" + nusModuleCode + "]" + "[" + nusModuleName + "]" + "[" + nusModuleMCs + "]");
             }

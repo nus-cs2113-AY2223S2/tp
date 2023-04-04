@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Storage implements DatabaseInterface {
 
@@ -109,6 +110,7 @@ public class Storage implements DatabaseInterface {
             return false;
         }
         modules.add(moduleToAdd);
+        sortModulesAccordingToPrintingLength(modules);
         try {
             saveModuleToStorage(moduleToAdd.toString());
         } catch (IOException e) {
@@ -135,7 +137,8 @@ public class Storage implements DatabaseInterface {
 
     /**
      * Deletes the module corresponding to the uni specified by user. Module will the removed from user's
-     * saved list of modules. Uses Index relative to specific PU list.
+     * saved list of modules. Uses Index relative to specific PU list. Sorts ArrayList modules after deleting
+     * module to ensure that modules are still sorted according to printing length
      *
      * @param indexToDeletePuSpecificList Index of that module that is given in user input, relative to PU list.
      * @param modules                     The ArrayList of all modules user saved.
@@ -165,6 +168,7 @@ public class Storage implements DatabaseInterface {
             UI.printDeleteNumError();
             return false;
         }
+        sortModulesAccordingToPrintingLength(modules);
         try {
             database.writeModListToFile(modules);
         } catch (IOException e) {
@@ -198,5 +202,13 @@ public class Storage implements DatabaseInterface {
      */
     public ArrayList<Module> getModules() {
         return modules;
+    }
+
+    /**
+     * Sorts modules according to printing length.
+     * @param modules Module to be printed to User Console
+     */
+    public static void sortModulesAccordingToPrintingLength(ArrayList<Module> modules) {
+        modules.sort(Comparator.comparing(Module::getPrintingLength));
     }
 }
