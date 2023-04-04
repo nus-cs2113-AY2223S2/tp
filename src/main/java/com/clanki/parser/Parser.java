@@ -140,7 +140,8 @@ public class Parser {
         return identifier;
     }
 
-    public static String parseInputForUpdateCommand(String userInput) throws InvalidIdentifierException, UpdatedContentIsEmptyException {
+    public static String parseInputForUpdateCommand(String userInput) throws InvalidIdentifierException,
+            UpdatedContentIsEmptyException {
         ParsedInput parsedInput = new ParsedInput(userInput);
         String identifier = getIdentifierForUpdateCommand(userInput);
         String updatedContent = null;

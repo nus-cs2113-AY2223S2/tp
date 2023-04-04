@@ -23,7 +23,6 @@ public class UpdateCommand extends Command {
     public void printFlashCard(Flashcard flashcard) {
         System.out.println("Q: " + flashcard.getQuestion());
         System.out.println("A: " + flashcard.getAnswer());
-//        System.out.println("D: " + flashcard.getDueDate());
     }
 
     public void printFlashCards(ArrayList<Flashcard> flashcards) {
@@ -48,7 +47,8 @@ public class UpdateCommand extends Command {
         }
     }
 
-    public int implementUpdate(ArrayList<Flashcard> flashcards, int indexInMatchList, String identifier, String updatedContent) {
+    public int implementUpdate(ArrayList<Flashcard> flashcards, int indexInMatchList, String identifier,
+                               String updatedContent) {
         Flashcard flashcardToChange = matchingFlashcards.get(indexInMatchList);
         int index = flashcards.indexOf(flashcardToChange);
         if (identifier.contains("q")) {
@@ -96,7 +96,8 @@ public class UpdateCommand extends Command {
                     System.out.println("Please enter the index of the flashcard you want to update.");
                 } catch (IndexOutOfBoundsException e) {
                     System.out.print("You have selected an index out of the list.");
-                    System.out.println("There are only " + matchingFlashcards.size() + " flashcards that match the query.");
+                    System.out.println("There are only " + matchingFlashcards.size()
+                            + " flashcards that match the query.");
                 } catch (DateTimeParseException e) {
                     System.out.println("Please enter the date in the format: yyyy-mm-dd");
                 }
