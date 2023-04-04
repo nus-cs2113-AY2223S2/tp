@@ -1,6 +1,7 @@
 package seedu.storage;
 
 import java.io.BufferedReader;
+import java.io.File;
 // import java.io.File;
 // import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -35,6 +36,7 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         meals = new ArrayList<Meal>();
         try {
             this.load();
+            System.out.println("Initialised Meal Storage");
         } catch (IOException e) {
             System.out.println("Error loading Meal Storage");
         }
@@ -65,14 +67,11 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
         ArrayList<Food> foods;
         MealTypes mealType;
 
-        // try {
-        //     br = new BufferedReader(new FileReader(filePath));
-        // } catch (FileNotFoundException e) {
-        //     File newFile = new File(filePath);
-        //     newFile.createNewFile();
-        //     br = new BufferedReader(new FileReader(filePath));
-        //     // LogFileHandler.logWarning("Meal Storage was not found!");
-        // }
+        File storageFile = new File(filePath);
+        if (!storageFile.getParentFile().exists()) {
+            storageFile.getParentFile().mkdirs();
+            storageFile.createNewFile();
+        }
 
         br = new BufferedReader(new FileReader(filePath));
 
@@ -101,6 +100,15 @@ public class MealStorage extends Storage implements FileReadable, FileWritable {
     }
 
     public void saveMeal(Meal meal) {
+        for (Meal m : meals) {
+            if (!m.getDate().equals(meal.getDate()) || 
+                    !m.getIdentifier().equals(meal.getIdentifier())) {
+                continue;
+            }
+            m.addFoods(meal.getFoods());
+            return;
+        }
+        
         meals.add(meal);
         try {
             this.write();

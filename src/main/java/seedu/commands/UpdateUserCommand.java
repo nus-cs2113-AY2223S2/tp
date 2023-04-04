@@ -28,7 +28,8 @@ public class UpdateUserCommand extends Command {
             System.out.println("3. Update Height");
             System.out.println("4. Update Age");
             System.out.println("5. Update Gender");
-            System.out.println("6. Exit");
+            System.out.println("6. Update Target Weight");
+            System.out.println("7. Exit");
             System.out.println();
 
             choice = ui.readInt();
@@ -42,6 +43,7 @@ public class UpdateUserCommand extends Command {
                 user.setCaloricLimit(
                     User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
                 );
+                User.displayNewWeightDifference(user.getWeight(), user.getTargetWeight());
                 break;
             case 3:
                 user.setHeight(updateHeight(ui));
@@ -62,6 +64,10 @@ public class UpdateUserCommand extends Command {
                 );
                 break;
             case 6:
+                user.setTargetWeight(updateTargetWeight(ui));
+                User.displayNewTargetWeightDifference(user.getWeight(), user.getTargetWeight());
+                break;
+            case 7:
                 break;
             default:
                 System.out.println("Invalid Choice!");
@@ -102,7 +108,7 @@ public class UpdateUserCommand extends Command {
             System.out.println("Invalid weight format!");
         }
         float weight = Float.parseFloat(weightString);
-        assert weight >= 0: "Invalid height";
+        assert weight >= 0: "Invalid weight";
         return weight;
     }
 
@@ -152,4 +158,18 @@ public class UpdateUserCommand extends Command {
         return genderString;
     }
 
+    public float updateTargetWeight(GeneralUi ui) {
+        String targetWeightString = "dummy";
+        while (true) {
+            System.out.println("Enter new target weight: ");
+            targetWeightString = ui.readLine();
+            if(targetWeightString.matches("[+-]?([0-9]*[.])?[0-9]+")) {
+                break;
+            }
+            System.out.println("Invalid target weight format");
+        }
+        float targetWeight = Float.parseFloat(targetWeightString);
+        assert targetWeight >= 0: "Invalid target weight";
+        return targetWeight;
+    }
 }

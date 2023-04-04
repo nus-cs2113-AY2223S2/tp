@@ -9,6 +9,7 @@ import seedu.storage.ExerciseStorage;
 import org.junit.jupiter.api.Test;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
+import seedu.ui.GeneralUi;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -19,6 +20,7 @@ public class AddExerciseCommandTest {
     private final ExerciseStorage exerciseStorage = new ExerciseStorage("./data/exerciseData.csv");
     private final FoodStorage foodStorage = new FoodStorage();
     private final MealStorage mealStorage = new MealStorage("./data/mealData.csv", foodStorage);
+    private final GeneralUi ui = new GeneralUi();
 
     @Test
     void addExercise_invalidDateIncluded_expectInvalidDateException() {
@@ -26,7 +28,7 @@ public class AddExerciseCommandTest {
         String userInput = "exercise /type Running /description 5km /calories 400 /on 3/13/2023";
         AddExerciseCommand command = new AddExerciseCommand(commandWord, userInput);
         InvalidDateException thrown = assertThrows(InvalidDateException.class, () -> {
-            command.execute(null, null, null, null, exerciseStorage);
+            command.execute(ui, null, null, null, exerciseStorage);
         });
         String expectedErrorMessage = "Oops! 3/13/2023 is not a valid date! Please format the date as: " + 
                 DateConstants.PARSE_FORMAT;
@@ -51,7 +53,7 @@ public class AddExerciseCommandTest {
         String userInput = "exercise /type Running /description 5km /calories 400 /on 3/1/2023";
         AddExerciseCommand command = new AddExerciseCommand(commandWord, userInput);
         assertDoesNotThrow(() -> {
-            command.execute(null, null, mealStorage, null, exerciseStorage);
+            command.execute(ui, null, mealStorage, null, exerciseStorage);
         });
     }
 

@@ -3,7 +3,7 @@
 ---
 ### Acknowledgements
 
-1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/tp)
+1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/ip)
 ---
 
 ## Design & implementation
@@ -11,7 +11,7 @@
 ---
 ### Architecture
 
-![](../out/docs/uml/Architecture/architecture.svg)
+![](./uml/architecture.svg)
 
 **Main Components of LifeTracker**
 
@@ -38,7 +38,7 @@ The `UI` component,
 
 ### Storage Component
 
-![storage-class-diagram](./uml/storage-class-diagram.png)
+![storage-class-diagram](./uml/storage-class-diagram.PNG)
 
 The `Storage` is the base class which all `Storage` components inherit from. There are currently four storages:
 
