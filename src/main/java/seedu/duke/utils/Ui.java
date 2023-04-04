@@ -173,6 +173,9 @@ public class Ui {
 
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
             "does not exist.";
+
+    private static final String INVALID_ALERT_TYPE = "Alert is not a valid type (min/max)";
+
     private static final String INVALID_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please enter category commands " +
             "as shown below.\n" + "List all categories: cat list\n" + "List all items in a category: cat [Category]\n" +
             "List all items and all categories: cat table";
@@ -394,11 +397,11 @@ public class Ui {
             headings = new String[] {INDEX_HEADING, NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING,
                 CATEGORY_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
-            headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
+            headings = new String[] {COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
-            headings = new String[]{"Name", "UPC", "Stock"};
+            headings = new String[] {"Name", "UPC", "Stock"};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == CATEGORY_COL_WIDTH) {
-            headings = new String[]{CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
+            headings = new String[] {CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
         }
         StringBuilder allHeadings = new StringBuilder();
 
@@ -895,6 +898,14 @@ public class Ui {
         printLine();
         System.out.println(NONEXISTENT_REMOVE_ALERT);
         printLine();
+    }
+
+    public static String printInvalidAlertType() {
+        StringBuilder sb = new StringBuilder("");
+        sb.append(LINE);
+        sb.append(INVALID_ALERT_TYPE);
+        sb.append(LINE);
+        return sb.toString();
     }
 
     private static String printAlerts(Inventory inventory, AlertList alertList) {
