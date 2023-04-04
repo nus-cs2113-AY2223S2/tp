@@ -43,6 +43,7 @@ class ListCurrentPuCommandTest {
         ListCurrentPuCommand listCurrentPuCommand1 = new ListCurrentPuCommand(modules, 1);
         listCurrentPuCommand1.execute();
         assertEquals("List of Added Modules for: KOREA UNIVERSITY" + System.lineSeparator() +
+                "[KOREA UNIVERSITY Module] maps to ----> [NUS Module]" + System.lineSeparator() +
                 "____________________________________________________________" + System.lineSeparator() +
                 "1.[AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
                 "____________________________________________________________", outContent.toString().trim());
@@ -50,6 +51,7 @@ class ListCurrentPuCommandTest {
         ListCurrentPuCommand listCurrentPuCommand2 = new ListCurrentPuCommand(modules, 4);
         listCurrentPuCommand2.execute();
         assertEquals("List of Added Modules for: SEOUL NATIONAL UNIVERSITY" + System.lineSeparator() +
+                "[SEOUL NATIONAL UNIVERSITY Module] maps to ----> [NUS Module]" + System.lineSeparator() +
                 "____________________________________________________________" + System.lineSeparator() +
                 "1.[M2794.0073][Finite Element Analysis][3]   maps to ----> [ME4291][Finite Element Analysis][4]"
                         + System.lineSeparator() +
@@ -75,6 +77,7 @@ class ListCurrentPuCommandTest {
         ListCurrentPuCommand listCurrentPuCommand1 = new ListCurrentPuCommand(modules, 1);
         listCurrentPuCommand1.execute();
         assertEquals("List of Added Modules for: KOREA UNIVERSITY" + System.lineSeparator() +
+                "[KOREA UNIVERSITY Module] maps to ----> [NUS Module]" + System.lineSeparator() +
                 "____________________________________________________________" + System.lineSeparator() +
                 "1.[M2794.007333333333333333333][Finite Element Analysis][3]   maps to ----> " +
                 "[ME4291][Finite Element Analysis][4]"
@@ -86,6 +89,7 @@ class ListCurrentPuCommandTest {
         ListCurrentPuCommand listCurrentPuCommand2 = new ListCurrentPuCommand(modules, 1);
         listCurrentPuCommand2.execute();
         assertEquals("List of Added Modules for: KOREA UNIVERSITY" + System.lineSeparator() +
+                "[KOREA UNIVERSITY Module] maps to ----> [NUS Module]" + System.lineSeparator() +
                 "____________________________________________________________" + System.lineSeparator() +
                 "1.[AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]" + System.lineSeparator() +
                 "2.[M2794.007333333333333333333][Finite Element Analysis][3]   maps to ----> " +

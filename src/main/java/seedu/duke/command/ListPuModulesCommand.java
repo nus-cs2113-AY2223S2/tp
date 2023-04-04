@@ -19,7 +19,8 @@ public class ListPuModulesCommand extends Command {
 
     @Override
     public void execute() {
-        ui.printPUModListMessage(universityName); // Todo: exception this is not found, it is a empty string
+        ui.printPUModListMessage(universityName);
         ui.printPUModules(univId, filter);
+        ui.printPUModListMessage(universityName);
     }
 }

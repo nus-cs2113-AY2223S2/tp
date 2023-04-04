@@ -38,6 +38,7 @@ public class UI {
     private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map "
             + "this NUS module code: ";
     private static final String MODULE_ALREADY_EXIST_MESSAGE = "This module already exists in your list";
+    private static final String PU_UNI_NAME_MAPS_TO_NUS_MESSAGE = " Module] maps to ----> [NUS Module]";
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
@@ -54,7 +55,15 @@ public class UI {
 
     public void printPUModListMessage(String univName) {
         System.out.println(univName + " Modules");
+        System.out.println("[" + univName + PU_UNI_NAME_MAPS_TO_NUS_MESSAGE);
         System.out.println(LINE);
+    }
+
+    /**
+     * Prints [NUS Modules] maps to --> [PU Modules]. A general message without specific PU name
+     */
+    public void printNUSModulesMapsToPUModulesGeneralMessage() {
+        System.out.println("[NUS Modules]" + PU_UNI_NAME_MAPS_TO_NUS_MESSAGE);
     }
 
     public void printAddModMessage() {
@@ -380,6 +389,7 @@ public class UI {
             System.out.println(LINE);
         } else {
             System.out.println(LIST_CURRENT_PU_MESSAGE + universityName);
+            System.out.println("[" + universityName + PU_UNI_NAME_MAPS_TO_NUS_MESSAGE);
             System.out.println(LINE);
             for (Module module : puModulesToPrint) {
                 listIndex++;

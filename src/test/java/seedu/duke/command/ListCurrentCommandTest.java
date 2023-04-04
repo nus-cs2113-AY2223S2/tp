@@ -44,6 +44,7 @@ class ListCurrentCommandTest {
         ListCurrentCommand listCurrentCommand = new ListCurrentCommand(modules);
         listCurrentCommand.execute();
         assertEquals("List of Added Modules for: KOREA UNIVERSITY" + System.lineSeparator() +
+                        "[KOREA UNIVERSITY Module] maps to ----> [NUS Module]" + System.lineSeparator() +
                         "____________________________________________________________" + System.lineSeparator() +
                         "1.[AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]"
                         + System.lineSeparator() +
@@ -60,6 +61,7 @@ class ListCurrentCommandTest {
                         "____________________________________________________________" + System.lineSeparator() +
                         System.lineSeparator() +
                         "List of Added Modules for: SEOUL NATIONAL UNIVERSITY" + System.lineSeparator() +
+                        "[SEOUL NATIONAL UNIVERSITY Module] maps to ----> [NUS Module]" + System.lineSeparator() +
                         "____________________________________________________________" + System.lineSeparator() +
                         "1.[M2794.0073][Finite Element Analysis][3]   maps to ----> " +
                         "[ME4291][Finite Element Analysis][4]" + System.lineSeparator() +

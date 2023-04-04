@@ -31,6 +31,7 @@ class UITest {
     private static final String CURRENT_LIST_EMPTY = "The current module list is empty";
     private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n"
             + "Please ensure that you have typed in the correct NUS Module Code";
+    private static final String PU_UNI_NAME_MAPS_TO_NUS_MESSAGE = " Module] maps to ----> [NUS Module]";
 
     /*
         Testing below sets up an ByteArrayOutputStream where prints to System.out would go to.
@@ -71,7 +72,9 @@ class UITest {
         UI ui = new UI();
         String univName = "Korea University";
         ui.printPUModListMessage(univName);
-        assertEquals(univName + " Modules" + System.lineSeparator() + LINE.stripTrailing()
+        assertEquals("Korea University Modules" + System.lineSeparator() +
+                        "[Korea University Module] maps to ----> [NUS Module]" + System.lineSeparator() +
+                        "____________________________________________________________"
                 , outContent.toString().stripTrailing());
         outContent.reset();
     }
@@ -514,6 +517,7 @@ class UITest {
         modules.add(module2);
         ui.printAllCurrentModList(modules);
         assertEquals("List of Added Modules for: KOREA UNIVERSITY" + System.lineSeparator() +
+                        "[KOREA UNIVERSITY Module] maps to ----> [NUS Module]" + System.lineSeparator() +
                         "____________________________________________________________" + System.lineSeparator() +
                         "1.[AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]"
                         + System.lineSeparator() +
@@ -530,6 +534,7 @@ class UITest {
                         "____________________________________________________________" + System.lineSeparator() +
                         System.lineSeparator() +
                         "List of Added Modules for: SEOUL NATIONAL UNIVERSITY" + System.lineSeparator() +
+                        "[SEOUL NATIONAL UNIVERSITY Module] maps to ----> [NUS Module]" + System.lineSeparator() +
                         "____________________________________________________________" + System.lineSeparator() +
                         "1.[M2794.0073][Finite Element Analysis][3]   maps to ----> " +
                         "[ME4291][Finite Element Analysis][4]" + System.lineSeparator() +
