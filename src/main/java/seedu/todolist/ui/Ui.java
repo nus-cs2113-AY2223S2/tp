@@ -25,11 +25,11 @@ public class Ui {
      * @param strings The strings to print out.
      */
     private void println(String... strings) {
-        System.out.println(Messages.LINE.getMessage());
+        System.out.println(Messages.LINE);
         for (String string : strings) {
             System.out.println(string);
         }
-        System.out.println(Messages.LINE.getMessage());
+        System.out.println(Messages.LINE);
     }
 
     /**
@@ -44,64 +44,63 @@ public class Ui {
     }
 
     public void printWelcomeMessage() {
-        println(Messages.START.getMessage());
+        println(Messages.START);
     }
 
     public void printNewSaveMessage() {
-        println(Messages.NEW_SAVE.getMessage());
+        println(Messages.NEW_SAVE);
     }
 
     public void printLoadSaveMessage(int taskListSize) {
-        println(Messages.LOAD_SAVE.getMessage() + generateTaskCountString(taskListSize));
+        println(Messages.LOAD_SAVE + generateTaskCountString(taskListSize));
     }
 
     public void printGoodbyeMessage() {
-        println(Messages.EXIT.getMessage());
+        println(Messages.EXIT);
     }
 
     public void printAddTaskMessage(String taskString) {
-        println(Messages.ADD_TASK.getMessage(), taskString);
+        println(Messages.ADD_TASK, taskString);
     }
 
     public void printMarkTaskMessage(String taskString) {
-        println(Messages.MARK_TASK.getMessage(), taskString);
+        println(Messages.MARK_TASK, taskString);
     }
 
     public void printUnmarkTaskMessage(String taskString) {
-        println(Messages.UNMARK_TASK.getMessage(), taskString);
+        println(Messages.UNMARK_TASK, taskString);
     }
 
     public void printDeleteTaskMessage(String taskString) {
-        println(Messages.DELETE_TASK.getMessage(), taskString);
+        println(Messages.DELETE_TASK, taskString);
     }
 
     public void printEditTaskMessage(String parameterType, String newValue, String taskString) {
-        println(String.format(Messages.EDIT_TASK.getMessage(), parameterType, newValue), taskString);
+        println(String.format(Messages.EDIT_TASK, parameterType, newValue), taskString);
     }
 
     public void printEditDeleteTaskMessage(String parameterType, String taskString) {
-        println(String.format(Messages.EDIT_DELETE_TASK.getMessage(), parameterType), taskString);
+        println(String.format(Messages.EDIT_DELETE_TASK, parameterType), taskString);
     }
-
 
     public void printTaskList(int taskListSize, String taskListString) {
         if (taskListSize == 0) {
-            println(Messages.LIST_EMPTY.getMessage());
+            println(Messages.LIST_EMPTY);
         } else {
-            println(Messages.LIST_TASKS.getMessage() + generateTaskCountString(taskListSize),
+            println(Messages.LIST_TASKS + generateTaskCountString(taskListSize),
                     taskListString);
         }
     }
 
     public void printGetFullInfoMessage(String infoString) {
-        println(Messages.FULL_INFO.getMessage(), infoString);
+        println(Messages.FULL_INFO, infoString);
     }
 
     public void printGetTagsMessage(int tagCount, String tagsString) {
         if (tagCount == 0) {
-            println(Messages.TAGS_EMPTY.getMessage());
+            println(Messages.TAGS_EMPTY);
         } else {
-            println(Messages.TAGS_INFO.getMessage(), tagsString);
+            println(Messages.TAGS_INFO, tagsString);
         }
     }
 

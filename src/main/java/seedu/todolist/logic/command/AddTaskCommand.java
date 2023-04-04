@@ -32,12 +32,13 @@ public class AddTaskCommand extends Command {
      * @throws ToDoListException If any of the provided arguments are invalid.
      */
     public AddTaskCommand(HashMap<Flags, String> args) throws ToDoListException {
-        description = ParserUtil.parseDescription(args.get(Flags.COMMAND_ADD));
+        description = args.get(Flags.COMMAND_ADD);
         deadline = ParserUtil.parseDeadline(args.get(Flags.DEADLINE));
         email = ParserUtil.parseEmail(args.get(Flags.EMAIL));
         tags = ParserUtil.parseTags(args.get(Flags.TAG));
         repeatDuration = ParserUtil.parseRepeatDuration(args.get(Flags.REPEAT), deadline);
         priority = ParserUtil.parsePriority(args.get(Flags.PRIORITY));
+        assert description != null && !description.isEmpty(): "Missing description uncaught by parser!";
     }
 
     @Override
