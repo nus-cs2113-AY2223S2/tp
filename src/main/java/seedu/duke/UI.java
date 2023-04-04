@@ -10,6 +10,9 @@ import seedu.duke.budget.GoodsAndServices;
 import java.util.ArrayList;
 
 public class UI {
+
+    public static final String INVALID_BUDGET_AMOUNT_MESSAGE = "Please input a valid amount which is positive whole " +
+            "number more than equals to 0 and less than " + BudgetPlanner.MAX_BUDGET;
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
     private static final String LIST_CURRENT_PU_MESSAGE = "List of Added Modules for: ";
     private static final String CURRENT_LIST_PU_EMPTY = "The current module list is empty for: ";
@@ -41,8 +44,6 @@ public class UI {
     private static final String FOUND_LIST_MESSAGE = "Here is/are the list/s of modules that can map "
             + "this NUS module code: ";
     private static final String MODULE_ALREADY_EXIST_MESSAGE = "This module already exists in your list";
-    public static final String INVALID_BUDGET_AMOUNT_MESSAGE = "Please input a valid amount which is positive whole " +
-            "number more than equals to 0 and less than " + BudgetPlanner.MAX_BUDGET;
     private static ArrayList<Module> puModules = new DataReader().getModules();
     private static ArrayList<University> universities = new DataReader().getUniversities();
 
