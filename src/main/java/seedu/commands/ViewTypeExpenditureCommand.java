@@ -11,14 +11,22 @@ import seedu.expenditure.LendExpenditure;
 import seedu.expenditure.OtherExpenditure;
 import seedu.expenditure.TransportExpenditure;
 import seedu.expenditure.TuitionExpenditure;
-
+import seedu.expenditure.CurrencyValue;
 
 public class ViewTypeExpenditureCommand extends Command {
     public static final String COMMAND_WORD = "viewtype";
-    public final String expenditureType;
+    private final String expenditureType;
+    private final String currency;
 
     public ViewTypeExpenditureCommand(String userInput) throws WrongInputException {
-        switch (userInput) {
+        String[] splitValues = userInput.split(" ");
+        if (CurrencyValue.isValidCurrency(splitValues[1])) {
+            currency = splitValues[1];
+        } else {
+            throw new WrongInputException();
+        }
+
+        switch (splitValues[0]) {
         case "academic":
             expenditureType = AcademicExpenditure.EXPENDITURE_TYPE;
             break;
@@ -53,7 +61,7 @@ public class ViewTypeExpenditureCommand extends Command {
 
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
-        return new CommandResult("Here are the specified expenditures: \n"
-                + ExpenditureList.specificTypeString(expenditureType));
+        return new CommandResult("Here are the specified expenditures in " + currency + ": \n"
+                + ExpenditureList.specificTypeString(expenditureType, currency));
     }
 }

@@ -17,7 +17,7 @@ public enum ErrorMessages {
     ERROR_COMMAND_NOT_RECOGNISED_MESSAGE("Command not recognised. Please try again"),
     ERROR_LACK_OF_PARAMETERS_MESSAGE("Input command does not have required parameters! Please try again"),
     ERROR_DATE_TIME_ERROR_MESSAGE("Date time error! Please try again"),
-    ERROR_INVALID_EXPENDITURE_TYPE_MESSAGE("Invalid expenditure type! Please try again"),
+    ERROR_INVALID_INPUT_MESSAGE("Invalid input! Please try again"),
     ERROR_NUMBER_FORMAT_MESSAGE("Index must be an integer and within bounds! Please try again"),
     ERROR_WRONG_FORMAT_MESSAGE("Input command cannot be recognised as it is in the wrong format. Please try again"),
     ERROR_BUDGET_NOT_NUMERICAL_MESSAGE("Budget amount is not a numerical value!"),

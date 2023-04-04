@@ -34,6 +34,10 @@ public class AccommodationExpenditure extends Expenditure {
     public String toString() {
         return String.format("[Accommodation] || %s || %s", getStatusIcon(), super.toString());
     }
+    @Override
+    public String expenditureString(String currency) {
+        return String.format("[Accommodation] || %s || %s", getStatusIcon(), super.expenditureString(currency));
+    }
 
     @Override
     public String getExpenditureType() {
