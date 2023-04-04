@@ -2,7 +2,12 @@ package seedu.badmaths;
 
 import seedu.badmaths.ui.Ui;
 
-import java.util.*;
+//import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Arrays;
+import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 
