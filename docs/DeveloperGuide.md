@@ -22,6 +22,7 @@
     + [Find Task](#find-task)
     + [List Task](#list-task)
     + [Find Task on Date](#find-task-on-date)
+    + [View Week](#view-week)
     + [Storage](#storage)
     + [Logging](#logging)
 4. [Documentation, logging, testing, configuration, dev-ops](#documentations-logging-testing-configuration-dev-ops)
@@ -131,6 +132,8 @@ Step 6:
 Print the confirmation message :
 A confirmation message is printed to the user indicating that the module lesson has been successfully added.
 
+[*Return to TOC*](#table-of-contents)
+
 ### Delete Module
 
 The DeleteModule functionality allows users to remove either a module from the ModuleList or a lesson associated with 
@@ -205,6 +208,8 @@ is printed by calling the `printModuleLessonDeleteMessage()` method of the `Ui` 
 the message is printed by calling the `printModuleNotFoundMessage()` method of the `Ui` class. If the 
 argument is invalid, the message is printed by calling the `printInvalidCommand()` method of the `Ui` class.
 
+[*Return to TOC*](#table-of-contents)
+
 ### List Modules
 
 The ListModule functionality allows users to list the modules that are in the ModuleList. It is facilitated by 
@@ -234,6 +239,9 @@ and  total modular credits the user is taking this semester.
 UML Diagram for ListModuleCommand
 
 ![](../docs/uml-diagrams/ListMod-ListModuleCommand.png)
+
+[*Return to TOC*](#table-of-contents)
+
 ### Show Module
 
 The ShowModule functionality allows users to see all the information of a specific module. The information includes 
@@ -293,44 +301,52 @@ Step 6. Print the confirmation message: A confirmation message is printed to the
 of the module requested by the user. The message includes the `ModuleCode`, the specific `LessonType` of the module, 
 `Classnumber`of requested `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
 
+[*Return to TOC*](#table-of-contents)
 
 ### Add Task
 
 The add task mechanism is facilitated by `AddCommand`. It extends `Command` with the ability to add three different 
 types of `Task`s to the TaskList, namely: `ToDo`, `Deadline`, and `Event`. 
 
-Given below is an example usage scenario and how the add task mechanism behaves at each step.
+Given below is an example usage scenario and how the add task mechanism behaves at each step as the user adds an event.
 
-Step 1. The user launches the application for the first time. `run()` method in Apollo is called and the program waits 
-for a command.
-
-Step 2. The user executes `event concert /from 2023-06-06T20:00 /to 2023-06-06T22:00` command.  
+Step 1. The user enters the command `event concert /from 2023-06-06T20:00 /to 2023-06-06T22:00`.  
 This is to add a `Task` with the description "concert" on Jun 6 2023 from 8-10pm to their TaskList. 
-The String containing the command is parsed in `Parser` and determined to be an Add Task command since it starts
-with "event". 
+The String containing the command is parsed in `Parser` and determined to be an `AddCommand`. 
 
-Step 3. Within `Parser`, an `AddCommand` is initialised with the String `command` "event". 
+Step 2. Within `Parser`, an `AddCommand` is initialised with the String `command` "event". 
 The remaining params of the command are further parsed into Strings: `desc` "concert" (description), `from` 
 "2023-06-06T20:00" (start date), and `to` "2023-06-06T22:00" (end date) based on the delimiters "/from" and "/to". 
 - For `command` "deadline", remaining params are parsed into `desc` and `by` (due date) based on the delimiter "/by". 
 - For `command` "todo", all remaining params are parsed into `desc`.
 
-Step 4. The initialised `AddCommand` is returned to the `run()` method in Apollo. 
-In the event of the following, an error message is printed and steps 5-6 are skipped.
+Step 3. The initialised `AddCommand` is returned to Apollo. 
+In the event of the following, an error message is printed and no more steps are executed.
 - Delimiters are not entered correctly
 - Remaining params of the command are empty (ie. CLI input of user is "todo"/"deadline"/"event" only)
 
-Step 5. `Command#execute()` is called. This in turn calls `AddCommand#addTask()`. As `command` has been initialised to
-"event", `addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into LocalDateTimes.
-In the event of the following, an error message is printed and step 6 is skipped.
+Step 4. `Command#execute()` is called. This in turn calls `AddCommand#addTask()`. 
+`addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into LocalDateTimes.
+In the event of the following, an error message is printed and no more steps are executed.
 - String for date cannot be parsed into LocalDateTime (wrong format of input)
 - Task occurs entirely before the current date
 - (for `Event`) Start date occurs after end date
 
-Step 6. The initialised `Event` is added to the TaskList. A success message is printed and the hard disk storage is 
-updated to reflect these changes. 
+Step 5. `addTask()` checks if the initialised `Event` clashes with any existing tasks. If so, 
+`Ui#printClashingEventMessage()` is called to print a warning message. 
 
-Step 7. Apollo waits for the next CLI command to be input by the user.
+Step 6. Similarly, `addTask()` also checks if the initialised `Event` clashes with any existing lessons. If so,
+`Ui#printClashingEventModuleMessage()` is called to print a warning message.
+
+Step 7. The initialised `Event` is added to the `TaskList`. Return to `AddCommand#execute`.
+
+Step 8. If the Task has been added successfully, `Ui#printAddMessage()` prints a success message.
+
+Step 9. `Storage#updateTask()` is called to update the local save file to reflect the changes.
+
+![](../docs/uml-diagrams/AddCommand-AddCommand__for_Tasks_.png)
+
+[*Return to TOC*](#table-of-contents)
 
 ### Delete Task
 
@@ -365,6 +381,8 @@ It also includes the updated size of the `TaskList`, obtained with the `size()` 
 
 Step 7: Update the storage: The storage is updated with the new TaskList without the deleted task.
 
+[*Return to TOC*](#table-of-contents)
+
 ### Mark Task As Done
 
 The MarkTask functionality allows users to mark a task (todo, event and deadline) as done in their TaskList.
@@ -395,6 +413,8 @@ successfully marked as done from the user-provided index of the `TaskList`. The 
 description (and date of the task deleted if the task is either an event or a deadline).
 
 Step 7: Update the storage: The storage is updated with the new TaskList with the task marked with a cross next to it.
+
+[*Return to TOC*](#table-of-contents)
 
 ### Unmark Task 
 
@@ -429,6 +449,8 @@ description (and date of the task deleted if the task is either an event or a de
 Step 7: Update the storage: The storage is updated with the new TaskList with the task marked without a cross next to
 it.
 
+[*Return to TOC*](#table-of-contents)
+
 ### Find Task
 
 The FindTask functionality allows user to search for a task (todo, event and deadline) from the TaskList using a 
@@ -458,6 +480,8 @@ in `TaskList`, a message is printed to the user indicating that there are no mat
 Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the list of 
 tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description and
 date of the task containing `KEYWORD` if the matching task is either an event or a deadline task.
+
+[*Return to TOC*](#table-of-contents)
 
 ### List Task
 
@@ -497,6 +521,8 @@ Step 4. Print the confirmation message: A confirmation message is printed to the
 in `TaskList` that the user updated and the total number of unmarked tasks. The message includes the task type, 
 description and date of all tasks if the tasks are either an event or a deadline task.
 
+[*Return to TOC*](#table-of-contents)
+
 ### Find Task on Date
 
 The Find Task on Date functionality allows user to search for a list of tasks (event and deadline) that are happening
@@ -531,6 +557,38 @@ indicating that there are no tasks on that day.
 Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the list of tasks in 
 `TaskList` that are occurring on the `date` input by the user. The message includes the task type, description, date
 and time of the task if the task is either an event or a deadline task.
+
+[*Return to TOC*](#table-of-contents)
+
+### View Week
+The `week` command allows the user to view their weekly schedule at a glance, including lessons, deadlines, and events.
+It is facilitated by `WeekCommand` which is an extension of the `Command` class.
+
+Given below is an example usage scenario and how the add task mechanism behaves at each step.
+
+Step 1. The user executes the command `week`. It is parsed by the `Parser` class which then creates a new `WeekCommand`.
+
+Step 2. The `execute()` method of `WeekCommand` is called. 
+
+Step 3. The dates of Monday and Sunday of the current week (`startWeek`, `endWeek`) are determined using `LocalDate`.
+
+Step 4. The parameters `startWeek`, `endWeek`, `taskList` (all tasks), and `calendar` (all lessons) are passed into `Ui`
+
+Step 5. Starting from Monday, the lessons and tasks occurring on each day of the week are printed out. 
+- Step 5a. The day of week is printed using the `determineDay()` method in `DayTypeUtil`. 
+- Step 5b. All lessons on that day are stored in an `ArrayList<CalendarModule> lessonsOnDay` using `calender.get()`. 
+  If no lessons occur on that day, Step 5c is skipped.
+- Step 5c. `lessonsOnDay` is passed into the method `printLessonsOnDay()` in `Ui`. 
+  The schedule of each lesson is stored in a new `Timetable`, then printed out in the desired format. 
+- Step 5d. Similarly, All tasks on that day are stored in an `TaskList tasksOnDay` using `taskList.getTasksOnDay()`.
+  If no lessons occur on that day, Step 5e is skipped.
+- Step 5e. `tasksOnDay` is passed into the method `printTasksOnDay()` in `Ui`. Each task is printed out.
+- Step 5f. The current day is increased to the following day.
+- Step 5g. Go back to Step 5a, stop after all lessons and tasks on Sunday have been printed. 
+
+![](../docs/uml-diagrams/Week-WeekCommand.png)
+
+[*Return to TOC*](#table-of-contents)
 
 ### Storage
 (TO BE ADDED SOON)
@@ -616,4 +674,6 @@ Priority Legend:
 
 Given below are instructions to test the app manually.
 > Note: These instructions only provide a starting point for testers to work on;
-> testers are expected to do more *exploratory* testing. 
+> testers are expected to do more *exploratory* testing.
+
+[*Return to TOC*](#table-of-contents)

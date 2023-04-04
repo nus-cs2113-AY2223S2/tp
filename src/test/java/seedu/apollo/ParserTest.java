@@ -20,7 +20,7 @@ class ParserTest {
 
     @Test
     void parseDeadline_normalDeadline_expectDescriptionAndBy() throws InvalidDeadline {
-        String param = "test /by tomorrow";
+        String param = "test -by tomorrow";
         String[] descriptionAndBy = Parser.parseDeadline(param);
         assertEquals("test", descriptionAndBy[0]);
         assertEquals("tomorrow", descriptionAndBy[1]);
@@ -35,14 +35,14 @@ class ParserTest {
 
     @Test
     void parseDeadline_emptyBy_expectException() {
-        String param = "test /by ";
+        String param = "test -by ";
         assertThrows(InvalidDeadline.class,
                 () -> Parser.parseDeadline(param));
     }
 
     @Test
     void parseDeadline_noDescription_expectException() {
-        String param = "  /by tomorrow";
+        String param = "  -by tomorrow";
         assertThrows(InvalidDeadline.class,
                 () -> Parser.parseDeadline(param));
     }
@@ -59,7 +59,7 @@ class ParserTest {
 
     @Test
     void parseEvent_normalEvent_expectDescriptionAndFromAndTo() throws InvalidEvent {
-        String param = "test /from 2023-10-29T23:59 /to 2023-10-30T23:59";
+        String param = "test -from 2023-10-29T23:59 -to 2023-10-30T23:59";
         String[] descriptionAndFromAndTo = Parser.parseEvent(param);
         assertEquals("test", descriptionAndFromAndTo[0]);
         assertEquals("2023-10-29T23:59", descriptionAndFromAndTo[1]);
@@ -68,14 +68,14 @@ class ParserTest {
 
     @Test
     void parseEvent_noDescription_expectException() {
-        String param = "  /from 2023-10-29T23:59 /to 2023-10-30T23:59";
+        String param = "  -from 2023-10-29T23:59 -to 2023-10-30T23:59";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
 
     @Test
     void parseEvent_emptyFrom_expectException() {
-        String param = "test /from /to 2023-10-30T23:59";
+        String param = "test -from -to 2023-10-30T23:59";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
 
@@ -83,14 +83,14 @@ class ParserTest {
 
     @Test
     void parseEvent_emptyTo_expectException() {
-        String param = "test /from 2023-10-29T23:59 today /to ";
+        String param = "test -from 2023-10-29T23:59 today -to ";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
 
     @Test
     void parseEvent_emptyFromAndTo_expectException() {
-        String param = "test /from /to";
+        String param = "test -from -to";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
@@ -105,21 +105,21 @@ class ParserTest {
 
     @Test
     void parseEvent_noFrom_expectException() {
-        String param = "test /to 2023-10-30T23:59";
+        String param = "test -to 2023-10-30T23:59";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
 
     @Test
     void parseEvent_noBy_expectException() {
-        String param = "test /from today";
+        String param = "test -from today";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
 
     @Test
     void parseEvent_toBeforeFrom_expectException() {
-        String param = "wedding /to 6pm /from 9am";
+        String param = "wedding -to 6pm -from 9am";
         assertThrows(InvalidEvent.class, () -> Parser.parseEvent(param));
     }
 
