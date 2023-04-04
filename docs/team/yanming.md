@@ -13,6 +13,7 @@ Given below are my contributions to the project.
 [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=rayleigh47&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 #### Project management:
+* Setting up of GitHub team organisation and repository
 
 #### Enhancements Implemented:
 * Added methods to parser to parse specific fields such as
@@ -28,7 +29,7 @@ Given below are my contributions to the project.
 `IncomeTest`, `ExpenseTest`, `ListCommandTest`, `ClearCommandTest`.
 
 #### Contributions to the UG:
-* Added initial draft for UG for v1.0
+* Added v1.0 UG draft
 * Contributed to `add`, `list`, `balance`and `help` feature
 * Contributed to `Saving and loading of data` section
 
@@ -39,7 +40,6 @@ Given below are my contributions to the project.
 * Added documentation for `ListExpenseCommand`
 
 #### Contributions to team-based tasks:
-* Setting up of GitHub team organisation and repository
 * v1.0 wrap-up
 * v1.0 release
 * v2.0 wrap-up
