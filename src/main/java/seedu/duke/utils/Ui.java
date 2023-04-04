@@ -173,9 +173,6 @@ public class Ui {
 
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +
             "does not exist.";
-    private static final String INVALID_CATEGORY_FORMAT = "Wrong/Incomplete Format! Please enter category commands " +
-            "as shown below.\n" + "List all categories: cat list\n" + "List all items in a category: cat [Category]\n" +
-            "List all items and all categories: cat table";
     private static final int CATEGORY_COL_WIDTH = 15;
     private static final int ITEMS_COL_WIDTH = 30;
     private static final String NO_CATEGORY_LIST = "Category list is empty. There are no items in the inventory.";
@@ -1046,12 +1043,6 @@ public class Ui {
     public static void printMaxAlertWarning(String name, int alertLevel) {
         System.out.println("ALERT: The quantity of " + name +
                 " is above the maximum level of " + alertLevel + ".");
-        printLine();
-    }
-
-    public static void printInvalidCategoryCommand() {
-        printLine();
-        System.out.println(INVALID_CATEGORY_FORMAT);
         printLine();
     }
 

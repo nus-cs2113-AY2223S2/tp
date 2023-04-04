@@ -137,8 +137,7 @@ public class FilterCommand extends Command {
         case "f/category":
 
             try {
-                filterCategory(filterValue); //filterValue = "list"/"table"/"c/[keyword(s)]"
-                //System.out.println("get filtered category");
+                filterCategory(filterValue);
                 filteredItems = getFilteredCategory();
             } catch (NullPointerException e) {
                 Ui.printInvalidCategory();
