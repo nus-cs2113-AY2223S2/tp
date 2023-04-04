@@ -122,9 +122,6 @@ public class Storage {
         if (!financialReport.has("financialStatements")) {
             throw new RainyDayException("");
         }
-        if (!financialReport.has("monthlyExpenditures")) {
-            throw new RainyDayException("");
-        }
         if (!financialReport.has("reportOwner")) {
             throw new RainyDayException("");
         }

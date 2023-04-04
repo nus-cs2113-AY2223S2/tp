@@ -2,6 +2,8 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
+import seedu.rainyDay.data.MonthlyExpenditures;
+import seedu.rainyDay.data.UserData;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -51,9 +53,9 @@ public class EditCommand extends Command {
     public CommandResult execute() { // todo add -date
         setupLogger();
         logger.log(Level.INFO, "starting EditCommand.execute()");
+        UserData userData = allData.getUserData();
 
         index -= 1;
-
         int previousStatementCount = userData.getStatementCount();
         assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for edit";
 
@@ -64,7 +66,7 @@ public class EditCommand extends Command {
         }
 
         FinancialStatement editedStatement = userData.getStatement(index);
-        userData.removeFromMonthlyExpenditure(editedStatement);
+        MonthlyExpenditures.removeFromMonthlyExpenditure(editedStatement);
         for (int i = 0; i < editFlagAndField.size(); i += 2) {
             if (editFlagAndField.get(i).equalsIgnoreCase("-d")) {
                 editedStatement.setDescription(editFlagAndField.get(i + 1));
@@ -81,7 +83,7 @@ public class EditCommand extends Command {
                 editedStatement.setFlowDirection(FlowDirection.INFLOW);
             }
         }
-        userData.addToMonthlyExpenditure(editedStatement);
+        MonthlyExpenditures.addToMonthlyExpenditure(editedStatement);
 
         String output = "Done, edited entry " + (index + 1)
                 + " from the financial report";

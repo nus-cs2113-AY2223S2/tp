@@ -8,17 +8,15 @@ import seedu.rainyDay.modules.Parser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 class ParserTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
-    HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
-    FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
+    FinancialReport financialReport = new FinancialReport(statements);
 
     // todo add more test cases
     @Test
     public void parseAddInCommand() {
-        FinancialReport testReport = new FinancialReport(statements, monthlyExpenditures);
+        FinancialReport testReport = new FinancialReport(statements);
         testReport.addStatement(new FinancialStatement("noodles", "in", 5, "miscellaneous",
                 LocalDate.now()));
         try {
@@ -38,7 +36,7 @@ class ParserTest {
     @Test
     public void parseAddOutCommand() {
         try {
-            FinancialReport testReport = new FinancialReport(statements, monthlyExpenditures);
+            FinancialReport testReport = new FinancialReport(statements);
             testReport.addStatement(new FinancialStatement("noodles", "out", 5,
                     "miscellaneous", LocalDate.now()));
             new Parser().parseUserInput("add -out noodles $5");

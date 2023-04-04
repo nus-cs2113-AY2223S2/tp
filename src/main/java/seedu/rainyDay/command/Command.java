@@ -1,6 +1,6 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.data.AllData;
 import seedu.rainyDay.exceptions.RainyDayException;
 
 //@@author lil1n
@@ -26,7 +26,7 @@ public abstract class Command {
     public static final String COMMAND_UNIGNORE = "unignore";
     private static boolean isExit = false;
 
-    protected UserData userData;
+    protected AllData allData;
 
     //@@author KN-CY
     public static boolean isValidCommand(String word) {
@@ -44,10 +44,10 @@ public abstract class Command {
     /**
      * Sets the attribute to reference the financial report for execution of commands
      *
-     * @param userData userData provided for the commands to be performed on
+     * @param allData allData provided for the commands to be performed on
      */
-    public void setData(UserData userData) {
-        this.userData = userData;
+    public void setData(AllData allData) {
+        this.allData = allData;
     }
 
     /**
