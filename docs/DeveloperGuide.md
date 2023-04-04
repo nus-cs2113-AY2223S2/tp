@@ -6,10 +6,9 @@
 2. [Design](#design)
     + [Architecture](#architecture)
     + [UI Component](#ui-component)
-    + [Logic Component](#logic-component)
-    + [Model Component](#model-component)
+    + [Parser Component](#parser-component)
+    + [Command Component](#command-component)
     + [Storage Component](#storage-component)
-    + [Common Classes](#common-classes)
 3. [Implementation](#implementation)
     + [Add Module](#add-module)
     + [Delete Module](#delete-module)
@@ -25,33 +24,24 @@
     + [View Week](#view-week)
     + [Storage](#storage)
     + [Logging](#logging)
-4. [Documentation, logging, testing, configuration, dev-ops](#documentations-logging-testing-configuration-dev-ops)
-    + [Documentation](#documentation)
-    + [Logging](#logging)
-    + [Testing](#testing)
-    + [Configuration](#configuration)
-    + [Dev-ops](#dev-ops)
-5. [Appendix A: Requirements](#appendix-a-requirements)
-    + [Product Scope](#product-scope)
-        + [Target User Profile](#target-user-profile)
-        + [Value Proposition](#value-proposition)
-    + [User Stories](#user-stories)
-    + [Use Cases](#use-cases)
-    + [Non-Functional Requirements](#non-functional-requirements)
-    + [Glossary](#glossary)
-6. [Appendix B: Instructions for manual testing](#appendix-b-instructions-for-manual-testing)
-    + [Launch and Shutdown](#launch-and-shutdown)
+4. [Appendix](#appendix)
+   + [Appendix A: Product Scope](#appendix-a--product-scope)
+   + [Appendix B: User Stories](#appendix-b--user-stories)
+   + [Appendix C: Non-Functional Requirements](#appendix-c--non-functional-requirements) 
+   + [Appendix D: Glossary](#appendix-d--glossary)
+   + [Appendix E: Instructions for manual testing](#appendix-e--instructions-for-manual-testing)
+
 
 ## Acknowledgements
 
 We would like to acknowledge Hong Lin Shang, whose Duke we built upon for our project.
 
-## Design & implementation
+## Design
 
 ### Architecture
 Below is the overall architecture diagram for Apollo.
 
-<insert diagram>
+![](../docs/uml-diagrams/SystemArchitecture.png)
 
 Given below is a quick overview of the main components of Apollo and how they interact with one another.
 
@@ -65,7 +55,7 @@ Given below is a quick overview of the main components of Apollo and how they in
 The rest of the App consists of the following components:
 * `UI`: The UI of the App.
 * `Parser`: Parses the user input.
-* `Command`: The command executer.
+* `Command`: Executes the command.
 * `Data Storage`: Reads data from, and writes data to, the hard disk.
 * `Resources`: Contains relevant module data scraped from NUSMods_API, which is a database.
 
@@ -74,16 +64,9 @@ and eventually update the UI which is displayed back to the user. This would con
 which would result in the latest data stored in DataStorage being saved into the plaintext files.
 
 ### UI Component
-
-
-### Logic Component
-
-### Model Component
-
+### Parser Component
+### Command Component
 ### Storage Component
-
-### Common Classes
-
 
 ## Implementation
 
@@ -172,7 +155,6 @@ When user executes the command `delmod cs2113` the Parser class calls the `Delet
 DeleteModuleCommand class. The constructor of the DeleteModuleCommand class takes in a moduleCode `cs2113` as a 
 parameter. This moduleCode is
 used to find `cs2113`  from the ModuleList.
-
 
 Step 2: Define the `setUpLogger()` method :
 The `setUpLogger()` method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
@@ -290,7 +272,7 @@ Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up th
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
 
 Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the Show Module functionality.
-It takes in the necessary parameters, including the ModuleList, Ui, Storage, Tasklist and Calendar.
+It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and Calendar.
 
 Step 4. Find the module to display information: The first step in the `execute()` method is to find the module from 
 `Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
@@ -310,7 +292,7 @@ Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up th
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
 
 Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the Show Module functionality.
-It takes in the necessary parameters, including the ModuleList, Ui, Storage, Tasklist and Calendar objects. The lesson 
+It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and Calendar objects. The lesson 
 type is determined by calling the `getLessonType()` method of the `lessonType` class and parsing in `args[1]` while 
 the moduleCode is set by `args[0]`. If the lessonType is not valid, an `InvalidCommandException` is thrown.
 
@@ -348,7 +330,7 @@ The remaining params of the command are further parsed into Strings: `desc` "con
 Step 3. The initialised `AddCommand` is returned to Apollo. 
 In the event of the following, an error message is printed and no more steps are executed.
 - Delimiters are not entered correctly
-- Remaining params of the command are empty (ie. CLI input of user is "todo"/"deadline"/"event" only)
+- Remaining params of the command are empty (i.e. CLI input of user is "todo"/"deadline"/"event" only)
 
 Step 4. `Command#execute()` is called. This in turn calls `AddCommand#addTask()`. 
 `addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into LocalDateTimes.
@@ -474,6 +456,10 @@ description (and date of the task deleted if the task is either an event or a de
 Step 7: Update the storage: The storage is updated with the new TaskList with the task marked without a cross next to
 it.
 
+![](../docs/uml-diagrams/ModifyCommand-ModifyCommand__Unmark_Tasks_.png)
+![](../docs/uml-diagrams/UnmarkCommandActivityDiagram.png)
+
+
 [*Return to TOC*](#table-of-contents)
 
 ### Find Task
@@ -551,7 +537,7 @@ description and date of all tasks if the tasks are either an event or a deadline
 ### Find Task on Date
 
 The Find Task on Date functionality allows user to search for a list of tasks (event and deadline) that are happening
-or due on a specific `date` in their Tasklist. It is facilitated by the DateCommand class which is an extension of 
+or due on a specific `date` in their TaskList. It is facilitated by the DateCommand class which is an extension of 
 the Command class.
 
 Below is an example usage of how the Find Task on Date command can be used to search for tasks happening or due on 
@@ -621,22 +607,11 @@ Step 5. Starting from Monday, the lessons and tasks occurring on each day of the
 ### Logging
 (TO BE ADDED SOON)
 
-## Documentation, logging, testing, configuration, dev-ops
+# Appendix
 
-### Documentation
+## Appendix A: Product Scope
 
-### Logging
-
-### Testing
-
-### Configuration
-
-### Dev-ops
-
-## Appendix A: Requirements
-
-### Product scope
-
+## Appendix B: User Stories
 #### Target user profile
 
 The target user profile is an average NUS student who:
@@ -653,7 +628,6 @@ Existing schedulers do not have access to NUS’s database, making it so that a 
 input all their lessons. We can expedite this process by creating a scheduler that sets itself up via module codes.
 It can also alert the user to possible event clashes.
 
-### User Stories
 Priority Legend:  
 `***` - Highest priority (Must-haves) 
 `**` - Medium priority  (Should-haves)
@@ -680,22 +654,21 @@ Priority Legend:
 |   ***    |  v2.0   |    student    | add lessons for each module                               | go to the correct classes                                   |
 
 (More coming soon)
-## Use Cases
 
-## Non-Functional Requirements
+## Appendix C: Non-Functional Requirements
 
 * Apollo should work on any mainstream OS as long as it has Java 11 or above installed.
 * Apollo should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
   able to accomplish most of the tasks faster using commands than using the mouse.
 
-## Glossary
+## Appendix D: Glossary
 
 * *Mainstream OS* - Windows, Linux, Unix, OS-X
 * *CLI* - Command Line Interface
 *
 
-## Appendix B: Instructions for manual testing
+## Appendix E: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 > Note: These instructions only provide a starting point for testers to work on;
