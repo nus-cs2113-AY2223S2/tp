@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.serde.SerializableRecipe;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
@@ -22,16 +23,15 @@ public class RecipeList {
     public RecipeList(String file) {
         this.recipes = new ArrayList<>();
         Gson gson = new Gson();
-        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream(file))) {
+        InputStream in = this.getClass().getResourceAsStream(file);
+        try (Reader reader = new InputStreamReader(in)) {
             // This is needed for GSON to return the expected instance of List<SerializableRecipe>
-            Type recipeListType =
-                    TypeToken.getParameterized(List.class, SerializableRecipe.class).getType();
+            TypeToken<?> typeToken= TypeToken.getParameterized(List.class, SerializableRecipe.class);
+            Type recipeListType = typeToken.getType();
             List<SerializableRecipe> recipeList = gson.fromJson(reader, recipeListType);
-
             for (SerializableRecipe recipe : recipeList) {
                 this.recipes.add(recipe.toRecipe());
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Invalid ingredients list JSON resource." +
