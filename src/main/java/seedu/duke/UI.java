@@ -9,13 +9,13 @@ import seedu.duke.budget.GoodsAndServices;
 import java.util.ArrayList;
 
 public class UI {
+    public static final String INVALID_BUDGET_AMOUNT_MESSAGE = "Please input a valid amount which is positive whole " +
+            "number more than equals to 0 and less than " + BudgetPlanner.MAX_BUDGET;
     private static final int LIST_PU_LENGTH_FOR_PU_ABB = 52;
     private static final String LIST_PU_HEADER_MESSAGE = "   Partner University Name                  " +
             "         PU Abb    ";
     private static final String LIST_PU_MESSAGE = "This is the list of PUs:";
     private static final String LIST_CURRENT_PU_MESSAGE = "List of Added Modules for: ";
-    public static final String INVALID_BUDGET_AMOUNT_MESSAGE = "Please input a valid amount which is positive whole " +
-            "number more than equals to 0 and less than " + BudgetPlanner.MAX_BUDGET;
     private static final String CURRENT_LIST_PU_EMPTY = "The current module list is empty for: ";
     private static final String LIST_CURRENT_MESSAGE = "List of Added modules:";
     private static final String LIST_DEADLINES_MESSAGE = "List of Deadlines:";
