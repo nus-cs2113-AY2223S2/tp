@@ -17,14 +17,15 @@ node "Apollo (Application)" {
   [Parser]
   [Command]
   [Data Storage]
-    [Resources]
+  [Resources]
 }
 
 actor NUS_Student
 database NUSMods_API
-file save.txt
-file moduleData.txt
-
+folder "local save files" {
+    [save.txt]
+    [moduleData.txt]
+}
 
 [Apollo] --> [UI]
 [Apollo] --> [Data Storage]
@@ -37,7 +38,7 @@ NUS_Student <-.-> [UI]
 [Command] --> [Data Storage]
 NUSMods_API -right-> [Resources]
 [Resources] -right-> [Data Storage]
-[save.txt]<-->[Data Storage]
-[moduleData.txt]<-->[Data Storage]
+"local save files"<-->[Data Storage]
+
 
 @enduml
