@@ -47,12 +47,12 @@ of rainyDay. <br> If you are a user looking for instructions on how to use rainy
 
 The diagram given below explains the high-level design of rainyDay, and how the components are related to one another.
 
-![architecture.png](images%2Farchitecture.png)
+![architecture.png](images\DeveloperGuide\architecture.png)
 
 The Sequence Diagram below shows the timeline of how the different components will interact with one another, we will
 illustrate a 'delete' command, e.g. `delete 1`.
 
-![ArchitectureSequence.png](images%2FArchitectureSequence.png)
+![ArchitectureSequence.png](images\DeveloperGuide\ArchitectureSequence.png)
 
 ### Modules component
 
@@ -68,7 +68,7 @@ illustrate a 'delete' command, e.g. `delete 1`.
 
 - To prevent slow processing of the program when there are many entries, a Hash Table is used to keep track of the
   expenditures for the month.
-  - We believe that the "Set Budget" feature will be commonly used as it is 1 of the key aspects of a Financial Tracker. 
+  - We believe that the "Set Budget" feature will be commonly used as it is one of the key aspects of a Financial Tracker. 
     Hence, it would be feasible to implement an additional storage 
     such that common addition operations and retrieval of information can be done in Amortised O(1).
   - The Key used is the number of months from the Year 0000, or more precisely calculated by (Year * 12 + Month). 
@@ -76,9 +76,7 @@ illustrate a 'delete' command, e.g. `delete 1`.
 
 
 ### Command component
-
-{insert diagrams}
-
+![CommandClassDiagram.png](images\DeveloperGuide\CommandClassDiagram.png)
 1. When a command is parsed, a command object specific to the command given will be created, with the necessary
    parameters stored as attributes in the command specific class
 2. RainyDay will then call method execute() in the command class to return a CommandResult object, which contains
@@ -213,7 +211,7 @@ down the instructions.
       structure`[-date] [whitespace] [date in DD/MM/YYYY format]`
 
 These steps will ultimately parse the user's input and extract the necessary information. If any pattern does not match,
-our parser will throw a `RainDayException` indicating the wrong input format.
+our parser will throw a `RainyDayException` indicating the wrong input format.
 
 #### Alternatives considered
 
@@ -303,8 +301,8 @@ The sequence diagram for the implementation of filter is as shown below:
     - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
     - The given `[SHORTCUTNAME]` and `[ACTUALCOMMAND]` will be the key value pair of the hashmap.
 - `RainyDay` will then call the `execute` method in `ShortcutAddCommand`.
-    - If the key does not already exist in the `shortcutCommands` hashmap, the new shortcut mapping will be added into
-      the hashmap.
+    - A self-call will be made to the `checkShortcutValidity` method to ensure that the shortcut to be added is valid.
+    - If the shortcut is valid, the new shortcut mapping will be added into the hashmap.
 
 The sequence diagram for the implementation of adding a shortcut is as shown below:
 
@@ -331,9 +329,9 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
     - A call will be made to the `userData` object which returns a reference to the `shortcutCommands` hashmap.
 - `RainyDay` will then call the `execute` method in `ShortcutViewCommand`.
     - For each shortcut in the hashmap, the corresponding actual command will be obtained from the
-      `shortcutCommands` hashmap with the `get()` method.
+      `shortcutCommands` hashmap with the `get` method.
     - The mapping between the shortcut and actual command will then be printed to the user by calling
-      the `printShortcutMapping()` method.
+      the `printShortcutMapping` method.
 - Information will be presented in a table format to help improve clarity for users.
 
 The sequence diagram for the implementation of viewing a shortcut is as shown below:
@@ -345,7 +343,7 @@ The sequence diagram for the implementation of viewing a shortcut is as shown be
 ### Saving Data
 
 - The `userData` object will contain all the data of the user, such as the `FinancialReport` and the
-  configured `ShortcutCommands`.
+  configured `ShortcutCommands` and `budgetGoal`
 - Whenever a change is made in the `userData` the updated `userData` will automatically be saved to
   reflect the changes.
 - Saving is done by serializing the `userData` into json format and writing it into a file.
@@ -382,26 +380,31 @@ The sequence diagram for the implementation of viewing a shortcut is as shown be
 
 #### Type of file to save data into
 
-- Alternative 1 (current choice): Make use of serialization in gson to serialize `userData` object before writing
-  to file.
+- Alternative 1 (current choice): Make use of serialization in the gson library to serialize `userData` object before
+  writing to file.
     - Pros:
         - Easier to implement. Minimal changes to the code required as new attributes are added to `userData` as
           we develop the app incrementally.
         - Less prone to bugs as data does not need to be manually parsed to save/load.
+        - More flexibility for advanced users who may choose to directly edit the json file. 
     - Cons:
-        - Difficult to prevent users from manipulating the json file. May cause errors if corrupted.
+        - Difficult to prevent users from incorrectly manipulating the json file. May cause errors if corrupted.
+            - Must implement proper error handling such that any improper format or invalid data in the data file can be
+              detected.
 - Alternative 2: Make use of plaintext to save the relevant data in the `userData` object.
     - Pros:
         - Data will be more readable and user can get information about the FinancialReport by viewing the .txt file.
     - Cons:
-        - Difficult to implement, changes in implementation will be necessary when new attributes are added
+        - Difficult to implement and parse, changes in implementation will be necessary when new attributes are added
           to `userData` as we develop the app incrementally.
-        - Prone to bugs as data must be parsed manually to save/load
+        - Prone to bugs as data must be parsed manually to save/load.
 
 ### Loading Data
 
-- Json Serialized data will be read from file automatically upon startup of the application.
+- Json serialized data will be read from file automatically upon startup of the application.
 - Data from file will be deserialized and a `userData` object will be created based on the save file.
+  - If the Json file is corrupted or contain invalid values such as a negative budget, the application will be started 
+    without loading the previous save. The invalid save file will also be overwritten.
 
 #### Design Considerations
 

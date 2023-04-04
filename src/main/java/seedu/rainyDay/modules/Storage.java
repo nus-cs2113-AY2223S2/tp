@@ -101,7 +101,7 @@ public class Storage {
         if (!userData.has("shortcutCommands")) {
             throw new RainyDayException("");
         }
-        if (!userData.has("budgetGoal")) {
+        if (!userData.has("budgetGoal") || userData.get("budgetGoal").getAsDouble() < 0)  {
             throw new RainyDayException("");
         }
         JsonObject financialReport = userData.getAsJsonObject("financialReport");

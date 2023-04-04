@@ -10,7 +10,6 @@ import seedu.rainyDay.command.ExportCommand;
 import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.IgnoreCommand;
-import seedu.rainyDay.command.InvalidCommand;
 import seedu.rainyDay.command.SetBudgetCommand;
 import seedu.rainyDay.command.ShortcutAddCommand;
 import seedu.rainyDay.command.ShortcutDeleteCommand;
@@ -90,7 +89,7 @@ public class Parser {
                     return parseUserInput(processShortcutUsage(shortcutCommands, userInput));
                 }
                 logger.warning("unrecognised input from user!");
-                return new InvalidCommand(ErrorMessage.UNRECOGNIZED_INPUT.toString());
+                throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
             }
         } catch (IndexOutOfBoundsException e) {
             logger.warning("filter or add command missing details");
