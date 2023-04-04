@@ -26,9 +26,9 @@ public class RemoveTaskCommand extends Command{
             return;
         }
         try {
-        TaskList.removeTask(taskNumber);
-        TaskList.saveTasksToStorage(storage, ui);
-        ui.removeTaskCommandMessage(taskNumber);
+            TaskList.removeTask(taskNumber);
+            TaskList.saveTasksToStorage(storage, ui);
+            ui.removeTaskCommandMessage(taskNumber);
         } catch (IndexOutOfBoundsException e) {
             ui.taskNumberOutOfBoundsMessage();
         }

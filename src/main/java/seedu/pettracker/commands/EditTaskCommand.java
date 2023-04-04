@@ -39,9 +39,9 @@ public class EditTaskCommand extends Command {
             return;
         }
         try {
-        TaskList.editTask(taskNumber, newDescription, deadline);
-        TaskList.saveTasksToStorage(storage, ui);
-        ui.editTaskCommandMessage(taskNumber, newDescription);
+            TaskList.editTask(taskNumber, newDescription, deadline);
+            TaskList.saveTasksToStorage(storage, ui);
+            ui.editTaskCommandMessage(taskNumber, newDescription);
         } catch (IndexOutOfBoundsException e) {
             ui.taskNumberOutOfBoundsMessage();
         }
