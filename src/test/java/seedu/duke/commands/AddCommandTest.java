@@ -27,6 +27,22 @@ class AddCommandTest {
         Item newItem = new Item("Item 1", "7252727320", 2, 123.0);
         Command command = new AddCommand(inventory, newItem);
         command.run();
+        assertEquals("Uncategorized", inventory.getItemInventory().get(0).getCategory());
+        assertEquals(1, inventory.getItemInventory().size());
+        assertEquals(newItem, inventory.getItemInventory().get(0));
+        assertTrue(inventory.getUpcCodes().containsKey(newItem.getUpc()));
+        for (String itemName : newItem.getName().toLowerCase().split(" ")) {
+            assertTrue(inventory.getItemNameHash().containsKey(itemName));
+        }
+    }
+
+    @Test
+    void addItemWithCategoryToInventory() {
+        inventory = new Inventory();
+        Item newItem = new Item("Item 1", "213131231324", 22, 123.0, "fruit");
+        Command command = new AddCommand(inventory, newItem);
+        command.run();
+        assertEquals("fruit", inventory.getItemInventory().get(0).getCategory());
         assertEquals(1, inventory.getItemInventory().size());
         assertEquals(newItem, inventory.getItemInventory().get(0));
         assertTrue(inventory.getUpcCodes().containsKey(newItem.getUpc()));
@@ -38,9 +54,9 @@ class AddCommandTest {
     @Test
     void addMultipleItemsToInventory() {
         inventory = new Inventory();
-        Item newItem1 = new Item("Item 1", "7252727320", 2, 1.50);
+        Item newItem1 = new Item("Item 1", "7252727320", 2, 1.50, "fruit");
         Item newItem2 = new Item("Item 2", "4534552342", 20, 1.40);
-        Item newItem3 = new Item("Item 3", "3454685754", 200, 1.30);
+        Item newItem3 = new Item("Item 3", "3454685754", 200, 1.30, "mobile");
 
         // Instantiate the Add command objects
         Command command1 = new AddCommand(inventory, newItem1);
@@ -61,7 +77,6 @@ class AddCommandTest {
         for (Item item : inventory.getItemInventory()) {
             assertTrue(inventory.getUpcCodes().containsKey(item.getUpc()));
         }
-
         for (String itemName : newItem1.getName().toLowerCase().split(" ")) {
             assertTrue(inventory.getItemNameHash().containsKey(itemName));
         }
@@ -112,5 +127,6 @@ class AddCommandTest {
         String expectedOutput = "Duplicate UPC found! Please add another item with a different UPC";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
+
 
 }

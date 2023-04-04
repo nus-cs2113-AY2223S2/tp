@@ -42,24 +42,20 @@ public class Inventory {
         return Math.round(totalCost * 100.0) / 100.0;
     }
 
-    public String getItemWithMostQuantity() {
-        int maxQuantity = 0;
+    /**
+     * Returns the item with the most/least quantity in the inventory.
+     *
+     * @param findMaximum true if the maximum quantity is to be found, false if the minimum quantity is to be found
+     * @return itemUPC the UPC code of the item with the most/least quantity
+     */
+    public String getItemWithQuantityExtremes(boolean findMaximum) {
+        int extremumQuantity = findMaximum ? 0 : Integer.MAX_VALUE;
         String itemUPC = "";
         for (Item item : itemInventory) {
-            if (item.getQuantity() > maxQuantity) {
-                maxQuantity = item.getQuantity();
-                itemUPC = item.getUpc();
-            }
-        }
-        return itemUPC;
-    }
-
-    public String getItemWithLeastQuantity() {
-        int minQuantity = Integer.MAX_VALUE;
-        String itemUPC = "";
-        for (Item item : itemInventory) {
-            if (item.getQuantity() < minQuantity) {
-                minQuantity = item.getQuantity();
+            int quantity = item.getQuantity();
+            if ((findMaximum && quantity > extremumQuantity) ||
+                    (!findMaximum && quantity < extremumQuantity)) {
+                extremumQuantity = quantity;
                 itemUPC = item.getUpc();
             }
         }
@@ -87,9 +83,11 @@ public class Inventory {
     public HashMap<String, ArrayList<Item>> getItemNameHash() {
         return itemNameHash;
     }
+
     public HashMap<String, ArrayList<Item>> getUpcCodesHistory() {
         return upcCodesHistory;
     }
+
     public HashMap<String, ArrayList<Item>> getCategoryHash() {
         return categoryHash;
     }

@@ -921,8 +921,8 @@ public class Ui {
     }
 
     public static void printDashboard(Inventory inventory, AlertList alertList) {
-        Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithMostQuantity());
-        Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithLeastQuantity());
+        Item mostQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithQuantityExtremes(true));
+        Item leastQuantityItem = inventory.getUpcCodes().get(inventory.getItemWithQuantityExtremes(false));
         printLine();
         System.out.println(DASHBOARDLOGO);
         System.out.println("Overview:");
