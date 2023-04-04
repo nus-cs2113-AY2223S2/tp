@@ -853,6 +853,12 @@ public class Ui {
         borderLine();
     }
 
+    static void priorityErrorMessage() {
+        Ui.borderLine();
+        System.out.println("\t Please enter a priority from 1 to 3!");
+        Ui.borderLine();
+    }
+
     static void invalidRemoveClassMessage() {
         borderLine();
         System.out.println("\t Error. Please follow the correct format to remove classes.");
@@ -862,7 +868,7 @@ public class Ui {
     static void invalidDateTimeMessage() {
         borderLine();
         System.out.println("\t Please check the inputted format human!\n" +
-                "\t There are only 24 hours in a day in Duck World, and 12 months a year...\n");
+                "\t Try typing 'help' if you are not sure what the correct format is!\n");
         System.out.println("\t Please try again!");
         borderLine();
     }

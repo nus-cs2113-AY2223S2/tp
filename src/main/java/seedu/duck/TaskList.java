@@ -113,6 +113,7 @@ public class TaskList {
             Ui.addedTaskMessage(currTodo);
         }
     }
+
     /**
      * Sets a priority to the specified task
      *
@@ -120,8 +121,9 @@ public class TaskList {
      * @param tasks The array list of tasks
      */
     static void setPriority(ArrayList<Task> tasks, String[] words) {
-        words[1] = words[1].trim();
-        if (!words[1].equals("1")||!words[1].equals("2")||!words[1].equals("3")) {
+        if (!words[2].equals("1") && !words[2].equals("2") && !words[2].equals("3")) {
+            Ui.priorityErrorMessage();
+        } else {
             int taskNumber = Integer.parseInt(words[1]);
             int taskCount = Task.getTaskCount();
             if (taskNumber > taskCount || taskNumber <= 0) {
@@ -135,10 +137,6 @@ public class TaskList {
                 System.out.println("\t " + tasks.get(taskNumber - 1).getPriority());
                 Ui.borderLine();
             }
-        } else {
-            Ui.borderLine();
-            System.out.println("\t Please enter a priority from 1 to 3!");
-            Ui.borderLine();
         }
     }
 
