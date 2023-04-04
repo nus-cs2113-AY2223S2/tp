@@ -9,7 +9,6 @@ import functionalities.appointments.Consultation;
 import functionalities.appointments.Surgery;
 import functionalities.appointments.Vaccination;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
