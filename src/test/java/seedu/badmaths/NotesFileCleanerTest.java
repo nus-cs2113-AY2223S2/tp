@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class NotesFileCleanerTest {
 
     // create file path for test file
-    private static final String filePath = "data/TestFile.txt";
+    private static final String filePath = "src/test/java/seedu/badmaths/NotesFileCleanerTestFile.txt";
 
     // set up test file and write some contents into it
     @Before
