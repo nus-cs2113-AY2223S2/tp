@@ -124,7 +124,7 @@ public class RecipeList {
         ArrayList<String> matches = new ArrayList<>();
         tag = tag.trim().toLowerCase();
         if (tag.equals(StringLib.EMPTY_STRING)) {
-            System.out.println(MISSING_KEYWORD);
+            System.out.println(MISSING_FIND_KEYWORD);
         } else if (getCurrRecipeNumber() == 0) {
             System.out.println(EMPTY_LIST_MESSAGE);
         } else {
