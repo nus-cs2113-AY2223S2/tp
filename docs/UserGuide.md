@@ -23,6 +23,13 @@ them keep track of their expense based on category, time, amount, and currency.
 
 ## Features
 
+### Get helpful instruction: `help`
+List all available commands user can type in the software, and give instructions 
+and examples to help user get familiar with our software 
+
+Format: `help`
+
+
 ### Adding an expense: `add`
 Adds a new item to the list of expenses.
 
@@ -61,7 +68,7 @@ ____________________________________________________________
 
 
 ### Listing all expenses: `list`
-List all tracked expenses in the expense list.
+List all tracked expenses in the expense list in the order of input (First input first print).
 
 Format: `list`
 
@@ -109,7 +116,7 @@ ____________________________________________________________
 ```
 
 ### Sorting all current expenses: `sort`
-Soring all current expenses in the expense list based on sortBy criteria.
+Sorting all current expenses in the expense list based on sortBy criteria.
 
 Format: `sort SORTBY`
 
@@ -183,7 +190,6 @@ Overview for JUNE 2021
      travel 10.00 SGD
     ----------------------------
 ```
-
 
 
 
