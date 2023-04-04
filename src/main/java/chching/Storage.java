@@ -34,6 +34,7 @@ public class Storage {
         File dir = new File(dirname);
         dir.mkdirs();
         this.file = new File(filepath);
+        this.file.setReadOnly();
     }
 
     public ArrayList<Income> loadIncomes() {
@@ -134,7 +135,9 @@ public class Storage {
 
         // write the JSON string to a file
         try (FileWriter file = new FileWriter(this.file)) {
+            this.file.setWritable(true);
             file.write(jsonString);
+            this.file.setReadOnly();
 
         } catch (IOException e) {
             System.out.println("An error occurred while writing JSON data to file.");
