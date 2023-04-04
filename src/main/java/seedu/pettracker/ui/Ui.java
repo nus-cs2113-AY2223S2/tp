@@ -151,27 +151,34 @@ public class Ui {
     /**
      * Message that prints when the storage experiences IO error.
      */
-    public void fileIOErrorMessage() {
+    public void printFileIOErrorMessage() {
         System.out.println("ERROR: Error with File IO");
     }
-    public void nonIntegerMessage() {
+
+    public void printNonIntegerMessage() {
         System.out.println("ERROR: Input should be an integer");
     }
-    public void integerNotPositiveMessage() {
+
+    public void printIntegerNotPositiveMessage() {
         System.out.println("ERROR: Integer provided should be above 0");
     }
-    public void invalidStatMessage(){
+
+    public void printInvalidStatMessage() {
         System.out.println("ERROR: The only valid stats are type, age, or weight.");
     }
+
     public void petNotFoundMessage() {
         System.out.println("ERROR: Pet not Found");
     }
+
     public void petNameEmptyMessage() {
         System.out.println("ERROR: Pet Name is empty");
     }
+
     public void duplicatePetMessage() {
         System.out.println("ERROR: Pet already exists");
     }
+
     /**
      * Print out help for all commands
      */
@@ -340,6 +347,7 @@ public class Ui {
         System.out.println("Example: unmark-task 2");
         System.out.println(DIVIDER);
     }
+
     /**
      * Print out help for exit command
      */

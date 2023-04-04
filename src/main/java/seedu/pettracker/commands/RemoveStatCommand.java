@@ -29,7 +29,7 @@ public class RemoveStatCommand extends Command {
             PetList.savePetsToStorage(storage, ui);
             ui.removeStatCommandMessage(petName, statName);
         } catch (InvalidStatException e) {
-            ui.invalidStatMessage();
+            ui.printInvalidStatMessage();
         } catch (PetNotFoundException e) {
             ui.petNotFoundMessage();
         }
