@@ -1,7 +1,11 @@
 package seedu.rainyDay.command;
 
 import org.junit.jupiter.api.Test;
-import seedu.rainyDay.data.*;
+import seedu.rainyDay.data.AllData;
+import seedu.rainyDay.data.FinancialReport;
+import seedu.rainyDay.data.FinancialStatement;
+import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.data.MonthlyExpenditures;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -8,7 +8,6 @@ import seedu.rainyDay.modules.Parser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 class ParserTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
