@@ -11,6 +11,7 @@ Hi this is,
 
 Enter "help" to find out how to use BagPacker
 ____________________________________________________________
+No save files detected. Hello new user!
 ____________________________________________________________
 Bye thanks for using,
  ____              _____           _
