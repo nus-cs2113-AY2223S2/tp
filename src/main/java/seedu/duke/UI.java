@@ -383,6 +383,10 @@ public class UI {
         System.out.println("Budget Storage is corrupted, resetting budget");
     }
 
+    public static void printDeadlineStorageCorruptedMessage() {
+        System.out.println("Deadline Storage is corrupted, resetting budget");
+    }
+
     public static void printInvalidBudgetAmountMessage() {
         System.out.println(INVALID_BUDGET_AMOUNT_MESSAGE);
     }
