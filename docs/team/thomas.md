@@ -32,6 +32,7 @@ Given below are my contributions to the project.
 #### Contributions to the DG:
 * Added implementation details for the edit income command.
 * Added implementation details for the edit expense command.
+* Added Non-Functional Requirements section.
 
 #### Contributions to team-based tasks:
 * Ensuring GitHub's Java CI checks are passing.
