@@ -613,6 +613,7 @@ public class Parser {
         }
     }
 
+    //@@author azriellee
     public Command ignoreStatement(String userInput) throws RainyDayException {
         String[] tokens = userInput.split("\\s+", 2);
         if (tokens.length < 2) {
