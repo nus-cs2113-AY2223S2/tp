@@ -84,7 +84,8 @@ public class AddCommand extends ExecutableCommand {
                 addToExistingIngredients(mealCompanionSession, quantity, indexOfExistingIngredient);
             }
         } catch (NumberFormatException e) {
-            mealCompanionSession.getUi().printMessage("OOPS, please input a number no greater than 10000 for quantity");
+            mealCompanionSession.getUi()
+                    .printMessage("OOPS, please input an integer no greater than 10000 for quantity");
         } catch (NullPointerException e) {
             mealCompanionSession.getUi().printMessage("OOPS, Certain fields are empty");
             mealCompanionSession.getUi().printMessage("please follow the format: add <ingredient> /qty <quantity>");
