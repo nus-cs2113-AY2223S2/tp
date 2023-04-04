@@ -2,9 +2,11 @@
 package seedu.duke.ui;
 
 import seedu.duke.diagnosis.symptoms.Symptom;
+import seedu.duke.diagnosis.symptoms.SymptomHandler;
 import seedu.duke.patient.Patient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Collections;
@@ -12,6 +14,7 @@ import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import static seedu.duke.save.Storage.saveData;
 
@@ -143,7 +146,6 @@ public class Information {
         }
     }
     //@@author JeraldChen
-
     /**
      * Prints the symptom history of the patient.
      * @param symptoms The patient's array of symptoms to print.
@@ -153,13 +155,12 @@ public class Information {
             System.out.println("You have not entered any symptoms.");
         } else {
             for (Symptom symptom : symptoms) {
-                System.out.println(symptom);
+                System.out.println(SymptomHandler.toString(symptom));
             }
         }
     }
 
     //@@author Geeeetyx
-
     /**
      * Deletes a set of selected symptoms from an array containing symptoms
      * previously selected by the patient.
@@ -167,35 +168,86 @@ public class Information {
      * @param symptoms The array of symptoms to delete the chosen symptoms from.
      */
     //@@author JeraldChen
-    public static void deleteSymptom(ArrayList<Symptom> symptoms) {
+    public static boolean deleteSymptom(ArrayList<Symptom> symptoms) {
+        boolean hasDeleted = false;
+        Scanner scanner = new Scanner(System.in);
         if (symptoms.size() == 0) {
             System.out.println("You have not entered any symptoms.");
-            return;
+            return false;
         }
         System.out.println("---------------------------------------------------");
         System.out.println("Here is the list of your symptoms:");
         for (int i = 0; i < symptoms.size(); i++) {
-            System.out.println((i + 1) + ". " + symptoms.get(i));
+            System.out.println((i + 1) + ". " + SymptomHandler.toString(symptoms.get(i)));
         }
-        System.out.println("Please enter the number of the symptom you want to delete.");
+        System.out.println("Please enter the numbers of the symptom you want to delete.");
+        System.out.println("Please put a space between each number to delete multiple symptoms.");
         System.out.println("---------------------------------------------------");
-        Scanner scanner = new Scanner(System.in);
+
         try {
-            int index = Integer.parseInt(scanner.nextLine());
-            if (index > 0 && index <= symptoms.size()) {
-                symptoms.remove(index - 1);
-                System.out.println("Successfully deleted symptom!");
-                System.out.println("Here is the updated list of your symptoms:");
-                for (int i = 0; i < symptoms.size(); i++) {
-                    System.out.println((i + 1) + ". " + symptoms.get(i));
+            List<Integer> deleteIndexIntegerList = parseAndSortInputs(scanner);
+            for (int deleteIndex : deleteIndexIntegerList) {
+                if (deleteIndex > symptoms.size() || deleteIndex < 0) {
+                    System.out.println("'" + deleteIndex + "' is not a valid symptom number.");
+                } else {
+                    symptoms.remove(deleteIndex - 1);
+                    hasDeleted = true;
                 }
-            } else {
-                System.out.println("Invalid command! Please enter a valid symptom.");
             }
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            System.out.println("Invalid number! Please enter a valid symptom number.");
+            if (hasDeleted) {
+                displayUpdatedSymptomList(symptoms);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            displayInvalidSymptomChoiceErrorMessage();
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter only numbers that match the symptom.");
+            System.out.println("Returning to main menu.");
+        }
+        return hasDeleted;
+    }
+
+    //@@author tanyizhe
+    /**
+     * Displays updated symptom list. Displays an alert if list of symptoms is empty.
+     * @param symptoms list of symptoms user has entered.
+     */
+    private static void displayUpdatedSymptomList(ArrayList<Symptom> symptoms) {
+        System.out.println("Successfully deleted symptom(s)!");
+        System.out.println("Here is the updated list of your symptoms:");
+        if (symptoms.isEmpty()) {
+            System.out.println("---------- Your symptom list is empty! ----------");
+        } else {
+            for (int i = 0; i < symptoms.size(); i++) {
+                System.out.println((i + 1) + ". " + SymptomHandler.toString(symptoms.get(i)));
+            }
         }
     }
+    /**
+     * Sorts input indexes in a descending order. Removes duplicate values.
+     * @param scanner Scans user input.
+     * @return List of integers in descending order representing indexes to be deleted.
+     */
+    private static List<Integer> parseAndSortInputs(Scanner scanner) {
+        String[] deleteIndexes = scanner.nextLine().split(" ");
+        List<String> deleteSortedIndexes = Arrays.asList(deleteIndexes);
+        List<Integer> deleteIndexIntegerList = deleteSortedIndexes.stream()
+                .map(Integer::parseInt)
+                .distinct()
+                .collect(Collectors.toList());
+        Collections.sort(deleteIndexIntegerList, Collections.reverseOrder());
+        return deleteIndexIntegerList;
+    }
+
+    //@@author JeraldChen
+    /**
+     * Displays invalid symptom choice error message.
+     */
+    private static void displayInvalidSymptomChoiceErrorMessage() {
+        System.out.println("Invalid number! Please enter a valid symptom number.");
+        System.out.println("Returning to main menu.");
+        //Parser.parseAccountCommand("5");
+    }
+
 
     //@@author Geeeetyx
     public static ArrayList<String> getQueueList() {

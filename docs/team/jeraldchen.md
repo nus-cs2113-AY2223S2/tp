@@ -47,7 +47,7 @@ Given below are my contributions to the project.
     interact with the user.  
 
 
-* **Code contributed**: [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2023-02-17&until=2023-04-02&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false)
+* **Code contributed**: [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=jeraldchen&breakdown=true)
   * Search 'Jeraldchen' to find my contributions.
   
   
