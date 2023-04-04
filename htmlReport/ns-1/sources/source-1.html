@@ -1,0 +1,150 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > BagPacker</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">bagpacker</a>
+</div>
+
+<h1>Coverage Summary for Class: BagPacker (bagpacker)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">BagPacker</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package bagpacker;
+&nbsp;
+&nbsp;import bagpacker.commands.ByeCommand;
+&nbsp;import bagpacker.commands.Command;
+&nbsp;import bagpacker.iohandler.Storage;
+&nbsp;import bagpacker.iohandler.Ui;
+&nbsp;import bagpacker.iohandler.Parser;
+&nbsp;import bagpacker.packingfunc.PackingList;
+&nbsp;
+&nbsp;import java.io.FileNotFoundException;
+&nbsp;
+<b class="nc">&nbsp;public class BagPacker {</b>
+&nbsp;    private static PackingList packingList;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Main entry-point for the java.BagPacker application.
+&nbsp;     */
+&nbsp;    public static void main(String[] args) {
+&nbsp;        // Initialise variables
+<b class="nc">&nbsp;        BagPacker.packingList = new PackingList();</b>
+<b class="nc">&nbsp;        Ui.initialMessage();</b>
+&nbsp;
+&nbsp;        // load save file if possible
+&nbsp;        try {
+<b class="nc">&nbsp;            Storage.load();</b>
+<b class="nc">&nbsp;            Ui.showUserReturn();</b>
+<b class="nc">&nbsp;        } catch (FileNotFoundException | RuntimeException e) {</b>
+<b class="nc">&nbsp;            Ui.showNewUser();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;        // run main program
+<b class="nc">&nbsp;        runBagPacker();</b>
+&nbsp;
+&nbsp;        // save packingList
+<b class="nc">&nbsp;        Storage.save(packingList);</b>
+&nbsp;
+&nbsp;        // Close program
+<b class="nc">&nbsp;        Ui.goodbyeMessage();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void runBagPacker() {
+<b class="nc">&nbsp;        while (ByeCommand.isBagPackerRunning) {</b>
+<b class="nc">&nbsp;            Command c = Parser.parse();</b>
+<b class="nc">&nbsp;            c.execute(packingList);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-04 11:43</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PackingList</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">bagpacker.packingfunc</a>
+</div>
+
+<h1>Coverage Summary for Class: PackingList (bagpacker.packingfunc)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PackingList</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (24/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package bagpacker.packingfunc;
+&nbsp;import java.util.ArrayList;
+&nbsp;
+&nbsp;/**
+&nbsp; * PackingList class contains methods to manipulate the users packing list
+&nbsp; */
+<b class="fc">&nbsp;public class PackingList {</b>
+<b class="fc">&nbsp;    private static ArrayList&lt;Item&gt; itemList = new ArrayList&lt;&gt;();</b>
+&nbsp;
+&nbsp;    /***
+&nbsp;     * Checks if item of the same name as itemName is found in the current packing list
+&nbsp;     *
+&nbsp;     * @param itemName
+&nbsp;     * @return true if item of same name as itemName is found else false
+&nbsp;     */
+&nbsp;    public static boolean itemFinder(String itemName) {
+<b class="fc">&nbsp;        for (Item item : itemList) {</b>
+<b class="fc">&nbsp;            if (itemName.equals(item.getItemName())) {</b>
+<b class="fc">&nbsp;                return true;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /***
+&nbsp;     * getExistingItem returns the object of type Item of the same name as input itemName
+&nbsp;     *
+&nbsp;     * this should only be called after checking that item does exist in the itemList
+&nbsp;     *
+&nbsp;     * @param itemName
+&nbsp;     * @return item of the name itemName
+&nbsp;     */
+&nbsp;    public static Item getExistingItem(String itemName) {
+<b class="fc">&nbsp;        Item existingItem = null;</b>
+<b class="fc">&nbsp;        for (int i = 0; i &lt; itemList.size(); i++) {</b>
+<b class="fc">&nbsp;            if (itemName.equals(itemList.get(i).getItemName())) {</b>
+<b class="fc">&nbsp;                existingItem = itemList.get(i);</b>
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        assert(existingItem != null);</b>
+<b class="fc">&nbsp;        return existingItem;</b>
+&nbsp;    }
+&nbsp;    /***
+&nbsp;     * Adds the added quantity to the current total quantity of an item in the itemList
+&nbsp;     *
+&nbsp;     * @param itemName name of the item to add total quantity to be packed
+&nbsp;     * @param addQty the quantity to add to the old total
+&nbsp;     */
+&nbsp;    public static void addToItemQuantity(String itemName, int addQty) {
+<b class="fc">&nbsp;        Item itemToAdd = getExistingItem(itemName);</b>
+<b class="fc">&nbsp;        int totalQuantity = itemToAdd.getTotalQuantity();</b>
+<b class="fc">&nbsp;        itemToAdd.setTotalQuantity(totalQuantity + addQty);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static void setItemList(ArrayList&lt;Item&gt; itemList) {
+<b class="fc">&nbsp;        PackingList.itemList = itemList;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Getter for itemList
+&nbsp;     *
+&nbsp;     * @return list of items
+&nbsp;     */
+&nbsp;    public static ArrayList&lt;Item&gt; getItemList() {
+<b class="fc">&nbsp;        return itemList;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds an item to the list.
+&nbsp;     */
+&nbsp;    public void addItem(Item toAdd) {
+<b class="fc">&nbsp;        itemList.add(toAdd);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Removes an item from the list.
+&nbsp;     */
+&nbsp;    public void deleteItem(Item toDelete) {
+<b class="fc">&nbsp;        itemList.remove(toDelete);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Marks an item as packed in the list.
+&nbsp;     */
+&nbsp;    public void packItem(Item toPack, int quantity) {
+<b class="fc">&nbsp;        toPack.setPacked(quantity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Marks an item as unpacked in the list.
+&nbsp;     */
+&nbsp;    public void unpackItem(Item toPack, int quantity) {
+<b class="fc">&nbsp;        toPack.setUnpacked(quantity);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Item get(int targetIndex) {
+<b class="fc">&nbsp;        return itemList.get(targetIndex);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns size of packing list
+&nbsp;     */
+&nbsp;    public int size() {
+<b class="fc">&nbsp;        return itemList.size();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-04 11:43</div>
+</div>
+</body>
+</html>
