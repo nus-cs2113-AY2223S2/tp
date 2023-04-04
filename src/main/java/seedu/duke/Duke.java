@@ -6,12 +6,14 @@ import command.CommandDelete;
 import command.CommandList;
 import command.CommandSort;
 import command.CommandTotal;
-import command.overview.CommandOverview;
 import command.CommandFind;
+import command.overview.CommandOverview;
+import command.CommandHelp;
 import data.ExpenseList;
 import data.Currency;
 import parser.Parser;
 import storage.Storage;
+import common.WelcomeMessage;
 
 import java.util.Scanner;
 
@@ -38,18 +40,21 @@ public class Duke {
     }
 
     public void run() {
-        String logo = " ____        _\n"
+        String logo =
+                  " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from\n");
+        WelcomeMessage.printWelcomeLogo();
         System.out.println("What is your name?");
 
         Scanner in = new Scanner(System.in);
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
         }
+        WelcomeMessage.welcomeHelper();
         String input = "";
         while (in.hasNextLine()) {
             input = in.nextLine();
@@ -82,6 +87,9 @@ public class Duke {
             case "find":
                 // Use the same parser function as category as it also need the input string from user
                 new CommandFind(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
+                break;
+            case "help":
+                new CommandHelp().execute();
                 break;
             default:
                 System.out.println("Unknown command.");
