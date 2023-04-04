@@ -368,5 +368,5 @@ walked is out of scope.
 - Save the java file to a new folder.
 - Open command prompt by typing `cmd` in the Windows search bar.
 - Navigate to the folder via `cd "folder path"`. (eg. `cd C:\Users\your_name\Desktop\BadMaths`).
-- Type `java -jar Badmaths.jar` to run BadMaths.
+- Type `java -jar BadMaths.jar` to run BadMaths.
 - Follow the `User Guide` to begin testing.

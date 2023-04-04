@@ -8,6 +8,7 @@
 
 package seedu.badmaths;
 
+import seedu.badmaths.Quadratic.Quadratic;
 import seedu.badmaths.trigograph.TrigoGraph;
 import seedu.badmaths.ui.Ui;
 import seedu.badmaths.matrix.Calculator;

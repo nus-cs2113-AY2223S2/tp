@@ -1,6 +1,7 @@
 package seedu.badmaths;
 
 import org.junit.jupiter.api.Test;
+import seedu.badmaths.Quadratic.Quadratic;
 
 import java.util.ArrayList;
 
