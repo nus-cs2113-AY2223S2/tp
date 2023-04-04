@@ -3,6 +3,7 @@ package seedu.mealcompanion.command.ingredients;
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
+import seedu.mealcompanion.ingredient.IngredientList;
 
 //@@author TJW0911
 /**
@@ -52,17 +53,18 @@ public class RemoveCommand extends ExecutableCommand {
      */
 
     private static void removeIngredient(MealCompanionSession mealCompanionSession, int quantity, String name) {
-        int fridgeQuantity = mealCompanionSession.getIngredients().get(indexOfExistingIngredient).getQuantity();
+        IngredientList ingredients = mealCompanionSession.getIngredients();
+        int fridgeQuantity = ingredients.get(indexOfExistingIngredient).getQuantity();
         assert fridgeQuantity >= quantity: "fridgeQuantity should be more than quantity to be removed";
         int newQuantity = fridgeQuantity - quantity;
-        mealCompanionSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
+        ingredients.get(indexOfExistingIngredient).setQuantity(newQuantity);
         mealCompanionSession.getUi().printMessage(
                 String.format("Success! new quantity of %s is %d", name, newQuantity));
         if (newQuantity == 0) {
-            mealCompanionSession.getIngredients().remove(indexOfExistingIngredient);
+            ingredients.remove(indexOfExistingIngredient);
             mealCompanionSession.getUi().printMessage(String.format("All %s has been removed", name));
         }
-        mealCompanionSession.getIngredientStorage().writeIngredientsToFile(mealCompanionSession.getIngredients());
+        mealCompanionSession.getIngredientStorage().writeIngredientsToFile(ingredients);
     }
 
     /**
@@ -74,7 +76,8 @@ public class RemoveCommand extends ExecutableCommand {
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
             int quantity = Integer.parseInt(amount);
-            indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
+            IngredientList ingredients = mealCompanionSession.getIngredients();
+            indexOfExistingIngredient = ingredients.findIndex(name);
             validateInput(mealCompanionSession, quantity, name);
             removeIngredient(mealCompanionSession, quantity, name);
         } catch (NumberFormatException e) {

@@ -4,6 +4,7 @@ import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
 import seedu.mealcompanion.ingredient.Ingredient;
+import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.recipe.IngredientDatabase;
 
 //@@author TJW0911
@@ -12,6 +13,7 @@ import seedu.mealcompanion.recipe.IngredientDatabase;
  */
 public class AddCommand extends ExecutableCommand {
 
+    private static final int MAX_INGREDIENTS = 10000;
     String name;
     String amount;
 
@@ -28,12 +30,17 @@ public class AddCommand extends ExecutableCommand {
      * @param index the index of the ingredient in the ingredients list
      */
 
-    private void addToExistingIngredients(MealCompanionSession mealCompanionSession, int quantity, int index) {
-        int newQuantity = mealCompanionSession.getIngredients().get(index).getQuantity() + quantity;
-        mealCompanionSession.getIngredients().get(index).setQuantity(newQuantity);
+    private void addToExistingIngredients(MealCompanionSession mealCompanionSession, int quantity, int index)
+            throws MealCompanionException {
+        IngredientList ingredients = mealCompanionSession.getIngredients();
+        int newQuantity = ingredients.get(index).getQuantity() + quantity;
+        if (newQuantity > MAX_INGREDIENTS) {
+            throw new MealCompanionException("OOPS, new total ingredient amount cannot exceed 10000");
+        }
+        ingredients.get(index).setQuantity(newQuantity);
         mealCompanionSession.getUi().printMessage("Here is the new quantity of the ingredient:");
-        mealCompanionSession.getUi().printMessage(String.valueOf(mealCompanionSession.getIngredients().get(index)));
-        mealCompanionSession.getIngredientStorage().writeIngredientsToFile(mealCompanionSession.getIngredients());
+        mealCompanionSession.getUi().printMessage(String.valueOf(ingredients.get(index)));
+        mealCompanionSession.getIngredientStorage().writeIngredientsToFile(ingredients);
     }
 
     /**
@@ -67,8 +74,8 @@ public class AddCommand extends ExecutableCommand {
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
             int quantity = Integer.parseInt(amount);
-            if (quantity <= 0) {
-                throw new MealCompanionException("OOPS, quantity must be greater than 0");
+            if (quantity <= 0 || quantity > MAX_INGREDIENTS) {
+                throw new MealCompanionException("OOPS, quantity provided must be greater than 0 and not exceed 10000");
             }
             int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
             if (indexOfExistingIngredient == -1) {
