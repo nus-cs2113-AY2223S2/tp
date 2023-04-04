@@ -158,8 +158,8 @@ Successfully adds Dish only if all the arguments are correct.
 Format: `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]`
 
 - Name of dish cannot be blank or start with spaces, it also cannot contain only spaces.
-- Price of dish must be an non negative integer value; i.e.: Price cannot be negative, in decimal, etc.
-- Ingredient list is encased betwen two square brackets and separated by a semi-colon. The ingredient list can contain any non negative number of items.
+- Price of dish must be a non-negative integer value and below 2,147,483,647 cents; i.e.: Price cannot be negative, in decimal, etc.
+- Ingredient list is encased between two square brackets and separated by a semicolon. The ingredient list can contain any non-negative number of items.
 
 Example 1: 
 ```
