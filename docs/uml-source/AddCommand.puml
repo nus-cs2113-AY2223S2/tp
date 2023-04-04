@@ -21,6 +21,8 @@ Apollo -> Parser : getCommand()
 activate Parser
 Parser -> add** : AddCommand()
 add++
+add -> add ++ : setUpLogger()
+add--
 return
 return
 
