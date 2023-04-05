@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
+import static pocketpal.frontend.util.UIUtil.formatPrice;
 
 
 @DisplayName("Test view command")
@@ -34,7 +35,7 @@ public class ViewCommandTest extends EntryTestUtil {
     private final EntryLog testEntries = new EntryLog();
 
     @BeforeEach
-    void init() {
+    void init(){
         testEntries.clearAllEntries();
         TEST_BACKEND.clearData();
         testEntries.addEntry(testEntry1);
@@ -48,22 +49,27 @@ public class ViewCommandTest extends EntryTestUtil {
 
     @Test
     @DisplayName("Test view by price range")
-    void testViewByPriceRange() {
-        try {
+    void testViewByPriceRange(){
+        try{
             ViewCommand testCommand =
-                    assertDoesNotThrow(() -> new ViewCommand(Integer.MAX_VALUE, null, 7.00, 10.50, "", ""));
+                    assertDoesNotThrow(() -> new ViewCommand(Integer.MAX_VALUE, null,
+                            7.00, 10.50,"",""));
             testCommand.execute(TEST_UI, TEST_BACKEND);
-            double expectedTotalPrice = 0;
+            double expectedTotalExpenditure = 0;
             for (int index = 1; index <= 2; index++) {
-                expectedTotalPrice += testEntries.getEntry(index).getAmount();
+                expectedTotalExpenditure += testEntries.getEntry(index).getAmount();
             }
+            double expectedTotalIncome = 0;
             StringBuilder expectedString = new StringBuilder();
             expectedString.append("These are the latest ")
                     .append((testEntries.getSize()) - 1)
                     .append(" entries.")
                     .append(System.lineSeparator());
-            expectedString.append("Total expenditure: $" + expectedTotalPrice).append(System.lineSeparator());
-            for (int index = 1; index <= 2; index++) {
+            expectedString.append("Total expenditure: $" + formatPrice(expectedTotalExpenditure))
+                    .append(System.lineSeparator());
+            expectedString.append("Total income: $" + formatPrice(expectedTotalIncome))
+                    .append(System.lineSeparator());
+            for (int index = 1; index <= 2; index ++){
                 String formattedEntry = ui.formatViewEntries(testEntries.getEntry(index), index);
                 expectedString.append(formattedEntry).append(System.lineSeparator());
             }
@@ -76,7 +82,7 @@ public class ViewCommandTest extends EntryTestUtil {
 
     @Test
     @DisplayName("Positive test for execute method for viewCommand")
-    void testExecuteMethod() {
+    void testExecuteMethod(){
         ViewCommand viewCommand1 = new ViewCommand(10, Category.ENTERTAINMENT,
                 MiscellaneousConstants.AMOUNT_MIN_DOUBLE, MiscellaneousConstants.AMOUNT_MAX_DOUBLE,
                 "20/11/19 23:30", "20/11/20 23:30");

@@ -7,6 +7,8 @@ import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.constants.UIConstants;
 import pocketpal.frontend.util.UIUtil;
 
+import static pocketpal.frontend.util.UIUtil.formatPrice;
+
 public class UI {
     /**
      * Returns a string based on the details of the Entry object and entryID entered.
@@ -22,7 +24,7 @@ public class UI {
         String category = entry.getCategoryString();
         String dateTime = entry.getDateTimeString();
         return "<" + entryID + ">: " + description +
-                " (" + category + ") - $" + UIUtil.formatPrice(price) +
+                " (" + category + ") - $" + formatPrice(price) +
                 " <<" + dateTime + ">>";
     }
 
@@ -79,15 +81,11 @@ public class UI {
      */
     // @@author leonghuenweng
     public void printEntriesToBeViewed(EntryLog entries, Category category) {
-        double totalPrice = 0;
         assert entries != null;
         if (entries.getSize() == 0) {
             print(MessageConstants.MESSAGE_NO_ENTRIES);
             printLine();
             return;
-        }
-        for (int index = 1; index <= entries.getSize(); index++) {
-            totalPrice += entries.getEntry(index).getAmount();
         }
         StringBuilder finalString = new StringBuilder();
         finalString.append("These are the latest ")
@@ -98,7 +96,10 @@ public class UI {
                         : ".")
                 .append(System.lineSeparator());
 
-        finalString.append("Total expenditure: $" + totalPrice).append(System.lineSeparator());
+        finalString.append("Total expenditure: $" + formatPrice(entries.getTotalExpenditure()))
+                .append(System.lineSeparator());
+        finalString.append("Total income: $" + formatPrice(entries.getTotalIncome()))
+                .append(System.lineSeparator());
 
         for (int index = 1; index <= entries.getSize(); index++) {
             String formattedEntry = formatViewEntries(entries.getEntry(index), index);
