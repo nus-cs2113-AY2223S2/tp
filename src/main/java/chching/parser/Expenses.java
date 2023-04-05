@@ -27,7 +27,7 @@ public class Expenses {
         try {
             expenseDate = LocalDate.parse(expenseDateString, formatter);
         } catch (DateTimeParseException e) {
-            throw new ChChingException("Date must be valid and have format: \"DD-MM-YYYY\"");
+            throw new ChChingException("Date must be valid with format: \"DD-MM-YYYY\"");
         }
         if (expenseDate.isAfter(LocalDate.now())) {
             throw new ChChingException("Date cannot be in the future");
