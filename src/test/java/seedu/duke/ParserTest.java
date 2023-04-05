@@ -20,7 +20,7 @@ public class ParserTest {
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
-        Storage storage = new Storage();
+        Storage storage = Storage.getInstance();
         DeadlineStorage deadlineStorage = new DeadlineStorage();
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
@@ -35,7 +35,7 @@ public class ParserTest {
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
-        Storage storage = new Storage();
+        Storage storage = Storage.getInstance();
         DeadlineStorage deadlineStorage = new DeadlineStorage();
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
@@ -50,7 +50,7 @@ public class ParserTest {
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
-        Storage storage = new Storage();
+        Storage storage = Storage.getInstance();
         DeadlineStorage deadlineStorage = new DeadlineStorage();
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
@@ -65,7 +65,7 @@ public class ParserTest {
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
-        Storage storage = new Storage();
+        Storage storage = Storage.getInstance();
         DeadlineStorage deadlineStorage = new DeadlineStorage();
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
