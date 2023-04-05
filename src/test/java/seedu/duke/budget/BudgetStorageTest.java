@@ -1,9 +1,10 @@
 package seedu.duke.budget;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.Order;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -19,10 +20,20 @@ class BudgetStorageTest {
     private static final String BUDGET_PATH = "data/budget.txt";
     File f = new File(BUDGET_PATH);
 
+    @BeforeEach
+    public void setBudgetPlanner() {
+        BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
+        budgetPlanner.setBudget(0);
+        budgetPlanner.setFoodTotalCost(0);
+        budgetPlanner.setAccommodationTotalCost(0);
+        budgetPlanner.setEntertainmentTotalCost(0);
+        budgetPlanner.setAirplaneTicketTotalCost(0);
+    }
+
     @Test
     @Order(1)
     void initialiseDatabase_txtFileDoesNotExist_catchIOExceptionSuccess() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         try {
             budgetStorage.initialiseDatabase();
         } catch (Exception e) {
@@ -34,7 +45,7 @@ class BudgetStorageTest {
     @Test
     @Order(2)
     void initialiseDatabase_txtFileDoesNotExist_creationSuccess() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         try {
             budgetStorage.initialiseDatabase();
         } catch (Exception e) {
@@ -49,7 +60,7 @@ class BudgetStorageTest {
     }
 
     void initialiseTestDatabase() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         budgetStorage.setBudget(TEST_INT);
         budgetStorage.setEntertainmentCost(TEST_INT);
         budgetStorage.setFoodCost(TEST_INT);
@@ -61,7 +72,7 @@ class BudgetStorageTest {
     @Order(13)
     void initialiseDatabase_existingTxtFile_readSuccess() {
         initialiseTestDatabase();
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         assertEquals(TEST_INT, budgetStorage.getBudget());
         assertEquals(TEST_INT, budgetStorage.getEntertainmentCost());
         assertEquals(TEST_INT, budgetStorage.getFoodCost());
@@ -80,7 +91,7 @@ class BudgetStorageTest {
         } catch (IOException e) {
             fail("Filewriter creation failed");
         }
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         assertEquals(0, budgetStorage.getBudget());
         assertEquals(0, budgetStorage.getEntertainmentCost());
         assertEquals(0, budgetStorage.getFoodCost());
@@ -92,7 +103,7 @@ class BudgetStorageTest {
     @Test
     @Order(3)
     void getAccommodationCost_initialiseZero_success() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         assertEquals(0, budgetStorage.getAccommodationCost());
         f.delete();
     }
@@ -100,7 +111,7 @@ class BudgetStorageTest {
     @Test
     @Order(4)
     void getAirplaneTicketCost_initialiseZero_success() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         assertEquals(0, budgetStorage.getAirplaneTicketCost());
         f.delete();
     }
@@ -108,7 +119,7 @@ class BudgetStorageTest {
     @Test
     @Order(5)
     void getFoodCost_initialiseZero_success() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         assertEquals(0, budgetStorage.getFoodCost());
         f.delete();
     }
@@ -116,7 +127,7 @@ class BudgetStorageTest {
     @Test
     @Order(6)
     void getEntertainmentCost_initialiseZero_success() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         assertEquals(0, budgetStorage.getEntertainmentCost());
         f.delete();
     }
@@ -124,7 +135,7 @@ class BudgetStorageTest {
     @Test
     @Order(7)
     void getBudget_initialiseZero_success() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         assertEquals(0, budgetStorage.getBudget());
         f.delete();
     }
@@ -132,7 +143,7 @@ class BudgetStorageTest {
     @Test
     @Order(8)
     void setBudget_correctInteger_success() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         budgetStorage.setBudget(TEST_INT);
         assertEquals(TEST_INT, budgetStorage.getBudget());
         f.delete();
@@ -141,7 +152,7 @@ class BudgetStorageTest {
     @Test
     @Order(9)
     void setAccommodationCost_correctInteger_success() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         budgetStorage.setAccommodationCost(TEST_INT);
         assertEquals(TEST_INT, budgetStorage.getAccommodationCost());
         f.delete();
@@ -150,7 +161,7 @@ class BudgetStorageTest {
     @Test
     @Order(10)
     void setAirplaneTicketCost_correctInteger_success() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         budgetStorage.setAirplaneTicketCost(TEST_INT);
         assertEquals(TEST_INT, budgetStorage.getAirplaneTicketCost());
         f.delete();
@@ -159,7 +170,7 @@ class BudgetStorageTest {
     @Test
     @Order(11)
     void setFoodCost_correctInteger_success() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         budgetStorage.setFoodCost(TEST_INT);
         assertEquals(TEST_INT, budgetStorage.getFoodCost());
         f.delete();
@@ -168,7 +179,7 @@ class BudgetStorageTest {
     @Test
     @Order(12)
     void setEntertainmentCost_correctInteger_success() {
-        BudgetStorage budgetStorage = new BudgetStorage();
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
         budgetStorage.setEntertainmentCost(TEST_INT);
         assertEquals(TEST_INT, budgetStorage.getEntertainmentCost());
         f.delete();

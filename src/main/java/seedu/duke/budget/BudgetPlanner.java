@@ -71,7 +71,7 @@ public class BudgetPlanner {
     }
 
     private void initialiseCost() {
-        budgetStorage = new BudgetStorage();
+        budgetStorage = budgetStorage.getInstance();
         budget = budgetStorage.getBudget();
         accommodationTotalCost = budgetStorage.getAccommodationCost();
         airplaneTicketTotalCost = budgetStorage.getAirplaneTicketCost();
