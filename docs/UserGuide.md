@@ -133,12 +133,26 @@ Format: `remove f/upc [UPC]` or `remove f/index [Index]`
 `remove f/index 0`: Removes the item with the `index` of `0` inside the inventory list.
 
 #### Sample output
+**Case I:** Remove by UPC
 ```
 remove f/upc 123
 ---------------------------------------------------------------------------
 Successfully removed the following item: 
 Name: orange
 UPC: 123
+Price: 5.0
+Quantity: 5
+Category: uncategorized
+---------------------------------------------------------------------------
+```
+
+**Case II:** Remove By Index
+```
+remove f/index 0
+---------------------------------------------------------------------------
+Successfully removed the following item: 
+Name: apple
+UPC: 456
 Price: 5.0
 Quantity: 5
 Category: uncategorized
@@ -393,17 +407,17 @@ Format: `sell upc/[UPC] qty/[Quantity]`
 
 **REQUIRED** Parameters:
 
-* The `upc/` parameter whereby `[UPC]` refers to the identification number assigned to the item at the point 
+* The `[UPC]` field refers to the identification number assigned to the item at the point 
 of **initial addition** of the item. `[UPC]` has to be valid, that is, it **EXISTS** in the database, and has to be 
 a **POSITIVE NUMBER** and **NOT EMPTY**. Do **NOT** include `[` and `]` in the input.
-* The `qty/` parameter whereby `[Quantity]` refers to the amount of stock to be **DEDUCTED** from the current 
+* The `[Quantity]` field refers to the amount of stock to be **DEDUCTED** from the current 
 stock levels recorded. `[Quantity]` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
 Do **NOT** include `[` and `]` in the input.
 
 !> **Enforced** valid `[Quantity]` input range to be from **1** up to the **Current Quantity Level** of the item,
 provided that the **Current Quantity Level** is **NOT ZERO**.
 
-Example of Usage: <br />
+#### Example of Usage
 `sell upc/123 qty/5`: Searches for the item of `UPC` code `123`, and if it exists, **DEDUCT** a `quantity` of `5`
 items from its current stock levels, provided that the total quantity after selling does not go below 0.
 
@@ -411,7 +425,7 @@ items from its current stock levels, provided that the total quantity after sell
 `quantity` of `10` items from its current stock levels. provided that the total quantity after selling does not go
 below 0.
 
-Sample output:
+#### Sample output
 ````
 __________________________________________________________________________
 sell upc/123 qty/5
@@ -439,17 +453,17 @@ Restock quantities of an item in the inventory list.
 Format: `restock upc/[UPC] qty/[Quantity]`
 
 **Required** Parameters:
-* The `upc/` parameter  whereby `[UPC]` refers to the identification number assigned to the item at the point of 
-**initial addition** of the item. `[UPC]` has to be valid, that is, it **EXISTS** in the database, and has to be
+* The `[UPC]` field refers to the identification number assigned to the item at the point of **initial 
+addition** of the item. `[UPC]` has to be valid, that is, it **EXISTS** in the database, and has to be
 a **POSITIVE NUMBER** and **NOT EMPTY**. Do **NOT** include `[` and `]` in the input.
-* The `qty/` parameter whereby `[Quantity]` refers to the amount of stock to be **ADDED** from the current stock 
+* The `[Quantity]` field refers to the amount of stock to be **ADDED** from the current stock 
 levels recorded. `[Quantity]` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
 Do **NOT** include `[` and `]` in the input.
 
 !> **Enforced** valid `[Quantity]` input range to be from **1** to **99,999,999**. Ensure that the post-restock 
 quantity does not add up to above 99,999,999.
 
-Example of Usage: <br />
+#### Example of Usage
 `restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a `quantity` of `5`
 items to its current stock levels, provided that the total quantity after restocking does **not** exceed 99,999,999.
 
@@ -457,7 +471,7 @@ items to its current stock levels, provided that the total quantity after restoc
 `quantity` of `10` items to its current stock levels, provided that the total quantity after restocking does **not**
 exceed 99,999,999.
 
-Sample output:
+#### Sample output
 ```
 __________________________________________________________________________
 restock upc/12345 qty/5
@@ -488,10 +502,10 @@ Format: `db`
 
 !> Note: There should **NOT** contain any further user inputs after typing `db`.
 
-Example of usage: <br />
+#### Example of usage
 `db`: Opens the dashboard.
 
-Sample output
+#### Sample output
 ```
 db
 __________________________________________________________________________

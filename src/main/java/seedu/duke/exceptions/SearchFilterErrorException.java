@@ -11,20 +11,24 @@ public class SearchFilterErrorException extends Exception {
     }
 
     public void incorrectSearchParameters() {
-        System.out.println("Wrong/Incomplete Format! Please use the format:" +
-                " search [KEYWORDS]");
+        System.out.println("Wrong/Incomplete Entry For Search by Keywords! Please refer to UG for more information" +
+                "\nSample Format: \"search [KEYWORDS]\"");
         Ui.printLine();
     }
 
     public void incorrectSearchUPCParameters() {
-        System.out.println("Wrong/Incomplete Format! Please use the format: searchupc [UPC]");
+        System.out.println("Wrong/Incomplete Entry For Search by UPC! Please refer to UG for more information\nSample "
+                + "Format: \"searchupc [UPC]\"");
         Ui.printLine();
     }
 
     public void incorrectFilterParameters() {
-        System.out.println("Wrong/Incomplete Format! Please use the format(s):\nFor price filter: filter f/price "
-                + "p/[gt/get/lt/let] [Price]\n" + "For category filter: filter f/category " +
-                "[list or table or c/[KEYWORDS]]");
+        System.out.println("Wrong/Incomplete Entry For Filter! Please refer to UG for more information\n" +
+                "Sample Format:\n For price filter: \"filter f/price p/{gt/get/lt/let} [Price]\"\n\n For category " +
+                "filter: " +
+                "\n   \"filter f/category list\"" +
+                "\n   \"filter f/category table\"" +
+                "\n   \"filter f/category [Keyword]\"");
         Ui.printLine();
     }
 

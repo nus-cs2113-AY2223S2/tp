@@ -4,8 +4,10 @@ import seedu.duke.utils.Ui;
 
 public class CategoryFormatException extends Exception {
     public void incorrectParameters(){
-        System.out.println("Wrong/Incorrect Format! Please use either of the formats:\nList all categories: cat list" +
-                "\nList all items and all categories:\ncat table" );
+        System.out.println("Wrong/Incomplete Entry For Restock! Please refer to UG for more information\n" +
+                "Sample Format:" +
+                "\nList all categories: \"cat list\"" +
+                "\nList all items and all categories: \"cat table\"" );
         Ui.printLine();
     }
 }
