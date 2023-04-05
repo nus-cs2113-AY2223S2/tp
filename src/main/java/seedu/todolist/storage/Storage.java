@@ -84,7 +84,7 @@ public class Storage {
      * Loads the task list from the local save file, if it exists.
      *
      * @return The task list read from the save file, if it exists and it is not empty. Otherwise, a newly created
-               task list is returned.
+     *         task list is returned.
      * @throws FileNotFoundException If no save file is found.
      * @throws JsonParseException If there is a formatting error in the saved json file.
      * @throws DateTimeParseException If there is an error in the formatting of deadlines saved in the json file.

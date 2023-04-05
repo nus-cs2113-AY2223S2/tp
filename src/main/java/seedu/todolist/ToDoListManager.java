@@ -43,7 +43,7 @@ public class ToDoListManager {
             catch (IOException e2) {
                 ui.printError(e2);
             }
-        } catch (DateTimeParseException | JsonParseException /*| MalformedJsonException*/ e3) { // caught an error in the saved file
+        } catch (DateTimeParseException | JsonParseException e3) { // caught an error in the saved file
             ui.printError(e3);
             ui.printSavedFileSyntaxError();
             isRunning = false; // terminate the program
@@ -62,7 +62,7 @@ public class ToDoListManager {
             } catch (ToDoListException e) {
                 ui.printError(e);
             } catch (IOException e2) {
-
+                ui.printError(e2);
             }
         }
         ui.close();
