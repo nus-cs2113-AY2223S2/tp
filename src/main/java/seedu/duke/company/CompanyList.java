@@ -124,7 +124,10 @@ public class CompanyList {
         ui.showSampleDataLoadedMessage();
     }
 
-    public void purgeData() {
+    public void purgeData() throws EmptyListException {
+        if (companyList.isEmpty()){
+            throw new EmptyListException();
+        }
         companyList.clear();
         ui.showSuccessfulPurgingMessage();
     }

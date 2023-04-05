@@ -76,6 +76,9 @@ public interface Parser {
             if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
+            if (inputWords.length > 2) {
+                throw new TooManyVariablesException();
+            }
             int companyNum = Integer.parseInt(inputWords[1]) - 1;
             DeleteCommand deleteCommand = new DeleteCommand(command, companyNum);
             return deleteCommand;
