@@ -540,8 +540,8 @@ public class Parser {
             if (matcher.group(8).trim().indexOf("-date") != 0 && !matcher.group(8).equals("")) {
                 throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
             }
-            for (int i = 1; i <= 8; i += 1) {
-                if (matcher.group(i) == null || i == 8) {
+            for (int i = 1; i <= 7; i += 1) {
+                if (matcher.group(i) == null) {
                     continue;
                 }
                 editFlagAndField.add(matcher.group(i));
