@@ -34,6 +34,8 @@ public interface Parser {
      * @throws NumberFormatException if error occurred due to user not providing a number where expected
      * @throws NullPointerException if error occurred due to null pointers
      * @throws IndexOutOfBoundsException if error occurred due to an index being out of bounds
+     * @throws TooManyVariablesException if error occurs due to user providing too many variables in the command
+     * @throws IntegerSizeExceededException if error occurs due to number size exceeded supposed value
      */
     static Command parse(String input) throws WrongFormatException, NumberFormatException,
             NullPointerException, IndexOutOfBoundsException, TooManyVariablesException, IntegerSizeExceededException {
@@ -45,13 +47,13 @@ public interface Parser {
             if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
+            if (inputWords.length > 2){
+                throw new TooManyVariablesException();
+            }
             if (inputWords[1].equals("companies")) {
                 ListCompanyCommand companyCommand = new ListCompanyCommand(command + " companies");
                 return companyCommand;
             } else if (inputWords[1].equals("venues")) {
-                if (inputWords.length > 2){
-                    throw new TooManyVariablesException();
-                }
                 ListVenueCommand venueCommand = new ListVenueCommand(command + " venues");
                 return venueCommand;
             } else if (inputWords[1].equals("unconfirmed")) {
@@ -90,6 +92,9 @@ public interface Parser {
             if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
+            if (inputWords.length > 1) {
+                throw new TooManyVariablesException();
+            }
             if (inputWords[1].equals("samples")) {
                 LoadSampleCompanyCommand loadSampleCompanyCommand = new LoadSampleCompanyCommand(command + " samples");
                 return loadSampleCompanyCommand;
@@ -102,11 +107,11 @@ public interface Parser {
             PurgeCommand purgeCommand = new PurgeCommand(command);
             return purgeCommand;
         case "choose":
-            if (inputWords.length != 3) {
-                throw new WrongFormatException();
+            if (inputWords.length > 3) {
+                throw new TooManyVariablesException();
             }
             if (inputWords[1].equals("venue")) {
-                int venueNum = Integer.parseInt(inputWords[2]) - 1;
+                int venueNum = Integer.parseInt(inputWords[2]);
                 ChooseVenueCommand chooseVenueCommand = new ChooseVenueCommand(command + " venue", venueNum);
                 return chooseVenueCommand;
             }
@@ -114,6 +119,9 @@ public interface Parser {
         case "confirm":
             if (inputWords.length == 1) {
                 throw new WrongFormatException();
+            }
+            if (inputWords.length > 2) {
+                throw new TooManyVariablesException();
             }
             BigInteger currConfirmNum = new BigInteger(inputWords[1]);
             checkInputLimit(currConfirmNum);
@@ -123,6 +131,9 @@ public interface Parser {
         case "unconfirm":
             if (inputWords.length == 1){
                 throw new WrongFormatException();
+            }
+            if (inputWords.length > 2) {
+                throw new TooManyVariablesException();
             }
             BigInteger currUnconfirmNum = new BigInteger(inputWords[1]);
             checkInputLimit(currUnconfirmNum);
@@ -152,7 +163,8 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             String commandType = command + " " + inputWords[1] + " " + inputWords[2];
-            UpdateEventNameCommand updateEventNameCommand = new UpdateEventNameCommand(commandType, inputWords[3]);
+            String eventName = input.substring(17).trim();
+            UpdateEventNameCommand updateEventNameCommand = new UpdateEventNameCommand(commandType, eventName);
             return updateEventNameCommand;
         case "help":
             ui.showGuide();

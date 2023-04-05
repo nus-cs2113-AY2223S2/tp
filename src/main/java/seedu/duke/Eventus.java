@@ -52,7 +52,7 @@ public class Eventus {
                 } else if (c.getCommandType().equals("choose venue")) {
                     c.execute(event, venueList);
                 } else if (c.getCommandType().equals("update event name")) {
-                    c.execute(event, venueList);
+                    c.execute(event);
                 } else {
                     c.execute(companyList);
                 }
