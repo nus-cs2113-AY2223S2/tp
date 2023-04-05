@@ -94,20 +94,8 @@ public class Parser {
 
     }
 
-    private static void parseAddCommand(String remainder, EventList eventList) throws NPExceptions {
-        // Method is still broken, someone will have to fix it fully later on when handling exceptions
-        // Note no "-" anywhere else.
-        String[] details = remainder.split("-");
-
-        boolean addModuleFlag = false;
-
-        if (details.length <= 1) {
-            throw new NPExceptions("Event description and start day of your event are strictly required!");
-        }
-        boolean[] duplicity = new boolean[7]; // to detect duplicate flags in command
-        Arrays.fill(duplicity, false);
-        String[] information = new String[7];
-        Arrays.fill(information, "");
+    private static void extractFields(boolean[] duplicity, String[] information, String[] details,
+            boolean addModuleFlag) throws NPExceptions {
         for (int i = 1; i < details.length; i++) {
             String field = details[i].substring(0, 2).trim();
             String change = details[i].substring(2).trim();
@@ -183,6 +171,25 @@ public class Parser {
                 break;
             }
         }
+    }
+
+    private static void parseAddCommand(String remainder, EventList eventList) throws NPExceptions {
+        // Method is still broken, someone will have to fix it fully later on when handling exceptions
+        // Note no "-" anywhere else.
+        String[] details = remainder.split("-");
+
+        boolean addModuleFlag = false;
+
+        if (details.length <= 1) {
+            throw new NPExceptions("Event description and start day of your event are strictly required!");
+        }
+        boolean[] duplicity = new boolean[7]; // to detect duplicate flags in command
+        Arrays.fill(duplicity, false);
+        String[] information = new String[7];
+        Arrays.fill(information, "");
+
+        extractFields(duplicity, information, details, addModuleFlag);
+
         addFormatChecker(information);
 
         // if body executed when user adds a module. Code inside "else" is same as before.
@@ -202,7 +209,7 @@ public class Parser {
             NusModule nusModule = nusmods.get(moduleCode);
             if (nusModule == null) {
                 Duke.LOGGER.log(Level.INFO, "User selected module that does not exist.");
-                throw new NPExceptions("Module "+ moduleCode +" does not exist!");
+                throw new NPExceptions("Module " + moduleCode + " does not exist!");
             }
 
             // Fetch lessons from module
@@ -210,8 +217,8 @@ public class Parser {
                     nusModule.getLesson(UserUtility.getUser().getSemester(), lectureType, classNumber);
             if (lessons == null || lessons.isEmpty()) {
                 Duke.LOGGER.log(Level.INFO, "User selected module that is unavailable for semester.");
-                Ui.printErrorMsg("Selected module is not available for semester " +
-                        UserUtility.getUser().getSemester());
+                Ui.printErrorMsg("Selected module is not available for semester "
+                        + UserUtility.getUser().getSemester());
                 return;
             }
 
@@ -246,16 +253,17 @@ public class Parser {
                 }
             }
             Duke.LOGGER.log(Level.INFO, "User added module to event list.");
-            Ui.addSuccessMsg("Added "+ count +" classes of Module: " + moduleCode);
+            Ui.addSuccessMsg("Added " + count + " classes of Module: " + moduleCode);
 
         } else {
             String eventName = information[0];
             String startTime = information[1];
             String startDate = information[2];
 
-            if (!information[4].equals("")) {
+            if (!information[3].equals("")) {
+
                 String endTime = information[3];
-                String endDate = information[4];
+                String endDate = information[4].equals("") ? startDate : information[4];
                 if (information[5].equals("")) {
                     eventList.addEvent(eventName, startTime, startDate, endTime, endDate);
                 } else {
@@ -263,8 +271,8 @@ public class Parser {
                 }
 
             } else {
-                if (!information[3].equals("")) {
-                    Ui.printETOmitted();
+                if (!information[4].equals("")) {
+                    Ui.printEDOmitted();
                 }
                 if (information[5].equals("")) {
                     eventList.addEvent(eventName, startTime, startDate);
@@ -278,7 +286,6 @@ public class Parser {
             if (duplicity[6] == true) {
                 eventList.reviseLocation(eventNum, information[6]);
             }
-
             Ui.addSuccessMsg(eventList.getLastTaskDescription());
         }
     }
