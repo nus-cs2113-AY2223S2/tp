@@ -16,9 +16,9 @@ import java.util.regex.Pattern;
 public class Account {
     public static int accountNumber = 1;
     //private static final String ACCOUNTS_FILE = accountName + ".txt";
+    public static ExpenseList account;
     protected static String accountName;
     private static String passwordHash;
-    public static ExpenseList account;
     private static final int MIN_PASSWORD_LENGTH = 8;
     private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]+");
 
