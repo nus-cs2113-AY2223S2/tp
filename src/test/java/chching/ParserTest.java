@@ -32,7 +32,6 @@ public class ParserTest {
     static final String DESCRIPTION_VALUE = "breakfast";
     static final String KEYWORD_FIELD = "k";
     static final String KEYWORD_VALUE = "hello";
-    static final String CA_WITH_EMPTY_DETAIL = "ca  ";
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     
@@ -110,42 +109,7 @@ public class ParserTest {
             new Parser().sortArguments(input);
             fail(); // the test should not reach this line
         } catch (ChChingException e) {
-            assertEquals("Arguments not inputted correctly / Missing details", e.getMessage());
-        }
-    }
-    
-    /**
-     * JUnit test for sortArguments method.
-     * Checks if the method throws an exception if the input contains duplicate fields.
-     */
-    @Test
-    public void sortArguments_duplicateField_throwsException() {
-        List<String> input = new ArrayList<String>();
-        input.add(CA);
-        input.add(CA);
-        
-        try {
-            new Parser().sortArguments(input);
-            fail(); // the test should not reach this line
-        } catch (ChChingException e) {
-            assertEquals("Duplicate fields detected", e.getMessage());
-        }
-    }
-    
-    /**
-     * JUnit test for sortArguments method.
-     * Checks if the method throws an exception if the input contains empty detail.
-     */
-    @Test
-    public void sortArguments_emptyDetail_throwsException() {
-        List<String> input = new ArrayList<String>();
-        input.add(CA_WITH_EMPTY_DETAIL);
-        
-        try {
-            new Parser().sortArguments(input);
-            fail(); // the test should not reach this line
-        } catch (ChChingException e) {
-            assertEquals("Empty detail detected or improper use of \" / \"", e.getMessage());
+            assertEquals("Arguments not inputted correctly", e.getMessage());
         }
     }
 

@@ -22,10 +22,18 @@ public class AddExpenseCommand extends Command {
      * @param expense       ArrayList of expenses.
      */
     public AddExpenseCommand(Expense expense) throws ChChingException {
-        if(expense.getCategory().length() > 30) {
+        if (expense == null) {
+            throw new ChChingException("No fields found");
+        } else if (expense.getCategory() == null) {
+            throw new ChChingException("Missing category field");
+        } else if(expense.getCategory().length() > 30) {
             throw new ChChingException("Character limit of 30 for category field exceeded");
+        } else if (expense.getDescription() == null) {
+            throw new ChChingException("Missing description field");
         } else if(expense.getDescription().length() > 99) {
             throw new ChChingException("Character limit of 99 for description field exceeded");
+        } else if (expense.getDate() == null) {
+            throw new ChChingException("Missing date field");
         } else if (expense.getValue() <= 0) {
             throw new ChChingException("Invalid/Missing expense value");
         }
