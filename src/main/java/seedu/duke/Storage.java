@@ -10,16 +10,24 @@ import java.util.Comparator;
 
 public class Storage implements DatabaseInterface {
 
+    private static Storage instance = null;
     private static final String SAVED_MODULES_FILE_PATH = "data/saved_modules.txt";
     private ArrayList<Module> modules;
 
-    public Storage() {
+    private Storage() {
         this.modules = new ArrayList<>();
         try {
             initialiseDatabase();
         } catch (IOException e) {
             System.out.println("Initialise Saved Modules Failure");
         }
+    }
+
+    public static Storage getInstance() {
+        if (instance == null) {
+            instance = new Storage();
+        }
+        return instance;
     }
 
     public void initialiseDatabase() throws IOException {
