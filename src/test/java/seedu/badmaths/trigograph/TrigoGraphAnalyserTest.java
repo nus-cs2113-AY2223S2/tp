@@ -49,4 +49,12 @@ class TrigoGraphAnalyserTest {
         test.canStartAnalyser();
         assertEquals("tan", test.getTrig());
     }
+
+    @Test
+    void zeroFrequencyExpectZeroFrequencyException(){
+        TrigoGraphAnalyser test = new TrigoGraphAnalyser("2*tan(0*x-1)+2");
+        assertThrows(ZeroFrequencyException.class,()->{
+            test.findFreq("0*x",false);
+        });
+    }
 }

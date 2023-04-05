@@ -41,7 +41,7 @@ public class TrigoGraph {
     }
 
 
-    public void printGraphDetails(){
+    public void printGraphDetails() {
         if(trig.equals("tan")){
             Ui.printTanHasNoAmplitude();
         }else{
