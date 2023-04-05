@@ -36,7 +36,7 @@
             RemoveStatCommand -> PetList
                 PetList -> PetList:find(petName)
                 activate PetList
-                
+                return
             
                 activate Pet
                 return
@@ -57,6 +57,14 @@
                         activate Pet
                         return
                     end
+
+            return
+            return
+            return 
+            return 
+            return 
+             
+             
 
             
                 
