@@ -31,12 +31,11 @@
 
 ## Introduction 🧮
 
-Hello! Welcome to BadMaths! BadMaths is a quick lookup tool for
-trigonometry graphs and basic matrix operations that aims to help students save
-time when performing Mathematical Operations.
+Hello! Welcome to BadMaths! BadMaths is an integrated study tool that performs Mathematical Operations and contains
+various features for note-taking.
 
 To help you get started, our team has put together this user guide to guide you on
-the steps to operate BadMaths for your Mathematical woes.
+the steps to operate BadMaths for your study woes.
 
 ## Quick Start
 
@@ -445,6 +444,13 @@ Goodbye!
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+### Graph
+ ```
+ Graph 2*tan(2*pi*x+5)
+ ```
+ ```
+ Graph sin(1*x)
+ ```
+ ```
+ Graph 2*cos(1*x-6)-100
+ ```

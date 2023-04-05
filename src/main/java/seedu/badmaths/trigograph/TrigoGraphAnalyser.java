@@ -44,7 +44,6 @@ public class TrigoGraphAnalyser {
     private double freq;
 
 
-
     public TrigoGraphAnalyser(String trigoEqn) {
         this.trigoEqn = trigoEqn;
     }
@@ -73,6 +72,7 @@ public class TrigoGraphAnalyser {
      * Main method that calls various methods to split the equation into Amplitude, Frequency, Phase Shift,
      * and Vertical Shift. This method also catches the exceptions thrown and prints out the corresponding message to
      * the user.
+     *
      * @return true if equation entered is valid.
      */
     public boolean canStartAnalyser() {
@@ -93,7 +93,6 @@ public class TrigoGraphAnalyser {
             return CAN_RUN_ANALYSER;
         } catch (NumberFormatException e) {
             logger.log(Level.SEVERE, "NumberFormatException", e);
-            Ui.printIncorrectFormatEntered();
             return CANNOT_RUN_ANALYSER;
         } catch (GraphException e) {
             logger.log(Level.SEVERE, "GraphException", e);
@@ -101,11 +100,9 @@ public class TrigoGraphAnalyser {
             return CANNOT_RUN_ANALYSER;
         } catch (ArrayIndexOutOfBoundsException e) {
             logger.log(Level.SEVERE, "ArrayIndexOutOfBounds", e);
-            Ui.printIncorrectFormatEntered();
             return CANNOT_RUN_ANALYSER;
         } catch (IllegalArgumentException e) {
             logger.log(Level.SEVERE, "IllegalArguementException", e);
-            Ui.printIncorrectFormatEntered();
             return CANNOT_RUN_ANALYSER;
         } catch (NegativeFrequencyException e) {
             Ui.printNegativeFrequencyEntered();
@@ -118,6 +115,7 @@ public class TrigoGraphAnalyser {
 
     /**
      * Assigns an int to this amplitude.
+     *
      * @param eqn contains the value of amplitude at index 0 and the remaining equation at index 1.
      * @throws NumberFormatException if Double.parseDouble attempts to parse a non-numerical string such as "abc".
      */
@@ -137,13 +135,14 @@ public class TrigoGraphAnalyser {
         }
     }
 
-    private void testForMultipleAsterisk(String input) throws NumberFormatException {
+    public void testForMultipleAsterisk(String input) throws NumberFormatException {
         if (input.startsWith("*")) {
             throw new NumberFormatException();
         }
     }
 
-    public String[] splitAmplitudeFromTrigoEqn() throws IllegalArgumentException, GraphException {
+    public String[] splitAmplitudeFromTrigoEqn() throws GraphException,
+            NumberFormatException, ArrayIndexOutOfBoundsException {
         testForSignOfAmplitude();
         String[] amplitudeAndEqn = trigoEqn.split("\\*", PLACEHOLDER_SIZE_WITH_AMPLITUDE_AND_EQN);
         testForMultipleAsterisk(amplitudeAndEqn[1]);
@@ -200,6 +199,7 @@ public class TrigoGraphAnalyser {
     /**
      * Remove the closing bracket in {@code trigo} to form a proper trigonometric equation containing frequency and
      * phase.
+     *
      * @param trigo is a trigo equation with amplitude and vertical shift removed
      * @throws IllegalArgumentException
      * @throws NegativeFrequencyException
@@ -275,7 +275,7 @@ public class TrigoGraphAnalyser {
         return false;
     }
 
-    private boolean testForNegativeFreq(String freq) {
+    public boolean testForNegativeFreq(String freq) {
         if (freq.startsWith(STRING_NEGATIVE_SIGN)) {
             return true;
         }
@@ -290,7 +290,7 @@ public class TrigoGraphAnalyser {
             }
             String freqComponents;
             if (freqWithX.equals("x")) {
-                freq = ONE_HERTZ;
+                freq = ONE_HERTZ / (2 * Math.PI);
             } else {
                 /*
                  *  freqWithX can have 1 or 2 "*", e.g. 5*pi*x or 5*x, simply split to get "5" will suffice as checks

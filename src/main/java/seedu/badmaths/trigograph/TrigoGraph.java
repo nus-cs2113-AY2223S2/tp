@@ -1,6 +1,9 @@
 package seedu.badmaths.trigograph;
+
 import seedu.badmaths.IllegalTodoException;
 import seedu.badmaths.ui.Ui;
+
+import java.awt.HeadlessException;
 
 
 public class TrigoGraph {
@@ -17,39 +20,66 @@ public class TrigoGraph {
 
     public void startGraphAnalysis() throws IllegalTodoException {
         TrigoGraphAnalyser analyser = new TrigoGraphAnalyser(trigoEqn);
-        if(trigoEqn.isEmpty()){
+        if (trigoEqn.isEmpty()) {
             throw new IllegalTodoException();
         }
-        if(analyser.canStartAnalyser()){
-            assert analyser.canStartAnalyser() == true: "Information analysed.";
-            getGraphDetails(analyser);
-            printGraphDetails();
-            TrigoGraphVisualiser visualiser = new TrigoGraphVisualiser(amplitude,phase,frequency,verticalShift,trig);
-            visualiser.startVisualiser();
-        } else{
-            assert analyser.canStartAnalyser() == false;
+        try {
+            if (analyser.canStartAnalyser()) {
+                getGraphDetails(analyser);
+                printGraphDetails();
+                TrigoGraphVisualiser visualiser = new TrigoGraphVisualiser(amplitude, phase, frequency, verticalShift,
+                        trig);
+                visualiser.startVisualiser();
+            } else {
+                throw new IllegalTodoException();
+            }
+        } catch (IllegalTodoException e) {
+            throw new IllegalTodoException();
+        } catch (HeadlessException e) {
+            assert true;
         }
 
     }
-    public void getGraphDetails(TrigoGraphAnalyser analyser){
+
+    public void getGraphDetails(TrigoGraphAnalyser analyser) {
         amplitude = analyser.getAmplitude();
         frequency = analyser.getFreq();
         phase = analyser.getPhase();
         verticalShift = analyser.getVerticalShift();
         trig = analyser.getTrigonometry();
-        assert true: "Information retrieved.";
+        assert true : "Information retrieved.";
     }
 
 
-    public void printGraphDetails(){
-        if(trig.equals("tan")){
+    public void printGraphDetails() {
+        if (trig.equals("tan")) {
             Ui.printTanHasNoAmplitude();
-        }else{
+        } else {
             Ui.printAmplitude(amplitude);
         }
         Ui.printFrequency(frequency);
         Ui.printPhase(phase);
         Ui.printVerticalShift(verticalShift);
-        assert true: "Information printed.";
+        assert true : "Information printed.";
+    }
+
+    public double getAmplitude() {
+        return amplitude;
+    }
+
+    public double getFrequency() {
+        return frequency;
+    }
+
+    public double getPhase() {
+        return phase;
+    }
+
+    public double getVerticalShift() {
+        return verticalShift;
+    }
+
+    public String getTrig() {
+        return trig;
     }
 }
