@@ -55,7 +55,10 @@ public class TaskList {
      */
     public static void listTasks() {
         for (int i = 0; i < numberOfTasks; i++) {
-            System.out.print((i + 1) + ". " + taskList.get(i).getStatusIcon() + " " + taskList.get(i).description);
+            String number = Integer.toString(i + 1);
+            String icon = taskList.get(i).getStatusIcon();
+            String description = taskList.get(i).description;
+            System.out.print(number + ". " + icon + " " + description);
 
             if (taskList.get(i).deadline != null) {
                 System.out.println(" (Deadline: " + taskList.get(i).deadline + ")");
