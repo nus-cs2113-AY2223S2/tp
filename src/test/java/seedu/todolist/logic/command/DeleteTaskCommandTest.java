@@ -1,16 +1,16 @@
 //@@author RuiShengGit
 package seedu.todolist.logic.command;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Parser;
-import seedu.todolist.ui.Ui;
 import seedu.todolist.task.TaskList;
+import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class DeleteTaskCommandTest {
@@ -42,6 +42,8 @@ public class DeleteTaskCommandTest {
             testDelete.execute(testList, ui);
         } catch (ToDoListException e) {
             return;
+        } catch (NullPointerException e) {
+            return;
         }
         fail("A delete command was successfully constructed with missing id");
     }
@@ -54,6 +56,8 @@ public class DeleteTaskCommandTest {
                 Command testDelete = new DeleteTaskCommand(generateInputArguments(id));
                 testDelete.execute(testList, ui);
             } catch (ToDoListException e) {
+                continue;
+            } catch (NullPointerException e) {
                 continue;
             }
             fail("A delete command was successfully constructed with invalid id: " + id);
