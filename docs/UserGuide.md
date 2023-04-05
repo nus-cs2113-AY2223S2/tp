@@ -8,10 +8,10 @@ them keep track of their expense based on category, time, amount, and currency.
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](https://github.com/AY2223S2-CS2113-T13-2/tp/releases).
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Duke.jar` command to run the application.
-1. Enter your name when prompted in the command box and press enter.
-1. Type the command in the command box and press Enter to execute it.
+2. Down the latest version of `Duke` from [here](https://github.com/AY2223S2-CS2113-T13-2/tp/releases).
+3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Duke.jar` command to run the application.
+4. Enter your name when prompted in the command box and press enter.
+5. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
 
    * `add amt/100 t/15-03-2023`: Add an expense entry with a value of SGD100.0 and a date of 15th March 2023 to the expense list.
@@ -84,7 +84,7 @@ Delete expense entry with index X in the expense list.
 
 Format: `delete INDEX`
 
-* INDEX is entry number INDEX in the expense list displayed with `list' command, following base-1 indexing.
+* INDEX is entry number INDEX in the expense list displayed with `list` command, following base-1 indexing.
 * Will display `Invalid expense index. Please try again.` if INDEX is greater than number of items in the list.
 
 Example of usage:
@@ -137,7 +137,7 @@ Format: `category CATEGORY`
 
 * CATEGORY represents the category that user want.
 * If the category doesn't belong to the categories that user have entered before, it will tell the user to switch to another one.
-* The method also will tell user how many categories they have, and also what are these categories, so as to better help them with future obtaining purpose
+* The method also will tell user how many categories they have, and also what are these categories, to better help them with future obtaining purpose
 
 Example of usage:
 
