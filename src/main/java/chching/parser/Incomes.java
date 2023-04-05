@@ -34,12 +34,16 @@ public class Incomes {
         Income inc = null;
         String incomeDescription = argumentsByField.get("de");
         String incomeDateString = argumentsByField.get("da");
+        String incomeValueString = argumentsByField.get("v");
+        double incomeValue;
         LocalDate incomeDate = parseDate(incomeDateString);
 
-        double incomeValue;
+        if(!DecimalsChecker.isTwoDecimals(incomeValueString)) {
+            throw new ChChingException("Expense value must be a valid double that is 2 d.p. or less");
+        }
+
         try {
-            incomeValue = Float.parseFloat(argumentsByField.get("v"));
-            incomeValue = Math.round(incomeValue * 100.0) / 100.0;
+            incomeValue = Double.parseDouble(incomeValueString);
         } catch (Exception e) {
             throw new ChChingException("Income value must be a valid double that is 2 d.p. or less");
         }

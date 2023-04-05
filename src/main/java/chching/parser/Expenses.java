@@ -45,12 +45,16 @@ public class Expenses {
         String expenseCategory = argumentsByField.get("c");
         String expenseDescription = argumentsByField.get("de");
         String expenseDateString = argumentsByField.get("da");
+        String expenseValueString = argumentsByField.get("v");
+        double expenseValue;
         LocalDate expenseDate = parseDate(expenseDateString);
 
-        double expenseValue;
+        if(!DecimalsChecker.isTwoDecimals(expenseValueString)) {
+            throw new ChChingException("Expense value must be a valid double that is 2 d.p. or less");
+        }
+
         try {
-            expenseValue = Float.parseFloat(argumentsByField.get("v"));
-            expenseValue = Math.round(expenseValue * 100.0) / 100.0;
+            expenseValue = Double.parseDouble(expenseValueString);
         } catch (Exception e) {
             throw new ChChingException("Expense value must be a valid double that is 2 d.p. or less");
         }
