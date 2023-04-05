@@ -18,7 +18,6 @@ import java.util.Scanner;
 
 //@@author: ChubbsBunns
 public class AchievementListHandler extends TextDataUtility {
-    private static final String ACHIEVEMENT_LIST_FILE_LOCATION = "allAchievements.txt";
     private static final int NUM_PARAMS_ACHIEVEMENT = 7;
     private static final int NAME_INDEX = 0;
     private static final int REQUIREMENT_INDEX = 1;
@@ -46,6 +45,13 @@ public class AchievementListHandler extends TextDataUtility {
         } catch (DukeError e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void clearAchievementsData() {
+        File achievementTextFile = new File(ACHIEVEMENT_LIST_FILE_LOCATION);
+        clearAchievementListData(achievementTextFile);
+        achievementList.clear();
+        loadAchievementsFromFile();
     }
 
 

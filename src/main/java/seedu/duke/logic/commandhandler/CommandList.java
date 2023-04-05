@@ -24,5 +24,6 @@ public interface CommandList {
     String EXERCISE_DATA_COMMAND = "data";
     String DELETE_COMMAND = "delete";
     String ACHIEVEMENTS = "achievements";
+    String CLEAR_ACHIEVEMENTS = "clear_achievements";
 
 }

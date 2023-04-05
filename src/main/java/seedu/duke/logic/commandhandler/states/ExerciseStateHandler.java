@@ -21,11 +21,14 @@ import java.util.ArrayList;
  * when the user is doing a workout
  */
 public class ExerciseStateHandler {
+    private static final String BLANK = " ";
+    private static final String BRACKET = ")";
 
     private static ArrayList<ExerciseData> previousGeneratedWorkout = new ArrayList<>();
     public boolean workoutOngoing;
     private Session currentSessionWorkout;
     private Storage storage;
+
 
     public ExerciseStateHandler (Storage storage) {
         this.storage = storage;
@@ -56,10 +59,9 @@ public class ExerciseStateHandler {
         if (previousGeneratedWorkout.size() == 0) {
             throw new DukeError(ErrorMessages.ERROR_NO_EXERCISE_LOADED.toString());
         }
-        System.out.println("The current workout is: ");
-        System.out.println("The size ofthe current workout session is " + previousGeneratedWorkout.size());
+        System.out.println("The current workout contains: ");
         for (int i = 0; i < previousGeneratedWorkout.size(); i++) {
-            System.out.println(previousGeneratedWorkout.get(i).getName());
+            System.out.println((i + 1) + BRACKET + BLANK + previousGeneratedWorkout.get(i).getName());
         }
 
         System.out.println("Start workout! You got this, all the best!");
@@ -149,7 +151,7 @@ public class ExerciseStateHandler {
         if (completedAchievements.size() != 0) {
             System.out.println("Congradulations! You have achieved the following achievements:");
             for (int i = 0; i < completedAchievements.size(); i++) {
-                System.out.println((i + 1) + ") " + completedAchievements.get(i).getName() + ": " +
+                System.out.println((i + 1) + BRACKET + BLANK + completedAchievements.get(i).getName() + ": " +
                                        completedAchievements.get(i).getRequirement());
             }
             System.out.println("Keep on working out with Fitness Duke!");
