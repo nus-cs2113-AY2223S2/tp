@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class UI {
     public static final String INVALID_BUDGET_AMOUNT_MESSAGE = "Please input a valid amount which is positive whole " +
-            "number more than equals to 0 and less than " + BudgetPlanner.MAX_BUDGET;
+            "number more than equals to 0 and less than equal to " + BudgetPlanner.MAX_BUDGET;
     private static final int LIST_PU_LENGTH_FOR_PU_ABB = 52;
     private static final String LIST_PU_HEADER_MESSAGE = "   Partner University Name                  " +
             "         PU Abb    ";
