@@ -18,7 +18,7 @@ public class MessageList {
     public static final String TAB = "    ";
     public static final String ACCOUNT_MESSAGE = "> Type \"login\" to start manage your expense. \n" +
             "> Haven't got your account yet? Type \"signup\" to create your account. \n" +
-            "> Type \"logout\" to end and auto-save your work. \n";
+            "> Type \"logout\" to end and auto-save your work.";
     public static final String COMMAND_LIST_MESSAGE =
             "> Type \"list\" to list all the expenses. \n" +
                     "> Type \"add amt/x t/y cat/z\" with x is the amount of expense, " +

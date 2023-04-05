@@ -5,8 +5,7 @@ import command.CommandCategory;
 import command.CommandDelete;
 import command.CommandList;
 import command.CommandSort;
-import command.CommandCategory;
-import data.Account;
+import common.WelcomeMessage;
 import command.CommandTotal;
 import command.CommandFind;
 import command.overview.CommandOverview;
@@ -19,13 +18,9 @@ import storage.Storage;
 
 import java.util.Scanner;
 
-import static common.MessageList.HELLO_MESSAGE;
-import static common.MessageList.COMMAND_LIST_MESSAGE;
-import static common.MessageList.MESSAGE_DIVIDER;
-import static common.MessageList.NAME_QUESTION;
 import static data.Account.logout;
 //import static data.ExpenseList.showToUser;
-import static parser.ParserPassword.*;
+import static parser.ParserAccount.initialize;
 
 
 public class Duke {
@@ -35,40 +30,30 @@ public class Duke {
     protected ExpenseList expenseList;
     protected Currency currency;
 
-    //protected Storage storage;
-
 
     //TODO: arbitrary filePath
     protected String filePath = "test.json";
 
     /**
-     * Initialize Duke and instantiate parser and expenseList objects.
+     * Initialize Duke and instantiate parser and account objects.
      */
     public Duke() {
         parser = new Parser();
         expenseList = new ExpenseList();
         currency = new Currency();
         storage = new Storage(expenseList);
-        //expenseList.setExpenseList(storage.loadExpenses(filePath));
+        //account.setExpenseList(storage.loadExpenses(filePath));
     }
 
     public void run() {
-        String logo =
-                  " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n");
-       // WelcomeMessage.printWelcomeLogo();
-        System.out.println("What is your name?");
-
+        WelcomeMessage.printWelcomeLogo();
+        System.out.println("Hello! What is your name?");
         Scanner in = new Scanner(System.in);
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
         }
         initialize(in);
-        //WelcomeMessage.welcomeHelper();
+        WelcomeMessage.welcomeHelper();
         String input = "";
         while (in.hasNextLine()) {
             input = in.nextLine();
@@ -111,7 +96,7 @@ public class Duke {
             default:
                 System.out.println("Unknown command.");
             }
-            //storage.saveExpenses(filePath);
+            storage.saveExpenses(filePath);
         }
         in.close();
     }

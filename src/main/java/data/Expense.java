@@ -113,5 +113,8 @@ public class Expense {
         return (this.expenseTime + VERTICAL_BAR + this.description + "\n");
     }
 
+    public String toAdd() {
+        return ("add amt/" + this.expenseAmount + " t/" + this.expenseTime.toStringSave() + " cat/" + this.description);
+    }
 }
 

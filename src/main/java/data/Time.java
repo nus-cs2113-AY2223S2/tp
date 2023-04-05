@@ -62,4 +62,7 @@ public class Time implements Comparable<Time> {
         return this.getTime().compareTo(o.getTime());
     }
 
+    public String toStringSave() {
+        return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    }
 }

@@ -9,7 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.FileWriter;
-import java.util.ArrayList;
+import java.io.File;
+
 import java.util.regex.Pattern;
 
 public class Account {
@@ -18,24 +19,22 @@ public class Account {
     private static final int MIN_PASSWORD_LENGTH = 8;
     private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]+");
     protected static String accountName;
-    protected static ArrayList<Expense> account;
     protected int accountSize;
     private static String passwordHash;
-    protected static ExpenseList expenseList;
+    public static ExpenseList account;
 
 
-    public Account(String accountName) {
-        this.account = new ArrayList<>();
+    public Account(String accountName, String passwordHash) {
         accountSize = 0;
         this.accountName = accountName;
         this.passwordHash = hashPassword(passwordHash);
         accountNumber++;
-        this.expenseList = new ExpenseList();
+        this.account = new ExpenseList();
 
         // Read the expense list from the file with the file path of accountName + ".txt" if it exists
         try (BufferedReader br = new BufferedReader(new FileReader(
                 "./src/main/java/storage/" + accountName + ".txt"))) {
-            expenseList = new ExpenseList(br);
+            account = new ExpenseList(br);
         } catch (FileNotFoundException e) {
             // The file does not exist, which means there is no saved expense list
         } catch (IOException e) {
@@ -51,10 +50,6 @@ public class Account {
         return this.accountName;
     }
 
-    public Expense getExpense(int index) {
-        return account.get(index);
-    }
-
     public String getPasswordHash() {
         return passwordHash;
     }
@@ -67,7 +62,7 @@ public class Account {
         this.passwordHash = hashPassword(password);
     }
 
-    public ExpenseList getExpenseList() { return expenseList; }
+    public ExpenseList getExpenseList() { return account; }
 
     public void signup() {
         // Check if username contains special characters
@@ -75,7 +70,7 @@ public class Account {
             System.out.println("Username must contain only letters and numbers.");
             return;
         } else if (passwordHash == null) {
-            System.out.println("Password must contain only numbers.");
+            System.out.println("Password must be specified");
             return;
         } else if (passwordHash.length() < MIN_PASSWORD_LENGTH) {
             System.out.println("Password must be at least " + MIN_PASSWORD_LENGTH + " characters long.");
@@ -104,33 +99,44 @@ public class Account {
     }
 
 
-    public void login() {
-        // Check if username and passwordHash match the ones stored in the "username.txt" file
-        try {
-            FileReader reader = new FileReader("./src/main/java/storage/" + accountName + ".txt");
-            BufferedReader bufferedReader = new BufferedReader(reader);
-
-            String line;
+    public String login() {
+        File file = new File("./src/main/java/storage/" + accountName + ".txt");
+        if (!file.exists()) {
+            return "Log In Failed. Invalid login credentials.";
+        } else {
             boolean found = false;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts[0].equals(accountName) && parts[1].equals(passwordHash)) {
-                    found = true;
-                    break;
+            // Check if username and passwordHash match the ones stored in the "username.txt" file
+            try {
+                FileReader reader = new FileReader("./src/main/java/storage/" + accountName + ".txt");
+                BufferedReader bufferedReader = new BufferedReader(reader);
+
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts[0].equals(accountName) && parts[1].equals(passwordHash)) {
+                        found = true;
+                        break;
+                    }
                 }
+                while ((line = bufferedReader.readLine()) != null && found) {
+                    String[] parts2 = line.split(" ");
+                    Parser parser = new Parser();
+                    if (!(parts2[0].equals(accountName)) && found) {
+                        new CommandAdd(account.getExpenseList(),
+                                parser.extractAddParameters(line), new Currency()).executeLogIn();
+                    }
+                }
+                bufferedReader.close();
+                reader.close();
+                if (found) {
+                    return "Login successful.";
+                } else {
+                    return "Invalid username or password.";
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "An error occurred while logging in.";
             }
-
-            bufferedReader.close();
-            reader.close();
-
-            if (found) {
-                System.out.println("Login successful.");
-            } else {
-                System.out.println("Invalid username or passwordHash.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred while logging in.");
-            e.printStackTrace();
         }
     }
 
@@ -171,16 +177,16 @@ public class Account {
         try (PrintWriter pw = new PrintWriter(new FileWriter(
                 "./src/main/java/storage/" + accountName + ".txt"))) {
             pw.println(accountName + "," + passwordHash);
-            for (Expense expense : expenseList.getExpenseList()) {
-                pw.println(expense.toSave());
-                pw.println(expense);
+            for (Expense expense : account.getExpenseList()) {
+                pw.println(expense.toAdd());
             }
+            account.clear();
             pw.close();
         } catch (IOException e) {
             System.out.println("Error: Failed to save expenses.");
             return;
         }
-        expenseList = null;
+        account = null;
         System.out.println("Logout successful.");
     }
 }
