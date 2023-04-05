@@ -30,7 +30,7 @@ This is done through the `itemFinder()` method in class `PackingList()`, which i
 
 Below is the UML diagram showing what occurs during `add` function when trying to add an item that already exists.
 
-![AddExistingItemDiagram.png](C:\Users\sunil\desktop\NUS\CS2113\Team_Project\docs\umlDiagrams\AddExistingItemDiagram.png)
+![AddExistingItemDiagram.png](umlDiagrams%2FAddExistingItemDiagram.png)
 
 When `AddCommand.execute()` is called in `BagPacker`, the `PackingList.itemFinder()` method is called.
 
@@ -67,12 +67,15 @@ All Commands:
 4. pack : Adds to the current quantity of items packed in the packing list.
    Example: pack 2 /of 3
    Meaning: packs 2 more quantities of the third item in the packing list
-5. unpack : Deducts from the current quantity of items packed in the packing list.
+5. packkall: Marks all quantity of the specified item as packed in the packing list.
+   Example: packall /of 3
+   Meaning: packs all of the quantities of the third item in the packing list.
+6. unpack : Deducts from the current quantity of items packed in the packing list.
    Example: unpack 1 /of 2
    Meaning: unpacks 1 quantity of the second item in the packing list
-6. deletelist : Deletes all items in the packing list.
+7. deletelist : Deletes all items in the packing list.
    Example: deletelist
-7. bye : Stops the BagPacker Application
+8. bye : Stops the BagPacker Application
    Example: bye
 ____________________________________________________________
 
