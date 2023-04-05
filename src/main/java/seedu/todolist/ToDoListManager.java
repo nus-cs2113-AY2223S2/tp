@@ -1,7 +1,7 @@
 package seedu.todolist;
 
 import com.google.gson.JsonParseException;
-import seedu.todolist.exception.ToDoListException;
+import seedu.todolist.exception.*;
 import seedu.todolist.logic.Config;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.logic.command.Command;
@@ -27,30 +27,25 @@ public class ToDoListManager {
     public ToDoListManager() {
         ui.printWelcomeMessage();
 
-        if (configFile.isNewSave()) {
-            ui.printMissingConfigMessage();
-        }
-
-        if (storage.isNewSave()) {
-            // No save file found
-            ui.printNewSaveMessage();
-            return;
-        }
-
+        //@@author clement559
         try {
             // Config file found, try loading it
             config = configFile.loadConfig(configFile.DEFAULT_CONFIG_PATH);
             ui.printLoadConfigMessage();
         } catch (FileNotFoundException e) {
-            ui.printError(e);
+            ui.printMissingConfigMessage();
             // Loading save file failed, save new empty task list immediately instead of waiting for a command
             try {
                 configFile.saveConfig(config, configFile.DEFAULT_CONFIG_PATH);
-            } catch (IOException e2) {
+            } catch (FailedSaveConfigException e2) {
                 ui.printError(e2);
             }
+        } catch (FailedLoadConfigException e3) {
+            ui.printError(e3);
         }
 
+
+        //@@author jeromeongithub
         try {
             // Save file found, try loading it
 
@@ -59,17 +54,15 @@ public class ToDoListManager {
             ui.printLoadSaveMessage(taskList.size());
             new ProgressBarCommand().execute(taskList, ui);
         } catch (FileNotFoundException e) {
-            ui.printError(e);
+            ui.printNewSaveMessage();
             // Loading save file failed, save new empty task list immediately instead of waiting for a command
             try {
                 storage.saveData(taskList, Storage.DEFAULT_SAVE_PATH);
-            } catch (IOException e2) {
+            } catch (FailedSaveException e2) {
                 ui.printError(e2);
-
             }
-        } catch (DateTimeParseException | JsonParseException e3) { // caught an error in the saved file
+        } catch (FailedLoadException e3) { // caught an error in the saved file
             ui.printError(e3);
-            ui.printSavedFileSyntaxError();
             isRunning = false; // terminate the program
         }
     }
@@ -93,8 +86,6 @@ public class ToDoListManager {
                 isRunning = !command.shouldExit();
             } catch (ToDoListException e) {
                 ui.printError(e);
-            } catch (IOException e2) {
-                ui.printError(e2);
             }
         }
         ui.close();
