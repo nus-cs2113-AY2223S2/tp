@@ -11,7 +11,7 @@ public class CommandFormat {
     public static final String HELP_FORMAT = "help";
     public static final String SEARCH_KEYWORD_FORMAT = "search [Keywords]";
     public static final String SEARCH_UPC_FORMAT = "searchupc [UPC]";
-    public static final String FILTER_FORMAT = "filter f/[Filter type] {p/[Price type] [Category or Price or Tag]}";
+    public static final String FILTER_FORMAT = "filter f/category [category], filter f/[gt/get/lt/let] [price]";
     public static final String LIST_FORMAT = "list";
     public static final String ALERT_ADD_FORMAT = "alert add upc/[UPC] {min/[Minimum] or max/[Maximum]}";
 
