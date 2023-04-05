@@ -2,11 +2,11 @@ package seedu.duke.data.ipptcalculator;
 
 import com.google.gson.Gson;
 import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseDataList;
 import seedu.duke.ui.ErrorMessages;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
+import java.util.Objects;
 
 public class IPPTCalc {
     private int ageGroup;
@@ -24,9 +24,12 @@ public class IPPTCalc {
     }
 
     public void loadScoringData() throws FileNotFoundException {
-        Gson gson = new Gson();
-        Reader reader = new FileReader("/scores.json"); //reads the database
-        this.scores = gson.fromJson(reader,Scores.class);
+        try (Reader reader = new InputStreamReader(Objects.requireNonNull(this.getClass()
+                .getResourceAsStream("/scores.json")))) {
+            this.scores = new Gson().fromJson(reader, Scores.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setAgeGroup(int age){
