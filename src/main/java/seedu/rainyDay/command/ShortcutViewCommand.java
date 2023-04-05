@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class ShortcutViewCommand extends ShortcutCommand {
     private static final Logger logger = Logger.getLogger(ShortcutAddCommand.class.getName());
     private static final String TABLE_BORDER = "" +
-            "+-----------------------------------+-------------------------------------------------------------+\n";
+            "+-----------------------------------+-------------------------------------------------------------+";
 
     private static final String ACKNOWLEDGE_VIEW_SHORTCUT_COMMAND = "" +
             "|Here are your shortcuts!                                                                         |\n";
@@ -27,12 +27,12 @@ public class ShortcutViewCommand extends ShortcutCommand {
         formattedKey = formattedKey.substring(0, 35);
         String formattedValue = String.format("%s                                                             ", value);
         formattedValue = formattedValue.substring(0, 61);
-        return '|' + formattedKey + '|' + formattedValue + '|';
+        return '|' + formattedKey + '|' + formattedValue + '|' + System.lineSeparator();
     }
 
     private static String getCommandsTable(HashMap<String, String> shortcutCommands) {
         String result = "";
-        result += TABLE_BORDER + ACKNOWLEDGE_VIEW_SHORTCUT_COMMAND + HEADERS;
+        result += TABLE_BORDER + System.lineSeparator() + ACKNOWLEDGE_VIEW_SHORTCUT_COMMAND + HEADERS;
         for (String key : shortcutCommands.keySet()) {
             String value = shortcutCommands.get(key);
             result += getShortcutMapping(key, value);
