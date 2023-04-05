@@ -38,10 +38,15 @@ public class JsonUserDataLoader {
         try (Reader reader = new FileReader(userFilePath)) {
             JsonElement jsonTree = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("History");
+            Session sessionFromFile = null;
             for (JsonElement element : jsonArray) {
-                Session sessionFromFile = gson.fromJson(element, Session.class);
-                if (!sessionFromFile.checkSessionNullity()) {
-                    throw new DukeError("Null error");
+                if(element.getAsJsonObject().has("userscore")){
+                    sessionFromFile = gson.fromJson(element, Session.class);
+                } else{
+                    sessionFromFile = gson.fromJson(element, Session.class);
+                    if (!sessionFromFile.checkSessionNullity()) {
+                        throw new DukeError("Null error");
+                    }
                 }
                 userCareerData.addWorkoutSession(sessionFromFile);
             }
