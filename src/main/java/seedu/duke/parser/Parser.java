@@ -72,7 +72,6 @@ public interface Parser {
             String companyName = input.substring(indexOfName + 2, indexOfIndustry).trim();
             String industry = input.substring(indexOfIndustry + 2, indexOfContactNumber).trim();
             String contactNumberString = input.substring(indexOfContactNumber + 2, indexOfContactEmail).trim();
-            int contactNumber = Integer.parseInt(contactNumberString);
             String contactEmail = input.substring(indexOfContactEmail + 2).trim();
 
             //Multiple additions are not allowed
@@ -96,7 +95,7 @@ public interface Parser {
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
                 throw new WrongFormatException();
             }
-
+            int contactNumber = Integer.parseInt(contactNumberString);
             if(contactNumber < 30000000 || contactNumber > 100000000){
                 ui.invalidInputFormatErrorMessage("contact number",
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
