@@ -76,7 +76,8 @@ Use case:
 - Re-prompts user if any field is not provided properly.
 - CATEGORY has a maximum char limit of 30.
 - DESCRIPTION has a maximum char limit of 99.
-- VALUE will be stored as a positive float.
+- VALUE entered by user will be rounded off to the nearest 2 decimal places.
+- VALUE will be stored as a positive double.
 - VALUE will be recorded as SGD, regardless of the currency set.
 - Format for DATE will be dd-MM-yyyy.
 - DATE needs to be a valid date, and it cannot be a date in the future.
