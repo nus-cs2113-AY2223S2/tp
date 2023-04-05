@@ -889,6 +889,12 @@ public class Ui {
         System.out.println("\t How may I assist you today, human?");
     }
 
+    /**
+     * Prints out the notes of the task whose index was taken in
+     *
+     * @param tasks The arraylist of tasks
+     * @param words The index of the task
+     */
     static void printNotes(ArrayList<Task> tasks, String[] words) {
         int index = Integer.parseInt(words[1]);
         if(index > tasks.size() || index <= 0) {
