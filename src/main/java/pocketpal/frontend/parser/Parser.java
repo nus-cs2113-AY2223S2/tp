@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import pocketpal.backend.constants.MiscellaneousConstants;
 import pocketpal.data.entry.Category;
 import pocketpal.frontend.constants.EntryConstants;
 import pocketpal.frontend.constants.MessageConstants;
@@ -425,12 +426,12 @@ public class Parser {
         if (!priceMinStr.isEmpty()) {
             checkIfPriceValid(priceMinStr);
         } else {
-            priceMinStr = "0";
+            priceMinStr = MiscellaneousConstants.AMOUNT_MIN_STRING;
         }
         if (!priceMaxStr.isEmpty()) {
             checkIfPriceValid(priceMaxStr);
         } else {
-            priceMaxStr = Integer.toString(Integer.MAX_VALUE);
+            priceMaxStr = MiscellaneousConstants.AMOUNT_MAX_STRING;
         }
         Double priceMinDouble = Double.parseDouble(priceMinStr);
         Double priceMaxDouble = Double.parseDouble(priceMaxStr);

@@ -97,7 +97,7 @@ public class ViewCommandTest extends EntryTestUtil {
                 "20/11/19 23:30", "20/11/20 23:30");
         Exception invalidArgumentsException = assertThrows(InvalidArgumentsException.class,
                 () -> viewCommand2.execute(TEST_UI, TEST_BACKEND));
-        assertEquals(invalidArgumentsException.getMessage(), MessageConstants.MESSAGE_INVALID_NUMBER_OF_ENTRIES);
+        assertEquals(invalidArgumentsException.getMessage(), MessageConstants.MESSAGE_INVALID_ID);
     }
 
 }
