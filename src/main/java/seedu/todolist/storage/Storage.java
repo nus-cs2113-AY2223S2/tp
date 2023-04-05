@@ -33,6 +33,8 @@ public class Storage {
     private File file;
     private Gson gson;
 
+    /*referred closely to CS2113T-T09-1's LocalDate Adapter in
+    https://github.com/AY2223S2-CS2113T-T09-1/tp/blob/master/src/main/java/seedu/rainyDay/modules/Storage.java */
     public static class LocalDateTimeAdapter
             implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
         private final DateTimeFormatter dateTimeFormat = DateTimeFormatter.
