@@ -50,8 +50,10 @@ public final class MessageConstants {
     public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!";
     public static final String MESSAGE_INVALID_DESCRIPTION = "Description can only contain letters and numbers!";
     public static final String MESSAGE_INVALID_ID = "Please enter a valid numerical index!";
-    public static final String MESSAGE_INVALID_PRICE = "Please enter a valid price!";
-    public static final String MESSAGE_INVALID_PRICE_RANGE = "Please specify a valid price range!";
+    public static final String MESSAGE_INVALID_AMOUNT = "Please enter a valid amount!" + NEWLINE
+            + "Value should be between 0.01 and 999999999.99";
+    public static final String MESSAGE_INVALID_AMOUNT_RANGE = "Please specify a valid range!" + NEWLINE
+            + "Values should be between 0 and 1000000000";
     public static final String MESSAGE_MISSING_ARGS_ADD = "Please specify the description, category and price!";
     public static final String MESSAGE_MISSING_PRICE_ADD = "Please specify the price using the '-p' flag!";
     public static final String MESSAGE_MISSING_DESCRIPTION_ADD = "Please specify the description using the '-d' flag!";

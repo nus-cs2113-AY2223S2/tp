@@ -3,6 +3,7 @@ package pocketpal.commands;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pocketpal.backend.constants.MiscellaneousConstants;
 import pocketpal.data.EntryTestUtil;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
@@ -31,7 +32,8 @@ public class ViewCommandTest extends EntryTestUtil {
     private final Entry testEntry2 = new Entry("Noodles", 9.40, Category.FOOD);
     private final Entry testEntry3 = new Entry("Cab", 10.80, Category.TRANSPORTATION);
     private final UI ui = new UI();
-    private EntryLog testEntries = new EntryLog();
+    private final EntryLog testEntries = new EntryLog();
+
     @BeforeEach
     void init(){
         testEntries.clearAllEntries();
@@ -81,7 +83,8 @@ public class ViewCommandTest extends EntryTestUtil {
     @Test
     @DisplayName("Positive test for execute method for viewCommand")
     void testExecuteMethod(){
-        ViewCommand viewCommand1 = new ViewCommand(10, Category.ENTERTAINMENT, 0.0, Double.MAX_VALUE,
+        ViewCommand viewCommand1 = new ViewCommand(10, Category.ENTERTAINMENT,
+                MiscellaneousConstants.AMOUNT_MIN_DOUBLE, MiscellaneousConstants.AMOUNT_MAX_DOUBLE,
                 "20/11/19 23:30", "20/11/20 23:30");
         assertDoesNotThrow(() -> viewCommand1.execute(TEST_UI, TEST_BACKEND));
     }
@@ -89,7 +92,8 @@ public class ViewCommandTest extends EntryTestUtil {
     @Test
     @DisplayName("Test execute method with invalid number of entries to view")
     void testExecuteMethod_invalidNumber() {
-        ViewCommand viewCommand2 = new ViewCommand(0, Category.ENTERTAINMENT, 0.0, Double.MAX_VALUE,
+        ViewCommand viewCommand2 = new ViewCommand(0, Category.ENTERTAINMENT,
+                MiscellaneousConstants.AMOUNT_MIN_DOUBLE, MiscellaneousConstants.AMOUNT_MAX_DOUBLE,
                 "20/11/19 23:30", "20/11/20 23:30");
         Exception invalidArgumentsException = assertThrows(InvalidArgumentsException.class,
                 () -> viewCommand2.execute(TEST_UI, TEST_BACKEND));
