@@ -33,18 +33,8 @@ import java.util.ArrayList;
 public class Parser {
     private static UI ui = new UI();
     private static Parser instance = null;
+
     private Parser() {
-        BudgetPlanner budgetPlanner = new BudgetPlanner();
-        String userInput = "";
-        ArrayList<University> universities = new ArrayList<>();
-        ArrayList<Module> modules = new ArrayList<>();
-        ArrayList<Module> puModules = new ArrayList<>();
-        Storage storage = new Storage();
-        DeadlineStorage deadlineStorage = new DeadlineStorage();
-        ArrayList<Deadline> deadlines = new ArrayList<>();
-        parseUserCommand(userInput, universities, modules,
-                puModules, storage, deadlineStorage,
-                budgetPlanner, deadlines);
     }
 
     public static Parser getInstance() {
@@ -53,6 +43,7 @@ public class Parser {
         }
         return instance;
     }
+    
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
                                     ArrayList<Module> puModules, Storage storage, DeadlineStorage deadlineStorage,
                                     BudgetPlanner budgetPlanner, ArrayList<Deadline> deadlines) {
