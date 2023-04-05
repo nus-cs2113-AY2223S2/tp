@@ -66,6 +66,7 @@ Unfortunately, expense list can't be found. I'll make a new one!
 
 Creates a new entry for expenses or income, with respective input formats.
 <br> Income and Expense values must be less than 1000000.
+<br> Income and Expense values must be up to 2 decimal places or less.
 
 Format:
 <br>`add expense /c CATEGORY /de DESCRIPTION /da DATE /v VALUE`
@@ -76,8 +77,7 @@ Use case:
 - Re-prompts user if any field is not provided properly.
 - CATEGORY has a maximum char limit of 30.
 - DESCRIPTION has a maximum char limit of 99.
-- VALUE entered by user will be rounded off to the nearest 2 decimal places.
-- VALUE will be stored as a positive double.
+- VALUE will be stored as a positive double up to 2 decimal places.
 - VALUE will be recorded as SGD, regardless of the currency set.
 - Format for DATE will be dd-MM-yyyy.
 - DATE needs to be a valid date, and it cannot be a date in the future.

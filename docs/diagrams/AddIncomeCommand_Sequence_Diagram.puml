@@ -11,19 +11,19 @@ Parser -> AddIncomeCommand : AddIncomeCommand(income)
 AddIncomeCommand -> AddIncomeCommand : execute(incomes, expenses, ui, storage, selector, converter, targetStorage)
 
 activate AddIncomeCommand
-
 AddIncomeCommand -> IncomeList : addIncome(income)
+
 activate IncomeList
 IncomeList --> AddIncomeCommand
 deactivate IncomeList
 
 AddIncomeCommand -> Ui
+
 activate Ui
 Ui -> Ui : showAdded(incomes, expenses, income)
 activate Ui
 Ui --> AddIncomeCommand
 deactivate Ui
-
 
 deactivate AddIncomeCommand
 deactivate IncomeList

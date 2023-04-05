@@ -56,17 +56,20 @@ public class Expenses {
         if (!isAllPresent) {
             throw new ChChingException("Missing fields detected");
         }
-        
         Expense exp = null;
+
         String expenseCategory = argumentsByField.get(CATEGORY_FIELD);
         String expenseDescription = argumentsByField.get(DESCRIPTION_FIELD);
         String expenseDateString = argumentsByField.get(DATE_FIELD);
+        String expenseValueString = argumentsByField.get(VALUE_FIELD);
+        double expenseValue;
         LocalDate expenseDate = parseDate(expenseDateString);
 
-        double expenseValue;
+        if(!DecimalsChecker.isTwoDecimals(expenseValueString)) {
+            throw new ChChingException("Expense value must be a valid double that is 2 d.p. or less");
+        }
         try {
-            expenseValue = Float.parseFloat(argumentsByField.get(VALUE_FIELD));
-            expenseValue = Math.round(expenseValue * 100.0) / 100.0;
+            expenseValue = Double.parseDouble(expenseValueString);
         } catch (Exception e) {
             throw new ChChingException("Expense value must be a valid double that is 2 d.p. or less");
         }
