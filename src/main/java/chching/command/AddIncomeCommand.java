@@ -22,14 +22,8 @@ public class AddIncomeCommand extends Command {
      * @param income       ArrayList of income.
      */
     public AddIncomeCommand(Income income) throws ChChingException {
-        if (income == null) {
-            throw new ChChingException("No fields found");
-        } else if (income.getDescription() == null) {
-            throw new ChChingException("Missing description field");
-        } else if(income.getDescription().length() > 99) {
+        if(income.getDescription().length() > 99) {
             throw new ChChingException("Character limit of 99 for description field exceeded");
-        } else if (income.getDate() == null) {
-            throw new ChChingException("Missing date field");
         } else if (income.getValue() <= 0) {
             throw new ChChingException("Invalid/Missing income value");
         }

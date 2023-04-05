@@ -108,7 +108,7 @@ public class EditExpenseCommandTest {
             
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Missing/Invalid index", e.getMessage());
+            assertEquals("Index field not found", e.getMessage());
         }
     }
 
