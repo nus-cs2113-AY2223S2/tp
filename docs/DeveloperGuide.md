@@ -14,6 +14,7 @@ with links to the original sources included.
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ## Design
 ![](diagrams/Overall.png)
+
 Our main `Duke` class is responsible for the instantiation and launch of our application.  
 Our overall project design is split into 5 components, `command`, `common`,`data`, `storage` and `parser`.
  - `command`: The command executor.
@@ -100,7 +101,7 @@ and returns sum by month according to natural month order before printing out th
 format.
 
 Given below is the sequence diagram to explain how the 'yearly overview' mechanism behaves once being called.
-
+![](diagrams/YearlyOverview.png)
 
 ### 'Total' feature
 This mechanism is facilitated by `CommandTotal`.
