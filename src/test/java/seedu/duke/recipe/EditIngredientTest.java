@@ -33,9 +33,10 @@ public class EditIngredientTest {
         ingredients.add(new Ingredient("water"));
         IngredientList ingredientList = new IngredientList(ingredients);
         recipeList.addNewRecipe(new
-                Recipe("Maggi", "Fast", ingredientList, new StepList()));
+                Recipe("TypicalRecipe", "Fast", ingredientList, new StepList()));
         output = new ByteArrayOutputStream();
         console = System.out;
+        ui = new UI();
         System.setOut(new PrintStream(output));
     }
 
@@ -50,16 +51,8 @@ public class EditIngredientTest {
      * @throws Exception if test returns unexpected result
      */
     @Test
-    @Disabled
     public void editPositiveTestCase() throws Exception {
-        // method to simulate scanner in adapted from
-        // https://stackoverflow.com/questions/6415728/junit-testing-with-simulated-user-input
-        InputStream sysInBackup = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("boiling water".getBytes());
-        System.setIn(in);
-        new Command(EDITINGREDIENT,"2").execute(recipeList,ui);
 
-        System.setIn(sysInBackup);
 
     }
     /**
@@ -68,12 +61,11 @@ public class EditIngredientTest {
      * @throws Exception if there is an error in the test.
      */
     @Test
-    @Disabled
     public void editMissingRecipeIndexTestCase() throws Exception {
         new Command(EDITINGREDIENT,"").execute(recipeList,ui);
         assertEquals(StringLib.RECIPE_EDITING_DEFAULT_ERROR +
                         "The index of EDITINGREDIENT cannot be empty.\n",
-                output.toString().trim());
+                '\n' + output.toString().trim() + '\n');
     }
 
     /**
@@ -100,5 +92,15 @@ public class EditIngredientTest {
                 '\n' + output.toString().trim());
     }
 
+    /**
+     * Test the result of ingredient index == 0 in non-empty ingredientList
+     *
+     * @throw Exception if there is an unexpected result
+     *
+     */
+    @Test
+    public void editIngredientIndexExceededTestCase() throws Exception {
+
+    }
 
 }

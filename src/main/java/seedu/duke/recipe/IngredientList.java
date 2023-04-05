@@ -1,5 +1,7 @@
 package seedu.duke.recipe;
 
+import seedu.duke.exceptions.InvalidIndexRangeException;
+import seedu.duke.exceptions.ListEmptyException;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
@@ -33,6 +35,24 @@ public class IngredientList {
         return currIngredientNumber;
     }
 
+    /**
+     * Ingredient getter method
+     * @param ingredientIndex index of ingredient in ingredientList
+     * @return Ingredient object stored at ingredientIndex
+     * @throws Exception if list does not contain specified index
+     */
+    public Ingredient getIngredient(int ingredientIndex) throws Exception{
+        try {
+            return list.get(ingredientIndex);
+        } catch (IndexOutOfBoundsException e) {
+            if (currIngredientNumber == 0) {
+                throw new ListEmptyException();
+            } else {
+                // add 1 to display in 1-based
+                throw new InvalidIndexRangeException(1,currIngredientNumber+1);
+            }
+        }
+    }
     /**
      * Adds a new ingredient to the list.
      *
