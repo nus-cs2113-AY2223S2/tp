@@ -14,7 +14,7 @@ import bagpacker.commands.FindCommand;
 import bagpacker.commands.ByeCommand;
 import bagpacker.commands.IncorrectCommand;
 import bagpacker.commands.HelpCommand;
-
+import bagpacker.commands.UnpackAllCommand;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.exception.InvalidIndexException;
 import bagpacker.exception.InvalidVariablesException;
@@ -86,6 +86,8 @@ public class Parser {
             return createDeleteListObj();
         case "packall":
             return createPackAllObj();
+        case "unpackall":
+            return createUnpackAllObj();
         case "editquantity":
             return createEditQuantityObj();
         case "find":
@@ -407,12 +409,9 @@ public class Parser {
     }
 
     public static Command createPackAllObj() {
-        int quantityNotPacked = 0;
 
         try {
             int itemIndex = getPackAllIndex();
-
-            quantityNotPacked = PackingList.get(itemIndex - 1).getUnpackedQuantity();
 
             return new PackAllCommand(itemIndex);
         } catch (NumberFormatException | InvalidIndexException e) {
@@ -429,7 +428,6 @@ public class Parser {
                     PackAllCommand.HELP_MSG);
         }
     }
-
 
     /**
      * Attempts to create UnpackCommand object to be executed where it is called from
@@ -483,6 +481,47 @@ public class Parser {
                     "Try to input a positive quantity that does not exceed " + quantityPacked);
         }
     }
+
+    public static Command createUnpackAllObj() {
+        int quantityPacked = 0;
+        try {
+            int itemIndex = getPackAllIndex();
+            if (itemIndex > PackingList.getItemList().size()) {
+                return new IncorrectCommand("Invalid Item Index",
+                        "Try to input a positive integer number that does not exceed " +
+                                PackingList.getItemList().size());
+            }
+            quantityPacked = PackingList.get(itemIndex - 1).getPackedQuantity();
+            if (quantityPacked == 0) {
+                throw new InvalidVariablesException();
+            }
+
+            return new UnpackAllCommand(itemIndex);
+
+        } catch (NumberFormatException | InvalidIndexException e) {
+            if (PackingList.getItemList().size() == 0) {
+                return new IncorrectCommand("Invalid Item Index",
+                        "Your packing list is empty, there is nothing to unpack");
+            } else {
+                return new IncorrectCommand("Invalid Item Index",
+                        "Try to input a positive item index number that is at most " +
+                                PackingList.getItemList().size());
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new IncorrectCommand("Invalid Input Variables",
+                    UnpackAllCommand.HELP_MSG);
+        } catch (InvalidVariablesException e) {
+            if (quantityPacked == 0) {
+                return new IncorrectCommand("Invalid Unpackall Usage",
+                        "This item is not even packed yet");
+            }
+            return new IncorrectCommand("Invalid Input Quantity",
+                    "Try to input a positive quantity that does not exceed " + quantityPacked);
+        }
+    }
+
+
+
 
     /**
      * Attempts to create a FindCommand object with the given keyword.
