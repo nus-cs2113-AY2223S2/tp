@@ -23,9 +23,8 @@ public final class Errors {
             + "please check that you have write permissions for " + Storage.DEFAULT_SAVE_PATH;
     public static final String FAILED_LOAD = "Error when loading your data; "
             + "please check that you have read permissions for " + Storage.DEFAULT_SAVE_PATH + System.lineSeparator()
-            + "and do not modify it yourself. A new task list will be created for you!";
-    public static final String SAVED_FILE_SYNTAX_ERROR = "There was a problem with your saved file. " +
-            "Please correct it before restarting the program.";
+            + "If you have modified it yourself, please double check the formatting. For now, the program will exit.";
+
     private Errors() {
     }
 }
