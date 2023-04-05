@@ -22,23 +22,23 @@ public class ShortcutViewCommand extends ShortcutCommand {
     public ShortcutViewCommand() {
     }
 
-    private static void printShortcutMapping(String key, String value) {
+    private static String getShortcutMapping(String key, String value) {
         String formattedKey = String.format("%s                                   ", key);
         formattedKey = formattedKey.substring(0, 35);
         String formattedValue = String.format("%s                                                             ", value);
         formattedValue = formattedValue.substring(0, 61);
-        System.out.println('|' + formattedKey + '|' + formattedValue + '|');
+        return '|' + formattedKey + '|' + formattedValue + '|';
     }
 
-    private static void printCommandsTable(HashMap<String, String> shortcutCommands) {
-        System.out.print(TABLE_BORDER);
-        System.out.print(ACKNOWLEDGE_VIEW_SHORTCUT_COMMAND);
-        System.out.print(HEADERS);
+    private static String getCommandsTable(HashMap<String, String> shortcutCommands) {
+        String result = "";
+        result += TABLE_BORDER + ACKNOWLEDGE_VIEW_SHORTCUT_COMMAND + HEADERS;
         for (String key : shortcutCommands.keySet()) {
             String value = shortcutCommands.get(key);
-            printShortcutMapping(key, value);
+            result += getShortcutMapping(key, value);
         }
-        System.out.print(TABLE_BORDER);
+        result += TABLE_BORDER;
+        return result;
     }
 
     @Override
@@ -51,9 +51,9 @@ public class ShortcutViewCommand extends ShortcutCommand {
                     + " shortcuts");
             return new CommandResult(NO_SHORTCUTS);
         }
-        printCommandsTable(shortcutCommands);
+        String result = getCommandsTable(shortcutCommands);
         logger.log(Level.INFO, "ShortcutViewCommand.execute() has printed the table of shortcuts");
-        return null;
+        return new CommandResult(result);
     }
 
     /**
