@@ -85,7 +85,7 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             //Empty industry is not allowed
-            if(industry.equals("")){
+            if(!checkIndustryValidity(industry)){
                 ui.emptyInputErrorMessage("industry");
                 throw new WrongFormatException();
             }
@@ -222,4 +222,17 @@ public interface Parser {
         }
         return true;
     }
+
+    private static boolean checkIndustryValidity(String industry){
+        if(industry.equals(" ")){
+            return false;
+        }
+        try{
+            Integer.parseInt(industry);
+        }catch(NumberFormatException err){
+            return true;
+        }
+        return false;
+    }
+
 }
