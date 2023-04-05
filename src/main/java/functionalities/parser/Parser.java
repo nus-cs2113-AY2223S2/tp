@@ -32,7 +32,7 @@ public class Parser {
             parseSurgeryCommand(task);
         } else if (task.toLowerCase().startsWith("find")) {
             parseFindCommand(task);
-        } else if (task.toLowerCase().startsWith("list")) {
+        } else if (task.equalsIgnoreCase("list")) {
             parseListCommand();
         } else if (task.toLowerCase().startsWith("remove")) {
             parseRemoveCommand(task);

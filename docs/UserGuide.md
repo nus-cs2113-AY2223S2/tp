@@ -22,9 +22,7 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-## Features 
-
-{Give detailed description of each feature}
+## Features
 
 ### Adding a consultation appointment: `consultation`
 Adds a new consultation appointment to the appointment manager.
@@ -247,9 +245,9 @@ ______________________________________________________________________
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer? 
+**Q**: How do I transfer my data to another computer?
 
-**A**: {your answer here}
+**A**: 
 
 ## Command Summary
 
