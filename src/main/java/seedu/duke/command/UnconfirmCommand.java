@@ -21,6 +21,7 @@ public class UnconfirmCommand extends Command {
      * @param companyList which contains a list of all the companies
      * @throws InvalidIndexException if error occurred due to invalid index
      * @throws IOException if error occurred during file writing
+     * @throws EmptyListException if error occurred due to empty list
      */
     @Override
     public void execute(CompanyList companyList){
