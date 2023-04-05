@@ -113,7 +113,7 @@ public class Ui {
     private void printModuleCommands(){
         System.out.print("These are the available Module Commands and their corresponding commands (in brackets):\n\n" +
                 "1. `listmod` - Track and organise your academic plan for this semester!\n" +
-                "2. `listmod [MODULE_CODE] - See more information about the classes you've added " +
+                "2. `listmod [MODULE_CODE]` - See more information about the classes you've added " +
                 "for a module in your list.\n"+
                 "3. `listmod [MODULE_CODE] -[FLAG]` - See more information about a specific class type " +
                 "for a module in your list\n"+
