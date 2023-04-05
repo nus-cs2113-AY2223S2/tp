@@ -40,7 +40,7 @@ skinparam BackgroundColor #FFFFFFF
 skinparam Shadowing false
 
 skinparam Class {
-    FontColor #FFFFFF
+    FontColor #000000
     BorderThickness 1
     BorderColor #FFFFFF
     StereotypeFontColor #FFFFFF
@@ -73,5 +73,4 @@ skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
 
 hide footbox
-hide members
 hide circle
