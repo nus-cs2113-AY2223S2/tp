@@ -1,3 +1,4 @@
+/*
 package seedu.storage.readfile;
 
 import seedu.calorietracker.CalorieTracker;
@@ -13,7 +14,8 @@ import java.util.Scanner;
 public class DailyCaloriesReadFile {
 
     private static final String SPACE = " ";
-    public static CalorieTracker readDailyCalorieToFile(String filePath) {
+  */
+/*  public static CalorieTracker readDailyCalorieToFile(String filePath) {
 
         CalorieTracker calorieTracker = new CalorieTracker();
         // Read from text file and update foodList
@@ -51,5 +53,7 @@ public class DailyCaloriesReadFile {
         }
         return calorieTracker;
 
-    }
+    }*//*
+
 }
+*/
