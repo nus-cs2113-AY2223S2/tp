@@ -2,6 +2,7 @@ package seedu.duke.recipe;
 
 import seedu.duke.exceptions.InvalidIndexRangeException;
 import seedu.duke.exceptions.ListEmptyException;
+import seedu.duke.ui.IntLib;
 import seedu.duke.ui.StringLib;
 
 import java.util.ArrayList;
@@ -85,19 +86,30 @@ public class IngredientList {
         return list;
     }
 
-    public void editIngredient(String ingredientDescription, int ingredientIndex) {
-        Ingredient newIngredient = new Ingredient(ingredientDescription);
-        list.set(ingredientIndex, newIngredient);
-        System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
-        System.out.print((ingredientIndex + 1) + ". ");
-        System.out.println(list.get(ingredientIndex).getName());
-    }
-
     public void editIngredient(int ingredientIndex, String description) {
         Ingredient newIngredient = new Ingredient(description);
         list.set(ingredientIndex, newIngredient);
         System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
         System.out.print((ingredientIndex + 1) + ". ");
         System.out.println(list.get(ingredientIndex).getName());
+    }
+
+    public boolean isIndexWithinRange(int ingredientIndex) throws Exception{
+        if (currIngredientNumber == 0) {
+            throw new ListEmptyException();
+        } else if (ingredientIndex < 0 || ingredientIndex >= currIngredientNumber) {
+            throw new InvalidIndexRangeException(IntLib.NONEMPTY_START_NUMBER, currIngredientNumber);
+        }
+        return true;
+    }
+
+    public void editIngredient(String ingredientDescription, int ingredientIndex) throws Exception{
+        Ingredient newIngredient = new Ingredient(ingredientDescription);
+        if (isIndexWithinRange(ingredientIndex)) {
+            list.set(ingredientIndex, newIngredient);
+            System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
+            System.out.print((ingredientIndex + 1) + ". ");
+            System.out.println(list.get(ingredientIndex).getName());
+        }
     }
 }

@@ -216,13 +216,12 @@ public class Command {
                 }
                 int ingredientIndex = Integer.parseInt(input) - 1;
 
-                if (ingredientIndex < 0 || ingredientIndex >= maxSteps) {
-                    throw new InvalidIndexRangeException(IntLib.NONEMPTY_START_NUMBER,maxSteps);
-                }
-                System.out.println(StringLib.ENTER_INGREDIENT_DESCRIPTION);
-                String newIngredientDescription = ui.readCommand();
-                recipeToEditIngredientList.editIngredient(newIngredientDescription, ingredientIndex);
-                Storage.writeSavedFile();
+                if (recipeToEditIngredientList.isIndexWithinRange(ingredientIndex)) {
+                    System.out.println(StringLib.ENTER_INGREDIENT_DESCRIPTION);
+                    String newIngredientDescription = ui.readCommand();
+                    recipeToEditIngredientList.editIngredient(newIngredientDescription, ingredientIndex);
+                    Storage.writeSavedFile();
+                    }
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }

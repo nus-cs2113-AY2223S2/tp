@@ -3,20 +3,17 @@ package seedu.duke.recipe;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import seedu.duke.command.Command;
+import seedu.duke.exceptions.InvalidIndexRangeException;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.duke.command.CommandType.EDITINGREDIENT;
-
 
 public class EditIngredientTest {
     ByteArrayOutputStream output;
@@ -106,13 +103,53 @@ public class EditIngredientTest {
     }
 
     /**
-     * Test the result of ingredient index == 0 in non-empty ingredientList
+     * Test the result of ingredient index exceeds number of ingredients
+     * in ingredientList
      *
      * @throw Exception if there is an unexpected result
      *
      */
     @Test
     public void editIngredientIndexExceededTestCase() throws Exception {
+        String newDescription = "boiling water";
+        int userInput = 3;
+        Recipe recipeToEdit = recipeList.getRecipeFromList(1);
+        IngredientList ingredientListToEdit = recipeToEdit.getIngredientList();
+
+        String exceptionOutput = "";
+        try {
+            ingredientListToEdit.isIndexWithinRange(userInput - 1);
+        } catch (InvalidIndexRangeException e) {
+            exceptionOutput = e.getMessage();
+        }
+        String expectedOutput = "Invalid Input! Valid Range: 1 to 2";
+        assertEquals(expectedOutput,
+                exceptionOutput);
+
+    }
+
+    /**
+     * Test the result of ingredient index is 0 in non-empty ingredientList
+     *
+     * @throw Exception if there is an unexpected result
+     *
+     */
+    @Test
+    public void editIngredientIndexZeroTestCase() throws Exception {
+        String newDescription = "boiling water";
+        int userInput = 0;
+        Recipe recipeToEdit = recipeList.getRecipeFromList(1);
+        IngredientList ingredientListToEdit = recipeToEdit.getIngredientList();
+
+        String exceptionOutput = "";
+        try {
+            ingredientListToEdit.isIndexWithinRange( userInput - 1);
+        } catch (InvalidIndexRangeException e) {
+            exceptionOutput = e.getMessage();
+        }
+        String expectedOutput = "Invalid Input! Valid Range: 1 to 2";
+        assertEquals(expectedOutput,
+                exceptionOutput);
 
     }
 
