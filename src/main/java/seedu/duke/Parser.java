@@ -49,16 +49,16 @@ public class Parser {
         String inputIgnoringCase = userCommandFirstKeyword.toLowerCase();
         try {
             switch (inputIgnoringCase) {
-            case "list":
+            case "/list":
                 return prepareListCommands(userInputWords, universities, modules);
-            case "search":
+            case "/search":
                 assert userInputWords.size() > 1 : "No Nus Module Code Read";
                 return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
-            case "exit":
+            case "/exit":
                 return new ExitCommand();
-            case "add":
+            case "/add":
                 return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
-            case "remove":
+            case "/remove":
                 return prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities);
             case "/help":
                 return new HelpCommand();
@@ -80,18 +80,14 @@ public class Parser {
     }
 
     public static ArrayList<String> parseCommand(String userInput) {
-        String[] input = userInput.split((" "), 3);
-        ArrayList<String> commandWords = new ArrayList<>();
-        String commandInput = input[0];
-        commandWords.add(commandInput);
-        if (input.length == 2) {
-            String commandSpecificFirstWord = input[1];
-            commandWords.add(commandSpecificFirstWord);
-        } else if (input.length == 3) {
-            String commandSpecificFirstWord = input[1];
-            commandWords.add(commandSpecificFirstWord);
-            String commandSpecificsSecondWord = input[2];
-            commandWords.add(commandSpecificsSecondWord);
+        ArrayList<String> commandWords = new ArrayList<String>();
+        String commandInput = userInput.replaceAll("\\s+", " ");
+        String[] input = commandInput.split(" ", 3);
+
+        for (String s : input) {
+            if (!s.matches("\\s+")) {
+                commandWords.add(s);
+            }
         }
         return commandWords;
     }
