@@ -140,14 +140,13 @@ Example of usage:
 
 Displays a list of your current expenditure.
 
-Format: `/view [COUNT] [-c | -category CATEGORY] [-p | -price PRICE_MIN] [-p | -price PRICE_MAX]
+Format: `/view [COUNT] [-c | -category CATEGORY] [-sp | -startprice PRICE_MIN] [-ep | -endprice PRICE_MAX]
 [<-sd | -startdate START_DATE -ed | -enddate END_DATE>]`
 
 - `COUNT` must be a whole number. If not specified, all the expenditures will be listed.
 - `CATEGORY` must be a supported category. If not specified, expenditures from all categories will be listed.
 - `PRICE_MIN`, `PRICE_MAX` must be more than 0. If `PRICE_MAX` is not specified, all expenses with a higher price than
-  `PRICE_MIN` price will be displayed. The first price entered must be less than that on the
-  right. i.e. **MIN_PRICE should be entered before MAX_PRICE.**
+  `PRICE_MIN` price will be displayed.
 - `START_DATE`, `END_DATE` must be in `dd/MM/yy` format. **Both flags are required if user wishes to use this
   filter feature.**
 
@@ -159,7 +158,7 @@ Example of usage:
 
 `/view -c food -sd 12/03/23 -ed 11/04/23`
 
-`/view -c food -p 2 -sd 12/03/23 -ed 11/04/23`
+`/view -c food -sp 2 -sd 12/03/23 -ed 11/04/23`
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
