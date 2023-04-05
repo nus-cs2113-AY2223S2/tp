@@ -7,9 +7,9 @@ import bagpacker.packingfunc.PackingList;
 public class PackCommand extends Command {
 
     public static final String MSG_SUCCESS_PACK = "Item packed: %s";
-    public static final String HELP_MSG = "pack : Adds to the current quantity of items packed in the packing list.\n" +
+    public static final String HELP_MSG = "pack: Adds to the current quantity of items packed in the packing list.\n" +
             "\tExample: pack 2 /of 3\n" +
-            "\tMeaning: packs 2 more quantities of the third item in the packing list";
+            "\tMeaning: Packs 2 more quantities of the third item in the packing list";
 
     private static int packQuantity;
 

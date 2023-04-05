@@ -8,11 +8,9 @@ public class UnpackAllCommand extends Command {
 
     public static final String MSG_SUCCESS_UNPACKALL = "Item unpacked: %s";
 
-    public static final String HELP_MSG = "unpackall : Marks all quantity of the specified item as unpacked in the " +
-            "packing list.\n" +
+    public static final String HELP_MSG = "unpackall: Fully unpacks an item of choice from the packing list.\n" +
             "\tExample: unpackall /of 3\n" +
-            "\tMeaning: unpacks all of the quantities of the third item in the packing list";
-
+            "\tMeaning: Set the third item in the packing list as totally not packed yet";
     private static int unpackQuantity;
 
     public UnpackAllCommand(int targetIndex) {

@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class ListUnpackedCommand extends Command{
     public static final String HELP_MSG =
-            "listunpack : List all items and their total quantities if they are not fully " + "packed yet.\n"
-                    + "\tExample: listunpack";
+            "listunpacked: List all items and their total quantities if they are not fully packed yet.\n"
+                    + "\tExample: listunpacked";
 
     @Override
     public void execute(PackingList packingList) {

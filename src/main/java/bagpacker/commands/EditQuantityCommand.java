@@ -7,9 +7,9 @@ import bagpacker.packingfunc.PackingList;
 public class EditQuantityCommand extends Command{
     public static final String MSG_SUCCESS_EDITQUANTITY = "Item total quantity edited: %s";
 
-    public static final String HELP_MSG = "editquantity: edit the total quantity of an item to be packed." +
-            "\tExample: editquantity 3 /of 2" +
-            "\tMeaning: change the total quantity of the second item to 3";
+    public static final String HELP_MSG = "editquantity: Edit the total quantity of an item to be packed.\n" +
+            "\tExample: editquantity 3 /of 2\n" +
+            "\tMeaning: Change the total quantity of the second item to 3";
 
     private static int totalQuantity;
 

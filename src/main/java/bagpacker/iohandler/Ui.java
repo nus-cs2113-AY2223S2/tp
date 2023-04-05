@@ -2,7 +2,9 @@ package bagpacker.iohandler;
 
 import bagpacker.commands.AddCommand;
 import bagpacker.commands.DeleteCommand;
+import bagpacker.commands.EditQuantityCommand;
 import bagpacker.commands.ListCommand;
+import bagpacker.commands.ListUnpackedCommand;
 import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackCommand;
 import bagpacker.commands.DeleteListCommand;
@@ -79,10 +81,12 @@ public class Ui {
         System.out.println("4. " + PackCommand.HELP_MSG);
         System.out.println("5. " + UnpackCommand.HELP_MSG);
         System.out.println("6. " + DeleteListCommand.HELP_MSG);
-        System.out.println("7. " + PackAllCommand.HELP_MSG);
-        System.out.println("8. " + UnpackAllCommand.HELP_MSG);
-        System.out.println("9. " + FindCommand.HELP_MSG);
-        System.out.println("10. " + ByeCommand.HELP_MSG);
+        System.out.println("7. " + ListUnpackedCommand.HELP_MSG);
+        System.out.println("8. " + EditQuantityCommand.HELP_MSG);
+        System.out.println("9. " + PackAllCommand.HELP_MSG);
+        System.out.println("10. " + UnpackAllCommand.HELP_MSG);
+        System.out.println("11. " + FindCommand.HELP_MSG);
+        System.out.println("12. " + ByeCommand.HELP_MSG);
         printLine();
     }
 
