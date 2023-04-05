@@ -50,11 +50,13 @@ public class CommandFind extends Command {
     }
 
     private boolean checkWithInput(String toFind) {
+        String toFindLower = toFind.toLowerCase();
+
         for (Expense e: expenseList) {
-            if (e.getDescription().contains(toFind) ||
-                e.getCurrencyType().contains(toFind) ||
-                e.getExpenseAmount().toString().contains(toFind) ||
-                e.getExpenseTime().contains(toFind)) {
+            if (e.getDescription().toLowerCase().contains(toFindLower) ||
+                e.getCurrencyType().toLowerCase().contains(toFindLower) ||
+                e.getExpenseAmount().toString().toLowerCase().contains(toFindLower) ||
+                e.getExpenseTime().toLowerCase().contains(toFindLower)) {
                 return false;
             }
         }
@@ -63,11 +65,12 @@ public class CommandFind extends Command {
 
     private void displayAllRelevantExpenses(String toFind) {
         int index = 1;
+        String toFindLower = toFind.toLowerCase();
         for (Expense e: expenseList) {
-            if (e.getDescription().contains(toFind) ||
-                    e.getCurrencyType().contains(toFind) ||
-                    e.getExpenseAmount().toString().contains(toFind) ||
-                    e.getExpenseTime().contains(toFind)) {
+            if (e.getDescription().toLowerCase().contains(toFindLower) ||
+                    e.getCurrencyType().toLowerCase().contains(toFindLower) ||
+                    e.getExpenseAmount().toString().toLowerCase().contains(toFindLower) ||
+                    e.getExpenseTime().toLowerCase().contains(toFindLower)) {
                 System.out.print((index) + ".");
                 System.out.println(e.toString());
                 index++;

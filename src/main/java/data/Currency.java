@@ -104,9 +104,9 @@ public class Currency {
         try {
             String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8b" +
                     "c-4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date.toString() + "&limit=1";
-            URL url = new URL(GET_URL);
+            URL url = new URL(GET_URL); //converts the string into a URL class
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestMethod("GET"); //open a HTTP connection and set a 'get' request
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == httpURLConnection.HTTP_OK) { //successful request
                 BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
@@ -118,10 +118,11 @@ public class Currency {
                 }
                 in.close();
                 BigDecimal rate;
-                JSONObject obj = new JSONObject(response.toString());
+                JSONObject obj = new JSONObject(response.toString()); //Parses the data into a JSON object
                 JSONObject result = obj.getJSONObject("result");
                 JSONArray records = result.getJSONArray("records");
                 if (records.isEmpty()) {
+                    //recursively searches for previous day data if current day data is unavailable
                     return getExchangeRate(date.minusDays(1), currency);
                 } else {
                     JSONObject data = records.getJSONObject(0);
