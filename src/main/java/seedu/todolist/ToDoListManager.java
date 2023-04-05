@@ -1,7 +1,10 @@
 package seedu.todolist;
 
-import com.google.gson.JsonParseException;
-import seedu.todolist.exception.*;
+import seedu.todolist.exception.FailedSaveConfigException;
+import seedu.todolist.exception.FailedLoadConfigException;
+import seedu.todolist.exception.FailedSaveException;
+import seedu.todolist.exception.FailedLoadException;
+import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Config;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.logic.command.Command;
@@ -13,8 +16,6 @@ import seedu.todolist.ui.Ui;
 
 import java.time.LocalDateTime;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.time.format.DateTimeParseException;
 
 public class ToDoListManager {
     private boolean isRunning = true;
