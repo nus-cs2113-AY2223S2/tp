@@ -10,9 +10,9 @@ import java.time.LocalDate;
 public class AddTaskParser implements ArgParser<AddTaskCommand>{
     final String EMPTY_ARG_MESSAGE = "This command requires arguments.";
     final String INVALID_ARG_FORMAT_MESSAGE = "Invalid argument format. Please enter the arguments in the " +
-            "following format: DESCRIPTION DEADLINE.";
+            "following format: DESCRIPTION /by DEADLINE.";
     final String INVALID_DATE_FORMAT_MESSAGE = "Invalid date format. Please enter the date in the following format: " +
-            "YYYY-MM-DD.";
+            "YYYY-MM-DD. Also, ensure that your arguments are in the following format: DESCRIPTION /by DEADLINE";
     @Override
     public AddTaskCommand parse(String commandArgs) throws IllegalArgException {
         if (commandArgs.isEmpty()) {
