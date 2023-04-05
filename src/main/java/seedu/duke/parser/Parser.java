@@ -113,6 +113,8 @@ public interface Parser {
             if (inputWords.length == 1){
                 throw new WrongFormatException();
             }
+            BigInteger currUnconfirmNum = new BigInteger(inputWords[1]);
+            checkInputLimit(currUnconfirmNum);
             int companyUnconfirmNum = Integer.parseInt(inputWords[1]) - 1;
             UnconfirmCommand unconfirmCommand = new UnconfirmCommand(command, companyUnconfirmNum);
             return unconfirmCommand;
