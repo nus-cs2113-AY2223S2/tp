@@ -237,7 +237,7 @@ Given below are instructions to test the app manually.
 
 ### Editing an income/expense
 1. Editing an income/expense
-   1. Prerequisites: List already contains income/expense entry at specified index. Their index can be found using the `list` command. Note that index may vary after every `delete income`/`delete expense` command.
+   1. Prerequisites: List already contains income/expense entry at specified index to be edited. Their index can be found using the `list` command. Note that index may vary after every `delete income`/`delete expense` command.
    2. Test case: 
       <br> For income: `edit income 1 /de bonus /da 12-12-2022 /v 350`
       <br> For expense: `edit expense 1 /c meal /de food /da 13-12-2022 /v 3.50`
@@ -254,6 +254,32 @@ Given below are instructions to test the app manually.
       <br> Expected: Similar to previous.
 
 ### Deleting an income/expense
+1. Deleting an income/expense
+   1. Prerequisites: List already contains income/expense entry at specified index to be deleted. Their index can be found using the `list` command. Note that index may vary after every `delete income`/`delete expense` command.
+   2. Test case: 
+      <br> For income: `delete income /in 1`
+      <br> For expense: `delete expense /in 1`
+      <br> Expected: The income/expense at index 1 should be deleted from the income/expense list and the balance should be updated accordingly. <br> Depending on the index of the deleted income/expense, the index of the other incomes/expenses after it will be updated accordingly.
+   3. Test case: 
+      <br> For income: `delete income /in 0`
+      <br> For expense: `delete expense /in 0`
+      <br> Expected: income/expense will not be deleted. Error details shown in the status message.
+   4. Other incorrect delete commands to try:
+      <br> negative index/index over income/expense list size - `delete income /in -1` `delete expense /in 100`.
+      <br> missing index field - `delete income` `delete expense`.
+      <br> Expected: Similar to previous.
+
+2. Clearing all incomes/expenses
+   1. Prerequisites: List already contains income/expense entry/entries. Can be checked via `list income`/`list expense`/`list` command.
+   2. Test case:
+      <br> For incomes: `clear income`
+      <br> For expenses: `clear expense`
+        <br> Expected: All incomes/expenses should be deleted from the income/expense list and the balance should be updated accordingly.
+
+3. Clearing all incomes and expenses
+   1. Prerequisites: List already contains income and/or expense entry/entries. Can be checked via `list income`/`list expense`/`list` command.
+   2. Test case: `clear all`
+      <br> Expected: All incomes and expenses should be deleted from both the income and expense list and the balance should be updated to 0.
 
 ### Listing all income/expense & Viewing balance
 
@@ -262,3 +288,4 @@ Given below are instructions to test the app manually.
 ### Setting target & Unsetting target
 
 ### Setting Currency & Unsetting Currency
+
