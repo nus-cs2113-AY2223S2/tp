@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
@@ -18,17 +19,18 @@ public class LogMaster {
         logger.setUseParentHandlers(false);
         removeHandlers(logger);
         if (consoleHandler == null) {
-            consoleHandler = createConsoleHandler();
+            //consoleHandler = createConsoleHandler();
         }
-        logger.addHandler(consoleHandler);
+        //logger.addHandler(consoleHandler);
         try {
             if (fileHandler == null) {
-                fileHandler = createFileHandler();
+                //fileHandler = createFileHandler();
             }
-            logger.addHandler(fileHandler);
-        } catch (IOException e) {
+            //logger.addHandler(fileHandler);
+        } catch (Exception e) {
             logger.warning("Unable to create file handler for logger");
         }
+        LogManager.getLogManager().reset(); //disable logger
         return Logger.getLogger(name);
     }
 

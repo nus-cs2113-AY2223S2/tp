@@ -1,4 +1,5 @@
 @startuml
+hidefootbox
 CommandHandler -> PlannerCommandHandler: plannerCommandHandler()
 activate PlannerCommandHandler
 PlannerCommandHandler-->CommandHandler: exit()

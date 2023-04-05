@@ -1,6 +1,7 @@
 package seedu.duke.logic.commandhandler;
 
 import java.util.Scanner;
+
 import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
 import seedu.duke.logic.commands.Command;
@@ -28,9 +29,9 @@ public class GeneralCommandHandler implements CommandList {
      * @param userCommands This refers to the commands given by the user
      * @param ui This allows us to output messages
      * @param exerciseGenerator This takes in filter parameters and outputs a
-     *     curated exercise list
+     *         curated exercise list
      * @param userCareerData This keeps track and allows logging of all user
-     *     data
+     *         data
      * @param exerciseStateHandler This allows us to start workouts
      */
     // addition of user exercise history
@@ -63,7 +64,7 @@ public class GeneralCommandHandler implements CommandList {
                     exerciseStateHandler.deleteWorkoutSession(userCareerData, sessionNumber);
                 } catch (NumberFormatException e) {
                     System.out.println("You did not key in a session number. " +
-                                           "Please key in a valid session number and try again!");
+                                               "Please key in a valid session number and try again!");
                 }
                 break;
             case GENERATE_COMMAND:
@@ -124,13 +125,14 @@ public class GeneralCommandHandler implements CommandList {
                     errorExists = true;
                 } else {
                     exerciseStateHandler.startWorkout();
+                    ui.workoutMode();
                 }
                 break;
             case CURRENT_COMMAND:
             case FINISH_COMMAND:
             case CANCEL_COMMAND:
                 System.out.println("No workout session active." +
-                                       " Please generate a workout and use the \"start\" command!");
+                                           " Please generate a workout and use the \"start\" command!");
                 break;
             case HISTORY_COMMAND:
                 if (additionalDescription.length() != 0) {
@@ -149,7 +151,7 @@ public class GeneralCommandHandler implements CommandList {
                     errorExists = true;
                 } else {
                     HashMap<String, Integer> userExerciseDataMap = UserExerciseData
-                        .addUserExerciseHistory(userCareerData);
+                            .addUserExerciseHistory(userCareerData);
                     ui.printUserExerciseHistory(userExerciseDataMap);
                 }
                 break;
@@ -171,7 +173,7 @@ public class GeneralCommandHandler implements CommandList {
                     command.executeCommand(ui, exerciseGenerator);
                     if (command instanceof GenerateFilterCommand) {
                         exerciseStateHandler
-                            .storePreviousGeneratedWorkout(((GenerateFilterCommand) command).provideExerciseList());
+                                .storePreviousGeneratedWorkout(((GenerateFilterCommand) command).provideExerciseList());
                     }
                 }
             } catch (DukeError e) {
