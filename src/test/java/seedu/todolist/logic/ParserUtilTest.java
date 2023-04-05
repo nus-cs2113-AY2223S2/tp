@@ -11,6 +11,7 @@ import seedu.todolist.exception.PassedDateException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,17 +21,18 @@ class ParserUtilTest {
     @Test
     void parseIdTest() {
         // Invalid ids should throw an exception
-        final String[] invalid_ids = {"2.5", "", "abc"};
-        for (String invalidId : invalid_ids) {
-            assertThrows(InvalidIdException.class, () -> ParserUtil.parseId(invalidId));
-        }
+        final String invalid_ids = "2.5 abc";
+        assertThrows(InvalidIdException.class, () -> ParserUtil.parseId(invalid_ids));
+
 
         // Valid ids get parsed successfully
-        final int[] valid_ids = {3, 17, 84725};
+        final String valid_ids = "3 17 84725";
+        HashSet<Integer> validIdHashSet = new HashSet<Integer>();
+        validIdHashSet.add(3);
+        validIdHashSet.add(17);
+        validIdHashSet.add(84725);
         try {
-            for (int validId : valid_ids) {
-                assertEquals(ParserUtil.parseId(Integer.toString(validId)), validId);
-            }
+                assertEquals(ParserUtil.parseId(valid_ids), validIdHashSet);
         } catch (InvalidIdException e) {
             fail("Valid id was not successfully parsed.");
         }
