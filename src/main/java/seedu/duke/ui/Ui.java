@@ -66,5 +66,8 @@ public class Ui {
         PrintHelpMessage.showAvailableExerciseSessionCommands();
     }
 
+    public void printIPPTScores() {
+        System.out.println();
+    }
 }
 

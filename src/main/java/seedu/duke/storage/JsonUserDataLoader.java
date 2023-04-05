@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.Reader;
 
 import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.data.userdata.IPPTSession;
 import seedu.duke.data.userdata.Session;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.ErrorMessages;
@@ -41,7 +42,7 @@ public class JsonUserDataLoader {
             Session sessionFromFile = null;
             for (JsonElement element : jsonArray) {
                 if(element.getAsJsonObject().has("userscore")){
-                    sessionFromFile = gson.fromJson(element, Session.class);
+                    sessionFromFile = gson.fromJson(element, IPPTSession.class);
                 } else{
                     sessionFromFile = gson.fromJson(element, Session.class);
                     if (!sessionFromFile.checkSessionNullity()) {
