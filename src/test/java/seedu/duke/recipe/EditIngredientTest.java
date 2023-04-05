@@ -21,7 +21,6 @@ public class EditIngredientTest {
     RecipeList recipeList;
     UI ui;
 
-
     @BeforeEach
     public void setup() throws Exception {
         recipeList = new RecipeList();
