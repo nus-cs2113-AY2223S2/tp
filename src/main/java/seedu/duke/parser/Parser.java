@@ -73,11 +73,8 @@ public interface Parser {
             if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
-            BigInteger intMax = BigInteger.valueOf(Integer.MAX_VALUE);
             BigInteger currValue = new BigInteger(inputWords[1]);
-            if (intMax.compareTo(currValue) == -1) {
-                throw new IntegerSizeExceededException();
-            }
+            checkInputLimit(currValue);
             int companyNum = Integer.parseInt(inputWords[1]) - 1;
             DeleteCommand deleteCommand = new DeleteCommand(command, companyNum);
             return deleteCommand;
@@ -147,5 +144,12 @@ public interface Parser {
         }
         Command defaultCommand = new Command(command);
         return defaultCommand;
+    }
+
+    private static void checkInputLimit(BigInteger currValue) throws IntegerSizeExceededException {
+        BigInteger intMax = BigInteger.valueOf(Integer.MAX_VALUE);
+        if (intMax.compareTo(currValue) == -1) {
+            throw new IntegerSizeExceededException();
+        }
     }
 }
