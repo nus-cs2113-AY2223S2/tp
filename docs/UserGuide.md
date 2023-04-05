@@ -23,8 +23,10 @@
 
 ## <span style="color:#00A36C">Introduction</span>
 
-Meant for travellers, BagPacker is an application to help travellers manage their packing list. 
-Users can add items of multiple quantities to their packing list, delete items, and view their packing lists.
+BagPacker is an application to help travellers manage their packing list. 
+Users can add items of varying quantities to their packing list, delete items, view their packing list and much more.
+With BagPacker, you never need to worry about miss-packing again simply use BagPacker to remind you of what
+is unpacked and travel with ease of mind.
 
 ---
 
@@ -38,6 +40,13 @@ Users can add items of multiple quantities to their packing list, delete items, 
    * For Windows users: search for Command Prompt, and launch it.
    * For macOS users: search for Terminal, and launch it.
 5. Execute the following command `java -jar Team_Project.jar`
+
+---
+## <span style="color:#00A36C">Limitations</span>
+* BagPacker supports the tracking of integer values up to 1000000:
+>   * for total number of items in a packing list
+>   * for total / packed / unpacked quantity of any single item in a packing list
+>   * any form of list tracking above 1000000 integer size is not supported and may result in undefined outputs
 
 ---
 
@@ -99,7 +108,7 @@ BagPacker will remove the second item from the packing list
 [0/2] water bottles removed from the list
 ```
 
-### <span style="color:#6495ED">Packing some items:</span> `pack`
+### <span style="color:#6495ED">Packing an item:</span> `pack`
 Packs the given amount of that item in the packing list.
 
 Format: `pack QUANTITY /of INDEX`
@@ -114,7 +123,7 @@ Format: `pack QUANTITY /of INDEX`
 Examples of usage:
 * `pack 3 /of 1`
 
-### <span style="color:#6495ED">Marking total quantity of item as packed:</span> `packall`
+### <span style="color:#6495ED">Fully pack an item:</span> `packall`
 Packs the total quantity of that item in the packing list.
 
 Format: `packall /of INDEX`
@@ -135,7 +144,7 @@ BagPacker will mark all of the quantities of the third item in the packing list 
 Item packed: [20/20] socks
 ```
 
-### <span style="color:#6495ED">Unpacking some items:</span> `unpack`
+### <span style="color:#6495ED">Unpacking an item:</span> `unpack`
 Unpacks the given amount of that item in the packing list.
 
 Format: `unpack QUANTITY /of INDEX`
@@ -183,9 +192,32 @@ Here are the items in your list
 1. [1000000/1000000] jackets
 2. [0/5] water bottles
 ```
-Format explanation:
+List Format explanation:
 
 `ITEM_INDEX. [CURRENTLY_PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`
+
+### <span style="color:#6495ED">Listing all unpacked items:</span> `listunpacked`
+Lists all the items in the packing list that are not fully packed yet.
+* Fully packed meaning an item's current quantity packed is the same as the total quantity to be packed
+* Includes the current packed quantity, the total quantity to be packed, and the name of the item.
+
+Format: `listunpacked`
+* This command is not expecting any parameters. Any additional parameters will be ignored.
+
+Examples of usage:
+* `listunpacked`
+* `listunpacked 123`
+
+Example output:
+``` 
+Here are the unpacked items in your list
+1. [19317/1000000] jackets
+2. [0/5] water bottles
+```
+List Format explanation:
+
+`ITEM_INDEX. [CURRENTLY_PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`
+
 
 ### <span style="color:#6495ED">Deleting the entire list:</span> `deletelist`
 Deletes the whole packing list.

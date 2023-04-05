@@ -239,7 +239,7 @@ public class Parser {
                 throw new InvalidIndexException();
             }
             return new AddCommand(new Item(itemQuantity, itemName));
-        } catch (InvalidVariablesException | ArrayIndexOutOfBoundsException e) {
+        } catch (InvalidVariablesException | ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
             return new IncorrectCommand("Invalid input format",
                     AddCommand.HELP_MSG);
         } catch (NumberFormatException | InvalidIndexException e) {
@@ -248,10 +248,13 @@ public class Parser {
         }
     }
 
-    public static String[] getAddVariables() throws InvalidVariablesException {
-        String[] inputStringList = fullInput.trim().split(" ", 2);
-        String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
-        if (inputVariables.length != 2) {
+    public static String[] getAddVariables() throws InvalidVariablesException, StringIndexOutOfBoundsException {
+        String[] inputVariables= new String[3];
+        String inputWOCommand = fullInput.substring(3).trim();
+        int ofIndex = inputWOCommand.indexOf("/of");
+        inputVariables[0] = inputWOCommand.substring(0,ofIndex).trim();
+        inputVariables[1] = inputWOCommand.substring(ofIndex + 3).trim();
+        if (!inputWOCommand.contains("/of") | inputVariables[1].equals("")) {
             throw new InvalidVariablesException();
         }
         return inputVariables;
