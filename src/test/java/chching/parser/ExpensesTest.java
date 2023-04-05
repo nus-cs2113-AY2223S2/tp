@@ -139,7 +139,7 @@ public class ExpensesTest {
             fail(); // test should not reach this line
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            assertEquals("Expense value cannot be 1000000 or more", e.getMessage());
+            assertEquals("Expense value must be less than 1000000", e.getMessage());
         }
     }
     
@@ -206,7 +206,7 @@ public class ExpensesTest {
             Expenses.getIndex(input);
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Index must contain a valid integer only", e.getMessage());
+            assertEquals("Index field not found", e.getMessage());
         }
     }
 }

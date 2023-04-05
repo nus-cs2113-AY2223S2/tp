@@ -132,7 +132,7 @@ public class IncomesTest {
             fail(); // test should not reach this line
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            assertEquals("Income value cannot be 1000000 or more", e.getMessage());
+            assertEquals("Income value must be less than 1000000", e.getMessage());
         }
     }
     
@@ -198,7 +198,7 @@ public class IncomesTest {
             Incomes.getIndex(input);
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Index must contain a valid integer only", e.getMessage());
+            assertEquals("Index field not found", e.getMessage());
         }
     }
 }

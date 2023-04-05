@@ -36,18 +36,18 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Parser {
-
+    
     public static final String FIELD_DEMARCATION = " /";
-
+    
     /**
      * Method that parses command to the relevant classes to execute
      *
-     * @param line       User input
-     * @param incomeList        List of incomes
-     * @param expenseList       List of expenses
-     * @param ui        User interface
+     * @param line        User input
+     * @param incomeList  List of incomes
+     * @param expenseList List of expenses
+     * @param ui          User interface
      */
-
+    
     public static Command parse(
             String line,
             IncomeList incomeList,
@@ -142,11 +142,11 @@ public class Parser {
         }
         return command;
     }
-
+    
     /**
      * Split the String of user input into relevant partitions
      *
-     * @param line       User input
+     * @param line User input
      * @return An ArrayList of Strings
      */
     public static ArrayList<String> splitLine(String line) {
@@ -154,33 +154,37 @@ public class Parser {
         lineParts.addAll(Arrays.asList(line.split(FIELD_DEMARCATION)));
         return lineParts;
     }
-
+    
     /**
      * Sort the arguments
      *
-     * @param arguments       arguments
+     * @param arguments arguments
      * @return Hashmap of sorted arguments
      */
-
+    
     public static HashMap<String, String> sortArguments(List<String> arguments) throws ChChingException {
         HashMap<String, String> argumentsByField = new HashMap<String, String>();
         int argumentsCount = arguments.size();
-
+        
         // split each argument according to their field and their value, and add into
         // hashmap accordingly
         // Hashmap's key is its field, value is the value of the field
         for (int i = 0; i < argumentsCount; i++) {
             String argument = arguments.get(i);
             String[] fieldAndValue = argument.split(" ", 2);
-            String field;
-            String value;
+            String field = null;
+            String value = null;
             try {
                 field = fieldAndValue[0].trim();
                 value = fieldAndValue[1].trim();
             } catch (Exception e) {
-                throw new ChChingException("Arguments not inputted correctly");
+                if (field == null) {
+                    throw new ChChingException("Improper use of \" / \"");
+                } else {
+                    throw new ChChingException("Arguments not inputted correctly / Missing details");
+                }
             }
-    
+            
             // checks if it is an existing field
             boolean isDuplicateField = argumentsByField.containsKey(field);
             // check if field/value is empty or just spaces
@@ -188,13 +192,14 @@ public class Parser {
             if (isDuplicateField) {
                 throw new ChChingException("Duplicate fields detected");
             } else if (isEmptyFieldOrValue) {
-                throw new ChChingException("Empty value detected or use of \" / \" in value");
+                throw new ChChingException("Empty detail detected or improper use of \" / \"");
             } else {
                 argumentsByField.put(field, value);
             }
         }
         return argumentsByField;
     }
+    
     public static String getCategory(HashMap<String, String> argumentsByField) throws ChChingException {
         String category = null;
         try {
@@ -204,6 +209,7 @@ public class Parser {
         }
         return category;
     }
+    
     public static String getKeyword(HashMap<String, String> argumentsByField) throws ChChingException {
         String keyword = null;
         try {
@@ -213,6 +219,6 @@ public class Parser {
         }
         return keyword;
     }
-
-
+    
+    
 }
