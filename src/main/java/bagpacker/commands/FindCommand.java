@@ -33,7 +33,7 @@ public class FindCommand extends Command {
             foundList.add(0, String.format(MSG_FIND_HEADER, foundList.size(), keyword));
             printToUser(foundList.toArray(new String[0]));
         } else {
-            printToUser(MSG_NO_FOUND_ITEM);
+            printToUser(String.format(MSG_NO_FOUND_ITEM, keyword));
         }
     }
 }
