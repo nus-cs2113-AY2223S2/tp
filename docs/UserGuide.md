@@ -11,6 +11,7 @@
   * [Packing some items](#span-stylecolor6495ed-packing-some-items--span-pack)
   * [Packing all quantity of items](#span-stylecolor6495ed-marking-total-quantity-of-item-as-packed--span-packall)
   * [Unpacking some items](#span-stylecolor6495ed-unpacking-some-items--span-unpack)
+  * [Editing item quantity](#span-stylecolor6495ed-editing-item-quantity--span-editquantity)
   * [Listing all items](#span-stylecolor6495ed-listing-all-items--span-list)
   * [Deleting the entire list](#span-stylecolor6495ed-deleting-the-entire-list--span-deletelist)
   * [Help message](#span-stylecolor6495ed-help-message--span-help)
@@ -36,7 +37,7 @@ Users can add items of multiple quantities to their packing list, delete items, 
 4. Open a command line interface, and navigate to the directory with the `jar` file using the `cd` command.
    * For Windows users: search for Command Prompt, and launch it.
    * For macOS users: search for Terminal, and launch it.
-6. Execute the following command `java -jar Team_Project.jar`
+5. Execute the following command `java -jar Team_Project.jar`
 
 ---
 
@@ -149,6 +150,23 @@ Format: `unpack QUANTITY /of INDEX`
 Example of usage:
 * `unpack 2 /of 5`
 
+### <span style="color:#6495ED">Editing item quantity:</span> `editquantity`
+Edits the total quantity of an item to be packed.
+
+Format: `editquantity QUANTITY /of INDEX`
+* `QUANTITY` is the new total quantity of that item to be packed.
+  * It must be a positive integer
+  * It must be more than 0, but not more than 1 million (1,000,000).
+  * It must be at least the value of the current quantity packed.
+  * An invalid `QUANTITY` will result in an error message.
+* `INDEX` is the index of the item that the total quantity will be changed.
+  * It must be a positive integer that is more than 0, but no more than the number of items in the list.
+  * An invalid `INDEX` will result in an error message.
+
+Examples of usage:
+* `editquantity 200 /of 1`
+
+
 ### <span style="color:#6495ED">Listing all items:</span> `list`
 Lists all the items in the packing list.
 * Includes the current packed quantity, the total quantity to be packed, and the name of the item.
@@ -162,16 +180,17 @@ Examples of usage:
 Example output:
 ``` 
 Here are the items in your list
-1. [1000000/1000000] tooth
-2. [0/1] toothpaste
+1. [1000000/1000000] jackets
+2. [0/5] water bottles
 ```
 Format explanation:
 
 `ITEM_INDEX. [CURRENTLY_PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`
 
 ### <span style="color:#6495ED">Deleting the entire list:</span> `deletelist`
-Want to start on a new packing list? This command will clear the whole packing list. 
-Be careful, this action is irreversible.
+Deletes the whole packing list.
+
+>❗ This action is irreversible.
 
 Format: `deletelist`
 * This command is not expecting any parameters. Any additional parameters will be ignored.
@@ -180,7 +199,7 @@ Example of usage:
 * `deletelist`
 
 ### <span style="color:#6495ED">Help message:</span> `help`
-Can't get the results you want? Refer to the help message to see which command should be used.
+Displays a help message containing the command summary.
 
 Format: `help`
 * This command is not expecting any parameters. Any additional parameters will be ignored.
@@ -189,7 +208,7 @@ Examples of usage:
 * `help`
 
 ### <span style="color:#6495ED">Exiting the application:</span> `bye`
-Done packing for today? Exit BagPacker and continue tomorrow!
+Exits BagPacker and saves the packing list.
 
 Format: `bye`
 * This command is not expecting any parameters. Any additional parameters will be ignored.
@@ -197,7 +216,7 @@ Format: `bye`
 Examples of usage:
 * `bye`
 
-[Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) | [Go to Features](#span-stylecolor00a36c-table-of-contents-span)
+[⏫ Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) | [⏫ Go to Features](#span-stylecolor00a36c-table-of-contents-span)
 
 ---
 
@@ -207,7 +226,7 @@ Examples of usage:
 
 **A**: Please check that there are no typos in the command. To check the correct spelling of the commands, please type `help` and hit enter.
 
-[Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span)
+[⏫ Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span)
 
 ---
 
@@ -225,4 +244,4 @@ Examples of usage:
 | Help message                             | `help`                      | Additional parameters will be ignored                                                                                            |
 | Exit                                     | `bye`                       | Additional parameters will be ignored                                                                                            |
 
-[Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) | [Go to Features](#span-stylecolor00a36c-table-of-contents-span)
+[⏫ Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) | [⏫ Go to Features](#span-stylecolor00a36c-table-of-contents-span)

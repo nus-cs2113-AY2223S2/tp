@@ -8,6 +8,7 @@ import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackCommand;
 import bagpacker.commands.DeleteListCommand;
 import bagpacker.commands.PackAllCommand;
+import bagpacker.commands.EditQuantityCommand;
 import bagpacker.commands.FindCommand;
 import bagpacker.commands.ByeCommand;
 import bagpacker.commands.IncorrectCommand;
@@ -82,6 +83,8 @@ public class Parser {
             return createDeletelistObj();
         case "packall":
             return createPackAllObj();
+        case "editquantity":
+            return createEditQuantityObj();
         case "find":
             return createFindObj();
         case "bye":
@@ -217,7 +220,7 @@ public class Parser {
      * Attempts to create AddCommand object to be executed where it is called from
      *
      * @return AddCommand the command to be executed to add an item to the packing list, else
-     *              an IncorrectCommand is created to be executed
+     * an IncorrectCommand is created to be executed
      */
     public static Command createAddObj() {
         try {
@@ -253,7 +256,7 @@ public class Parser {
      * Attempts to create DeleteCommand object to be executed where it is called from
      *
      * @return DeleteCommand the command to be executed to delete an item to the packing list, else
-     *              an IncorrectCommand is created to be executed
+     * an IncorrectCommand is created to be executed
      */
     public static Command createDeleteObj() {
         try {
@@ -291,7 +294,7 @@ public class Parser {
      * Attempts to create PackCommand object to be executed where it is called from
      *
      * @return PackCommand the command to be executed to Pack an item in the packing list, else
-     *              an IncorrectCommand is created to be executed
+     * an IncorrectCommand is created to be executed
      */
     public static Command createPackObj() {
         int quantityNotPacked = 0;
@@ -328,10 +331,54 @@ public class Parser {
     }
 
     /**
+     * Attempts to create EditQuantityCommand object to be executed where it is called from
+     * Will check whether QUANTITY and INDEX are positive integers
+     * Will check whether changing the total quantity will cause packed
+     *
+     * @return EditQuantityCommand the command to be executed to edit the total quantity of an item in the packing list,
+     *      else an IncorrectCommand objected is created to be executed
+     */
+    public static Command createEditQuantityObj() {
+        try {
+            String[] quantityAndIndex = getEditQuantityVariables();
+            int newTotalQuantity = Integer.parseInt(quantityAndIndex[0]);
+            if (newTotalQuantity < 1) {
+                throw new InvalidIndexException();
+            }
+            int index = Integer.parseInt(quantityAndIndex[1]);
+            if (index < 1 || index > PackingList.getItemList().size()) {
+                throw new InvalidIndexException();
+            }
+            int packedQuantity = PackingList.get(index - 1).getPackedQuantity();
+            if (newTotalQuantity < packedQuantity) {
+                throw new InvalidIndexException();
+            }
+            return new EditQuantityCommand(newTotalQuantity, index);
+        } catch (NumberFormatException | InvalidIndexException e) {
+            return new IncorrectCommand("Invalid item quantity or index",
+                    "For QUANTITY, try to input a positive integer that is at least the quantity packed.\n"
+                    + "For INDEX, try to input a positive integer that is at most "
+                    + PackingList.getItemList().size());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return new IncorrectCommand("Missing or additional inputs",
+                    "A valid quantity and index are required.");
+        }
+    }
+
+    public static String[] getEditQuantityVariables() throws InvalidIndexException {
+        String[] inputStringList = fullInput.trim().split(" ", 2);
+        String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
+        if (inputVariables.length != 2) {
+            throw new InvalidIndexException();
+        }
+        return inputVariables;
+    }
+
+    /**
      * Attempts to create PackCommand object to be executed where it is called from
      *
      * @return PackCommand the command to be executed to Pack an item in the packing list, else
-     *              an IncorrectCommand is created to be executed
+     * an IncorrectCommand is created to be executed
      */
 
     public static String[] getPackVariables() throws InvalidIndexException {
@@ -385,7 +432,7 @@ public class Parser {
      * Attempts to create UnpackCommand object to be executed where it is called from
      *
      * @return UnpackCommand the command to be executed to unpack an item in the packing list, else
-     *              an IncorrectCommand is created to be executed
+     * an IncorrectCommand is created to be executed
      */
     public static Command createUnpackObj() {
         int quantityPacked = 0;
