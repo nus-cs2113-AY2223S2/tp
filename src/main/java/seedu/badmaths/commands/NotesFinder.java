@@ -1,7 +1,6 @@
 package seedu.badmaths.commands;
 
 import seedu.badmaths.IllegalTodoException;
-import seedu.badmaths.Storage;
 import seedu.badmaths.note.Note;
 import seedu.badmaths.note.NotesList;
 import seedu.badmaths.ui.Ui;
