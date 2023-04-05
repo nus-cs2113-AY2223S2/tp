@@ -50,6 +50,7 @@ public enum ErrorMessage {
     SHORTCUT_NAME_VALID_COMMAND("The shortcut you are trying to configure has the same name as a valid command, " +
             "please name your shortcut something else."),
     SHORTCUT_MAPS_SHORTCUT("A configured shortcut should not map to another shortcut"),
+    SHORTCUT_DOES_NOT_EXIST("The shortcut does not exist."),
     INVALID_YEAR("Year provided needs to be in the form YYYY, where year is a number!\n\n"),
     INVALID_MONTH("Month provided needs to be in the form MM or M, where month is a number from 1 to 12!\n\n"),
     INVALID_DAY("Day provided needs to be in the form DD or D, where day is a number from 1 to 31!\n\n"),
