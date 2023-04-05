@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import seedu.duke.exceptions.InvalidIndexRangeException;
 import seedu.duke.exceptions.ListEmptyException;
-import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.ui.IntLib;
 import seedu.duke.ui.UI;
 import seedu.duke.ui.StringLib;
