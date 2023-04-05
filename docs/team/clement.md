@@ -19,11 +19,12 @@ Given below are my contributions to the project.
 #### Enhancements Implemented:
 * Created a `DeleteIncomeCommand` to allow users to delete an income from the income list.
 * Created a `DeleteExpenseCommand` to allow users to delete an expense from the expense list.
+* Created a `BalanceCommand` to allow users to view the balance of the user derived from their expenses and income.
 * Created a currency conversion feature which allows the user to set and unset currencies to display the conversion from SGD to currencies of interest. When the user sets a currency, the currency will be displayed in the income, expense list and balance. When the user unsets a currency, the currency will no longer be displayed in the income, expense list and balance.
 * Created a Selector to allow users to select the currency of interest.
 * Created a Converter class to allow users to convert the currency of interest.
 * Created a LiveCurrencyApi to get live currency rates from the internet and put it into the convertor hashmap.
-* Contributed to tests for `SetCurrencyCommand`, `UnsetCurrencyCommand`, `DeleteIncomeCommand`, `DeleteExpenseCommand`.
+* Contributed to tests for `SetCurrencyCommand`, `UnsetCurrencyCommand`, `DeleteIncomeCommand`, `DeleteExpenseCommand`, `ShowTargetCommand`
 
 #### Contributions to the UG:
 Added documentation for the feature `Set Currency`, `Unset Currency`.
