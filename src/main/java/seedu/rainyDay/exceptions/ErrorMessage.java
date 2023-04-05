@@ -69,8 +69,9 @@ public enum ErrorMessage {
     INVALID_SAVED_VALUE("Your saved data for financialStatements has an invalid value"),
     INVALID_SAVED_CATEGORY("Your saved data for financialStatements has an invalid category"),
     INVALID_SAVED_DATE("Your saved data for financialStatements has an invalid date"),
-    INVALID_SAVED_IS_IGNORED("Your saved data for financialStatements has an invalid isIgnored field");
-
+    INVALID_SAVED_IS_IGNORED("Your saved data for financialStatements has an invalid isIgnored field"),
+    CSV_EXPORT_ERROR("Error exporting to CSV, please close the CSV file if you currently have it open."),
+    CSV_EMPTY_STATEMENT("Your financial statements are empty, export to CSV will not be performed.");
     private final String error;
 
     ErrorMessage(String error) {
