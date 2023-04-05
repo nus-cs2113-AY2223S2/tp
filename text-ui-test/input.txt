@@ -2,11 +2,6 @@ help
 generAte 1337
 start
 cancel
-planner
-adD monday test legs
 exit
-quick test 1337
-start
-finish
 data
 exit

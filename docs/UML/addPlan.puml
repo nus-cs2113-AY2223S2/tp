@@ -1,4 +1,5 @@
 @startuml
+hidefootbox
 PlannerCommandHandler->UserPlan : addPlan()
 activate UserPlan
 UserPlan -> "newPlan:Plan" **

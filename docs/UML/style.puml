@@ -7,4 +7,7 @@
 !define STORAGE_COLOUR #D5E8D4
 !define STORAGE_FADED_COLOUR #E1F7E7
 !define COMMONS_COLOUR #40ff49
+!define BLUE #004e89
+!define ORANGE #ff6b35
+!define LAPIS #76AED8
 @enduml

@@ -1,10 +1,10 @@
 @startuml
 skinparam classAttributeIconSize 0
 hide circle
-
-class storage.StorageManager {
+!include style.puml
+class storage.StorageManager MAIN_COLOUR {
 }
-interface storage.Storage <<interface>> {
+interface storage.Storage <<interface>> STORAGE_COLOUR {
 writeToJson(UserCareerData) : void
 loadUserData() : UserCareerData
 
@@ -12,26 +12,26 @@ loadUserData() : UserCareerData
 writeToJson(UserPlan) : void
 loadUserPlans() : UserPlan
 }
-class storage.JsonUserPlansStorage {
+class storage.JsonUserPlansStorage LAPIS {
 
 }
-interface storage.UserPlansStorage <<interface>> {
+interface storage.UserPlansStorage <<interface>> ORANGE {
 
 }
 
-class storage.JsonUserCareerStorage {
+class storage.JsonUserCareerStorage LAPIS {
 }
 abstract class storage.TextDataUtility {
 }
-class storage.JsonUserPlansWriter {
+class storage.JsonUserPlansWriter DATA_COLOUR {
 }
-interface storage.UserCareerStorage <<interface>> {
+interface storage.UserCareerStorage <<interface>> ORANGE {
 }
-class storage.JsonUserDataWriter {
+class storage.JsonUserDataWriter DATA_COLOUR {
 }
-class storage.JsonUserPlansLoader {
+class storage.JsonUserPlansLoader DATA_COLOUR {
 }
-class storage.JsonUserDataLoader {
+class storage.JsonUserDataLoader DATA_COLOUR {
 }
 
 storage.StorageManager .d.|> storage.Storage

@@ -10,8 +10,8 @@ import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.storage.Storage;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.ErrorMessages;
-import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.Session;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 //@@author ChubbsBunns
@@ -29,13 +29,12 @@ public class ExerciseStateHandler {
     private Session currentSessionWorkout;
     private Storage storage;
 
-
-    public ExerciseStateHandler (Storage storage) {
+    public ExerciseStateHandler(Storage storage) {
         this.storage = storage;
         this.currentSessionWorkout = new Session(null);
     }
 
-    private static void printCancelWorkoutSessionMessage () {
+    private static void printCancelWorkoutSessionMessage() {
         System.out.println("Workout cancelled, you can complete it next time!");
     }
 
@@ -44,9 +43,9 @@ public class ExerciseStateHandler {
      * (In other words, whenever the generate command is called)
      *
      * @param previousWorkout Temporarily logs the most recent generated exercise
-     *     list
+     *                        list
      */
-    public void storePreviousGeneratedWorkout (ArrayList<ExerciseData> previousWorkout) {
+    public void storePreviousGeneratedWorkout(ArrayList<ExerciseData> previousWorkout) {
         assert previousWorkout != null;
         previousGeneratedWorkout = previousWorkout;
     }
@@ -55,7 +54,7 @@ public class ExerciseStateHandler {
      * This function switches the state of how Command Handler functions,
      * blocking off certain commands until the session has ended
      */
-    public void startWorkout () throws DukeError {
+    public void startWorkout() throws DukeError {
         if (previousGeneratedWorkout.size() == 0) {
             throw new DukeError(ErrorMessages.ERROR_NO_EXERCISE_LOADED.toString());
         }
@@ -74,9 +73,9 @@ public class ExerciseStateHandler {
      * Otherwise throws an error
      *
      * @throws DukeError Throws an error if there is no ongoing exercise
-     *     session
+     *                   session
      */
-    public void printCurrentWorkout () throws DukeError {
+    public void printCurrentWorkout() throws DukeError {
         if (!workoutOngoing) {
             throw new DukeError(ErrorMessages.ERROR_NO_ONGOING_EXERCISE.toString());
         }
@@ -88,10 +87,10 @@ public class ExerciseStateHandler {
      * This ends the current workout, resuming access to other functions
      *
      * @param workoutCompleted Will add current session to saved sessions if true
-     * @param userCareerData Stores and contains user data
+     * @param userCareerData   Stores and contains user data
      */
-    public void endWorkout (boolean workoutCompleted, UserCareerData userCareerData,
-                            AchievementListHandler achievementListHandler) throws DukeError {
+    public void endWorkout(boolean workoutCompleted, UserCareerData userCareerData,
+            AchievementListHandler achievementListHandler) throws DukeError {
         assert userCareerData != null;
         workoutOngoing = false;
         if (workoutCompleted) {
@@ -103,22 +102,23 @@ public class ExerciseStateHandler {
         currentSessionWorkout = null;
     }
 
-    //@@author L-K-Chng
+    // @@author L-K-Chng
     /**
      * Deletes the completed workout session which the user specifies.
      *
      * @param userCareerData Stores and contains user data.
-     * @param i The number of the session which the user wishes to delete.
+     * @param i              The number of the session which the user wishes to
+     *                       delete.
      * @throws DukeError
      */
-    public void deleteWorkoutSession (UserCareerData userCareerData, int i) throws DukeError{
+    public void deleteWorkoutSession(UserCareerData userCareerData, int i) throws DukeError {
         System.out.println("OK, you have deleted Workout Session Number " + i + "!");
         userCareerData.deleteWorkoutSession(i);
         storage.writeToJson(userCareerData);
     }
 
-    //@@author ChubbsBunns
-    private void updateWorkoutAchievements (Session session, AchievementListHandler achievementListHandler) {
+    // @@author ChubbsBunns
+    private void updateWorkoutAchievements(Session session, AchievementListHandler achievementListHandler) {
         ArrayList<Achievement> completedAchievements = new ArrayList<>();
         ArrayList<Achievement> loggedAchievements = achievementListHandler.getAchievementList();
         ArrayList<ExerciseData> exercises = session.getSessionExercises();
@@ -152,7 +152,7 @@ public class ExerciseStateHandler {
             System.out.println("Congradulations! You have achieved the following achievements:");
             for (int i = 0; i < completedAchievements.size(); i++) {
                 System.out.println((i + 1) + BRACKET + BLANK + completedAchievements.get(i).getName() + ": " +
-                                       completedAchievements.get(i).getRequirement());
+                        completedAchievements.get(i).getRequirement());
             }
             System.out.println("Keep on working out with Fitness Duke!");
         }
@@ -162,9 +162,9 @@ public class ExerciseStateHandler {
      * Prints congratulation message and saves the completed session
      *
      * @param completedWorkout The workout to be saved to userData.json
-     * @param userCareerData Stores User Data
+     * @param userCareerData   Stores User Data
      */
-    private void saveWorkoutSession (Session completedWorkout, UserCareerData userCareerData) throws DukeError {
+    private void saveWorkoutSession(Session completedWorkout, UserCareerData userCareerData) throws DukeError {
         assert completedWorkout != null;
         System.out.println("Workout completed! Congratulations on your hard work!");
         userCareerData.addWorkoutSession(completedWorkout);

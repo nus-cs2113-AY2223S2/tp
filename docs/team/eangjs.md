@@ -14,6 +14,7 @@ individuals to be motivated and keep fit so that they can live a healthy lifesty
 ## Summary of Contributions
 
 Here are the contributions done by myself to FitnessDuke
+Code Contributed by me on [Reposense](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=EangJS&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=EangJS&tabRepo=AY2223S2-CS2113-W13-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ## Features Contributed: 
 

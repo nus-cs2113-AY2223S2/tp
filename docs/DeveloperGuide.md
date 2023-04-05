@@ -106,7 +106,7 @@ The Storage API interacts with the other classes as shown in the *Sequence Diagr
 where it shows how the Storage API loads the local user data json file as well as the user plans json file upon the 
 resumption of the program.
 <div align="center">
-<img src="UML/Images/LoadingUserCareerData.png"/>
+<img src="UML/Images/LoadingUserData.png"/>
 <p>
 Figure 1.5
 </p>
@@ -233,8 +233,6 @@ progress.
 * *Ui* - User Interface
 
 ## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 ### Launch and shutdown of program
 1. Download the latest version of the .jar file and copy the file to the folder where you want the Fitness Duke program to run.

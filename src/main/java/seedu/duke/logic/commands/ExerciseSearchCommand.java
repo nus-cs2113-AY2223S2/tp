@@ -7,10 +7,11 @@ import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public class ExerciseSearchCommand extends Command {
     //@@author ghzr0
-    private static String keyword = "";
+    private String userQuery = "";
 
     /**
      * Parses the user input into data required
@@ -20,18 +21,16 @@ public class ExerciseSearchCommand extends Command {
      * @throws DukeError (if user did not key in a keyword to search)
      */
     public ExerciseSearchCommand (String[] userCommands) throws DukeError {
-
-        if (userCommands.length > 2) {
-            for (int i = 1; i < userCommands.length; i++) {
-                keyword = keyword + userCommands[i] + " ";
-            }
-        } else if (userCommands.length == 2) {
-            keyword = userCommands[1];
-        } else {
+        if (userCommands.length == 1) {
             throw new DukeError(ErrorMessages.ERROR_EMPTY_KEYWORD.toString());
+        } else {
+            StringJoiner stringJoiner = new StringJoiner(" ");
+            for (int i = 1; i < userCommands.length; i++) {
+                stringJoiner.add(userCommands[i]);
+            }
+            userQuery = stringJoiner.toString();
         }
     }
-    //@@author ghzr0
 
     /**
      * Filters the whole list of available exercises based off the
@@ -44,13 +43,15 @@ public class ExerciseSearchCommand extends Command {
         ArrayList<ExerciseData> exercisesList = new GenerateExercise().generateSetAll();
         assert exercisesList != null : "exercisesList should not be null.";
         int index = 1;
+
         System.out.println("Here are the exercises matching your keyword:");
         for (ExerciseData exercise : exercisesList) {
-            if (exercise.getName().contains(keyword)) {
+            if (exercise.getName().toLowerCase().contains(userQuery) || exercise.getName().contains(userQuery)) {
                 System.out.println(index + "." + exercise.getName());
                 index++;
             }
         }
+        System.out.println("There are no exercises found matching your keyword!");
     }
 
 }

@@ -1,9 +1,12 @@
 package seedu.duke.ui;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.userdata.userplan.UserPlan;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -11,14 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class TestUi {
-    private static final String OPEN_BRACE = "[";
-    private static final String CLOSE_BRACE = "]";
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.splitLine() method prints the correct output.
      */
     @Test
-    void testSplitLine() {
+    void testSplitLine () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -37,11 +39,12 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.printFilters() method prints the correct output.
      */
     @Test
-    void testPrintFiltersAvailable() {
+    void testPrintFiltersAvailable () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -80,11 +83,12 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.unknownCommand() method prints the correct output.
      */
     @Test
-    void testUnknownCommand() {
+    void testUnknownCommand () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -103,11 +107,12 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.printHelp() method prints the correct output.
      */
     @Test
-    void testPrintHelp() {
+    void testPrintHelp () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -124,6 +129,18 @@ public class TestUi {
                     "\tFILTER stands for a specific requirement you want to include in your exercise\r\n" +
                     "[filters]\r\n" +
                     "\tView all available filters\r\n" +
+                    "ippt [AGE] [RUNTIME] [PUSHUP SCORE] [SITUP SCORE]\r\n"+
+                    "\tStarts an IPPT exercise session with input scores for the 3 sets of exercises.\r\n"+
+                    "[start]\r\n" +
+                    "\tStart a workout session\r\n" +
+                    "[history]\r\n" +
+                    "\tView the information on all workout sessions you have completed\r\n" +
+                    "[data]\r\n" +
+                    "\tView your completed exercises as well as the number of times" +
+                    " you have completed each exercise\r\n" +
+                    "[delete]\r\n" +
+                    "\tDelete a workout session you have within your workout history: delete NUMBER\r\n" +
+                    "\tNUMBER refers to the session number of the workout session you wish to delete\r\n" +
                     "[plans]\r\n" +
                     "\tShow all plans\r\n" +
                     "[planner]\r\n" +
@@ -142,6 +159,18 @@ public class TestUi {
                     "\tFILTER stands for a specific requirement you want to include in your exercise\n" +
                     "[filters]\n" +
                     "\tView all available filters\n" +
+                    "ippt [AGE] [RUNTIME] [PUSHUP SCORE] [SITUP SCORE]\n"+
+                    "\tStarts an IPPT exercise session with input scores for the 3 sets of exercises.\n"+
+                    "[start]\n" +
+                    "\tStart a workout session\n" +
+                    "[history]\n" +
+                    "\tView the information on all workout sessions you have completed\n" +
+                    "[data]\n" +
+                    "\tView your completed exercises as well as the number of times" +
+                    " you have completed each exercise\n" +
+                    "[delete]\n" +
+                    "\tDelete a workout session you have within your workout history: delete NUMBER\n" +
+                    "\tNUMBER refers to the session number of the workout session you wish to delete\n" +
                     "[plans]\n" +
                     "\tShow all plans\n" +
                     "[planner]\n" +
@@ -158,11 +187,12 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.greetUser() method prints the correct output.
      */
     @Test
-    void testGreetUser() {
+    void testGreetUser () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -192,13 +222,13 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
-
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.byeUser() method prints the correct output.
      */
     @Test
-    void testByeUser() {
+    void testByeUser () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -235,11 +265,12 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.printPlannerHelp() method prints the correct output.
      */
     @Test
-    void testPrintPlannerHelp() {
+    void testPrintPlannerHelp () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -285,7 +316,7 @@ public class TestUi {
      * Checks if the ui.printExerciseSessionHelp() method prints the correct output.
      */
     @Test
-    void testPrintExerciseSessionHelp() {
+    void testPrintExerciseSessionHelp () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -302,9 +333,7 @@ public class TestUi {
                     "[finish]\r\n" +
                     "\tComplete your current workout session!\r\n" +
                     "[cancel]\r\n" +
-                    "\tTerminate your current workout session.\r\n" +
-                    "[exit]\r\n" +
-                    "\tTerminate FitnessDuke program.\r\n";
+                    "\tTerminate your current workout session.\r\n";
         } else {
             expectedOutput = "These are some commands available: \n" +
                     "[current]\n" +
@@ -312,28 +341,27 @@ public class TestUi {
                     "[finish]\n" +
                     "\tComplete your current workout session!\n" +
                     "[cancel]\n" +
-                    "\tTerminate your current workout session.\n" +
-                    "[exit]\n" +
-                    "\tTerminate FitnessDuke program.\n";
+                    "\tTerminate your current workout session.\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if printUserExerciseHistory() method prints the correct output.
      */
     @Test
-    void testPrintUserExerciseHistory() {
+    void testPrintUserExerciseHistory () {
         //add one value then compare.
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
-        HashMap<String,Integer> userExerciseDataMap = new HashMap<>();
+        HashMap<String, Integer> userExerciseDataMap = new HashMap<>();
         String exerciseName = "3/4 Sit-Up";
         String exerciseNameTwo = "90/90 Hamstring";
         userExerciseDataMap.put(exerciseName, 1);
         userExerciseDataMap.put(exerciseName, 1);
-        userExerciseDataMap.put(exerciseNameTwo,1);
+        userExerciseDataMap.put(exerciseNameTwo, 1);
 
         if (userExerciseDataMap.containsKey(exerciseName)) {
             int count = userExerciseDataMap.get(exerciseName);
@@ -349,13 +377,13 @@ public class TestUi {
         String expectedOutput = "";
 
         String inputOne = String.format("%-10s %-60s %-20s", "Exercise: ", "3/4 Sit-Up",
-                "Times Completed: 2  \r\n");
+                                        "Times Completed: 2  \r\n");
         String inputTwo = String.format("%-10s %-60s %-20s", "Exercise: ", "90/90 Hamstring",
-                "Times Completed: 1  \r\n");
+                                        "Times Completed: 1  \r\n");
         String inputThree = String.format("%-10s %-60s %-20s", "Exercise: ", "3/4 Sit-Up",
-                "Times Completed: 2  \n");
+                                          "Times Completed: 2  \n");
         String inputFour = String.format("%-10s %-60s %-20s", "Exercise: ", "90/90 Hamstring",
-                "Times Completed: 1  \n");
+                                         "Times Completed: 1  \n");
 
         if (os.contains("Windows")) {
             expectedOutput = "Here is a list of all the exercises you have completed:\r\n" +
@@ -368,12 +396,12 @@ public class TestUi {
                     inputThree +
                     inputFour;
         }
-        assertEquals(expectedOutput,actualOutput.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     //@author Khulon
     @Test
-    void testPrintPlans() {
+    void testPrintPlans () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -417,7 +445,7 @@ public class TestUi {
                     "_________\n" +
                     "SUNDAY\n";
         }
-        assertEquals(expectedOutput,actualOutput.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     //@author L-K-Chng
@@ -426,7 +454,7 @@ public class TestUi {
      * Checks if printExerciseFromList() method prints the correct output.
      */
     @Test
-    void testPrintExerciseFromList() {
+    void testPrintExerciseFromList () {
 
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
@@ -442,20 +470,20 @@ public class TestUi {
         exerciseData.setWorkoutType(workoutType);
         List<String> instructions = new ArrayList<String>();
         instructions.add("Lie down on the floor and secure your feet. Your legs should be bent" +
-                " at the knees.");
+                                 " at the knees.");
         instructions.add("Place your hands behind or to the side of your head. You will begin " +
-                "with your back on the ground. This will be your starting position.");
+                                 "with your back on the ground. This will be your starting position.");
         instructions.add("Flex your hips and spine to raise your torso toward your knees.");
         instructions.add("At the top of the contraction your torso should be perpendicular to " +
-                "the ground. Reverse the motion, going only Â¾ of the way down.");
+                                 "the ground. Reverse the motion, going only Â¾ of the way down.");
         instructions.add("Repeat for the recommended amount of repetitions.");
         exerciseData.setInstructions(instructions);
 
         ArrayList<ExerciseData> exercises = new ArrayList<>();
         exercises.add(exerciseData);
 
-        Ui ui = new Ui();
-        ui.printExerciseFromList(exercises);
+        Ui uiManager = new Ui();
+        uiManager.printExerciseFromList(exercises);
 
         if (os.contains("Windows")) {
             expectedOutput = "Exercise ID: 0. \r\n" +
@@ -463,12 +491,12 @@ public class TestUi {
                     "Difficulty Level: beginner\r\n" +
                     "Workout Type: core\r\n" +
                     "Lie down on the floor and secure your feet. Your legs should be bent" +
-                    " at the knees., " +
+                    " at the knees. " +
                     "Place your hands behind or to the side of your head. You will begin " +
-                    "with your back on the ground. This will be your starting position., " +
-                    "Flex your hips and spine to raise your torso toward your knees., " +
+                    "with your back on the ground. This will be your starting position. " +
+                    "Flex your hips and spine to raise your torso toward your knees. " +
                     "At the top of the contraction your torso should be perpendicular to " +
-                    "the ground. Reverse the motion, going only Â¾ of the way down., " +
+                    "the ground. Reverse the motion going only Â¾ of the way down. " +
                     "Repeat for the recommended amount of repetitions.\r\n" +
                     "\r\n";
         } else {
@@ -477,15 +505,16 @@ public class TestUi {
                     "Difficulty Level: beginner\n" +
                     "Workout Type: core\n" +
                     "Lie down on the floor and secure your feet. Your legs should be bent" +
-                    " at the knees., " +
+                    " at the knees. " +
                     "Place your hands behind or to the side of your head. You will begin " +
-                    "with your back on the ground. This will be your starting position., " +
-                    "Flex your hips and spine to raise your torso toward your knees., " +
+                    "with your back on the ground. This will be your starting position. " +
+                    "Flex your hips and spine to raise your torso toward your knees. " +
                     "At the top of the contraction your torso should be perpendicular to " +
-                    "the ground. Reverse the motion, going only Â¾ of the way down., " +
+                    "the ground. Reverse the motion going only Â¾ of the way down. " +
                     "Repeat for the recommended amount of repetitions.\n" +
                     "\n";
         }
-        assertEquals(expectedOutput,actualOutput.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
+
 }
