@@ -52,16 +52,20 @@ public final class MessageConstants {
     public static final String MESSAGE_INVALID_ID = "Please enter a valid numerical index!";
     public static final String MESSAGE_INVALID_PRICE = "Please enter a valid price!";
     public static final String MESSAGE_INVALID_PRICE_RANGE = "Please specify a valid price range!";
-    public static final String MESSAGE_MISSING_OPTION = "Please specify at least one option!";
+    public static final String MESSAGE_UNKNOWN_OPTION = "Unknown option: ";
+    public static final String MESSAGE_MISSING_REQUIRED_OPTION = "Missing required options: ";
+    public static final String MESSAGE_MISSING_OPTION_EDIT = "Please specify at least one option!";
     public static final String MESSAGE_MISSING_OPTION_ARG = "Missing argument for option: ";
     public static final String MESSAGE_MISSING_ARGS_ADD = "Please specify the description, category and price!";
     public static final String MESSAGE_MISSING_PRICE_ADD = "Please specify the price using the '-p' flag!";
     public static final String MESSAGE_MISSING_DESCRIPTION_ADD = "Please specify the description using the '-d' flag!";
     public static final String MESSAGE_MISSING_CATEGORY_ADD = "Please specify the category using the '-c' flag!";
-    public static final String MESSAGE_MISSING_ARGS_EDIT = "Please specify the ID of the expense you would like to " +
+    public static final String MESSAGE_MISSING_ID_EDIT = "Please specify the ID of the expense you would like to " +
             "edit!";
-    public static final String MESSAGE_INVALID_DATE = "Please enter date in dd/MM/yy format" +
-            " and make sure the date exists! eg. 12/01/99 or 12/12/00";
+    public static final String MESSAGE_MISSING_ID_DELETE = "Please specify the ID of the expense you would like to " +
+            "delete!";
+    public static final String MESSAGE_INVALID_DATE = "Please enter date in dd/MM/yyyy format" +
+            " and make sure the date exists!";
     public static final String MESSAGE_MIXED_DATE = "start date should be before end date!";
     public static final String MESSAGE_MISSING_DATE = "Please enter BOTH the start and end date!";
     public static final String MESSAGE_INVALID_NUMBER_OF_ENTRIES = "Please enter a positive integer more than zero!";

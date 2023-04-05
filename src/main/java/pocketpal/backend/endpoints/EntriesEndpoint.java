@@ -69,7 +69,7 @@ public class EntriesEndpoint extends Endpoint {
         } catch (InvalidCategoryException e) {
             logger.warning("/entries [GET]: unknown filter category" + request.getBody());
             return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_INVALID_CATEGORY);
-        } catch (InvalidDateException e){
+        } catch (InvalidDateException e) {
             logger.warning("/entries [GET]: invalid date");
             return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_MIXED_DATE);
         }
@@ -134,16 +134,16 @@ public class EntriesEndpoint extends Endpoint {
             logger.info("/entries [GET]: filter by amount <= " + amountEnd);
             filteredEntries = filteredEntries.filterByAmount(0, amountEnd);
         }
-        if (isFilterBetweenDates){
+        if (isFilterBetweenDates) {
             String startDateString = request.getParam(RequestParams.FILTER_BY_TIME_START);
             String endDateString = request.getParam(RequestParams.FILTER_BY_TIME_END);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             LocalDateTime startDateTime = LocalDateTime.parse(startDateString, formatter);
             LocalDateTime endDateTime = LocalDateTime.parse(endDateString, formatter);
 
             logger.info(
                     "/entries [GET]: filter by date (start: " + startDateString + ", end: " + endDateString + ")");
-            filteredEntries = filteredEntries.filterBetweenDates(startDateTime,endDateTime);
+            filteredEntries = filteredEntries.filterBetweenDates(startDateTime, endDateTime);
         }
 
         return filteredEntries;

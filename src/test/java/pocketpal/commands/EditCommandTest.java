@@ -46,7 +46,7 @@ public class EditCommandTest extends BackendTestUtil {
                 , proposedChanges[3]);
         addEntry(originalEntry);
         assertDoesNotThrow(() -> editCommand.execute(TEST_UI, TEST_BACKEND),
-                MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
+                MessageConstants.MESSAGE_MISSING_ID_EDIT);
         Entry changedEntry = getEntryById(1);
         assertEquals(changedEntry.getDescription(), "Lunch");
         assertEquals(changedEntry.getCategoryString(), "Food");

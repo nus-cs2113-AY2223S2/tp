@@ -2,26 +2,32 @@ package pocketpal.frontend.parser;
 
 import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.constants.MessageConstants;
-import pocketpal.frontend.exceptions.InvalidArgumentsException;
-import pocketpal.frontend.exceptions.InvalidCategoryException;
-import pocketpal.frontend.exceptions.MissingArgumentsException;
+import pocketpal.frontend.constants.ParserConstants;
+import pocketpal.frontend.exceptions.*;
 import pocketpal.frontend.util.CategoryUtil;
 import pocketpal.frontend.util.StringUtil;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class ParseCommand {
-    public abstract Command parseArguments(String input) throws InvalidArgumentsException, InvalidCategoryException, MissingArgumentsException;
+    private static final Logger logger = Logger.getLogger(ParseCommand.class.getName());
+
+    public abstract Command parseArguments(String input) throws InvalidArgumentsException, InvalidCategoryException, MissingArgumentsException, MissingDateException, InvalidDateException, UnknownOptionException;
 
     public String extractDetail(String input, Pattern pattern) throws MissingArgumentsException {
         String detail = null;
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
-            System.out.println("grp 1: " + matcher.group(1));
-            System.out.println("grp 2: " + matcher.group(2));
-            System.out.println("grp 3: " + matcher.group(3));
+            System.out.println(matcher.group(1));
+            System.out.println(matcher.group(2));
+            System.out.println(matcher.group(3));
+
             String option = matcher.group(ParserConstants.OPTION_GROUP);
             detail = matcher.group(ParserConstants.DETAIL_GROUP);
             if (detail != null) {
@@ -44,7 +50,7 @@ public abstract class ParseCommand {
     }
 
     public void checkIdValidity(String id) throws InvalidArgumentsException {
-        if (id == null) {
+        if (id == null || id.isEmpty()) {
             return;
         }
         try {
@@ -67,6 +73,10 @@ public abstract class ParseCommand {
         if (price == null) { //price not declared
             return;
         }
+        boolean isValid = price.matches(ParserConstants.VALID_PRICE_REGEX);
+        if (!isValid) {
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+        }
         try {
             Double.parseDouble(price);
         } catch (NumberFormatException e) {
@@ -74,8 +84,23 @@ public abstract class ParseCommand {
         }
     }
 
-    public void checkDateValidity(String date) throws InvalidArgumentsException {
-
+    /**
+     * Checks if date is valid.
+     *
+     * @param dateString User specified date.
+     * @throws InvalidDateException If date is invalid.
+     */
+    public void checkDateValidity(String dateString) throws InvalidDateException {
+        if (dateString == null) { //date not declared;
+            return;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            dateFormat.setLenient(false);
+            Date date = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);
+        }
     }
 
     public void checkCategoryValidity(String category) throws InvalidCategoryException {
@@ -84,6 +109,19 @@ public abstract class ParseCommand {
         }
         category = StringUtil.toTitleCase(category);
         CategoryUtil.convertStringToCategory(category);
+    }
+
+    public void checkUnknownOptionExistence(String input, String availableOptions) throws UnknownOptionException {
+        if (input.isEmpty()) {
+            return;
+        }
+        String[] arguments = input.split("\\s+");
+        for (String argument : arguments) {
+            char firstCharacter = argument.charAt(0);
+            if (firstCharacter == ParserConstants.OPTION_INDICATOR && !argument.matches(availableOptions)) { //option not recognised
+                throw new UnknownOptionException(MessageConstants.MESSAGE_UNKNOWN_OPTION + argument);
+            }
+        }
     }
 
 }

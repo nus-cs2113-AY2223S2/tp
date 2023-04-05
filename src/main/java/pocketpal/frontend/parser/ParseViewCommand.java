@@ -5,12 +5,11 @@ import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.commands.ViewCommand;
 import pocketpal.frontend.constants.EntryConstants;
 import pocketpal.frontend.constants.MessageConstants;
+import pocketpal.frontend.constants.ParserConstants;
 import pocketpal.frontend.exceptions.*;
 import pocketpal.frontend.util.CategoryUtil;
 import pocketpal.frontend.util.StringUtil;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Logger;
 
 public class ParseViewCommand extends ParseCommand {
@@ -21,41 +20,50 @@ public class ParseViewCommand extends ParseCommand {
     Category categoryObject = null;
     String startDate;
     String endDate;
-    String startPrice;
-    String endPrice;
+    Double startPrice;
+    Double endPrice;
 
+    /**
+     * Returns a ViewCommand object to be executed by the backend. The object may
+     * contain the user specified view count, as well as other optional flags such
+     * as date or price ranges. Any missing required inputs or incorrect formats
+     * will be raised to the user via the UI.
+     *
+     * @param input User input string after the view command.
+     * @return Command ViewCommand object to be executed by backend.
+     * @throws InvalidArgumentsException If required arguments are in incorrect format.
+     * @throws InvalidCategoryException  If specified category does not exist.
+     * @throws InvalidDateException      If specified date does not exist.
+     * @throws MissingDateException      If required end/start date is not specified.
+     * @throws MissingArgumentsException If arguments are not specified for options.
+     * @throws UnknownOptionException    If an unknown option is used.
+     */
     @Override
-    public Command parseArguments(String input) throws MissingArgumentsException, InvalidArgumentsException, InvalidCategoryException {
-        if (input.isEmpty()) { //
+    public Command parseArguments(String input) throws MissingArgumentsException, InvalidArgumentsException, InvalidCategoryException, MissingDateException, InvalidDateException, UnknownOptionException {
+        if (input.isEmpty()) {
             return new ViewCommand(viewCountInt);
         }
-        String[] dates = new String[ParserConstants.DATES_ARRAY_SIZE];
+        checkUnknownOptionExistence(input.trim(), ParserConstants.VIEW_OPTIONS);
+        String[] dates = extractDates(input);
+        Double[] prices = extractPrices(input);
         viewCount = extractId(input, ParserConstants.ID_PATTERN);
         category = extractDetail(input, ParserConstants.CATEGORY_PATTERN);
-        startPrice = extractDetail(input, ParserConstants.START_PRICE_PATTERN);
-        endPrice = extractDetail(input, ParserConstants.END_PRICE_PATTERN);
         startDate = dates[0];
         endDate = dates[1];
+        startPrice = prices[0];
+        endPrice = prices[1];
         checkIdValidity(viewCount);
         checkCategoryValidity(category);
         checkDateValidity(startDate);
         checkDateValidity(endDate);
-        checkPriceValidity(startPrice);
-        checkPriceValidity(endPrice);
-        if (startPrice == null) {
-            startPrice = ParserConstants.ZERO_VALUE;
-        }
-        if (endPrice == null) {
-            endPrice = ParserConstants.MAX_VALUE;
-        }
-        if (viewCount != null) {
+        if (viewCount != null && !viewCount.isEmpty()) {
             viewCountInt = Integer.parseInt(viewCount);
         }
         if (category != null) {
             category = StringUtil.toTitleCase(category);
             categoryObject = CategoryUtil.convertStringToCategory(category);
         }
-        return new ViewCommand(viewCountInt, categoryObject, Double.parseDouble(startPrice), Double.parseDouble(endPrice), startDate, endDate);
+        return new ViewCommand(viewCountInt, categoryObject, startPrice, endPrice, startDate, endDate);
     }
 
     //@@author leonghuenweng
@@ -71,18 +79,18 @@ public class ParseViewCommand extends ParseCommand {
      * @throws MissingDateException If either start or end date is not specified.
      */
     private String[] extractDates(String arguments) throws InvalidDateException, MissingDateException, MissingArgumentsException {
-        String[] dates = new String[ParserConstants.DATES_ARRAY_SIZE];
+        String[] dates = new String[ParserConstants.START_END_ARRAY_SIZE];
         String startDateString = extractDetail(arguments, ParserConstants.START_DATE_PATTERN);
         String endDateString = extractDetail(arguments, ParserConstants.END_DATE_PATTERN);
         if (startDateString != null) {
             logger.info("start date identified as: " + startDateString);
-            isValidDate(startDateString);
+            checkDateValidity(startDateString);
             logger.info("start date verified");
             startDateString = startDateString + EntryConstants.EARLIEST_TIME;
         }
         if (endDateString != null) {
             logger.info("end date identified as: " + endDateString);
-            isValidDate(endDateString);
+            checkDateValidity(endDateString);
             logger.info("end date verified");
             endDateString = endDateString + EntryConstants.LATEST_TIME;
         }
@@ -97,20 +105,39 @@ public class ParseViewCommand extends ParseCommand {
 
 
     /**
-     * Checks if date is valid.
+     * Returns the start and end prices specified by the user when using the filter
+     * by price feature. If both not specified, the entire price range is displayed.
+     * If only the starting price is specified, all expenses above that price is
+     * displayed.
      *
-     * @param dateString User specified date.
-     * @throws InvalidDateException If date is invalid.
+     * @param arguments User input string after view command.
+     * @return Double[] Array containing start and end price respectively.
+     * @throws InvalidArgumentsException If price specified is not in numerical form
+     *                                   or if range specified is invalid.
      */
-    private void isValidDate(String dateString) throws InvalidDateException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yy");
-        try {
-            simpleDateFormat.setLenient(false);
-            Date testDate = simpleDateFormat.parse(dateString);
-        } catch (java.text.ParseException e) {
-            logger.warning("Invalid date entered: " + MessageConstants.MESSAGE_INVALID_DATE);
-            throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);
+    private Double[] extractPrices(String arguments) throws InvalidArgumentsException, MissingArgumentsException {
+        Double[] prices = new Double[ParserConstants.START_END_ARRAY_SIZE];
+        String priceMinStr = extractDetail(arguments, ParserConstants.START_PRICE_PATTERN);
+        String priceMaxStr = extractDetail(arguments, ParserConstants.END_PRICE_PATTERN);
+        if (priceMinStr != null) {
+            checkPriceValidity(priceMinStr);
+        } else {
+            priceMinStr = ParserConstants.ZERO_VALUE;
         }
+        if (priceMaxStr != null) {
+            checkPriceValidity(priceMaxStr);
+        } else {
+            priceMaxStr = ParserConstants.MAX_VALUE;
+        }
+        double priceMinDouble = Double.parseDouble(priceMinStr);
+        double priceMaxDouble = Double.parseDouble(priceMaxStr);
+        if (priceMaxDouble < priceMinDouble) {
+            logger.warning("Maximum price range higher than minimum: " + MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
+        }
+        prices[0] = priceMinDouble;
+        prices[1] = priceMaxDouble;
+        return prices;
     }
 }
 
