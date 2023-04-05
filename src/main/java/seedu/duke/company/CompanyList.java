@@ -141,7 +141,7 @@ public class CompanyList {
         }
 
         Company company = companyList.get(companyNum);
-        if (company.isConfirmed){
+        if (company.isConfirmed) {
             ui.showExistingConfirmationMessage();
         } else {
             company.markConfirmed();
@@ -157,7 +157,7 @@ public class CompanyList {
             throw new InvalidIndexException();
         }
         Company company = companyList.get(companyNum);
-        if (company.isConfirmed == false){
+        if (!company.isConfirmed) {
             ui.showExistingUnconfirmationMessage();
         } else {
             company.markUnconfirmed();
