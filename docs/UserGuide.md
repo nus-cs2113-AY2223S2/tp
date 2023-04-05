@@ -352,15 +352,18 @@ Format: `Quadratic [quadratic equation]`
 Examples:
 
 - Input: `Quadratic 2x^2 + 2x + 1` 
+- Output:
 ````
 x is imaginary.
 ````
 - Input: `Quadratic x^2 + 4x - 5`
+- Output:
 ````
 x1 = 1.0 , x2 = -5.0
 There is a minimum point: (-2.0, -9.0)
 ````
 - Input: `Quadratic x^2 + 3`
+- Output:
 ````
 Please use the format as shown below:
 ax^2 + bx + c

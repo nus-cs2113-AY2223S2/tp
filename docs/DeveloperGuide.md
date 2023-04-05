@@ -63,7 +63,7 @@ minimum point.
 Step 5. If any exceptions are caught in the above steps, `printQuadraticFormulaError` would be called from UI to show an error message
 to the user.
 
-![img_7.png](img_7.png)
+![img_3.png](img_3.png)
 
 ### Notes
 The Notes feature allows users to input their notes for storage purposes 

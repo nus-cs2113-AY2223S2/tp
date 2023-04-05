@@ -4,8 +4,8 @@
 activate Command
 Command -> Quadratic: quadratic.solveQuadratic()
 activate Quadratic
-activate QuadraticParser
 Quadratic -> QuadraticParser
+activate QuadraticParser
 QuadraticParser -> QuadraticParser : findA()
 activate QuadraticParser #FFBBBB
 deactivate QuadraticParser
