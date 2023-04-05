@@ -1,29 +1,39 @@
 # Clanki User Guide
 
-Clanki is a command-line interface (CLI) application for managing
-flashcards. It allows users to create, manage and study flashcards
-to assist them with memorisation by using a technique called
+Clanki is a command-line interface (CLI) application for managing flashcards. It
+allows users to create, manage and study flashcards to assist them with
+memorisation by using a technique called
 [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
 ## Quick start
 
 1. Ensure you have Java 11 or above installed.
-2. Download the latest version of Clanki from [here](https://github.com/AY2223S2-CS2113-T15-4/tp/releases/tag/v1.0).
+
+2. Download the latest version of Clanki from
+   [here](https://github.com/AY2223S2-CS2113-T15-4/tp/releases).
+
 3. Copy the file to the folder you want to use as the home folder for Clanki.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar clanki.jar`
-   command to run the application.
-   You should be greeted with `Welcome to Clanki! Time to start studying!` after a few seconds.
-5. Type the command in the command box and press Enter to execute it.
-   Some example commands you can try:
-    - `add /q What is the worst fruit? /a Durian`: Add a flashcard with Question: What is the worst fruit?
-      and Answer: Durian to the list of flashcards.
+
+4. Open a command terminal, `cd` into the folder you put the jar file in, and
+   use the `java -jar clanki.jar` command to run the application. You should be
+   greeted with `Welcome to Clanki! Time to start studying!` after a few
+   seconds.
+
+5. Type the command in the command box and press Enter to execute it. Some
+   example commands you can try:
+
+    - `add /q what is the worst fruit? /a durian`: Add a flashcard with Question:
+      What is the worst fruit? and Answer: Durian to the list of flashcards.
+
     - `review`: Go through the flashcards that are due today.
+
     - `bye`: Exit the app.
+
 6. Refer to the Features below for details of each command.
 
 ## Features
 
-> Square brackets indicate optional sections of the symtax.
+> Square brackets indicate optional sections of the syntax.
 
 ### Adding a flashcard
 
@@ -31,8 +41,21 @@ to assist them with memorisation by using a technique called
 add /q QUESTION /a ANSWER
 ```
 
-- `QUESTION` will be displayed when reviewing. For how the
-  reviewing process works, see "Review flashcards" section below.
+- `QUESTION` will be displayed when reviewing. For how the reviewing process
+  works, see "Review flashcards" section below.
+
+- Since a slash character (`/`) can be intepreted as a command option, both
+  `QUESTION` and `ANSWER` must not start with `/` or includes ` /` (the slash
+  with a space before it).
+
+    - Deal with it. We make the rules.
+
+    - We might fix this in a future version. A very, very distant future version.
+
+- `/q QUESTION` and `/a ANSWER` can be arranged in any order.
+- The first letter of `QUESTION` and `ANSWER` are automatically capitalised.
+
+- If any options are duplicated, all but the last one are ignored.
 
 #### Example
 
@@ -49,25 +72,21 @@ A: Durian
 review
 ```
 
-- Flashcards that are due on the day will be displayed one after
-  another, queued in a randomised order.
+- Flashcards that are due on the day will be displayed one after another, queued
+  in a randomised order.
 
-- When the user has recalled the answer for a card, or has given
-  up on doing so, they can then press <kbd>Enter</kbd>.
+- When the user has recalled the answer for a card, or has given up on doing so,
+  they can then press <kbd>Enter</kbd>.
 
-- The app will then show the answer and ask the user if they got
-  it right. They can then type `y`/`n` to indicate that they remembered
-  the answer correctly, or they couldn't remember the correct answer,
-  respectively.
+- The app will then show the answer and ask the user if they got it right. They
+  can then type `y`/`n` to indicate that they remembered the answer correctly,
+  or they couldn't remember the correct answer, respectively.
 
-      * If `y` is indicated, the card is then set to a new due date
+    - If `y` is indicated, the card is then set to a new due date in the future.
 
-  in the future.
-
-      * Otherwise, the card is pushed back to the today's
-
-  queue for reviewing later, until the user can get it correct. When
-  the user has got it correct, the new date is set to tomorrow.
+    - Otherwise, the card is pushed back to the today's queue for reviewing later,
+      until the user can get it correct. When the user has got it correct, the new
+      date is set to tomorrow.
 
 - Then the review session continues with the next card in the queue.
 
@@ -103,15 +122,19 @@ update /q QUERY
 
 - `QUERY` can be the card's date or be part of the card's question or answer.
 
-- A list of cards that contain this query will be listed, with an
-  index assigned to each.
+- A list of cards that contain this query will be listed, with an index assigned
+  to each.
 
-- The user can then type the index of the card they wish to update
-  with the following syntax
+- The user can then type the index of the card they wish to update with the
+  following syntax
 
   ```
   INDEX [/q NEW_QUESTION] [/a NEW_ANSWER] [/d NEW_DUE_DATE]
   ```
+
+    - Since a slash character (`/`) can be intepreted as a command option,
+      `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
+      ` /` (the slash with a space before it).
 
 #### Example
 
@@ -141,11 +164,11 @@ delete /q QUERY
 
 - `QUERY` can be part of the card's question or answer.
 
-- A list of cards that contain this query will be listed, with an
-  index assigned to each.
+- A list of cards that contain this query will be listed, with an index assigned
+  to each.
 
-- The user can then type the index of the card they wish to delete.
-  The card with that index (on that list) is then deleted.
+- The user can then type the index of the card they wish to delete. The card
+  with that index (on that list) is then deleted.
 
 #### Example
 
@@ -159,6 +182,18 @@ Found 2 cards with the query "fruit":
 Which one do you want to delete? 2
 Understood. The card has been deleted.
 ```
+
+### Help menu
+
+```
+help
+```
+
+Display the list of possible commands the user can input.
+
+#### Example
+
+![helpMenuDisplay.png](userGuideImages%2FhelpMenuDisplay.png)
 
 ### Exit program
 

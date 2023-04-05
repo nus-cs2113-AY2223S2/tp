@@ -1,35 +1,43 @@
 Welcome to Clanki! Time to start studying!
+==========================================================
 You have added the following card:
 Q: Q1
 A: A1
+==========================================================
 You have added the following card:
 Q: Q1
 A: A1
+==========================================================
 Found 2 cards with the query "q1":
 [1]
 Q: Q1
 A: A1
-D: 2023-03-29
+D: 2023-04-03
 [2]
 Q: Q1
 A: A1
-D: 2023-03-29
+D: 2023-04-03
 Which flashcard do you want to update?
 Understood. The card has been updated to
 Q: Q2
 A: A1
-D: 2023-03-29
+D: 2023-04-03
+==========================================================
 There are 2 cards available for review today.
 ---
 Q: Q1 (ENTER to view answer)A: A1
 Did you get it right? (y/n) Great, you got it right!
 ---
 Q: Q2 (ENTER to view answer)A: A1
-Did you get it right? (y/n) No worries, we will try again later today.
+Did you get it right? (y/n) Please enter 'y' or 'n': (y/n) Please enter 'y' or 'n': (y/n) No worries, we will try again later today.
 ---
 Q: Q2 (ENTER to view answer)A: A1
 Did you get it right? (y/n) Great, you got it right!
 ---
 Congrats! You have reviewed all the flashcards due today!
+==========================================================
 The input is in an incorrect format.
+You can view our user guide or type help to see the correct formats for commands.
+
+==========================================================
 Bye. Don't forget to come back later to study!

@@ -21,17 +21,22 @@ public class ReviewCommand extends Command {
             System.out.printf("Q: %s (ENTER to view answer)", currentFlashcard.getQuestion());
             display.getUserCommand();
             display.printlnSeveralStrings(String.format("A: %s", currentFlashcard.getAnswer()));
+            String answerIfCorrect;
             System.out.print("Did you get it right? (y/n) ");
-            String answerIfCorrect = display.getUserCommand().toLowerCase();
-            if (answerIfCorrect.equals("y")) {
-                display.printlnSeveralStrings("Great, you got it right!");
-                currentFlashcard.updateDueDateAfterCorrectAnswer();
-            } else if (answerIfCorrect.equals("n")) {
-                display.printlnSeveralStrings("No worries, we will try again later today.");
-                currentFlashcard.updateDueDateAfterIncorrectAnswer();
-                flashcardQueue.pushFlashcard(currentFlashcard);
-            } else {
-                display.printInvalidInput();
+            while (true) {
+                answerIfCorrect = display.getUserCommand().toLowerCase();
+                if (answerIfCorrect.equals("y")) {
+                    display.printlnSeveralStrings("Great, you got it right!");
+                    currentFlashcard.updateDueDateAfterCorrectAnswer();
+                    break;
+                } else if (answerIfCorrect.equals("n")) {
+                    display.printlnSeveralStrings("No worries, we will try again later today.");
+                    currentFlashcard.updateDueDateAfterIncorrectAnswer();
+                    flashcardQueue.pushFlashcard(currentFlashcard);
+                    break;
+                } else {
+                    System.out.print("Please enter 'y' or 'n': (y/n) ");
+                }
             }
         }
         display.printlnSeveralStrings("---",
