@@ -147,6 +147,9 @@ public class Ui {
 
     private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" " +
             "\"or list\".";
+
+    private static final String INVALID_ALERT_PARAMETER = "Wrong/Incomplete Format! Please refer to the user guide" +
+            " for the correct alert parameters.";
     private static final String INVALID_ADD_ALERT =
             "Wrong/Incomplete Format! Please add new alerts in the following format: \n" +
                     "\"alert add upc/[UPC] min/[integer]\" to set an alert when stock falls below a minimum \n" +
@@ -872,6 +875,12 @@ public class Ui {
     public static void printInvalidAlertKeyword() {
         printLine();
         System.out.println(INVALID_ALERT_KEYWORD);
+        printLine();
+    }
+
+    public static void printInvalidAlertParameter() {
+        printLine();
+        System.out.println(INVALID_ALERT_PARAMETER);
         printLine();
     }
 

@@ -11,10 +11,10 @@ public abstract class Parser {
     protected static final Integer QTY_INDEX = 3;
     protected static final Integer PRICE_INDEX = 4;
     protected static final Integer CAT_INDEX = 5;
-    protected static final String ALERT_REGEX = "(add|remove|list)\\s+([\\w\\s\\/]+)";
+    protected static final String ALERT_REGEX = "(add|remove)\\s+([\\w\\s\\/]+)";
     protected static final Integer ALERT_COMMAND_INDEX = 1;
     protected static final Integer ALERT_DETAILS_INDEX = 2;
-    protected static final String ALERT_ADD_REGEX = "upc/(\\d+)\\s+(min|max)(/)([1-9]\\d*)";
+    protected static final String ALERT_ADD_REGEX = "upc/(\\d+)\\s+(min|max)(/)(\\d+)$";
     protected static final Integer ALERT_UPC_INDEX = 1;
     protected static final Integer ADD_MINMAX_INDEX = 2;
     protected static final Integer STOCK_INDEX = 4;
