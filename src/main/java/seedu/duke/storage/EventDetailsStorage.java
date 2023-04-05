@@ -30,6 +30,7 @@ public class EventDetailsStorage extends Storage{
             System.out.println("Choose a new venue using choose venue <index>");
         } catch (NoSuchElementException e) {
             event.updateEventName("Default Event");
+            System.out.println("Choose an event name using update event name <EVENT_NAME>");
             updateFile(event);
         }
     }
