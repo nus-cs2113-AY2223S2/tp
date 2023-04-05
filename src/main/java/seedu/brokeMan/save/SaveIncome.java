@@ -55,16 +55,17 @@ public class SaveIncome {
                     StandardCharsets.UTF_8);
             for (String incomeEntry : incomeEntries) {
                 String[] strIncome = incomeEntry.split("/");
+                if (strIncome.length != 4) {
+                    continue;
+                }
                 try {
                     Income income = new Income(Double.parseDouble(strIncome[0]),
                             strIncome[1],
                             LocalDateTime.parse(strIncome[2]),
                             StringToCategory.convertStringToCategory(strIncome[3]));
                     IncomeList.incomeList.add(income);
-                } catch (IndexOutOfBoundsException iobe) {
-                    System.out.println("Incorrectly Saved Income");
-                } catch (CategoryNotCorrectException e) {
-                    throw new RuntimeException(e);
+                } catch (NumberFormatException | IndexOutOfBoundsException | CategoryNotCorrectException e) {
+                    continue;
                 }
             }
         } catch (IOException ioe) {
@@ -77,4 +78,5 @@ public class SaveIncome {
             }
         }
     }
+
 }

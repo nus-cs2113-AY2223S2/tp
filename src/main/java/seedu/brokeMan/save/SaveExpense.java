@@ -54,17 +54,18 @@ public class SaveExpense {
                     StandardCharsets.UTF_8);
             for (String expenseEntry : expenseEntries) {
                 String[] strExpense = expenseEntry.split("/");
+                if (strExpense.length != 4) {
+                    continue;
+                }
                 try {
                     Expense expense = new Expense(Double.parseDouble(strExpense[0]),
                             strExpense[1],
                             LocalDateTime.parse(strExpense[2]),
-                            StringToCategory.convertStringToCategory((strExpense[3])));
+                            StringToCategory.convertStringToCategory(strExpense[3]));
                     ExpenseList.expenseList.add(expense);
 
-                } catch (IndexOutOfBoundsException iobe) {
-                    System.out.println("Incorrectly Saved Expense");
-                } catch (CategoryNotCorrectException e) {
-                    throw new RuntimeException(e);
+                } catch (NumberFormatException | CategoryNotCorrectException | IndexOutOfBoundsException e) {
+                    continue;
                 }
             }
         } catch (IOException ioe) {
@@ -77,6 +78,7 @@ public class SaveExpense {
             }
         }
     }
+
 
 
 }

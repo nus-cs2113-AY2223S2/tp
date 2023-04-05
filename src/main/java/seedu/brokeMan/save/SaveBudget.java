@@ -45,13 +45,34 @@ public class SaveBudget {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("_");
-                int key = Integer.parseInt(parts[0]);
+                if (parts.length != 2) {
+                    continue;
+                }
+                int key;
+                try {
+                    key = Integer.parseInt(parts[0]);
+                } catch (NumberFormatException e) {
+                    continue;
+                }
                 HashMap<Month, Double> value = new HashMap<>();
                 String[] entries = parts[1].split(",");
                 for (String entry : entries) {
                     String[] pair = entry.split(":");
-                    Month month = Month.valueOf(pair[0]);
-                    double val = Double.parseDouble(pair[1]);
+                    if (pair.length != 2) {
+                        continue;
+                    }
+                    Month month;
+                    try {
+                        month = Month.valueOf(pair[0]);
+                    } catch (IllegalArgumentException e) {
+                        continue;
+                    }
+                    double val;
+                    try {
+                        val = Double.parseDouble(pair[1]);
+                    } catch (NumberFormatException e) {
+                        continue;
+                    }
                     value.put(month, val);
                 }
                 budgetEachMonth.put(key, value);
@@ -62,4 +83,5 @@ public class SaveBudget {
         }
         return budgetEachMonth;
     }
+
 }
