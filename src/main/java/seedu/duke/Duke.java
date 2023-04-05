@@ -43,7 +43,7 @@ public class Duke {
         expenseList = new ExpenseList();
         currency = new Currency();
         storage = new Storage(expenseList);
-        account.setExpenseList(storage.loadExpenses(filePath));
+        //account.setExpenseList(storage.loadExpenses(filePath));
     }
 
     public void run() {
@@ -98,7 +98,7 @@ public class Duke {
             default:
                 System.out.println("Unknown command.");
             }
-            storage.saveExpenses(filePath);
+            //storage.saveExpenses(filePath);
         }
         in.close();
     }
