@@ -3,6 +3,7 @@ package seedu.duke.ui;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.userdata.userplan.UserPlan;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -66,11 +67,5 @@ public class Ui {
         PrintHelpMessage.showAvailableExerciseSessionCommands();
     }
 
-    public void printIPPTScores() {
-//        System.out.println("You have scored "+ +" points for your 2.4km run.");
-//        System.out.println("You have scored "+ +" points for your pushups.");
-//        System.out.println("You have scored "+ +" points for your situps.");
-//        System.out.println("You have scored "+ +" points in total.");
-    }
 }
 

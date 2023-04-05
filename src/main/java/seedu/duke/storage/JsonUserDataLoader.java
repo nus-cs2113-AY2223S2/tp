@@ -39,17 +39,20 @@ public class JsonUserDataLoader {
         try (Reader reader = new FileReader(userFilePath)) {
             JsonElement jsonTree = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("History");
-            Session sessionFromFile = null;
             for (JsonElement element : jsonArray) {
-                if(element.getAsJsonObject().has("userscore")){
-                    sessionFromFile = gson.fromJson(element, IPPTSession.class);
+                if(element.getAsJsonObject().has("userScore")){
+                    IPPTSession sessionFromFile = gson.fromJson(element, IPPTSession.class);
+                    if (!sessionFromFile.checkIPPTSessionNullity()) {
+                        throw new DukeError("Null error");
+                    }
+                    userCareerData.addWorkoutSession(sessionFromFile);
                 } else{
-                    sessionFromFile = gson.fromJson(element, Session.class);
+                    Session sessionFromFile = gson.fromJson(element, Session.class);
                     if (!sessionFromFile.checkSessionNullity()) {
                         throw new DukeError("Null error");
                     }
+                    userCareerData.addWorkoutSession(sessionFromFile);
                 }
-                userCareerData.addWorkoutSession(sessionFromFile);
             }
             assert jsonArray.size() == userCareerData.getTotalUserCareerSessions()
                                                      .size() : "All elements from json must be written" +

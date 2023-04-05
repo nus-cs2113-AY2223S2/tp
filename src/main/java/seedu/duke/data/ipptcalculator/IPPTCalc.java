@@ -4,12 +4,12 @@ import com.google.gson.Gson;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.ui.ErrorMessages;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Objects;
 
+//@author ghzr0
 public class IPPTCalc {
     private int ageGroup;
     private int runReps;
@@ -25,18 +25,20 @@ public class IPPTCalc {
         this.situpReps = situpReps;
     }
 
-    public void loadScoringData() throws FileNotFoundException {
+    public void loadScoringData() throws DukeError {
         try (Reader reader = new InputStreamReader(Objects.requireNonNull(this.getClass()
                 .getResourceAsStream("/scores.json")))) {
             this.scores = new Gson().fromJson(reader, Scores.class);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new DukeError(ErrorMessages.ERROR_LOAD_SCORES_FILE.toString());
         }
     }
 
-    public void setAgeGroup(int age){
-        if(age < 22){
+    public void setAgeGroup(int age) throws DukeError{
+        if(age < 22 && age >= 16){
             this.ageGroup = 1;
+        }else if (age > 65 || age < 16)  {
+            throw new DukeError(ErrorMessages.ERROR_IPPT_INVALID_AGE.toString());
         }else{
             this.ageGroup = ((age - 22) / 3 ) + 2;
         }
@@ -52,20 +54,30 @@ public class IPPTCalc {
         return runScore;
     }
 
-    public int calculatePushup(){
+    public int calculatePushup() throws DukeError{
         int pushScore;
+        if (pushupReps < 0){
+            throw new DukeError(ErrorMessages.ERROR_NEGATIVE_PUSHUP_NUMBER.toString());
+        }
         if(pushupReps <= 60 && pushupReps > 0 ){
             pushScore = scores.pushupScores.get(ageGroup-1).get(pushupReps-1);
+        }else if (pushupReps > 60){
+            pushScore = 25;
         }else {
             pushScore = 0;
         }
         return pushScore;
     }
 
-    public int calculateSitup(){
+    public int calculateSitup() throws DukeError{
         int sitScore;
+        if (situpReps < 0){
+            throw new DukeError(ErrorMessages.ERROR_NEGATIVE_SITUP_NUMBER.toString());
+        }
         if(situpReps <= 60 && situpReps > 0){
             sitScore = scores.situpScores.get(ageGroup-1).get(situpReps-1);
+        }else if (situpReps > 60){
+            sitScore = 25;
         }else {
             sitScore = 0;
         }
@@ -75,10 +87,21 @@ public class IPPTCalc {
     public void parseRunTime(String userRunTimeInput) throws Exception {
         try {
             String[] runTime = userRunTimeInput.split(":");
-            int mins = Integer.parseInt(runTime[0]);
             int secs = Integer.parseInt(runTime[1]);
-            int rounded_secs = (int) ((Math.round(secs / 10.0) * 10) + mins * 60);
-            this.runReps = scores.runTimeInSecs.indexOf(rounded_secs);
+            int mins = Integer.parseInt(runTime[0]);
+            if(mins < 0 || secs < 0){
+                throw new DukeError(ErrorMessages.ERROR_IPPT_INVALID_TIMING.toString());
+            }
+            if (mins > 19){
+                mins = 19;
+            }else if (mins < 8){
+                mins = 8;
+            }
+            if (secs > 60){
+                secs = 59;
+            }
+            int secondsRounded = (int) ((Math.round(secs / 10.0) * 10) + mins * 60);
+            this.runReps = scores.runTimeInSecs.indexOf(secondsRounded);
         } catch (Exception e){
             throw new DukeError(ErrorMessages.ERROR_IPPT_INVALID_TIMING.toString());
         }
