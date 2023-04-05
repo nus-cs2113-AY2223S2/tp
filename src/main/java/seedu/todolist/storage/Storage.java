@@ -104,14 +104,6 @@ public class Storage {
         }
     }
 
-    /**
-     * Loads the task list from the local save file, if it exists.
-     *
-     * @return The task list read from the save file, if it exists and it is not empty. Otherwise, a newly created
-     *         task list is returned.
-     * @throws FileNotFoundException If no save file is found.
-     * @throws FailedLoadException If the save file cannot be loaded.
-     */
     public void saveConfig(Config config, String filepath) throws FailedSaveConfigException {
         try {
             String json = gson.toJson(config);
