@@ -18,8 +18,6 @@ import seedu.duke.exception.TooManyVariablesException;
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
 
-import java.util.TooManyListenersException;
-
 public interface Parser {
 
     /**
