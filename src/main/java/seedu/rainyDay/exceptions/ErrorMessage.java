@@ -52,7 +52,7 @@ public enum ErrorMessage {
     SHORTCUT_MAPS_SHORTCUT("A configured shortcut should not map to another shortcut"),
     INVALID_YEAR("Year provided needs to be in the form YYYY, where Y is a number!\n\n"),
     INVALID_MONTH("Month provided needs to be in the form MM or M, where M is a number!\n\n"),
-    INVALID_DAY("Year provided needs to be in the form DD or D, where D is a number!\n\n"),
+    INVALID_DAY("Day provided needs to be in the form DD or D, where D is a number!\n\n"),
     INVALID_DATE_FORMAT("Date provided needs to be in the form of DD/MM/YYYY or D instead of DD and M " +
             "instead of MM, where D, M, and Y are numbers!\n\n"),
     EMPTY_CATEGORY_NAME("Category name cannot be empty\n\n"),
