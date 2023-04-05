@@ -5,18 +5,13 @@ import pocketpal.backend.Backend;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
 import pocketpal.data.parsing.EntryParser;
-import pocketpal.frontend.constants.EntryConstants;
-import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.exceptions.InvalidCategoryException;
 import pocketpal.communication.Request;
 import pocketpal.communication.RequestMethod;
 import pocketpal.communication.Response;
 import pocketpal.communication.ResponseStatus;
 import pocketpal.frontend.ui.UI;
-import pocketpal.frontend.util.CategoryUtil;
-import pocketpal.frontend.util.StringUtil;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**

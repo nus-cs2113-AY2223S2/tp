@@ -13,12 +13,14 @@ public class ParserConstants {
     public static final String VALID_PRICE_REGEX = "[0-9.]*";
 
     public static final String DATE_FORMATTER = "^\\d{2}/\\d{2}/\\d{4}$";
-    public static final String ADD_OPTIONS =
-            ParserConstants.CATEGORY_OPTION + ParserConstants.PIPE_INDICATOR + ParserConstants.DESCRIPTION_OPTION + ParserConstants.PIPE_INDICATOR + ParserConstants.PRICE_OPTION;
+    public static final String ADD_OPTIONS = ParserConstants.CATEGORY_OPTION + ParserConstants.PIPE_INDICATOR
+        + ParserConstants.DESCRIPTION_OPTION + ParserConstants.PIPE_INDICATOR + ParserConstants.PRICE_OPTION;
 
     public static final String EDIT_OPTIONS = ADD_OPTIONS;
-    public static final String VIEW_OPTIONS =
-            ParserConstants.CATEGORY_OPTION + ParserConstants.PIPE_INDICATOR + ParserConstants.START_DATE_OPTION + ParserConstants.PIPE_INDICATOR + ParserConstants.END_DATE_OPTION + ParserConstants.PIPE_INDICATOR + ParserConstants.START_PRICE_OPTION + ParserConstants.PIPE_INDICATOR + ParserConstants.END_PRICE_OPTION;
+    public static final String VIEW_OPTIONS = ParserConstants.CATEGORY_OPTION + ParserConstants.PIPE_INDICATOR
+        + ParserConstants.START_DATE_OPTION + ParserConstants.PIPE_INDICATOR + ParserConstants.END_DATE_OPTION
+        + ParserConstants.PIPE_INDICATOR + ParserConstants.START_PRICE_OPTION + ParserConstants.PIPE_INDICATOR
+        + ParserConstants.END_PRICE_OPTION;
     public static final String PRICE_OPTION = "-p|-price";
     public static final String DESCRIPTION_OPTION = "-d|-description";
     public static final String START_DATE_OPTION = "-sd|-startdate";

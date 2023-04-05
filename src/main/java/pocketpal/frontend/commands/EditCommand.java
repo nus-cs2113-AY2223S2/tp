@@ -70,10 +70,10 @@ public class EditCommand extends Command {
      */
     public String[] getAttributes() {
         return new String[]{
-                Integer.toString(this.expenseId),
-                this.newCategory,
-                this.newDescription,
-                this.newPrice
+            Integer.toString(this.expenseId),
+            this.newCategory,
+            this.newDescription,
+            this.newPrice
         };
     }
 }

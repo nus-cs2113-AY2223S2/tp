@@ -6,7 +6,12 @@ import pocketpal.frontend.commands.ViewCommand;
 import pocketpal.frontend.constants.EntryConstants;
 import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.constants.ParserConstants;
-import pocketpal.frontend.exceptions.*;
+import pocketpal.frontend.exceptions.InvalidArgumentsException;
+import pocketpal.frontend.exceptions.InvalidCategoryException;
+import pocketpal.frontend.exceptions.InvalidDateException;
+import pocketpal.frontend.exceptions.MissingArgumentsException;
+import pocketpal.frontend.exceptions.MissingDateException;
+import pocketpal.frontend.exceptions.UnknownOptionException;
 import pocketpal.frontend.util.CategoryUtil;
 import pocketpal.frontend.util.StringUtil;
 
@@ -39,7 +44,8 @@ public class ParseViewCommand extends ParseCommand {
      * @throws UnknownOptionException    If an unknown option is used.
      */
     @Override
-    public Command parseArguments(String input) throws MissingArgumentsException, InvalidArgumentsException, InvalidCategoryException, MissingDateException, InvalidDateException, UnknownOptionException {
+    public Command parseArguments(String input) throws InvalidArgumentsException, MissingDateException,
+            InvalidDateException, UnknownOptionException, MissingArgumentsException, InvalidCategoryException {
         if (input.isEmpty()) {
             return new ViewCommand(viewCountInt);
         }
@@ -78,7 +84,8 @@ public class ParseViewCommand extends ParseCommand {
      * @throws InvalidDateException If date specified does not exist.
      * @throws MissingDateException If either start or end date is not specified.
      */
-    private String[] extractDates(String arguments) throws InvalidDateException, MissingDateException, MissingArgumentsException {
+    private String[] extractDates(String arguments) throws InvalidDateException,
+            MissingDateException, MissingArgumentsException {
         String[] dates = new String[ParserConstants.START_END_ARRAY_SIZE];
         String startDateString = extractDetail(arguments, ParserConstants.START_DATE_PATTERN);
         String endDateString = extractDetail(arguments, ParserConstants.END_DATE_PATTERN);

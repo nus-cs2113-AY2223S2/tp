@@ -3,7 +3,12 @@ package pocketpal.frontend.parser;
 import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.constants.ParserConstants;
-import pocketpal.frontend.exceptions.*;
+import pocketpal.frontend.exceptions.InvalidArgumentsException;
+import pocketpal.frontend.exceptions.InvalidCategoryException;
+import pocketpal.frontend.exceptions.InvalidDateException;
+import pocketpal.frontend.exceptions.MissingArgumentsException;
+import pocketpal.frontend.exceptions.MissingDateException;
+import pocketpal.frontend.exceptions.UnknownOptionException;
 import pocketpal.frontend.util.CategoryUtil;
 import pocketpal.frontend.util.StringUtil;
 
@@ -18,7 +23,9 @@ import java.util.regex.Pattern;
 public abstract class ParseCommand {
     private static final Logger logger = Logger.getLogger(ParseCommand.class.getName());
 
-    public abstract Command parseArguments(String input) throws InvalidArgumentsException, InvalidCategoryException, MissingArgumentsException, MissingDateException, InvalidDateException, UnknownOptionException;
+    public abstract Command parseArguments(String input) throws InvalidArgumentsException,
+            InvalidCategoryException, MissingArgumentsException, MissingDateException, InvalidDateException,
+            UnknownOptionException;
 
     public String extractDetail(String input, Pattern pattern) throws MissingArgumentsException {
         String detail = null;
@@ -118,7 +125,8 @@ public abstract class ParseCommand {
         String[] arguments = input.split("\\s+");
         for (String argument : arguments) {
             char firstCharacter = argument.charAt(0);
-            if (firstCharacter == ParserConstants.OPTION_INDICATOR && !argument.matches(availableOptions)) { //option not recognised
+            if (firstCharacter == ParserConstants.OPTION_INDICATOR
+                    && !argument.matches(availableOptions)) { //option not recognised
                 throw new UnknownOptionException(MessageConstants.MESSAGE_UNKNOWN_OPTION + argument);
             }
         }

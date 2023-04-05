@@ -8,7 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.constants.ParserConstants;
-import pocketpal.frontend.exceptions.*;
+import pocketpal.frontend.exceptions.InvalidArgumentsException;
+import pocketpal.frontend.exceptions.InvalidCategoryException;
+import pocketpal.frontend.exceptions.InvalidCommandException;
+import pocketpal.frontend.exceptions.InvalidDateException;
+import pocketpal.frontend.exceptions.MissingArgumentsException;
+import pocketpal.frontend.exceptions.MissingDateException;
+import pocketpal.frontend.exceptions.UnknownOptionException;
 
 
 public class ParserTest {
@@ -19,7 +25,8 @@ public class ParserTest {
             parser.parseUserInput("/add -p 100 -c food");
         });
 
-        String expectedMessage = MessageConstants.MESSAGE_MISSING_REQUIRED_OPTION + System.lineSeparator() + ParserConstants.DESCRIPTION_OPTION;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_REQUIRED_OPTION
+                + System.lineSeparator() + ParserConstants.DESCRIPTION_OPTION;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -43,7 +50,8 @@ public class ParserTest {
             parser.parseUserInput("/add -d expense1 -c food");
         });
 
-        String expectedMessage = MessageConstants.MESSAGE_MISSING_REQUIRED_OPTION + System.lineSeparator() + ParserConstants.PRICE_OPTION;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_REQUIRED_OPTION +
+                System.lineSeparator() + ParserConstants.PRICE_OPTION;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -55,7 +63,8 @@ public class ParserTest {
             parser.parseUserInput("/add -d expense1 -p 100");
         });
 
-        String expectedMessage = MessageConstants.MESSAGE_MISSING_REQUIRED_OPTION + System.lineSeparator() + ParserConstants.CATEGORY_OPTION;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_REQUIRED_OPTION
+                + System.lineSeparator() + ParserConstants.CATEGORY_OPTION;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -99,7 +108,9 @@ public class ParserTest {
         Exception exception = assertThrows(MissingArgumentsException.class, () -> {
             parser.parseUserInput("/add");
         });
-        String expectedMessage = MessageConstants.MESSAGE_MISSING_REQUIRED_OPTION + System.lineSeparator() + ParserConstants.DESCRIPTION_OPTION + System.lineSeparator() + ParserConstants.PRICE_OPTION + System.lineSeparator() + ParserConstants.CATEGORY_OPTION;
+        String expectedMessage = MessageConstants.MESSAGE_MISSING_REQUIRED_OPTION
+                + System.lineSeparator() + ParserConstants.DESCRIPTION_OPTION + System.lineSeparator()
+                + ParserConstants.PRICE_OPTION + System.lineSeparator() + ParserConstants.CATEGORY_OPTION;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }

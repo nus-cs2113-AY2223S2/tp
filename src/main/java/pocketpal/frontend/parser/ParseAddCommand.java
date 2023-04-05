@@ -28,7 +28,8 @@ public class ParseAddCommand extends ParseCommand {
      * @throws UnknownOptionException    If an unknown option is used.
      */
     @Override
-    public Command parseArguments(String input) throws InvalidArgumentsException, InvalidCategoryException, MissingArgumentsException, UnknownOptionException {
+    public Command parseArguments(String input) throws InvalidArgumentsException, InvalidCategoryException,
+            MissingArgumentsException, UnknownOptionException {
         checkUnknownOptionExistence(input.trim(), ParserConstants.ADD_OPTIONS);
         description = extractDetail(input, ParserConstants.DESCRIPTION_PATTERN);
         price = extractDetail(input, ParserConstants.PRICE_PATTERN);
@@ -40,7 +41,8 @@ public class ParseAddCommand extends ParseCommand {
         return new AddCommand(description, Double.parseDouble(price), CategoryUtil.convertStringToCategory(category));
     }
 
-    private void checkOptionsExistence(String description, String price, String category) throws MissingArgumentsException {
+    private void checkOptionsExistence(String description, String price, String category)
+            throws MissingArgumentsException {
         String errorMessage = MessageConstants.MESSAGE_MISSING_REQUIRED_OPTION;
         if (description == null) {
             errorMessage += System.lineSeparator() + ParserConstants.DESCRIPTION_OPTION;

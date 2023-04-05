@@ -22,7 +22,8 @@ public class ParseDeleteCommand extends ParseCommand {
      * @throws UnknownOptionException    If an unknown option is used.
      */
     @Override
-    public Command parseArguments(String input) throws InvalidArgumentsException, MissingArgumentsException, UnknownOptionException {
+    public Command parseArguments(String input) throws InvalidArgumentsException, MissingArgumentsException,
+            UnknownOptionException {
         checkUnknownOptionExistence(input.trim(), "");
         if (input.isEmpty()) {
             throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_ID_DELETE);

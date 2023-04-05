@@ -22,15 +22,15 @@ public class ParseEditCommand extends ParseCommand {
      * data is in incorrect format, error is raised to the user.
      *
      * @param input User input after edit command.
-     * @return Command EditCommand object containing the new parameters to be
-     * updated.
+     * @return Command EditCommand object containing the new parameters to be updated.
      * @throws MissingArgumentsException If required arguments are missing.
      * @throws InvalidArgumentsException If entered arguments are in incorrect format.
      * @throws UnknownOptionException    If an unknown option is used.
      * @throws InvalidCategoryException  If an unsupported category is used.
      */
     @Override
-    public Command parseArguments(String input) throws InvalidArgumentsException, InvalidCategoryException, MissingArgumentsException, UnknownOptionException {
+    public Command parseArguments(String input) throws InvalidArgumentsException, InvalidCategoryException,
+            MissingArgumentsException, UnknownOptionException {
         checkUnknownOptionExistence(input.trim(), ParserConstants.EDIT_OPTIONS);
         expenseId = extractId(input, ParserConstants.ID_PATTERN);
         description = extractDetail(input, ParserConstants.DESCRIPTION_PATTERN);
