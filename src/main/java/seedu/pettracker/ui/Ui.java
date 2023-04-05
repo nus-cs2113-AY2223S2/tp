@@ -17,7 +17,7 @@ public class Ui {
     private static final String DUPLICATE_PET_ERROR = "ERROR: Pet already exists";
 
 
-    Scanner in;
+    private Scanner in;
 
     /**
      * Constructor to initialize Scanner object.
@@ -68,13 +68,6 @@ public class Ui {
      */
     public void addStatCommandMessage(String petName, String statName, String statValue) {
         System.out.println("Updated " + statName + " to " + statValue + " for " + petName);
-    }
-
-    /**
-     * Message that prints when an invalid command is passed to the program.
-     */
-    public void invalidCommandMessage() {
-        System.out.println("Please enter a valid command!");
     }
 
     /**
