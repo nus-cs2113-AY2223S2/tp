@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
+//@author ghzr0
 public class Scores {
     @SerializedName("runScores")
     @Expose
@@ -18,5 +19,4 @@ public class Scores {
     @Expose
     public ArrayList<ArrayList<Integer>> situpScores;
 
-    //public ArrayList<Scores> scores;
 }

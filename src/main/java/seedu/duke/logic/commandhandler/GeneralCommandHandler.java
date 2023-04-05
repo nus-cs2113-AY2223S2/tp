@@ -1,12 +1,14 @@
 package seedu.duke.logic.commandhandler;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import seedu.duke.achievements.AchievementListHandler;
-import seedu.duke.logic.commands.ExerciseSearchCommand;
 import seedu.duke.logic.commands.Command;
+import seedu.duke.logic.commands.ExerciseSearchCommand;
 import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.logic.commands.HelpCommand;
+import seedu.duke.logic.commands.IPPTCmd;
 import seedu.duke.logic.commands.QuickStartCommand;
 
 import seedu.duke.commons.exceptions.DukeError;
@@ -110,6 +112,10 @@ public class GeneralCommandHandler implements CommandList {
                 } else {
                     ui.showPlan(planner);
                 }
+                break;
+            case IPPT_COMMAND:
+                IPPTCmd generateIPPT = new IPPTCmd(Arrays.copyOfRange(userCommands,1,5));
+                generateIPPT.addIPPTSession(exerciseGenerator,userCareerData,storage);
                 break;
             case QUICK_START_COMMAND:
                 if (additionalDescription.length() == 0) {

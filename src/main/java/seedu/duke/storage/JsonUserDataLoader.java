@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.Reader;
 
 import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.data.userdata.IPPTSession;
 import seedu.duke.data.userdata.Session;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.ErrorMessages;
@@ -39,11 +40,19 @@ public class JsonUserDataLoader {
             JsonElement jsonTree = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("History");
             for (JsonElement element : jsonArray) {
-                Session sessionFromFile = gson.fromJson(element, Session.class);
-                if (!sessionFromFile.checkSessionNullity()) {
-                    throw new DukeError("Null error");
+                if(element.getAsJsonObject().has("userScore")){
+                    IPPTSession sessionFromFile = gson.fromJson(element, IPPTSession.class);
+                    if (!sessionFromFile.checkIPPTSessionNullity()) {
+                        throw new DukeError("Null error");
+                    }
+                    userCareerData.addWorkoutSession(sessionFromFile);
+                } else{
+                    Session sessionFromFile = gson.fromJson(element, Session.class);
+                    if (!sessionFromFile.checkSessionNullity()) {
+                        throw new DukeError("Null error");
+                    }
+                    userCareerData.addWorkoutSession(sessionFromFile);
                 }
-                userCareerData.addWorkoutSession(sessionFromFile);
             }
             assert jsonArray.size() == userCareerData.getTotalUserCareerSessions()
                                                      .size() : "All elements from json must be written" +
