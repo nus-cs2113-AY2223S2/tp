@@ -14,7 +14,6 @@ import java.util.HashMap;
  */
 
 public class Expenses {
-    private static final String VALID_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=,./<>?;':\"[]{}\\|`~ ";
 
     /**
      * Parses a date
