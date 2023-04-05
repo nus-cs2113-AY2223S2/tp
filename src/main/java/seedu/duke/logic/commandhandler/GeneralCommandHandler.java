@@ -4,7 +4,12 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import seedu.duke.achievements.AchievementListHandler;
-import seedu.duke.logic.commands.*;
+import seedu.duke.logic.commands.Command;
+import seedu.duke.logic.commands.ExerciseSearchCommand;
+import seedu.duke.logic.commands.GenerateFilterCommand;
+import seedu.duke.logic.commands.HelpCommand;
+import seedu.duke.logic.commands.IPPTCmd;
+import seedu.duke.logic.commands.QuickStartCommand;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
