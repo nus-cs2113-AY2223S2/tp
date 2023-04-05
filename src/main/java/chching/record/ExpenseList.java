@@ -57,34 +57,34 @@ public class ExpenseList extends RecordList {
 
         // edit the according field
         switch (field) {
-            case "c":
-                expense.setCategory(value);
-                break;
-            case "de":
-                expense.setDescription(value);
-                break;
-            case "da":
-                LocalDate date = parseDate(value);
-                expense.setDate(date);
-                break;
-            case "v":
-                try {
-                    double amount = Double.parseDouble(value);
-                    if (amount < 0.01) {
-                        throw new ChChingException("Expense must be greater than or equals 0.01");
-                    }
-                    assert amount > 0.01 : "Income must be positive and more than 0";
-                    expense.setValue(amount);
-                } catch (Exception e) {
-                    if (e instanceof NumberFormatException) {
-                        throw new ChChingException("Expense value must be a number");
-                    }
-                    throw new ChChingException(e.getMessage());
+        case "c":
+            expense.setCategory(value);
+            break;
+        case "de":
+            expense.setDescription(value);
+            break;
+        case "da":
+            LocalDate date = parseDate(value);
+            expense.setDate(date);
+            break;
+        case "v":
+            try {
+                double amount = Double.parseDouble(value);
+                if (amount < 0.01) {
+                    throw new ChChingException("Expense must be greater than or equals 0.01");
                 }
-                break;
-            default:
-                assert false : "No such field to enter here";
-                throw new ChChingException("No such field in expense");
+                assert amount > 0.01 : "Income must be positive and more than 0";
+                expense.setValue(amount);
+            } catch (Exception e) {
+                if (e instanceof NumberFormatException) {
+                    throw new ChChingException("Expense value must be a number");
+                }
+                throw new ChChingException(e.getMessage());
+            }
+            break;
+        default:
+            assert false : "No such field to enter here";
+            throw new ChChingException("No such field in expense");
         }
     }
 
