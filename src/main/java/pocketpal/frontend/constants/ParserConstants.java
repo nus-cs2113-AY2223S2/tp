@@ -5,8 +5,11 @@ import java.util.regex.Pattern;
 public class ParserConstants {
     public static final char OPTION_INDICATOR = '-';
     public static final String PIPE_INDICATOR = "|";
-    public static final String ZERO_VALUE = "0";
-    public static final String MAX_VALUE = "999999999";
+    public static final double MIN_VALUE = 0.01;
+    public static final double MAX_VALUE = 999999999.99;
+
+    public static final String MIN_VALUE_STR = "0.01";
+    public static final String MAX_VALUE_STR = "999999999.99";
     public static final int START_END_ARRAY_SIZE = 2;
     public static final int DETAIL_GROUP = 2;
     public static final int OPTION_GROUP = 1;

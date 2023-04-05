@@ -49,8 +49,7 @@ public final class MessageConstants {
     public static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!";
     public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!";
     public static final String MESSAGE_INVALID_DESCRIPTION = "Description can only contain letters and numbers!";
-    public static final String MESSAGE_INVALID_PRICE = "Price can only contain numbers and decimal points (.)!";
-    public static final String MESSAGE_INVALID_PRICE_RANGE = "Please specify a valid price range!";
+
     public static final String MESSAGE_INVALID_ID = "Please enter an integer from 1 to 2147483647.";
     public static final String MESSAGE_INVALID_AMOUNT = "Please enter a valid amount!" + NEWLINE
             + "Value should be between 0.01 and 999999999.99";

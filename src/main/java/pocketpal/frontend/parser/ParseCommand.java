@@ -76,9 +76,13 @@ public abstract class ParseCommand {
         if (!isValid) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
+        double priceDouble;
         try {
-            Double.parseDouble(price);
+            priceDouble = Double.parseDouble(price);
         } catch (NumberFormatException e) {
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
+        }
+        if (priceDouble > ParserConstants.MAX_VALUE || priceDouble < ParserConstants.MIN_VALUE) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
     }

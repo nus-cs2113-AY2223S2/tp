@@ -132,17 +132,17 @@ public class ParseViewCommand extends ParseCommand {
         if (priceMinStr != null) {
             checkPriceValidity(priceMinStr);
         } else {
-            priceMinStr = ParserConstants.ZERO_VALUE;
+            priceMinStr = ParserConstants.MIN_VALUE_STR;
         }
         if (priceMaxStr != null) {
             checkPriceValidity(priceMaxStr);
         } else {
-            priceMaxStr = ParserConstants.MAX_VALUE;
+            priceMaxStr = ParserConstants.MAX_VALUE_STR;
         }
         double priceMinDouble = Double.parseDouble(priceMinStr);
         double priceMaxDouble = Double.parseDouble(priceMaxStr);
         if (priceMaxDouble < priceMinDouble) {
-            logger.warning("Maximum price range higher than minimum: "
+            logger.warning("Maximum price higher than minimum: "
                     + MessageConstants.MESSAGE_INVALID_AMOUNT_RANGE);
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT_RANGE);
         }
