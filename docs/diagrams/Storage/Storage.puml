@@ -10,76 +10,48 @@ activate ":Storage"
 ":Storage" -> ":Storage" : initialiseDatabase()
 activate ":Storage"
 create ":ArrayList<Module>"
-":Storage" -> ":ArrayList<Module>" : ArrayList<>()
+":Storage" -> ":ArrayList<Module>" : new ArrayList<>()
 activate ":ArrayList<Module>"
-":Storage" <- ":ArrayList<Module>" : modules:ArrayList<Module>
+":Storage" <-- ":ArrayList<Module>" : modules:ArrayList<Module>
 deactivate ":ArrayList<Module>"
 create ":File"
 ":Storage" -> ":File" : File(SAVED_MODULES_FILE_PATH)
 activate ":File"
-":Storage" <- ":File" : savedModulesFile
+":Storage" <-- ":File" : savedModulesFile
 deactivate ":File"
 
 opt !savedModulesFile.exists()
 create ":File"
 ":Storage" -> ":File" : File("data")
 activate ":File"
-":Storage" <- ":File" : directory
+":Storage" <-- ":File" : directory
 deactivate ":File"
 ":Storage" -> ":File" : directory.mkdirs()
 activate ":File"
 deactivate ":File"
 end
-
 ":Storage" -> ":Storage" : readModData(SAVED_MODULES_FILE_PATH, modules)
 activate ":Storage"
-create ":FileReader"
-":Storage" -> ":FileReader" : FileReader(modulesFilePath)
-activate ":FileReader"
-":Storage" <- ":FileReader" : FileReader
-deactivate ":FileReader"
-create ":BufferedReader"
-":Storage" -> ":BufferedReader" : BufferedReader(FileReader)
-activate ":BufferedReader"
-":Storage" <- ":BufferedReader" : br
-deactivate ":BufferedReader"
-":Storage" -> ":BufferedReader" : br.readLine()
-activate ":BufferedReader"
-":Storage" <- ":BufferedReader" : line:String
-deactivate ":BufferedReader"
-loop line != null
-":Storage" -> ":String" : line.split(",")
-activate ":String"
-":Storage" <- ":String" : row:String[]
-deactivate ":String"
-opt row[3].equals("N/A")
-":Storage" -> ":Storage" : row[3] = "0";
+ref over ":Storage" : readModData
+":Storage" --> ":Storage"
+deactivate ":Storage"
+":Storage" -> ":Storage" : checkDatabaseCorrupted()
+activate ":Storage"
+":Storage" --> ":Storage" : isStorageCorrupted:boolean
+deactivate ":Storage"
+opt isStorageCorrupted == true
+":Storage" -> "<<class>>\n:UI" : UI.printStorageCorruptedMessage()
+activate "<<class>>\n:UI"
+":Storage" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
 end
-":Storage" -> ":Integer" : Integer.parseInt(row[0])
-activate ":Integer"
-":Storage" <- ":Integer" : Integer0
-deactivate ":Integer"
-":Storage" -> ":Integer" : Integer.parseInt(row[3])
-activate ":Integer"
-":Storage" <- ":Integer" : Integer3
-deactivate ":Integer"
-":Storage" -> ":Integer" : Integer.parseInt(row[6])
-activate ":Integer"
-":Storage" <- ":Integer" : Integer6
-deactivate ":Integer"
-create ":Module"
-":Storage" -> ":Module" : Module(Integer0, row[1], row[2], Integer3, row[4], row[5],Integer6)
-activate ":Module"
-":Storage" <- ":Module" : module:Module
-deactivate ":Module"
-":Storage" -> ":ArrayList<Module>" : modules.add(module)
-activate ":ArrayList<Module>"
-deactivate ":ArrayList<Module>"
-":Storage" -> ":BufferedReader" : br.readLine()
-activate ":BufferedReader"
-":Storage" <- ":BufferedReader" : line:String
-deactivate ":BufferedReader"
-end
+":Storage" -> ":Storage" : writeModListToFile(modules)
+activate ":Storage"
+":Storage" --> ":Storage"
+deactivate ":Storage"
+":Storage" --> ":Storage"
+deactivate ":Storage"
+":Storage" --> ":Duke"
 deactivate ":Storage"
 
 
