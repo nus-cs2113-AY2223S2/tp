@@ -77,7 +77,7 @@ class ParserTest {
         try {
             new Parser().parseUserInput("add -out rice $5 -date aa/bb/cccc");
         } catch (Exception e) {
-            assertEquals(ErrorMessage.INVALID_DAY.toString(),
+            assertEquals(ErrorMessage.INVALID_DAY + ErrorMessage.ADD_FORMAT.toString(),
                     e.getMessage().toString());
         }
     }
