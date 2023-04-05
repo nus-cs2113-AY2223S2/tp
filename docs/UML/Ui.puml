@@ -1,0 +1,10 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+Eventus -> Ui: showWelcome()
+Ui -> Ui: showLine()
+Eventus <-- Ui
+
+@enduml
