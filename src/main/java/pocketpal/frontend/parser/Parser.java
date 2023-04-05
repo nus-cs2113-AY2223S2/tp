@@ -435,8 +435,8 @@ public class Parser {
         Double priceMinDouble = Double.parseDouble(priceMinStr);
         Double priceMaxDouble = Double.parseDouble(priceMaxStr);
         if (priceMaxDouble < priceMinDouble) {
-            logger.warning("Maximum price range higher than minimum: " + MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
+            logger.warning("Maximum price range higher than minimum: " + MessageConstants.MESSAGE_INVALID_AMOUNT_RANGE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT_RANGE);
         }
         prices[0] = priceMinDouble;
         prices[1] = priceMaxDouble;
@@ -524,7 +524,7 @@ public class Parser {
     private void checkIfPriceValid(String price) throws InvalidArgumentsException {
         boolean isValid = price.matches(VALID_PRICE_REGEX);
         if (!isValid) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
     }
 

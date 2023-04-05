@@ -2,6 +2,7 @@
 package pocketpal.frontend.commands;
 
 import pocketpal.backend.Backend;
+import pocketpal.backend.constants.MiscellaneousConstants;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entrylog.EntryLog;
 import pocketpal.data.parsing.EntryLogParser;
@@ -26,7 +27,8 @@ public class ViewCommand extends Command {
     private final Double priceToViewMax;
 
     public ViewCommand(int numberOfEntriesToView) {
-        this(numberOfEntriesToView, null, 0.0 , Double.MAX_VALUE, "", "");
+        this(numberOfEntriesToView, null, MiscellaneousConstants.AMOUNT_MIN_DOUBLE,
+                MiscellaneousConstants.AMOUNT_MAX_DOUBLE, "", "");
     }
 
     public ViewCommand(int numberOfEntriesToView,
@@ -63,15 +65,15 @@ public class ViewCommand extends Command {
             request.addParam(RequestParams.FILTER_BY_TIME_END, endDateString);
         }
 
-        request.addParam(RequestParams.FILTER_BY_AMOUNT_START, String.valueOf(priceToViewMin));
-        request.addParam(RequestParams.FILTER_BY_AMOUNT_END, String.valueOf(priceToViewMax));
+        request.addParam(RequestParams.FILTER_BY_AMOUNT_START,String.format("%f", priceToViewMin));
+        request.addParam(RequestParams.FILTER_BY_AMOUNT_END, String.format("%f", priceToViewMax));
 
         Response response = backend.requestEndpointEntries(request);
-        EntryLog relevantEntries = EntryLogParser.deserialise(response.getData());
         if (response.getResponseStatus() == ResponseStatus.UNPROCESSABLE_CONTENT) {
-            throw new InvalidCategoryException(MessageConstants.MESSAGE_INVALID_CATEGORY);
+            throw new InvalidCategoryException(response.getData());
         }
 
+        EntryLog relevantEntries = EntryLogParser.deserialise(response.getData());
         if (categoryToView != null) {
             ui.printEntriesToBeViewed(relevantEntries, categoryToView);
         } else {
