@@ -123,6 +123,7 @@ public class Ui {
         System.out.println("This company is already uncomfirmed!");
         showLine();
     }
+      
 
     public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList) {
         showLine();
