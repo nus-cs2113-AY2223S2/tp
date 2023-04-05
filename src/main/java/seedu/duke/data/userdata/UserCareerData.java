@@ -40,7 +40,7 @@ public class UserCareerData {
         totalUserCareerSessions.add(session);
     }
 
-
+    //@@author L-K-Chng
     /**
      * Deletes a workout session according to the session number as
      * input by the user.
