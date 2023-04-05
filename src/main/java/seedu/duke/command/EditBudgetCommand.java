@@ -20,6 +20,6 @@ public class EditBudgetCommand extends BudgetCommand {
             UI.printBudgetNoChangeMessage();
             return;
         }
-        UI.printEditBudgetMessage(budgetPlanner.getBudget());
+        UI.printEditBudgetMessage(budget);
     }
 }

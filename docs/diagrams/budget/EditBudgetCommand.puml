@@ -22,7 +22,7 @@ activate "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 ":EditBudgetCommand" -> ":Duke"
 end
-":EditBudgetCommand" -> "<<class>>\n:UI" : UI.printEditBudgetMessage(budgetPlanner.getBudget())
+":EditBudgetCommand" -> "<<class>>\n:UI" : UI.printEditBudgetMessage(budget)
 activate "<<class>>\n:UI"
 ":EditBudgetCommand" <- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
