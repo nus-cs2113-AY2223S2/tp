@@ -167,7 +167,7 @@ public class Account {
         return String.valueOf(passwordChars);
     }
 
-    public static void logout() {
+    public static void save() {
         try (PrintWriter pw = new PrintWriter(new FileWriter(
                 "./src/main/java/storage/" + accountName + ".txt"))) {
             pw.println(accountName + "," + passwordHash);
@@ -181,7 +181,7 @@ public class Account {
             return;
         }
         account = null;
-        System.out.println("Logout successful.");
+        System.out.println("Saved successfully.");
     }
 }
 

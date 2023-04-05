@@ -1,20 +1,33 @@
 package seedu.duke;
 
-import command.*;
+import command.CommandDelete;
+import command.CommandAdd;
+import command.CommandCategory;
+import command.CommandList;
+import command.CommandTotal;
+import command.CommandSort;
+import command.CommandHelp;
+import command.CommandFind;
+
 import common.WelcomeMessage;
 import command.overview.CommandOverview;
-//import command.CommandHelp;
+
 import data.ExpenseList;
 import data.Currency;
+
 import parser.Parser;
 import storage.Storage;
-//import common.WelcomeMessage;
 
 import java.util.Scanner;
 
 //import static data.Account.account;
-import static data.Account.logout;
-//import static data.ExpenseList.showToUser;
+import static common.MessageList.MESSAGE_CANCEL;
+import static common.MessageList.MESSAGE_DIVIDER;
+import static common.MessageList.SAVING_EXIT_MESSAGE;
+import static common.MessageList.SAVING_QUESTION_MESSAGE;
+import static data.Account.save;
+import static data.ExpenseList.showToUser;
+import static parser.ParserAccount.caseLogOut;
 import static parser.ParserAccount.initialize;
 
 
@@ -53,8 +66,10 @@ public class Duke {
         while (in.hasNextLine()) {
             input = in.nextLine();
             if (input.equals("exit")) {
+                showToUser(MESSAGE_DIVIDER, SAVING_EXIT_MESSAGE, MESSAGE_DIVIDER);
+                caseLogOut();
                 break;
-            }
+                }
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
@@ -75,8 +90,14 @@ public class Duke {
                 new CommandCategory(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
             case "logout":
-                logout();
-                initialize(in);
+                showToUser(MESSAGE_DIVIDER, SAVING_QUESTION_MESSAGE, MESSAGE_DIVIDER);
+                String res = caseLogOut();
+                if (!res.equals("cancel")) {
+                    initialize(in);
+                    break;
+                } else {
+                    showToUser(MESSAGE_DIVIDER, MESSAGE_CANCEL, MESSAGE_DIVIDER);
+                }
                 break;
             case "overview":
                 new CommandOverview(expenseList.getExpenseList(),
