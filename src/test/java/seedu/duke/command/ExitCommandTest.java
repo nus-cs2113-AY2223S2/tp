@@ -20,7 +20,7 @@ public class ExitCommandTest {
 
     @Test
     void userInput_exit_correctVariableTypeSuccess() {
-        String userInput = "exit";
+        String userInput = "/exit";
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();

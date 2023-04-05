@@ -22,7 +22,7 @@ public class DeleteModuleCommandTest {
 
     @Test
     void userInput_remove_correctVariableTypeSuccess() {
-        String userInput = "remove KU/1";
+        String userInput = "/remove KU/1";
         ArrayList<University> universities = dataReader.getUniversities();
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
