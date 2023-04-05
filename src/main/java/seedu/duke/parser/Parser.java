@@ -97,7 +97,7 @@ public interface Parser {
                 throw new WrongFormatException();
             }
 
-            if(contactNumber < 30000000 || contactNumber > 100000000){ //Assume valid 8-digit Singaporean Number.
+            if(contactNumber < 30000000 || contactNumber > 100000000){
                 ui.invalidInputFormatErrorMessage("contact number",
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
                 throw new WrongFormatException();
