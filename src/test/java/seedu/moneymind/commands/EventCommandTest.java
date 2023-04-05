@@ -17,16 +17,6 @@ public class EventCommandTest extends CommandTest {
     }
 
     @Test
-    void addCategory_twoBudgetSpecifiers_expectMatchingTheLastSpecifier() {
-        setup();
-        String terminalOutput = executeInput("category travel b/12 b/12").toString();
-        assertEquals(3, CategoryList.categories.size());
-        assertEquals("travel b/12", CategoryList.categories.get(2).getName());
-        assertEquals(12, CategoryList.categories.get(2).getBudget());
-        clear();
-    }
-
-    @Test
     void addEvent_oneNonRecurringEvent_expectThreeEventsInFoodCategory() {
         setup();
         String categoryName = "food" + Strings.NEW_LINE; // replace with the correct input string

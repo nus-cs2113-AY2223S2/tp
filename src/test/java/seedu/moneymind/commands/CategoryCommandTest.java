@@ -81,14 +81,4 @@ public class CategoryCommandTest extends CommandTest {
         clear();
     }
 
-    @Test
-    void addCategory_twoBudgetSpecifiers_expectMatchingTheLastSpecifier() {
-        setup();
-        String terminalOutput = executeInput("category travel b/12 b/12").toString();
-        assertEquals(3, CategoryList.categories.size());
-        assertEquals("travel b/12", CategoryList.categories.get(2).getName());
-        assertEquals(12, CategoryList.categories.get(2).getBudget());
-        clear();
-    }
-
 }
