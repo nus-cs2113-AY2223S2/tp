@@ -69,7 +69,7 @@ Please note the following about the format of commands given under each [feature
 * Items surrounded by [square brackets] are mandatory fields, while the items in {curly brackets} are optional eg.
   [DESCRIPTION] {TIME}
 
-* Words in "double quotation marks" are the names of items eg. "beef noodles"
+* Words in "double quotation marks" are the names of items e.g. "beef noodles"
 
 * 💡 indicates helpful suggestions that will enhance your experience
 
