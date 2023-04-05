@@ -65,7 +65,7 @@ If you can type fast, BrokeMan can get your expenses and income management tasks
     |  Enter command:
     ```
 
-5. Type the command in the command box and press Enter to execute it. Refer to the Features below for details of each command.
+5. Type the command in the command box and press Enter to execute it. Refer to the Features below for details of each command. Type `help` to receive a list of commands that are available. 
 
 [back to Contents](#table-of-contents)
 
@@ -666,7 +666,7 @@ BrokeMan data are saved in text files ExpenseData, IncomeData and BudgetData aut
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                                |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `addExpense a/ <amount> d/ <description> t/ <time> c/ <category>` <br> e.g., `addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD` <br> `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>` <br> eg., `addIncome a/ 400 d/ salary t/ 2023 03 12 15 01 c/ SALARY` |
+| **Add**         | `addExpense a/ <amount> d/ <description> t/ <time> c/ <category>` <br> e.g., `addExpense a/ 4.5 d/ lunch t/ 2023 03 22 20 12 c/ FOOD` <br> `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>` <br> eg., `addIncome a/ 400 d/ salary t/ 2023 03 12 15 01 c/ SALARY` |
 | **List**        | `listExpense [t/ time]` <br> eg. `listIncome t/ 2023/03` <br> `listIncome [t/ time]` <br> eg `listIncome`                                                                                                                                                                       |
 | **Edit**        | `editExpense i/ <index> t/ <type> n/ <newEntry>` <br> e.g., `editExpense i/ 1 t/ amount n/ 7` <br> `editIncome i/ <index> t/ <type> n/ <newEntry>` <br> e.g., `editIncome i/ 1 t/ info n/ pay`                                                                                  |
 | **Sort**        | `sortExpenseByAmount` <br> `sortExpenseByTime` <br> `sortIncomeByAmount` <br> `sortExpenseByAmount`                                                                                                                                                                             |
