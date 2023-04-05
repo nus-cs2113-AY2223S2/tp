@@ -31,7 +31,6 @@ Meal Companion is a recipe book which allows you to search by the ingredients yo
     - High-fidelity screenshots for all features with edits to highlight user inputs
 - Feature instructions
     - Wrote instructions for every command  
-    ![screenshots.png](tp/docs/images/screenshots.png)
 - Command summary table
 
 #### DG
