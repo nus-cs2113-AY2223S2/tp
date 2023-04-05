@@ -4,10 +4,12 @@ import seedu.duke.commands.AddAlertCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.RemoveAlertCommand;
 import seedu.duke.exceptions.MissingParametersException;
+import seedu.duke.exceptions.OutOfRangeException;
 import seedu.duke.objects.Alert;
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.Ui;
 
+import java.math.BigInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,20 +26,33 @@ public class AlertParser extends Parser {
      * @param inventory The inventory to be modified.
      */
     private void parseAddAlert(String rawInput, Inventory inventory) {
+
         Pattern pattern = Pattern.compile(ALERT_ADD_REGEX);
         Matcher matcher = pattern.matcher(rawInput);
 
-        if (matcher.matches()) {
-            Alert newAlert = new Alert(matcher.group(ALERT_UPC_INDEX), matcher.group(ADD_MINMAX_INDEX),
-                    matcher.group(STOCK_INDEX));
+        try {
+            if (matcher.matches()) {
 
-            Command addAlertCommand = new AddAlertCommand(inventory, newAlert);
-            addAlertCommand.run();
+                BigInteger stock = new BigInteger(matcher.group(STOCK_INDEX));
 
-        } else {
-            Ui.printInvalidAddAlertCommand();
+                if (stock.compareTo(new BigInteger("99999999")) > 0) {
+                    throw new OutOfRangeException();
+                }
+
+                Alert newAlert = new Alert(matcher.group(ALERT_UPC_INDEX), matcher.group(ADD_MINMAX_INDEX),
+                        stock.toString());
+
+                Command addAlertCommand = new AddAlertCommand(inventory, newAlert);
+                addAlertCommand.run();
+
+            } else {
+                Ui.printInvalidAddAlertCommand();
+            }
+        } catch (OutOfRangeException e) {
+            e.printOutOfRange();
         }
     }
+
 
     /**
      * Parses the remove alert command and prints an error message if wrong inputs from the user are detected.
@@ -86,7 +101,7 @@ public class AlertParser extends Parser {
                     Ui.printInvalidAlertKeyword();
                 }
             } else {
-                throw new MissingParametersException();
+                Ui.printInvalidAlertParameter();
             }
         } catch (MissingParametersException e) {
             e.missingAlertParameters();

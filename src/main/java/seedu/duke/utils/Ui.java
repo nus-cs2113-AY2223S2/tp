@@ -141,8 +141,10 @@ public class Ui {
     private static final String SUCCESS_REMOVE = "Successfully removed the following item: ";
     private static final String INVALID_INDEX = "This index is invalid.\nPlease enter number ";
 
-    private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" " +
-            "\"or list\".";
+    private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" ";
+
+    private static final String INVALID_ALERT_PARAMETER = "Wrong/Incomplete Format! Please refer to the user guide" +
+            " for the correct alert parameters.";
     private static final String INVALID_ADD_ALERT =
             "Wrong/Incomplete Entry For Add Alert! Please refer to UG for more information \nSample Format:\n" +
                     "\"alert add upc/[UPC] min/[integer]\"" +
@@ -159,7 +161,7 @@ public class Ui {
             "maximum alert value of this item.";
 
     private static final String INVALID_MAX_ALERT = "Maximum value to set an alert must be more than existing " + "" +
-            "mimimum alert value of this item.";
+            "minimum alert value of this item.";
 
     private static final String SUCCESS_ADD_ALERT = "Successfully added a new alert.";
 
@@ -188,6 +190,7 @@ public class Ui {
     private static final String CHECK_OTHER_PROGRAMS = "If this happens often, check that other programs"
             + " are not interfering with this one";
     private static final String YOUR_ITEM = "Here is your item: ";
+    private static final String STOCK_HEADING = "Stock";
 
 
     public static void printLine() {
@@ -406,7 +409,7 @@ public class Ui {
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
-            headings = new String[]{"Name", "UPC", "Stock"};
+            headings = new String[]{NAME_HEADING, UPC_HEADING, STOCK_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == CATEGORY_COL_WIDTH) {
             headings = new String[]{CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
         }
@@ -566,11 +569,13 @@ public class Ui {
     /* Method below adapted from https://stackoverflow.com/questions/4055430/java-
     code-for-wrapping-text-lines-to-a-max-line-width */
     private static String[] wrapText(String input, int width) {
-        if (input.contains("[")) {
-            input = input.replace("[", "");
-        }
-        if (input.contains("]")) {
-            input = input.replace("]", "");
+        if (!input.contains("/")) {
+            if (input.contains("[")) {
+                input = input.replace("[", "");
+            }
+            if (input.contains("]")) {
+                input = input.replace("]", "");
+            }
         }
         String[] words = input.split("\\s+");
         ArrayList<String> lines = new ArrayList<>();
@@ -601,7 +606,8 @@ public class Ui {
         line.append(words[current]);
 
         if (words[current].contains(",")) {
-            for (int i = 0; i <= width - line.length(); i++) {
+            int add_space = width - line.length();
+            for (int i = 0; i < add_space; i++) {
                 line.append(" ");
             }
         }
@@ -873,6 +879,12 @@ public class Ui {
     public static void printInvalidAlertKeyword() {
         printLine();
         System.out.println(INVALID_ALERT_KEYWORD);
+        printLine();
+    }
+
+    public static void printInvalidAlertParameter() {
+        printLine();
+        System.out.println(INVALID_ALERT_PARAMETER);
         printLine();
     }
 
