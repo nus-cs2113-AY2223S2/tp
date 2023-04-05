@@ -7,6 +7,7 @@ import seedu.rainyDay.data.MonthlyExpenditures;
 import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.exceptions.RainyDayException;
+import seedu.rainyDay.modules.Storage;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,6 +20,7 @@ import java.util.List;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class ExportCommandTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
@@ -28,7 +30,7 @@ public class ExportCommandTest {
     SavedData savedData = new SavedData(financialReport);
     UserData userData = new UserData(savedData, monthlyExpenditures);
     @Test
-    public void ExportToCsvTest_contentMatch() throws IOException, RainyDayException {
+    public void execute_contentMatch() throws IOException, RainyDayException {
 
         LocalDate date = LocalDate.of(2023, 03, 02);
         financialReport.addStatement(
@@ -50,6 +52,14 @@ public class ExportCommandTest {
         List<String> testCsvData = Files.readAllLines(testCsv);
 
         assertEquals(exportedCsvData, testCsvData);
-
     }
+
+    @Test
+    public void execute_emptyFinancialStatement_exceptionThrown() throws IOException, RainyDayException {
+        ExportCommand exportCommand = new ExportCommand();
+        exportCommand.setData(userData);
+
+        assertThrows(RainyDayException.class, () -> exportCommand.execute());
+    }
+
 }
