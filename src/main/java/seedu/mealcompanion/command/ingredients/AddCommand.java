@@ -8,6 +8,7 @@ import seedu.mealcompanion.ingredient.IngredientList;
 import seedu.mealcompanion.recipe.IngredientDatabase;
 
 //@@author TJW0911
+
 /**
  * Represents the "add" command.
  */
@@ -26,8 +27,8 @@ public class AddCommand extends ExecutableCommand {
      * Adds a specified quantity of ingredient already in the ingredients list
      *
      * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
-     * @param quantity the quantity of ingredient to be added
-     * @param index the index of the ingredient in the ingredients list
+     * @param quantity             the quantity of ingredient to be added
+     * @param index                the index of the ingredient in the ingredients list
      */
 
     private void addToExistingIngredients(MealCompanionSession mealCompanionSession, int quantity, int index)
@@ -47,8 +48,8 @@ public class AddCommand extends ExecutableCommand {
      * Adds a specified quantity of a new ingredient to the ingredients list
      *
      * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
-     * @param quantity the quantity of ingredient to be added
-     * @param name the name of the ingredient
+     * @param quantity             the quantity of ingredient to be added
+     * @param name                 the name of the ingredient
      */
 
     private void addNewIngredient(MealCompanionSession mealCompanionSession, int quantity, String name)
@@ -73,24 +74,28 @@ public class AddCommand extends ExecutableCommand {
 
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
-            int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
             int quantity = Integer.parseInt(amount);
             if (quantity <= 0 || quantity > MAX_INGREDIENTS) {
                 throw new MealCompanionException("OOPS, quantity provided must be greater than 0 and not exceed 10000");
             }
+            if (name == null || name.trim().isEmpty()) {
+                throw new MealCompanionException("OOPS, name cannot be empty");
+            }
+            int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
             if (indexOfExistingIngredient == -1) {
                 addNewIngredient(mealCompanionSession, quantity, name);
             } else {
                 addToExistingIngredients(mealCompanionSession, quantity, indexOfExistingIngredient);
             }
-        } catch (NullPointerException e) {
-            mealCompanionSession.getUi().printMessage("OOPS, Certain fields are empty");
-            mealCompanionSession.getUi().printMessage("please follow the format: add <ingredient> /qty <quantity>");
         } catch (NumberFormatException e) {
+            mealCompanionSession.getUi().printMessage("OOPS, please follow the format:" +
+                    " add <ingredient> /qty <quantity>");
             mealCompanionSession.getUi()
-                    .printMessage("OOPS, please input an integer no greater than 10000 for quantity");
-        } catch (Exception e) {
+                    .printMessage("Note: quantity provided must be greater than 0 and not exceed 10000");
+        } catch (MealCompanionException e) {
             mealCompanionSession.getUi().printMessage(String.valueOf(e));
+        } catch (Exception e) {
+            mealCompanionSession.getUi().printMessage("OOPS, please follow the command format in the UG");
         }
     }
 }
