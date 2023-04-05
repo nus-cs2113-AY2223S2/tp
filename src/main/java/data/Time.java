@@ -1,11 +1,16 @@
 package data;
-import java.io.Serializable;
+
+import com.google.gson.annotations.JsonAdapter;
+import utils.GsonLocalDateAdaptor;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
-public class Time implements Serializable, Comparable<Time> {
+public class Time implements Comparable<Time> {
     // This class is used to deal with the initialization, access, and change of DateTime
+
+    @JsonAdapter(GsonLocalDateAdaptor.class)
     protected LocalDate date;
 
     public Time(LocalDate date) {
@@ -28,9 +33,14 @@ public class Time implements Serializable, Comparable<Time> {
         return Integer.parseInt(year) > getCurrentYear();
     }
 
-    public static boolean isFutureMonth(String year, String month) {
-        return  isFutureYear(year) | Integer.parseInt(year) == getCurrentYear()
-                && Month.valueOf(month.toUpperCase()).getValue() > getCurrentMonth();
+    public static boolean isFutureMonth(String year, String month) throws IllegalArgumentException {
+        if (month == null) {
+            return isFutureYear(year);
+        } else {
+            int monthNumber = Month.valueOf(month.toUpperCase()).getValue();
+            return isFutureYear(year) | (Integer.parseInt(year) == getCurrentYear()
+                    && monthNumber > getCurrentMonth());
+        }
     }
 
 
@@ -42,7 +52,7 @@ public class Time implements Serializable, Comparable<Time> {
     public static Time toTime(String timeString) {
         // The format of the timeString is dd/MM/yyyy
         String standardFormat = timeString.substring(6) + "-"
-                + timeString.substring(3,5) + "-" + timeString.substring(0,2);
+                + timeString.substring(3, 5) + "-" + timeString.substring(0, 2);
         Time returnTime = new Time(LocalDate.parse(standardFormat));
         return returnTime;
     }
@@ -51,7 +61,5 @@ public class Time implements Serializable, Comparable<Time> {
     public int compareTo(Time o) {
         return this.getTime().compareTo(o.getTime());
     }
-
     public String toStringSave() { return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")); }
-
 }

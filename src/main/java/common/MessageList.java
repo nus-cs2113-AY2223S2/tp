@@ -33,5 +33,7 @@ public class MessageList {
 
     public static final String HELLO_MESSAGE = "Hello from\n" + logo + "Please Type The Command As Follow:";
     public static final String NAME_QUESTION = "What is your name?";
+    public static final String WHITESPACE = " ";
+    public static final String PERIOD = ".";
 
 }

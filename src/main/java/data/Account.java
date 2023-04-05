@@ -42,7 +42,6 @@ public class Account {
     public String getAccountName() {
         return this.accountName;
     }
-
     public static String getPasswordHash() {
         return passwordHash;
     }

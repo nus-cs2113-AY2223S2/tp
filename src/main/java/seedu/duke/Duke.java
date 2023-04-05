@@ -6,7 +6,6 @@ import command.CommandDelete;
 import command.CommandList;
 import command.CommandSort;
 import command.CommandTotal;
-import command.overview.CommandOverview;
 import command.CommandFind;
 
 import data.Account;
@@ -28,7 +27,6 @@ import static parser.ParserPassword.initialize;
 
 
 public class Duke {
-
     protected Parser parser;
     protected ExpenseList expenseList;
     protected Currency currency;
@@ -42,7 +40,7 @@ public class Duke {
         expenseList = new ExpenseList();
         currency = new Currency();
         storage = new Storage(expenseList);
-        expenseList = storage.initialiseExpenseList();
+        //account.setExpenseList(storage.loadExpenses(filePath));
     }
 
     public void run() {
@@ -53,10 +51,11 @@ public class Duke {
         }
         initialize(in);
         String input = "";
-        if (in.hasNextLine()) {
+        while (in.hasNextLine()) {
             input = in.nextLine();
-        }
-        while (!input.equals("exit")) {
+            if(input.equals("exit")) {
+                break;
+            }
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
@@ -91,8 +90,7 @@ public class Duke {
             default:
                 System.out.println("Unknown command.");
             }
-            storage.saveExpenseList();
-            input = in.nextLine();
+            //storage.saveExpenses(filePath);
         }
         in.close();
     }

@@ -8,12 +8,12 @@ import java.util.ArrayList;
 public class MonthFilter {
     private ArrayList<Expense> expenses;
     private ArrayList<Expense> monthlyExpenses = new ArrayList<>();
-    private String month; // English month name
+    private String monthName; // English month name
 
 
-    public MonthFilter(ArrayList<Expense> expenses, String month) {
+    public MonthFilter(ArrayList<Expense> expenses, String monthName) {
         this.expenses = expenses;
-        this.month = month;
+        this.monthName = monthName;
     }
 
     /**
@@ -22,7 +22,7 @@ public class MonthFilter {
      * @return numeric month as String in 2 char
      */
     protected String convertMonthName() throws IllegalArgumentException {
-        int numericMonth = Month.valueOf(month.toUpperCase()).getValue();
+        int numericMonth = Month.valueOf(monthName.toUpperCase()).getValue();
         if (numericMonth < 10) {
             return "0" + numericMonth;
         } else {
@@ -42,6 +42,7 @@ public class MonthFilter {
             }
         }
     }
+
 
     public ArrayList<Expense> getMonthlyExpenses() throws IllegalArgumentException {
         filter();

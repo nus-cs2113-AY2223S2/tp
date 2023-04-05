@@ -4,11 +4,10 @@ package data;
 import parser.Parser;
 
 import java.io.BufferedReader;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class ExpenseList implements Serializable {
+public class ExpenseList {
 
     public static ArrayList<Expense> expenseList = new ArrayList<>();
     protected Parser parser = new Parser();
@@ -18,6 +17,9 @@ public class ExpenseList implements Serializable {
     public ExpenseList(BufferedReader br) {
     }
 
+    public void setExpenseList(ArrayList<Expense> expenseList) {
+        this.expenseList = expenseList;
+    }
 
     public ArrayList<Expense> getExpenseList() {
         if (expenseList == null) {

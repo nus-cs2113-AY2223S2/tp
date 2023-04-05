@@ -2,7 +2,8 @@
 
 ## Introduction
 
-{Give a product intro}
+Our Expense Tracker CLI software ("ET" for short) allows users to create their own bookmakers and helps 
+them keep track of their expense based on category, time, amount, and currency.
 
 ## Quick Start
 
@@ -42,18 +43,34 @@ application! You will see a command box for command instruction.
 
 ## Features
 
+### Get helpful instruction: `help`
+List all available commands user can type in the software, and give instructions 
+and examples to help user get familiar with our software 
+
+Format: `help`
+
+
 ### Adding an expense: `add`
-Adds a new item to the list of todo items.
+Adds a new item to the list of expenses.
 
-Format: `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_DESCRIPTION] [cur/EXPENSE_CURRENCY]`
+Format: `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRENCY]`
 
-* The `TIME` must be in the DD-MM-YYYY format.
+* The `TIME` must be in the DD-MM-YYYY format. 
+  * Future dates beyond today's date and Past dates before 1981 are invalid. 
+  * A warning will be shown if the input date has been adjusted as such a date may not exist for that particular month or 
+  year.
 * The `EXPENSE_AMOUNT` must be an integer or decimal number.  
-* The `EXPENSE_DESCRIPTION` can be any word or phrase that does not contain the backdash symbol`/` or whitespace symbol.
-* The `EXPENSE_CURRENCY` has 22 currencies to choose from. If the input currency is not found in the list of currencies
-available, the currency will default to SGD.
+* The `EXPENSE_CATERGORY` can be any string that does not contain a whitespace symbol.
+* The `EXPENSE_CURRENCY` has 22 currencies to choose from. 
+  * The list of available currencies are
+  `SGD`, `EUR`, `GBP`, `USD`, `AUD`, `CAD`, `CNY`, `HKD`, `INR`, `IDR`, `JPY`, `KRW`, `MYR`, `TWD`, `NZD`, `PHP`, `QAR`
+  , `SAR`, `CHF`, `THB`, `AED`, `VND`.
+  * If the input currency is not found in the list of currencies
+    available, the currency will default to SGD and a warning will be shown.
 * The command parameters may be entered in any order. If multiple of the same parameter type is inputted, such as in 
-`add amt/10 amt/100 t/11-11-2023` only the first parameter `amt/10` of its kind is used.
+`add amt/10 amt/100 t/11-11-2023` only the first parameter `amt/10` of its kind is used. 
+  * A warning will be shown if an 
+  invalid input type is specified.
 
 Example of usage:
 
@@ -80,7 +97,7 @@ ____________________________________________________________
 
 
 ### Listing all expenses: `list`
-List all tracked expenses in the expense list.
+List all tracked expenses in the expense list in the order of input (First input first print).
 
 Format: `list`
 
@@ -90,6 +107,14 @@ Example of usage:
 
 `list`
 
+Expected output:
+```
+____________________________LIST____________________________
+1.SGD10.00 cat:uncategorized date:11/11/2022
+2.SGD24.00 cat:uncategorized date:02/02/2022
+Now you have 2 expenses in the list.
+____________________________________________________________
+```
 
 ### Deleting an expense entry: `delete`
 Delete expense entry with index X in the expense list.
@@ -128,9 +153,9 @@ ____________________________________________________________
 ```
 
 ### Sorting all current expenses: `sort`
-Soring all current expenses in the expense list based on sortBy criteria.
+Sorting all current expenses in the expense list based on sortBy criteria.
 
-Format: `delete SORTBY`
+Format: `sort SORTBY`
 
 * SORTBY represents the criteria the user want to sort their expenses list and display by.
 * If user wants to sort the expenses list by Date, he/she should enter "D".
@@ -149,8 +174,7 @@ Format: `category CATEGORY`
 
 * CATEGORY represents the category that user want.
 * If the category doesn't belong to the categories that user have entered before, it will tell the user to switch to another one.
-* The method also will tell user how many categories they have, and also what are these categories,
-* so as to better help them with futuer obtaining purpose
+* The method also will tell user how many categories they have, and also what are these categories, so as to better help them with future obtaining purpose
 
 Example of usage:
 
@@ -206,7 +230,6 @@ Overview for JUNE 2021
 
 
 
-
 ### Exiting the program: `exit`
 Exits the program without saving expense list.
 
@@ -223,7 +246,7 @@ Example of usage:
 ## Command Summary
 
 
-* Add expense `amt/EXPENSE_AMOUNT t/TIME cat/EXPENSE_DESCRIPTION`
+* Add expense `amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_DESCRIPTION] [cur/CURRENCY]`
 * List all expenses `list`
 * Delete entry X in list `delete X`
 * List total `total`

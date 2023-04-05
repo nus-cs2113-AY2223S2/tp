@@ -1,11 +1,10 @@
 package data;
 
-import java.io.Serializable;
 import java.math.RoundingMode;
 import java.util.Objects;
 import java.math.BigDecimal;
 
-public class Expense implements Serializable {
+public class Expense {
     protected BigDecimal expenseAmount;
     protected Time expenseTime;
     protected String description;

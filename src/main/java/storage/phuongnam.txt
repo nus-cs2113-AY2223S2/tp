@@ -2,3 +2,8 @@ phuongnam,abcdhjkl
 add amt/25.00 t/20-12-2022 cat/food
 add amt/20.00 t/21-12-2022 cat/food
 add amt/20.00 t/04-04-2023 cat/oreo
+add amt/20.00 t/20-12-2021 cat/food
+add amt/22.00 t/10-04-2022 cat/mrt
+add amt/5.00 t/05-04-2023 cat/rice
+add amt/8.00 t/03-04-2023 cat/card
+

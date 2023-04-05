@@ -2,12 +2,12 @@ package data;
 
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.HttpURLConnection;
@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 
-public class Currency implements Serializable {
+public class Currency {
 
     protected static HashMap<String, String> currencies = new HashMap<>();
     protected static HashMap<String, BigDecimal> offlineExchangeRate = new HashMap<>();
@@ -104,9 +104,9 @@ public class Currency implements Serializable {
         try {
             String GET_URL = "https://eservices.mas.gov.sg/api/action/datastore/search.json?resource_id=95932927-c8b" +
                     "c-4e7a-b484-68a66a24edfe&filters[end_of_day]=" + date.toString() + "&limit=1";
-            URL url = new URL(GET_URL);
+            URL url = new URL(GET_URL); //converts the string into a URL class
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestMethod("GET"); //open a HTTP connection and set a 'get' request
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == httpURLConnection.HTTP_OK) { //successful request
                 BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
@@ -118,10 +118,11 @@ public class Currency implements Serializable {
                 }
                 in.close();
                 BigDecimal rate;
-                JSONObject obj = new JSONObject(response.toString());
+                JSONObject obj = new JSONObject(response.toString()); //Parses the data into a JSON object
                 JSONObject result = obj.getJSONObject("result");
                 JSONArray records = result.getJSONArray("records");
                 if (records.isEmpty()) {
+                    //recursively searches for previous day data if current day data is unavailable
                     return getExchangeRate(date.minusDays(1), currency);
                 } else {
                     JSONObject data = records.getJSONObject(0);
@@ -136,6 +137,9 @@ public class Currency implements Serializable {
             //returns a preset offline rate if no internet connection is available
             System.out.println("get failed.");
             return getOfflineRate(currencyKey);
+        } catch (JSONException e) {
+            //catches JSON exception when API is down
+            return  getOfflineRate(currencyKey);
         }
         assert false;
         return null;
@@ -147,11 +151,11 @@ public class Currency implements Serializable {
     public static void generateOfflineRates() {
         offlineExchangeRate.put("eur_sgd", new BigDecimal(1.5395));
         offlineExchangeRate.put("gbp_sgd", new BigDecimal(1.8278));
-        offlineExchangeRate.put("usd_sgd", new BigDecimal(1.3431));
+        offlineExchangeRate.put("usd_sgd", new BigDecimal(1.3241));
         offlineExchangeRate.put("aud_sgd", new BigDecimal(0.9596));
         offlineExchangeRate.put("cad_sgd", new BigDecimal(1.0601));
         offlineExchangeRate.put("cny_sgd_100", new BigDecimal(0.2111));
-        offlineExchangeRate.put("hkd_sgd_100", new BigDecimal(0.1724));
+        offlineExchangeRate.put("hkd_sgd_100", new BigDecimal(0.1687));
         offlineExchangeRate.put("inr_sgd_100", new BigDecimal(0.017075));
         offlineExchangeRate.put("idr_sgd_100", new BigDecimal(0.00009342));
         offlineExchangeRate.put("jpy_sgd_100", new BigDecimal(0.011688));
