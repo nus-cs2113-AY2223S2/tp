@@ -18,6 +18,6 @@ public class EditAirplaneTicketCommand extends EditCostCommand {
             UI.printCostNoChangeMessage();
             return;
         }
-        UI.printEditCostMessage(budgetPlanner.getAirplaneTicketTotalCost(), new AirplaneTicket(cost));
+        UI.printEditCostMessage(cost, new AirplaneTicket(cost));
     }
 }
