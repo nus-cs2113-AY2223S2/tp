@@ -16,9 +16,9 @@ public class CommandFormat {
     public static final String ALERT_ADD_FORMAT = "alert add upc/[UPC] {min/[Minimum] or max/[Maximum]}";
 
     public static final String ALERT_REMOVE_FORMAT = "alert remove upc/[UPC] level/[Min or Max]";
-    public static final String CATEGORY_FORMAT = "cat [list or table]";
+    public static final String CATEGORY_FORMAT = "cat list, cat table";
     public static final String HISTORY_FORMAT = "history [UPC]";
-    public static final String EXIT_FORMAT = "exit or bye";
+    public static final String EXIT_FORMAT = "exit, bye";
 
     public static final String DASHBOARD_FORMAT = "db";
     public static final String ADD_DESCRIPTION = "add: adds an item to the inventory list";

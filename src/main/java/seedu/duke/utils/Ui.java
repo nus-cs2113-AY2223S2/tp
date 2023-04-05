@@ -571,11 +571,13 @@ public class Ui {
     /* Method below adapted from https://stackoverflow.com/questions/4055430/java-
     code-for-wrapping-text-lines-to-a-max-line-width */
     private static String[] wrapText(String input, int width) {
-        if (input.contains("[")) {
-            input = input.replace("[", "");
-        }
-        if (input.contains("]")) {
-            input = input.replace("]", "");
+        if (!input.contains("/")) {
+            if (input.contains("[")) {
+                input = input.replace("[", "");
+            }
+            if (input.contains("]")) {
+                input = input.replace("]", "");
+            }
         }
         String[] words = input.split("\\s+");
         ArrayList<String> lines = new ArrayList<>();
