@@ -24,7 +24,6 @@ class ParserUtilTest {
         final String invalid_ids = "2.5 abc";
         assertThrows(InvalidIdException.class, () -> ParserUtil.parseId(invalid_ids));
 
-
         // Valid ids get parsed successfully
         final String valid_ids = "3 17 84725";
         HashSet<Integer> validIdHashSet = new HashSet<Integer>();
@@ -32,7 +31,7 @@ class ParserUtilTest {
         validIdHashSet.add(17);
         validIdHashSet.add(84725);
         try {
-                assertEquals(ParserUtil.parseId(valid_ids), validIdHashSet);
+            assertEquals(ParserUtil.parseId(valid_ids), validIdHashSet);
         } catch (InvalidIdException e) {
             fail("Valid id was not successfully parsed.");
         }
@@ -88,7 +87,7 @@ class ParserUtilTest {
             assertThrows(InvalidDurationException.class,
                     () -> ParserUtil.parseRepeatDuration(invalidDuration, LocalDateTime.now()));
         }
-
+        z
         // If repeat duration is not provided, it should default to 0
         try {
             assertEquals(ParserUtil.parseRepeatDuration(null, LocalDateTime.now()), 0);
