@@ -57,11 +57,6 @@ public interface Parser {
             }
             input = input.replaceFirst("add", "").trim();
 
-            if(input.indexOf("n/") != input.lastIndexOf("n/")){//Assume that multiple additions are not allowed
-                ui.multipleAdditionErrorMessage();
-                throw new WrongFormatException();
-            }
-
             int indexOfName = input.indexOf("n/");
             int indexOfIndustry = input.indexOf("i/");
             int indexOfContactNumber = input.indexOf("c/");
@@ -72,6 +67,11 @@ public interface Parser {
             int contactNumber = Integer.parseInt(contactNumberString);
             String contactEmail = input.substring(indexOfContactEmail+2).trim();
 
+            if(input.indexOf("n/") != input.lastIndexOf("n/")){//Assume that multiple additions are not allowed
+                ui.multipleAdditionErrorMessage();
+                throw new WrongFormatException();
+            }
+
             if(companyName.equals("")){
                 ui.emptyInputErrorMessage("company name");
                 throw new WrongFormatException();
@@ -80,10 +80,27 @@ public interface Parser {
                 ui.emptyInputErrorMessage("industry");
                 throw new WrongFormatException();
             }
-            if(contactNumberString.length()!=8){ //Assume valid 8-digit Singaporean Number.
-                ui.invalidInputFormatErrorMessage("contact number");
+
+            if(contactNumberString.length() > 8){
+                ui.invalidInputFormatErrorMessage("contact number",
+                        "8-digit number starting with 3, 6, 8, 9 is expected.");
                 throw new WrongFormatException();
             }
+
+            if(contactNumber < 30000000 || contactNumber > 100000000){ //Assume valid 8-digit Singaporean Number.
+                ui.invalidInputFormatErrorMessage("contact number",
+                        "8-digit number starting with 3, 6, 8, 9 is expected.");
+                throw new WrongFormatException();
+            } else if(contactNumber >= 40000000 && contactNumber < 60000000){
+                ui.invalidInputFormatErrorMessage("contact number",
+                        "8-digit number starting with 3, 6, 8, 9 is expected.");
+                throw new WrongFormatException();
+            } else if(contactNumber >= 70000000 && contactNumber < 80000000){
+                ui.invalidInputFormatErrorMessage("contact number",
+                        "8-digit number starting with 3, 6, 8, 9 is expected.");
+                throw new WrongFormatException();
+            }
+
             if(!contactEmail.contains("@") || contactEmail.contains(" ") || contactEmail.endsWith("@")){
                 ui.invalidInputFormatErrorMessage("email address");
                 throw new WrongFormatException();
