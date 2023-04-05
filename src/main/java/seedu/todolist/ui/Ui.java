@@ -1,7 +1,7 @@
 package seedu.todolist.ui;
 
 import seedu.todolist.constants.Errors;
-import seedu.todolist.constants.HelpMessage;
+import seedu.todolist.constants.HelpMessages;
 import seedu.todolist.constants.Messages;
 import seedu.todolist.task.Task;
 
@@ -143,6 +143,6 @@ public class Ui {
     }
 
     public void printHelpList() {
-        println(HelpMessage.HELP_COMMAND);
+        println(HelpMessages.HELP_COMMAND);
     }
 }

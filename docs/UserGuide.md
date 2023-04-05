@@ -296,7 +296,7 @@ Progress: |================----------------------------------|
 [ID:3]	[ ][task3][Due: 31 Mar 2023 20:00]
 ```
 
-### Exit program `exit`
+### Help List `help`
 
 Displays all possible commands of the NUS To-Do List program.
 
