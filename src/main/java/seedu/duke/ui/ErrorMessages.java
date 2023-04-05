@@ -10,7 +10,8 @@ public enum ErrorMessages {
     ERROR_EXCESSIVE_FILTERS("You have a too specific filter, no such exercises " +
                                 "exists! Try generating with less filters or less number " +
                                 "of exercises"),
-
+    ERROR_EXERCISE_LIBRARY_LIMIT("The number of exercises you have input is above the number of exercises in the " +
+                                "library, please try generating less."),
     ERROR_DIFFICULTY_INPUT("Incorrect difficulty level input, " +
                                "please input one of the following levels : (easy/medium/hard)"),
     ERROR_EXERCISE_NUM_INPUT_STRING("Invalid input! " +
@@ -44,7 +45,8 @@ public enum ErrorMessages {
     ERROR_EMPTY_DESCRIPTION_NUMBER("Please specify the session number which you want to delete!"),
     ERROR_INVALID_DELETE_SESSION("Unable to delete session as the session does not exist!"),
     ERROR_UNABLE_TO_WRITE_TO_FILE("Unable to append to file"),
-    ERROR_DELETE_CONTENT_ERROR_TEXT("For some reason I cant delete the content of the folder");
+    ERROR_DELETE_CONTENT_ERROR_TEXT("For some reason I cant delete the content of the folder"),
+    ERROR_IPPT_INVALID_TIMING("Invalid timing!");
 
     public final String message;
 

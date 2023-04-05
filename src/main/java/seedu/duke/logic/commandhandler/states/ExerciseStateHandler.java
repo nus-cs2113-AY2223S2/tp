@@ -10,8 +10,8 @@ import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.storage.Storage;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.ErrorMessages;
-import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.Session;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 //@@author ChubbsBunns
@@ -57,7 +57,7 @@ public class ExerciseStateHandler {
             throw new DukeError(ErrorMessages.ERROR_NO_EXERCISE_LOADED.toString());
         }
         System.out.println("The current workout is: ");
-        System.out.println("The size ofthe current workout session is " + previousGeneratedWorkout.size());
+        System.out.println("The size of the current workout session is " + previousGeneratedWorkout.size());
         for (int i = 0; i < previousGeneratedWorkout.size(); i++) {
             System.out.println(previousGeneratedWorkout.get(i).getName());
         }
