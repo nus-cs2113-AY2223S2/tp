@@ -125,7 +125,7 @@ public class CompanyList {
     }
 
     public void purgeData() throws EmptyListException {
-        if (companyList.isEmpty()){
+        if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
         companyList.clear();
@@ -133,7 +133,7 @@ public class CompanyList {
     }
 
     public void markConfirm(int companyNum) throws InvalidIndexException, EmptyListException {
-        if (companyList.isEmpty()){
+        if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
         if (companyNum < 0 | companyNum >= companyList.size()) {
@@ -145,7 +145,7 @@ public class CompanyList {
     }
 
     public void markUnconfirm(int companyNum) throws InvalidIndexException, EmptyListException {
-        if (companyList.isEmpty()){
+        if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
         if (companyNum < 0 | companyNum >= companyList.size()) {
