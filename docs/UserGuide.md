@@ -22,12 +22,12 @@ memorisation by using a technique called
 5. Type the command in the command box and press Enter to execute it. Some
    example commands you can try:
 
-   - `add /q What is the worst fruit? /a Durian`: Add a flashcard with Question:
-     What is the worst fruit? and Answer: Durian to the list of flashcards.
+    - `add /q what is the worst fruit? /a durian`: Add a flashcard with Question:
+      What is the worst fruit? and Answer: Durian to the list of flashcards.
 
-   - `review`: Go through the flashcards that are due today.
+    - `review`: Go through the flashcards that are due today.
 
-   - `bye`: Exit the app.
+    - `bye`: Exit the app.
 
 6. Refer to the Features below for details of each command.
 
@@ -48,11 +48,12 @@ add /q QUESTION /a ANSWER
   `QUESTION` and `ANSWER` must not start with `/` or includes ` /` (the slash
   with a space before it).
 
-  - Deal with it. We make the rules.
+    - Deal with it. We make the rules.
 
-  - We might fix this in a future version. A very, very distant future version.
+    - We might fix this in a future version. A very, very distant future version.
 
 - `/q QUESTION` and `/a ANSWER` can be arranged in any order.
+- The first letter of `QUESTION` and `ANSWER` are automatically capitalised.
 
 - If any options are duplicated, all but the last one are ignored.
 
@@ -81,11 +82,11 @@ review
   can then type `y`/`n` to indicate that they remembered the answer correctly,
   or they couldn't remember the correct answer, respectively.
 
-  - If `y` is indicated, the card is then set to a new due date in the future.
+    - If `y` is indicated, the card is then set to a new due date in the future.
 
-  - Otherwise, the card is pushed back to the today's queue for reviewing later,
-    until the user can get it correct. When the user has got it correct, the new
-    date is set to tomorrow.
+    - Otherwise, the card is pushed back to the today's queue for reviewing later,
+      until the user can get it correct. When the user has got it correct, the new
+      date is set to tomorrow.
 
 - Then the review session continues with the next card in the queue.
 
@@ -131,9 +132,9 @@ update /q QUERY
   INDEX [/q NEW_QUESTION] [/a NEW_ANSWER] [/d NEW_DUE_DATE]
   ```
 
-  - Since a slash character (`/`) can be intepreted as a command option,
-    `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
-    ` /` (the slash with a space before it).
+    - Since a slash character (`/`) can be intepreted as a command option,
+      `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
+      ` /` (the slash with a space before it).
 
 #### Example
 
@@ -181,6 +182,18 @@ Found 2 cards with the query "fruit":
 Which one do you want to delete? 2
 Understood. The card has been deleted.
 ```
+
+### Help menu
+
+```
+help
+```
+
+Display the list of possible commands the user can input.
+
+#### Example
+
+![helpMenuDisplay.png](userGuideImages%2FhelpMenuDisplay.png)
 
 ### Exit program
 
