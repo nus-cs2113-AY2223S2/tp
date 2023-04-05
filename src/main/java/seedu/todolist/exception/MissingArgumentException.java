@@ -5,6 +5,6 @@ import seedu.todolist.constants.Flags;
 
 public class MissingArgumentException extends ToDoListException {
     public MissingArgumentException(Flags flag) {
-        super(Errors.MISSING_ARGUMENT.getMessage() + flag.getName());
+        super(Errors.MISSING_ARGUMENT + flag.getName());
     }
 }

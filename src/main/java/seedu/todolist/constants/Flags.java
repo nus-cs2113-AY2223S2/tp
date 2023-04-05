@@ -22,7 +22,6 @@ public enum Flags {
     COMMAND_FIND_TAG("findbytag", false),
     COMMAND_FIND_PRIORITY("findbypriority", false),
 
-
     // Flags for commands that edit task parameters
     COMMAND_EDIT_DESCRIPTION("desc", false),
     COMMAND_EDIT_DEADLINE("due", false),
@@ -40,11 +39,12 @@ public enum Flags {
     TAG("-tags", false),
     EDIT("-edit", false),
     EDIT_DELETE("-del", true),
+
+    // Filter flags
     FILTER_DONE("-done", true),
     FILTER_UNDONE("-undone", true),
     FILTER_OVERDUE("-overdue", true),
     SORT_PRIORITY("-priority", true);
-
 
     private static final HashMap<String, Flags> map = new HashMap<>();
     private final String name;

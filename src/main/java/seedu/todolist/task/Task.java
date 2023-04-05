@@ -43,14 +43,14 @@ public class Task implements Serializable {
     };
 
     //@@author jeromeongithub
-    private int id;
+    int id;
     private String description;
     private String email;
     private LocalDateTime deadline;
     private TreeSet<String> tags;
     private boolean isDone = false;
     private int repeatDuration;
-    private int priority = 1;
+    private int priority;
 
     public Task(int id, String description, LocalDateTime deadline, String email, TreeSet<String> tags,
                 int repeatDuration, int priority) {
@@ -64,19 +64,19 @@ public class Task implements Serializable {
     }
 
     public String toString() {
-        String isDoneString = isDone ? "X" : " ";
-        if (deadline == null) {
-            return String.format(Formats.TASK_STRING_NO_DEADLINE.getFormat(), id, isDoneString, description);
+        String descriptionString = description.length() > 35 ? description.substring(0, 35) + "..." : description;
+        String isDoneString = isDone ? "X" : (isDue() ? "!" : " ");
+        String taskString = String.format(Formats.TASK_STRING, id, isDoneString, descriptionString);
+        if (deadline != null) {
+            taskString += "[Due by: " + FormatterUtil.getDeadlineAsString(deadline) + "]";
         }
-
-        String deadlineString = FormatterUtil.getDeadlineAsString(deadline);
-        return String.format(Formats.TASK_STRING.getFormat(), id, isDoneString, description, deadlineString);
+        return taskString;
     }
 
     public String getFullInfo() {
         StringJoiner infoString = new StringJoiner(System.lineSeparator());
-        infoString.add("ID: " + id);
         infoString.add("Description: " + description);
+        infoString.add("Completed: " + (isDone ? "Yes" : (isDue() ? "Overdue" : "No")));
         infoString.add("Priority: " + FormatterUtil.getPriorityAsString(priority));
         if (deadline != null) {
             infoString.add("Due: " + FormatterUtil.getDeadlineAsString(deadline));
@@ -91,6 +91,10 @@ public class Task implements Serializable {
             infoString.add("Repeat duration: " + repeatDuration);
         }
         return infoString.toString();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getDescription() {
@@ -151,12 +155,25 @@ public class Task implements Serializable {
         return toString();
     }
 
-    public String setPriority(int priority){
+    public String setPriority(int priority) {
         this.priority = priority;
         return toString();
     }
 
-    //@@author ERJUNZE
+    public String addTags(TreeSet<String> tags) {
+        this.tags.addAll(tags);
+        return toString();
+    }
+
+    public String removeTags(TreeSet<String> tags) {
+        this.tags.removeAll(tags);
+        return toString();
+    }
+
+    public boolean isDue() {
+        return deadline != null && !deadline.isAfter(LocalDateTime.now());
+    }
+
     public static Predicate<Task> isDonePredicate() {
         return task -> task.isDone;
     }
@@ -169,7 +186,8 @@ public class Task implements Serializable {
         return task -> task.deadline != null && task.deadline.toLocalDate().isAfter(date);
     }
 
+    //@@author clement559
     public static Predicate<Task> isOverdue() {
-        return task -> !task.isDone && task.deadline != null && task.deadline.isBefore(LocalDateTime.now());
+        return task -> !task.isDone && task.isDue();
     }
 }

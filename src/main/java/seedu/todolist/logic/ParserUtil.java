@@ -38,18 +38,6 @@ public class ParserUtil {
         }
     }
 
-    /**
-     * Parses (returns) the description string. Does not check if description is null or empty.
-     *
-     * @param description The description string.
-     * @return The description of the task.
-     */
-    public static String parseDescription(String description) {
-        // Empty descriptions should have been caught by the command parser
-        assert description != null && !description.isEmpty();
-        return description;
-    }
-
     //@@author RuiShengGit
     /**
      * Parses the priority string into an integer from 1 to 3, if it exists.
@@ -66,7 +54,7 @@ public class ParserUtil {
 
         try {
             int priority = Integer.parseInt(priorityString);
-            if (priority < 1 || priority > 3){
+            if (priority < 1 || priority > 3) {
                 throw new InvalidPriorityException(priorityString);
             }
             return priority;
@@ -92,14 +80,14 @@ public class ParserUtil {
         }
 
         try {
-            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1.getFormat()
-                            + Formats.TIME_IN_2.getFormat()).withResolverStyle(ResolverStyle.STRICT);
-            if (!LocalDateTime.parse(deadline, inputFormatter).isAfter(LocalDateTime.now())) {
-                throw new PassedDateException();
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1 + Formats.TIME_IN_2)
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime date = LocalDateTime.parse(deadline, inputFormatter);
+
+            if (!date.isAfter(LocalDateTime.now())) {
+                throw new PassedDateException(deadline);
             }
-            else {
-                return LocalDateTime.parse(deadline, inputFormatter);
-            }
+            return date;
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(deadline);
         }
@@ -169,5 +157,4 @@ public class ParserUtil {
             throw new InvalidDurationException(repeatDuration);
         }
     }
-
 }

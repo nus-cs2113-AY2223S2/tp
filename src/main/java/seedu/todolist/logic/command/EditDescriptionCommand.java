@@ -17,7 +17,8 @@ public class EditDescriptionCommand extends Command {
 
     public EditDescriptionCommand(HashMap<Flags, String> args) throws ToDoListException {
         id = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_DESCRIPTION));
-        description = ParserUtil.parseDescription(args.get(Flags.EDIT));
+        description = args.get(Flags.EDIT);
+        assert description != null && !description.isEmpty(): "Missing description uncaught by parser!";
     }
 
     @Override

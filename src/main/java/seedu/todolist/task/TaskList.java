@@ -1,5 +1,6 @@
 package seedu.todolist.task;
 
+import seedu.todolist.constants.Formats;
 import seedu.todolist.exception.InvalidIdException;
 
 import java.io.Serializable;
@@ -8,9 +9,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.HashSet;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -18,20 +21,8 @@ import static java.util.stream.Collectors.toList;
  * A list of Task objects representing the current list of tasks.
  */
 public class TaskList implements Serializable {
-    private int id = 1;
+    private int count = 0;
     private HashMap<Integer, Task> tasks = new HashMap<>();
-
-    /**
-     * Checks if the provided id is valid, which is when it is from 0 to task list size - 1.
-     *
-     * @param id The id being checked.
-     * @throws InvalidIdException If the provided id is invalid.
-     */
-    private void validateId(int id) throws InvalidIdException {
-        if (!tasks.containsKey(id)) {
-            throw new InvalidIdException(id);
-        }
-    }
 
     /**
      * Returns the task at the given id of the task list.
@@ -40,19 +31,21 @@ public class TaskList implements Serializable {
      * @return The task at the given id of the task list.
      */
     private Task getTask(int id) throws InvalidIdException {
-        validateId(id);
+        if (!tasks.containsKey(id)) {
+            throw new InvalidIdException(id);
+        }
         return tasks.get(id);
+    }
+
+    private void addTask(Task task) {
+        tasks.put(task.getId(), task);
     }
 
     public String addTask(String description, LocalDateTime deadline, String email, TreeSet<String> tags,
                           int repeatDuration, int priority) {
-        Task task = new Task(id, description, deadline, email, tags, repeatDuration, priority);
-        tasks.put(id++, task);
+        Task task = new Task(++count, description, deadline, email, tags, repeatDuration, priority);
+        tasks.put(count, task);
         return task.toString();
-    }
-
-    public void addTask(Task task) {
-        tasks.put(id++, task);
     }
 
     /**
@@ -80,14 +73,20 @@ public class TaskList implements Serializable {
         return (int) tasks.values().stream().filter(p).count();
     }
 
+    //@@author clement559
+    private String tasksStreamToString(Stream<Task> stream) {
+        AtomicInteger count = new AtomicInteger(1);
+        return stream.map(task -> String.format(Formats.TASK_STRING_INDEXED, count.getAndIncrement(), task.toString()))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
     /**
      * Converts the task list into its string representation.
      *
      * @return String representation of the task list.
      */
     public String toString() {
-        return tasks.values().stream().map(Task::toString)
-                .collect(Collectors.joining(System.lineSeparator()));
+        return tasksStreamToString(tasks.values().stream());
     }
 
     /**
@@ -97,8 +96,7 @@ public class TaskList implements Serializable {
      * @return Filtered string representation of the task list.
      */
     public String toString(Predicate<Task> p) {
-        return tasks.values().stream().filter(p).map(Task::toString)
-                .collect(Collectors.joining(System.lineSeparator()));
+        return tasksStreamToString(tasks.values().stream().filter(p));
     }
 
     //@@author KedrianLoh
@@ -109,11 +107,9 @@ public class TaskList implements Serializable {
      * @return Sorted string representation of the task list.
      */
     public String toString(Comparator<Task> c) {
-        return tasks.values().stream().sorted(c).map(Task::toString)
-                .collect(Collectors.joining(System.lineSeparator()));
+        return tasksStreamToString(tasks.values().stream().sorted(c));
     }
 
-    //@@author clement559
     /**
      * Filters the task list using a predicate and comparator before converting it
      * into its sorted string representation.
@@ -123,8 +119,7 @@ public class TaskList implements Serializable {
      * @return Filtered string representation of the task list.
      */
     public String toString(Predicate<Task> p, Comparator<Task> c) {
-        return tasks.values().stream().filter(p).sorted(c).map(Task::toString)
-                .collect(Collectors.joining(System.lineSeparator()));
+        return tasksStreamToString(tasks.values().stream().filter(p).sorted(c));
     }
 
     public ArrayList<Task> getTaskWithTag(String tag) {
@@ -148,7 +143,7 @@ public class TaskList implements Serializable {
      * @throws InvalidIdException If there is no task with the given id.
      */
     public String getTaskString(int id) throws InvalidIdException {
-        return getTask(id).toString();
+        return  getTask(id).toString();
     }
 
     public String getDescription(int id) throws InvalidIdException {
@@ -172,7 +167,7 @@ public class TaskList implements Serializable {
     }
 
     public String getFullInfo(int id) throws InvalidIdException {
-        return getTask(id).getFullInfo();
+        return "ID: " + id + System.lineSeparator() + getTask(id).getFullInfo();
     }
 
     public TreeSet<String> getAllTags() {
@@ -215,18 +210,32 @@ public class TaskList implements Serializable {
     public String setRepeatDuration(int id, int repeatDuration) throws InvalidIdException {
         return getTask(id).setRepeatDuration(repeatDuration);
     }
-    //@@author clement559
+
     public void checkRepeatingTasks() {
+        ArrayList<Task> tasksToBeAdded = new ArrayList<>();
         for (Task task : tasks.values()) {
             int repeatDuration = task.getRepeatDuration();
-            LocalDateTime originalDeadline = task.getDeadline();
-            if (repeatDuration > 0 && (LocalDateTime.now().isAfter(originalDeadline))) {
-                LocalDateTime newDeadline = originalDeadline.plusWeeks(1);
-                int newRepeatDuration = repeatDuration - 1;
-                addTask(task.getDescription(), newDeadline, task.getEmail(), task.getTags(), newRepeatDuration,
-                        task.getPriority());
-                task.setRepeatDuration(0);
+            LocalDateTime deadline = task.getDeadline();
+            // Check if this is a recurring task that is past its deadline
+            if (repeatDuration == 0 || !task.isDue()) {
+                continue;
             }
+
+            // Remove recur duration from this task to avoid duplicates on next check
+            task.setRepeatDuration(0);
+            while (repeatDuration > 0 && !deadline.isAfter(LocalDateTime.now())) {
+                // Calculate new deadline and recur duration
+                deadline = deadline.plusWeeks(1);
+                repeatDuration--;
+                // Hold new task in temp array to avoid concurrent modification exception
+                tasksToBeAdded.add(new Task(++count, task.getDescription(), deadline,
+                        task.getEmail(), task.getTags(), 0, task.getPriority()));
+            }
+            tasksToBeAdded.get(tasksToBeAdded.size() - 1).setRepeatDuration(repeatDuration);
+        }
+
+        for (Task task : tasksToBeAdded) {
+            addTask(task);
         }
     }
 }
