@@ -8,10 +8,11 @@ them keep track of their expense based on category, time, amount, and currency.
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](https://github.com/AY2223S2-CS2113-T13-2/tp/releases).
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Duke.jar` command to run the application.
-1. Enter your name when prompted in the command box and press enter.
-1. Type the command in the command box and press Enter to execute it.
+2. Download the latest version of `Duke` from [here](https://github.com/AY2223S2-CS2113-T13-2/tp/releases).
+3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run the application.
+4. Enter your name when prompted in the command box and press enter.
+5. Type the command in the command box and press Enter to execute it.
+
    Some example commands you can try:
 
    * `add amt/100 t/15-03-2023`: Add an expense entry with a value of SGD100.0 and a date of 15th March 2023 to the expense list.
@@ -35,13 +36,22 @@ Adds a new item to the list of expenses.
 
 Format: `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRENCY]`
 
-* The `TIME` must be in the DD-MM-YYYY format. Future dates beyond today's date and Past dates before 1981 are invalid.
+* The `TIME` must be in the DD-MM-YYYY format. 
+  * Future dates beyond today's date and Past dates before 1981 are invalid. 
+  * A warning will be shown if the input date has been adjusted as such a date may not exist for that particular month or 
+  year.
 * The `EXPENSE_AMOUNT` must be an integer or decimal number.  
 * The `EXPENSE_CATERGORY` can be any string that does not contain a whitespace symbol.
-* The `EXPENSE_CURRENCY` has 22 currencies to choose from. If the input currency is not found in the list of currencies
-available, the currency will default to SGD.
+* The `EXPENSE_CURRENCY` has 22 currencies to choose from. 
+  * The list of available currencies are
+  `SGD`, `EUR`, `GBP`, `USD`, `AUD`, `CAD`, `CNY`, `HKD`, `INR`, `IDR`, `JPY`, `KRW`, `MYR`, `TWD`, `NZD`, `PHP`, `QAR`
+  , `SAR`, `CHF`, `THB`, `AED`, `VND`.
+  * If the input currency is not found in the list of currencies
+    available, the currency will default to SGD and a warning will be shown.
 * The command parameters may be entered in any order. If multiple of the same parameter type is inputted, such as in 
-`add amt/10 amt/100 t/11-11-2023` only the first parameter `amt/10` of its kind is used.
+`add amt/10 amt/100 t/11-11-2023` only the first parameter `amt/10` of its kind is used. 
+  * A warning will be shown if an 
+  invalid input type is specified.
 
 Example of usage:
 
@@ -78,13 +88,21 @@ Example of usage:
 
 `list`
 
+Expected output:
+```
+____________________________LIST____________________________
+1.SGD10.00 cat:uncategorized date:11/11/2022
+2.SGD24.00 cat:uncategorized date:02/02/2022
+Now you have 2 expenses in the list.
+____________________________________________________________
+```
 
 ### Deleting an expense entry: `delete`
 Delete expense entry with index X in the expense list.
 
 Format: `delete INDEX`
 
-* INDEX is entry number INDEX in the expense list displayed with `list' command, following base-1 indexing.
+* INDEX is entry number INDEX in the expense list displayed with `list` command, following base-1 indexing.
 * Will display `Invalid expense index. Please try again.` if INDEX is greater than number of items in the list.
 
 Example of usage:
@@ -130,6 +148,18 @@ Example of usage:
 
 `sort C`
 
+Example of output (sort D):
+```
+____________________________________________________________
+Date: 02/02/2012
+1.SGD2.50 cat:food
+2.USD2.50 cat:food
+Date: 02/02/2013
+1.USD2.50 cat:eat
+____________________________________________________________
+```
+
+
 ### Obtaining expenses: `category`
 Obtain all the expenses with specified category, also obtain the category set to tell user what categories exist now.
 
@@ -138,6 +168,7 @@ Format: `category CATEGORY`
 * CATEGORY represents the category that user want.
 * If the category doesn't belong to the categories that user have entered before, it will tell the user to switch to another one.
 * The method also will tell user how many categories they have, and also what are these categories, so as to better help them with future obtaining purpose
+* Case sensitivity doesn't matter!
 
 Example of usage:
 
@@ -153,6 +184,7 @@ Format: `find INFO`
 * INFO represents the information that the user want to find.
 * If none of the expenses have such information, it will tell the user this case.
 * Even if the information is not a word, let's say "f", the method still will find expenses that any of their attributes contain the character f.
+* Case sensitivity doesn't matter!
 
 Example of usage:
 
@@ -209,7 +241,7 @@ Example of usage:
 ## Command Summary
 
 
-* Add expense `amt/EXPENSE_AMOUNT t/TIME cat/EXPENSE_DESCRIPTION`
+* Add expense `amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_DESCRIPTION] [cur/CURRENCY]`
 * List all expenses `list`
 * Delete entry X in list `delete X`
 * List total `total`
