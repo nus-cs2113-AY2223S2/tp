@@ -1,12 +1,29 @@
 ------------------------------------------------------------------
-Hello! What can I do for you?
+Hello! Welcome to the Help Manual for BadMaths!
 ------------------------------------------------------------------
-1. Type -> Graph. equation <- to do graph calculation
-2. Type -> Matrix. equation <- to do matrix calculation
-3. Type -> Store. any_string <- to add notes
-4. Type -> List. <- to list stored notes
-5. Type -> Bye. <- to exit program
+1. Type -> Graph [equation] <- to perform graph calculations
+2. Type -> Matrix [equation] <- to perform matrix calculations
+3. Type -> Store [any_string] <- to add notes
+4. Type -> List <- to list all stored notes
+5. Type -> List [index] <- to display a particular note
+6. Type -> Delete [index] <- to delete a particular note
+7. Type -> Clear <- to delete all stored notes
+8. Type -> Mark [index] <- to mark a particular note as completed
+9. Type -> Unmark [index] <- to unmark a particular note as incomplete
+10. Type -> FindMark <- to display a list of all notes marked as completed
+11. Type -> FindUnmark <- to display a list of all notes marked as incomplete
+12. Type -> FindInfo <- to find items stored in Notes through searching for a keyword
+13. Type -> [Priority] [index] <- to change the priority of a note
+14. Type -> Rank [Priority] <- to display all notes of all priority rankings
+15. Type -> FindPrior [Priority] <- to display all notes of a certain priority
+16. Type -> Quadratic [equation] <- to perform quadratic calculations
+17. Type -> History <- to display a list of command history
+18. Type -> Help <- to display content of Help Manual
+19. Type -> Bye <- to exit program
+
 -------------------------------------------------------------------
-For more details, please visit our GitHub website [xxx.github.com].
-If you have any queries, please contact [exxxxxxx@u.nus.edu].
+Thank you for using BadMaths. We hope that BadMaths will be a useful study tool
+in helping you to perform Mathematical Operations.
+For more details, please visit our GitHub website [https://github.com/AY2223S2-CS2113-F10-2/tp].
+If you have any queries on BadMaths, please contact [wilsonleejunwei@u.nus.edu].
 -------------------------------------------------------------------
