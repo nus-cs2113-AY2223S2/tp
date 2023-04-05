@@ -6,6 +6,7 @@ Command -> Quadratic: quadratic.solveQuadratic()
 activate Quadratic
 Quadratic -> QuadraticParser
 activate QuadraticParser
+activate UI
 QuadraticParser -> QuadraticParser : findA()
 activate QuadraticParser #FFBBBB
 deactivate QuadraticParser
@@ -26,13 +27,13 @@ deactivate Quadratic
 Quadratic -> Quadratic: printAnswer()
 activate Quadratic #FFBBBB
 Quadratic -> UI: Ui.printQuadraticAnswer()
-activate UI
+activate UI #FFBBBB
 UI --> Quadratic
 deactivate UI
 deactivate Quadratic
 opt Exceptions
 Quadratic -> UI: printQuadraticFormatError()
-activate UI
+activate UI #FFBBBB
 UI --> Quadratic
 deactivate UI
 end opt
