@@ -4,14 +4,19 @@ participant ":ListExpenseCommand" as ListExpenseCommand
 participant "expenses:ExpenseList" as ExpenseList
 
 activate Parser
+
 create ListExpenseCommand
+
 activate ListExpenseCommand
 Parser -> ListExpenseCommand : ListExpenseCommand(args)
 ListExpenseCommand -> ListExpenseCommand : execute(incomes, expenses, ui, storage, selector, converter, targetStorage)
+
 activate ListExpenseCommand
 ListExpenseCommand -> ExpenseList : printExpenseList(selector, converter)
+
 activate ExpenseList
 ExpenseList --> ListExpenseCommand
+
 deactivate ExpenseList
 deactivate ListExpenseCommand
 deactivate Parser
