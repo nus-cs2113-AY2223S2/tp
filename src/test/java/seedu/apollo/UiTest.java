@@ -1,7 +1,7 @@
 package seedu.apollo;
 
 import org.junit.jupiter.api.Test;
-import seedu.apollo.calendar.Calendar;
+
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.module.Module;
 import seedu.apollo.storage.Storage;
