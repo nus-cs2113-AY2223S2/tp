@@ -3,7 +3,6 @@ package seedu.badmaths.ui;
 import seedu.badmaths.Note;
 import seedu.badmaths.NotePriority;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Ui {
