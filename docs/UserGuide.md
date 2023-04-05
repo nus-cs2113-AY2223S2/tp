@@ -76,8 +76,8 @@ on the console by design. However, the application will still run normally and e
 > Notes about the command format:
 > + Words in `UPPER_CASE` are the parameters to be supplied by the user.
 > > e.g. in 'todo TASK', `TASK` is a parameter that can be used as `todo read book`.
-> + `DATE`s should be input in the format `yyyy-MM-ddThh:mm`.
-> > e.g. `deadline read book /by 2023-10-30T23:59` sets a deadline for Oct 20 2023, 11:59PM
+> + `DATE`s should be input in the format `dd-MM-yyyy-HH:mm` where HH is 24-hour format
+> > e.g. `deadline read book /by 30-10-23:59` sets a deadline for Oct 20 2023, 11:59PM
 > + Tasks that have occurred prior to the current date cannot be added. 
 > + `IDX` can be obtained by using `list` for tasks or `listmod` for modules.  
 > + By default, all newly added tasks are not completed.
@@ -127,10 +127,10 @@ However, you will still be able to add it into the tasklist.
 
 Format: `deadline TASK -by DATE`
 
-> Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
+> Note: `DATE` must be entered in the format `dd-MM-yyyy-HH:mm`.
 
 ```
->> deadline submit tutorial -by 2023-03-30T23:59
+>> deadline submit tutorial -by 30-03-2023-23:59
 Got it. I've added this deadline:
   [D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
 ```
@@ -143,10 +143,10 @@ However, you will still be able to add it.
 
 Format: `event TASK -from DATE -to DATE`
 
-> Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
+> Note: `DATE` must be entered in the format `dd-MM-yyyy-HH:mm`.
 
 ```
->> event holiday -from 2023-03-25T00:00 -to 2023-03-30T23:59
+>> event holiday -from 25-03-2023-00:00 -to 30-03-2023-23:59
 Got it. I've added this event:
   [E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
 ```
@@ -212,10 +212,10 @@ Shows all tasks in Apollo that occur on the specified date.
 
 Format: `date DATE`
 
-> Note: `DATE` should be entered in the format `yyyy-MM-dd`.
+> Note: `DATE` should be entered in the format `dd-MM-yyyy.
 
 ```
->> date 2023-03-30
+>> date 30-03-2023
 Here are the tasks happening on Mar 30 2023:
 1.[E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
 2.[D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)

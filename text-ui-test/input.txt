@@ -4,14 +4,15 @@ todo eat lunch
 deadline
 deadline submit tutorial
 deadline submit tutorial -by tomorrow
-deadline submit tutorial -by 2023-03-03T23:59
-deadline submit tutorial -by 2023-05-03T23:59
+deadline submit tutorial -by 12-23-2023-23:59
+deadline submit tutorial -by 03-02-2023-23:59
+deadline submit tutorial -by 30-05-2023-23:59
 event
-event lecture -from 2023-05-03T09:00
-event lecture -from 2023-05-03T11:00 -to 2023-05-03T09:00
-event lecture -from 2023-05-03T11:00 -to 1 hour later
-event lecture -from 2022-05-03T09:00 -to 2022-05-03T11:00
-event lecture -from 2023-05-03T09:00 -to 2023-05-03T11:00
+event lecture -from 03-05-2023-09:00
+event lecture -from 03-05-2023-11:00 -to 03-05-2023-09:00
+event lecture -from 03-05-2023-11:00 -to 1 hour later
+event lecture -from 03-02-2022-09:00 -to 03-02-2022-11:00
+event lecture -from 03-05-2023-09:00 -to 03-05-2023-11:00
 list
 mark eat lunch
 mark 8
@@ -28,8 +29,8 @@ find
 find cat
 find c
 date
-date 2025-01-01
-date 2023-05-03
+date 01-01-2025
+date 03-05-2023
 showmod cs1231
 showmod cg2023
 showmod cs1010 -st
@@ -44,7 +45,7 @@ delmod 2
 delmod cs2040c
 listmod
 addmod st2334 -lec 1
-event dummy -from 2023-04-01T00:00 -to 2023-06-01T00:00
-deadline dummy2 -by 2023-05-02T00:00
+event dummy -from 01-04-2023-00:00 -to 01-06-2023-00:00
+deadline dummy2 -by 02-05-2023-00:00
 hello
 bye
