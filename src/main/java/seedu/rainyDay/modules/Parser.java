@@ -20,7 +20,6 @@ import seedu.rainyDay.exceptions.RainyDayException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Logger;
@@ -91,9 +90,8 @@ public class Parser {
                 logger.warning("unrecognised input from user!");
                 throw new RainyDayException(ErrorMessage.UNRECOGNIZED_INPUT.toString());
             }
-        } catch (IndexOutOfBoundsException e) {
-            logger.warning("filter or add command missing details");
-            throw new RainyDayException(ErrorMessage.MISSING_DETAILS.toString());
+        } catch (RainyDayException e) {
+            throw new RainyDayException(e.getMessage());
         }
     }
 
@@ -109,16 +107,16 @@ public class Parser {
                 logger.info("returning new AddCommand object");
                 return new AddCommand(description.trim(), direction, amount, category, date);
             }
-            if (!addInput.contains("-c ") && !addInput.contains("-date ")) {
+            if (!addInput.contains("-c") && !addInput.contains("-date")) {
                 logger.info("returning new InvalidCommand object");
                 throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
             }
             logger.info("checking for presence of -c");
-            if (addInput.contains("-c ")) {
+            if (addInput.contains("-c")) {
                 remainingInformation = setCategory(remainingInformation);
             }
             logger.info("checking for presence of -date");
-            if (addInput.contains("-date ")) {
+            if (addInput.contains("-date")) {
                 setDate(remainingInformation);
             }
             logger.info("returning new AddCommand object");
@@ -126,6 +124,8 @@ public class Parser {
         } catch (IndexOutOfBoundsException e) {
             logger.warning("add command given by user in the wrong format");
             throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+        } catch (RainyDayException e) {
+            throw new RainyDayException(e.getMessage() + ErrorMessage.ADD_FORMAT);
         }
     }
 
@@ -182,7 +182,7 @@ public class Parser {
             matcher = pattern.matcher(input);
             if (!matcher.matches()) {
                 logger.warning("add command given by user in the wrong format");
-                throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+                throw new RainyDayException(ErrorMessage.EMPTY_CATEGORY_NAME.toString());
             }
         }
         this.category = matcher.group(1);
@@ -214,7 +214,7 @@ public class Parser {
         Pattern pattern = Pattern.compile("-date\\s+(.*)");
         Matcher matcher = pattern.matcher(input);
         if (matcher.matches()) {
-            String inputDate = matcher.group(1);
+            String inputDate = matcher.group(1).trim();
             String[] dateMonthYear = inputDate.split("/");
             checkValidDateAndSet(dateMonthYear);
         } else {
@@ -287,7 +287,6 @@ public class Parser {
      * @return true if input only contains digit characters, false otherwise
      */
     private boolean isStringOfInteger(String input) {
-        input = input.trim();
         char[] inputInArray = input.toCharArray();
         for (char c : inputInArray) {
             if (!Character.isDigit(c)) {
@@ -407,43 +406,34 @@ public class Parser {
 
     //@@author ChongQiRong
     private Command filterStatement(String userInput) throws RainyDayException {
-        try {
-            String[] action = userInput.split("\\s+", 2);
-            if (action.length == 1) {
-                logger.warning("No flags in filter");
-                throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
-            }
+        String[] action = userInput.split("\\s+", 2);
+        if (action.length == 1) {
+            logger.warning("No flags in filter");
+            throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
+        }
 
-            int sizeOfFilterFlagAndField = 0;
-            String[] flagAndField = action[1].split("\\s");
-            for (String s : flagAndField) {
-                if (s.equals("-in")) {
-                    sizeOfFilterFlagAndField += 1;
-                } else if (s.equals("-out")) {
-                    sizeOfFilterFlagAndField += 1;
-                } else if (s.equals("-d")) {
-                    sizeOfFilterFlagAndField += 2;
-                } else if (s.equals("-c")) {
-                    sizeOfFilterFlagAndField += 2;
-                } else if (s.equals("-date")) {
-                    sizeOfFilterFlagAndField += 2;
-                }
+        int sizeOfFilterFlagAndField = 0;
+        String[] flagAndField = action[1].split("\\s");
+        for (String s : flagAndField) {
+            if (s.equals("-in")) {
+                sizeOfFilterFlagAndField += 1;
+            } else if (s.equals("-out")) {
+                sizeOfFilterFlagAndField += 1;
+            } else if (s.equals("-d")) {
+                sizeOfFilterFlagAndField += 2;
+            } else if (s.equals("-c")) {
+                sizeOfFilterFlagAndField += 2;
+            } else if (s.equals("-date")) {
+                sizeOfFilterFlagAndField += 2;
             }
+        }
 
-            if (action[1].startsWith("-in") | action[1].startsWith("-out") | action[1].startsWith("-d")
-                    | action[1].startsWith("-c") | action[1].startsWith("-date")) {
-                ArrayList<String> filterFlagAndField = parseFilterMultipleFlags(action[1], sizeOfFilterFlagAndField);
-                if (filterFlagAndField.contains("-date")) {
-                    LocalDate.parse(filterFlagAndField.get(filterFlagAndField.size() - 1),
-                            DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                }
-                return new FilterCommand(filterFlagAndField);
-            } else {
-                logger.warning("unrecognised input from user!");
-                throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
-            }
-        } catch (DateTimeParseException e) {
-            logger.warning("date entered not valid for filter command");
+        if (action[1].startsWith("-in") | action[1].startsWith("-out") | action[1].startsWith("-d")
+                | action[1].startsWith("-c") | action[1].startsWith("-date")) {
+            ArrayList<String> filterFlagAndField = parseFilterMultipleFlags(action[1], sizeOfFilterFlagAndField);
+            return new FilterCommand(filterFlagAndField);
+        } else {
+            logger.warning("unrecognised input from user!");
             throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
         }
     }
@@ -453,22 +443,28 @@ public class Parser {
         Pattern pattern = Pattern.compile("(?:(-in|-out)\\s*)?\\s*" +
                 "(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
                 "(?:(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
-                "(?:(-date)\\s+(\\d{2}/\\d{2}/\\d{4})\\s*)?([\\w]*)$");
+                "(.*)$");
         Matcher matcher = pattern.matcher(input);
         ArrayList<String> filterFlagAndField = new ArrayList<>();
 
         if (matcher.find()) {
-            for (int i = 1; i <= 8; i += 1) {
-                if (!matcher.group(8).equals("")) {
-                    logger.warning("filter command given by user in the wrong format");
-                    throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
-                }
-                if (matcher.group(i) == null || i == 8) {
+            for (int i = 1; i <= 5; i += 1) {
+                if (matcher.group(i) == null) {
                     continue;
                 }
                 filterFlagAndField.add(matcher.group(i));
             }
-
+            if (matcher.group(6).contains("-date")) {
+                try {
+                    setDate(matcher.group(6));
+                    DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String dateString = this.date.format(formatters);
+                    filterFlagAndField.add("-date");
+                    filterFlagAndField.add(dateString);
+                } catch (Exception e) {
+                    throw new RainyDayException(e.getMessage() + ErrorMessage.FILTER_FORMAT);
+                }
+            }
             if (filterFlagAndField.size() != sizeOfFilterFlagAndField) {
                 logger.warning("filter command given by user in the wrong format");
                 throw new RainyDayException(ErrorMessage.WRONG_FILTER_FORMAT.toString());
@@ -481,57 +477,48 @@ public class Parser {
     }
 
     private Command editStatement(String userInput) throws RainyDayException {
-        try {
-            String[] tokens = userInput.split("\\s+", 3);
-            if (tokens.length < 3) {
-                logger.warning("invalid edit index from user");
-                throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
-            }
+        String[] tokens = userInput.split("\\s+", 3);
+        if (tokens.length < 3) {
+            logger.warning("invalid edit index from user");
+            throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+        }
 
-            int lengthOfReport = RainyDay.savedData.getFinancialReport().getStatementCount();
-            if (lengthOfReport == 0) {
-                throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
-            }
+        int lengthOfReport = RainyDay.savedData.getFinancialReport().getStatementCount();
+        if (lengthOfReport == 0) {
+            throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
+        }
 
-            int index = Integer.parseInt(tokens[1]);
-            if (index > lengthOfReport || index <= 0) {
-                logger.warning("invalid edit index from user");
-                throw new RainyDayException(String.format(ErrorMessage.WRONG_EDIT_INDEX.toString(),
-                        lengthOfReport + "!"));
-            }
+        int index = Integer.parseInt(tokens[1]);
+        if (index > lengthOfReport || index <= 0) {
+            logger.warning("invalid edit index from user");
+            throw new RainyDayException(String.format(ErrorMessage.WRONG_EDIT_INDEX.toString(),
+                    lengthOfReport + "!"));
+        }
 
-            int sizeOfEditFlagAndField = 0;
-            String[] flagAndField = tokens[2].split("\\s");
-            for (String s : flagAndField) {
-                if (s.equals("-in")) {
-                    sizeOfEditFlagAndField += 1;
-                } else if (s.equals("-out")) {
-                    sizeOfEditFlagAndField += 1;
-                } else if (s.equals("-d")) {
-                    sizeOfEditFlagAndField += 2;
-                } else if (s.equals("-v")) {
-                    sizeOfEditFlagAndField += 2;
-                } else if (s.equals("-c")) {
-                    sizeOfEditFlagAndField += 2;
-                } else if (s.equals("-date")) {
-                    sizeOfEditFlagAndField += 2;
-                }
+        int sizeOfEditFlagAndField = 0;
+        String[] flagAndField = tokens[2].split("\\s");
+        for (String s : flagAndField) {
+            if (s.equals("-in")) {
+                sizeOfEditFlagAndField += 1;
+            } else if (s.equals("-out")) {
+                sizeOfEditFlagAndField += 1;
+            } else if (s.equals("-d")) {
+                sizeOfEditFlagAndField += 2;
+            } else if (s.equals("-v")) {
+                sizeOfEditFlagAndField += 2;
+            } else if (s.equals("-c")) {
+                sizeOfEditFlagAndField += 2;
+            } else if (s.equals("-date")) {
+                sizeOfEditFlagAndField += 2;
             }
+        }
 
-            if (tokens[2].startsWith("-in") | tokens[2].startsWith("-out") | tokens[2].startsWith("-d")
-                    | tokens[2].startsWith("-c") | tokens[2].startsWith("-v") | tokens[2].startsWith("-date")) {
-                ArrayList<String> editFlagAndField = parseEditMultipleFlags(tokens[2], sizeOfEditFlagAndField);
-                if (editFlagAndField.contains("-date")) {
-                    LocalDate.parse(editFlagAndField.get(editFlagAndField.size() - 1),
-                            DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                }
-                return new EditCommand(index, editFlagAndField);
-            } else {
-                logger.warning("unrecognised edit input from user!");
-                throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
-            }
-        } catch (DateTimeParseException e) {
-            logger.warning("Date entered not valid for edit command");
+        if (tokens[2].startsWith("-in") | tokens[2].startsWith("-out") | tokens[2].startsWith("-d")
+                | tokens[2].startsWith("-c") | tokens[2].startsWith("-v") | tokens[2].startsWith("-date")) {
+            ArrayList<String> editFlagAndField = parseEditMultipleFlags(tokens[2], sizeOfEditFlagAndField);
+            return new EditCommand(index, editFlagAndField);
+        } else {
+            logger.warning("unrecognised edit input from user!");
             throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
         }
     }
@@ -542,20 +529,28 @@ public class Parser {
                 "(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
                 "(?:(-v)\\s+\\$([\\d]+(?:\\.?[\\d]){0,2})\\s*)?" +
                 "(?:(-c)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
-                "(?:(-date)\\s+(\\d{2}/\\d{2}/\\d{4})\\s*)?([\\w]*)$");
+                "(.*)$");
         Matcher matcher = pattern.matcher(input);
         ArrayList<String> editFlagAndField = new ArrayList<>();
 
         if (matcher.find()) {
-            for (int i = 1; i <= 10; i += 1) {
-                if (!matcher.group(10).equals("")) {
-                    logger.warning("edit command given by user in the wrong format");
-                    throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
-                }
-                if (matcher.group(i) == null || i == 10) {
+            for (int i = 1; i <= 7; i += 1) {
+                if (matcher.group(i) == null) {
                     continue;
                 }
                 editFlagAndField.add(matcher.group(i));
+            }
+
+            if (matcher.group(8).contains("-date")) {
+                try {
+                    setDate(matcher.group(8));
+                    DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    String dateString = this.date.format(formatters);
+                    editFlagAndField.add("-date");
+                    editFlagAndField.add(dateString);
+                } catch (Exception e) {
+                    throw new RainyDayException(e.getMessage() + ErrorMessage.EDIT_FORMAT);
+                }
             }
 
             if (editFlagAndField.size() == 0 || editFlagAndField.size() != sizeOfEditFlagAndField) {
