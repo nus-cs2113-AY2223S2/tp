@@ -27,6 +27,7 @@ Given below are my contributions to the project.
 * Updated and contributed to the `Quick Start` guide.
 * Contributed to the `Updating an entry` feature.
 * Contributed to the `Setting currency` feature.
+* Contributed to the `Other notes` section.
 * Contributed to the `Command Summary` section.
 
 #### Contributions to the DG:
