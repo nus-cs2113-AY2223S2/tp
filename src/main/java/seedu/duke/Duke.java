@@ -18,7 +18,7 @@ import storage.Storage;
 
 import java.util.Scanner;
 
-import static data.Account.account;
+//import static data.Account.account;
 import static data.Account.logout;
 //import static data.ExpenseList.showToUser;
 import static parser.ParserAccount.initialize;
