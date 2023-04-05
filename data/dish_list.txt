@@ -5,3 +5,10 @@ Chicken Burger~|~1099~|~
 Chicken Burger~|~1099~|~
 Chicken Burger~|~1099~|~
 Chicken Burger~|~1099~|~,,
+dishName~|~10~|~
+aa    ~|~1212~|~
+Chicken Burger~|~2~|~apples;ragene
+Chicken Burger~|~2~|~ apples;oragene
+Chicken Burger~|~2~|~   apples;   oragene
+Chicken Burger~|~2~|~ apples;oragene ; aaa ww
+Chicken Burger~|~2~|~ apples;oragene ;;; aaa ww;

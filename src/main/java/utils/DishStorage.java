@@ -1,5 +1,6 @@
 package utils;
 
+import commands.IncorrectCommand;
 import common.Messages;
 import entity.Dish;
 import exceptions.DinerDirectorException;
@@ -11,6 +12,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DishStorage {
     public static final String FILENAME_DISH = "dish_list.txt";
@@ -25,34 +28,46 @@ public class DishStorage {
         File file = new File(FILEPATH_DISH_LIST);
         Scanner in = new Scanner(file);
         ArrayList<Dish> listOfDishes = new ArrayList<>();
-        Dish dish;
 
         while (in.hasNext()) {
             String text = in.nextLine();
-            String[] components = text.split("~\\|~");
+
+            String regex = "^(\\S.*?)~\\|~(\\d+)~\\|~(.*?)$";
+
+            Pattern dishPattern = Pattern.compile(regex);
+            Matcher parsedDishInput = dishPattern.matcher(text);
+
+            String name;
+            Integer price;
+            ArrayList<String> ingredients = new ArrayList<>();
+            Dish dish = null;
+
             try {
-                if (components.length == 3 && !components[0].equals("") && !components[1].equals("")) {
-                    ArrayList<String> ingredients = new ArrayList<>();
-                    System.out.println(components[0] + ' ' + components[1] + ' ' + components[2]);
-                    String[] ingredientList = components[2].split(";");
+                if (parsedDishInput.matches()) {
+                    name = parsedDishInput.group(1);
+                    try {
+                        price = Integer.parseInt(parsedDishInput.group(2));
+                    } catch (NumberFormatException e) {
+                        throw new DinerDirectorException(Messages.ERROR_PRICE_EXCEED_INTEGER_BOUNDS);
+                    }
+                    String[] ingredientList = parsedDishInput.group(3).split(";");
                     for (String ingredient : ingredientList) {
                         if (!ingredient.isBlank()) {
                             ingredients.add(ingredient);
                         }
                     }
-                    dish = new Dish(components[0], Integer.parseInt(components[1]), ingredients);
-                    listOfDishes.add(dish);
-                } else if (components.length == 2 && !components[0].equals("")) {
-                    dish = new Dish(components[0], Integer.parseInt(components[1]), new ArrayList<String>());
-                    listOfDishes.add(dish);
+                    dish = new Dish(name, price, ingredients);
                 } else {
                     throw new DinerDirectorException(Messages.ERROR_STORAGE_INVALID_READ_LINE);
                 }
             } catch (DinerDirectorException e) {
                 System.out.println(String.format(Messages.ERROR_STORAGE_INVALID_READ_LINE, text));
             }
-        }
 
+            if (dish != null) {
+                listOfDishes.add(dish);
+            }
+        }
         new DishManager(listOfDishes);
     }
 
