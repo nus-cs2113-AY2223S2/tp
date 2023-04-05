@@ -105,7 +105,7 @@ public class RecipeList {
         if (ingredientIndex > ingredientList.getCurrIngredientNumber() || ingredientIndex < 1) {
             throw new EditFormatException(StringLib.INVALID_INGREDIENT_INDEX);
         }
-        ingredientList.editIngredient(ingredientIndex - 1, newIngredient);
+        ingredientList.editIngredient(newIngredient, ingredientIndex - 1);
     }
 
     public void editStep(Integer recipeIndex, int stepIndex, String newStep) throws EditFormatException {

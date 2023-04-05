@@ -96,7 +96,7 @@ public class IngredientList {
         }
         return true;
     }
-    public void editIngredient(int ingredientIndex, String description) {
+    public void editIngredient(int ingredientIndex, String description) throws Exception{
         Ingredient newIngredient = new Ingredient(description);
         if (isIndexWithinRange(ingredientIndex)) {
             list.set(ingredientIndex, newIngredient);
@@ -105,7 +105,7 @@ public class IngredientList {
             System.out.println(list.get(ingredientIndex).getName());
         }
     }
-    public void editIngredient(String ingredientDescription, int ingredientIndex) throws Exception{
+    public void editIngredient(String ingredientDescription, int ingredientIndex) {
         Ingredient newIngredient = new Ingredient(ingredientDescription);
         list.set(ingredientIndex, newIngredient);
         System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
