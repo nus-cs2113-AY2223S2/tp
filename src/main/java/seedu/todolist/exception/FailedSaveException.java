@@ -8,3 +8,4 @@ public class FailedSaveException extends ToDoListException {
         super(Errors.FAILED_SAVE);
     }
 }
+

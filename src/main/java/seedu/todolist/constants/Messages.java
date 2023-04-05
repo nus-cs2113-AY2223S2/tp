@@ -22,7 +22,11 @@ public final class Messages {
     public static final String LIST_EMPTY = "There are no tasks in your list.";
     public static final String TAGS_EMPTY = "There are no tags associated with your task list.";
     public static final String FULL_INFO = "Okay, here is the detailed information of this task:";
+    public static final String CONFIG_INFO = "Here are the configuration settings for your system:";
+    public static final String EDIT_CONFIG_INFO = "Okay, I have changed the configuration to as follows:";
+    public static final String MISSING_CONFIG = "The configuration file was not found. Your settings will be reset" +
+        " to default.";
+    public static final String LOAD_CONFIG = "Your configuration file was successfully loaded.";
 
-    private Messages() {
-    }
+    private Messages() {}
 }

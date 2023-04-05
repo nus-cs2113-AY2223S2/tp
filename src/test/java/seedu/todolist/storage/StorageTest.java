@@ -53,7 +53,6 @@ class StorageTest {
 
             // compare the 2 strings
             assertEquals(taskListAsJson, savedTaskListString);
-
         } catch (Exception e) {
             // no exception will be thrown, so the program will not reach this line
             fail();

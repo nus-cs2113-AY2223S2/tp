@@ -18,12 +18,18 @@ public final class Errors {
     public static final String INVALID_EDIT = "Task edit commands must have a "
             + Flags.EDIT.getName() + " or " + Flags.EDIT_DELETE.getName() + " flag.";
     public static final String INVALID_FIND_TAG = "Unable to find desired tag. Please try again.";
-
     public static final String FAILED_SAVE = "Error when saving your data; "
             + "please check that you have write permissions for " + Storage.DEFAULT_SAVE_PATH;
     public static final String FAILED_LOAD = "Error when loading your data; "
             + "please check that you have read permissions for " + Storage.DEFAULT_SAVE_PATH + System.lineSeparator()
             + "If you have modified it yourself, please double check the formatting. For now, the program will exit.";
+    //@@author clement559
+    public static final String FAILED_CONFIG_SAVE = "Error when saving your configuration, please check that you have" +
+            " write permissions for " + Storage.DEFAULT_CONFIG_PATH;
+    public static final String FAILED_CONFIG_LOAD = "Error when loading your configuration, please check that you have "
+            + "read permissions for " + Storage.DEFAULT_CONFIG_PATH + System.lineSeparator()
+            + "and do not modify it yourself. Default configurations will be used.";
+    public static final String INVALID_FREQUENCY = "The frequency provided must be greater than or equals to 0.";
 
     private Errors() {
     }

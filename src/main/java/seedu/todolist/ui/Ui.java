@@ -84,6 +84,22 @@ public class Ui {
         println(String.format(Messages.EDIT_DELETE_TASK, parameterType), taskString);
     }
 
+    public void printEditConfigMessage(String taskString) {
+        println(String.format(Messages.EDIT_CONFIG_INFO), taskString);
+    }
+
+    public void printConfigInfo(String taskString) {
+        println(String.format(Messages.CONFIG_INFO), taskString);
+    }
+
+    public void printMissingConfigMessage() {
+        println(Messages.MISSING_CONFIG);
+    }
+
+    public void printLoadConfigMessage() {
+        println(Messages.LOAD_CONFIG);
+    }
+
     public void printTaskList(int taskListSize, String taskListString) {
         if (taskListSize == 0) {
             println(Messages.LIST_EMPTY);

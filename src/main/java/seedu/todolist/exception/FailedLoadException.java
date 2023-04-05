@@ -8,3 +8,4 @@ public class FailedLoadException extends ToDoListException {
         super(Errors.FAILED_LOAD);
     }
 }
+

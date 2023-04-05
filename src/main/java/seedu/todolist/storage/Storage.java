@@ -12,8 +12,11 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.stream.JsonReader;
 import seedu.todolist.constants.Formats;
+import seedu.todolist.exception.FailedLoadConfigException;
 import seedu.todolist.exception.FailedLoadException;
+import seedu.todolist.exception.FailedSaveConfigException;
 import seedu.todolist.exception.FailedSaveException;
+import seedu.todolist.logic.Config;
 import seedu.todolist.task.TaskList;
 
 import java.io.File;
@@ -31,6 +34,7 @@ import java.time.format.DateTimeParseException;
  */
 public class Storage {
     public static final String DEFAULT_SAVE_PATH = "./data.json";
+    public static final String DEFAULT_CONFIG_PATH = "./config.json";
     private boolean isNewSave;
     private File file;
     private Gson gson;
@@ -84,15 +88,6 @@ public class Storage {
         }
     }
 
-    /**
-     * Loads the task list from the local save file, if it exists.
-     *
-     * @return The task list read from the save file, if it exists and it is not empty. Otherwise, a newly created
-     *         task list is returned.
-     * @throws FileNotFoundException If no save file is found.
-     * @throws FailedLoadException If the save file cannot be loaded.
-     */
-
     public TaskList loadData(String filepath)
             throws FileNotFoundException, FailedLoadException {
         try {
@@ -106,6 +101,39 @@ public class Storage {
             return taskList;
         } catch (JsonParseException | DateTimeParseException e) {
             throw new FailedLoadException();
+        }
+    }
+
+    /**
+     * Loads the task list from the local save file, if it exists.
+     *
+     * @return The task list read from the save file, if it exists and it is not empty. Otherwise, a newly created
+     *         task list is returned.
+     * @throws FileNotFoundException If no save file is found.
+     * @throws FailedLoadException If the save file cannot be loaded.
+     */
+    public void saveConfig(Config config, String filepath) throws FailedSaveConfigException {
+        try {
+            String json = gson.toJson(config);
+            writeToFile(filepath, json);
+        } catch (IOException e) {
+            throw new FailedSaveConfigException();
+        }
+    }
+
+    public Config loadConfig(String filepath)
+            throws FileNotFoundException, FailedLoadConfigException {
+        try {
+            JsonReader reader = new JsonReader(new FileReader(filepath));
+            Config config = new Config();
+            // if the file is not empty, set the task list as the saved task list
+            Config readConfiguration = gson.fromJson(reader, Config.class);
+            if (readConfiguration != null) {
+                config = readConfiguration;
+            }
+            return config;
+        } catch (JsonParseException | DateTimeParseException e) {
+            throw new FailedLoadConfigException();
         }
     }
 }
