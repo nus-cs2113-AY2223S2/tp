@@ -15,9 +15,7 @@
     + [List Modules](#list-modules)
     + [Show Module](#show-module)
     + [Add Task](#add-task)
-    + [Delete Task](#delete-task)
-    + [Mark Task As Done](#mark-task-as-done)
-    + [Unmark Task](#unmark-task)
+    + [Modify Task](#modify-task)
     + [Find Task](#find-task)
     + [List Task](#list-task)
     + [Find Task on Date](#find-task-on-date)
@@ -356,7 +354,10 @@ Step 9. `Storage#updateTask()` is called to update the local save file to reflec
 
 [*Return to TOC*](#table-of-contents)
 
-### Delete Task
+### Modify Task
+There are three ways to modify a task: delete, mark and unmark.
+
+#### Delete Task
 
 The DeleteTask functionality allows users to remove a task (todo, event and deadline) from the TaskList.
 It is facilitated by the ModifyCommand class which is an extension of the Command class.
@@ -391,7 +392,7 @@ Step 7: Update the storage: The storage is updated with the new TaskList without
 
 [*Return to TOC*](#table-of-contents)
 
-### Mark Task As Done
+#### Mark Task As Done
 
 The MarkTask functionality allows users to mark a task (todo, event and deadline) as done in their TaskList.
 It is facilitated by the ModifyCommand class which is an extension of the Command class.
@@ -424,7 +425,7 @@ Step 7: Update the storage: The storage is updated with the new TaskList with th
 
 [*Return to TOC*](#table-of-contents)
 
-### Unmark Task 
+#### Unmark Task 
 
 The UnmarkTask functionality allows users to toggle a task (todo, event and deadline) to *not* done in their TaskList.
 It is facilitated by the ModifyCommand class which is an extension of the Command class.
@@ -716,6 +717,16 @@ Enter "help" to see a list of commands.
 ____________________________________________________________
 ```
 ### Sample test cases
+#### Invalid Commands
+1. Type `hello` and press enter.
+2. Any commands Apollo cannot understand will be treated as invalid commands.
+
+Expected: Apollo should respond with an error message for invalid commands.
+```
+____________________________________________________________
+Sorry, but I don't know what that means :(
+____________________________________________________________
+```
 #### Help Command
 1. Make sure you are in the main interface.
 2. Sub-case 1: Type `help` and press enter.
@@ -742,7 +753,7 @@ ____________________________________________________________
 These are the available Module Commands and their corresponding commands (in brackets):
 
 1. `listmod` - Track and organise your academic plan for this semester!
-2. `listmod [MODULE_CODE] - See more information about the classes you've added for a module in your list.
+2. `listmod [MODULE_CODE]` - See more information about the classes you've added for a module in your list.
 3. `listmod [MODULE_CODE] -[FLAG]` - See more information about a specific class type for a module in your list
 4. `showmod [MODULE_CODE]` - See more information about the specified module.
 5. `showmod [MODULE_CODE] -[FLAG]` - View timing of specific lesson type for a chosen module
