@@ -57,7 +57,19 @@ public enum ErrorMessage {
             "instead of MM, where D, M, and Y are numbers!\n\n"),
     EMPTY_CATEGORY_NAME("Category name cannot be empty\n\n"),
     INVALID_DATE("Date provided does not exist, please ensure that you have keyed the correct date\n\n"),
-    NO_DATE_PROVIDED("Please provide a date after the \"-date\" flag\n\n");
+    NO_DATE_PROVIDED("Please provide a date after the \"-date\" flag\n\n"),
+    INVALID_JSON("Your saved file in rainyDay.json is corrupted or of an invalid format!"),
+    INVALID_SAVED_FINANCIAL_REPORT("Your saved data for financialReport is invalid"),
+    INVALID_SAVED_SHORTCUT_COMMANDS("Your saved data for shortcutCommands is invalid"),
+    INVALID_SAVED_BUDGET_GOAL("Your saved data for budgetGoal is invalid"),
+    INVALID_SAVED_FINANCIAL_STATEMENTS("Your saved data for financialStatements is invalid"),
+    INVALID_SAVED_REPORT_OWNER("Your saved data for reportOwner is invalid"),
+    INVALID_SAVED_DESCRIPTION("Your saved data for financialStatements has an invalid description"),
+    INVALID_SAVED_FLOW_DIRECTION("Your saved data for financialStatements has an invalid flowDirection"),
+    INVALID_SAVED_VALUE("Your saved data for financialStatements has an invalid value"),
+    INVALID_SAVED_CATEGORY("Your saved data for financialStatements has an invalid category"),
+    INVALID_SAVED_DATE("Your saved data for financialStatements has an invalid date"),
+    INVALID_SAVED_IS_IGNORED("Your saved data for financialStatements has an invalid isIgnored field");
 
     private final String error;
 
