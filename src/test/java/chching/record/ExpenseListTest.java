@@ -126,7 +126,7 @@ class ExpenseListTest {
             expenses.editExpense(1, "da", "30-02-2022");
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Date must be valid with format: dd-MM-yyyy", e.getMessage());
+            assertEquals("Date must be valid with format: \"DD-MM-YYYY\"", e.getMessage());
         }
     }
     
