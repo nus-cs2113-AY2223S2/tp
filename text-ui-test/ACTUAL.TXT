@@ -13,15 +13,6 @@ These are some commands available:
 	FILTER stands for a specific requirement you want to include in your exercise
 [filters]
 	View all available filters
-[start]
-	Start a workout session
-[history]
-	View the information on all workout sessions you have completed
-[data]
-	View your completed exercises as well as the number of times you have completed each exercise
-[delete]
-	Delete a workout session you have within your workout history: delete NUMBER
-	NUMBER refers to the session number of the workout session you wish to delete
 [plans]
 	Show all plans
 [planner]

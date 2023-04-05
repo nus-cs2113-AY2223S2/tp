@@ -2,12 +2,14 @@ package seedu.duke.ui;
 
 //@@author ChubbsBunns
 //@@author Khulon
+//@@author ghzr0
 public class PrintHelpMessage {
     public static void showAvailableCommands() {
         System.out.println("These are some commands available:");
         System.out.println("[generate]");
         System.out.println("\tGenerate a specific list of exercises: generate FILTER1 FILTER2 ... x");
         System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
+        //System.out.println("\tor starts an IPPT session: generate ippt");
         System.out.println("[filters]");
         System.out.println("\tView all available filters");
         System.out.println("[start]");
@@ -63,7 +65,6 @@ public class PrintHelpMessage {
         System.out.println("\tView all available filters");
         System.out.println("[exit]");
         System.out.println("\tExit workout plan editor");
-        //System.out.println(ErrorMessages.ERROR_GLOBAL_INVALID_COMMAND.toString());
     }
 
     public static void showAvailableExerciseSessionCommands() {

@@ -468,8 +468,8 @@ public class TestUi {
         ArrayList<ExerciseData> exercises = new ArrayList<>();
         exercises.add(exerciseData);
 
-        Ui ui = new Ui();
-        ui.printExerciseFromList(exercises);
+        Ui uiManager = new Ui();
+        uiManager.printExerciseFromList(exercises);
 
         if (os.contains("Windows")) {
             expectedOutput = "Exercise ID: 0. \r\n" +
