@@ -11,7 +11,6 @@ import seedu.todolist.logic.command.Command;
 import seedu.todolist.task.TaskList;
 import seedu.todolist.ui.Ui;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
