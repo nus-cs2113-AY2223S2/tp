@@ -58,6 +58,8 @@ Duck is a desktop task and class tracker for users to keep track of their schedu
   
 - Developer Guide:
   - Added design and implementation details of the SchoolClass feature
+  - Added the sequence diagram for the ```Adding a School Class``` function
+  - Added the sequence diagram for the ```list_classes``` function
   
 <br />
 
