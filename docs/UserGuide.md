@@ -1,10 +1,25 @@
 # User Guide
 
 ## Table of Contents
-1. Introduction
-2. Quick Start
-3. Features
-4. Commands summary
+
+1. [Introduction](#introduction) 
+2. [Quick Start](#quick-start)
+3. [Features](#features):
+
+    * [help](#help---shows-help-guide)
+    * [load samples](#load-samples---load-samples-company-data-for-manual-testing)
+    * [add](#add----add-a-company-to-the-company-list)
+    * [choose venue](#choose-venue-index---updates-the-venue-of-the-event)
+    * [confirm](#confirm---marks-a-specific-companys-attendance-as-confirmed) 
+    | [unconfirm](#unconfirm---marks-a-specific-companys-attendance-as-unconfirmed)
+    * [list companies](#list-companies---shows-all-current-stored-companies)
+    | [venues](#list-venues---shows-all-venues)
+    | [unconfirmed](#list-unconfirmed---shows-all-stored-companies-marked-with-unconfirmed-attendance)
+    * [delete](#delete----delete-a-company-from-the-company-list) | [purge](#purge----delete-the-company-list-data)
+    * [find companies](#find-companies----find-the-companies-based-on-a-company-name)
+    | [industry](#find-industry-industry-----find-the-companies-within-an-industry)
+
+4. [Commands summary](#command-summary)
 
 ## Introduction
 
@@ -21,15 +36,18 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 ## Features
 
-* Words written in upper case between brackets(<>) are what users can change.
+* Words written in upper case between square brackets([ ]) are parts that users can change.
 
-### `help` - Shows help guide
+### `Help`
+
 Shows the help guide that contains the features that are available for use, as well as the features' corresponding 
 syntax for user input
 
-Example of usage: `help`
+* Format: `help`
 
-Expected outcome:
+* Example of usage: `help`
+
+* Expected outcome:
 ```
 help
 ____________________________________________________________
@@ -63,13 +81,16 @@ choose venue <INDEX>
 ____________________________________________________________
 ____________________________________________________________
 ```
-#
-### `load samples` - load samples company data for manual testing
+<br>
+
+### `Load Samples`
 Populate the company list with sample companies, and updates the company list text file
 
-Example of usage:
-`load samples`
-Expected outcome:
+* Format: `load samples`
+
+* Example of usage: `load samples`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -85,23 +106,22 @@ ____________________________________________________________
 Sample data has been loaded into the list!
 ____________________________________________________________
 ```
+<br>
 
-#
-### `add ` - Add a company to the company list
+### `Add`
 Add the company to the list of companies, and updates the company list text file.
 
-Command:
-`add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>`
-* All fields should not be empty.
-* `<INDUSTRY>` should contain more than one alphabet.
-* `<CONTACT_NUMBER>` should be valid Singaporean number, which is 8-digit number starting with 3, 6, 8, or 9.
-* `<EMAIL>` should be valid email address containing but not ending with "@" symbol. No space is allowed.
-* User can add only one company at a time.
+* Format: `add n/[COMPANY_NAME] i/[INDUSTRY] c/[CONTACT_NUMBER] e/[EMAIL]`
 
-Example of usage:
-`add n/tesla i/tech c/34567890 e/tesla@gmail.com`
+    * All fields should not be empty.
+    * `[INDUSTRY]` should contain more than one alphabet.
+    * `[CONTACT_NUMBER]` should be valid Singaporean number, which is 8-digit number starting with 3, 6, 8, or 9.
+    * `[EMAIL]` should be valid email address containing but not ending with "@" symbol. No space is allowed.
+    * User can add only one company at a time.
 
-Expected outcome:
+* Example of usage: `add n/tesla i/tech c/34567890 e/tesla@gmail.com`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -109,17 +129,17 @@ TESLA added successfully!
 ____________________________________________________________
 ```
 
-#
-### `choose venue <index>` - updates the venue of the event
+### `Choose Venue`
 Updates the venue of the event from a list of venues, and updates the event details file
 
-Example of usage:
+* Format: `choose venue [INDEX]`
 
-`choose venue 1` would choose venue 1 which is Engineering Auditorium
+* Example of usage:
 
-`choose venue 3` would choose venue 3 which is LT1
+    * `choose venue 1` would choose venue 1 which is Engineering Auditorium
+    * `choose venue 3` would choose venue 3 which is LT1
 
-Expected outcome:
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -132,15 +152,17 @@ ____________________________________________________________
 LT1 is your venue!
 ____________________________________________________________
 ```
+<br>
 
-#
-### `confirm` - Marks a specific company's attendance as confirmed
+### `Confirm`
 Mark the status of a specific company's attendance as confirmed, and 
 updates a status icon to [Confirmed] that represents it being marked confirmed.
 
-Example of usage:
-`confirm 1`
-Expected outcome:
+* Format: `confirm [INDEX]`
+
+* Example of usage: `confirm 1`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -148,15 +170,17 @@ Company has been successfully confirmed!
 ____________________________________________________________
 
 ```
+<br>
 
-##
-### `unconfirm` - Marks a specific company's attendance as unconfirmed
+### `Unconfirm`
 Mark the status of a specific company's attendance as unconfirmed, and
 updates a status icon to [Unconfirmed] that represents it being marked unconfirmed.
 
-Example of usage:
-`unconfirm 1`
-Expected outcome:
+* Format: `unconfirm [INDEX]`
+
+* Example of usage: `unconfirm 1`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -164,14 +188,14 @@ Company has been successfully uncomfirmed!
 ____________________________________________________________
 
 ```
+<br>
 
-#
-### `list companies` - Shows all current stored companies
+### `List Companies`
 Shows all companies currently stored in the company list.
 
-Example of usage:
-`list companies`
-Expected outcome:
+* Format: `list companies`
+* Example of usage: `list companies`
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -195,13 +219,16 @@ Company industry: BANKING AND FINANCE
 [Confirmed]
 ____________________________________________________________
 ```
-##
-### `list venues` - Shows all venues
+<br>
+
+### `List Venues`
 Shows all venues available for the user to choose
 
-Example of usage:
-`list venues`
-Expected outcome:
+* Format: `list venues`
+
+* Example of usage: `list venues`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -212,13 +239,16 @@ ____________________________________________________________
 5. University Cultural Centre 50 Kent Ridge Crescent (S) 119279 50
 ____________________________________________________________
 ```
-##
-### `list unconfirmed` - Shows all stored companies marked with unconfirmed attendance
+<br>
+
+### `list unconfirmed`
 Shows all the unconfirmed companies that are stored in the company list.
 
-Example of usage:
-`list unconfirmed`
-Expected outcome:
+* Format: `list unconfirmed`
+
+* Example of usage: `list unconfirmed`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -236,39 +266,48 @@ Company industry: BANKING AND FINANCE
 [Unconfirmed]
 ____________________________________________________________
 ```
-#
-### `delete ` - Delete a company from the company list
+<br>
+
+### `delete `
 Delete a company from the company list, and updates the company list text file.
 
-Example of usage:
-`delete 1`
-Expected outcome:
+* Format: `delete [INDEX]`
+
+* Example of usage: `delete 1`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
 Company information successfully deleted!
 ____________________________________________________________
 ```
-##
-### `purge ` - delete the company list data
-delete the company list data, and updates the company list text file
+<br>
 
-Example of usage:
-`purge`
-Expected outcome:
+### `purge `
+Delete the company list data, and updates the company list text file
+
+* Format: `purge`
+
+* Example of usage: `purge`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
 Data has been deleted successfully!
 ____________________________________________________________
 ```
-#
-### `find companies ` - find the companies based on a company name
-find the companies based on a company name, or any of the alphabets in the company name
+<br>
 
-Example of usage:
-`find company e`
-Expected outcome:
+### `Find Companies`
+Find the companies based on a company name, or any of the alphabets in keyword provided by the user.
+
+* Format: `find companies [KEYWORD]`
+
+* Example of usage: `find companies e`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -288,13 +327,16 @@ Company industry: TECH
 [Unconfirmed]
 ____________________________________________________________
 ```
-##
-### `find industry <INDUSTRY>  ` - find the companies within an industry
-find the companies within an industry based on the industry name 
+<br>
 
-Example of usage:
-`find industry tech`
-Expected outcome:
+### `Find Industry`
+Find the companies within an industry based on the keyword provided by the user.
+
+* Format: `find industry [KEYWORD]`
+
+* Example of usage: `find industry tech`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -313,14 +355,16 @@ Company industry: TECH
 [Unconfirmed]
 ____________________________________________________________
 ```
+<br>
 
-#
-### `exit ` - Exit the application
+### `exit `
 Exit the application
 
-Example of usage:
-`exit`
-Expected outcome:
+* Format: `exit`
+
+* Example of usage: `exit`
+
+* Expected outcome:
 
 ```
 ____________________________________________________________
@@ -330,19 +374,19 @@ ____________________________________________________________
 
 ## Command Summary
 
-| Command                                                        | Usage                                              |
-|----------------------------------------------------------------|----------------------------------------------------|
-| help                                                           | display the commands of the application            |
-| list companies                                                 | list the companies                                 |
-| list venues                                                    | list the venues                                    |
-| list unconfirmed                                               | list the companies yet to confirm their attendance |
-| add n/[COMPANY_NAME] i/[INDUSTRY] c/[CONTACT_NUMBER] e/[EMAIL] | add a company to the company list                  |
-| delete [INDEX]                                                 | delete a company in the company list               |
-| confirm [INDEX]                                                | confirm a companies' attendance                    |
-| unconfirm [INDEX]                                              | unconfirm a companies' attendance                  |
-| load samples                                                   | load samples company data for manual testing       |
-| purge                                                          | delete the company list data                       |
-| find company [COMPANY_NAME]                                    | find the companies based on a company name         |
-| find industry [INDUSTRY]                                       | find the companies within an industry              | 
-| choose venue [INDEX]                                           | updates the venue of the event                     |
-| exit                                                           | exit the application                               |
+| Command                                                        | Usage                                                |
+|----------------------------------------------------------------|------------------------------------------------------|
+| help                                                           | display the commands of the application              |
+| list companies                                                 | list the companies                                   |
+| list venues                                                    | list the venues                                      |
+| list unconfirmed                                               | list the companies yet to confirm their attendance   |
+| add n/[COMPANY_NAME] i/[INDUSTRY] c/[CONTACT_NUMBER] e/[EMAIL] | add a company to the company list                    |
+| delete [INDEX]                                                 | delete a company in the company list                 |
+| confirm [INDEX]                                                | confirm a companies' attendance                      |
+| unconfirm [INDEX]                                              | unconfirm a companies' attendance                    |
+| load samples                                                   | load samples company data for manual testing         |
+| purge                                                          | delete the company list data                         |
+| find company [KEYWORD]                                         | find the companies based on a (partial) company name |
+| find industry [KEYWORD]                                        | find the companies within an industry                | 
+| choose venue [INDEX]                                           | updates the venue of the event                       |
+| exit                                                           | exit the application                                 |
