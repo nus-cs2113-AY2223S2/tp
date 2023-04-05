@@ -61,13 +61,21 @@ public class Ui {
     }
 
     public void showAllRecords(IncomeList incomes, ExpenseList expenses, Selector selector, Converter converter) {
-        System.out.println("    Here are the incomes in your list:");
-        incomes.printIncomeList(selector, converter);
-
-        System.out.println();
-
-        System.out.println("    Here are the expense in your list:");
-        expenses.printExpenseList(selector, converter);
+        if(incomes.size() == 0 && expenses.size() == 0) {
+            System.out.println("    Both lists are empty. Start adding!");
+        } else if(incomes.size() == 0) {
+            System.out.println("    Income list is empty. Start adding!");
+            System.out.println();
+            showExpenseList(expenses, selector, converter);
+        } else if(expenses.size() == 0) {
+            showIncomeList(incomes, selector, converter);
+            System.out.println();
+            System.out.println("    Expense list is empty. Start adding!");
+        } else {
+            showIncomeList(incomes, selector, converter);
+            System.out.println();
+            showExpenseList(expenses, selector, converter);
+        }
     }
 
     public void showBalance(double totalExpense, double totalIncome, double balance, String convertedBalance) {
@@ -178,5 +186,27 @@ public class Ui {
 
     public void showListCleared() {
         System.out.println("    List(s) cleared");
+    }
+
+    public void showExpenseList(ExpenseList expenses, Selector selector, Converter converter) {
+        if(expenses.size() == 0) {
+            showEmptyListMessage();
+        } else {
+            System.out.println("    Here are the expenses in your list:");
+            expenses.printExpenseList(selector, converter);
+        }
+    }
+
+    public void showIncomeList(IncomeList income, Selector selector, Converter converter) {
+        if(income.size() == 0) {
+            showEmptyListMessage();
+        } else {
+            System.out.println("    Here are the incomes in your list:");
+            income.printIncomeList(selector, converter);
+        }
+    }
+
+    public void showEmptyListMessage() {
+        System.out.println("    The list is empty. Start adding!");
     }
 }
