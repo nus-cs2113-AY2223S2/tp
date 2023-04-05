@@ -141,6 +141,13 @@ public class Ui {
         printDash();
     }
 
+    public static void deleteAllError() {
+        printDash();
+        System.out.println("There are no events to delete!");
+        printDash();
+    }
+
+
     public static void printETOmitted() {
         printDash();
         System.out.println("(since no ending date information is given, ending time is omitted)");

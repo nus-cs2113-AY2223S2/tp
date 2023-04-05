@@ -190,8 +190,13 @@ public class EventList {
     }
 
     public void deleteAll() {
-        this.taskList = new ArrayList<Schedule>();
-        this.listSize = 0;
+        if (this.listSize == 0) {
+            Ui.deleteAllError();
+        } else {
+            this.taskList = new ArrayList<Schedule>();
+            this.listSize = 0;
+            Ui.deleteAllSuccess();
+        }
     }
 
     public boolean canAddNewEvent(Event newEvent) {
