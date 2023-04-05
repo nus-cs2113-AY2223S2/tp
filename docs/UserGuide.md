@@ -12,6 +12,8 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [Displaying upcoming deadline](#displaying-upcoming-deadline)
     * [Displaying class schedule :](#displaying-class-schedule--list-classes) `list_classes`
     * [Displaying upcoming class :](#displaying-upcoming-class--upcomingclass) `upcoming_class`
+    * [Displaying upcoming deadline :](#displaying-upcoming-class--upcomingdeadline) `upcoming_deadline`
+    * [Displaying_upcoming_event :](#displaying-upcoming-event--upcomingevent) `upcoming_event`
     * [Mark a specified task as done :](#marking-a-task--mark-task_number) `mark <task number> `
     * [Unmark a specified task as  not done :](#unmarking-a-task--unmark-task_number) `unmark <task number>`
     * [Edit a specific piece information of a task :](#editing-a-task--edit-task_number) `edit <task number>`
@@ -140,7 +142,35 @@ Here is your next upcoming class:
     [TUESDAY][ ] cs2113 (from: 1600 to: 1700)
 
 ```
+## **Displaying upcoming class : `upcoming_deadline`**
 
+Displays the next upcoming deadline stored in the application.
+
+**Input:** `upcoming_deadline`
+
+**Output: The next upcoming deadline with names and due time**
+
+
+```
+Here are your next upcoming event: 
+    [D][ ] Deadlines Eat bread (by: 2023-04-05 2015) (Medium priority.)
+
+```
+
+## **Displaying upcoming event : `upcoming_event`**
+
+Displays the next upcoming event stored in the application.
+
+**Input:** `upcoming_event`
+
+**Output: The next upcoming event with names and start/end time**
+
+
+```
+Here are your next upcoming event: 
+    [E][ ] Meeting (from: 2023-04-15 2015 to: 2023-04-15 2215) (Low priority.)
+
+```
 
 ## **Listing all low priority tasks : `low_priority`**
 Displays all tasks that have been assigned low priority  
