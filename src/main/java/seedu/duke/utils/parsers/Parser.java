@@ -4,7 +4,7 @@ import seedu.duke.objects.Inventory;
 import seedu.duke.utils.SessionManager;
 
 public abstract class Parser {
-    protected static final String ADD_REGEX = "n/([\\w\\s]+) upc/(\\d+) qty/(\\d+) p/(\\d+(?:\\.\\d+)?) " +
+    protected static final String ADD_REGEX = "n/([\\w\\s\\p{Punct}]+) upc/(\\d+) qty/(\\d+) p/(\\d+(?:\\.\\d+)?) " +
             "?(c/([\\w\\s]+))?";
     protected static final Integer NAME_INDEX = 1;
     protected static final Integer UPC_INDEX = 2;
