@@ -226,6 +226,6 @@ class SpecificHelpCommandTest {
         assertDoesNotThrow(() ->
                 newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
-    
+
 }
 
