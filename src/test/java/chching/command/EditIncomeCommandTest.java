@@ -102,7 +102,7 @@ public class EditIncomeCommandTest {
             
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Missing/Invalid index", e.getMessage());
+            assertEquals("Index must contain a valid integer only", e.getMessage());
         }
     }
     

@@ -188,7 +188,7 @@ public class Parser {
             if (isDuplicateField) {
                 throw new ChChingException("Duplicate fields detected");
             } else if (isEmptyFieldOrValue) {
-                throw new ChChingException("Empty value detected or use of \" / \" in value");
+                throw new ChChingException("Empty detail detected or improper use of \" / \"");
             } else {
                 argumentsByField.put(field, value);
             }
@@ -197,22 +197,12 @@ public class Parser {
     }
     public static String getCategory(HashMap<String, String> argumentsByField) throws ChChingException {
         String category = null;
-        try {
-            category = argumentsByField.get("c");
-        } catch (Exception e) {
-            throw new ChChingException("Missing/invalid category");
-        }
+        category = argumentsByField.get("c");
         return category;
     }
     public static String getKeyword(HashMap<String, String> argumentsByField) throws ChChingException {
         String keyword = null;
-        try {
-            keyword = argumentsByField.get("k");
-        } catch (Exception e) {
-            throw new ChChingException("Missing/invalid keyword");
-        }
+        keyword = argumentsByField.get("k");
         return keyword;
     }
-
-
 }
