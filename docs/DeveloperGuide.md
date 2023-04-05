@@ -175,7 +175,7 @@ then replaces the step stored at `stepIndex` with a newly created one
 The example usage is based on the assumption that there currently exists at least one step in
 the recipe specified.
 
-**Step 1.** In the command line, user inputs `editstep 1` to edit the step in the first `Recipe`
+**Step 1** In the command line, user inputs `editstep 1` to edit the step in the first `Recipe`
 object in the `RecipeList`. `Duke` calls the `parseCommands()` method in the `Parser` class to
 parse the user input, which returns a `Command` object of type `EDITSTEP`. Under
 `Command#execute()`, this object will be executed.
