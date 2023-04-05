@@ -69,7 +69,9 @@ public class Timetable {
      * @return  The formatted String representation of the weeks.
      */
     public String compressedWeeks(Timetable timetable) {
+        assert timetable != null : "Timetable cannot be null";
         ArrayList<Integer> unfilteredWeeks = timetable.getWeeks();
+        assert unfilteredWeeks != null : "Weeks cannot be null";
         ArrayList<Integer> filteredWeeks = new ArrayList<>();
         String formattedWeeks;
 
