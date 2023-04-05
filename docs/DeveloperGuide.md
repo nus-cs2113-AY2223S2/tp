@@ -2,7 +2,8 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+List here sources of all reused/adapted ideas, code, documentation, and third-party libraries
+with links to the original sources included.
 
 * [JSON-java](https://github.com/stleary/JSON-java)
 * [three-ten-extra](https://www.threeten.org/threeten-extra/)
