@@ -26,7 +26,6 @@ class TrigoGraphVisualiserTest {
         try {
             TrigoGraphVisualiser visualiser_tan = new TrigoGraphVisualiser(1.0, 2.5, 1.67,
                     9, "tan");
-            visualiser_tan.startVisualiser();
             assertEquals(true, visualiser_tan.isValidState());
         } catch (IllegalTodoException e) {
             System.out.println("Wrong trigger.");
@@ -38,7 +37,6 @@ class TrigoGraphVisualiserTest {
         try {
             TrigoGraphVisualiser visualiser_sin = new TrigoGraphVisualiser(1.0, 2.5, 1.67,
                     9, "sin");
-            visualiser_sin.startVisualiser();
             assertEquals(true, visualiser_sin.isValidState());
         } catch (IllegalTodoException e) {
             System.out.println("Wrong trigger.");

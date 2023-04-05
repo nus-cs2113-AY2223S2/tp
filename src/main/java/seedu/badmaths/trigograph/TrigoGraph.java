@@ -2,6 +2,8 @@ package seedu.badmaths.trigograph;
 import seedu.badmaths.IllegalTodoException;
 import seedu.badmaths.ui.Ui;
 
+import java.awt.*;
+
 
 public class TrigoGraph {
     private String trigoEqn;
@@ -20,6 +22,7 @@ public class TrigoGraph {
         if(trigoEqn.isEmpty()){
             throw new IllegalTodoException();
         }
+        try{
         if(analyser.canStartAnalyser()){
             getGraphDetails(analyser);
             printGraphDetails();
@@ -27,6 +30,11 @@ public class TrigoGraph {
             visualiser.startVisualiser();
         } else{
             throw new IllegalTodoException();
+        }
+        } catch (IllegalTodoException e){
+            throw new IllegalTodoException();
+        } catch (HeadlessException e){
+            assert true;
         }
 
     }

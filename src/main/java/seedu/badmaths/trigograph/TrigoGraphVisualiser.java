@@ -3,10 +3,7 @@ package seedu.badmaths.trigograph;
 import seedu.badmaths.IllegalTodoException;
 
 
-import java.awt.Graphics;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.Dimension;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -138,7 +135,7 @@ public class TrigoGraphVisualiser extends JPanel {
         return validState;
     }
 
-    public void startVisualiser() throws IllegalTodoException {
+    public void startVisualiser() throws HeadlessException, IllegalTodoException {
         JFrame frame = new JFrame("Trigonometric Graph");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = screenSize.width;

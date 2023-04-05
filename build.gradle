@@ -27,6 +27,9 @@ test {
         showCauses true
         showStackTraces true
         showStandardStreams = false
+        options {
+            jvmArgs '-Djava.awt.headless=true'
+        }
     }
 }
 
