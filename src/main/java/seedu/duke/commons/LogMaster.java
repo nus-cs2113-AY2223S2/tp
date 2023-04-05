@@ -15,22 +15,22 @@ public class LogMaster {
     private static FileHandler fileHandler;
 
     public static Logger getLogger (String name) {
-        LogManager.getLogManager().reset(); //remove this line to enable logger
         Logger logger = Logger.getLogger(name);
         logger.setUseParentHandlers(false);
         removeHandlers(logger);
         if (consoleHandler == null) {
-            consoleHandler = createConsoleHandler();
+            //consoleHandler = createConsoleHandler();
         }
         //logger.addHandler(consoleHandler);
         try {
             if (fileHandler == null) {
-                fileHandler = createFileHandler();
+                //fileHandler = createFileHandler();
             }
             //logger.addHandler(fileHandler);
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.warning("Unable to create file handler for logger");
         }
+        LogManager.getLogManager().reset(); //disable logger
         return Logger.getLogger(name);
     }
 
