@@ -23,6 +23,11 @@ public class EntertainmentExpenditure extends Expenditure {
     }
 
     @Override
+    public String expenditureString(String currency) {
+        return String.format("[Entertainment] || %s", super.expenditureString(currency));
+    }
+
+    @Override
     public String getExpenditureType() {
         return EXPENDITURE_TYPE;
     }

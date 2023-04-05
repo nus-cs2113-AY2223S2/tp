@@ -19,6 +19,11 @@ public class AcademicExpenditure extends Expenditure {
     public String toString() {
         return String.format("[Academic] || %s", super.toString());
     }
+    @Override
+    public String expenditureString(String currency) {
+        return String.format("[Academic] || %s", super.expenditureString(currency));
+    }
+
 
     @Override
     public String getExpenditureType() {
