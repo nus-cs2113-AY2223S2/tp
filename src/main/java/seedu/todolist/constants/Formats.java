@@ -3,21 +3,13 @@ package seedu.todolist.constants;
 /**
  * Enum that holds all the expected formatting strings for certain parameters.
  */
-public enum Formats {
-    // Format for task string: id, isDone, description, deadline
-    TASK_STRING("[ID:%d]\t[%s][%s][Due: %s]"),
-    TASK_STRING_NO_DEADLINE("[ID:%d]\t[%s][%s]"),
-    TIME_IN_1("[d-M-uuuu H:m]"),
-    TIME_IN_2("[d/M/uuuu H:m]"),
-    TIME_OUT("dd LLL uuuu HH:mm");
+public final class Formats {
+    public static final String TASK_STRING = "[ID:%06d][%s][%-38s]";
+    public static final String TASK_STRING_INDEXED = "[#%06d]%s";
+    public static final String TIME_IN_1 = "[d-M-uuuu H:m]";
+    public static final String TIME_IN_2 = "[d/M/uuuu H:m]";
+    public static final String TIME_OUT = "dd LLL uuuu HH:mm";
 
-    private final String format;
-
-    Formats(String format) {
-        this.format = format;
-    }
-
-    public String getFormat() {
-        return format;
+    private Formats() {
     }
 }

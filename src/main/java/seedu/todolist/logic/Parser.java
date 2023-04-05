@@ -5,25 +5,25 @@ import seedu.todolist.exception.InvalidCommandException;
 import seedu.todolist.exception.InvalidFlagException;
 import seedu.todolist.exception.MissingArgumentException;
 import seedu.todolist.exception.ToDoListException;
-
 import seedu.todolist.logic.command.AddTaskCommand;
 import seedu.todolist.logic.command.Command;
 import seedu.todolist.logic.command.DeleteTaskCommand;
 import seedu.todolist.logic.command.EditDeadlineCommand;
 import seedu.todolist.logic.command.EditDescriptionCommand;
 import seedu.todolist.logic.command.EditEmailCommand;
+import seedu.todolist.logic.command.EditPriorityCommand;
 import seedu.todolist.logic.command.EditRepeatCommand;
+import seedu.todolist.logic.command.EditTagsCommand;
 import seedu.todolist.logic.command.ExitCommand;
+import seedu.todolist.logic.command.FindByPriority;
+import seedu.todolist.logic.command.FindByTag;
 import seedu.todolist.logic.command.ListFullInfoCommand;
 import seedu.todolist.logic.command.ListTagsCommand;
 import seedu.todolist.logic.command.ListTasksCommand;
 import seedu.todolist.logic.command.MarkTaskCommand;
 import seedu.todolist.logic.command.ProgressBarCommand;
-import seedu.todolist.logic.command.EditTagsCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
-import seedu.todolist.logic.command.EditPriorityCommand;
-import seedu.todolist.logic.command.FindByTag;
-import seedu.todolist.logic.command.FindByPriority;
+import seedu.todolist.logic.command.HelpCommand;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -113,6 +113,8 @@ public class Parser {
             return new ListTagsCommand();
         case COMMAND_PROGRESS:
             return new ProgressBarCommand();
+        case COMMAND_HELP:
+            return new HelpCommand();
         case COMMAND_ADD:
             return new AddTaskCommand(getArguments(splitInput, AddTaskCommand.EXPECTED_FLAGS));
         case COMMAND_MARK:

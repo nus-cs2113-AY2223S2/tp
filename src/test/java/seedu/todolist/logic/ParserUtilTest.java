@@ -47,7 +47,7 @@ class ParserUtilTest {
         // Valid dates get parsed successfully
         final LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         final LocalDateTime[] valid_deadlines = {now.plusDays(1), now.plusYears(10)};
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1.getFormat());
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1);
         try {
             for (LocalDateTime validDeadline : valid_deadlines) {
                 assertEquals(ParserUtil.parseDeadline(validDeadline.format(inputFormatter)), validDeadline);

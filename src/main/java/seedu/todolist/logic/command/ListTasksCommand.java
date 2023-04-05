@@ -54,12 +54,8 @@ public class ListTasksCommand extends Command {
         if (sortMethod != null && sortMethod.equals("priority")) {
             comparator = Task.priorityComparator;
         }
-        if (predicate == null) {
-            ui.printTaskList(taskList.size(), taskList.toString(comparator));
-        } else {
-            int taskListCount = taskList.size(predicate);
-            String taskListString = taskList.toString(predicate, comparator);
-            ui.printTaskList(taskListCount, taskListString);
-        }
+        int taskListSize = taskList.size(predicate);
+        String taskListString = taskList.toString(predicate, comparator);
+        ui.printTaskList(taskListSize, taskListString);
     }
 }
