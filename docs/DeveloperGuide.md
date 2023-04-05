@@ -39,7 +39,6 @@ Types of methods:
 
 ### Command
 
-Commands are the way we execute the programme features, based on parsed user input
 
 <code>List of commands</code>
 
