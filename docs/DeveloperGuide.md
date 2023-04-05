@@ -64,7 +64,7 @@ The rest of the App consists of four components.
 ### Ui Class
 
 The Ui class is represented by the image below. The Ui class handles user input and
-displaying of relevant information including error messages for the program. In the diagram below,
+displaying of the relevant information including error messages for the program. In the diagram below,
 `VariousCommands` represents different commands that may call the Ui Class.
 
 The `Main` class will call `getUserInput()` to read in user input. Commands may then
@@ -261,7 +261,7 @@ using the mouse.
 * *Task* - A task to be carried out (e.g. Feeding a pet)
 * *Stat* - Statistic of a pet such as Pet Type(Dog / Cat), Age or Weight
 * *Value* - Result of the statistic (e.g. 5,10,15)
-* *VariousCommands* - Commands in general, non specifically
+* *VariousCommands* - Commands in general, non-specific
 
 ## Instructions for manual testing
 
