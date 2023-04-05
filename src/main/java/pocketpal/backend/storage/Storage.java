@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -25,9 +27,10 @@ import pocketpal.frontend.exceptions.InvalidDateException;
 import pocketpal.backend.exceptions.InvalidReadFileException;
 
 public class Storage {
+    private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
+    private static final Logger logger = Logger.getLogger(Storage.class.getName());
     private final String filePath;
     private final String delimiter;
-    private final DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     public Storage() {
         this(Config.RELATIVE_FILE_NAME);
@@ -44,6 +47,19 @@ public class Storage {
         this.delimiter = Config.DELIMITER;
     }
 
+    private double convertStringToDouble(String stringToBeConverted) throws ParseException {
+        logger.entering(Storage.class.getName(), "convertStringToDouble()");
+        logger.info("Converting the string " + stringToBeConverted + " to double");
+        double parsedDoubleValue = decimalFormat.parse(
+            String.format(
+                "%.2f", 
+                Double.parseDouble(stringToBeConverted)
+            )
+        ).doubleValue();
+        logger.exiting(Storage.class.getName(), "convertStringToDouble()");
+        return parsedDoubleValue;
+    }
+
     /**
      * Creates a file and its respective parent directories if the file does
      * not exist, using a predefined file path.
@@ -51,9 +67,12 @@ public class Storage {
      * @throws IOException If an error occurs in the creation of the new file
      */
     private void makeFileIfNotExists() throws IOException {
+        logger.entering(Storage.class.getName(), "makeFileIfNotExists()");
+        logger.info("Ensuring the storage file exists");
         File file = new File(this.filePath);
-        file.getParentFile().mkdirs();
-        file.createNewFile();
+        file.getParentFile().mkdirs(); // Create parent directories in file path
+        file.createNewFile(); // Create the actual file
+        logger.exiting(Storage.class.getName(), "makeFileIfNotExists()");
         new FileOutputStream(
             file, 
             true
@@ -68,21 +87,17 @@ public class Storage {
      * @return An Entry instance that represents the read line
      */
     private Entry readEntryLine(String line) throws InvalidReadFileException {
+        logger.entering(Storage.class.getName(), "readEntryLine()");
+        logger.info("Reading entry line: " + line);
         try {
-            assert !line.isEmpty() : "Line to be read cannot be empty";
+            line = line.trim();
+            assert !line.isEmpty() : MiscellaneousConstants.NO_BLANK_STRING_ALLOWED;
             String[] lineArray = line.split(this.delimiter);
             String description = lineArray[0];
             String amountString = lineArray[1];
             String categoryString = lineArray[2];
             String dateTimeString = lineArray[3];
-            double amount = decimalFormat.parse(
-                String.format(
-                    "%.2f", 
-                    Double.parseDouble(
-                        amountString
-                    )
-                )
-            ).doubleValue();
+            double amount = convertStringToDouble(amountString);
             Category category = CategoryUtil.convertStringToCategory(
                 categoryString
             );
@@ -95,7 +110,9 @@ public class Storage {
                 category, 
                 dateTime
             );
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) { // Gets thrown when there is not enough
+            // strings separated by the delimiter
+            logger.log(Level.WARNING, "Error reading line, check delimiter or number of arguments provided");
             throw new InvalidReadFileException(
                 String.format(
                     "%s%s",
@@ -103,7 +120,9 @@ public class Storage {
                     line
                 )
             );
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ParseException e) { // Gets thrown if there is an
+            // error with parsing the amount
+            logger.log(Level.WARNING, "Error reading line, check amount provided");
             throw new InvalidReadFileException(
                 String.format(
                     "%s%s", 
@@ -111,7 +130,9 @@ public class Storage {
                     line
                 )
             );
-        } catch (InvalidCategoryException e) {
+        } catch (InvalidCategoryException e) { // Gets thrown when the category from the 
+            // storage file is invalid (not part of the valid category list)
+            logger.log(Level.WARNING, "Error reading line, check category provided");
             throw new InvalidReadFileException(
                 String.format(
                     "%s%s",
@@ -119,7 +140,9 @@ public class Storage {
                     line
                 )
             );
-        } catch (InvalidDateException e) {
+        } catch (InvalidDateException e) { // Gets thrown when the date is not provided in
+            // the correct format DD MMM YYYY; HH:MM (3 Apr 2023; 21:32)
+            logger.log(Level.WARNING, "Error reading line, check date provided");
             throw new InvalidReadFileException(
                 String.format(
                     "%s%s", 
@@ -127,14 +150,8 @@ public class Storage {
                     line
                 )
             );
-        } catch (ParseException e) {
-            throw new InvalidReadFileException(
-                String.format(
-                    "%s%s", 
-                    MiscellaneousConstants.INVALID_AMOUNT_ERROR_MESSAGE,
-                    line
-                )
-            );
+        } finally {
+            logger.exiting(Storage.class.getName(), "readEntryLine()");
         }
     }
 
@@ -147,14 +164,17 @@ public class Storage {
      * @throws IOException If an error occurs in the reading from the file
      */
     public List<Entry> readFromDatabase() throws IOException, InvalidReadFileException {
+        logger.entering(Storage.class.getName(), "readFromDatabase()");
+        logger.info("Reading database file");
         List<Entry> entries = new ArrayList<>();
-        makeFileIfNotExists();
+        makeFileIfNotExists(); // Ensure the file exists before reading, create if needed
         BufferedReader csvReader = new BufferedReader(
                 new FileReader(this.filePath)
         );
         try {
             String row;
-            while ((row = csvReader.readLine()) != null) {
+            while ((row = csvReader.readLine()) != null) { // While there are unread lines,
+                // process lines and create entries
                 entries.add(
                     readEntryLine(row)
                 );
@@ -162,7 +182,7 @@ public class Storage {
         } finally {
             csvReader.close();
         }
-
+        logger.exiting(Storage.class.getName(), "readFromDatabase()");
         return entries;
     }
 
@@ -173,9 +193,12 @@ public class Storage {
      *                     file
      */
     public void reset() throws IOException {
+        logger.entering(Storage.class.getName(), "reset()");
+        logger.info("Resetting database file");
         File toBeDeleted = new File(this.filePath);
-        toBeDeleted.delete();
-        makeFileIfNotExists();
+        toBeDeleted.delete(); // Delete the existing storage file
+        makeFileIfNotExists(); // Replace the storage file with a new storage file
+        logger.exiting(Storage.class.getName(), "reset()");
     }
 
     /**
@@ -186,6 +209,8 @@ public class Storage {
      * @return A String that represents the Entry instance
      */
     private String writeEntryLine(Entry entry) {
+        logger.entering(Storage.class.getName(), "writeEntryLine()");
+        logger.info("Writing entry line");
         decimalFormat.setRoundingMode(RoundingMode.DOWN);
         String description = entry.getDescription();
         String amountString = decimalFormat.format(
@@ -201,6 +226,7 @@ public class Storage {
                 dateTimeString
         );
         returnString += System.lineSeparator();
+        logger.exiting(Storage.class.getName(), "writeEntryLine()");
         return returnString;
     }
 
@@ -213,7 +239,9 @@ public class Storage {
      * @throws IOException If an error occurs in the writing to the file
      */
     public void writeToDatabase(List<Entry> entries) throws IOException {
-        makeFileIfNotExists();
+        logger.entering(Storage.class.getName(), "writeToDatabase()");
+        logger.info("Writing to database file");
+        makeFileIfNotExists(); // Ensure the file exists before writing, create if needed
         FileWriter csvWriter = new FileWriter(this.filePath);
         for (Entry entry : entries) {
             String csvRow = "";
@@ -222,6 +250,7 @@ public class Storage {
         }
         csvWriter.flush();
         csvWriter.close();
+        logger.exiting(Storage.class.getName(), "writeToDatabase()");
     }
 }
 // @@author

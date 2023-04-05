@@ -190,8 +190,37 @@ public class EntryLog implements Serialisable {
         return entries.size();
     }
 
+    /**
+     * This method returns the sum of the prices of all entries,
+     * excluding those of the income category.
+     */
+    public double getTotalExpenditure(){
+        double totalExpenditure = 0;
+        for(int index = 1; index <= getSize(); index++){
+            if(getEntry(index).getCategory() != Category.INCOME) {
+                totalExpenditure += getEntry(index).getAmount();
+            }
+        }
+        return totalExpenditure;
+    }
+    /**
+    * This method returns the sum of the prices of all entries
+    * of the income category.
+    */
+    public double getTotalIncome(){
+        double totalIncome = 0;
+        for(int index = 1; index <= getSize(); index++){
+            if(getEntry(index).getCategory() == Category.INCOME) {
+                totalIncome += getEntry(index).getAmount();
+            }
+        }
+        return totalIncome;
+    }
+
+
     @Override
     public String serialise() {
         return EntryLogParser.serialise(this);
     }
+
 }

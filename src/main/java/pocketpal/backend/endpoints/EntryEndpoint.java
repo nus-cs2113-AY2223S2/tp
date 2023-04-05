@@ -7,6 +7,8 @@ import pocketpal.communication.ResponseStatus;
 import pocketpal.data.entry.Entry;
 import pocketpal.data.entrylog.EntryLog;
 import pocketpal.data.parsing.EntryParser;
+import pocketpal.frontend.constants.MessageConstants;
+import pocketpal.frontend.exceptions.InvalidArgumentsException;
 import pocketpal.frontend.exceptions.InvalidCategoryException;
 import pocketpal.frontend.util.CategoryUtil;
 
@@ -30,12 +32,12 @@ public class EntryEndpoint extends Endpoint {
     @Override
     public Response handleDelete(Request request) {
         logger.info("/entry [DELETE]: request received");
-        int targetId = Integer.parseInt(request.getBody());
         try {
+            int targetId = getPositiveIntegerFromString(request.getBody());
             Entry deletedEntry = entries.deleteEntry(targetId - 1);
             logger.info("/entry [DELETE]: OK");
             return new Response(ResponseStatus.OK, deletedEntry.serialise());
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             logger.warning("/entry [DELETE]: received invalid entry ID");
             return new Response(ResponseStatus.NOT_FOUND, "");
         }
@@ -44,13 +46,19 @@ public class EntryEndpoint extends Endpoint {
     @Override
     public Response handleGet(Request request) {
         logger.info("/entry [GET]: request received - " + request.getBody());
-        Entry entry = entries.getEntry(Integer.parseInt(request.getBody()));
-        if (entry == null) {
+        try {
+            int targetEntryId = getPositiveIntegerFromString(request.getBody());
+            Entry entry = entries.getEntry(targetEntryId);
+            if (entry == null) {
+                throw new NumberFormatException();
+            }
+            logger.info("/entry [GET]: OK");
+            return new Response(ResponseStatus.OK, entry.serialise());
+        } catch (NumberFormatException e) {
             logger.warning("/entry [GET]: received invalid entry ID " + request.getBody());
             return new Response(ResponseStatus.NOT_FOUND, "");
+
         }
-        logger.info("/entry [GET]: OK");
-        return new Response(ResponseStatus.OK, entry.serialise());
     }
 
     /**
@@ -66,35 +74,42 @@ public class EntryEndpoint extends Endpoint {
     @Override
     public Response handlePatch(Request request) {
         logger.info("/entry [PATCH]: request received");
-        Entry editEntry = entries.getEntry(Integer.parseInt(request.getBody()));
-        if (editEntry == null) {
-            logger.warning("/entry [PATCH]: received invalid entry ID " + request.getBody());
-            return new Response(ResponseStatus.NOT_FOUND, "");
-        }
+        try {
+            Entry editEntry;
+            int targetEntryId = getPositiveIntegerFromString(request.getBody());
+            editEntry = entries.getEntry(targetEntryId);
+            if (editEntry == null) {
+                throw new NumberFormatException(MessageConstants.MESSAGE_INVALID_ID);
+            }
 
-        if (request.hasParam(RequestParams.EDIT_CATEGORY)) {
-            try {
+            if (request.hasParam(RequestParams.EDIT_CATEGORY)) {
                 String category = request.getParam(RequestParams.EDIT_CATEGORY);
                 editEntry.setCategory(CategoryUtil.convertStringToCategory(category));
                 logger.info("/entry [PATCH]: update category" + request.getBody());
-            } catch (InvalidCategoryException e) {
-                logger.warning("/entry [PATCH]: received invalid category" + request.getBody());
-                return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, "");
             }
-        }
-        if (request.hasParam(RequestParams.EDIT_AMOUNT)) {
-            double amount = Double.parseDouble(request.getParam(RequestParams.EDIT_AMOUNT));
-            editEntry.setAmount(amount);
-            logger.info("/entry [PATCH]: update amount" + request.getBody());
-        }
-        if (request.hasParam(RequestParams.EDIT_DESCRIPTION)) {
-            String description = request.getParam(RequestParams.EDIT_DESCRIPTION);
-            editEntry.setDescription(description);
-            logger.info("/entry [PATCH]: update description" + request.getBody());
-        }
+            if (request.hasParam(RequestParams.EDIT_AMOUNT)) {
+                double amount = getAmountFromString(request.getParam(RequestParams.EDIT_AMOUNT));
+                editEntry.setAmount(amount);
+                logger.info("/entry [PATCH]: update amount" + request.getBody());
+            }
+            if (request.hasParam(RequestParams.EDIT_DESCRIPTION)) {
+                String description = request.getParam(RequestParams.EDIT_DESCRIPTION);
+                editEntry.setDescription(description);
+                logger.info("/entry [PATCH]: update description" + request.getBody());
+            }
 
-        logger.info("/entry [PATCH]: OK");
-        return new Response(ResponseStatus.OK, editEntry.serialise());
+            logger.info("/entry [PATCH]: OK");
+            return new Response(ResponseStatus.OK, editEntry.serialise());
+        } catch (NumberFormatException e) {
+            logger.warning("/entry [PATCH]: received invalid entry ID " + request.getBody());
+            return new Response(ResponseStatus.NOT_FOUND, MessageConstants.MESSAGE_INVALID_ID);
+        } catch (InvalidCategoryException e) {
+            logger.warning("/entry [PATCH]: received invalid category" + request.getBody());
+            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, "");
+        } catch (InvalidArgumentsException e) {
+            logger.warning("/entry [PATCH]: received invalid arguments" + request.getBody());
+            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, e.getMessage());
+        }
     }
 
     /**
@@ -111,7 +126,6 @@ public class EntryEndpoint extends Endpoint {
         Entry entry = EntryParser.deserialise(json);
         entries.addEntry(entry);
         logger.info("/entry [POST]: CREATED");
-        // TODO: validate request parameters
         return new Response(ResponseStatus.CREATED, "");
     }
 }

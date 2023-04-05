@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import pocketpal.backend.constants.MiscellaneousConstants;
 import pocketpal.data.entry.Category;
 import pocketpal.frontend.constants.EntryConstants;
 import pocketpal.frontend.constants.MessageConstants;
@@ -425,18 +426,18 @@ public class Parser {
         if (!priceMinStr.isEmpty()) {
             checkIfPriceValid(priceMinStr);
         } else {
-            priceMinStr = "0";
+            priceMinStr = MiscellaneousConstants.AMOUNT_MIN_STRING;
         }
         if (!priceMaxStr.isEmpty()) {
             checkIfPriceValid(priceMaxStr);
         } else {
-            priceMaxStr = Integer.toString(Integer.MAX_VALUE);
+            priceMaxStr = MiscellaneousConstants.AMOUNT_MAX_STRING;
         }
         Double priceMinDouble = Double.parseDouble(priceMinStr);
         Double priceMaxDouble = Double.parseDouble(priceMaxStr);
         if (priceMaxDouble < priceMinDouble) {
-            logger.warning("Maximum price range higher than minimum: " + MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE_RANGE);
+            logger.warning("Maximum price range higher than minimum: " + MessageConstants.MESSAGE_INVALID_AMOUNT_RANGE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT_RANGE);
         }
         prices[0] = priceMinDouble;
         prices[1] = priceMaxDouble;
@@ -524,7 +525,7 @@ public class Parser {
     private void checkIfPriceValid(String price) throws InvalidArgumentsException {
         boolean isValid = price.matches(VALID_PRICE_REGEX);
         if (!isValid) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
     }
 
