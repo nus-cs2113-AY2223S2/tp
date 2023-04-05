@@ -14,8 +14,11 @@ import seedu.duke.command.LoadSampleCompanyCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.PurgeCommand;
 
+import seedu.duke.exception.IntegerSizeExceededException;
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
+
+import java.math.BigInteger;
 
 public interface Parser {
 
@@ -31,7 +34,7 @@ public interface Parser {
      * @throws IndexOutOfBoundsException if error occurred due to an index being out of bounds
      */
     static Command parse(String input) throws WrongFormatException,
-            NumberFormatException, NullPointerException, IndexOutOfBoundsException {
+            NumberFormatException, NullPointerException, IndexOutOfBoundsException, IntegerSizeExceededException {
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");
         String command = inputWords[0];
@@ -70,6 +73,8 @@ public interface Parser {
             if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
+            BigInteger currValue = new BigInteger(inputWords[1]);
+            checkInputLimit(currValue);
             int companyNum = Integer.parseInt(inputWords[1]) - 1;
             DeleteCommand deleteCommand = new DeleteCommand(command, companyNum);
             return deleteCommand;
@@ -99,6 +104,8 @@ public interface Parser {
             if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
+            BigInteger currConfirmNum = new BigInteger(inputWords[1]);
+            checkInputLimit(currConfirmNum);
             int companyConfirmNum = Integer.parseInt(inputWords[1]) - 1;
             ConfirmCommand confirmCommand = new ConfirmCommand(command, companyConfirmNum);
             return confirmCommand;
@@ -106,6 +113,8 @@ public interface Parser {
             if (inputWords.length == 1){
                 throw new WrongFormatException();
             }
+            BigInteger currUnconfirmNum = new BigInteger(inputWords[1]);
+            checkInputLimit(currUnconfirmNum);
             int companyUnconfirmNum = Integer.parseInt(inputWords[1]) - 1;
             UnconfirmCommand unconfirmCommand = new UnconfirmCommand(command, companyUnconfirmNum);
             return unconfirmCommand;
@@ -139,5 +148,12 @@ public interface Parser {
         }
         Command defaultCommand = new Command(command);
         return defaultCommand;
+    }
+
+    private static void checkInputLimit(BigInteger currValue) throws IntegerSizeExceededException {
+        BigInteger intMax = BigInteger.valueOf(Integer.MAX_VALUE);
+        if (intMax.compareTo(currValue) == -1) {
+            throw new IntegerSizeExceededException();
+        }
     }
 }
