@@ -61,26 +61,28 @@ public interface Parser {
             int indexOfIndustry = input.indexOf("i/");
             int indexOfContactNumber = input.indexOf("c/");
             int indexOfContactEmail = input.indexOf("e/");
-            String companyName = input.substring(indexOfName+2, indexOfIndustry).trim();
-            String industry = input.substring(indexOfIndustry+2, indexOfContactNumber).trim();
-            String contactNumberString = input.substring(indexOfContactNumber+2, indexOfContactEmail).trim();
+            String companyName = input.substring(indexOfName + 2, indexOfIndustry).trim();
+            String industry = input.substring(indexOfIndustry + 2, indexOfContactNumber).trim();
+            String contactNumberString = input.substring(indexOfContactNumber + 2, indexOfContactEmail).trim();
             int contactNumber = Integer.parseInt(contactNumberString);
-            String contactEmail = input.substring(indexOfContactEmail+2).trim();
+            String contactEmail = input.substring(indexOfContactEmail + 2).trim();
 
-            if(input.indexOf("n/") != input.lastIndexOf("n/")){//Assume that multiple additions are not allowed
+            //Multiple additions are not allowed
+            if(input.indexOf("n/") != input.lastIndexOf("n/")){
                 ui.multipleAdditionErrorMessage();
                 throw new WrongFormatException();
             }
-
+            //Empty company name is not allowed
             if(companyName.equals("")){
                 ui.emptyInputErrorMessage("company name");
                 throw new WrongFormatException();
             }
+            //Empty industry is not allowed
             if(industry.equals("")){
                 ui.emptyInputErrorMessage("industry");
                 throw new WrongFormatException();
             }
-
+            //Only valid Singaporean number is allowed.
             if(contactNumberString.length() > 8){
                 ui.invalidInputFormatErrorMessage("contact number",
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
@@ -100,11 +102,12 @@ public interface Parser {
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
                 throw new WrongFormatException();
             }
-
+            //Only valid email address is allowed.
             if(!contactEmail.contains("@") || contactEmail.contains(" ") || contactEmail.endsWith("@")){
                 ui.invalidInputFormatErrorMessage("email address");
                 throw new WrongFormatException();
             }
+
             AddCommand addCommand = new AddCommand(command, industry, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
