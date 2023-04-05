@@ -10,6 +10,9 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * JUnit test for Incomes class.
+ */
 public class IncomesTest {
     public static final String DESCRIPTION_VALUE = "salary";
     public static final String DATE_STRING = "01-04-2023";

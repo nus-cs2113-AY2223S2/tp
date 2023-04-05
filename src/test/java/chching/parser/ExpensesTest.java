@@ -10,6 +10,9 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * JUnit test for Expenses class.
+ */
 public class ExpensesTest {
     public static final String CATEGORY_VALUE = "transport";
     public static final String DESCRIPTION_VALUE = "public transport";
