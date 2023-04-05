@@ -34,6 +34,10 @@ public class Incomes {
         Income inc = null;
         try {
             String incomeDescription = argumentsByField.get("de");
+            boolean validCharacters = UnicodeChecker.isValidStringInput(incomeDescription);
+            if (!validCharacters) {
+                throw new ChChingException("Description contains invalid characters");
+            }
             String incomeDateString = argumentsByField.get("da");
             LocalDate incomeDate = parseDate(incomeDateString);
             float incomeValue = Float.parseFloat(argumentsByField.get("v"));
@@ -43,7 +47,8 @@ public class Incomes {
             assert incomeValue > 0 : "incomeValue has to be more than 0";
             inc = new Income(incomeDescription, incomeDate, incomeValue);
         } catch (Exception e) {
-            throw new ChChingException("Trouble adding income value");
+            throw new ChChingException("trouble adding income value");
+            
         }
         return inc;
     }

@@ -7,6 +7,9 @@ import chching.record.IncomeList;
 import chching.record.Record;
 import chching.record.RecordList;
 
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -14,7 +17,7 @@ import java.util.Scanner;
  */
 public class Ui {
     public String readCommand() {
-        Scanner input = new Scanner((System.in));
+        Scanner input = new Scanner((new InputStreamReader(System.in, Charset.forName("UTF-8"))));
         return input.nextLine();
     }
 

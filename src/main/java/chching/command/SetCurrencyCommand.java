@@ -38,6 +38,7 @@ public class SetCurrencyCommand extends Command {
             throw new ChChingException("Currency not available!");
         }
         selector.setCurrency(currency);
-        selector.printSelector();
+        selector.printSelector(converter);
+        System.out.println("Displaying " + currency + " now.");
     }
 }

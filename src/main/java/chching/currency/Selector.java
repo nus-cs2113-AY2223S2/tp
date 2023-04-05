@@ -26,10 +26,10 @@ public class Selector {
         selectedCurrencies.put(currency, false);
     }
 
-    public void printSelector() {
+    public void printSelector(Converter converter) {
         for (String currency : selectedCurrencies.keySet()) {
             String marked = selectedCurrencies.get(currency) ? "[X] " : "[ ] ";
-            System.out.println(marked + currency);
+            System.out.println(marked + currency + " " + converter.convert(currency, 1));
         }
     }
 
@@ -39,5 +39,9 @@ public class Selector {
 
     public boolean isSelected(String currency) {
         return selectedCurrencies.get(currency);
+    }
+
+    public int getSize() {
+        return selectedCurrencies.size();
     }
 }

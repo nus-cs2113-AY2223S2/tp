@@ -14,6 +14,7 @@ import java.util.HashMap;
  */
 
 public class Expenses {
+    private static final String VALID_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=,./<>?;':\"[]{}\\|`~ ";
 
     /**
      * Parses a date
@@ -45,6 +46,10 @@ public class Expenses {
         try {
             String expenseCategory = argumentsByField.get("c");
             String expenseDescription = argumentsByField.get("de");
+            String invalidCharacters = expenseDescription.replaceAll(VALID_CHARACTERS, "");
+            if (!invalidCharacters.isEmpty()) {
+                throw new ChChingException("Description contains invalid characters");
+            }
             String expenseDateString = argumentsByField.get("da");
             LocalDate expenseDate = parseDate(expenseDateString);
             float expenseValue = Float.parseFloat(argumentsByField.get("v"));
