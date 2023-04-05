@@ -101,9 +101,9 @@ public class Expense {
         String descriptionString = this.description;
         String timeString = this.expenseTime.toString();
         if (sortBy.equals("C")) {
-            return ("cat:" + descriptionString + " " + currencyString + amountString + " date:" + timeString);
+            return (currencyString + amountString + " date:" + timeString);
         } else {
-            return ("date:" + timeString + " " + currencyString + amountString + " cat:" + descriptionString);
+            return (currencyString + amountString + " cat:" + descriptionString);
         }
 
     }
