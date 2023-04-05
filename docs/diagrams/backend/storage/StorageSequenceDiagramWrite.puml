@@ -1,0 +1,34 @@
+@startuml
+!include ../../Style.puml
+
+' autonumber
+title Writing Entries to Storage
+
+participant "backend:Backend" as Backend
+participant "storage:Storage" as Storage
+participant "Database" as Database
+
+ref over Backend
+Write entries from Storage
+end ref
+
+Backend -> Storage: save(entries)
+activate Storage
+activate Database
+Storage -> Database: writeToDatabase(entries)
+Storage -> Storage: makeFileIfNotExists()
+loop n
+    Storage -> Storage: writeEntryLine()
+end
+alt Write successful
+    Database --> Storage: ok
+    Backend <-- Storage: ok
+    <-- Backend: new Response()
+else IOexception
+    Database --> Storage: IOException
+    Backend <-- Storage: IOException
+    <-- Backend: new Response()
+end
+
+
+@enduml

@@ -19,9 +19,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Represents the add feature in PocketPal. Users may provide a description
- * and specify the corresponding price and category of their entry
- * e.g., <code>/add lunch -p 15 -c food</code>
+ * Represents the add feature in PocketPal. Users may provide
+ * a description and specify the corresponding price and
+ * category of their entry
+ * e.g., <code>/add lunch -d chicken rice -p 15 -c food</code>
  */
 public class AddCommand extends Command {
     private static final Logger logger = Logger.getLogger(AddCommand.class.getName());
@@ -33,6 +34,7 @@ public class AddCommand extends Command {
      * @param description Description of the entry
      * @param category    Category which entry belongs to
      * @param amount      Price of entry
+     * @throws InvalidCategoryException If input category is invalid
      */
     public AddCommand(String description, double amount, String category) throws InvalidCategoryException {
         switch (StringUtil.toTitleCase(category)) {
@@ -89,6 +91,7 @@ public class AddCommand extends Command {
 
     /**
      * Adds Entry object to entry log
+     *
      * @param ui UI to output action result
      * @param backend  Backend to process requests
      */
@@ -103,6 +106,12 @@ public class AddCommand extends Command {
         logger.severe("Add entry operation failed.");
         throw new AssertionError();
     }
+
+    /**
+     * Returns entry object initialised by the AddCommand constructor
+     *
+     * @return Entry object
+     */
 
     public Entry getEntryObj() {
         return this.entryObj;
