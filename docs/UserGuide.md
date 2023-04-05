@@ -120,7 +120,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-### `confirm [INDEX]` - Marks a specific company's attendance as confirmed
+### `confirm <INDEX>` - Marks a specific company's attendance as confirmed
 Mark the status of a specific company's attendance as confirmed, and 
 updates a status icon to [Confirmed] that represents it being marked confirmed.
 
@@ -218,7 +218,7 @@ ____________________________________________________________
 Sample data has been loaded into the list!
 ____________________________________________________________
 ```
-### `purge ` - delete the company list data
+### `purge` - delete the company list data
 delete the company list data, and updates the company list text file
 
 Example of usage:
