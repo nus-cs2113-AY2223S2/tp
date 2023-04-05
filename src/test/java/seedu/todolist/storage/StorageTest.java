@@ -19,9 +19,8 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-
+// need modify the tests
 class StorageTest {
-
     private static final String PROPER_SAVE_FILE = "./src/test/data/properSaveFile.json";
     private static final String INVALID_SAVE_FILE = "./src/test/data/invalidSaveFile.json";
     private static final String TEST_DATA_FOLDER = "./src/test/data";

@@ -23,7 +23,6 @@ public final class Errors {
     public static final String FAILED_LOAD = "Error when loading your data; "
             + "please check that you have read permissions for " + Storage.DEFAULT_SAVE_PATH + System.lineSeparator()
             + "If you have modified it yourself, please double check the formatting. For now, the program will exit.";
-
     //@@author clement559
     public static final String FAILED_CONFIG_SAVE = "Error when saving your configuration, please check that you have" +
             " write permissions for " + Storage.DEFAULT_CONFIG_PATH;

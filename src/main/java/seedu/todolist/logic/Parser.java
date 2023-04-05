@@ -16,6 +16,7 @@ import seedu.todolist.logic.command.EditPriorityCommand;
 import seedu.todolist.logic.command.EditRepeatCommand;
 import seedu.todolist.logic.command.EditTagsCommand;
 import seedu.todolist.logic.command.ExitCommand;
+import seedu.todolist.logic.command.HelpCommand;
 import seedu.todolist.logic.command.FindByPriorityCommand;
 import seedu.todolist.logic.command.FindByTagCommand;
 import seedu.todolist.logic.command.ListFullInfoCommand;
@@ -24,7 +25,6 @@ import seedu.todolist.logic.command.ListTasksCommand;
 import seedu.todolist.logic.command.MarkTaskCommand;
 import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
-import seedu.todolist.logic.command.HelpCommand;
 import seedu.todolist.logic.command.EditConfigCommand;
 
 import java.util.Arrays;

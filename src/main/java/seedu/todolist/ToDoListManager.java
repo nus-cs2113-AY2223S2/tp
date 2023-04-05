@@ -1,9 +1,9 @@
 package seedu.todolist;
 
+import seedu.todolist.exception.FailedLoadException;
+import seedu.todolist.exception.FailedSaveException;
 import seedu.todolist.exception.FailedSaveConfigException;
 import seedu.todolist.exception.FailedLoadConfigException;
-import seedu.todolist.exception.FailedSaveException;
-import seedu.todolist.exception.FailedLoadException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Config;
 import seedu.todolist.logic.Parser;
@@ -16,6 +16,7 @@ import seedu.todolist.ui.Ui;
 
 import java.time.LocalDateTime;
 import java.io.FileNotFoundException;
+
 
 public class ToDoListManager {
     private boolean isRunning = true;
@@ -45,16 +46,14 @@ public class ToDoListManager {
             ui.printError(e3);
         }
 
-
         //@@author jeromeongithub
         try {
             // Save file found, try loading it
-
             taskList = storage.loadData(Storage.DEFAULT_SAVE_PATH);
             taskList.checkRepeatingTasks(config);
             ui.printLoadSaveMessage(taskList.size());
             new ProgressBarCommand().execute(taskList, ui);
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) { // no save file found
             ui.printNewSaveMessage();
             // Loading save file failed, save new empty task list immediately instead of waiting for a command
             try {
