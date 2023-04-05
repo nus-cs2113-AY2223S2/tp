@@ -117,6 +117,10 @@ public class PetList {
         System.out.println("Number of pets: " + numberOfPets);
     }
 
+    /**
+     * Return the number of pets in the PetList.
+     * @return number of pets in the list.
+     */
     public static int getNumberOfPets() {
         return numberOfPets;
     }

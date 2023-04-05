@@ -56,20 +56,11 @@
                         Pet -> Pet:setWeight("")
                         activate Pet
                         return
-                    
-                end
-                    return
-                    deactivate Pet
-                
-            return
-            deactivate PetList
+                    end
+
             
-
-        deactivate RemoveStatCommand
-        return
-
-
-        
+                
+                
 
     
 
