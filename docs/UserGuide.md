@@ -8,8 +8,8 @@ them keep track of their expense based on category, time, amount, and currency.
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](https://github.com/AY2223S2-CS2113-T13-2/tp/releases).
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar Duke.jar` command to run the application.
+1. Download the latest version of `Duke` from [here](https://github.com/AY2223S2-CS2113-T13-2/tp/releases).
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run the application.
 1. Enter your name when prompted in the command box and press enter.
 1. Type the command in the command box and press Enter to execute it.
    Some example commands you can try:
