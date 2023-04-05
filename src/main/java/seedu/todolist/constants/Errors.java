@@ -7,7 +7,6 @@ import seedu.todolist.storage.Storage;
  */
 public final class Errors {
     public static final String MISSING_ARGUMENT = "Missing argument after: ";
-
     public static final String INVALID_COMMAND = "You need to provide a valid command.";
     public static final String INVALID_FLAGS = "Unknown or duplicate flags are not allowed: ";
     public static final String INVALID_ID = "Invalid task id: ";
@@ -25,7 +24,8 @@ public final class Errors {
     public static final String FAILED_LOAD = "Error when loading your data; "
             + "please check that you have read permissions for " + Storage.DEFAULT_SAVE_PATH + System.lineSeparator()
             + "and do not modify it yourself. A new task list will be created for you!";
-
+    public static final String SAVED_FILE_SYNTAX_ERROR = "There was a problem with your saved file. " +
+            "Please correct it before restarting the program.";
     private Errors() {
     }
 }

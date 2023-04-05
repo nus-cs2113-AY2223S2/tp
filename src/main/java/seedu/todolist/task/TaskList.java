@@ -3,24 +3,23 @@ package seedu.todolist.task;
 import seedu.todolist.constants.Formats;
 import seedu.todolist.exception.InvalidIdException;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.HashSet;
 import java.util.stream.Stream;
-
 import static java.util.stream.Collectors.toList;
 
 /**
  * A list of Task objects representing the current list of tasks.
  */
-public class TaskList implements Serializable {
+
+public class TaskList {
     private int count = 0;
     private HashMap<Integer, Task> tasks = new HashMap<>();
 

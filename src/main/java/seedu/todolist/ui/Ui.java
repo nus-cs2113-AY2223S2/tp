@@ -1,5 +1,6 @@
 package seedu.todolist.ui;
 
+import seedu.todolist.constants.Errors;
 import seedu.todolist.constants.HelpMessage;
 import seedu.todolist.constants.Messages;
 import seedu.todolist.task.Task;
@@ -126,6 +127,10 @@ public class Ui {
         println("You have completed " + progressPercentage + "% of the " + generateTaskCountString(tasksThisWeek)
                 + " due this week!", "Progress: |" + "=".repeat(completedSections)
                 + "-".repeat(incompleteSections) + "|", taskListString);
+    }
+
+    public void printSavedFileSyntaxError() {
+        println(Errors.SAVED_FILE_SYNTAX_ERROR);
     }
 
     //@@author KedrianLoh

@@ -3,7 +3,6 @@ package seedu.todolist.task;
 import seedu.todolist.constants.Formats;
 import seedu.todolist.logic.FormatterUtil;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -11,7 +10,7 @@ import java.util.StringJoiner;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 
-public class Task implements Serializable {
+public class Task {
     //@@author KedrianLoh
     /**
      * Comparator for the task class, used for sorting the task list by deadline.
