@@ -7,7 +7,11 @@
  */
 
 package seedu.badmaths;
-import seedu.badmaths.commands.*;
+import seedu.badmaths.commands.NotesRanker;
+import seedu.badmaths.commands.NotesFinder;
+import seedu.badmaths.commands.NotesPriorityFinder;
+import seedu.badmaths.commands.PrioritySetter;
+import seedu.badmaths.commands.NotesMarker;
 import seedu.badmaths.note.NotesList;
 import seedu.badmaths.storage.NotesFileCleaner;
 import seedu.badmaths.trigograph.TrigoGraph;
