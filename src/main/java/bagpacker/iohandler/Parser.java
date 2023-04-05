@@ -4,6 +4,7 @@ import bagpacker.commands.Command;
 import bagpacker.commands.AddCommand;
 import bagpacker.commands.DeleteCommand;
 import bagpacker.commands.ListCommand;
+import bagpacker.commands.ListUnpackedCommand;
 import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackCommand;
 import bagpacker.commands.DeleteListCommand;
@@ -76,7 +77,9 @@ public class Parser {
         case "unpack":
             return createUnpackObj();
         case "list":
-            return listCommand();
+            return createListObj();
+        case "listunpacked":
+            return createListUnpackedObj();
         case "help":
             return createHelpObj();
         case "deletelist":
@@ -494,8 +497,12 @@ public class Parser {
         }
     }
 
-    public static Command listCommand() {
+    public static Command createListObj() {
         return new ListCommand();
+    }
+
+    private static Command createListUnpackedObj() {
+        return new ListUnpackedCommand();
     }
 
     public static Command createDeleteListObj() {

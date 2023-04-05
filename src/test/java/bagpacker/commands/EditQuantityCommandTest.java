@@ -2,7 +2,6 @@ package bagpacker.commands;
 
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
