@@ -8,7 +8,7 @@ import seedu.todolist.exception.FailedLoadDataException;
 import seedu.todolist.exception.FailedSaveException;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.logic.command.Command;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.io.FileNotFoundException;
@@ -37,10 +37,10 @@ class StorageTest {
         try {
             String sampleInput1 = "add bubu -due 18-02-2032 18:00 -rep 0";
             Command command1 = parser.parseCommand(sampleInput1);
-            command1.execute(taskList, ui);
+            command1.execute(taskList, , ui);
             String sampleInput2 = "add baba -due 18-04-2033 12:00 -rep 0";
             Command command2 = parser.parseCommand(sampleInput2);
-            command2.execute(taskList, ui);
+            command2.execute(taskList, , ui);
 
             // Save modified task list object
             storage.save(taskList, PROPER_SAVE_FILE);

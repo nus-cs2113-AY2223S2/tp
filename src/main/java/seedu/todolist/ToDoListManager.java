@@ -4,13 +4,13 @@ import seedu.todolist.exception.FailedLoadDataException;
 import seedu.todolist.exception.FailedSaveException;
 import seedu.todolist.exception.FailedLoadConfigException;
 import seedu.todolist.exception.ToDoListException;
-import seedu.todolist.logic.Config;
+import seedu.todolist.model.Config;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.logic.command.Command;
 import seedu.todolist.logic.command.EditConfigCommand;
 import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.storage.Storage;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.time.LocalDateTime;
@@ -45,7 +45,7 @@ public class ToDoListManager {
             taskList = storage.loadData();
             taskList.checkRepeatingTasks(config);
             ui.printLoadSaveMessage(taskList.size());
-            new ProgressBarCommand().execute(taskList, ui);
+            new ProgressBarCommand().execute(taskList, config, ui);
         } catch (FileNotFoundException e) {
             // No save file found, generate new task list
             ui.printNewSaveMessage();
@@ -72,11 +72,7 @@ public class ToDoListManager {
             String inputCommand = ui.getUserInput();
             try {
                 Command command = parser.parseCommand(inputCommand);
-                if (command instanceof EditConfigCommand) {
-                    ((EditConfigCommand) command).execute(config, ui);
-                } else {
-                    command.execute(taskList, ui);
-                }
+                command.execute(taskList, config, ui);
                 LocalDateTime nextCheck = config.getLastChecked().plusMinutes(config.getCheckFrequency());
                 if (nextCheck.isBefore(LocalDateTime.now())) {
                     taskList.checkRepeatingTasks(config);

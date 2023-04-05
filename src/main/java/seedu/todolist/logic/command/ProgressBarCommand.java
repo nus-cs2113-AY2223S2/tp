@@ -1,8 +1,9 @@
 //@@author jeromeongithub
 package seedu.todolist.logic.command;
 
-import seedu.todolist.task.Task;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.Task;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.time.LocalDate;
@@ -15,7 +16,7 @@ public class ProgressBarCommand extends Command {
     private static final int PROGRESS_BAR_SECTIONS = 50;
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public void execute(TaskList taskList, Config config, Ui ui) {
         TemporalField fieldISO = WeekFields.of(Locale.FRANCE).dayOfWeek();
         // Before Monday (start of the week - 1st day)
         LocalDate beforeStartOfWeek = LocalDate.now().with(fieldISO, 1).minusDays(1);

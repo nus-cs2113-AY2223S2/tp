@@ -1,9 +1,11 @@
+//@@author clement559
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidFrequencyException;
 import seedu.todolist.exception.ToDoListException;
-import seedu.todolist.logic.Config;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
@@ -32,7 +34,8 @@ public class EditConfigCommand extends Command {
         }
     }
 
-    public void execute(Config config, Ui ui) {
+    @Override
+    public void execute(TaskList taskList, Config config, Ui ui) {
         if (isEditing) {
             config.setCheckFrequency(checkFrequency);
             config.setRepeatFrequency(repeatFrequency);
@@ -42,6 +45,5 @@ public class EditConfigCommand extends Command {
             String taskString = config.toString();
             ui.printConfigInfo(taskString);
         }
-
     }
 }

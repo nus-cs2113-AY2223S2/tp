@@ -4,8 +4,9 @@ import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidFindException;
 import seedu.todolist.exception.InvalidPriorityException;
 import seedu.todolist.logic.ParserUtil;
-import seedu.todolist.task.Task;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.Task;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class FindByPriorityCommand extends Command{
         }
     }
     @Override
-    public void execute(TaskList taskList, Ui ui) throws InvalidFindException {
+    public void execute(TaskList taskList, Config config, Ui ui) throws InvalidFindException {
         if (taskList.getAllPrioritiesInTaskList().contains(priority)) {
             ArrayList<Task> arrayList = taskList.getTaskWithPriority(priority);
             ui.printTasksWithPriority(arrayList);

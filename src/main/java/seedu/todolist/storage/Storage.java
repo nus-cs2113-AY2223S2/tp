@@ -9,8 +9,8 @@ import com.google.gson.stream.JsonReader;
 import seedu.todolist.exception.FailedLoadConfigException;
 import seedu.todolist.exception.FailedLoadDataException;
 import seedu.todolist.exception.FailedSaveException;
-import seedu.todolist.logic.Config;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;

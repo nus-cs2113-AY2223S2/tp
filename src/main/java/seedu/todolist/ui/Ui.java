@@ -2,7 +2,7 @@ package seedu.todolist.ui;
 
 import seedu.todolist.constants.HelpMessages;
 import seedu.todolist.constants.Messages;
-import seedu.todolist.task.Task;
+import seedu.todolist.model.Task;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

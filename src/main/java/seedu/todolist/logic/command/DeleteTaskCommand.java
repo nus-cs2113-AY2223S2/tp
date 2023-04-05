@@ -3,7 +3,8 @@ package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidIdException;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class DeleteTaskCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
+    public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
         StringJoiner stringJoiner = new StringJoiner(System.lineSeparator());
         for (int id : idHashSet) {
             String taskString = taskList.deleteTask(id);

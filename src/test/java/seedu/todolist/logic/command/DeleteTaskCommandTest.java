@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Parser;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
@@ -29,7 +29,7 @@ public class DeleteTaskCommandTest {
         String sampleTask = "add something -due 06-04-2030 23:59";
         testList = new TaskList();
         try {
-            parser.parseCommand(sampleTask).execute(testList, ui);
+            parser.parseCommand(sampleTask).execute(testList, , ui);
         } catch (ToDoListException e) {
             fail("Failed to initialize test task list");
         }
@@ -39,7 +39,7 @@ public class DeleteTaskCommandTest {
     public void deleteTask_emptyId_throwsException() {
         try {
             Command testDelete = new DeleteTaskCommand(generateInputArguments(""));
-            testDelete.execute(testList, ui);
+            testDelete.execute(testList, , ui);
         } catch (ToDoListException e) {
             return;
         } catch (NullPointerException e) {
@@ -54,7 +54,7 @@ public class DeleteTaskCommandTest {
         for (String id : invalidId) {
             try {
                 Command testDelete = new DeleteTaskCommand(generateInputArguments(id));
-                testDelete.execute(testList, ui);
+                testDelete.execute(testList, , ui);
             } catch (ToDoListException e) {
                 continue;
             } catch (NullPointerException e) {

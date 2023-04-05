@@ -1,8 +1,7 @@
-package seedu.todolist.task;
+package seedu.todolist.model;
 
 import seedu.todolist.constants.Formats;
 import seedu.todolist.exception.InvalidIdException;
-import seedu.todolist.logic.Config;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

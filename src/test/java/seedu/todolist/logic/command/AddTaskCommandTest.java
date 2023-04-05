@@ -4,7 +4,7 @@ package seedu.todolist.logic.command;
 import org.junit.jupiter.api.Test;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.ToDoListException;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
@@ -35,7 +35,7 @@ public class AddTaskCommandTest {
             HashMap<Flags, String> args = generateInputArguments("0", date, TIME_EXAMPLE, REPEAT_EXAMPLE);
             try {
                 Command testDelete = new AddTaskCommand(args);
-                testDelete.execute(testList, ui);
+                testDelete.execute(testList, , ui);
             } catch (ToDoListException e) {
                 continue;
             }
@@ -50,7 +50,7 @@ public class AddTaskCommandTest {
             HashMap<Flags, String> args = generateInputArguments("0", DATE_EXAMPLE, time, REPEAT_EXAMPLE);
             try {
                 Command testDelete = new AddTaskCommand(args);
-                testDelete.execute(testList, ui);
+                testDelete.execute(testList, , ui);
             } catch (ToDoListException e) {
                 continue;
             }

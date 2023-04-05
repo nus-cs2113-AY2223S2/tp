@@ -1,11 +1,12 @@
 package seedu.todolist.logic.command;
 
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 public class HelpCommand extends Command{
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public void execute(TaskList taskList, Config config, Ui ui) {
         ui.printHelpList();
     }
 }

@@ -6,7 +6,8 @@ import seedu.todolist.exception.InvalidEditException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.FormatterUtil;
 import seedu.todolist.logic.ParserUtil;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class EditPriorityCommand extends Command{
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) throws ToDoListException {
+    public void execute(TaskList taskList, Config config, Ui ui) throws ToDoListException {
         for (int id : idHashSet) {
             String taskString = taskList.setPriority(id, priority);
             ui.printEditTaskMessage("priority level", FormatterUtil.getPriorityAsString(priority), taskString);

@@ -6,7 +6,8 @@ import seedu.todolist.exception.InvalidEditException;
 import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.ParserUtil;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
@@ -29,7 +30,7 @@ public class EditEmailCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
+    public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
         for (int id : idHashSet) {
             String taskString = taskList.setEmail(id, email);
             if (email == null) {

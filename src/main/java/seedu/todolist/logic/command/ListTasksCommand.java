@@ -2,9 +2,10 @@ package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.ToDoListException;
-import seedu.todolist.task.Task;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.Task;
 import seedu.todolist.ui.Ui;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.TaskList;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -50,7 +51,7 @@ public class ListTasksCommand extends Command {
     /**
      * Displays the full or filtered task list, depending on filters chosen.
      */
-    public void execute(TaskList taskList, Ui ui) {
+    public void execute(TaskList taskList, Config config, Ui ui) {
         if (sortMethod != null && sortMethod.equals("priority")) {
             comparator = Task.priorityComparator;
         }

@@ -5,7 +5,8 @@ import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidEditException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.ParserUtil;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
@@ -27,7 +28,7 @@ public class EditRepeatCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) throws ToDoListException {
+    public void execute(TaskList taskList, Config config, Ui ui) throws ToDoListException {
         for (int id : idHashSet) {
             int repeatDuration = ParserUtil.parseRepeatDuration(repeatDurationString, taskList.getDeadline(id));
             String taskString = taskList.setRepeatDuration(id, repeatDuration);
