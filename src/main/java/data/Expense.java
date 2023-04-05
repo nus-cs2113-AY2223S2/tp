@@ -114,7 +114,8 @@ public class Expense {
     }
 
     public String toAdd() {
-        return ("add amt/" + this.expenseAmount + " t/" + this.expenseTime.toStringSave() + " cat/" + this.description);
+        return ("add amt/" + this.expenseAmount + " t/" + this.expenseTime.toStringSave() + " cat/" + this.description
+        + " cur/" + this.currencyType);
     }
 }
 

@@ -56,13 +56,10 @@ public class ParserAccount {
             } else if (input.equals("signup")) {
                 // get register details
                 caseSignUp();
-            } else if (input.equals("logout")) {
-                logout();
-                break; // exit the loop
             } else {
                 // invalid input, tell them to try again
-                System.out.println("invild option, chose login or signup!");
-                input = in.nextLine();
+                System.out.println("Invild option, chose login or signup!");
+                initialize(in);
             }
         } while (true);
     }

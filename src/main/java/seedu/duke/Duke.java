@@ -1,13 +1,7 @@
 package seedu.duke;
 
-import command.CommandAdd;
-import command.CommandCategory;
-import command.CommandDelete;
-import command.CommandList;
-import command.CommandSort;
+import command.*;
 import common.WelcomeMessage;
-import command.CommandTotal;
-import command.CommandFind;
 import command.overview.CommandOverview;
 //import command.CommandHelp;
 import data.ExpenseList;
@@ -58,7 +52,7 @@ public class Duke {
         String input = "";
         while (in.hasNextLine()) {
             input = in.nextLine();
-            if(input.equals("exit")) {
+            if (input.equals("exit")) {
                 break;
             }
             switch (parser.extractCommandKeyword(input)) {
@@ -93,7 +87,7 @@ public class Duke {
                 new CommandFind(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
             case "help":
-                //new CommandHelp().execute();
+                new CommandHelp().execute();
                 break;
             default:
                 System.out.println("Unknown command.");
