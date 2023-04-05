@@ -72,6 +72,7 @@ which would result in the latest data stored in DataStorage being saved into the
 
 ### Add Module
 
+
 The AddModule functionality allows users to add a module to their Module List. Beyond just adding their modules to the
 module list, users are also able to add their specific lessons (e.g Lectures and Tutorials) to their module list.
 This is facilitated by the AddMod command which is an extension of the Command class. Below is an example usage of how
@@ -139,6 +140,10 @@ Step 6:
 
 Print the confirmation message :
 A confirmation message is printed to the user indicating that the module lesson has been successfully added.
+
+UML Diagram for AddModCommand Class
+
+![](../docs/uml-diagrams/AddModule-AddModuleCommand__Add_Module_.png)
 
 [*Return to TOC*](#table-of-contents)
 
