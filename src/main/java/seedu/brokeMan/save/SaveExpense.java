@@ -67,9 +67,6 @@ public class SaveExpense {
                 } catch (NumberFormatException | CategoryNotCorrectException | IndexOutOfBoundsException e) {
                     continue;
                 }
-//                } catch (CategoryNotCorrectException e) {
-//                    throw new RuntimeException(e);
-//                }
             }
         } catch (IOException ioe) {
             try {
