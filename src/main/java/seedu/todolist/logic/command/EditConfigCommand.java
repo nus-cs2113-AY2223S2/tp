@@ -9,8 +9,8 @@ import seedu.todolist.ui.Ui;
 import java.util.HashMap;
 
 public class EditConfigCommand extends Command {
-    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_CONFIG, Flags.CONFIG_CHECK_FREQ,
-            Flags.CONFIG_REPEAT_FREQ, Flags.DEFAULT};
+    public static final Flags[] EXPECTED_FLAGS = { Flags.COMMAND_CONFIG, Flags.CONFIG_CHECK_FREQ,
+        Flags.CONFIG_REPEAT_FREQ, Flags.DEFAULT};
 
     private int checkFrequency = 0;
     private int repeatFrequency = 7;
@@ -38,8 +38,7 @@ public class EditConfigCommand extends Command {
             config.setRepeatFrequency(repeatFrequency);
             String taskString = config.toString();
             ui.printEditConfigMessage(taskString);
-        }
-        else {
+        } else {
             String taskString = config.toString();
             ui.printConfigInfo(taskString);
         }

@@ -63,8 +63,7 @@ public class ToDoListManager {
             // Loading save file failed, save new empty task list immediately instead of waiting for a command
             try {
                 storage.saveData(taskList, Storage.DEFAULT_SAVE_PATH);
-            }
-            catch (IOException e2) {
+            } catch (IOException e2) {
                 ui.printError(e2);
 
             }
