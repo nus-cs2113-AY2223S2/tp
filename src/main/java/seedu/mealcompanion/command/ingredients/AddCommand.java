@@ -54,7 +54,7 @@ public class AddCommand extends ExecutableCommand {
     private void addNewIngredient(MealCompanionSession mealCompanionSession, int quantity, String name)
             throws MealCompanionException {
         IngredientDatabase db = IngredientDatabase.getDbInstance();
-        if (!db.getKnownIngredients().containsKey(name)) {
+        if (!db.getKnownIngredients().containsKey(name.toLowerCase())) {
             throw new MealCompanionException("Unknown ingredient named: " + name);
         }
         Ingredient ingredient = new Ingredient(name, quantity);
@@ -73,22 +73,22 @@ public class AddCommand extends ExecutableCommand {
 
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
+            int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
             int quantity = Integer.parseInt(amount);
             if (quantity <= 0 || quantity > MAX_INGREDIENTS) {
                 throw new MealCompanionException("OOPS, quantity provided must be greater than 0 and not exceed 10000");
             }
-            int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
             if (indexOfExistingIngredient == -1) {
                 addNewIngredient(mealCompanionSession, quantity, name);
             } else {
                 addToExistingIngredients(mealCompanionSession, quantity, indexOfExistingIngredient);
             }
-        } catch (NumberFormatException e) {
-            mealCompanionSession.getUi()
-                    .printMessage("OOPS, please input an integer no greater than 10000 for quantity");
         } catch (NullPointerException e) {
             mealCompanionSession.getUi().printMessage("OOPS, Certain fields are empty");
             mealCompanionSession.getUi().printMessage("please follow the format: add <ingredient> /qty <quantity>");
+        } catch (NumberFormatException e) {
+            mealCompanionSession.getUi()
+                    .printMessage("OOPS, please input an integer no greater than 10000 for quantity");
         } catch (Exception e) {
             mealCompanionSession.getUi().printMessage(String.valueOf(e));
         }

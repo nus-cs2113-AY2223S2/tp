@@ -25,10 +25,10 @@ public class SerializableRecipe {
         IngredientList ingredientList = new IngredientList();
         for(SerializableIngredient ingredient : ingredients) {
             IngredientDatabase db = IngredientDatabase.getDbInstance();
-            if (!db.getKnownIngredients().containsKey(ingredient.getName())) {
+            if (!db.getKnownIngredients().containsKey(ingredient.getName().toLowerCase())) {
                 throw new MealCompanionException("Unknown ingredient in recipe book: " + ingredient.getName());
             }
-            ingredientList.add(new Ingredient(ingredient.getName(), ingredient.getAmount()));
+            ingredientList.add(new Ingredient(ingredient.getName().toLowerCase(), ingredient.getAmount()));
         }
 
         InstructionList instructionList = new InstructionList();
