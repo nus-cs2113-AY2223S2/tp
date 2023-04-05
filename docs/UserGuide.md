@@ -14,6 +14,7 @@
   - [Exit](#exit)
   - [Storage](#storage)
 - [FAQ](#faq)
+- [Summary of Commands](#summary-of-commands)
   
 ## Introduction
 
@@ -314,17 +315,8 @@ The data stored in those files are in plaintext format and the user can copy out
 The contents in the file are stored in a custom format with `~|~` being the separator for each individual components. Below are examples of the format for each of the respective files.  
 **Note: It is recommended to follow the format stated to ensure that the details will be read correctly by the application.** 
 
-#### Editing deadline_list.txt   
-Format: `<deadline>~|~<date>`
-
-Outcome:
-```
-fix water pipes~|~10 Apr
-need to buy more potatoes deal~|~9 Apr 2PM
-```
-
 #### Editing meeting_list.txt
-Format: `<meeting>~|~<date>`
+Format: `<meeting name>~|~<date>`
 
 Outcome:
 ```
@@ -332,21 +324,37 @@ Meeting with boss~|~Sunday, 3PM
 Meeting with supplier~|~Saturday, 9AM
 ```
 
+#### Editing deadline_list.txt   
+Format: `<deadline name>~|~<date>`
+
+Outcome:
+```
+fix water pipes~|~10 Apr
+need to buy more potatoes deal~|~9 Apr 2PM
+```
+
 #### Editing dish_list.txt
-Format: `<dish>~|~<price>~|~<ingredient1>, <ingredient2>, ..., <ingredientn>`
+Format: `<dish name>~|~<price>~|~<ingredient1>, <ingredient2>, ..., <ingredientn>`
 
 Outcome:
 ```
 Chicken Burger~|~1099~|~tomatoes, chicken fillet, cheese, bread with sesame seeds
 ```
 
+#### Editing staff_list.txt
+Format: `<staff name>~|~<working day>~|~<date of birth>~|~<phone>`
+
+Outcome:
+```
+John Doe~|~Sunday~|~2001-03-09~|~82802123
+```
 ## FAQ
 
 **Q**: How do I set up the project?
 
 **A**: Clone the project from GitHub and run it through Intellij.
 
-
+## Summary of Commands
 
 | Action          | Command                                                                                                        |
 |-----------------|----------------------------------------------------------------------------------------------------------------|
