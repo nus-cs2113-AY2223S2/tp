@@ -15,6 +15,8 @@ public final class MiscellaneousConstants {
             .compile("^(\\d{0,9}.(\\d{1,2}0*))$|^(\\d{1,9}(.\\d{0,2}0*)?)$");
     public static final double AMOUNT_MAX_DOUBLE = 999999999.99;
     public static final double AMOUNT_MIN_DOUBLE = 0.01;
+    public static final String AMOUNT_MAX_STRING = "999999999.99";
+    public static final String AMOUNT_MIN_STRING = "0.01";
     private MiscellaneousConstants(){
     }
 }

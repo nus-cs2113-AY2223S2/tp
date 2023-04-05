@@ -83,7 +83,7 @@ public class EntriesEndpoint extends Endpoint {
             logger.warning("/entries [GET]: invalid number of entries requested");
             return new Response(
                     ResponseStatus.UNPROCESSABLE_CONTENT,
-                    MessageConstants.MESSAGE_INVALID_NUMBER_OF_ENTRIES
+                    MessageConstants.MESSAGE_INVALID_ID
             );
         } catch (InvalidArgumentsException e) {
             logger.warning("/entries [GET]: invalid arguments");

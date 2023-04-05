@@ -58,7 +58,7 @@ public class ViewCommand extends Command {
             request.addParam(RequestParams.FILTER_BY_CATEGORY, category);
         }
         if (numberOfEntriesToView <= 0) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_NUMBER_OF_ENTRIES);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
         if (!startDateString.isEmpty() && !endDateString.isEmpty()){
             request.addParam(RequestParams.FILTER_BY_TIME_START, startDateString);
