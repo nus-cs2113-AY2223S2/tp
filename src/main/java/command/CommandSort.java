@@ -60,7 +60,7 @@ public class CommandSort extends Command {
                 break;
             default:
                 System.out.println("Please indicate you want your expenses sorted by Date/Category? ");
-                System.out.println("Enter: D (represent Date); C (represent Category)");
+                System.out.println("Enter: \"sort D\" (represent Date); \"sort C\" (represent Category)");
                 break;
             }
         }
