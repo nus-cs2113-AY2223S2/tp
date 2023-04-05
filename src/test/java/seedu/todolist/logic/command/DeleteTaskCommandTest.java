@@ -1,16 +1,16 @@
 //@@author RuiShengGit
 package seedu.todolist.logic.command;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Parser;
-import seedu.todolist.ui.Ui;
 import seedu.todolist.task.TaskList;
+import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class DeleteTaskCommandTest {
