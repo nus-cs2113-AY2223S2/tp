@@ -5,6 +5,8 @@ public class MessageList {
             "____________________________________________________________";
     public static final String MESSAGE_DIVIDER_LIST =
             "____________________________LIST____________________________";
+    public static final String MESSAGE_DIVIDER_SORTEDLIST =
+            "_________________________SORTEDLIST_________________________";
 
     public static final String MESSAGE_DIVIDER_CATEGORY =
             "__________________________CATEGORY__________________________";

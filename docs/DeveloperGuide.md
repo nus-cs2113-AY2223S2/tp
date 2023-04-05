@@ -8,6 +8,8 @@
 * [three-ten-extra](https://www.threeten.org/threeten-extra/)
 * * Requesting and Parsing of data from API into Java
 * https://www.youtube.com/watch?v=lDEfoSwyYFg
+* https://www.baeldung.com/ascii-art-in-java
+* * Display ASCII art in java
 ## Design & implementation
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ## Design

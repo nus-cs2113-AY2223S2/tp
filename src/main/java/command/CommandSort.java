@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import static common.MessageList.MESSAGE_DIVIDER;
-import static common.MessageList.MESSAGE_DIVIDER_LIST;
+import static common.MessageList.MESSAGE_DIVIDER_SORTEDLIST;
 
 public class CommandSort extends Command {
     public static final String COMMAND_NAME = "sort";
@@ -45,28 +45,24 @@ public class CommandSort extends Command {
             System.out.println("Sorry, there are no expenses tracked currently.");
             System.out.println(MESSAGE_DIVIDER);
         } else {
-            if (!sortBy.equals("C") && !sortBy.equals("D")) {
+            switch(sortBy) {
+            case "C":
+                System.out.println(MESSAGE_DIVIDER_SORTEDLIST);
+                sortByCategory();
+                displayByCategory();
+                System.out.println(MESSAGE_DIVIDER);
+                break;
+            case "D":
+                System.out.println(MESSAGE_DIVIDER_SORTEDLIST);
+                sortByDate();
+                displayByDate();
+                System.out.println(MESSAGE_DIVIDER);
+                break;
+            default:
                 System.out.println("Please indicate you want your expenses sorted by Date/Category? ");
                 System.out.println("Enter: D (represent Date); C (represent Category)");
-                assert false;
-                return null;
+                break;
             }
-
-            System.out.println(MESSAGE_DIVIDER_LIST);
-            if (sortBy.equals("C")) {
-                sortByCategory();
-                for (int i = 0; i < expenseListCategory.size(); i++) {
-                    System.out.print((i + 1) + ".");
-                    System.out.println(expenseListCategory.get(i).sortedDisplay(sortBy));
-                }
-            } else {
-                sortByDate();
-                for (int i = 0; i < expenseListDate.size(); i++) {
-                    System.out.print((i + 1) + ".");
-                    System.out.println(expenseListDate.get(i).sortedDisplay(sortBy));
-                }
-            }
-            System.out.println(MESSAGE_DIVIDER);
         }
         return null;
     }
@@ -97,6 +93,26 @@ public class CommandSort extends Command {
         }
     }
 
+    // Refactor the display format by date to be more user-friendly
+    // It is only used after obtaining the sorted expense list by date
+    private void displayByDate() {
+        String currentTimeString = expenseListDate.get(0).getExpenseTime();
+        Time currentTime = Time.toTime(currentTimeString);
+        System.out.println("Date: " + currentTimeString);
+        int index = 0;
+        for (int i = 0; i < expenseListDate.size(); i++) {
+            if (Time.toTime(expenseListDate.get(i).getExpenseTime()).compareTo(currentTime) > 0) {
+                currentTimeString = expenseListDate.get(i).getExpenseTime();
+                currentTime = Time.toTime(currentTimeString);
+                System.out.println("Date: " + currentTimeString);
+                index = 0;
+            }
+            System.out.print((index + 1) + ".");
+            System.out.println(expenseListDate.get(i).sortedDisplay(sortBy));
+            index++;
+        }
+    }
+
     private void sortByCategory() {
         int size = expenseListCategory.size();
         for (int i = 0; i < size; i++) {
@@ -119,6 +135,24 @@ public class CommandSort extends Command {
 
             expenseListCategory.set(i, minIndexExpense);
             expenseListCategory.set(minIndex, tempExpense);
+        }
+    }
+
+    // Refactor the display format by category to be more user-friendly
+    // It is only used after obtaining the sorted expense list by category
+    private void displayByCategory() {
+        String currentCategory = expenseListCategory.get(0).getDescription();
+        System.out.println("Category: " + currentCategory);
+        int index = 0;
+        for (int i = 0; i < expenseListCategory.size(); i++) {
+            if (expenseListCategory.get(i).getDescription().compareTo(currentCategory) > 0) {
+                currentCategory = expenseListCategory.get(i).getDescription();
+                System.out.println("Category: " + currentCategory);
+                index = 0;
+            }
+            System.out.print((index + 1) + ".");
+            System.out.println(expenseListCategory.get(i).sortedDisplay(sortBy));
+            index++;
         }
     }
 

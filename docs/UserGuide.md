@@ -147,6 +147,18 @@ Example of usage:
 
 `sort C`
 
+Example of output (sort D):
+```
+____________________________________________________________
+Date: 02/02/2012
+1.SGD2.50 cat:food
+2.USD2.50 cat:food
+Date: 02/02/2013
+1.USD2.50 cat:eat
+____________________________________________________________
+```
+
+
 ### Obtaining expenses: `category`
 Obtain all the expenses with specified category, also obtain the category set to tell user what categories exist now.
 
@@ -155,6 +167,7 @@ Format: `category CATEGORY`
 * CATEGORY represents the category that user want.
 * If the category doesn't belong to the categories that user have entered before, it will tell the user to switch to another one.
 * The method also will tell user how many categories they have, and also what are these categories, so as to better help them with future obtaining purpose
+* Case sensitivity doesn't matter!
 
 Example of usage:
 
@@ -170,6 +183,7 @@ Format: `find INFO`
 * INFO represents the information that the user want to find.
 * If none of the expenses have such information, it will tell the user this case.
 * Even if the information is not a word, let's say "f", the method still will find expenses that any of their attributes contain the character f.
+* Case sensitivity doesn't matter!
 
 Example of usage:
 
