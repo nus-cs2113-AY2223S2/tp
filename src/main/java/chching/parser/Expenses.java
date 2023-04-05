@@ -52,7 +52,7 @@ public class Expenses {
             expenseValue = Float.parseFloat(argumentsByField.get("v"));
             expenseValue = Math.round(expenseValue * 100.0) / 100.0;
         } catch (Exception e) {
-            throw new ChChingException("Expense value must be a valid float that is 2 d.p. or less");
+            throw new ChChingException("Expense value must be a valid double that is 2 d.p. or less");
         }
         if (expenseValue > 1000000) {
             throw new ChChingException("Expense value can at most be 1000000");

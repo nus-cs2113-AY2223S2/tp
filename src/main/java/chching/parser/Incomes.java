@@ -41,7 +41,7 @@ public class Incomes {
             incomeValue = Float.parseFloat(argumentsByField.get("v"));
             incomeValue = Math.round(incomeValue * 100.0) / 100.0;
         } catch (Exception e) {
-            throw new ChChingException("Income value must be a valid float that is 2 d.p. or less");
+            throw new ChChingException("Income value must be a valid double that is 2 d.p. or less");
         }
         if (incomeValue > 1000000) {
             throw new ChChingException("Income value can at most be 1000000");
