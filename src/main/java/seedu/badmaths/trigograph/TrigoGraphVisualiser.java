@@ -3,7 +3,11 @@ package seedu.badmaths.trigograph;
 import seedu.badmaths.IllegalTodoException;
 
 
-import java.awt.*;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
