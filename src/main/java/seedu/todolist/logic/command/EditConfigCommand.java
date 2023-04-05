@@ -12,19 +12,20 @@ public class EditConfigCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = { Flags.COMMAND_CONFIG, Flags.CONFIG_CHECK_FREQ,
         Flags.CONFIG_REPEAT_FREQ, Flags.DEFAULT};
 
-    private int checkFrequency = 0;
-    private int repeatFrequency = 7;
-    private boolean isEditing = false;
+    private int checkFrequency;
+    private int repeatFrequency;
+    private boolean isEditingCheckFreq = false;
+    private boolean isEditingRepFreq = false;
 
     public EditConfigCommand(HashMap<Flags, String> args) throws ToDoListException {
         if (args.containsKey(Flags.COMMAND_CONFIG)) {
             if (args.containsKey(Flags.CONFIG_CHECK_FREQ)) {
                 checkFrequency = Integer.parseInt(args.get(Flags.CONFIG_CHECK_FREQ));
-                isEditing = true;
+                isEditingCheckFreq = true;
             }
             if (args.containsKey(Flags.CONFIG_REPEAT_FREQ)) {
                 repeatFrequency = Integer.parseInt(args.get(Flags.CONFIG_REPEAT_FREQ));
-                isEditing = true;
+                isEditingRepFreq = true;
             }
             if (checkFrequency < 0 || repeatFrequency < 0) {
                 throw new InvalidFrequencyException();
@@ -33,13 +34,16 @@ public class EditConfigCommand extends Command {
     }
 
     public void execute(Config config, Ui ui) {
-        if (isEditing) {
+        if (isEditingCheckFreq) {
             config.setCheckFrequency(checkFrequency);
+        }
+        if (isEditingRepFreq) {
             config.setRepeatFrequency(repeatFrequency);
-            String taskString = config.toString();
+        }
+        String taskString = config.toString();
+        if (isEditingRepFreq || isEditingCheckFreq) {
             ui.printEditConfigMessage(taskString);
         } else {
-            String taskString = config.toString();
             ui.printConfigInfo(taskString);
         }
 
