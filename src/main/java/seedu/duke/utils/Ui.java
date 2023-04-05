@@ -183,6 +183,11 @@ public class Ui {
     private static final int ORIGINAL_ITEM_INDEX = 0;
     private static final String INVALID_UPC = "This UPC is invalid. Try again.";
     private static final String CATEGORY_LISTING = "Here is the list of categories you have: ";
+    private static final String RARE_RACE_CONDITION_OCCURRED = "A rare race condition occurred. "
+            + "Please try restarting the program";
+    private static final String CHECK_OTHER_PROGRAMS = "If this happens often, check that other programs"
+            + " are not interfering with this one";
+    private static final String YOUR_ITEM = "Here is your item: ";
 
 
     public static void printLine() {
@@ -201,7 +206,7 @@ public class Ui {
 
     public static void printSearchUPCItem(Item item) {
         printLine();
-        System.out.println("Here is your item: ");
+        System.out.println(YOUR_ITEM);
         ArrayList<Item> singleItem = new ArrayList<>();
         singleItem.add(item);
         System.out.println(printTable(singleItem));
@@ -301,8 +306,8 @@ public class Ui {
 
     public static void printRaceCondition() {
         printLine();
-        System.out.println("A rare race condition occurred. Please try restarting the program");
-        System.out.println("If this happens often, check that other programs are not interfering with this one");
+        System.out.println(RARE_RACE_CONDITION_OCCURRED);
+        System.out.println(CHECK_OTHER_PROGRAMS);
         printLine();
     }
 
