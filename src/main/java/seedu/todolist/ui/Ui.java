@@ -48,6 +48,14 @@ public class Ui {
         println(Messages.START);
     }
 
+    public void printNewConfigMessage() {
+        println(Messages.NEW_CONFIG);
+    }
+
+    public void printLoadConfigMessage() {
+        println(Messages.LOAD_CONFIG);
+    }
+
     public void printNewSaveMessage() {
         println(Messages.NEW_SAVE);
     }
@@ -85,19 +93,11 @@ public class Ui {
     }
 
     public void printEditConfigMessage(String taskString) {
-        println(String.format(Messages.EDIT_CONFIG_INFO), taskString);
+        println(String.format(Messages.EDIT_CONFIG), taskString);
     }
 
     public void printConfigInfo(String taskString) {
         println(String.format(Messages.CONFIG_INFO), taskString);
-    }
-
-    public void printMissingConfigMessage() {
-        println(Messages.MISSING_CONFIG);
-    }
-
-    public void printLoadConfigMessage() {
-        println(Messages.LOAD_CONFIG);
     }
 
     public void printTaskList(int taskListSize, String taskListString) {

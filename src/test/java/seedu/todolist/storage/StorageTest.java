@@ -4,7 +4,7 @@ package seedu.todolist.storage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.junit.jupiter.api.Test;
-import seedu.todolist.exception.FailedLoadException;
+import seedu.todolist.exception.FailedLoadDataException;
 import seedu.todolist.exception.FailedSaveException;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.logic.command.Command;
@@ -30,7 +30,7 @@ class StorageTest {
     private Parser parser = new Parser();
     private Storage storage = new Storage(PROPER_SAVE_FILE);
     private Gson gson = new GsonBuilder().setPrettyPrinting().
-            registerTypeAdapter(LocalDateTime.class, new Storage.LocalDateTimeAdapter()).create();
+            registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
 
     @Test
     void saveData_properFilePath_success() {
@@ -43,7 +43,7 @@ class StorageTest {
             command2.execute(taskList, ui);
 
             // Save modified task list object
-            storage.saveData(taskList, PROPER_SAVE_FILE);
+            storage.save(taskList, PROPER_SAVE_FILE);
 
             // convert task list object to a json string
             String taskListAsJson = gson.toJson(taskList);
@@ -63,7 +63,7 @@ class StorageTest {
     void saveData_directoryAsFilePath_exceptionThrown() {
         try {
             Storage storageDirectory = new Storage(TEST_DATA_FOLDER);
-            storageDirectory.saveData(taskList, TEST_DATA_FOLDER);
+            storageDirectory.save(taskList, TEST_DATA_FOLDER);
             // The test should not reach the following line
             fail();
         } catch (FailedSaveException e) {
@@ -80,7 +80,7 @@ class StorageTest {
             fail();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
-        } catch (FailedLoadException e) {
+        } catch (FailedLoadDataException e) {
             // this exception will be thrown
             System.out.println(e.getMessage());
         }

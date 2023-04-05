@@ -4,7 +4,6 @@ import seedu.todolist.constants.Formats;
 import seedu.todolist.constants.Priority;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.TreeSet;
 
 public class FormatterUtil {
@@ -25,8 +24,7 @@ public class FormatterUtil {
     }
 
     public static String getDeadlineAsString(LocalDateTime deadline) {
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_OUT);
-        return deadline.format(outputFormatter);
+        return deadline.format(Formats.TIME_OUT_UI_FORMATTER);
     }
 
     public static String getTagsAsString(TreeSet<String> tags) {

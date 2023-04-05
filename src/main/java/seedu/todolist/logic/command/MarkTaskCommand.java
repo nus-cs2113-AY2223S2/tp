@@ -1,7 +1,6 @@
 //@@author RuiShengGit
 package seedu.todolist.logic.command;
 
-
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.logic.ParserUtil;

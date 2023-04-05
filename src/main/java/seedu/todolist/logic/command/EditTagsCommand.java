@@ -1,6 +1,5 @@
 package seedu.todolist.logic.command;
 
-
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidEditException;
 import seedu.todolist.exception.InvalidIdException;

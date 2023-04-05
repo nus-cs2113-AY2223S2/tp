@@ -1,7 +1,6 @@
 //@@author clement559
 package seedu.todolist.logic.command;
 
-
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidEditException;
 import seedu.todolist.exception.InvalidIdException;
@@ -31,8 +30,6 @@ public class EditDeadlineCommand extends Command  {
         }
         // assert id >= 0 : "Invalid id contained in variable";
     }
-
-
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
