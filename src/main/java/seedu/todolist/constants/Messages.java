@@ -22,8 +22,9 @@ public enum Messages {
     TAGS_INFO("Okay, here are the tags associated with your task list:"),
     LIST_EMPTY("There are no tasks in your list."),
     TAGS_EMPTY("There are no tags associated with your task list."),
-    FULL_INFO("Okay, here is the detailed information of this task:");
-
+    FULL_INFO("Okay, here is the detailed information of this task:"),
+    SAVED_FILE_SYNTAX_ERROR("There was a problem with your saved file. " +
+            "Please correct it before restarting the program.");
     private final String message;
 
     Messages(String message) {

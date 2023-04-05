@@ -128,6 +128,10 @@ public class Ui {
                 + "-".repeat(incompleteSections) + "|", taskListString);
     }
 
+    public void printSavedFileSyntaxError() {
+        println(Messages.SAVED_FILE_SYNTAX_ERROR.getMessage());
+    }
+
     //@@author KedrianLoh
     public void printTasksWithTag(ArrayList<Task> taskList) {
         taskList.forEach(System.out::println);

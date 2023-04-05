@@ -1,6 +1,6 @@
 package seedu.todolist;
 
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.JsonParseException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.logic.command.Command;
@@ -11,12 +11,13 @@ import seedu.todolist.ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 
 public class ToDoListManager {
     private boolean isRunning = true;
     private Parser parser = new Parser();
     private Storage storage = new Storage(Storage.DEFAULT_SAVE_PATH);
-    private TaskList taskList;
+    private TaskList taskList = new TaskList();
     private Ui ui = new Ui();
 
     public ToDoListManager() {
@@ -33,16 +34,19 @@ public class ToDoListManager {
             taskList.checkRepeatingTasks();
             ui.printLoadSaveMessage(taskList.size());
             new ProgressBarCommand().execute(taskList, ui);
-        } catch (FileNotFoundException | JsonSyntaxException e) {
+        } catch (FileNotFoundException e) {
             ui.printError(e);
             // Loading save file failed, save new empty task list immediately instead of waiting for a command
             try {
-                taskList = new TaskList();
                 storage.saveData(taskList, Storage.DEFAULT_SAVE_PATH);
             }
             catch (IOException e2) {
                 ui.printError(e2);
             }
+        } catch (DateTimeParseException | JsonParseException /*| MalformedJsonException*/ e3) { // caught an error in the saved file
+            ui.printError(e3);
+            ui.printSavedFileSyntaxError();
+            isRunning = false; // terminate the program
         }
     }
 
