@@ -10,6 +10,8 @@ import java.util.Locale;
 public class Timetable {
     public static DateTimeFormatter parsePattern = DateTimeFormatter.ofPattern("HHmm", Locale.ENGLISH);
     public static DateTimeFormatter printPattern = DateTimeFormatter.ofPattern("hh:mma", Locale.ENGLISH);
+
+    private static final int NUMBER_OF_WEEKS = 13;
     private String classNumber;
     private String lessonType;
     private String day;
@@ -71,14 +73,15 @@ public class Timetable {
         ArrayList<Integer> filteredWeeks = new ArrayList<>();
         String formattedWeeks;
 
-        int firstWeek = unfilteredWeeks.get(0);
-        int lastWeek = unfilteredWeeks.get(unfilteredWeeks.size() - 1);
-
         //First, check if the lesson spans the whole 13-week semester
-        if (unfilteredWeeks.size() == 13) {
+        if (unfilteredWeeks.size() == NUMBER_OF_WEEKS) {
             formattedWeeks = "[Weekly]";
             return formattedWeeks;
         }
+
+        int firstWeek = unfilteredWeeks.get(0);
+        int lastWeek = unfilteredWeeks.get(unfilteredWeeks.size() - 1);
+
         if (lastWeek - firstWeek == unfilteredWeeks.size() - 1) {
             //else if is continguous, then compress
             filteredWeeks.add(firstWeek);
@@ -103,7 +106,7 @@ public class Timetable {
      * @param delimiter The delimiter to separate the elements of the ArrayList.
      * @return String representation of the ArrayList.
      */
-    public String arrayListToString(ArrayList<Integer>arrayList, String delimiter){
+    public String arrayListToString(ArrayList<Integer> arrayList, String delimiter){
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < arrayList.size(); i++) {
             stringBuilder.append(arrayList.get(i));
