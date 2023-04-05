@@ -122,9 +122,9 @@ There are 3 ingredients in the list:
 __________________________________________________________
 There are 1 steps in the list
 Do you want to view step-by-step?
-Type "yes" if so
+Enter "yes" if so
 To exit recipe view, type "quit"
-Else, enter any key to continue
+Else, press enter to continue
 1. add spaghetti
 __________________________________________________________
 
@@ -184,7 +184,7 @@ There are 3 ingredients in the list:
 __________________________________________________________
 There are 1 steps in the list
 Do you want to view step-by-step?
-Type "yes" if so
+Enter "yes" if so
 There are 1 steps in the list
 1. chop beef
 __________________________________________________________
@@ -196,6 +196,21 @@ Enter the description of the step:
 Step has been edited:
 1. go to haidilao
 __________________________________________________________
+There are 1 steps in the list
+1. go to haidilao
+Which step do you want to edit?
+Type 'quit' to exit the edit view
+
+Please enter a valid index!
+Valid range: 1 to 1
+__________________________________________________________
+There are 1 steps in the list
+1. go to haidilao
+Which step do you want to edit?
+Type 'quit' to exit the edit view
+Input index exceeds the number of steps!
+Valid Range: 1 to 1
+__________________________________________________________
 Here is the recipe you requested, which is Chinese flavour:
 name: MaLaXiangGuo
 __________________________________________________________
@@ -206,9 +221,19 @@ There are 3 ingredients in the list:
 __________________________________________________________
 There are 1 steps in the list
 Do you want to view step-by-step?
-Type "yes" if so
+Enter "yes" if so
 There are 1 steps in the list
 1. go to haidilao
+__________________________________________________________
+There are 3 ingredients in the list:
+1. Beef
+2. Mutton
+3. Mushrooms
+Which ingredient do you want to edit?
+Type 'quit' to exit the edit view
+
+Error in editing recipe!
+Exception occurred: Invalid Input! Valid Range: 1 to 3
 __________________________________________________________
 
 Please enter the description of step 1:
@@ -246,9 +271,9 @@ There are 3 ingredients in the list:
 __________________________________________________________
 There are 4 steps in the list
 Do you want to view step-by-step?
-Type "yes" if so
+Enter "yes" if so
 To exit recipe view, type "quit"
-Else, enter any key to continue
+Else, press enter to continue
 1. brew tea
 2. add lemon
 3. add ice

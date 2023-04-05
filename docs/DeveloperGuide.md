@@ -162,6 +162,32 @@ In the command line, the user inputs `find MaLaXiangGuo` to find a recipe from t
 
 > The following sequence diagram shows how the recipe find feature works:
 ![Sequence Diagram for Recipe Find](./PlantUML/RecipeFind.png)
+### Recipe Steps Edit Feature
+#### Implementation
+The recipe steps edit feature is handled by the `command`, `recipe` and `stepList` classes.
+The following operations are implemented:
+* `RecipeList#getRecipe()` - Retrieves the `recipe` object to be edited
+* `Recipe#getStepList()` - Retrieves the `StepList` of the recipe object to be edited
+* `StepList#editStep()` - Takes in a `stepIndex` of the step to edit, and the user's input,
+then replaces the step stored at `stepIndex` with a newly created one
+
+#### Example Usage
+The example usage is based on the assumption that there currently exists at least one step in
+the recipe specified.
+
+**Step 1** In the command line, user inputs `editstep 1` to edit the step in the first `Recipe`
+object in the `RecipeList`. `Duke` calls the `parseCommands()` method in the `Parser` class to
+parse the user input, which returns a `Command` object of type `EDITSTEP`. Under
+`Command#execute()`, this object will be executed.
+
+**Step 2** Under the `EDITSTEP` case, the number of steps in the specified recipe is first checked.
+If there is at least one step in the recipe, a further user input `1` is parsed to an `int` to specify
+the step number in the list. It is further converted to the 0-based indexing in the `stepList` by subtracting 1.
+
+
+
+### Recipe Ingredients Edit Feature
+
 ### Recipe View Feature
 #### Implementation
 

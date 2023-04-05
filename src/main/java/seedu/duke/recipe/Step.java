@@ -6,7 +6,7 @@ public class Step {
     public Step(String inputDescription) {
         description = inputDescription;
     }
-    public String getStep() {
+    public String getStepDescription() {
         return description;
     }
     @Override

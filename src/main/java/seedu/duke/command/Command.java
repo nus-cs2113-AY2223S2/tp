@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.RecipeListEmptyException;
@@ -214,16 +213,12 @@ public class Command {
                 }
                 int ingredientIndex = Integer.parseInt(input) - 1;
 
-                if (ingredientIndex >= maxSteps) {
-                    throw new OutOfIndexException(StringLib.INPUT_INGREDIENTS_INDEX_EXCEEDED +
-                            "\nValid Range: 1 to " + maxSteps);
+                if (recipeToEditIngredientList.isIndexWithinRange(ingredientIndex)) {
+                    System.out.println(StringLib.ENTER_INGREDIENT_DESCRIPTION);
+                    String newIngredientDescription = ui.readCommand();
+                    recipeToEditIngredientList.editIngredient(newIngredientDescription, ingredientIndex);
+                    Storage.writeSavedFile();
                 }
-                if (ingredientIndex <= 0) {
-                    System.out.println(StringLib.POS_INT);
-                    System.out.println("Valid Range: 1 to " + maxSteps);
-                }
-                recipeToEditIngredientList.editIngredient(ui, ingredientIndex);
-                Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }
