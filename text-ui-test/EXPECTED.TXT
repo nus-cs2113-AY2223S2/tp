@@ -14,7 +14,7 @@ These are some commands available:
 [filters]
 	View all available filters
 ippt [AGE] [RUNTIME] [PUSHUP SCORE] [SITUP SCORE]
-    Starts an IPPT exercise session with input scores for the 3 sets of exercises.
+	Starts an IPPT exercise session with input scores for the 3 sets of exercises.
 [start]
 	Start a workout session
 [history]
