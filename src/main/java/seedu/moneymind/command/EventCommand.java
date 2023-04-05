@@ -19,6 +19,7 @@ import static seedu.moneymind.string.Strings.CATEGORY_DOES_NOT_EXIST_MESSAGE;
  */
 public class EventCommand implements Command {
 
+    private String userInput;
     private String eventName;
     private String time;
     private int expense;
@@ -68,7 +69,7 @@ public class EventCommand implements Command {
      * @param userInput The user input.
      * @return True if the user input is valid.
      */
-    private boolean isChooseCategorySuccessful(String userInput) {
+    private boolean isAddEventSuccessful(String userInput) {
         try {
             if (time == "") {
                 addEventToCategory(userInput, new Event(eventName, expense));
@@ -87,15 +88,20 @@ public class EventCommand implements Command {
     @Override
     public void execute(Ui ui) {
         System.out.println(SELECTING_CATEGORY_MESSAGE);
-        String userInput;
-        userInput = Moneymind.in.nextLine();
-        while (!isChooseCategorySuccessful(userInput)) {
+        getUserInputUntilNonEmpty();
+        while (!isAddEventSuccessful(userInput)) {
             System.out.println(GO_BACK_MESSAGE);
-            userInput = Moneymind.in.nextLine();
+            getUserInputUntilNonEmpty();
             if (userInput.equals(BACK)) {
                 break;
             }
         }
+    }
+
+    private void getUserInputUntilNonEmpty() {
+        do {
+            userInput = Moneymind.in.nextLine();
+        } while (userInput.equals(""));
     }
 
     @Override

@@ -3,6 +3,7 @@ package seedu.moneymind.command;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.moneymind.exceptions.IntegerOverflowException;
 import seedu.moneymind.exceptions.InvalidCommandException;
 import seedu.moneymind.exceptions.NegativeNumberException;
 
@@ -37,12 +38,13 @@ import static seedu.moneymind.string.Strings.EMPTY_DESCRIPTION_FOR_EDIT;
 import static seedu.moneymind.string.Strings.CATEGORY_FORMAT;
 import static seedu.moneymind.string.Strings.CATEGORY_EMPTY;
 import static seedu.moneymind.string.Strings.EDIT_FORMAT;
+import static seedu.moneymind.string.Strings.BUDGET_LIMIT_MESSAGE;
+import static seedu.moneymind.string.Strings.INDEX_LIMIT_MESSAGE;
+import static seedu.moneymind.string.Strings.EXPENSE_LIMIT_MESSAGE;
 /**
  * A class to parse the user input.
  */
 public class Parser {
-
-
 
     /**
      * Parses the next line and returns a command object, or throws.
@@ -116,12 +118,15 @@ public class Parser {
                 if (matcher.group(2) == null) {
                     return new DeleteCommand(categoryName);
                 }
+                checkBigNumber(matcher.group(2));
                 int eventIndex = Integer.parseInt(matcher.group(2));
                 checkNegative(eventIndex - 1);
                 return new DeleteCommand(categoryName, eventIndex - 1);
             } else {
                 throw new InvalidCommandException(DELETE_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
             }
+        } catch (IntegerOverflowException error) {
+            throw new InvalidCommandException(INDEX_LIMIT_MESSAGE);
         } catch (NumberFormatException | NegativeNumberException error) {
             throw new InvalidCommandException(POSITIVE_INTEGER_FOR_EVENT_INDEX);
         } catch (InvalidCommandException error) {
@@ -137,6 +142,7 @@ public class Parser {
             Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
             if (matcher.find()) {
                 String eventName = matcher.group(1);
+                checkBigNumber(matcher.group(2));
                 int expenseNumber = Integer.parseInt(matcher.group(2));
                 String time = matcher.group(3);
                 checkNegative(expenseNumber);
@@ -149,7 +155,9 @@ public class Parser {
             }
         } catch (IndexOutOfBoundsException error) {
             throw new InvalidCommandException(EVENT_EMPTY);
-        }  catch (NegativeNumberException | NumberFormatException error) {
+        } catch (IntegerOverflowException error) {
+            throw new InvalidCommandException(EXPENSE_LIMIT_MESSAGE);
+        } catch (NegativeNumberException | NumberFormatException error) {
             throw new InvalidCommandException(POSITIVE_INTEGER_FOR_EXPENSE);
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(EVENT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
@@ -164,13 +172,16 @@ public class Parser {
             Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
             if (matcher.find()) {
                 String categoryName = matcher.group(1);
+                checkBigNumber(matcher.group(2));
                 int eventIndex = Integer.parseInt(matcher.group(2));
                 checkNegative(eventIndex - 1);
                 return new EditCommand(categoryName, eventIndex - 1);
             } else {
                 throw new InvalidCommandException(EMPTY_STRING);
             }
-        } catch (IndexOutOfBoundsException error) {
+        } catch (IntegerOverflowException error) {
+            throw new InvalidCommandException(INDEX_LIMIT_MESSAGE);
+        }catch (IndexOutOfBoundsException error) {
             throw new InvalidCommandException(EMPTY_DESCRIPTION_FOR_EDIT);
         }  catch (NegativeNumberException | NumberFormatException error) {
             throw new InvalidCommandException(POSITIVE_INTEGER_FOR_EXPENSE);
@@ -187,6 +198,12 @@ public class Parser {
         }
     }
 
+    private void checkBigNumber(String expense) throws IntegerOverflowException {
+        if (expense.length() > 9) {
+            throw new IntegerOverflowException();
+        }
+    }
+
     private Command createCategoryCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         Pattern pattern = Pattern.compile(CATEGORY_REGEX);
         try {
@@ -196,12 +213,15 @@ public class Parser {
                 if (matcher.group(2) == null) {
                     return new CategoryCommand(categoryName, 0);
                 }
+                checkBigNumber(matcher.group(2));
                 int budget = Integer.parseInt(matcher.group(2));
                 checkNegative(budget);
                 return new CategoryCommand(categoryName, budget);
             } else {
                 throw new InvalidCommandException(EMPTY_STRING);
             }
+        } catch (IntegerOverflowException error) {
+            throw new InvalidCommandException(BUDGET_LIMIT_MESSAGE);
         } catch (IndexOutOfBoundsException error) {
             throw new InvalidCommandException(CATEGORY_EMPTY);
         } catch (NegativeNumberException | NumberFormatException error) {

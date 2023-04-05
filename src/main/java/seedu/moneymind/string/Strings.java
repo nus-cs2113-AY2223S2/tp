@@ -1,6 +1,10 @@
 package seedu.moneymind.string;
 
 public class Strings {
+
+    public static final String BUDGET_LIMIT_MESSAGE = "The budget limit is 999999999$, please give a smaller budget";
+    public static final String INDEX_LIMIT_MESSAGE = "The limit for index is 999999999, please try again.";
+    public static final String EXPENSE_LIMIT_MESSAGE = "The expense limit is 999999999$, please give a smaller expense";
     public static final String NO_CATEGORY_MESSAGE = "Category does not exist";
     public static final String CAT_NOT_FOUND = "Category is not found!";
     public static final String DOT = ".";
