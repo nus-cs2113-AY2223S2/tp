@@ -2,18 +2,20 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+List here sources of all reused/adapted ideas, code, documentation, and third-party libraries
+with links to the original sources included.
 
 * [JSON-java](https://github.com/stleary/JSON-java)
 * [three-ten-extra](https://www.threeten.org/threeten-extra/)
-* * Requesting and Parsing of data from API into Java
-* https://www.youtube.com/watch?v=lDEfoSwyYFg
-* https://www.baeldung.com/ascii-art-in-java
-* * Display ASCII art in java
+* [Requesting and Parsing of data from API into Java](https://www.youtube.com/watch?v=lDEfoSwyYFg)
+* [Gson Type Adaptor](https://www.youtube.com/watch?v=Gf-Hx-Q0rOs)
+* [Display ASCII art in Java](https://www.baeldung.com/ascii-art-in-java)
+
 ## Design & implementation
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ## Design
 ![](diagrams/Overall.png)
+
 Our main `Duke` class is responsible for the instantiation and launch of our application.  
 Our overall project design is split into 5 components, `command`, `common`,`data`, `storage` and `parser`.
  - `command`: The command executor.
@@ -85,12 +87,22 @@ Step 3. `CommandDelete#execute()` removes the expense at index specified by the 
 ### Monthly Overview
 
 This mechanism is facilitated by `CommandOverview`, which extends `Command`. It makes use of output from `Parser`
-to extract `month` and `year` from user input. It then calls on `Monthly Overview` if both `month` and 'year' 
+to extract `month` and `year` from user input. It then calls on `MonthlyOverview` if both `month` and 'year' 
 are not null, which makes use of `MonthFilter` to filter out expenses in that specific month and returns sum by 
 category sorted in descending order before printing out the final overview in the intended format.
 
-Given below is the sequence diagram to explain how the 'monthly overview' mechanism behaves.
+Given below is the sequence diagram to explain how the 'monthly overview' mechanism behaves once being called.
 ![](diagrams/MonthlyOverview.png)
+
+### Yearly Overview
+Similar to `monthly overview`, this mechanism is facilitated by `CommandOverview`, which extends `Command`.
+It makes use of output from `Parser` to extract `month` and `year` from user input. It then calls on `YearlyOverview` 
+if a year is specified but month is null, which makes use of `yearFilter` to filter out expenses in that specific year
+and returns sum by month according to natural month order before printing out the final overview in the intended 
+format.
+
+Given below is the sequence diagram to explain how the 'yearly overview' mechanism behaves once being called.
+![](diagrams/YearlyOverview.png)
 
 ### 'Sort' feature
 This mechanism is facilitated by `CommandSort`.
@@ -104,7 +116,6 @@ out all the expenses classified into different dates.
 that all the expenses are sorted by category, which is a stable sort according to string comparison.
 - `CommandSort#displayByCategory()` -- Traverse the expense list that is sorted by Category, and print
   out all the expenses classified into different categories.
-
 
 Displayed below is a part of the class diagram for `CommandSort` 
 as well as the class diagram for the main part of class `Time`.
@@ -120,7 +131,6 @@ Step 3. If the expense is not empty, it will base on the given criteria and sort
 or `CommandSort#sortByCategory()`, then display the result to user by calling `CommandSort#displayByDate()` or `CommandSort#displayByCategory()` 
 accordingly.
 
-
 ### 'Total' feature
 This mechanism is facilitated by `CommandTotal`.
 
@@ -131,6 +141,7 @@ This mechanism is facilitated by `CommandTotal`.
 
 Displayed below is a part of the class diagram for `CommandTotal`.
 ![](diagrams/TotalFeature.png)
+
 Give below is an example usage of the feature.
 
 Step 1. The user executes `total`. Duke calls on `CommandTotal#execute()` to calculate the total expenses, which in turn calls
