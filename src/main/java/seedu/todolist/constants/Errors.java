@@ -24,7 +24,13 @@ public enum Errors {
             + Storage.DEFAULT_SAVE_PATH),
     FAILED_LOAD("Error when loading your data, please check that you have read permissions for "
             + Storage.DEFAULT_SAVE_PATH + System.lineSeparator()
-            + "and do not modify it yourself. A new task list will be created for you!");
+            + "and do not modify it yourself. A new task list will be created for you!"),
+
+    FAILED_CONFIG_SAVE("Error when saving your configuration, please check that you have write permissions for "
+                        + Storage.DEFAULT_CONFIG_PATH),
+    FAILED_CONFIG_LOAD("Error when loading your configuration, please check that you have read permissions for "
+                        + Storage.DEFAULT_CONFIG_PATH + System.lineSeparator()
+            + "and do not modify it yourself. Default configurations will be used.");
 
     private final String message;
 

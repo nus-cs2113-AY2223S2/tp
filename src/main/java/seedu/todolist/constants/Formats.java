@@ -9,7 +9,9 @@ public enum Formats {
     TASK_STRING_NO_DEADLINE("[ID:%d]\t[%s][%s]"),
     TIME_IN_1("[d-M-uuuu H:m]"),
     TIME_IN_2("[d/M/uuuu H:m]"),
-    TIME_OUT("dd LLL uuuu HH:mm");
+    TIME_OUT("dd LLL uuuu HH:mm"),
+
+    CONFIG_INFO("Repeating tasks every %d days\nChecking for repeating task every: %d minutes\nLast checked at: %s");
 
     private final String format;
 

@@ -11,7 +11,6 @@ public enum Flags {
     COMMAND_LIST("list", true),
     COMMAND_TAG_LIST("taglist", true),
     COMMAND_PROGRESS("progress", true),
-    COMMAND_CHECK("check", true),
 
     // Command flags that take arguments
     COMMAND_ADD("add", false),
@@ -21,6 +20,7 @@ public enum Flags {
     COMMAND_FULL_INFO("info", false),
     COMMAND_FIND_TAG("findbytag", false),
     COMMAND_FIND_PRIORITY("findbypriority", false),
+    COMMAND_CONFIG("config", true),
 
 
     // Flags for commands that edit task parameters
@@ -39,10 +39,13 @@ public enum Flags {
     REPEAT("-rep", false),
     TAG("-tags", false),
     EDIT("-edit", false),
+    DEFAULT("-default", false),
     EDIT_DELETE("-del", true),
     FILTER_DONE("-done", true),
     FILTER_UNDONE("-undone", true),
     FILTER_OVERDUE("-overdue", true),
+    CONFIG_CHECK_FREQ("-chkfreq", false),
+    CONFIG_REPEAT_FREQ("-repfreq", false),
     SORT_PRIORITY("-priority", true);
 
 

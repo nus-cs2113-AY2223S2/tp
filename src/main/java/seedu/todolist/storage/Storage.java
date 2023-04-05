@@ -3,6 +3,7 @@ package seedu.todolist.storage;
 
 import seedu.todolist.exception.FailedLoadException;
 import seedu.todolist.exception.FailedSaveException;
+import seedu.todolist.logic.Config;
 import seedu.todolist.task.TaskList;
 
 import java.io.File;
@@ -16,6 +17,7 @@ import java.io.ObjectOutputStream;
  */
 public class Storage {
     public static final String DEFAULT_SAVE_PATH = "./data.txt";
+    public static final String DEFAULT_CONFIG_PATH = "./config.txt";
     private boolean isNewSave;
     private File file;
 
@@ -51,13 +53,23 @@ public class Storage {
      * @return The task list read from the save file, if it exists.
      * @throws FailedLoadException If an error occurs while reading from the save file.
      */
-    public TaskList loadData() throws FailedLoadException {
+    public TaskList loadConfig() throws FailedLoadConfigException {
         try {
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream ois = new ObjectInputStream(fis);
             return (TaskList) ois.readObject();
         } catch (Exception e) {
-            throw new FailedLoadException();
+            throw new FailedLoadConfigException();
+        }
+    }
+
+    public void saveConfig(Config config) throws FailedSaveConfigException {
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(config);
+        } catch (Exception e) {
+            throw new FailedSaveConfigException();
         }
     }
 }

@@ -1,6 +1,7 @@
 package seedu.todolist.task;
 
 import seedu.todolist.exception.InvalidIdException;
+import seedu.todolist.logic.Config;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -216,17 +217,18 @@ public class TaskList implements Serializable {
         return getTask(id).setRepeatDuration(repeatDuration);
     }
     //@@author clement559
-    public void checkRepeatingTasks() {
+    public void checkRepeatingTasks(Config config) {
         for (Task task : tasks.values()) {
             int repeatDuration = task.getRepeatDuration();
             LocalDateTime originalDeadline = task.getDeadline();
             if (repeatDuration > 0 && (LocalDateTime.now().isAfter(originalDeadline))) {
-                LocalDateTime newDeadline = originalDeadline.plusWeeks(1);
+                LocalDateTime newDeadline = originalDeadline.plusDays(config.getRepeatFrequency());
                 int newRepeatDuration = repeatDuration - 1;
                 addTask(task.getDescription(), newDeadline, task.getEmail(), task.getTags(), newRepeatDuration,
                         task.getPriority());
                 task.setRepeatDuration(0);
             }
         }
+        config.setLastChecked(LocalDateTime.now());
     }
 }
