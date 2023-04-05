@@ -8,6 +8,8 @@
 * [three-ten-extra](https://www.threeten.org/threeten-extra/)
 * * Requesting and Parsing of data from API into Java
 * https://www.youtube.com/watch?v=lDEfoSwyYFg
+* https://www.baeldung.com/ascii-art-in-java
+* * Display ASCII art in java
 ## Design & implementation
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 ## Design
@@ -89,6 +91,34 @@ category sorted in descending order before printing out the final overview in th
 
 Given below is the sequence diagram to explain how the 'monthly overview' mechanism behaves.
 ![](diagrams/MonthlyOverview.png)
+
+### 'Sort' feature
+This mechanism is facilitated by `CommandSort`.
+
+`CommandSort` implements the following operations:
+- `CommandSort#sortByDate()` -- Iterates through the given expense list and
+creates a new expense list that all the expenses are stably sorted by date.
+- `CommandSort#displayByDate()` -- Traverse the expense list that is sorted by date, and print
+out all the expenses classified into different dates.
+- `CommandSort#sortByCategory()` -- Iterates through the given expense list and creates a new expense list 
+that all the expenses are sorted by category, which is a stable sort according to string comparison.
+- `CommandSort#displayByCategory()` -- Traverse the expense list that is sorted by Category, and print
+  out all the expenses classified into different categories.
+
+
+Displayed below is a part of the class diagram for `CommandSort` 
+as well as the class diagram for the main part of class `Time`.
+![](diagrams/SortFeature.png)
+Give below is an example usage of the feature.
+
+Step 1. The user executes `sort (sortBy)`, indicating they want to sort the list by which criteria. Duke calls on `CommandSort#execute()` 
+with the help of `Parser#extractSortBy`, and pass the control to `CommandSort` by `execute()`.
+
+Step 2. The method will first check whether the expense list is empty or not. If empty, it will tell the user and return.
+
+Step 3. If the expense is not empty, it will base on the given criteria and sort the expense list either using `CommandSort#sortByDate()`
+or `CommandSort#sortByCategory()`, then display the result to user by calling `CommandSort#displayByDate()` or `CommandSort#displayByCategory()` 
+accordingly.
 
 
 ### 'Total' feature
