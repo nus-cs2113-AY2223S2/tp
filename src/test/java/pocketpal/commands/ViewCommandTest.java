@@ -51,7 +51,8 @@ public class ViewCommandTest extends EntryTestUtil {
     @DisplayName("Test view by price range")
     void testViewByPriceRange() {
         try {
-            ViewCommand testCommand = assertDoesNotThrow(() -> new ViewCommand(Integer.MAX_VALUE, null, 7.00, 10.50, null, null));
+            ViewCommand testCommand = assertDoesNotThrow(() -> new ViewCommand(Integer.MAX_VALUE,
+                    null, 7.00, 10.50, null, null));
             testCommand.execute(TEST_UI, TEST_BACKEND);
             double expectedTotalExpenditure = 0;
             for (int index = 1; index <= 2; index++) {
