@@ -1,7 +1,7 @@
 //@@author RuiShengGit
 package seedu.todolist.constants;
 
-public class HelpMessage {
+public class Help {
     public static final String HELP_COMMAND = "Here are the list of commands that you can use:\n" +
             "+----------------------------------------------------------------------------------------+\n" +
             "| Command                                | Description                                   |\n" +

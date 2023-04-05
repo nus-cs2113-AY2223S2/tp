@@ -1,7 +1,7 @@
 package seedu.todolist.logic;
 
 import seedu.todolist.constants.Formats;
-import seedu.todolist.constants.PriorityLevels;
+import seedu.todolist.constants.Priority;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,13 +14,13 @@ public class FormatterUtil {
     public static String getPriorityAsString(int priority) {
         switch (priority) {
         case 1:
-            return PriorityLevels.LOW.getPriority();
+            return Priority.LOW.toString();
         case 2:
-            return PriorityLevels.MEDIUM.getPriority();
+            return Priority.MEDIUM.toString();
         case 3:
-            return PriorityLevels.HIGH.getPriority();
+            return Priority.HIGH.toString();
         default:
-            return PriorityLevels.UNEXPECTED.getPriority();
+            return Priority.NONE.toString();
         }
     }
 

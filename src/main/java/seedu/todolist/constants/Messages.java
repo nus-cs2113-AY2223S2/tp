@@ -22,7 +22,7 @@ public final class Messages {
     public static final String LIST_EMPTY = "There are no tasks in your list.";
     public static final String TAGS_EMPTY = "There are no tags associated with your task list.";
     public static final String FULL_INFO = "Okay, here is the detailed information of this task:";
-    public static final String PRIORITY_HELP = "Please enter a number from 1-3  = 1:Low, 2:Medium, 3:High)";
+    public static final String PRIORITY_HELP = "Please enter a number from 1-3 = 1:Low, 2:Medium, 3:High)";
 
     private Messages() {
     }

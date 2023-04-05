@@ -1,18 +1,18 @@
 package seedu.todolist.constants;
 
-public enum PriorityLevels {
+public enum Priority {
     HIGH("High"),
     MEDIUM("Medium"),
     LOW("Low"),
-    UNEXPECTED("Unexpected value");
+    NONE("None");
 
     private final String PRIORITY_LEVEL;
 
-    PriorityLevels(String message) {
+    Priority(String message) {
         this.PRIORITY_LEVEL = message;
     }
 
-    public String getPriority() {
+    public String toString() {
         return PRIORITY_LEVEL;
     }
 }
