@@ -12,8 +12,8 @@ import java.util.StringJoiner;
 public class CompletedExerciseSearchCommand extends Command{
     private String keyword = "";
     private ArrayList<String> foundList = new ArrayList<>();
-    private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
+    private static final String OPEN_BRACE = "[";
 
     /**
      * Parses the user input to recognise the keyword provided by the user. Finds matching
@@ -21,8 +21,7 @@ public class CompletedExerciseSearchCommand extends Command{
      *
      * @param userCommands The user's input into the program.
      * @param userCareerData Data which contains the user's completed workout sessions.
-     * @throws DukeError if user does not enter a keyword. Also throws an error if there
-     * are no exercises which match the keyword provided
+     * @throws DukeError if user does not enter a keyword. Also throws an error if there are no exercises which match the keyword provided.
      */
     public CompletedExerciseSearchCommand (String[] userCommands, UserCareerData userCareerData) throws DukeError {
 
@@ -80,8 +79,7 @@ public class CompletedExerciseSearchCommand extends Command{
      * exercises.
      *
      * @param ui This allows us to output messages
-     * @param exerciseGenerator This takes in filter parameters and outputs a
-     * curated exercise list
+     * @param exerciseGenerator This takes in filter parameters and outputs a curated exercise list.
      */
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) {
         System.out.println("Here are the exercises you have " +

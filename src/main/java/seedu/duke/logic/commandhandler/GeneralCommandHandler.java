@@ -2,11 +2,17 @@ package seedu.duke.logic.commandhandler;
 
 import java.util.Scanner;
 import seedu.duke.achievements.AchievementListHandler;
-import seedu.duke.logic.commands.*;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
+import seedu.duke.logic.commands.Command;
+import seedu.duke.logic.commands.ExerciseSearchCommand;
+import seedu.duke.logic.commands.GenerateFilterCommand;
+import seedu.duke.logic.commands.HelpCommand;
+import seedu.duke.logic.commands.QuickStartCommand;
+import seedu.duke.logic.commands.CompletedExerciseSearchCommand;
+
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
