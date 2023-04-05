@@ -87,7 +87,7 @@ class ParserUtilTest {
             assertThrows(InvalidDurationException.class,
                     () -> ParserUtil.parseRepeatDuration(invalidDuration, LocalDateTime.now()));
         }
-        z
+        
         // If repeat duration is not provided, it should default to 0
         try {
             assertEquals(ParserUtil.parseRepeatDuration(null, LocalDateTime.now()), 0);
