@@ -606,8 +606,8 @@ public class Ui {
         line.append(words[current]);
 
         if (words[current].contains(",")) {
-            int add_space = width - line.length();
-            for (int i = 0; i < add_space; i++) {
+            int addSpace = width - line.length();
+            for (int i = 0; i < addSpace; i++) {
                 line.append(" ");
             }
         }
