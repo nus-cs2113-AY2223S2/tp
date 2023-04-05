@@ -104,6 +104,8 @@ public interface Parser {
             if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
+            BigInteger currConfirmNum = new BigInteger(inputWords[1]);
+            checkInputLimit(currConfirmNum);
             int companyConfirmNum = Integer.parseInt(inputWords[1]) - 1;
             ConfirmCommand confirmCommand = new ConfirmCommand(command, companyConfirmNum);
             return confirmCommand;
