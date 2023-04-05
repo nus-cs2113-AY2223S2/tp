@@ -29,9 +29,30 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public class Parser {
     private static UI ui = new UI();
+    private static Parser instance = null;
+    private Parser() {
+        BudgetPlanner budgetPlanner = new BudgetPlanner();
+        String userInput = "";
+        ArrayList<University> universities = new ArrayList<>();
+        ArrayList<Module> modules = new ArrayList<>();
+        ArrayList<Module> puModules = new ArrayList<>();
+        Storage storage = new Storage();
+        DeadlineStorage deadlineStorage = new DeadlineStorage();
+        ArrayList<Deadline> deadlines = new ArrayList<>();
+        parseUserCommand(userInput, universities, modules,
+                puModules, storage, deadlineStorage,
+                budgetPlanner, deadlines);
+    }
 
+    public static Parser getInstance() {
+        if (instance == null) {
+            instance = new Parser();
+        }
+        return instance;
+    }
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
                                     ArrayList<Module> puModules, Storage storage, DeadlineStorage deadlineStorage,
                                     BudgetPlanner budgetPlanner, ArrayList<Deadline> deadlines) {
@@ -39,12 +60,8 @@ public class Parser {
         ArrayList<String> userInputWords = parseCommand(userInput.trim());
         String userCommandFirstKeyword = userInputWords.get(0);
         String userCommandSecondKeyword = "";
-        String userCommandThirdKeyword = "";
         if (userInputWords.size() > 1) {
             userCommandSecondKeyword = userInputWords.get(1);
-        }
-        if (userInputWords.size() > 2) {
-            userCommandThirdKeyword = userInputWords.get(2);
         }
         String inputIgnoringCase = userCommandFirstKeyword.toLowerCase();
         try {
@@ -79,7 +96,7 @@ public class Parser {
         }
     }
 
-    public static ArrayList<String> parseCommand(String userInput) {
+    private static ArrayList<String> parseCommand(String userInput) {
         ArrayList<String> commandWords = new ArrayList<String>();
         String commandInput = userInput.replaceAll("\\s+", " ");
         String[] input = commandInput.split(" ", 3);
