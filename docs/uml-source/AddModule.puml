@@ -63,9 +63,6 @@ AddModuleCommand --> Parser : AddModuleCommand
 deactivate AddModuleCommand
 Parser --> Apollo
 deactivate Parser
-
-
-
-
+deactivate Apollo
 
 @enduml
