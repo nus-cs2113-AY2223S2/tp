@@ -192,6 +192,7 @@ public class Ui {
     private static final String CHECK_OTHER_PROGRAMS = "If this happens often, check that other programs"
             + " are not interfering with this one";
     private static final String YOUR_ITEM = "Here is your item: ";
+    private static final String STOCK_HEADING = "Stock";
 
 
     public static void printLine() {
@@ -410,7 +411,7 @@ public class Ui {
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
             headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
-            headings = new String[]{"Name", "UPC", "Stock"};
+            headings = new String[]{NAME_HEADING, UPC_HEADING, STOCK_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == CATEGORY_COL_WIDTH) {
             headings = new String[]{CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
         }
@@ -605,7 +606,8 @@ public class Ui {
         line.append(words[current]);
 
         if (words[current].contains(",")) {
-            for (int i = 0; i <= width - line.length(); i++) {
+            int add_space = width - line.length();
+            for (int i = 0; i < add_space; i++) {
                 line.append(" ");
             }
         }
