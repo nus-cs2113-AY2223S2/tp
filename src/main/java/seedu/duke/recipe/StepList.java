@@ -1,6 +1,11 @@
 package seedu.duke.recipe;
 
 import java.util.ArrayList;
+
+import seedu.duke.exceptions.InvalidIndexRangeException;
+import seedu.duke.exceptions.ListEmptyException;
+import seedu.duke.exceptions.OutOfIndexException;
+import seedu.duke.ui.IntLib;
 import seedu.duke.ui.UI;
 import seedu.duke.ui.StringLib;
 
@@ -27,6 +32,7 @@ public class StepList {
         currStepNumber = stepList.size();
     }
 
+
     /**
      * Adds a new step to the list.
      *
@@ -50,6 +56,14 @@ public class StepList {
         assert (currStepNumber == stepList.size());
     }
 
+    public boolean isIndexWithinRange(int stepIndex) throws Exception{
+        if (currStepNumber == 0) {
+            throw new ListEmptyException();
+        } else if (stepIndex < 0 || stepIndex >= currStepNumber) {
+            throw new InvalidIndexRangeException(IntLib.NONEMPTY_START_NUMBER,currStepNumber);
+        }
+        return true;
+    }
     /**
      * Replaces a specified step in the list with a new step object
      * @param stepIndex index of the step to be replaced
@@ -75,13 +89,13 @@ public class StepList {
     public void showFullStepList() {
         System.out.println("There are " + currStepNumber + " steps in the list");
         for (int i = 0; i < currStepNumber; i++) {
-            System.out.println((i + 1) + ". " + stepList.get(i).getStep());
+            System.out.println((i + 1) + ". " + stepList.get(i).getStepDescription());
         }
     }
     public void showStepByStep(UI ui) {
         String input;
         for (int i = 0; i < currStepNumber; i++) {
-            System.out.println((i + 1) + ". " + stepList.get(i).getStep());
+            System.out.println((i + 1) + ". " + stepList.get(i).getStepDescription());
             if (ui.readCommand().equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
                 return;
             }
@@ -102,7 +116,9 @@ public class StepList {
             showFullStepList();
         }
     }
-
+    public Step getStep(int stepIndex) {
+        return stepList.get(stepIndex);
+    }
     public int getCurrStepNumber() {
         return currStepNumber;
     }
