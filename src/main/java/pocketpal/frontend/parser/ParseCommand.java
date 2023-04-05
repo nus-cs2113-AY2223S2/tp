@@ -31,10 +31,6 @@ public abstract class ParseCommand {
         String detail = null;
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
-            System.out.println(matcher.group(1));
-            System.out.println(matcher.group(2));
-            System.out.println(matcher.group(3));
-
             String option = matcher.group(ParserConstants.OPTION_GROUP);
             detail = matcher.group(ParserConstants.DETAIL_GROUP);
             if (detail != null) {
@@ -82,12 +78,12 @@ public abstract class ParseCommand {
         }
         boolean isValid = price.matches(ParserConstants.VALID_PRICE_REGEX);
         if (!isValid) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
         try {
             Double.parseDouble(price);
         } catch (NumberFormatException e) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
     }
 

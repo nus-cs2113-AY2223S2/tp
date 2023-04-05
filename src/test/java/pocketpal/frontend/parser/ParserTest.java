@@ -76,7 +76,7 @@ public class ParserTest {
             parser.parseUserInput("/add -d expense1 -p 10f0 -c food");
         });
 
-        String expectedMessage = MessageConstants.MESSAGE_INVALID_PRICE;
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -143,7 +143,7 @@ public class ParserTest {
         Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
             parser.parseUserInput("/edit 10 -p 10f");
         });
-        String expectedMessage = MessageConstants.MESSAGE_INVALID_PRICE;
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
@@ -187,7 +187,7 @@ public class ParserTest {
         Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
             parser.parseUserInput("/view -sp 20 -ep 10");
         });
-        String expectedMessage = MessageConstants.MESSAGE_INVALID_PRICE_RANGE;
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT_RANGE;
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
