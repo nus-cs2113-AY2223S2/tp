@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-// https://www.youtube.com/watch?v=Gf-Hx-Q0rOs
+
 
 public class GsonLocalDateAdaptor implements JsonSerializer<LocalDate>, JsonDeserializer<LocalDate> {
 
