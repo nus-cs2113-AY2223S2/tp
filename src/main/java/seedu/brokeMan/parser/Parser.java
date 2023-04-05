@@ -176,7 +176,9 @@ public class Parser {
             try {
                 StringToTime.checkIfValidDateString(descriptionByWord[1]);
             } catch (DateTimeParseException dtpe) {
-                return new InvalidCommand("Invalid Date Format!", SetBudgetCommand.MESSAGE_USAGE);
+                return new InvalidCommand("Invalid Date Format!\n" +
+                        "|  Years starting from 1 and months from 1 to 12 are accepted!",
+                        SetBudgetCommand.MESSAGE_USAGE);
             }
             descriptionByWord[1] = descriptionByWord[1].trim();
             return (descriptionByWord[1] == "" ? new SetBudgetCommand(budget)
