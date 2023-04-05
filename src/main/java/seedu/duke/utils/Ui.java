@@ -145,8 +145,7 @@ public class Ui {
     private static final String SUCCESS_REMOVE = "Successfully removed the following item: ";
     private static final String INVALID_INDEX = "This index is invalid.\nPlease enter number ";
 
-    private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" " +
-            "\"or list\".";
+    private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" ";
 
     private static final String INVALID_ALERT_PARAMETER = "Wrong/Incomplete Format! Please refer to the user guide" +
             " for the correct alert parameters.";
@@ -166,7 +165,7 @@ public class Ui {
             "maximum alert value of this item.";
 
     private static final String INVALID_MAX_ALERT = "Maximum value to set an alert must be more than existing " + "" +
-            "mimimum alert value of this item.";
+            "minimum alert value of this item.";
 
     private static final String SUCCESS_ADD_ALERT = "Successfully added a new alert.";
 
