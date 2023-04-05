@@ -283,5 +283,7 @@ class ParserTest {
         Command newCommand = Parser.getCommand(userCommand, ui, size, null);
         assertNull(newCommand);
     }
+
+    
 }
 

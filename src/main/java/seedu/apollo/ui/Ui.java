@@ -912,11 +912,34 @@ public class Ui {
                 "However, you will still be able to add it into the tasklist.");
     }
 
-    public void printListModuleHelpMessage(){
+    public void printListModuleWithoutFlagsHelpMessage(){
         System.out.println("Shows the list of modules you are taking for this semester, " +
                 "alongisde total Modular Credits (MC).\n"+
                 "The list will be automatically sorted in alphabetical order according to EduRec standards.\n" +
-                "Format: listmod");
+                "Format: listmod\n");
+    }
+
+    public void printListModuleWithCodeHelpMessage(){
+        System.out.println("To see all class timings for all lesson types that you have added for a module in your " +
+                "list, \n" + "you can append the module code to the listmod command. \n" +
+                "Format: listmod MODULE_CODE\n");
+    }
+
+    public void printListModuleWithFlagHelpMessage(){
+        System.out.println("To see all class timings for a specific lesson type that you have added " +
+                "for a module in your list, \n" +
+                "you can append the module code and the lesson type flag to the listmod command. \n" +
+                "Format: listmod MODULE_CODE -FLAG\n" + "Example: listmod CS1010 -st\n\n" +
+                "Note: You must have added a module and at least one lesson into your list. \n");
+    }
+
+    public void printListModuleHelpMessage() {
+        //placeholder
+        printListModuleWithoutFlagsHelpMessage();
+        printListModuleWithCodeHelpMessage();
+        printListModuleWithFlagHelpMessage();
+        printModuleFlagOptions();
+
     }
     public void printExitHelpMessage(){
         System.out.println("Exit Apollo.\n" +
@@ -998,7 +1021,7 @@ public class Ui {
     public void printShowLessonInfoHelpMessage(){
         System.out.println("If you would like to view timing information on a specific lesson type of a module, " +
                 "you can use flags.\n"
-                +  "Format: showmod MODULE_CODE -FLAG\n" + "Example: showmod CS1010 -st\n" +
+                +  "Format: showmod MODULE_CODE -FLAG\n" + "Example: showmod CS1010 -st\n\n" +
                 "NOTE: Different modules have different lesson types.\n" +
                 "It is recomended to run `showmod MODULE_CODE` to see the lesson types available for that module.\n");
     }
