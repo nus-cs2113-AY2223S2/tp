@@ -24,17 +24,14 @@ public class SearchFilterErrorException extends Exception {
 
     public void incorrectFilterParameters() {
         System.out.println("Wrong/Incomplete Entry For Filter! Please refer to UG for more information\n" +
-                "Sample Format:\n For price filter: \"filter f/price p/{gt/get/lt/let} [Price]\"\n\n For category " +
-                "filter: " +
-                "\n   \"filter f/category list\"" +
-                "\n   \"filter f/category table\"" +
-                "\n   \"filter f/category [Keyword]\"");
+                "Sample Format:\n For price filter: \"filter f/price p/{gt/get/lt/let} [Price]\"\n " +
+                "For category filter: \"filter f/category [Keywords]\"");
         Ui.printLine();
     }
 
     public void missingCategoryParameters() {
-        System.out.println("Missing keywords to search for appropriate category! Please use the format: filter " +
-                "f/category c/[KEYWORDS]");
+        System.out.println("Missing keywords to search for appropriate category! Please use the format: \"filter " +
+                "f/category [Keywords]\"");
         Ui.printLine();
     }
 }

@@ -14,10 +14,13 @@ Code contributed: [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dash
 Enhancements implemented:
 * Refactored and abstracted the whole Command class from inventory methods to its
 own class, `Command` and its subclasses.
-* Created the AddCommand & AddParser functions.
+* Created the AddCommand and AddParser feature
 * Implemented Autosave feature to save the inventory data to a file after every command.
 * Implemented the CSV reading and writing ability for the application.
 * Implemented dashboard for inventory overview
+* Standardisation of Error messages
+* Javadocs Implementation for classes and methods
+  * Implemented JUnit tests for the `Add`, `Storage` and `AddParser`
 
 Contributions to the UG:
 * Wrote the documentation for the `add`, `autosave`, `db` command.
