@@ -16,14 +16,15 @@
 - Implemented code to detect events clashing with other events 
 - Added code to detect duplicate modules in moduleList and its exception 
 - Added some JUnit tests for Parser class 
-- Added Junit tests for task command portion of help command class 
+- Added Junit tests for task command portion of help command class
 - Patches 
 
-- 
 #### Contributions to the UG
 - Updated user guide with information about clashes between event/deadline/modules 
+- Updated user guide on listmod list module with lessons command 
 #### Contributions to the DG
 - Delete Module 
 - UML diagrams for DateCommand, FindCommand
 #### Contributions to team-based tasks
+- Helped maintain issue tracker 
 - [PRs Reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
