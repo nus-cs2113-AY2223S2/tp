@@ -183,6 +183,15 @@ ____________________________________________________________
 TESLA added successfully!
 ____________________________________________________________
 ```
+The same company cannot be added twice. If the same company is added twice, a warning will be displayed to the user
+instead.]
+
+Expected outcome:
+```
+____________________________________________________________
+Company already exists in the list!
+____________________________________________________________
+```
 
 ### `delete <INDEX>` - Delete a company from the company list
 Delete a company from the company list, and updates the company list text file.
