@@ -18,6 +18,7 @@ public class GenerateFilterCommand extends Command {
     private static final String UPPER = "upper";
     private static final String CORE = "core";
     private static final String LEGS = "legs";
+    private static final String IPPT = "ippt";
 
     private final int filterArguments;
     private final String[] userCommands;
@@ -59,28 +60,33 @@ public class GenerateFilterCommand extends Command {
      */
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
+        ArrayList<ExerciseData> ipptList = new ArrayList<>(exerciseGenerator.generateIPPTExercises(exercises));
         assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())
             : "Do not modify the ArrayList of GenerateExercise";
-        for (int i = 1; i < filterArguments; i++) {
-            switch (userCommands[i]) {
-            case GYM:
-                exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
-                break;
-            case STATIC:
-                exercises = exerciseGenerator.generateFilteredStaticSetFrom(exercises);
-                break;
-            case EASY:
-            case MEDIUM:
-            case HARD:
-                exercises = exerciseGenerator.generateFilteredDifficultySetFrom(exercises, userCommands[i]);
-                break;
-            case UPPER:
-            case CORE:
-            case LEGS:
-                exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
-                break;
-            default:
-                throw new DukeError(ErrorMessages.ERROR_FILTER_INPUT.toString());
+        if(userCommands.length == 1 && userCommands.equals(IPPT)){
+            exerciseGenerator.generateIPPTExercises(ipptList);
+        }else{
+            for (int i = 1; i < filterArguments; i++) {
+                switch (userCommands[i]) {
+                case GYM:
+                    exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
+                    break;
+                case STATIC:
+                    exercises = exerciseGenerator.generateFilteredStaticSetFrom(exercises);
+                    break;
+                case EASY:
+                case MEDIUM:
+                case HARD:
+                    exercises = exerciseGenerator.generateFilteredDifficultySetFrom(exercises, userCommands[i]);
+                    break;
+                case UPPER:
+                case CORE:
+                case LEGS:
+                    exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
+                    break;
+                default:
+                    throw new DukeError(ErrorMessages.ERROR_FILTER_INPUT.toString());
+                }
             }
         }
         if (numberOfExercisesToGenerate == 1337) {

@@ -196,14 +196,34 @@ Finds existing exercises whose names contain the input keyword.
 
 Example Command: ```find [keyword]```
 
-Examples: ```find arm```,```find legs```
+Examples: ```find crunch```,```find legs```
 
-All exercise name containing "arms" will appear
+All exercise name containing "crunch" will appear
 ```
 Here are the exercises matching your keyword:
-1.Farmer's Walk
-2.Kneeling Forearm Stretch
-3.Seated One-arm Cable Pulley Rows
+1.Ab Crunch Machine
+2.Bosu Ball Cable Crunch With Side Bends
+3.Cable Crunch
+4.Cable Reverse Crunch
+5.Cable Seated Crunch
+6.Cross-Body Crunch
+7.Crunches
+8.Crunch - Hands Overhead
+9.Crunch - Legs On Exercise Ball
+10.Decline Crunch
+11.Decline Oblique Crunch
+12.Decline Reverse Crunch
+13.Exercise Ball Crunch
+14.Gorilla Chin/Crunch
+15.Kneeling Cable Crunch With Alternating Oblique Twists
+16.Oblique Crunches
+17.Oblique Crunches - On The Floor
+18.Reverse Crunch
+19.Rope Crunch
+20.Standing Rope Crunch
+21.Suspended Reverse Crunch
+22.Tuck Crunch
+23.Weighted Crunches
 ________________________________________
 ```
 
@@ -211,8 +231,11 @@ All exercise name containing "legs" will appear
 ```
 Here are the exercises matching your keyword:
 1.legs-SMR
-2.Lying Prone legs
-3.legs-SMR
+2.Crunch - Legs On Exercise Ball
+3.Kettlebell Pass Between The Legs
+4.Lying Prone legs
+5.legs-SMR
+6.Wide Stance Stiff Legs
 ________________________________________
 ```
 

@@ -44,7 +44,8 @@ public enum ErrorMessages {
     ERROR_EMPTY_DESCRIPTION_NUMBER("Please specify the session number which you want to delete!"),
     ERROR_INVALID_DELETE_SESSION("Unable to delete session as the session does not exist!"),
     ERROR_UNABLE_TO_WRITE_TO_FILE("Unable to append to file"),
-    ERROR_DELETE_CONTENT_ERROR_TEXT("For some reason I cant delete the content of the folder");
+    ERROR_DELETE_CONTENT_ERROR_TEXT("For some reason I cant delete the content of the folder"),
+    ERROR_IPPT_INVALID_TIMING("Invalid timing!");
 
     public final String message;
 

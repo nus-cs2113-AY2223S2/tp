@@ -2,10 +2,14 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.logic.commands.GenerateFilterCommand;
+import seedu.duke.logic.commands.ExerciseSearchCommand;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.ui.Ui;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -80,6 +84,22 @@ public class TestCommands {
         assertDoesNotThrow(() -> {
             UserPlan.deletePlan(validCommands);
         });
+    }
+
+    //@author ghzr0
+    @Test
+    public void testFindCommand(){
+        String[] invalidCmd = {"Please key in a keyword for Fitness Duke to search!"};
+        String[] testInputs1 = {"find"};
+        String[] testInputs2 = {"find","legs"};
+        GenerateExercise generateExercise = new GenerateExercise();
+        ArrayList<ExerciseData> exerciseData = generateExercise.generateSetAll();
+        assertThrows(DukeError.class, () -> {
+            new ExerciseSearchCommand(testInputs1);});
+        assertDoesNotThrow(() -> {
+            new ExerciseSearchCommand(testInputs2);
+        });
+
     }
 
 
