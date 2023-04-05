@@ -448,7 +448,7 @@ public class Parser {
         ArrayList<String> filterFlagAndField = new ArrayList<>();
 
         if (matcher.find()) {
-            if (!matcher.group(6).contains("-date") && !matcher.group(6).equals("")) {
+            if (matcher.group(6).trim().indexOf("-date") != 0 && !matcher.group(6).equals("")) {
                 throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
             }
             for (int i = 1; i <= 5; i += 1) {
@@ -537,7 +537,7 @@ public class Parser {
         ArrayList<String> editFlagAndField = new ArrayList<>();
 
         if (matcher.find()) {
-            if (!matcher.group(8).contains("-date") && !matcher.group(8).equals("")) {
+            if (matcher.group(8).trim().indexOf("-date") != 0 && !matcher.group(8).equals("")) {
                 throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
             }
             for (int i = 1; i <= 8; i += 1) {
