@@ -6,6 +6,7 @@
   * [Design](#design)
     * [Architecture](#architecture)
   * [Implementations](#implementations)
+    * [Ui Class](#ui-class)
     * [Exit Command](#exit-command)
     * [List Pet Command](#list-pet-command)
     * [[Added] Add Pet Stat Feature](#added-add-pet-stat-feature)
@@ -59,6 +60,22 @@ The rest of the App consists of four components.
 * [**`Storage`**](): Reads data from, and writes data to, the hard disk.
 
 ## Implementations
+
+### Ui Class
+
+The Ui class is represented by the image below. The Ui class handles user input and
+displaying of relevant information including error messages for the program. In the diagram below,
+`VariousCommands` represents different commands that may call the Ui Class.
+
+The `Main` class will call `getUserInput()` to read in user input. Commands may then
+call the methods to print relevant outputs.
+
+<p align="center">
+    <img src="images/UiClassDiagram.png">
+    <br />
+    <i>Figure 2: Class Diagram for Ui</i>
+</p>
+
 ### Exit Command
 
 The `ExitCommand` inherits its properties from the abstract `Command` class.
@@ -96,7 +113,7 @@ the command via `ui.getUserInput()` and parses it through `commandParser.parseCo
 <p align="center">
     <img src="images/ExitCommandSequenceDiagram.png">
     <br />
-    <i>Figure 2: Sequence Diagram for Bye Command</i>
+    <i>Figure 3: Sequence Diagram for Bye Command</i>
 </p>
 
 ### List Pet Command
@@ -124,7 +141,7 @@ This is how the ListPetCommand works:
 <p align="center">
     <img src="images/ListPetCommand.png">
     <br />
-    <i>Figure 3: Sequence Diagram for List Pet Command</i>
+    <i>Figure 4: Sequence Diagram for List Pet Command</i>
 </p>
 
 ### [Added] Add Pet Stat Feature
@@ -143,7 +160,7 @@ These operations are exposed in the `PetList` class as `PetList#addStat()` and `
 <p align="center">
     <img src="images/AddPetStatFeatureClassDiagram.png">
     <br />
-    <i>Figure 4: Class Diagram for Add Pet Stat Feature</i>
+    <i>Figure 5: Class Diagram for Add Pet Stat Feature</i>
 </p>
 
 Given below is an example usage scenario and how the add pet stat mechanism behaves.
@@ -153,7 +170,7 @@ Step 1. After the user launches the application and added a pet named "Bob", a `
 <p align="center">
     <img src="images/AddPetStatFeatureObjectDiagram (1).png">
     <br />
-    <i>Figure 5: Object Diagram for Add Pet Stat Feature After Step 1</i>
+    <i>Figure 6: Object Diagram for Add Pet Stat Feature After Step 1</i>
 </p>
 
 Step 2. The user executes `add-stat Bob weight 5` command to add a weight stat of 5kg in the `Pet` object. The `add-stat` command calls `AddStatCommand#execute()` then `PetList#addStat()`, causing the `Pet` object's `weight` variable to be modified and saved.
@@ -161,7 +178,7 @@ Step 2. The user executes `add-stat Bob weight 5` command to add a weight stat o
 <p align="center">
     <img src="images/AddPetStatFeatureObjectDiagram (2).png">
     <br />
-    <i>Figure 6: Object Diagram for Add Pet Stat Feature After Step 2</i>
+    <i>Figure 7: Object Diagram for Add Pet Stat Feature After Step 2</i>
 </p>
 
 ### Remove Pet Stat Command
@@ -191,7 +208,7 @@ This feature was implemented like this in order to maximize use of the OOP parad
 <p align="center">
     <img src="images/RemoveStatCommand.png">
     <br />
-    <i>Figure 7: Sequence Diagram for Remove Pet Stat Command</i>
+    <i>Figure 8: Sequence Diagram for Remove Pet Stat Command</i>
 </p>
 
 # Appendix: Requirements
@@ -244,6 +261,7 @@ using the mouse.
 * *Task* - A task to be carried out (e.g. Feeding a pet)
 * *Stat* - Statistic of a pet such as Pet Type(Dog / Cat), Age or Weight
 * *Value* - Result of the statistic (e.g. 5,10,15)
+* *VariousCommands* - Commands in general, non specifically
 
 ## Instructions for manual testing
 
