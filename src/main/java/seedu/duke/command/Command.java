@@ -1,8 +1,6 @@
 package seedu.duke.command;
 
-
 import seedu.duke.exceptions.IncompleteInputException;
-import seedu.duke.exceptions.InvalidIndexRangeException;
 import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.parser.Parser;
@@ -11,7 +9,6 @@ import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.recipe.StepList;
 import seedu.duke.storage.Storage;
-import seedu.duke.ui.IntLib;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
@@ -221,7 +218,7 @@ public class Command {
                     String newIngredientDescription = ui.readCommand();
                     recipeToEditIngredientList.editIngredient(newIngredientDescription, ingredientIndex);
                     Storage.writeSavedFile();
-                    }
+                }
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }

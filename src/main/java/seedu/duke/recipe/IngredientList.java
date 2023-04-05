@@ -86,13 +86,7 @@ public class IngredientList {
         return list;
     }
 
-    public void editIngredient(int ingredientIndex, String description) {
-        Ingredient newIngredient = new Ingredient(description);
-        list.set(ingredientIndex, newIngredient);
-        System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
-        System.out.print((ingredientIndex + 1) + ". ");
-        System.out.println(list.get(ingredientIndex).getName());
-    }
+
 
     public boolean isIndexWithinRange(int ingredientIndex) throws Exception{
         if (currIngredientNumber == 0) {
@@ -102,14 +96,21 @@ public class IngredientList {
         }
         return true;
     }
-
-    public void editIngredient(String ingredientDescription, int ingredientIndex) throws Exception{
-        Ingredient newIngredient = new Ingredient(ingredientDescription);
+    public void editIngredient(int ingredientIndex, String description) {
+        Ingredient newIngredient = new Ingredient(description);
         if (isIndexWithinRange(ingredientIndex)) {
             list.set(ingredientIndex, newIngredient);
             System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
             System.out.print((ingredientIndex + 1) + ". ");
             System.out.println(list.get(ingredientIndex).getName());
+        }
+    }
+    public void editIngredient(String ingredientDescription, int ingredientIndex) throws Exception{
+        Ingredient newIngredient = new Ingredient(ingredientDescription);
+        list.set(ingredientIndex, newIngredient);
+        System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
+        System.out.print((ingredientIndex + 1) + ". ");
+        System.out.println(list.get(ingredientIndex).getName());
         }
     }
 }

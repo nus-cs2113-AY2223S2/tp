@@ -34,5 +34,5 @@ public class EditStepTest {
         System.setOut(console);
     }
 
-    
+
 }
