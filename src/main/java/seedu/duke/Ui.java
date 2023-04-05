@@ -26,7 +26,7 @@ public class Ui {
         String cmd;
         cmd = in.nextLine();
         assert cmd != null;
-        
+
         while (!(cmd.equals("bye"))) {
             Parser.parseCommand(cmd, eventList);
             cmd = in.nextLine();
@@ -141,9 +141,16 @@ public class Ui {
         printDash();
     }
 
-    public static void printETOmitted() {
+    public static void deleteAllError() {
         printDash();
-        System.out.println("(since no ending date information is given, ending time is omitted)");
+        System.out.println("There are no events to delete!");
+        printDash();
+    }
+
+
+    public static void printEDOmitted() {
+        printDash();
+        System.out.println("(since no specific ending time information is given, ending date is omitted)");
     }
 
     public static void getSemester() {

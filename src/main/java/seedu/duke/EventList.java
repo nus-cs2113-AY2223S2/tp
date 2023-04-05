@@ -53,12 +53,13 @@ public class EventList {
     }
 
     /**
-     * For two addEvent funcs below: if user doesn't input endDay(which means there is also no endTime), you can
-     * just call .addEvent(description, startTime, startDay) I also make the specific time(hh:mm) optional, 
-     * so if user doesn't input the specfic time, you can just pass an empty String to that param and it will
-     *  handle the rest things e.g.
-     * addEvent(descrption, "", startDay, "", endDay) addEvent(descrption, "", startDay, endTime, endDay)
-     * addEvent(descrption, "", startDay) so only startDay is strictly required. and the same for reviseTimeInfo()
+     * For two addEvent funcs below: if user doesn't input endDay(which means there is also no endTime), 
+     * you can just call .addEvent(description, startTime, startDay) I also make the specific time(hh:mm) 
+     * optional, so if user doesn't input the specfic time, you can just pass an empty String to that param 
+     * and it will handle the rest things 
+     * e.g.addEvent(descrption, "", startDay, "", endDay) 
+     *     addEvent(descrption, "", startDay, endTime, endDay)
+     *     addEvent(descrption, "", startDay) so only startDay is strictly required. and the same for reviseTimeInfo()
      * 
      * @param time String representing Time to be converted to dateTime format in combinedTime. Format "HH:MM".
      * @param day String representing Date to be converted to dateTime format in combinedTime. Format "YYYY/MM/DD".
@@ -91,15 +92,15 @@ public class EventList {
 
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
         TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
-
         Event newEvent =
                 new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
 
-        if (!canAddNewEvent(newEvent)) {
-            throw new NPExceptions(
-                    "Slot " + startTime + " - " + endTime + " on " +
-                            startDay + " is already occupied. You can't attend this class.");
-        }
+        // if (!canAddNewEvent(newEvent)) {
+        // throw new NPExceptions(
+        // "Slot " + startTime + " - " + endTime + " on " +
+        // startDay + " is already occupied. You can't attend this class.");
+        // }
+
         taskList.add(newEvent);
         listSize++;
     }
@@ -133,7 +134,7 @@ public class EventList {
         listSize++;
     }
 
-    public void reviseLocation(int index, String location){
+    public void reviseLocation(int index, String location) {
         taskList.get(index).changeLocation(location);
     }
 
@@ -190,8 +191,13 @@ public class EventList {
     }
 
     public void deleteAll() {
-        this.taskList = new ArrayList<Schedule>();
-        this.listSize = 0;
+        if (this.listSize == 0) {
+            Ui.deleteAllError();
+        } else {
+            this.taskList = new ArrayList<Schedule>();
+            this.listSize = 0;
+            Ui.deleteAllSuccess();
+        }
     }
 
     public boolean canAddNewEvent(Event newEvent) {
