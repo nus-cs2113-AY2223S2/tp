@@ -79,7 +79,7 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "The number you have entered exceeds the maximum limit of 99999999.";
+        String expectedOutput = "The number you have entered exceeds the maximum limit of 99,999,999.";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 
@@ -92,7 +92,7 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "The number you have entered exceeds the maximum limit of 99999999.";
+        String expectedOutput = "The number you have entered exceeds the maximum limit of 99,999,999.";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 
