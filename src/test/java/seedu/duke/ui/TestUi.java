@@ -380,8 +380,8 @@ public class TestUi {
                     "Times Completed: 1\r\n" +
                     "\r\n";
         } else {
-            expectedOutput = "Here is a list of all the exercises you have completed:\r\n" +
-                    "\r\n" +
+            expectedOutput = "Here is a list of all the exercises you have completed:\n" +
+                    "\n" +
                     "Exercise Name: 3/4 Sit-Up\n" +
                     "Difficulty Level: beginner\n" +
                     "Workout type: core\n" +
