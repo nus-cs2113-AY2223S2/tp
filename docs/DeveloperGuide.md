@@ -282,6 +282,23 @@ Given below are instructions to test the app manually.
       <br> Expected: All incomes and expenses should be deleted from both the income and expense list and the balance should be updated to 0.
 
 ### Listing all income/expense & Viewing balance
+1. List all incomes and/or expenses
+   1. Prerequisites: Should there be a currency set, it will be shown based on the set currency. Otherwise, records will be displayed in SGD.
+   2. Test case: should there be income/expense entries in the list
+      <br> For income: `list income`
+      <br> For expense: `list expense` 
+      <br> For both: `list`
+      <br> Expected: All incomes and/or expenses should be listed. Note deleted incomes/expenses will not be shown.
+   2. Test case: should there be no income/expense entries in the list
+      <br> For income: `list income`
+      <br> For expense: `list expense` 
+      <br> For both: `list`
+      <br> Expected: No income/expense will be listed. Status message will indicate that the list is empty.
+
+2. View balance
+    1. Prerequisites: If the target has not been set by the user, it will be set to 0 by default. should there be no currency set, only SGD will be shown, else it will additionally show the set currency.
+   2. Test case: `balance`
+      <br> Expected: The total expense, total income, current balance and current target will be shown. Should the current balance or equal to the current target, it will prompt a good job message, otherwise it will prompt a message that balance has not reached target.
 
 ### Finding income/expense
 
