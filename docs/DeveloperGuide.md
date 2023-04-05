@@ -30,7 +30,7 @@ This is done through the `itemFinder()` method in class `PackingList()`, which i
 
 Below is the UML diagram showing what occurs during `add` function when trying to add an item that already exists.
 
-![AddExistingItemDiagram.png](C:\Users\sunil\desktop\NUS\CS2113\Team_Project\docs\umlDiagrams\AddExistingItemDiagram.png)
+![AddExistingItemDiagram.png](umlDiagrams%2FAddExistingItemDiagram.png)
 
 When `AddCommand.execute()` is called in `BagPacker`, the `PackingList.itemFinder()` method is called.
 
