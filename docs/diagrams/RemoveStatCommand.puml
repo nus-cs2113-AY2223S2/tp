@@ -39,9 +39,11 @@
                 return
             
                 activate Pet
-                return
+                
+                
                 PetList -> Pet 
 
+                    
                     alt statName = "type"
                         Pet -> Pet:setPetType("")
                         activate Pet
@@ -57,8 +59,12 @@
                         activate Pet
                         return
                     end
+                    
+                    deactivate Pet
+                    deactivate PetList
 
-            return
+
+            
             return
             return 
             return 
