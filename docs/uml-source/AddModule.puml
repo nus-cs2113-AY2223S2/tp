@@ -27,6 +27,7 @@ AddModuleCommand -> Module** : Module()
 activate Module
 Module --> AddModuleCommand : module
 deactivate Module
+destroy Module
 
 AddModuleCommand --> Parser: new AddModuleCommand
 deactivate AddModuleCommand
@@ -58,11 +59,13 @@ else
 
 end
 deactivate AddModuleCommand
-
+destroy Ui
 AddModuleCommand --> Parser : AddModuleCommand
 deactivate AddModuleCommand
+destroy AddModuleCommand
 Parser --> Apollo
 deactivate Parser
+destroy Parser
 deactivate Apollo
 
 @enduml

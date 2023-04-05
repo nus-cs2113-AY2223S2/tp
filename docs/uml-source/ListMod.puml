@@ -32,11 +32,13 @@ ListMod -> Ui : printModuleList()
 activate Ui
 Ui --> ListMod
 deactivate Ui
-
+destroy Ui
 ListMod --> Parser
 
 deactivate ListMod
+destroy ListMod
 Parser --> Apollo
 deactivate Parser
+destroy Parser
 deactivate Apollo
 @enduml
