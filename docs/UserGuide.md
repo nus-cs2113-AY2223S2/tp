@@ -63,14 +63,115 @@ choose venue <INDEX>
 ____________________________________________________________
 ____________________________________________________________
 ```
+#
+### `load samples` - load samples company data for manual testing
+Populate the company list with sample companies, and updates the company list text file
 
+Example of usage:
+`load samples`
+Expected outcome:
 
+```
+____________________________________________________________
+HUAWEI added successfully!
+____________________________________________________________
+____________________________________________________________
+GOOGLE added successfully!
+____________________________________________________________
+____________________________________________________________
+TIKTOK added successfully!
+____________________________________________________________
+____________________________________________________________
+Sample data has been loaded into the list!
+____________________________________________________________
+```
+
+#
+### `add ` - Add a company to the company list
+Add the company to the list of companies, and updates the company list text file.
+
+Command:
+`add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>`
+* All fields should not be empty.
+* `<INDUSTRY>` should contain more than one alphabet.
+* `<CONTACT_NUMBER>` should be valid Singaporean number, which is 8-digit number starting with 3, 6, 8, or 9.
+* `<EMAIL>` should be valid email address containing but not ending with "@" symbol. No space is allowed.
+* User can add only one company at a time.
+
+Example of usage:
+`add n/tesla i/tech c/34567890 e/tesla@gmail.com`
+
+Expected outcome:
+
+```
+____________________________________________________________
+TESLA added successfully!
+____________________________________________________________
+```
+
+#
+### `choose venue <index>` - updates the venue of the event
+Updates the venue of the event from a list of venues, and updates the event details file
+
+Example of usage:
+
+`choose venue 1` would choose venue 1 which is Engineering Auditorium
+
+`choose venue 3` would choose venue 3 which is LT1
+
+Expected outcome:
+
+```
+____________________________________________________________
+Engineering Auditorium is your venue!
+____________________________________________________________
+```
+OR
+```
+____________________________________________________________
+LT1 is your venue!
+____________________________________________________________
+```
+
+#
+### `confirm` - Marks a specific company's attendance as confirmed
+Mark the status of a specific company's attendance as confirmed, and 
+updates a status icon to [Confirmed] that represents it being marked confirmed.
+
+Example of usage:
+`confirm 1`
+Expected outcome:
+
+```
+____________________________________________________________
+Company has been successfully confirmed!
+____________________________________________________________
+
+```
+
+##
+### `unconfirm` - Marks a specific company's attendance as unconfirmed
+Mark the status of a specific company's attendance as unconfirmed, and
+updates a status icon to [Unconfirmed] that represents it being marked unconfirmed.
+
+Example of usage:
+`unconfirm 1`
+Expected outcome:
+
+```
+____________________________________________________________
+Company has been successfully uncomfirmed!
+____________________________________________________________
+
+```
+
+#
 ### `list companies` - Shows all current stored companies
 Shows all companies currently stored in the company list.
 
 Example of usage:
 `list companies`
-Expected outcome: 
+Expected outcome:
 
 ```
 ____________________________________________________________
@@ -94,7 +195,7 @@ Company industry: BANKING AND FINANCE
 [Confirmed]
 ____________________________________________________________
 ```
-
+##
 ### `list venues` - Shows all venues
 Shows all venues available for the user to choose
 
@@ -111,36 +212,7 @@ ____________________________________________________________
 5. University Cultural Centre 50 Kent Ridge Crescent (S) 119279 50
 ____________________________________________________________
 ```
-
-### `confirm` - Marks a specific company's attendance as confirmed
-Mark the status of a specific company's attendance as confirmed, and 
-updates a status icon to [Confirmed] that represents it being marked confirmed.
-
-Example of usage:
-`confirm 1`
-Expected outcome:
-
-```
-____________________________________________________________
-Company has been successfully confirmed!
-____________________________________________________________
-
-```
-
-### `unconfirm` - Marks a specific company's attendance as unconfirmed
-Mark the status of a specific company's attendance as unconfirmed, and
-updates a status icon to [Unconfirmed] that represents it being marked unconfirmed.
-
-Example of usage:
-`unconfirm 1`
-Expected outcome:
-
-```
-____________________________________________________________
-Company has been successfully uncomfirmed!
-____________________________________________________________
-
-```
+##
 ### `list unconfirmed` - Shows all stored companies marked with unconfirmed attendance
 Shows all the unconfirmed companies that are stored in the company list.
 
@@ -164,29 +236,7 @@ Company industry: BANKING AND FINANCE
 [Unconfirmed]
 ____________________________________________________________
 ```
-
-### `add ` - Add a company to the company list
-Add the company to the list of companies, and updates the company list text file.
-
-Command:
-`add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>`
-* All fields should not be empty.
-* `<INDUSTRY>` should contain more than one alphabet.
-* `<CONTACT_NUMBER>` should be valid Singaporean number, which is 8-digit number starting with 3, 6, 8, or 9.
-* `<EMAIL>` should be valid email address containing but not ending with "@" symbol. No space is allowed.
-* User can add only one company at a time.
-
-Example of usage:
-`add n/tesla i/tech c/34567890 e/tesla@gmail.com`
-
-Expected outcome:
-
-```
-____________________________________________________________
-TESLA added successfully!
-____________________________________________________________
-```
-
+#
 ### `delete ` - Delete a company from the company list
 Delete a company from the company list, and updates the company list text file.
 
@@ -199,28 +249,7 @@ ____________________________________________________________
 Company information successfully deleted!
 ____________________________________________________________
 ```
-
-### `load samples` - load samples company data for manual testing
-Populate the company list with sample companies, and updates the company list text file
-
-Example of usage:
-`load samples`
-Expected outcome:
-
-```
-____________________________________________________________
-HUAWEI added successfully!
-____________________________________________________________
-____________________________________________________________
-GOOGLE added successfully!
-____________________________________________________________
-____________________________________________________________
-TIKTOK added successfully!
-____________________________________________________________
-____________________________________________________________
-Sample data has been loaded into the list!
-____________________________________________________________
-```
+##
 ### `purge ` - delete the company list data
 delete the company list data, and updates the company list text file
 
@@ -233,7 +262,7 @@ ____________________________________________________________
 Data has been deleted successfully!
 ____________________________________________________________
 ```
-
+#
 ### `find companies ` - find the companies based on a company name
 find the companies based on a company name, or any of the alphabets in the company name
 
@@ -259,7 +288,7 @@ Company industry: TECH
 [Unconfirmed]
 ____________________________________________________________
 ```
-
+##
 ### `find industry <INDUSTRY>  ` - find the companies within an industry
 find the companies within an industry based on the industry name 
 
@@ -285,30 +314,7 @@ Company industry: TECH
 ____________________________________________________________
 ```
 
-### `choose venue <index>` - updates the venue of the event
-Updates the venue of the event from a list of venues, and updates the event details file
-
-Example of usage:
-
-`choose venue 1` would choose venue 1 which is Engineering Auditorium
-
-`choose venue 3` would choose venue 3 which is LT1
-
-Expected outcome:
-
-```
-____________________________________________________________
-Engineering Auditorium is your venue!
-____________________________________________________________
-```
-OR
-```
-____________________________________________________________
-LT1 is your venue!
-____________________________________________________________
-```
-
-
+#
 ### `exit ` - Exit the application
 Exit the application
 
