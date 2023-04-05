@@ -44,7 +44,7 @@ public class EndpointUtil {
             }
             return result;
         } catch (NumberFormatException e) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
     }
 }

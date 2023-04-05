@@ -19,6 +19,7 @@ public abstract class Endpoint extends EndpointUtil implements Requestable {
      */
     @Override
     public Response handleRequest(Request request) {
+        assert request != null : "Unexpected null request method";
         switch (request.getRequestMethod()) {
         case DELETE:
             logger.info("Routing DELETE request");

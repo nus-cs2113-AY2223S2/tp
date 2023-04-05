@@ -12,6 +12,7 @@ import pocketpal.communication.ResponseStatus;
 import pocketpal.data.EntryTestUtil;
 import pocketpal.data.entrylog.EntryLog;
 import pocketpal.data.parsing.EntryLogParser;
+import pocketpal.frontend.constants.MessageConstants;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -158,6 +159,16 @@ public class EntriesEndpointTest extends EntryTestUtil {
         }
 
         @Test
+        void entriesEndpointGET_filterInvalidAmount_failure() {
+            Request request = new Request(RequestMethod.GET);
+            request.addParam(RequestParams.FILTER_BY_AMOUNT_END, "1000000000");
+            Response response = TEST_BACKEND.requestEndpointEntries(request);
+
+            assertEquals(response.getResponseStatus(), ResponseStatus.UNPROCESSABLE_CONTENT);
+            assertEquals(response.getData(), MessageConstants.MESSAGE_INVALID_AMOUNT);
+        }
+
+        @Test
         void entriesEndpointGET_filterQueryCaseInsensitive_correctEntries() {
             addEntry(ENTRY_1); // 5 packets of dried mango
             addEntry(ENTRY_2); // Grab ride to mango farm at 2am
@@ -192,6 +203,25 @@ public class EntriesEndpointTest extends EntryTestUtil {
 
             assertEquals(response.getResponseStatus(), ResponseStatus.OK);
             assertTrue(isSameEntryLog(expectedEntryLog, returnedEntryLog));
+        }
+        @Test
+        void entriesEndpointGET_numberGreaterThanInteger_exceptionThrown() {
+            Request request = new Request(RequestMethod.GET);
+            request.addParam(RequestParams.NUM_ENTRIES, "2147483648");
+            Response response = TEST_BACKEND.requestEndpointEntries(request);
+
+            assertEquals(response.getResponseStatus(), ResponseStatus.UNPROCESSABLE_CONTENT);
+            assertEquals(response.getData(), MessageConstants.MESSAGE_INVALID_NUMBER_OF_ENTRIES);
+        }
+
+        @Test
+        void entriesEndpointGET_zeroEntries_getFailure() {
+            Request request = new Request(RequestMethod.GET);
+            request.addParam(RequestParams.NUM_ENTRIES, "0");
+            Response response = TEST_BACKEND.requestEndpointEntries(request);
+
+            assertEquals(response.getResponseStatus(), ResponseStatus.UNPROCESSABLE_CONTENT);
+            assertEquals(response.getData(), MessageConstants.MESSAGE_INVALID_NUMBER_OF_ENTRIES);
         }
     }
 }
