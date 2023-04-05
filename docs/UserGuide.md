@@ -47,7 +47,7 @@ Menu Output:
 
 ![view-menu](./UG-images/view-menu.PNG)
 
-User can input a value from **1 to 8** to view their current profile:
+User can input a value from **1 to 9** to view their current profile:
 
 1. Name
 2. Weight
@@ -56,7 +56,8 @@ User can input a value from **1 to 8** to view their current profile:
 5. Gender
 6. Daily Caloric Limit
 7. Calories Remaining for today
-8. Back
+8. View Target Weight
+9. Exit
 
 Example:
 
@@ -76,13 +77,14 @@ Menu Output:
 
 ![update-menu](./UG-images/update-menu.PNG)
 
-User can input a value from **1 to 5** to customise their profile:
+User can input a value from **1 to 6** to customise their profile:
 1. Name
 2. Weight
 3. Height
 4. Age
 5. Gender
-6. Exit
+6. Target Weight
+7. Exit
 
 Example:
 
@@ -154,9 +156,9 @@ in terms of the calorie content of the food.
 
 The list of food within the range will then be displayed, from which the user can choose from.
 
-Format: `filter`
+Format: `filter [lower_bound] [upper_bound`
 
-* The lower and upper bound should be a `float`
+* The lower and upper bound should be a `float` value
 * The lower bound should be lower than or equal to the upper bound
 
 Example:
@@ -196,6 +198,12 @@ Format: `track`
 
 Output:
 ![track-example](./UG-images/track-example.PNG)
+
+### Display examples for meals and exercises: `examples`
+
+For the user to gain some inspiration on exercises to do, as well as some idea on the meals that they can eat.
+
+Format: `examples [meal/exercise]`
 
 ### Exiting the program: `bye`
 Allows user to exit the program.
