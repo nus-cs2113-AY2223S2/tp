@@ -35,6 +35,6 @@ public class AddAlertCommandTest {
         Command addAlertCommand = new AddAlertCommand(inventory, alert);
         addAlertCommand.run();
 
-        assertTrue(inventory.getAlertList().getMinAlertUpcs().containsKey(inventoryUpc));
+        assertTrue(inventory.getAlertList().getMaxAlertUpcs().containsKey(inventoryUpc));
     }
 }

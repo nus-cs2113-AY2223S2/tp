@@ -40,13 +40,6 @@ public class AddParser extends Parser {
             BigDecimal price = new BigDecimal(matcher.group(PRICE_INDEX));
             String category = matcher.group(CAT_INDEX);
 
-      /*      if (quantity.compareTo(BigInteger.ONE) < 0 ||
-                    quantity.compareTo(new BigInteger("99999999")) > 0 ||
-                    price.compareTo(BigDecimal.valueOf(0.01)) < 0 ||
-                    price.compareTo(BigDecimal.valueOf(99999999)) > 0) {
-                throw new OutOfRangeException();
-            }*/
-
             if (quantity.compareTo(new BigInteger("99999999")) > 0 ||
                     price.compareTo(BigDecimal.valueOf(99999999)) > 0) {
                 throw new OutOfRangeException();
