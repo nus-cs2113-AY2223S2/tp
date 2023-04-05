@@ -1,4 +1,6 @@
 package bagpacker.packingfunc;
+import bagpacker.commands.Command;
+
 import java.util.ArrayList;
 
 /**
@@ -50,6 +52,10 @@ public class PackingList {
         Item itemToAdd = getExistingItem(itemName);
         int totalQuantity = itemToAdd.getTotalQuantity();
         itemToAdd.setTotalQuantity(totalQuantity + addQty);
+    }
+
+    public static void editTotalQuantity(Item itemToEdit, int newTotalQuantity) {
+        itemToEdit.setTotalQuantity(newTotalQuantity);
     }
 
     public static void setItemList(ArrayList<Item> itemList) {
