@@ -4,6 +4,7 @@
 <!-- omit in toc -->
 ## Table of Contents
 
+- [Introduction](#introduction)
 - [Getting Started](#getting-started)
 - [Features](#features)
   - [Adding an expense: `/add`](#adding-an-expense-add)
@@ -15,6 +16,12 @@
   - [Supported Categories](#supported-categories)
 - [Command Summary](#command-summary)
 - [Frequently Asked Questions](#frequently-asked-questions)
+
+## Introduction
+PocketPal is an expense tracking command line application that allows users to record their expenses in different 
+categories. Subsequently, users can monitor their expenses within a specified timeframe, or price range. They may also 
+monitor expenses in certain categories. This makes it easier for users to plan their budgets and make better financial 
+decisions.
 
 ## Getting Started
 
