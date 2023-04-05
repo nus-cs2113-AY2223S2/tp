@@ -47,13 +47,26 @@ public class EditIngredientTest {
 
     /**
      * Test the result of changing step 2 "water" to "boiling water"
+     * Directly tests the editIngredient method in IngredientList class
      *
      * @throws Exception if test returns unexpected result
      */
     @Test
-    public void editPositiveTestCase() throws Exception {
+    public void editBasicTestCase() throws Exception {
+        String newDescription = "boiling water";
+        int replaceIndex = 1;
+        Recipe recipeToEdit = recipeList.getRecipeFromList(1);
+        IngredientList ingredientListToEdit = recipeToEdit.getIngredientList();
+        ingredientListToEdit.editIngredient(replaceIndex,newDescription);
+        Ingredient expectedResult = new Ingredient(newDescription);
 
+        assertEquals(expectedResult.getName(),
+                ingredientListToEdit.getIngredient(replaceIndex).getName());
 
+        assertEquals(StringLib.INGREDIENT_EDIT_SUCCESS + System.lineSeparator() +
+                        (replaceIndex + 1) + ". "
+                + ingredientListToEdit.getIngredient(replaceIndex).getName(),
+                output.toString().trim());
     }
     /**
      * Test the result of NULL recipe index.
