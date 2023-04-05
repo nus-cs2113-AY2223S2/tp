@@ -53,7 +53,7 @@ Entering any of these optional lines will result in early termination of the com
 Or else, the command will continue to delete the entry at the particular index.  
 Afterwards, the `execute()` method will print `"Income deleted, here is the updated list:"` and prints the entries in the income list.
 
-![Record Class](images/DeleteIncomeCommand_sequence_diagram.png)
+![Record Class](images/DeleteIncomeCommand.png)
 
 ### Target and TargetStorage
 

@@ -1,0 +1,24 @@
+@startuml
+
+
+class Target {
+#value
+
++Target():
++getValue(): Double
+}
+
+class TargetStorage {
+# targetsList: Target[1]
+
++ TargetStorage():
++ addTarget():
++ getTarget():
+}
+
+TargetStorage "1"-> "1" Target
+
+
+
+
+@enduml
