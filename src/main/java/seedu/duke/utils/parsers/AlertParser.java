@@ -46,7 +46,6 @@ public class AlertParser extends Parser {
                 addAlertCommand.run();
 
             } else {
-                System.out.println("NEGATIVE HERE");
                 Ui.printInvalidAddAlertCommand();
             }
         } catch (OutOfRangeException e) {
