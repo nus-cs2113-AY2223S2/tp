@@ -2,7 +2,6 @@ package seedu.duke.logic.commands;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
-import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.Ui;
 
 /**

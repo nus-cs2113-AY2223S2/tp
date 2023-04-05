@@ -10,10 +10,10 @@ import java.util.StringJoiner;
 
 //@@author L-K-Chng
 public class CompletedExerciseSearchCommand extends Command{
+    private static final String OPEN_BRACE = "[";
+    private static final String CLOSE_BRACE = "]";
     private String keyword = "";
     private ArrayList<String> foundList = new ArrayList<>();
-    private static final String CLOSE_BRACE = "]";
-    private static final String OPEN_BRACE = "[";
 
     /**
      * Parses the user input to recognise the keyword provided by the user. Finds matching
@@ -21,7 +21,7 @@ public class CompletedExerciseSearchCommand extends Command{
      *
      * @param userCommands The user's input into the program.
      * @param userCareerData Data which contains the user's completed workout sessions.
-     * @throws DukeError if user does not enter a keyword. Also throws an error if there are no exercises which match the keyword provided.
+     * @throws DukeError if user does not enter keyword or if there are no exercises that match keyword provided.
      */
     public CompletedExerciseSearchCommand (String[] userCommands, UserCareerData userCareerData) throws DukeError {
 
