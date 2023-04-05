@@ -72,10 +72,6 @@ public class SavedData {
         financialReport.deleteStatement(statementIndex);
     }
 
-    public void addStatementAtIndex(FinancialStatement newStatement, int index) {
-        financialReport.addStatementAtIndex(newStatement, index);
-    }
-
     public LocalDate getStatementDate(int statementIndex) {
         return financialReport.getStatementDate(statementIndex);
     }

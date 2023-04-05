@@ -30,13 +30,7 @@ public class FinancialReport {
     public void addStatement(FinancialStatement statement) {
         financialStatements.add(statement);
         MonthlyExpenditures.addToMonthlyExpenditure(statement);
-        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
-    }
-
-
-    public void addStatementAtIndex(FinancialStatement statement, int index) {
-        financialStatements.add(index, statement);
-        MonthlyExpenditures.addToMonthlyExpenditure(statement);
+        Storage.writeToFile(RainyDay.savedData, RainyDay.filePath);
     }
 
     public void deleteStatement(int statementNumber) {
@@ -48,7 +42,6 @@ public class FinancialReport {
         return financialStatements.get(statementNumber).getStatementForList();
     }
 
-
     public void clearReport() {
         financialStatements.clear();
     }
@@ -57,13 +50,8 @@ public class FinancialReport {
         return financialStatements.get(statementNumber);
     }
 
-    public ArrayList<FinancialStatement> getFinancialStatements() {
-        return this.financialStatements;
-    }
-
     public LocalDate getStatementDate(int statementNumber) {
         return financialStatements.get(statementNumber).getDate();
     }
-
 
 }
