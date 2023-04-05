@@ -42,6 +42,13 @@ is unpacked and travel with ease of mind.
 5. Execute the following command `java -jar Team_Project.jar`
 
 ---
+## <span style="color:#00A36C">Limitations</span>
+* BagPacker supports the tracking of integer values up to 1000000:
+>   * for total number of items in a packing list
+>   * for total / packed / unpacked quantity of any single item in a packing list
+>   * any form of list tracking above 1000000 integer size is not supported and may result in undefined outputs
+
+---
 
 ## <span style="color:#00A36C">Features</span>
 > **Notes about command format**
@@ -50,10 +57,6 @@ is unpacked and travel with ease of mind.
 > * `NAME` is a case-sensitive input.
 > * Additional parameters will be ignored for commands that do not need them.
 >   * For example, `deletelist abc123` will be interpreted as `deletelist`.
-> * BagPacker supports the tracking of integer values up to 1000000:
->   * for total number of items in a packing list
->   * for total / packed / unpacked quantity of any single item in a packing list
->   * any form of list tracking above 1000000 integer size is not supported and may result in undefined outputs
 
 ### <span style="color:#6495ED">Adding a new item:</span> `add`
 Adds a new item and its quantity to the packing list.
