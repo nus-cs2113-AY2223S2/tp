@@ -129,6 +129,8 @@ public class TestUi {
                     "\tFILTER stands for a specific requirement you want to include in your exercise\r\n" +
                     "[filters]\r\n" +
                     "\tView all available filters\r\n" +
+                    "ippt [AGE] [RUNTIME] [PUSHUP SCORE] [SITUP SCORE]\r\n"+
+                    "\tStarts an IPPT exercise session with input scores for the 3 sets of exercises.\r\n"+
                     "[start]\r\n" +
                     "\tStart a workout session\r\n" +
                     "[history]\r\n" +
@@ -157,6 +159,8 @@ public class TestUi {
                     "\tFILTER stands for a specific requirement you want to include in your exercise\n" +
                     "[filters]\n" +
                     "\tView all available filters\n" +
+                    "ippt [AGE] [RUNTIME] [PUSHUP SCORE] [SITUP SCORE]\r\n"+
+                    "\tStarts an IPPT exercise session with input scores for the 3 sets of exercises.\r\n"+
                     "[start]\n" +
                     "\tStart a workout session\n" +
                     "[history]\n" +
