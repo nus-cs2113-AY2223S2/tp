@@ -3,6 +3,7 @@ package seedu.duke.logic.commands;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
+import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 
@@ -37,6 +38,7 @@ public class ExerciseSearchCommand extends Command {
      * @param ui Prints out the respective exercises for a given keyword
      * @param exerciseGenerator Generates Exercise List with the relevant keyword
      */
+    //public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) {
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) {
         ArrayList<ExerciseData> exercisesList = new GenerateExercise().generateSetAll();
         assert exercisesList != null : "exercisesList should not be null.";

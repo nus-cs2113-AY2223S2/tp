@@ -3,6 +3,7 @@ package seedu.duke.logic.commands;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
+import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 
@@ -58,6 +59,9 @@ public class GenerateFilterCommand extends Command {
      * @param exerciseGenerator Generates Exercises
      * @throws DukeError duke error
      */
+
+    //test
+    //public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
         ArrayList<ExerciseData> ipptList = new ArrayList<>(exerciseGenerator.generateIPPTExercises(exercises));

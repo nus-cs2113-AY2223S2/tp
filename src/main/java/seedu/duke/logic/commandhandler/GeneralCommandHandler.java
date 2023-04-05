@@ -2,11 +2,7 @@ package seedu.duke.logic.commandhandler;
 
 import java.util.Scanner;
 import seedu.duke.achievements.AchievementListHandler;
-import seedu.duke.logic.commands.ExerciseSearchCommand;
-import seedu.duke.logic.commands.Command;
-import seedu.duke.logic.commands.GenerateFilterCommand;
-import seedu.duke.logic.commands.HelpCommand;
-import seedu.duke.logic.commands.QuickStartCommand;
+import seedu.duke.logic.commands.*;
 
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
@@ -156,6 +152,9 @@ public class GeneralCommandHandler implements CommandList {
             case ACHIEVEMENTS:
                 achievementListHandler.printAchievements();
                 break;
+            case QUICK_FIND_COMMAND:
+                command = new CompletedExerciseSearchCommand(userCommands, userCareerData);
+                break;
             default:
                 ui.unknownCommand();
                 errorExists = true;
@@ -168,7 +167,9 @@ public class GeneralCommandHandler implements CommandList {
         if (!errorExists) {
             try {
                 if (command != null) {
+                    //test
                     command.executeCommand(ui, exerciseGenerator);
+                    //command.executeCommand(ui, exerciseGenerator);
                     if (command instanceof GenerateFilterCommand) {
                         exerciseStateHandler
                             .storePreviousGeneratedWorkout(((GenerateFilterCommand) command).provideExerciseList());

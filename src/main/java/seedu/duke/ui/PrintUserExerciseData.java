@@ -1,5 +1,6 @@
 package seedu.duke.ui;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,9 +23,8 @@ public class PrintUserExerciseData {
             for (Map.Entry<String,Integer> entry: userExerciseHistory.entrySet()) {
                 String key = entry.getKey();
                 Integer value = entry.getValue();
-                String val = value.toString();
-                System.out.println(String.format("%-10s %-60s %-20s", "Exercise: ",
-                        key, "Times Completed: " + val));
+                System.out.println(key + System.lineSeparator() +
+                        "Times Completed: " + value + System.lineSeparator());
             }
         }
     }
