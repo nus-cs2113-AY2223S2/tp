@@ -54,6 +54,8 @@ public class Messages {
      */
     public static final String ERROR_COMMAND_INVALID = "Please give a valid command! " +
             "Type \"help\" for list of valid commands";
+    public static final String ERROR_HELP_EXCESS_PARAM = "help command should not have excess parameter.";
+    public static final String ERROR_EXIT_EXCESS_PARAM = "exit command should not have excess parameter.";
     public static final String ERROR_DEADLINE_INVALID_INDEX = "Invalid deadline index number!\n" +
             "Enter \"view_deadlines\" to check the index.";
     public static final String ERROR_DEADLINE_MISSING_INDEX = "Delete deadline command must be followed by an index!" +
