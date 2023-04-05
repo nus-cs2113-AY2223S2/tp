@@ -3,8 +3,9 @@ package seedu.todolist.storage;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParseException;
 import org.junit.jupiter.api.Test;
+import seedu.todolist.exception.FailedLoadException;
+import seedu.todolist.exception.FailedSaveException;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.logic.command.Command;
 import seedu.todolist.task.TaskList;
@@ -13,14 +14,12 @@ import seedu.todolist.ui.Ui;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-
+// need modify the tests
 class StorageTest {
     private static final String PROPER_SAVE_FILE = "./src/test/data/properSaveFile.txt";
     private static final String INVALID_SAVE_FILE = "./src/test/data/invalidSaveFile.txt";
@@ -31,7 +30,7 @@ class StorageTest {
     private Parser parser = new Parser();
     private Storage storage = new Storage(PROPER_SAVE_FILE);
     private Gson gson = new GsonBuilder().
-            registerTypeAdapter(LocalDateTime .class, new Storage.LocalDateTimeAdapter()).create();
+            registerTypeAdapter(LocalDateTime.class, new Storage.LocalDateTimeAdapter()).create();
 
     @Test
     void saveData_properFilePath_success() {
@@ -68,7 +67,7 @@ class StorageTest {
             storageDirectory.saveData(taskList, TEST_DATA_FOLDER);
             // The test should not reach the following line
             fail();
-        } catch (IOException e) {
+        } catch (FailedSaveException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -82,10 +81,8 @@ class StorageTest {
             fail();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
-        } catch (JsonParseException e) {
+        } catch (FailedLoadException e) {
             // this exception will be thrown
-            System.out.println(e.getMessage());
-        } catch (DateTimeParseException e) {
             System.out.println(e.getMessage());
         }
     }
