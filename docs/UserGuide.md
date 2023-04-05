@@ -120,8 +120,9 @@ Expected outcome:
 
 ```
 ____________________________________________________________
-Company has been successfully confirmed/uncomfirmed!
+Company has been successfully confirmed!
 ____________________________________________________________
+
 ```
 
 ### `unconfirm` - Marks a specific company's attendance as unconfirmed
@@ -134,8 +135,9 @@ Expected outcome:
 
 ```
 ____________________________________________________________
-Company has been successfully confirmed/uncomfirmed!
+Company has been successfully uncomfirmed!
 ____________________________________________________________
+
 ```
 ### `list unconfirmed` - Shows all stored companies marked with unconfirmed attendance
 Shows all the unconfirmed companies that are stored in the company list.
