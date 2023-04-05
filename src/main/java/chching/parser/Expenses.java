@@ -69,8 +69,8 @@ public class Expenses {
         } catch (Exception e) {
             throw new ChChingException("Expense value must be a valid float that is 2 d.p. or less");
         }
-        if (expenseValue > 1000000) {
-            throw new ChChingException("Expense value can at most be 1000000");
+        if (expenseValue > 999999.99) {
+            throw new ChChingException("Expense value cannot be 1000000 or more");
         } else if (expenseValue <= 0) {
             throw new ChChingException("Expense value must be greater than 0");
         }
@@ -87,7 +87,7 @@ public class Expenses {
     public static int getIndex(HashMap<String, String> argumentsByField) throws ChChingException {
         int index = -1;
 
-        // check if all the fields are present
+        // check if all t.he fields are present
         boolean isIndexPresent = argumentsByField.containsKey(INDEX_FIELD);
         if (!isIndexPresent) {
             throw new ChChingException("Index field not found");

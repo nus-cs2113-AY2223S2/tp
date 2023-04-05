@@ -59,8 +59,8 @@ public class Incomes {
         } catch (Exception e) {
             throw new ChChingException("Income value must be a valid float that is 2 d.p. or less");
         }
-        if (incomeValue > 1000000) {
-            throw new ChChingException("Income value can at most be 1000000");
+        if (incomeValue > 999999.99) {
+            throw new ChChingException("Income value cannot be 1000000 or more");
         } else if (incomeValue <= 0) {
             throw new ChChingException("Income value must be greater than 0");
         }
