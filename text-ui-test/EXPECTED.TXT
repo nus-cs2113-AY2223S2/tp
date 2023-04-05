@@ -37,7 +37,7 @@ ippt [AGE] [RUNTIME] [PUSHUP SCORE] [SITUP SCORE]
 	Shows all the available achievements, their requirements and whether they have been achieved or not
 [clear_achievements]
 	Clears all the data of finished exercises for the achievements database, resetting counters for all achievements.  
- 	Do note that this command does not clear the counters for each specific exercise, hence the number of each exercise completed from the data command will NOT be cleared.
+	Do note that this command does not clear the counters for each specific exercise, hence the number of each exercise completed from the data command will NOT be cleared.
 [exit]
 	End the program
 ________________________________________
