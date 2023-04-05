@@ -1,11 +1,12 @@
 //@@author WilsonLee2000
 
 package seedu.badmaths;
+import seedu.badmaths.note.NotesList;
 import seedu.badmaths.ui.Ui;
 
 public class List {
 
-    public  NotesList notes;
+    public NotesList notes;
     protected  String toDo;
 
     public List(NotesList notes, String toDo) {

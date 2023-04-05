@@ -3,6 +3,7 @@ package seedu.badmaths;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
+import seedu.badmaths.storage.NotesFileCleaner;
 
 import java.io.File;
 import java.io.FileWriter;

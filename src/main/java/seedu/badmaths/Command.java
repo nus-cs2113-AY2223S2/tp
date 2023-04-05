@@ -7,6 +7,9 @@
  */
 
 package seedu.badmaths;
+import seedu.badmaths.commands.*;
+import seedu.badmaths.note.NotesList;
+import seedu.badmaths.storage.NotesFileCleaner;
 import seedu.badmaths.trigograph.TrigoGraph;
 import seedu.badmaths.ui.Ui;
 import seedu.badmaths.matrix.Calculator;
@@ -67,6 +70,11 @@ public class Command {
         Calculator calculator = new Calculator();
         Quadratic quadratic = new Quadratic(toDo);
         CommandHistory commandHist = new CommandHistory(historyCommand);
+        NotesMarker notesMarker = new NotesMarker(notes, filePath);
+        PrioritySetter prioritySetter = new PrioritySetter(notes, filePath);
+        NotesFinder notesFinder = new NotesFinder(notes, filePath);
+        NotesPriorityFinder notesPriorityFinder = new NotesPriorityFinder(notes, filePath);
+        NotesRanker notesRanker = new NotesRanker(notes, filePath);
 
 
         try {
@@ -106,89 +114,29 @@ public class Command {
                 break;
             case "History":
                 // print out all commands typed in the list
-                //CommandHistory commandHist = new CommandHistory(command);
                 commandHist.displayHistory();
                 break;
             //@@author ZiqiuZeng
             case "Mark":
-                if (isAnInt(toDo)) {
-                    break;
-                }
-                int markIndex = Integer.parseInt(toDo) - 1;
-                if (isInvalidIndex(markIndex, notes)) {
-                    throw new IllegalIndexException();
-                }
-                notes.markAsDone(markIndex);
-                Ui.printMark(notes.getText(markIndex));
-                Storage.saveFile(filePath, notes.getAll());
+                notesMarker.mark(toDo);
                 break;
             //@@author ZiqiuZeng
             case "Unmark":
-                if (!isAnInt(toDo)) {
-                    break;
-                }
-                int unmarkIndex = Integer.parseInt(toDo) - 1;
-                if (isInvalidIndex(unmarkIndex, notes)) {
-                    throw new IllegalIndexException();
-                }
-                notes.markAsUndone(unmarkIndex);
-                Ui.printUnmark(notes.getText(unmarkIndex));
-                Storage.saveFile(filePath, notes.getAll());
+                notesMarker.unmark(toDo);
                 break;
             //@@author ZiqiuZeng
             case "Low":
-                int lowIndex = Integer.parseInt(toDo) - 1;
-                if (isInvalidIndex(lowIndex, notes)) {
-                    throw new IllegalIndexException();
-                }
-                notes.setPriority(lowIndex, NotePriority.Priority.LOW);
-                Ui.printPriority(lowIndex, notes.getAll());
-                Storage.saveFile(filePath, notes.getAll());
-                break;
-            //@@author ZiqiuZeng
             case "Medium":
-                int mediumIndex = Integer.parseInt(toDo) - 1;
-                if (isInvalidIndex(mediumIndex, notes)) {
-                    throw new IllegalIndexException();
-                }
-                notes.setPriority(mediumIndex, NotePriority.Priority.MEDIUM);
-                Ui.printPriority(mediumIndex, notes.getAll());
-                Storage.saveFile(filePath, notes.getAll());
-                break;
-            //@@author ZiqiuZeng
             case "High":
-                int highIndex = Integer.parseInt(toDo) - 1;
-                if (isInvalidIndex(highIndex, notes)) {
-                    throw new IllegalIndexException();
-                }
-                notes.setPriority(highIndex, NotePriority.Priority.HIGH);
-                Ui.printPriority(highIndex, notes.getAll());
-                Storage.saveFile(filePath, notes.getAll());
+                prioritySetter.setPriority(command,toDo);
                 break;
             //@@author ZiqiuZeng
             case "FindInfo":
-                if (isInvalidTodo(toDo)) {
-                    throw new IllegalTodoException();
-                }
-                String keyword = toDo;
-                Ui.printFindNotes(notes.relevantInfo(keyword));
-                Storage.saveFile(filePath, notes.getAll());
+                notesFinder.find(toDo);
                 break;
             //@@author ZiqiuZeng
             case "FindPrior":
-                switch (toDo.toLowerCase()) {
-                case "low":
-                    Ui.printFindNotes(notes.relevantPriority(NotePriority.Priority.LOW.name()));
-                    break;
-                case "medium":
-                    Ui.printFindNotes(notes.relevantPriority(NotePriority.Priority.MEDIUM.name()));
-                    break;
-                case "high":
-                    Ui.printFindNotes(notes.relevantPriority(NotePriority.Priority.HIGH.name()));
-                    break;
-                default:
-                    throw new IllegalTodoException();
-                }
+                notesPriorityFinder.find(toDo);
                 break;
             //@@author ZiqiuZeng
             case "FindMark":
@@ -200,20 +148,7 @@ public class Command {
                 break;
             //@@author ZiqiuZeng
             case "Rank":
-                switch (toDo) {
-                case "Review Count":
-                    notes.rankByReviewCount();
-                    Ui.printNotesByReviewCount(notes.getAll());
-                    Storage.saveFile(filePath, notes.getAll());
-                    break;
-                case "Priority":
-                    notes.rankByPriority();
-                    Ui.printNotesByPriority(notes.getAll());
-                    Storage.saveFile(filePath, notes.getAll());
-                    break;
-                default:
-                    throw new IllegalTodoException();
-                }
+                notesRanker.rank(toDo);
                 break;
             /*
              * The command "Clear" will continue to execute for as long as it is being entered,
@@ -221,7 +156,7 @@ public class Command {
              */
             case "Clear":
                 notes.reset();
-                Storage.clearFile(filePath);
+                NotesFileCleaner.clearFile(filePath);
                 break;
             /*
              * The command "Help" will continue to execute for as long as it is being entered,

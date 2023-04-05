@@ -1,7 +1,7 @@
 package seedu.badmaths.ui;
 
-import seedu.badmaths.Note;
-import seedu.badmaths.NotePriority;
+import seedu.badmaths.note.Note;
+import seedu.badmaths.note.NotePriority;
 
 import java.util.ArrayList;
 

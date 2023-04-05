@@ -1,20 +1,19 @@
-package seedu.badmaths;
+package seedu.badmaths.storage;
 
+import seedu.badmaths.InvalidFormatException;
 import seedu.badmaths.note.Note;
 import seedu.badmaths.note.NotePriority;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.IOException;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Scanner;
+import java.util.TimerTask;
+import java.util.Timer;
 
-public class Storage {
+public class NotesFileParser {
     public static ArrayList<Note> loadFile(String path) {
         ArrayList<Note> notes = new ArrayList<>();
         try {
@@ -117,66 +116,5 @@ public class Storage {
 
         return notes;
     }
-    private static String fileContent(ArrayList<Note> notes) {
-        StringBuilder content = new StringBuilder();
-        for(Note note : notes) {
-            //priority
-            NotePriority.Priority priority = note.getPriority();
-            String priorityStr = priority.name();
-            content.append(priorityStr).append("\t");
-            //status
-            boolean isDone = note.getIsDone();
-            String isDoneStatus = "N";
-            if(isDone) {
-                isDoneStatus = "Y";
-            }
-            content.append(isDoneStatus).append("\t");
-            //count
-            int reviewCount = note.getReviewCount();
-            String reviewCountStr = String.valueOf(reviewCount);
-            content.append(reviewCountStr).append("\t");
-            //text
-            String noteText = note.getText();
-            content.append(noteText);
-            //line separator
-            content.append(System.lineSeparator());
-        }
-        return content.toString();
-    }
-    public static void saveFile(String path, ArrayList<Note> notes) {
-        File file = new File(path);
-        if (!file.exists()) {
-            System.out.println("File not exists, create it ...");
-            if (!file.getParentFile().exists()) {
-                System.out.println("Directory not exists, create it ...");
-                file.getParentFile().mkdirs();
-            }
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            FileWriter fl = new FileWriter(path);
-            fl.write(fileContent(notes));
-            fl.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void clearFile(String path) {
-        try {
-            FileWriter fileWriter = new FileWriter(path);
-            fileWriter.write("");
-            fileWriter.close();
-            System.out.println("File content cleared successfully!");
-        } catch (IOException e) {
-            System.out.println("An error occurred while clearing the file content.");
-            e.printStackTrace();
-        }
-    }
 }
-
-
 

@@ -1,6 +1,8 @@
 //@@author WilsonLee2000
 
 package seedu.badmaths;
+import seedu.badmaths.note.NotesList;
+import seedu.badmaths.storage.NotesFileWriter;
 import seedu.badmaths.ui.Ui;
 
 public class Store {
@@ -28,7 +30,7 @@ public class Store {
             }
             notes.add(toDo);
             Ui.printAddNote(toDo, notes.getSize());
-            Storage.saveFile(filePath, notes.getAll());
+            NotesFileWriter.saveFile(filePath, notes.getAll());
         } catch (IllegalTodoException exception) {
             Ui.printIncorrectFormatEntered();
         }
