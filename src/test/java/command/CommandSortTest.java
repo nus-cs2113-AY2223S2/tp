@@ -9,7 +9,7 @@ import java.io.PrintStream;
 
 
 import static common.MessageList.MESSAGE_DIVIDER;
-import static common.MessageList.MESSAGE_DIVIDER_LIST;
+import static common.MessageList.MESSAGE_DIVIDER_SORTEDLIST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommandSortTest {
@@ -33,7 +33,7 @@ public class CommandSortTest {
         System.setOut(new PrintStream(outContent));
 
         String input = "C";
-        String expected = MESSAGE_DIVIDER_LIST + "\n"
+        String expected = MESSAGE_DIVIDER_SORTEDLIST + "\n"
                 + "Category: eat\n"
                 + "1.USD2.50 date:02/02/2013\n"
                 + "Category: food\n"
@@ -49,7 +49,7 @@ public class CommandSortTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         input = "D";
-        expected = MESSAGE_DIVIDER_LIST + "\n"
+        expected = MESSAGE_DIVIDER_SORTEDLIST + "\n"
                 + "Date: 02/02/2012\n"
                 + "1.SGD2.50 cat:food\n"
                 + "2.USD2.50 cat:food\n"

@@ -60,14 +60,7 @@ public class CommandCategory extends Command {
         } else {
             displayAllCategories();
             System.out.println(MESSAGE_DIVIDER_CATEGORY);
-            int index = 1;
-            for (Expense e : expenseList) {
-                if (e.getDescription().equals(category)) {
-                    System.out.print((index) + ".");
-                    System.out.println(e.sortedDisplay("C"));
-                    index++;
-                }
-            }
+            displayCorrespondingCategory(category);
             System.out.println(MESSAGE_DIVIDER);
         }
         return null;
@@ -104,6 +97,18 @@ public class CommandCategory extends Command {
                             .calculateTotal().setScale(2, RoundingMode.HALF_UP)));
         }
         return expensesByCategorySum;
+    }
+
+    private void displayCorrespondingCategory(String category) {
+        System.out.println("Category: " + category);
+        int index = 1;
+        for (Expense e : expenseList) {
+            if (e.getDescription().equals(category)) {
+                System.out.print((index) + ".");
+                System.out.println(e.sortedDisplay("C"));
+                index++;
+            }
+        }
     }
 
 }
