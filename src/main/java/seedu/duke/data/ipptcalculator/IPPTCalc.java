@@ -2,10 +2,12 @@ package seedu.duke.data.ipptcalculator;
 
 import com.google.gson.Gson;
 import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.data.exercisegenerator.exersisedata.ExerciseDataList;
 import seedu.duke.ui.ErrorMessages;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.Objects;
 
 public class IPPTCalc {
