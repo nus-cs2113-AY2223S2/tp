@@ -200,7 +200,7 @@ public class Parser {
         try {
             category = argumentsByField.get("c");
         } catch (Exception e) {
-            throw new ChChingException("missing/invalid category");
+            throw new ChChingException("Missing/invalid category");
         }
         return category;
     }
@@ -209,7 +209,7 @@ public class Parser {
         try {
             keyword = argumentsByField.get("k");
         } catch (Exception e) {
-            throw new ChChingException("missing/invalid keyword");
+            throw new ChChingException("Missing/invalid keyword");
         }
         return keyword;
     }
