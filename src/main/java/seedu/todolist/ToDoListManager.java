@@ -28,14 +28,12 @@ public class ToDoListManager {
             taskList.checkRepeatingTasks();
             ui.printLoadSaveMessage(taskList.size());
             new ProgressBarCommand().execute(taskList, ui);
-        }
-        catch (FileNotFoundException e) { // No save file found
+        } catch (FileNotFoundException e) { // No save file found
             ui.printNewSaveMessage();
             // Loading save file failed, save new empty task list immediately instead of waiting for a command
             try {
                 storage.saveData(taskList, Storage.DEFAULT_SAVE_PATH);
-            }
-            catch (FailedSaveException e2) {
+            } catch (FailedSaveException e2) {
                 ui.printError(e2);
             }
         } catch (FailedLoadException e3) { // caught an error in the saved file
