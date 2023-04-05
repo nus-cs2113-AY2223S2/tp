@@ -7,8 +7,10 @@ import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackCommand;
 import bagpacker.commands.DeleteListCommand;
 import bagpacker.commands.PackAllCommand;
+import bagpacker.commands.UnpackAllCommand;
 import bagpacker.commands.FindCommand;
 import bagpacker.commands.ByeCommand;
+
 
 /**
  * Ui class contains methods to print messages to user interface on Command Line Interface
@@ -78,8 +80,9 @@ public class Ui {
         System.out.println("5. " + UnpackCommand.HELP_MSG);
         System.out.println("6. " + DeleteListCommand.HELP_MSG);
         System.out.println("7. " + PackAllCommand.HELP_MSG);
-        System.out.println("8. " + FindCommand.HELP_MSG);
-        System.out.println("8. " + ByeCommand.HELP_MSG);
+        System.out.println("8. " + UnpackAllCommand.HELP_MSG);
+        System.out.println("9. " + FindCommand.HELP_MSG);
+        System.out.println("10. " + ByeCommand.HELP_MSG);
         printLine();
     }
 
