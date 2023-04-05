@@ -17,7 +17,7 @@ public class Incomes {
         try {
             incomeDate = LocalDate.parse(incomeDateString, formatter);
         } catch (DateTimeParseException e) {
-            throw new ChChingException("Date must be valid with format: dd-MM-yyyy");
+            throw new ChChingException("Date must be valid and have format: \"DD-MM-YYYY\"");
         }
         if (incomeDate.isAfter(LocalDate.now())) {
             throw new ChChingException("Date cannot be in the future");
@@ -32,19 +32,23 @@ public class Incomes {
      */
     public static Income parseIncome(HashMap<String, String> argumentsByField) throws ChChingException {
         Income inc = null;
-        try {
             String incomeDescription = argumentsByField.get("de");
             String incomeDateString = argumentsByField.get("da");
             LocalDate incomeDate = parseDate(incomeDateString);
-            float incomeValue = Float.parseFloat(argumentsByField.get("v"));
-            if(incomeValue > 1000000){
+            
+            float incomeValue;
+            try {
+                incomeValue = Float.parseFloat(argumentsByField.get("v"));
+            } catch (Exception e) {
+                throw new ChChingException("Income value must be a valid float that is 2 d.p. or less");
+            }
+            if (incomeValue > 1000000){
                 throw new ChChingException("Income value can at most be 1000000");
+            } else if (incomeValue <= 0) {
+                throw new ChChingException("Income value must be greater than 0");
             }
             assert incomeValue > 0 : "incomeValue has to be more than 0";
             inc = new Income(incomeDescription, incomeDate, incomeValue);
-        } catch (Exception e) {
-            throw new ChChingException("Trouble adding income value");
-        }
         return inc;
     }
 
