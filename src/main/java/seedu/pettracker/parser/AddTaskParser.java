@@ -19,7 +19,7 @@ public class AddTaskParser implements ArgParser<AddTaskCommand>{
             throw new EmptyArgException(EMPTY_ARG_MESSAGE);
         }
         try {
-            String[] args = commandArgs.split(" /by ");
+            String[] args = commandArgs.split(" */by *");
             String description = args[0];
             LocalDate deadline;
             if (args.length == 2) {
