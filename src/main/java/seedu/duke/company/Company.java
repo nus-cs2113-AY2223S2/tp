@@ -54,13 +54,8 @@ public class Company {
 
     @Override
     public String toString() {
-        String companyInfo = "Company name: " + companyName + "\nCompany contact number: ";
-        if(getContactNumber() < 10000000){
-            companyInfo = companyInfo.concat("0");
-        }
-        companyInfo = companyInfo.concat( contactNumber + "\nCompany contact email: "  + contactEmail +
-                            "\nCompany industry: " + industry + "\n[" + this.getConfirmStatus() + "]");
-
-        return companyInfo;
+        return "Company name: " + companyName + "\nCompany contact number: " + contactNumber +
+                "\nCompany contact email: "  + contactEmail + "\nCompany industry: " + industry +
+                "\n[" + this.getConfirmStatus() + "]";
     }
 }
