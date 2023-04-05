@@ -1,7 +1,9 @@
 package functionalities.appointments;
 
+import exception.SniffException;
 import functionalities.Animal;
 import functionalities.Owner;
+import functionalities.SniffTasks;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,7 +17,7 @@ import java.time.LocalTime;
 public class Surgery extends Appointment {
 
     public enum priorityLevel {
-        HIGH, MEDIUM, LOW, NA
+        HIGH, MEDIUM, LOW
     }
 
     protected priorityLevel priority;
@@ -26,8 +28,9 @@ public class Surgery extends Appointment {
     protected char priorityType;
     protected String description = "surgery";
 
-    public Surgery(String uid, Animal animal, Owner owner, String priority,
-                   LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime) {
+    public Surgery(String uid, Animal animal, Owner owner,
+                   String priority, LocalDate startDate, LocalTime startTime,
+                   LocalDate endDate, LocalTime endTime) throws SniffException{
         super(uid, animal, owner);
         this.uid = uid;
         this.animal = animal;
@@ -40,7 +43,7 @@ public class Surgery extends Appointment {
         this.endTime = endTime;
     }
 
-    public priorityLevel setPriority(String priority) {
+    public priorityLevel setPriority(String priority) throws SniffException{
         switch (priority) {
         case "H":
             return priorityLevel.HIGH;
@@ -49,7 +52,7 @@ public class Surgery extends Appointment {
         case "L":
             return priorityLevel.LOW;
         default:
-            return priorityLevel.NA;
+            throw new SniffException(" Priority has to be H, M, L.");
         }
     }
 
