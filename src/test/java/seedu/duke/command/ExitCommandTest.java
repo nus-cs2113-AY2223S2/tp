@@ -27,7 +27,7 @@ public class ExitCommandTest {
         ArrayList<Deadline> deadlines = new ArrayList<>();
         Storage storage = new Storage();
         DeadlineStorage deadlineStorage = new DeadlineStorage();
-        Parser parser = new Parser();
+        Parser parser = Parser.getInstance();
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof ExitCommand);

@@ -18,7 +18,7 @@ public class Duke {
     private static BudgetPlanner budgetPlanner = new BudgetPlanner();
     private static UI ui = new UI();
 
-    private static Parser parser = new Parser();
+    private static Parser parser = Parser.getInstance();
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
