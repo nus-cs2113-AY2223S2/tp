@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ParserTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
     FinancialReport financialReport = new FinancialReport(statements);
-    UserData userData = new UserData(financialReport);
+    SavedData savedData = new SavedData(financialReport);
     HashMap<Integer, Double> expenditures = new HashMap<>();
     MonthlyExpenditures monthlyExpenditures = new MonthlyExpenditures(expenditures);
 
@@ -77,7 +77,7 @@ class ParserTest {
         try {
             new Parser().parseUserInput("add -out rice $5 -date aa/bb/cccc");
         } catch (Exception e) {
-            assertEquals(ErrorMessage.INVALID_DAY.toString(),
+            assertEquals(ErrorMessage.INVALID_DAY + ErrorMessage.ADD_FORMAT.toString(),
                     e.getMessage().toString());
         }
     }
@@ -155,11 +155,11 @@ class ParserTest {
 
     @Test
     public void parseEditCommand() throws RainyDayException {
-        RainyDay.userData = userData;
-        userData.getFinancialReport().clearReport();
+        RainyDay.savedData = savedData;
+        savedData.getFinancialReport().clearReport();
         assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("edit 1 -out"));
 
-        userData.addStatement(new FinancialStatement("noodles", "in", 5, "miscellaneous",
+        savedData.addStatement(new FinancialStatement("noodles", "in", 5, "miscellaneous",
                 LocalDate.now()));
         assertEquals(EditCommand.class, new Parser().parseUserInput("edit 1 -out").getClass());
         assertEquals(EditCommand.class, new Parser().parseUserInput("edit 1 -out -d Beef noodles -v $15 -c Food and " +

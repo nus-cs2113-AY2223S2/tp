@@ -48,14 +48,14 @@ public class DeleteCommand extends Command {
 
         index -= 1;
 
-        int previousStatementCount = userData.getStatementCount(); // only used for assertion
-        assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for delete";
+        int previousStatementCount = savedData.getStatementCount(); // only used for assertion
+        assert (index < savedData.getStatementCount() && index >= 0) : "invalid index provided for delete";
 
-        FinancialStatement oldStatement = userData.getStatement(index);
-        userData.deleteStatement(index);
-        assert previousStatementCount - 1 == userData.getStatementCount() : "statement count mismatch";
+        FinancialStatement oldStatement = savedData.getStatement(index);
+        savedData.deleteStatement(index);
+        assert previousStatementCount - 1 == savedData.getStatementCount() : "statement count mismatch";
 
-        String budgetInfo = userData.checkUserBudgetLimit(oldStatement.getDate());
+        String budgetInfo = savedData.checkUserBudgetLimit(oldStatement.getDate());
 
         String output = "Done, deleted \"" + oldStatement.getDescription() + "\" from the financial report"
                 + budgetInfo;

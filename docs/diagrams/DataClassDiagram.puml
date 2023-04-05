@@ -1,0 +1,95 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 2
+hide circle
+hide empty methods
+
+package Data {
+
+class "<<enumeration>>\nFlowDirection" as FlowDirection
+
+Class UserData {
++getSavedData(): SavedData
++getMonthlyExpenditures(): MonthlyExpenditures
+}
+
+Class SavedData {
+-shortcutCommands: HashMap<String, String>
+-budgetGoal: double
++getFinancialReport(): FinancialReport
++getShortcutCommands(): HashMap<String, String>
++setBudgetGoal(goal: double): void
++getBudgetGoal(): double
++getStatementCount(): int
++checkUserBudgetLimit(currentDate: LocalDate): String
++getStatement(statementIndex): FinancialStatement
++deleteStatement(statementIndex: int): void
++getStatementDate(statementIndex: int): LocalDate
++addStatement(statement: FinancialStatement): void
++getReportOwner(): String
+}
+
+Class MonthlyExpenditures {
+-{static}monthlyExpenditures: HashMap<Integer, Double>
++loadAllExpenditures(fullFinancialReport: FinancialReport): void
++{static}getMonthlyExpenditure(monthAndYear: int): double
++{static}addToMonthlyExpenditure(statement: FinancialStatement): void
++{static}removeFromMonthlyExpenditure(statement: FinancialStatement): void
+}
+
+Class FinancialReport {
+-reportOwner: String
++getReportOwner(): String
++setReportOwner(name: String): void
++getStatementCount(): int
++addStatement(statement: FinancialStatement): void
++deleteStatement(statementNumber: int): void
++getFullStatement(statementNumber: int): String
++clearReport(): void
++getFinancialStatement(statementNumber: int): FinancialStatement
++getStatementDate(statementNumber: int): LocalDate
+}
+
+Class FinancialStatement {
+-{static}INFLOW_WORD: String = "in"
+-{static}OUTFLOW_WORD: String = "out"
+-{static}INFLOW_SYMBOL: String = "+"
+-{static}OUTFLOW_SYMBOL: String = "-"
+-description: String
+-value: double
+-category: String
+-date: LocalDate
+-isIgnored: boolean
++getCategory(): String
++setCategory(category: String): void
++getDescription(): String
++setDescription(description: String): void
++getFlowDirection(): FlowDirection
++setFlowDirection(flowDirection: flowDirection): void
++getFlowDirectionWord(): String
++getValue(): double
++setValue(value: double): void
++getFlowSymbol(): String
++getDate(): LocalDate
++getMonthAndYear(): int
++setDate(date: LocalDate): void
++getFullStatement(): String
++getStatementForList(): String
++isIgnored(): boolean
++setIgnore(ignoreStatus): void
+}
+
+Class FlowDirection {
+OUTFLOW
+INFLOW
+}
+
+UserData -> "1"SavedData
+UserData -left-> "1"MonthlyExpenditures
+
+SavedData -down-> "1"FinancialReport
+
+FinancialReport -left-> "*"FinancialStatement
+
+FinancialStatement -left-> "1"FlowDirection
+@enduml

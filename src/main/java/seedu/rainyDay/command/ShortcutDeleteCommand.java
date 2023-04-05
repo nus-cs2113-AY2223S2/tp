@@ -21,7 +21,7 @@ public class ShortcutDeleteCommand extends ShortcutCommand {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ShortcutDeleteCommand.execute()");
-        shortcutCommands = userData.getShortcutCommands();
+        shortcutCommands = savedData.getShortcutCommands();
         if (shortcutCommands.containsKey(keyToDelete)) {
             shortcutCommands.remove(keyToDelete);
             logger.log(Level.INFO, "Successful ShortcutDeleteCommand.execute()");

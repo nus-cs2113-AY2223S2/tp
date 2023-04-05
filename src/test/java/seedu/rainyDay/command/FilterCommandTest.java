@@ -2,10 +2,10 @@ package seedu.rainyDay.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.RainyDay;
-import seedu.rainyDay.data.AllData;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.MonthlyExpenditures;
+import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.data.UserData;
 
 import java.time.LocalDate;
@@ -20,15 +20,15 @@ public class FilterCommandTest {
     FinancialReport financialReport = new FinancialReport(statements);
     HashMap<Integer, Double> expenditures = new HashMap<>();
     MonthlyExpenditures monthlyExpenditures = new MonthlyExpenditures(expenditures);
-    UserData userData = new UserData(financialReport);
-    AllData allData = new AllData(userData, monthlyExpenditures);
+    SavedData savedData = new SavedData(financialReport);
+    UserData userData = new UserData(savedData, monthlyExpenditures);
     ArrayList<String> filterFlagAndField = new ArrayList<>();
     String found = "Here are the list of matching items!";
     String notFound = "We could not find any matches for your description in your report";
 
     @Test
     public void filterSingleFlag() {
-        RainyDay.userData = allData.getUserData();
+        RainyDay.savedData = userData.getSavedData();
 
         financialReport.addStatement(new FinancialStatement(
                 "Chicken rice", "out", 5, "Food",
@@ -46,39 +46,39 @@ public class FilterCommandTest {
         filterFlagAndField.add("-d");
         filterFlagAndField.add("chicken");
         FilterCommand filterCommand = new FilterCommand(filterFlagAndField);
-        filterCommand.setData(allData);
+        filterCommand.setData(userData);
         assertEquals("We found 1 matching item!", filterCommand.execute().output);
 
         filterFlagAndField.clear();
         filterFlagAndField.add("-c");
         filterFlagAndField.add("Food");
         filterCommand = new FilterCommand(filterFlagAndField);
-        filterCommand.setData(allData);
+        filterCommand.setData(userData);
         assertEquals("We found 3 matching items!", filterCommand.execute().output);
 
         filterFlagAndField.clear();
         filterFlagAndField.add("-date");
         filterFlagAndField.add("01/02/2023");
         filterCommand = new FilterCommand(filterFlagAndField);
-        filterCommand.setData(allData);
+        filterCommand.setData(userData);
         assertEquals("We found 1 matching item!", filterCommand.execute().output);
 
         filterFlagAndField.clear();
         filterFlagAndField.add("-in");
         filterCommand = new FilterCommand(filterFlagAndField);
-        filterCommand.setData(allData);
+        filterCommand.setData(userData);
         assertEquals("We found 2 matching items!", filterCommand.execute().output);
 
         filterFlagAndField.clear();
         filterFlagAndField.add("-out");
         filterCommand = new FilterCommand(filterFlagAndField);
-        filterCommand.setData(allData);
+        filterCommand.setData(userData);
         assertEquals("We found 3 matching items!", filterCommand.execute().output);
     }
 
     @Test
     public void filterMultipleFlags() {
-        RainyDay.userData = allData.getUserData();
+        RainyDay.savedData = userData.getSavedData();
 
         financialReport.addStatement(new FinancialStatement(
                 "Chicken rice", "out", 5, "Food",
@@ -102,7 +102,7 @@ public class FilterCommandTest {
         filterFlagAndField.add("-date");
         filterFlagAndField.add("01/04/2023");
         FilterCommand filterCommand = new FilterCommand(filterFlagAndField);
-        filterCommand.setData(allData);
+        filterCommand.setData(userData);
         assertEquals("We found 2 matching items!", filterCommand.execute().output);
 
         filterFlagAndField.clear();

@@ -35,15 +35,15 @@ public class ExportCommand extends Command {
         logger.log(Level.INFO, "starting ExportCommand.execute()");
         String output;
 
-        if (userData.getStatementCount() == 0) {
+        if (savedData.getStatementCount() == 0) {
             logger.log(Level.INFO, "empty financial report, export aborted.");
             output = EMPTY_STATEMENT;
             return new CommandResult(output);
         }
-        assert userData.getStatementCount() > 0 : "Should have at least 1 financial statement to export";
+        assert savedData.getStatementCount() > 0 : "Should have at least 1 financial statement to export";
 
         try {
-            Storage.writeToCSV(userData.getFinancialReport());
+            Storage.writeToCSV(savedData.getFinancialReport());
             output = CSV_EXPORT_SUCCESS;
             logger.log(Level.INFO, "Export to CSV successful");
         } catch (IOException e) {

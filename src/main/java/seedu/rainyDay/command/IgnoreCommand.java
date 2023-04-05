@@ -38,9 +38,9 @@ public class IgnoreCommand extends Command {
         String output;
         index -= 1;
 
-        FinancialStatement currentStatement = userData.getStatement(index);
-        int previousStatementCount = userData.getStatementCount();
-        assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for ignore";
+        FinancialStatement currentStatement = savedData.getStatement(index);
+        int previousStatementCount = savedData.getStatementCount();
+        assert (index < savedData.getStatementCount() && index >= 0) : "invalid index provided for ignore";
         if (this.command.equalsIgnoreCase("unignore") && currentStatement.isIgnored()) {
             currentStatement.setIgnore(false);
             output = "Done, Entry " + (index + 1) + " included in overview calculations";
@@ -57,7 +57,7 @@ public class IgnoreCommand extends Command {
             output = "Entry " + (index + 1) + " is already ignored from overview calculations";
         }
 
-        assert previousStatementCount == userData.getStatementCount() : "statement count mismatch";
+        assert previousStatementCount == savedData.getStatementCount() : "statement count mismatch";
         return new CommandResult(output);
     }
 }

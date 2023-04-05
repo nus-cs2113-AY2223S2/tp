@@ -54,8 +54,8 @@ public class EditCommand extends Command {
         logger.log(Level.INFO, "starting EditCommand.execute()");
 
         index -= 1;
-        int previousStatementCount = userData.getStatementCount();
-        assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for edit";
+        int previousStatementCount = savedData.getStatementCount();
+        assert (index < savedData.getStatementCount() && index >= 0) : "invalid index provided for edit";
 
         if (editFlagAndField.get(0).equalsIgnoreCase("-in") ||
                 editFlagAndField.get(0).equalsIgnoreCase("-out")) {
@@ -63,7 +63,7 @@ public class EditCommand extends Command {
             editFlagAndField.remove(0);
         }
 
-        FinancialStatement editedStatement = userData.getStatement(index);
+        FinancialStatement editedStatement = savedData.getStatement(index);
         MonthlyExpenditures.removeFromMonthlyExpenditure(editedStatement);
         for (int i = 0; i < editFlagAndField.size(); i += 2) {
             if (editFlagAndField.get(i).equalsIgnoreCase("-d")) {
@@ -86,7 +86,7 @@ public class EditCommand extends Command {
         String output = "Done, edited entry " + (index + 1)
                 + " from the financial report";
 
-        assert previousStatementCount == userData.getStatementCount() : "statement count mismatch";
+        assert previousStatementCount == savedData.getStatementCount() : "statement count mismatch";
 
         logger.log(Level.INFO, "deleted from financial report");
 
