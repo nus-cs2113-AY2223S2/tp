@@ -100,31 +100,35 @@ public class Ui {
     private void printTaskCommands(){
         System.out.print("These are the available Task Commands and their corresponding commands (in brackets):\n\n" +
                 "1. `list` - Track and organises your tasklist!\n" +
-                "2. `todo` - Adds a ToDo in your tasklist.\n" +
-                "3. `deadline` - Adds a Deadline in your tasklist.\n" +
-                "4. `event` - Adds an Event in your tasklist.\n" +
-                "5. `mark` - Marks a task in your tasklist as done!\n" +
-                "6. `unmark` - Unmarks a task in your tasklist as incomplete.\n" +
-                "7. `delete` - Deletes a task from your list.\n" +
-                "8. `find` - Shows all tasks that contain a specified keyword.\n" +
-                "9. `date` - Shows all tasks that occur on the specified date.\n\n");
+                "2. `todo [TASK]` - Adds a ToDo in your tasklist.\n" +
+                "3. `deadline [TASK] -[BY]` - Adds a Deadline in your tasklist.\n" +
+                "4. `event [TASK] -[FROM] -[TO]` - Adds an Event in your tasklist.\n" +
+                "5. `mark [IDX]` - Marks a task in your tasklist as done!\n" +
+                "6. `unmark [IDX]` - Unmarks a task in your tasklist as incomplete.\n" +
+                "7. `delete [IDX]` - Deletes a task from your list.\n" +
+                "8. `find [KEYWORD]` - Shows all tasks that contain a specified keyword.\n" +
+                "9. `date [DATE]` - Shows all tasks that occur on the specified date.\n\n");
     }
 
     private void printModuleCommands(){
         System.out.print("These are the available Module Commands and their corresponding commands (in brackets):\n\n" +
                 "1. `listmod` - Track and organise your academic plan for this semester!\n" +
-                "2. `showmod [MODULE_CODE]` - " +
+                "2. `listmod [MODULE_CODE] - See more information about the classes you've added " +
+                "for a module in your list.\n"+
+                "3. `listmod [MODULE_CODE] -[FLAG]` - See more information about a specific class type " +
+                "for a module in your list\n"+
+                "4. `showmod [MODULE_CODE]` - " +
                 "See more information about the specified module.\n"
                 +
-                "3. `showmod [MODULE_CODE] -[FLAG]` - " +
+                "5. `showmod [MODULE_CODE] -[FLAG]` - " +
                 "View timing of specific" + " lesson type for a chosen module\n"
                 +
-                "4. `addmod [MODULE_CODE]` - Adds a module to your module list.\n" +
-                "5. `addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]` - Adds a chosen lesson of a " +
+                "6. `addmod [MODULE_CODE]` - Adds a module to your module list.\n" +
+                "7. `addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]` - Adds a chosen lesson of a " +
                 "specified module to your timetable! \n" +
-                "6. `Remove a module (delmod [MODULE_CODE or IDX]` - Removes a Module you previously added by code " +
+                "8. `Remove a module (delmod [MODULE_CODE or IDX]` - Removes a Module you previously added by code " +
                 "or index in module list.\n" +
-                "7. `delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]` " +
+                "9. `delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]` " +
                 "- Removes a lesson of a specified module from your timetable. \n\n");
     }
 
@@ -134,13 +138,12 @@ public class Ui {
                 "2. `bye` - Exit the program\n" +
                 "3. `help` - Get a summary of all the commands available on Apollo.\n" +
                 "View help for a specific command by inputting help [COMMAND] \n"
-
         );
 
     }
 
     private void printNote(){
-        System.out.println("NOTE: "+"showmod, addmod, delmod are commands with flags included in them. \n" +
+        System.out.println("NOTE: "+"showmod, addmod, delmod, listmod are commands with flags included in them. \n" +
                 "Whatever in [THE SQUARE BRACKETS] are provided by you." +
                 "For more information on the flags, please input \"help [COMMAND]\" exclusive of the square brackets." +
                 " \n" + "For example, if you want to know more about the addmod command and its flags, input " +
@@ -912,11 +915,34 @@ public class Ui {
                 "However, you will still be able to add it into the tasklist.");
     }
 
-    public void printListModuleHelpMessage(){
+    public void printListModuleWithoutFlagsHelpMessage(){
         System.out.println("Shows the list of modules you are taking for this semester, " +
                 "alongisde total Modular Credits (MC).\n"+
                 "The list will be automatically sorted in alphabetical order according to EduRec standards.\n" +
-                "Format: listmod");
+                "Format: listmod\n");
+    }
+
+    public void printListModuleWithCodeHelpMessage(){
+        System.out.println("To see all class timings for all lesson types that you have added for a module in your " +
+                "list, \n" + "you can append the module code to the listmod command. \n" +
+                "Format: listmod MODULE_CODE\n");
+    }
+
+    public void printListModuleWithFlagHelpMessage(){
+        System.out.println("To see all class timings for a specific lesson type that you have added " +
+                "for a module in your list, \n" +
+                "you can append the module code and the lesson type flag to the listmod command. \n" +
+                "Format: listmod MODULE_CODE -FLAG\n" + "Example: listmod CS1010 -st\n\n" +
+                "Note: You must have added a module and at least one lesson into your list. \n");
+    }
+
+    public void printListModuleHelpMessage() {
+
+        printListModuleWithoutFlagsHelpMessage();
+        printListModuleWithCodeHelpMessage();
+        printListModuleWithFlagHelpMessage();
+        printModuleFlagOptions();
+
     }
     public void printExitHelpMessage(){
         System.out.println("Exit Apollo.\n" +
@@ -998,7 +1024,7 @@ public class Ui {
     public void printShowLessonInfoHelpMessage(){
         System.out.println("If you would like to view timing information on a specific lesson type of a module, " +
                 "you can use flags.\n"
-                +  "Format: showmod MODULE_CODE -FLAG\n" + "Example: showmod CS1010 -st\n" +
+                +  "Format: showmod MODULE_CODE -FLAG\n" + "Example: showmod CS1010 -st\n\n" +
                 "NOTE: Different modules have different lesson types.\n" +
                 "It is recomended to run `showmod MODULE_CODE` to see the lesson types available for that module.\n");
     }
