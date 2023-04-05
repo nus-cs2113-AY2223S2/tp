@@ -5,6 +5,7 @@ import seedu.todolist.exception.InvalidCommandException;
 import seedu.todolist.exception.InvalidFlagException;
 import seedu.todolist.exception.MissingArgumentException;
 import seedu.todolist.exception.ToDoListException;
+
 import seedu.todolist.logic.command.AddTaskCommand;
 import seedu.todolist.logic.command.Command;
 import seedu.todolist.logic.command.DeleteTaskCommand;
@@ -15,8 +16,8 @@ import seedu.todolist.logic.command.EditPriorityCommand;
 import seedu.todolist.logic.command.EditRepeatCommand;
 import seedu.todolist.logic.command.EditTagsCommand;
 import seedu.todolist.logic.command.ExitCommand;
-import seedu.todolist.logic.command.FindByPriority;
-import seedu.todolist.logic.command.FindByTag;
+import seedu.todolist.logic.command.FindByPriorityCommand;
+import seedu.todolist.logic.command.FindByTagCommand;
 import seedu.todolist.logic.command.ListFullInfoCommand;
 import seedu.todolist.logic.command.ListTagsCommand;
 import seedu.todolist.logic.command.ListTasksCommand;
@@ -24,6 +25,7 @@ import seedu.todolist.logic.command.MarkTaskCommand;
 import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
 import seedu.todolist.logic.command.HelpCommand;
+import seedu.todolist.logic.command.EditConfigCommand;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -138,9 +140,11 @@ public class Parser {
         case COMMAND_FULL_INFO:
             return new ListFullInfoCommand(getArguments(splitInput, ListFullInfoCommand.EXPECTED_FLAGS));
         case COMMAND_FIND_TAG:
-            return new FindByTag(getArguments(splitInput, FindByTag.EXPECTED_FLAGS));
+            return new FindByTagCommand(getArguments(splitInput, FindByTagCommand.EXPECTED_FLAGS));
         case COMMAND_FIND_PRIORITY:
-            return new FindByPriority(getArguments(splitInput, FindByPriority.EXPECTED_FLAGS));
+            return new FindByPriorityCommand(getArguments(splitInput, FindByPriorityCommand.EXPECTED_FLAGS));
+        case COMMAND_CONFIG:
+            return new EditConfigCommand(getArguments(splitInput, EditConfigCommand.EXPECTED_FLAGS));
         default:
             throw new InvalidCommandException();
         }
