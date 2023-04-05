@@ -92,13 +92,14 @@ to maximize code reusability and increase maintainability.
 
 Private attributes
 
-Info: String that stores the description of the entry
+- Info: String that stores the description of the entry
 
-Amount: Double that stores the monetary value of entry
+- Amount: Double that stores the monetary value of entry 
 
-Time: LocalDateTime that stores the date and time of entry
+- Time: LocalDateTime that stores the date and time of entry
 
-Category: Category that stores the type tag of entry
+- Category: Category that stores the type tag of entry
+
 
 **Methods**
 
@@ -127,59 +128,18 @@ IncomeList or ExpenseList subclasses.
 
 **Methods**
 
-addEntry()
+addEntry(), listEntry(), deleteEntry(), editEntry()
 
-* Takes an Entry instance as a parameter and adds it to the class-level list
+* Underlying methods of the add, edit, view, and delete features of Expense and Income class. 
+* Edit entry has different methods for each data stored in an entry. (E.g. amount, time...etc).
 
-listEntry()
+   
+getTotalAmount(), sortEntriesByAmount(), sortEntriesByDate(), findEntriesByCategory(), selectEntryForDate(), getEntryListSum()
 
-* Takes in a list of Entry and passes them to the UI to print to the user.
-* Makes use of toString() method of entries.
+* Underlying methods of subclasses of EntryList, which are used to implement features that extends beyond the CRUD features.
+* They all take in a list of entries, which are IncomeLists or ExpenseLists, then returns appropriate data back to the subclass.
 
-deleteEntry()
-
-* Takes in the list of entry and index of the entry to be deleted.
-* The method acts as an underlying method for subclasses' deletion methods.
-
-editEntryCost()
-
-* Overloaded method. All methods take in the LinkedList of entries and the index of the entry that has to be edited.
-  Another parameter has to be provided, which can be double, LocalDateTime, or String.
-* additional parameter double edits the money amount of the entry in the list.
-
-editEntryDescription()
-
-* additional parameter String edits the description of the entry in the list.
-
-editEntryTime()
-
-* additional parameter LocalDateTime edits the time when the entry is made.
-
-editEntryCategory()
-
-* additional parameter Category edits the time when the entry is made.
-
-getTotalAmount()
-
-* Takes in a list of entries and returns the sum of all entry's monetary value.
-
-sortEntriesByAmount()
-
-* Returns a sorted list of entry by amount of entry.
-
-sortEntriesByDate()
-
-* Returns a sorted list of entry by date of entry.
-  
-findEntriesByCategory()
-* Returns a list of entries with the same category and the total amount in this category.
-
-selectEntryForDate()
-* Returns a list of entries with the time range.
-
-getEntryListSum()
-* Returns the sum of amounts of all entries in the list.
-
+   
 ### ExpenseList, IncomeList
 
 Classes ExpenseList and IncomeList is responsible for keeping track of the corresponding entry instances added to the program by the user. 
@@ -236,18 +196,21 @@ public static HashMap<Integer, HashMap<Month, Double>> readFile()
 * Returns this as the initialized budget on start.
 
 
+### Wishlist (To be implemented)
+   
+The Wishlist class represents a good or a product the user wants to purchase in the future that are expensive enough, prompting the user to save up. Users can funnel their income entry to a specific wishlisted-product. Users can view how much percentage of the good's price they have saved up, which can give them further motivation to cut their spendings. Users will be able to add a list of wishlisted products. 
+   
+They can be implemented through a structure that is similar to Entry and EntryList. Each wishlisted product will be a separate class that stores the information of the good, such as name, price, and the date of wishlist created. 
+   
+The wishlist entry can then be arranged to a list, where users can easily navigate and compare between different wishlisted products. They can also give priority value to each wishlisted product, which can be used to sort them.
+   
 
+### Spending Advisor (To be implemented)
+   
+The spending advisor will be integrated to the product by assisting users to make best consumption choices. The advisor will help users compare prices from different food outlets and shops. As the target user for this program is students, the program will first implement food stalls and shops in NUS, which is where the developers for this program are enrolled. In subsequent iterations of the program, the advisor will expand into other regions and recommend users of the best-value purchases. 
+   
 ---
 
-|Version| As a ... | I want to ...                                                         | So that I can ...                                |
-|--------|----------|-----------------------------------------------------------------------|--------------------------------------------------|
-|v1.0|user| add, delete, edit, and list my income                                 | manage my income                                 |
-|v1.0|user| add, delete, edit, and list my expenses                               | manage my expenses                               |
-|v1.0|user| set and view my budget                                                | set expectation of how much money I should use   |
-|v1.0|user| view how much of the budget I spend                                   | manage and change my spending habit as necessary |
-|v1.0|user| view all comments that I can enter                                    | get help on the features if necessary            |
-|v2.0|user| list monthly expenses, income, and budget                             | refer to financial status in previous months     |
-|v2.0|user| set the category of income and expenses, and list entries by category | refer to expenses and income by category         |
 
 ## Appendix: Requirements
 
@@ -279,12 +242,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | v1.0    | user     | add, delete, edit, and list my expenses   | manage my expenses                               |
 | `* * *`  | v1.0    | user     | set and view my budget                    | set expectation of how much money I should use   |
 | `* * *`  | v1.0    | user     | view how much of the budget I spend       | manage and change my spending habit as necessary |
-| `* * *`  | v1.0    | user     | view all command that I can enter         | get help on the features if necessary            |
-| `* * *`  | v2.0    | user     | list monthly expenses, income, and budget | refer to financial status in previous months     |
-| `* * *`  | v2.0    | user     | save all my income and expenses entered   | so that I can refer to it next time I return     |
-
-*{more to be added}*
-
+| `* *`    | v1.0    | user     | view all command that I can enter         | get help on the features if necessary            |
+| `* *`    | v2.0    | user     | list monthly expenses, income, and budget | refer to financial status in previous months     |
+| `* *`    | v2.0    | user     | save all my income and expenses entered   | so that I can refer to it next time I return     |
+| `* *`    | v3.0    | user     | add goods on wishlist                     | so that I can save my incomes to purchase them   |
+| `* `     | v3.0    | user     | compare different spending options in the area | so that I can make the best-value purchases |
+   
 ### Use cases
 
 (For all use cases below, the System is the `BrokeMan` and the Actor is the `user`, 
