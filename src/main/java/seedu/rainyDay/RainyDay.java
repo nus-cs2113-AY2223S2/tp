@@ -49,10 +49,6 @@ public class RainyDay {
             } else if (e instanceof DateTimeParseException) {
                 System.out.println(ErrorMessage.INVALID_SAVED_DATE);
             }
-            else {
-                e.printStackTrace();
-                System.out.println(ErrorMessage.INVALID_JSON);
-            }
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
             String username = ui.readUserName();
