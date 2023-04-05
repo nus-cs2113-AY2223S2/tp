@@ -14,6 +14,7 @@ import seedu.duke.command.LoadSampleCompanyCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.PurgeCommand;
 
+import seedu.duke.exception.TooManyVariablesException;
 import seedu.duke.exception.IntegerSizeExceededException;
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
@@ -33,8 +34,8 @@ public interface Parser {
      * @throws NullPointerException if error occurred due to null pointers
      * @throws IndexOutOfBoundsException if error occurred due to an index being out of bounds
      */
-    static Command parse(String input) throws WrongFormatException,
-            NumberFormatException, NullPointerException, IndexOutOfBoundsException, IntegerSizeExceededException {
+    static Command parse(String input) throws WrongFormatException, NumberFormatException,
+            NullPointerException, IndexOutOfBoundsException, TooManyVariablesException, IntegerSizeExceededException {
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");
         String command = inputWords[0];
@@ -47,9 +48,12 @@ public interface Parser {
                 ListCompanyCommand companyCommand = new ListCompanyCommand(command + " companies");
                 return companyCommand;
             } else if (inputWords[1].equals("venues")) {
+                if (inputWords.length > 2){
+                    throw new TooManyVariablesException();
+                }
                 ListVenueCommand venueCommand = new ListVenueCommand(command + " venues");
                 return venueCommand;
-            } else if (inputWords[1].equals("unconfirmed")){
+            } else if (inputWords[1].equals("unconfirmed")) {
                 ListUnconfirmedCommand unconfirmedCommand = new ListUnconfirmedCommand(command + " unconfirmed");
                 return unconfirmedCommand;
             }
@@ -73,6 +77,9 @@ public interface Parser {
             if (inputWords.length == 1) {
                 throw new WrongFormatException();
             }
+            if (inputWords.length > 2) {
+                throw new TooManyVariablesException();
+            }
             BigInteger currValue = new BigInteger(inputWords[1]);
             checkInputLimit(currValue);
             int companyNum = Integer.parseInt(inputWords[1]) - 1;
@@ -88,6 +95,9 @@ public interface Parser {
             }
             throw new WrongFormatException();
         case "purge":
+            if (inputWords.length > 1){
+                throw new TooManyVariablesException();
+            }
             PurgeCommand purgeCommand = new PurgeCommand(command);
             return purgeCommand;
         case "choose":

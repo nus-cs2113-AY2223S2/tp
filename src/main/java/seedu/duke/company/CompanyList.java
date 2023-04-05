@@ -124,13 +124,16 @@ public class CompanyList {
         ui.showSampleDataLoadedMessage();
     }
 
-    public void purgeData() {
+    public void purgeData() throws EmptyListException {
+        if (companyList.isEmpty()) {
+            throw new EmptyListException();
+        }
         companyList.clear();
         ui.showSuccessfulPurgingMessage();
     }
 
     public void markConfirm(int companyNum) throws InvalidIndexException, EmptyListException {
-        if (companyList.isEmpty()){
+        if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
         if (companyNum < 0 | companyNum >= companyList.size()) {
@@ -142,7 +145,7 @@ public class CompanyList {
     }
 
     public void markUnconfirm(int companyNum) throws InvalidIndexException, EmptyListException {
-        if (companyList.isEmpty()){
+        if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
         if (companyNum < 0 | companyNum >= companyList.size()) {

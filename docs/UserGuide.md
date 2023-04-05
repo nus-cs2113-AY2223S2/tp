@@ -1,5 +1,11 @@
 # User Guide
 
+## Table of Contents
+1. Introduction
+2. Quick Start
+3. Features
+4. Commands summary
+
 ## Introduction
 
 EveNtUS is a desktop application designed for career fair managers to manage career fairs, with a focus on efficient operation through the Command-Line Interface(CLI).
@@ -266,11 +272,15 @@ Company industry: TECH
 ____________________________________________________________
 ```
 
-### `choose venue ` - updates the venue of the event
-Updates the venue of the event, and updates the event details file
+### `choose venue <index>` - updates the venue of the event
+Updates the venue of the event from a list of venues, and updates the event details file
 
 Example of usage:
-`choose venue 1`
+
+`choose venue 1` would choose venue 1 which is Engineering Auditorium
+
+`choose venue 3` would choose venue 3 which is LT1
+
 Expected outcome:
 
 ```
@@ -278,6 +288,13 @@ ____________________________________________________________
 Engineering Auditorium is your venue!
 ____________________________________________________________
 ```
+OR
+```
+____________________________________________________________
+LT1 is your venue!
+____________________________________________________________
+```
+
 
 ### `exit ` - Exit the application
 Exit the application
@@ -294,19 +311,19 @@ ____________________________________________________________
 
 ## Command Summary
 
-| Command                                                          | Usage                                             |
-|------------------------------------------------------------------|---------------------------------------------------|
-| help                                                             | display the commands of the application           |
-| list companies                                                   | list the companies                                |
-| list venues                                                      | list the venues                                   |
-| list unconfirmed                                                 | list the companies yet to confirm their attendance |
-| add n/<COMPANY_NAME> i/< INDUSTRY> c/<CONTACT_NUMBER> e/< EMAIL> | add a company to the company list                 |
-| delete <INDEX>                                                   | delete a company in the company list              |
-| confirm <INDEX>                                                  | confirm a companies' attendance                   |
-| unconfirm <INDEX>                                                | unconfirm a companies' attendance                 |
-| load samples                                                     | load samples company data for manual testing      |
-| purge                                                            | delete the company list data                      |
-| find company <COMPANY_NAME>                                      | find the companies based on a company name        |
-| find industry <INDUSTRY>                                         | find the companies within an industry             | 
-| choose venue <INDEX>                                             | updates the venue of the event                    |
-| exit                                                             | exit the application                              |
+| Command                                                        | Usage                                              |
+|----------------------------------------------------------------|----------------------------------------------------|
+| help                                                           | display the commands of the application            |
+| list companies                                                 | list the companies                                 |
+| list venues                                                    | list the venues                                    |
+| list unconfirmed                                               | list the companies yet to confirm their attendance |
+| add n/[COMPANY_NAME] i/[INDUSTRY] c/[CONTACT_NUMBER] e/[EMAIL] | add a company to the company list                  |
+| delete [INDEX]                                                 | delete a company in the company list               |
+| confirm [INDEX]                                                | confirm a companies' attendance                    |
+| unconfirm [INDEX]                                              | unconfirm a companies' attendance                  |
+| load samples                                                   | load samples company data for manual testing       |
+| purge                                                          | delete the company list data                       |
+| find company [COMPANY_NAME]                                    | find the companies based on a company name         |
+| find industry [INDUSTRY]                                       | find the companies within an industry              | 
+| choose venue [INDEX]                                           | updates the venue of the event                     |
+| exit                                                           | exit the application                               |
