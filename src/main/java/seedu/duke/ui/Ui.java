@@ -182,13 +182,4 @@ public class Ui {
         System.out.println("Multiple companies cannot be added at once. Please add companies separately!");
     }
 
-    public void invalidFormatExceptionMessage(){
-        System.out.println("Wrong Format! Please type <help> for more information");
-        showLine();
-    }
-
-    public void numberFormatExceptionMessage(){
-        System.out.println("Number expected! Please type <help> for more information");
-        showLine();
-    }
 }
