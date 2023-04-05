@@ -1,7 +1,6 @@
 package seedu.todolist;
 
-import seedu.todolist.exception.FailedLoadException;
-import seedu.todolist.exception.FailedSaveException;
+import com.google.gson.JsonParseException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Config;
 import seedu.todolist.logic.Parser;
@@ -13,6 +12,9 @@ import seedu.todolist.task.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.time.LocalDateTime;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.format.DateTimeParseException;
 
 public class ToDoListManager {
     private boolean isRunning = true;
@@ -37,33 +39,39 @@ public class ToDoListManager {
 
         try {
             // Config file found, try loading it
-            config = configFile.loadConfig();
+            config = configFile.loadConfig(configFile.DEFAULT_CONFIG_PATH);
             ui.printLoadConfigMessage();
-        } catch (FailedLoadConfigException e) {
+        } catch (FileNotFoundException e) {
             ui.printError(e);
             // Loading save file failed, save new empty task list immediately instead of waiting for a command
             try {
-                configFile.saveConfig(config);
-            } catch (FailedSaveConfigException e2) {
+                configFile.saveConfig(config, configFile.DEFAULT_CONFIG_PATH);
+            } catch (IOException e2) {
                 ui.printError(e2);
             }
         }
 
         try {
             // Save file found, try loading it
-            taskList = storage.loadData();
+
+            taskList = storage.loadData(Storage.DEFAULT_SAVE_PATH);
             taskList.checkRepeatingTasks(config);
             ui.printLoadSaveMessage(taskList.size());
             new ProgressBarCommand().execute(taskList, ui);
-        } catch (FailedLoadException e) {
+        } catch (FileNotFoundException e) {
             ui.printError(e);
             // Loading save file failed, save new empty task list immediately instead of waiting for a command
             try {
-                storage.saveData(taskList);
-            } catch (FailedSaveException e2) {
+                storage.saveData(taskList, Storage.DEFAULT_SAVE_PATH);
+            }
+            catch (IOException e2) {
                 ui.printError(e2);
 
             }
+        } catch (DateTimeParseException | JsonParseException e3) { // caught an error in the saved file
+            ui.printError(e3);
+            ui.printSavedFileSyntaxError();
+            isRunning = false; // terminate the program
         }
     }
 
@@ -74,17 +82,20 @@ public class ToDoListManager {
                 Command command = parser.parseCommand(inputCommand);
                 if (command instanceof EditConfigCommand) {
                     ((EditConfigCommand) command).execute(config, ui);
+                    configFile.saveConfig(config, configFile.DEFAULT_CONFIG_PATH);
                 } else {
                     command.execute(taskList, ui);
                 }
-                LocalDateTime nextCheck = config.getLastChecked().plusDays(config.getCheckFrequency());
+                LocalDateTime nextCheck = config.getLastChecked().plusMinutes(config.getCheckFrequency());
                 if (nextCheck.isBefore(LocalDateTime.now())) {
                     taskList.checkRepeatingTasks(config);
                 }
-                storage.saveData(taskList);
+                storage.saveData(taskList, Storage.DEFAULT_SAVE_PATH);
                 isRunning = !command.shouldExit();
             } catch (ToDoListException e) {
                 ui.printError(e);
+            } catch (IOException e2) {
+                ui.printError(e2);
             }
         }
         ui.close();

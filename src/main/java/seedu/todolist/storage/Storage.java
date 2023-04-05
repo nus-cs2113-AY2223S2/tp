@@ -1,16 +1,30 @@
 //@@author jeromeongithub
 package seedu.todolist.storage;
 
-import seedu.todolist.exception.FailedLoadException;
-import seedu.todolist.exception.FailedSaveException;
 import seedu.todolist.logic.Config;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
+import com.google.gson.stream.JsonReader;
+import seedu.todolist.constants.Formats;
 import seedu.todolist.task.TaskList;
+import seedu.todolist.logic.Config;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * A class for saving the task list as a text file and loading it.
@@ -20,11 +34,37 @@ public class Storage {
     public static final String DEFAULT_CONFIG_PATH = "./config.txt";
     private boolean isNewSave;
     private File file;
+    private Gson gson;
+
+    public static class LocalDateTimeAdapter
+            implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
+        private final DateTimeFormatter dateTimeFormat = DateTimeFormatter.
+                ofPattern(Formats.TIME_IN_2);
+
+        @Override
+        public JsonElement serialize(LocalDateTime localDateTime, Type typeOfSrc, JsonSerializationContext context) {
+            return new JsonPrimitive(localDateTime.format(dateTimeFormat));
+        }
+
+        @Override
+        public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            return LocalDateTime.parse(json.getAsString(), dateTimeFormat);
+        }
+    }
 
     public Storage(String filepath) {
         assert filepath != null : "NULL filepath was given";
         file = new File(filepath);
         isNewSave = !file.exists();
+        gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
+    }
+
+    // code provided by module website
+    private void writeToFile(String filepath, String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filepath);
+        fw.write(textToAdd);
+        fw.close();
     }
 
     public boolean isNewSave() {
@@ -35,41 +75,49 @@ public class Storage {
      * Writes the current task list to the local save file.
      *
      * @param taskList The task list being saved.
-     * @throws FailedSaveException If an error occurs while writing to the save file.
+     * @throws IOException If the save file exists but is a directory rather than a regular file, does not exist but
+     *                     cannot be created, or cannot be opened for any other reason.
      */
-    public void saveData(TaskList taskList) throws FailedSaveException {
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(taskList);
-        } catch (Exception e) {
-            throw new FailedSaveException();
-        }
+    public void saveData(TaskList taskList, String filepath) throws IOException {
+        String json = gson.toJson(taskList);
+        writeToFile(filepath, json);
     }
 
     /**
      * Loads the task list from the local save file, if it exists.
      *
-     * @return The task list read from the save file, if it exists.
-     * @throws FailedLoadException If an error occurs while reading from the save file.
+     * @return The task list read from the save file, if it exists and it is not empty. Otherwise, a newly created
+     *         task list is returned.
+     * @throws FileNotFoundException If no save file is found.
+     * @throws JsonParseException If there is a formatting error in the saved json file.
+     * @throws DateTimeParseException If there is an error in the formatting of deadlines saved in the json file.
      */
-    public TaskList loadConfig() throws FailedLoadConfigException {
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            return (TaskList) ois.readObject();
-        } catch (Exception e) {
-            throw new FailedLoadConfigException();
-        }
+    public void saveConfig(Config config, String filepath) throws IOException {
+        String json = gson.toJson(config);
+        writeToFile(filepath, json);
     }
 
-    public void saveConfig(Config config) throws FailedSaveConfigException {
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(config);
-        } catch (Exception e) {
-            throw new FailedSaveConfigException();
+    public Config loadConfig(String filepath)
+            throws FileNotFoundException, JsonParseException, DateTimeParseException {
+        JsonReader reader = new JsonReader(new FileReader(filepath));
+        Config config = new Config();
+        // if the file is not empty, set the task list as the saved task list
+        Config savedConfig = gson.fromJson(reader, Config.class);
+        if (savedConfig != null) {
+            config = savedConfig;
         }
+        return config;
+    }
+
+    public TaskList loadData(String filepath)
+            throws FileNotFoundException, JsonParseException, DateTimeParseException {
+        JsonReader reader = new JsonReader(new FileReader(filepath));
+        TaskList taskList = new TaskList();
+        // if the file is not empty, set the task list as the saved task list
+        TaskList savedTaskList = gson.fromJson(reader, TaskList.class);
+        if (savedTaskList != null) {
+            taskList = savedTaskList;
+        }
+        return taskList;
     }
 }
