@@ -4,12 +4,12 @@ package data;
 import parser.Parser;
 
 import java.io.BufferedReader;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ExpenseList {
-    protected Parser parser = new Parser();
     public static ArrayList<Expense> expenseList = new ArrayList<>();
+    protected Parser parser = new Parser();
+
 
     public ExpenseList() {
 

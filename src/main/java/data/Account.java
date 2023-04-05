@@ -16,16 +16,14 @@ import java.util.regex.Pattern;
 public class Account {
     public static int accountNumber = 1;
     //private static final String ACCOUNTS_FILE = accountName + ".txt";
-    private static final int MIN_PASSWORD_LENGTH = 8;
-    private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]+");
     protected static String accountName;
-    protected int accountSize;
     private static String passwordHash;
     public static ExpenseList account;
+    private static final int MIN_PASSWORD_LENGTH = 8;
+    private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]+");
 
 
     public Account(String accountName, String passwordHash) {
-        accountSize = 0;
         this.accountName = accountName;
         this.passwordHash = hashPassword(passwordHash);
         accountNumber++;
@@ -40,10 +38,6 @@ public class Account {
         } catch (IOException e) {
             System.out.println("Error: Failed to read expense list from file.");
         }
-    }
-
-    public int getAccountSize() {
-        return this.accountSize;
     }
 
     public String getAccountName() {

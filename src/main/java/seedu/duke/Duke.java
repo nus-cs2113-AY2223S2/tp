@@ -18,6 +18,7 @@ import storage.Storage;
 
 import java.util.Scanner;
 
+import static data.Account.account;
 import static data.Account.logout;
 //import static data.ExpenseList.showToUser;
 import static parser.ParserAccount.initialize;
@@ -42,7 +43,7 @@ public class Duke {
         expenseList = new ExpenseList();
         currency = new Currency();
         storage = new Storage(expenseList);
-        //account.setExpenseList(storage.loadExpenses(filePath));
+        account.setExpenseList(storage.loadExpenses(filePath));
     }
 
     public void run() {
@@ -82,6 +83,7 @@ public class Duke {
             case "logout":
                 logout();
                 initialize(in);
+                break;
             case "overview":
                 new CommandOverview(expenseList.getExpenseList(),
                         parser.extractMonth(input), parser.extractYear(input)).execute();

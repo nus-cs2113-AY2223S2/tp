@@ -21,11 +21,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
-import java.io.FileInputStream;
-import java.io.EOFException;
 
 import static common.MessageList.PERIOD;
 import static common.MessageList.WHITESPACE;
@@ -161,65 +156,5 @@ public class Storage {
     public ExpenseList getExpenseList() {
         return expenseList;
     }
-
-    /**
-     * Saves ExpenseList objects to dat file.
-     */
-    public void saveExpenseList() {
-        try {
-            FileOutputStream fos = new FileOutputStream("expenselist.dat");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            oos.writeObject(expenseList);
-        } catch (IOException e) {
-            System.out.println(WRITE_TO_EXPENSELIST_ERROR);
-        }
-    }
-
-    public boolean createFile() {
-        try {
-            File f = new File("expenselist.dat");
-            if (f.createNewFile()) {
-                // first time that the programme is being run, update welcome message later on
-                System.out.println(INITIAL_WELCOME_MESSAGE);
-                return true;
-            }
-        } catch (IOException e) {
-            System.out.println(CREATE_FILE_ERROR);
-        }
-        return false;
-    }
-
-    /**
-     * Reads ExpenseList object from dat file and store as expenseList.
-     */
-
-    public ExpenseList initialiseExpenseList() {
-        try {
-            boolean isFileCreated = createFile();
-            if (isFileCreated) {
-                expenseList = new ExpenseList();
-            } else {
-                FileInputStream fis = new FileInputStream("expenselist.dat");
-                ObjectInputStream ois = new ObjectInputStream(fis);
-                expenseList = (ExpenseList) ois.readObject();
-                System.out.println(READ_STORAGE_SUCCESSFUL);
-            }
-        } catch (EOFException e) {
-            expenseList = new ExpenseList();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println(READ_EXPENSELIST_ERROR);
-        }
-        return expenseList;
-    }
-
-
-    public void clearContent() {
-        try {
-            FileOutputStream fos = new FileOutputStream("expenselist.dat");
-            fos.close();
-        } catch (IOException e) {
-            System.out.println(WRITE_TO_EXPENSELIST_ERROR);
-        }
-    }
 }
+
