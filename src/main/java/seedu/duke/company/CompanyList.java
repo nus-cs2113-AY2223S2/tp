@@ -128,8 +128,7 @@ public class CompanyList {
         Company company = companyList.get(companyNum);
         if (company.isConfirmed){
             ui.showExistingConfirmationMessage();
-        }
-        else {
+        } else {
             company.markConfirmed();
             ui.showSuccessfulConfirmedMessage();
         }
@@ -142,8 +141,7 @@ public class CompanyList {
         Company company = companyList.get(companyNum);
         if (company.isConfirmed == false){
             ui.showExistingUnconfirmationMessage();
-        }
-        else {
+        } else {
             company.markUnconfirmed();
             ui.showSuccessfulUnconfirmedMessage();
         }
