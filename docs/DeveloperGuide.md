@@ -113,9 +113,32 @@ The "edit" command is mainly handled by the `EditCommand` class, which extends t
 by the `EditParser` class, which extends the `Parser` class.
 
 
-**Step 1**.
+**Step 1**. When the user executes the command `edit upc/[UPC Code] n/[Name] qty/[Quantity] p/[Price] c/[Category]`,
+the `ParserHandler` will create a new `EditParser` object and pass the appropriate `input` and `Inventory` in which
+the items are stored.
 
-**Step 2**.
+**Step 2**. The `EditParser` object checks for the validity of the `input`. If it is determined that no `upc/` is given
+or only the `UPC` is given without additional parameters, an exception will be thrown for error handling. If none of
+these conditions are met, an `EditCommand` object will be created to further process the user input.
+
+**Step 3**. In the `EditCommand` object, the method `setEditInfo()` will be called first. This method will be used
+to not only call other methods for user input processing, but will also handle the exceptions thrown by the other
+methods it has called. It will begin by retrieving the item information from the inventory using
+`retrieveItemFromHashmap()` and storing the item attribute information in two `Item` objects, namely `updatedItem` 
+and `oldItem`. `oldItem` will be used to keep track of the old attribute information, while `updatedItem` will be 
+used to overwrite the old attributes, should the user inputs be valid.
+
+**Step 4**. Still within the `setEditInfo()` method, `updatedItem` and `oldItem` will be pass into another method
+`updateItemInfo()`. This method calls `handleUserEditCommand()` for further user input processing and also handles
+a series of different exceptions thrown. Within `handleUserEditCommand()`, further verification of user input by
+`validateUserEdtiCommand()` will take place, before allowing `makeEdits()` to be executed, which will change the
+information in the `updatedItem` object and hence the attribute information of the item. Should exceptions be thrown 
+by `validateUserEditCommands()`, attribute information stored by `oldItem` will be used by `revertChanges()` to 
+update the item attributes instead.
+
+**Step 5**. After item attributes have been updated, we go back to the `setEditInfo()` method, which will then update
+the data structures responsible for tracking of the item  and its attributes using the `handleTrie()`, `remove()` and
+`put()` methods.
 
 Included below is a UML Sequence Diagram for the `EditParser` and `EditCommand` respectively:
 

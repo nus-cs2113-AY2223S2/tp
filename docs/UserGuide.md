@@ -393,15 +393,19 @@ Format: `sell upc/[UPC] qty/[Quantity]`
 
 **REQUIRED** Parameters:
 
-* The `upc/` parameter whereby `[UPC]` refers to the identification number assigned to the item at the point 
-of **initial addition** of the item. `[UPC]` has to be valid, that is, it **EXISTS** in the database, and has to be 
-a **POSITIVE NUMBER** and **NOT EMPTY**. Do **NOT** include `[` and `]` in the input.
-* The `qty/` parameter whereby `[Quantity]` refers to the amount of stock to be **DEDUCTED** from the current 
-stock levels recorded. `[Quantity]` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
-Do **NOT** include `[` and `]` in the input.
+* The `upc/` parameter, whereby `[UPC]` refers to the identification number assigned to the item at the point 
+of **initial addition** of the item.
+* The `qty/` parameter, whereby `[Quantity]` refers to the amount of stock to be **DEDUCTED** from the current 
+stock levels recorded.
+
+!> `[UPC]` has to be **VALID**, that is, it EXISTS in the database, and has to be a POSITIVE NUMBER and NOT EMPTY.
 
 !> **Enforced** valid `[Quantity]` input range to be from **1** up to the **Current Quantity Level** of the item,
-provided that the **Current Quantity Level** is **NOT ZERO**.
+provided that the **Current Quantity Level** is **NOT ZERO**. Strings, Zero(0), Negative Integers and Empty inputs for
+`[Quantity]` are not allowed.
+
+!> For both `[UPC]` and `[Quantity]`, the `[` and `]` symbols are **NOT NEEDED** for the input. Refer to the
+examples below for reference.
 
 Example of Usage: <br />
 `sell upc/123 qty/5`: Searches for the item of `UPC` code `123`, and if it exists, **DEDUCT** a `quantity` of `5`
@@ -440,14 +444,17 @@ Format: `restock upc/[UPC] qty/[Quantity]`
 
 **Required** Parameters:
 * The `upc/` parameter  whereby `[UPC]` refers to the identification number assigned to the item at the point of 
-**initial addition** of the item. `[UPC]` has to be valid, that is, it **EXISTS** in the database, and has to be
-a **POSITIVE NUMBER** and **NOT EMPTY**. Do **NOT** include `[` and `]` in the input.
+**initial addition** of the item.
 * The `qty/` parameter whereby `[Quantity]` refers to the amount of stock to be **ADDED** from the current stock 
-levels recorded. `[Quantity]` input **SHOULD NOT** be **EMPTY**,a **NEGATIVE INTEGER**, **ZERO** or a **STRING**. 
-Do **NOT** include `[` and `]` in the input.
+levels recorded.
 
-!> **Enforced** valid `[Quantity]` input range to be from **1** to **99,999,999**. Ensure that the post-restock 
-quantity does not add up to above 99,999,999.
+!> `[UPC]` has to be **VALID**, that is, it EXISTS in the database, and has to be a POSITIVE NUMBER and NOT EMPTY.
+
+!> **Enforced** valid `[Quantity]` input range to be from **1** to **99,999,999**. Zero(0), negative integers, string
+and empty inputs are **NOT** allowed. Ensure that the post-restock quantity does not add up to above 99,999,999. 
+
+!> For both `[UPC]` and `[Quantity]`, the `[` and `]` symbols are **NOT NEEDED** for the input. Refer to the
+examples below for reference.
 
 Example of Usage: <br />
 `restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a `quantity` of `5`
@@ -486,7 +493,7 @@ Format: `db`
 **Required** Parameters:
 * Only the `db` command keyword is needed. 
 
-!> Note: There should **NOT** contain any further user inputs after typing `db`.
+!> Note: There should **NOT** be any further user inputs after typing `db`.
 
 Example of usage: <br />
 `db`: Opens the dashboard.
@@ -640,7 +647,6 @@ __________________________________________________________________________
 Exits the MagusStock program.
 
 Format: `exit` or `bye`
-
 
 !> Note: Do **NOT** type additional parameters after typing `exit` or `bye`. 
 
