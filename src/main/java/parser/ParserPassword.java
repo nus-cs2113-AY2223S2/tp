@@ -17,8 +17,16 @@ public class ParserPassword {
         System.out.println("Password");
         String password = scanner.nextLine();
         Account existingAccount = new Account(user, password);
-        existingAccount.login();
-        showToUser(MESSAGE_DIVIDER, COMMAND_LIST_MESSAGE, MESSAGE_DIVIDER);
+        String res = existingAccount.login();
+        System.out.println(res);
+        if (res.equals("Invalid username or password.")
+            || res.equals("Sorry, there is no username found")
+            || res.equals("An error occurred while logging in.")
+            || res.equals("Log In Failed. Invalid login credentials")) {
+            initialize(scanner);
+        } else {
+            showToUser(MESSAGE_DIVIDER, COMMAND_LIST_MESSAGE, MESSAGE_DIVIDER);
+        }
     }
 
     public static void caseSignUp() {

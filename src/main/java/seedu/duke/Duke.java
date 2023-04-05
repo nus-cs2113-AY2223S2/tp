@@ -35,7 +35,7 @@ public class Duke {
     protected Storage storage;
     Account currentUser = null;
     /**
-     * Initialize Duke and instantiate parser and expenseList objects.
+     * Initialize Duke and instantiate parser and account objects.
      */
     public Duke() {
         parser = new Parser();

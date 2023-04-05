@@ -64,7 +64,7 @@ public class Storage {
     }
 
     /**
-     * Reads ExpenseList object from dat file and store as expenseList.
+     * Reads ExpenseList object from dat file and store as account.
      */
 
     public ExpenseList initialiseExpenseList() {

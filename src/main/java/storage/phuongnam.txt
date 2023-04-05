@@ -1,7 +1,4 @@
 phuongnam,abcdhjkl
-add amt/25.00 t/20-12-2020 cat/food
-add amt/24.00 t/02-10-2022 cat/uncategorized
-add amt/21.00 t/02-09-2022 cat/uncategorized
-add amt/15.00 t/20-09-2019 cat/uncategorized
-add amt/12.00 t/20-11-2021 cat/mrt
-add amt/22.00 t/20-10-2021 cat/nike
+add amt/25.00 t/20-12-2022 cat/food
+add amt/20.00 t/21-12-2022 cat/food
+add amt/20.00 t/04-04-2023 cat/oreo

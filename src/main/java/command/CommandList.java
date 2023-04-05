@@ -43,7 +43,7 @@ public class CommandList extends Command {
      */
     @Override
     public CommandRes execute() {
-        //return new CommandRes(MESSAGE_DIVIDER_LIST, expenseList, ExpenseList.getAllMessage(expenseList));
+        //return new CommandRes(MESSAGE_DIVIDER_LIST, account, ExpenseList.getAllMessage(account));
         return null;
     }
 }
