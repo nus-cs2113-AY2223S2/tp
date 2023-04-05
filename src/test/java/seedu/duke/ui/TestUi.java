@@ -191,10 +191,10 @@ public class TestUi {
                     "[achievements]\n" +
                     "\tShows all the available achievements, their requirements and whether they have been achieved " +
                     "or not" +
-                    "and whether they have been achieved or not\n" +
-                    "[clear_achievements]" +
+                    "\n" +
+                    "[clear_achievements]\n" +
                     "\tClears all the data of finished exercises for the achievements database, resetting " +
-                    "counters for all achievements. " +
+                    "counters for all achievements.  " +
                     "\n\tDo note that this command does not clear the counters for each specific exercise," +
                     " hence the number of each exercise completed from the data command will NOT be cleared.\n" +
                     "[exit]\n" +
