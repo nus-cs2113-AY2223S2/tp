@@ -111,6 +111,5 @@ public class IngredientList {
         System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
         System.out.print((ingredientIndex + 1) + ". ");
         System.out.println(list.get(ingredientIndex).getName());
-        }
     }
 }
