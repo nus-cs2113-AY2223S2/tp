@@ -44,10 +44,10 @@ public class Incomes {
         }
         if (incomeValue > 1000000) {
             throw new ChChingException("Income value can at most be 1000000");
-        } else if (incomeValue <= 0) {
-            throw new ChChingException("Income value must be greater than 0");
+        } else if (incomeValue < 0.01) {
+            throw new ChChingException("Income value must be greater than or equals 0.01");
         }
-        assert incomeValue > 0 : "incomeValue has to be more than 0";
+        assert incomeValue >= 0.01 : "incomeValue has to be more than or equals to 0.01";
         inc = new Income(incomeDescription, incomeDate, incomeValue);
         return inc;
     }
@@ -68,4 +68,3 @@ public class Incomes {
         return index;
     }
 }
-
