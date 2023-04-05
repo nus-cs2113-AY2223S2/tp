@@ -197,4 +197,18 @@ public class EntryLogTest extends EntryTestUtil {
         }
         // @@author
     }
+
+    @Test
+    @DisplayName("Test get total expenditure method")
+    void testGetTotalExpenditure(){
+        entryLog.addEntry(ENTRY_7);
+        assertEquals(entryLog.getTotalExpenditure(), 121.82);
+    }
+
+    @Test
+    @DisplayName("Test get total income method")
+    void testGetTotalIncome(){
+        entryLog.addEntry(ENTRY_7);
+        assertEquals(entryLog.getTotalIncome(), 5600.00);
+    }
 }

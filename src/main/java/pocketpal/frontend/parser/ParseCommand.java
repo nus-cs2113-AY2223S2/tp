@@ -74,12 +74,12 @@ public abstract class ParseCommand {
         }
         boolean isValid = price.matches(ParserConstants.VALID_PRICE_REGEX);
         if (!isValid) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
         try {
             Double.parseDouble(price);
         } catch (NumberFormatException e) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_PRICE);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
     }
 
