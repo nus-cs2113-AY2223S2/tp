@@ -178,7 +178,7 @@ public class Parser {
                 field = fieldAndValue[0].trim();
                 value = fieldAndValue[1].trim();
             } catch (Exception e) {
-                throw new ChChingException("Arguments not inputted correctly / Missing details");
+                throw new ChChingException("Arguments not inputted correctly");
             }
     
             // checks if it is an existing field
@@ -188,7 +188,7 @@ public class Parser {
             if (isDuplicateField) {
                 throw new ChChingException("Duplicate fields detected");
             } else if (isEmptyFieldOrValue) {
-                throw new ChChingException("Empty detail detected or improper use of \" / \"");
+                throw new ChChingException("Empty value detected or use of \" / \" in value");
             } else {
                 argumentsByField.put(field, value);
             }
@@ -197,12 +197,22 @@ public class Parser {
     }
     public static String getCategory(HashMap<String, String> argumentsByField) throws ChChingException {
         String category = null;
-        category = argumentsByField.get("c");
+        try {
+            category = argumentsByField.get("c");
+        } catch (Exception e) {
+            throw new ChChingException("missing/invalid category");
+        }
         return category;
     }
     public static String getKeyword(HashMap<String, String> argumentsByField) throws ChChingException {
         String keyword = null;
-        keyword = argumentsByField.get("k");
+        try {
+            keyword = argumentsByField.get("k");
+        } catch (Exception e) {
+            throw new ChChingException("missing/invalid keyword");
+        }
         return keyword;
     }
+
+
 }
