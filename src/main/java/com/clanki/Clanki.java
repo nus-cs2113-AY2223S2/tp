@@ -20,6 +20,7 @@ public class Clanki {
             storageFile = new StorageFile();
             this.flashcardList = new FlashcardList(storageFile.load());
             ui.printWelcomeMessage();
+            ui.printSeparationLine();
         } catch (InvalidStorageFilePathException | StorageOperationException e) {
             System.out.println(e.getMessage());
         }
@@ -42,6 +43,7 @@ public class Clanki {
             if (command instanceof ByeCommand) {
                 return;
             }
+            ui.printSeparationLine();
         }
     }
 }

@@ -24,6 +24,7 @@ public class StorageFile {
      * Default file path used if the user doesn't provide the file name.
      */
     public static final String DEFAULT_STORAGE_FILEPATH = "flashcardList.txt";
+    public static final String FILE_END_STRING = ".txt";
 
 
     public final Path path;
@@ -50,7 +51,7 @@ public class StorageFile {
      * The file path is considered acceptable if it ends with '.txt'
      */
     private static boolean isValidPath(Path filePath) {
-        return filePath.toString().endsWith(".txt");
+        return filePath.toString().endsWith(FILE_END_STRING);
     }
 
     /**
