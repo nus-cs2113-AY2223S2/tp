@@ -6,6 +6,7 @@ public class Exercise {
     private String weight;
     private String repsPerSet;
 
+    //@@ author ZIZI-czh
     public Exercise(String name, String weight, String repsPerSet){
         this.name = name;
         this.weight = weight;

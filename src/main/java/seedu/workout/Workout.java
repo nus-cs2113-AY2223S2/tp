@@ -1,56 +1,59 @@
 package seedu.workout;
 
-
-import seedu.parser.DateFormatter;
-
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Workout {
     private static final int EMPTY = 0;
     private static final String EMPTY_EXERCISE_LIST_MESSAGE = "No exercise in workout.";
+    private static final String LINE_SEPARATOR = "----------------------------------";
     private static final String EXERCISE_LIST_HEADER =
             "Here are the list of exercises in your workout:" + System.lineSeparator();
     private Date date;
-    private ArrayList<Exercise> workoutExercises;
+    private String workoutName;
+    private ArrayList<Exercise> exercises;
 
-    public Workout(Date date) {
-        this.date = date;
-        workoutExercises = new ArrayList<>();
+    private boolean hasExercises = false;
+
+    public Workout() {
+        exercises = new ArrayList<>();
     }
 
+    //@@ author ZIZI-czh
+    public Workout(String workoutName) {
+        this.workoutName = workoutName;
+        exercises = new ArrayList<>();
+    }
+
+
+    //@@ author ZIZI-czh
+    public String getWorkoutName() {
+        return workoutName;
+    }
+
+    //@@ author ZIZI-czh
+
+    //@@ author ZIZI-czh
     public void addExercise(Exercise exercise) {
-        workoutExercises.add(exercise);
+        exercises.add(exercise);
+        // hasExercises = true;
     }
 
-    public String getDateToString() {
-        return DateFormatter.dateToString(date);
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    //@@ author ZIZI-czh
     public ArrayList<Exercise> getExercises() {
-        return workoutExercises;
+        return exercises;
     }
 
+
+    //@@ author ZIZI-czh
+    @Override
     public String toString() {
-        if (workoutExercises.size() == EMPTY) {
-            return EMPTY_EXERCISE_LIST_MESSAGE;
+        StringBuilder exercisesList = new StringBuilder();
+        exercisesList.append("Workout: ").append(workoutName).append(System.lineSeparator());
+        for (Exercise exercise : exercises) {
+            exercisesList.append(exercise.toString()).append(System.lineSeparator());
         }
-
-        StringBuilder exerciseListString = new StringBuilder();
-        exerciseListString.append(EXERCISE_LIST_HEADER);
-
-        for (int i = 0; i < workoutExercises.size(); i += 1) {
-            exerciseListString.append(i + 1).append(". " + workoutExercises.get(i).toString() + System.lineSeparator());
-        }
-
-        return exerciseListString.toString();
+        return exercisesList.toString();
     }
 }
 

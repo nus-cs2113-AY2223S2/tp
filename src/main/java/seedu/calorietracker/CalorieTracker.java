@@ -15,11 +15,6 @@ public class CalorieTracker {
         totalCaloriesConsumedInDay = new HashMap<>();
         foodList = new FoodList();
     }
-    public CalorieTracker(FoodList foodlist) {
-        totalCaloriesConsumedInDay = new HashMap<>();
-        this.foodList = foodlist;
-    }
-
     public String addCalories(Date date, String food, int calories) {
         if (calories == CALORIES_NOT_GIVEN && !foodList.contains(food)) {
             return food + " has not been added previously. Please also indicate calorie count.";
