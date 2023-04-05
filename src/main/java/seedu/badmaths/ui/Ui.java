@@ -180,11 +180,16 @@ public class Ui {
         System.out.println("ax^2 + bx + c");;
     }
 
-    public static void printQuadraticAnswer(ArrayList<Double> xStore) {
+    public static void printQuadraticAnswer(ArrayList<Double> xStore, String vertexCoordinate, boolean isMinimum) {
         if (xStore.get(0).isNaN() || xStore.get(1).isNaN()) {
             System.out.println("x is imaginary.");
         } else {
             System.out.println("x1 = " + xStore.get(0) + " , x2 = " + xStore.get(1));
+            if (isMinimum) {
+                System.out.println("There is a minimum point: " + vertexCoordinate);
+            } else {
+                System.out.println("There is a maximum point: " + vertexCoordinate);
+            }
         }
     }
 }
