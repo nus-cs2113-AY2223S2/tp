@@ -448,6 +448,9 @@ public class Parser {
         ArrayList<String> filterFlagAndField = new ArrayList<>();
 
         if (matcher.find()) {
+            if (!matcher.group(6).contains("-date") && !matcher.group(6).equals("")) {
+                throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+            }
             for (int i = 1; i <= 5; i += 1) {
                 if (matcher.group(i) == null) {
                     continue;
@@ -461,7 +464,7 @@ public class Parser {
                     String dateString = this.date.format(formatters);
                     filterFlagAndField.add("-date");
                     filterFlagAndField.add(dateString);
-                } catch (Exception e) {
+                } catch (RainyDayException e) {
                     throw new RainyDayException(e.getMessage() + ErrorMessage.FILTER_FORMAT);
                 }
             }
@@ -534,8 +537,11 @@ public class Parser {
         ArrayList<String> editFlagAndField = new ArrayList<>();
 
         if (matcher.find()) {
-            for (int i = 1; i <= 7; i += 1) {
-                if (matcher.group(i) == null) {
+            if (!matcher.group(8).contains("-date") && !matcher.group(8).equals("")) {
+                throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
+            }
+            for (int i = 1; i <= 8; i += 1) {
+                if (matcher.group(i) == null || i == 8) {
                     continue;
                 }
                 editFlagAndField.add(matcher.group(i));
@@ -548,7 +554,7 @@ public class Parser {
                     String dateString = this.date.format(formatters);
                     editFlagAndField.add("-date");
                     editFlagAndField.add(dateString);
-                } catch (Exception e) {
+                } catch (RainyDayException e) {
                     throw new RainyDayException(e.getMessage() + ErrorMessage.EDIT_FORMAT);
                 }
             }
