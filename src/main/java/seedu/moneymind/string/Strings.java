@@ -60,10 +60,10 @@ public class Strings {
             "inside the brackets empty!";
     public static final String EMPTY_DELETION = "OOPS!!! The description of a delete cannot be empty.";
     public static final String SUBTLE_BUG_MESSAGE = "OOPS!!! Something went wrong, please report to the developer.";
-    public static final String EVENT_REGEX = "^(?<name>.*?)(?:\\s+e\\/(?<expense>\\S+))(?: +t\\/(?<time>.*))?$";
-    public static final String CATEGORY_REGEX = "^(?!b\\/\\d)(?<name>.*?)(?:\\s+b\\/(?<budget>\\S+))?$";
-    public static final String EDIT_REGEX = "c\\/(.+) e\\/(.+)";
-    public static final String DELETE_REGEX = "^c/(?=\\S)(.*?)(?:\\s+e/(.*))?\\s*$";
+    public static final String EVENT_REGEX = "^(?<name>[^/]+)(?:\\s+e\\/(?<expense>[^/]+))(?:\\s+t\\/(?<time>[^/]+))?$";
+    public static final String CATEGORY_REGEX = "^(?<name>[^/]+?)(?:\\s+b\\/(?<budget>[^/]+))?$";
+    public static final String EDIT_REGEX = "c\\/([^/]+) e\\/([^/]+)$";
+    public static final String DELETE_REGEX = "^c\\/(?=\\S)([^/]*?)(?:\\s+e\\/([^/]+))?\\s*$";
     public static final String EVENT_FORMAT = "Please following the correct format: " +
             "event <name> e/<expense number> [(optional) t/<time>]";
     public static final String CATEGORY_FORMAT = "Please following the correct format: " +
@@ -81,7 +81,6 @@ public class Strings {
     public static final String EXISTED_CATEGORY = "Category already exists";
     public static final String EXTRA_SPACE_REGEX_FORMAT = "\\s+";
     public static final String HELP = "help";
-
     public static final String NO_DESCRIPTION_FOR_BYE = "Bye command should not have any description";
     public static final String NO_DESCRIPTION_FOR_HELP = "Help command should not have any description";
     public static final String POSITIVE_INTEGER_FOR_EVENT_INDEX = "Please give a positive integer for event index";
