@@ -196,12 +196,12 @@ public class Parser {
     }
 
     private void checkCategoryName(String category) throws RainyDayException {
-        if (category.indexOf("-date") == 0) {
+        if (category.trim().indexOf("-date") == 0) {
             logger.warning("empty category name");
             throw new RainyDayException(ErrorMessage.EMPTY_CATEGORY_NAME.toString());
         }
-        if (category.contains("-date") && category.trim().length() - "-date".length() == category.indexOf("-date")) {
-            logger.warning("empty category name");
+        if (category.contains("-date") && category.length() - "-date".length() == category.indexOf("-date")) {
+            logger.warning("-date flag provided but no date provided");
             throw new RainyDayException(ErrorMessage.NO_DATE_PROVIDED.toString());
         }
         if (category.contains("-")) {
