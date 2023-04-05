@@ -7,7 +7,6 @@ import seedu.rainyDay.data.MonthlyExpenditures;
 import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.exceptions.RainyDayException;
-import seedu.rainyDay.modules.Storage;
 
 import java.io.IOException;
 import java.nio.file.Files;

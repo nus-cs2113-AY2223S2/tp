@@ -6,22 +6,13 @@ import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.MonthlyExpenditures;
 import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.data.UserData;
-import seedu.rainyDay.exceptions.RainyDayException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.SortedMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShortcutViewCommandTest {
-
-    ArrayList<FinancialStatement> statements = new ArrayList<>();
-    FinancialReport financialReport = new FinancialReport(statements);
-    HashMap<Integer, Double> expenditures = new HashMap<>();
-    MonthlyExpenditures monthlyExpenditures = new MonthlyExpenditures(expenditures);
-    SavedData savedData = new SavedData(financialReport);
-    UserData userData = new UserData(savedData, monthlyExpenditures);
     private static final String NO_SHORTCUTS = "You do not have any shortcuts configured.";
     private static final String TABLE_BORDER = "" +
             "+-----------------------------------+-------------------------------------------------------------+";
@@ -34,6 +25,13 @@ public class ShortcutViewCommandTest {
 
     private static final String KEY_VALUE_ENTRY = "|key                                |value         " +
             "                                               |" + System.lineSeparator();
+    ArrayList<FinancialStatement> statements = new ArrayList<>();
+    FinancialReport financialReport = new FinancialReport(statements);
+    HashMap<Integer, Double> expenditures = new HashMap<>();
+    MonthlyExpenditures monthlyExpenditures = new MonthlyExpenditures(expenditures);
+    SavedData savedData = new SavedData(financialReport);
+    UserData userData = new UserData(savedData, monthlyExpenditures);
+
 
     @Test
     public void execute_contentMatch() {
@@ -47,7 +45,7 @@ public class ShortcutViewCommandTest {
 
         System.out.println(expectedOutput);
         System.out.println(shortcutViewCommand.execute().output);
-        
+
         assertEquals(expectedOutput, shortcutViewCommand.execute().output);
     }
 

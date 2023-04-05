@@ -8,7 +8,6 @@ import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.exceptions.RainyDayException;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
