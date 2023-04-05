@@ -102,9 +102,28 @@ public class Ui {
 
     public void showSuccessfulConfirmedMessage() {
         showLine();
-        System.out.println("Company has been successfully confirmed/uncomfirmed!");
+        System.out.println("This company has been successfully confirmed!");
         showLine();
     }
+
+    public void showSuccessfulUnconfirmedMessage() {
+        showLine();
+        System.out.println("This company has been successfully uncomfirmed!");
+        showLine();
+    }
+
+    public void showExistingConfirmationMessage() {
+        showLine();
+        System.out.println("This company is already confirmed!");
+        showLine();
+    }
+
+    public void showExistingUnconfirmationMessage() {
+        showLine();
+        System.out.println("This company is already uncomfirmed!");
+        showLine();
+    }
+      
 
     public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList) {
         showLine();
