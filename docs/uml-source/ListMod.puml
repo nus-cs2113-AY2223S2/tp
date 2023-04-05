@@ -20,7 +20,7 @@ activate ListMod
 ListMod -> ListMod : setUpLogger()
 activate ListMod
 deactivate ListMod
-ListMod -> Parser: : ListModuleCommand()
+ListMod -> Parser: ListModuleCommand()
 deactivate ListMod
 
 
