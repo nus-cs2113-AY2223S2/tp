@@ -32,10 +32,11 @@ public class EditTagsCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
         for (int id : idHashSet) {
-            String taskString = taskList.setTags(id, tags);
             if (tags == null) {
+                String taskString = taskList.getTaskString(id);
                 ui.printEditDeleteTaskMessage("tags", taskString);
             } else {
+                String taskString = taskList.setTags(id, tags);
                 ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
             }
         }
