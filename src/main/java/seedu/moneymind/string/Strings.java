@@ -2,6 +2,7 @@ package seedu.moneymind.string;
 
 public class Strings {
     public static final String NO_CATEGORY_MESSAGE = "Category does not exist";
+    public static final String CAT_NOT_FOUND = "Category is not found!";
     public static final String DOT = ".";
     public static final String NO_CATEGORIES_TO_VIEW = "There are no categories to view";
     public static final String NO_SEARCH_RESULTS = "No matching search results.";

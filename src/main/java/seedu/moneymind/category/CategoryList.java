@@ -2,6 +2,8 @@ package seedu.moneymind.category;
 
 import java.util.ArrayList;
 
+import static seedu.moneymind.string.Strings.CAT_NOT_FOUND;
+
 public class CategoryList {
     public static ArrayList<Category> categories = new ArrayList<Category>();
 
@@ -27,17 +29,17 @@ public class CategoryList {
                 System.out.println("index " + (i + 1) + ". " + categories.get(i).getName());
             }
             if (count == 0) {
-                System.out.println("Category not found!");
+                System.out.println(CAT_NOT_FOUND);
             }
         }
-        System.out.println("Category not found!");
+        System.out.println(CAT_NOT_FOUND);
     }
 
     /**
      * Gets the category with specific index in the list.
      *
      * @param index the index of the category in the list
-     * @return
+     * @return the category with specific index in the list
      */
     public static Category getCategory(int index) {
         return categories.get(index);
