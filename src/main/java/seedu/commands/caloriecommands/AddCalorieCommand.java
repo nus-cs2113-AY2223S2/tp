@@ -12,7 +12,7 @@ public class AddCalorieCommand extends CaloriesCommand {
     private String foodName;
     private int currentFoodCalories;
 
-    private Calories calories;
+    private Calories calories = new Calories();
     private StringBuilder string = new StringBuilder();
 
 

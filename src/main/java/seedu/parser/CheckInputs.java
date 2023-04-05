@@ -1,6 +1,7 @@
 package seedu.parser;
 
 import seedu.commands.Command;
+import seedu.commands.HandlingStringInput;
 import seedu.commands.IncorrectSyntaxCommand;
 import seedu.commands.countcommands.CountSetsRepsCommand;
 import seedu.commands.workoutcommands.AddWorkoutCommand;
@@ -12,49 +13,90 @@ import seedu.commands.workoutcommands.StartDayCommand;
 import seedu.workout.Exercise;
 
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
 public class CheckInputs {
-    private static final int EXERCISE_NAME_INDEX = 0;
-    private static final int WEIGHT_INDEX = 1;
-    private static final int REPS_PER_SET_INDEX = 2;
+    private static final int FIRST_ELEMENT = 0;
+    private static final int SECOND_ELEMENT = 1;
+    private static final int THIRD_ELEMENT = 2;
 
-
+    private static final String INVALID_START_COMMAND = "Please follow the format /wstart dd/MM/yy.";
+    private static final String INVALID_DATE = "Please enter a valid date.";
+    private static final String INVALID_DATE_FORMAT = "Invalid date format. Please follow the format dd/MM/yy.";
+    private static final String INVALID_YEAR = "Invalid year. Please use a 2 or 4 digit year between 0 and ";
+    private static final String DAY_COMMAND = "/wday command";
+    private static final String START_COMMAND = "/wstart command";
+    private static final String ADD_COMMAND = "/wadd command";
+    private static final String LIST_COMMAND = "/wlist command";
+    private static final String VIEW_COMMAND = "/wview command";
+    private static final String DELETE_COMMAND = "/wdelete command";
     static Command processDay(String arguments) {
         Date date = parseDate(arguments);
-        // Command.setDay(date);
         return date != null && parseInput(arguments) ? new StartDayCommand(date) :
-                new IncorrectSyntaxCommand("/wday command");
+                new IncorrectSyntaxCommand(DAY_COMMAND);
     }
 
     static Command processAdd(String arguments) {
         Exercise toAdd;
         try {
-            String[] exerciseDetails = arguments.split("/");
+            String[] exerciseDetails = arguments.trim().split("/");
             if (exerciseDetails.length != 3) {
-                System.out.println(66);
-                return new IncorrectSyntaxCommand("/wadd command");
+                return new IncorrectSyntaxCommand(ADD_COMMAND);
             }
-            String exerciseName = exerciseDetails[EXERCISE_NAME_INDEX].trim();
-            String weight = exerciseDetails[WEIGHT_INDEX].replace("weight", " ").trim();
-            if(!exerciseDetails[WEIGHT_INDEX].startsWith("weight")){
-                return new IncorrectSyntaxCommand("/wadd command");
+
+            String exerciseName = exerciseDetails[FIRST_ELEMENT].trim();
+            if(HandlingStringInput.isInputValid(exerciseName.trim())){ //if either condition failed
+                return new IncorrectSyntaxCommand(ADD_COMMAND);
             }
-            String repsPerSetString =
-                    exerciseDetails[REPS_PER_SET_INDEX].replace("rps", "").replace("rps", "").trim();
-            if(!exerciseDetails[REPS_PER_SET_INDEX].startsWith("rps")){
-                System.out.println(00);
-                return new IncorrectSyntaxCommand("/wadd command");
+            String weight = exerciseDetails[SECOND_ELEMENT].replace("weight", " ").trim();
+            String[] checkWeight = exerciseDetails[SECOND_ELEMENT].trim().split(" ");
+            if(!exerciseDetails[SECOND_ELEMENT].trim().startsWith("weight ")){
+                    return new IncorrectSyntaxCommand(ADD_COMMAND);
+                }
+            if(!HandlingStringInput.isInputTooLong(checkWeight[SECOND_ELEMENT])
+            || !HandlingStringInput.isInputMatching(checkWeight[SECOND_ELEMENT].trim())){
+                return new IncorrectSyntaxCommand(ADD_COMMAND);
             }
-            String[] repsList = repsPerSetString.split(" ");
-            int[] reps = new int[repsList.length];
-            for (int i = 0; i < repsList.length; i++) {
-                reps[i] = Integer.parseInt(repsList[i].trim());
+
+           /* if(!checkWeight[FIRST_ELEMENT].trim().equals(("WEIGHT").toLowerCase())){
+                System.out.println(checkWeight[FIRST_ELEMENT].trim());
+                System.out.println(0);
+                return new IncorrectSyntaxCommand(ADD_COMMAND);
+            }*/
+           /* if(!HandlingStringInput.isInputMatching(checkWeight[SECOND_ELEMENT].trim())){
+                return new IncorrectSyntaxCommand(ADD_COMMAND);
+            }*/
+
+            String[] rpsList = exerciseDetails[THIRD_ELEMENT].trim().split(" ", 2);
+
+
+           /* if(!rpsList[FIRST_ELEMENT].trim().equals("rps")){
+                System.out.println(2);
+                return new IncorrectSyntaxCommand(ADD_COMMAND);
+            }*/
+            if(!exerciseDetails[THIRD_ELEMENT].startsWith("rps ")){
+                return new IncorrectSyntaxCommand(ADD_COMMAND);
             }
-            toAdd = new Exercise(exerciseName, weight, repsPerSetString);
+           /* if(!HandlingStringInput.isInputTooLong(rpsList[SECOND_ELEMENT])){
+                return new IncorrectSyntaxCommand(ADD_COMMAND);
+            }
+*/
+            String[] rpsStringList = rpsList[SECOND_ELEMENT].trim().split(",", 10);
+            if(rpsStringList.length > 10 ){
+                System.out.println("The number of sets for rps up to 10");
+            }
+            String[] newRps = new String[rpsStringList.length];
+            int[] reps = new int[rpsStringList.length];
+            for(int index = 0; index < rpsStringList.length; index += 1){
+                newRps[index] =  rpsStringList[index].trim();
+                reps[index] = Integer.parseInt(rpsStringList[index].trim());
+            }
+
+            toAdd = new Exercise(exerciseName, weight,  Arrays.toString(newRps).replaceAll("[\\[\\],]", ""));
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
-            return new IncorrectSyntaxCommand("/wadd command");
+            return new IncorrectSyntaxCommand(ADD_COMMAND);
         }
         return new AddWorkoutCommand(toAdd);
     }
@@ -68,8 +110,10 @@ public class CheckInputs {
      * @return Incorrect command if the input date is incorrect, otherwise, initialize the StartCommand
      */
     static Command processStart(String arguments) {
-        return parseWorkoutName(arguments) ? new StartWorkoutCommand(arguments.trim()) :
-                new IncorrectSyntaxCommand("/start command");
+        //
+        String workName = arguments.replaceAll(" {2,}", " ");
+        return parseWorkoutName(workName) ? new StartWorkoutCommand(workName.trim()) :
+                new IncorrectSyntaxCommand(START_COMMAND);
 
     }
 
@@ -82,13 +126,13 @@ public class CheckInputs {
     static Command processDelete(String arguments) {
         Date date = parseDate(arguments);
         return date != null && parseInput(arguments) ? new DeleteWorkoutCommand(date) :
-                new IncorrectSyntaxCommand("/delete command");
+                new IncorrectSyntaxCommand(DELETE_COMMAND);
     }
 
     //@@ author ZIZI-czh
     static Command processList(String arguments) {
         return arguments == null || arguments.trim().isEmpty() ? new ListWorkoutCommand() :
-                new IncorrectSyntaxCommand("/list command");
+                new IncorrectSyntaxCommand(LIST_COMMAND);
     }
 
     /**
@@ -104,7 +148,7 @@ public class CheckInputs {
             date = DateFormatter.stringToDate(arguments);
             return new ViewWorkoutCommand(date);
         } catch (ParseException e) {
-            return new IncorrectSyntaxCommand("/wview command");
+            return new IncorrectSyntaxCommand(VIEW_COMMAND);
         }
     }
 
@@ -131,16 +175,10 @@ public class CheckInputs {
     static Date parseDate(String arguments) {
         try {
             Date enteredDate = DateFormatter.stringToDate(arguments);;
-            Date currentDate = new Date();
 
-
-            if (enteredDate.compareTo(currentDate) > 0) {
-                //System.out.println("Date cannot be after the current date.");
-                return null;
-            }
             return enteredDate;
         } catch (ParseException e) {
-            System.out.println("Invalid date format. Please follow the format dd/MM/yy");
+            System.out.println(INVALID_DATE_FORMAT);
             return null;
         }
     }
@@ -154,21 +192,20 @@ public class CheckInputs {
 
     //@@ author ZIZI-czh
     static boolean parseInput(String arguments) {
-        //arguments.trim().contains("\\s+");
         if (arguments.trim().contains("\\s+")) {
-            System.out.println("invalid input date, please use the format /start dd/MM/yy");
+            System.out.println(INVALID_START_COMMAND);
             return false; // not in the form "/start dd/MM/yy"
         }
         String[] dateParts = arguments.trim().split("/");
 
         if (dateParts.length != 3) {
-            System.out.println("invalid input, please use the format dd/MM/yy");
+            System.out.println(INVALID_START_COMMAND);
             return false; // not in the form "dd/MM/yy"
         }
 
         for (String part : dateParts) {
             if (part.contains("/")) {
-                System.out.println("invalid input, please follow /start dd/MM/yy");
+                System.out.println(INVALID_START_COMMAND);
                 return false; // non-numeric character found in date
             }
         }
@@ -177,30 +214,31 @@ public class CheckInputs {
         int month;
         int year;
         try {
-            day = Integer.parseInt(dateParts[0]);
-            month = Integer.parseInt(dateParts[1]);
-            year = Integer.parseInt(dateParts[2]);
+            day = Integer.parseInt(dateParts[0].trim());
+            month = Integer.parseInt(dateParts[1].trim());
+            year = Integer.parseInt(dateParts[2].trim());
             if (day < 1 || day > 31 || month < 1 || month > 12) {
-                System.out.println("Please enter a correct date");
+                System.out.println(INVALID_DATE);
                 return false; // not valid date components
             }
-            if (year < 0 || (year > 99 && year < 1000) || year > Calendar.getInstance().get(Calendar.YEAR)) {
-                System.out.println("Invalid year. Please use a 2 or 4 digit year between 0 and "
+            if (year < 0 || (year > 23 && year < 1000) || year > Calendar.getInstance().get(Calendar.YEAR)) {
+                System.out.println(INVALID_YEAR
                         + Calendar.getInstance().get(Calendar.YEAR));
-                return false; // year not between 0 and current year or not 2 or 4 digits
             }
         } catch (NumberFormatException e) {
-            System.out.println("Please enter valid date");
+            System.out.println(INVALID_DATE);
             return false; // not valid integers for date components
         }
 
         return true; // input is in the correct format
     }
 
-    public static boolean parseWorkoutName(String arguments) {
-        //System.out.println("The workout name should start with 'Workout'");
-        return !arguments.trim().isEmpty();
-    }
+    public static boolean parseWorkoutName(String workName) {
+        if(HandlingStringInput.isInputValid(workName)){
+            return false;
+        }
+            return !workName.trim().isEmpty();
+        }
 
 
 }

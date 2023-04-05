@@ -22,7 +22,6 @@ public class CheckCaloriesInput {
     }
 
     public static Command processAddCalories(String arguments) {
-        Date date;
         String food;
         int calories;
 

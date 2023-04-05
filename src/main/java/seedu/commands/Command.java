@@ -13,10 +13,8 @@ import java.util.HashMap;
 public class Command {
 
     protected static boolean isDayEntered;
-    //protected static Date date;
     protected static boolean isWorkoutEntered;
     protected WorkoutList workoutList = new WorkoutList();
-    //protected CalorieTracker calorieTracker;
     protected CaloriesRecorder caloriesRecorder;
     protected FoodList foodList;
     protected HashMap<Date, Day> workouts;
@@ -53,7 +51,6 @@ public class Command {
         //  this.calorieTracker = calorieTracker;
         this.caloriesRecorder = caloriesRecorder;
         this.foodList = foodList;
-
     }
 
 

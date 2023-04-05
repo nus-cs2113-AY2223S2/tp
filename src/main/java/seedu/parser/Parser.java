@@ -5,6 +5,7 @@ import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.commands.InvalidCommand;
 import seedu.commands.caloriecommands.CaloriesCommand;
+import seedu.commands.caloriecommands.HelpCaloriesCommand;
 import seedu.commands.workoutcommands.HelpWorkoutCommand;
 import seedu.exceptions.InvalidSyntaxException;
 
@@ -44,19 +45,24 @@ public class Parser {
             return CheckInputs.processView(arguments);
         case "/wcount":
             return CheckInputs.processSetsRepsCount(arguments);
+        case "/whelp":
+            return new HelpWorkoutCommand();
         case "/cday":
             CaloriesCommand.setDateEntered(true);
             return CheckCaloriesInput.processDayCalories(arguments);
         case "/cadd":
             return CheckCaloriesInput.processAddCalories(arguments);
-        case "/clist": //list the total daily calories consumption
+        case "/clist":
+            //list the total daily calories consumption
          //   return CheckCaloriesInput.processViewCalories(arguments);
-        case "/cview": // list all the food calories that been entered for a day
-        case "/cdelete": //delete calories for a specific day for one food follow /cdelete date food name
+        case "/cview":
+            // list all the food calories that been entered for a day
+        case "/cdelete":
+            //delete calories for a specific day for one food follow /cdelete date food name
+        case "/chelp":
+            return new HelpCaloriesCommand();
         case "/exit":
             return new ExitCommand();
-        case "/help":
-            return new HelpWorkoutCommand();
         default:
             return new InvalidCommand(commandName);
         }

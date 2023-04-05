@@ -10,6 +10,7 @@ public class InvalidCommand extends Command {
 
     @Override
     public String execute() {
-        return command + INVALID_COMMAND_MESSAGE;
+        return command + INVALID_COMMAND_MESSAGE
+                + InfoMessage.showLinesAfterExecution();
     }
 }

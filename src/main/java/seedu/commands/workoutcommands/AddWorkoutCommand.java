@@ -17,7 +17,6 @@ public class AddWorkoutCommand extends Command {
     //@@ author ZIZI-czh
     @Override
     public String execute() {
-        //ArrayList<Exercise> exercises = Workout.getExercises();
         if (isWorkoutEntered) {
             day = workoutList.getSingleWorkout();
             workoutForOneDay = day.getWorkout();
