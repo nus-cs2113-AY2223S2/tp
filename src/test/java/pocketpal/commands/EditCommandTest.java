@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class EditCommandTest extends BackendTestUtil {
     private final EditCommand expectedEditCommand = new EditCommand("1", "Lunch", "Food", "5");
     private final Entry originalEntry = new Entry("Dinner", 7.50, Category.FOOD);
-    private final String[] proposedChanges = {"1", "Lunch", "", ""};
+    private final String[] proposedChanges = {"1", "Lunch", null, null};
 
     @BeforeEach
     void init() {

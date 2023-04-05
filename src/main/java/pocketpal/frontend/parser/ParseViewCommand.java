@@ -15,6 +15,8 @@ import pocketpal.frontend.exceptions.UnknownOptionException;
 import pocketpal.frontend.util.CategoryUtil;
 import pocketpal.frontend.util.StringUtil;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 public class ParseViewCommand extends ParseCommand {
@@ -60,14 +62,15 @@ public class ParseViewCommand extends ParseCommand {
         endPrice = prices[1];
         checkIdValidity(viewCount);
         checkCategoryValidity(category);
-        checkDateValidity(startDate);
-        checkDateValidity(endDate);
         if (viewCount != null && !viewCount.isEmpty()) {
             viewCountInt = Integer.parseInt(viewCount);
         }
         if (category != null) {
             category = StringUtil.toTitleCase(category);
             categoryObject = CategoryUtil.convertStringToCategory(category);
+        }
+        if (startDate != null && endDate != null && !isDateRangeValid(startDate, endDate)) {
+            throw new InvalidDateException(MessageConstants.MESSAGE_MIXED_DATE);
         }
         return new ViewCommand(viewCountInt, categoryObject, startPrice, endPrice, startDate, endDate);
     }
@@ -145,6 +148,16 @@ public class ParseViewCommand extends ParseCommand {
         prices[0] = priceMinDouble;
         prices[1] = priceMaxDouble;
         return prices;
+    }
+
+    private Boolean isDateRangeValid(String startDate, String endDate) throws InvalidDateException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(ParserConstants.DATE_FORMAT);
+        LocalDateTime startDateTime = LocalDateTime.parse(startDate, formatter);
+        LocalDateTime endDateTime = LocalDateTime.parse(endDate, formatter);
+        if (startDateTime.isAfter(endDateTime)) {
+            return false;
+        }
+        return true;
     }
 }
 

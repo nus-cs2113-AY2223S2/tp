@@ -137,10 +137,9 @@ public class EntriesEndpoint extends Endpoint {
         if (isFilterBetweenDates) {
             String startDateString = request.getParam(RequestParams.FILTER_BY_TIME_START);
             String endDateString = request.getParam(RequestParams.FILTER_BY_TIME_END);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
             LocalDateTime startDateTime = LocalDateTime.parse(startDateString, formatter);
             LocalDateTime endDateTime = LocalDateTime.parse(endDateString, formatter);
-
             logger.info(
                     "/entries [GET]: filter by date (start: " + startDateString + ", end: " + endDateString + ")");
             filteredEntries = filteredEntries.filterBetweenDates(startDateTime, endDateTime);

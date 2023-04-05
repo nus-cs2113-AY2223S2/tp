@@ -322,7 +322,7 @@ public class ParserTest {
         assertEquals(exception.getMessage(), MessageConstants.MESSAGE_INVALID_DATE);
 
 
-        assertDoesNotThrow(() -> parser.parseUserInput("/view -sd 20/11/1999 -ed 29/02/2024"));
+        assertDoesNotThrow(() -> parser.parseUserInput("/view -sd 20/11/19 -ed 29/02/24"));
     }
 
     @Test

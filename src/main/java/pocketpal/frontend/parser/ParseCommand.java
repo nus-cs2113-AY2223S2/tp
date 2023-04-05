@@ -12,10 +12,6 @@ import pocketpal.frontend.exceptions.UnknownOptionException;
 import pocketpal.frontend.util.CategoryUtil;
 import pocketpal.frontend.util.StringUtil;
 
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,10 +27,6 @@ public abstract class ParseCommand {
         String detail = null;
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
-            System.out.println(matcher.group(1));
-            System.out.println(matcher.group(2));
-            System.out.println(matcher.group(3));
-
             String option = matcher.group(ParserConstants.OPTION_GROUP);
             detail = matcher.group(ParserConstants.DETAIL_GROUP);
             if (detail != null) {
@@ -101,11 +93,8 @@ public abstract class ParseCommand {
         if (dateString == null) { //date not declared;
             return;
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            dateFormat.setLenient(false);
-            Date date = dateFormat.parse(dateString);
-        } catch (ParseException e) {
+        Matcher matcher = ParserConstants.DATE_FORMATTER.matcher(dateString);
+        if (!matcher.find()) { //Date incorrect format
             throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);
         }
     }
