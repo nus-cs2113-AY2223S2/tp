@@ -120,7 +120,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-### `confirm` - Marks a specific company's attendance as confirmed
+### `confirm [INDEX]` - Marks a specific company's attendance as confirmed
 Mark the status of a specific company's attendance as confirmed, and 
 updates a status icon to [Confirmed] that represents it being marked confirmed.
 
@@ -134,7 +134,7 @@ Company has been successfully confirmed/uncomfirmed!
 ____________________________________________________________
 ```
 
-### `unconfirm` - Marks a specific company's attendance as unconfirmed
+### `unconfirm <INDEX>` - Marks a specific company's attendance as unconfirmed
 Mark the status of a specific company's attendance as unconfirmed, and
 updates a status icon to [Unconfirmed] that represents it being marked unconfirmed.
 
@@ -184,7 +184,7 @@ TESLA added successfully!
 ____________________________________________________________
 ```
 
-### `delete ` - Delete a company from the company list
+### `delete <INDEX>` - Delete a company from the company list
 Delete a company from the company list, and updates the company list text file.
 
 Example of usage:
@@ -231,7 +231,7 @@ Data has been deleted successfully!
 ____________________________________________________________
 ```
 
-### `find companies ` - find the companies based on a company name
+### `find company <KEYWORD>` - find the companies based on a company name
 find the companies based on a company name, or any of the alphabets in the company name
 
 Example of usage:
@@ -282,7 +282,7 @@ Company industry: TECH
 ____________________________________________________________
 ```
 
-### `choose venue ` - updates the venue of the event
+### `choose venue <INDEX>` - updates the venue of the event
 Updates the venue of the event, and updates the event details file
 
 Example of usage:
