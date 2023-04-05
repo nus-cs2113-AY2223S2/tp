@@ -174,10 +174,7 @@ public class AddCommand extends Command implements LoggerInterface {
         case COMMAND_TODO_WORD:
             ToDo todo = new ToDo(desc);
             taskList.add(todo);
-            if (todo.getDescription().contains("by")||todo.getDescription().contains("/by")||
-                    todo.getDescription().contains("due")){
-                ui.deadlineSuggestion();
-            }
+            checkForDeadlineTask(ui, todo);
             break;
         case COMMAND_DEADLINE_WORD:
             Deadline deadline = new Deadline(desc, by);
@@ -197,6 +194,19 @@ public class AddCommand extends Command implements LoggerInterface {
         }
     }
 
+    /**
+     * Checks if the user has added a deadline task that is similar to the format of a deadline task.
+     * @param ui    For printing warning message.
+     * @param todo  The task being added.
+     */
+    private static void checkForDeadlineTask(Ui ui, ToDo todo) {
+        if (todo.getDescription().matches(".*\\bby\\b.*")||
+                todo.getDescription().matches(".*(/by|\\s+by)\\b.*")||
+                todo.getDescription().matches(".*\\bdue\\b.*") ||
+                todo.getDescription().matches(".*\\bduedate\\b.*")){
+            ui.deadlineSuggestion();
+        }
+    }
 
 
     /**
