@@ -69,7 +69,7 @@ public class Storage {
             case MISSING:
                 //fallthrough
             case EMPTY:
-                Ui.printEmptySearch();
+                Ui.printEmptySessionFile();
                 return new Inventory();
             default:
                 break;
