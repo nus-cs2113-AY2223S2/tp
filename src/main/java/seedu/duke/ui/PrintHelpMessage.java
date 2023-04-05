@@ -40,7 +40,7 @@ public class PrintHelpMessage {
         System.out.println("[clear_achievements]");
         System.out.println("\tClears all the data of finished exercises for the achievements database, resetting " +
                            "counters for all achievements. " +
-                           " \n \t*Do note that this command does not clear the counters " +
+                           " \n\tDo note that this command does not clear the counters " +
                            "for each specific exercise, hence the number of each exercise completed from the " +
                            "data command will NOT be cleared.");
         System.out.println("[exit]");

@@ -4,6 +4,7 @@
 
 Our workouts feature is designed to help you complete a workout and log your progress.
 
+
 ## Commands
 
 ### Viewing your current workout exercises ```current```

@@ -121,13 +121,9 @@ Shows a list containing *number* of _random_ workouts that suits the arguments f
 
 Example Command: ```generate easy 3```, ```generate hard upper 4```
 
-<<<<<<< HEAD
 <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#995000"> **Do note that the exercises that you generate might not be the same as the exercises in the example below! This is due to the 800+ exercises that we have in our library! </p>
 <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#995000"> **Do also note that you can only generate a maximum of 873 exercises at a time! Any more and the program will not generate your exercises for you! </p>
-=======
-#### **Do note that the exercises that you generate might not be the same as the exercises in the example below! This is due to the 800+ exercises that we have in our library!
-#### **Do also note that you can only generate a maximum of 873 exercises at a time! Any more and the program will not generate your exercises for you!
->>>>>>> 3335dc29478dbebab0afd0193237842be11f1d35
+
 
 Examples:
 ```
@@ -148,7 +144,7 @@ ________________________________________
 ```
 
 ## Getting into a workout: ```start```
-[Duke.java](..%2Fsrc%2Fmain%2Fjava%2Fseedu%2Fduke%2FDuke.java)
+
 Enters a workout session with the **previously (latest) generated** workout session.
 
 **Note that you must have at least one previously generated workout to start.
@@ -180,9 +176,27 @@ The current workout contains:
 Start workout! You got this, all the best!
 ________________________________________
 ```
-## Achievements
+## Achievements: ```achievements```
 A list of achievements exist to provide motivation upon the completion of a workout.
-More details are made known in the *Workout Session's* feature guide below.
+Each achievement consists of:
+1) A name
+2) A set number of exercises required to complete the achievement
+3) The achievement's difficulty level
+4) The current number of exercises under the achievement's category completed.
+<br><br>
+
+Calling the ```achievements``` command will list out all the details of all the available achievements.
+The format of each achievement is as follows:
+```
+23)  The Static Warrior: Complete 3 Static workouts!
+Difficulty: **
+Not Achieved :(
+Current Count: 0
+```
+
+More details on how the achievements are used can be seen 
+in the *Workout Session's* feature guide below.
+<br><br>
 <br>A full list of the preloaded achievements exist
 **[here](UG_features%2FachievementList.md)**
 ## Within your workout session
