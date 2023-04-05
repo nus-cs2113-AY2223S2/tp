@@ -4,6 +4,7 @@ import bagpacker.commands.Command;
 import bagpacker.commands.AddCommand;
 import bagpacker.commands.DeleteCommand;
 import bagpacker.commands.ListCommand;
+import bagpacker.commands.ListUnpackedCommand;
 import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackCommand;
 import bagpacker.commands.DeleteListCommand;
@@ -76,11 +77,13 @@ public class Parser {
         case "unpack":
             return createUnpackObj();
         case "list":
-            return listCommand();
+            return createListObj();
+        case "listunpacked":
+            return createListUnpackedObj();
         case "help":
             return createHelpObj();
         case "deletelist":
-            return createDeletelistObj();
+            return createDeleteListObj();
         case "packall":
             return createPackAllObj();
         case "editquantity":
@@ -220,7 +223,7 @@ public class Parser {
      * Attempts to create AddCommand object to be executed where it is called from
      *
      * @return AddCommand the command to be executed to add an item to the packing list, else
-     * an IncorrectCommand is created to be executed
+     *              an IncorrectCommand is created to be executed
      */
     public static Command createAddObj() {
         try {
@@ -256,7 +259,7 @@ public class Parser {
      * Attempts to create DeleteCommand object to be executed where it is called from
      *
      * @return DeleteCommand the command to be executed to delete an item to the packing list, else
-     * an IncorrectCommand is created to be executed
+     *              an IncorrectCommand is created to be executed
      */
     public static Command createDeleteObj() {
         try {
@@ -294,7 +297,7 @@ public class Parser {
      * Attempts to create PackCommand object to be executed where it is called from
      *
      * @return PackCommand the command to be executed to Pack an item in the packing list, else
-     * an IncorrectCommand is created to be executed
+     *              an IncorrectCommand is created to be executed
      */
     public static Command createPackObj() {
         int quantityNotPacked = 0;
@@ -336,7 +339,7 @@ public class Parser {
      * Will check whether changing the total quantity will cause packed
      *
      * @return EditQuantityCommand the command to be executed to edit the total quantity of an item in the packing list,
-     *      else an IncorrectCommand objected is created to be executed
+     *              else an IncorrectCommand objected is created to be executed
      */
     public static Command createEditQuantityObj() {
         try {
@@ -378,7 +381,7 @@ public class Parser {
      * Attempts to create PackCommand object to be executed where it is called from
      *
      * @return PackCommand the command to be executed to Pack an item in the packing list, else
-     * an IncorrectCommand is created to be executed
+     *              an IncorrectCommand is created to be executed
      */
 
     public static String[] getPackVariables() throws InvalidIndexException {
@@ -432,7 +435,7 @@ public class Parser {
      * Attempts to create UnpackCommand object to be executed where it is called from
      *
      * @return UnpackCommand the command to be executed to unpack an item in the packing list, else
-     * an IncorrectCommand is created to be executed
+     *              an IncorrectCommand is created to be executed
      */
     public static Command createUnpackObj() {
         int quantityPacked = 0;
@@ -494,11 +497,15 @@ public class Parser {
         }
     }
 
-    public static Command listCommand() {
+    public static Command createListObj() {
         return new ListCommand();
     }
 
-    public static Command createDeletelistObj() {
+    private static Command createListUnpackedObj() {
+        return new ListUnpackedCommand();
+    }
+
+    public static Command createDeleteListObj() {
         return new DeleteListCommand();
     }
 

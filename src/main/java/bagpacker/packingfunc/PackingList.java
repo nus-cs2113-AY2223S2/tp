@@ -1,6 +1,4 @@
 package bagpacker.packingfunc;
-import bagpacker.commands.Command;
-
 import java.util.ArrayList;
 
 /**

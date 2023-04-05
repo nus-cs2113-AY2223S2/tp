@@ -34,6 +34,11 @@ public class Item {
         this.totalQuantity = totalQuantity;
     }
 
+    public boolean checkFullyPacked(){
+        boolean isFullyPacked = totalQuantity == packedQuantity;
+        return isFullyPacked;
+    }
+
     public int getTotalQuantity() {
         return totalQuantity;
     }
