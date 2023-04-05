@@ -88,7 +88,6 @@ public class Parser {
         } else if (details[1].substring(0, 3).trim().equals("all")) {
             eventList.deleteAll();
             Duke.LOGGER.log(Level.INFO, "User deleted all events in event list.");
-            Ui.deleteAllSuccess();
         } else {
             throw new NPExceptions("please input a valid flag!");
         }

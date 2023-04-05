@@ -26,7 +26,7 @@ public class Ui {
         String cmd;
         cmd = in.nextLine();
         assert cmd != null;
-        
+
         while (!(cmd.equals("bye"))) {
             Parser.parseCommand(cmd, eventList);
             cmd = in.nextLine();
@@ -140,6 +140,13 @@ public class Ui {
         System.out.println("    > all events are deleted!");
         printDash();
     }
+
+    public static void deleteAllError() {
+        printDash();
+        System.out.println("There are no events to delete!");
+        printDash();
+    }
+
 
     public static void printEDOmitted() {
         printDash();
