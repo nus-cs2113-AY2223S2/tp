@@ -36,7 +36,7 @@ public class Storage {
     public static class LocalDateTimeAdapter
             implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
         private final DateTimeFormatter dateTimeFormat = DateTimeFormatter.
-                ofPattern(Formats.TIME_IN_2.getFormat());
+                ofPattern(Formats.TIME_IN_2);
 
         @Override
         public JsonElement serialize(LocalDateTime localDateTime, Type typeOfSrc, JsonSerializationContext context) {

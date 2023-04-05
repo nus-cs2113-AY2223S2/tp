@@ -24,7 +24,7 @@ public class FormatterUtil {
     }
 
     public static String getDeadlineAsString(LocalDateTime deadline) {
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_OUT.getFormat());
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_OUT);
         return deadline.format(outputFormatter);
     }
 
