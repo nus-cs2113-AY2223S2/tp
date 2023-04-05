@@ -55,10 +55,10 @@ public class Expenses {
         }
         if (expenseValue > 1000000) {
             throw new ChChingException("Expense value can at most be 1000000");
-        } else if (expenseValue <= 0) {
-            throw new ChChingException("Expense value must be greater than 0");
+        } else if (expenseValue < 0.01) {
+            throw new ChChingException("Expense value must be greater than or equals 0.01");
         }
-        assert expenseValue > 0 : "expenseValue has to be more than 0";
+        assert expenseValue >= 0.01 : "expenseValue has to be more than or equals 0.01";
         exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
         return exp;
     }
