@@ -1,6 +1,7 @@
 package seedu.duke.exceptions;
 
-import static seedu.duke.utils.Ui.LINE;
+import seedu.duke.utils.Ui;
+
 
 public class OutOfRangeException extends Exception{
     public void printOutOfRange() {

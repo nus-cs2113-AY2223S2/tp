@@ -12,15 +12,15 @@ import java.util.Objects;
 
 
 public class Ui {
-    public static final String LINE = "__________________________________________________________________________";
-    public static final String DASHBOARDLOGO = "\n" +
+    private static final String LINE = "__________________________________________________________________________";
+    private static final String DASHBOARDLOGO = "\n" +
             "██████╗░░█████╗░░██████╗██╗░░██╗██████╗░░█████╗░░█████╗░██████╗░██████╗░\n" +
             "██╔══██╗██╔══██╗██╔════╝██║░░██║██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔══██╗\n" +
             "██║░░██║███████║╚█████╗░███████║██████╦╝██║░░██║███████║██████╔╝██║░░██║\n" +
             "██║░░██║██╔══██║░╚═══██╗██╔══██║██╔══██╗██║░░██║██╔══██║██╔══██╗██║░░██║\n" +
             "██████╔╝██║░░██║██████╔╝██║░░██║██████╦╝╚█████╔╝██║░░██║██║░░██║██████╔╝\n" +
             "╚═════╝░╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═════╝░";
-    public static final String LOGO = "\n" +
+    private static final String LOGO = "\n" +
             "███╗░░░███╗░█████╗░░██████╗░██╗░░░██╗░██████╗░██████╗████████╗░█████╗░░█████╗░██╗░░██╗\n" +
             "████╗░████║██╔══██╗██╔════╝░██║░░░██║██╔════╝██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██║░██╔╝\n" +
             "██╔████╔██║███████║██║░░██╗░██║░░░██║╚█████╗░╚█████╗░░░░██║░░░██║░░██║██║░░╚═╝█████═╝░\n" +
@@ -28,7 +28,7 @@ public class Ui {
             "██║░╚═╝░██║██║░░██║╚██████╔╝╚██████╔╝██████╔╝██████╔╝░░░██║░░░╚█████╔╝╚█████╔╝██║░╚██╗\n" +
             "╚═╝░░░░░╚═╝╚═╝░░╚═╝░╚═════╝░░╚═════╝░╚═════╝░╚═════╝░░░░╚═╝░░░░╚════╝░░╚════╝░╚═╝░░╚═╝";
 
-    public static final String INVENTORYLOGO = "\n" +
+    private static final String INVENTORYLOGO = "\n" +
             "██╗███╗░░██╗██╗░░░██╗███████╗███╗░░██╗████████╗░█████╗░██████╗░██╗░░░██╗\n" +
             "██║████╗░██║██║░░░██║██╔════╝████╗░██║╚══██╔══╝██╔══██╗██╔══██╗╚██╗░██╔╝\n" +
             "██║██╔██╗██║╚██╗░██╔╝█████╗░░██╔██╗██║░░░██║░░░██║░░██║██████╔╝░╚████╔╝░\n" +
@@ -36,94 +36,90 @@ public class Ui {
             "██║██║░╚███║░░╚██╔╝░░███████╗██║░╚███║░░░██║░░░╚█████╔╝██║░░██║░░░██║░░░\n" +
             "╚═╝╚═╝░░╚══╝░░░╚═╝░░░╚══════╝╚═╝░░╚══╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝░░░╚═╝░░░";
 
-    public static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
-    public static final String EXIT_MESSAGE = "Hope you had an enjoyable experience. See you next time!";
-    public static final String UNKNOWN_COMMAND = "I don't understand that command, please refer to the user guide " +
+    private static final String GREET_MESSAGE = "Welcome to MagusStock. How may I assist you today?";
+    private static final String EXIT_MESSAGE = "Hope you had an enjoyable experience. See you next time!";
+    private static final String UNKNOWN_COMMAND = "I don't understand that command, please refer to the user guide " +
             "or enter 'help' for all available commands";
-    public static final String INVALID_ADD = "Wrong/Incomplete Format! Please add new items in the following format: " +
-            "\nFormat: add n/[name] upc/[UPC] qty/[quantity] p/[price] c/[category]\nREQUIRED fields: n/ upc/ qty/ " +
-            "p/ \nOPTIONAL field: c/\nTip: Ensure that your UPC, quantity and price are all positive numbers and " +
-            "within valid range";
+    private static final String INVALID_ADD = "Wrong/Incomplete Entry For Add! Please refer to UG for more " +
+            "information\nSample Format: \"add n/[name] upc/[UPC] qty/[quantity] p/[price] c/[category]\"";
 
-    public static final String INVALID_AUTO_SAVE_INPUT = "Invalid input! Please enter either 'on' or 'off' to " +
+    private static final String INVALID_AUTO_SAVE_INPUT = "Invalid input! Please enter either 'on' or 'off' to " +
             "enable/disable auto-save";
-    public static final String AUTOSAVE_ON = "Auto-save has been enabled!";
-    public static final String AUTOSAVE_OFF = "Auto-save has been disabled!";
-    public static final String DUPLICATE_ADD = "Duplicate UPC found! Please add another item with a different UPC";
-    public static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
+    private static final String AUTOSAVE_ON = "Auto-save has been enabled!";
+    private static final String AUTOSAVE_OFF = "Auto-save has been disabled!";
+    private static final String DUPLICATE_ADD = "Duplicate UPC found! Please add another item with a different UPC";
+    private static final String SUCCESS_ADD = "Successfully added the item(s) into the system!";
 
-    public static final String INVALID_LIST = "Wrong/Incomplete Format! Please list items in the following format : " +
-            "\nFormat: list\nThere should not be any other characters behind the command word";
+    private static final String INVALID_LIST = "Wrong/Incomplete Format! Please list items in the following format : " +
+            "\nSample Format: \"list\"";
 
-    public static final String SUCCESS_LIST = "Here are the items in your inventory:";
+    private static final String SUCCESS_LIST = "Here are the items in your inventory:";
 
-    public static final String EMPTY_LIST = "There are no items in your inventory.";
-    public static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. " +
-            "\n" + "      Please delete the corrupt .csv file.";
-    public static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
+    private static final String EMPTY_LIST = "There are no items in your inventory.";
+    private static final String INVALID_SESSION_FILE = "INFO: A Session Inventory file was found but it is corrupted. "
+            + "\nPlease delete the corrupt .csv file.";
+    private static final String RECOVERED_SESSION_FILE = "INFO: Session Inventory Data recovered." +
             " The inventory has been updated.";
-    public static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
+    private static final String EMPTY_SESSION_FILE = "INFO: Empty/No Session Inventory file found.";
 
-    public static final String INVALID_ALERT_FILE = "INFO: A Session Alerts file was found but it is corrupted. " +
+    private static final String INVALID_ALERT_FILE = "INFO: A Session Alerts file was found but it is corrupted. " +
             "\n" + "      Please delete the corrupt .csv file.";
 
-    public static final String EMPTY_ALERT_FILE = "INFO: Empty/No Session Alerts file found.";
+    private static final String EMPTY_ALERT_FILE = "INFO: Empty/No Session Alerts file found.";
 
-    public static final String RECOVERED_ALERT_FILE = "INFO: Session Alert Data recovered." +
+    private static final String RECOVERED_ALERT_FILE = "INFO: Session Alert Data recovered." +
             " The list of active alerts has been updated.";
 
-    public static final int INVENTORY_ATTRIBUTE_COUNT = 6;
-    public static final int HELP_ATTRIBUTE_COUNT = 2;
-    public static final int ALERT_ATTRIBUTE_COUNT = 3;
+    private static final int INVENTORY_ATTRIBUTE_COUNT = 6;
+    private static final int HELP_ATTRIBUTE_COUNT = 2;
+    private static final int ALERT_ATTRIBUTE_COUNT = 3;
 
-    public static final int NAME_COL_WIDTH = 15;
-    public static final int UPC_COL_WIDTH = 12;
-    public static final int QTY_COL_WIDTH = 8;
+    private static final int NAME_COL_WIDTH = 15;
+    private static final int UPC_COL_WIDTH = 12;
+    private static final int QTY_COL_WIDTH = 8;
 
-    public static final int PRICE_COL_WIDTH = 8;
+    private static final int PRICE_COL_WIDTH = 8;
 
-    public static final int INDEX_COL_WIDTH = 5;
-    public static final int COMMAND_COL_WIDTH = 25;
-    public static final int FORMAT_COL_WIDTH = 25;
-    public static final String QUANTITY_AVAILABLE_LABEL = "Quantity Available: ";
-    public static final String UPC_CODE_LABEL = "UPC Code: ";
-    public static final String ITEM_NAME_LABEL = "Item Name: ";
-    public static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Format! Please edit items in the following " +
-            "format: \nFormat: edit upc/[UPC] n/[Name] qty/[Quantity] p/[Price] c/[Category]\nREQUIRED fields: upc/\n" +
-            "OPTIONAL fields: n/ qty/ p/ c/\nTip: Ensure that your UPC, quantity and price are all positive numbers " +
-            "and within valid range";
-    public static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. Please add item " +
-            "first!";
-    public static final String SUCCESS_EDIT = "Successfully edited the following item:";
-    public static final String SUCCESS_RESTOCK = "Successfully restocked the following item:";
-    public static final String SUCCESS_SELL = "Successfully sold the following item:";
-    public static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
-    public static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a POSITIVE WHOLE NUMBER/ZERO.";
-    public static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE a POSITIVE WHOLE " +
+    private static final int INDEX_COL_WIDTH = 5;
+    private static final int COMMAND_COL_WIDTH = 25;
+    private static final int FORMAT_COL_WIDTH = 25;
+    private static final String QUANTITY_AVAILABLE_LABEL = "Quantity Available: ";
+    private static final String UPC_CODE_LABEL = "UPC Code: ";
+    private static final String ITEM_NAME_LABEL = "Item Name: ";
+    private static final String INVALID_EDIT_FORMAT = "Wrong/Incomplete Entry For Edit! Please refer to UG for more " +
+            "information.\nSample Format: \"edit upc/[UPC] n/[Name] qty/[Quantity] p/[Price] c/[Category]\"";
+    private static final String ITEM_NOT_FOUND = "Command failed! Reason: Item not found in database. " +
+            "Please add item first!";
+    private static final String SUCCESS_EDIT = "Successfully edited the following item:";
+    private static final String SUCCESS_RESTOCK = "Successfully restocked the following item:";
+    private static final String SUCCESS_SELL = "Successfully sold the following item:";
+    private static final String ITEM_NOT_EDITED = "Item Specified will not be updated.";
+    private static final String WRONG_QUANTITY_INPUT = "For Quantity inputs: MUST BE a POSITIVE WHOLE NUMBER/ZERO.";
+    private static final String WRONG_PRICE_INPUT = "For Price inputs: MUST BE A POSITIVE WHOLE " +
             "NUMBER/DECIMAL NUMBER/ZERO.";
-    public static final String INVALID_RESTOCK_FORMAT = "Wrong/Incomplete Format! Please restock items in the " +
-            "following format: " + "restock upc/[UPC] qty/[Quantity]";
-    public static final String INVALID_ADD_QUANTITY_FORMAT = "Unable to restock item. REASON: Quantity inputs" +
+    private static final String INVALID_RESTOCK_FORMAT = "Wrong/Incomplete Entry For Restock! Please refer to UG for " +
+            "more information\nSample Format: \"restock upc/[UPC] qty/[Quantity]\"";
+    private static final String INVALID_ADD_QUANTITY_FORMAT = "Unable to restock item. REASON: Quantity inputs" +
             " SHOULD NOT contain NEGATIVE integers, ZERO(0), or STRING inputs!" + "\n" +
             "Also ensure that the desired quantity to be added does not cause current stock levels to exceed MAX" +
             "\n" + "quantity limit of 99,999,999.";
-    public static final String INVALID_DEDUCT_QUANTITY_FORMAT = "Unable to sell item. REASON: Quantity inputs" +
+    private static final String INVALID_DEDUCT_QUANTITY_FORMAT = "Unable to sell item. REASON: Quantity inputs" +
             " SHOULD NOT contain NEGATIVE integers, DECIMALS, ZERO(0), or STRING inputs!" + "\n" +
             "Also ensure that the desired" + " quantity to be deducted is LESS THAN current stock levels.";
-    public static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Format! Please sell items in the " +
-            "following format: " + "sell upc/[UPC] qty/[Quantity]";
-    public static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
-    public static final String MISSING_PRICE = "Please enter a number for the price!";
-    public static final String ITEM_ADDED_AT = "Item added at: ";
-    public static final String AT = "At: ";
-    public static final String CATEGORY_CHANGED_TO = "Category changed to: ";
-    public static final String SOLD = "Sold ";
-    public static final String ITEMS = " items";
-    public static final String BOUGHT = "Bought ";
-    public static final String RENAMED_TO = "Renamed to: ";
-    public static final String PRICE_DECREASED_FROM = "Price decreased from $";
-    public static final String PRICE_INCREASED_FROM = "Price increased from $";
-    public static final String TO_DOLLAR_SIGN = " to $";
+    private static final String INVALID_SELL_FORMAT = "Wrong/Incomplete Entry For Sell! Please refer to UG for more" +
+            " information.\nSample Format: \"sell upc/[UPC] qty/[Quantity]\"";
+    private static final String NO_SEARCH_RESULTS = "Unfortunately, no search results could be found. Try again?";
+    private static final String MISSING_PRICE = "Please enter a number for the price!";
+    private static final String ITEM_ADDED_AT = "Item added at: ";
+    private static final String AT = "At: ";
+    private static final String CATEGORY_CHANGED_TO = "Category changed to: ";
+    private static final String SOLD = "Sold ";
+    private static final String ITEMS = " items";
+    private static final String BOUGHT = "Bought ";
+    private static final String RENAMED_TO = "Renamed to: ";
+    private static final String PRICE_DECREASED_FROM = "Price decreased from $";
+    private static final String PRICE_INCREASED_FROM = "Price increased from $";
+    private static final String TO_DOLLAR_SIGN = " to $";
 
     private static final String NAME_HEADING = "Name";
     private static final String UPC_HEADING = "UPC";
@@ -150,10 +146,10 @@ public class Ui {
     private static final String INVALID_ALERT_PARAMETER = "Wrong/Incomplete Format! Please refer to the user guide" +
             " for the correct alert parameters.";
     private static final String INVALID_ADD_ALERT =
-            "Wrong/Incomplete Format! Please add new alerts in the following format: \n" +
-                    "\"alert add upc/[UPC] min/[integer]\" to set an alert when stock falls below a minimum \n" +
+            "Wrong/Incomplete Entry For Add Alert! Please refer to UG for more information \nSample Format:\n" +
+                    "\"alert add upc/[UPC] min/[integer]\"" +
                     " OR\n" +
-                    "\"alert add upc/[UPC] max/[integer]\" to set an alert when stock exceeds a maximum. \n";
+                    "\"alert add upc/[UPC] max/[integer]\"";
 
     private static final String EXISTING_MIN_ALERT = "This item already has a minimum alert. " +
             "Delete the existing one first.";
@@ -170,10 +166,10 @@ public class Ui {
     private static final String SUCCESS_ADD_ALERT = "Successfully added a new alert.";
 
     private static final String INVALID_REMOVE_ALERT =
-            "Wrong/Incomplete Format! " + "Please remove new alerts in the " + "following format: \n" +
-                    "\"alert remove upc/[UPC] level/min\" to remove an alert for minimum stock level \n" +
+            "Wrong/Incomplete Entry For Remove Alert! Please refer to UG for more information\nSample Format:\n" +
+                    "\"alert remove upc/[UPC] level/min\"" +
                     " OR\n" +
-                    "\"alert remove upc/[UPC] level/max\" to remove an alert for maximum stock level. \n";
+                    "\"alert remove upc/[UPC] level/max\"";
     private static final String SUCCESS_REMOVE_ALERT = "Successfully removed the alert.";
 
     private static final String NONEXISTENT_REMOVE_ALERT = "The alert that you are attempting to remove " +

@@ -41,10 +41,10 @@ Adds a new item to the inventory list.
 Format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`
 
 **REQUIRED** parameters:
-* The `n/` parameter where `[item_name]`  must be alphanumeric. 
-* The `upc/` parameter for `[UPC]` must be a **non-negative numerical** value.
-* The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value.
-* The `p/` parameter for `[price]` must be a **non-negative numerical** value _(decimals accepted)_.
+* The `n/` parameter where `[item_name]` field must be alphanumeric. 
+* The `upc/` parameter where `[UPC]` field must be a **non-negative numerical** value.
+* The `qty/` parameter where `[quantity]` field must be a **non-negative numerical** value.
+* The `p/` parameter where `[price]` field must be a **non-negative numerical** value _(decimals accepted)_.
 
 **OPTIONAL** parameters:
 * The `c/` parameter for `[category]` must be alphanumeric. (Defaults to: `uncategorized` if not specified.)
@@ -73,13 +73,13 @@ Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
 
 
 **REQUIRED** parameters:
-* The `upc/` parameter where `[UPC]`  must be a numerical value and exists in the inventory.
+* The `upc/` parameter where `[UPC]` must be a **non-negative numerical value** and exists in the inventory.
 
 **OPTIONAL** parameters:
-* The `n/` parameter where `[item_name]` must be alphanumeric.
-* The `qty/` parameter for `[quantity]` must be a **non-negative numerical** value.
-* The `p/` parameter for `[price]` must be a **non-negative numerical value** (decimals accepted).
-* The `c/` parameter for `[category]` must be alphanumeric.
+* The `n/` parameter where `[item_name]` field must be alphanumeric.
+* The `qty/` parameter where `[quantity]` field must be a **non-negative numerical** value.
+* The `p/` parameter where `[price]` field must be a **non-negative numerical value** _(decimals accepted)_.
+* The `c/` parameter where `[category]` field must be alphanumeric.
 
 !> **Enforced** valid range for numerical parameters is **0** to **99,999,999**.
 
@@ -121,8 +121,8 @@ Format: `remove f/upc [UPC]` or `remove f/index [Index]`
 
 **REQUIRED** parameters:
 
-* The `UPC` can be only be a numerical value.
-* The `index` can only be a number.
+* The `[UPC]` must be a **non-negative numerical value**
+* The `[index]` can only be a **non-negative whole number**.
 
 !> **index** follows 0-indexing. (i.e. The first item in the list is at index 0.)
 
@@ -133,12 +133,26 @@ Format: `remove f/upc [UPC]` or `remove f/index [Index]`
 `remove f/index 0`: Removes the item with the `index` of `0` inside the inventory list.
 
 #### Sample output
+**Case I:** Remove by UPC
 ```
 remove f/upc 123
 ---------------------------------------------------------------------------
 Successfully removed the following item: 
 Name: orange
 UPC: 123
+Price: 5.0
+Quantity: 5
+Category: uncategorized
+---------------------------------------------------------------------------
+```
+
+**Case II:** Remove By Index
+```
+remove f/index 0
+---------------------------------------------------------------------------
+Successfully removed the following item: 
+Name: apple
+UPC: 456
 Price: 5.0
 Quantity: 5
 Category: uncategorized
@@ -407,7 +421,7 @@ provided that the **Current Quantity Level** is **NOT ZERO**. Strings, Zero(0), 
 !> For both `[UPC]` and `[Quantity]`, the `[` and `]` symbols are **NOT NEEDED** for the input. Refer to the
 examples below for reference.
 
-Example of Usage: <br />
+#### Example of Usage
 `sell upc/123 qty/5`: Searches for the item of `UPC` code `123`, and if it exists, **DEDUCT** a `quantity` of `5`
 items from its current stock levels, provided that the total quantity after selling does not go below 0.
 
@@ -415,7 +429,7 @@ items from its current stock levels, provided that the total quantity after sell
 `quantity` of `10` items from its current stock levels. provided that the total quantity after selling does not go
 below 0.
 
-Sample output:
+#### Sample output
 ````
 __________________________________________________________________________
 sell upc/123 qty/5
@@ -443,8 +457,9 @@ Restock quantities of an item in the inventory list.
 Format: `restock upc/[UPC] qty/[Quantity]`
 
 **Required** Parameters:
-* The `upc/` parameter  whereby `[UPC]` refers to the identification number assigned to the item at the point of 
-**initial addition** of the item.
+
+* The `upc/` parameter  whereby `[UPC]` refers to the identification number assigned to the item at the point 
+of **initial addition** of the item.
 * The `qty/` parameter whereby `[Quantity]` refers to the amount of stock to be **ADDED** from the current stock 
 levels recorded.
 
@@ -456,7 +471,7 @@ and empty inputs are **NOT** allowed. Ensure that the post-restock quantity does
 !> For both `[UPC]` and `[Quantity]`, the `[` and `]` symbols are **NOT NEEDED** for the input. Refer to the
 examples below for reference.
 
-Example of Usage: <br />
+#### Example of Usage
 `restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a `quantity` of `5`
 items to its current stock levels, provided that the total quantity after restocking does **not** exceed 99,999,999.
 
@@ -464,7 +479,7 @@ items to its current stock levels, provided that the total quantity after restoc
 `quantity` of `10` items to its current stock levels, provided that the total quantity after restocking does **not**
 exceed 99,999,999.
 
-Sample output:
+#### Sample output
 ```
 __________________________________________________________________________
 restock upc/12345 qty/5
@@ -495,10 +510,10 @@ Format: `db`
 
 !> Note: There should **NOT** be any further user inputs after typing `db`.
 
-Example of usage: <br />
+#### Example of usage
 `db`: Opens the dashboard.
 
-Sample output
+#### Sample output
 ```
 db
 __________________________________________________________________________
@@ -550,7 +565,7 @@ should **NOT** be used concurrently.
 `cat table`
 
 #### Sample output
-**CASE I:**Show the list of all categories in the inventory.
+**CASE I:** Show the list of all categories in the inventory.
 ```
 cat list
 __________________________________________________________________________
@@ -559,7 +574,7 @@ uncategorized
 fruits
 __________________________________________________________________________
 ```
-**CASE II:**Show all the categories in the inventory as well as their respective items
+**CASE II:** Show all the categories in the inventory as well as their respective items
 ```
 cat table
 __________________________________________________________________________
@@ -577,15 +592,31 @@ __________________________________________________________________________
 ### Alert for an item: `alert` <a name = "alert"></a>
 Add alerts that will display when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
-Format:  
+Add Alert Format:  
 `alert add upc/[UPC] min/[Quantity] ` to set an alert when quantity falls below a minimum  
 `alert add upc/[UPC] max/[Quantity]` to set an alert when quantity exceeds a maximum  
+
+**REQUIRED** parameters:
+
+* The `[UPC]` must be a **non-negative numerical value**
+* For **MIN alert**: The `[Quantity]` must be a **non-negative whole number** and is **less than** current item's 
+quantity
+* For **MAX alert**: The `[Quantity]` must be a **non-negative whole number** and is **greater than** current item's
+quantity
+
+Remove Alert Format:
+
 `alert remove upc/[UPC] level/min` to remove an alert for the minimum quantity of an item  
 `alert remove upc/[UPC] level/max` to remove an alert for the maximum quantity of an item  
+
+**REQUIRED** parameters:
+
+* The `[UPC]` must be a **non-negative numerical value**
 
 #### Examples of usage
 `alert add upc/1234 min/55`  
 `alert add upc/1234 max/100`
+
 `alert remove upc/1234 level/min`  
 `alert remove upc/1234 level/max`
 
@@ -598,7 +629,7 @@ Successfully added a new alert.
 __________________________________________________________________________
 ```
 
-**SAMPLE II:** Removal of a minimum quantity alert for an item
+**Sample II:** Removal of a minimum quantity alert for an item
 ```
 alert remove upc/1234 level/min
 __________________________________________________________________________

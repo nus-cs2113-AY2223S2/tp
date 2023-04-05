@@ -37,8 +37,7 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "Tip: Ensure that your UPC, quantity and price are all positive numbers and within " +
-                "valid range";;
+        String expectedOutput = "Wrong/Incomplete Entry For Add!";;
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 
@@ -51,8 +50,7 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "Tip: Ensure that your UPC, quantity and price are all positive numbers and within " +
-                "valid range";
+        String expectedOutput = "Wrong/Incomplete Entry For Add!";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 
@@ -65,8 +63,7 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "Tip: Ensure that your UPC, quantity and price are all positive numbers and within " +
-                "valid range";
+        String expectedOutput = "Wrong/Incomplete Entry For Add!";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 
@@ -105,8 +102,7 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "Tip: Ensure that your UPC, quantity and price are all positive numbers and within " +
-                "valid range";
+        String expectedOutput = "Wrong/Incomplete Entry For Add!";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 
@@ -119,8 +115,7 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "Tip: Ensure that your UPC, quantity and price are all positive numbers and within " +
-                "valid range";
+        String expectedOutput = "Wrong/Incomplete Entry For Add!";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 
@@ -133,8 +128,7 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "Tip: Ensure that your UPC, quantity and price are all positive numbers and within " +
-                "valid range";
+        String expectedOutput = "Wrong/Incomplete Entry For Add!";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 
@@ -147,8 +141,7 @@ class AddParserTest {
         AddParser addParser = new AddParser(commandInfo, inventory);
         addParser.run();
         assertEquals(0, inventory.getItemInventory().size());
-        String expectedOutput = "Tip: Ensure that your UPC, quantity and price are all positive numbers and within " +
-                "valid range";
+        String expectedOutput = "Wrong/Incomplete Entry For Add!";
         assertTrue(outContent.toString().contains(expectedOutput));
     }
 }
