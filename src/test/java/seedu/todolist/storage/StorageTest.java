@@ -11,9 +11,9 @@ import seedu.todolist.logic.command.Command;
 import seedu.todolist.task.TaskList;
 import seedu.todolist.ui.Ui;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,15 +21,15 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 // need modify the tests
 class StorageTest {
-    private static final String PROPER_SAVE_FILE = "./src/test/data/properSaveFile.txt";
-    private static final String INVALID_SAVE_FILE = "./src/test/data/invalidSaveFile.txt";
+    private static final String PROPER_SAVE_FILE = "./src/test/data/properSaveFile.json";
+    private static final String INVALID_SAVE_FILE = "./src/test/data/invalidSaveFile.json";
     private static final String TEST_DATA_FOLDER = "./src/test/data";
 
     private TaskList taskList = new TaskList();
     private Ui ui = new Ui();
     private Parser parser = new Parser();
     private Storage storage = new Storage(PROPER_SAVE_FILE);
-    private Gson gson = new GsonBuilder().
+    private Gson gson = new GsonBuilder().setPrettyPrinting().
             registerTypeAdapter(LocalDateTime.class, new Storage.LocalDateTimeAdapter()).create();
 
     @Test
@@ -49,11 +49,11 @@ class StorageTest {
             String taskListAsJson = gson.toJson(taskList);
 
             // read PROPER_SAVE_FILE as a string
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(PROPER_SAVE_FILE));
-            String savedFileString = bufferedReader.readLine();
+            String savedTaskListString = new String(Files.readAllBytes(Paths.get(PROPER_SAVE_FILE)));
 
             // compare the 2 strings
-            assertEquals(taskListAsJson, savedFileString);
+            assertEquals(taskListAsJson, savedTaskListString);
+
         } catch (Exception e) {
             // no exception will be thrown, so the program will not reach this line
             fail();

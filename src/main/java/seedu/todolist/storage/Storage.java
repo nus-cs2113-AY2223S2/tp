@@ -30,7 +30,7 @@ import java.time.format.DateTimeParseException;
  * A class for saving the task list as a text file and loading it.
  */
 public class Storage {
-    public static final String DEFAULT_SAVE_PATH = "./data.txt";
+    public static final String DEFAULT_SAVE_PATH = "./data.json";
     private boolean isNewSave;
     private File file;
     private Gson gson;
