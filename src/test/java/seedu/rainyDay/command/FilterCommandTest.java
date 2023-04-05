@@ -60,16 +60,19 @@ public class FilterCommandTest {
         filterFlagAndField.add("-date");
         filterFlagAndField.add("01/02/2023");
         filterCommand = new FilterCommand(filterFlagAndField);
+        filterCommand.setData(allData);
         assertEquals("We found 1 matching item!", filterCommand.execute().output);
 
         filterFlagAndField.clear();
         filterFlagAndField.add("-in");
         filterCommand = new FilterCommand(filterFlagAndField);
+        filterCommand.setData(allData);
         assertEquals("We found 2 matching items!", filterCommand.execute().output);
 
         filterFlagAndField.clear();
         filterFlagAndField.add("-out");
         filterCommand = new FilterCommand(filterFlagAndField);
+        filterCommand.setData(allData);
         assertEquals("We found 3 matching items!", filterCommand.execute().output);
     }
 
