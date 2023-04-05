@@ -1,0 +1,63 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+activate ":Duke"
+":Duke" -> ":ViewBudgetCommand" : command.execute()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" -> "<<class>>\n:UI" : UI.printViewBudget(budgetPlanner)
+activate "<<class>>\n:UI"
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getBudget()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" -> "<<class>>\n:UI" : budget
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":System.out" : println("Total budget: " + budget)
+activate ":System.out"
+"<<class>>\n:UI" -> ":System.out"
+deactivate ":System.out"
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getAccommodationTotalCost()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" -> "<<class>>\n:UI" : accommodationCost
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":System.out" : println("Accommodation cost: " + accommodationCost)
+activate ":System.out"
+"<<class>>\n:UI" -> ":System.out"
+deactivate ":System.out"
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getAirplaneTicketTotalCost()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" -> "<<class>>\n:UI" : airplaneTicketCost
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":System.out" : println("Airplane Ticket cost: " + airplaneTicketCost)
+activate ":System.out"
+"<<class>>\n:UI" -> ":System.out"
+deactivate ":System.out"
+
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getFoodTotalCost()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" -> "<<class>>\n:UI" : foodCost
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":System.out" : println("Food cost: " + foodCost)
+activate ":System.out"
+"<<class>>\n:UI" -> ":System.out"
+deactivate ":System.out"
+
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getEntertainmentTotalCost()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" -> "<<class>>\n:UI" : entertainmentCost
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":System.out" : println("Entertainment cost: " + entertainmentCost)
+activate ":System.out"
+"<<class>>\n:UI" -> ":System.out"
+deactivate ":System.out"
+
+":ViewBudgetCommand" <- "<<class>>\n:UI" : budgetPlanner.getSurplus()
+activate ":ViewBudgetCommand"
+":ViewBudgetCommand" -> "<<class>>\n:UI" : surplus
+deactivate ":ViewBudgetCommand"
+"<<class>>\n:UI" -> ":System.out" : println("Surplus/Deficit: " + surplus)
+activate ":System.out"
+"<<class>>\n:UI" -> ":System.out"
+deactivate ":System.out"
+"<<class>>\n:UI" -> ":ViewBudgetCommand"
+deactivate "<<class>>\n:UI"
+":ViewBudgetCommand" -> ":Duke"
+deactivate ":ViewBudgetCommand"
+@enduml
