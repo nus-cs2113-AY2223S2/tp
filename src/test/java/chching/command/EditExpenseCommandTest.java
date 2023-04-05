@@ -108,7 +108,7 @@ public class EditExpenseCommandTest {
             
             fail(); // test should not reach this line
         } catch (Exception e) {
-            assertEquals("Index must contain a valid integer only", e.getMessage());
+            assertEquals("Index field not found", e.getMessage());
         }
     }
 
