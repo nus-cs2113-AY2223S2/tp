@@ -21,8 +21,8 @@ public final class Errors {
 
     public static final String FAILED_CONFIG_SAVE = "Error when saving your configuration, please check that you have" +
             " write permissions for " + Storage.DEFAULT_CONFIG_PATH;
-    public static final String FAILED_CONFIG_LOAD = "Error when loading your configuration, please check that you have read permissions for "
-                        + Storage.DEFAULT_CONFIG_PATH + System.lineSeparator()
+    public static final String FAILED_CONFIG_LOAD = "Error when loading your configuration, please check that you have "
+            + "read permissions for " + Storage.DEFAULT_CONFIG_PATH + System.lineSeparator()
             + "and do not modify it yourself. Default configurations will be used.";
 
     public static final String FAILED_SAVE = "Error when saving your data; "

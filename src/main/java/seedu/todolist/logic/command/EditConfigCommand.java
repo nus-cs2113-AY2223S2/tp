@@ -1,17 +1,16 @@
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
-import seedu.todolist.exception.InvalidDurationException;
 import seedu.todolist.exception.InvalidFrequencyException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Config;
-import seedu.todolist.task.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 
 public class EditConfigCommand extends Command {
-    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_CONFIG, Flags.CONFIG_CHECK_FREQ, Flags.CONFIG_REPEAT_FREQ, Flags.DEFAULT};
+    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_CONFIG, Flags.CONFIG_CHECK_FREQ,
+            Flags.CONFIG_REPEAT_FREQ, Flags.DEFAULT};
 
     private int checkFrequency = 0;
     private int repeatFrequency = 7;
@@ -32,8 +31,7 @@ public class EditConfigCommand extends Command {
             }
         }
     }
-    @Override
-    public void execute (TaskList Tasklist, Ui ui) {}
+
     public void execute(Config config, Ui ui) {
         if (isEditing) {
             config.setCheckFrequency(checkFrequency);

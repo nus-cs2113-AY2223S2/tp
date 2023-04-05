@@ -14,7 +14,6 @@ import com.google.gson.JsonSerializer;
 import com.google.gson.stream.JsonReader;
 import seedu.todolist.constants.Formats;
 import seedu.todolist.task.TaskList;
-import seedu.todolist.logic.Config;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -83,15 +82,6 @@ public class Storage {
         writeToFile(filepath, json);
     }
 
-    /**
-     * Loads the task list from the local save file, if it exists.
-     *
-     * @return The task list read from the save file, if it exists and it is not empty. Otherwise, a newly created
-     *         task list is returned.
-     * @throws FileNotFoundException If no save file is found.
-     * @throws JsonParseException If there is a formatting error in the saved json file.
-     * @throws DateTimeParseException If there is an error in the formatting of deadlines saved in the json file.
-     */
     public void saveConfig(Config config, String filepath) throws IOException {
         String json = gson.toJson(config);
         writeToFile(filepath, json);
@@ -101,7 +91,6 @@ public class Storage {
             throws FileNotFoundException, JsonParseException, DateTimeParseException {
         JsonReader reader = new JsonReader(new FileReader(filepath));
         Config config = new Config();
-        // if the file is not empty, set the task list as the saved task list
         Config savedConfig = gson.fromJson(reader, Config.class);
         if (savedConfig != null) {
             config = savedConfig;

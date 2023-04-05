@@ -143,7 +143,7 @@ public class Parser {
             return new FindByTagCommand(getArguments(splitInput, FindByTagCommand.EXPECTED_FLAGS));
         case COMMAND_FIND_PRIORITY:
             return new FindByPriorityCommand(getArguments(splitInput, FindByPriorityCommand.EXPECTED_FLAGS));
-            case COMMAND_CONFIG:
+        case COMMAND_CONFIG:
             return new EditConfigCommand(getArguments(splitInput, EditConfigCommand.EXPECTED_FLAGS));
         default:
             throw new InvalidCommandException();
