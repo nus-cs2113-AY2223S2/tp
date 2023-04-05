@@ -31,7 +31,7 @@ public class DeleteModuleCommandTest {
                 "ME4231", "Aerodynamics", 4);
         modules.add(module);
         Parser parser = new Parser();
-        BudgetPlanner budgetPlanner = new BudgetPlanner();
+        BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof DeleteModuleCommand);
     }
