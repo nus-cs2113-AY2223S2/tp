@@ -36,18 +36,19 @@ public class Incomes {
         String incomeDateString = argumentsByField.get("da");
         LocalDate incomeDate = parseDate(incomeDateString);
 
-        float incomeValue;
+        double incomeValue;
         try {
             incomeValue = Float.parseFloat(argumentsByField.get("v"));
+            incomeValue = Math.round(incomeValue * 100.0) / 100.0;
         } catch (Exception e) {
-            throw new ChChingException("Income value must be a valid float that is 2 d.p. or less");
+            throw new ChChingException("Income value must be a valid double that is 2 d.p. or less");
         }
         if (incomeValue > 1000000) {
             throw new ChChingException("Income value can at most be 1000000");
-        } else if (incomeValue <= 0) {
-            throw new ChChingException("Income value must be greater than 0");
+        } else if (incomeValue < 0.01) {
+            throw new ChChingException("Income value must be greater than or equals 0.01");
         }
-        assert incomeValue > 0 : "incomeValue has to be more than 0";
+        assert incomeValue >= 0.01 : "incomeValue has to be more than or equals to 0.01";
         inc = new Income(incomeDescription, incomeDate, incomeValue);
         return inc;
     }
@@ -68,4 +69,3 @@ public class Incomes {
         return index;
     }
 }
-

@@ -65,7 +65,7 @@ Unfortunately, expense list can't be found. I'll make a new one!
 ### Adding an entry: `add`
 
 Creates a new entry for expenses or income, with respective input formats.
-<br> Income and Expense values can only be at most 1000000.
+<br> Income and Expense values must be less than 1000000.
 
 Format:
 <br>`add expense /c CATEGORY /de DESCRIPTION /da DATE /v VALUE`
@@ -76,7 +76,9 @@ Use case:
 - Re-prompts user if any field is not provided properly.
 - CATEGORY has a maximum char limit of 30.
 - DESCRIPTION has a maximum char limit of 99.
-- VALUE will be stored as a positive float.
+- VALUE entered by user will be rounded off to the nearest 2 decimal places.
+- VALUE will be stored as a positive double.
+- VALUE will be recorded as SGD, regardless of the currency set.
 - Format for DATE will be dd-MM-yyyy.
 - DATE needs to be a valid date, and it cannot be a date in the future.
 
@@ -248,9 +250,20 @@ Format:
 
 ### Saving and loading of data
 
-Record entries are saved in `data/chching.txt` file. This file is updated upon exit.
+Record entries are saved in `data/chching.json` file. This file is updated upon exit.
 When reading from the file, entries for income and expenses are stored in their respective arrayList.
+The data file is not to be edited manually.
 
+### Other Notes
+* Should additional fields that is not required be added to the input, the program will ignore it.
+<br> e.g. field "a" with value "1" will be ignored for `add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50 /a 1`.
+* ChChing will not allow duplicate fields within the same input.
+<br> e.g. `add expense /c meal /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50` will not be allowed since it has duplicate category fields.
+* ChChing allows for the fields' order to be changed.
+<br> e.g. `add expense /de breakfast @Technoedge /c meal /da 22-03-2023 /v 3.50` will add the expense successfully.
+* ChChing will allow for duplicate entries to be added. No warning would be raised.
+* ChChing will not allow for the user to use '/', unless it is used to specify the field.
+<br> e.g. `add expense /c meal /de breakfast / lunch /da 22-03-2023 /v 3.50` will be allowed.
 
 ## Command Summary (Alphabetical Order)
 

@@ -209,3 +209,100 @@ The value proposition of ChChing is its ability to track income and expenses on 
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+Given below are instructions to test the app manually.
+
+### Launch and Shutdown
+1. Initial launch
+   1. Download the jar file and copy into an empty folder.
+   2. Open a command prompt in the folder and run the command `java -jar tp.jar`. ChChing should start up.
+2. Shutting down
+   1. Type `exit` into the command prompt and press enter. ChChing should shut down and update the save file accordingly.
+
+### Adding an income/expense
+1. Adding an income/expense
+   1. Test case:
+      <br> For income:`add income /de salary /da 12-12-2022 /v 350`
+      <br> For expense:`add expense /c meal /de food /da 13-12-2022 /v 3.50`
+      <br>Expected: The income/expense should be added to the income/expense list and the balance should be updated accordingly.
+   2. Test case: 
+      <br> For income: `add income /da 12-12-2022 /v 3.50`
+      <br> For expense: `add expense /de food /v 3.50`
+      <br>Expected: No income is added. Error details shown in the status message.
+      3. Other incorrect add income commands to try:
+      <br> no fields/missing fields - `add income` `add expense`.
+      <br> incorrect date format/invalid date/future date - `add income /de ang pao /da 30-02-2022 /v 10` `add expense /c transport /de bus fare /da 31-04-2029 /v 5.30`.
+      <br> negative value/zero value/1000000000 and above value/non-float value - `add income /de salary /da 12-12-2022 /v -3.50` `add expense /c transport /de bus fare /da 10-10-2019 /v 0`.
+      <br> Expected: Similar to previous.
+
+### Editing an income/expense
+1. Editing an income/expense
+   1. Prerequisites: List already contains income/expense entry at specified index to be edited. Their index can be found using the `list` command. Note that index may vary after every `delete income`/`delete expense` command.
+   2. Test case: 
+      <br> For income: `edit income 1 /de bonus /da 12-12-2022 /v 350`
+      <br> For expense: `edit expense 1 /c meal /de food /da 13-12-2022 /v 3.50`
+      <br> Expected: The income/expense at index 1 should be edited with updated changes should be reflected in list and the balance should be updated accordingly.
+   3. Test case: 
+      <br> For income: `edit income /in 0 /de toto /da 12-12-2022 /v 100`
+      <br> For expense: `edit expense /in 0 /c meal /de food /da 13-12-2022 /v 3.50`
+      <br> Expected: income/expense will not be edited. Error details shown in the status message.
+   4. Other incorrect delete commands to try:
+      <br> negative index/index over income/expense list size - `edit income /in -1 /de toto /da 12-12-2022 /v 100` `edit expense /in 100 /c drinks /de starbucks coffee /da 13-12-2022 /v 9.50`.
+      <br> missing index field/no fields to edit - `edit income` `edit expense`.
+      <br> incorrect date format/invalid date/future date - `edit income 1 /de ang pao /da 30-02-2022 /v 10` `edit expense 1 /c transport /de bus fare /da 31-04-2029 /v 5.30`.
+      <br> negative value/zero value/1000000000 and above value/non-float value - `edit income 1 /de salary /da 12-12-2022 /v -3.50` `edit expense 1 /c transport /de bus fare /da 10-10-2019 /v 0`.
+      <br> Expected: Similar to previous.
+
+### Deleting an income/expense
+1. Deleting an income/expense
+   1. Prerequisites: List already contains income/expense entry at specified index to be deleted. Their index can be found using the `list` command. Note that index may vary after every `delete income`/`delete expense` command.
+   2. Test case: 
+      <br> For income: `delete income /in 1`
+      <br> For expense: `delete expense /in 1`
+      <br> Expected: The income/expense at index 1 should be deleted from the income/expense list and the balance should be updated accordingly. <br> Depending on the index of the deleted income/expense, the index of the other incomes/expenses after it will be updated accordingly.
+   3. Test case: 
+      <br> For income: `delete income /in 0`
+      <br> For expense: `delete expense /in 0`
+      <br> Expected: income/expense will not be deleted. Error details shown in the status message.
+   4. Other incorrect delete commands to try:
+      <br> negative index/index over income/expense list size - `delete income /in -1` `delete expense /in 100`.
+      <br> missing index field - `delete income` `delete expense`.
+      <br> Expected: Similar to previous.
+
+2. Clearing all incomes/expenses
+   1. Prerequisites: List already contains income/expense entry/entries. Can be checked via `list income`/`list expense`/`list` command.
+   2. Test case:
+      <br> For incomes: `clear income`
+      <br> For expenses: `clear expense`
+        <br> Expected: All incomes/expenses should be deleted from the income/expense list and the balance should be updated accordingly.
+
+3. Clearing all incomes and expenses
+   1. Prerequisites: List already contains income and/or expense entry/entries. Can be checked via `list income`/`list expense`/`list` command.
+   2. Test case: `clear all`
+      <br> Expected: All incomes and expenses should be deleted from both the income and expense list and the balance should be updated to 0.
+
+### Listing all income/expense & Viewing balance
+1. List all incomes and/or expenses
+   1. Prerequisites: Should there be a currency set, it will be shown based on the set currency. Otherwise, records will be displayed in SGD.
+   2. Test case: should there be income/expense entries in the list
+      <br> For income: `list income`
+      <br> For expense: `list expense` 
+      <br> For both: `list`
+      <br> Expected: All incomes and/or expenses should be listed. Note deleted incomes/expenses will not be shown.
+   2. Test case: should there be no income/expense entries in the list
+      <br> For income: `list income`
+      <br> For expense: `list expense` 
+      <br> For both: `list`
+      <br> Expected: No income/expense will be listed. Status message will indicate that the list is empty.
+
+2. View balance
+    1. Prerequisites: If the target has not been set by the user, it will be set to 0 by default. should there be no currency set, only SGD will be shown, else it will additionally show the set currency.
+   2. Test case: `balance`
+      <br> Expected: The total expense, total income, current balance and current target will be shown. Should the current balance or equal to the current target, it will prompt a good job message, otherwise it will prompt a message that balance has not reached target.
+
+### Finding income/expense
+
+### Setting target & Unsetting target
+
+### Setting Currency & Unsetting Currency
+
