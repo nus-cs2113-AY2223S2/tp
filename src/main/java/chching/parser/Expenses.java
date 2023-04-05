@@ -47,9 +47,10 @@ public class Expenses {
         String expenseDateString = argumentsByField.get("da");
         LocalDate expenseDate = parseDate(expenseDateString);
 
-        float expenseValue;
+        double expenseValue;
         try {
             expenseValue = Float.parseFloat(argumentsByField.get("v"));
+            expenseValue = Math.round(expenseValue * 100.0) / 100.0;
         } catch (Exception e) {
             throw new ChChingException("Expense value must be a valid float that is 2 d.p. or less");
         }
