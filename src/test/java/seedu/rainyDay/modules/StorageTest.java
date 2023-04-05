@@ -68,7 +68,7 @@ public class StorageTest {
     }
 
     @Test
-    public void loadFromFile_invalidFileType_classNotFoundExceptionThrown() {
+    public void loadFromFile_invalidFileType_JsonParseExceptionThrown() {
         String invalidTypeFilePath = "test files/thisFileTypeIsInvalid.txt";
         assertThrows(JsonParseException.class, () -> Storage.loadFromFile(invalidTypeFilePath));
     }
