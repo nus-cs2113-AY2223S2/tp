@@ -1,7 +1,6 @@
 package seedu.todolist;
 
-import seedu.todolist.exception.FailedLoadException;
-import seedu.todolist.exception.FailedSaveException;
+import com.google.gson.JsonSyntaxException;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.logic.command.Command;
@@ -10,11 +9,14 @@ import seedu.todolist.storage.Storage;
 import seedu.todolist.task.TaskList;
 import seedu.todolist.ui.Ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class ToDoListManager {
     private boolean isRunning = true;
     private Parser parser = new Parser();
     private Storage storage = new Storage(Storage.DEFAULT_SAVE_PATH);
-    private TaskList taskList = new TaskList();
+    private TaskList taskList;
     private Ui ui = new Ui();
 
     public ToDoListManager() {
@@ -27,16 +29,18 @@ public class ToDoListManager {
         }
         try {
             // Save file found, try loading it
-            taskList = storage.loadData();
+            taskList = storage.loadData(Storage.DEFAULT_SAVE_PATH);
             taskList.checkRepeatingTasks();
             ui.printLoadSaveMessage(taskList.size());
             new ProgressBarCommand().execute(taskList, ui);
-        } catch (FailedLoadException e) {
+        } catch (FileNotFoundException | JsonSyntaxException e) {
             ui.printError(e);
             // Loading save file failed, save new empty task list immediately instead of waiting for a command
             try {
-                storage.saveData(taskList);
-            } catch (FailedSaveException e2) {
+                taskList = new TaskList();
+                storage.saveData(taskList, Storage.DEFAULT_SAVE_PATH);
+            }
+            catch (IOException e2) {
                 ui.printError(e2);
             }
         }
@@ -49,10 +53,12 @@ public class ToDoListManager {
                 Command command = parser.parseCommand(inputCommand);
                 command.execute(taskList, ui);
                 taskList.checkRepeatingTasks();
-                storage.saveData(taskList);
+                storage.saveData(taskList, Storage.DEFAULT_SAVE_PATH);
                 isRunning = !command.shouldExit();
             } catch (ToDoListException e) {
                 ui.printError(e);
+            } catch (IOException e2) {
+
             }
         }
         ui.close();
