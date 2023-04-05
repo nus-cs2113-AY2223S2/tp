@@ -16,12 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class DeadlineTest {
-
-    Deadline deadline = new Deadline("test", "01-01-2024-23:59");
     public static DateTimeFormatter storePattern = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm", Locale.ENGLISH);
+    Deadline deadline = new Deadline("test", "01-01-2024-23:59");
+
     DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    DeadlineTest() throws DateOverException {}
+    DeadlineTest() throws DateOverException {
+    }
 
     @Test
     void newDeadline_normalDeadline_expectDeadline() throws DateOverException {
@@ -48,19 +49,19 @@ class DeadlineTest {
 
     @Test
     void getByDate_normalDeadline_expectLocalDateTime() {
-        LocalDateTime by = LocalDateTime.parse("01-01-2024-23:59",storePattern);
+        LocalDateTime by = LocalDateTime.parse("01-01-2024-23:59", storePattern);
         assertEquals(by, deadline.getByDate());
     }
 
     @Test
     void isOnDate_onDate_expectTrue() {
-        LocalDate date = LocalDate.parse("01-01-2024",datePattern);
+        LocalDate date = LocalDate.parse("01-01-2024", datePattern);
         assertTrue(deadline.isOnDate(date));
     }
 
     @Test
     void isOnDate_notOnDate_expectFalse() {
-        LocalDate date = LocalDate.parse("02-01-2024",datePattern);
+        LocalDate date = LocalDate.parse("02-01-2024", datePattern);
         assertFalse(deadline.isOnDate(date));
     }
 

@@ -16,12 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EventTest {
-
-    Event event = new Event("test", "01-01-2024-23:59", "01-02-2024-23:59");
     public static DateTimeFormatter storePattern = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm", Locale.ENGLISH);
+    Event event = new Event("test", "01-01-2024-23:59", "01-02-2024-23:59");
+
     DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-    EventTest() throws DateOrderException, DateOverException {}
+    EventTest() throws DateOrderException, DateOverException {
+    }
 
     @Test
     void newEvent_normalEvent_expectEvent() throws DateOverException, DateOrderException {
@@ -60,37 +61,37 @@ class EventTest {
 
     @Test
     void getFromDate_normalEvent_expectLocalDateTime() {
-        LocalDateTime from = LocalDateTime.parse("01-01-2024-23:59",storePattern);
+        LocalDateTime from = LocalDateTime.parse("01-01-2024-23:59", storePattern);
         assertEquals(from, event.getFromDate());
     }
 
     @Test
     void getToDate_normalEvent_expectLocalDateTime() {
-        LocalDateTime to = LocalDateTime.parse("01-02-2024-23:59",storePattern);
+        LocalDateTime to = LocalDateTime.parse("01-02-2024-23:59", storePattern);
         assertEquals(to, event.getToDate());
     }
 
     @Test
     void isOnDate_sameAsFrom_expectTrue() {
-        LocalDate date = LocalDate.parse("01-01-2024",datePattern);
+        LocalDate date = LocalDate.parse("01-01-2024", datePattern);
         assertTrue(event.isOnDate(date));
     }
 
     @Test
     void isOnDate_sameAsTo_expectTrue() {
-        LocalDate date = LocalDate.parse("02-01-2024",datePattern);
+        LocalDate date = LocalDate.parse("02-01-2024", datePattern);
         assertTrue(event.isOnDate(date));
     }
 
     @Test
     void isOnDate_betweenFromTo_expectTrue() {
-        LocalDate date = LocalDate.parse("15-01-2024",datePattern);
+        LocalDate date = LocalDate.parse("15-01-2024", datePattern);
         assertTrue(event.isOnDate(date));
     }
 
     @Test
     void isOnDate_notOnDate_expectFalse() {
-        LocalDate date = LocalDate.parse("01-01-2025",datePattern);
+        LocalDate date = LocalDate.parse("01-01-2025", datePattern);
         assertFalse(event.isOnDate(date));
     }
 
