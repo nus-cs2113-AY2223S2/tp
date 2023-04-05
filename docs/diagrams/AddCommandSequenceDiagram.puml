@@ -11,16 +11,16 @@ create FinancialStatement
 AddCommand -> FinancialStatement : new FinancialStatement
 activate FinancialStatement
 
-FinancialStatement --> AddCommand : :FinancialStatement
+FinancialStatement --> AddCommand : : FinancialStatement
 deactivate FinancialStatement
 
-AddCommand -> UserData: addStatement(statement : Financial Statement)
+AddCommand -> UserData: addStatement(statement:Financial Statement)
 activate UserData
 
-UserData -> FinancialReport : addStatement(statement : Financial Statement)
+UserData -> FinancialReport : addStatement(statement:Financial Statement)
 activate FinancialReport
 
-FinancialReport -> FinancialReport : addToMonthlyExpenditure(statement : Financial Statement)
+FinancialReport -> FinancialReport : addToMonthlyExpenditure\n(statement:Financial Statement)
 activate FinancialReport
 
 FinancialReport --> FinancialReport
@@ -32,13 +32,16 @@ deactivate FinancialReport
 UserData --> AddCommand
 deactivate UserData
 
-AddCommand -> UserData : checkUserBudgetLimit(statement : Financial Statement)
+AddCommand -> UserData : checkUserBudgetLimit(statement:Financial Statement)
 activate UserData
 
-UserData --> AddCommand : :String
+UserData --> AddCommand : : String
 deactivate UserData
 
 [<--AddCommand : : CommandResult
 deactivate AddCommand
+AddCommand <-[hidden]- AddCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy AddCommand
 
 @enduml
