@@ -33,22 +33,28 @@ public class Incomes {
     public static Income parseIncome(HashMap<String, String> argumentsByField) throws ChChingException {
         Income inc = null;
         try {
-            String incomeDescription = argumentsByField.get("de");
-            boolean validCharacters = UnicodeChecker.isValidStringInput(incomeDescription);
-            if (!validCharacters) {
-                throw new ChChingException("Description contains invalid characters");
-            }
-            String incomeDateString = argumentsByField.get("da");
-            LocalDate incomeDate = parseDate(incomeDateString);
-            float incomeValue = Float.parseFloat(argumentsByField.get("v"));
-            if(incomeValue > 1000000){
-                throw new ChChingException("Income value can at most be 1000000");
-            }
-            assert incomeValue > 0 : "incomeValue has to be more than 0";
-            inc = new Income(incomeDescription, incomeDate, incomeValue);
+            incomeValue = Float.parseFloat(argumentsByField.get(VALUE_FIELD));
         } catch (Exception e) {
-            throw new ChChingException("trouble adding income value");
-            
+            throw new ChChingException("Income value must be a valid float that is 2 d.p. or less");
+        }
+        try {
+            if (incomeValue > 999999.99) {
+                throw new ChChingException("Income value cannot be 1000000 or more");
+            } else if (incomeValue <= 0) {
+                throw new ChChingException("Income value must be greater than 0");
+            } else{
+                incomeDescription = argumentsByField.get("de");
+                incomeDateString = argumentsByField.get("da");
+                incomeDate = parseDate(incomeDateString);
+                incomeValue = Float.parseFloat(argumentsByField.get("v"));
+                if (incomeValue > 1000000) {
+                    throw new ChChingException("Income value can at most be 1000000");
+                }
+                assert incomeValue > 0 : "incomeValue has to be more than 0";
+                inc = new Income(incomeDescription, incomeDate, incomeValue);
+            }
+        } catch (Exception e) {
+            throw new ChChingException("trouble adding income value");         
         }
         return inc;
     }
