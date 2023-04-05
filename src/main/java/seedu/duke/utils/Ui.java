@@ -145,8 +145,10 @@ public class Ui {
     private static final String SUCCESS_REMOVE = "Successfully removed the following item: ";
     private static final String INVALID_INDEX = "This index is invalid.\nPlease enter number ";
 
-    private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" " +
-            "\"or list\".";
+    private static final String INVALID_ALERT_KEYWORD = "Keyword after alert can only be \"add\", \"remove\" ";
+
+    private static final String INVALID_ALERT_PARAMETER = "Wrong/Incomplete Format! Please refer to the user guide" +
+            " for the correct alert parameters.";
     private static final String INVALID_ADD_ALERT =
             "Wrong/Incomplete Format! Please add new alerts in the following format: \n" +
                     "\"alert add upc/[UPC] min/[integer]\" to set an alert when stock falls below a minimum \n" +
@@ -163,7 +165,7 @@ public class Ui {
             "maximum alert value of this item.";
 
     private static final String INVALID_MAX_ALERT = "Maximum value to set an alert must be more than existing " + "" +
-            "mimimum alert value of this item.";
+            "minimum alert value of this item.";
 
     private static final String SUCCESS_ADD_ALERT = "Successfully added a new alert.";
 
@@ -881,6 +883,12 @@ public class Ui {
     public static void printInvalidAlertKeyword() {
         printLine();
         System.out.println(INVALID_ALERT_KEYWORD);
+        printLine();
+    }
+
+    public static void printInvalidAlertParameter() {
+        printLine();
+        System.out.println(INVALID_ALERT_PARAMETER);
         printLine();
     }
 
