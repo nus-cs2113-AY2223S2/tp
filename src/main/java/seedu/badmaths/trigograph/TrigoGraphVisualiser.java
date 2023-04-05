@@ -1,6 +1,6 @@
 package seedu.badmaths.trigograph;
 
-import seedu.badmaths.ui.Ui;
+import seedu.badmaths.IllegalTodoException;
 
 
 import java.awt.Graphics;
@@ -26,8 +26,10 @@ public class TrigoGraphVisualiser extends JPanel {
     private double yMin;
     private double yMax;
 
+    private boolean validState;
 
-    public TrigoGraphVisualiser(double amplitude, double phase, double freqInHz, double verticalShift, String trig) {
+    public TrigoGraphVisualiser(double amplitude, double phase, double freqInHz, double verticalShift, String trig)
+            throws IllegalTodoException {
         this.amplitude = amplitude;
         this.trig = trig;
         this.phase = phase;
@@ -37,6 +39,14 @@ public class TrigoGraphVisualiser extends JPanel {
         xMax = (2 * Math.PI) / freqInHz;
         yMin = -(amplitude + Math.abs(verticalShift)) * 2;
         yMax = (amplitude + Math.abs(verticalShift)) * 2;
+        validState = isTrigoValid();
+    }
+
+    public boolean isTrigoValid() throws IllegalTodoException {
+        if (trig.equals("tan") || trig.equals("cos") || trig.equals("sin")) {
+            return true;
+        }
+        throw new IllegalTodoException();
     }
 
     @Override
@@ -56,22 +66,15 @@ public class TrigoGraphVisualiser extends JPanel {
         createXAxis(g, xScale, yScale);
         createYAxis(g, xScale, yScale);
         labelOrigin(g, xScale, yScale);
-        try {
-            switch (trig) {
-            case ("sin"):
-                drawSinCurve(g, xScale, yScale);
-                break;
-            case ("cos"):
-                drawCosCurve(g, xScale, yScale);
-                break;
-            case ("tan"):
-                drawTanCurve(g, xScale, yScale);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + trig);
-            }
-        } catch (IllegalStateException e) {
-            Ui.printIncorrectFormatEntered();
+
+        if (trig.equals("sin")) {
+            drawSinCurve(g, xScale, yScale);
+        }
+        if (trig.equals("cos")) {
+            drawCosCurve(g, xScale, yScale);
+        }
+        if (trig.equals("tan")) {
+            drawTanCurve(g, xScale, yScale);
         }
     }
 
@@ -131,8 +134,11 @@ public class TrigoGraphVisualiser extends JPanel {
         }
     }
 
+    public boolean isValidState() {
+        return validState;
+    }
 
-    public void startVisualiser() {
+    public void startVisualiser() throws IllegalTodoException {
         JFrame frame = new JFrame("Trigonometric Graph");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = screenSize.width;

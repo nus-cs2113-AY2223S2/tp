@@ -15,6 +15,7 @@ various features for note-taking.
 - Added a feature that analyses basic trigonometry signals
 - Enhance the stated feature by visualising it using JFrame
 - Make the code more OOP and bug free
+- Added JUnit tests of 90% branch coverage
 
 ### Contributions to the UG
 

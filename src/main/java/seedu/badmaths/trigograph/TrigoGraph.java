@@ -21,13 +21,12 @@ public class TrigoGraph {
             throw new IllegalTodoException();
         }
         if(analyser.canStartAnalyser()){
-            assert analyser.canStartAnalyser() == true: "Information analysed.";
             getGraphDetails(analyser);
             printGraphDetails();
             TrigoGraphVisualiser visualiser = new TrigoGraphVisualiser(amplitude,phase,frequency,verticalShift,trig);
             visualiser.startVisualiser();
         } else{
-            assert analyser.canStartAnalyser() == false;
+            throw new IllegalTodoException();
         }
 
     }
@@ -51,5 +50,25 @@ public class TrigoGraph {
         Ui.printPhase(phase);
         Ui.printVerticalShift(verticalShift);
         assert true: "Information printed.";
+    }
+
+    public double getAmplitude() {
+        return amplitude;
+    }
+
+    public double getFrequency() {
+        return frequency;
+    }
+
+    public double getPhase() {
+        return phase;
+    }
+
+    public double getVerticalShift() {
+        return verticalShift;
+    }
+
+    public String getTrig() {
+        return trig;
     }
 }

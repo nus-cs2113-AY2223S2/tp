@@ -1,16 +1,47 @@
 package seedu.badmaths.trigograph;
 
 import org.junit.jupiter.api.Test;
+import seedu.badmaths.IllegalTodoException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TrigoGraphVisualiserTest {
-
     @Test
-    public void invalidtTrigo_expect_exception() {
-        TrigoGraphVisualiserStub test = new TrigoGraphVisualiserStub("tann");
-        assertEquals(false, test.startVisualiser());
-
+    void eqnWithInvalidTrigoGivesInvalidState() {
+        try {
+            TrigoGraphVisualiser visualiser = new TrigoGraphVisualiser(1.0, 2.5, 1.67,
+                    9, "tann");
+            visualiser.startVisualiser();
+            assertThrows(IllegalTodoException.class, () -> {
+                visualiser.isValidState();
+            });
+        } catch (IllegalTodoException e) {
+            System.out.println("Wrong trigger.");
+        }
     }
 
+    @Test
+    void eqnWithValidTanGivesValidState() {
+        try {
+            TrigoGraphVisualiser visualiser_tan = new TrigoGraphVisualiser(1.0, 2.5, 1.67,
+                    9, "tan");
+            visualiser_tan.startVisualiser();
+            assertEquals(true, visualiser_tan.isValidState());
+        } catch (IllegalTodoException e) {
+            System.out.println("Wrong trigger.");
+        }
+    }
+
+    @Test
+    void eqnWithValidSinGivesValidState() {
+        try {
+            TrigoGraphVisualiser visualiser_sin = new TrigoGraphVisualiser(1.0, 2.5, 1.67,
+                    9, "sin");
+            visualiser_sin.startVisualiser();
+            assertEquals(true, visualiser_sin.isValidState());
+        } catch (IllegalTodoException e) {
+            System.out.println("Wrong trigger.");
+        }
+    }
 }
