@@ -26,7 +26,7 @@ Given below are my contributions to the project.
 * Contributed to tests for `SetCurrencyCommand`, `UnsetCurrencyCommand`, `DeleteIncomeCommand`, `DeleteExpenseCommand`.
 
 #### Contributions to the UG:
-Added documentation for the feature 'Set Currency', 'Unset Currency'.
+Added documentation for the feature `Set Currency`, `Unset Currency`.
 
 #### Contributions to the DG:
 * Added `SetCurrencyCommand` sequence diagram
