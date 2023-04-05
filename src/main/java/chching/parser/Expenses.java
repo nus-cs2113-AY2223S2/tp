@@ -63,18 +63,19 @@ public class Expenses {
         String expenseDateString = argumentsByField.get(DATE_FIELD);
         LocalDate expenseDate = parseDate(expenseDateString);
 
-        float expenseValue;
+        double expenseValue;
         try {
             expenseValue = Float.parseFloat(argumentsByField.get(VALUE_FIELD));
+            expenseValue = Math.round(expenseValue * 100.0) / 100.0;
         } catch (Exception e) {
-            throw new ChChingException("Expense value must be a valid float that is 2 d.p. or less");
+            throw new ChChingException("Expense value must be a valid double that is 2 d.p. or less");
         }
         if (expenseValue > 999999.99) {
             throw new ChChingException("Expense value must be less than 1000000");
         } else if (expenseValue <= 0) {
             throw new ChChingException("Expense value must be greater than 0");
         }
-        assert expenseValue > 0 : "expenseValue has to be more than 0";
+        assert expenseValue >= 0.01 : "expenseValue has to be more than or equals 0.01";
         exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
         return exp;
     }

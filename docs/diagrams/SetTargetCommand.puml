@@ -1,0 +1,50 @@
+@startuml
+
+participant ":ChChing" as ChChing
+participant ":Parser" as Parser
+participant ":SetTargetCommand" as SetTargetCommand
+participant ":TargetParser" as TargetParser
+participant ":TargetStorage" as TargetStorage
+
+[-> ChChing : run()
+activate ChChing
+ChChing -> Parser: parse(line, incomes expenses)
+activate Parser
+
+Parser -> TargetParser: parseTarget(args)
+activate TargetParser
+TargetParser --> Parser: Target
+deactivate TargetParser
+
+create SetTargetCommand
+Parser -> SetTargetCommand: AddTargetCommand(args)
+activate SetTargetCommand
+
+SetTargetCommand --> Parser
+
+deactivate SetTargetCommand
+Parser -> ChChing
+deactivate Parser
+ChChing -> SetTargetCommand: execute(incomes, expenses, ui, storage, selector, converter, targetStorage)
+activate SetTargetCommand
+destroy TargetParser
+SetTargetCommand -> TargetStorage: setTarget(value)
+activate TargetStorage
+TargetStorage --> SetTargetCommand
+deactivate TargetStorage
+
+
+
+SetTargetCommand --> ChChing
+deactivate SetTargetCommand
+
+
+
+
+
+
+[<--ChChing
+destroy SetTargetCommand
+deactivate ChChing
+
+@enduml

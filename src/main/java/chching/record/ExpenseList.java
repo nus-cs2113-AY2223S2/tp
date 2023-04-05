@@ -73,7 +73,7 @@ public class ExpenseList extends RecordList {
                 if (amount < 0.01) {
                     throw new ChChingException("Expense must be greater than or equals 0.01");
                 }
-                assert amount > 0.01 : "Income cannot be negative";
+                assert amount > 0.01 : "Income must be positive and more than 0";
                 expense.setValue(amount);
             } catch (Exception e) {
                 if (e instanceof NumberFormatException) {
