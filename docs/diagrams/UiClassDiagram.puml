@@ -1,0 +1,30 @@
+@startuml
+!include Style.puml
+skinparam classAttributeIconSize 0
+
+class Main {
+    - commandParser: CommandParser
+    - storage: Storage
+    + main()
+    + run()
+    + runCommandTillExit()
+}
+
+class Ui {
+    - in: Scanner
+    + getUserInput(): String
+    + showWelcomeMessage()
+    + showEndingMessage()
+    + showHelpMessage()
+    + addPetCommandMessage(String petName)
+}
+
+note bottom: Not all methods are included here
+
+package VariousCommands <<Rectangle>> {
+}
+
+Main -> Ui
+VariousCommands-[dashed]left-> Ui : uses >
+
+@enduml
