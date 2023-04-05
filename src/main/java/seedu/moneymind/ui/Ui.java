@@ -7,7 +7,14 @@ public class Ui {
     private static final String LOAD_ERROR_RISK_MESSAGE = 
             "Please correct the save file and restart the program, or risk data loss.";
     private static final String ERROR_LOADING_FILE = "Error loading file. ";
-    private static final String LOGO = "[LOGO_PLACEHOLDER]\n";
+    private static final String LOGO = "  __  __                        __  __ _           _ \n" +
+            " |  \\/  |                      |  \\/  (_)         | |\n" +
+            " | \\  / | ___  _ __   ___ _   _| \\  / |_ _ __   __| |\n" +
+            " | |\\/| |/ _ \\| '_ \\ / _ \\ | | | |\\/| | | '_ \\ / _` |\n" +
+            " | |  | | (_) | | | |  __/ |_| | |  | | | | | | (_| |\n" +
+            " |_|  |_|\\___/|_| |_|\\___|\\__, |_|  |_|_|_| |_|\\__,_|\n" +
+            "                           __/ |                     \n" +
+            "                          |___/                      \n";
     private static final String GREETING = "Welcome to Moneymind\n" + LOGO + "How may I help you?";
     private static final String ERROR = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     private static final String LIST = "Here are the events in your list:";
