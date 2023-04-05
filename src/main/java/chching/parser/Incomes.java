@@ -17,7 +17,7 @@ public class Incomes {
         try {
             incomeDate = LocalDate.parse(incomeDateString, formatter);
         } catch (DateTimeParseException e) {
-            throw new ChChingException("Date must be valid and have format: \"DD-MM-YYYY\"");
+            throw new ChChingException("Date must be valid with format: \"DD-MM-YYYY\"");
         }
         if (incomeDate.isAfter(LocalDate.now())) {
             throw new ChChingException("Date cannot be in the future");
