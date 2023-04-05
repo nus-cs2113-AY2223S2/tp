@@ -96,19 +96,11 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             int contactNumber = Integer.parseInt(contactNumberString);
-            if(contactNumber < 30000000 || contactNumber > 100000000){
+            if(!checkContactNumberValidity(contactNumber)){
                 ui.invalidInputFormatErrorMessage("contact number",
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
                 throw new WrongFormatException();
-            } else if(contactNumber >= 40000000 && contactNumber < 60000000){
-                ui.invalidInputFormatErrorMessage("contact number",
-                        "8-digit number starting with 3, 6, 8, 9 is expected.");
-                throw new WrongFormatException();
-            } else if(contactNumber >= 70000000 && contactNumber < 80000000){
-                ui.invalidInputFormatErrorMessage("contact number",
-                        "8-digit number starting with 3, 6, 8, 9 is expected.");
-                throw new WrongFormatException();
-            }
+            } 
             //Only valid email address is allowed.
             if(!contactEmail.contains("@") || contactEmail.contains(" ") || contactEmail.endsWith("@")){
                 ui.invalidInputFormatErrorMessage("email address");
@@ -218,5 +210,16 @@ public interface Parser {
         if (intMax.compareTo(currValue) == -1) {
             throw new IntegerSizeExceededException();
         }
+    }
+
+    private static boolean checkContactNumberValidity(int contactNumber){
+        if(contactNumber < 30000000 || contactNumber > 100000000){
+            return false;
+        } else if(contactNumber >= 40000000 && contactNumber < 60000000){
+            return false;
+        } else if(contactNumber >= 70000000 && contactNumber < 80000000){
+            return false;
+        }
+        return true;
     }
 }
