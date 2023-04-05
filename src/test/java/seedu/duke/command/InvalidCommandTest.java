@@ -22,7 +22,7 @@ public class InvalidCommandTest {
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
         Storage storage = new Storage();
-        DeadlineStorage deadlineStorage = new DeadlineStorage();
+        DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();;
         Parser parser = new Parser();
         BudgetPlanner budgetPlanner = new BudgetPlanner();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,

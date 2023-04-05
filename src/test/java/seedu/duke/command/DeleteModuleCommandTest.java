@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DeleteModuleCommandTest {
     Storage storage = new Storage();
-    DeadlineStorage deadlineStorage = new DeadlineStorage();
+    DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
     DataReader dataReader = new DataReader();
 
     @Test
