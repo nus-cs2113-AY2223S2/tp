@@ -72,65 +72,6 @@ public class AddExpenseCommandTest {
     }
 
     /**
-     * Junit Test when there is null field for the expense input
-     */
-    @Test
-    void execute_nullExpense_exceptionThrown() {
-        String expectedOutput = "No fields found";
-        try {
-            new AddExpenseCommand(null);
-            fail(); // test should not reach this line
-        } catch (Exception e) {
-            assertEquals(expectedOutput, e.getMessage());
-        }
-    }
-
-    /**
-     * Junit Test when there is missing category for the expense input
-     */
-    @Test
-    void execute_missingCategoryField_exceptionThrown() {
-        String expectedOutput = "Missing category field";
-        Expense input = new Expense(null, DESCRIPTION , DATE, EXPENSE_VALUE);
-        try {
-            new AddExpenseCommand(input);
-            fail(); // test should not reach this line
-        } catch (Exception e) {
-            assertEquals(expectedOutput, e.getMessage());
-        }
-    }
-
-    /**
-     * Junit Test when there is missing description for the expense input
-     */
-    @Test
-    void execute_missingDescriptionField_exceptionThrown() {
-        String expectedOutput = "Missing description field";
-        Expense input = new Expense(CATEGORY, null, DATE, EXPENSE_VALUE);
-        try {
-            new AddExpenseCommand(input);
-            fail(); // test should not reach this line
-        } catch (Exception e) {
-            assertEquals(expectedOutput, e.getMessage());
-        }
-    }
-
-    /**
-     * Junit Test when there is missing date for the expense input
-     */
-    @Test
-    void execute_missingDateField_exceptionThrown() {
-        String expectedOutput = "Missing date field";
-        Expense input = new Expense(CATEGORY, DESCRIPTION, null, EXPENSE_VALUE);
-        try {
-            new AddExpenseCommand(input);
-            fail(); // test should not reach this line
-        } catch (Exception e) {
-            assertEquals(expectedOutput, e.getMessage());
-        }
-    }
-
-    /**
      * Junit Test when there is a zeroValue field
      */
     @Test

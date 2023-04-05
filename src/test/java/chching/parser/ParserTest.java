@@ -110,7 +110,7 @@ public class ParserTest {
             new Parser().sortArguments(input);
             fail(); // the test should not reach this line
         } catch (ChChingException e) {
-            assertEquals("Arguments not inputted correctly", e.getMessage());
+            assertEquals("Arguments not inputted correctly / Missing details", e.getMessage());
         }
     }
     

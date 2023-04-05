@@ -10,6 +10,12 @@ import java.time.format.ResolverStyle;
 import java.util.HashMap;
 
 public class Incomes {
+    
+    public static final String DESCRIPTION_FIELD = "de";
+    public static final String DATE_FIELD = "da";
+    public static final String VALUE_FIELD = "v";
+    public static final String INDEX_FIELD = "in";
+    
     public static LocalDate parseDate(String incomeDateString) throws ChChingException {
         LocalDate incomeDate;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
@@ -18,6 +24,8 @@ public class Incomes {
             incomeDate = LocalDate.parse(incomeDateString, formatter);
         } catch (DateTimeParseException e) {
             throw new ChChingException("Date must be valid and have format: \"DD-MM-YYYY\"");
+        } catch (NullPointerException e) {
+            throw new ChChingException("Missing Date");
         }
         if (incomeDate.isAfter(LocalDate.now())) {
             throw new ChChingException("Date cannot be in the future");
@@ -31,14 +39,23 @@ public class Incomes {
      * @param argumentsByField Input from users
      */
     public static Income parseIncome(HashMap<String, String> argumentsByField) throws ChChingException {
+        // check if all the fields are present
+        boolean isDescriptionPresent = argumentsByField.containsKey(DESCRIPTION_FIELD);
+        boolean isDatePresent = argumentsByField.containsKey(DATE_FIELD);
+        boolean isValuePresent = argumentsByField.containsKey(VALUE_FIELD);
+        boolean isAllPresent = isDescriptionPresent && isDatePresent && isValuePresent;
+        if (!isAllPresent) {
+            throw new ChChingException("Missing fields detected");
+        }
+        
         Income inc = null;
-        String incomeDescription = argumentsByField.get("de");
-        String incomeDateString = argumentsByField.get("da");
+        String incomeDescription = argumentsByField.get(DESCRIPTION_FIELD);
+        String incomeDateString = argumentsByField.get(DATE_FIELD);
         LocalDate incomeDate = parseDate(incomeDateString);
         
         float incomeValue;
         try {
-            incomeValue = Float.parseFloat(argumentsByField.get("v"));
+            incomeValue = Float.parseFloat(argumentsByField.get(VALUE_FIELD));
         } catch (Exception e) {
             throw new ChChingException("Income value must be a valid float that is 2 d.p. or less");
         }
@@ -59,8 +76,15 @@ public class Incomes {
      */
     public static int getIndex(HashMap<String, String> argumentsByField) throws ChChingException {
         int index = -1;
+        
+        // check if index field is present
+        boolean isIndexPresent = argumentsByField.containsKey(INDEX_FIELD);
+        if (!isIndexPresent) {
+            throw new ChChingException("Index field not found");
+        }
+        
+        String indexString = argumentsByField.get(INDEX_FIELD);
         try {
-            String indexString = argumentsByField.get("in");
             index = Integer.parseInt(indexString);
         } catch (Exception e) {
             throw new ChChingException("Index must contain a valid integer only");

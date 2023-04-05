@@ -15,6 +15,12 @@ import java.util.HashMap;
 
 public class Expenses {
     
+    public static final String CATEGORY_FIELD = "c";
+    public static final String DESCRIPTION_FIELD = "de";
+    public static final String DATE_FIELD = "da";
+    public static final String VALUE_FIELD = "v";
+    public static final String INDEX_FIELD = "in";
+    
     /**
      * Parses a date
      *
@@ -41,15 +47,25 @@ public class Expenses {
      * @param argumentsByField Input from users
      */
     public static Expense parseExpense(HashMap<String, String> argumentsByField) throws ChChingException {
+        // check if all the fields are present
+        boolean isCategoryPresent = argumentsByField.containsKey(CATEGORY_FIELD);
+        boolean isDescriptionPresent = argumentsByField.containsKey(DESCRIPTION_FIELD);
+        boolean isDatePresent = argumentsByField.containsKey(DATE_FIELD);
+        boolean isValuePresent = argumentsByField.containsKey(VALUE_FIELD);
+        boolean isAllPresent = isCategoryPresent && isDescriptionPresent && isDatePresent && isValuePresent;
+        if (!isAllPresent) {
+            throw new ChChingException("Missing fields detected");
+        }
+        
         Expense exp = null;
-        String expenseCategory = argumentsByField.get("c");
-        String expenseDescription = argumentsByField.get("de");
-        String expenseDateString = argumentsByField.get("da");
+        String expenseCategory = argumentsByField.get(CATEGORY_FIELD);
+        String expenseDescription = argumentsByField.get(DESCRIPTION_FIELD);
+        String expenseDateString = argumentsByField.get(DATE_FIELD);
         LocalDate expenseDate = parseDate(expenseDateString);
         
         float expenseValue;
         try {
-            expenseValue = Float.parseFloat(argumentsByField.get("v"));
+            expenseValue = Float.parseFloat(argumentsByField.get(VALUE_FIELD));
         } catch (Exception e) {
             throw new ChChingException("Expense value must be a valid float that is 2 d.p. or less");
         }
@@ -70,8 +86,15 @@ public class Expenses {
      */
     public static int getIndex(HashMap<String, String> argumentsByField) throws ChChingException {
         int index = -1;
+
+        // check if all the fields are present
+        boolean isIndexPresent = argumentsByField.containsKey(INDEX_FIELD);
+        if (!isIndexPresent) {
+            throw new ChChingException("Index field not found");
+        }
+        
+        String indexString = argumentsByField.get(INDEX_FIELD);
         try {
-            String indexString = argumentsByField.get("in");
             index = Integer.parseInt(indexString);
         } catch (Exception e) {
             throw new ChChingException("Index must contain a valid integer only");

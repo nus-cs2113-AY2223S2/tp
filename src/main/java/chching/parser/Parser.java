@@ -178,7 +178,7 @@ public class Parser {
                 field = fieldAndValue[0].trim();
                 value = fieldAndValue[1].trim();
             } catch (Exception e) {
-                throw new ChChingException("Arguments not inputted correctly");
+                throw new ChChingException("Arguments not inputted correctly / Missing details");
             }
     
             // checks if it is an existing field
