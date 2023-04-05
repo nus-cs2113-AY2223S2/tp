@@ -5,32 +5,32 @@ activate ":Duke"
 activate ":EditFoodCommand"
 ":EditFoodCommand" -> ":BudgetPlanner" : budgetPlanner.getFoodTotalCost()
 activate ":BudgetPlanner"
-":EditFoodCommand" <- ":BudgetPlanner" : initialCost:int
+":EditFoodCommand" <-- ":BudgetPlanner" : initialCost:int
 deactivate ":BudgetPlanner"
 ":EditFoodCommand" -> ":BudgetPlanner" : budgetPlanner.setFoodTotalCost(cost)
 activate ":BudgetPlanner"
-":EditFoodCommand" <- ":BudgetPlanner"
+":EditFoodCommand" <-- ":BudgetPlanner"
 deactivate ":BudgetPlanner"
 ":EditFoodCommand" -> ":BudgetPlanner" : budgetPlanner.getFoodTotalCost()
 activate ":BudgetPlanner"
-":EditFoodCommand" <- ":BudgetPlanner" : newCost:int
+":EditFoodCommand" <-- ":BudgetPlanner" : newCost:int
 deactivate ":BudgetPlanner"
 opt initialCost == newCost
 ":EditFoodCommand" -> "<<class>>\n:UI" : UI.printCostNoChangeMessage();
 activate "<<class>>\n:UI"
-":EditFoodCommand" <- "<<class>>\n:UI"
+":EditFoodCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditFoodCommand" -> ":Duke"
+":EditFoodCommand" --> ":Duke"
 end
 create ":Food"
 ":EditFoodCommand" -> ":Food" : new Food(cost)
 activate ":Food"
-":EditFoodCommand" <- ":Food" : food
+":EditFoodCommand" <-- ":Food" : food
 deactivate ":Food"
 ":EditFoodCommand" -> "<<class>>\n:UI" : UI.printEditCostMessage(cost, food)
 activate "<<class>>\n:UI"
-":EditFoodCommand" <- "<<class>>\n:UI"
+":EditFoodCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":EditFoodCommand" -> ":Duke"
+":EditFoodCommand" --> ":Duke"
 deactivate ":EditFoodCommand"
 @enduml
