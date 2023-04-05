@@ -27,9 +27,10 @@ public class Storage {
 
     /**
      * Build constructor for the Storage class.
+     *
      * @param filepath the filepath of the storage.
      */
-    Storage(String filepath){
+    Storage(String filepath) {
         String dirname = filepath.substring(0, filepath.lastIndexOf("/"));
         File dir = new File(dirname);
         dir.mkdirs();

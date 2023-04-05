@@ -65,7 +65,6 @@ public class ChChing {
     }
 
     public static void main(String[] args) {
-        // assert false : "Assertions should be enabled";
         new ChChing("data/chching.json").run();
     }
 }
