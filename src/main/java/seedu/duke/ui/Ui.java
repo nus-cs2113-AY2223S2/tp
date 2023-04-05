@@ -67,7 +67,10 @@ public class Ui {
     }
 
     public void printIPPTScores() {
-        System.out.println();
+//        System.out.println("You have scored "+ +" points for your 2.4km run.");
+//        System.out.println("You have scored "+ +" points for your pushups.");
+//        System.out.println("You have scored "+ +" points for your situps.");
+//        System.out.println("You have scored "+ +" points in total.");
     }
 }
 
