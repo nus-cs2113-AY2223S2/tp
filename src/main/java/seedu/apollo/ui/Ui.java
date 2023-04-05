@@ -82,7 +82,7 @@ public class Ui {
         printNote();
         showLine();
         printUtility();
-        //printAddModuleOptions();
+
     }
 
     private void printHelpCommandOptions(){
@@ -280,9 +280,10 @@ public class Ui {
     public void printModuleListWithLesson(Module newModule, ArrayList<Timetable> timetableList) {
         System.out.println("These are your classes for Module " + newModule.getCode() + ": \n");
         for (Timetable timetable : timetableList) {
+
             System.out.println(timetable.getLessonType() + " " + timetable.getClassNumber() + '\n' +
                     "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
-                    timetable.getEndTime());
+                    timetable.getEndTime() + " " + timetable.compressedWeeks(timetable));
         }
 
     }
@@ -343,7 +344,7 @@ public class Ui {
         for (Timetable timetable : copyList) {
             System.out.println("Class Number: " + timetable.getClassNumber());
             System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
-                    timetable.getEndTime());
+                                timetable.getEndTime() + " " + timetable.compressedWeeks(timetable));
         }
     }
 
@@ -407,10 +408,14 @@ public class Ui {
         printLessonTypeMessage(lessonTypes);
         System.out.println();
         for (Timetable timetable : timetableList) {
+
             System.out.println(timetable.getLessonType() + " " + timetable.getClassNumber() + '\n' +
-                    "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " + timetable.getEndTime());
+                    "   " + timetable.getDay() + " " + timetable.getStartTime() + " - "
+                    + timetable.getEndTime() + " " + timetable.compressedWeeks(timetable));
         }
     }
+
+
 
     /**
      * For {@code addmod, delmod, listmod} commands.
@@ -785,7 +790,7 @@ public class Ui {
         for (Timetable timetable : copyList) {
             System.out.println("Class Number: " + timetable.getClassNumber());
             System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
-                    timetable.getEndTime());
+                    timetable.getEndTime() + " " + timetable.compressedWeeks(timetable));
         }
     }
 
