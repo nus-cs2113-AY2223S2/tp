@@ -24,7 +24,7 @@ public class ShortcutAddCommand extends ShortcutCommand {
         setupLogger();
         logger.log(Level.INFO, "starting ShortcutAddCommand.execute()");
         logger.log(Level.INFO, "checking for validity of shortcut");
-        shortcutCommands = userData.getShortcutCommands();
+        shortcutCommands = savedData.getShortcutCommands();
         checkShortcutValidity(shortcutCommands, key, value);
         logger.log(Level.INFO, "shortcut confirmed as valid of shortcut");
 

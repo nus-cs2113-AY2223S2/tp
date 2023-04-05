@@ -45,7 +45,7 @@ public class ShortcutViewCommand extends ShortcutCommand {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ShortcutViewCommand.execute()");
-        shortcutCommands =  userData.getShortcutCommands();
+        shortcutCommands = savedData.getShortcutCommands();
         if (shortcutCommands.size() == 0) {
             logger.log(Level.INFO, "ShortcutViewCommand.execute() will not print a table as there is no configured"
                     + " shortcuts");

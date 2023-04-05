@@ -84,7 +84,7 @@ public class Parser {
                 return exitCommand();
             } else {
                 // check if the user has a shortcut command
-                HashMap<String, String> shortcutCommands = RainyDay.userData.getShortcutCommands();
+                HashMap<String, String> shortcutCommands = RainyDay.savedData.getShortcutCommands();
                 if (shortcutCommands.containsKey(userInput)) {
                     return parseUserInput(processShortcutUsage(shortcutCommands, userInput));
                 }
@@ -313,12 +313,12 @@ public class Parser {
             logger.warning("invalid delete index from user");
             throw new RainyDayException(ErrorMessage.NO_DELETE_INDEX.toString());
         }
-        if (RainyDay.userData.getFinancialReport().getStatementCount() == 0) {
+        if (RainyDay.savedData.getFinancialReport().getStatementCount() == 0) {
             throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
         }
         try {
             int index = Integer.parseInt(tokens[1]);
-            if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
+            if (index > RainyDay.savedData.getFinancialReport().getStatementCount()) {
                 throw new IllegalArgumentException();
             }
             if (index <= 0) {
@@ -328,7 +328,7 @@ public class Parser {
         } catch (Exception e) {
             logger.warning("delete index not a valid number");
             throw new RainyDayException(String.format(ErrorMessage.WRONG_DELETE_INDEX.toString(),
-                    RainyDay.userData.getFinancialReport().getStatementCount() + "!"));
+                    RainyDay.savedData.getFinancialReport().getStatementCount() + "!"));
         }
     }
 
@@ -488,7 +488,7 @@ public class Parser {
                 throw new RainyDayException(ErrorMessage.WRONG_EDIT_FORMAT.toString());
             }
 
-            int lengthOfReport = RainyDay.userData.getFinancialReport().getStatementCount();
+            int lengthOfReport = RainyDay.savedData.getFinancialReport().getStatementCount();
             if (lengthOfReport == 0) {
                 throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
             }
@@ -620,12 +620,12 @@ public class Parser {
             logger.warning("no ignore index from user");
             throw new RainyDayException(ErrorMessage.WRONG_IGNORE_FORMAT.toString());
         }
-        if (RainyDay.userData.getFinancialReport().getStatementCount() == 0) {
+        if (RainyDay.savedData.getFinancialReport().getStatementCount() == 0) {
             throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
         }
         try {
             int index = Integer.parseInt(tokens[1]);
-            if (index > RainyDay.userData.getFinancialReport().getStatementCount()) {
+            if (index > RainyDay.savedData.getFinancialReport().getStatementCount()) {
                 throw new IllegalArgumentException();
             }
             if (index <= 0) {
@@ -635,7 +635,7 @@ public class Parser {
         } catch (Exception e) {
             logger.warning("ignore index provided incorrectly");
             throw new RainyDayException(String.format(ErrorMessage.WRONG_IGNORE_INDEX.toString(),
-                    RainyDay.userData.getFinancialReport().getStatementCount() + "!"));
+                    RainyDay.savedData.getFinancialReport().getStatementCount() + "!"));
         }
     }
 

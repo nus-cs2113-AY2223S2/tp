@@ -54,15 +54,15 @@ public class AddCommand extends Command {
         setupLogger();
         logger.log(Level.INFO, "starting AddCommand.execute()");
 
-        int totalStatementCount = userData.getStatementCount(); // only used for assertion
+        int totalStatementCount = savedData.getStatementCount(); // only used for assertion
         FinancialStatement newStatement = new FinancialStatement(description, flowDirection, value, category, date);
-        userData.addStatement(newStatement);
+        savedData.addStatement(newStatement);
 
-        assert totalStatementCount + 1 == userData.getStatementCount() : "statement count mismatch";
+        assert totalStatementCount + 1 == savedData.getStatementCount() : "statement count mismatch";
 
-        String budgetInfo = userData.checkUserBudgetLimit(newStatement.getDate());
+        String budgetInfo = savedData.checkUserBudgetLimit(newStatement.getDate());
 
-        String output = "Done! Added: " + userData.getStatement(totalStatementCount).getFullStatement()
+        String output = "Done! Added: " + savedData.getStatement(totalStatementCount).getFullStatement()
                 + budgetInfo;
 
         logger.log(Level.INFO, " end of AddCommand.execute()");

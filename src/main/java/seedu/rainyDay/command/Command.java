@@ -1,8 +1,8 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.data.AllData;
-import seedu.rainyDay.data.MonthlyExpenditures;
 import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.data.MonthlyExpenditures;
+import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.exceptions.RainyDayException;
 
 //@@author lil1n
@@ -28,8 +28,8 @@ public abstract class Command {
     public static final String COMMAND_UNIGNORE = "unignore";
     private static boolean isExit = false;
 
-    protected AllData allData;
     protected UserData userData;
+    protected SavedData savedData;
     protected MonthlyExpenditures monthlyExpenditures;
 
     //@@author KN-CY
@@ -48,12 +48,12 @@ public abstract class Command {
     /**
      * Sets the attribute to reference the financial report for execution of commands
      *
-     * @param allData allData provided for the commands to be performed on
+     * @param userData userData provided for the commands to be performed on
      */
-    public void setData(AllData allData) {
-        this.allData = allData;
-        this.userData = allData.getUserData();
-        this.monthlyExpenditures = allData.getMonthlyExpenditures();
+    public void setData(UserData userData) {
+        this.userData = userData;
+        this.savedData = userData.getSavedData();
+        this.monthlyExpenditures = userData.getMonthlyExpenditures();
     }
 
     /**

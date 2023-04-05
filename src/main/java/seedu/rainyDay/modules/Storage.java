@@ -38,7 +38,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import com.opencsv.CSVWriter;
-import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.exceptions.RainyDayException;
 
 //@@author KN-CY
@@ -72,7 +72,7 @@ public class Storage {
      * @return The FinancialReport after deserialization from the file.
      * @throws FileNotFoundException If the file specified by the filePath is not found.
      */
-    public static UserData loadFromFile(String filePath) throws FileNotFoundException, RainyDayException {
+    public static SavedData loadFromFile(String filePath) throws FileNotFoundException, RainyDayException {
         setupLogger();
         logger.log(Level.INFO, "starting LoadFromFile");
         Reader reader = new FileReader(filePath);
@@ -83,31 +83,31 @@ public class Storage {
         checkValidUserData(fileObject);
 
         reader = new FileReader(filePath);
-        UserData userData = gson.fromJson(reader, UserData.class);
-        return userData;
+        SavedData savedData = gson.fromJson(reader, SavedData.class);
+        return savedData;
     }
 
     /**
-     * Checks if the loaded userData is valid.
+     * Checks if the loaded savedData is valid.
      *
-     * @param userData The user data being loaded of JsonObject type.
-     * @throws RainyDayException If userData is invalid.
+     * @param savedData The user data being loaded of JsonObject type.
+     * @throws RainyDayException If savedData is invalid.
      */
-    private static void checkValidUserData(JsonObject userData) throws RainyDayException {
+    private static void checkValidUserData(JsonObject savedData) throws RainyDayException {
         // check that UserData has the required fields
-        if (!userData.has("financialReport")) {
+        if (!savedData.has("financialReport")) {
             throw new RainyDayException("");
         }
-        if (!userData.has("shortcutCommands")) {
+        if (!savedData.has("shortcutCommands")) {
             throw new RainyDayException("");
         }
-        if (!userData.has("budgetGoal") || userData.get("budgetGoal").getAsDouble() < 0)  {
+        if (!savedData.has("budgetGoal") || savedData.get("budgetGoal").getAsDouble() < 0) {
             throw new RainyDayException("");
         }
-        JsonObject financialReport = userData.getAsJsonObject("financialReport");
+        JsonObject financialReport = savedData.getAsJsonObject("financialReport");
         checkValidFinancialReport(financialReport);
 
-        JsonObject shortcutCommands = userData.getAsJsonObject("shortcutCommands");
+        JsonObject shortcutCommands = savedData.getAsJsonObject("shortcutCommands");
         checkValidShortcutCommands(shortcutCommands);
     }
 
@@ -196,15 +196,15 @@ public class Storage {
     /**
      * Uses JSON serialization to save the FinancialReport object into a JSON file.
      *
-     * @param userData The object containing the UserData to save.
-     * @param filePath The file path where the FinancialReport will be saved to.
+     * @param savedData The object containing the UserData to save.
+     * @param filePath  The file path where the FinancialReport will be saved to.
      */
-    public static void writeToFile(UserData userData, String filePath) {
+    public static void writeToFile(SavedData savedData, String filePath) {
         setupLogger();
         logger.log(Level.INFO, "starting writeToFile");
         try {
             Files.createDirectories(Paths.get("./data"));
-            String jsonUserData = gson.toJson(userData);
+            String jsonUserData = gson.toJson(savedData);
             FileWriter fileWriter = new FileWriter(filePath);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 

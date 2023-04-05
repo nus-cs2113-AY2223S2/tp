@@ -55,8 +55,8 @@ public class ViewCommand extends Command {
      */
     private ArrayList<Integer> filterIndexes() {
         ArrayList<Integer> filteredIndexes = new ArrayList<>();
-        for (int index = 0; index < userData.getStatementCount(); index++) {
-            FinancialStatement currentStatement = userData.getStatement(index);
+        for (int index = 0; index < savedData.getStatementCount(); index++) {
+            FinancialStatement currentStatement = savedData.getStatement(index);
             LocalDate statementDate = currentStatement.getDate();
             if (!statementDate.isBefore(lowerLimit) && !statementDate.isAfter(upperLimit)) {
                 filteredIndexes.add(index);
@@ -71,8 +71,8 @@ public class ViewCommand extends Command {
      */
     class sortByValue implements Comparator<Integer> {
         public int compare(Integer firstIndex, Integer secondIndex) {
-            FinancialStatement firstStatement = userData.getStatement(firstIndex);
-            FinancialStatement secondStatement = userData.getStatement(secondIndex);
+            FinancialStatement firstStatement = savedData.getStatement(firstIndex);
+            FinancialStatement secondStatement = savedData.getStatement(secondIndex);
             if (firstStatement.getFlowSymbol().equals("+") && secondStatement.getFlowSymbol().equals("-")) {
                 return -1;
             }
@@ -94,12 +94,12 @@ public class ViewCommand extends Command {
         ArrayList<Integer> validIndexes;
         validIndexes = filterIndexes();
         if (validIndexes.size() == 0) {
-            assert userData.getStatementCount() == 0 : "statement count mismatch";
+            assert savedData.getStatementCount() == 0 : "statement count mismatch";
             logger.log(Level.INFO, "empty financial report");
             String output = String.format("Your financial report is empty for %s till %s", lowerLimit, upperLimit);
             return new CommandResult(output);
         }
-        assert userData.getStatementCount() != 0 : "statement count mismatch";
+        assert savedData.getStatementCount() != 0 : "statement count mismatch";
         if (sortingRequired) {
             validIndexes.sort(new sortByValue());
         }
