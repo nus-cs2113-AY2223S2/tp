@@ -46,6 +46,8 @@ public abstract class CurrencyValue {
             return amount * TWD_CONVERSION;
         case "USD":
             return amount * USD_CONVERSION;
+        case "CNY":
+            return amount * CNY_CONVERSION;
         case "SGD":
             return amount;
         default:
