@@ -1,3 +1,4 @@
+/*
 package seedu.storage.writefile;
 
 import seedu.calorietracker.CalorieTracker;
@@ -11,7 +12,8 @@ import java.util.HashMap;
 
 public class DailyCaloriesWriteFile {
 
-    private static final String SPACE = " ";
+*/
+/*    private static final String SPACE = " ";
 
     public static void writeDailyCaloriesToFile(String filePath, CalorieTracker calorieTracker) {
         try {
@@ -28,5 +30,7 @@ public class DailyCaloriesWriteFile {
         } catch (IOException e) {
             System.out.println("Error writing to file.");
         }
-    }
+    }*//*
+
 }
+*/

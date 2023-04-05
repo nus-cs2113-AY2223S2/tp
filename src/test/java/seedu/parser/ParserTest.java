@@ -18,7 +18,7 @@ public class ParserTest {
     //@@ author ZIZI-czh
     @Test
     public void testProcessCommandIncorrectArguments() {
-        String userInput = "/list 556";
+        String userInput = "/wlist 556";
         Parser testList = new Parser();
         Command result;
         try {

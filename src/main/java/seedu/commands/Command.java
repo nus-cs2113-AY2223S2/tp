@@ -1,7 +1,7 @@
 package seedu.commands;
 
 
-import seedu.calorietracker.CalorieTracker;
+import seedu.calorietracker.CaloriesRecorder;
 import seedu.calorietracker.FoodList;
 import seedu.workout.Day;
 import seedu.workout.Workout;
@@ -13,10 +13,11 @@ import java.util.HashMap;
 public class Command {
 
     protected static boolean isDayEntered;
-    protected static Date date;
+    //protected static Date date;
     protected static boolean isWorkoutEntered;
     protected WorkoutList workoutList = new WorkoutList();
-    protected CalorieTracker calorieTracker;
+    //protected CalorieTracker calorieTracker;
+    protected CaloriesRecorder caloriesRecorder;
     protected FoodList foodList;
     protected HashMap<Date, Day> workouts;
     protected Workout workoutForOneDay = new Workout();
@@ -43,13 +44,14 @@ public class Command {
         return workoutList;
     }
 
-    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker, FoodList foodList)
+    public void setData(WorkoutList workoutList, CaloriesRecorder caloriesRecorder, FoodList foodList)
             throws IllegalArgumentException {
-        if (workoutList == null || calorieTracker == null) {
+        if (workoutList == null || caloriesRecorder == null) {
             throw new IllegalArgumentException("WorkoutList cannot be null.");
         }
         this.workoutList = workoutList;
-        this.calorieTracker = calorieTracker;
+        //  this.calorieTracker = calorieTracker;
+        this.caloriesRecorder = caloriesRecorder;
         this.foodList = foodList;
 
     }
