@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class StorageTest {
 
     @Test
-    public void writeToFileTest_fileExists() {
+    public void writeToFile_fileExists() {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
         String filePath = "rainyDay.txt";
@@ -31,7 +31,7 @@ public class StorageTest {
     }
 
     @Test
-    public void writeToFileTest_contentMatch() throws IOException, RainyDayException {
+    public void writeToFile_contentMatch() throws IOException, RainyDayException {
         ArrayList<FinancialStatement> statements = new ArrayList<>();
         FinancialReport financialReport = new FinancialReport(statements);
         financialReport.setReportOwner("bob");
