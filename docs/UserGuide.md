@@ -57,7 +57,9 @@ A new patient can register him/herself into Doctor Duke, by keying in his/her na
 
 Format: Enter ``1`` to register.
 
-Note: When keying in passwords, any white spaces in the passwords keyed in will be stripped.
+Note: 
+1. When keying in passwords, any white spaces in the passwords keyed in will be stripped.
+2. There can be patients with the same name and hence username. Thus, we allow the same username with 2 or more passwords to access different accounts.
 
 Expected Outcome: 
 ~~~
@@ -229,11 +231,13 @@ OR
 ```
 Please enter a symptom.
 ---------------------------------------------------
-a b c
+abc
 Do you have any other symptoms? [Y/N]
-n
+N
 Your entered symptoms are: 
-[FEVER, DRY_COUGH, COUGH_WITH_PHLEGM]
+fever
+dry cough
+cough with phlegm
 ```
 
 The patient may key in `Y` or `y`to continue reporting symptoms. Once the patient is finished reporting their symptoms, they can type `N` or `n` to finish reporting their symptoms.
@@ -242,25 +246,47 @@ After reporting their symptoms, Doctor Duke will then diagnose the patient, by:
 1. Showing what illness the patient might have,
 2. Displaying what medicine the patient should consume.
 
+Note that if the combination of symptoms entered does not correspond to any known illness, the patient will be referred to the doctor instead of receiving medication for an unconfirmed illness.
+
 Expected Outcome:
 ```
 Please enter a symptom.
 ---------------------------------------------------
-a b c
+abc
 Do you have any other symptoms? [Y/N]
-n
+N
 Your entered symptoms are: 
-[FEVER, DRY_COUGH, COUGH_WITH_PHLEGM]
----------------------------------------------------
+fever
+dry cough
+cough with phlegm
+============================================================================================
 You may have: 
-Sore Throat    Match: 66.66666666666666%
-Fever    Match: 100.0%
----------------------------------------------------
+Sore Throat    Match: 66.67%
+Fever    Match: 100.00%
+-----------------------------------------------------------
+Below are some recommended medications for you to purchase:
+-----------------------------------------------------------
 Medication for: Sore Throat
-    Lozenges / Dosage: When you feel pain from sore throat
+    Lozenges - Dosage: When you feel pain from sore throat
+-----------------------------------------------------------
+    Description: Lozenges are used to medicate the mouth and throat for the slow administration in digestion or 
+    cough remedies. Lozenges may contain an anesthetic, a demulcent, or an antiseptic.
+-----------------------------------------------------------
+    Difflam Throat Spray - Dosage: 2 - 4 times every 1.5 - 3 hours until you feel better
+-----------------------------------------------------------
+    Description: This spray offers targeted and rapid symptom relief for hard-to-reach inflamed and 
+    painful areas in your mouth and throat. It provides rapid relief from local inflammation 
+    and pain from 60 seconds. 
+-----------------------------------------------------------
 Medication for: Fever
-    Paracetamol / Dosage: 1 or 2 pills up to 3 times a day
----------------------------------------------------
+    Paracetamol - Dosage: 1 or 2 pills up to 3 times a day
+-----------------------------------------------------------
+    Description: Paracetamol is a commonly used medicine that can help treat pain and reduce a high temperature 
+    It's typically used to relieve mild or moderate pain, such as headaches, 
+    toothache or sprains, and reduce fevers caused by illnesses such as colds and flu.
+-----------------------------------------------------------
+End of diagnosis. Please proceed to your nearest pharmacy to purchase the above medications if applicable.
+============================================================================================
 ```
 
 ### 2. View Diagnosis History
@@ -287,9 +313,7 @@ What would you like to do? Please enter the number:
 2
 ---------------------------------------------------
 Your diagnosis history is: 
----------------------------------------------------
-Sore Throat
-Fever
+2023/04/05: [Sore Throat, Fever]
 ---------------------------------------------------
 ```
 
@@ -355,9 +379,9 @@ You have not entered any symptoms.
 Else, expected outcome after entering some symptoms:
 ```
 ---------------------------------------------------
-DRY_COUGH
-COUGH_WITH_PHLEGM
-FEVER
+fever
+dry cough
+cough with phlegm
 ---------------------------------------------------
 ```
 [comment]: <> (//@@author tanyizhe)
@@ -380,17 +404,31 @@ If some symptoms have already been entered:
 Here is the list of your symptoms:
 1. nausea
 2. runny nose
-3. headache
-4. throat irritation
+3. throat irritation
+4. headache
 Please enter the numbers of the symptom you want to delete.
 Please put a space between each number to delete multiple symptoms.
 ---------------------------------------------------
 1 2
 Successfully deleted symptom(s)!
 Here is the updated list of your symptoms:
-1. headache
-2. throat irritation
+1. throat irritation
+2. headache
 ---------------------------------------------------
+Below is your new diagnosis:
+============================================================================================
+You may have: 
+Headache    Match: 100.00%
+-----------------------------------------------------------
+Medication for: Headache
+    Paracetamol - Dosage: 1 or 2 pills up to 3 times a day
+-----------------------------------------------------------
+    Description: Paracetamol is a commonly used medicine that can help treat pain and reduce a high temperature 
+    It's typically used to relieve mild or moderate pain, such as headaches, 
+    toothache or sprains, and reduce fevers caused by illnesses such as colds and flu.
+-----------------------------------------------------------
+End of diagnosis. Please proceed to your nearest pharmacy to purchase the above medications if applicable.
+============================================================================================
 ```
 
 [comment]: <> (//@@author Geeeetyx)
