@@ -2,7 +2,6 @@ package seedu.duck;
 
 import seedu.duck.task.*;
 
-import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -40,7 +39,8 @@ public class Ui {
                 "    `.                      _,'\n" +
                 "      `-._________,--'");
     }
-    static void printMotivationalQuote(){
+
+    static void printMotivationalQuote() {
         String[] quotes = {
                 "Believe you can and you're halfway there. -Theodore Roosevelt",
                 "Start where you are. Use what you have. Do what you can. -Arthur Ashe",
@@ -421,7 +421,7 @@ public class Ui {
         Date n = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
         boolean noEvent = true;
-        for (Task t:tasks) {
+        for (Task t : tasks) {
             String timeUntilTask;
             if (t instanceof Event && !(t instanceof RecurringEvent)) {
                 noEvent = false;
@@ -462,7 +462,7 @@ public class Ui {
         Date n = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HHmm");
         boolean noDeadline = true;
-        for (Task t:tasks) {
+        for (Task t : tasks) {
             String timeUntilTask;
             if (t instanceof Deadline && !(t instanceof RecurringDeadline)) {
                 noDeadline = false;
@@ -489,6 +489,12 @@ public class Ui {
         borderLine();
     }
 
+    static final int secondsPerMinute = 60;
+    static final int minutesPerHour = 60;
+    static final int hoursPerDay = 24;
+    static final double daysPerMonth = 30.41666666;
+    static final int monthsPerYear = 12;
+
     /**
      * Function help for calculating time difference
      *
@@ -496,11 +502,12 @@ public class Ui {
      * @return time difference in structured format
      */
     static String getTimeDiff(long timeDifferenceMilliseconds) {
-        long diffMinutes = timeDifferenceMilliseconds / (60 * 1000) % 60;
-        long diffHours = timeDifferenceMilliseconds / (60 * 60 * 1000) % 60;
-        long diffDays = timeDifferenceMilliseconds / (60 * 60 * 1000 * 24) % 24;
-        long diffMonths = (long) ((timeDifferenceMilliseconds / (60 * 60 * 1000 * 24 * 30.41666666)) % 30.41666666);
-        long diffYears = timeDifferenceMilliseconds / ((long) 60 * 60 * 1000 * 24 * 365) % 365;
+
+        long diffMinutes = timeDifferenceMilliseconds / (secondsPerMinute * 1000) % secondsPerMinute;
+        long diffHours = timeDifferenceMilliseconds / (secondsPerMinute * minutesPerHour * 1000) % minutesPerHour;
+        long diffDays = timeDifferenceMilliseconds / (secondsPerMinute * minutesPerHour * 1000 * hoursPerDay) % hoursPerDay;
+        long diffMonths = (long) ((timeDifferenceMilliseconds / (secondsPerMinute * minutesPerHour * 1000 * hoursPerDay * daysPerMonth)) % daysPerMonth);
+        long diffYears = (long) ((timeDifferenceMilliseconds / ( secondsPerMinute * minutesPerHour * 1000 * hoursPerDay * daysPerMonth * monthsPerYear)) % monthsPerYear);
         String result = "";
         if (diffYears != 0) {
             result += diffYears;
@@ -575,7 +582,7 @@ public class Ui {
         borderLine();
         System.out.println("\t Here are your next upcoming event: ");
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i) instanceof Event && tasks.get(i).getStatusIcon()!="X") {
+            if (tasks.get(i) instanceof Event && tasks.get(i).getStatusIcon() != "X") {
                 System.out.println("\t " + tasks.get(i));
                 break;
             } else if (i == tasks.size() - 1) {
@@ -594,7 +601,7 @@ public class Ui {
         borderLine();
         System.out.println("\t Here are your next upcoming event: ");
         for (int i = 0; i < tasks.size(); i++) {
-            if (tasks.get(i) instanceof Deadline && tasks.get(i).getStatusIcon()!="X") {
+            if (tasks.get(i) instanceof Deadline && tasks.get(i).getStatusIcon() != "X") {
                 System.out.println("\t" + tasks.get(i));
                 break;
             } else if (i == tasks.size() - 1) {
@@ -708,10 +715,10 @@ public class Ui {
                 "/day <DAY_OF_WEEK> /from <HHmm> /to <HHmm>");
         System.out.println("\t   (/description can be followed by whitespace if the class has no description.");
         System.out.println("\t   : I'll remove this class from your class schedule.");
-        System.out.println("\t - add_notes <task_number>: I'll add an additional note to that task!" );
-        System.out.println("\t - delete_notes <task_number> <note_number>: I'll delete the note to that task!" );
-        System.out.println("\t - edit_notes <task_number> <note_number>: I'll edit the note for that task!" );
-        System.out.println("\t - view_notes <task_number>: I'll print the additional notes for that task!" );
+        System.out.println("\t - add_notes <task_number>: I'll add an additional note to that task!");
+        System.out.println("\t - delete_notes <task_number> <note_number>: I'll delete the note to that task!");
+        System.out.println("\t - edit_notes <task_number> <note_number>: I'll edit the note for that task!");
+        System.out.println("\t - view_notes <task_number>: I'll print the additional notes for that task!");
         System.out.println("\t - purge: I'll delete all expired tasks from your list after a confirmation.");
         System.out.println("\t - find <keyword>: I'll find the tasks in your list that contain the keyword.");
         System.out.println("\t - The index of the item will also be displayed.");
@@ -891,10 +898,10 @@ public class Ui {
 
     static void printNotes(ArrayList<Task> tasks, String[] words) {
         int index = Integer.parseInt(words[1]);
-        if(index > tasks.size() || index <= 0) {
+        if (index > tasks.size() || index <= 0) {
             Ui.exceedTaskNumberMessage(index);
         } else {
-            ArrayList<String> toBePrinted = tasks.get(index-1).getAdditionalNotes();
+            ArrayList<String> toBePrinted = tasks.get(index - 1).getAdditionalNotes();
             borderLine();
             if (!toBePrinted.isEmpty()) {
                 for (int i = 0; i < toBePrinted.size(); i++) {
