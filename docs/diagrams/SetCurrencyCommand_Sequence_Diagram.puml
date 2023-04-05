@@ -1,0 +1,32 @@
+@startuml
+
+participant ":System" as System
+participant ":Selector" as Selector
+participant ":UI" as UI
+participant "SetCurrencyCommand" as SetCurrencyCommand
+participant "ChChingException" as ChChingException
+
+activate UI
+UI -> UI:readCommand()
+UI -->SetCurrencyCommand: input.nextLine()
+deactivate UI
+
+activate SetCurrencyCommand
+SetCurrencyCommand -> SetCurrencyCommand: execute(income,expense,ui,storage,selector,converter,targetStorage)
+activate Selector
+Selector <- SetCurrencyCommand: selector.containsCurrency(currency)
+Selector --> SetCurrencyCommand
+
+activate ChChingException
+SetCurrencyCommand ->ChChingException: ChChingException("currency not available")
+deactivate ChChingException
+
+Selector <- SetCurrencyCommand: selector.printSelector(converter)
+deactivate SetCurrencyCommand
+
+activate System
+System <- Selector: System.out.println([x] + currency + converter.convert(currency, 1))
+deactivate System
+
+deactivate Selector
+@enduml

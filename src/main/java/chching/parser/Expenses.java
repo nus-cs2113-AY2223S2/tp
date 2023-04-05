@@ -65,7 +65,22 @@ public class Expenses {
         
         float expenseValue;
         try {
+
             expenseValue = Float.parseFloat(argumentsByField.get(VALUE_FIELD));
+            String expenseCategory = argumentsByField.get("c");
+            String expenseDescription = argumentsByField.get("de");
+            boolean validCharacters = UnicodeChecker.isValidStringInput(expenseDescription);
+            if (!validCharacters) {
+                throw new ChChingException("Description contains invalid characters");
+            }
+            String expenseDateString = argumentsByField.get("da");
+            LocalDate expenseDate = parseDate(expenseDateString);
+            float expenseValue = Float.parseFloat(argumentsByField.get("v"));
+            if (expenseValue > 1000000) {
+                throw new ChChingException("Expense value can at most be 1000000");
+            }
+            assert expenseValue > 0 : "Expense value should be greater than zero";
+            exp = new Expense(expenseCategory, expenseDescription, expenseDate, expenseValue);
         } catch (Exception e) {
             throw new ChChingException("Expense value must be a valid float that is 2 d.p. or less");
         }

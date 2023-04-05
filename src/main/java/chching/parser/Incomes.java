@@ -63,6 +63,21 @@ public class Incomes {
             throw new ChChingException("Income value cannot be 1000000 or more");
         } else if (incomeValue <= 0) {
             throw new ChChingException("Income value must be greater than 0");
+            String incomeDescription = argumentsByField.get("de");
+            boolean validCharacters = UnicodeChecker.isValidStringInput(incomeDescription);
+            if (!validCharacters) {
+                throw new ChChingException("Description contains invalid characters");
+            }
+            String incomeDateString = argumentsByField.get("da");
+            LocalDate incomeDate = parseDate(incomeDateString);
+            float incomeValue = Float.parseFloat(argumentsByField.get("v"));
+            if(incomeValue > 1000000){
+                throw new ChChingException("Income value can at most be 1000000");
+            }
+            assert incomeValue > 0 : "incomeValue has to be more than 0";
+            inc = new Income(incomeDescription, incomeDate, incomeValue);
+        } catch (Exception e) {
+            throw new ChChingException("trouble adding income value");
         }
         assert incomeValue > 0 : "incomeValue has to be more than 0";
         inc = new Income(incomeDescription, incomeDate, incomeValue);

@@ -22,13 +22,14 @@ Given below are my contributions to the project.
 * Created a clear all feature which allow users to clear both income and expense lists.
 * Created an AddTarget feature which allow users to set their target.
 * Created a ShowTarget feature which allow users to see the target they have set.
-* Contributed to tests for `AddIncomeCommand`, `AddExpenseCommand`, `DeleteExpenseCommand`, `DeleteIncomeCommand`, `BalanceCommand`, `ShowTargetCommand`, `AddTargetCommand`, 
+* Created tests for `AddIncomeCommand`, `AddExpenseCommand`, `DeleteExpenseCommand`, `DeleteIncomeCommand`, `BalanceCommand`, `ShowTargetCommand`, `AddTargetCommand`, 
 `IncomeTest`, `ExpenseTest`, `IncomeListTest`, `ExpenseListTest`, `ParserTest`, `ExitTest`. 
 
 #### Contributions to the UG:
-* Added `Table of Contents`
+* Created `Table of Contents`
 * Contributed to `Quick Start` portion
-* Added documentation for the feature `edit`, `find`, `clear income`, `clear expense`, `clear all`, `set target`, `show target`, `balance`, `exit`, `Command Summary`
+* Created documentation for the feature `edit`, `find`, `clear income`, `clear expense`, `clear all`, `set target`, `show target`, `balance`, `exit`
+* Created `Command Summary`
 
 #### Contributions to the DG:
 * Added `Table of Contents`
@@ -39,12 +40,15 @@ Given below are my contributions to the project.
 * Added documentation for `Target user profile`
 * Added documentation for `Value Proposition`
 * Added documentation for `v2.0` of `User Stories`
+* Added documentation for `Glossary`
 
 #### Contributions to team-based tasks:
 * Method documentations
 * Assertions enabled
+* Ensured GitHub's Java CI checks pass
 * v2.0 wrap-up
 * v2.0 release
+* v2.1 set-up
 
 #### Review/monitoring contributions
 * PRs reviewed for the following team: [CS2113-W13-2](https://github.com/nus-cs2113-AY2223S2/tp/pull/53)
