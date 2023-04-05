@@ -1,5 +1,8 @@
 phuongnam,abcdhjkl
-add amt/20.00 t/20-12-2021 cat/food
-add amt/22.00 t/10-04-2022 cat/mrt
-add amt/5.00 t/05-04-2023 cat/rice
-add amt/8.00 t/03-04-2023 cat/card
+add amt/20.00 t/20-12-2021 cat/food cur/SGD
+add amt/22.00 t/10-04-2022 cat/mrt cur/SGD
+add amt/5.00 t/05-04-2023 cat/rice cur/SGD
+add amt/8.00 t/03-04-2023 cat/card cur/SGD
+add amt/200000.00 t/04-05-2022 cat/payment cur/VND
+add amt/20.00 t/20-10-2021 cat/uncategorized cur/SGD
+add amt/22.00 t/20-10-2021 cat/uncategorized cur/SGD

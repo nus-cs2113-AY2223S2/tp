@@ -25,7 +25,6 @@ import static common.MessageList.MESSAGE_CANCEL;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.SAVING_EXIT_MESSAGE;
 import static common.MessageList.SAVING_QUESTION_MESSAGE;
-import static data.Account.save;
 import static data.ExpenseList.showToUser;
 import static parser.ParserAccount.caseLogOut;
 import static parser.ParserAccount.initialize;
@@ -69,7 +68,7 @@ public class Duke {
                 showToUser(MESSAGE_DIVIDER, SAVING_EXIT_MESSAGE, MESSAGE_DIVIDER);
                 caseLogOut();
                 break;
-                }
+            }
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
