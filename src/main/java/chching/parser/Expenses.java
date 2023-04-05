@@ -67,15 +67,15 @@ public class Expenses {
         try {
 
             expenseValue = Float.parseFloat(argumentsByField.get(VALUE_FIELD));
-            String expenseCategory = argumentsByField.get("c");
-            String expenseDescription = argumentsByField.get("de");
+            expenseCategory = argumentsByField.get("c");
+            expenseDescription = argumentsByField.get("de");
             boolean validCharacters = UnicodeChecker.isValidStringInput(expenseDescription);
             if (!validCharacters) {
                 throw new ChChingException("Description contains invalid characters");
             }
-            String expenseDateString = argumentsByField.get("da");
-            LocalDate expenseDate = parseDate(expenseDateString);
-            float expenseValue = Float.parseFloat(argumentsByField.get("v"));
+            expenseDateString = argumentsByField.get("da");
+            expenseDate = parseDate(expenseDateString);
+            expenseValue = Float.parseFloat(argumentsByField.get("v"));
             if (expenseValue > 1000000) {
                 throw new ChChingException("Expense value can at most be 1000000");
             }
