@@ -211,7 +211,7 @@ public class EntriesEndpointTest extends EntryTestUtil {
             Response response = TEST_BACKEND.requestEndpointEntries(request);
 
             assertEquals(response.getResponseStatus(), ResponseStatus.UNPROCESSABLE_CONTENT);
-            assertEquals(response.getData(), MessageConstants.MESSAGE_INVALID_NUMBER_OF_ENTRIES);
+            assertEquals(response.getData(), MessageConstants.MESSAGE_INVALID_ID);
         }
 
         @Test
@@ -221,7 +221,7 @@ public class EntriesEndpointTest extends EntryTestUtil {
             Response response = TEST_BACKEND.requestEndpointEntries(request);
 
             assertEquals(response.getResponseStatus(), ResponseStatus.UNPROCESSABLE_CONTENT);
-            assertEquals(response.getData(), MessageConstants.MESSAGE_INVALID_NUMBER_OF_ENTRIES);
+            assertEquals(response.getData(), MessageConstants.MESSAGE_INVALID_ID);
         }
     }
 }
