@@ -60,7 +60,7 @@ ____________________________________________________________
 ____________________________________________________________
 You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
-1.[D][ ] submit tutorial (by: 03 May 03 2023, 11:59PM)
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
 2.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 3.[T][ ] eat lunch
 There are 3 unmarked tasks in your tasklist.
