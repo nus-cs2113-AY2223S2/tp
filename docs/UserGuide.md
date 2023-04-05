@@ -21,6 +21,8 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 ## Features
 
+* Words written in upper case between brackets(<>) are what users can change.
+
 ### `help` - Shows help guide
 Shows the help guide that contains the features that are available for use, as well as the features' corresponding 
 syntax for user input
@@ -166,8 +168,17 @@ ____________________________________________________________
 ### `add ` - Add a company to the company list
 Add the company to the list of companies, and updates the company list text file.
 
+Command:
+`add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>`
+* All fields should not be empty.
+* `<INDUSTRY>` should contain more than one alphabet.
+* `<CONTACT_NUMBER>` should be valid Singaporean number, which is 8-digit number starting with 3, 6, 8, or 9.
+* `<EMAIL>` should be valid email address containing but not ending with "@" symbol. No space is allowed.
+* User can add only one company at a time.
+
 Example of usage:
-`add n/tesla i/tech c/12308712 e/tesla@gmail.com`
+`add n/tesla i/tech c/34567890 e/tesla@gmail.com`
+
 Expected outcome:
 
 ```
