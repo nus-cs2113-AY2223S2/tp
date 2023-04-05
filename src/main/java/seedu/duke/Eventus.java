@@ -49,7 +49,9 @@ public class Eventus {
                 Command c = Parser.parse(input);
                 if (c.getCommandType().equals("list venues")){
                     c.execute(venueList);
-                } else if (c.getCommandType().equals("choose venue")){
+                } else if (c.getCommandType().equals("choose venue")) {
+                    c.execute(event, venueList);
+                } else if (c.getCommandType().equals("update event name")) {
                     c.execute(event, venueList);
                 } else {
                     c.execute(companyList);

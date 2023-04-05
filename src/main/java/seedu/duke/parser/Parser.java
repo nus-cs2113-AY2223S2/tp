@@ -13,6 +13,7 @@ import seedu.duke.command.ListVenueCommand;
 import seedu.duke.command.LoadSampleCompanyCommand;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.PurgeCommand;
+import seedu.duke.command.UpdateEventNameCommand;
 
 import seedu.duke.exception.TooManyVariablesException;
 import seedu.duke.exception.IntegerSizeExceededException;
@@ -146,6 +147,13 @@ public interface Parser {
             } else {
                 throw new WrongFormatException();
             }
+        case "update":
+            if (!(inputWords[1].equals("event") && inputWords[2].equals("name"))) {
+                throw new WrongFormatException();
+            }
+            String commandType = command + " " + inputWords[1] + " " + inputWords[2];
+            UpdateEventNameCommand updateEventNameCommand = new UpdateEventNameCommand(commandType, inputWords[3]);
+            return updateEventNameCommand;
         case "help":
             ui.showGuide();
             break;
