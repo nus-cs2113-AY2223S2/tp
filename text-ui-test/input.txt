@@ -6,7 +6,7 @@ deadline submit tutorial
 deadline submit tutorial -by tomorrow
 deadline submit tutorial -by 12-23-2023-23:59
 deadline submit tutorial -by 03-02-2023-23:59
-deadline submit tutorial -by 30-05-2023-23:59
+deadline submit tutorial -by 03-05-2023-23:59
 event
 event lecture -from 03-05-2023-09:00
 event lecture -from 03-05-2023-11:00 -to 03-05-2023-09:00

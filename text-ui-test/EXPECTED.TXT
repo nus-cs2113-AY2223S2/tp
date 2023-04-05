@@ -35,7 +35,7 @@ Oops, your deadline: submit tutorial (by: 03 Feb 2023, 11:59PM) occurs before to
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this deadline:
-  [D][ ] submit tutorial (by: 30 May 2023, 11:59PM)
+  [D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
 Oops! The description of a task cannot be empty.
