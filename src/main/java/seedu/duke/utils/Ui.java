@@ -187,9 +187,11 @@ public class Ui {
     private static final int ORIGINAL_ITEM_INDEX = 0;
     private static final String INVALID_UPC = "This UPC is invalid. Try again.";
     private static final String CATEGORY_LISTING = "Here is the list of categories you have: ";
-    public static final String RARE_RACE_CONDITION_OCCURRED = "A rare race condition occurred. Please try restarting the program";
-    public static final String CHECK_OTHER_PROGRAMS = "If this happens often, check that other programs are not interfering with this one";
-    public static final String YOUR_ITEM = "Here is your item: ";
+    private static final String RARE_RACE_CONDITION_OCCURRED = "A rare race condition occurred. "
+            + "Please try restarting the program";
+    private static final String CHECK_OTHER_PROGRAMS = "If this happens often, check that other programs"
+            + " are not interfering with this one";
+    private static final String YOUR_ITEM = "Here is your item: ";
 
 
     public static void printLine() {
