@@ -34,32 +34,27 @@ public class EditCommand extends Command {
     public CommandResult execute(ExpenditureList expenditures) {
         try {
             Expenditure editedExpenditure = expenditures.getExpenditure(index);
-            if (editedExpenditure.getExpenditureType() != LEND_EXPENDITURE_TYPE
-                    && editedExpenditure.getExpenditureType() != BORROW_EXPENDITURE_TYPE) {
-                String dateVal3 = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, ASLASH);
-                String amountVal3 = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
-                String descriptionVal3 = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
-                LocalDate date3 = LocalDate.parse(dateVal3);
-                editedExpenditure.setDescriptionValueDate(descriptionVal3, Double.parseDouble(amountVal3), date3);
-                return new CommandResult(
-                        String.format("Edited! Here is the updated list:\n" + expenditures.toString()));
-            } else {
-                String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, NSLASH);
-                String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, BSLASH);
-                String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
-                LocalDate date = LocalDate.parse(dateVal);
-                String name = ParseIndividualValue.parseIndividualValue(userInput, NSLASH, ASLASH);
-                LocalDate deadline = LocalDate
-                        .parse(ParseIndividualValue.parseIndividualValue(userInput, BSLASH, SSLASH));
-                editedExpenditure.setDescriptionValueDate(descriptionVal, Double.parseDouble(amountVal), date);
-                if (editedExpenditure.getExpenditureType() == LEND_EXPENDITURE_TYPE) {
-                    ((LendExpenditure) editedExpenditure).setLenderNameAndDeadline(name, deadline);
-                } else {
-                    ((BorrowExpenditure) editedExpenditure).setBorrowerNameAndDeadline(name, deadline);
-                }
+            String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, NSLASH);
+            String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, BSLASH);
+            String descriptionVal = ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
+            LocalDate date = LocalDate.parse(dateVal);
+
+            editedExpenditure.setDescriptionValueDate(descriptionVal, Double.parseDouble(amountVal), date);
+            String name = null;
+            LocalDate deadline = null;
+            
+            if (editedExpenditure.getExpenditureType() == LEND_EXPENDITURE_TYPE
+                    || editedExpenditure.getExpenditureType() == BORROW_EXPENDITURE_TYPE) {
+                name = ParseIndividualValue.parseIndividualValue(userInput, NSLASH, ASLASH);
+                deadline = LocalDate.parse(ParseIndividualValue.parseIndividualValue(userInput, BSLASH, SSLASH));
             }
-            return new CommandResult(String.format("Edited! Here is the updated list:\n" + expenditures.toString()));
-        } catch (IndexOutOfBoundsException | EmptyStringException | DateTimeParseException s) {
+            if (editedExpenditure instanceof LendExpenditure) {
+                ((LendExpenditure) editedExpenditure).setLenderNameAndDeadline(name, deadline);
+            } else if (editedExpenditure instanceof BorrowExpenditure) {
+                ((BorrowExpenditure) editedExpenditure).setBorrowerNameAndDeadline(name, deadline);
+            }
+            return new CommandResult(String.format("Edited! Here is the updated list:\n%s", expenditures));
+        } catch (IndexOutOfBoundsException | EmptyStringException | DateTimeParseException e) {
             return new CommandResult("Failed to edit! Please check the format and try again!");
         }
     }
