@@ -18,7 +18,7 @@ public class ConsulationCommand extends Command {
 
     public ConsulationCommand(String animalType, String animalName,
                               String ownerName, String contactNumber, LocalDate date,
-                              LocalTime time) {
+                              LocalTime time) throws SniffException {
         this.animal = new Animal(animalType, animalName);
         this.owner = new Owner(ownerName, contactNumber);
         this.date = date;

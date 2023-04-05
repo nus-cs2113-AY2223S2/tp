@@ -202,7 +202,6 @@ public class SniffTasks {
 
     }
 
-
     public void unmarkAppointment(String uid) throws SniffException {
         try {
             if (!UIDS.contains(uid)) {
@@ -221,8 +220,5 @@ public class SniffTasks {
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The unmark command entry is invalid!");
         }
-
     }
-
-
 }

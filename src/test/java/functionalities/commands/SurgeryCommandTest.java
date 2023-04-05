@@ -1,5 +1,6 @@
 package functionalities.commands;
 
+import exception.SniffException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class SurgeryCommandTest {
 
     @Test
-    void surgeryCommandNotNull() {
+    void surgeryCommandNotNull() throws SniffException {
         String animalName = "";
         String animalType = "";
         String ownerName = "";
