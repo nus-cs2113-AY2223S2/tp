@@ -17,13 +17,13 @@ import seedu.todolist.logic.command.EditTagsCommand;
 import seedu.todolist.logic.command.ExitCommand;
 import seedu.todolist.logic.command.FindByPriority;
 import seedu.todolist.logic.command.FindByTag;
+import seedu.todolist.logic.command.HelpCommand;
 import seedu.todolist.logic.command.ListFullInfoCommand;
 import seedu.todolist.logic.command.ListTagsCommand;
 import seedu.todolist.logic.command.ListTasksCommand;
 import seedu.todolist.logic.command.MarkTaskCommand;
 import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
-import seedu.todolist.logic.command.HelpCommand;
 
 import java.util.Arrays;
 import java.util.HashMap;

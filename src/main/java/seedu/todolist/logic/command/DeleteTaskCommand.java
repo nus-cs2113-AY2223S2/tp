@@ -16,17 +16,11 @@ public class DeleteTaskCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_DELETE};
 
     //@@author jeromeongithub
-    private HashSet<Integer> idHashSet = new HashSet<Integer>();
+    private HashSet<Integer> idHashSet;
 
     public DeleteTaskCommand(HashMap<Flags, String> args) throws InvalidIdException {
         String idList = args.get(Flags.COMMAND_DELETE);
-        parseId(idList);
-        String[] arrayOfIds = idList.split(" ");
-        for (String idString : arrayOfIds) {
-            int id = Integer.parseInt(idString);
-            assert id >= 0 : "Invalid id contained in variable";
-            idHashSet.add(id);
-        }
+        idHashSet = parseId(idList);
     }
 
     @Override
