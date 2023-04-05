@@ -11,7 +11,7 @@ public enum Flags {
     COMMAND_LIST("list", true),
     COMMAND_TAG_LIST("taglist", true),
     COMMAND_PROGRESS("progress", true),
-    COMMAND_CHECK("check", true),
+    COMMAND_HELP("help", true),
 
     // Command flags that take arguments
     COMMAND_ADD("add", false),

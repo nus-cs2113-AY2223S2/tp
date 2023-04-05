@@ -1,5 +1,6 @@
 package seedu.todolist.ui;
 
+import seedu.todolist.constants.HelpMessage;
 import seedu.todolist.constants.Messages;
 import seedu.todolist.task.Task;
 
@@ -134,5 +135,9 @@ public class Ui {
     //@@author KedrianLoh
     public void printTasksWithPriority(ArrayList<Task> taskList) {
         taskList.forEach(System.out::println);
+    }
+
+    public void printHelpList() {
+        println(HelpMessage.HELP_COMMAND);
     }
 }
