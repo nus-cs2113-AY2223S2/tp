@@ -58,7 +58,8 @@ public class Storage {
         assert filepath != null : "NULL filepath was given";
         file = new File(filepath);
         isNewSave = !file.exists();
-        gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
+        gson = new GsonBuilder().setPrettyPrinting().
+                registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).create();
     }
 
     // code provided by module website
