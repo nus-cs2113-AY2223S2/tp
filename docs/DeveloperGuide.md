@@ -33,29 +33,37 @@ Quadratic. 2x^2 + 3x + 1
 Step 1. Parser class would split the user input into 2 parts, command and toDo. Command would be `Quadratic`,
 thus `executeCommand` in the Command class would trigger `quadraticSolver`. `toDo` would be `2x^2 + 3x + 1`.
 
-Step 2. The general formula of quadratic equations is `ax^2 + bx + c`, thus `findA`, `findB`, `findC`
-would identify a, b and c from toDo.
+Step 2. The general formula of quadratic equations is `ax^2 + bx + c`, thus `findA`, `findB`, `findC` would be called from QuadraticParser
+which extends from Quadratic. These methods would identify a, b and c from toDo.
 - `findA` takes in `toDo` and uses substring function to isolate a from the rest of the equation. It would thus return a as
 a `Double` data type.
-- `findB` takes in `toDo` and uses substring function to isolate b and its sign(+/-) from the rest of the equation. It would 
-thus return b as a `Double` data type.
-- `findC` takes in `toDo` and uses substring function to isolate c and its sign(+/-) from the rest of the equation. 
-It would thus return c as a `Double` data type.
+- `findB` takes in `toDo` and calls `findSignOfB` and `findStringOfB` to identify the sign (+/-) and the number B as a `string`
+This is done using substrings based on the index of the characters. `findB` then converts it into a `double` data type.
+- `findC` takes in `toDo` and calls `findSignOfC` and `findStringOfC` to identify the sign (+/-) and the number C as a `string`
+This is done using substrings based on the index of the characters, `findC` then converts it into a `double` data type.
 
 Step 3. To solve the quadratic equation, `quadraticFormula(a,b,c)` is called with a, b and c as parameters. 
 - The parameters are put into the equation `x = (-b±√(b²-4ac))/(2a)`. The output would be an ArrayList of Doubles that contains 2 values which 
 are the possible values of x. 
 - There is a possibility that the x values are imaginary, in this case, the ArrayList would simply store them as Nan values.
 
-Step 4. Then, `printAnswer` is called which would call upon the `UI` class's method: `printQuadraticAnswer(ArrayList<Double>)`.
+Step 4. minMaxPointFinder() is called to calculate the coordinates of the minimum or maximum point of the quadratic equation.
+- The x-coordinate of the vertex is equal to `-b/2a`.
+- The y-coordinate of the vertex can thus be found by substituting the x-coordinate value into the equation given by `toDo`
+- The method then returns a string displaying the coordinates in the form of `(x,y)`.
+
+Step 5. Then, `printAnswer` is called which would call upon the `UI` class's method: `printQuadraticAnswer(ArrayList<Double>)`.
 - If the ArrayList contains NaN values, it would print `x is imaginary.`
 - If the ArrayList contains Double data types, then it would print `x1 = 1st Answer` and `x2 = 2nd Answer`.
+- If `a` is negative which means there is a maximum point, the appropriate message would be printed. Else it would print the message for
+minimum point.
+- The coordinates of the vertex would then be printed.
 
 
 Step 5. If any exceptions are caught in the above steps, `printQuadraticFormulaError` would be called from UI to show an error message
 to the user.
 
-![img_3.png](img_3.png)
+![img_7.png](img_7.png)
 
 ### Notes
 The Notes feature allows users to input their notes for storage purposes 

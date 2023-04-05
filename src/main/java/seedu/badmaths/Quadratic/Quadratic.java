@@ -11,103 +11,10 @@ import seedu.badmaths.ui.Ui;
 
 public class Quadratic {
 
-    private static final int POSITIVE = 1;
-    private static final int NEGATIVE = -1;
-    private static final String ADDITION = "+";
-    private static final String SUBTRACTION = "-";
-    private static final int INDEX_MODIFIER_2 = 2;
-    private static final int INDEX_MODIFIER_3 = 3;
-    private static final int INDEX_MODIFIER_4 = 4;
-    private static final int INDEX_MODIFIER_5 = 5;
-    protected String toDo;
+    protected static String toDo;
 
     public Quadratic (String toDo) {
-        this.toDo = toDo;
-    }
-
-    /**
-     * Identifies A from Ax^2 + Bx + C
-     * @return A as a double data type
-     */
-    public double findA() {
-        String stringA = toDo.substring(0, toDo.indexOf("x"));
-        if (stringA.equals(SUBTRACTION)) {
-            return NEGATIVE;
-        } else {
-            if (stringA.isEmpty()) {
-                return POSITIVE;
-            } else {
-                return Double.parseDouble(stringA);
-            }
-        }
-    }
-
-    /**
-     * Identifies the sign of B (+ or -)
-     * @return the sign as a String
-     */
-    public String findSignOfB() {
-        int startIndexOfSign = toDo.indexOf("^2") + INDEX_MODIFIER_3;
-        int endIndexOfSign = toDo.indexOf("^2") + INDEX_MODIFIER_4;
-        return toDo.substring(startIndexOfSign, endIndexOfSign);
-    }
-
-    public String findStringOfB() {
-        int startIndexOfB = toDo.indexOf("^2") + INDEX_MODIFIER_5;
-        int endIndexOfB = toDo.indexOf("x ");
-        return toDo.substring(startIndexOfB, endIndexOfB);
-    }
-
-    /**
-     * Identifies B from Ax^2 + Bx + C
-     * @return A as a double data type
-     */
-    public double findB() {
-        String sign = findSignOfB();
-        String stringB = findStringOfB();
-        if (stringB.isEmpty()) {
-            if (sign.equals(ADDITION)) {
-                return POSITIVE;
-            } else {
-                return NEGATIVE;
-            }
-        } else {
-            if (sign.equals(ADDITION)) {
-                return Double.parseDouble(stringB);
-            } else {
-                return Double.parseDouble(stringB) * NEGATIVE;
-            }
-        }
-    }
-
-    /**
-     * Identifies the sign of C (+ or -)
-     * @return the sign as a String
-     */
-    public String findSignOfC() {
-        int startIndexOfSign = toDo.indexOf("x ") + INDEX_MODIFIER_2;
-        int endIndexOfSign = toDo.indexOf("x ") + INDEX_MODIFIER_3;
-        return toDo.substring(startIndexOfSign, endIndexOfSign);
-    }
-
-    public String findStringC() {
-        int indexOfC = toDo.indexOf("x ") + INDEX_MODIFIER_4;
-        return toDo.substring(indexOfC);
-    }
-
-    /**
-     * Identifies C from Ax^2 + Bx + C
-     * @return C as a double data type
-     */
-    public double findC() {
-        String sign = findSignOfC();
-        String stringC = findStringC();
-        double C = Double.parseDouble(stringC);
-        if (sign.equals(ADDITION)) {
-            return C;
-        } else {
-            return C * NEGATIVE;
-        }
+        Quadratic.toDo = toDo;
     }
 
     /**
@@ -118,16 +25,31 @@ public class Quadratic {
      * @return xStore which is an ArrayList of Doubles containing 2 elements, the two values of x
      */
     public ArrayList<Double> quadraticFormula(double A, double B, double C) {
-        double x1 = (-B + Math.sqrt(B * B - 4 * A * C))/(2 * A);
-        double x2 = (-B - Math.sqrt(B * B - 4 * A * C))/(2 * A);
+        double x1 = (-B + Math.sqrt(B * B - 4 * A * C)) / (2 * A);
+        double x2 = (-B - Math.sqrt(B * B - 4 * A * C)) / (2 * A);
         ArrayList<Double> xStore = new ArrayList<>();
         xStore.add(x1);
         xStore.add(x2);
         return xStore;
     }
 
-    public void printAnswer(ArrayList<Double> xStore) {
-        Ui.printQuadraticAnswer(xStore);
+    /**
+     * Finds the coordinates of the minimum or maximum point of the quadratic equation, Ax^2 + Bx + C
+     * @param A which is the A value
+     * @param B which is the B value
+     * @param C which is the C value
+     * @return the coordinates in the form of a string: (x,y)
+     */
+    public String minMaxPointFinder(double A, double B, double C) {
+        double xCoordinate = (-B) / (2 * A);
+        double yCoordinate = (A * (xCoordinate * xCoordinate)) + (B * xCoordinate) + C;
+        String stringofXCoor = Double.toString(xCoordinate);
+        String stringOfYCoor = Double.toString(yCoordinate);
+        return "(" + stringofXCoor + (", ") + stringOfYCoor + ")";
+    }
+
+    public void printAnswer(ArrayList<Double> xStore, String vertextCoordinate, boolean isMinimum) {
+        Ui.printQuadraticAnswer(xStore, vertextCoordinate, isMinimum);
     }
 
     /**
@@ -136,12 +58,19 @@ public class Quadratic {
      */
     public void solveQuadratic() {
         try {
-            double A = findA();
-            double B = findB();
-            double C = findC();
+            double A = QuadraticParser.findA();
+            double B = QuadraticParser.findB();
+            double C = QuadraticParser.findC();
+            boolean isMinimum;
+            if (A > 0) {
+                isMinimum = true;
+            } else {
+                isMinimum = false;
+            }
             ArrayList<Double> xStore;
             xStore = quadraticFormula(A, B, C);
-            printAnswer(xStore);
+            String vertexCoordinate = minMaxPointFinder(A, B, C);
+            printAnswer(xStore, vertexCoordinate, isMinimum);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             Ui.printQuadraticFormatError();
         }

@@ -3,18 +3,24 @@
 
 activate Command
 Command -> Quadratic: quadratic.solveQuadratic()
-activate UI
 activate Quadratic
-Quadratic -> Quadratic: findA()
-activate Quadratic #FFBBBB
-deactivate Quadratic
-Quadratic -> Quadratic: findB()
-activate Quadratic #FFBBBB
-deactivate Quadratic
-Quadratic -> Quadratic: findC()
-activate Quadratic #FFBBBB
-deactivate Quadratic
+activate QuadraticParser
+Quadratic -> QuadraticParser
+QuadraticParser -> QuadraticParser : findA()
+activate QuadraticParser #FFBBBB
+deactivate QuadraticParser
+QuadraticParser -> QuadraticParser : findB()
+activate QuadraticParser #FFBBBB
+deactivate QuadraticParser
+QuadraticParser -> QuadraticParser : findC()
+activate QuadraticParser #FFBBBB
+deactivate QuadraticParser
+QuadraticParser --> Quadratic
+deactivate QuadraticParser
 Quadratic -> Quadratic: quadraticFormula()
+activate Quadratic #FFBBBB
+deactivate Quadratic
+Quadratic -> Quadratic: minMaxPointFinder()
 activate Quadratic #FFBBBB
 deactivate Quadratic
 Quadratic -> Quadratic: printAnswer()
@@ -30,6 +36,6 @@ activate UI
 UI --> Quadratic
 deactivate UI
 end opt
-deactivate Quadratic
 Quadratic --> Command
+deactivate Quadratic
 @enduml

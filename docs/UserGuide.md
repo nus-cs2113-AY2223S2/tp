@@ -346,15 +346,25 @@ Solves for `x` in a quadratic equation.
 Format: `Quadratic [quadratic equation]`
 
 - `Quadratic` must be in this exact format (With uppercase Q)
-- The quadratic equation must look like this: `2x^2 + 2x + 1` with spaces between each value. Both double and int
+- The quadratic equation must look like this: `2x^2 + 2x + 1` with spaces between each value. Both double and integer
   numbers are acceptable (eg. `-2.5x^2 + 3 + 1`). Inputting just the sign is also acceptable (eg. `-x^2 + x - 1`).
 
 Examples:
 
-- Input: `Quadratic. 2x^2 + 2x + 1` Output: `x is imaginary.`
-- Input: `Quadratic. x^2 + 4x - 5` Output: `x1 = 1.0 , x2 = -5.0`
-- Input: `Quadratic x^2 + 3` Output: `Please use the format as shown below:
-  ax^2 + bx + c`
+- Input: `Quadratic 2x^2 + 2x + 1` 
+````
+x is imaginary.
+````
+- Input: `Quadratic x^2 + 4x - 5`
+````
+x1 = 1.0 , x2 = -5.0
+There is a minimum point: (-2.0, -9.0)
+````
+- Input: `Quadratic x^2 + 3`
+````
+Please use the format as shown below:
+ax^2 + bx + c
+````
 
 ### 17) Command History `History`
 * Display a list of Command History that users have
