@@ -18,7 +18,6 @@ import seedu.rainyDay.data.MonthlyExpenditures;
 import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
-import seedu.rainyDay.parser.Parser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
