@@ -2,7 +2,7 @@ package pocketpal.frontend.constants;
 
 import java.util.regex.Pattern;
 
-public class ParserConstants {
+public final class ParserConstants {
     public static final char OPTION_INDICATOR = '-';
     public static final String PIPE_INDICATOR = "|";
     public static final double MIN_VALUE = 0.01;
@@ -13,6 +13,8 @@ public class ParserConstants {
     public static final int START_END_ARRAY_SIZE = 2;
     public static final int DETAIL_GROUP = 2;
     public static final int OPTION_GROUP = 1;
+
+    public static final int ARGUMENTS_GROUP = 1;
     public static final String VALID_PRICE_REGEX = "[0-9.]*";
 
     public static final Pattern DATE_FORMATTER = Pattern.compile("\\d{2}/\\d{2}/\\d{2}$");

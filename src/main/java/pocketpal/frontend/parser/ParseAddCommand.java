@@ -4,10 +4,7 @@ import pocketpal.frontend.commands.AddCommand;
 import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.constants.ParserConstants;
-import pocketpal.frontend.exceptions.InvalidArgumentsException;
-import pocketpal.frontend.exceptions.InvalidCategoryException;
-import pocketpal.frontend.exceptions.MissingArgumentsException;
-import pocketpal.frontend.exceptions.UnknownOptionException;
+import pocketpal.frontend.exceptions.*;
 import pocketpal.frontend.util.CategoryUtil;
 import pocketpal.frontend.util.StringUtil;
 
@@ -29,12 +26,16 @@ public class ParseAddCommand extends ParseCommand {
      */
     @Override
     public Command parseArguments(String input) throws InvalidArgumentsException, InvalidCategoryException,
-            MissingArgumentsException, UnknownOptionException {
+            MissingArgumentsException, UnknownOptionException, UnknownArgumentException {
         checkUnknownOptionExistence(input.trim(), ParserConstants.ADD_OPTIONS);
+        String argumentsBeforeOption = extractArgumentsBeforeOption(input, ParserConstants.ID_PATTERN);
         description = extractDetail(input, ParserConstants.DESCRIPTION_PATTERN);
         price = extractDetail(input, ParserConstants.PRICE_PATTERN);
         category = extractDetail(input, ParserConstants.CATEGORY_PATTERN);
-        checkOptionsExistence(description, price, category); //check if required options are specified
+        checkOptionsExistence(description, price, category);
+        if (!argumentsBeforeOption.isEmpty()) {
+            throw new UnknownArgumentException(MessageConstants.MESSAGE_UNKNOWN_ARGUMENTS + argumentsBeforeOption);
+        }
         checkDescriptionValidity(description);
         checkPriceValidity(price);
         category = StringUtil.toTitleCase(category);

@@ -7,13 +7,7 @@ import java.util.logging.Logger;
 import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.constants.ParserConstants;
-import pocketpal.frontend.exceptions.InvalidArgumentsException;
-import pocketpal.frontend.exceptions.InvalidCategoryException;
-import pocketpal.frontend.exceptions.InvalidCommandException;
-import pocketpal.frontend.exceptions.InvalidDateException;
-import pocketpal.frontend.exceptions.MissingArgumentsException;
-import pocketpal.frontend.exceptions.MissingDateException;
-import pocketpal.frontend.exceptions.UnknownOptionException;
+import pocketpal.frontend.exceptions.*;
 
 public class Parser {
 
@@ -37,7 +31,7 @@ public class Parser {
     public Command parseUserInput(String userInput) throws
             InvalidCommandException, InvalidArgumentsException,
             MissingArgumentsException, InvalidCategoryException, MissingDateException,
-            InvalidDateException, UnknownOptionException {
+            InvalidDateException, UnknownOptionException, UnknownArgumentException {
         logger.entering(Parser.class.getName(), "parseUserInput()");
         userInput = userInput.trim();
         if (userInput.isEmpty()) {

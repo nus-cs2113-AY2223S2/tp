@@ -15,7 +15,7 @@ public class ParseByeCommand extends ParseCommand {
      * @return Command ExitCommand object to be executed.
      */
     @Override
-    public Command parseArguments(String input) throws UnknownOptionException {
+    public Command parseArguments(String input) {
         return new ExitCommand();
     }
 }

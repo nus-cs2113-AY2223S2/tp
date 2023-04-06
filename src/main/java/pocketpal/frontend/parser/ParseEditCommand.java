@@ -32,7 +32,7 @@ public class ParseEditCommand extends ParseCommand {
     public Command parseArguments(String input) throws InvalidArgumentsException, InvalidCategoryException,
             MissingArgumentsException, UnknownOptionException {
         checkUnknownOptionExistence(input.trim(), ParserConstants.EDIT_OPTIONS);
-        expenseId = extractId(input, ParserConstants.ID_PATTERN);
+        expenseId = extractArgumentsBeforeOption(input, ParserConstants.ID_PATTERN);
         description = extractDetail(input, ParserConstants.DESCRIPTION_PATTERN);
         price = extractDetail(input, ParserConstants.PRICE_PATTERN);
         category = extractDetail(input, ParserConstants.CATEGORY_PATTERN);

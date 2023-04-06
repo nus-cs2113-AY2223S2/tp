@@ -3,12 +3,7 @@ package pocketpal.frontend.parser;
 import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.constants.ParserConstants;
-import pocketpal.frontend.exceptions.InvalidArgumentsException;
-import pocketpal.frontend.exceptions.InvalidCategoryException;
-import pocketpal.frontend.exceptions.InvalidDateException;
-import pocketpal.frontend.exceptions.MissingArgumentsException;
-import pocketpal.frontend.exceptions.MissingDateException;
-import pocketpal.frontend.exceptions.UnknownOptionException;
+import pocketpal.frontend.exceptions.*;
 import pocketpal.frontend.util.CategoryUtil;
 import pocketpal.frontend.util.StringUtil;
 
@@ -21,7 +16,7 @@ public abstract class ParseCommand {
 
     public abstract Command parseArguments(String input) throws InvalidArgumentsException,
             InvalidCategoryException, MissingArgumentsException, MissingDateException, InvalidDateException,
-            UnknownOptionException;
+            UnknownOptionException, UnknownArgumentException;
 
     public String extractDetail(String input, Pattern pattern) throws MissingArgumentsException {
         String detail = null;
@@ -32,20 +27,21 @@ public abstract class ParseCommand {
             if (detail != null) {
                 detail = detail.trim();
             }
-            if ((detail == null || detail.isEmpty()) && (option != null)) { //option specified with 0 arguments
+            boolean isMissingArgument = (detail == null || detail.isEmpty()) && (option != null);
+            if (isMissingArgument) { //option specified with 0 arguments
                 throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_OPTION_ARG + option);
             }
         }
         return detail;
     }
 
-    public String extractId(String input, Pattern pattern) {
-        String id = null;
+    public String extractArgumentsBeforeOption(String input, Pattern pattern) {
+        String arguments = null;
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
-            id = matcher.group(1).trim();
+            arguments = matcher.group(ParserConstants.ARGUMENTS_GROUP).trim();
         }
-        return id;
+        return arguments;
     }
 
     public void checkIdValidity(String id) throws InvalidArgumentsException {

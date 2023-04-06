@@ -54,7 +54,7 @@ public class ParseViewCommand extends ParseCommand {
         checkUnknownOptionExistence(input.trim(), ParserConstants.VIEW_OPTIONS);
         String[] dates = extractDates(input);
         Double[] prices = extractPrices(input);
-        viewCount = extractId(input, ParserConstants.ID_PATTERN);
+        viewCount = extractArgumentsBeforeOption(input, ParserConstants.ID_PATTERN);
         category = extractDetail(input, ParserConstants.CATEGORY_PATTERN);
         startDate = dates[0];
         endDate = dates[1];
