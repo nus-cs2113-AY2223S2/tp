@@ -19,9 +19,10 @@ class MonthFilterTest {
 
     @Test
     void convertMonthName_successful() {
-        MonthFilter monthFilter = new MonthFilter(new ArrayList<>(), "March");
-        assertEquals(monthFilter.convertMonthName(), "03");
-
+        MonthFilter monthFilterOneDigit = new MonthFilter(new ArrayList<>(), "March");
+        assertEquals(monthFilterOneDigit.convertMonthName(), "03");
+        MonthFilter monthFilterTwoDigit = new MonthFilter(new ArrayList<>(), "November");
+        assertEquals(monthFilterTwoDigit.convertMonthName(), "11");
     }
 
     @Test
