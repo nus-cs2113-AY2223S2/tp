@@ -89,7 +89,7 @@ public class RemoveCommand extends ExecutableCommand {
             mealCompanionSession.getUi()
                     .printMessage("Note: quantity provided must be greater than 0 and not exceed 10000");
         } catch (MealCompanionException e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+            mealCompanionSession.getUi().printMessage(e.getMessage());
         } catch (Exception e) {
             mealCompanionSession.getUi().printMessage("OOPS, please follow the command format in the UG");
         }
