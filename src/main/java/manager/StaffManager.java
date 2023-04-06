@@ -25,7 +25,7 @@ public class StaffManager {
             StaffStorage staffStorage = new StaffStorage();
             staffStorage.writeToStaffFile(staffs);
         } catch (IOException e) {
-            ui.printMessage(String.format(Messages.ERROR_STORAGE_INVALID_WRITE_LINE, staff));
+            ui.printMessage(Messages.ERROR_STORAGE_INVALID_WRITE_LINE);
         }
     }
 

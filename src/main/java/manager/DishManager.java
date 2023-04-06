@@ -22,17 +22,19 @@ public class DishManager {
     public static void addDish(String name, int price, ArrayList<String> ingredients, TextUi ui) {
         Dish dish = new Dish(name, price, ingredients);
         dishes.add(dish);
+        ui.printMessage("Added dish: " + DishManager.stringOfDishWithIndex(DishManager.getDishesSize(), dish));
         try {
             DishStorage dishStorage = new DishStorage();
             dishStorage.writeToDishFile(dishes);
         } catch (IOException e) {
-            ui.printMessage(String.format(Messages.ERROR_STORAGE_INVALID_WRITE_LINE, dish));
+            ui.printMessage(Messages.ERROR_STORAGE_INVALID_WRITE_LINE);
         }
     }
 
     public static void deleteDish(int index, TextUi ui) {
         Dish selectedDish = dishes.get(index);
         dishes.remove(index);
+        ui.printMessage("Deleted dish: " + DishManager.stringOfDishWithIndex(index + 1, selectedDish));
         try {
             DishStorage dishStorage = new DishStorage();
             dishStorage.writeToDishFile(dishes);
@@ -48,6 +50,9 @@ public class DishManager {
             everyDishInList += stringOfDishWithIndex(index, dish) + System.lineSeparator();
             index++;
         }
+        if (everyDishInList.isEmpty()) {
+            everyDishInList = Messages.MESSAGES_THE_LIST_OF_DISHES_IS_EMPTY;
+        }
         return everyDishInList;
     }
 
@@ -57,7 +62,7 @@ public class DishManager {
         for (int i = 0; i < getDishesSize(); i++) {
             String[] words = dishes.get(i).getDishName().split(" ");
             for (String word : words) {
-                if (word.equals(stringToFind)) {
+                if (word.toLowerCase().contains(stringToFind.toLowerCase())) {
                     dishesMatchingKeyword.add(dishes.get(i));
                     indexes.add(i + 1);
                 }
@@ -65,14 +70,21 @@ public class DishManager {
         }
 
         String dishesWithStringToFindInList = "";
-        for (int i = 0; i < dishesMatchingKeyword.size(); i++) {
-            dishesWithStringToFindInList += stringOfDishWithIndex(indexes.get(i), dishesMatchingKeyword.get(i))
+
+        if (dishesMatchingKeyword.size() == 0) {
+            dishesWithStringToFindInList = "There are no dishes matching the keyword you have entered."
                     + System.lineSeparator();
+        } else {
+            for (int i = 0; i < dishesMatchingKeyword.size(); i++) {
+                dishesWithStringToFindInList += stringOfDishWithIndex(indexes.get(i), dishesMatchingKeyword.get(i))
+                        + System.lineSeparator();
+            }
         }
+
         return dishesWithStringToFindInList;
     }
 
-    private static String stringOfDishWithIndex(int index, Dish dish) {
+    public static String stringOfDishWithIndex(int index, Dish dish) {
         return index + ". " + stringOfDish(dish);
     }
 
@@ -82,7 +94,13 @@ public class DishManager {
                 + dish.getIngredientsList();
     }
 
-
-
+    public static boolean isInsideDishes(String name) {
+        for (Dish dish : dishes) {
+            if (dish.getDishName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

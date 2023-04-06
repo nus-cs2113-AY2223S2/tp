@@ -46,7 +46,7 @@ public class DinerDirector {
         try {
             storage.createDirectory();
         } catch (IOException | DinerDirectorException e) {
-            ui.printMessage(String.format(Messages.ERROR_CREATE_DIRECTORY, e));
+            ui.printMessage(String.format(Messages.ERROR_CREATE_DIRECTORY, e.getMessage()));
         }
 
         try {

@@ -24,6 +24,7 @@ import commands.Command;
 import common.Messages;
 import exceptions.DinerDirectorException;
 import entity.Deadline;
+import manager.DishManager;
 import manager.StaffManager;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class Parser {
 
     public Command parseCommand(String userInput) {
         assert userInput != null : "userInput should not be null";
-        String[] userInputSplit = userInput.split(" ");
+        String[] userInputSplit = userInput.trim().split(" ");
         String commandWord = userInputSplit[0];
         String userInputNoCommand = userInput.replace(userInputSplit[0], "");
         //@@damithc darrenangwx-reused
@@ -49,9 +50,9 @@ public class Parser {
         //Reused the switch skeleton
         switch (commandWord) {
         case HelpCommand.COMMAND_WORD:
-            return prepareHelpCommand();
+            return prepareHelpCommand(userInputNoCommand);
         case ExitCommand.COMMAND_WORD:
-            return prepareExitCommand();
+            return prepareExitCommand(userInputNoCommand);
         case AddMeetingCommand.COMMAND_WORD:
             return prepareAddMeetingCommand(userInputNoCommand);
         case DeleteMeetingCommand.COMMAND_WORD:
@@ -95,7 +96,8 @@ public class Parser {
         String[] words = (description.trim()).split("t/");
         String[] testName = (description.trim()).split("n/");
         try {
-            if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (words.length < 2)) {
+            if (((description.trim()).isEmpty()) || (!description.contains("n/"))||
+                    (!description.contains("t/")) || (words.length < 2)||(words[0].trim().length()<3)) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_ADD_PARAM);
@@ -244,11 +246,27 @@ public class Parser {
         return new FindStaffCommand(description.trim());
 
     }
-    private Command prepareHelpCommand() {
+    private Command prepareHelpCommand(String userInputNoCommand) {
+        try {
+            if (!userInputNoCommand.isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_HELP_EXCESS_PARAM);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
+            return new IncorrectCommand();
+        }
         return new HelpCommand();
     }
 
-    private Command prepareExitCommand() {
+    private Command prepareExitCommand(String userInputNoCommand) {
+        try {
+            if (!userInputNoCommand.isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_EXIT_EXCESS_PARAM);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
+            return new IncorrectCommand();
+        }
         return new ExitCommand();
     }
 
@@ -261,15 +279,17 @@ public class Parser {
      * @param description contains the deadline description and due date.
      * @return the add deadline command.
      */
-    private Command prepareAddDeadlineCommand(String description) { //  n/ t/
-        String[] words = (description.trim()).split("t/"); // n/
+    private Command prepareAddDeadlineCommand(String description) {
+        String[] words = (description.trim()).split("t/");
         try {
-            String[] testName = (words[0].trim()).split("n/");  // n/
+            String[] testName = (words[0].trim()).split("n/");
             if (((description.trim()).isEmpty()) || (!description.contains("n/"))
                     || (words.length < 2) || (testName.length < 1)) {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_PARAM);
+            } else if (words[1].contains("n/")) {
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_WRONG_ORDER);
             }
         } catch (DinerDirectorException e) {
             System.out.println(e);
@@ -346,9 +366,9 @@ public class Parser {
         }
         return new FindDeadlineCommand((keyword.trim()));
     }
-    
+
     private Command prepareDeleteDishCommand(String userInputNoCommand) {
-    
+
         int indexToRemove = 0;
 
         try {
@@ -395,10 +415,20 @@ public class Parser {
         try {
             if (parsedDishInput.matches()) {
                 name = parsedDishInput.group(1);
-                price = Integer.parseInt(parsedDishInput.group(2));
+                if (DishManager.isInsideDishes(name)) {
+                    throw new DinerDirectorException(Messages.ERROR_DUPLICATE_DISH_NAME);
+                }
+                try {
+                    price = Integer.parseInt(parsedDishInput.group(2));
+                } catch (NumberFormatException e) {
+                    throw new DinerDirectorException(Messages.ERROR_PRICE_EXCEED_INTEGER_BOUNDS);
+                }
                 String[] ingredientList = parsedDishInput.group(3).split(";");
                 for (String ingredient : ingredientList) {
-                    if (!ingredient.isBlank()) {
+                    String regexNumbers = "^[+-]?\\d+(?:\\.\\d+)?$";
+                    Pattern pattern = Pattern.compile(regexNumbers);
+                    Matcher parsedIngredient = pattern.matcher(ingredient);
+                    if (!ingredient.isBlank() && !parsedIngredient.matches()) {
                         ingredients.add(ingredient);
                     }
                 }
@@ -406,8 +436,12 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
             }
         } catch (DinerDirectorException e) {
+            if (!e.getMessage().equals(Messages.ERROR_COMMAND_INVALID)) {
+                System.out.println(e.getMessage());
+            }
             return new IncorrectCommand();
         }
+
         return new AddDishCommand(name, price, ingredients);
     }
 
