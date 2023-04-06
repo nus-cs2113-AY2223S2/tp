@@ -67,22 +67,34 @@ class YearlyOverviewTest {
 
         YearlyOverview yearlyOverview = new YearlyOverview(testExpenses, "2012");
         yearlyOverview.printYearlyOverview();
-        String expectedOutput = TITLE + "2012\n" + "\n" +
-                TAB + YEARLY_OVERVIEW_TOTAL + "20.00 SGD\n" + "\n" +
-                TAB + BREAKDOWN_TITLE + "\n" +
-                TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "JANUARY 10.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "FEBRUARY 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "MARCH 2.50 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "APRIL 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "MAY 7.50 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "JUNE 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "JULY 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "AUGUST 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "SEPTEMBER 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "OCTOBER 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "NOVEMBER 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE + "DECEMBER 0.00 SGD\n" + TAB + MONTH_DIVIDER;
+        String expectedOutput = TITLE + "2012" + System.lineSeparator() + System.lineSeparator() +
+                TAB + YEARLY_OVERVIEW_TOTAL + "20.00 SGD" + System.lineSeparator() + System.lineSeparator() +
+                TAB + BREAKDOWN_TITLE + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "JANUARY 10.00 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "FEBRUARY 0.00 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "MARCH 2.50 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "APRIL 0.00 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "MAY 7.50 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "JUNE 0.00 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "JULY 0.00 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "AUGUST 0.00 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "SEPTEMBER 0.00 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "OCTOBER 0.00 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "NOVEMBER 0.00 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER + System.lineSeparator() +
+                TAB + WHITESPACE + "DECEMBER 0.00 SGD" + System.lineSeparator() +
+                TAB + MONTH_DIVIDER;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
     }
 
