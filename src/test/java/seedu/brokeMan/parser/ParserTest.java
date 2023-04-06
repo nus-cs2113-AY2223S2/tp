@@ -141,7 +141,7 @@ class ParserTest {
         final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 2017 08 19 13 29 c/ FOOD";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
         addExpenseCommand.execute();
-        final String userFullInput = "editExpense i/ 1 t/ info n/ brunch c/ FOOD";
+        final String userFullInput = "editExpense i/ 1 t/ info n/ brunch";
         Command actualCommand = Parser.parseCommand(userFullInput);
 
         assertTrue(actualCommand instanceof EditExpenseCommand);
