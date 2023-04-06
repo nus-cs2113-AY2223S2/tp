@@ -31,7 +31,7 @@ public class List {
 
     public void listNotes() {
         try {
-            if ((!isInvalidTodo(toDo)) && (isAnInt(toDo) == false)) {
+            if ((!isInvalidTodo(toDo)) && (!isAnInt(toDo))) {
                 throw new IllegalTodoException();
             }
 
