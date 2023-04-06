@@ -27,15 +27,19 @@ ____________________________________________________________
 Please enter deadline as "deadline [task] -by [date]".
 ____________________________________________________________
 ____________________________________________________________
-Please enter [date]s in the format of yyyy-MM-ddThh:mm.
-eg. "2023-10-30T23:59" for Oct 20 2023, 11:59PM
+Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
+eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM
 ____________________________________________________________
 ____________________________________________________________
-Oops, your deadline: submit tutorial (by: Mar 03 2023, 11:59PM) occurs before today!
+Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
+eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM
+____________________________________________________________
+____________________________________________________________
+Oops, your deadline: submit tutorial (by: 03 Feb 2023, 11:59PM) occurs before today!
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this deadline:
-  [D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+  [D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
 Oops! The description of a task cannot be empty.
@@ -47,21 +51,21 @@ ____________________________________________________________
 Oops, the start date for your event occurs after the end date!
 ____________________________________________________________
 ____________________________________________________________
-Please enter [date]s in the format of yyyy-MM-ddThh:mm.
-eg. "2023-10-30T23:59" for Oct 20 2023, 11:59PM
+Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
+eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM
 ____________________________________________________________
 ____________________________________________________________
-Oops, your event: lecture (from: May 03 2022, 09:00AM to: May 03 2022, 11:00AM) occurs before today!
+Oops, your event: lecture (from: 03 Feb 2022, 09:00AM to: 03 Feb 2022, 11:00AM) occurs before today!
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this event:
-  [E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+  [E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
-1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
+2.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 3.[T][ ] eat lunch
 There are 3 unmarked tasks in your tasklist.
 ____________________________________________________________
@@ -73,19 +77,19 @@ Please enter [idx] in the form of an integer from 1 to 3
 ____________________________________________________________
 ____________________________________________________________
 Nice!, I've marked this task as done:
-  [E][X] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+  [E][X] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
-1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-2.[E][X] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
+2.[E][X] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 3.[T][ ] eat lunch
 There are 2 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-  [E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+  [E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this todo:
@@ -94,8 +98,8 @@ ____________________________________________________________
 ____________________________________________________________
 You have a total of 4 tasks in your tasklist.
 Here are the tasks in your list:
-1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
+2.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 3.[T][ ] eat lunch
 4.[T][ ] sleep
 There are 4 unmarked tasks in your tasklist.
@@ -114,8 +118,8 @@ ____________________________________________________________
 ____________________________________________________________
 You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
-1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
+2.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 3.[T][ ] eat lunch
 There are 3 unmarked tasks in your tasklist.
 ____________________________________________________________
@@ -127,7 +131,7 @@ There are no matching tasks!
 ____________________________________________________________
 ____________________________________________________________
 Here are the matching tasks in your list:
-1.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 2.[T][ ] eat lunch
 ____________________________________________________________
 ____________________________________________________________
@@ -138,8 +142,8 @@ There are no tasks on Jan 01 2025!
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks happening on May 03 2023:
-1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
+2.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 CS1231
@@ -273,16 +277,16 @@ ____________________________________________________________
 ____________________________________________________________
 This event clashes with a lesson in your timetable!
 Got it. I've added this event:
-  [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
+  [E][ ] dummy (from: 01 Apr 2023, 12:00AM to: 01 Jun 2023, 12:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Heads up, your deadline occurs on the same day as these!
 _____________________________
 Tasks:
- - [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
+ - [E][ ] dummy (from: 01 Apr 2023, 12:00AM to: 01 Jun 2023, 12:00AM)
 _____________________________
 Got it. I've added this deadline:
-  [D][ ] dummy2 (by: May 02 2023, 12:00AM)
+  [D][ ] dummy2 (by: 02 May 2023, 12:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
