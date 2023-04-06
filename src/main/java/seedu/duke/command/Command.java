@@ -141,6 +141,7 @@ public class Command {
                         Storage.writeSavedFile();
                     }
                     break;
+                default:
                 }
             } catch (Exception e) {
                 ui.showAddingRecipeElementErrorMessage(e);
