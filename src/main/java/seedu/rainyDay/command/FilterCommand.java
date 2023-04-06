@@ -84,14 +84,10 @@ public class FilterCommand extends Command {
             }
         }
 
-        boolean filteredTwoDates = false;
         boolean isFirstFlag = true;
-        for (int i = 0; i < filterFlagAndField.size(); i += 2) {
-            if (filteredTwoDates == true) {
-                if (i != filterFlagAndField.size() - 1) {
-                    i -= 1;
-                    continue;
-                }
+        for (int i = 0; i < filterFlagAndField.size(); i += 1) {
+            if (!filterFlagAndField.get(i).contains("-")) {
+                continue;
             }
 
             if (filterFlagAndField.get(i).equalsIgnoreCase("-d")) {
@@ -119,7 +115,6 @@ public class FilterCommand extends Command {
                     } else {
                         filterByTwoDates(filteredList, statementIndex, listToFilter, listToFilterStatementIndex, i);
                     }
-                    filteredTwoDates = true;
                 }
             } else if (filterFlagAndField.get(i).equalsIgnoreCase("-in")) {
                 if (isFirstFlag) {

@@ -1,4 +1,4 @@
-package seedu.rainyDay.modules;
+package seedu.rainyDay.parser;
 
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.RainyDay;
@@ -14,7 +14,6 @@ import seedu.rainyDay.data.MonthlyExpenditures;
 import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
-import seedu.rainyDay.parser.Parser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -138,7 +137,6 @@ class ParserTest {
         assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter -d -c -date 32/01/2023"));
         assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter -date 24/01/2023 test"));
         assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("filter -d"));
-
     }
 
     @Test
@@ -149,6 +147,9 @@ class ParserTest {
         assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -c Food and Drinks").getClass());
         assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -date 23/01/2023").getClass());
         assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -d rice -c Food -date 04/04/2023")
+                .getClass());
+        assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -date 23/01/2023 25/03/2023").getClass());
+        assertEquals(FilterCommand.class, new Parser().parseUserInput("filter -in -date 23/01/2023 25/03/2023")
                 .getClass());
     }
 
