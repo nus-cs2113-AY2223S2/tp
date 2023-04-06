@@ -66,7 +66,8 @@ public class TrackCalorieCommand extends Command {
         if (endDateIndex == -1) {
             throw new MissingArgumentsException(commandWord, endDateIdentifier);
         }
-        String startDateString = userInput.substring(startDateIndex + startDateIdentifier.length(), endDateIndex-1).trim();
+        String startDateString = userInput.substring(startDateIndex + startDateIdentifier.length(), endDateIndex-1)
+                .trim();
         String endDateString = userInput.substring(endDateIndex + endDateIdentifier.length()).trim();
         this.startDate = DateParser.parse(startDateString, dtf);
         this.endDate = DateParser.parse(endDateString, dtf);
