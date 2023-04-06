@@ -43,7 +43,7 @@ public class ShortcutDeleteCommand extends ShortcutCommand {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("ShortcutDeleteCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/ShortcutDeleteCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log ShortcutDeleteCommand class");

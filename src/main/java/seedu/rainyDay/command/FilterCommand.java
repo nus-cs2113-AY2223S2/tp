@@ -33,7 +33,7 @@ public class FilterCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("FilterCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/FilterCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log FilterCommand class");

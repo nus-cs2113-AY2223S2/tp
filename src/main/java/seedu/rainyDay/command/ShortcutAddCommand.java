@@ -26,7 +26,7 @@ public class ShortcutAddCommand extends ShortcutCommand {
         logger.log(Level.INFO, "checking for validity of shortcut");
         shortcutCommands = savedData.getShortcutCommands();
         checkShortcutValidity(shortcutCommands, key, value);
-        logger.log(Level.INFO, "shortcut confirmed as valid of shortcut");
+        logger.log(Level.INFO, "shortcut confirmed as valid shortcut");
 
         shortcutCommands.put(key, value);
         logger.log(Level.INFO, "Successful ShortcutAddCommand.execute()");
@@ -41,7 +41,7 @@ public class ShortcutAddCommand extends ShortcutCommand {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("ShortcutAddCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/ShortcutAddCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log ShortcutAddCommand class");

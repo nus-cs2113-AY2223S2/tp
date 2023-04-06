@@ -23,10 +23,10 @@ public class IgnoreCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("AddCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/IgnoreCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
-            System.out.println("unable to log AddCommand class");
+            System.out.println("unable to log IgnoreCommand class");
             logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }

@@ -37,7 +37,7 @@ public class ViewCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("ViewCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/ViewCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log ViewCommand class");

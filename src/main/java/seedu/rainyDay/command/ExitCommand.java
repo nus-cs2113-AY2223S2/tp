@@ -13,10 +13,10 @@ public class ExitCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("AddCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/ExitCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
-            System.out.println("unable to log AddCommand class");
+            System.out.println("unable to log ExitCommand class");
             logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }
