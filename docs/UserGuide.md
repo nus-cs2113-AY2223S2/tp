@@ -276,7 +276,8 @@ Meal Companion automatically saves the ingredients you add to a text file named 
 <sub>Fig 24: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
 
 > **Warning**:
-> Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program.
+> Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program. 
+> We cannot guarantee Meal Companion will perform as expected if the file is corrupted or modified incorrectly.
 
 ### Transferring Saved Data to Other Devices
 If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
