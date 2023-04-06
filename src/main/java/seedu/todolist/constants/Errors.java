@@ -30,6 +30,7 @@ public final class Errors {
             + "read permissions for " + Storage.DEFAULT_CONFIG_PATH + System.lineSeparator()
             + "and do not modify it yourself. Default configurations will be used.";
     public static final String INVALID_FREQUENCY = "The frequency provided must be greater than or equals to 0.";
+    public static final String INVALID_CONFIRMATION = "Invalid Response, please enter Yes or No.";
 
     private Errors() {
     }

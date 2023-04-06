@@ -11,6 +11,7 @@ import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.StringJoiner;
 
 public class EditRepeatCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_REPEAT, Flags.EDIT, Flags.EDIT_DELETE};
@@ -29,14 +30,18 @@ public class EditRepeatCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws ToDoListException {
+        StringJoiner stringJoiner = new StringJoiner(System.lineSeparator());
+        int repeatDuration = 0;
         for (int id : idHashSet) {
-            int repeatDuration = ParserUtil.parseRepeatDuration(repeatDurationString, taskList.getDeadline(id));
+            repeatDuration = ParserUtil.parseRepeatDuration(repeatDurationString, taskList.getDeadline(id));
             String taskString = taskList.setRepeatDuration(id, repeatDuration);
-            if (repeatDuration == 0) {
-                ui.printEditDeleteTaskMessage("repeat duration", taskString);
-            } else {
-                ui.printEditTaskMessage("repeat duration", Integer.toString(repeatDuration), taskString);
-            }
+            stringJoiner.add(taskString);
+        }
+        if (repeatDuration == 0) {
+            ui.printEditDeleteTaskMessage("repeat duration", stringJoiner.toString());
+        } else {
+            ui.printEditTaskMessage("repeat duration", Integer.toString(repeatDuration),
+                    stringJoiner.toString());
         }
     }
 }

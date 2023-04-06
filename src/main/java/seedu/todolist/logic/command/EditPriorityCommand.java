@@ -11,8 +11,10 @@ import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.StringJoiner;
+
 public class EditPriorityCommand extends Command{
-    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_PRIORITY, Flags.EDIT};
+    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_PRIORITY, Flags.EDIT, Flags.EDIT_DELETE};
 
     private HashSet<Integer> idHashSet;
     private int priority;
@@ -21,16 +23,23 @@ public class EditPriorityCommand extends Command{
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_PRIORITY));
         if (args.containsKey(Flags.EDIT)) {
             priority = ParserUtil.parsePriority(args.get(Flags.EDIT));
-        } else {
+        } else if (!args.containsKey(Flags.EDIT_DELETE)) {
             throw new InvalidEditException();
         }
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws ToDoListException {
+        StringJoiner stringJoiner = new StringJoiner(System.lineSeparator());
         for (int id : idHashSet) {
             String taskString = taskList.setPriority(id, priority);
-            ui.printEditTaskMessage("priority level", FormatterUtil.getPriorityAsString(priority), taskString);
+            stringJoiner.add(taskString);
+        }
+        if (priority == 0) {
+            ui.printEditDeleteTaskMessage("priority level", stringJoiner.toString());
+        } else {
+            ui.printEditTaskMessage("priority level", FormatterUtil.getPriorityAsString(priority),
+                    stringJoiner.toString());
         }
     }
 }

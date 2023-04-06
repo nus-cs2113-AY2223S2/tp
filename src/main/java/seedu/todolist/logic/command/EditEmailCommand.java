@@ -12,6 +12,7 @@ import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.StringJoiner;
 
 public class EditEmailCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_EMAIL, Flags.EDIT, Flags.EDIT_DELETE};
@@ -31,13 +32,15 @@ public class EditEmailCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
+        StringJoiner stringJoiner = new StringJoiner(System.lineSeparator());
         for (int id : idHashSet) {
             String taskString = taskList.setEmail(id, email);
-            if (email == null) {
-                ui.printEditDeleteTaskMessage("email address", taskString);
-            } else {
-                ui.printEditTaskMessage("email address", email, taskString);
-            }
+            stringJoiner.add(taskString);
+        }
+        if (email == null) {
+            ui.printEditDeleteTaskMessage("email address", stringJoiner.toString());
+        } else {
+            ui.printEditTaskMessage("email address", email, stringJoiner.toString());
         }
     }
 }

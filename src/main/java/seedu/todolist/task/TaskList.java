@@ -61,6 +61,13 @@ public class TaskList {
     }
 
     /**
+     * Deletes all tasks of the task list.
+     */
+    public void deleteAllTasks() {
+        tasks.clear();
+    }
+
+    /**
      * Returns the number of tasks in this task list.
      *
      * @return The number of tasks in this task list.

@@ -1,5 +1,6 @@
 package seedu.todolist.ui;
 
+import seedu.todolist.constants.Errors;
 import seedu.todolist.constants.HelpMessages;
 import seedu.todolist.constants.Messages;
 import seedu.todolist.task.Task;
@@ -81,8 +82,9 @@ public class Ui {
     }
 
     public void printDeleteTagsMessage(String tagsRemoved, String taskString) {
-        println("Okay, I have removed the following tags [" + tagsRemoved + "] of this task:", taskString);
+        println("Okay, I have removed the following tag(s) [" + tagsRemoved + "] of the following task(s):", taskString);
     }
+
     public void printEditDeleteTaskMessage(String parameterType, String taskString) {
         println(String.format(Messages.EDIT_DELETE_TASK, parameterType), taskString);
     }
@@ -158,5 +160,22 @@ public class Ui {
 
     public void printHelpList() {
         println(HelpMessages.HELP_COMMAND);
+    }
+
+    public void printCancelDeleteAllMessage() {
+        println(Messages.CANCEL);
+    }
+
+    public void printDeleteAllMessage(){
+        println((Messages.DELETE_ALL_TASKS));
+    }
+    public String printConfirmationMessage() {
+        println(Messages.CONFIRM);
+        String input = getUserInput();
+        while (!(input.equals("Yes") || input.equals("No"))){
+            println(Errors.INVALID_CONFIRMATION);
+            input = getUserInput();
+        }
+        return input;
     }
 }

@@ -10,6 +10,7 @@ import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.StringJoiner;
 
 public class EditDescriptionCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_DESCRIPTION, Flags.EDIT};
@@ -18,6 +19,7 @@ public class EditDescriptionCommand extends Command {
     private String description;
 
     // probably need to read a few descriptions instead of just one
+    //@@author jeromeongithub
     public EditDescriptionCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_DESCRIPTION));
         description = args.get(Flags.EDIT);
@@ -26,9 +28,11 @@ public class EditDescriptionCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
+        StringJoiner stringJoiner = new StringJoiner(System.lineSeparator());
         for (int id: idHashSet) {
             String taskString = taskList.setDescription(id, description);
-            ui.printEditTaskMessage("description", description, taskString);
+            stringJoiner.add(taskString);
         }
+        ui.printEditTaskMessage("description", description, stringJoiner.toString());
     }
 }

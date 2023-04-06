@@ -7,6 +7,7 @@ import seedu.todolist.exception.InvalidEmailFormatException;
 import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.InvalidPriorityException;
 import seedu.todolist.exception.PassedDateException;
+import seedu.todolist.exception.InvalidFlagException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,19 +33,22 @@ public class ParserUtil {
      * @return The ids, as a HashSet of integers.
      * @throws InvalidIdException If any id cannot be parsed to an integer.
      */
-    public static HashSet<Integer> parseId(String idList) throws InvalidIdException {
+    public static HashSet<Integer> parseId(String idList) throws InvalidIdException, InvalidFlagException {
         int id = 0;
         try {
             HashSet<Integer> idHashSet = new HashSet<Integer>();
             String[] arrayOfIds = idList.split(" ");
             for (String idString : arrayOfIds) {
+                if (idString.equals("edit") || idString.equals("del")){
+                    throw new InvalidFlagException(idString);
+                }
                 id = Integer.parseInt(idString);
                 assert id >= 0 : "Invalid id contained in variable";
                 idHashSet.add(id);
             }
             return idHashSet;
         } catch (NumberFormatException e) {
-            throw new InvalidIdException(id);
+            throw new InvalidIdException(idList);
         }
     }
 
@@ -59,7 +63,7 @@ public class ParserUtil {
      */
     public static int parsePriority(String priorityString) throws InvalidPriorityException {
         if (priorityString == null) {
-            return 1;
+            return 0;
         }
 
         try {
