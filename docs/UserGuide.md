@@ -30,7 +30,7 @@ Meal Companion is designed by computing students, for computing students, especi
        - [Check Ingredients for Recipe](#check-ingredients-for-recipe)
        - [Almost Completed Recipe](#almost-completed-recipe)
        - [Make Recipe](#make-recipe)
-       - [Favourite Recipe](#favourite-recipe)
+       - [Favourite/Unfavourite Recipe](#favouriteunfavourite-recipe)
    5. [Saving Data](#saving-data)
        - [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
    6. [Help](#help)
@@ -241,7 +241,7 @@ If you decide to cook one of the recipes and you have sufficient ingredients, yo
 <sub>Fig 19: Sample of Make command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
 
 
-### Favourite Recipe  
+### Favourite/Unfavourite Recipe  
 If you would like to mark a recipe as your favourite, you may simply use the command `recipe favourite <index_number>`. For example, `recipe favourite 1` (recipe for beef burger). 
 
 ![fav11.png](images/fav11.png)  
@@ -250,6 +250,8 @@ If you would like to mark a recipe as your favourite, you may simply use the com
 ![fav2.png](images/fav2.png)  
 <sub>Fig 21: Sample of Recipe list after Recipe 1 (Beef Burger) is added to favourites with the modified list highlighted.</sub>
 
+<br>
+<br>
 
 If you would like to unmark a recipe as your favourite, you may use the command `recipe unfavourite <index_number>`. For example, `recipe unfavourite 1` (recipe for beef burger).  
 
