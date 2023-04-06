@@ -10,53 +10,35 @@ public class Parser {
 
     public Tensor2D parse(String command) {
         CalType type;
+        Tensor2D result;
+        Execute ex = new Execute();
 
         command = command.replace(" ", "");
 
         try {
             check.checkUnknownOperator(command);
 
-            if(command.contains("+")){
-                type = CalType.ADD;
-            }else if(command.contains("-")){
-                type = CalType.SUB;
-            }else if(command.contains(".*")){
-                type = CalType.MUL;
-            }else if(command.contains("*")){
-                type = CalType.DOT;
-            }else{
-                type = CalType.UNKNOWN;
-            }
-
-            Tensor2D op1;
-            Tensor2D op2;
-            Tensor2D result = null;
-            String[] op;
-
-            Calculate c = new Calculate();
-            Execute e = new Execute();
-
-            switch(type){
-            case ADD:
-                result = e.executeAdd(command);
-                break;
-            case SUB:
-                result = e.executeSub(command);
-                break;
-            case MUL:
-                result = e.executeMul(command);
-                break;
-            case DOT:
-                result = e.executeDot(command);
-                break;
-            default:
-                break;
-            }
+            type = parseOp(command);
+            result = ex.execute(type, command);
 
             return result;
-        }catch (UnknownOperatorException e){
+        } catch (UnknownOperatorException e) {
             ep.printUnknownOperatorExceptionLog();
             return null;
+        }
+    }
+
+    protected CalType parseOp(String command){
+        if(command.contains("+")) {
+            return CalType.ADDITION;
+        } else if(command.contains("-")) {
+            return CalType.SUBTRACTION;
+        } else if(command.contains(".*")) {
+            return CalType.MULTIPLICATION;
+        } else if(command.contains("*")) {
+            return CalType.ELEMENT_WISE_DOT_PRODUCT;
+        } else {
+            return CalType.UNKNOWN;
         }
     }
 
@@ -78,8 +60,8 @@ public class Parser {
         assert rowNum == 1 || colNum == rows[1].split(",").length;
 
         tensor = new int[rowNum][colNum];
-        for(int i=0; i<rowNum; i++){
-            for(int j=0; j<colNum; j++){
+        for(int i = 0; i < rowNum; i++) {
+            for(int j = 0; j < colNum; j++) {
                 column = rows[i].split(",");
                 tensor[i][j] = Integer.parseInt(column[j]);
             }
@@ -89,6 +71,6 @@ public class Parser {
     }
 
     enum CalType {
-        ADD, SUB, MUL, DOT, UNKNOWN
+        ADDITION, SUBTRACTION, MULTIPLICATION, ELEMENT_WISE_DOT_PRODUCT, UNKNOWN
     }
 }

@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 public class Calculator {
     Logger logger = Logger.getLogger("matrix");
 
-    public void run(String toDo){
+    public void run(String toDo) {
         logger.log(Level.INFO, "Start to open calculator.");
 
         Ui ui = new Ui();

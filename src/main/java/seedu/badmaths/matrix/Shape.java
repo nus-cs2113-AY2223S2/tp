@@ -4,7 +4,7 @@ public class Shape {
     protected int row;
     protected int column;
 
-    public Shape(int row, int column){
+    public Shape(int row, int column) {
         this.row = row;
         this.column = column;
     }
