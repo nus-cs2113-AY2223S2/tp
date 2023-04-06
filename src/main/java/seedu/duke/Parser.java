@@ -66,7 +66,7 @@ public class Parser {
 
         String information = details[1].substring(2).trim();
         int weekNumber = Integer.parseInt(information);
-        UserUtility.printScheduleTable(eventList.getFullList(), weekNumber);
+        Ui.printScheduleTable(eventList.getFullList(), weekNumber);
 
     }
 
@@ -96,12 +96,13 @@ public class Parser {
 
     private static boolean extractFields(boolean[] duplicity, String[] information, String[] details,
             boolean addModuleFlag) throws NPExceptions {
+
         for (int i = 1; i < details.length; i++) {
             String field = details[i].substring(0, 2).trim();
             String change = details[i].substring(2).trim();
             switch (field) {
             case ("m"):
-                addModuleFlag = true;
+                isModuleFlag = true;
                 if (!duplicity[0]) {
                     information[0] = change;
                     duplicity[0] = true;
@@ -180,7 +181,7 @@ public class Parser {
         // Note no "-" anywhere else.
         String[] details = remainder.split("-");
 
-        boolean addModuleFlag = false;
+        boolean isModuleFlag = false;
 
         if (details.length <= 1) {
             throw new NPExceptions("Event description and start day of your event are strictly required!");
@@ -195,7 +196,7 @@ public class Parser {
         addFormatChecker(information);
 
         // if body executed when user adds a module. Code inside "else" is same as before.
-        if (addModuleFlag) {
+        if (isModuleFlag) {
             // count to store the number of classes added into eventList.
             int count = 0;
 
