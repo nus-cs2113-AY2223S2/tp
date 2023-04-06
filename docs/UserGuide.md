@@ -159,7 +159,7 @@ Format: `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<
 
 - Name of dish cannot be blank or start with spaces, it also cannot contain only spaces.
 - Price of dish must be an non negative integer value; i.e.: Price cannot be negative, in decimal, etc.
-- Ingredient list is encased betwen two square brackets and separated by a semi-colon. The ingredient list can contain any non negative number of items.
+- Ingredient list is encased between two square brackets and separated by a semicolon. The ingredient list can contain any non-negative number of items.
 
 Example 1: 
 ```
@@ -318,24 +318,24 @@ The data stored in those files are in plaintext format and the user can copy out
 
 
 
-| Action          | Command                                                                                                        |
-|-----------------|----------------------------------------------------------------------------------------------------------------|
-| help            | `help`                                                                                                         |
-| add_meeting     | `add_meeting n/<name> t/<time>`                                                                                |
-| view_meetings   | `view_meetings`                                                                                                |
-| delete_meeting  | `delete_meeting n/<name>`                                                                                      |
-| find_meeting    | `find_meeting s/<string>`                                                                                      |
+| Action          | Command                                                                                                      |
+|-----------------|--------------------------------------------------------------------------------------------------------------|
+| help            | `help`                                                                                                       |
+| add_meeting     | `add_meeting n/<name> t/<time>`                                                                              |
+| view_meetings   | `view_meetings`                                                                                              |
+| delete_meeting  | `delete_meeting <index>`                                                                                         |
+| find_meeting    | `find_meeting <string>`                                                                                      |
 | add_dish        | `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]` |
-| view_dish       | `view_dish`                                                                                                    |
-| delete_dish     | `delete_dish <index_number>`                                                                                   |
-| find_dish       | `find_dish <keyword>`                                                                                          |
-| add_deadline    | `add_deadline n/<name> t/<time>`                                                                               |
-| view_deadline   | `view_deadline`                                                                                                |
-| delete_deadline | `delete_deadline <index>`                                                                                      |
-| find_deadline   | `find_deadline <keyword>`                                                                                      |
-| add_staff       | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                                 |
-| view_staff      | `view_staff`                                                                                                   |
-| delete_staff    | `delete_staff <staff index>`                                                                                   |
-| find_staff      | `find_staff <keyword>`                                                                                         |
+| view_dish       | `view_dish`                                                                                                  |
+| delete_dish     | `delete_dish <index_number>`                                                                                 |
+| find_dish       | `find_dish <keyword>`                                                                                        |
+| add_deadline    | `add_deadline n/<name> t/<time>`                                                                             |
+| view_deadline   | `view_deadline`                                                                                              |
+| delete_deadline | `delete_deadline <index>`                                                                                    |
+| find_deadline   | `find_deadline <keyword>`                                                                                    |
+| add_staff       | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                               |
+| view_staff      | `view_staff`                                                                                                 |
+| delete_staff    | `delete_staff <staff index>`                                                                                 |
+| find_staff      | `find_staff <keyword>`                                                                                       |
 
 
