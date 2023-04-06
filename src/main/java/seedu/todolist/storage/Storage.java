@@ -104,6 +104,7 @@ public class Storage {
         }
     }
 
+    //@@author clement559
     public void saveConfig(Config config, String filepath) throws FailedSaveConfigException {
         try {
             String json = gson.toJson(config);
