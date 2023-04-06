@@ -98,15 +98,24 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
             if (args.length == 2) {
                 handleMultiCommand(ui);
             } else {
-                Module referenceModule = allModules.findModule(module.getCode());
-                ArrayList<Timetable> copyList = new ArrayList<>(referenceModule.getModuleTimetable());
-                ArrayList<Timetable> parseList = sortTimetable(copyList);
-                ui.printShowModuleMessage(module, getLessonTypes(referenceModule), parseList);
+                handleSingleCommand(ui, allModules);
             }
         } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
         }
 
+    }
+
+    /**
+     * Handles the command when user wants to see a module information.
+     *
+     * @param ui The Ui object to print the Timetable.
+     */
+    private void handleSingleCommand(Ui ui, ModuleList allModules) {
+        Module referenceModule = allModules.findModule(module.getCode());
+        ArrayList<Timetable> copyList = new ArrayList<>(referenceModule.getModuleTimetable());
+        ArrayList<Timetable> parseList = sortTimetable(copyList);
+        ui.printShowModuleMessage(module, getLessonTypes(referenceModule), parseList);
     }
 
     /**
