@@ -183,6 +183,30 @@ Which one do you want to delete? 2
 Understood. The card has been deleted.
 ```
 
+### List all flashcards
+
+```
+list
+```
+
+Display the list of flashcards that have been added by the user, regardless of the date.
+
+#### Example
+
+```
+> list
+Here is your list of flashcards:
+[1]
+Q: What is the biggest animal in the world
+A: Antartic blue whale
+[2]
+Q: What are the best food for health
+A: Lemons
+[3]
+Q: What colour is the sun
+A: Red
+```
+
 ### Help menu
 
 ```
