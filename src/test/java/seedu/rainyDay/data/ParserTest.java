@@ -10,7 +10,7 @@ import seedu.rainyDay.command.SetBudgetCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
-import seedu.rainyDay.modules.Parser;
+import seedu.rainyDay.parser.Parser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
