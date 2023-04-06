@@ -255,8 +255,8 @@ public class FilterCommand extends Command {
 
     private void filterByTwoDatesFirstFlag(ArrayList<FinancialStatement> filteredList,
                                            ArrayList<Integer> statementIndex, int i) {
-        LocalDate lowerLimit = LocalDate.parse(filterFlagAndField.get(i + 1),  DateTimeFormatter.ofPattern("dd/MM/uuuu"));
-        LocalDate upperLimit = LocalDate.parse(filterFlagAndField.get(i + 2),  DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        LocalDate lowerLimit = LocalDate.parse(filterFlagAndField.get(i + 1), DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        LocalDate upperLimit = LocalDate.parse(filterFlagAndField.get(i + 2), DateTimeFormatter.ofPattern("dd/MM/uuuu"));
         for (int j = 0; j < savedData.getStatementCount(); j += 1) {
             LocalDate statementDate = savedData.getStatement(j).getDate();
             if (!statementDate.isBefore(lowerLimit) && !statementDate.isAfter(upperLimit)) {
@@ -269,8 +269,8 @@ public class FilterCommand extends Command {
     private void filterByTwoDates(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
                                   ArrayList<FinancialStatement> listToFilter,
                                   ArrayList<Integer> listToFilterStatementIndex, int i) {
-        LocalDate lowerLimit = LocalDate.parse(filterFlagAndField.get(i + 1),  DateTimeFormatter.ofPattern("dd/MM/uuuu"));
-        LocalDate upperLimit = LocalDate.parse(filterFlagAndField.get(i + 2),  DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        LocalDate lowerLimit = LocalDate.parse(filterFlagAndField.get(i + 1), DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        LocalDate upperLimit = LocalDate.parse(filterFlagAndField.get(i + 2), DateTimeFormatter.ofPattern("dd/MM/uuuu"));
         for (int j = 0; j < listToFilter.size(); j += 1) {
             LocalDate statementDate = listToFilter.get(j).getDate();
             if (!statementDate.isBefore(lowerLimit) && !statementDate.isAfter(upperLimit)) {
