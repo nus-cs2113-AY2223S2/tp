@@ -143,39 +143,30 @@ public class ExpenditureList {
         }
     }
 
-    public static ExpenditureList sortAmount(String sortType) {
-        ArrayList<Expenditure> sortExpenditureAmount = expenditures;
+    public static ArrayList<Expenditure> sortList(String sortType) {
+        ArrayList<Expenditure> sortList = expenditures;
         switch (sortType) {
         case SortCommand.AMOUNT_ASCENDING:
-            sortExpenditureAmount.sort(Comparator.comparing(Expenditure::getValue));
+            sortList.sort(Comparator.comparing(Expenditure::getValue));
             break;
         case SortCommand.AMOUNT_DESCENDING:
-            sortExpenditureAmount.sort(Comparator.comparing(Expenditure::getValue).reversed());
-            break;
-        default:
-            break;
-        }
-        ExpenditureList sortedExpenditures = new ExpenditureList();
-        for (Expenditure expenditure : sortExpenditureAmount) {
-            sortedExpenditures.addExpenditure(expenditure);
-        }
-        return sortedExpenditures;
-    }
-
-    public static ExpenditureList sortDate(String sortType) {
-        ArrayList<Expenditure> sortExpenditureDate = expenditures;
-        switch (sortType) {
-        case SortCommand.DATE_FROM_EARLIEST:
-            sortExpenditureDate.sort(Comparator.comparing(Expenditure::getDate));
+            sortList.sort(Comparator.comparing(Expenditure::getValue).reversed());
             break;
         case SortCommand.DATE_FROM_LATEST:
-            sortExpenditureDate.sort(Comparator.comparing(Expenditure::getDate).reversed());
+            sortList.sort(Comparator.comparing(Expenditure::getDate));
+            break;
+        case SortCommand.DATE_FROM_EARLIEST:
+            sortList.sort(Comparator.comparing(Expenditure::getDate).reversed());
             break;
         default:
             break;
         }
+        return sortList;
+    }
+
+    public static ExpenditureList getSortedExpenditures(ArrayList<Expenditure> sortList) {
         ExpenditureList sortedExpenditures = new ExpenditureList();
-        for (Expenditure expenditure : sortExpenditureDate) {
+        for (Expenditure expenditure : sortList) {
             sortedExpenditures.addExpenditure(expenditure);
         }
         return sortedExpenditures;
@@ -189,9 +180,9 @@ public class ExpenditureList {
 
     public static void processLumpSumDates(Expenditure expenditure) {
         if (expenditure instanceof TuitionExpenditure) {
-            ((TuitionExpenditure) expenditure).resetPaid();
+            ((TuitionExpenditure) expenditure).checkMark();
         } else if (expenditure instanceof AccommodationExpenditure) {
-            ((AccommodationExpenditure) expenditure).resetPaid();
+            ((AccommodationExpenditure) expenditure).checkMark();
         }
     }
 }
