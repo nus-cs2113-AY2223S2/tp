@@ -14,21 +14,26 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 public class ParserTest {
     static final String ADD_EXPENSE ="add expense";
     static final String CA = "ca meal";
     static final String DE ="de breakfast";
-    static final String DA = "da 01/02/23";
+    static final String DA = "da 01-02-2023";
     static final String V = "v 3.50";
     static final String INVALID_INPUT = "invalid";
+    static final String TYPE_FIELD = "t";
+    static final String TYPE_VALUE = "expense";
     static final String CATEGORY_FIELD = "c";
     static final String CATEGORY_VALUE = "meal";
     static final String DESCRIPTION_FIELD = "de";
     static final String DATE_FIELD = "da";
     static final String VALUE_FIELD = "v";
     static final String VALUE_VALUE = "3.50";
-    static final String DATE_VALUE = "01/02/23";
+    static final String DATE_VALUE = "01-02-2023";
     static final String DESCRIPTION_VALUE = "breakfast";
     static final String KEYWORD_FIELD = "k";
     static final String KEYWORD_VALUE = "hello";
@@ -53,7 +58,8 @@ public class ParserTest {
         List<String> expectedOutput = new ArrayList<String>();
         expectedOutputsForExpectedBehaviour(expectedOutput);
 
-        assertEquals(expectedOutput, new Parser().splitLine("add expense /ca meal /de breakfast /da 01/02/23 /v 3.50"));
+        assertEquals(expectedOutput, 
+            new Parser().splitLine("add expense /ca meal /de breakfast /da 01-02-2023 /v 3.50"));
     }
 
     private static void expectedOutputsForExpectedBehaviour(List<String> expectedOutput) {
@@ -79,7 +85,7 @@ public class ParserTest {
         HashMap<String, String> expectedOutput = new HashMap<String, String>();
         expectedOutput.put("ca", "meal");
         expectedOutput.put("de", "breakfast");
-        expectedOutput.put("da", "01/02/23");
+        expectedOutput.put("da", "01-02-2023");
         expectedOutput.put("v", "3.50");
 
         assertEquals(expectedOutput, new Parser().sortArguments(input));
@@ -150,6 +156,18 @@ public class ParserTest {
     }
 
     /**
+     * JUnit test for getType method.
+     * Checks if the method returns the keyword properly.
+     */
+    @Test
+    public void getType_normalScenario_expectedBehaviour() throws ChChingException {
+        HashMap<String, String> input = new HashMap<String, String>();
+        input.put(TYPE_FIELD, TYPE_VALUE);
+        
+        assertEquals("expense", new Parser().getType(input));
+    }
+
+    /**
      * JUnit test for getCategory method.
      * Checks if the method returns the category properly.
      */
@@ -165,15 +183,30 @@ public class ParserTest {
     }
     
     /**
-     * JUnit test for getKeyword method.
+     * JUnit test for getDescription method.
      * Checks if the method returns the keyword properly.
      */
     @Test
-    public void getKeyword_normalScenario_expectedBehaviour() throws ChChingException {
+    public void getDescription_normalScenario_expectedBehaviour() throws ChChingException {
         HashMap<String, String> input = new HashMap<String, String>();
-        input.put(KEYWORD_FIELD, KEYWORD_VALUE);
+        input.put(DESCRIPTION_FIELD, DESCRIPTION_VALUE);
         
-        assertEquals("hello", new Parser().getKeyword(input));
+        assertEquals("breakfast", new Parser().getDescription(input));
+    }
+
+    /**
+     * JUnit test for getDate method.
+     * Checks if the method returns the keyword properly.
+     */
+    @Test
+    public void getDate_normalScenario_expectedBehaviour() throws ChChingException {
+        HashMap<String, String> input = new HashMap<String, String>();
+        input.put(DATE_FIELD, DATE_VALUE);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                .withResolverStyle(ResolverStyle.STRICT);
+        LocalDate expectedDate = LocalDate.parse(DATE_VALUE, formatter);
+        
+        assertEquals(expectedDate, new Parser().getDate(input));
     }
 
     @AfterEach

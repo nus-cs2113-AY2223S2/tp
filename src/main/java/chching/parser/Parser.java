@@ -30,6 +30,10 @@ import chching.record.Income;
 import chching.record.IncomeList;
 import chching.record.Target;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -101,9 +105,11 @@ public class Parser {
                 command = new UnsetCurrencyCommand(currency);
                 break;
             case "find":
+                String type = getType(argumentsByField);
                 String category = getCategory(argumentsByField);
-                String keyword = getKeyword(argumentsByField);
-                command = new FindCommand(category, keyword);
+                String keyword = getDescription(argumentsByField);
+                LocalDate date = getDate(argumentsByField);
+                command = new FindCommand(type, category, keyword, date);
                 break;
             case "balance":
                 command = new BalanceCommand();
@@ -200,6 +206,16 @@ public class Parser {
         return argumentsByField;
     }
     
+    public static String getType(HashMap<String, String> argumentsByField) throws ChChingException {
+        String type = null;
+        try {
+            type = argumentsByField.get("t");
+        } catch (Exception e) {
+            throw new ChChingException("missing/invalid type");
+        }
+        return type;
+    }
+
     public static String getCategory(HashMap<String, String> argumentsByField) throws ChChingException {
         String category = null;
         try {
@@ -210,14 +226,34 @@ public class Parser {
         return category;
     }
     
-    public static String getKeyword(HashMap<String, String> argumentsByField) throws ChChingException {
-        String keyword = null;
+    public static String getDescription(HashMap<String, String> argumentsByField) throws ChChingException {
+        String description = null;
         try {
-            keyword = argumentsByField.get("k");
+            description = argumentsByField.get("de");
         } catch (Exception e) {
-            throw new ChChingException("missing/invalid keyword");
+            throw new ChChingException("missing/invalid description");
         }
-        return keyword;
+        return description;
+    }
+    
+    public static LocalDate getDate(HashMap<String, String> argumentsByField) throws ChChingException {
+        String dateString = null;
+        dateString = argumentsByField.get("da");
+        LocalDate date = null;
+        if (dateString == null) {
+            return date;
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+                .withResolverStyle(ResolverStyle.STRICT);
+        try {
+            date = LocalDate.parse(dateString, formatter);
+        } catch (DateTimeParseException e) {
+            throw new ChChingException("Date must be valid and have format: \"DD-MM-YYYY\"");
+        }
+        if (date.isAfter(LocalDate.now())) {
+            throw new ChChingException("Date cannot be in the future");
+        }
+        return date;
     }
     
     

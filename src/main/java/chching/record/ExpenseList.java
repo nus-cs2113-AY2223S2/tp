@@ -80,7 +80,7 @@ public class ExpenseList extends RecordList {
                 } else if (amount > 999999.99) {
                     throw new ChChingException("Expense value must be less than 1000000");
                 }
-                assert amount > 0.01 : "Income must be positive and more than 0";
+                assert amount >= 0.01 : "Income must be positive and more than 0";
                 expense.setValue(amount);
             } catch (Exception e) {
                 if (e instanceof NumberFormatException) {

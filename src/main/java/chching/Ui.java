@@ -163,8 +163,10 @@ public class Ui {
         System.out.println("    show target");
         System.out.println();
         System.out.println("    FIND AN INCOME/EXPENSE:");
-        System.out.println("    find /k <keyword> /c <record type>");
-        System.out.println("    eg: find /k food /c expense");
+        System.out.println("    find /t <record type> [/c category] [/de description] [/da date]");
+        System.out.println("    fields with [] are optional");
+        System.out.println("    At least one optional field is required");
+        System.out.println("    eg: find /t expense /c food /de burger king /da 2020-01-01");
         System.out.println();
         System.out.println("    SHOW HELP:");
         System.out.println("    help");
