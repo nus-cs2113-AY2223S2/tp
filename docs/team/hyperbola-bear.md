@@ -20,14 +20,19 @@ Given below are my contributions to the project.
 * Created a `DeleteIncomeCommand` to allow users to delete an income from the income list.
 * Created a `DeleteExpenseCommand` to allow users to delete an expense from the expense list.
 * Created a `BalanceCommand` to allow users to view the balance of the user derived from their expenses and income.
+* Refactored and upgraded `FindCommand` to allow users to find income and expenses based on their type. For incomes, user can search based on date and dexcription. For expenses, user can search based on date, description and category. Each of the search parameters are optional, however, at least one search parameter must be provided for `FindCommand` to work.
 * Created a currency conversion feature which allows the user to set and unset currencies to display the conversion from SGD to currencies of interest. When the user sets a currency, the currency will be displayed in the income, expense list and balance. When the user unsets a currency, the currency will no longer be displayed in the income, expense list and balance.
 * Created a Selector to allow users to select the currency of interest.
 * Created a Converter class to allow users to convert the currency of interest.
 * Created a LiveCurrencyApi to get live currency rates from the internet and put it into the convertor hashmap.
-* Contributed to tests for `SetCurrencyCommand`, `UnsetCurrencyCommand`, `DeleteIncomeCommand`, `DeleteExpenseCommand`, `ShowTargetCommand`
+* Contributed to tests for `SetCurrencyCommand`, `UnsetCurrencyCommand`, `DeleteIncomeCommand`, `DeleteExpenseCommand`, `ShowTargetCommand`, `IncomeList`, `ExpenseList`,
 
 #### Contributions to the UG:
-Added documentation for the feature `Set Currency`, `Unset Currency`.
+Added documentation for the feature `Set Currency`, `Unset Currency` and `FindCommand`.
 
 #### Contributions to the DG:
 * Added `SetCurrencyCommand` sequence diagram
+* Added implementation details for `SetCurrencyCommand`
+* Added `UnsetCurrencyCommand` sequence diagram
+* Added implementation details for `FindCommand`
+* Added `FindCommand` sequence diagram

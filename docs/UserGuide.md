@@ -153,21 +153,23 @@ Example of usage:
 ### Finding an entry: `find`
 
 Find an existing expense/income that is currently in the list.
-<br> The program will search for the keywords in your entries.
+<br> The program will search for the keywords in your entries for category and description
+<br> The program will search for exact date in entries for date field
 <br> Vague keywords will render less specific results.
 
-- CATEGORY is specified as either `income` or `expense`
+- TYPE is specified as either `income` or `expense`
 
 Format:
-<br> `find /c CATEGORY /k KEYWORD`
+<br> `find /t TYPE [/c CATEGORY] [/de DESCRIPTION] [/da DATE]`
+<br> fields with [] are optional fields, but at least 1 must be not empty for search to work
 
 Use case:
 
 - Shows user the entry that they are looking for.
 
 Example of usage:
-<br> `find /c expense /k beef`
-<br> `find /c income /k salary`
+<br> `find /t expense /c food /de beef `
+<br> `find /t income /de salary /da 03-03-2023 `
 
 ### Deleting an entry: `delete`
 

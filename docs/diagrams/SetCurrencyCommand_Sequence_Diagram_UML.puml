@@ -3,13 +3,25 @@
 participant ":System" as System
 participant ":Selector" as Selector
 participant ":UI" as UI
+participant ":Parser" as Parser
+participant ":Currency" as Currency
 participant "SetCurrencyCommand" as SetCurrencyCommand
 participant "ChChingException" as ChChingException
 
 activate UI
 UI -> UI:readCommand()
-UI -->SetCurrencyCommand: input.nextLine()
+
+activate Parser
+UI -->Parser: input.nextLine()
 deactivate UI
+
+activate Currency
+Parser -> Currency: getCurrency(argumentsByField)
+Parser <-- Currency
+deactivate Currency
+
+Parser -> SetCurrencyCommand: new SetCurrencyCommand()
+deactivate Parser
 
 activate SetCurrencyCommand
 SetCurrencyCommand -> SetCurrencyCommand: execute(income,expense,ui,storage,selector,converter,targetStorage)
@@ -22,11 +34,16 @@ SetCurrencyCommand ->ChChingException: ChChingException("currency not available"
 deactivate ChChingException
 
 Selector <- SetCurrencyCommand: selector.printSelector(converter)
-deactivate SetCurrencyCommand
 
 activate System
 System <- Selector: System.out.println([x] + currency + converter.convert(currency, 1))
+deactivate Selector
+
+System <- SetCurrencyCommand: System.out.println("Displaying" + currency + "now.")
+deactivate SetCurrencyCommand
 deactivate System
 
 deactivate Selector
+
+destroy ChChingException
 @enduml

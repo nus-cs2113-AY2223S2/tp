@@ -10,8 +10,8 @@ public class ChChingException extends Exception {
         this.message = message;
     }
 
-    public void printChChingException() {
-        System.out.println(message);
-    }
+    // public void printChChingException() {
+    //     System.out.println(message);
+    // }
 }
 

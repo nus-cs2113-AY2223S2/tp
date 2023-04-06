@@ -13,7 +13,7 @@ import chching.record.TargetStorage;
  * Abstract Command class that acts as a template for other command classes.
  */
 
-public abstract class Command {
+public class Command {
 
 
     /**
