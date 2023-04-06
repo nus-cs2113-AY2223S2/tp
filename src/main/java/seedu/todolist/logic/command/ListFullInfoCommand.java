@@ -21,7 +21,7 @@ public class ListFullInfoCommand extends Command{
         Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
     private HashSet<Integer> idHashSet;
-    Predicate<Task> predicate;
+    private Predicate<Task> predicate;
 
     public ListFullInfoCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_FULL_INFO));

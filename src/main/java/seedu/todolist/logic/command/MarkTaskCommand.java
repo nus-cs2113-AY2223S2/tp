@@ -22,7 +22,7 @@ public class MarkTaskCommand extends Command{
         Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
     private HashSet<Integer> idHashSet;
-    Predicate<Task> predicate;
+    private Predicate<Task> predicate;
 
     public MarkTaskCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_MARK));

@@ -24,7 +24,7 @@ public class EditPriorityCommand extends Command{
 
     private HashSet<Integer> idHashSet;
     private Priority priority = Priority.NONE;
-    Predicate<Task> predicate;
+    private Predicate<Task> predicate;
 
     public EditPriorityCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_PRIORITY));

@@ -24,7 +24,7 @@ public class EditRepeatCommand extends Command {
 
     private HashSet<Integer> idHashSet;
     private String repeatDurationString;
-    Predicate<Task> predicate;
+    private Predicate<Task> predicate;
 
     public EditRepeatCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_REPEAT));

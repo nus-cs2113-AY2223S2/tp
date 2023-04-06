@@ -26,7 +26,7 @@ public class EditTagsCommand extends Command {
 
     private HashSet<Integer> idHashSet;
     private TreeSet<String> tags = new TreeSet<>();
-    Predicate<Task> predicate;
+    private Predicate<Task> predicate;
     private Flags purpose;
 
     public EditTagsCommand(HashMap<Flags, String> args) throws ToDoListException {

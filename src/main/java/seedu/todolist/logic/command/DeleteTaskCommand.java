@@ -22,7 +22,7 @@ public class DeleteTaskCommand extends Command {
         Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
     private HashSet<Integer> idHashSet;
-    Predicate<Task> predicate;
+    private Predicate<Task> predicate;
 
     public DeleteTaskCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_DELETE));

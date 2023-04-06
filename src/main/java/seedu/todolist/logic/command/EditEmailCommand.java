@@ -24,7 +24,7 @@ public class EditEmailCommand extends Command {
 
     private HashSet<Integer> idHashSet;
     private String email;
-    Predicate<Task> predicate;
+    private Predicate<Task> predicate;
 
     public EditEmailCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_EMAIL));

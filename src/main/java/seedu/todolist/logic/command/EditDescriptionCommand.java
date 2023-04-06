@@ -22,7 +22,7 @@ public class EditDescriptionCommand extends Command {
 
     private HashSet<Integer> idHashSet;
     private String description;
-    Predicate<Task> predicate;
+    private Predicate<Task> predicate;
 
     public EditDescriptionCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_DESCRIPTION));

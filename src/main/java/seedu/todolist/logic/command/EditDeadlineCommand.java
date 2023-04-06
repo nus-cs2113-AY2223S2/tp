@@ -26,7 +26,7 @@ public class EditDeadlineCommand extends Command  {
 
     private HashSet<Integer> idHashSet;
     private LocalDateTime deadline;
-    Predicate<Task> predicate;
+    private Predicate<Task> predicate;
 
     public EditDeadlineCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_DEADLINE));
