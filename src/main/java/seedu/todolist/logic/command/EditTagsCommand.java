@@ -21,8 +21,8 @@ import java.util.stream.Stream;
 
 public class EditTagsCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_TAGS, Flags.EDIT, Flags.EDIT_ADD,
-            Flags.EDIT_DELETE, Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.DESCRIPTION, Flags.EMAIL,
-            Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
+        Flags.EDIT_DELETE, Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.DESCRIPTION, Flags.EMAIL,
+        Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
     private HashSet<Integer> idHashSet;
     private TreeSet<String> tags = new TreeSet<>();
@@ -31,7 +31,7 @@ public class EditTagsCommand extends Command {
 
     public EditTagsCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_TAGS));
-        if (!Collections.disjoint(args.keySet(), Flags.filterFlags)) {
+        if (!Collections.disjoint(args.keySet(), Flags.FILTER_FLAGS)) {
             // At least one filter flag is present
             predicate = ParserUtil.parseFilter(args);
         }

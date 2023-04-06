@@ -54,12 +54,12 @@ public enum Flags {
     CONFIG_CHECK_FREQ("-chkfreq", false),
     CONFIG_REPEAT_FREQ("-repfreq", false);
 
-    private static final HashMap<String, Flags> map = new HashMap<>();
-    public static final HashSet<Flags> filterFlags = new HashSet<>(Arrays.asList(
+    public static final HashSet<Flags> FILTER_FLAGS = new HashSet<>(Arrays.asList(
             Flags.FILTER_DONE, Flags.FILTER_OVERDUE,
             Flags.DESCRIPTION, Flags.EMAIL, Flags.FILTER_BEFORE, Flags.FILTER_AFTER,
             Flags.REPEAT, Flags.TAG, Flags.PRIORITY
     ));
+    private static final HashMap<String, Flags> map = new HashMap<>();
     private final String name;
     private final boolean canBeEmpty;
 

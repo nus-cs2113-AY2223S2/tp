@@ -19,8 +19,8 @@ import java.util.function.Predicate;
 
 public class EditEmailCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_EMAIL, Flags.EDIT, Flags.EDIT_DELETE,
-            Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.DESCRIPTION, Flags.EMAIL,
-            Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
+        Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.DESCRIPTION, Flags.EMAIL,
+        Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
     private HashSet<Integer> idHashSet;
     private String email;
@@ -28,7 +28,7 @@ public class EditEmailCommand extends Command {
 
     public EditEmailCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_EMAIL));
-        if (!Collections.disjoint(args.keySet(), Flags.filterFlags)) {
+        if (!Collections.disjoint(args.keySet(), Flags.FILTER_FLAGS)) {
             // At least one filter flag is present
             predicate = ParserUtil.parseFilter(args);
         }

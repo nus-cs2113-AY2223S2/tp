@@ -63,6 +63,12 @@ public class TaskList {
         return taskString;
     }
 
+    public String deleteTask(Predicate<Task> p) {
+        String taskString = joinStringStream(tasks.values().stream().filter(p).map(Task::toString));
+        tasks.values().removeIf(p);
+        return taskString;
+    }
+
     /**
      * Returns the number of tasks in this task list.
      *
@@ -143,12 +149,25 @@ public class TaskList {
                 .collect(Collectors.joining(System.lineSeparator() + Messages.LINE + System.lineSeparator()));
     }
 
+    public String getFullInfo(Predicate<Task> p) {
+        return tasks.values().stream().filter(p).map(Task::getFullInfo)
+                .collect(Collectors.joining(System.lineSeparator() + Messages.LINE + System.lineSeparator()));
+    }
+
     public String setDescription(HashSet<Integer> ids, String description) throws InvalidIdException {
         return joinStringStream(getTasks(ids).map(task -> task.setDescription(description)));
     }
 
+    public String setDescription(Predicate<Task> p, String description) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setDescription(description)));
+    }
+
     public String setTags(HashSet<Integer> ids, TreeSet<String> tags) throws InvalidIdException {
         return joinStringStream(getTasks(ids).map(task -> task.setTags(tags)));
+    }
+
+    public String setTags(Predicate<Task> p, TreeSet<String> tags) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setTags(tags)));
     }
 
     //@@author RuiShengGit
@@ -156,17 +175,33 @@ public class TaskList {
         return joinStringStream(getTasks(ids).map(task -> task.setEmail(email)));
     }
 
+    public String setEmail(Predicate<Task> p, String email) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setEmail(email)));
+    }
+
     public String setPriority(HashSet<Integer> ids, Priority priority) throws InvalidIdException {
         return joinStringStream(getTasks(ids).map(task -> task.setPriority(priority)));
+    }
+
+    public String setPriority(Predicate<Task> p, Priority priority) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setPriority(priority)));
     }
 
     public String setDone(HashSet<Integer> ids, boolean isDone) throws InvalidIdException {
         return joinStringStream(getTasks(ids).map(task -> task.setDone(isDone)));
     }
 
+    public String setDone(Predicate<Task> p, boolean isDone) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setDone(isDone)));
+    }
+
     //@@author clement559
     public String setDeadline(HashSet<Integer> ids, LocalDateTime deadline) throws InvalidIdException {
         return joinStringStream(getTasks(ids).map(task -> task.setDeadline(deadline)));
+    }
+
+    public String setDeadline(Predicate<Task> p, LocalDateTime deadline) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setDeadline(deadline)));
     }
 
     public String setRepeatDuration(HashSet<Integer> ids, int repeatDuration)
@@ -177,42 +212,6 @@ public class TaskList {
             throw new InvalidDateException("Task with ID " + noDeadlineTask.id + " has no deadline.");
         }
         return joinStringStream(getTasks(ids).map(task -> task.setRepeatDuration(repeatDuration)));
-    }
-
-    //@@author KedrianLoh
-    public String deleteTask(Predicate<Task> p) {
-        String taskString = joinStringStream(tasks.values().stream().filter(p).map(Task::toString));
-        tasks.values().removeIf(p);
-        return taskString;
-    }
-
-    public String getFullInfo(Predicate<Task> p) {
-        return tasks.values().stream().filter(p).map(Task::getFullInfo)
-                .collect(Collectors.joining(System.lineSeparator() + Messages.LINE + System.lineSeparator()));
-    }
-
-    public String setDescription(Predicate<Task> p, String description) {
-        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setDescription(description)));
-    }
-
-    public String setTags(Predicate<Task> p, TreeSet<String> tags) {
-        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setTags(tags)));
-    }
-
-    public String setEmail(Predicate<Task> p, String email) {
-        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setEmail(email)));
-    }
-
-    public String setPriority(Predicate<Task> p, Priority priority) {
-        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setPriority(priority)));
-    }
-
-    public String setDone(Predicate<Task> p, boolean isDone) {
-        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setDone(isDone)));
-    }
-
-    public String setDeadline(Predicate<Task> p, LocalDateTime deadline) {
-        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setDeadline(deadline)));
     }
 
     public String setRepeatDuration(Predicate<Task> p, int repeatDuration) throws InvalidDateException {

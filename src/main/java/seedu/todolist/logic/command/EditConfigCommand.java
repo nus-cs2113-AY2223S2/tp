@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class EditConfigCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = { Flags.COMMAND_CONFIG,
-            Flags.CONFIG_CHECK_FREQ, Flags.CONFIG_REPEAT_FREQ, Flags.RESET};
+        Flags.CONFIG_CHECK_FREQ, Flags.CONFIG_REPEAT_FREQ, Flags.RESET};
 
     private int checkFrequency;
     private int repeatFrequency;

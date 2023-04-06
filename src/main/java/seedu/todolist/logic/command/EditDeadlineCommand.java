@@ -21,8 +21,8 @@ import java.util.function.Predicate;
 
 public class EditDeadlineCommand extends Command  {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_DEADLINE, Flags.EDIT, Flags.EDIT_DELETE,
-            Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.DESCRIPTION, Flags.EMAIL,
-            Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
+        Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.DESCRIPTION, Flags.EMAIL,
+        Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
     private HashSet<Integer> idHashSet;
     private LocalDateTime deadline;
@@ -30,7 +30,7 @@ public class EditDeadlineCommand extends Command  {
 
     public EditDeadlineCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_DEADLINE));
-        if (!Collections.disjoint(args.keySet(), Flags.filterFlags)) {
+        if (!Collections.disjoint(args.keySet(), Flags.FILTER_FLAGS)) {
             // At least one filter flag is present
             predicate = ParserUtil.parseFilter(args);
         }

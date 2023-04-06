@@ -3,7 +3,6 @@ package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidSelectException;
-import seedu.todolist.logic.FormatterUtil;
 import seedu.todolist.model.Priority;
 import seedu.todolist.exception.InvalidEditException;
 import seedu.todolist.exception.ToDoListException;
@@ -20,8 +19,8 @@ import java.util.function.Predicate;
 
 public class EditPriorityCommand extends Command{
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_PRIORITY, Flags.EDIT, Flags.EDIT_DELETE,
-            Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.DESCRIPTION, Flags.EMAIL,
-            Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
+        Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.DESCRIPTION, Flags.EMAIL,
+        Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
     private HashSet<Integer> idHashSet;
     private Priority priority = Priority.NONE;
@@ -29,7 +28,7 @@ public class EditPriorityCommand extends Command{
 
     public EditPriorityCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_PRIORITY));
-        if (!Collections.disjoint(args.keySet(), Flags.filterFlags)) {
+        if (!Collections.disjoint(args.keySet(), Flags.FILTER_FLAGS)) {
             // At least one filter flag is present
             predicate = ParserUtil.parseFilter(args);
         }

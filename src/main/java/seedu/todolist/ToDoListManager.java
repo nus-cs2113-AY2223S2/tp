@@ -23,6 +23,17 @@ public class ToDoListManager {
     private Config config = new Config();
     private Ui ui = new Ui();
 
+    public ToDoListManager() {
+        ui.printWelcomeMessage();
+        loadConfig();
+        loadTaskList();
+        try {
+            storage.save(taskList, config);
+        } catch (FailedSaveException e) {
+            ui.printError(e);
+        }
+    }
+
     //@@author clement559
     private void loadConfig() {
         try {
@@ -50,17 +61,6 @@ public class ToDoListManager {
             ui.printNewSaveMessage();
         } catch (FailedLoadDataException e3) {
             ui.printError(e3);
-        }
-    }
-
-    public ToDoListManager() {
-        ui.printWelcomeMessage();
-        loadConfig();
-        loadTaskList();
-        try {
-            storage.save(taskList, config);
-        } catch (FailedSaveException e) {
-            ui.printError(e);
         }
     }
 
