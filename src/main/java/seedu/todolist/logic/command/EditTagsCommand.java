@@ -19,8 +19,7 @@ public class EditTagsCommand extends Command {
 
     private HashSet<Integer> idHashSet;
     private TreeSet<String> tags;
-
-    Flags purpose = Flags.EDIT;
+    private Flags purpose = Flags.EDIT;
 
     public EditTagsCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_TAGS));
@@ -36,7 +35,7 @@ public class EditTagsCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
+    public void execute(TaskList taskList, Ui ui) throws InvalidIdException, InvalidEditException {
         for (int id : idHashSet) {
             switch (purpose) {
             case EDIT_DELETE:
@@ -47,6 +46,8 @@ public class EditTagsCommand extends Command {
                 taskString = taskList.setTags(id, tags);
                 ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
                 break;
+            default:
+                throw new InvalidEditException();
             }
         }
     }
