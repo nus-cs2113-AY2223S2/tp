@@ -2,11 +2,7 @@ package seedu.todolist.logic;
 
 import org.junit.jupiter.api.Test;
 import seedu.todolist.constants.Formats;
-import seedu.todolist.exception.InvalidDateException;
-import seedu.todolist.exception.InvalidDurationException;
-import seedu.todolist.exception.InvalidEmailFormatException;
-import seedu.todolist.exception.InvalidIdException;
-import seedu.todolist.exception.PassedDateException;
+import seedu.todolist.exception.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,6 +30,8 @@ class ParserUtilTest {
             assertEquals(ParserUtil.parseId(valid_ids), validIdHashSet);
         } catch (InvalidIdException e) {
             fail("Valid id was not successfully parsed.");
+        } catch (InvalidFlagException e) {
+            fail("Invalid format of flag was used");
         }
     }
 
