@@ -10,8 +10,10 @@ In doing so, the user can better manage his daily calorie gain in order to meet 
 
 ### Commands
 `filter` command
+Allows the user to filter meals based on their calorie content
 
 `examples` command
+Displays examples of exercises and meals
 
 ### Database
 * Added the `ExampleData` database to store examples of meals and exercises to be used in the `examples` command
