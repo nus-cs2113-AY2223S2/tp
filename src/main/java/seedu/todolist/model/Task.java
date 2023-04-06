@@ -166,10 +166,6 @@ public class Task {
         return deadline != null && !deadline.isAfter(LocalDateTime.now());
     }
 
-    public static Predicate<Task> isDonePredicate() {
-        return task -> task.isDone;
-    }
-
     public static Predicate<Task> beforeDate(LocalDate date) {
         return task -> task.deadline != null && task.deadline.toLocalDate().isBefore(date);
     }
@@ -181,5 +177,38 @@ public class Task {
     //@@author clement559
     public static Predicate<Task> isOverdue() {
         return task -> !task.isDone && task.isDue();
+    }
+
+    public static Predicate<Task> isDonePredicate() {
+        return task -> task.isDone;
+    }
+
+    //@@author KedrianLoh
+    public static Predicate<Task> matchesDescription(String description) {
+        return task -> task.description.contains(description);
+    }
+
+    public static Predicate<Task> matchesEmail(String email) {
+        return task -> task.email != null && task.email.equals(email);
+    }
+
+    public static Predicate<Task> beforeDeadline(LocalDateTime deadline) {
+        return task -> task.deadline != null && task.deadline.isBefore(deadline);
+    }
+
+    public static Predicate<Task> afterDeadline(LocalDateTime deadline) {
+        return task -> task.deadline != null && task.deadline.isAfter(deadline);
+    }
+
+    public static Predicate<Task> isRepeating() {
+        return task -> task.repeatDuration > 0;
+    }
+
+    public static Predicate<Task> matchesTags(TreeSet<String> tags) {
+        return task -> task.tags.containsAll(tags);
+    }
+
+    public static Predicate<Task> matchesPriority(Priority priority) {
+        return task -> task.priority.equals(priority);
     }
 }

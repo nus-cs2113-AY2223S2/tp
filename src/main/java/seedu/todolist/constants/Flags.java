@@ -19,8 +19,6 @@ public enum Flags {
     COMMAND_UNMARK("unmark", false),
     COMMAND_DELETE("delete", false),
     COMMAND_FULL_INFO("info", false),
-    COMMAND_FIND_TAG("findbytag", false),
-    COMMAND_FIND_PRIORITY("findbypriority", false),
     COMMAND_CONFIG("config", true),
 
     // Flags for commands that edit task parameters
@@ -46,6 +44,8 @@ public enum Flags {
     // Filter flags
     FILTER_DONE("-done", false),
     FILTER_OVERDUE("-overdue", false),
+    FILTER_BEFORE("-before", false),
+    FILTER_AFTER("-after", false),
 
     // Config flags
     CONFIG_CHECK_FREQ("-chkfreq", false),

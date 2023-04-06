@@ -2,7 +2,6 @@
 package seedu.todolist.model;
 
 import seedu.todolist.constants.Formats;
-import seedu.todolist.logic.FormatterUtil;
 
 import java.time.LocalDateTime;
 

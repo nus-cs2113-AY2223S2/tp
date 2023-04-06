@@ -21,7 +21,6 @@ public final class Errors {
     public static final String INVALID_FREQUENCY = "Invalid frequency: ";
     public static final String INVALID_BOOLEAN = "Invalid boolean value: ";
     public static final String INVALID_SORT = "Invalid sort option: ";
-    public static final String INVALID_FIND_TAG = "Unable to find desired tag. Please try again.";
 
     //@@author clement559
     public static final String FAILED_SAVE = "Error when saving; please check that you have write permissions for "

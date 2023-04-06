@@ -7,7 +7,6 @@ import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.model.Config;
 import seedu.todolist.logic.Parser;
 import seedu.todolist.logic.command.Command;
-import seedu.todolist.logic.command.EditConfigCommand;
 import seedu.todolist.logic.command.ProgressBarCommand;
 import seedu.todolist.storage.Storage;
 import seedu.todolist.model.TaskList;

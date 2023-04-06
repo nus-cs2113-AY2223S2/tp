@@ -2,6 +2,7 @@ package seedu.todolist.logic;
 
 import seedu.todolist.constants.Flags;
 import seedu.todolist.constants.Formats;
+import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.model.Priority;
 import seedu.todolist.exception.InvalidBooleanException;
 import seedu.todolist.exception.InvalidDateException;
@@ -74,6 +75,8 @@ public class ParserUtil {
         try {
             int priority = Integer.parseInt(priorityString);
             switch (priority) {
+            case 0:
+                return Priority.NONE;
             case 1:
                 return Priority.LOW;
             case 2:
@@ -203,6 +206,14 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses a boolean argument.
+     * "1", "y", "yes", "t", "true" are considered true, while "0", "n", "no", "f", "false" are considered false.
+     *
+     * @param boolString The boolean argument.
+     * @return Whether the argument was recognized as true or false.
+     * @throws InvalidBooleanException If the argument is not considered as either true or false.
+     */
     public static boolean parseBoolean(String boolString) throws InvalidBooleanException {
         switch (boolString.toLowerCase()) {
         case "1":
@@ -222,7 +233,14 @@ public class ParserUtil {
         }
     }
 
-    public static Predicate<Task> parseFilter(HashMap<Flags, String> args) throws InvalidBooleanException {
+    /**
+     * Parses the filter options.
+     *
+     * @param args Hashmap containing filter flags and their arguments, if any.
+     * @return A predicate matching all the given filters.
+     * @throws ToDoListException If the argument for any filter is invalid.
+     */
+    public static Predicate<Task> parseFilter(HashMap<Flags, String> args) throws ToDoListException {
         Predicate<Task> predicate = task -> true;
         if (args.containsKey(Flags.FILTER_DONE)) {
             predicate = predicate.and(parseBoolean(args.get(Flags.FILTER_DONE))
@@ -232,10 +250,38 @@ public class ParserUtil {
             predicate = predicate.and(parseBoolean(args.get(Flags.FILTER_OVERDUE))
                     ? Task.isOverdue() : not(Task.isOverdue()));
         }
+        //@@author KedrianLoh
+        if (args.containsKey(Flags.DESCRIPTION)) {
+            predicate = predicate.and(Task.matchesDescription(args.get(Flags.DESCRIPTION)));
+        }
+        if (args.containsKey(Flags.EMAIL)) {
+            predicate = predicate.and(Task.matchesEmail(parseEmail(args.get(Flags.EMAIL))));
+        }
+        if (args.containsKey(Flags.FILTER_BEFORE)) {
+            predicate = predicate.and(Task.beforeDeadline(parseDeadline(args.get(Flags.FILTER_BEFORE))));
+        }
+        if (args.containsKey(Flags.FILTER_AFTER)) {
+            predicate = predicate.and(Task.afterDeadline(parseDeadline(args.get(Flags.FILTER_AFTER))));
+        }
+        if (args.containsKey(Flags.REPEAT)) {
+            predicate = predicate.and(Task.isRepeating());
+        }
+        if (args.containsKey(Flags.TAG)) {
+            predicate = predicate.and(Task.matchesTags(parseTags(args.get(Flags.TAG))));
+        }
+        if (args.containsKey(Flags.PRIORITY)) {
+            predicate = predicate.and(Task.matchesPriority(parsePriority(args.get(Flags.PRIORITY))));
+        }
         return predicate;
     }
 
-    //@@author KedrianLoh
+    /**
+     * Parses the sort option.
+     *
+     * @param sortType The sort option as a string.
+     * @return The comparator matching the sort option.
+     * @throws InvalidSortException If the string did not match any sort option.
+     */
     public static Comparator<Task> parseSort(String sortType) throws InvalidSortException {
         switch (sortType) {
         case "due":

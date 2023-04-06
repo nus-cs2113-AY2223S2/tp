@@ -17,8 +17,6 @@ import seedu.todolist.logic.command.EditRepeatCommand;
 import seedu.todolist.logic.command.EditTagsCommand;
 import seedu.todolist.logic.command.ExitCommand;
 import seedu.todolist.logic.command.HelpCommand;
-import seedu.todolist.logic.command.FindByPriorityCommand;
-import seedu.todolist.logic.command.FindByTagCommand;
 import seedu.todolist.logic.command.ListFullInfoCommand;
 import seedu.todolist.logic.command.ListTagsCommand;
 import seedu.todolist.logic.command.ListTasksCommand;
@@ -109,14 +107,14 @@ public class Parser {
         switch (command) {
         case COMMAND_EXIT:
             return new ExitCommand();
-        case COMMAND_LIST:
-            return new ListTasksCommand(getArguments(splitInput, ListTasksCommand.EXPECTED_FLAGS));
         case COMMAND_TAG_LIST:
             return new ListTagsCommand();
         case COMMAND_PROGRESS:
             return new ProgressBarCommand();
         case COMMAND_HELP:
             return new HelpCommand();
+        case COMMAND_LIST:
+            return new ListTasksCommand(getArguments(splitInput, ListTasksCommand.EXPECTED_FLAGS));
         case COMMAND_ADD:
             return new AddTaskCommand(getArguments(splitInput, AddTaskCommand.EXPECTED_FLAGS));
         case COMMAND_MARK:
@@ -139,10 +137,6 @@ public class Parser {
             return new EditPriorityCommand(getArguments(splitInput, EditPriorityCommand.EXPECTED_FLAGS));
         case COMMAND_FULL_INFO:
             return new ListFullInfoCommand(getArguments(splitInput, ListFullInfoCommand.EXPECTED_FLAGS));
-        case COMMAND_FIND_TAG:
-            return new FindByTagCommand(getArguments(splitInput, FindByTagCommand.EXPECTED_FLAGS));
-        case COMMAND_FIND_PRIORITY:
-            return new FindByPriorityCommand(getArguments(splitInput, FindByPriorityCommand.EXPECTED_FLAGS));
         case COMMAND_CONFIG:
             return new EditConfigCommand(getArguments(splitInput, EditConfigCommand.EXPECTED_FLAGS));
         default:
