@@ -20,22 +20,29 @@ public class EditTagsCommand extends Command {
     private HashSet<Integer> idHashSet;
     private TreeSet<String> tags;
 
+    private String purpose;
+
     public EditTagsCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_TAGS));
         if (args.containsKey(Flags.EDIT)) {
             tags = ParserUtil.parseTags(args.get(Flags.EDIT));
-        } else if (!args.containsKey(Flags.EDIT_DELETE)) {
+            purpose = "edit";
+        } else if (args.containsKey(Flags.EDIT_DELETE)) {
+            tags = ParserUtil.parseTags(args.get(Flags.EDIT_DELETE));
+            purpose = "delete";
+        } else {
             throw new InvalidEditException();
         }
+
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
         for (int id : idHashSet) {
-            if (tags == null) {
-                String taskString = taskList.getTaskString(id);
+            if (purpose.equals("delete")) {
+                String taskString = taskList.removeTags(id, tags);
                 ui.printEditDeleteTaskMessage("tags", taskString);
-            } else {
+            } else { // purpose.equals("edit")
                 String taskString = taskList.setTags(id, tags);
                 ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
             }

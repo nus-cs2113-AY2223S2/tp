@@ -16,7 +16,7 @@ public final class Messages {
     public static final String UNMARK_TASK = "Okay, I have marked this task as incomplete:";
     public static final String DELETE_TASK = "Okay, I have removed the following task(s):";
     public static final String EDIT_TASK = "Okay, I have edited the %s of this task to [%s]:";
-    public static final String EDIT_DELETE_TASK = "Okay, I have deleted the %s of this task:";
+    public static final String EDIT_DELETE_TASK = "Okay, I have deleted the requested %s of this task:";
     public static final String LIST_TASKS = "Okay, here is your task list, with ";
     public static final String TAGS_INFO = "Okay, here are the tags associated with your task list:";
     public static final String LIST_EMPTY = "There are no tasks in your list.";

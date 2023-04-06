@@ -154,6 +154,12 @@ public class Task {
         return toString();
     }
 
+    public String removeTags(TreeSet<String> tags) {
+        for (String tag : tags){
+            this.tags.remove(tag);
+        }
+        return toString();
+    }
     public String setPriority(int priority) {
         this.priority = priority;
         return toString();
@@ -164,10 +170,12 @@ public class Task {
         return toString();
     }
 
+    /*
     public String removeTags(TreeSet<String> tags) {
         this.tags.removeAll(tags);
         return toString();
     }
+    */
 
     public boolean isDue() {
         return deadline != null && !deadline.isAfter(LocalDateTime.now());
