@@ -33,7 +33,7 @@ public class Storage {
     private static final String WRITE_TO_EXPENSELIST_ERROR = "Error writing to expense list.";
     private static final String NEW_EXPENSE = "New expense list created.";
     private static final String WRITING_TO_FILE_ERROR = "Error writing to account file";
-    private static final String INITIAL_WELCOME_MESSAGE = "Welcome to Duke!";
+    private static final String INITIAL_WELCOME_MESSAGE = "Welcome to ET!";
     private static final String SUBSEQUENT_WELCOME_MESSAGE = "Welcome back!";
     private static final String DATA_CORRUPTED_ERROR = "Data file corrupted. " +
             "Save the remaining data to another location before deleting the current data file. " +
@@ -120,6 +120,14 @@ public class Storage {
         }
         return Objects.requireNonNullElseGet(expenses, ArrayList::new);
     }
+
+    /**
+     * Checks if the expenseList read from json file is valid. This helps to detect potential data changes in the
+     * json file and file corruption.
+     *
+     * @param expenses an ArrayList of Expense read from json file
+     * @param filePath the path from which the expenseList is read from
+     */
 
     private void checkValidExpenseList(ArrayList<Expense> expenses, String filePath) {
         int index = 0;
