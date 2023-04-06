@@ -227,17 +227,31 @@ public class Parser {
         }
     }
 
-    // The add comment currently works in the format of PartnerAbb/ModuleCode
-    private Command handleAddModuleCommand(Storage storage, String abbreviationAndCode, ArrayList<Module> allModules,
+    // The add comment currently works in the format of PartnerAbb/Index
+
+    /**
+     *  Handles User input for Add function. Splits the string into two parts and matches PU Abbreviation to a specific
+     *  PU and finds the Module corresponding to the Index relative to the module list of the PU selected.
+     * @param storage Storage Class that holds user added modules.
+     * @param abbreviationAndIndex String containing university abbreviation and Index of module to add relative
+     *                             to the specific PU module list.
+     * @param allModules    ArrayList of Module that contains all the modules for all PUs.
+     * @param universities  ArrayList of University that contains all the PUs University object.
+     * @return Returns AddModuleCommand(moduleToAdd, storage) to Duke to handle the addition of module into
+     *         user selected modules in storage.
+     * @throws InvalidCommandException Thrown when AbbreviationAndIndex does not split into two Strings.
+     * @throws InvalidPuException Thrown when Abbreviation given cannot be matched with any PUs.
+     * @throws InvalidModuleException Thrown when no Module can be found at the inputted Index.
+     */
+    private Command handleAddModuleCommand(Storage storage, String abbreviationAndIndex, ArrayList<Module> allModules,
                                            ArrayList<University> universities)
             throws InvalidCommandException, InvalidPuException, InvalidModuleException {
-        String[] stringSplit = abbreviationAndCode.split("/");
+        String[] stringSplit = abbreviationAndIndex.split("/");
         if (stringSplit.length != 2) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
         String abbreviation = stringSplit[0];
-        String moduleCode = stringSplit[1];
-        Module moduleToAdd = null;
+        String moduleIndexString = stringSplit[1];
         int univID = -1;
         for (int i = 0; i < universities.size(); ++i) {
             if (universities.get(i).getUnivAbbName().equalsIgnoreCase(abbreviation)) {
@@ -248,10 +262,17 @@ public class Parser {
         if (univID == -1) {
             throw new InvalidPuException(ui.getInvalidPuMessage());
         }
+        int moduleIndex = stringToInt(moduleIndexString);
+        int moduleIndexToAddZeroBased = moduleIndex - 1;
+        Module moduleToAdd = null;
+        int counterUpToIndexToAdd = 0;
         for (int i = 0; i < allModules.size(); i++) {
             Module currentModule = allModules.get(i);
-            if (currentModule.getUnivId() == univID && currentModule.getModuleCode().equalsIgnoreCase(moduleCode)) {
-                moduleToAdd = currentModule;
+            if (currentModule.getUnivId() == univID) {
+                if (counterUpToIndexToAdd == moduleIndexToAddZeroBased) {
+                    moduleToAdd = currentModule;
+                }
+                counterUpToIndexToAdd++;
             }
         }
         if (moduleToAdd == null) {
