@@ -82,7 +82,6 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     @Override
-    //TODO: add a card to the deck command
     protected Command handleAction(String action, List<String> tokens) throws ParseException, InkaException {
         switch (action) {
         case ADD_ACTION:
@@ -155,11 +154,15 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
         CommandLine cmd = parser.parse(buildDeckOptions(), tokens.toArray(new String[0]));
-
         CardSelector cardSelector = getSelectedCard(cmd);
-        String deckName = cmd.getOptionValue("d");
 
-        return new AddCardToDeckCommand(deckName, cardSelector);
+        String[] deckTokenNames = cmd.getOptionValues("d");
+        if(deckTokenNames.length>1) {
+            String deckName = String.join("-", deckTokenNames);
+            return new AddCardToDeckCommand(deckName, cardSelector);
+        } else {
+            return new AddCardToDeckCommand(deckTokenNames[0], cardSelector);
+        }
     }
 
     private Command handleView(List<String> tokens) throws ParseException, InkaException {

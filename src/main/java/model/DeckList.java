@@ -59,4 +59,9 @@ public class DeckList {
     public void delete(int id) {
         this.deckList.remove(id);
     }
+
+    public void delete(String deckName) {
+        Deck deckToDelete = findDeckFromName(deckName);
+        deckList.remove(deckToDelete);
+    }
 }

@@ -33,29 +33,24 @@ public class AddTagToDeckCommand extends Command {
         //find the corresponding Deck and Card based on its deckName and card uuid
         Tag tagToAdd = tagList.findTagFromUUID(tagUUID);
         if(tagToAdd==null) {
-            // exception here
             throw new CreateTagBeforeAddingToDeck();
         }
-        //assert tagToAdd != null; // for the time being, can add newer windowed features later
 
         Deck deckToAdd = deckList.findDeckFromName(deckName);
         if (deckToAdd == null) {
             ui.printDeckCreationSuccess();
             deckToAdd = new Deck(deckName, tagUUID);
+            //Add the cards from UUID here
             deckList.addDeck(deckToAdd);
         } else if(deckToAdd.tagIsInDeck(tagUUID)) {
             throw new TagInDeckException();
         } else {
             deckToAdd.addTag(tagUUID);
         }
+        deckToAdd.addCardstoMap(tagUUID, tagList); // add tagged cards to set
+        deckToAdd.addCardsToSet(tagUUID, tagList); // add tagged cards to map
         deckUUID = deckToAdd.getDeckUUID();
         tagToAdd.addDeck(deckUUID);
-
-        //TODO: Set up a relation between a Tag and Deck attached to, if any
-        //add the tag uuid to the card
-        //leave for the time being, no functionality at this case
-        //        deckUUID = deckToAdd.getDeckUUID();
-        //        cardToAdd.addDeck(deckUUID);
     }
 
     @Override

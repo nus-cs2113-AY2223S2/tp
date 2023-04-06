@@ -24,7 +24,7 @@ public class JsonToMemory {
 
         CardList cardList = getJsonCardList(saveDataObject);
         TagList tagList = getJsonTagList(saveDataObject);
-        DeckList deckList = getJsonDeckList(saveDataObject);
+        DeckList deckList = getJsonDeckList(saveDataObject, tagList);
 
         Memory memory = new Memory(cardList, tagList, deckList);
 
@@ -92,7 +92,7 @@ public class JsonToMemory {
 
     }
 
-    public static DeckList getJsonDeckList(JsonObject saveDataObject){
+    public static DeckList getJsonDeckList(JsonObject saveDataObject, TagList tagList){
         DeckList deckList = new DeckList();
         JsonArray deckJsonArray = saveDataObject.getAsJsonArray("decks");
         for (JsonElement jsonDeck : deckJsonArray) {
