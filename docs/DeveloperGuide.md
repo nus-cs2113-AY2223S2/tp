@@ -6,63 +6,71 @@
 2. [Design](#design)
     + [Architecture](#architecture)
     + [UI Component](#ui-component)
-    + [Logic Component](#logic-component)
-    + [Model Component](#model-component)
+    + [Parser Component](#parser-component)
+    + [Command Component](#command-component)
     + [Storage Component](#storage-component)
-    + [Common Classes](#common-classes)
 3. [Implementation](#implementation)
     + [Add Module](#add-module)
     + [Delete Module](#delete-module)
     + [List Modules](#list-modules)
     + [Show Module](#show-module)
     + [Add Task](#add-task)
-    + [Delete Task](#delete-task)
-    + [Mark Task As Done](#mark-task-as-done)
-    + [Unmark Task](#unmark-task)
+    + [Modify Task](#modify-task)
     + [Find Task](#find-task)
     + [List Task](#list-task)
     + [Find Task on Date](#find-task-on-date)
     + [View Week](#view-week)
     + [Storage](#storage)
     + [Logging](#logging)
-4. [Documentation, logging, testing, configuration, dev-ops](#documentations-logging-testing-configuration-dev-ops)
-    + [Documentation](#documentation)
-    + [Logging](#logging)
-    + [Testing](#testing)
-    + [Configuration](#configuration)
-    + [Dev-ops](#dev-ops)
-5. [Appendix A: Requirements](#appendix-a-requirements)
-    + [Product Scope](#product-scope)
-        + [Target User Profile](#target-user-profile)
-        + [Value Proposition](#value-proposition)
-    + [User Stories](#user-stories)
-    + [Use Cases](#use-cases)
-    + [Non-Functional Requirements](#non-functional-requirements)
-    + [Glossary](#glossary)
-6. [Appendix B: Instructions for manual testing](#appendix-b-instructions-for-manual-testing)
-    + [Launch and Shutdown](#launch-and-shutdown)
+4. [Appendix](#appendix)
+   + [Appendix A: Product Scope](#appendix-a--product-scope)
+   + [Appendix B: User Stories](#appendix-b--user-stories)
+   + [Appendix C: Non-Functional Requirements](#appendix-c--non-functional-requirements) 
+   + [Appendix D: Glossary](#appendix-d--glossary)
+   + [Appendix E: Instructions for manual testing](#appendix-e--instructions-for-manual-testing)
+
 
 ## Acknowledgements
 
-We would like to acknowledge:
+We would like to acknowledge Hong Lin Shang, whose Duke we built upon for our project. We would also like to acknowledge
+the NUSMods Team, whose NUSMods API we used to scrape module data from.
 
-## Design & implementation
+## Design
 
 ### Architecture
+Below is the overall architecture diagram for Apollo.
+
+![](../docs/uml-diagrams/SystemArchitecture.png)
+
+Given below is a quick overview of the main components of Apollo and how they interact with one another.
+
+`Apollo` is the main class and it is responsible for:
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* Load the plaintext files (save and moduleData) and files in the Resources folder to populate its internal memory of
+  ModuleList and TaskList.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary. Updates the plaintext files
+  (save and moduleData) and files in the Resources folder to reflect the current state of Apollo.
+
+The rest of the App consists of the following components:
+* `UI`: The UI of the App.
+* `Parser`: Parses the user input.
+* `Command`: Executes the command.
+* `Data Storage`: Reads data from, and writes data to, the hard disk.
+* `Resources`: Contains relevant module data scraped from NUSMods_API, which is a database.
+
+The user's (NUS_Student) interaction with the UI will be parsed into a command which would update the DataStorage 
+and eventually update the UI which is displayed back to the user. This would continue until the user exits the program, 
+which would result in the latest data stored in DataStorage being saved into the plaintext files.
 
 ### UI Component
-
-### Logic Component
-
-### Model Component
-
+### Parser Component
+### Command Component
 ### Storage Component
-
-### Common Classes
 
 ## Implementation
 
 ### Add Module
+
 
 The AddModule functionality allows users to add a module to their Module List. Beyond just adding their modules to the
 module list, users are also able to add their specific lessons (e.g Lectures and Tutorials) to their module list.
@@ -132,6 +140,10 @@ Step 6:
 Print the confirmation message :
 A confirmation message is printed to the user indicating that the module lesson has been successfully added.
 
+UML Diagram for AddModCommand Class
+
+![](../docs/uml-diagrams/AddModule-AddModuleCommand__Add_Module_.png)
+
 [*Return to TOC*](#table-of-contents)
 
 ### Delete Module
@@ -147,7 +159,6 @@ When user executes the command `delmod cs2113` the Parser class calls the `Delet
 DeleteModuleCommand class. The constructor of the DeleteModuleCommand class takes in a moduleCode `cs2113` as a 
 parameter. This moduleCode is
 used to find `cs2113`  from the ModuleList.
-
 
 Step 2: Define the `setUpLogger()` method :
 The `setUpLogger()` method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
@@ -265,7 +276,7 @@ Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up th
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
 
 Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the Show Module functionality.
-It takes in the necessary parameters, including the ModuleList, Ui, Storage, Tasklist and Calendar.
+It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and Calendar.
 
 Step 4. Find the module to display information: The first step in the `execute()` method is to find the module from 
 `Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
@@ -285,7 +296,7 @@ Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up th
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
 
 Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the Show Module functionality.
-It takes in the necessary parameters, including the ModuleList, Ui, Storage, Tasklist and Calendar objects. The lesson 
+It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and Calendar objects. The lesson 
 type is determined by calling the `getLessonType()` method of the `lessonType` class and parsing in `args[1]` while 
 the moduleCode is set by `args[0]`. If the lessonType is not valid, an `InvalidCommandException` is thrown.
 
@@ -323,7 +334,7 @@ The remaining params of the command are further parsed into Strings: `desc` "con
 Step 3. The initialised `AddCommand` is returned to Apollo. 
 In the event of the following, an error message is printed and no more steps are executed.
 - Delimiters are not entered correctly
-- Remaining params of the command are empty (ie. CLI input of user is "todo"/"deadline"/"event" only)
+- Remaining params of the command are empty (i.e. CLI input of user is "todo"/"deadline"/"event" only)
 
 Step 4. `Command#execute()` is called. This in turn calls `AddCommand#addTask()`. 
 `addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into LocalDateTimes.
@@ -348,7 +359,10 @@ Step 9. `Storage#updateTask()` is called to update the local save file to reflec
 
 [*Return to TOC*](#table-of-contents)
 
-### Delete Task
+### Modify Task
+There are three ways to modify a task: delete, mark and unmark.
+
+#### Delete Task
 
 The DeleteTask functionality allows users to remove a task (todo, event and deadline) from the TaskList.
 It is facilitated by the ModifyCommand class which is an extension of the Command class.
@@ -383,7 +397,7 @@ Step 7: Update the storage: The storage is updated with the new TaskList without
 
 [*Return to TOC*](#table-of-contents)
 
-### Mark Task As Done
+#### Mark Task As Done
 
 The MarkTask functionality allows users to mark a task (todo, event and deadline) as done in their TaskList.
 It is facilitated by the ModifyCommand class which is an extension of the Command class.
@@ -416,7 +430,7 @@ Step 7: Update the storage: The storage is updated with the new TaskList with th
 
 [*Return to TOC*](#table-of-contents)
 
-### Unmark Task 
+#### Unmark Task 
 
 The UnmarkTask functionality allows users to toggle a task (todo, event and deadline) to *not* done in their TaskList.
 It is facilitated by the ModifyCommand class which is an extension of the Command class.
@@ -448,6 +462,10 @@ description (and date of the task deleted if the task is either an event or a de
 
 Step 7: Update the storage: The storage is updated with the new TaskList with the task marked without a cross next to
 it.
+
+![](../docs/uml-diagrams/ModifyCommand-ModifyCommand__Unmark_Tasks_.png)
+![](../docs/uml-diagrams/UnmarkCommandActivityDiagram.png)
+
 
 [*Return to TOC*](#table-of-contents)
 
@@ -526,7 +544,7 @@ description and date of all tasks if the tasks are either an event or a deadline
 ### Find Task on Date
 
 The Find Task on Date functionality allows user to search for a list of tasks (event and deadline) that are happening
-or due on a specific `date` in their Tasklist. It is facilitated by the DateCommand class which is an extension of 
+or due on a specific `date` in their TaskList. It is facilitated by the DateCommand class which is an extension of 
 the Command class.
 
 Below is an example usage of how the Find Task on Date command can be used to search for tasks happening or due on 
@@ -596,21 +614,9 @@ Step 5. Starting from Monday, the lessons and tasks occurring on each day of the
 ### Logging
 (TO BE ADDED SOON)
 
-## Documentation, logging, testing, configuration, dev-ops
+# Appendix
 
-### Documentation
-
-### Logging
-
-### Testing
-
-### Configuration
-
-### Dev-ops
-
-## Appendix A: Requirements
-
-### Product scope
+## Appendix A: Product Scope
 
 #### Target user profile
 
@@ -628,52 +634,212 @@ Existing schedulers do not have access to NUS’s database, making it so that a 
 input all their lessons. We can expedite this process by creating a scheduler that sets itself up via module codes.
 It can also alert the user to possible event clashes.
 
-### User Stories
 Priority Legend:  
 `***` - Highest priority (Must-haves) 
 `**` - Medium priority  (Should-haves)
 `*` - Lowest priority (Could-haves)
 
-| Priority | Version |  As a/an ...  | I want to ...                                             | So that I can ...                                           |
-|:--------:|:-------:|:-------------:|:----------------------------------------------------------|-------------------------------------------------------------|
-|   ***    |  v1.0   |  expert user  | be able to quickly interface with the program using a CLI | issue commands to the bot                                   |
-|   ***    |  v1.0   |   new user    | see usage instructions                                    | refer to them when I forget how to use the application      |
-|   ***    |  v1.0   |     user      | find a to-do item by name                                 | locate a to-do without having to go through the entire list |
-|   ***    |  v1.0   |     user      | delete a to-do item                                       | remove items that I no longer need to keep track of         |
-|   ***    |  v1.0   |     user      | add a to-do item                                          | keep track of things that I need to do                      |
-|   ***    |  v1.0   |     user      | add an event item                                         | keep track of events that I need to attend                  |
-|   ***    |  v1.0   | busy student  | add a deadline item                                       | keep track of deadlines that I need to meet                 |
-|   ***    |  v1.0   |     user      | list all items                                            | view all items that I have added                            |
-|   ***    |  v1.0   |     user      | mark a to-do item as done                                 | keep track of which to-do items I have completed            |
-|   ***    |  v1.0   |     user      | unmark a to-do item as not done                           | keep track of which to-do items I have not completed yet    |
-|   ***    |  v1.0   |     user      | view task count                                           | see how much I have to do                                   |
-|   ***    |  v1.0   | undergraduate | add modules                                               | keep track of the modules I am taking for the semester      |
-|   ***    |  v1.0   | undergraduate | list all modules                                          | see all the modules I am taking for the semester            |
-|    **    |  v1.0   | undergraduate | view module count                                         | keep how many modules I have for the semester               |
-|   ***    |  v1.0   | undergraduate | delete modules                                            | remove modules that I am no longer taking                   |
-|    **    |  v2.0   | undergraduate | keep track of the total modular credits                   | plan my academic year                                       |
-|   ***    |  v2.0   |    student    | add lessons for each module                               | go to the correct classes                                   |
+## Appendix B: User Stories
 
-(More coming soon)
-## Use Cases
+| Priority | Version |           As a/an ...           | I want to ...                                              | So that I can ...                                                             |
+|:--------:|:-------:|:-------------------------------:|:-----------------------------------------------------------|-------------------------------------------------------------------------------|
+|   ***    |  v1.0   |           expert user           | be able to quickly interface with the program using a CLI  | issue commands to the bot.                                                    |
+|   ***    |  v1.0   |            new user             | see usage instructions                                     | refer to them when I forget how to use the application.                       |
+|   ***    |  v1.0   |              user               | find a to-do item by name                                  | locate a to-do without having to go through the entire list.                  |
+|   ***    |  v1.0   |              user               | delete a to-do item                                        | remove items that I no longer need to keep track of.                          |
+|   ***    |  v1.0   |              user               | add a to-do item                                           | keep track of things that I need to do.                                       |
+|   ***    |  v1.0   |              user               | add an event item                                          | keep track of events that I need to attend.                                   |
+|   ***    |  v1.0   |          busy student           | add a deadline item                                        | keep track of deadlines that I need to meet.                                  |
+|   ***    |  v1.0   |              user               | list all items                                             | view all items that I have added.                                             |
+|   ***    |  v1.0   |              user               | mark a to-do item as done                                  | keep track of which to-do items I have completed.                             |
+|   ***    |  v1.0   |              user               | unmark a to-do item as not done                            | keep track of which to-do items I have not completed yet.                     |
+|   ***    |  v1.0   |              user               | view task count                                            | see how much I have to do.                                                    |
+|   ***    |  v1.0   |          undergraduate          | add modules                                                | keep track of the modules I am taking for the semester.                       |
+|   ***    |  v1.0   |          undergraduate          | list all modules                                           | see all the modules I am taking for the semester.                             |
+|    **    |  v1.0   |          undergraduate          | view module count                                          | keep how many modules I have for the semester.                                |
+|   ***    |  v1.0   |          undergraduate          | delete modules                                             | remove modules that I am no longer taking.                                    |
+|    **    |  v2.0   |          undergraduate          | keep track of the total modular credits                    | plan my academic year.                                                        |
+|   ***    |  v2.0   |             student             | add specific lesson types lessons for each module          | go to the correct classes at the right time.                                  |
+|   ***    |  v2.0   |             student             | delete specific lesson types for each module               | avoid going to a class I never signed up for.                                 |
+|   ***    |  v2.0   |             student             | see my lesson timetable                                    | see the timings of my lessons for the week.                                   |
+|    **    |  v2.0   |     over-committed student      | be alerted to clashes between events and module lessons    | rearrange conflicting events.                                                 |
+|    **    |  v2.0   |          busy student           | be alerted to clashes between deadlines and events         | avoid missing out on important deadlines.                                     |
+|    **    |  v2.0   |          busy student           | be alerted to clashes between deadlines and module lessons | avoid missing out on important deadlines during lessons.                      |
+|    **    |  v2.0   |        organised student        | be able to organise my tasklist according to type          | be able to read the tasklist more easily.                                     |
+|    **    |  v2.0   |        organised student        | be able to organise my tasklist according to date          | prioritise deadlines and events correctly.                                    |
+|    **    |  v2.0   |             student             | see my overall timetable                                   | see all lessons, events and module lessons at the same time.                  |
+|    **    |  v2.0   |         curious student         | view module information                                    | see what a module is about without adding it to my module list.               |
+|    **    |  v2.0   | prospective student of a module | view module lesson information                             | see which lessons I am able to fit into my timetable.                         |
+|    **    |  v2.0   |             student             | list all lessons I have for a module                       | see if I registered for the right lessons.                                    |
+|    **    |  v2.1   |        forgetful student        | view which weeks my lessons occur                          | turn up for lesson on the correct weeks.                                      |
+|    **    |  v2.1   |         forgetful user          | view help menu for specific commands                       | get formatting options for each command without viewing the entire help menu. |
 
-## Non-Functional Requirements
+
+## Appendix C: Non-Functional Requirements
 
 * Apollo should work on any mainstream OS as long as it has Java 11 or above installed.
+* Apollo should be able to work on a typical CLI without any issues. It does not require installation of third-party
+  software.
 * Apollo should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
   able to accomplish most of the tasks faster using commands than using the mouse.
+* Apollo is free-to-use. No payment is required to use the application.
+* The user interface should be intuitive enough for users who are new to the application.
+* Apollo should respond to any user interaction within 3 seconds.
+* Module data for Apollo is limited to what is available on NUSMods, i.e. Apollo has module data for all modules offered
+  by NUS in AY22/23 Semester 1 and 2.
 
-## Glossary
+## Appendix D: Glossary
 
 * *Mainstream OS* - Windows, Linux, Unix, OS-X
 * *CLI* - Command Line Interface
-*
+* *Modules* - Modules are the courses that students take in NUS. They are identified by a 6-character alphanumeric code.
+* *Modular Credits* - Modular credits are the credits that students earn for each module they take. They are used to
+  calculate the total number of credits a student has earned for the semester.
 
-## Appendix B: Instructions for manual testing
+## Appendix E: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 > Note: These instructions only provide a starting point for testers to work on;
 > testers are expected to do more *exploratory* testing.
+
+### Launch
+* Download the .jar file from the latest release here and copy it into an empty folder. 
+* Open a terminal in the folder and run the command `java -jar apollo.jar`. The CLI should appear in a few seconds.
+* Expected: The CLI should appear with a welcome message and a prompt to enter a command. Resize the CLI window size
+    for optimal text wrapping.
+```
+____________________________________________________________
+Hello from
+ ____    ____    _____  __      __       _____
+|  _  | |  _ \  | ___ | | |     | |     | ___ |
+| |_| | | |_| | | | | | | |     | |     | | | |
+| | | | |  __/  | |_| | | |___  | |___  | |_| |
+|_| |_| |_|     \_____/ |_____| |_____| \_____/
+
+Your personal task and timetable manager!
+Enter "help" to see a list of commands.
+____________________________________________________________
+```
+### Sample test cases
+#### Invalid Commands
+1. Type `hello` and press enter.
+2. Any commands Apollo cannot understand will be treated as invalid commands.
+
+Expected: Apollo should respond with an error message for invalid commands.
+```
+____________________________________________________________
+Sorry, but I don't know what that means :(
+____________________________________________________________
+```
+#### Help Command
+1. Make sure you are in the main interface.
+2. Sub-case 1: Type `help` and press enter.
+3. Sub-case 2: You may also type `help [COMMAND]` to get more information about a specific command. Example: `help addmod`
+
+Expected of Sub-case 1: The help menu should appear with the list of all commands available on Apollo with `help`.
+```
+The help menu gives a summary of all the commands available in Apollo!
+Input `help` to see all available commands.Input "help [COMMAND]" for usage help and more information for a specific command.
+
+These are the available Task Commands and their corresponding commands (in brackets):
+
+1. `list` - Track and organises your tasklist!
+2. `todo [TASK]` - Adds a ToDo in your tasklist.
+3. `deadline [TASK] -[BY]` - Adds a Deadline in your tasklist.
+4. `event [TASK] -[FROM] -[TO]` - Adds an Event in your tasklist.
+5. `mark [IDX]` - Marks a task in your tasklist as done!
+6. `unmark [IDX]` - Unmarks a task in your tasklist as incomplete.
+7. `delete [IDX]` - Deletes a task from your list.
+8. `find [KEYWORD]` - Shows all tasks that contain a specified keyword.
+9. `date [DATE]` - Shows all tasks that occur on the specified date.
+
+____________________________________________________________
+These are the available Module Commands and their corresponding commands (in brackets):
+
+1. `listmod` - Track and organise your academic plan for this semester!
+2. `listmod [MODULE_CODE]` - See more information about the classes you've added for a module in your list.
+3. `listmod [MODULE_CODE] -[FLAG]` - See more information about a specific class type for a module in your list
+4. `showmod [MODULE_CODE]` - See more information about the specified module.
+5. `showmod [MODULE_CODE] -[FLAG]` - View timing of specific lesson type for a chosen module
+6. `addmod [MODULE_CODE]` - Adds a module to your module list.
+7. `addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]` - Adds a chosen lesson of a specified module to your timetable! 
+8. `Remove a module (delmod [MODULE_CODE or IDX]` - Removes a Module you previously added by code or index in module list.
+9. `delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]` - Removes a lesson of a specified module from your timetable. 
+
+NOTE: showmod, addmod, delmod, listmod are commands with flags included in them. 
+Whatever in [THE SQUARE BRACKETS] are provided by you.For more information on the flags, please input "help [COMMAND]" exclusive of the square brackets. 
+For example, if you want to know more about the addmod command and its flags, input "help addmod".
+
+____________________________________________________________
+These are the Utility Commands:
+
+1. `week` - Displays your schedule for the week.
+2. `bye` - Exit the program
+3. `help` - Get a summary of all the commands available on Apollo.
+View help for a specific command by inputting help [COMMAND] 
+____________________________________________________________
+```
+Expected of Sub-case 2: The help menu for that command should appear.
+```
+____________________________________________________________
+Shows the information of a module, including Modular Credits, lesson types, lesson numbers and times.
+Format: showmod MODULE_CODE
+
+If you would like to view timing information on a specific lesson type of a module, you can use flags.
+Format: showmod MODULE_CODE -FLAG
+Example: showmod CS1010 -st
+
+NOTE: Different modules have different lesson types.
+It is recomended to run `showmod MODULE_CODE` to see the lesson types available for that module.
+
+There are -FLAGS for the various lessons options per module:
+-lec			LECTURE
+-plec			PACKAGED LECTURE
+-st 			SECTIONAL TEACHING
+-dlec			DESIGN LECTURE
+-tut			TUTORIAL
+-ptut			PACKAGED TUTORIAL
+-rcit			RECITATION
+-lab			LABORATORY
+-ws 			WORKSHOP
+-smc			SEMINAR STYLE MODULE CLASS
+-mp 			MINI PROJECT
+-tt2			TUTORIAL TYPE 2
+____________________________________________________________
+```
+#### Adding a ToDo/Event/Deadline
+
+#### Deleting a Todo/Event/Deadline
+
+#### Adding a Module
+
+#### Adding a Lesson
+
+#### Deleting a Module
+
+#### Deleting a Lesson
+
+### Saving Data
+
+1. Dealing with save files with erroneous data.
+
+The save file for tasks is located at save.txt within the *home folder* for Apollo. 
+The save file for modules is located at moduleData.txt within the *home folder* for Apollo.
+To simulate erroneous save files, edit either files in the data folder to contain erroneous data.
+You can input random characters, or delete some lines to simulate a corrupted save file. Apollo should be able to
+detect the errors and inform the user of the errors, skipping the erroneous data entirely.
+
+Example message when save.txt has errors when the first line has been mutated so that the data is no longer 
+in the correct format:
+```
+Module Data loaded
+____________________________________________________________
+There is an error in save.txt at line 1
+Task 1 has been excluded. You can edit the save file at:
+save.txt
+____________________________________________________________
+```
+Note: The above message will be displayed before the welcome message.
 
 [*Return to TOC*](#table-of-contents)

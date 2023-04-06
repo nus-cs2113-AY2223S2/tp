@@ -13,7 +13,7 @@ If you can type fast, Apollo can get your timetable management done faster than 
 2. [Features](#features)
     + [Task Commands](#task-commands)
     + [Module Commands](#module-commands)
-    + [Common Commands](#common-commands)
+    + [Utility Commands](#utility-commands)
     + [Loading and saving of data](#loading-and-saving-of-data)
 
 3. [Command summary](#command-summary)
@@ -22,7 +22,7 @@ If you can type fast, Apollo can get your timetable management done faster than 
 ## Quick Start
 
 1. Ensure that you have Java `11` or above installed on your Personal Computer.
-2. Download the latest `tp.jar` from [here]().
+2. Download the latest `tp.jar` from [here](https://github.com/AY2223S2-CS2113-T13-4/tp/releases).
 3. Copy the file to the folder you want to use as the home folder for your Apollo. This folder must be *empty*.
 4. Open a command terminal, cd into the directory you put the jar file in and run the command `java -jar tp.jar`.
 5. On opening, Apollo should greet you with this:
@@ -35,38 +35,49 @@ Hello from
 | |_| | | |_| | | | | | | |     | |     | | | |
 | | | | |  __/  | |_| | | |___  | |___  | |_| |
 |_| |_| |_|     \_____/ |_____| |_____| \_____/
+
+Your personal task and timetable manager!
 Enter "help" to see a list of commands.
 ____________________________________________________________
 
 ```
 
+**IMPORTANT:** 
+- It is recommended that users **not** mutate the logger files. If the logger file is corrupted, severe errors will be logged
+on the console by design. However, the application will still run normally and error messages thrown by the logger is not considered a bug.
+- Users may edit the save.txt and the moduleData.txt files directly on a plaintext file editor but it is recommended 
+  that users edit it with the application. This is to ensure that save data in the correct format so that the data can be
+  correctly loaded upon relaunch.
+
+
 ## Command Summary
 
-|         Action          |              Format              |
-|:-----------------------:|:--------------------------------:|
-|       List Tasks        |              `list`              |
-|          Todo           |           `todo TASK`            |
-|        Deadline         |     `deadline TASK /by DATE`     |
-|          Event          | `event TASK /from DATE /to DATE` |
-|          Mark           |            `mark IDX`            |
-|         Unmark          |           `unmark IDX`           |
-|       Delete Task       |           `delete IDX`           |
-| Find Tasks with Keyword |          `find KEYWORD`          |
-|   Find Tasks on Date    |           `date DATE`            |
-|      List Modules       |            `listmod`             |
-|       Add Module        |       `addmod MODULE_CODE`       |
-|      Delete Module      |           `delmod IDX`           |
-| Show Module Information |            `showmod`             |
-|          Help           |              `help`              |
-|    Help for Command     |          `help COMMAND`          |
- |     Weekly Schedule     |              `week`              |
-|           Bye           |              `bye`               |
-
+|          Action           |              Format              |
+|:-------------------------:|:--------------------------------:|
+|        List Tasks         |              `list`              |
+|           Todo            |           `todo TASK`            |
+|         Deadline          |     `deadline TASK /by DATE`     |
+|           Event           | `event TASK /from DATE /to DATE` |
+|           Mark            |            `mark IDX`            |
+|          Unmark           |           `unmark IDX`           |
+|        Delete Task        |           `delete IDX`           |
+|  Find Tasks with Keyword  |          `find KEYWORD`          |
+|    Find Tasks on Date     |           `date DATE`            |
+|       List Modules        |            `listmod`             |
+| List Modules with lessons |         `listmod cs2113`         |
+|        Add Module         |       `addmod MODULE_CODE`       |
+|       Delete Module       |           `delmod IDX`           |
+|  Show Module Information  |            `showmod`             |
+|           Help            |              `help`              |
+|     Help for Command      |          `help COMMAND`          |
+|      Weekly Schedule      |              `week`              |
+|            Bye            |              `bye`               |
+    
 > Notes about the command format:
 > + Words in `UPPER_CASE` are the parameters to be supplied by the user.
 > > e.g. in 'todo TASK', `TASK` is a parameter that can be used as `todo read book`.
-> + `DATE`s should be input in the format `yyyy-MM-ddThh:mm`.
-> > e.g. `deadline read book /by 2023-10-30T23:59` sets a deadline for Oct 20 2023, 11:59PM
+> + `DATE`s should be input in the format `dd-MM-yyyy-HH:mm` where HH is 24-hour format
+> > e.g. `deadline read book /by 30-10-23:59` sets a deadline for Oct 20 2023, 11:59PM
 > + Tasks that have occurred prior to the current date cannot be added. 
 > + `IDX` can be obtained by using `list` for tasks or `listmod` for modules.  
 > + By default, all newly added tasks are not completed.
@@ -116,10 +127,10 @@ However, you will still be able to add it into the tasklist.
 
 Format: `deadline TASK -by DATE`
 
-> Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
+> Note: `DATE` must be entered in the format `dd-MM-yyyy-HH:mm`.
 
 ```
->> deadline submit tutorial -by 2023-03-30T23:59
+>> deadline submit tutorial -by 30-03-2023-23:59
 Got it. I've added this deadline:
   [D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
 ```
@@ -132,10 +143,10 @@ However, you will still be able to add it.
 
 Format: `event TASK -from DATE -to DATE`
 
-> Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
+> Note: `DATE` must be entered in the format `dd-MM-yyyy-HH:mm`.
 
 ```
->> event holiday -from 2023-03-25T00:00 -to 2023-03-30T23:59
+>> event holiday -from 25-03-2023-00:00 -to 30-03-2023-23:59
 Got it. I've added this event:
   [E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
 ```
@@ -146,7 +157,7 @@ Marks the specified task as completed.
 
 Format: `mark IDX`
 
-> Note: `IDX` can be obtained by using `list` to find the task's index.
+> Note: `IDX` can be obtained by using `list` to find the task's index. You can only mark the same task as done once.
 
 ```
 >> mark 4
@@ -160,7 +171,7 @@ Marks the specified task as not completed.
 
 Format: `unmark IDX`
 
-> Note: `IDX` can be obtained by using `list` to find the task's index.
+> Note: `IDX` can be obtained by using `list` to find the task's index. You can only unmark the same task as incomplete once.
 
 ```
 >> unmark 4
@@ -201,10 +212,10 @@ Shows all tasks in Apollo that occur on the specified date.
 
 Format: `date DATE`
 
-> Note: `DATE` should be entered in the format `yyyy-MM-dd`.
+> Note: `DATE` should be entered in the format `dd-MM-yyyy.
 
 ```
->> date 2023-03-30
+>> date 30-03-2023
 Here are the tasks happening on Mar 30 2023:
 1.[E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
 2.[D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
@@ -225,6 +236,18 @@ You are taking 3 module(s) this semester:
 2.CS2113: Software Engineering & Object-Oriented Programming (4 MCs)
 3.DTK1234: Design Thinking (4 MCs)
 Total modular credits you have in this semester: 12
+```
+### `listmod with lessons` - Lists all the lessons user is taking in that module
+Shows the list of classes user is taking for that module and their lesson type,day,timing and frequency
+```
+>> listmod cs2113
+These are your classes for Module CS2113: 
+
+Lecture 1
+   Friday 1600 - 1800 [Weekly]
+Tutorial 13
+   Friday 1300 - 1400 [Weeks: 3-13]
+
 ```
 
 ### `addmod` - Adding a module
@@ -336,7 +359,7 @@ The ordering of lessons in the list are sorted as follows:
 2. Lesson Number (lexicographically)
 3. Lesson Day and time
 
-## *Common Commands*
+## *Utility Commands*
 
 ### `help` - Viewing help
 
@@ -346,28 +369,29 @@ Format: `help`
 
 #### `help` for specific commands
 
-To see the help menu for a specific command instead of the longer help command or to find out more about a command, 
+To see a shorter help menu for a specific command instead of the longer help command or to find out more about a command, 
 you can do so by typing `help COMMAND`.
 The below is a list of commands that you can use with `help`.
 
 Format: `help COMMAND`
 
-|  Command   |                          Help/Information Message contains...                           |
-|:----------:|:---------------------------------------------------------------------------------------:|
-|   `list`   |                      information and format for list tasks command                      |
-|   `todo`   |                                 format for todo command                                 |
-| `deadline` |                               format for deadline command                               |
-|  `event`   |                                format for event command                                 |
-|   `mark`   |                                 format for mark command                                 |
-|  `unmark`  |                                format for unmark command                                |
-|  `delete`  |                             format for delete task command                              |
-|   `find`   |                     format for finding matching tasks with keyword                      |
-|   `date`   |                           format for finding tasks with date                            |
-| `listmod`  |                     information and format for list module command                      |
-|  `addmod`  | information and format of adding modules and module lessons commands, with flag options |
-|  `delmod`  |       information and format of delete module command options, with flag options        |
-| `showmod`  |                  information and format of show module command options                  |
-|   `bye`    |                         information and format for bye command                          |
+|         Command         |                          Help/Information Message contains...                           |
+|:-----------------------:|:---------------------------------------------------------------------------------------:|
+|         `list`          |                      information and format for list tasks command                      |
+|         `todo`          |                                 format for todo command                                 |
+|       `deadline`        |                               format for deadline command                               |
+|         `event`         |                                format for event command                                 |
+|         `mark`          |                                 format for mark command                                 |
+|        `unmark`         |                                format for unmark command                                |
+|        `delete`         |                             format for delete task command                              |
+|         `find`          |                     format for finding matching tasks with keyword                      |
+|         `date`          |                           format for finding tasks with date                            |
+|        `listmod`        |                     information and format for list module command                      |
+| `listmod [MODULE_CODE]` |                 information and format for list specific module command                 |
+|        `addmod`         | information and format of adding modules and module lessons commands, with flag options |
+|        `delmod`         |       information and format of delete module command options, with flag options        |
+|        `showmod`        |                  information and format of show module command options                  |
+|          `bye`          |                         information and format for bye command                          |
 
 Format: `help COMMAND`
 
@@ -415,14 +439,34 @@ Bye. Hope to see you again soon!
 
 ## *Loading and saving of data*
 
-Apollo automatically loads up your todo and module lists on start-up.
+- Apollo automatically loads up your todo and module lists on start-up.
 
-After any command that changes the data, Apollo will save the changes into your hard disk automatically.
-No need to save manually!
+- After any command that changes the data, Apollo will save the changes into your hard disk automatically.
+  No need to save manually!
 
-The save file for your tasks is located at save.txt within the *home folder* for Apollo.
-The save file for your modules is located at moduleData.txt within the *home folder* for Apollo.
-If either file is corrupted, Apollo will show you a warning before the welcome message.
+- The save file for your tasks is located at save.txt within the *home folder* for Apollo.
+- The save file for your modules is located at moduleData.txt within the *home folder* for Apollo.
+- If either file is corrupted or has errors, Apollo will show you a warning before the welcome message.
+Example message when save.txt has errors:
+```
+Module Data loaded
+____________________________________________________________
+There is an error in save.txt at line 1
+Task 1 has been excluded. You can edit the save file at:
+save.txt
+____________________________________________________________
+____________________________________________________________
+Hello from
+ ____    ____    _____  __      __       _____
+|  _  | |  _ \  | ___ | | |     | |     | ___ |
+| |_| | | |_| | | | | | | |     | |     | | | |
+| | | | |  __/  | |_| | | |___  | |___  | |_| |
+|_| |_| |_|     \_____/ |_____| |_____| \_____/
+
+Your personal task and timetable manager!
+Enter "help" to see a list of commands.
+____________________________________________________________
+```
 
 
 

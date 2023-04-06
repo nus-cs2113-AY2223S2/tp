@@ -1,0 +1,71 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title AddModuleCommand (Add Module)
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":AddModuleCommand" as AddModuleCommand
+participant ":ModuleList" as ModuleList
+participant ":Module" as Module
+participant ":Ui" as Ui
+
+User -> Apollo : "addmod CS2113"
+activate Apollo
+
+Apollo -> Parser : getCommand()
+activate Parser
+
+Parser -> AddModuleCommand** : AddModuleCommand()
+activate AddModuleCommand
+AddModuleCommand -> AddModuleCommand : setUpLogger()
+activate AddModuleCommand
+deactivate AddModuleCommand
+
+AddModuleCommand -> Module** : Module()
+activate Module
+Module --> AddModuleCommand : module
+deactivate Module
+destroy Module
+
+AddModuleCommand --> Parser: new AddModuleCommand
+deactivate AddModuleCommand
+
+Parser -> AddModuleCommand : execute()
+activate AddModuleCommand
+alt args.length == 3
+    AddModuleCommand -> AddModuleCommand : handleMultiCommand()
+    activate AddModuleCommand
+    AddModuleCommand -> Ui : printClassAddedMessage()
+    activate Ui
+    Ui --> AddModuleCommand
+    deactivate Ui
+else
+    AddModuleCommand -> ModuleList: add(module)
+    activate ModuleList
+    ModuleList --> AddModuleCommand
+    deactivate ModuleList
+
+    AddModuleCommand -> ModuleList : sortModuleList()
+    activate ModuleList
+    ModuleList --> AddModuleCommand
+    deactivate ModuleList
+
+    AddModuleCommand -> Ui : printModuleAddedMessage()
+    activate Ui
+    Ui --> AddModuleCommand
+    deactivate Ui
+
+end
+deactivate AddModuleCommand
+destroy Ui
+AddModuleCommand --> Parser : AddModuleCommand
+deactivate AddModuleCommand
+destroy AddModuleCommand
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+deactivate Apollo
+
+@enduml
