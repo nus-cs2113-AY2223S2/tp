@@ -48,36 +48,45 @@ on the console by design. However, the application will still run normally and e
 - Users may edit the save.txt and the moduleData.txt files directly on a plaintext file editor but it is recommended 
   that users edit it with the application. This is to ensure that save data in the correct format so that the data can be
   correctly loaded upon relaunch.
+- Currently, Apollo is only optimised to store data for NUS Students reading modules in the Academic Year 22/23 Semester 2. 
+Due to a lack of a DBMS and data size constraints for the project, we are unable to store data for more than one semester.
+Hence, users utilising Apollo should input their modules for the current semester only, which as of 06/04/23 is AY22/23 S2.
+
 
 
 ## Command Summary
 
-|          Action           |              Format              |
-|:-------------------------:|:--------------------------------:|
-|        List Tasks         |              `list`              |
-|           Todo            |           `todo TASK`            |
-|         Deadline          |     `deadline TASK /by DATE`     |
-|           Event           | `event TASK /from DATE /to DATE` |
-|           Mark            |            `mark IDX`            |
-|          Unmark           |           `unmark IDX`           |
-|        Delete Task        |           `delete IDX`           |
-|  Find Tasks with Keyword  |          `find KEYWORD`          |
-|    Find Tasks on Date     |           `date DATE`            |
-|       List Modules        |            `listmod`             |
-| List Modules with lessons |         `listmod cs2113`         |
-|        Add Module         |       `addmod MODULE_CODE`       |
-|       Delete Module       |           `delmod IDX`           |
-|  Show Module Information  |            `showmod`             |
-|           Help            |              `help`              |
-|     Help for Command      |          `help COMMAND`          |
-|      Weekly Schedule      |              `week`              |
-|            Bye            |              `bye`               |
+|          Action           |                         Format                         |
+|:-------------------------:|:------------------------------------------------------:|
+|        List Tasks         |                         `list`                         |
+|           Todo            |                     `todo <TASK>`                      |
+|         Deadline          |              `deadline <TASK> -by <DATE>`              |
+|           Event           |         `event <TASK> -from <DATE> -to <DATE>`         |
+|           Mark            |                      `mark <IDX>`                      |
+|          Unmark           |                     `unmark <IDX>`                     |
+|        Delete Task        |                     `delete <IDX>`                     |
+|  Find Tasks with Keyword  |                    `find <KEYWORD>`                    |
+|    Find Tasks on Date     |                     `date <DATE>`                      |
+|       List Modules        |                       `listmod`                        |
+| List Modules with lessons |                `listmod <MODULE CODE>`                 |
+|        Add Module         |                 `addmod <MODULE_CODE>`                 |
+|    Add Module Lessons     |   `addmod MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>`   |
+|  Delete Module by Index   |                     `delmod <IDX>`                     |
+|   Delete Module by Code   |                 `delmod <MODULE_CODE>`                 |
+|    Delete Module Data     | `delmoddata MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>` |
+|  Show Module Information  |                `showmod <MODULE_CODE>`                 |
+|           Help            |                         `help`                         |
+|     Help for Command      |                    `help <COMMAND>`                    |
+|      Weekly Schedule      |                         `week`                         |
+|            Bye            |                         `bye`                          |
     
 > Notes about the command format:
-> + Words in `UPPER_CASE` are the parameters to be supplied by the user.
-> > e.g. in 'todo TASK', `TASK` is a parameter that can be used as `todo read book`.
-> + `DATE`s should be input in the format `dd-MM-yyyy-HH:mm` where HH is 24-hour format
-> > e.g. `deadline read book /by 30-10-23:59` sets a deadline for Oct 20 2023, 11:59PM
+> + Words in `<UPPER_CASE>` are the parameters to be supplied by the user.
+> > e.g. in 'todo <TASK>', `<TASK>` is a parameter that can be used as `todo read book`.
+> + `<DATE>`s should be input in the format `dd-MM-yyyy-HH:mm` where HH is 24-hour format
+> > e.g. `deadline read book -by 30-10-2023-23:59` sets a deadline for Oct 20 2023, 11:59PM
+> + Words preceded by a `-` are command flags.
+> > e.g. in `addmod MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>`, `-<LESSON_TYPE>` is a command flag that can be used as `addmod CS2113 -LEC 1`.
 > + Tasks that have occurred prior to the current date cannot be added. 
 > + `IDX` can be obtained by using `list` for tasks or `listmod` for modules.  
 > + By default, all newly added tasks are not completed.
@@ -123,7 +132,7 @@ Got it. I've added this todo:
 
 Adds a task with a due date to Apollo. 
 If deadline clashes with any event or lesson type you will be alerted through a warning message. 
-However, you will still be able to add it into the tasklist. 
+However, you will still be able to add it into the Task List. 
 
 Format: `deadline TASK -by DATE`
 
@@ -138,8 +147,9 @@ Got it. I've added this deadline:
 ### `event` - Adding an Event
 
 Adds a task with a start and end date to Apollo.
-If there is an event in the tasklist that is clashing with any event added previously a warning message will be printed. 
-However, you will still be able to add it. 
+If there is an event in the Task List that is clashing with any event added previously a warning message will be printed.
+Similarly, if there is a lesson in the Timetable that is clashing with any event added previously a warning message will be printed.
+However, event will still be added. 
 
 Format: `event TASK -from DATE -to DATE`
 
@@ -291,7 +301,24 @@ Example:
 addmod CS1010 -st 1
 ```
 This will add the first section teaching lesson of CS1010 to your module list.
-If this lesson clashes with any of your other lessons a warning message will be displayed but you will still be able to add it.
+If this lesson clashes with any of your other lessons a warning message will be displayed. 
+However, the lesson will still be added to your timetable, similar to NUSMods.
+
+
+Invalid Modules:
+
+If the module code is invalid or the module is not offered in the current semester, Apollo will display an error message.
+
+
+e.g. 
+
+```
+>> addmod CG2028
+____________________________________________________________
+This module does not exist, or is not available this semester!
+Please refer to official NUS module list for more information.
+____________________________________________________________
+```
 
 ### `delmod` - Deleting a module
 
@@ -424,8 +451,66 @@ There are -FLAGS for the various lessons options per module:
 
 ### `week` - Viewing weekly schedule
 
-Shows a list of all lessons and tasks occurring during the current week (Mon to Sun).   
+Shows a list of all lessons and tasks occurring during the current week (Mon to Sun) as well as the current week of the
+semester you are on.   
 Format: `week`
+
+Example: For a simulated timetable in week 12 of semester 2. 
+```
+>> week
+____________________________________________________________
+Here's your week from 2023-04-03 to 2023-04-09:
+Week 12
+_____________________________
+MONDAY
+
+There are no lessons on this day.
+
+There are no tasks on this day.
+_____________________________
+TUESDAY
+
+Lessons:
+0900-1200: CG2023 Laboratory (04)
+1000-1200: CS1010 Sectional Teaching (1)
+
+There are no tasks on this day.
+_____________________________
+WEDNESDAY
+
+Lessons:
+1200-1400: DTK1234 Tutorial (E37)
+1200-1500: GEA1000 Tutorial (E37)
+
+There are no tasks on this day.
+_____________________________
+THURSDAY
+
+Lessons:
+1000-1200: CG2271 Laboratory (01)
+
+There are no tasks on this day.
+_____________________________
+FRIDAY
+
+There are no lessons on this day.
+
+There are no tasks on this day.
+_____________________________
+SATURDAY
+
+There are no lessons on this day.
+
+There are no tasks on this day.
+_____________________________
+SUNDAY
+
+There are no lessons on this day.
+
+There are no tasks on this day.
+____________________________________________________________
+
+```
 
 ### `bye` - Exiting the program
 

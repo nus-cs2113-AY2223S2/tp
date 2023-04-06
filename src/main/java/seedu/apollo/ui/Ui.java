@@ -187,6 +187,20 @@ public class Ui {
         LocalDate curr = startWeek;
         int weekNumber = getWeekNumber(curr);
         System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
+
+        if (weekNumber == 0) {
+            System.out.println("It is currently not AY22/23 Semester 2");
+        } else if (weekNumber == -1) {
+            System.out.println("Recess Week");
+        } else if (weekNumber == 14) {
+            System.out.println("Reading Week");
+        } else if (weekNumber == 15 || weekNumber == 16) {
+            System.out.println("Examination Week");
+        } else {
+            System.out.println("Week " + weekNumber);
+        }
+
+
         for (int i = 0; i < 7; i++) {
             showSmallLine();
             System.out.println(determineDay(i) + "\n");
