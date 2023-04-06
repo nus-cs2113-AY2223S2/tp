@@ -3,7 +3,6 @@ package functionalities.appointments;
 import exception.SniffException;
 import functionalities.Animal;
 import functionalities.Owner;
-import functionalities.SniffTasks;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
