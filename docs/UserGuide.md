@@ -44,7 +44,7 @@ add /q QUESTION /a ANSWER
 - `QUESTION` will be displayed when reviewing. For how the reviewing process
   works, see "Review flashcards" section below.
 
-- Since a slash character (`/`) can be intepreted as a command option, both
+- Since a slash character (`/`) can be interpreted as a command option, both
   `QUESTION` and `ANSWER` must not start with `/` or includes ` /` (the slash
   with a space before it).
 
@@ -144,7 +144,7 @@ update QUERY
         ```
         INDEX /d NEW_DUE_DATE
         ```
-        - `DUE_DATE` has to be in the format `yyyy-mm-dd`
+        - `NEW_DUE_DATE` has to be in the format `yyyy-mm-dd`
         - The user can only update either one of the question, answer or due date at a time
         - Since a slash character (`/`) can be interpreted as a command option,
           `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
@@ -218,6 +218,8 @@ Your list of flashcards is empty.
 
 ### List flashcards
 
+1. list all flashcards
+
 ```
 list all
 ```
@@ -240,6 +242,8 @@ A: Lemons
 Q: What colour is the sun
 A: Red
 ```
+
+2. List flashcards with specific due date
 
 ```
 list DUE_DATE
