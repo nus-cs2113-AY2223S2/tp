@@ -25,7 +25,7 @@ import static seedu.apollo.ui.Parser.COMMAND_UNMARK_WORD;
  * Mark and Delete Command class that modifies an existing Task from the TaskList.
  * Handles {@code mark}, {@code unmark}, and {@code delete} commands.
  */
-public class ModifyCommand extends Command implements LoggerInterface {
+public class ModifyCommand extends Command { // implements LoggerInterface {
     private static Logger logger = Logger.getLogger("ModifyCommand");
 
     protected String command;
@@ -40,7 +40,8 @@ public class ModifyCommand extends Command implements LoggerInterface {
      * @throws NumberFormatException If idx cannot be parsed, or is outside the current range of tasks.
      */
     public ModifyCommand(String command, String param, int size) throws NumberFormatException {
-        setUpLogger();
+//        setUpLogger();
+        super(logger);
         assert (command.equals(COMMAND_MARK_WORD) | command.equals(COMMAND_UNMARK_WORD) |
                 command.equals(COMMAND_DELETE_WORD)) : "ModifyCommand: Invalid Modify Command";
         assert param != null : "ModifyCommand: param cannot be null!";
@@ -52,33 +53,33 @@ public class ModifyCommand extends Command implements LoggerInterface {
         this.idx = idx;
     }
 
-    /**
-     * Sets up logger for ModifyCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-
-    }
+//    /**
+//     * Sets up logger for ModifyCommand class.
+//     *
+//     * @throws IOException If logger file cannot be created.
+//     */
+//    @Override
+//    public void setUpLogger() {
+//        LogManager.getLogManager().reset();
+//        logger.setLevel(Level.ALL);
+//        ConsoleHandler logConsole = new ConsoleHandler();
+//        logConsole.setLevel(Level.SEVERE);
+//        logger.addHandler(logConsole);
+//        try {
+//
+//            if (!new File("apollo.log").exists()) {
+//                new File("apollo.log").createNewFile();
+//            }
+//
+//            FileHandler logFile = new FileHandler("apollo.log", true);
+//            logFile.setLevel(Level.FINE);
+//            logger.addHandler(logFile);
+//
+//        } catch (IOException e) {
+//            logger.log(Level.SEVERE, "File logger not working.", e);
+//        }
+//
+//    }
 
     private void markTaskAsDone(TaskList taskList, Ui ui) throws IndexOutOfBoundsException {
         if (!taskList.get(idx).isDone()){

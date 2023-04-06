@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 /**
  * Find Command class that shortlists Tasks that contain a given keyword.
  */
-public class FindCommand extends Command implements LoggerInterface {
+public class FindCommand extends Command { //} implements LoggerInterface {
     private static Logger logger = Logger.getLogger("FindCommand");
 
     protected String keyword;
@@ -29,37 +29,38 @@ public class FindCommand extends Command implements LoggerInterface {
      * @param keyword User input of the keyword.
      */
     public FindCommand(String keyword) {
+        super(logger);
         this.keyword = keyword;
-        setUpLogger();
+//        setUpLogger();
     }
 
-    /**
-     * Sets up logger for FindCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-
-    }
+//    /**
+//     * Sets up logger for FindCommand class.
+//     *
+//     * @throws IOException If logger file cannot be created.
+//     */
+//    @Override
+//    public void setUpLogger() {
+//        LogManager.getLogManager().reset();
+//        logger.setLevel(Level.ALL);
+//        ConsoleHandler logConsole = new ConsoleHandler();
+//        logConsole.setLevel(Level.SEVERE);
+//        logger.addHandler(logConsole);
+//        try {
+//
+//            if (!new File("apollo.log").exists()) {
+//                new File("apollo.log").createNewFile();
+//            }
+//
+//            FileHandler logFile = new FileHandler("apollo.log", true);
+//            logFile.setLevel(Level.FINE);
+//            logger.addHandler(logFile);
+//
+//        } catch (IOException e) {
+//            logger.log(Level.SEVERE, "File logger not working.", e);
+//        }
+//
+//    }
 
     /**
      * Shortlists and prints Tasks from the TaskList that contain the given keyword.

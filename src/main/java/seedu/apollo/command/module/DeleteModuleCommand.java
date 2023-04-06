@@ -29,41 +29,42 @@ import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
  * For {@code delmod} command.
  * Delete Module Command class that finds the module using moduleCode and removes it from the ModuleList
  */
-public class DeleteModuleCommand extends Command implements LoggerInterface {
+public class DeleteModuleCommand extends Command { //implements LoggerInterface {
     private static Logger logger = Logger.getLogger("DeleteModuleCommand");
     protected String[] args;
 
     public DeleteModuleCommand(String params) throws IllegalCommandException {
+        super(logger);
         String[] args = params.split("\\s+");
 
         if (args.length != 1 && args.length != 3) {
             throw new IllegalCommandException();
         }
         this.args = args;
-        this.setUpLogger();
+//        this.setUpLogger();
     }
 
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-    }
+//    @Override
+//    public void setUpLogger() {
+//        LogManager.getLogManager().reset();
+//        logger.setLevel(Level.ALL);
+//        ConsoleHandler logConsole = new ConsoleHandler();
+//        logConsole.setLevel(Level.SEVERE);
+//        logger.addHandler(logConsole);
+//        try {
+//
+//            if (!new File("apollo.log").exists()) {
+//                new File("apollo.log").createNewFile();
+//            }
+//
+//            FileHandler logFile = new FileHandler("apollo.log", true);
+//            logFile.setLevel(Level.FINE);
+//            logger.addHandler(logFile);
+//
+//        } catch (IOException e) {
+//            logger.log(Level.SEVERE, "File logger not working.", e);
+//        }
+//    }
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,

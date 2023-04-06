@@ -33,7 +33,7 @@ import static seedu.apollo.utils.DayTypeUtil.determineDay;
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
 
-public class AddModuleCommand extends Command implements LoggerInterface {
+public class AddModuleCommand extends Command { //implements LoggerInterface {
     private static Logger logger = Logger.getLogger("AddModuleCommand");
     private Module module;
     private String[] args;
@@ -47,7 +47,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
      */
     public AddModuleCommand(String param, ModuleList allModules) throws InvalidModule, IllegalCommandException {
 
-        setUpLogger();
+        super(logger);
         assert (param != null) : "AddModuleCommand: Params should not be null!";
         assert (allModules != null) : "AddModuleCommand: Module list should not be null!";
 
@@ -69,33 +69,33 @@ public class AddModuleCommand extends Command implements LoggerInterface {
 
     }
 
-    /**
-     * Sets up logger for AddModuleCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-    }
+//    /**
+//     * Sets up logger for AddModuleCommand class.
+//     *
+//     * @throws IOException If logger file cannot be created.
+//     */
+//    @Override
+//    public void setUpLogger() {
+//        LogManager.getLogManager().reset();
+//        logger.setLevel(Level.ALL);
+//        ConsoleHandler logConsole = new ConsoleHandler();
+//        logConsole.setLevel(Level.SEVERE);
+//        logger.addHandler(logConsole);
+//
+//        try {
+//
+//            if (!new File("apollo.log").exists()) {
+//                new File("apollo.log").createNewFile();
+//            }
+//
+//            FileHandler logFile = new FileHandler("apollo.log", true);
+//            logFile.setLevel(Level.FINE);
+//            logger.addHandler(logFile);
+//
+//        } catch (IOException e) {
+//            logger.log(Level.SEVERE, "File logger not working.", e);
+//        }
+//    }
 
     /**
      * Checks if the module is already in the module list.

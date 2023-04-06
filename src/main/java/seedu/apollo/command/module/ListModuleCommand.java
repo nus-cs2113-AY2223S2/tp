@@ -16,40 +16,41 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class ListModuleCommand extends Command implements LoggerInterface {
+public class ListModuleCommand extends Command { //implements LoggerInterface {
     private static Logger logger = Logger.getLogger("ListModuleCommand");
 
     public ListModuleCommand() {
-        setUpLogger();
+        super(logger);
+//        setUpLogger();
     }
 
-    /**
-     * Sets up logger for ListModuleCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-
-    }
+//    /**
+//     * Sets up logger for ListModuleCommand class.
+//     *
+//     * @throws IOException If logger file cannot be created.
+//     */
+//    @Override
+//    public void setUpLogger() {
+//        LogManager.getLogManager().reset();
+//        logger.setLevel(Level.ALL);
+//        ConsoleHandler logConsole = new ConsoleHandler();
+//        logConsole.setLevel(Level.SEVERE);
+//        logger.addHandler(logConsole);
+//        try {
+//
+//            if (!new File("apollo.log").exists()) {
+//                new File("apollo.log").createNewFile();
+//            }
+//
+//            FileHandler logFile = new FileHandler("apollo.log", true);
+//            logFile.setLevel(Level.FINE);
+//            logger.addHandler(logFile);
+//
+//        } catch (IOException e) {
+//            logger.log(Level.SEVERE, "File logger not working.", e);
+//        }
+//
+//    }
 
 
     @Override

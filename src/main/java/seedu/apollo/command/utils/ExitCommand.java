@@ -7,10 +7,16 @@ import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
 
+import java.util.logging.Logger;
+
 /**
  * Exit Command class that allows user to exit the program.
  */
 public class ExitCommand extends Command {
+
+    public ExitCommand() {
+        super(Logger.getLogger("ExitCommand"));
+    }
 
     /**
      * Prints exit message.
