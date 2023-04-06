@@ -40,7 +40,7 @@ the NUSMods Team, whose NUSMods API we used to scrape module data from.
 ### Architecture
 Below is the overall architecture diagram for Apollo.
 
-![](../docs/uml-diagrams/SystemArchitecture.png)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/SystemArchitecture.png?raw=true)
 
 Given below is a quick overview of the main components of Apollo and how they interact with one another.
 
@@ -67,7 +67,7 @@ which would result in the latest data stored in DataStorage being saved into the
 ### Command Component
 **API:** `Command.java`    
 Here's a class diagram of the `Command` component   
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/SystemArchitecture.png?raw=true)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command.png?raw=true)
 > SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)   
 
 How the `Command` component works:
