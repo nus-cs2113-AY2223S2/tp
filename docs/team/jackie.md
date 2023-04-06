@@ -24,7 +24,7 @@ Meal Companion is a recipe book which allows you to search by the ingredients yo
 #### UG
 - Hyperlinks
     - Table of contents
-    - "Back to table of contents" button
+    - "Back to table of contents" button at the end of every section
     - "Back to top" button
     - Back and forth navigability between "Allergens" and "Recipe Possible" section
 - Screenshots
