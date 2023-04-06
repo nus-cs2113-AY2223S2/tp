@@ -17,7 +17,7 @@
 - Added code to detect duplicate modules in moduleList and its exception 
 - Added some JUnit tests for Parser class 
 - Added Junit tests for task command portion of help command class
-- Changed datetime format from yyyy-MM-ddThh:mm to dd-MM-yyyy-hh:mm to increase user-friendliness and updated all relevant files(including error,Ui messages)
+- Changed datetime format from yyyy-MM-ddThh:mm to dd-MM-yyyy-hh:mm to increase user-friendliness and updated all relevant files(including Exception,Ui,Test files)
 - Patches 
 
 #### Contributions to the UG
