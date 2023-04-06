@@ -63,7 +63,8 @@ public class FindCommand extends Command {
         } else if (type.equals("income") && category != null) {
             throw new ChChingException("Income has no category");
 
-        } else if (type.equals("expense") && (description == null || emptyKeyword) && category == null && date == null) {
+        } else if (type.equals("expense") && (description == null || emptyKeyword) 
+            && category == null && date == null) {
             throw new ChChingException("No description or category or date specified");
         }
 
