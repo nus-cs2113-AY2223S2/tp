@@ -13,7 +13,6 @@ allModules: ModuleList, calendar Calendar): void
 
 class AddCommand {
 - logger: Logger
-
 }
 AddCommand <|-- Command
 
@@ -29,14 +28,18 @@ ListCommand <|-- Command
 class ModifyCommand
 ModifyCommand <|-- Command
 
+class WeekCommand
+WeekCommand <|-- Command
+
 class ExitCommand
 ExitCommand <|-- Command
 
 class HelpCommand
 HelpCommand <|-- Command
 
-class WeekCommand
-WeekCommand <|-- Command
+class SpecificHelpCommand {
+}
+SpecificHelpCommand <|-- HelpCommand
 
 class AddModuleCommand
 Command --|> AddModuleCommand
