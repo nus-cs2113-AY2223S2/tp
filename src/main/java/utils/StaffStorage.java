@@ -17,7 +17,7 @@ public class StaffStorage {
     private static final String FILEPATH_STAFF_LIST = Storage.FILE_DIRECTORY + "/" + FILENAME_STAFF;
 
     /**
-     * Read and Load data from a file if it exists.
+     * Reads and Loads data from a file if it exists.
      *
      * @throws FileNotFoundException If file is not found, throw an exception. But file will be created if not found.
      */
@@ -46,7 +46,7 @@ public class StaffStorage {
     }
 
     /**
-     * Write the user tasks into a file.
+     * Writes the user tasks into a file.
      *
      * @param listOfStaffs An arraylist storing the list of things the user created.
      * @throws IOException Some IO Exception has occured.

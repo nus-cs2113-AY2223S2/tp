@@ -22,10 +22,19 @@ public class DinerDirector {
     //Solution below adopted from:
     //https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/Main.java
     //Implemented the main, run, start method in the similar way.
+
+    /**
+     * Invokes the run method in the program.
+     *
+     * @param args stores command line arguments if any. Not used in this program.
+     */
     public static void main(String[] args) {
         new DinerDirector().run();
     }
 
+    /**
+     * Runs the program with the 3 methods listed.
+     */
     private void run() {
         start();
         runCommandLoopUntilExit();
@@ -33,8 +42,8 @@ public class DinerDirector {
     }
 
     /**
-     * Start of program.
-     * Initializing of Ui, creating of storage/loading of file will be done and checked here.
+     * Starts of program.
+     * Initializes all storage related information for the application.
      */
     private void start() {
         this.ui = new TextUi();
@@ -78,6 +87,9 @@ public class DinerDirector {
 
     }
 
+    /**
+     * Executes user commands.
+     */
     private void runCommandLoopUntilExit() {
         boolean isExit = false;
         while (!isExit) {
