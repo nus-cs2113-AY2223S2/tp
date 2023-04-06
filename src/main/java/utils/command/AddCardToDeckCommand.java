@@ -27,7 +27,7 @@ public class AddCardToDeckCommand extends Command {
     private void addCardToDeck(DeckList deckList, Card cardToAdd, UserInterface ui) throws InkaException {
         //find the corresponding Deck and Card based on its deckName and card uuid
         Deck deckToAdd = deckList.findDeckFromName(deckName);
-
+        assert cardToAdd!=null;
         if (deckToAdd == null) {
             ui.printDeckCreationSuccess();
             deckToAdd = new Deck(deckName, cardToAdd.getUuid());
