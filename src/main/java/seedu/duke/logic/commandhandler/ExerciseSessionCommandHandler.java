@@ -132,6 +132,9 @@ public class ExerciseSessionCommandHandler implements CommandList {
             case ACHIEVEMENTS:
                 achievementListHandler.printAchievements();
                 break;
+            case CLEAR_ACHIEVEMENTS:
+                achievementListHandler.clearAchievementsData();
+                break;
             default:
                 ui.unknownCommand();
                 break;

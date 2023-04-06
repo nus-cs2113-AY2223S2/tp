@@ -26,4 +26,6 @@ public interface CommandList {
     String DELETE_COMMAND = "delete";
     String QUICK_FIND_COMMAND = "quickfind";
     String ACHIEVEMENTS = "achievements";
+    String CLEAR_ACHIEVEMENTS = "clear_achievements";
+
 }

@@ -2,6 +2,7 @@ package seedu.duke.logic.commandhandler;
 
 import java.util.Arrays;
 import java.util.Scanner;
+
 import seedu.duke.achievements.AchievementListHandler;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
@@ -20,6 +21,7 @@ import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.data.userdata.UserExerciseData;
 import seedu.duke.data.userdata.userplan.UserPlan;
+
 import java.util.HashMap;
 
 public class GeneralCommandHandler implements CommandList {
@@ -27,24 +29,25 @@ public class GeneralCommandHandler implements CommandList {
     /**
      * This class handles all user commands when not in an exercise
      *
-     * @param userCommands This refers to the commands given by the user
-     * @param ui This allows us to output messages
-     * @param exerciseGenerator This takes in filter parameters and outputs a
-     *         curated exercise list
-     * @param userCareerData This keeps track and allows logging of all user
-     *         data
+     * @param userCommands         This refers to the commands given by the user
+     * @param ui                   This allows us to output messages
+     * @param exerciseGenerator    This takes in filter parameters and outputs a
+     *                             curated exercise list
+     * @param userCareerData       This keeps track and allows logging of all user
+     *                             data
      * @param exerciseStateHandler This allows us to start workouts
      */
     // addition of user exercise history
-    public void handleGeneralUserCommands (String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
-                                           UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
-                                           Storage storage, UserPlan planner,
-                                           AchievementListHandler achievementListHandler,
-                                           Scanner scanner) {
+    public void handleGeneralUserCommands(String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
+                                          UserCareerData userCareerData, ExerciseStateHandler exerciseStateHandler,
+                                          Storage storage, UserPlan planner,
+                                          AchievementListHandler achievementListHandler,
+                                          Scanner scanner) {
         Command command = null;
         boolean errorExists = false;
-        //additional error check for whether there's additional description behind single
-        //word commands
+        // additional error check for whether there's additional description behind
+        // single
+        // word commands
         String additionalDescription = "";
         for (int i = 1; i < userCommands.length; i++) {
             additionalDescription = additionalDescription + " " + userCommands[i];
@@ -53,19 +56,20 @@ public class GeneralCommandHandler implements CommandList {
         try {
             switch (userCommands[0]) {
             case DELETE_COMMAND:
-                //additional description becomes a number. Delete the session
+                // additional description becomes a number. Delete the session
                 try {
                     if (additionalDescription.length() == 0) {
                         throw new DukeError(ErrorMessages.ERROR_EMPTY_DESCRIPTION_NUMBER.toString());
                     }
                     int sessionNumber = Integer.parseInt(userCommands[1]);
-                    if ((sessionNumber > userCareerData.getTotalUserCareerSessions().size()) || sessionNumber <= 0) {
+                    if ((sessionNumber > userCareerData.getTotalUserCareerSessions().size())
+                            || sessionNumber <= 0) {
                         throw new DukeError(ErrorMessages.ERROR_INVALID_DELETE_SESSION.toString());
                     }
                     exerciseStateHandler.deleteWorkoutSession(userCareerData, sessionNumber);
                 } catch (NumberFormatException e) {
                     System.out.println("You did not key in a session number. " +
-                                               "Please key in a valid session number and try again!");
+                            "Please key in a valid session number and try again!");
                 }
                 break;
             case GENERATE_COMMAND:
@@ -113,8 +117,8 @@ public class GeneralCommandHandler implements CommandList {
                 }
                 break;
             case IPPT_COMMAND:
-                IPPTCmd generateIPPT = new IPPTCmd(Arrays.copyOfRange(userCommands,1,5));
-                generateIPPT.addIPPTSession(exerciseGenerator,userCareerData,storage);
+                IPPTCmd generateIPPT = new IPPTCmd(Arrays.copyOfRange(userCommands, 1, 5));
+                generateIPPT.addIPPTSession(exerciseGenerator, userCareerData, storage);
                 break;
             case QUICK_START_COMMAND:
                 if (additionalDescription.length() == 0) {
@@ -137,7 +141,7 @@ public class GeneralCommandHandler implements CommandList {
             case FINISH_COMMAND:
             case CANCEL_COMMAND:
                 System.out.println("No workout session active." +
-                                           " Please generate a workout and use the \"start\" command!");
+                        " Please generate a workout and use the \"start\" command!");
                 break;
             case HISTORY_COMMAND:
                 if (additionalDescription.length() != 0) {
@@ -163,6 +167,9 @@ public class GeneralCommandHandler implements CommandList {
             case ACHIEVEMENTS:
                 achievementListHandler.printAchievements();
                 break;
+            case CLEAR_ACHIEVEMENTS:
+                achievementListHandler.clearAchievementsData();
+                break;
             case QUICK_FIND_COMMAND:
                 command = new CompletedExerciseSearchCommand(userCommands, userCareerData);
                 break;
@@ -178,9 +185,9 @@ public class GeneralCommandHandler implements CommandList {
         if (!errorExists) {
             try {
                 if (command != null) {
-                    //test
+                    // test
                     command.executeCommand(ui, exerciseGenerator);
-                    //command.executeCommand(ui, exerciseGenerator);
+                    // command.executeCommand(ui, exerciseGenerator);
                     if (command instanceof GenerateFilterCommand) {
                         exerciseStateHandler
                                 .storePreviousGeneratedWorkout(((GenerateFilterCommand) command).provideExerciseList());

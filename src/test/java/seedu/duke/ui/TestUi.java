@@ -150,6 +150,14 @@ public class TestUi {
                     "\tPLAN_NAME needs has to be in your planner, and x is the number of exercises\r\n" +
                     "[find]\r\n" +
                     "\tfinds all relevant exercises based on the keyword : find [keyword]\r\n" +
+                    "[achievements]\r\n" +
+                    "\tShows all the available achievements, their requirements and whether they have been achieved " +
+                    "or not\r\n" +
+                    "[clear_achievements]\r\n" +
+                    "\tClears all the data of finished exercises for the achievements database, resetting " +
+                    "counters for all achievements.  \n\tDo note that this command does not clear the counters for " +
+                    "each specific exercise, hence the number of each exercise completed from the data command will " +
+                    "NOT be cleared.\r\n" +
                     "[exit]\r\n" +
                     "\tEnd the program\r\n";
         } else {
@@ -180,6 +188,15 @@ public class TestUi {
                     "\tPLAN_NAME needs has to be in your planner, and x is the number of exercises\n" +
                     "[find]\n" +
                     "\tfinds all relevant exercises based on the keyword : find [keyword]\n" +
+                    "[achievements]\n" +
+                    "\tShows all the available achievements, their requirements and whether they have been achieved " +
+                    "or not" +
+                    "\n" +
+                    "[clear_achievements]\n" +
+                    "\tClears all the data of finished exercises for the achievements database, resetting " +
+                    "counters for all achievements.  " +
+                    "\n\tDo note that this command does not clear the counters for each specific exercise," +
+                    " hence the number of each exercise completed from the data command will NOT be cleared.\n" +
                     "[exit]\n" +
                     "\tEnd the program\n";
         }

@@ -34,6 +34,15 @@ public class PrintHelpMessage {
         System.out.println("\tPLAN_NAME needs has to be in your planner, and x is the number of exercises");
         System.out.println("[find]");
         System.out.println("\tfinds all relevant exercises based on the keyword : find [keyword]");
+        System.out.println("[achievements]");
+        System.out.println("\tShows all the available achievements, their requirements " +
+                             "and whether they have been achieved or not");
+        System.out.println("[clear_achievements]");
+        System.out.println("\tClears all the data of finished exercises for the achievements database, resetting " +
+                           "counters for all achievements. " +
+                           " \n\tDo note that this command does not clear the counters " +
+                           "for each specific exercise, hence the number of each exercise completed from the " +
+                           "data command will NOT be cleared.");
         System.out.println("[exit]");
         System.out.println("\tEnd the program");
     }
