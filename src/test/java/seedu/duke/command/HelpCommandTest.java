@@ -37,9 +37,9 @@ public class HelpCommandTest {
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
+        Parser parser = Parser.getInstance();
         DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();;
         Storage storage = Storage.getInstance();
-        Parser parser = new Parser();
         BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof HelpCommand);

@@ -15,7 +15,7 @@ public class ParserTest {
     @Test
     public void parseUserCommand_listPU_success() {
         String userInput = "/list pu";
-        Parser parser = new Parser();
+        Parser parser = Parser.getInstance();
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
@@ -30,7 +30,7 @@ public class ParserTest {
     @Test
     public void parseUserCommand_listCurrent_success() {
         String userInput = "/list current";
-        Parser parser = new Parser();
+        Parser parser = Parser.getInstance();
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
@@ -45,7 +45,7 @@ public class ParserTest {
     @Test
     public void parseUserCommand_exit_success() {
         String userInput = "/exit";
-        Parser parser = new Parser();
+        Parser parser = Parser.getInstance();
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
@@ -60,7 +60,7 @@ public class ParserTest {
     @Test
     public void parseUserCommand_help_success() {
         String userInput = "/help";
-        Parser parser = new Parser();
+        Parser parser = Parser.getInstance();
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Module> puModules = new ArrayList<>();
