@@ -16,7 +16,6 @@ import java.util.HashMap;
 public class WorkoutWriteFile {
     private static final String SPACE = "          ";
 
-
     private static HashMap<Date, Day> workouts;
 
     private static HashMap<String, Workout> dailyWorkout;

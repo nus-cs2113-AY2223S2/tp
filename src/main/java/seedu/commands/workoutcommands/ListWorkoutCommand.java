@@ -40,7 +40,6 @@ public class ListWorkoutCommand extends Command {
             for (Date date : workouts.keySet()) {
                 String formattedDate = DateFormatter.dateToString(date);
                 string.append(formattedDate).append(System.lineSeparator());
-
             }
             return string + Ui.showSeparator();
         } else {

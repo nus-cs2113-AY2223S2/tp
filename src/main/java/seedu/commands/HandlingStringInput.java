@@ -13,14 +13,10 @@ public class HandlingStringInput {
 
 
     public static boolean isInputTooLong(String input) {
-        if (input.length() > maxChars) {
-            System.out.println(LONG_INPUT);
-            return false;
-        }
 
         String[] words = input.split("\\s+");
 
-        if (words.length > maxWords) {
+        if (words.length > maxWords || input.length() > maxChars) {
             System.out.println(LONG_INPUT);
             return false;
         }

@@ -83,18 +83,18 @@ Here are the list of commands that you can use:
 
 ## Features
 
-### Start a workout: `/start`
+### Start a workout: `/wstart`
 Starts the workout for a specific date
 
-Format: `/start <DD/MM/YY>`
+Format: `/wstart <DD/MM/YY>`
 
 * The `DATE` needs to be in the exact format.
 
 Example of usage: 
 
-`/start 11/03/23`
+`/wstart 11/03/23`
 
-`/start 21/04/23`
+`/wstart 21/04/23`
 
 Expected output:
 ```

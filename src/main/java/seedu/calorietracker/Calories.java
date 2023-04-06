@@ -42,7 +42,6 @@ public class Calories {
     }
 
 
-
     public boolean checkFood(String foodName) {
         return singleFoodCalories.containsKey(foodName);
     }

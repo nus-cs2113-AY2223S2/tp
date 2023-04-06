@@ -4,12 +4,7 @@ import seedu.commands.Command;
 import seedu.commands.HandlingStringInput;
 import seedu.commands.IncorrectSyntaxCommand;
 import seedu.commands.countcommands.CountSetsRepsCommand;
-import seedu.commands.workoutcommands.AddWorkoutCommand;
-import seedu.commands.workoutcommands.DeleteWorkoutCommand;
-import seedu.commands.workoutcommands.ListWorkoutCommand;
-import seedu.commands.workoutcommands.StartWorkoutCommand;
-import seedu.commands.workoutcommands.ViewWorkoutCommand;
-import seedu.commands.workoutcommands.StartDayCommand;
+import seedu.commands.workoutcommands.*;
 import seedu.workout.Exercise;
 
 import java.text.ParseException;
@@ -32,10 +27,15 @@ public class CheckInputs {
     private static final String LIST_COMMAND = "/wlist command";
     private static final String VIEW_COMMAND = "/wview command";
     private static final String DELETE_COMMAND = "/wdelete command";
+
     static Command processDay(String arguments) {
         Date date = parseDate(arguments);
-        return date != null && parseInput(arguments) ? new StartDayCommand(date) :
-                new IncorrectSyntaxCommand(DAY_COMMAND);
+        if (date != null && parseInput(arguments)) {
+            Command.setIsDayEntered(true);
+            Command.setIsWorkoutEntered(false);
+            return new StartDayCommand(date);
+        }
+        return new IncorrectSyntaxCommand(DAY_COMMAND);
     }
 
     static Command processAdd(String arguments) {
@@ -47,54 +47,39 @@ public class CheckInputs {
             }
 
             String exerciseName = exerciseDetails[FIRST_ELEMENT].trim();
-            if(HandlingStringInput.isInputValid(exerciseName.trim())){ //if either condition failed
+            if (HandlingStringInput.isInputValid(exerciseName.trim())) { //if either condition failed
                 return new IncorrectSyntaxCommand(ADD_COMMAND);
             }
             String weight = exerciseDetails[SECOND_ELEMENT].replace("weight", " ").trim();
             String[] checkWeight = exerciseDetails[SECOND_ELEMENT].trim().split(" ");
-            if(!exerciseDetails[SECOND_ELEMENT].trim().startsWith("weight ")){
-                    return new IncorrectSyntaxCommand(ADD_COMMAND);
-                }
-            if(!HandlingStringInput.isInputTooLong(checkWeight[SECOND_ELEMENT])
-            || !HandlingStringInput.isInputMatching(checkWeight[SECOND_ELEMENT].trim())){
+            if (!exerciseDetails[SECOND_ELEMENT].trim().startsWith("weight ")) {
+                return new IncorrectSyntaxCommand(ADD_COMMAND);
+            }
+            if (!HandlingStringInput.isInputTooLong(checkWeight[SECOND_ELEMENT])
+                    || !HandlingStringInput.isInputMatching(checkWeight[SECOND_ELEMENT].trim())) {
                 return new IncorrectSyntaxCommand(ADD_COMMAND);
             }
 
-           /* if(!checkWeight[FIRST_ELEMENT].trim().equals(("WEIGHT").toLowerCase())){
-                System.out.println(checkWeight[FIRST_ELEMENT].trim());
-                System.out.println(0);
-                return new IncorrectSyntaxCommand(ADD_COMMAND);
-            }*/
-           /* if(!HandlingStringInput.isInputMatching(checkWeight[SECOND_ELEMENT].trim())){
-                return new IncorrectSyntaxCommand(ADD_COMMAND);
-            }*/
 
             String[] rpsList = exerciseDetails[THIRD_ELEMENT].trim().split(" ", 2);
 
 
-           /* if(!rpsList[FIRST_ELEMENT].trim().equals("rps")){
-                System.out.println(2);
-                return new IncorrectSyntaxCommand(ADD_COMMAND);
-            }*/
-            if(!exerciseDetails[THIRD_ELEMENT].startsWith("rps ")){
+            if (!exerciseDetails[THIRD_ELEMENT].startsWith("rps ")) {
                 return new IncorrectSyntaxCommand(ADD_COMMAND);
             }
-           /* if(!HandlingStringInput.isInputTooLong(rpsList[SECOND_ELEMENT])){
-                return new IncorrectSyntaxCommand(ADD_COMMAND);
-            }
-*/
+
             String[] rpsStringList = rpsList[SECOND_ELEMENT].trim().split(",", 10);
-            if(rpsStringList.length > 10 ){
+            if (rpsStringList.length > 10) {
                 System.out.println("The number of sets for rps up to 10");
             }
             String[] newRps = new String[rpsStringList.length];
             int[] reps = new int[rpsStringList.length];
-            for(int index = 0; index < rpsStringList.length; index += 1){
-                newRps[index] =  rpsStringList[index].trim();
+            for (int index = 0; index < rpsStringList.length; index += 1) {
+                newRps[index] = rpsStringList[index].trim();
                 reps[index] = Integer.parseInt(rpsStringList[index].trim());
             }
 
-            toAdd = new Exercise(exerciseName, weight,  Arrays.toString(newRps).replaceAll("[\\[\\],]", ""));
+            toAdd = new Exercise(exerciseName, weight, Arrays.toString(newRps).replaceAll("[\\[\\],]", ""));
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException e) {
             return new IncorrectSyntaxCommand(ADD_COMMAND);
         }
@@ -112,8 +97,12 @@ public class CheckInputs {
     static Command processStart(String arguments) {
         //
         String workName = arguments.replaceAll(" {2,}", " ");
-        return parseWorkoutName(workName) ? new StartWorkoutCommand(workName.trim()) :
-                new IncorrectSyntaxCommand(START_COMMAND);
+        if (parseWorkoutName(workName)) {
+            Command.setIsWorkoutEntered(true);
+            return new StartWorkoutCommand(workName.trim());
+        } else {
+            return new IncorrectSyntaxCommand(START_COMMAND);
+        }
 
     }
 
@@ -174,7 +163,8 @@ public class CheckInputs {
     //@@ author ZIZI-czh
     static Date parseDate(String arguments) {
         try {
-            Date enteredDate = DateFormatter.stringToDate(arguments);;
+            Date enteredDate = DateFormatter.stringToDate(arguments);
+            ;
 
             return enteredDate;
         } catch (ParseException e) {
@@ -234,11 +224,11 @@ public class CheckInputs {
     }
 
     public static boolean parseWorkoutName(String workName) {
-        if(HandlingStringInput.isInputValid(workName)){
+        if (HandlingStringInput.isInputValid(workName)) {
             return false;
         }
-            return !workName.trim().isEmpty();
-        }
+        return !workName.trim().isEmpty();
+    }
 
 
 }

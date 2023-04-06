@@ -29,11 +29,8 @@ public class Parser {
 
         switch (commandName.toLowerCase()) {
         case "/wday":
-            Command.setIsDayEntered(true);
-            Command.setIsWorkoutEntered(false);
             return CheckInputs.processDay(arguments);
         case "/wstart":
-            Command.setIsWorkoutEntered(true);
             return CheckInputs.processStart(arguments);
         case "/wadd":
             return CheckInputs.processAdd(arguments);
