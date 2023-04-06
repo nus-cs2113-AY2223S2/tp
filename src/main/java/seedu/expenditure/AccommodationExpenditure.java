@@ -15,7 +15,6 @@ public class AccommodationExpenditure extends Expenditure {
         super(description, value, date);
         isPaid = false;
         nextRepeatDate = date;
-        //nextRepeatDate = getNextRepeatDate();
     }
 
     public void setPaid() {
