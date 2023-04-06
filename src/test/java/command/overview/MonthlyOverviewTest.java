@@ -25,9 +25,6 @@ class MonthlyOverviewTest {
     private static final String CATEGORY_TITLE =
             "Breakdown of expenses by category in descending order by category sum:";
 
-
-
-
     @Test
     void printOverviewEmptyArrayList_successful() {
         ArrayList<Expense> expenses = new ArrayList<>();
