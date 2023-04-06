@@ -1,44 +1,47 @@
 @startuml
 !include style.puml
 
-Participant ":Main" as main #grey
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
+Participant ":RainyDay" as main #grey
+Participant ":RainyDay" as main #grey
 Participant ":Parser" as parser #black
 Participant ":Command" as command COMMAND_COLOR
 Participant ":Userdata" as userdata USERDATA_COLOR
 Participant ":Storage" as storage STORAGE_COLOR
 
-activate main #grey
-main -[USER_COLOR]> ui
 activate ui UI_COLOR
-ui --> user
+activate main #grey
 user -[USER_COLOR]> ui : delete 1
-ui --> main : delete 1
+ui --> main : :String
 deactivate ui
 
-main -> parser : delete 1
+main -> parser : parseUserInput(userInput:String)
 activate parser #black
 
-parser -> command :DeleteCommand(1)
+create command
+parser -> command : new DeleteCommand
 activate command COMMAND_COLOR
 
-command -> userdata :deleteStatement(1)
+command --> parser : : DeleteCommand
+deactivate command
+parser --> main : : DeleteCommand
+deactivate parser
+
+main -> command : execute()
+activate command COMMAND_COLOR
+command -> userdata :deleteStatement\n(statementIndex:int)
 activate userdata USERDATA_COLOR
 userdata --> command
 deactivate userdata
-command --> parser
+command --> main
 deactivate command
-parser --> main
-deactivate parser
-deactivate ui
 
-main -> storage
-activate storage STORAGE_COLOR
-storage -> storage : save to file
+main --> user
+
+main -> storage : writeToFile(savedData:SavedData, filePath:String)
 activate storage STORAGE_COLOR_T1
-storage --> storage
-deactivate storage
 storage --> main
+deactivate storage
 
 @enduml

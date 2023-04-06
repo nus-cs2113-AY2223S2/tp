@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
+import seedu.rainyDay.data.MonthlyExpenditures;
+import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.data.UserData;
 
 import java.time.LocalDate;
@@ -16,10 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ViewCommandTest {
 
     ArrayList<FinancialStatement> statements = new ArrayList<>();
-    HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
-    FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
-    UserData userData = new UserData(financialReport);
-    
+    FinancialReport financialReport = new FinancialReport(statements);
+    HashMap<Integer, Double> expenditures = new HashMap<>();
+    MonthlyExpenditures monthlyExpenditures = new MonthlyExpenditures(expenditures);
+    SavedData savedData = new SavedData(financialReport);
+    UserData userData = new UserData(savedData, monthlyExpenditures);
+
     @Test
     public void execute_emptyReport_emptyReportStatement() {
         ViewCommand viewList = new ViewCommand(LocalDate.now(), LocalDate.now(), false, true);
@@ -28,11 +32,11 @@ public class ViewCommandTest {
                 LocalDate.now(), LocalDate.now());
         assertEquals(expectedReport, viewList.execute().output);
     }
-   
+
     class sortByValue implements Comparator<Integer> {
         public int compare(Integer firstIndex, Integer secondIndex) {
-            FinancialStatement firstStatement = userData.getStatement(firstIndex);
-            FinancialStatement secondStatement = userData.getStatement(secondIndex);
+            FinancialStatement firstStatement = savedData.getStatement(firstIndex);
+            FinancialStatement secondStatement = savedData.getStatement(secondIndex);
             if (firstStatement.getFlowSymbol().equals("+") && secondStatement.getFlowSymbol().equals("-")) {
                 return -1;
             }
@@ -57,15 +61,15 @@ public class ViewCommandTest {
                 "Small Inflow (2)", "in", 1, "test", LocalDate.now()));
 
         ArrayList<Integer> indexes = new ArrayList<>();
-        for(int i = 0; i < financialReport.getStatementCount(); i++) {
+        for (int i = 0; i < financialReport.getStatementCount(); i++) {
             indexes.add(i);
             System.out.println(financialReport.getFinancialStatement(i).getFullStatement());
         }
 
         indexes.sort(new sortByValue()); //to fix this garbage
 
-        for(int i = 0; i < financialReport.getStatementCount(); i++) {
-            for(int j = 0; j < i; j++) {
+        for (int i = 0; i < financialReport.getStatementCount(); i++) {
+            for (int j = 0; j < i; j++) {
                 FinancialStatement smaller = financialReport.getFinancialStatement(i);
                 FinancialStatement bigger = financialReport.getFinancialStatement(j);
                 Assertions.assertTrue(smaller.getValue() < bigger.getValue() ||

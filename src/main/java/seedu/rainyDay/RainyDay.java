@@ -2,6 +2,8 @@ package seedu.rainyDay;
 
 import seedu.rainyDay.command.CommandResult;
 import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.data.MonthlyExpenditures;
+import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
@@ -20,6 +22,8 @@ import java.util.logging.Logger;
 public class RainyDay {
     public static String filePath = "./data/rainyDay.json";
     public static UserData userData;
+    public static SavedData savedData;
+    public static MonthlyExpenditures monthlyExpenditures;
 
     private static Logger logger = Logger.getLogger(RainyDay.class.getName());
 
@@ -29,17 +33,23 @@ public class RainyDay {
         ui = new Ui();
         try {
             ui.printLogo();
-            userData = Storage.loadFromFile(filePath);
-            ui.greetUser(userData.getReportOwner());
-            assert userData != null : "Error loading from json file";
+            savedData = Storage.loadFromFile(filePath);
+            monthlyExpenditures = new MonthlyExpenditures(new HashMap<>());
+            monthlyExpenditures.loadAllExpenditures(savedData.getFinancialReport());
+            userData = new UserData(savedData, monthlyExpenditures);
+            ui.greetUser(savedData.getReportOwner());
+            assert savedData != null : "Error loading from json file";
             logger.log(Level.INFO, "File loaded successfully.");
         } catch (Exception e) {
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
             String username = ui.readUserName();
             assert username != null : "Inputted username should not be null";
-            FinancialReport financialReport = new FinancialReport(new ArrayList<>(), new HashMap<>());
-            userData = new UserData(financialReport);
+            FinancialReport financialReport = new FinancialReport(new ArrayList<>());
+            savedData = new SavedData(financialReport);
+            HashMap<Integer, Double> expenditures = new HashMap<>();
+            monthlyExpenditures = new MonthlyExpenditures(expenditures);
+            userData = new UserData(savedData, monthlyExpenditures);
             financialReport.setReportOwner(username);
         }
     }
@@ -50,8 +60,8 @@ public class RainyDay {
     }
 
     private void setUpDate() {
-        System.out.println(userData.checkUserBudgetLimit(LocalDate.now()));
-        Storage.writeToFile(RainyDay.userData, RainyDay.filePath);
+        System.out.println(savedData.checkUserBudgetLimit(LocalDate.now()));
+        Storage.writeToFile(RainyDay.savedData, RainyDay.filePath);
     }
 
     private void runCommand() {
@@ -62,7 +72,7 @@ public class RainyDay {
                 specificCommand = new Parser().parseUserInput(userInput);
                 assert specificCommand != null : "Parser returned null";
                 executeCommand(specificCommand);
-                if(specificCommand.isExit()) {
+                if (specificCommand.isExit()) {
                     break;
                 }
             } catch (Exception e) {
@@ -78,7 +88,7 @@ public class RainyDay {
         if (result != null) {
             System.out.println(result.output);
         }
-        Storage.writeToFile(userData, filePath);
+        Storage.writeToFile(savedData, filePath);
     }
 
     private static void setupLogger() {

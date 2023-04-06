@@ -43,7 +43,7 @@ public class SetBudgetCommand extends Command {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "Starting SetBudgetCommand.execute()");
-        userData.setBudgetGoal(goal);
+        savedData.setBudgetGoal(goal);
         String output;
         if (goal > 0) {
             output = String.format("Monthly Budget Goal set to $%,.2f!", goal);

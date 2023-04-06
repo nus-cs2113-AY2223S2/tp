@@ -106,7 +106,8 @@ public class FilterCommand extends Command {
             output = "We could not find any matches for your description in your report";
             return new CommandResult(output);
         }
-        output = "Here are the list of matching items!"; // todo
+        output = String.format("We found %s ", listToFilterStatementIndex.size()) + String.format(
+                listToFilterStatementIndex.size() == 1 ? "matching item!" : "matching items!");
         CommandResult result = new CommandResult(output);
         ViewResult.printItemsInList(listToFilterStatementIndex);
         return result;
@@ -125,9 +126,9 @@ public class FilterCommand extends Command {
 
     private void filterByOutflowFirstFlag(ArrayList<FinancialStatement> filteredList,
                                           ArrayList<Integer> statementIndex) {
-        for (int j = 0; j < userData.getStatementCount(); j += 1) {
-            if (userData.getStatement(j).getFlowDirectionWord().equals("out")) {
-                filteredList.add(userData.getStatement(j));
+        for (int j = 0; j < savedData.getStatementCount(); j += 1) {
+            if (savedData.getStatement(j).getFlowDirectionWord().equals("out")) {
+                filteredList.add(savedData.getStatement(j));
                 statementIndex.add(j + 1);
             }
         }
@@ -146,9 +147,9 @@ public class FilterCommand extends Command {
 
     private void filterByInflowFirstFlag(ArrayList<FinancialStatement> filteredList,
                                          ArrayList<Integer> statementIndex) {
-        for (int j = 0; j < userData.getStatementCount(); j += 1) {
-            if (userData.getStatement(j).getFlowDirectionWord().equals("in")) {
-                filteredList.add(userData.getStatement(j));
+        for (int j = 0; j < savedData.getStatementCount(); j += 1) {
+            if (savedData.getStatement(j).getFlowDirectionWord().equals("in")) {
+                filteredList.add(savedData.getStatement(j));
                 statementIndex.add(j + 1);
             }
         }
@@ -168,12 +169,12 @@ public class FilterCommand extends Command {
 
     private void filterByDateFirstFlag(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
                                        int i) {
-        for (int j = 0; j < userData.getStatementCount(); j += 1) {
-            if (userData.getStatementDate(j) != null &&
-                    userData.getStatementDate(j).equals(
+        for (int j = 0; j < savedData.getStatementCount(); j += 1) {
+            if (savedData.getStatementDate(j) != null &&
+                    savedData.getStatementDate(j).equals(
                             LocalDate.parse(filterFlagAndField.get(i + 1),
                                     DateTimeFormatter.ofPattern("dd/MM/uuuu")))) {
-                filteredList.add(userData.getStatement(j));
+                filteredList.add(savedData.getStatement(j));
                 statementIndex.add(j + 1);
             }
         }
@@ -192,9 +193,9 @@ public class FilterCommand extends Command {
 
     private void filterByCategoryFirstFlag(ArrayList<FinancialStatement> filteredList,
                                            ArrayList<Integer> statementIndex, int i) {
-        for (int j = 0; j < userData.getStatementCount(); j += 1) {
-            if (userData.getStatement(j).getCategory().contains(filterFlagAndField.get(i + 1))) {
-                filteredList.add(userData.getStatement(j));
+        for (int j = 0; j < savedData.getStatementCount(); j += 1) {
+            if (savedData.getStatement(j).getCategory().contains(filterFlagAndField.get(i + 1))) {
+                filteredList.add(savedData.getStatement(j));
                 statementIndex.add(j + 1);
             }
         }
@@ -202,9 +203,9 @@ public class FilterCommand extends Command {
 
     private void filterByDescriptionFirstFlag(ArrayList<FinancialStatement> filteredList,
                                               ArrayList<Integer> statementIndex, int i) {
-        for (int j = 0; j < userData.getStatementCount(); j += 1) {
-            if (userData.getStatement(j).getDescription().contains(filterFlagAndField.get(i + 1))) {
-                filteredList.add(userData.getStatement(j));
+        for (int j = 0; j < savedData.getStatementCount(); j += 1) {
+            if (savedData.getStatement(j).getDescription().contains(filterFlagAndField.get(i + 1))) {
+                filteredList.add(savedData.getStatement(j));
                 statementIndex.add(j + 1);
             }
         }

@@ -2,7 +2,6 @@
 participant ":EditCommand" as EditCommand
 participant ":UserData" as UserData
 participant ":FinancialReport" as FinancialReport
-'participant ":ViewResult" as ViewResult
 
 [-> EditCommand : execute()
 activate EditCommand
@@ -28,45 +27,12 @@ deactivate FinancialReport
 
 UserData --> EditCommand
 deactivate UserData
+ref over EditCommand
 
-loop editFlagAndField.size()
-    alt flag equals "-d"
-    EditCommand -> EditCommand : setDescription(description : String)
-    activate EditCommand
-    EditCommand --> EditCommand
-    deactivate EditCommand
+Loop through editFlagAndField
 
-    else flag equals "-c"
-    EditCommand -> EditCommand : setCategory(category : String)
-    activate EditCommand
-    EditCommand --> EditCommand
-    deactivate EditCommand
+end ref
 
-    else flag equals "-v"
-    EditCommand -> EditCommand : setValue(value : Double)
-    activate EditCommand
-    EditCommand --> EditCommand
-    deactivate EditCommand
-
-    else flag equals "-date"
-    EditCommand -> EditCommand : setValue(date : LocalDate)
-    activate EditCommand
-    EditCommand --> EditCommand
-    deactivate EditCommand
-
-    else flag equals "-out"
-    EditCommand -> EditCommand : setFlowDirection(INFLOW : FlowDirection)
-    activate EditCommand
-    EditCommand --> EditCommand
-    deactivate EditCommand
-
-    else flag equals "-in"
-    EditCommand -> EditCommand : setFlowDirection(INFLOW : FlowDirection)
-    activate EditCommand
-    EditCommand --> EditCommand
-    deactivate EditCommand
-    end
-end
 
 EditCommand -> UserData : addToMonthlyExpenditure(editedStatement : FinancialStatement)
 activate UserData

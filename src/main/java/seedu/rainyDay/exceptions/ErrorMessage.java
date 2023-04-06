@@ -7,11 +7,16 @@ public enum ErrorMessage {
             "Please add transactions first!"),
     WRONG_DELETE_INDEX("Sorry, your delete command is invalid. Please ensure [INDEX] is a number and" +
             " is within the boundary > 0 and <= %s"),
+    ADD_FORMAT("Add format is as follows: \n" +
+            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
+            "Please refer to 'help' for more information!"),
+    FILTER_FORMAT("Filter format is as follows: \n" +
+            "filter {-in/-out} {-d DESCRIPTION} {-c CATEGORY} {-date DD/MM/YYYY} \n" +
+            "At least one of these flags must be present and in the order above.\n" +
+            "Please refer to 'help' for more information!"),
     NO_DELETE_INDEX("Sorry, your delete command is invalid. Please include a delete index! \n" +
             "Delete format is as follows :\n" + "delete [INDEX]"),
-    WRONG_ADD_FORMAT("Sorry, your add command is invalid. Add format is as follows: \n" +
-            "add [-in/-out] [DESCRIPTION] $[VALUE] {-c CATEGORY} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!"),
+    WRONG_ADD_FORMAT("Sorry, your add command is invalid.\n\n"),
     WRONG_FILTER_FORMAT("Sorry, your filter command is invalid. Filter format is as follows: \n" +
             "filter {-in/-out} {-d DESCRIPTION} {-c CATEGORY} {-date DD/MM/YYYY} \n" +
             "At least one of these flags must be present and in the order above.\n" +
@@ -22,10 +27,11 @@ public enum ErrorMessage {
     WRONG_EDIT_FORMAT("Sorry, your edit command is invalid. Edit format is as follows: \n" +
             "edit [INDEX] [-in/-out/-d DESCRIPTION/-v $VALUE/-c CATEGORY/-date DD/MM/YYYY]\n" +
             "Please refer to 'help' for more information!"),
+    EDIT_FORMAT("Edit format is as follows: \n" +
+            "edit [INDEX] [-in/-out/-d DESCRIPTION/-v $VALUE/-c CATEGORY/-date DD/MM/YYYY]\n" +
+            "Please refer to 'help' for more information!"),
     WRONG_EDIT_INDEX("Sorry, your edit command is invalid. Please ensure [INDEX] is a number " +
             "and is within the boundary > 0 and <= %s"),
-    MISSING_DETAILS("Please include the necessary details for your command! Refer to 'help' for the " +
-            "format of instructions!"),
     WRONG_SET_BUDGET_FORMAT("Sorry, your setbudget command is invalid. setbudget format is as follows: \n" +
             "setbudget [VALUE] \n" +
             "Please refer to 'help' for more information!"),
@@ -36,53 +42,22 @@ public enum ErrorMessage {
             "and is within the boundary > 0 and <= %s"),
     WRONG_IGNORE_FORMAT("Sorry, your ignore command is invalid. Please include a ignore index! \n" +
             "ignore format is as follows :\n" + "ignore/unignore [INDEX]"),
-    UNSUPPORTED_DESCRIPTION_NAME("Sorry, character \"-\" is not supported for description name\n\n" +
-            "Add format is as follows: \n" +
-            "add [-in/-out] [DESCRIPTION] $[VALUE] {-c CATEGORY} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!"),
-    UNSUPPORTED_CATEGORY_NAME("Sorry, character \"-\" is not supported for category name\n\n" +
-            "Add format is as follows: \n" +
-            "add [-in/-out] [DESCRIPTION] $[VALUE] {-c CATEGORY} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!"),
-    EMPTY_DESCRIPTION_NAME("Sorry, description name cannot be empty\n\n" +
-            "Add format is as follows: \n" +
-            "add [-in/-out] [DESCRIPTION] $[VALUE] {-c CATEGORY} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!"),
+    UNSUPPORTED_DESCRIPTION_NAME("Sorry, character \"-\" is not supported for description name\n\n"),
+    UNSUPPORTED_CATEGORY_NAME("Sorry, character \"-\" is not supported for category name\n\n"),
+    EMPTY_DESCRIPTION_NAME("Sorry, description name cannot be empty\n\n"),
     SHORTCUT_ALREADY_EXISTS("The shortcut already exists."),
     SHORTCUT_MAPS_ITSELF("The shortcut you are trying to configure should not map to itself."),
     SHORTCUT_NAME_VALID_COMMAND("The shortcut you are trying to configure has the same name as a valid command, " +
             "please name your shortcut something else."),
     SHORTCUT_MAPS_SHORTCUT("A configured shortcut should not map to another shortcut"),
-    INVALID_YEAR("Year provided needs to be in the form YYYY!\n\n" +
-            "Add format is as follows: \n" +
-            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!"),
-    INVALID_MONTH("Month provided needs to be in the form MM or M!\n\n" +
-            "Add format is as follows: \n" +
-            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!"),
-    INVALID_DAY("Year provided needs to be in the form DD or D!\n\n" +
-            "Add format is as follows: \n" +
-            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!"),
+    INVALID_YEAR("Year provided needs to be in the form YYYY, where year is a number!\n\n"),
+    INVALID_MONTH("Month provided needs to be in the form MM or M, where month is a number from 1 to 12!\n\n"),
+    INVALID_DAY("Day provided needs to be in the form DD or D, where day is a number from 1 to 31!\n\n"),
     INVALID_DATE_FORMAT("Date provided needs to be in the form of DD/MM/YYYY or D instead of DD and M " +
-            "instead of MM\n\n" +
-            "Add format is as follows: \n" +
-            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!"),
-    EMPTY_CATEGORY_NAME("Category name cannot be empty\n\n" +
-            "Add format is as follows: \n" +
-            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!"),
-    INVALID_DATE("Date provided does not exist, please ensure that you have keyed the correct date\n\n" +
-            "Add format is as follows: \n" +
-            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!"),
-    NO_DATE_PROVIDED("Please provide a date after the \"-date\" flag\n\n" +
-            "Add format is as follows: \n" +
-            "add [-in/-out] [description] $[value] {-c category} {-date DD/MM/YYYY} \n" +
-            "Please refer to 'help' for more information!");
-
+            "instead of MM, where D, M, and Y are numbers!\n\n"),
+    EMPTY_CATEGORY_NAME("Category name cannot be empty\n\n"),
+    INVALID_DATE("Date provided does not exist, please ensure that you have keyed the correct date\n\n"),
+    NO_DATE_PROVIDED("Please provide a date after the \"-date\" flag\n\n");
 
     private final String error;
 

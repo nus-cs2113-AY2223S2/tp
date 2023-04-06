@@ -2,6 +2,7 @@ package seedu.rainyDay.command;
 
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.FlowDirection;
+import seedu.rainyDay.data.MonthlyExpenditures;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -53,9 +54,8 @@ public class EditCommand extends Command {
         logger.log(Level.INFO, "starting EditCommand.execute()");
 
         index -= 1;
-
-        int previousStatementCount = userData.getStatementCount();
-        assert (index < userData.getStatementCount() && index >= 0) : "invalid index provided for edit";
+        int previousStatementCount = savedData.getStatementCount();
+        assert (index < savedData.getStatementCount() && index >= 0) : "invalid index provided for edit";
 
         if (editFlagAndField.get(0).equalsIgnoreCase("-in") ||
                 editFlagAndField.get(0).equalsIgnoreCase("-out")) {
@@ -63,8 +63,8 @@ public class EditCommand extends Command {
             editFlagAndField.remove(0);
         }
 
-        FinancialStatement editedStatement = userData.getStatement(index);
-        userData.removeFromMonthlyExpenditure(editedStatement);
+        FinancialStatement editedStatement = savedData.getStatement(index);
+        MonthlyExpenditures.removeFromMonthlyExpenditure(editedStatement);
         for (int i = 0; i < editFlagAndField.size(); i += 2) {
             if (editFlagAndField.get(i).equalsIgnoreCase("-d")) {
                 editedStatement.setDescription(editFlagAndField.get(i + 1));
@@ -81,12 +81,12 @@ public class EditCommand extends Command {
                 editedStatement.setFlowDirection(FlowDirection.INFLOW);
             }
         }
-        userData.addToMonthlyExpenditure(editedStatement);
+        MonthlyExpenditures.addToMonthlyExpenditure(editedStatement);
 
         String output = "Done, edited entry " + (index + 1)
                 + " from the financial report";
 
-        assert previousStatementCount == userData.getStatementCount() : "statement count mismatch";
+        assert previousStatementCount == savedData.getStatementCount() : "statement count mismatch";
 
         logger.log(Level.INFO, "deleted from financial report");
 

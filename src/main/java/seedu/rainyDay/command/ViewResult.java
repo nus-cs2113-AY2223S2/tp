@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import static seedu.rainyDay.RainyDay.userData;
+import static seedu.rainyDay.RainyDay.savedData;
 
 //@@author BenjaminPoh
 public class ViewResult {
@@ -124,10 +124,10 @@ public class ViewResult {
         String outflowInfo = String.format("|Total Outflow: $%.2f", outflow);
         double remainingValue = inflow - outflow;
         String remainingValueInfo;
-        if(remainingValue > 0) {
+        if (remainingValue > 0) {
             remainingValueInfo = String.format("|Remaining value: $%.2f", (inflow - outflow));
         } else {
-            remainingValueInfo = String.format("|Remaining value: -$%.2f", (remainingValue* -1));
+            remainingValueInfo = String.format("|Remaining value: -$%.2f", (remainingValue * -1));
         }
 
         timespanInfo = padSummaryLines(timespanInfo);
@@ -166,7 +166,7 @@ public class ViewResult {
 
         for (int index : indexArray) {
             logger.log(Level.INFO, "starting statement " + index);
-            FinancialStatement currentStatement = userData.getStatement(index - 1);
+            FinancialStatement currentStatement = savedData.getStatement(index - 1);
             output = formatFinancialStatement(index, currentStatement);
 
             System.out.print(output);
@@ -193,7 +193,7 @@ public class ViewResult {
         System.out.print(TABLE_FORMAT);
         for (Integer index : validIndexes) {
             logger.log(Level.INFO, "starting statement " + index);
-            FinancialStatement currentStatement = userData.getStatement(index);
+            FinancialStatement currentStatement = savedData.getStatement(index);
             if (currentStatement.getFlowDirectionWord().equals("in") && !currentStatement.isIgnored()) {
                 totalInflow += currentStatement.getValue();
             } else if (currentStatement.getFlowDirectionWord().equals("out") && !currentStatement.isIgnored()) {

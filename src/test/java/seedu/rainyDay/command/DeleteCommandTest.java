@@ -1,9 +1,11 @@
 package seedu.rainyDay.command;
 
 import org.junit.jupiter.api.Test;
+import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
-import seedu.rainyDay.data.UserData;
+import seedu.rainyDay.data.SavedData;
+import seedu.rainyDay.data.MonthlyExpenditures;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,9 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteCommandTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
-    HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
-    FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
-    UserData userData = new UserData(financialReport);
+    FinancialReport financialReport = new FinancialReport(statements);
+    HashMap<Integer, Double> expenditures = new HashMap<>();
+    MonthlyExpenditures monthlyExpenditures = new MonthlyExpenditures(expenditures);
+    SavedData savedData = new SavedData(financialReport);
+    UserData userData = new UserData(savedData, monthlyExpenditures);
 
     @Test
     public void execute() {

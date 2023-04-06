@@ -1,7 +1,6 @@
 package seedu.rainyDay.command;
 
-import seedu.rainyDay.RainyDay;
-
+import java.util.HashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -21,11 +20,9 @@ public class ShortcutViewCommand extends ShortcutCommand {
     private static final String NO_SHORTCUTS = "You do not have any shortcuts configured.";
 
     public ShortcutViewCommand() {
-        shortcutCommands = RainyDay.userData.getShortcutCommands();
     }
 
     private static void printShortcutMapping(String key, String value) {
-
         String formattedKey = String.format("%s                                   ", key);
         formattedKey = formattedKey.substring(0, 35);
         String formattedValue = String.format("%s                                                             ", value);
@@ -33,7 +30,7 @@ public class ShortcutViewCommand extends ShortcutCommand {
         System.out.println('|' + formattedKey + '|' + formattedValue + '|');
     }
 
-    private static void printCommandsTable() {
+    private static void printCommandsTable(HashMap<String, String> shortcutCommands) {
         System.out.print(TABLE_BORDER);
         System.out.print(ACKNOWLEDGE_VIEW_SHORTCUT_COMMAND);
         System.out.print(HEADERS);
@@ -48,12 +45,13 @@ public class ShortcutViewCommand extends ShortcutCommand {
     public CommandResult execute() {
         setupLogger();
         logger.log(Level.INFO, "starting ShortcutViewCommand.execute()");
+        shortcutCommands = savedData.getShortcutCommands();
         if (shortcutCommands.size() == 0) {
             logger.log(Level.INFO, "ShortcutViewCommand.execute() will not print a table as there is no configured"
                     + " shortcuts");
             return new CommandResult(NO_SHORTCUTS);
         }
-        printCommandsTable();
+        printCommandsTable(shortcutCommands);
         logger.log(Level.INFO, "ShortcutViewCommand.execute() has printed the table of shortcuts");
         return null;
     }

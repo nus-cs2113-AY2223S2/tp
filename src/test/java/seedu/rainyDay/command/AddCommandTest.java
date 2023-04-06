@@ -3,6 +3,8 @@ package seedu.rainyDay.command;
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
+import seedu.rainyDay.data.MonthlyExpenditures;
+import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.data.UserData;
 
 import java.time.LocalDate;
@@ -13,9 +15,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AddCommandTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
-    HashMap<Integer, Double> monthlyExpenditures = new HashMap<>();
-    FinancialReport financialReport = new FinancialReport(statements, monthlyExpenditures);
-    UserData userData = new UserData(financialReport);
+    FinancialReport financialReport = new FinancialReport(statements);
+    HashMap<Integer, Double> expenditures = new HashMap<>();
+    MonthlyExpenditures monthlyExpenditures = new MonthlyExpenditures(expenditures);
+    SavedData savedData = new SavedData(financialReport);
+    UserData userData = new UserData(savedData, monthlyExpenditures);
 
     @Test
     public void execute_singleStatement_statementInformation() {
@@ -26,7 +30,7 @@ public class AddCommandTest {
         FinancialStatement expectedStatement = new FinancialStatement("Ipad", "out", 120.5,
                 "Default", LocalDate.now());
         assertEquals(expectedStatement.getFullStatement(),
-                userData.getStatement(0).getFullStatement());
+                savedData.getStatement(0).getFullStatement());
     }
 
     @Test
@@ -43,6 +47,6 @@ public class AddCommandTest {
                 LocalDate.now());
         addCommand.setData(userData);
         addCommand.execute();
-        assertEquals(2, userData.getStatementCount());
+        assertEquals(2, savedData.getStatementCount());
     }
 }
