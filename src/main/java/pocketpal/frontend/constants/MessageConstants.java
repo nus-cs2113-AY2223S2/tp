@@ -40,8 +40,8 @@ public final class MessageConstants {
 
     public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current expenditure."
             + NEWLINE
-            + "Usage: /view [COUNT] [-c | -category CATEGORY] [-sp | -startprice PRICE_MIN] [-ep | -endprice PRICE_MAX]" +
-            " [<-sd | -startdate START_DATE -ed | -enddate END_DATE>]" + NEWLINE
+            + "Usage: /view [COUNT] [-c | -category CATEGORY] [-sp | -startprice PRICE_MIN] [-ep | -endprice PRICE_MAX]"
+            + " [<-sd | -startdate START_DATE -ed | -enddate END_DATE>]" + NEWLINE
             + "see below for examples" + NEWLINE
             + "/view 100 -c Transportation -sp 2.00 -ep 5.00" + NEWLINE
             + "/view -sd 21/11/97 -ed 22/11/97 -c Transportation -sp 2.00" + NEWLINE
