@@ -14,13 +14,11 @@ import seedu.apollo.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
 public class ShowModuleCommand extends Command {
-    private static Logger logger = Logger.getLogger("ShowModuleCommand");
     private String[] args;
     private Module module;
 
@@ -33,7 +31,7 @@ public class ShowModuleCommand extends Command {
      */
 
     public ShowModuleCommand(String params, ModuleList allModules) throws InvalidModule, IllegalCommandException {
-        super(logger);
+        super("ShowModuleCommand");
         assert (params != null) : "ShowModuleCommand: ModuleCode should not be null!";
         assert (allModules != null) : "ShowModuleCommand: Module list should not be null!";
 

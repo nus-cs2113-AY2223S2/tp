@@ -7,16 +7,13 @@ import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
 
-import java.util.logging.Logger;
-
 /**
  * List Command class that shows user a list of all the Tasks they have input.
  */
 public class ListCommand extends Command {
-    private static Logger logger = Logger.getLogger("ListCommand");
 
     public ListCommand() {
-        super(logger);
+        super("ListCommand");
     }
 
     /**

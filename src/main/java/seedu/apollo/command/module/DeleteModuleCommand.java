@@ -15,7 +15,6 @@ import seedu.apollo.task.TaskList;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
@@ -24,11 +23,10 @@ import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
  * Delete Module Command class that finds the module using moduleCode and removes it from the ModuleList
  */
 public class DeleteModuleCommand extends Command {
-    private static Logger logger = Logger.getLogger("DeleteModuleCommand");
     protected String[] args;
 
     public DeleteModuleCommand(String params) throws IllegalCommandException {
-        super(logger);
+        super("DeleteModuleCommand");
         String[] args = params.split("\\s+");
 
         if (args.length != 1 && args.length != 3) {

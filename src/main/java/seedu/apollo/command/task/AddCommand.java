@@ -28,7 +28,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import static seedu.apollo.calendar.SemesterUtils.getWeekNumber;
 import static seedu.apollo.ui.Parser.COMMAND_DEADLINE_WORD;
@@ -41,8 +40,6 @@ import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
  * Handles {@code todo}, {@code deadline}, and {@code event} commands.
  */
 public class AddCommand extends Command {
-
-    private static Logger logger = Logger.getLogger("AddCommand");
 
     protected String command;
     protected String desc;
@@ -60,7 +57,7 @@ public class AddCommand extends Command {
      * @throws UnexpectedException If the command word cannot be understood.
      */
     public AddCommand(String command, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
-        super(logger);
+        super("AddCommand");
         this.command = command;
         assert (command.equals(COMMAND_TODO_WORD) | command.equals(COMMAND_DEADLINE_WORD) |
                 command.equals(COMMAND_EVENT_WORD)) : "AddCommand: Invalid Add Command";

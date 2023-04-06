@@ -9,7 +9,6 @@ import seedu.apollo.ui.Ui;
 
 import java.io.IOException;
 import java.rmi.UnexpectedException;
-import java.util.logging.Logger;
 
 import static seedu.apollo.ui.Parser.COMMAND_DELETE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_MARK_WORD;
@@ -20,7 +19,6 @@ import static seedu.apollo.ui.Parser.COMMAND_UNMARK_WORD;
  * Handles {@code mark}, {@code unmark}, and {@code delete} commands.
  */
 public class ModifyCommand extends Command {
-    private static Logger logger = Logger.getLogger("ModifyCommand");
 
     protected String command;
     protected int idx;
@@ -34,7 +32,7 @@ public class ModifyCommand extends Command {
      * @throws NumberFormatException If idx cannot be parsed, or is outside the current range of tasks.
      */
     public ModifyCommand(String command, String param, int size) throws NumberFormatException {
-        super(logger);
+        super("ModifyCommand");
         assert (command.equals(COMMAND_MARK_WORD) | command.equals(COMMAND_UNMARK_WORD) |
                 command.equals(COMMAND_DELETE_WORD)) : "ModifyCommand: Invalid Modify Command";
         assert param != null : "ModifyCommand: param cannot be null!";

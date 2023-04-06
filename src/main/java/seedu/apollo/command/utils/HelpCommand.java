@@ -7,17 +7,13 @@ import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
 
-import java.util.logging.Logger;
-
 /**
  * Parent class of all help commands
  */
 public class HelpCommand extends Command {
 
-    private static Logger logger = Logger.getLogger("HelpCommand");
-
     public HelpCommand() {
-        super(logger);
+        super("HelpCommand");
     }
 
     /**

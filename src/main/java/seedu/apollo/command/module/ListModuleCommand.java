@@ -7,13 +7,10 @@ import seedu.apollo.module.ModuleList;
 import seedu.apollo.ui.Ui;
 import seedu.apollo.task.TaskList;
 
-import java.util.logging.Logger;
-
 public class ListModuleCommand extends Command {
-    private static Logger logger = Logger.getLogger("ListModuleCommand");
 
     public ListModuleCommand() {
-        super(logger);
+        super("ListModuleCommand");
     }
 
     @Override

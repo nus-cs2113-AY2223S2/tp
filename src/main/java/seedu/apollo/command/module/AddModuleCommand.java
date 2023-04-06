@@ -22,14 +22,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import static seedu.apollo.utils.DayTypeUtil.determineDay;
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
 
 public class AddModuleCommand extends Command {
-    private static Logger logger = Logger.getLogger("AddModuleCommand");
     private Module module;
     private String[] args;
 
@@ -41,7 +39,7 @@ public class AddModuleCommand extends Command {
      * @throws InvalidModule If the module code is invalid.
      */
     public AddModuleCommand(String param, ModuleList allModules) throws InvalidModule, IllegalCommandException {
-        super(logger);
+        super("AddModuleCommand");
         assert (param != null) : "AddModuleCommand: Params should not be null!";
         assert (allModules != null) : "AddModuleCommand: Module list should not be null!";
 

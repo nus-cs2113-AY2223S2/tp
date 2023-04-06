@@ -11,16 +11,13 @@ import seedu.apollo.task.TaskList;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.logging.Logger;
 
 /**
  * Date Command class that shortlists Tasks that occur on the given date.
  */
 public class DateCommand extends Command {
-    private static Logger logger = Logger.getLogger("DateCommand");
     LocalDate date;
     DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
 
     /**
      * Initialises the class with the given date to shortlist for.
@@ -29,7 +26,7 @@ public class DateCommand extends Command {
      * @throws InvalidDateTime If the input date does not fit the above format.
      */
     public DateCommand (String dateString) throws InvalidDateTime {
-        super(logger);
+        super("DateCommand");
         assert dateString != null : "DateCommand: dateString should not be null!";
         try {
             this.date = LocalDate.parse(dateString,datePattern);

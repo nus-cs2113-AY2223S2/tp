@@ -10,17 +10,14 @@ import seedu.apollo.ui.Ui;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.logging.Logger;
 
 /**
  * Week Command class that displays the user's schedule for the week
  */
 public class WeekCommand extends Command {
 
-    private static Logger logger = Logger.getLogger("WeekCommand");
-
     public WeekCommand() {
-        super(logger);
+        super("WeekCommand");
     }
 
     @Override

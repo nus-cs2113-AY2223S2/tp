@@ -6,13 +6,11 @@ import seedu.apollo.ui.Ui;
 import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
-import java.util.logging.Logger;
 
 /**
  * Find Command class that shortlists Tasks that contain a given keyword.
  */
 public class FindCommand extends Command {
-    private static Logger logger = Logger.getLogger("FindCommand");
 
     protected String keyword;
     /**
@@ -21,7 +19,7 @@ public class FindCommand extends Command {
      * @param keyword User input of the keyword.
      */
     public FindCommand(String keyword) {
-        super(logger);
+        super("FindCommand");
         this.keyword = keyword;
     }
 
