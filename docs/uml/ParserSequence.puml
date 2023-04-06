@@ -1,0 +1,43 @@
+@startuml ParserSequence
+autoactivate on
+
+' alice -> bob : hello
+' bob -> bob : self call
+' bill -> bob #005500 : hello from thread 2
+' bob -> george ** : create
+' return done in thread 2
+' return rc
+' bob -> george !! : delete
+' return success
+
+Parser -> CardKeywordParser : parseTokens()
+note left
+    Keyword token is not
+    passed to KeywordParser
+end note
+
+CardKeywordParser -> CardKeywordParser : handleAction()
+CardKeywordParser -> CardKeywordParser : handleAdd()
+
+CardKeywordParser -> OptionBuilder : get Options for flags
+return 
+
+CardKeywordParser -> CardKeywordParser : parseUsingOptions()
+
+note over DefaultParser
+    Apache Commons
+    CLI parser
+end note
+CardKeywordParser -> DefaultParser : parse()
+return Flag values
+
+return Parsed Command 
+return 
+return 
+return 
+
+<-- Parser
+
+note right : Parsed Command propagated back
+
+@enduml
