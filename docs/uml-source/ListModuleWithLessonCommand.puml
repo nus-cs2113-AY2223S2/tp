@@ -45,6 +45,8 @@ activate Ui
 Ui --> ListMod
 deactivate Ui
 
+end 
+
 destroy Ui
 
 ListMod --> Parser
@@ -58,7 +60,6 @@ destroy Parser
 Apollo --> User
 deactivate Apollo
 
-end
 
 
 
