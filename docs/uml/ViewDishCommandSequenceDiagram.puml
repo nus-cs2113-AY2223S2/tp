@@ -1,6 +1,6 @@
 @startuml
 hide footbox
-title Add Dish Sequence Diagram
+title View Dish Sequence Diagram
 
 box "ViewDishCommand"
 participant ":ViewDishCommand" as ViewDishCommand
@@ -12,7 +12,7 @@ endbox
 
 -> ViewDishCommand ++ : ViewDishCommand()
 -> ViewDishCommand: execute()
-ViewDishCommand -> DishManager ++ : execute()
+ViewDishCommand -> DishManager ++ : viewDish()
 
 ViewDishCommand <-- DishManager
 <-- ViewDishCommand: ui.printMessage()

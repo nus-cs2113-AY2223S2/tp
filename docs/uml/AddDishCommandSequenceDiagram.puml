@@ -16,7 +16,7 @@ endbox
 
 -> AddDishCommand ++ : AddDishCommand("dish name", price, ["ingredient 1", "ingredient 2", ...])
 -> AddDishCommand: execute("dish name", price, ["ingredient 1", "ingredient 2", ...])
-AddDishCommand -> DishManager ++ : execute("dish name", price, ["ingredient 1", "ingredient 2", ...])
+AddDishCommand -> DishManager ++ : addDish("dish name", price, ["ingredient 1", "ingredient 2", ...])
 
 create Dish
 Dish <- DishManager ++ : create new Dish("dish name", price, ["ingredient 1", "ingredient 2", ...])
