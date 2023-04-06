@@ -1,6 +1,9 @@
 package bagpacker.iohandlertest;
 
-import bagpacker.commands.*;
+import import bagpacker.commands.Command;
+import bagpacker.commands.ListCommand;
+import bagpacker.commands.DeleteListCommand;
+import bagpacker.commands.AddCommand;
 import bagpacker.iohandler.Storage;
 import bagpacker.iohandler.Ui;
 import org.junit.jupiter.api.Test;
@@ -10,8 +13,6 @@ import bagpacker.packingfunc.Item;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * StorageTest class test Storage methods
