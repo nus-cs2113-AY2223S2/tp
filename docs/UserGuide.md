@@ -56,31 +56,31 @@ Hence, users utilising Apollo should input their modules for the current semeste
 
 ## Command Summary
 
-|             Action             |                         Format                         |
-|:------------------------------:|:------------------------------------------------------:|
-|           List Tasks           |                         `list`                         |
-|              Todo              |                     `todo <TASK>`                      |
-|            Deadline            |              `deadline <TASK> -by <DATE>`              |
-|             Event              |         `event <TASK> -from <DATE> -to <DATE>`         |
-|              Mark              |                      `mark <IDX>`                      |
-|             Unmark             |                     `unmark <IDX>`                     |
-|          Delete Task           |                     `delete <IDX>`                     |
-|    Find Tasks with Keyword     |                    `find <KEYWORD>`                    |
-|       Find Tasks on Date       |                     `date <DATE>`                      |
-|          List Modules          |                       `listmod`                        |
-|   List Modules with lessons    |                `listmod <MODULE CODE>`                 |
-|  List Module with lesson type  |         `listmod <MODULE CODE> -<LESSON_TYPE>`         |
-|           Add Module           |                 `addmod <MODULE_CODE>`                 |
-|       Add Module Lessons       |   `addmod MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>`   |
-|     Delete Module by Index     |                     `delmod <IDX>`                     |
-|     Delete Module by Code      |                 `delmod <MODULE_CODE>`                 |
-|       Delete Module Data       | `delmoddata MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>` |
-|    Show Module Information     |                `showmod <MODULE_CODE>`                 |
-| Show Module Lesson Information |         `showmod <MODULE_CODE> -<LESSON_TYPE>`         |
-|              Help              |                         `help`                         |
-|        Help for Command        |                    `help <COMMAND>`                    |
-|        Weekly Schedule         |                         `week`                         |
-|              Bye               |                         `bye`                          |
+|             Action             |                       Format                       |
+|:------------------------------:|:--------------------------------------------------:|
+|           List Tasks           |                       `list`                       |
+|              Todo              |                   `todo <TASK>`                    |
+|            Deadline            |            `deadline <TASK> -by <DATE>`            |
+|             Event              |       `event <TASK> -from <DATE> -to <DATE>`       |
+|              Mark              |                    `mark <IDX>`                    |
+|             Unmark             |                   `unmark <IDX>`                   |
+|          Delete Task           |                   `delete <IDX>`                   |
+|    Find Tasks with Keyword     |                  `find <KEYWORD>`                  |
+|       Find Tasks on Date       |                   `date <DATE>`                    |
+|          List Modules          |                     `listmod`                      |
+|   List Modules with lessons    |              `listmod <MODULE CODE>`               |
+|  List Module with lesson type  |       `listmod <MODULE CODE> -<LESSON_TYPE>`       |
+|           Add Module           |               `addmod <MODULE_CODE>`               |
+|       Add Module Lessons       | `addmod MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>` |
+|     Delete Module by Index     |                   `delmod <IDX>`                   |
+|     Delete Module by Code      |               `delmod <MODULE_CODE>`               |
+|       Delete Module Data       | `delmod MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>` |
+|    Show Module Information     |              `showmod <MODULE_CODE>`               |
+| Show Module Lesson Information |       `showmod <MODULE_CODE> -<LESSON_TYPE>`       |
+|              Help              |                       `help`                       |
+|        Help for Command        |                  `help <COMMAND>`                  |
+|        Weekly Schedule         |                       `week`                       |
+|              Bye               |                       `bye`                        |
     
 > Notes about the command format:
 > + Words in `<UPPER_CASE>` are the parameters to be supplied by the user.
@@ -191,6 +191,11 @@ Format: `mark IDX`
 Nice!, I've marked this task as done:
 [T][X] Feed the fish
 ```
+> Case when user attempts to mark a task that was already marked as done in the first place.
+```
+>> mark 4
+You have already marked this task as done previously.
+```
 
 ### `unmark` - Marking not done
 
@@ -205,6 +210,11 @@ Format: `unmark IDX`
 >> unmark 4
 OK, I've marked this task as not done yet:
   [T][ ] Feed the fish
+```
+> Case when user attempts to unmark a task that was never marked as done in the first place.
+```
+>> unmark 4
+This task was never marked as done!
 ```
 
 ### `delete` - Deleting a task
@@ -266,7 +276,7 @@ You are taking 3 module(s) this semester:
 Total modular credits you have in this semester: 12
 ```
 ### `listmod with lessons` - Lists all the lessons user is taking in that module
-Shows the list of classes user is taking for that module and their lesson type,day,timing and frequency
+Shows the list of classes user is taking for that module and their lesson type, day, timing and frequency.
 ```
 >> listmod cs2113
 These are your classes for Module CS2113: 
@@ -374,7 +384,7 @@ Lessons deleted: SECTIONAL TEACHING - 1
 
 ### `showmod` - Show information of a module
 
-Shows the information of a module.
+Shows the information of a module. 
 Format: `showmod MODULE_CODE`
 
 ```
@@ -386,6 +396,7 @@ Number of MC: 4
 ```
 #### `showmod` flags
 The lesson types and their corresponding guide are the same as `addmod` flags.
+Shows the list of classes a module has and their lesson types, day, timing and frequency.
 To show the information on a lesson, use the following format:
 `showmod MODULE_CODE -FLAG`
 
@@ -393,7 +404,7 @@ To show the information on a lesson, use the following format:
 >> showmod CS1010 -st
 Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
 Class Number: 1
-   Monday 1200 - 1400
+   Tuesday 1000 - 1200 [Weekly]
 ```
 
 The ordering of lessons in the list are sorted as follows:
@@ -418,22 +429,23 @@ The below is a list of commands that you can use with `help`.
 
 Format: `help COMMAND`
 
-|         Command         |                          Help/Information Message contains...                           |
-|:-----------------------:|:---------------------------------------------------------------------------------------:|
-|         `list`          |                      information and format for list tasks command                      |
-|         `todo`          |                                 format for todo command                                 |
-|       `deadline`        |                               format for deadline command                               |
-|         `event`         |                                format for event command                                 |
-|         `mark`          |                                 format for mark command                                 |
-|        `unmark`         |                                format for unmark command                                |
-|        `delete`         |                             format for delete task command                              |
-|         `find`          |                     format for finding matching tasks with keyword                      |
-|         `date`          |                           format for finding tasks with date                            |
-|        `listmod`        |                     information and format for list module command                      |
-|        `addmod`         | information and format of adding modules and module lessons commands, with flag options |
-|        `delmod`         |       information and format of delete module command options, with flag options        |
-|        `showmod`        |                  information and format of show module command options                  |
-|          `bye`          |                         information and format for bye command                          |
+|  Command   |                          Help/Information Message contains...                           |
+|:----------:|:---------------------------------------------------------------------------------------:|
+|   `list`   |                      information and format for list tasks command                      |
+|   `todo`   |                                 format for todo command                                 |
+| `deadline` |                               format for deadline command                               |
+|  `event`   |                                format for event command                                 |
+|   `mark`   |                                 format for mark command                                 |
+|  `unmark`  |                                format for unmark command                                |
+|  `delete`  |                             format for delete task command                              |
+|   `find`   |                     format for finding matching tasks with keyword                      |
+|   `date`   |                           format for finding tasks with date                            |
+| `listmod`  |                     information and format for list module command                      |
+|  `addmod`  | information and format of adding modules and module lessons commands, with flag options |
+|  `delmod`  |       information and format of delete module command options, with flag options        |
+| `showmod`  |                  information and format of show module command options                  |
+|   `help`   |           information for help commands and how to seek specific command help           |
+|   `bye`    |                         information and format for bye command                          |
 
 Format: `help COMMAND`
 
