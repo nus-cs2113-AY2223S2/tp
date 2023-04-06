@@ -11,7 +11,7 @@ public class Parser {
     protected ParserAdd parserAdd = new ParserAdd();
 
     public String extractCommandKeyword(String userInput) {
-        String[] input = userInput.split(WHITESPACE);
+        String[] input = userInput.trim().split(WHITESPACE);
         return input[0].toLowerCase().trim();
     }
 
@@ -93,7 +93,7 @@ public class Parser {
 
     public String extractYear(String userInput){
         String[] input = userInput.split(WHITESPACE,3);
-        String year = "-1";
+        String year = "";
         if (isMonthlyOverview(userInput)) {
             year = input[2].toLowerCase().trim();
         } else if (input.length == 2) {

@@ -12,7 +12,7 @@ import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_CATEGORY;
 
 public class CommandCategory extends Command {
-    public static final String COMMAND_NAME = "classify";
+    public static final String COMMAND_NAME = "category";
     public static final String ALL_CATEGORY = "Here are all your expense categories: ";
 
     protected ArrayList<Expense> expenseList;
@@ -23,7 +23,7 @@ public class CommandCategory extends Command {
         super(COMMAND_NAME);
         this.expenseList = expenseList;
         for (Expense e : expenseList) {
-            String categoryOfe = e.getDescription();
+            String categoryOfe = e.getDescription().toLowerCase();
             if (!categorySet.contains(categoryOfe)) {
                 categorySet.add(categoryOfe);
             }
@@ -71,14 +71,7 @@ public class CommandCategory extends Command {
         } else {
             displayAllCategories();
             System.out.println(MESSAGE_DIVIDER_CATEGORY);
-            int index = 1;
-            for (Expense e : expenseList) {
-                if (e.getDescription().equals(category)) {
-                    System.out.print((index) + ".");
-                    System.out.println(e.sortedDisplay("C"));
-                    index++;
-                }
-            }
+            displayCorrespondingCategory(category);
             System.out.println(MESSAGE_DIVIDER);
         }
         return null;
@@ -103,7 +96,7 @@ public class CommandCategory extends Command {
         }
 
         for (Expense e : expenseList) {
-            String category = e.getDescription();
+            String category = e.getDescription().toLowerCase();
             ArrayList<Expense> currExpenseList = categoryGroup.get(category);
             currExpenseList.add(e);
             categoryGroup.put(category, currExpenseList);
@@ -115,6 +108,18 @@ public class CommandCategory extends Command {
                             .calculateTotal().setScale(2, RoundingMode.HALF_UP)));
         }
         return expensesByCategorySum;
+    }
+
+    private void displayCorrespondingCategory(String category) {
+        System.out.println("Category: " + category);
+        int index = 1;
+        for (Expense e : expenseList) {
+            if (e.getDescription().toLowerCase().equals(category)) {
+                System.out.print((index) + ".");
+                System.out.println(e.sortedDisplay("C"));
+                index++;
+            }
+        }
     }
 
 }

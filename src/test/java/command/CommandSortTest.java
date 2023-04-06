@@ -9,7 +9,7 @@ import java.io.PrintStream;
 
 
 import static common.MessageList.MESSAGE_DIVIDER;
-import static common.MessageList.MESSAGE_DIVIDER_LIST;
+import static common.MessageList.MESSAGE_DIVIDER_SORTEDLIST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommandSortTest {
@@ -33,10 +33,12 @@ public class CommandSortTest {
         System.setOut(new PrintStream(outContent));
 
         String input = "C";
-        String expected = MESSAGE_DIVIDER_LIST + "\n"
-                + "1.cat:eat USD2.50 date:02/02/2013\n"
-                + "2.cat:food USD2.50 date:02/02/2012\n"
-                + "3.cat:food SGD2.50 date:02/02/2012\n"
+        String expected = MESSAGE_DIVIDER_SORTEDLIST + "\n"
+                + "Category: eat\n"
+                + "1.USD2.50 date:02/02/2013\n"
+                + "Category: food\n"
+                + "1.USD2.50 date:02/02/2012\n"
+                + "2.SGD2.50 date:02/02/2012\n"
                 + MESSAGE_DIVIDER + "\n";
 
         new CommandSort(expenseList.getExpenseList(), input).execute();
@@ -47,10 +49,12 @@ public class CommandSortTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         input = "D";
-        expected = MESSAGE_DIVIDER_LIST + "\n"
-                + "1.date:02/02/2012 SGD2.50 cat:food\n"
-                + "2.date:02/02/2012 USD2.50 cat:food\n"
-                + "3.date:02/02/2013 USD2.50 cat:eat\n"
+        expected = MESSAGE_DIVIDER_SORTEDLIST + "\n"
+                + "Date: 02/02/2012\n"
+                + "1.SGD2.50 cat:food\n"
+                + "2.USD2.50 cat:food\n"
+                + "Date: 02/02/2013\n"
+                + "1.USD2.50 cat:eat\n"
                 + MESSAGE_DIVIDER + "\n";
         new CommandSort(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
