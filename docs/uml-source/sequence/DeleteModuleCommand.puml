@@ -58,6 +58,7 @@ else
     activate ModuleList
     ModuleList --> delmod
     deactivate ModuleList
+    destroy ModuleList
 
     delmod -> Ui : printModuleDeleteMessage
     activate Ui

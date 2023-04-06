@@ -41,7 +41,6 @@ activate Ui
 Ui --> list
 deactivate Ui
 
-deactivate list
 
 destroy Ui
 

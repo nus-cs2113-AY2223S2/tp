@@ -10,6 +10,7 @@ actor User
 participant ":Apollo" as Apollo
 participant ":Parser" as Parser
 participant ":ListModuleCommandWithLessonCommand" as ListMod
+participant ":ModuleList" as ModuleList
 participant ":Module" as Module
 participant ":Ui" as Ui
 
@@ -41,6 +42,13 @@ destroy Parser
 
 Apollo -> ListMod : execute()
 activate ListMod
+
+ListMod -> ModuleList : findModule(module)
+activate ModuleList
+ModuleList --> ListMod
+deactivate ModuleList
+destroy ModuleList
+
 
 alt args.length == 2
 ListMod -> ListMod : handleMultiCommand()
