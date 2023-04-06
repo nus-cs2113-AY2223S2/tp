@@ -28,7 +28,7 @@ public class Deadline extends Task {
     public Deadline(String description, String byString)
             throws DateTimeParseException, DateOverException {
         super(description);
-        this.by = LocalDateTime.parse(byString);
+        this.by = LocalDateTime.parse(byString,storePattern);
         if (by.isBefore(LocalDateTime.now())) {
             throw new DateOverException(getType(), description, by, null, null);
         }

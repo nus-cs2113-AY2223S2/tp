@@ -3,59 +3,42 @@
 
 title ListModuleCommand
 
-participant Parser as Parser
+actor User
 
-participant ListModuleCommand as ListMod
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":ListModuleCommand" as ListMod
+participant ":Ui" as Ui
 
-Parser -> ListMod : ListModuleCommand()
+User -> Apollo : "listmod"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+
+Parser -> ListMod** : ListModuleCommand()
 activate ListMod
-ListMod -> LoggerInterface : setUpLogger()
-
-activate LoggerInterface
-deactivate LoggerInterface
-destroy LoggerInterface
-
-ListMod -> Module: Module()
-activate Module
-Module -> ListMod
-deactivate Module
+ListMod -> ListMod : setUpLogger()
+activate ListMod
 deactivate ListMod
+ListMod -> Parser: ListModuleCommand()
+deactivate ListMod
+
+
 
 Parser -> ListMod : execute()
 activate ListMod
 
-alt args.length == 3
-    ListMod -> ListMod : handleMultiCommand()
-else
-    ListMod -> ModuleList : add()
-    activate ModuleList
-    ModuleList -> ListMod
-    deactivate ModuleList
+ListMod -> Ui : printModuleList()
+activate Ui
+Ui --> ListMod
+deactivate Ui
+destroy Ui
+ListMod --> Parser
 
-    ListMod -> ModuleList : sortModuleList()
-    activate ModuleList
-    ModuleList -> ListMod
-    deactivate ModuleList
-    destroy ModuleList
-
-    ListMod -> Module: findModules()
-    activate Module
-    Module -> ListMod
-    deactivate Module
-    destroy Module
-
-    ListMod -> Ui : printAddModuleMessage()
-    activate Ui
-    Ui -> ListMod
-    deactivate Ui
-    destroy Ui
-end
-
-ListMod -> Storage : saveModuleList()
-activate Storage
-Storage -> ListMod
-deactivate Storage
-destroy Storage
-
+deactivate ListMod
 destroy ListMod
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+deactivate Apollo
 @enduml

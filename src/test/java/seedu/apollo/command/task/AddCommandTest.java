@@ -40,12 +40,12 @@ class AddCommandTest {
 
     @Test
     void execute_normalDeadline_expectAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
-        AddCommand addCommand = new AddCommand("deadline", "submit homework -by 2024-01-01T23:59");
+        AddCommand addCommand = new AddCommand("deadline", "submit homework -by 01-01-2024-23:59");
         addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         Task result = taskList.get(0);
         assertTrue(result instanceof Deadline);
         assertEquals("submit homework", result.getDescription());
-        assertEquals("Jan 01 2024, 11:59PM", ((Deadline) result).getBy(printPattern));
+        assertEquals("01 Jan 2024, 11:59PM", ((Deadline) result).getBy(printPattern));
     }
 
     @Test
@@ -70,13 +70,13 @@ class AddCommandTest {
     @Test
     void execute_normalEvent_expectAdd() throws InvalidDeadline, InvalidEvent, UnexpectedException {
         AddCommand addCommand = new AddCommand("event",
-                "concert -from 2024-01-01T10:00 -to 2024-01-01T13:00");
+                "concert -from 01-01-2024-10:00 -to 01-01-2024-13:00");
         addCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         Task result = taskList.get(0);
         assertTrue(result instanceof Event);
         assertEquals("concert", result.getDescription());
-        assertEquals("Jan 01 2024, 10:00AM", ((Event) result).getFrom(printPattern));
-        assertEquals("Jan 01 2024, 01:00PM", ((Event) result).getTo(printPattern));
+        assertEquals("01 Jan 2024, 10:00AM", ((Event) result).getFrom(printPattern));
+        assertEquals("01 Jan 2024, 01:00PM", ((Event) result).getTo(printPattern));
     }
 
     @Test

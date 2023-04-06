@@ -1,6 +1,9 @@
 package seedu.apollo;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.apollo.module.ModuleList;
+import seedu.apollo.module.Module;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
@@ -37,10 +40,27 @@ class UiTest {
 
     @Test
     void printFoundList_emptyInput_noExceptionThrown() throws IOException {
-        Storage storage = new Storage("test.txt", "moduleData.txt");
+
         Ui ui = new Ui();
         TaskList taskList = new TaskList();
         assertDoesNotThrow(() -> ui.printFoundList(taskList));
     }
+
+    @Test
+    void printModuleList_emptyInput_noExceptionThrown() throws IOException {
+
+        Ui ui = new Ui();
+        ModuleList moduleList = new ModuleList();
+        assertDoesNotThrow(() -> ui.printModuleList(moduleList));
+    }
+
+    @Test
+    void printModuleList_normalInput_noExceptionThrown() throws IOException {
+        Ui ui = new Ui();
+        ModuleList moduleList = new ModuleList();
+        moduleList.add(new Module("CS1010", "Programming Methodology", "4"));
+        assertDoesNotThrow(() -> ui.printModuleList(moduleList));
+    }
+
 
 }

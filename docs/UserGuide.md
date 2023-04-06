@@ -52,31 +52,32 @@ on the console by design. However, the application will still run normally and e
 
 ## Command Summary
 
-|         Action          |              Format              |
-|:-----------------------:|:--------------------------------:|
-|       List Tasks        |              `list`              |
-|          Todo           |           `todo TASK`            |
-|        Deadline         |     `deadline TASK /by DATE`     |
-|          Event          | `event TASK /from DATE /to DATE` |
-|          Mark           |            `mark IDX`            |
-|         Unmark          |           `unmark IDX`           |
-|       Delete Task       |           `delete IDX`           |
-| Find Tasks with Keyword |          `find KEYWORD`          |
-|   Find Tasks on Date    |           `date DATE`            |
-|      List Modules       |            `listmod`             |
-|       Add Module        |       `addmod MODULE_CODE`       |
-|      Delete Module      |           `delmod IDX`           |
-| Show Module Information |            `showmod`             |
-|          Help           |              `help`              |
-|    Help for Command     |          `help COMMAND`          |
- |     Weekly Schedule     |              `week`              |
-|           Bye           |              `bye`               |
-
+|          Action           |              Format              |
+|:-------------------------:|:--------------------------------:|
+|        List Tasks         |              `list`              |
+|           Todo            |           `todo TASK`            |
+|         Deadline          |     `deadline TASK /by DATE`     |
+|           Event           | `event TASK /from DATE /to DATE` |
+|           Mark            |            `mark IDX`            |
+|          Unmark           |           `unmark IDX`           |
+|        Delete Task        |           `delete IDX`           |
+|  Find Tasks with Keyword  |          `find KEYWORD`          |
+|    Find Tasks on Date     |           `date DATE`            |
+|       List Modules        |            `listmod`             |
+| List Modules with lessons |         `listmod cs2113`         |
+|        Add Module         |       `addmod MODULE_CODE`       |
+|       Delete Module       |           `delmod IDX`           |
+|  Show Module Information  |            `showmod`             |
+|           Help            |              `help`              |
+|     Help for Command      |          `help COMMAND`          |
+|      Weekly Schedule      |              `week`              |
+|            Bye            |              `bye`               |
+    
 > Notes about the command format:
 > + Words in `UPPER_CASE` are the parameters to be supplied by the user.
 > > e.g. in 'todo TASK', `TASK` is a parameter that can be used as `todo read book`.
-> + `DATE`s should be input in the format `yyyy-MM-ddThh:mm`.
-> > e.g. `deadline read book /by 2023-10-30T23:59` sets a deadline for Oct 20 2023, 11:59PM
+> + `DATE`s should be input in the format `dd-MM-yyyy-HH:mm` where HH is 24-hour format
+> > e.g. `deadline read book /by 30-10-23:59` sets a deadline for Oct 20 2023, 11:59PM
 > + Tasks that have occurred prior to the current date cannot be added. 
 > + `IDX` can be obtained by using `list` for tasks or `listmod` for modules.  
 > + By default, all newly added tasks are not completed.
@@ -126,10 +127,10 @@ However, you will still be able to add it into the tasklist.
 
 Format: `deadline TASK -by DATE`
 
-> Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
+> Note: `DATE` must be entered in the format `dd-MM-yyyy-HH:mm`.
 
 ```
->> deadline submit tutorial -by 2023-03-30T23:59
+>> deadline submit tutorial -by 30-03-2023-23:59
 Got it. I've added this deadline:
   [D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
 ```
@@ -142,10 +143,10 @@ However, you will still be able to add it.
 
 Format: `event TASK -from DATE -to DATE`
 
-> Note: `DATE` must be entered in the format `yyyy-MM-ddThh:mm`.
+> Note: `DATE` must be entered in the format `dd-MM-yyyy-HH:mm`.
 
 ```
->> event holiday -from 2023-03-25T00:00 -to 2023-03-30T23:59
+>> event holiday -from 25-03-2023-00:00 -to 30-03-2023-23:59
 Got it. I've added this event:
   [E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
 ```
@@ -211,10 +212,10 @@ Shows all tasks in Apollo that occur on the specified date.
 
 Format: `date DATE`
 
-> Note: `DATE` should be entered in the format `yyyy-MM-dd`.
+> Note: `DATE` should be entered in the format `dd-MM-yyyy.
 
 ```
->> date 2023-03-30
+>> date 30-03-2023
 Here are the tasks happening on Mar 30 2023:
 1.[E][ ] holiday (from: Mar 25 2023, 12:00AM to: Mar 30 2023, 11:59PM)
 2.[D][ ] submit tutorial (by: Mar 30 2023, 11:59PM)
@@ -235,6 +236,18 @@ You are taking 3 module(s) this semester:
 2.CS2113: Software Engineering & Object-Oriented Programming (4 MCs)
 3.DTK1234: Design Thinking (4 MCs)
 Total modular credits you have in this semester: 12
+```
+### `listmod with lessons` - Lists all the lessons user is taking in that module
+Shows the list of classes user is taking for that module and their lesson type,day,timing and frequency
+```
+>> listmod cs2113
+These are your classes for Module CS2113: 
+
+Lecture 1
+   Friday 1600 - 1800 [Weekly]
+Tutorial 13
+   Friday 1300 - 1400 [Weeks: 3-13]
+
 ```
 
 ### `addmod` - Adding a module
@@ -362,22 +375,23 @@ The below is a list of commands that you can use with `help`.
 
 Format: `help COMMAND`
 
-|  Command   |                          Help/Information Message contains...                           |
-|:----------:|:---------------------------------------------------------------------------------------:|
-|   `list`   |                      information and format for list tasks command                      |
-|   `todo`   |                                 format for todo command                                 |
-| `deadline` |                               format for deadline command                               |
-|  `event`   |                                format for event command                                 |
-|   `mark`   |                                 format for mark command                                 |
-|  `unmark`  |                                format for unmark command                                |
-|  `delete`  |                             format for delete task command                              |
-|   `find`   |                     format for finding matching tasks with keyword                      |
-|   `date`   |                           format for finding tasks with date                            |
-| `listmod`  |                     information and format for list module command                      |
-|  `addmod`  | information and format of adding modules and module lessons commands, with flag options |
-|  `delmod`  |       information and format of delete module command options, with flag options        |
-| `showmod`  |                  information and format of show module command options                  |
-|   `bye`    |                         information and format for bye command                          |
+|         Command         |                          Help/Information Message contains...                           |
+|:-----------------------:|:---------------------------------------------------------------------------------------:|
+|         `list`          |                      information and format for list tasks command                      |
+|         `todo`          |                                 format for todo command                                 |
+|       `deadline`        |                               format for deadline command                               |
+|         `event`         |                                format for event command                                 |
+|         `mark`          |                                 format for mark command                                 |
+|        `unmark`         |                                format for unmark command                                |
+|        `delete`         |                             format for delete task command                              |
+|         `find`          |                     format for finding matching tasks with keyword                      |
+|         `date`          |                           format for finding tasks with date                            |
+|        `listmod`        |                     information and format for list module command                      |
+| `listmod [MODULE_CODE]` |                 information and format for list specific module command                 |
+|        `addmod`         | information and format of adding modules and module lessons commands, with flag options |
+|        `delmod`         |       information and format of delete module command options, with flag options        |
+|        `showmod`        |                  information and format of show module command options                  |
+|          `bye`          |                         information and format for bye command                          |
 
 Format: `help COMMAND`
 

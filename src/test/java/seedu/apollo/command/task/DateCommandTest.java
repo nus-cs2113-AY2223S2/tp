@@ -32,17 +32,16 @@ class DateCommandTest {
 
     @Test
     void testExecute_emptyTaskList_expectsNoException() throws InvalidDateTime {
-        DateCommand newDateCommand = new DateCommand("2023-10-10");
+        DateCommand newDateCommand = new DateCommand("10-10-2023");
 
         assertDoesNotThrow(() -> newDateCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
     @Test
 
-
     void testExecute_populatedTaskList_expectsNoException() throws InvalidDateTime, DateOverException {
-        DateCommand newDateCommand = new DateCommand("2023-10-10");
-        taskList.add(new Deadline("submit tutorial", "2023-10-10T23:59"));
+        DateCommand newDateCommand = new DateCommand("10-10-2023");
+        taskList.add(new Deadline("submit tutorial", "10-10-2023-23:59"));
         assertDoesNotThrow(() -> newDateCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
