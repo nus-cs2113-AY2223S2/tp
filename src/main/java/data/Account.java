@@ -61,7 +61,9 @@ public class Account {
         this.passwordHash = hashPassword(password);
     }
 
-    public ExpenseList getExpenseList() { return account; }
+    public ExpenseList getExpenseList() {
+        return account;
+    }
 
     public void signup() {
         // Check if username contains special characters
@@ -147,7 +149,8 @@ public class Account {
                 System.out.println("An error occurred while logging in.");
                 e.printStackTrace();
             }
-        } return "Login successfully.";
+        }
+        return "Login successfully.";
     }
 
     private boolean isUsernameTaken() {

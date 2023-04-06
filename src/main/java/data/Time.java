@@ -53,13 +53,14 @@ public class Time implements Comparable<Time> {
         // The format of the timeString is dd/MM/yyyy
         String standardFormat = timeString.substring(6) + "-"
                 + timeString.substring(3, 5) + "-" + timeString.substring(0, 2);
-        Time returnTime = new Time(LocalDate.parse(standardFormat));
-        return returnTime;
+        return new Time(LocalDate.parse(standardFormat));
     }
 
     @Override
     public int compareTo(Time o) {
         return this.getTime().compareTo(o.getTime());
     }
-    public String toStringSave() { return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")); }
+    public String toStringSave() {
+        return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    }
 }
