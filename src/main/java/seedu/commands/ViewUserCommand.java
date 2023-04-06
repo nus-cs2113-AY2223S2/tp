@@ -1,7 +1,6 @@
 package seedu.commands;
 
 import java.time.LocalDate;
-
 import seedu.entities.CaloricIntake;
 import seedu.entities.User;
 import seedu.exceptions.LifeTrackerException;
@@ -14,7 +13,6 @@ import seedu.ui.CalorieUi;
 
 
 public class ViewUserCommand extends Command {
-
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
                         ExerciseStorage exerciseStorage)
