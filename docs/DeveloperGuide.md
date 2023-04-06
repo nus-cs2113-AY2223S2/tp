@@ -83,6 +83,9 @@ to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html).
 * 💡 indicates helpful tips
 * ℹ️ indicates information to take note of
 
+> ℹ️ The lifeline for sequence diagrams should end at the destroy marker (X) but due to a limitation of PlantUML, the
+> lifeline reaches the end of the diagram.
+
 #### Main functions:
 
 * Adding, deleting and editing transaction entries
@@ -207,9 +210,6 @@ The sequence diagram for the implementation of add is as shown below.
 
 ![AddCommandSequenceDiagram.png](images\DeveloperGuide\AddCommandSequenceDiagram.png)
 
-> ℹ️ The lifeline for `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the
-> lifeline reaches the end of the diagram
-
 #### Design considerations
 
 Format of add command
@@ -236,9 +236,6 @@ Format of add command
 The sequence diagram for the implementation of delete is as shown below.
 
 ![DeleteCommandSequenceDiagram.png](images\DeveloperGuide\DeleteCommandSequenceDiagram.png)
-
-> ℹ️ The lifeline for `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the
-> lifeline reaches the end of the diagram
 
 #### Design considerations
 
@@ -330,7 +327,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
     - This was deliberate as presenting this information at the bottom makes it easier for users to spot,
       as placing them at the top may cause users to miss it if they have a large table
 
-![ViewCommandSequenceDiagram.png](images\DeveloperGuide\ViewCommandSequenceDiagram.png)
+![ViewCommandSequenceDiagram.png](images\DeveloperGuide\ViewCommand.png)
 
 ### Design considerations
 
@@ -352,7 +349,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
   much they have exceeded it by
 - This can be seen at start-up and when the user makes any changes to their expenses for the month
 
-![SetBudgetCommandSequenceDiagram.png](images\DeveloperGuide\SetBudgetCommandSequenceDiagram.png)
+![SetBudgetCommandSequenceDiagram.png](images\DeveloperGuide\SetBudgetCommand.png)
 
 ### Editing an entry `edit`
 
