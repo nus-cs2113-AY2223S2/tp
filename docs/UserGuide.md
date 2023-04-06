@@ -655,7 +655,7 @@ BrokeMan data are saved in text files ExpenseData, IncomeData and BudgetData aut
 
 ### Wishlist `[COMING SOON]`
 
-
+### Spending Advisor `[COMING SOON]`
 
 
 ## FAQ
