@@ -1,0 +1,93 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+interface DatabaseInterface {
+initialiseDatabase():void
+writeTaskPreparation(String saveString):String
+checkDatabaseCorrupted():boolean
+}
+class BudgetStorage implements DatabaseInterface {
+-budget:int
+initialiseDatabase():void
+writeTaskPreparation(String saveString):String
+checkDatabaseCorrupted():boolean
++getBudgetInstance():BudgetStorage
++checkDatabaseCorrupted():boolean
++getAccommodationCost():int
++getAirplaneTicketCost():int
++getFoodCost():int
++getEntertainmentCost():int
++getBudget():int
++setBudget(int budget):void
++setAccommodationCost(int cost):void
++setAirplaneTicketCost(int cost):void
++setFoodCost(int cost):void
++setEntertainmentCost(int cost):void
+-BudgetStorage():void
+-readBudgetData():void
+-corruptBudgetFixProcedure():void
+-updateBudgetStorage():void
+-writeListToFile():void
+-integerToString(int integer):String
+-setBaseBudget():void
+}
+class BudgetPlanner {
+{static}+MAX_BUDGET:int
+-budget:int
+-surplus:int
+-accommodationTotalCost:int
+-airplaneTicketTotalCost:int
+-foodTotalCost:int
+-entertainmentTotalCost:int
++getBudgetPlannerInstance():BudgetPlanner
++setBudget(int budget):void
++setAccommodationTotalCost(int accommodationTotalCost):void
++setAirplaneTicketTotalCost(int airplaneTicketTotalCost):void
++setFoodTotalCost(int foodTotalCost):void
++setEntertainmentTotalCost(int entertainmentTotalCost):void
++getBudget():int
++getSurplus():int
++getAccommodationTotalCost():int
++getAirplaneTicketTotalCost():int
++getFoodTotalCost():int
++getEntertainmentTotalCost():int
+-BudgetPlanner()
+-initialiseCost():void
+-getTotalCost():int
+-updateSurplus():void
+-checkInvalidAmount(int amount):boolean
+
+}
+BudgetStorage "1" <- BudgetPlanner : manages
+BudgetStorage -left-* "1"AirplaneTicket
+BudgetStorage -left-* "1"Entertainment
+BudgetStorage -left-* "1"Food
+BudgetStorage -left-* "1"Accommodation
+
+class AirplaneTicket extends GoodsAndServices {
+-price:int
++getPrice():int
++setPrice():void
+}
+class Accommodation extends GoodsAndServices {
+-price:int
++getPrice():int
++setPrice():void
+}
+class Food extends GoodsAndServices {
+-price:int
++getPrice():int
++setPrice():void
+}
+class Entertainment extends GoodsAndServices {
+-price:int
++getPrice():int
++setPrice():void
+}
+class GoodsAndServices {
+-price:int
++getPrice():int
++setPrice():void
+}
+
+@enduml

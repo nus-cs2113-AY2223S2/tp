@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+activate ":Duke"
+":Duke" -> ":EditAirplaneTicketCommand" : command.execute()
+activate ":EditAirplaneTicketCommand"
+":EditAirplaneTicketCommand" -> ":BudgetPlanner" : budgetPlanner.getAirplaneTicketTotalCost()
+activate ":BudgetPlanner"
+":EditAirplaneTicketCommand" <-- ":BudgetPlanner" : initialCost:int
+deactivate ":BudgetPlanner"
+":EditAirplaneTicketCommand" -> ":BudgetPlanner" : budgetPlanner.setAirplaneTicketTotalCost(cost)
+activate ":BudgetPlanner"
+":EditAirplaneTicketCommand" <-- ":BudgetPlanner"
+deactivate ":BudgetPlanner"
+":EditAirplaneTicketCommand" -> ":BudgetPlanner" : budgetPlanner.getAirplaneTicketTotalCost()
+activate ":BudgetPlanner"
+":EditAirplaneTicketCommand" <-- ":BudgetPlanner" : newCost:int
+deactivate ":BudgetPlanner"
+opt initialCost == newCost
+":EditAirplaneTicketCommand" -> "<<class>>\n:UI" : UI.printCostNoChangeMessage();
+activate "<<class>>\n:UI"
+":EditAirplaneTicketCommand" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":EditAirplaneTicketCommand" --> ":Duke"
+end
+create ":AirplaneTicket"
+":EditAirplaneTicketCommand" -> ":AirplaneTicket" : new AirplaneTicket(cost)
+activate ":AirplaneTicket"
+":EditAirplaneTicketCommand" <-- ":AirplaneTicket" : airplaneTicket
+deactivate ":AirplaneTicket"
+":EditAirplaneTicketCommand" -> "<<class>>\n:UI" : UI.printEditCostMessage(cost, airplaneTicket)
+activate "<<class>>\n:UI"
+":EditAirplaneTicketCommand" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":EditAirplaneTicketCommand" --> ":Duke"
+deactivate ":EditAirplaneTicketCommand"
+@enduml

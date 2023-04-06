@@ -18,6 +18,6 @@ public class EditEntertainmentCommand extends EditCostCommand {
             UI.printCostNoChangeMessage();
             return;
         }
-        UI.printEditCostMessage(budgetPlanner.getEntertainmentTotalCost(), new Entertainment(cost));
+        UI.printEditCostMessage(cost, new Entertainment(cost));
     }
 }

@@ -18,6 +18,6 @@ public class EditAccommodationCommand extends EditCostCommand {
             UI.printCostNoChangeMessage();
             return;
         }
-        UI.printEditCostMessage(budgetPlanner.getAccommodationTotalCost(), new Accommodation(cost));
+        UI.printEditCostMessage(cost, new Accommodation(cost));
     }
 }
