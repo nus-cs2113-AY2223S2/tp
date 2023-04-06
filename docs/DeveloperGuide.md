@@ -304,6 +304,8 @@ the user to keep track of their net calorie gain on a daily basis.
 | v2.0    | user     | search for a type of food and view its nutritional contents | make a more informed choice about what to eat            |
 | v2.0    | user     | search for meals within a specific calorie range         | decide which meal to consume                                |
 | v2.0    | user     | enter the type and duration of exercise I have completed | keep better track of my physical activies                   |
+| v2.1    | user     | be inspired to work out                                  | stay in shape                                               |
+| v2.1    | user     | search based on a filter                                 | have results that better suit my needs                      |
 
 ## Non-Functional Requirements
 
