@@ -28,7 +28,7 @@ Figure 1.1
 </p>
 </div>
 
-The architecture diagram as shown in Figure 1.1 shows us the high level design of Fitness Duke.
+The architecture diagram as shown in Figure 1.1 shows us the high level design of Fitness Duke. 
 
 **Main Components**
 
