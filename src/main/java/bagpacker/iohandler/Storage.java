@@ -14,14 +14,18 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private static final String FILE_PATH = "packing_list.txt";
+    private static String filePath;
+
+    public Storage(String filePATH) {
+        filePath = filePATH;
+    }
 
     /**
      * Loads packingList with items saved in save file
      * @throws FileNotFoundException when no save file in directory FILE_PATH is found
      */
     public static void load() throws FileNotFoundException {
-        Scanner reader = new Scanner(new File(FILE_PATH));
+        Scanner reader = new Scanner(new File(filePath));
         String line;
         while (reader.hasNext()) {
             line = reader.nextLine();
@@ -63,7 +67,7 @@ public class Storage {
     }
 
     public static void writeToFile(PackingList packingList) throws IOException {
-        FileWriter fw = new FileWriter(FILE_PATH);
+        FileWriter fw = new FileWriter(filePath);
         for (int i = 0; i < packingList.size(); i++) {
             fw.write(PackingList.get(i).toString() + "\n");
         }
