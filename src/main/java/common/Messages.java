@@ -102,4 +102,7 @@ public class Messages {
     public static final String ERROR_STAFF_EXCESS_VIEW_PARAM = "Excessive parameter given to view staff command!";
     public static final String ERROR_PRICE_EXCEED_INTEGER_BOUNDS = "The maximum must not be greater than "
             + Integer.MAX_VALUE + " cents";
+    public static final String ERROR_DUPLICATE_DISH_NAME = "There is already a dish with the same name.";
+    public static final String ERROR_DISH_STORAGE_DUPLICATE_DISH_NAME = "There is already a dish with the same name." +
+            "\n%s\nSkipping line...\n";
 }

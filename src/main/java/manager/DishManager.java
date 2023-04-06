@@ -94,4 +94,13 @@ public class DishManager {
                 + dish.getIngredientsList();
     }
 
+    public static boolean isInsideDishes(String name) {
+        for (Dish dish : dishes) {
+            if (dish.getDishName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

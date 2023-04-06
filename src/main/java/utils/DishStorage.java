@@ -36,7 +36,7 @@ public class DishStorage {
             Pattern dishPattern = Pattern.compile(regex);
             Matcher parsedDishInput = dishPattern.matcher(text);
 
-            String name;
+            String name = null;
             Integer price;
             ArrayList<String> ingredients = new ArrayList<>();
             Dish dish = null;
@@ -49,6 +49,7 @@ public class DishStorage {
                     } catch (NumberFormatException e) {
                         throw new DinerDirectorException(Messages.ERROR_PRICE_EXCEED_INTEGER_BOUNDS);
                     }
+
                     String[] ingredientList = parsedDishInput.group(3).split(";");
                     for (String ingredient : ingredientList) {
                         String regexNumbers = "^[+-]?\\d+(?:\\.\\d+)?$";
@@ -58,12 +59,18 @@ public class DishStorage {
                             ingredients.add(ingredient);
                         }
                     }
+
+                    for (Dish currentDish : listOfDishes) {
+                        if (currentDish.getDishName().equals(name)) {
+                            throw new DinerDirectorException(Messages.ERROR_DISH_STORAGE_DUPLICATE_DISH_NAME);
+                        }
+                    }
                     dish = new Dish(name, price, ingredients);
                 } else {
                     throw new DinerDirectorException(Messages.ERROR_STORAGE_INVALID_READ_LINE);
                 }
             } catch (DinerDirectorException e) {
-                System.out.println(String.format(Messages.ERROR_STORAGE_INVALID_READ_LINE, text));
+                System.out.println(String.format(e.getMessage(), text));
             }
 
             if (dish != null) {
