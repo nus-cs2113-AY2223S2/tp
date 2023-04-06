@@ -59,7 +59,7 @@ public enum ErrorMessage {
     EMPTY_CATEGORY_NAME("Category name cannot be empty\n\n"),
     INVALID_DATE("Date provided does not exist, please ensure that you have keyed the correct date\n\n"),
     NO_DATE_PROVIDED("Please provide a date after the \"-date\" flag\n\n"),
-    INVALID_JSON("Your saved file in rainyDay.json is corrupted or of an invalid format!"),
+    FAILED_FILE_OPERATION("File operation failed"),
     INVALID_SAVED_FINANCIAL_REPORT("Your saved data for financialReport is invalid"),
     INVALID_SAVED_SHORTCUT_COMMANDS("Your saved data for shortcutCommands is invalid"),
     INVALID_SAVED_BUDGET_GOAL("Your saved data for budgetGoal is invalid"),

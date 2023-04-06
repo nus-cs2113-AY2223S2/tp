@@ -64,7 +64,7 @@ public class ShortcutViewCommand extends ShortcutCommand {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("ShortcutViewCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/ShortcutViewCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log ShortcutViewCommand class");

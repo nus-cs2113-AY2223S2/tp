@@ -34,7 +34,7 @@ public class ViewResult {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("ViewResult.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/ViewResult.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log ViewResult class");

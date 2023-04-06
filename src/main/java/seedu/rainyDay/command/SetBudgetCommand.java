@@ -28,7 +28,7 @@ public class SetBudgetCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("SetBudgetCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/SetBudgetCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log SetBudgetCommand class");

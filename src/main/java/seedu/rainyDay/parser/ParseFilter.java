@@ -70,11 +70,30 @@ public class ParseFilter {
             }
             if (matcher.group(6).contains("-date")) {
                 try {
-                    LocalDate date = Parser.setDate(matcher.group(6));
-                    DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    String dateString = date.format(formatters);
-                    filterFlagAndField.add("-date");
-                    filterFlagAndField.add(dateString);
+                    Pattern patternTwoDate = Pattern.compile("(-date .*\\s)(\\d{1,2}\\/\\d{1,2}\\/\\d{4}.*)$");
+                    Matcher matcherTwoDate = patternTwoDate.matcher(matcher.group(6));
+
+                    if (matcherTwoDate.find()) {
+                        sizeOfFilterFlagAndField += 1;
+                        LocalDate date = Parser.setDate(matcherTwoDate.group(1));
+                        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        String dateString = date.format(formatters);
+                        filterFlagAndField.add("-date");
+                        filterFlagAndField.add(dateString);
+
+                        String secondDate = matcherTwoDate.group(2);
+                        secondDate = "-date " + secondDate;
+                        date = Parser.setDate(secondDate);
+                        formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        dateString = date.format(formatters);
+                        filterFlagAndField.add(dateString);
+                    } else {
+                        LocalDate date = Parser.setDate(matcher.group(6));
+                        DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                        String dateString = date.format(formatters);
+                        filterFlagAndField.add("-date");
+                        filterFlagAndField.add(dateString);
+                    }
                 } catch (RainyDayException e) {
                     throw new RainyDayException(e.getMessage() + ErrorMessage.FILTER_FORMAT);
                 }

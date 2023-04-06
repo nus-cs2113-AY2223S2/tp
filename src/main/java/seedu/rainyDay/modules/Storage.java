@@ -233,7 +233,7 @@ public class Storage {
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "writeToFile failed");
-            e.printStackTrace();
+            System.out.println(ErrorMessage.FAILED_FILE_OPERATION);
         }
 
     }
@@ -293,7 +293,7 @@ public class Storage {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("Storage.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/Storage.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "File logger not working.", e);

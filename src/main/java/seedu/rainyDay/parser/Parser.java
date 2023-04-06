@@ -13,6 +13,9 @@ import seedu.rainyDay.modules.Ui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,6 +25,7 @@ public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
     public Command parseUserInput(String userInput) throws RainyDayException {
+        setupLogger();
         try {
             assert userInput != null : "Failed to read user input!";
             String[] action = userInput.split("\\s+", 2);
@@ -52,10 +56,10 @@ public class Parser {
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SET_BUDGET)) {
                 logger.info("set budget command executing");
                 return ParseSetBudget.setUserBudgetGoal(action[1].trim());
-            } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE_SHORTCUT)) {
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT_DELETE)) {
                 logger.info("delete_shortcut command executing");
                 return new ShortcutDeleteCommand(action[1].trim());
-            } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW_SHORTCUT)) {
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT_VIEW)) {
                 logger.info("view_shortcut command executing");
                 return new ShortcutViewCommand();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_IGNORE)) {
@@ -183,5 +187,20 @@ public class Parser {
         String actualCommand = shortcutCommands.get(shortcut);
         Ui.printShortCutConfirmation(shortcut, actualCommand);
         return shortcutCommands.get(shortcut);
+    }
+
+    /**
+     * Sets up logger for logging
+     */
+    protected void setupLogger() {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.INFO);
+        try {
+            FileHandler fileHandler = new FileHandler("./logs/Parser.log", true);
+            logger.addHandler(fileHandler);
+        } catch (Exception e) {
+            System.out.println("unable to log Parser class");
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
     }
 }
