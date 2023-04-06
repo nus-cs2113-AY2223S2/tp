@@ -40,7 +40,8 @@ Format: `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRE
   * Future dates beyond today's date and Past dates before 1981 are invalid. 
   * A warning will be shown if the input date has been adjusted as such a date may not exist for that particular month or 
   year.
-* The `EXPENSE_AMOUNT` must be an integer or decimal number.  
+* The `EXPENSE_AMOUNT` must be an integer or decimal number. 
+  * The amount has a 2 decimal place accuracy, any further decimal places would be rounded on a half up basis.
 * The `EXPENSE_CATERGORY` can be any string that does not contain a whitespace symbol.
 * The `EXPENSE_CURRENCY` has 22 currencies to choose from. 
   * The list of available currencies are

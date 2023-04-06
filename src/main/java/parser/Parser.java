@@ -11,7 +11,7 @@ public class Parser {
     protected ParserAdd parserAdd = new ParserAdd();
 
     public String extractCommandKeyword(String userInput) {
-        String[] input = userInput.split(WHITESPACE);
+        String[] input = userInput.trim().split(WHITESPACE);
         return input[0].toLowerCase().trim();
     }
 
