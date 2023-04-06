@@ -38,7 +38,9 @@ public class Ui {
      */
     public void showEndingMessage() {
         in.close();
+        System.out.println(DIVIDER);
         System.out.println("Goodbye! See you soon.");
+        System.out.println(DIVIDER);
     }
 
     /**
@@ -47,7 +49,9 @@ public class Ui {
      * @param petName String containing the name of the added pet.
      */
     public void addPetCommandMessage(String petName) {
+        System.out.println(DIVIDER);
         System.out.println("Successfully added new pet: " + petName);
+        System.out.println(DIVIDER);
     }
 
     /**
@@ -56,7 +60,9 @@ public class Ui {
      * @param petName String containing the name of the added pet.
      */
     public void editStatCommandMessage(String petName, String stat, String statValue) {
+        System.out.println(DIVIDER);
         System.out.println("Successfully updated " + petName + "'s " + stat + " to " + statValue);
+        System.out.println(DIVIDER);
     }
 
     /**
@@ -67,7 +73,9 @@ public class Ui {
      * @param statValue String indicating the value for that stat.
      */
     public void addStatCommandMessage(String petName, String statName, String statValue) {
+        System.out.println(DIVIDER);
         System.out.println("Updated " + statName + " to " + statValue + " for " + petName);
+        System.out.println(DIVIDER);
     }
 
     /**
@@ -76,7 +84,9 @@ public class Ui {
      * @param petName String representing the name of the removed pet.
      */
     public void removePetCommandMessage(String petName) {
+        System.out.println(DIVIDER);
         System.out.println("Successfully removed pet: " + petName);
+        System.out.println(DIVIDER);
     }
 
     /**
@@ -86,7 +96,9 @@ public class Ui {
      * @param statName String containing name of the stat that was removed.
      */
     public void removeStatCommandMessage(String petName, String statName) {
+        System.out.println(DIVIDER);
         System.out.println("Successfully removed " + statName + " from " + petName);
+        System.out.println(DIVIDER);
     }
 
 
@@ -113,17 +125,22 @@ public class Ui {
      * @param taskNumber Integer representing the task number of the removed task.
      */
     public void removeTaskCommandMessage(int taskNumber) {
+        System.out.println(DIVIDER);
         System.out.println("Successfully removed task " + taskNumber);
+        System.out.println(DIVIDER);
     }
 
     public void editTaskCommandMessage(int taskNumber, String newDescription) {
+        System.out.println(DIVIDER);
         System.out.println("Updated task " + taskNumber + " to " + newDescription + ".");
+        System.out.println(DIVIDER);
     }
 
     /**
      * Message that prints before listing all tasks.
      */
     public void listTasksCommandMessage() {
+        System.out.println(DIVIDER);
         System.out.println("Here are your tasks:");
     }
 
@@ -131,6 +148,7 @@ public class Ui {
      * Message that prints before listing a schedule.
      */
     public void scheduleCommandMessage() {
+        System.out.println(DIVIDER);
         System.out.println("Here is your schedule: ");
     }
 
@@ -138,45 +156,63 @@ public class Ui {
      * Message that prints when a task is marked as done.
      */
     public void markTaskCommandMessage() {
+        System.out.println(DIVIDER);
         System.out.println("Task marked as done");
+        System.out.println(DIVIDER);
     }
 
     /**
      * Message that prints when a task is marked as not done.
      */
     public void unmarkTaskCommandMessage() {
+        System.out.println(DIVIDER);
         System.out.println("Task marked as not done");
+        System.out.println(DIVIDER);
     }
 
     /**
      * Message that prints when the storage experiences IO error.
      */
     public void printFileIOErrorMessage() {
+        System.out.println(DIVIDER);
         System.out.println(FILE_IO_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printNonIntegerMessage() {
+        System.out.println(DIVIDER);
         System.out.println(NON_INTEGER_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printIntegerNotPositiveMessage() {
+        System.out.println(DIVIDER);
         System.out.println(NON_POSITIVE_INTEGER_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void printInvalidStatMessage() {
+        System.out.println(DIVIDER);
         System.out.println(INVALID_STAT_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void petNotFoundMessage() {
+        System.out.println(DIVIDER);
         System.out.println(PET_NOT_FOUND_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void petNameEmptyMessage() {
+        System.out.println(DIVIDER);
         System.out.println(EMPTY_PET_NAME_ERROR);
+        System.out.println(DIVIDER);
     }
 
     public void duplicatePetMessage() {
+        System.out.println(DIVIDER);
         System.out.println(DUPLICATE_PET_ERROR);
+        System.out.println(DIVIDER);
     }
 
     /**
@@ -359,10 +395,14 @@ public class Ui {
     }
 
     public void taskNumberOutOfBoundsMessage() {
+        System.out.println(DIVIDER);
         System.out.println("Task number does not exist.");
+        System.out.println(DIVIDER);
     }
 
     public void invalidTaskNumber() {
+        System.out.println(DIVIDER);
         System.out.println("Invalid task number.");
+        System.out.println(DIVIDER);
     }
 }
