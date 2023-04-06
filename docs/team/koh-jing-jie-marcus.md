@@ -8,6 +8,11 @@ In doing so, the user can better manage his daily calorie gain in order to meet 
 
 ## Summary of Contributions
 
+### Commands
+* `filter` command
+
+* `examples` command
+
 ### Ui
 Implemented the Ui used for LifeTracker, as well as the Ui for the indivdual commands. Ui used to improve the accessibility of the program to any potential users,
 to make the program easier to use.
