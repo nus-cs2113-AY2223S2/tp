@@ -16,6 +16,7 @@ to make the program easier to use.
 
 ## UG/DG
 Added Documentation for the `filter` and `examples` command
+
 Added explanation of program and user stories 
 
 ## Code Contributed
