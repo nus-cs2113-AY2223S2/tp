@@ -194,33 +194,63 @@ public class Storage {
     private void parseTaskFile(ArrayList<String> data) {
         for (String line : data) {
             try {
-                String taskName = getTaskName(line);
+                validateTaskDataSep(line);
                 LocalDate deadline = getDeadline(line);
-                TaskList.addTask(taskName, deadline);
-
+                String taskName = getTaskName(line);
                 String taskStatus = getTaskStatus(line);
-                if (taskStatus.startsWith("1")) {
+
+                TaskList.addTask(taskName, deadline);
+                if (taskStatus.equals("1")) {
                     int taskNumber = TaskList.getNumberOfTasks();
                     TaskList.markTask(taskNumber, true);
                 }
+            } catch (InvalidSeparatorException e) {
+                System.out.println("Task output file contains invalid separator/invalid number of separator. " +
+                        "File loading aborted.");
+                break;
             } catch (ArrayIndexOutOfBoundsException e) {
-                String taskName = getTaskName(line);
-                TaskList.addTask(taskName);
-
-                String taskStatus = getTaskStatus(line);
-                if (taskStatus.startsWith("1")) {
-                    int taskNumber = TaskList.getNumberOfTasks();
-                    TaskList.markTask(taskNumber, true);
+                String result = parseTaskFileWithoutDeadline(line);
+                if (result.equals("error")) {
+                    break;
                 }
             } catch (DateTimeParseException e) {
-                System.out.println("A task in output file has invalid date format");
+                System.out.println("Task output File contains invalid date format. File loading aborted.");
+                break;
+            } catch (EmptyTaskNameException e) {
+                System.out.println("Task name in output file is empty. File loading aborted.");
+                break;
+            } catch (InvalidMarkTaskSymbolException e) {
+                System.out.println("Task output file contains invalid mark task symbol. File loading aborted.");
+                break;
             }
         }
+    }
+
+    private String parseTaskFileWithoutDeadline(String line) {
+        try {
+            String taskName = getTaskName(line);
+            String taskStatus = getTaskStatus(line);
+
+            TaskList.addTask(taskName);
+            if (taskStatus.equals("1")) {
+                int taskNumber = TaskList.getNumberOfTasks();
+                TaskList.markTask(taskNumber, true);
+            }
+        } catch (EmptyTaskNameException e) {
+            System.out.println("Task name in output file is empty. File loading aborted.");
+            return "error";
+        } catch (InvalidMarkTaskSymbolException e) {
+            System.out.println("Task output file contains invalid mark task symbol. File loading aborted.");
+            return "error";
+        }
+
+        return "success";
     }
 
     private String getPetName(String line) {
         String[] words = line.split("\\|", 2);
         String petName = words[0];
+
         return petName;
     }
 
