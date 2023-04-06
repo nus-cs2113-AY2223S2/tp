@@ -81,7 +81,7 @@ public class MakeCommand extends RecipeCommand {
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             mealCompanionSession.getUi().printMessage("Oops, please input a valid recipe number!");
         } catch (Exception e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+            mealCompanionSession.getUi().printMessage(e.getMessage());
         }
     }
 }
