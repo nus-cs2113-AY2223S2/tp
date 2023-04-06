@@ -1,6 +1,6 @@
 package bagpacker.iohandlertest;
 
-import import bagpacker.commands.Command;
+import bagpacker.commands.Command;
 import bagpacker.commands.ListCommand;
 import bagpacker.commands.DeleteListCommand;
 import bagpacker.commands.AddCommand;
