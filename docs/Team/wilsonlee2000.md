@@ -21,10 +21,15 @@ to view my codes contributed for this project.
 * Implemented History Function for displaying a list of all commands input by users
 * Refactoring codes as classes (more OOP)
 * Implemented JUnit Tests for Store, List, Delete and CommandHistory
-* Implemented HelpManual.txt
+* Improvements towards HelpManual.txt
 
 ### 3) UserGuide Contributions:
 * Contributed to overall formatting of UserGuide
 * Contributed to documentation for `Store`, `List`, `Delete`, `Clear`, `Mark`, `Unmark`,
 `FindMark`, `FindUnmark`, `FindInfo`, `FindPrior`, `History`, `Help`, `Bye`
 
+### 4) DeveloperGuide Contributions:
+*
+
+### 5) Review/Mentoring Contributions:
+* Link to PRs reviewed [here](https://github.com/AY2223S2-CS2113-F10-2/tp/pulls?q=is%3Apr+reviewed-by%3AWilsonLee2000)
