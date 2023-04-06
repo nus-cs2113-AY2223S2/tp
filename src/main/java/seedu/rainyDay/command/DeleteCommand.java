@@ -30,7 +30,7 @@ public class DeleteCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("DeleteCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/DeleteCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log DeleteCommand class");

@@ -32,7 +32,6 @@ public class ExportCommand extends Command {
     public CommandResult execute() throws RainyDayException {
         setupLogger();
         logger.log(Level.INFO, "starting ExportCommand.execute()");
-        String output;
 
         if (savedData.getStatementCount() == 0) {
             logger.log(Level.INFO, "empty financial report, export aborted.");
@@ -47,6 +46,7 @@ public class ExportCommand extends Command {
             logger.log(Level.INFO, "Error when exporting to CSV");
             throw new RainyDayException(ErrorMessage.CSV_EXPORT_ERROR.toString());
         }
+        logger.log(Level.INFO, "ExportCommand.execute() successful");
 
         return new CommandResult(CSV_EXPORT_SUCCESS);
     }
@@ -59,7 +59,7 @@ public class ExportCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("ExportCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/ExportCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log ExportCommand class");

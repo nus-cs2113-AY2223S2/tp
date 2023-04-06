@@ -35,7 +35,7 @@ public class EditCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("EditCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/EditCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log EditCommand class");

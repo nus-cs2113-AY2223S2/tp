@@ -38,7 +38,7 @@ public class AddCommand extends Command {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("AddCommand.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/AddCommand.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             System.out.println("unable to log AddCommand class");
