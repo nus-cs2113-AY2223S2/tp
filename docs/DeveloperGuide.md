@@ -94,6 +94,13 @@ Sequence Diagram of Storage initialisation:
 ![Storage.png](diagrams%2FStorage%2FStorage.png)
 ![readModData.png](diagrams%2FStorage%2FreadModData.png)
 
+The Storage class follows the Singleton pattern, where there is only one instance of Storage class. During the
+fist initialisation of the Storage class, Storage also tries to handle the case where the txt have been tampered.
+How the Storage handles this is through the checkDatabaseCorrupted function which the Storage class implements from
+the Database Interface. The Storage class would save module mappings which contains all the information. To double-check
+that such module mappings are not corrupted, it is cross-referenced with the main Module database from the
+DataReader class, and also checked for duplication. Tampered data will be removed or the module database would reset if
+too many modules are affected.
 
 The Storage class also handles the adding of new modules and the deleting of past modules. When any of this occurs, the
 txt file will be updated immediately after the successful adding/deletion of saved modules in the Storage.
@@ -101,6 +108,7 @@ txt file will be updated immediately after the successful adding/deletion of sav
 - For adding of newly saved modules, they are added through appending to the saved_modules.txt file
 - For deleting of past saved modules, they are deleted, and the txt file is updated by rewriting every module from the
   ArrayList of saved modules
+
 
 ### Parser
 

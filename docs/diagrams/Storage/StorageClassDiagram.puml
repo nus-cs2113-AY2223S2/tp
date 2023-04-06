@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface DatabaseInterface {
+initialiseDatabase():void
+writeTaskPreparation(String saveString):String
+checkDatabaseCorrupted():boolean
+}
+
+class Storage implements DatabaseInterface {
+initialiseDatabase():void
+writeTaskPreparation(String saveString):String
+checkDatabaseCorrupted():boolean
+- instance: Storage
+- SAVED_MODULES_FILE_PATH: String
+- modules: ArrayList<Module>
++ getInstance(): Storage
+- Storage()
++ initialiseDatabase(): void
++ checkDatabaseCorrupted(): boolean
+- checkIsValidModule(moduleToCheck: Module, allModules: ArrayList<Module>): boolean
+- readModData(modulesFilePath: String, modules: ArrayList<Module>): void
++ addModuleToModuleList(moduleToAdd: Module): boolean
++ doesModuleExist(moduleToAdd: Module): boolean
+- saveModuleToStorage(saveModuleString: String): void
++ deleteModule(indexToDeletePuSpecificList: int, modules: ArrayList<Module>, database: Storage, uniID: int): boolean
+}
+
+Storage "modules"-> "*"Module
+class Module {
+-univId: int
+-moduleCode: String
+-moduleName: String
+-moduleMCs: int
+-nusModuleCode: String
+-nusModuleName: String
+-nusModuleMCs: int
++Module(univId: int, moduleCode: String, moduleName: String, moduleMCs: int, nusModuleCode: String,
+nusModuleName: String, nusModuleMCs: int)
++toString(): String
++getUnivId(): int
++getModuleMCs(): int
++getNusModuleMCs(): int
++getModuleCode(): String
++getModuleName(): String
++getNusModuleCode(): String
++getNusModuleName(): String
++isInFilter(filter: String): boolean
+{static}+getPrintingLength(module: Module): int
+}
+
+
+@enduml
