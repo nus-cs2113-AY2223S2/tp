@@ -17,13 +17,13 @@ public class Parser {
             check.checkUnknownOperator(command);
 
             if(command.contains("+")) {
-                type = CalType.ADD;
+                type = CalType.ADDITION;
             } else if(command.contains("-")) {
-                type = CalType.SUB;
+                type = CalType.SUBTRACTION;
             } else if(command.contains(".*")) {
-                type = CalType.MUL;
+                type = CalType.MULTIPLICATION;
             } else if(command.contains("*")) {
-                type = CalType.DOT;
+                type = CalType.ELEMENT_WISE_DOT_PRODUCT;
             } else {
                 type = CalType.UNKNOWN;
             }
@@ -37,16 +37,16 @@ public class Parser {
             Execute e = new Execute();
 
             switch(type) {
-            case ADD:
+            case ADDITION:
                 result = e.executeAdd(command);
                 break;
-            case SUB:
+            case SUBTRACTION:
                 result = e.executeSub(command);
                 break;
-            case MUL:
+            case MULTIPLICATION:
                 result = e.executeMul(command);
                 break;
-            case DOT:
+            case ELEMENT_WISE_DOT_PRODUCT:
                 result = e.executeDot(command);
                 break;
             default:
@@ -89,6 +89,6 @@ public class Parser {
     }
 
     enum CalType {
-        ADD, SUB, MUL, DOT, UNKNOWN
+        ADDITION, SUBTRACTION, MULTIPLICATION, ELEMENT_WISE_DOT_PRODUCT, UNKNOWN
     }
 }
