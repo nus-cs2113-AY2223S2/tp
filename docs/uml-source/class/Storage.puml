@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/class-diagram
-
+scale 3.0
 
 interface LoggerInterface {
     + setUpLogger(): void
