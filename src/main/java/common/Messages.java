@@ -49,6 +49,7 @@ public class Messages {
     public static final String MESSAGE_FINISHED_LOADING = "Loading done. Starting Dinerdirector...\n";
     public static final String MESSAGE_STAFF_FOUND = "Here's the matching staff:";
     public static final String MESSAGE_STAFF_NOT_FOUND  ="There's no such staff in the staff list!";
+    public static final String MESSAGES_THE_LIST_OF_DISHES_IS_EMPTY = "(The list of dishes is empty).";
     /**
      * Errors for programs to print.
      */
@@ -94,4 +95,6 @@ public class Messages {
 
     public static final String ERROR_STAFF_INVALID_INDEX = "Invalid staff index number";
     public static final String ERROR_STAFF_EXCESS_VIEW_PARAM = "Excessive parameter given to view staff command!";
+    public static final String ERROR_PRICE_EXCEED_INTEGER_BOUNDS = "The maximum must not be greater than "
+            + Integer.MAX_VALUE + " cents";
 }
