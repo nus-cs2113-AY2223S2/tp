@@ -60,15 +60,8 @@ class MonthlyOverviewTest {
                 TAB + " food 12.50 SGD\n" +
                 TAB + CATEGORY_DIVIDER + "\n" +
                 TAB + " travel 7.50 SGD\n" +
-                TAB + CATEGORY_DIVIDER;
-        assertEquals("Monthly Overview for MARCH 2012\n" + "\n" +
-                TAB + "Total expenses: 20.00 SGD\n" + "\n" +
-                TAB + CATEGORY_TITLE + "\n" +
-                TAB + CATEGORY_DIVIDER + "\n" +
-                TAB + " food 12.50 SGD\n" +
-                TAB + CATEGORY_DIVIDER + "\n" +
-                TAB + " travel 7.50 SGD\n" +
-                TAB + CATEGORY_DIVIDER, outputStreamCaptor.toString().trim());
+                TAB + CATEGORY_DIVIDER + "\n";
+        assertEquals(expectedOutput, outputStreamCaptor.toString());
     }
 
 
