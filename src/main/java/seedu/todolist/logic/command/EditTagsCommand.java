@@ -19,25 +19,35 @@ public class EditTagsCommand extends Command {
 
     private HashSet<Integer> idHashSet;
     private TreeSet<String> tags;
+    private Flags purpose = Flags.EDIT;
 
     public EditTagsCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_TAGS));
         if (args.containsKey(Flags.EDIT)) {
             tags = ParserUtil.parseTags(args.get(Flags.EDIT));
-        } else if (!args.containsKey(Flags.EDIT_DELETE)) {
+        } else if (args.containsKey(Flags.EDIT_DELETE)) {
+            tags = ParserUtil.parseTags(args.get(Flags.EDIT_DELETE));
+            purpose = Flags.EDIT_DELETE;
+        } else {
             throw new InvalidEditException();
         }
+
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
+    public void execute(TaskList taskList, Ui ui) throws InvalidIdException, InvalidEditException {
         for (int id : idHashSet) {
-            if (tags == null) {
-                String taskString = taskList.getTaskString(id);
-                ui.printEditDeleteTaskMessage("tags", taskString);
-            } else {
-                String taskString = taskList.setTags(id, tags);
+            switch (purpose) {
+            case EDIT_DELETE:
+                String taskString = taskList.removeTags(id, tags);
+                ui.printDeleteTagsMessage(FormatterUtil.getTagsAsString(tags), taskString);
+                break;
+            case EDIT:
+                taskString = taskList.setTags(id, tags);
                 ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
+                break;
+            default:
+                throw new InvalidEditException();
             }
         }
     }
