@@ -16,10 +16,10 @@ import java.util.regex.Pattern;
 
 public class Account {
     public static int accountNumber = 1;
+    public static ExpenseList account;
     //protected static String ACCOUNTS_FILE = accountName + ".txt";
     protected static String accountName;
     protected static Storage storage;
-    public static ExpenseList account;
     private static String passwordHash;
     private static final int MIN_PASSWORD_LENGTH = 8;
     private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]+");

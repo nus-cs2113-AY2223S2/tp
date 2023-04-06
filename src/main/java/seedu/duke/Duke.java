@@ -36,10 +36,10 @@ import static parser.ParserAccount.caseExit;
 
 
 public class Duke {
+    protected static Storage storage;
     protected Parser parser;
     protected ExpenseList expenseList;
     protected Currency currency;
-    protected static Storage storage;
     protected Account currentUser;
 
     //TODO: arbitrary filePath
