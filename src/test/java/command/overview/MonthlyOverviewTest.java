@@ -53,13 +53,13 @@ class MonthlyOverviewTest {
                 "food", "SGD", new BigDecimal(1)));
         MonthlyOverview monthlyOverview = new MonthlyOverview(testExpenses, "March", "2012");
         monthlyOverview.printOverview();
-        String expectedOutput = "Monthly Overview for MARCH 2012\n" + System.lineSeparator() +
-                TAB + "Total expenses: 20.00 SGD\n" + System.lineSeparator()  +
+        String expectedOutput = "Monthly Overview for MARCH 2012" + System.lineSeparator() + System.lineSeparator() +
+                TAB + "Total expenses: 20.00 SGD" + System.lineSeparator() + System.lineSeparator()  +
                 TAB + CATEGORY_TITLE + System.lineSeparator()  +
                 TAB + CATEGORY_DIVIDER + System.lineSeparator() +
-                TAB + " food 12.50 SGD\n" +
+                TAB + " food 12.50 SGD" + System.lineSeparator() +
                 TAB + CATEGORY_DIVIDER + System.lineSeparator() +
-                TAB + " travel 7.50 SGD\n" +
+                TAB + " travel 7.50 SGD" +
                 TAB + CATEGORY_DIVIDER;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
     }
