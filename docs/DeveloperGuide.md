@@ -122,13 +122,13 @@ Then, the deadline command will be executed, and the respective method in the De
    If the addition was a success, a message will be printed through TextUi class to notify the reader that the deadline object has been added.
 
 
-####deleteDeadline
+#### deleteDeadline
 
    Removes a deadline object from the ArrayList `deadlines` using the index given.
    A deadline object can only be removed if the index is a valid index in the list.
    If the deletion was a success, a message will be printed through TextUi class to notify the reader that the deadline object has been deleted.
 
-3. printDeadlines
+#### printDeadlines
    ![](uml/images/ViewDeadlineDiagram.png)
     Prints the ArrayList `deadlines` through TextUi class.
 
