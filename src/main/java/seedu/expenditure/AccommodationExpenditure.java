@@ -1,8 +1,6 @@
 package seedu.expenditure;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 public class AccommodationExpenditure extends Expenditure {
     public static final String EXPENDITURE_TYPE = "Accom";

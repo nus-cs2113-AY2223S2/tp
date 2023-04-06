@@ -1,7 +1,6 @@
 package seedu.expenditure;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 public class TuitionExpenditure extends Expenditure {
 
