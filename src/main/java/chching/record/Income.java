@@ -25,4 +25,8 @@ public class Income extends Record {
                 " | Date - " + getDateString() +
                 " | Value - " + String.format("%.02f", getValue());
     }
+
+    public String getDescription() {
+        return super.getDescription();
+    }
 }

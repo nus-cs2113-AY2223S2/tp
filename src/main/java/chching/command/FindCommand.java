@@ -9,18 +9,25 @@ import chching.record.IncomeList;
 import chching.record.Expense;
 import chching.record.ExpenseList;
 import chching.record.TargetStorage;
+
+import java.time.LocalDate;
+
 import chching.ChChingException;
 
 /**
  * model a class to handle the find command. inherit from Command class.
  */
 public class FindCommand extends Command {
+    private final String type;
     private final String category;
-    private final String keyword;
+    private final String description;
+    private final LocalDate date;
 
-    public FindCommand(String category, String keyword) {
+    public FindCommand(String type, String category, String description, LocalDate date) {
+        this.type = type;
         this.category = category;
-        this.keyword = keyword;
+        this.description = description;
+        this.date = date;
     }
 
     /**
@@ -38,24 +45,33 @@ public class FindCommand extends Command {
                               Converter converter, TargetStorage targetStorage) throws ChChingException {
         IncomeList incomesMatched = new IncomeList();
         ExpenseList expensesMatched = new ExpenseList();
-
-        if(category == null) {
-            throw new ChChingException("No category specified");
-
-        } else if(keyword == null) {
-            throw new ChChingException("No keyword specified");
-
-        } else if(!category.equals("income") && !category.equals("expense")) {
-            throw new ChChingException("Category specified must be income or expense");
-
-        } else if (keyword.strip() == "") {
-            throw new ChChingException("No keyword specified");
+        Boolean emptyKeyword = true;
+        if (description != null) {
+            emptyKeyword = (description.strip() == "");
         }
 
-        if (category.equals("income")) {
+        if(type == null) {
+            throw new ChChingException("No type specified");
+    
+        } else if(!type.equals("income") && !type.equals("expense")) {
+            throw new ChChingException("Type specified must be income or expense");
+
+        } else if(type == "income" && (description == null || emptyKeyword)  && date == null) {
+            throw new ChChingException("No description or date specified for Income");
+            
+        } else if (category != null && type.equals("income")) {
+            throw new ChChingException("Income has no category");
+
+        } else if (type == "expense" && (description == null || emptyKeyword) && category == null && date == null) {
+            throw new ChChingException("No description or category or date specified");
+        }
+
+        if (type.equals("income")) {
             for (int i = 0; i < incomes.size(); i++) {
                 Income income = incomes.get(i);
-                if (income.toString().toLowerCase().contains(keyword.toLowerCase())) {
+                if ((description == null 
+                    || income.getDescription().toLowerCase().contains(description.toLowerCase()))
+                    && (date == null || income.getDate().equals(date))) {
                     incomesMatched.addIncome(income);
                 }
             }
@@ -64,7 +80,10 @@ public class FindCommand extends Command {
         } else {
             for (int i = 0; i < expenses.size(); i++) {
                 Expense expense = expenses.get(i);
-                if (expense.toString().toLowerCase().contains(keyword.toLowerCase())) {
+                if ((description == null 
+                    || expense.getDescription().toLowerCase().contains(description.toLowerCase()))
+                    && (category == null || expense.getCategory().equals(category)) 
+                    && (date == null || expense.getDate().equals(date))) {
                     expensesMatched.addExpense(expense);
                 }
             }

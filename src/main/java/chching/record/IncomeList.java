@@ -78,7 +78,7 @@ public class IncomeList extends RecordList {
                 } else if (amount > 999999.99) {
                     throw new ChChingException("Income value must be less than 1000000");
                 }
-                assert amount > 0.01 : "Income cannot be negative";
+                assert amount >= 0.01 : "Income cannot be negative";
                 income.setValue(amount);
             } catch (Exception e) {
                 if (e instanceof NumberFormatException) {
