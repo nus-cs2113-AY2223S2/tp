@@ -15,6 +15,16 @@ Click [here](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=gr
 to view my codes contributed for this project.
 
 ### 2) Enhancements Implemented:
+* Implemented Store Function for notes taking
+* Implemented List Function for displaying items stored in notes
+* Implemented Delete Function for removing items stored in notes
+* Implemented History Function for displaying a list of all commands input by users
+* Refactoring codes as classes (more OOP)
+* Implemented JUnit Tests for Store, List, Delete and CommandHistory
+* Implemented HelpManual.txt
 
-
+### 3) UserGuide Contributions:
+* Contributed to overall formatting of UserGuide
+* Contributed to documentation for `Store`, `List`, `Delete`, `Clear`, `Mark`, `Unmark`,
+`FindMark`, `FindUnmark`, `FindInfo`, `FindPrior`, `History`, `Help`, `Bye`
 
