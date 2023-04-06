@@ -216,7 +216,7 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
-    public void EmptyTaskMessage() {
+    public void emptyTaskMessage() {
         System.out.println(DIVIDER);
         System.out.println(EMPTY_TASK_ERROR);
         System.out.println(DIVIDER);

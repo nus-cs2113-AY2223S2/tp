@@ -1,6 +1,5 @@
 package seedu.pettracker.data;
 
-import seedu.pettracker.exceptions.EmptyStatException;
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 

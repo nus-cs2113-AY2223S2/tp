@@ -1,7 +1,6 @@
 package seedu.pettracker.commands;
 
 import seedu.pettracker.exceptions.EmptyArgException;
-import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
@@ -37,7 +36,7 @@ public class AddTaskCommand extends Command {
             try {
                 TaskList.addTask(todoDescription);
             } catch (EmptyArgException e){
-                ui.EmptyTaskMessage();
+                ui.emptyTaskMessage();
             }
         }
         TaskList.saveTasksToStorage(storage, ui);

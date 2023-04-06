@@ -4,7 +4,6 @@ import seedu.pettracker.commands.Command;
 import seedu.pettracker.commands.ExitCommand;
 import seedu.pettracker.commands.HelpCommand;
 import seedu.pettracker.commands.InvalidCommand;
-import seedu.pettracker.commands.ListPetCommand;
 import seedu.pettracker.commands.ListTasksCommand;
 import seedu.pettracker.commands.ScheduleCommand;
 
