@@ -1,0 +1,84 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam maxMessageSize 150
+
+title DeleteModuleCommand
+
+actor User
+
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":DeleteModuleCommand" as delmod
+participant ":ModuleList" as ModuleList
+participant ":Module" as Module
+participant ":Ui" as Ui
+
+User -> Apollo : "delmod cs2113 -tut"
+activate Apollo
+
+Apollo -> Parser: getCommand()
+activate Parser
+
+Parser -> delmod** : DeleteModuleCommand()
+activate delmod
+
+delmod -> delmod : setUpLogger()
+activate delmod
+deactivate delmod
+
+delmod -> Module** : Module()
+activate Module
+Module --> delmod : module
+deactivate Module
+destroy Module
+
+delmod --> Parser : DeleteModuleCommand()
+deactivate delmod
+
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+
+Apollo -> delmod : execute()
+activate delmod
+
+alt args.length == 3
+    delmod -> delmod : handleMultiCommand()
+    activate delmod
+    delmod -> Ui : printModuleLessonDeleteMessage()
+    activate Ui
+    Ui --> delmod
+    deactivate Ui
+else
+    delmod -> ModuleList : remove(module)
+    activate ModuleList
+    ModuleList --> delmod
+    deactivate ModuleList
+
+    delmod -> Ui : printModuleDeleteMessage
+    activate Ui
+    Ui --> delmod
+    deactivate Ui
+
+end
+
+deactivate delmod
+destroy Ui
+
+delmod --> Apollo
+
+deactivate delmod
+destroy delmod
+
+deactivate Apollo
+
+
+
+
+
+
+
+
+
+@enduml

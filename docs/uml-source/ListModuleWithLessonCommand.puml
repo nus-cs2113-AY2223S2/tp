@@ -10,6 +10,7 @@ actor User
 participant ":Apollo" as Apollo
 participant ":Parser" as Parser
 participant ":ListModuleCommandWithLessonCommand" as ListMod
+participant ":Module" as Module
 participant ":Ui" as Ui
 
 User -> Apollo : "listmod cs2113 -tut"
@@ -25,6 +26,12 @@ ListMod -> ListMod : setUpLogger()
 activate ListMod
 deactivate ListMod
 
+ListMod -> Module** : Module()
+activate Module
+Module --> ListMod : module
+deactivate Module
+destroy Module
+
 ListMod --> Parser : ListModuleWithLessonCommand()
 deactivate ListMod
 
@@ -35,19 +42,27 @@ destroy Parser
 Apollo -> ListMod : execute()
 activate ListMod
 
-opt User enters <MODULE_CODE> and <LESSON_TYPE>
+alt args.length == 2
+ListMod -> ListMod : handleMultiCommand()
+activate ListMod
 ListMod -> Ui : printSpecificTimetable()
 
 activate Ui
 Ui --> ListMod
 deactivate Ui
 
-else User enters only <MODULE_CODE>
+deactivate ListMod
+
+else
+ListMod -> ListMod : handleSingleCommand()
+activate ListMod
 ListMod -> Ui : printModuleListWithLesson()
 
 activate Ui
 Ui --> ListMod
 deactivate Ui
+
+deactivate ListMod
 
 end
 
