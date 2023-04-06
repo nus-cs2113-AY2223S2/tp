@@ -24,12 +24,14 @@ public class Parser {
         return word.toString();
     }
 
+    //@@author jaredoong
     public String[] cleanUserInput(String input) {
         input = input.replaceAll("\\s+", " ");
         input = input.toLowerCase();
         return input.trim().split(" ");
     }
 
+    //@@author
     public HashMap<String, Integer> parseIngredientName(String[] command) {
         HashMap<String, Integer> ingredients = new HashMap<>();
         int flag = 0;
