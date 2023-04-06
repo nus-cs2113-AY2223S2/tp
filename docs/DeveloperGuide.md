@@ -8,7 +8,7 @@ for some reused skeleton code and inspiration on OOP implementation.
 
 ## Design 
 ### Architecture
-![Architecture_Diagram](uml/images/DinerDirectorArchitectureDiagram.png)  
+![](uml/images/DinerDirectorArchitectureDiagram.png)  
 The **Architecture Diagram** given above explains the high-level design of DinerDirector. 
 Given below is a quick overview of main components and how they interact with each other. 
 
@@ -18,11 +18,11 @@ prompt user for inputs. Once user keys in the input text, the input will be redi
 handling of user's input. Next, any logic will be executed by `Command` object. If there exists any interaction with `Entity`, `Command` will 
 request to `Manager` to assist the CRUD operations.  
 
-### Command Component (Zheng Rong)
+### Command Component
 
 ##### The command component consists of the following:
 
-![Command_Package_Diagram](uml/images/CommandPackageDiagram.png)
+![](uml/images/CommandPackageDiagram.png)
 
 - 4 subcomponents: Command, HelpCommand, ExitCommand, IncorrectCommand
 
@@ -40,7 +40,7 @@ An `execute` method will execute the operations needed for each individual comma
 An `isExit` method will return a boolean value that decides whether the program should exit after this command is called.
 
 
-### Manager Component (PeiHao)
+### Manager Component
 The manager component consists of four different managers, 
 in which the list of entity is initialized and the methods implementing the entity are written inside.
 - DeadlineManager: This class contains an ArrayList of deadlines and methods implementing the deadlines like addDeadline, printDeadline and deleteDeadline.
@@ -49,9 +49,10 @@ stringOfDish which returns the dish information.
 - MeetingManager: This class contains an ArrayList of meetings and methods like addMeeting, printMeetings and deleteMeeting.
 - StaffManager: This class contains an ArrayList of staffs and methods like addStaff, deleteStaffByName, findStaffByName and getStaffString which print all the staffs' information.
 
-### Ui Component (HuiQi)
+### Ui Component
 
 ![](uml/images/UiClassDiagram.png)
+
 The Ui Component consists of the TextUi class that handles interactions between the app and the user.
 
 The `TextUi`class performs the following functions:
@@ -62,16 +63,16 @@ The `TextUi`class performs the following functions:
 
     methods: `printBanner()`, `printMessage()`
 
-### Utils Component (Darren)
+### Utils Component
 
-![UtilsParserClassDiagram](uml/images/UtilsParserClassDiagram.png)    
+![](uml/images/UtilsParserClassDiagram.png)    
 The Utils Component consists of the `Parser` class that will handle the parsing and preparing of commands within the DinerDirector application.  
 
 The `Parser` class performs the following functions:  
 * Parse the command given the user input and extracts out the necessary information related to the command.
 * Returns the appropriate Command Class based on the parsed input.
 
-![UtilsStorageClassDiagram](uml/images/UtilsStorageClassDiagram.png)  
+![](uml/images/UtilsStorageClassDiagram.png)  
 The Utils Component also consists of the `Storage` class and the individual `XYZStorage` that will handle storage related operations within the DinerDirector application.  
 
 The `Storage` class performs the following functions:
@@ -82,9 +83,9 @@ The `XYZStorage` class performs the following functions:
 * Write to the file if any changes occur to the list.
 
 ## Implementation
-### Parsing Feature (Darren)
+### Parsing Feature
 
-![ParserSquenceDiagram](./uml/images/ParserSequenceDiagram.png)  
+![](./uml/images/ParserSequenceDiagram.png)  
 How the parsing works:
 1. The `Parser()` class will be called to create a new instance of `Parser`.
 2. Afterwards, when the `parseCommand()` method is called from `DinerDirector` class, the `parseCommand()` will split the given userInput first.
@@ -93,7 +94,7 @@ How the parsing works:
 4. If the `commandWord` is valid, it will run the appropriate `prepareXYZCommand()`.
 5. Each of the individual `prepareXYZCommand()` will take in the userInput without the command portion. The variable is named `userInputNoCommand`. The `prepareXYZCommand()` will check the userInput to see if all the appropriate values are added, and return `XYZCommand` class if the values are correct. `prepareXXXCommand()` will return `IncorrectCommand` class if there are some missing values or inappropriate values.
 
-### Meeting Feature (PeiHao)
+### Meeting Feature
 The 'Meeting' Feature allows users to add a meeting, delete a meeting, find a meeting and print all the meetings.
 The 'Meeting' class in the entity package shows the attributes that a meeting object has: time and issue, both are of String type.
 An ArrayList of meetings is initialized in the MeetingManager. Three methods that implement the meetings are also inside.
@@ -106,7 +107,7 @@ When the user input a meeting command, the Parser will determine which command i
 One of the meeting commands will be called from `AddMeetingCommand`, `DeleteMeetingCommand` and `ViewMeetingCommand`.
 Inside the command, the execute function will call the corresponding methods inside the MeetingManager and implement on the meeting list.
 
-### Deadline Feature (HuiQi)
+### Deadline Feature
 The Deadline Feature allows user to add Deadline objects in a deadline list.
 Deadline objects consists of a description String and a dueDate String.
 The User will also be able to delete deadlines, view deadline list.
@@ -150,7 +151,7 @@ The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` o
 
     It prints all of `Staff` objects in `StaffManager`'s staffs. 
 
-### Dish Feature (Zheng Rong)
+### Dish Feature
 
 The Dish feature consists of three functions:
 
@@ -171,18 +172,41 @@ The Dish feature consists of three functions:
 - When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```ViewDishCommand()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist.
 - It then prints out the formatted string to the console.
 
-## Product scope
-### Target user profile
-Restaurant Managers  
-1. The purpose of the product is to help restaurant managers to manage their restaurant in a more convenient manner.
-2. We aim to create an all in application where the restaurant manager can keep track of what is needed to run a restaurant daily.
+### Storage Feature 
+#### Create directory, Read and load from XYZ file
+![](uml/images/CreateDirectorySequenceDiagram.png)  
+1. The `Storage()` class will be called to create a new instance of `Storage`.
+2. The `createDirectory()` method in the `Storage()` class will be called next. A directory called `data` will be created in the same folder as the application if the folder does not exist.
 
-### Value proposition
-There are too many things to keep track of in a restaurant. We want to create an application that will allow the restaurant manager to have a place to quickly refer to, and keep track of the things that allow the restaurant to function on a daily basis.
+#### Read and load from XYZFile
+![](uml/images/ReadAndLoadFromXYZFileSequenceDiagram.png)
+1. The `XYZStorage()` class will be called to create a new instance of `XYZStorage`.
+2. The `readAndLoadFromXYZFile()` method in the `XYZStorage()` class is called to read and load data if any application related text files exists.
+
+#### Write to XYZ file
+![](uml/images/WriteToXYZFileSequenceDiagram.png)
+1. The `XYZStorage()` class will be called to create a new instance of `XYZStorage`.
+2. The `writeToXYZFile()` method in the `XYZStorage()` class is called to write the contents in the list into the respective file.
+3. The `writeToXYZFile()` method is called in `addXYZ()` method in the `XYZManager` class.
+4. The `addXYZ()` method is called from outside `XYZManager()` class.
+5. The above process is listed only for `addXYZ()`, but `deleteXYZ()` follows the same process as the above sequence diagram.
+
+## Appendix A: Requirements
+### Product scope
+**Target user profile**  
+- Restaurant Managers.
+- Wants to manage their restaurant better.
+- Wants to track their restaurant daily operations.
+- Can type fast.
+- Comfortable using CLI interface.
+
+**Value proposition**
+- There are too many things to keep track of in a restaurant. 
+- We want to create an application that will allow the restaurant manager to have a place to quickly refer to, and keep track of the things that allow the restaurant to function on a daily basis.
 
 
 
-## User Stories
+### User Stories
 
 | Version | As a ...                                                 | I want to ...                                            | So that I can ...                                                                         |
 |---------|----------------------------------------------------------|----------------------------------------------------------|-------------------------------------------------------------------------------------------|
@@ -198,14 +222,17 @@ There are too many things to keep track of in a restaurant. We want to create an
 | v2.0    | restaurant manager                                       | find information about a specific deadline               | I can find details about the deadline date  without going through the whole list          |
 | v2.0    | restaurant manager                                       | view what I typed into the app previously                | I don't need to retype everything everytime I enter the app                               |
 
-## Non-Functional Requirements
-
-{Give non-functional requirements}
+### Non-Functional Requirements
+- The application should be able to run on any operating systems (OS) with `Java 11` installed.
+- The application should be responsive.
+- The application should be able to hold up to at least 1000 lines in the list without lagging.
+- The application should be easy to learn and pick up by reading the User Guide.
+- When using the application, a user with above average typing speed should be able to complete tasks faster as compared to using a mouse.
 
 ## Glossary
 
 * *glossary item* - Definition
 
-## Instructions for manual testing
+## Appendix B: Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
