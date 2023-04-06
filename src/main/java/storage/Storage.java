@@ -26,8 +26,6 @@ import static common.MessageList.PERIOD;
 import static common.MessageList.WHITESPACE;
 
 
-// https://kodejava.org/how-do-i-store-objects-in-file/
-
 public class Storage {
 
     private static final String READ_STORAGE_SUCCESSFUL = "All past expenses retrieved successfully!";
