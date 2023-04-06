@@ -124,7 +124,7 @@ public class ViewResult {
         String outflowInfo = String.format("|Total Outflow: $%.2f", outflow);
         double remainingValue = inflow - outflow;
         String remainingValueInfo;
-        if (remainingValue > 0) {
+        if (remainingValue >= 0) {
             remainingValueInfo = String.format("|Remaining value: $%.2f", (inflow - outflow));
         } else {
             remainingValueInfo = String.format("|Remaining value: -$%.2f", (remainingValue * -1));
