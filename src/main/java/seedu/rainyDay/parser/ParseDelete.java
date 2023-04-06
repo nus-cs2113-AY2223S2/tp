@@ -18,15 +18,22 @@ public class ParseDelete {
             logger.warning("invalid delete index from user");
             throw new RainyDayException(ErrorMessage.NO_DELETE_INDEX.toString());
         }
+        int index;
+        try {
+            index = Integer.parseInt(tokens[1]);
+            if (index <= 0) {
+                throw new IllegalArgumentException();
+            }
+        } catch (Exception e) {
+            logger.warning("delete index not a valid number");
+            throw new RainyDayException(String.format(ErrorMessage.WRONG_DELETE_INDEX.toString(),
+                    RainyDay.savedData.getFinancialReport().getStatementCount() + "!"));
+        }
         if (RainyDay.savedData.getFinancialReport().getStatementCount() == 0) {
             throw new RainyDayException(ErrorMessage.EMPTY_FINANCIAL_REPORT.toString());
         }
         try {
-            int index = Integer.parseInt(tokens[1]);
             if (index > RainyDay.savedData.getFinancialReport().getStatementCount()) {
-                throw new IllegalArgumentException();
-            }
-            if (index <= 0) {
                 throw new IllegalArgumentException();
             }
             return new DeleteCommand(index);
