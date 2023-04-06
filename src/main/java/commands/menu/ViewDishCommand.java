@@ -13,7 +13,7 @@ public class ViewDishCommand extends Command {
 
     @Override
     public void execute(TextUi ui) {
-        ui.printMessage(DishManager.viewDishCommand());
+        ui.printMessage(DishManager.viewDish());
     }
 
     @Override
