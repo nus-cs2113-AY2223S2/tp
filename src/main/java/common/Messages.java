@@ -49,7 +49,7 @@ public class Messages {
     public static final String MESSAGE_FINISHED_LOADING = "Loading done. Starting Dinerdirector...\n";
     public static final String MESSAGE_STAFF_FOUND = "Here's the matching staff:";
     public static final String MESSAGE_STAFF_NOT_FOUND  ="There's no such staff in the staff list!";
-    public static final String MESSAGES_THE_LIST_OF_DISHES_IS_EMPTY = "(The list of dishes is empty).";
+    public static final String MESSAGES_THE_LIST_OF_DISHES_IS_EMPTY = "The list of dishes is empty.";
     /**
      * Errors for programs to print.
      */
