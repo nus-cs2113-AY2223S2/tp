@@ -74,6 +74,14 @@ public class FilterCommandTest {
         filterCommand = new FilterCommand(filterFlagAndField);
         filterCommand.setData(userData);
         assertEquals("We found 3 matching items!", filterCommand.execute().output);
+
+        filterFlagAndField.clear();
+        filterFlagAndField.add("-date");
+        filterFlagAndField.add("01/02/2023");
+        filterFlagAndField.add("01/04/2023");
+        filterCommand = new FilterCommand(filterFlagAndField);
+        filterCommand.setData(userData);
+        assertEquals("We found 2 matching items!", filterCommand.execute().output);
     }
 
     @Test
@@ -116,6 +124,16 @@ public class FilterCommandTest {
         filterFlagAndField.add("-date");
         filterFlagAndField.add("01/02/2023");
         assertEquals("We could not find any matches for your description in your report",
+                filterCommand.execute().output);
+
+        filterFlagAndField.clear();
+        filterFlagAndField.add("-d");
+        filterFlagAndField.add("Hong");
+        filterFlagAndField.add("-in");
+        filterFlagAndField.add("-date");
+        filterFlagAndField.add("01/02/2023");
+        filterFlagAndField.add("01/04/2023");
+        assertEquals("We found 1 matching item!",
                 filterCommand.execute().output);
     }
 }
