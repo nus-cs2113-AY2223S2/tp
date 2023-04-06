@@ -67,9 +67,9 @@ API: Ui.java
 
 API: `Parser.java`
 
-Inka's parser has a hierarchical design. 
+Inka's parser has a hierarchical design built on top of Apache Commons CLI which allows for parsing of flags in any order. Modularity also allows for new commands to be easily added.
 
-{TODO: Class diagram}
+![Parser Class](img/ParserClass.svg)
 
 The user's command is interpreted with the following structure:
 
