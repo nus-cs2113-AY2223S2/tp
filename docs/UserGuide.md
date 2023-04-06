@@ -78,6 +78,7 @@ Use case:
 - CATEGORY has a maximum char limit of 30.
 - DESCRIPTION has a maximum char limit of 99.
 - VALUE will be stored as a positive double up to 2 decimal places.
+- VALUE will not accept doubles with more than 2 decimal places.
 - VALUE will be recorded as SGD, regardless of the currency set.
 - Format for DATE will be dd-MM-yyyy.
 - DATE needs to be a valid date, and it cannot be a date in the future.
@@ -264,6 +265,8 @@ The data file is not to be edited manually.
 * ChChing will allow for duplicate entries to be added. No warning would be raised.
 * ChChing will not allow for the user to use '/', unless it is used to specify the field.
 <br> e.g. `add expense /c meal /de breakfast / lunch /da 22-03-2023 /v 3.50` will be allowed.
+* For values that require double/float, ChChing will only allow for 2 decimal places. Furthermore, ChChing will not accept values that does not have a number before the decimal point.
+<br> e.g. `.01` and `0.001` is not taken as a valid value, but `0.01` is.
 
 ## Command Summary (Alphabetical Order)
 
