@@ -166,25 +166,29 @@ public class Parser {
         }
     }
 
-    private Command createEditCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
+    private Command createEditCommand(String[] separatedKeywordAndDescription) throws Exception {
         Pattern pattern = Pattern.compile(EDIT_REGEX);
+        if (separatedKeywordAndDescription.length == 1) {
+            throw new InvalidCommandException(EMPTY_DESCRIPTION_FOR_EDIT);
+        }
+        Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
         try {
-            Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
             if (matcher.find()) {
                 String categoryName = matcher.group(1);
+                if (matcher.group(2) == null) {
+                    return new EditCommand(categoryName);
+                }
                 checkBigNumber(matcher.group(2));
                 int eventIndex = Integer.parseInt(matcher.group(2));
                 checkNegative(eventIndex - 1);
                 return new EditCommand(categoryName, eventIndex - 1);
             } else {
-                throw new InvalidCommandException(EMPTY_STRING);
+                throw new InvalidCommandException(EDIT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
             }
         } catch (IntegerOverflowException error) {
             throw new InvalidCommandException(INDEX_LIMIT_MESSAGE);
-        }catch (IndexOutOfBoundsException error) {
-            throw new InvalidCommandException(EMPTY_DESCRIPTION_FOR_EDIT);
-        }  catch (NegativeNumberException | NumberFormatException error) {
-            throw new InvalidCommandException(POSITIVE_INTEGER_FOR_EXPENSE);
+        } catch (NumberFormatException | NegativeNumberException error) {
+            throw new InvalidCommandException(POSITIVE_INTEGER_FOR_EVENT_INDEX);
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(EDIT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
         } catch (Exception error) {

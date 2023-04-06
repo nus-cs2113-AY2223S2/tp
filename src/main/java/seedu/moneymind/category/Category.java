@@ -4,6 +4,7 @@ import seedu.moneymind.event.Event;
 
 import java.util.ArrayList;
 import static seedu.moneymind.string.Strings.NO_EVENTS_IN_THIS_CATEGORY_MESSAGE;
+import static seedu.moneymind.string.Strings.DOT;
 
 public class Category {
     public ArrayList<Event> events = new ArrayList<>();
@@ -63,14 +64,18 @@ public class Category {
             return;
         }
         for (int i = 0; i < events.size(); i++) {
-            System.out.println(i + 1 + ". " + events.get(i).toString());
+            System.out.println(i + 1 + DOT + events.get(i).toString());
         }
     }
-
 
     public int getBudget() {
         return budget;
     }
+
+    public void setBudget(int budget) {
+        this.budget = budget;
+    }
+
     /**
      * Gets the total expense of the category.
      *

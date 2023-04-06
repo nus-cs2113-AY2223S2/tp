@@ -13,17 +13,25 @@ import static seedu.moneymind.string.Strings.ENTERING_POSITIVE_NUMBER_MESSAGE;
 import static seedu.moneymind.string.Strings.NO_CATEGORY_MESSAGE;
 import static seedu.moneymind.string.Strings.BACK;
 import static seedu.moneymind.string.Strings.EXPENSE_LIMIT_MESSAGE;
+import static seedu.moneymind.string.Strings.BUDGET_LIMIT_MESSAGE;
 
 public class EditCommand implements Command {
-    public static final String EXPENSE = "The expense limit is 999999999$, please give a smaller expense";
+    private boolean isEvent;
     private String categoryName;
     private int eventIndex;
     private String userInput;
     private boolean isReady = true;
     private int categoryIndex;
+
     public EditCommand (String categoryName, int eventIndex) {
+        this.isEvent = true;
         this.categoryName = categoryName;
         this.eventIndex = eventIndex;
+    }
+
+    public EditCommand (String categoryName) {
+        this.isEvent = false;
+        this.categoryName = categoryName;
     }
 
     private void prepareEditEvent() {
@@ -47,14 +55,29 @@ public class EditCommand implements Command {
         }
     }
 
+    private void prepareEditCategory() {
+        if (CategoryCommand.categoryMap.get(categoryName) == null) {
+            System.out.println(NO_CATEGORY_MESSAGE);
+            isReady = false;
+            return;
+        }
+        categoryIndex = CategoryCommand.categoryMap.get(categoryName);
+        Category category = CategoryList.categories.get(categoryIndex);
+        if (isReady) {
+            System.out.println("The current budget for " + categoryName + " is: " +
+                    category.getBudget());
+            System.out.println("Your new budget would be:");
+        }
+    }
+
     private void checkNegative(int newExpense) throws NegativeNumberException {
         if (newExpense < 0) {
             throw new NegativeNumberException();
         }
     }
 
-    private void checkExpenseUnderLimit(String expense) throws IntegerOverflowException {
-        if (expense.length() > 9) {
+    private void checkAmountUnderLimit(String amount) throws IntegerOverflowException {
+        if (amount.length() > 9) {
             throw new IntegerOverflowException();
         }
     }
@@ -67,13 +90,17 @@ public class EditCommand implements Command {
      */
     private boolean isEditSuccessful(String userInput) {
         try {
-            checkExpenseUnderLimit(userInput);
-            int newExpense = Integer.parseInt(userInput);
-            checkNegative(newExpense);
+            checkAmountUnderLimit(userInput);
+            int newAmount = Integer.parseInt(userInput);
+            checkNegative(newAmount);
             return true;
         }
         catch (IntegerOverflowException error) {
-            System.out.println(EXPENSE_LIMIT_MESSAGE);
+            if (isEvent) {
+                System.out.println(EXPENSE_LIMIT_MESSAGE);
+            } else {
+                System.out.println(BUDGET_LIMIT_MESSAGE);
+            }
         } catch (NumberFormatException | NegativeNumberException error) {
             System.out.println(ENTERING_POSITIVE_NUMBER_MESSAGE);
         } catch (Exception error) {
@@ -84,7 +111,11 @@ public class EditCommand implements Command {
 
     @Override
     public void execute(Ui ui) {
-        prepareEditEvent();
+        if (isEvent) {
+            prepareEditEvent();
+        } else {
+            prepareEditCategory();
+        }
         if (!isReady) {
             return;
         }
@@ -96,10 +127,16 @@ public class EditCommand implements Command {
             }
         }
         if (!userInput.equals(BACK)) {
-            System.out.println("Ok, the new expense is now changed to: " + userInput);
-            CategoryList.categories.get(categoryIndex).getEvents().
-                    get(eventIndex).setExpense(Integer.parseInt(userInput));
+            if (isEvent) {
+                System.out.println("Ok, the new expense is now changed to: " + userInput);
+                CategoryList.categories.get(categoryIndex).getEvents().
+                        get(eventIndex).setExpense(Integer.parseInt(userInput));
+            } else {
+                System.out.println("Ok, the new budget is now changed to: " + userInput);
+                CategoryList.categories.get(categoryIndex).setBudget(Integer.parseInt(userInput));
+            }
         }
+
     }
 
     private void getUserInputUntilNonEmpty() {

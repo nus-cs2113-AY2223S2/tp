@@ -37,11 +37,7 @@ public class Strings {
     public static final String GO_BACK_MESSAGE = "Please try again or enter back to go back to the main program";
     public static final String BACK = "back";
     public static final String EVENT_ADDED_MESSAGE = "New event added: ";
-    public static final String REMINDING_MESSAGE_TO_GIVE_A_NUMBER = "Please enter a number.";
-    public static final String CATEGORY_OUT_OF_RANGE = "The category number you entered is out of range";
-    public static final String NON_NEGATIVE_POSITION_ASSERTION = "Category position cannot be negative";
     public static final String NULL_EVENT_ASSERTION = "Event name cannot be null";
-    public static final String NON_NEGATIVE_BUDGET_ASSERTION = "Budget cannot be negative";
     public static final String NON_NEGATIVE_EXPENSE_ASSERTION = "Expense cannot be negative";
     public static final String NO_EVENTS_IN_THIS_CATEGORY_MESSAGE = "Oops! You have no events in this category.";
     public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
@@ -62,7 +58,7 @@ public class Strings {
     public static final String SUBTLE_BUG_MESSAGE = "OOPS!!! Something went wrong, please report to the developer.";
     public static final String EVENT_REGEX = "^(?<name>[^/]+)(?:\\s+e\\/(?<expense>[^/]+))(?:\\s+t\\/(?<time>[^/]+))?$";
     public static final String CATEGORY_REGEX = "^(?<name>[^/]+?)(?:\\s+b\\/(?<budget>[^/]+))?$";
-    public static final String EDIT_REGEX = "c\\/([^/]+) e\\/([^/]+)$";
+    public static final String EDIT_REGEX = "^c\\/(?=\\S)([^/]*?)(?:\\s+e\\/([^/]+))?\\s*$";
     public static final String DELETE_REGEX = "^c\\/(?=\\S)([^/]*?)(?:\\s+e\\/([^/]+))?\\s*$";
     public static final String EVENT_FORMAT = "Please following the correct format: " +
             "event <name> e/<expense number> [(optional) t/<time>]";

@@ -60,16 +60,16 @@ public class ViewCommand implements Command {
             System.out.println(NO_CATEGORIES_TO_VIEW);
             return;
         }
-        int count = 1;
         for (Category category : CategoryList.categories) {
-            System.out.println(count + DOT + category.getName() + " (budget: " + category.getBudget() + ")");
-            count++;
+            System.out.println("Category: " + category.getName() + " (budget: " + category.getBudget() + ")");
+            int count = 1;
             // print all the events in the category
             for (Event event : category.getEvents()) {
-                System.out.println(event.toString());
+                System.out.println(count + DOT + event.toString());
+                count++;
             }
         }
-        assert count > 1 : COUNT_ASSERTION;
+
     }
 
     @Override

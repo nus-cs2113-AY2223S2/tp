@@ -93,8 +93,8 @@ public class Event {
      */
     public String toString() {
         if (time == null) {
-            return description + " [expense]" + expense;
+            return description + " (expense: " + expense + ")";
         }
-        return description + " [expense]" + expense + " [time]" + time;
+        return description + " (expense: " + expense + ") (time :" + time + ")";
     }
 }
