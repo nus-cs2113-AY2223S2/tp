@@ -1,6 +1,6 @@
 package seedu.ui;
 
-import seedu.database.ExampleData;
+//import seedu.database.ExampleData;
 import seedu.entities.Exercise;
 import seedu.entities.Meal;
 import seedu.storage.ExerciseStorage;
@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
+
+import static java.lang.Math.abs;
 
 public class GeneralUi {
     private static Scanner sc = new Scanner(System.in);
@@ -188,10 +190,10 @@ public class GeneralUi {
     public void showCurrentIntake() {
     }
 
-    public void showRemainingIntake() {
+    public void showRemainingIntake(double caloriesLeft) {
 
     }
-    public void showDailyCaloricLimit() {
+    public void showDailyCaloricLimit(double caloricLimit) {
     }
     public void showWellDoneMessage(){
     }
@@ -214,9 +216,32 @@ public class GeneralUi {
         } else if (netCalories == 0) {
             System.out.println("Your net calories on " + date + "is zero.");
         } else {
-            System.out.println("You have lost " + netCalories + " calories on " + date);
+            System.out.println("You have lost " + abs(netCalories) + " calories on " + date);
         }
     }
+
+    public void printFieldNotStored() {
+        System.out.println("The field has not been stored yet please update it.");
+    }
+
+    public void printName(String name){
+        System.out.println("Name: " + name);
+    }
+
+    public void printWeight(float weight){
+        System.out.println("Weight: " + weight + " kg");
+    }
+
+    public void printHeight(float height){
+        System.out.println("Height: " + height + " cm");
+    }
+    public void printAge(int age){
+        System.out.println("Age: " + age + " years old");
+    }
+    public void printGender(String gender){
+        System.out.println("Gender: " + gender);
+    }
+
 }
 
 

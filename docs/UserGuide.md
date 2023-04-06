@@ -47,7 +47,7 @@ Menu Output:
 
 ![view-menu](./UG-images/view-menu.PNG)
 
-User can input a value from **1 to 8** to view their current profile:
+User can input a value from **1 to 9** to view their current profile:
 
 1. Name
 2. Weight
@@ -56,7 +56,8 @@ User can input a value from **1 to 8** to view their current profile:
 5. Gender
 6. Daily Caloric Limit
 7. Calories Remaining for today
-8. Back
+8. View Target Weight
+9. Exit
 
 Example:
 
@@ -76,13 +77,14 @@ Menu Output:
 
 ![update-menu](./UG-images/update-menu.PNG)
 
-User can input a value from **1 to 5** to customise their profile:
+User can input a value from **1 to 6** to customise their profile:
 1. Name
 2. Weight
 3. Height
 4. Age
 5. Gender
-6. Exit
+6. Target Weight
+7. Exit
 
 Example:
 
@@ -119,7 +121,7 @@ Format: `add`
 
 ### Listing foods: `list`
 
-For uses to view all foods currently supported in the *LifeTracker* database
+For users to view all foods currently supported in the *LifeTracker* database
 
 Format: `list foods`
 
@@ -135,14 +137,23 @@ Format: `list meals`
 Example:
 ![list-meals-example](./UG-images/list-meals-example.PNG)
 
+### Listing exercises: `list`
+
+For users to view previously added exercises
+
+Format `list exercises`
+
+Example:
+![list-exercises-example](./UG-images/list-exercises-example.PNG)
+
 ### Deleting meals: `delete`
 
-For users to remove previously added meals
+For users to remove previously added meals and exercises
 
-Format: `delete [index]`
+Format: `delete [/meal, /exercise] [index]`
 
-* The `index` should be a positive integer and must be less than number of meals added
-* It is recommended to run `list meals` beforehand to get the index of the meal you want to delete
+* The `index` should be a positive integer and must be less than number of meals/exercises added
+* It is recommended to run `list meals/exercises` beforehand to get the index of the meal/exercise you want to delete
 
 Example:
 ![delete-example](./UG-images/delete-example.PNG)
@@ -154,9 +165,9 @@ in terms of the calorie content of the food.
 
 The list of food within the range will then be displayed, from which the user can choose from.
 
-Format: `filter`
+Format: `filter [lower_bound] [upper_bound]`
 
-* The lower and upper bound should be a `float`
+* The lower and upper bound should be a `float` value
 * The lower bound should be lower than or equal to the upper bound
 
 Example:
@@ -192,10 +203,24 @@ Example:
 
 For user to track their previous net calorie intake
 
-Format: `track`
+Format: `track /start [start date] /end [end date]`
+
+* `/start` and `/end` arguments are optional
+* The dates should be in `d/M/yyyy` format
+* If `/start` command is not provided, defaults to earliest date with meal/exercise added
+* If `/end` command is not provided, defaults to latest date with meal/exercise added
 
 Output:
 ![track-example](./UG-images/track-example.PNG)
+
+### Display examples for meals and exercises: `examples`
+
+For the user to gain some inspiration on exercises to do, as well as some idea on the meals that they can eat.
+
+Format: `examples [meal/exercise]`
+
+Example:
+![examples-example](./UG-images/examples-example.PNG)
 
 ### Exiting the program: `bye`
 Allows user to exit the program.
@@ -217,16 +242,17 @@ Output:
 
 ## Command Summary
 
-| Action  | Format, Examples |
-| ------------- | ------------- |
-| View | view  |
-| Update  | update  |
-| add  | add /on [date] /type [MealType] /foods [foods]  |
-| list  | list foods or list meals  |
-| delete  | delete INDEX e.g delete 3  |
-| filter  | filter  |
-| nutrition  | nutrition  |
-| exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date]  |
-| track  | track  |
-| bye  | bye  |
+| Action    | Format, Examples                                                                                         |
+|-----------|----------------------------------------------------------------------------------------------------------|
+| View      | view                                                                                                     |
+| Update    | update                                                                                                   |
+| Add       | add /on [date] /type [MealType] /foods [foods]                                                           |
+| List      | list foods or list meals                                                                                 |
+| Delete    | delete INDEX e.g delete 3                                                                                |
+| Filter    | filter [lower_bound] [upper_bound]                                                                       |
+| Nutrition | nutrition                                                                                                |
+| Exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date] |
+| Track     | track                                                                                                    |
+| Examples  | examples [meal/exercise]                                                                                 |
+| Bye       | bye                                                                                                      |
 

@@ -26,7 +26,6 @@ public class MealStorageTest {
         private final MealStorage mealStorage = new MealStorage(FILE_PATH, foodStorage);
         private final DateTimeFormatter dtf = DateConstants.DATABASE_DTF;
         private ArrayList<Food> foodList = new ArrayList<Food>();
-        // private final Meal meal1 = new Meal();
 
         @Test
         public void addMeal_singleMealAdded_expectNoException() {

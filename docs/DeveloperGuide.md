@@ -6,12 +6,12 @@
 1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/ip)
 ---
 
-## Design & implementation
+## Design
 
 ---
 ### Architecture
 
-![](./uml/architecture.svg)
+![](./uml/architecture.PNG)
 
 **Main Components of LifeTracker**
 
@@ -28,7 +28,7 @@ The rest of the Application consists of three components:
 
 ---
 ### UI Component
-The UI is made up of three classes, `GeneralUi`, `CalorieUi` and `WeightUi`, and together,
+The UI is made up of five classes, `GeneralUi`, `CalorieUi`, `ExampleUi`,  `ExerciseUi` and `WeightUi`, and together,
 they improve on the accessibility of the application.
 
 The `UI` component,
@@ -82,6 +82,22 @@ parameters provided.
 
 Step 3. `mealStorage` saves the meal to the database and then `ui` prints out the confirmation of the meal added.
 
+### Design considerations
+
+## [Proposed] List feature
+
+### Proposed Implementation
+
+The proposed mechanism for listing stored foods, meals and exercises is facilitated by `ListCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+
+Step 1: The user will input either `list foods`, `list meals`, `list exercises` based on which information the user wants to retrieve.
+Step 2: Based the input, `ListCommand` will call either `printAllFoods`, `printAllMeals`, or `printAllExercises` method of the `ui` object
+Step 3: The `ui` will retreive the relevant information from the storage and print out their details
+
+![list-command](./uml/ListCommand.PNG)
+
+### Design Considerations
+
 ## [Proposed] Delete meal feature
 
 ### Proposed Implementation
@@ -93,6 +109,8 @@ which meal they want to delete by viewing the mealData.csv file.
 
 In the above implementation, DeleteMealCommand parses the user input to obtain the index to delete and proceeds to 
 delete it via the method from mealStorage() and prints out the deleted meal to the user.
+
+### Design considerations
 
 ## [Proposed] View feature
 
@@ -177,10 +195,84 @@ modified and the user's weight as well as his caloric limit will be updated in a
 > Insert UML diagram showing the update process
 
 Step 5. The user then executes the command `view` to view his updated weight and daily caloric limits.
+
+### Design considerations
+
+## [Proposed] Update feature
+
+### Proposed Implementation
+
+### Design considerations:
+
+## [Proposed] Nutrition feature
+
+### Proposed Implementation
+
+### Design considerations:
+
+## [Proposed] Filter feature
+
+### Proposed Implementation
+
+This proposed mechanism for allowing the user to search for meals with a filter, facilitated by `FilterCaloriesCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+
+Step 1. The user calls the `examples` command, specifying a particular calorie range through a upper and lower bound 
+
+Step 2. `FilterCaloriesCommand` will parse the lower and upper bound from the input 
+
+Step 3. `FilterCaloriesCommand` will then retrieve the meals that fit within that range from `FoodStorage`
+
+Step 4. `FilterCaloiresCommand` will then print out the meals that has been filtered based on the lower and upper bound
+
+![filter-calories-command](./uml/FilterCaloriesCommand.png)
+
+### Design considerations:
+
+## [Proposed] Exercise feature
+
+### Proposed Implementation
+
+### Design considerations:
+
+## [Proposed] Track feature
+
+### Proposed Implementation
+
+The proposed mechanism for tracking net calorie intake is facilitated by `TrackCalorieCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+
+Step 1: The user will input `track` and optional arguments `/start` and `/end` to filter the results based on date
+Step 2a: Based the input, `TrackCalorieCommand` will either parse the start date from user input or set the start date to the earliest meal or exercise added by calling `getStartingDate`.
+Step 2b: Based the input, `TrackCalorieCommand` will either parse the end date from user input or set the end date to the latest meal or exercise added by calling `getEndingDate`.
+Step 3: `TrackCalorieCommand` will retrieve the meals and exercises filtered from the starting date by calling `getMealByDate` and `getExerciseByDate` respectively.
+Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exercises day by day and print out the net calorie intake for each day.
+
+![track-calories-command](./uml/TrackCaloriesCommand.PNG)
+
+### Design considerations:
+
+## [Proposed] Examples feature
+
+### Proposed Implementation
+
+The proposed mechanism for displaying examples of exercises and meals is facilitated by `ExamplesCommand`. It extends `Command` and overrides 
+the `execute` method in the `Command` class.
+
+Step 1. The user calls the `examples` command, specifying whether they wish for `meal` or `exercise` to be displayed
+
+Step 2. `ExamplesCommand` will parse the user input
+
+Step 3. `ExamplesCommand` will retrieve either the examples of `meal` or examples of `exercise` based on the user input, from the `ExampleData` database
+
+Step 4. The examples of `meal` or `exercise` will then be printed out and displayed for the user
+
+![examples-command](./uml/ExamplesCommand.png)
+
+### Design considerations:
+
+
 # Appendix: Requirements
 
 ## Product scope
-
 
 ### Target user profile:
 
@@ -212,6 +304,8 @@ the user to keep track of their net calorie gain on a daily basis.
 | v2.0    | user     | search for a type of food and view its nutritional contents | make a more informed choice about what to eat            |
 | v2.0    | user     | search for meals within a specific calorie range         | decide which meal to consume                                |
 | v2.0    | user     | enter the type and duration of exercise I have completed | keep better track of my physical activies                   |
+| v2.1    | user     | be inspired to work out                                  | stay in shape                                               |
+| v2.1    | user     | search based on a filter                                 | have results that better suit my needs                      |
 
 ## Non-Functional Requirements
 
@@ -223,13 +317,144 @@ the user to keep track of their net calorie gain on a daily basis.
 
 * *glossary item* - Definition
 ___
-##Instructions for manual testing
+## Instructions for manual testing
 
 Given below are instructions on how to test the application by yourself manually. You can use these instructions as a starting point for your testing. 
 
-#Launch and Shutdown
+### Launch and Shutdown
 - Initial launch
+  - Download the jar file from the release page and copy the file into an empty folder
+  - Open a cmd terminal and redirect or cd into the folder the jar file was downloaded into.
+  - Type "java -jar tp.jar" and press enter to run the file.
+ 
 - Shutdown
+  - Type "bye" into the command line and press enter to exit the application.
 
-#Adding a meal
+### View user profile
+
+Test case: view
+
+Expected: Menu where user can input a value from 1 to 9 to view their current profile: 
+
+1. Name
+2. Weight
+3. Height
+4. Age
+5. Gender
+6. Daily Caloric Limit
+7. Calories Remaining for today
+8. View Target Weight
+9. Exit
+
+User can then input 1 to continue viewing their profile or 2 to exit.
+
+### Update user profile
+
+Test case: update
+
+Expected: Menu where user can input a value from 1 to 7 to update their current profile: 
+
+1. Name
+2. Weight
+3. Height
+4. Age
+5. Gender
+6. Target Weight
+7. Exit
+
+User can then input 1 to continue viewing their ofile or 2 to exit.
+
+### Adding a meal
+
+Test case: add /on 3/3/2023 /type Lunch /foods Spaghetti, Alfredo (Small)
+
+Expected: Spaghetti and Alfredo are added to the list. Details of the food such as calories are shown in the status message.
+
+Test case: add
+
+Expected: Application will then ask for date of meal, type of meal, and food, and will then display the foods in the database containing the food that was added. Food is then added to the list and details of the food such as calories are shown in the status message.
+
+Test case: add /on dummy /type dummy /foods dummy
+
+Expected: No food is added. Error details are shown in the status message, such as "_dummy_ is not a valid date", "Invalid meal type" or "no food found with _dummy_".
+
+### List or foods in database meals added
+
+Test case: list meals
+
+Expected: A list of meals eaten today would be displayed.
+
+Test case: list foods
+
+Expected: A list of all foods in the databse would be displayed.
+
+Test case: list dummy
+
+Expected: An error message would be displayed.
+
+### Deleting a meal
+
+Prerequisite: List all meals eaten using the list command. At least 1 meal in the list.
+
+Test case: delete 1
+
+Expected: First meal is deleted from the list. Details of the deleted meal are shown in the status message. 
+
+Test case: delete 0
+
+Expected: No meal is deleted. Error details shown in the status message.
+
+Other incorrect delete commands to try: delete, delete x, (where x is larger than the list size)
+
+Expected: Similar to previous.
+
+### Filter foods based on calories
+
+Test case: filter 400 600
+
+Expected: A list of all meals within that range will be displayed
+
+Test case: filter 400 300
+
+Expected: An error message will be displayed
+
+### Find nutrition of a food
+
+Test case: 
+
+Expected:
+
+### Add a exericse
+
+Test case: 
+
+Expected:
+
+### Track calorie intake
+
+Test case: 
+
+Expected:
+
+### See examples of meal or exercise
+
+Test case: examples exercise
+
+Expected: Examples of different types of exercise will be displayed
+
+Test case: examples weight
+
+Expected: An error message will be displayed
+
+### See list of available commands
+
+Test case: 
+
+Expected:
+
+### Exiting the program
+
+Test case: 
+
+Expected:
 

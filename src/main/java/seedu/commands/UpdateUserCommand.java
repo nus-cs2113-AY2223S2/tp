@@ -10,8 +10,24 @@ import seedu.ui.GeneralUi;
 
 public class UpdateUserCommand extends Command {
     public String updateName(GeneralUi ui) {
-        System.out.println("Enter new name: ");
-        return ui.readLine();
+        String nameString = null;
+        while (true) {
+            boolean containsNum = false;
+            System.out.println("Enter new name: ");
+            nameString = ui.readLine();
+            for (int i = 0; i < nameString.length(); ++i) {
+                if (Character.isDigit(nameString.charAt(i))) {
+                    containsNum = true;
+                    break;
+                }
+            }
+            if (nameString.isBlank() || containsNum) {
+                System.out.println("Invalid name format!");
+            }else {
+                break;
+            }
+        }
+        return nameString;
     }
 
     @Override
