@@ -155,6 +155,9 @@ public interface Parser {
             UpdateEventNameCommand updateEventNameCommand = new UpdateEventNameCommand(commandType, inputWords[3]);
             return updateEventNameCommand;
         case "help":
+            if (inputWords.length > 1) {
+                throw new WrongFormatException();
+            }
             ui.showGuide();
             break;
         case "exit":
