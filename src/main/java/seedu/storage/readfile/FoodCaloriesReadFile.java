@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class FoodCaloriesReadFile {
 
     private static final String SPACE = " ";
-    // private static HashMap<String, Integer> foodCalories = new HashMap<>();
 
     public static FoodList readFoodCalorieToFile(String filePath){
         FoodList foodList = new FoodList();

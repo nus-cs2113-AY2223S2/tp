@@ -4,7 +4,12 @@ import seedu.commands.Command;
 import seedu.commands.HandlingStringInput;
 import seedu.commands.IncorrectSyntaxCommand;
 import seedu.commands.countcommands.CountSetsRepsCommand;
-import seedu.commands.workoutcommands.*;
+import seedu.commands.workoutcommands.AddWorkoutCommand;
+import seedu.commands.workoutcommands.DeleteWorkoutCommand;
+import seedu.commands.workoutcommands.ListWorkoutCommand;
+import seedu.commands.workoutcommands.StartWorkoutCommand;
+import seedu.commands.workoutcommands.ViewWorkoutCommand;
+import seedu.commands.workoutcommands.StartDayCommand;
 import seedu.workout.Exercise;
 
 import java.text.ParseException;

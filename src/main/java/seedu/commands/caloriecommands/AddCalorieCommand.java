@@ -6,7 +6,6 @@ import seedu.commands.Command;
 
 public class AddCalorieCommand extends Command {
 
-
     public static final int CALORIES_NOT_GIVEN = -1;
     private static final String FOOD_CALORIES_IS_EMPTY_FIRST = "No calories record for '";
     private static final String FOOD_CALORIES_IS_EMPTY_SECOND = " Please add calories for it.";
@@ -66,8 +65,6 @@ public class AddCalorieCommand extends Command {
     @Override
     public String execute() {
         calories = caloriesRecorder.getCalories();
-        /*calorieTracker.setFoodList(foodList);
-        return calorieTracker.addCalories(date, food, calories);*/
         if (isCaloriesDayEntered) {
             if (currentFoodCalories == CALORIES_NOT_GIVEN) {
                 //check if the food had been stored in food list before

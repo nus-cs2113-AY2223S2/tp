@@ -4,7 +4,6 @@ package seedu.parser;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.commands.InvalidCommand;
-import seedu.commands.caloriecommands.CaloriesCommand;
 import seedu.commands.caloriecommands.HelpCaloriesCommand;
 import seedu.commands.workoutcommands.HelpWorkoutCommand;
 import seedu.exceptions.InvalidSyntaxException;
@@ -51,9 +50,7 @@ public class Parser {
             return CheckCaloriesInput.processAddCalories(arguments);
         case "/clist":
             //list the total daily calories consumption
-         //   return CheckCaloriesInput.processViewCalories(arguments);
         case "/cview":
-            // list all the food calories that been entered for a day
             return CheckCaloriesInput.processViewCalories(arguments);
         case "/cdelete":
             //delete calories for a specific day for one food follow /cdelete date food name

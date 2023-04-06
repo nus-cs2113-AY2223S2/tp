@@ -54,7 +54,7 @@ public class CheckCaloriesInput {
         return new AddCalorieCommand(food, calories);
     }
 
-     public static Command processViewCalories(String arguments) {
+    public static Command processViewCalories(String arguments) {
         Date date;
 
         try {
@@ -64,6 +64,6 @@ public class CheckCaloriesInput {
         }
 
         return new ViewCaloriesCommand(date);
-     }
+    }
 
 }

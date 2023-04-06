@@ -1,7 +1,6 @@
 package seedu.commands;
 
 
-import seedu.calorietracker.Calories;
 import seedu.calorietracker.CaloriesRecorder;
 import seedu.calorietracker.FoodList;
 import seedu.workout.Day;
