@@ -10,6 +10,11 @@ allModules: ModuleList, calendar Calendar): void
 # setExit(): void
 # getCommand(arg: String): LessonType
 }
+Command -> TaskList
+Command -> ModuleList
+Command -> Calendar
+Command -> Storage
+Command -> Ui
 
 class AddCommand {
 # command: String
@@ -33,23 +38,23 @@ eventEnd: LocalDateTime): boolean
 - isEventLessonClashing(eventStart: LocalDateTime, eventEnd: LocalDateTime,
 lessonStart: LocalDateTime, lessonEnd: LocalDateTime): boolean
 }
-AddCommand <|-- Command
+AddCommand --|> Command
 
 class DateCommand {
 date: LocalDate
 datePattern: DateTimeFormatter
 + DateCommand(dateString: String)
 }
-DateCommand <|-- Command
+DateCommand --|> Command
 
 class FindCommand{
 # keyword: String
 + FindCommand(keyword: String)
 }
-FindCommand <|-- Command
+FindCommand --|> Command
 
 class ListCommand
-ListCommand <|-- Command
+ListCommand --|> Command
 
 class ModifyCommand{
 # command: String
@@ -58,19 +63,19 @@ class ModifyCommand{
 -markTask(taskList: TaskList, ui: Ui): void
 -unmarkTask(taskList: TaskList, ui: Ui): void
 }
-ModifyCommand <|-- Command
+ModifyCommand --|> Command
 
 class WeekCommand
-WeekCommand <|-- Command
+WeekCommand --|> Command
 
 class ExitCommand
-ExitCommand <|-- Command
+ExitCommand --|> Command
 
 class HelpCommand
-HelpCommand <|-- Command
+HelpCommand --|> Command
 
 class SpecificHelpCommand
-SpecificHelpCommand <|-- HelpCommand
+SpecificHelpCommand --|> HelpCommand
 
 class AddModuleCommand {
 - module: ModuleList
@@ -86,7 +91,7 @@ args: String, ui: Ui, calendar: Calendar): void
 - isSameWeek(timetable1: Timetable, timetable2: Timetable): boolean
 - isAdded(moduleList: ModuleList, module: Module): boolean
 }
-Command --|> AddModuleCommand
+Command <|-- AddModuleCommand
 
 class DeleteModuleCommand{
 # args: String[]
@@ -96,10 +101,10 @@ class DeleteModuleCommand{
 - deleteTimetable(module: Module, lessonType: LessonType,
 lessonNumber: String): void
 }
-Command --|> DeleteModuleCommand
+Command <|-- DeleteModuleCommand
 
 class ListModuleCommand
-Command --|> ListModuleCommand
+Command <|-- ListModuleCommand
 
 class ListModuleWithLessonCommand {
 - args: String[]
@@ -113,7 +118,7 @@ class ListModuleWithLessonCommand {
 - isInModuleList(moduleList: ModuleList, module: Module): boolean
 - isExistLessonType(allModules: ModuleList, lessonType: LessonType): boolean
 }
-Command --|> ListModuleWithLessonCommand
+Command <|-- ListModuleWithLessonCommand
 
 class ShowModuleCommand {
 - args: String[]
@@ -123,6 +128,6 @@ class ShowModuleCommand {
 - handleMultiCommand(ui: Ui): void
 - sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
 }
-Command --|> ShowModuleCommand
+Command <|-- ShowModuleCommand
 
 @enduml

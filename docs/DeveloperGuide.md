@@ -65,8 +65,21 @@ which would result in the latest data stored in DataStorage being saved into the
 ### UI Component
 ### Parser Component
 ### Command Component
-**API:** `Command.java`
-Here's a class diagram of the `Command` component
+**API:** `Command.java`    
+Here's a class diagram of the `Command` component   
+![](../docs/uml-diagrams/Command.png)
+> SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)   
+
+How the `Command` component works:
+1. When a command is entered by the user, `Parser` will create the relevant subclass of `Command` and send it back to 
+`Apollo`. 
+2. If the command entered was valid, `Apollo` then executes the `Command`. 
+3. `Command` can communicate with `TaskList`, `ModuleList` and `Calendar` when it is executed (eg. to modify Tasks, to 
+add Modules)
+4. `Command` can also communicate with `Storage` to update the local save files if there are changes.
+5. The result of the command execution is sent to `Ui` to be printed out to the user.   
+
+Further elaboration on how the individual `Command` components work can be found under [Implementation](#implementation)
 
 ### Storage Component
 
