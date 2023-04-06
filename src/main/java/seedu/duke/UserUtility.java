@@ -1,17 +1,10 @@
 package seedu.duke;
 
-// import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static seedu.duke.Parser.SEMESTER_START_DATES;
 
 // User utility class. This class will hold methods required by user.
 public class UserUtility {
