@@ -1,5 +1,7 @@
 package seedu.rainyDay.command;
 
+import seedu.rainyDay.exceptions.ErrorMessage;
+import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Storage;
 
 import java.io.IOException;
@@ -15,10 +17,7 @@ import java.util.logging.Logger;
  */
 public class ExportCommand extends Command {
     private static final Logger logger = Logger.getLogger(ExportCommand.class.getName());
-    private static final String CSV_EXPORT_ERROR = "Error exporting to CSV, please close the CSV file if you " +
-            "currently have it open.";
-    private static final String EMPTY_STATEMENT = "Your financial statements are empty, export to CSV will not be " +
-            "performed.";
+
     private static final String CSV_EXPORT_SUCCESS = "Financial statements successfully saved into CSV.";
 
     public ExportCommand() {
@@ -30,27 +29,26 @@ public class ExportCommand extends Command {
      * @return CommandResult with the relevant success or error message
      */
     @Override
-    public CommandResult execute() {
+    public CommandResult execute() throws RainyDayException {
         setupLogger();
         logger.log(Level.INFO, "starting ExportCommand.execute()");
         String output;
 
         if (savedData.getStatementCount() == 0) {
             logger.log(Level.INFO, "empty financial report, export aborted.");
-            output = EMPTY_STATEMENT;
-            return new CommandResult(output);
+            throw new RainyDayException(ErrorMessage.CSV_EMPTY_STATEMENT.toString());
         }
         assert savedData.getStatementCount() > 0 : "Should have at least 1 financial statement to export";
 
         try {
             Storage.writeToCSV(savedData.getFinancialReport());
-            output = CSV_EXPORT_SUCCESS;
             logger.log(Level.INFO, "Export to CSV successful");
         } catch (IOException e) {
-            output = CSV_EXPORT_ERROR;
             logger.log(Level.INFO, "Error when exporting to CSV");
+            throw new RainyDayException(ErrorMessage.CSV_EXPORT_ERROR.toString());
         }
-        return new CommandResult(output);
+
+        return new CommandResult(CSV_EXPORT_SUCCESS);
     }
 
     /**

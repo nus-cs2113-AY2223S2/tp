@@ -39,6 +39,7 @@ import java.util.logging.Logger;
 
 import com.opencsv.CSVWriter;
 import seedu.rainyDay.data.SavedData;
+import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
 //@@author KN-CY
@@ -80,7 +81,7 @@ public class Storage {
         JsonElement fileElement = JsonParser.parseReader(reader);
         JsonObject fileObject = fileElement.getAsJsonObject();
 
-        checkValidUserData(fileObject);
+        checkValidSavedData(fileObject);
 
         reader = new FileReader(filePath);
         SavedData savedData = gson.fromJson(reader, SavedData.class);
@@ -93,16 +94,16 @@ public class Storage {
      * @param savedData The user data being loaded of JsonObject type.
      * @throws RainyDayException If savedData is invalid.
      */
-    private static void checkValidUserData(JsonObject savedData) throws RainyDayException {
+    private static void checkValidSavedData(JsonObject savedData) throws RainyDayException {
         // check that UserData has the required fields
         if (!savedData.has("financialReport")) {
-            throw new RainyDayException("");
+            throw new RainyDayException(ErrorMessage.INVALID_SAVED_FINANCIAL_REPORT.toString());
         }
         if (!savedData.has("shortcutCommands")) {
-            throw new RainyDayException("");
+            throw new RainyDayException(ErrorMessage.INVALID_SAVED_SHORTCUT_COMMANDS.toString());
         }
         if (!savedData.has("budgetGoal") || savedData.get("budgetGoal").getAsDouble() < 0) {
-            throw new RainyDayException("");
+            throw new RainyDayException(ErrorMessage.INVALID_SAVED_BUDGET_GOAL.toString());
         }
         JsonObject financialReport = savedData.getAsJsonObject("financialReport");
         checkValidFinancialReport(financialReport);
@@ -120,10 +121,15 @@ public class Storage {
      */
     private static void checkValidFinancialReport(JsonObject financialReport) throws RainyDayException {
         if (!financialReport.has("financialStatements")) {
-            throw new RainyDayException("");
+            throw new RainyDayException(ErrorMessage.INVALID_SAVED_FINANCIAL_STATEMENTS.toString());
         }
+        
         if (!financialReport.has("reportOwner")) {
-            throw new RainyDayException("");
+            throw new RainyDayException(ErrorMessage.INVALID_SAVED_REPORT_OWNER.toString());
+        }
+        String reportOwner = financialReport.get("reportOwner").getAsString();
+        if (reportOwner.isEmpty() || reportOwner.charAt(0) == ' ') {
+            throw new RainyDayException(ErrorMessage.INVALID_SAVED_REPORT_OWNER.toString());
         }
 
         JsonArray financialStatements = financialReport.getAsJsonArray("financialStatements");
@@ -140,39 +146,49 @@ public class Storage {
         // check that every financial statement in the statements has the required fields
         for (JsonElement financialStatementElement : financialStatements) {
             JsonObject financialStatement = financialStatementElement.getAsJsonObject();
+
             if (!financialStatement.has("description")) {
-                throw new RainyDayException("");
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_DESCRIPTION.toString());
+            }
+            String description = financialStatement.get("description").getAsString();
+            if (description.isEmpty() || description.contains("-") || description.charAt(0) == ' ') {
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_DESCRIPTION.toString());
             }
 
             if (!financialStatement.has("flowDirection")) {
-                throw new RainyDayException("");
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_FLOW_DIRECTION.toString());
             }
             String flowDirection = financialStatement.get("flowDirection").getAsString();
             if (!EnumUtils.isValidEnum(FlowDirection.class, flowDirection)) {
-                throw new RainyDayException("");
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_FLOW_DIRECTION.toString());
             }
 
             if (!financialStatement.has("value")) {
-                throw new RainyDayException("");
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_VALUE.toString());
             }
             double value = financialStatement.get("value").getAsDouble();
             if (value <= 0) {
-                throw new RainyDayException("");
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_VALUE.toString());
             }
 
             if (!financialStatement.has("category")) {
-                throw new RainyDayException("");
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_CATEGORY.toString());
             }
+            String category = financialStatement.get("category").getAsString();
+            if (category.isEmpty() || category.contains("-") || category.charAt(0) == ' ') {
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_CATEGORY.toString());
+            }
+
             if (!financialStatement.has("date")) {
-                throw new RainyDayException("");
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_DATE.toString());
             }
 
             if (!financialStatement.has("isIgnored")) {
-                throw new RainyDayException("");
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_IS_IGNORED.toString());
             }
             String isIgnored = financialStatement.get("isIgnored").getAsString();
             if (!isIgnored.equals("true") && !isIgnored.equals("false")) {
-                throw new RainyDayException("");
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_IS_IGNORED.toString());
             }
         }
     }
@@ -187,11 +203,14 @@ public class Storage {
         HashMap<String, String> shortcutCommandsHashMap = new HashMap<>();
         for (String key : shortcutCommands.keySet()) {
             String value = shortcutCommands.get(key).getAsString();
+            if (key.isEmpty() || value.isEmpty() || key.charAt(0) == ' ' || value.charAt(0) == ' ') {
+                throw new RainyDayException(ErrorMessage.INVALID_SAVED_SHORTCUT_COMMANDS.toString());
+            }
+
             ShortcutCommand.checkShortcutValidity(shortcutCommandsHashMap, key, value);
             shortcutCommandsHashMap.put(key, value);
         }
     }
-
 
     /**
      * Uses JSON serialization to save the FinancialReport object into a JSON file.
