@@ -22,6 +22,7 @@ public class DishManager {
     public static void addDishCommand(String name, int price, ArrayList<String> ingredients, TextUi ui) {
         Dish dish = new Dish(name, price, ingredients);
         dishes.add(dish);
+        ui.printMessage(DishManager.stringOfDishWithIndex(DishManager.getDishesSize(), dish));
         try {
             DishStorage dishStorage = new DishStorage();
             dishStorage.writeToDishFile(dishes);
@@ -33,6 +34,7 @@ public class DishManager {
     public static void deleteDishCommand(int index, TextUi ui) {
         Dish selectedDish = dishes.get(index);
         dishes.remove(index);
+        ui.printMessage("deleted dish");
         try {
             DishStorage dishStorage = new DishStorage();
             dishStorage.writeToDishFile(dishes);
