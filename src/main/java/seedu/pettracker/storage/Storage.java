@@ -6,6 +6,7 @@ import seedu.pettracker.data.Task;
 import seedu.pettracker.data.TaskList;
 import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
+import seedu.pettracker.exceptions.InvalidMarkTaskSymbolException;
 import seedu.pettracker.exceptions.InvalidSeparatorException;
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
@@ -246,9 +247,14 @@ public class Storage {
         return taskName;
     }
 
-    private String getTaskStatus(String line) {
+    private String getTaskStatus(String line) throws InvalidMarkTaskSymbolException {
         String[] words = line.split("\\|", 2);
         String taskStatus = words[0];
+
+        if (!taskStatus.equals("1") && !taskStatus.equals("0")) {
+            throw new InvalidMarkTaskSymbolException();
+        }
+
         return taskStatus;
     }
 
