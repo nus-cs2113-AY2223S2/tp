@@ -21,8 +21,6 @@ interface UserPlansStorage <<interface>> ORANGE {
 
 class JsonUserCareerStorage LAPIS {
 }
-abstract class TextDataUtility {
-}
 class JsonUserPlansWriter DATA_COLOUR {
 }
 interface UserCareerStorage <<interface>> ORANGE {
