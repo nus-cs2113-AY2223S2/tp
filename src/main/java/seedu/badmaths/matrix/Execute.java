@@ -1,6 +1,30 @@
 package seedu.badmaths.matrix;
 
 public class Execute {
+
+    public Tensor2D execute(Parser.CalType type, String command){
+        Tensor2D result = null;
+
+        switch(type) {
+        case ADDITION:
+            result = executeAdd(command);
+            break;
+        case SUBTRACTION:
+            result = executeSub(command);
+            break;
+        case MULTIPLICATION:
+            result = executeMul(command);
+            break;
+        case ELEMENT_WISE_DOT_PRODUCT:
+            result = executeDot(command);
+            break;
+        default:
+            break;
+        }
+
+        return result;
+    }
+
     public Tensor2D executeMul(String command) {
         Calculate c = new Calculate();
 
