@@ -1,0 +1,27 @@
+@startuml
+!include Style.puml
+
+title Create Directory Sequence Diagram
+
+box "DinerDirector"
+participant ":DinerDirector" as DinerDirector DINERDIRECTOR_COLOR
+endbox
+box "Storage"
+participant ":Storage" as Storage STORAGE_COLOR
+endbox
+
+activate DinerDirector
+DinerDirector -> DinerDirector ++ : start()
+
+create Storage
+DinerDirector -> Storage ++ : Storage()
+return
+
+DinerDirector -> Storage ++ : createDirectory()
+return
+destroy Storage
+
+|||
+return
+
+@enduml

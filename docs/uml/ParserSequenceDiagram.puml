@@ -1,16 +1,18 @@
 @startuml
-'https://plantuml.com/sequence-diagram
-hide footbox
+!include Style.puml
+
 title Parser Sequence Diagram
 
 box "DinerDirector"
-participant ":DinerDirector" as DinerDirector #yellow
+participant ":DinerDirector" as DinerDirector DINERDIRECTOR_COLOR
 endbox
 box "Parser"
-participant ":Parser" as Parser #orange
+participant ":Parser" as Parser PARSER_COLOR
 endbox
 
-[-> DinerDirector ++ : runCommandLoopUntilExit()
+activate DinerDirector
+DinerDirector -> DinerDirector ++ : runCommandLoopUntilExit()
+loop until isExit
 create Parser
 DinerDirector -> Parser ++ : Parser()
 return
@@ -19,9 +21,11 @@ DinerDirector -> Parser ++ : parseCommand(userInput)
 Parser -> Parser ++ :prepareXYZCommand(userInputNoCommand)
 return Command
 return Command
-
 destroy Parser
 |||
+end
+return
+
 
 
 
