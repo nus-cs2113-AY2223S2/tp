@@ -85,13 +85,17 @@ public class FilterCommand extends Command {
         }
 
         boolean filteredTwoDates = false;
+        boolean filteredTwoDatesFirstFlag = false;
         boolean isFirstFlag = true;
-        for (int i = 0; i < filterFlagAndField.size(); i += 2) {
-            if (filteredTwoDates == true) {
-                if (i != filterFlagAndField.size() - 1) {
-                    i -= 1;
-                    continue;
-                }
+        for (int i = 0; i < filterFlagAndField.size(); i += 1) {
+//            if (filteredTwoDates == true) {
+//                if (i != filterFlagAndField.size() - 1) {
+//                    i -= 1;
+//                    continue;
+//                }
+//            }
+            if (!filterFlagAndField.get(i).contains("-")) {
+                continue;
             }
 
             if (filterFlagAndField.get(i).equalsIgnoreCase("-d")) {
