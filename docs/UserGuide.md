@@ -321,6 +321,7 @@ Please see the below table for the list of available commands.
 | Mark a recipe as your favourite | `recipe favourite <index_number>` | `recipe favourite 6` (recipe for Hainanese Chicken Rice |
 | Unmark a recipe as your favourite | `recipe unfavourite <index_number>` | `recipe unfavourite 6` (recipe for Hainanese Chicken Rice |
 | Terminate the program | `bye` | `bye` |
+| Hello World | `hello world` | `hello world` |
 
 #### [Back to table of contents](#table-of-contents)
 
