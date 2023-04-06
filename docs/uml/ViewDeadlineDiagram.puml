@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+activate DinerDirector
+
 DinerDirector -> Parser: parseCommand(String userInput)
 activate Parser
 
