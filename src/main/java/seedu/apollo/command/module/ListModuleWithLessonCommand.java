@@ -104,7 +104,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             if (args.length == 2) {
                 handleMultiCommand(ui, allModules);
             } else {
-                handleSingleCommand(ui);
+                handleSingleCommand(ui, module);
             }
 
         } catch (ModuleNotAddedException e) {
@@ -126,7 +126,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      *
      * @param ui The Ui object to print the timetable.
      */
-    private void handleSingleCommand(Ui ui) throws EmptyLessonTypesInTimetable {
+    private void handleSingleCommand(Ui ui, Module module) throws EmptyLessonTypesInTimetable {
         ArrayList<LessonType> checkLessonTypes = getLessonTypes(module);
         if (checkLessonTypes.isEmpty()) {
             throw new EmptyLessonTypesInTimetable();
@@ -143,7 +143,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      * @throws LessonTypeNotAddedException If a lesson type has not been added into module list.
      * @throws ModuleNotAddedException If the lessons have not been added into module list.
      */
-    private void copyModuleListData(ModuleList moduleList) throws LessonTypeNotAddedException,
+    public void copyModuleListData(ModuleList moduleList) throws LessonTypeNotAddedException,
             ModuleNotAddedException {
 
         if (!isInModuleList(moduleList, module)) {
