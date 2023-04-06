@@ -29,7 +29,7 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [Purge expired tasks :](#purge-expired-tasks--purge) `purge`
     * [Clearing all tasks (including datafile) :](#clearing-tasks-from-storage-clear) `clear `
     * [Find tasks matching a given keyword :](#finding-tasks-from-storage-that-match-a-keyword-find-keyword) `find <keyword>`
-    * [Add tasks that can be broken down into the following 6 types:](#adding-a-todo-task--description)
+    * [Add tasks that can be broken down into the following 6 types:](#adding-a-todo-task--todo-description)
     
             * Add ToDo: /todo <description>
             * Add Deadline: <description> /by <yyyy-MM-dd HHmm>
