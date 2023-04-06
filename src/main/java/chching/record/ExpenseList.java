@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import chching.currency.Converter;
 import chching.currency.Selector;
+import chching.parser.DecimalsChecker;
 
 import static chching.parser.Expenses.parseDate;
 
@@ -68,10 +69,16 @@ public class ExpenseList extends RecordList {
             expense.setDate(date);
             break;
         case "v":
+            boolean isTwoDecimalsOrLess = DecimalsChecker.isTwoDecimals(value);
+            if(!isTwoDecimalsOrLess) {
+                throw new ChChingException("Expense value must be a valid positive double that is 2 d.p. or less");
+            }
             try {
                 double amount = Double.parseDouble(value);
                 if (amount < 0.01) {
-                    throw new ChChingException("Expense must be greater than or equals 0.01");
+                    throw new ChChingException("Expense value must be greater than 0");
+                } else if (amount > 999999.99) {
+                    throw new ChChingException("Expense value must be less than 1000000");
                 }
                 assert amount > 0.01 : "Income must be positive and more than 0";
                 expense.setValue(amount);
