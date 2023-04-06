@@ -43,4 +43,7 @@ public class Messages {
             "OTHERS";
 
     public static final String MESSAGE_CONTAIN_DUPLICATED_FLAGS = "Duplicated flags are not allowed.";
+
+    public static final String MESSAGE_NEW_DESCRIPTION_CONTAIN_FLAGS = "Edited description cannot contain any flags such as" +
+            " 'a/', 'd/', and 'c/'";
 }
