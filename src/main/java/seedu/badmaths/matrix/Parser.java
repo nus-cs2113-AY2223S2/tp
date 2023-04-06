@@ -16,15 +16,15 @@ public class Parser {
         try {
             check.checkUnknownOperator(command);
 
-            if(command.contains("+")){
+            if(command.contains("+")) {
                 type = CalType.ADD;
-            }else if(command.contains("-")){
+            } else if(command.contains("-")) {
                 type = CalType.SUB;
-            }else if(command.contains(".*")){
+            } else if(command.contains(".*")) {
                 type = CalType.MUL;
-            }else if(command.contains("*")){
+            } else if(command.contains("*")) {
                 type = CalType.DOT;
-            }else{
+            } else {
                 type = CalType.UNKNOWN;
             }
 
@@ -36,7 +36,7 @@ public class Parser {
             Calculate c = new Calculate();
             Execute e = new Execute();
 
-            switch(type){
+            switch(type) {
             case ADD:
                 result = e.executeAdd(command);
                 break;
@@ -54,7 +54,7 @@ public class Parser {
             }
 
             return result;
-        }catch (UnknownOperatorException e){
+        } catch (UnknownOperatorException e) {
             ep.printUnknownOperatorExceptionLog();
             return null;
         }
@@ -78,8 +78,8 @@ public class Parser {
         assert rowNum == 1 || colNum == rows[1].split(",").length;
 
         tensor = new int[rowNum][colNum];
-        for(int i=0; i<rowNum; i++){
-            for(int j=0; j<colNum; j++){
+        for(int i = 0; i < rowNum; i++) {
+            for(int j = 0; j < colNum; j++) {
                 column = rows[i].split(",");
                 tensor[i][j] = Integer.parseInt(column[j]);
             }

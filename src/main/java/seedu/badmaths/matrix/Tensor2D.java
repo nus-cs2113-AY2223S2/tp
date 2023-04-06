@@ -35,8 +35,8 @@ public class Tensor2D extends Tensor {
 
         int[][] transposeTensor = new int[column][row];
 
-        for(int i=0; i<column; i++){
-            for(int j=0; j<row; j++){
+        for(int i = 0; i < column; i++) {
+            for(int j = 0; j < row; j++) {
                 transposeTensor[i][j] = tensor[j][i];
             }
         }
@@ -53,9 +53,9 @@ public class Tensor2D extends Tensor {
         str.append("    1. shape : ").append(row).append(" x ").append(column).append("\n");
         str.append("    2. value : \n");
 
-        for(int i=0; i<row; i++){
+        for(int i = 0; i < row; i++) {
             str.append("        ").append(i).append(") ");
-            for(int j=0; j<column; j++){
+            for(int j = 0; j < column; j++){
                 str.append(tensor[i][j]).append(" ");
             }
             str.append("\n");
