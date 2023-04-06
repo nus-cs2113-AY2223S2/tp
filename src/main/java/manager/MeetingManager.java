@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MeetingManager {
-    private static ArrayList<Meeting> meetings = new ArrayList<Meeting>();
+    private static ArrayList<Meeting> meetings = new ArrayList<>();
 
     public MeetingManager(ArrayList<Meeting> meetings) {
         MeetingManager.meetings = meetings;
@@ -17,6 +17,7 @@ public class MeetingManager {
 
     public static void addMeeting(Meeting meeting, TextUi ui) {
         meetings.add(meeting);
+        ui.printMessage(meeting.getIssue() + " at " + meeting.getTime());
         try {
             MeetingStorage meetingStorage = new MeetingStorage();
             meetingStorage.writeToDeadlineFile(meetings);
@@ -27,15 +28,21 @@ public class MeetingManager {
 
     public static String printMeetings() {
         String meetingList = "";
+        int index=1;
         for (Meeting meeting : meetings) {
-            meetingList += meeting.getIssue() + " at: " + meeting.getTime() + System.lineSeparator();
+            meetingList += index+". "+meeting.getIssue() + " at: " + meeting.getTime() + System.lineSeparator();
+            index++;
         }
         return meetingList;
     }
 
     public static void deleteMeeting(int index, TextUi ui) {
+        if(index<0){
+            ui.printMessage(Messages.ERROR_MEETING_INVALID_INDEX);
+            return;
+        }
         if (index < meetings.size()) {
-            System.out.println("Meeting " + meetings.get(index).getIssue() + " deleted!");
+            ui.printMessage("Meeting " + meetings.get(index).getIssue() + " deleted!");
             meetings.remove(index);
         } else {
             System.out.println(Messages.ERROR_MEETING_INVALID_INDEX);

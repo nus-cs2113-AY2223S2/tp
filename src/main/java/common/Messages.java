@@ -16,7 +16,7 @@ public class Messages {
     public static final String MESSAGE_GENERIC_COMMANDS = "help - View list of commands\n" +
             "exit - exits the program\n";
     public static final String MESSAGE_MEETING_COMMANDS = "add_meeting n/<name> t/<time>\n" +
-            "delete_meeting n/<meeting>\n" +
+            "delete_meeting <index>\n" +
             "view_meetings\n" +
             "find_meeting <keyword>\n";
     public static final String MESSAGE_DEADLINE_COMMANDS = "add_deadline n/<name> t/<time>\n" +
