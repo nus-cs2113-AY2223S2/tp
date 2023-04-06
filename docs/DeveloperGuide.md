@@ -214,8 +214,7 @@ It is implemented through the following step:
 3. In `RecipeList`, `deleteRecipe()` is executed to delete the recipe at whatever index is passed as a parameter,
    and return the `Recipe` object at that index/the one just deleted.
 
-The sequence diagram below shows how this feature works:
-{UML will be added here.}
+![](../docs/UML/Implementation/DeleteFunction/DeleteFunction.jpg)
 
 ### Add Recipes Feature
 

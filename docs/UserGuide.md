@@ -11,7 +11,12 @@ ___
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Down the latest version of `Meal360`
+   from [here](https://github.com/AY2223S2-CS2113-F10-3/tp/releases).
+3. Upon the first launch, the app will create a `database` folder in the same directory as the
+   `tp.jar` file. This folder will contain all the data files that the app will use. Please do not
+   touch these files to ensure smooth operation of the app.
+4. To allow for immediate testing of features, the app comes preloaded with 10 recipes.
 
 ___
 
@@ -27,13 +32,23 @@ ___
 * [View weekly plan](#view-this-weeks-plan--weeklyplan)
 * [Random a recipe](#random-a-recipe--random)
 
+### HOW TO ADD INGREDIENTS TO A RECIPE:
+
+* Please follow the below-mentioned format.
+
+Format: `ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...`
+
+* Examples: `chicken=100 oil and sauce=200 vegetables=300`
+  `meat=200 salt and spices=400`
+* Type the ingredient name followed by equal sign and quantity in positive integer values.
+
 ### Adding recipes: `add`
 
 Add new recipes to your list.
 
-Format: `add /r [recipe_name]`
+Format: `add /r [RECIPE_NAME]`
 
-* `recipe_name` is basically a string.
+* `RECIPE_NAME` is basically a string.
 * Type the recipe name after typing `/r `.
 
 Example of usage:
@@ -43,12 +58,14 @@ Example of usage:
 
 ### Editing recipes: `edit`
 
-Edit recipes in your list either partially or fully.
+Edit recipes in your list partially, fully or add new ingredients to already existing recipe.
 
-Format: `edit /r [recipe_name]`
+Format: `edit /r [RECIPE_NAME]`
 
-* `recipe_name` is basically a string.
+* `RECIPE_NAME` is basically a string.
 * Type the recipe name after typing `/r `.
+* If you want to edit fully: press 1, edit partially: press 2, or add new ingredients: press 3.
+* Follow the proper format while editing/adding ingredients.
 
 Example of usage:
 
@@ -96,7 +113,7 @@ Example of usage:
 
 Deletes one, a range, or all recipes currently in list.
 
-Format: `delete INDEX/RANGE` or `delete r/NAME`
+Format: `delete INDEX/RANGE` or `delete /r NAME`
 
 * Deletes the recipe(s) specified by the user either through the recipe index or name.
 * The index refers to the index number shown in the displayed person list.
@@ -106,8 +123,8 @@ Example of usage:
 
 `delete 1`
 `delete 1-3`
-`delete r/pizza`
-`delete r/all`
+`delete /r pizza`
+`delete /r all`
 
 ### Tagging/Categorising recipes: `tag`
 
@@ -129,7 +146,7 @@ Example of usage:
 * `tag breakfast << milk && boiled egg && bread` adds milk, boiled egg and
   bread into 'breakfast' tag.
 
-__Removing recipes form a tag__
+__Removing recipes from a tag__
 
 Remove recipes from a specific tag.
 
@@ -151,12 +168,13 @@ Example of usage:
 
 Adds an existing recipe to this week's plan.
 
-Format: `weekly /add RECIPE NAME QUANTITY`
+Format: `weekly /add RECIPE_NAME QUANTITY`
 
-* Adds the specified `RECIPE NAME` to this week's plan`QUANTITY` number of times.
+* Adds the specified `RECIPE_ NAME` to this week's plan`QUANTITY` number of times, with quantity
+  representing the number of days the user plans to prepare the recipe within the week.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
 * The quantity **must be a positive
-  integer** 1,2,3, ...
+  integer** between 1 and 1000.
 
 Example of usage:
 
@@ -167,14 +185,16 @@ Example of usage:
 
 Adds multiple existing recipe to this week's plan.
 
-Format: `weekly /multiadd [/r RECIPE NAME /q QUANTITY]`
+Format: `weekly /multiadd [/r RECIPE_NAME /q QUANTITY]`
 
 * Adds the specified `RECIPE NAME` to this week's plan`QUANTITY` number of times.
 * At least one pair of `RECIPE_NAME` and `QUANTITY` is required.
 * Each `RECIPE_NAME` and `QUANTITY` requires `/r` and `/q` before it respectively.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
 * The quantity **must be a positive
-  integer** 1,2,3, ...
+  integer** between 1 and 1000.
+* If the same recipe is specified multiple times, only the **last** quantity specified
+  will be used.
 
 Example of usage:
 
@@ -185,27 +205,35 @@ Example of usage:
 
 Deletes an existing recipe from this week's plan.
 
-Format: `weekly /delete RECIPE NAME`
+Format: `weekly /delete RECIPE_NAME QUANTITY`
 
-* Deletes the specified `RECIPE NAME` to this week's plan.
+* Deletes the specified `RECIPE_NAME` from this week's plan `QUANTITY` number of times.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
+* The quantity **must be a positive
+  integer** between 1 and 1000.
+* Indicating a quantity more than the current quantity deletes the recipe completely from
+  this week's plan.
 
 Example of usage:
 
-* `weekly /delete pizza` removes pizza from this week's plan.
+* `weekly /delete pizza 1` removes pizza from this week's plan once.
 
 ### Deleting multiple recipes from this week's plan: `weekly /multidelete`
 
 Deletes multiple existing recipe from this week's plan.
 
-Format: `weekly /multidelete [/r RECIPE NAME /q QUANTITY]`
+Format: `weekly /multidelete [/r RECIPE_NAME /q QUANTITY]`
 
-* Deletes the specified `RECIPE NAME` from this week's plan`QUANTITY` number of times.
+* Deletes the specified `RECIPE_NAME` from this week's plan`QUANTITY` number of times.
 * At least one pair of `RECIPE_NAME` and `QUANTITY` is required.
 * Each `RECIPE_NAME` and `QUANTITY` requires `/r` and `/q` before it respectively.
 * The recipe name refers to the name of the recipe shown in the displayed recipe list.
 * The quantity **must be a positive
-  integer** 1,2,3, ...
+  integer** between 1 and 1000.
+* Indicating a quantity more than the current quantity deletes the recipe completely from
+  this week's plan.
+* If the same recipe is specified multiple times, only the **last** quantity specified
+  will be used.
 
 Example of usage:
 
@@ -218,6 +246,22 @@ Example of usage:
 Clears this week's plan by removing all recipes listed in weekly plan.
 
 Format: `weekly /clear`
+
+### Mark recipe in this week's plan as done: `weekly /done`
+
+Mark a recipe in the weekly plan as completed. A single count of the recipe and its corresponding
+ingredients will be removed from the weekly plan and the list of ingredients.
+
+Format: `weekly /done RECIPE_NAME`
+
+* This command executes only if the user has sufficient ingredients to prepare the recipe.
+* This command executes only if the recipe is in the weekly plan.
+* The recipe name refers to the name of the recipe shown in the displayed recipe list.
+
+Example of usage:
+
+* `weekly /done pizza` will mark pizza as done in the weekly plan, assuming the user has `pizza` in
+  the weekly plan and there are sufficient ingredients.
 
 ### View this week's plan: `weeklyplan`
 
@@ -244,24 +288,59 @@ Exits the program.
 
 Format: `bye`
 
-## FAQ
+### Add user ingredient: `add_i`
 
-**Q**: How do I transfer my data to another computer?
+Add user's ingredients into the ingredient list.
+Format : `add_i /n INGREDIENT_NAME /c QUANTITY /d DATE`
 
-**A**: {your answer here}
+* The quantity **must be a positive
+  integer** between 1 and 1000.
+* The date **must be in the format of DD/MM/YYYY**
+* If the ingredient already exists in the list, the quantity will be added to the existing quantity,
+  while the expiry date will be updated to reflect the expiry date of the new addition.
+
+Example of usage:
+
+* `add_i /n chicken /c 1 /d 01/01/2020` adds chicken with quantity 1 and expiry date 01/01/2020
+
+### Delete user ingredient: `del_i`
+
+Delete user's ingredients from the ingredient list.
+Format : `del_i /n INGREDIENT_NAME /c QUANTITY`
+
+* The quantity has to be **less than or equal** to the quantity of the ingredient in the list.
+* The quantity **must be a positive
+  integer** between 1 and 1000.
+* Indicating a quantity more than the current quantity deletes the ingredient completely from
+  the list.
+
+Example of usage:
+
+* `del_i /n chicken /c 1` deletes chicken with quantity 1
+
+### View user ingredients: `view_ingredients`
+
+View user's ingredients from the ingredient list.
+Format : `view_ingredients`
 
 ## Command Summary
 
 | Action                             | Format, Examples                                                                                            | 
 |------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| Add recipe                         | `add /r [recipe_name]`<br/>e.g `add /r chicken rice`                                                        |
-| Edit recipe                        | `edit /r [recipe_name]`<br/>e.g `edit /r chicken rice`                                                      |
+| Add recipe                         | `add /r [RECIPE_NAME]`<br/>e.g `add /r chicken rice`                                                        |
+| Edit recipe                        | `edit /r [RECIPE_NAME]`<br/>e.g `edit /r chicken rice`                                                      |
 | List recipe                        | `list [/t] [KEYWORD]`<br/>e.g `list pizza`                                                                  |
 | View recipe                        | `view INDEX`<br/>e.g `view 1`                                                                               |
 | Add tag/Categorise to recipes      | `tag LABEL << RECIPE_NAME`<br/>e.g `tag western << pizza`                                                   |
 | Remove tag/Categorise from recipes | `tag LABEL >> RECIPE_NAME`<br/>e.g `tag western >> pizza`                                                   |
 | Add to weekly plan                 | `weekly /add RECIPE NAME QUANTITY`<br/>e.g `weekly /add pizza 2`                                            |
 | Add multiple to weekly plan        | `weekly /multiadd [/r RECIPE NAME /q QUANTITY]` <br/>e.g `weekly /multiadd /r pizza /q 1 /r burger /q 3`    |
-| Delete from weekly plan            | `weekly /delete RECIPE NAME`<br/>e.g `weekly /delete pizza`                                                 |
-| Delete multiple from weekly plan   | `weekly /multidelete [/r RECIPE NAME /q QUANTITY]` <br/>e.g `weekly /multiadd /r pizza /q 1 /r burger /q 4` |
+| Delete from weekly plan            | `weekly /delete RECIPE_NAME`<br/>e.g `weekly /delete pizza`                                                 |
+| Delete multiple from weekly plan   | `weekly /multidelete [/r RECIPE_NAME /q QUANTITY]` <br/>e.g `weekly /multiadd /r pizza /q 1 /r burger /q 4` |
+| Clear weekly plan                  | `weekly /clear`                                                                                             |
+| Mark recipe in weekly plan as done | `weekly /done RECIPE_NAME`<br/> e.g `weekly /done pizza`                                                    |
 | View weekly plan                   | `weeklyplan`                                                                                                |
+| View weekly ingredients            | `weeklyingredients`                                                                                         |
+| View user ingredients              | `view_ingredients`                                                                                          |
+| Add user ingredient                | `add_i /n NAME /c COUNT /d DATE` <br/>e.g `add_i /n Rice /c 100 /d 04/09/2023`                              |
+| Delete user ingredient             | `del_i /n NAME /c COUNT` <br/>e.g `delete_i /n Rice /c 50`                                                  |

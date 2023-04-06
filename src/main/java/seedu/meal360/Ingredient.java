@@ -3,6 +3,7 @@ package seedu.meal360;
 import java.time.LocalDate;
 
 public class Ingredient {
+
     private static final Parser parser = new Parser();
     public String ingredientName;
     public Integer ingredientCount;
@@ -14,6 +15,13 @@ public class Ingredient {
         this.ingredientCount = ingredientCount;
         // parse expiry date using parseDate method
         this.expiryDate = parser.parseDate(expiryDate);
+        this.updateExpired();
+    }
+
+    public Ingredient(String ingredient, int newCount, LocalDate expiryDate) {
+        this.ingredientName = ingredient;
+        this.ingredientCount = newCount;
+        this.expiryDate = expiryDate;
         this.updateExpired();
     }
 

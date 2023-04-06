@@ -54,7 +54,7 @@ public class Ui {
         }
 
     }
-    
+
     public void printWeeklyIngredients(WeeklyPlan weeklyPlan, RecipeList recipeList) {
         if (weeklyPlan.isEmpty()) {
             printMessage("Your weekly plan is empty!");
@@ -73,15 +73,26 @@ public class Ui {
     }
 
     public void listRecipe(RecipeList recipeListToPrint) {
+        listRecipes(recipeListToPrint, "There is nothing to list.",
+                "These are the recipes you have");
+    }
+
+    public void listAvailableRecipes(RecipeList recipeListToPrint) {
+        listRecipes(recipeListToPrint, "There are no available recipes.",
+                "These are the recipes you can cook");
+    }
+
+    private void listRecipes(RecipeList recipeListToPrint, String emptyListMsg,
+            String listHeaderMsg) {
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
         if (numberOfRecipes == 0) {
-            printMessage("There is nothing to list.");
+            printMessage(emptyListMsg);
             return;
         }
-        printMessage("These are the recipes you have (" + numberOfRecipes + " recipes):");
+        printMessage(listHeaderMsg + " (" + numberOfRecipes + " recipes):");
         for (Recipe recipe : recipeListToPrint) {
-            order = order + 1;
+            order++;
             printMessage(order + ". " + recipe.getName() + "   (" + recipe.getNumOfIngredients()
                     + " ingredients)");
         }
@@ -91,18 +102,26 @@ public class Ui {
         printMessage("These are the operations you can do. Please follow the proper input"
                 + " formats while typing.");
         printMessage("1. Add Recipe: add /r {recipe name}");
-        printMessage("2. View Recipe: view {index number} or view /r {recipe name}");
-        printMessage("3. Edit Recipe: edit {index number} or view /r {recipe name}");
-        printMessage("4. Delete Recipe: delete {index number} or view /r {recipe name}");
+        printMessage("2. View Recipe: view {index number}");
+        printMessage("3. Edit Recipe: edit {recipe name}");
+        printMessage("4. Delete Recipe: delete {index number} or delete {index range} or");
+        printMessage("   delete /r {recipe name}or delete /r all");
         printMessage("5. List All Recipes: list");
-        printMessage("6. Add Single Recipe to Weekly Plan: add {recipe name} {quantity}");
-        printMessage("7. Add Multiple Recipes to Weekly Plan: add /r {recipe name} /q {quantity}");
-        printMessage("   /r {recipe name} /q {quantity} ...");
-        printMessage("8. Delete Single Recipe from Weekly Plan: delete {recipe name} {quantity}");
-        printMessage("9. Delete Multiple Recipes from Weekly Plan: delete /r {recipe name} /q");
-        printMessage("   {quantity} /r {recipe name} /q {quantity} ...");
+        printMessage("6. Add Single Recipe to Weekly Plan: weekly /add {recipe name} {quantity}");
+        printMessage("7. Add Multiple Recipes to Weekly Plan: weekly /multiadd /r {recipe1 name} /q {quantity1}");
+        printMessage("   /r {recipe2 name} /q {quantity2}");
+        printMessage("8. Delete Single Recipe from Weekly Plan: weekly /delete {recipe name} {quantity}");
+        printMessage("9. Delete Multiple Recipes from Weekly Plan: weekly /multidelete /r {recipe1 name}");
+        printMessage("   /q {quantity1} /r {recipe2 name} /q {quantity2}");
         printMessage("10. View Weekly Plan: weeklyplan");
-        printMessage("11. Exit: bye");
+        printMessage("11. Clearing weekly plan: weekly /clear");
+        printMessage("12. View Weekly Ingredients: weeklyingredients");
+        printMessage("13. Give a random recipe: random");
+        printMessage("14. Tagging/Categorizing Recipes: tag {LABEL_name} << {RECIPE_NAME && RECIPE_NAME && ...}");
+        printMessage("15. Removing recipes from a Tag: tag {LABEL_name} >> {RECIPE_NAME && RECIPE_NAME && ...}");
+        printMessage("16. Exit: bye");
+        printMessage("HOW TO ADD INGREDIENTS?");
+        printMessage("ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...");
     }
 
     public void printUserIngredients(IngredientList userIngredients) {

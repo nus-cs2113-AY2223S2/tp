@@ -9,17 +9,18 @@ import seedu.meal360.WeeklyPlan;
 
 public class Database {
 
-    private static final String recipesDatabaseFilepath =
-            "." + System.getProperty("file.separator") + "database" + System.getProperty("file.separator")
-                    + "recipesDatabase.json";
+    private static final String recipesDatabaseFilepath = "." + System.getProperty("file.separator") + "database"
+            + System.getProperty("file.separator")
+            + "recipesDatabase.json";
 
-    private static final String weeklyPlanDatabaseFilepath =
-            "." + System.getProperty("file.separator") + "database" + System.getProperty("file.separator")
-                    + "weeklyPlanDatabase.json";
+    private static final String weeklyPlanDatabaseFilepath = "." + System.getProperty("file.separator") + "database"
+            + System.getProperty("file.separator")
+            + "weeklyPlanDatabase.json";
 
-    private static final String userIngredientsDatabaseFilepath =
-            "." + System.getProperty("file.separator") + "database" + System.getProperty(
-                    "file.separator") + "userIngredientsDatabase.json";
+    private static final String userIngredientsDatabaseFilepath = "." + System.getProperty("file.separator")
+            + "database" + System.getProperty(
+                    "file.separator")
+            + "userIngredientsDatabase.json";
 
     JsonDatabaseHelper<RecipeList> recipeListJsonDatabaseHelper = new JsonDatabaseHelper<>(
             recipesDatabaseFilepath, defaultRecipeList(), RecipeList.class);
@@ -56,134 +57,133 @@ public class Database {
 
     public RecipeList defaultRecipeList() {
         RecipeList defaultRecipeList = new RecipeList();
-        defaultRecipeList.add(new Recipe("Chicken Rice", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("chicken rice", new HashMap<>() {
             {
-                put("Chicken", 1);
-                put("Rice", 1);
-                put("Salt", 1);
-                put("Pepper", 1);
+                put("chicken", 1);
+                put("rice", 1);
+                put("salt", 1);
+                put("pepper", 1);
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Tomato fritters", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("tomato fritters", new HashMap<>() {
             {
-                put("Ripe mixed-colour cherry tomatoes ", 250);
-                put("Flat-leaf parsley", 15);
-                put("Garlic cloves", 2);
-                put("Plain flour", 2);
-                put("Eggs", 2);
-                put("Breadcrumbs", 100);
-                put("Vegetable oil", 2);
-                put("Feta cheese", 30);
+                put("ripe mixed-colour cherry tomatoes ", 250);
+                put("flat-leaf parsley", 15);
+                put("garlic cloves", 2);
+                put("plain flour", 2);
+                put("eggs", 2);
+                put("breadcrumbs", 100);
+                put("vegetable oil", 2);
+                put("feta cheese", 30);
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Chicken and mushroom pie", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("chicken and mushroom pie", new HashMap<>() {
             {
-                put("Chicken breast fillets", 2);
-                put("Mushrooms", 250);
-                put("Onion", 1);
-                put("Plain flour", 2);
-                put("Butter", 2);
-                put("Milk", 2);
-                put("Puff pastry", 1);
+                put("chicken breast fillets", 2);
+                put("mushrooms", 250);
+                put("onion", 1);
+                put("plain flour", 2);
+                put("butter", 2);
+                put("milk", 2);
+                put("puff pastry", 1);
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Seafood paella", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("seafood paella", new HashMap<>() {
             {
-                put("Prawns", 500);
-                put("Mussels", 500);
-                put("Chorizo", 100);
-                put("Onion", 1);
-                put("Garlic cloves", 2);
-                put("Rice", 1);
-                put("Cherry tomatoes", 250);
-                put("Vegetable oil", 2);
-                put("Chicken stock", 1);
-                put("Saffron", 1);
+                put("prawns", 500);
+                put("mussels", 500);
+                put("chorizo", 100);
+                put("onion", 1);
+                put("garlic cloves", 2);
+                put("rice", 1);
+                put("cherry tomatoes", 250);
+                put("vegetable oil", 2);
+                put("chicken stock", 1);
+                put("saffron", 1);
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Avocado toast", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("avocado toast", new HashMap<>() {
             {
-                put("Avocado", 1);
-                put("Bread", 2);
-                put("Lemon", 1);
-                put("Salt", 1);
-                put("Pepper", 1);
+                put("avocado", 1);
+                put("bread", 2);
+                put("lemon", 1);
+                put("salt", 1);
+                put("pepper", 1);
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Italian sausage orzo soup", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("italian sausage orzo soup", new HashMap<>() {
             {
-                put("Italian sausage", 1);
-                put("Onion", 1);
-                put("Garlic cloves", 2);
-                put("Carrot", 1);
-                put("Celery", 1);
-                put("Dried oregano", 1);
-                put("Dried basil", 1);
-                put("Dried thyme", 1);
-                put("Dried parsley", 1);
-                put("Dried rosemary", 1);
-                put("Chicken stock", 1);
-                put("Orzo", 1);
-                put("Parmesan cheese", 1);
+                put("italian sausage", 1);
+                put("onion", 1);
+                put("garlic cloves", 2);
+                put("carrot", 1);
+                put("celery", 1);
+                put("dried oregano", 1);
+                put("dried basil", 1);
+                put("dried thyme", 1);
+                put("dried parsley", 1);
+                put("dried rosemary", 1);
+                put("chicken stock", 1);
+                put("orzo", 1);
+                put("parmesan cheese", 1);
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Chicken and mushroom pasta", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("chicken and mushroom pasta", new HashMap<>() {
             {
-                put("Chicken breast fillets", 2);
-                put("Mushrooms", 250);
-                put("Onion", 1);
-                put("Garlic cloves", 2);
-                put("Plain flour", 2);
-                put("Butter", 2);
-                put("Milk", 2);
-                put("Pasta", 1);
+                put("chicken breast fillets", 2);
+                put("mushrooms", 250);
+                put("onion", 1);
+                put("garlic cloves", 2);
+                put("plain flour", 2);
+                put("butter", 2);
+                put("milk", 2);
+                put("pasta", 1);
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Creamy Hummus Pasta", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("creamy Hummus Pasta", new HashMap<>() {
             {
-                put("Pasta", 1);
-                put("Hummus", 1);
-                put("Garlic cloves", 2);
-                put("Lemon", 1);
-                put("Salt", 1);
-                put("Pepper", 1);
+                put("pasta", 1);
+                put("hummus", 1);
+                put("garlic cloves", 2);
+                put("lemon", 1);
+                put("salt", 1);
+                put("pepper", 1);
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Ground beef and potato casserole", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("ground beef and potato casserole", new HashMap<>() {
             {
-                put("Ground beef", 1);
-                put("Potato", 1);
-                put("Onion", 1);
-                put("Garlic cloves", 2);
-                put("Tomato paste", 1);
-                put("Tomato sauce", 1);
-                put("Beef stock", 1);
-                put("Cheddar cheese", 1);
+                put("ground beef", 1);
+                put("potato", 1);
+                put("onion", 1);
+                put("garlic cloves", 2);
+                put("tomato paste", 1);
+                put("tomato sauce", 1);
+                put("beef stock", 1);
+                put("cheddar cheese", 1);
             }
         }));
 
-        defaultRecipeList.add(new Recipe("Buffalo Chicken Mac 'n' Cheese", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("buffalo chicken mac 'n' cheese", new HashMap<>() {
             {
-                put("Chicken breast fillets", 2);
-                put("Macaroni", 1);
-                put("Butter", 2);
-                put("Flour", 2);
-                put("Milk", 2);
-                put("Cheddar cheese", 1);
-                put("Blue cheese", 1);
-                put("Hot sauce", 1);
+                put("chicken breast fillets", 2);
+                put("macaroni", 1);
+                put("butter", 2);
+                put("flour", 2);
+                put("milk", 2);
+                put("cheddar cheese", 1);
+                put("clue cheese", 1);
+                put("hot sauce", 1);
             }
         }));
 
         return defaultRecipeList;
     }
 }
-
