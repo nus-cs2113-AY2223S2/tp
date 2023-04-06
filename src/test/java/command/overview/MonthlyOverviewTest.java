@@ -59,7 +59,7 @@ class MonthlyOverviewTest {
                 TAB + CATEGORY_DIVIDER + System.lineSeparator() +
                 TAB + " food 12.50 SGD" + System.lineSeparator() +
                 TAB + CATEGORY_DIVIDER + System.lineSeparator() +
-                TAB + " travel 7.50 SGD" +
+                TAB + " travel 7.50 SGD" + System.lineSeparator() +
                 TAB + CATEGORY_DIVIDER;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
     }
