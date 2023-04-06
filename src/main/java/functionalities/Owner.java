@@ -2,12 +2,13 @@ package functionalities;
 
 import exception.SniffException;
 
+
 public class Owner {
     protected String name;
     protected String contactNumber;
 
     public Owner(String name, String contactNumber) throws SniffException {
-        this.name = name;
+        this.name = setOwnerName(name);
         this.contactNumber = setContactNumber(contactNumber);
     }
 
@@ -28,13 +29,27 @@ public class Owner {
         if (!isNumeric(contactNumber)) {
             throw new SniffException(" Contact Number must only contain numbers!");
         }
-        if (contactNumber.length() != 8) {
+        else if (contactNumber.length() != 8) {
             throw new SniffException(" Contact Number has to be 8 digits!");
         }
         return contactNumber;
     }
 
+    public String setOwnerName(String name) throws SniffException {
+        if (name.isBlank()) {
+            throw new SniffException(" Owner Name cannot be empty!");
+        }
+        else if (!isAlphaSpace(name)) {
+            throw new SniffException(" Owner Name must only contain alphabets!");
+        }
+        return name;
+    }
+
     public static boolean isNumeric(String str) {
         return str != null && str.matches("[0-9]+");
+    }
+
+    public static boolean isAlphaSpace(String str) {
+        return str != null && str.matches("^[a-zA-Z ]+$");
     }
 }
