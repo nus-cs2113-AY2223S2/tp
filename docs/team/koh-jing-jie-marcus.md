@@ -9,6 +9,9 @@ In doing so, the user can better manage his daily calorie gain in order to meet 
 ## Summary of Contributions
 
 ### Commands
+Commands are the ways in which the user interacts with our program, through the usage of particular inputs that are defined as commands.
+These are the main commands that I worked on.
+
 `filter` command
 * Allows the user to filter meals based on their calorie content
 
@@ -18,7 +21,7 @@ In doing so, the user can better manage his daily calorie gain in order to meet 
 ### Database
 * Added the `ExampleData` database to store examples of meals and exercises to be used in the `examples` command
 
-### Construction of Ui of the program
+### Contribution to team-based tasks
 Implemented the Ui used for LifeTracker, as well as the Ui for the indivdual commands. The Ui is used to improve the accessibility of the program to any potential users,
 to ulimately make the program easier to use by streamlining the process for the user. The Ui consists of:
 * General Ui - Handle the general commands as well as start up and exit of the program
