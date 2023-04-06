@@ -229,7 +229,4 @@ class ParserTest {
     public void parseInvalidCommand_exceptionThrown() throws RainyDayException {
         assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("hello_world").getClass());
     }
-
-
-
 }
