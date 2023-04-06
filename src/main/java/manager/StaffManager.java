@@ -28,9 +28,9 @@ public class StaffManager {
                 }
             }
             staffs.add(staff);
+            ui.printMessage(staff + " added!");
             StaffStorage staffStorage = new StaffStorage();
             staffStorage.writeToStaffFile(staffs);
-            ui.printMessage(staff + " added!");
         } catch (IOException e) {
             ui.printMessage(String.format(Messages.ERROR_STORAGE_INVALID_WRITE_LINE, staff));
         } catch (DinerDirectorException e) {
@@ -57,10 +57,10 @@ public class StaffManager {
      * @param ui Ui object in if there is anything to be printed.
      */
     public static void deleteStaff(int staffIndex, TextUi ui) {
-        if (staffIndex != -1) {
-            staffs.remove(staffIndex);
-        }
         try {
+            Staff deletedStaff = staffs.get(staffIndex);
+            staffs.remove(staffIndex);
+            ui.printMessage(deletedStaff + " removed!");
             StaffStorage staffStorage = new StaffStorage();
             staffStorage.writeToStaffFile(staffs);
         } catch (IOException e) {
