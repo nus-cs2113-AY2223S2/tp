@@ -120,6 +120,33 @@ Step 3. If the expense is not empty, it will base on the given criteria and sort
 or `CommandSort#sortByCategory()`, then display the result to user by calling `CommandSort#displayByDate()` or `CommandSort#displayByCategory()` 
 accordingly.
 
+### "Category" feature
+
+This mechanism is facilitated by `CommandCategory`, it will first traverse the expense list and decide how many categories
+are contained inside, no matter case sensitivity. If the expense doesn't indicate a specific category, it is named 
+uncategorized by default. It will first tell the user what are the categories they stored in the expense list before. Such different categories will be stored in a HashSet. Then, the method will tell the user whether 
+the expenses with such category they want to get are stored in the expense list before or not. If so, it will tell user all
+the categories with corresponding category.
+
+`CommandCategory` implements the following operation:
+- `CommandCategory#displayAllCategories()` -- Display the number of categories as well as their name stored before
+- `CommandCategory#displayCorrespondingCategory` -- Display the expense information with category specified by user
+
+Given below is an example usage scenario and how the 'category' mechanism behaves at each step.
+
+![](./diagrams/CategoryFeature.png)
+
+Step 1. The user executes `category Category`, indicating they want to get the expenses with which category. Duke calls on `CommandCategory#execute()`
+with the help of `Parser#extractCategory`, and pass the control to `CommandCategory` by `execute()`.
+
+Step 2. `CommandCategory` will first traverse the expense list and create a hashset stored all different categories. Base on the information of the expense list or 
+the categorySet, it will decide what to respond to the user. If the expense is empty, it will tell the user and return to Duke. If the expense list is not empty but
+doesn't contain the corresponding category, it will call `CommandCategory#displayAllCategory`, which traverse all the categories in the categorySet, and tell the user 
+what are they and how many of them. Then return to Duke.
+
+Step 3. If neither the above two conditions, it will call `CommandCategory#displayAllCategory` with mechanism mentioned above, and then it will call
+`CommandCategory#displayCorrespondingCategory`, which traverse the expense list and display all expenses with corresponding categories no matter the case sensitivity.
+
 
 ### 'Total' feature
 This mechanism is facilitated by `CommandTotal`.
