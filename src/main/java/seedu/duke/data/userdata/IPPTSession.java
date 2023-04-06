@@ -7,12 +7,15 @@ import seedu.duke.data.ipptcalculator.UserScore;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public class IPPTSession extends Session{
+//@@author ghzr0
+public class IPPTSession extends Session {
     private UserScore userScore;
-    public IPPTSession (ArrayList<ExerciseData>exerciseData,UserScore userScore){
+
+    public IPPTSession (ArrayList<ExerciseData> exerciseData, UserScore userScore) {
         super(exerciseData);
         this.userScore = userScore;
     }
+
     public boolean checkIPPTSessionNullity () throws DukeError {
         for (Field f : getClass().getDeclaredFields()) {
             try {
@@ -27,7 +30,8 @@ public class IPPTSession extends Session{
         return true;
     }
 
-    public UserScore getUserScore(){
+    public UserScore getUserScore () {
         return this.userScore;
     }
+
 }

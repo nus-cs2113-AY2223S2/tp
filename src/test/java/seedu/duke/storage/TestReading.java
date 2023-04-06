@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//@author EangJS
+//@@author EangJS
 public class TestReading {
     /**
      * Tests the reading of user career data from the json file such that all data from the json file is correctly

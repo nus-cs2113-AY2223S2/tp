@@ -1,6 +1,6 @@
 package seedu.duke.achievements;
 
-//@author ChubbsBunns
+//@@author ChubbsBunns
 
 /**
  * Provides enum variables for storing the types of achievements
@@ -12,16 +12,16 @@ public enum AchievementType {
     CORE("core"),
     LEG("leg"),
     UPPER("upper body"),
-    GYM ("gym"),
+    GYM("gym"),
     STATIC("static");
 
     public final String type;
 
-    AchievementType(String type) {
+    AchievementType (String type) {
         this.type = type;
     }
 
-    public String toString() {
+    public String toString () {
         return type;
     }
 

@@ -9,12 +9,10 @@ import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.UserCareerData;
 import java.util.Scanner;
 
-//@@ChubbsBunns
+//@@author ChubbsBunns
 public class ExerciseSessionCommandHandler implements CommandList {
     private static final boolean COMPLETED_EXERCISE = true;
     private static final boolean INCOMPLETE_EXERCISE = false;
-
-    //@@ChubbsBunns
 
     /**
      * This checks with the user whether they wish to exit a Fitness Duke
@@ -39,8 +37,6 @@ public class ExerciseSessionCommandHandler implements CommandList {
             }
         }
     }
-
-    //@@ChubbsBunns
 
     /**
      * This class takes in parsed user input and handles all user commands when an

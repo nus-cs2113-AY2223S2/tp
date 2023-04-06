@@ -1,36 +1,37 @@
 @startuml
 skinparam classAttributeIconSize 0
 hide circle
+!include style.puml
 
-Class Bye {
+Class Bye MAROON {
 + bye()
 }
 
-Class Greet {
+Class Greet SEA {
 + greet()
 }
 
-Class PrintExercises {
+Class PrintExercises ORANGE {
 + printExercises(ArrayList<ExerciseData>)
 }
 
-Class PrintPlanner {
+Class PrintPlanner DATA_COLOUR {
 + printPlanner(UserPlan)
 + printPlannerGreeting()
 }
 
-Class PrintHelpMessage {
+Class PrintHelpMessage LAPIS {
 + showAvailableCommands()
 + showAvailablePlannerCommands()
 + printFiltersAvailable()
 + unknownCommandMessage()
 }
 
-Class PrintUserExerciseData {
+Class PrintUserExerciseData DATA_COLOUR {
 + printUserExerciseHistory(HashMap<String,Integer>)
 }
 
-Class Ui {
+Class Ui MAIN_COLOUR {
 + printExerciseFromList (ArrayList<ExerciseData>)
 + greetUser()
 + byeUser()

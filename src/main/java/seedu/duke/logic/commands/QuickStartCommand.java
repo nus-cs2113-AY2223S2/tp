@@ -8,7 +8,7 @@ import seedu.duke.data.userdata.userplan.UserPlan;
 
 import java.util.ArrayList;
 
-//@author Khulon
+//@@author Khulon
 public class QuickStartCommand extends Command {
     public QuickStartCommand (String[] userCommands, Ui ui, GenerateExercise exerciseGenerator,
                               ExerciseStateHandler exerciseStateHandler) throws DukeError {

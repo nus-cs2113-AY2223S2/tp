@@ -2,50 +2,50 @@
 skinparam classAttributeIconSize 0
 hide circle
 !include style.puml
-class storage.StorageManager MAIN_COLOUR {
+class StorageManager MAIN_COLOUR {
 }
-interface storage.Storage <<interface>> STORAGE_COLOUR {
-writeToJson(UserCareerData) : void
-loadUserData() : UserCareerData
+interface Storage <<interface>> STORAGE_COLOUR {
++writeToJson(UserCareerData) : void
++loadUserData() : UserCareerData
 
 
-writeToJson(UserPlan) : void
-loadUserPlans() : UserPlan
++writeToJson(UserPlan) : void
++loadUserPlans() : UserPlan
 }
-class storage.JsonUserPlansStorage LAPIS {
+class JsonUserPlansStorage LAPIS {
 
 }
-interface storage.UserPlansStorage <<interface>> ORANGE {
+interface UserPlansStorage <<interface>> ORANGE {
 
 }
 
-class storage.JsonUserCareerStorage LAPIS {
+class JsonUserCareerStorage LAPIS {
 }
-abstract class storage.TextDataUtility {
+abstract class TextDataUtility {
 }
-class storage.JsonUserPlansWriter DATA_COLOUR {
+class JsonUserPlansWriter DATA_COLOUR {
 }
-interface storage.UserCareerStorage <<interface>> ORANGE {
+interface UserCareerStorage <<interface>> ORANGE {
 }
-class storage.JsonUserDataWriter DATA_COLOUR {
+class JsonUserDataWriter DATA_COLOUR {
 }
-class storage.JsonUserPlansLoader DATA_COLOUR {
+class JsonUserPlansLoader DATA_COLOUR {
 }
-class storage.JsonUserDataLoader DATA_COLOUR {
+class JsonUserDataLoader DATA_COLOUR {
 }
 
-storage.StorageManager .d.|> storage.Storage
-storage.StorageManager --> storage.UserCareerStorage
-storage.StorageManager --> storage.UserPlansStorage
-storage.UserCareerStorage <|-l- storage.Storage
-storage.UserPlansStorage <|-r- storage.Storage
-storage.UserPlansStorage <|.. storage.JsonUserPlansStorage
+StorageManager .d.|> Storage
+StorageManager --> UserCareerStorage
+StorageManager --> UserPlansStorage
+UserCareerStorage <|-l- Storage
+UserPlansStorage <|-r- Storage
+UserPlansStorage <|.. JsonUserPlansStorage
 
-storage.UserCareerStorage <|.. storage.JsonUserCareerStorage
+UserCareerStorage <|.. JsonUserCareerStorage
 
-storage.JsonUserCareerStorage -d--> storage.JsonUserDataLoader
-storage.JsonUserCareerStorage -d--> storage.JsonUserDataWriter
-storage.JsonUserPlansStorage -d--> storage.JsonUserPlansLoader
-storage.JsonUserPlansStorage -d--> storage.JsonUserPlansWriter
+JsonUserCareerStorage -d--> JsonUserDataLoader
+JsonUserCareerStorage -d--> JsonUserDataWriter
+JsonUserPlansStorage -d--> JsonUserPlansLoader
+JsonUserPlansStorage -d--> JsonUserPlansWriter
 
 @enduml

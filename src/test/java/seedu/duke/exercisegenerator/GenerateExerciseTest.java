@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-//@author EangJS
+//@@author EangJS
 public class GenerateExerciseTest {
     private static final long RANDOM_SEED = 2787311;
 

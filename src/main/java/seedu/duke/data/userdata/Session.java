@@ -7,10 +7,14 @@ import java.util.ArrayList;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
+//@@author EangJS
+
+/**
+ * A class representing a workout session performed by the user
+ */
 public class Session {
     private final LocalDateTime dateAdded;
     private final ArrayList<ExerciseData> sessionExercises;
-    private String status;
 
     /**
      * Constructs a new workout that the user has added to their list.
@@ -22,7 +26,6 @@ public class Session {
     public Session (ArrayList<ExerciseData> sessionExercises) {
         this.sessionExercises = sessionExercises;
         this.dateAdded = LocalDateTime.now();
-        this.status = "Incomplete";
     }
 
     /**
@@ -43,6 +46,12 @@ public class Session {
         return this.sessionExercises;
     }
 
+    /**
+     * Checks the arraylist of exercises to ensure each exerciseData does not have a null element during storage
+     * initialization
+     *
+     * @throws DukeError Occurs when a null element is found in the exerciseData
+     */
     protected void checkExerciseDataNullity () throws DukeError {
         for (ExerciseData exerciseData : sessionExercises) {
             try {
@@ -55,6 +64,13 @@ public class Session {
         }
     }
 
+    /**
+     * Checks elements in this class to ensure that no null elements are being read in from storage
+     *
+     * @return boolean value indicating true if there are no null elements
+     *
+     * @throws DukeError Occurs when there is a null element in the object
+     */
     public boolean checkSessionNullity () throws DukeError {
         for (Field f : getClass().getDeclaredFields()) {
             try {

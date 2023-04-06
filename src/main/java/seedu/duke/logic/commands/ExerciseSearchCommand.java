@@ -39,7 +39,6 @@ public class ExerciseSearchCommand extends Command {
      * @param ui Prints out the respective exercises for a given keyword
      * @param exerciseGenerator Generates Exercise List with the relevant keyword
      */
-    //public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) {
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) {
         ArrayList<ExerciseData> exercisesList = new GenerateExercise().generateSetAll();
         assert exercisesList != null : "exercisesList should not be null.";
@@ -52,7 +51,9 @@ public class ExerciseSearchCommand extends Command {
                 index++;
             }
         }
-        System.out.println("There are no exercises found matching your keyword!");
+        if (index == 1) {
+            System.out.println("There are no exercises found matching your keyword!");
+        }
     }
 
 }
