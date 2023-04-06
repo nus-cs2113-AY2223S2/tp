@@ -73,10 +73,10 @@ public class StaffManager {
      * @param name The name of the staff to be found.
      * @param ui Ui object in if there is anything to be printed.
      */
-    public static void findStaff(String name,TextUi ui) {
+    public static void findStaff(String name, TextUi ui) {
         ArrayList<Staff> staffFound = new ArrayList<>();
         for(Staff m:staffs){
-            if( m.getName().contains(name)){
+            if(m.getName().contains(name)){
                 staffFound.add(m);
             }
         }
