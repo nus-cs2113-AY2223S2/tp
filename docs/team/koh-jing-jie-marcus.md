@@ -15,6 +15,8 @@ to make the program easier to use.
 ## Enhancements Implemented
 
 ## UG/DG
+Added Documentation for the `filter` and `examples` command
+Added explanation of program and user stories 
 
 ## Code Contributed
 [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=Koh-Jing-Jie-Marcus&tabRepo=AY2223S2-CS2113-W15-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
