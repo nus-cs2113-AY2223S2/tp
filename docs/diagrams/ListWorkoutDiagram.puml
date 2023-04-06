@@ -1,0 +1,70 @@
+
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor User
+participant ":Duke" as Duke
+participant ":Ui" as Ui
+participant ":Parser" as Parser
+participant ":CheckInput" as CheckInputs
+participant ":ListWorkoutCommand" as ListWorkoutCommand
+participant ":WorkoutList" as WorkoutList
+
+
+Duke -> Ui: getUserInput()
+activate Duke
+activate Ui
+User -> Ui: User input
+return User input
+Duke -> Parser : processCommand(userInput)
+activate Parser
+Parser -> CheckInputs : processList(arguments)
+activate CheckInputs
+CheckInputs -> ListWorkoutCommand : ListWorkoutCommand(date)
+activate ListWorkoutCommand
+ListWorkoutCommand -> WorkoutList : getWorkoutArrayList()
+activate WorkoutList
+return workoutArrayList
+ListWorkoutCommand --> CheckInputs : LINE_SEPARATOR
+deactivate ListWorkoutCommand
+CheckInputs --> Parser : LINE_SEPARATOR
+deactivate CheckInputs
+Parser --> Duke : LINE_SEPARATOR
+Duke -> Duke : display(LINE_SEPARATOR)
+
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor User
+participant ":Duke" as Duke
+participant ":Ui" as Ui
+participant ":Parser" as Parser
+participant ":CheckInput" as CheckInputs
+participant ":ListWorkoutCommand" as ListWorkoutCommand
+participant ":WorkoutList" as WorkoutList
+
+
+Duke -> Ui: getUserInput()
+activate Duke
+activate Ui
+User -> Ui: User input
+return User input
+Duke -> Parser : processCommand(userInput)
+activate Parser
+Parser -> CheckInputs : processList(arguments)
+activate CheckInputs
+CheckInputs -> ListWorkoutCommand : ListWorkoutCommand(date)
+activate ListWorkoutCommand
+ListWorkoutCommand -> WorkoutList : getWorkoutArrayList()
+activate WorkoutList
+return workoutArrayList
+ListWorkoutCommand --> CheckInputs : LINE_SEPARATOR
+deactivate ListWorkoutCommand
+CheckInputs --> Parser : LINE_SEPARATOR
+deactivate CheckInputs
+Parser --> Duke : LINE_SEPARATOR
+Duke -> Duke : display(LINE_SEPARATOR)
+
+@enduml

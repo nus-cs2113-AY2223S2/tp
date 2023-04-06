@@ -1,40 +1,55 @@
 package seedu.workout;
 
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.text.SimpleDateFormat;
+
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.testng.AssertJUnit.assertFalse;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class WorkoutListTest {
-    public SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
 
-    //@@ author guillaume-grn
-    @Test
-    public void testRemoveWorkout() throws Exception {
-        WorkoutList workoutList = new WorkoutList();
-        String stringDate1 = "01/11/22";
-        String stringDate2 = "02/11/22";
-        Date date1 = dateFormat.parse(stringDate1);
-        Date date2 = dateFormat.parse(stringDate2);
-        Workout workout1 = new Workout(date1);
-        Workout workout2 = new Workout(date2);
-        workoutList.addWorkout(workout1);
-        workoutList.addWorkout(workout2);
+    private WorkoutList workoutList;
+    private HashMap<Date, Day> workouts;
 
-        // Check that both workouts are in the list
-        assertEquals(2, workoutList.workoutList.size());
-
-        // Remove workout1 from the list
-        workoutList.removeWorkout(date1);
-
-        // Check that workout1 was removed and workout2 is still in the list
-        assertEquals(1, workoutList.workoutList.size());
-        assertEquals(date2, workoutList.workoutList.get(0).getDate());
-
-        // Try to remove workout1 again (should not be in the list)
-        workoutList.removeWorkout(date1);
-
-        // Check that workout1 was not removed and the list size is still 1
-        assertEquals(1, workoutList.workoutList.size());
+    //@@ author ZIZI-czh
+    @BeforeEach
+    public void setUp() {
+        workoutList = new WorkoutList();
+        workouts = new HashMap<>();
     }
+
+    //@@ author ZIZI-czh
+    @Test
+    public void testAddWorkoutToList() {
+        Date date = new Date();
+        Day day = new Day(date);
+        workoutList.addWorkoutToList(date, day);
+        workouts.put(date, day);
+        assertEquals(workouts, workoutList.getWorkouts());
+    }
+
+    //@@ author ZIZI-czh
+    @Test
+    public void testGetWorkoutsInSpecificWeek() {
+        Date date = new Date();
+        Day day = new Day(date);
+        workoutList.addWorkoutToList(date, day);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        Date startOfWeekDate = calendar.getTime();
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        Date endOfWeekDate = calendar.getTime();
+        HashMap<Date, Day> workoutsInSpecificWeek = workoutList.getWorkoutsInSpecificWeek(startOfWeekDate);
+        assertTrue(workoutsInSpecificWeek.containsKey(date));
+        assertFalse(workoutsInSpecificWeek.containsKey(endOfWeekDate));
+    }
+
 }
+

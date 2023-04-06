@@ -1,0 +1,11 @@
+Date    : 02/02/21
+Workout : run2
+Exercise: 
+          1. Name: running, Weight: 45kg, Reps: 4 4 4 4
+          2. Name: running, Weight: 45kg, Reps: 4 4 4 4
+Workout : run
+Exercise: 
+          1. Name: running, Weight: 45kg, Reps: 4 4 4 4
+          2. Name: running, Weight: 45kg, Reps: 4 4 4 4
+          3. Name: running, Weight: 45kg, Reps: 4 4 4 4
+          4. Name: running, Weight: 45kg, Reps: 4 4 4 4

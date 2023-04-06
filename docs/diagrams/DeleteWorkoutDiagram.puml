@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+actor User
+participant Duke
+participant Ui
+participant Parser
+participant CheckInputs
+participant DeleteWorkoutCommand
+participant WorkoutList
+
+Duke -> Ui: getUserInput()
+activate Duke
+activate Ui
+User -> Ui: User input
+return User input
+Duke -> Parser : processCommand(userInput)
+activate Parser
+Parser -> CheckInputs : processDelete(arguments)
+activate CheckInputs
+CheckInputs -> DeleteWorkoutCommand : DeleteWorkoutCommand(date)
+activate DeleteWorkoutCommand
+DeleteWorkoutCommand -> WorkoutList : remove(workout)
+activate WorkoutList
+return "Workout deleted"
+deactivate WorkoutList
+DeleteWorkoutCommand --> CheckInputs : "Workout deleted"
+deactivate DeleteWorkoutCommand
+CheckInputs --> Parser : "Workout deleted"
+deactivate CheckInputs
+Parser --> Duke : "Workout deleted"
+deactivate Parser
+Duke -> Duke : display("Workout deleted")
+@enduml
