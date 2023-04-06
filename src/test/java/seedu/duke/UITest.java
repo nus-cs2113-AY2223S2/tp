@@ -581,7 +581,7 @@ class UITest {
                 + "LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list of\n"
                 + "                                   list of interest for the specified PU\n"
                 + "ADD [PU ABBRV]/[INDEX]           : Adds the specified module into user's current list of modules\n"
-                + "REMOVE [PU ABBRV]/ [INDEX]       : Removes the specified module by index from user's current list\n"
+                + "REMOVE [PU ABBRV]/[INDEX]       : Removes the specified module by index from user's current list\n"
                 + "SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module\n"
                 + "/budget budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for "
                 + "his/her SEP trip\n"
