@@ -99,11 +99,10 @@ public class Account {
             return "Log In Failed. Invalid login credentials.";
         } else {
             boolean found = false;
-            // Check if username and passwordHash match the ones stored in the "username.txt" file
+            // Check if username and password match the ones stored in the "username.txt" file
             try {
                 FileReader reader = new FileReader("./src/main/java/storage/" + accountName + ".txt");
                 BufferedReader bufferedReader = new BufferedReader(reader);
-
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
                     String[] parts = line.split(",");
@@ -131,29 +130,33 @@ public class Account {
                 e.printStackTrace();
                 return "An error occurred while logging in.";
             }
+
         }
     }
 
     private boolean isUsernameTaken() {
-        boolean usernameTaken = true;
-        try (BufferedReader br = new BufferedReader(new FileReader(
-                "./src/main/java/storage/" + accountName + ".txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (line.equals(accountName)) {
-                    usernameTaken = true;
-                    break;
+        //boolean usernameTaken = false;
+        File file = new File("./src/main/java/storage/" + accountName + ".txt");
+        if (!file.exists()) {
+            return false;
+        } else {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts[0].equalsIgnoreCase(accountName)) {
+                        return true;
+                    }
                 }
+                return false;
+            } catch (FileNotFoundException e) {
+                // Username file not found, which means the username is not taken
+                return false;
+            } catch (IOException e) {
+                System.out.println("Error: Failed to read username file.");
+                return false;
             }
-        } catch (FileNotFoundException e) {
-            // Username file not found, which means the username is not taken
-            usernameTaken = false;
-            //return false;
-        } catch (IOException e) {
-            System.out.println("Error: Failed to read username file.");
         }
-        return usernameTaken;
-
     }
 
     private String hashPassword(String password) {

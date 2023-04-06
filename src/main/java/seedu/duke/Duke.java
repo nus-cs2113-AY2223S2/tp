@@ -66,8 +66,10 @@ public class Duke {
             input = in.nextLine();
             if (input.equals("exit")) {
                 showToUser(MESSAGE_DIVIDER, SAVING_EXIT_MESSAGE, MESSAGE_DIVIDER);
-                caseLogOut();
-                break;
+                String res = caseLogOut();
+                if (res.equals("yes") || res.equals("no")) {
+                    break;
+                }
             }
             switch (parser.extractCommandKeyword(input)) {
             case "add":

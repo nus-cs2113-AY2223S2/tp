@@ -7,6 +7,7 @@ import static common.MessageList.COMMAND_LIST_MESSAGE;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.ACCOUNT_MESSAGE;
 import static common.MessageList.SAVING_QUESTION_MESSAGE;
+import static common.MessageList.SAVING_EXIT_MESSAGE;
 
 import static data.Account.account;
 import static data.Account.save;
@@ -62,6 +63,23 @@ public class ParserAccount {
         return res;
     }
 
+    public static String caseExit() {
+        Scanner scanner = new Scanner(System.in);
+        String res = scanner.nextLine();
+        if (res.equals("yes")) {
+            save();
+        } else if (res.equals("no")) {
+            account.clear();
+            return res;
+        } else {
+            System.out.println("Invalid command");
+            showToUser(MESSAGE_DIVIDER, SAVING_EXIT_MESSAGE, MESSAGE_DIVIDER);
+            caseLogOut();
+            return res;
+        }
+        return res;
+    }
+
     public static void initialize(Scanner in) {
         do {
             showToUser(MESSAGE_DIVIDER, ACCOUNT_MESSAGE, MESSAGE_DIVIDER);
@@ -77,6 +95,7 @@ public class ParserAccount {
                 // invalid input, tell them to try again
                 System.out.println("Invalid option, chose login or signup!");
                 initialize(in);
+                break;
             }
         } while (true);
     }
