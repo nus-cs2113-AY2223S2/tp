@@ -6,6 +6,7 @@ import seedu.pettracker.data.Task;
 import seedu.pettracker.data.TaskList;
 import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
+import seedu.pettracker.exceptions.InvalidSeparatorException;
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
@@ -22,6 +23,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class Storage {
+    private static final int EXPECTED_PET_SEP_COUNT = 3;
+    private static final int EXPECTED_TASK_SEP_MAX_COUNT = 2;
+    private static final int EXPECTED_TASK_SEP_MIN_COUNT = 1;
     private final String petFilePath;
     private final String taskFilePath;
 
@@ -252,5 +256,21 @@ public class Storage {
         String[] words = line.split("\\|", 3);
         LocalDate deadline = LocalDate.parse(words[2]);
         return deadline;
+    }
+
+    private void validatePetDataSep(String line) throws InvalidSeparatorException {
+        int sepCount = (int) line.chars().filter(ch -> ch == '|').count();
+
+        if (sepCount != EXPECTED_PET_SEP_COUNT) {
+            throw new InvalidSeparatorException();
+        }
+    }
+
+    private void validateTaskDataSep(String line) throws InvalidSeparatorException {
+        int sepCount = (int) line.chars().filter(ch -> ch == '|').count();
+
+        if (sepCount != EXPECTED_TASK_SEP_MIN_COUNT && sepCount != EXPECTED_TASK_SEP_MAX_COUNT) {
+            throw new InvalidSeparatorException();
+        }
     }
 }
