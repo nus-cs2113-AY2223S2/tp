@@ -74,8 +74,8 @@ Please note the following about the format of commands given under each [feature
 * 💡 indicates helpful suggestions that will enhance your experience
 
 * ⚠️ highlights actions you should avoid
-* Some technical terminologies are defined in the [glossary](#glossary), clicking on the links will navigate you to the 
-glossary where you can read their definitions
+* Some technical terminologies are defined in the [glossary](#glossary), clicking on the links will navigate you to the
+  glossary where you can read their definitions
 
 ## Quick Start
 
@@ -122,8 +122,8 @@ rainyDay on your device and how to start using it. Please refer to the steps bel
 - In rainyDay, we make it simple for you. Whenever we require you to input, we will prompt you with a `>` as shown below
   with a sample input boxed in red.
   ![understandingCLI.png](images/UserGuide/understandingCLI.png)
-- If you are interested in learning more about CLI, you may refer to the following 
-[guide](https://www.freecodecamp.org/news/how-to-use-the-cli-beginner-guide/).
+- If you are interested in learning more about CLI, you may refer to the following
+  [guide](https://www.freecodecamp.org/news/how-to-use-the-cli-beginner-guide/).
 
 ## Features Overview
 
@@ -240,7 +240,7 @@ the output will be shown as below:
 ### Transactions
 
 Next is the transaction management section of our guide! In this section, we'll cover all the key details to manage your
-transactions effectively. Whether you need to add, view, edit, or delete transactions, rainyDay has got you covered. 
+transactions effectively. Whether you need to add, view, edit, or delete transactions, rainyDay has got you covered.
 We'll also show you how to filter and ignore any transactions that are irrelevant to your
 needs. So, if you're ready to take control of your finances and maintain accurate data, let's begin!
 
@@ -316,7 +316,7 @@ Done! Added: in for Pay, +$50000.00, in category miscellaneous on 26/03/2023
 
 ### Viewing the transactions
 
-After adding your transaction data into rainyDay, you can view them by using the "view" command of rainyDay. 
+After adding your transaction data into rainyDay, you can view them by using the "view" command of rainyDay.
 This lists all the transaction added, and the resultant amount of all your inflows and outflows.
 
 Format: `view {TIMESPAN} {-sort}`
@@ -448,7 +448,8 @@ After requesting to view the transactions from rainyDay, the following is shown 
 +====================================================================================================+
 ```
 
-Suppose you realised you made a mistake in the "category" portion of entry 1 and want to replace the "category" data with
+Suppose you realised you made a mistake in the "category" portion of entry 1 and want to replace the "category" data
+with
 'Food and Drinks' instead of 'Food', you can use this command:
 
 `edit 1 -c Food and Drinks`
@@ -665,8 +666,8 @@ Done, Entry 4 ignored from overview calculations
 
 ### Setting a Monthly Budget
 
-After knowing how to manage transaction data, the next step to reach your financial goals is to set a monthly budget! 
-rainyDay can help you by giving you reminders and encouraging you to stick to your budget! With a set monthly budget, 
+After knowing how to manage transaction data, the next step to reach your financial goals is to set a monthly budget!
+rainyDay can help you by giving you reminders and encouraging you to stick to your budget! With a set monthly budget,
 rainyDay will remind you how much you have spent for the month with every new expense in the same month.
 
 Format : `setbudget GOAL`
@@ -699,7 +700,7 @@ Monthly Budget Goal removed!
 
 ### Shortcuts
 
-After using rainyDay for a period of time, you realise that there are some transactions that you seem to repeat more 
+After using rainyDay for a period of time, you realise that there are some transactions that you seem to repeat more
 often. rainyDay's shortcuts can be utilised to save time and improve convenience! In this section, we'll show
 you how to create and use shortcuts effectively. Whether you need to add a new shortcut, view an existing one,
 or delete an old one, we'll cover them all. So, if you're ready to start working smarter, not harder, let's dive into
@@ -801,8 +802,8 @@ command below:
 
 Saving and loading your data is something you don't have to worry about
 as we have got it covered for you! In this section, we'll show you where to locate your saved files and
-how to export your data to a [CSV](#glossary) file, which is a widely-used file format that can be opened in a variety 
-of software applications. We'll show you how to export and view the exported CSV file using 
+how to export your data to a [CSV](#glossary) file, which is a widely-used file format that can be opened in a variety
+of software applications. We'll show you how to export and view the exported CSV file using
 [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel),
 which is a popular spreadsheet program used by many people around the world. Let's get started!
 
@@ -821,10 +822,14 @@ your configured shortcuts.
 #### Where is my saved file located?
 
 It is located in the "data" folder within the same folder as your "rainyDay.jar" file. This should have
-been configured in step 3 of the [Quick Start section](#quick-start). 
+been configured in step 3 of the [Quick Start section](#quick-start).
+
 ![datafolder.png](images/UserGuide/datafolder.png)
+
 The data file is named "rainyDay.json".
+
 ![rainyDayjson.png](images/UserGuide/rainyDayjson.png)
+
 #### Loading saved data
 
 Whenever you start up your rainyDay application, previously saved data will automatically be loaded if such data exists.
