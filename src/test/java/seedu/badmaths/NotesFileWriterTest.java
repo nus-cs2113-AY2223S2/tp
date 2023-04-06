@@ -2,6 +2,9 @@ package seedu.badmaths;
 
 import org.junit.After;
 import org.junit.jupiter.api.Test;
+import seedu.badmaths.note.Note;
+import seedu.badmaths.note.NotePriority;
+import seedu.badmaths.storage.NotesFileWriter;
 
 import java.io.File;
 import java.io.FileWriter;
