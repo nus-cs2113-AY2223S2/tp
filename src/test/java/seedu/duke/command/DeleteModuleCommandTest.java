@@ -16,8 +16,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DeleteModuleCommandTest {
-    Storage storage = new Storage();
     DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
+    Storage storage = Storage.getInstance();
     DataReader dataReader = new DataReader();
 
     @Test
@@ -31,7 +31,7 @@ public class DeleteModuleCommandTest {
                 "ME4231", "Aerodynamics", 4);
         modules.add(module);
         Parser parser = new Parser();
-        BudgetPlanner budgetPlanner = new BudgetPlanner();
+        BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof DeleteModuleCommand);
     }

@@ -13,13 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StorageTest {
 
     private static final String SAVED_MODULES_FILE_PATH = "data/saved_modules.txt";
-
     File f = new File(SAVED_MODULES_FILE_PATH);
 
     @Test
     @Order(2)
     public void addModule_correctFormat_success() {
-        Storage storage = new Storage();
+        Storage storage = Storage.getInstance();
         Module module = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
         storage.addModuleToModuleList(module);
@@ -31,14 +30,14 @@ public class StorageTest {
     @Test
     @Order(1)
     public void initialiseStorage_noModuleSaved_success() {
-        Storage storage = new Storage();
+        Storage storage = Storage.getInstance();
         assertEquals(0, storage.getModules().size());
     }
 
     @Test
     @Order(3)
     public void initialiseStorage_oneModuleSaved_success() {
-        Storage storage = new Storage();
+        Storage storage = Storage.getInstance();
         assertEquals(1, storage.getModules().size());
         f.delete();
     }

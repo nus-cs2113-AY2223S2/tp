@@ -3,6 +3,7 @@ package seedu.duke.budget;
 public class BudgetPlanner {
 
     public static final int MAX_BUDGET = 20000000;
+    private static BudgetPlanner instance = null;
     private int budget;
     private int surplus;
     private int accommodationTotalCost;
@@ -11,10 +12,17 @@ public class BudgetPlanner {
     private int entertainmentTotalCost;
     private BudgetStorage budgetStorage;
 
-    public BudgetPlanner() {
+    private BudgetPlanner() {
         budget = 0;
         initialiseCost();
         updateSurplus();
+    }
+
+    public static BudgetPlanner getInstance() {
+        if (instance == null) {
+            instance = new BudgetPlanner();
+        }
+        return instance;
     }
 
     public void setBudget(int budget) {
@@ -63,7 +71,7 @@ public class BudgetPlanner {
     }
 
     private void initialiseCost() {
-        budgetStorage = new BudgetStorage();
+        budgetStorage = budgetStorage.getInstance();
         budget = budgetStorage.getBudget();
         accommodationTotalCost = budgetStorage.getAccommodationCost();
         airplaneTicketTotalCost = budgetStorage.getAirplaneTicketCost();
