@@ -158,20 +158,23 @@ public class Storage {
 
     private void parsePetFile(ArrayList<String> data) {
         for (String line : data) {
-            String petName = getPetName(line);
             try {
-                PetList.addPet(petName);
+                validatePetDataSep(line);
+                String petName = getPetName(line);
                 String petType = getPetType(line);
+                String age = getAge(line);
+                String weight = getWeight(line);
+
+                PetList.addPet(petName);
                 if (!petType.equals("")) {
                     PetList.addStat(petName, "type", petType);
                 }
 
-                String age = getAge(line);
+
                 if (!age.equals("")) {
                     PetList.addStat(petName, "age", age);
                 }
 
-                String weight = getWeight(line);
                 if (!weight.equals("")) {
                     PetList.addStat(petName, "weight", weight);
                 }
@@ -187,6 +190,8 @@ public class Storage {
                 System.out.println("Pet name in file is empty");
             } catch (DuplicatePetException e) {
                 System.out.println("File contains duplicate pet names");
+            } catch (InvalidSeparatorException e) {
+                System.out.println("Output File contains invalid separator/invalid number of separator");
             }
         }
     }
