@@ -428,6 +428,7 @@ The below is a list of commands that you can use with `help`.
 
 Format: `help COMMAND`
 
+
 |  Command   |                          Help/Information Message contains...                           |
 |:----------:|:---------------------------------------------------------------------------------------:|
 |   `list`   |                      information and format for list tasks command                      |
@@ -445,6 +446,7 @@ Format: `help COMMAND`
 | `showmod`  |                  information and format of show module command options                  |
 |   `help`   |           information for help commands and how to seek specific command help           |
 |   `bye`    |                         information and format for bye command                          |
+
 
 Format: `help COMMAND`
 
