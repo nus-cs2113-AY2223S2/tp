@@ -136,7 +136,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
         ui.printModuleListWithLesson(module, parseList);
     }
 
-    //@@author gohyixuan
+    //@@author yixuann02
     /**
      * Handles the command when user wants to see the timetable added of a specific lesson type.
      *
