@@ -19,6 +19,7 @@ public class BagPacker {
         // Initialise variables
         BagPacker.packingList = new PackingList();
         Ui.initialMessage();
+        Storage storage = new Storage("./packing_list.txt");
 
         // load save file if possible
         try {
