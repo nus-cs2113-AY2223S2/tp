@@ -99,11 +99,11 @@ Key Aspects:
 <div align="center">
 <img src="UML/Images/Storage-0.png"/>
 <p>
-Figure 2.1
+Figure 3.1
 </p>
 </div>
 
-The class diagram as shown in *Figure 2.1* illustrates the structure of the different classes in Storage.
+The class diagram as shown in *Figure 3.1* illustrates the structure of the different classes in Storage.
 The ```Storage``` Interface is implemented by the ```StorageManager``` class.
 The ```StorageManager``` class is associated with the ```UserPlansStorage``` interface which handles the reading and writing of 
 all ```UserPlan``` ,and the ```UserCareerStorage``` interface which handles the reading and writing of all 
@@ -137,7 +137,7 @@ newly instantiated ```UserPlan``` object.
 <div style="page-break-after: always;"></div>
 
 In the unlikely event that the user accidentally deleted or modify the json files stored on the hard disk incorrectly,
-the sequence diagram below as per Figure 2.3 illustrates how the program loads a fresh set of data. This means all 
+the sequence diagram below as per Figure 3.3 illustrates how the program loads a fresh set of data. This means all 
 previous data will be lost.
 
 There are a few cases where this could happen **(non-exhaustive)** causing a DukeError to be thrown:
@@ -149,7 +149,7 @@ There are a few cases where this could happen **(non-exhaustive)** causing a Duk
 <div align="center">
 <img src="UML/Images/invalidFile-0.png"/>
 <p>
-Figure 2.3
+Figure 3.3
 </p>
 </div>
 
@@ -164,11 +164,11 @@ The UserCareerData is saved to the json file whenever there is any modifications
 <div align="center">
 <img src="UML/Images/WritingUserData-0.png"/>
 <p>
-Figure 2.3
+Figure 3.4
 </p>
 </div>
 
-The sequence diagram above as shown by Figure 2.4 illustrates the interaction of Storage components whenever 
+The sequence diagram above as shown by Figure 3.4 illustrates the interaction of Storage components whenever 
 ```writeToJson()``` is invoked. This process is also similar for the saving of ```UserPlan```.
 
 ### Command Handler Component
@@ -211,8 +211,6 @@ and ensures that users will not be bombarded by a long list of commands in the h
 To manage this exists the ```PlannerCommandHandler```, which allows for adding, deleting, 
 and viewing the workout plans.
 
-<p>
-
 <div align="center">
 <img src="UML/Images/PlannerCommandHandler.png"/>
 <p>
@@ -220,7 +218,6 @@ Figure 6.1
 </p>
 </div>
 
-<p>
 
 <div align="center">
 <img src="UML/Images/addPlan.png"/>
@@ -238,8 +235,8 @@ Accounts for the different scenarios that may trigger an error during user's int
 Enumeration: [```ErrorMessages.java```]
 All error messages are stored in the ErrorMessage enumeration for easy access across different classes that could run into similar exceptions.
 
-<img src="UML/Images/ErrorMessagesEnum.png"/>
 <div align="center">
+<img src="UML/Images/ErrorMessagesEnum.png"/>
 <p>
 Figure 7.1
 </p>
