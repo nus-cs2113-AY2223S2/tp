@@ -65,6 +65,8 @@ public final class MessageConstants {
     public static final String MESSAGE_MIXED_DATE = "start date should be before end date!";
     public static final String MESSAGE_MISSING_DATE = "Please enter BOTH the start and end date!";
     public static final String MESSAGE_INVALID_DATE_READ = "Date format not recognised.";
+    public static final String MESSAGE_INVALID_SAVE_DATA = NEWLINE + "Warning: Save file contains invalid data. "
+            + "The next operation will discard all saved entries." + NEWLINE;
 
     private MessageConstants() {
     }
