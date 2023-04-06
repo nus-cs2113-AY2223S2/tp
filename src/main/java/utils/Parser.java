@@ -33,12 +33,15 @@ import java.util.regex.Pattern;
 
 import static manager.DishManager.getDishesSize;
 
-/**
- * Parser to tokenize the input
- */
 public class Parser {
 
-
+    /**
+     * Returns the Command object to execute.
+     * Prepares the command to ensure execution works.
+     *
+     * @param userInput The raw input of what the user typed.
+     * @return Command object in order for the program to know what command to execute.
+     */
     public Command parseCommand(String userInput) {
         assert userInput != null : "userInput should not be null";
         String[] userInputSplit = userInput.trim().split(" ");
@@ -96,8 +99,8 @@ public class Parser {
         String[] words = (description.trim()).split("t/");
         String[] testName = (description.trim()).split("n/");
         try {
-            if (((description.trim()).isEmpty()) || (!description.contains("n/"))||
-                    (!description.contains("t/")) || (words.length < 2)||(words[0].trim().length()<3)) {
+            if (((description.trim()).isEmpty()) || (!description.contains("n/")) ||
+                    (!description.contains("t/")) || (words.length < 2) || (words[0].trim().length() < 3)) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_ADD_PARAM);
@@ -133,14 +136,15 @@ public class Parser {
         } catch (DinerDirectorException e) {
             System.out.println(e);
             return new IncorrectCommand();
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println(Messages.ERROR_MEETING_MISSING_INDEX);
             return new IncorrectCommand();
         }
         assert index >= 0 : "Index of meeting should be 0 or greater.";
         return new DeleteMeetingCommand(index);
     }
-    private Command prepareFindMeetingCommand(String description){
+
+    private Command prepareFindMeetingCommand(String description) {
         try {
             if ((description.trim()).isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
@@ -154,6 +158,7 @@ public class Parser {
 
     /**
      * Parsing the input into properties of Staff class and checking for error.
+     *
      * @param userInputNoCommand Cleaned UserInput without the Command keyword.
      * @return AddStaffCommand object if input is valid, otherwise IncorrectCommand object.
      */
@@ -192,6 +197,7 @@ public class Parser {
 
     /**
      * Check whether there is excess parameter.
+     *
      * @param userInputNoCommand Cleaned UserInput without the Command keyword.
      * @return ViewStaffCommand object if the input is valid, otherwise IncorrectCommand object.
      */
@@ -209,6 +215,7 @@ public class Parser {
 
     /**
      * Check whether user gives a number and that number is a valid staff index.
+     *
      * @param userInputNoCommand userInputNoCommand Cleaned UserInput without the Command keyword.
      * @return DeleteStaffCommand object if input is valid, otherwise IncorrectCommand object.
      */
@@ -231,10 +238,11 @@ public class Parser {
 
     /**
      * Check whether user gives a description or not.
+     *
      * @param description The substring that is contained in Staff name to be searched.
      * @return FindStaffCommand object if input is valid, otherwise IncorrectCommand object.
      */
-    private Command prepareFindStaffCommand(String description){
+    private Command prepareFindStaffCommand(String description) {
         try {
             if ((description.trim()).isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_STAFF_FIND_MISSING_PARAM);
@@ -246,6 +254,14 @@ public class Parser {
         return new FindStaffCommand(description.trim());
 
     }
+
+    /**
+     * Returns the Help Command object.
+     * If invalid Help command, returns IncorrectCommand object.
+     *
+     * @param userInputNoCommand userInput without the command portion.
+     * @return Command object.
+     */
     private Command prepareHelpCommand(String userInputNoCommand) {
         try {
             if (!userInputNoCommand.isEmpty()) {
@@ -258,6 +274,13 @@ public class Parser {
         return new HelpCommand();
     }
 
+    /**
+     * Returns the Exit Command object.
+     * If invalid Exit command, returns IncorrectCommand object.
+     *
+     * @param userInputNoCommand userInput without the command portion.
+     * @return Command object.
+     */
     private Command prepareExitCommand(String userInputNoCommand) {
         try {
             if (!userInputNoCommand.isEmpty()) {
