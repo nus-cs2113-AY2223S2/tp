@@ -46,7 +46,7 @@ public class CompanyList {
     public static boolean isDuplicateCompanyName(String companyName) {
         for (int i = 0; i < companyList.size(); i++) {
             String companyAlreadyAdded = companyList.get(i).getCompanyName();
-            if (companyAlreadyAdded.contains(companyName)) {
+            if (companyAlreadyAdded.equalsIgnoreCase(companyName)) {
                 return true;
             }
         }
@@ -56,7 +56,7 @@ public class CompanyList {
     public static boolean isDuplicateContactEmail(String contactEmail) {
         for (int i = 0; i < companyList.size(); i++) {
             String emailAlreadyAdded = companyList.get(i).getContactEmail();
-            if (emailAlreadyAdded.contains(contactEmail)) {
+            if (emailAlreadyAdded.equalsIgnoreCase(contactEmail)) {
                 return true;
             }
         }
