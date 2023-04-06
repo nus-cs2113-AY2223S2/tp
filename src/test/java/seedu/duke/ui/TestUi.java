@@ -373,45 +373,59 @@ public class TestUi {
         //add one value then compare.
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
-        HashMap<String, Integer> userExerciseDataMap = new HashMap<>();
-        String exerciseName = "3/4 Sit-Up";
-        String exerciseNameTwo = "90/90 Hamstring";
-        userExerciseDataMap.put(exerciseName, 1);
-        userExerciseDataMap.put(exerciseName, 1);
-        userExerciseDataMap.put(exerciseNameTwo, 1);
 
-        if (userExerciseDataMap.containsKey(exerciseName)) {
-            int count = userExerciseDataMap.get(exerciseName);
-            userExerciseDataMap.put(exerciseName, count + 1);
-        } else {
-            userExerciseDataMap.put(exerciseName, 1);
-        }
+        HashMap<String,Integer> userExerciseDataMap = new HashMap<>();
+
+        String exerciseDescription = "Exercise Name: 3/4 Sit-Up" + System.lineSeparator() +
+                "Difficulty Level: beginner" + System.lineSeparator() + "Workout type: core" +
+                System.lineSeparator() + "Lie down on the floor and secure your feet. Your legs should be bent" +
+                " at the knees., " +
+                "Place your hands behind or to the side of your head. You will begin " +
+                "with your back on the ground. This will be your starting position., " +
+                "Flex your hips and spine to raise your torso toward your knees., " +
+                "At the top of the contraction your torso should be perpendicular to " +
+                "the ground. Reverse the motion, going only Â¾ of the way down., " +
+                "Repeat for the recommended amount of repetitions.";
+
+        userExerciseDataMap.put(exerciseDescription, 1);
 
         Ui ui = new Ui();
         ui.printUserExerciseHistory(userExerciseDataMap);
-
         String os = System.getProperty("os.name");
         String expectedOutput = "";
-
-        String inputOne = String.format("%-10s %-60s %-20s", "Exercise: ", "3/4 Sit-Up",
-                                        "Times Completed: 2  \r\n");
-        String inputTwo = String.format("%-10s %-60s %-20s", "Exercise: ", "90/90 Hamstring",
-                                        "Times Completed: 1  \r\n");
-        String inputThree = String.format("%-10s %-60s %-20s", "Exercise: ", "3/4 Sit-Up",
-                                          "Times Completed: 2  \n");
-        String inputFour = String.format("%-10s %-60s %-20s", "Exercise: ", "90/90 Hamstring",
-                                         "Times Completed: 1  \n");
 
         if (os.contains("Windows")) {
             expectedOutput = "Here is a list of all the exercises you have completed:\r\n" +
                     "\r\n" +
-                    inputOne +
-                    inputTwo;
+                    "Exercise Name: 3/4 Sit-Up\r\n" +
+                    "Difficulty Level: beginner\r\n" +
+                    "Workout type: core\r\n" +
+                    "Lie down on the floor and secure your feet. Your legs should be bent" +
+                    " at the knees., " +
+                    "Place your hands behind or to the side of your head. You will begin " +
+                    "with your back on the ground. This will be your starting position., " +
+                    "Flex your hips and spine to raise your torso toward your knees., " +
+                    "At the top of the contraction your torso should be perpendicular to " +
+                    "the ground. Reverse the motion, going only Â¾ of the way down., " +
+                    "Repeat for the recommended amount of repetitions.\r\n" +
+                    "Times Completed: 1\r\n" +
+                    "\r\n";
         } else {
             expectedOutput = "Here is a list of all the exercises you have completed:\n" +
                     "\n" +
-                    inputThree +
-                    inputFour;
+                    "Exercise Name: 3/4 Sit-Up\n" +
+                    "Difficulty Level: beginner\n" +
+                    "Workout type: core\n" +
+                    "Lie down on the floor and secure your feet. Your legs should be bent" +
+                    " at the knees., " +
+                    "Place your hands behind or to the side of your head. You will begin " +
+                    "with your back on the ground. This will be your starting position., " +
+                    "Flex your hips and spine to raise your torso toward your knees., " +
+                    "At the top of the contraction your torso should be perpendicular to " +
+                    "the ground. Reverse the motion, going only Â¾ of the way down., " +
+                    "Repeat for the recommended amount of repetitions.\n" +
+                    "Times Completed: 1\n" +
+                    "\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }

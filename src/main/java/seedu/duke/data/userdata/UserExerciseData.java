@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 public class UserExerciseData {
 
+    private static final String OPEN_BRACE = "[";
+    private static final String CLOSE_BRACE = "]";
+
     /**
      * This class takes in data from all workout sessions finished by
      * the user and stores these exercises as the key and their
@@ -18,19 +21,36 @@ public class UserExerciseData {
         //Get the names of all exercises from each of the sessions, then
         // get their individual frequencies
         int totalSessionsArraySize = userCareerData.getTotalUserCareerSessions().size();
-        for (int i = 0; i < totalSessionsArraySize; i += 1) {
+        for (int i = 0; i < totalSessionsArraySize; i++) {
             int indivSessionsArraySize = userCareerData.getTotalUserCareerSessions().
                                                        get(i).getSessionExercises().size();
 
             for (int j = 0; j < indivSessionsArraySize; j++) {
                 String exerciseName = userCareerData.getTotalUserCareerSessions().
                                                     get(i).getSessionExercises().get(j).getName();
+                String exerciseInstructions = userCareerData.getTotalUserCareerSessions().
+                        get(i).getSessionExercises().get(j).getInstructions().toString();
+                String exerciseDifficulty = userCareerData.getTotalUserCareerSessions().
+                        get(i).getSessionExercises().get(j).getLevel();
+                String exerciseWorkoutType = userCareerData.getTotalUserCareerSessions().
+                        get(i).getSessionExercises().get(j).getWorkoutType().toString();
+                int startInstructions = exerciseInstructions.indexOf(OPEN_BRACE);
+                int endInstructions = exerciseInstructions.indexOf(CLOSE_BRACE);
+                int startWorkoutType = exerciseWorkoutType.indexOf(OPEN_BRACE);
+                int endWorkoutType = exerciseWorkoutType.indexOf(CLOSE_BRACE);
+                exerciseInstructions = exerciseInstructions.substring(startInstructions+1,endInstructions);
+                exerciseWorkoutType = exerciseWorkoutType.substring(startWorkoutType+1,endWorkoutType);
 
-                if (userExerciseDataMap.containsKey(exerciseName)) {
-                    int count = userExerciseDataMap.get(exerciseName);
-                    userExerciseDataMap.put(exerciseName, count + 1);
+                String exerciseDescription = "Exercise Name: " + exerciseName +
+                        System.lineSeparator() + "Difficulty Level: " + exerciseDifficulty +
+                        System.lineSeparator() + "Workout type: " + exerciseWorkoutType +
+                        System.lineSeparator() + exerciseInstructions;
+
+                if (userExerciseDataMap.containsKey(exerciseDescription)) {
+                    int count = userExerciseDataMap.get(exerciseDescription);
+                    userExerciseDataMap.put(exerciseDescription, count + 1);
                 } else {
-                    userExerciseDataMap.put(exerciseName, 1);
+                    userExerciseDataMap.put(exerciseDescription, 1);
                 }
             }
         }

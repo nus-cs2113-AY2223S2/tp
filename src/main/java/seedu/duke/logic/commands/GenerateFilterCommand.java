@@ -58,6 +58,9 @@ public class GenerateFilterCommand extends Command {
      * @param exerciseGenerator Generates Exercises
      * @throws DukeError duke error
      */
+
+    //test
+    //public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
         ArrayList<ExerciseData> ipptList = new ArrayList<>(exerciseGenerator.generateIPPTExercises(exercises));

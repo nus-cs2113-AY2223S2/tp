@@ -43,6 +43,10 @@ public class QuickStartCommand extends Command {
     }
 
     @Override
+    //test
+    /*public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
+
+    }*/
     public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
 
     }

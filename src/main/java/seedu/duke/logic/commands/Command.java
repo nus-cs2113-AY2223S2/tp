@@ -9,6 +9,8 @@ import seedu.duke.ui.Ui;
  */
 public abstract class Command {
 
+    //might screw up, please dont screw up
+    //public abstract void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError;
     public abstract void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError;
 
 }
