@@ -1,8 +1,14 @@
 package seedu.badmaths;
 
+
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+import seedu.badmaths.note.Note;
+import seedu.badmaths.note.NotesList;
+
 
 public class StoreTest {
 
@@ -15,6 +21,7 @@ public class StoreTest {
         boolean test = storeTest.isInvalidTodo(todo);
         assertEquals(false, test);
     }
+
     @Test
     void storeValidInputCommand() {
         ArrayList<Note> notesArray = new ArrayList<>();
