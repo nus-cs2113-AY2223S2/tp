@@ -2,13 +2,17 @@ package bagpacker.iohandler;
 
 import bagpacker.commands.AddCommand;
 import bagpacker.commands.DeleteCommand;
+import bagpacker.commands.EditQuantityCommand;
 import bagpacker.commands.ListCommand;
+import bagpacker.commands.ListUnpackedCommand;
 import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackCommand;
 import bagpacker.commands.DeleteListCommand;
 import bagpacker.commands.PackAllCommand;
+import bagpacker.commands.UnpackAllCommand;
 import bagpacker.commands.FindCommand;
 import bagpacker.commands.ByeCommand;
+
 
 /**
  * Ui class contains methods to print messages to user interface on Command Line Interface
@@ -26,11 +30,13 @@ public class Ui {
     private static final String NEW_USER_GREET = "No save files detected. Hello new user!";
 
     public static void printErrorLine() {
-        System.out.println("/////////////////////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////////////////////////////////" +
+                "///////////////////////////////////////////////");
     }
 
     public static void printLine() {
-        System.out.println("____________________________________________________________");
+        System.out.println("___________________________________________________________________________" +
+                "_____________________________________________");
     }
 
     /**
@@ -77,9 +83,12 @@ public class Ui {
         System.out.println("4. " + PackCommand.HELP_MSG);
         System.out.println("5. " + UnpackCommand.HELP_MSG);
         System.out.println("6. " + DeleteListCommand.HELP_MSG);
-        System.out.println("7. " + PackAllCommand.HELP_MSG);
-        System.out.println("8. " + FindCommand.HELP_MSG);
-        System.out.println("8. " + ByeCommand.HELP_MSG);
+        System.out.println("7. " + ListUnpackedCommand.HELP_MSG);
+        System.out.println("8. " + EditQuantityCommand.HELP_MSG);
+        System.out.println("9. " + PackAllCommand.HELP_MSG);
+        System.out.println("10. " + UnpackAllCommand.HELP_MSG);
+        System.out.println("11. " + FindCommand.HELP_MSG);
+        System.out.println("12. " + ByeCommand.HELP_MSG);
         printLine();
     }
 

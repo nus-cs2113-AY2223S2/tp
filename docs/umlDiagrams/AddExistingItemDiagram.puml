@@ -17,12 +17,12 @@ activate ":PackingList" #orange
 ":AddCommand" <-- ":PackingList": isItemFound
 deactivate ":PackingList"
 
+
 Alt #lightblue isItemFound
     ":AddCommand" -> ":PackingList": PackingList.AddToItemQty(itemName, addQty)
     activate ":PackingList" #orange
     ":AddCommand" <-- ":PackingList":
     deactivate ":PackingList"
-
 
 else !isItemFound
     ":AddCommand" -> ":PackingList": PackingList.AddItem(Item)
@@ -30,6 +30,12 @@ else !isItemFound
         ":AddCommand" <-- ":PackingList":
         deactivate ":PackingList"
 end
+note right
+Ui print out methods
+omitted for clearer
+explanation
+end note
 ":BagPacker" <-- ":AddCommand"
+deactivate ":AddCommand"
 
 @enduml
