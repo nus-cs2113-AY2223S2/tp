@@ -215,6 +215,7 @@ class ParserTest {
         assertThrows(RainyDayException.class,
                 () -> new Parser().parseUserInput("shortcut a b -maps c").getClass());
     }
+    
     @Test
     public void parseShortcutViewCommand() throws RainyDayException {
         assertEquals(ShortcutViewCommand.class, new Parser().parseUserInput("shortcut_view").getClass());
