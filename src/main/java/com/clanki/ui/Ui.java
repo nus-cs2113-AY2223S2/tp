@@ -123,11 +123,13 @@ public class Ui {
     }
 
     public void printFlashCardsOnDate(ArrayList<Flashcard> flashcards, LocalDate date) {
-        System.out.println("Here is your list of flashcards with the specified due date:");
         int countFlashcardsPrinted = 0;
         for (int i = 0; i < flashcards.size(); i++) {
             if (flashcards.get(i).getDueDate().compareTo(date) == 0) {
                 countFlashcardsPrinted++;
+                if (countFlashcardsPrinted == 1) {
+                    System.out.println("Here is your list of flashcards with the specified due date:");
+                }
                 System.out.println("[" + (countFlashcardsPrinted) + "]");
                 printFlashCard(flashcards.get(i));
             }
