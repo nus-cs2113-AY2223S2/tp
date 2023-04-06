@@ -1,5 +1,24 @@
 # Developer Guide
 
+<!-- TOC -->
+
+- [Developer Guide](#developer-guide)
+    - [Acknowledgements](#acknowledgements)
+    - [Design & implementation](#design--implementation)
+        - [Add Flashcard Feature](#add-flashcard-feature)
+        - [Delete Flashcard Feature](#delete-flashcard-feature)
+        - [Update Flashcard Feature](#update-flashcard-feature)
+        - [Review Flashcard Feature](#review-flashcard-feature)
+        - [Parser](#parser)
+    - [Product scope](#product-scope)
+        - [Target user profile](#target-user-profile)
+        - [Value proposition](#value-proposition)
+    - [User Stories](#user-stories)
+    - [Non-Functional Requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
+    - [Instructions for manual testing](#instructions-for-manual-testing)
+  <!-- TOC -->
+
 ## Acknowledgements
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
@@ -152,55 +171,6 @@ update flashcard feature alone as most of the methods and attributes are within 
       the index of the matching flashcards. it will also be more confusing as the index of the user input is not
       aligned with the index of the arrayList that contains all the flashcards
 
-### Parser
-
-#### Current implementation
-
-The parser mostly relies on the `ParsedInput` class, which can parse any user provided string input in the format of
-Windows command prompt commands (`command body /opt-key opt-value`).
-
-##### `ParsedInput`
-
-Initiated with a string `input`, it splits the input to sections that are of use. From there it splits each section
-further to a "title" (denoted with `=` below) and a "body" (denoted with `-` below) part.
-
-```
-command blah blah /opt1 hello /opt2 world blah bleh
-|    Part 1     |  | Part 2 |  |      Part 3      |
-|=====| |-------|  |==| |---|  |==| |-------------|
-```
-
-Then these small subparts are grouped together to a format where the command part of the command, the body part and the
-options can be retrieved programmatically.
-
-The command and body can be read with `getCommand()` and `getBody()` respectively. `getCommand()` is guaranteed to be
-non-null.
-
-The options can be read with `getOptionByName(optionKeyName)`. The reason we don't have specific `getDate`
-or `getQuestion` command is because we don't know what the user will input and what options we will require for each
-command. So depending on the command, we retrieve the option accordingly with e.g.
-
-```java
-"command blah blah /opt1 hello /opt2 world blah bleh"
-        getOptionByName("opt2") // -> "world blah bleh"
-        getOptionByName("opt3") // -> null
-```
-
-##### `Parser`
-
-This is now just a matter of wrapping `ParsedInput` with suitable error handling and logic such that each command will
-be used to initiated a corresponding command class (e.g. `AddCommand`), while errors are handled gracefully.
-
-#### Reason for current implementation
-
-We need an intuitive, safe and declarative way to parse the user input. Alternative implementations that can only parse
-specific commands with specific options are more imperative, less readable, less maintainable and overall just a pain to
-handle. That's why the two classes are here.
-
-#### Alternative implementation
-
-No.
-
 ### Review Flashcard Feature
 
 #### Current implementation
@@ -263,6 +233,55 @@ coupling in the program as the `ReviewCommand` will not have access to the inner
   process
     - Pros: Simplifies code in `ReviewCommand`
     - Cons: Will have to pass around a lot of parameters and variables
+
+### Parser
+
+#### Current implementation
+
+The parser mostly relies on the `ParsedInput` class, which can parse any user provided string input in the format of
+Windows command prompt commands (`command body /opt-key opt-value`).
+
+##### `ParsedInput`
+
+Initiated with a string `input`, it splits the input to sections that are of use. From there it splits each section
+further to a "title" (denoted with `=` below) and a "body" (denoted with `-` below) part.
+
+```
+command blah blah /opt1 hello /opt2 world blah bleh
+|    Part 1     |  | Part 2 |  |      Part 3      |
+|=====| |-------|  |==| |---|  |==| |-------------|
+```
+
+Then these small subparts are grouped together to a format where the command part of the command, the body part and the
+options can be retrieved programmatically.
+
+The command and body can be read with `getCommand()` and `getBody()` respectively. `getCommand()` is guaranteed to be
+non-null.
+
+The options can be read with `getOptionByName(optionKeyName)`. The reason we don't have specific `getDate`
+or `getQuestion` command is because we don't know what the user will input and what options we will require for each
+command. So depending on the command, we retrieve the option accordingly with e.g.
+
+```java
+"command blah blah /opt1 hello /opt2 world blah bleh"
+        getOptionByName("opt2") // -> "world blah bleh"
+        getOptionByName("opt3") // -> null
+```
+
+##### `Parser`
+
+This is now just a matter of wrapping `ParsedInput` with suitable error handling and logic such that each command will
+be used to initiated a corresponding command class (e.g. `AddCommand`), while errors are handled gracefully.
+
+#### Reason for current implementation
+
+We need an intuitive, safe and declarative way to parse the user input. Alternative implementations that can only parse
+specific commands with specific options are more imperative, less readable, less maintainable and overall just a pain to
+handle. That's why the two classes are here.
+
+#### Alternative implementation
+
+No.
 
 ## Product scope
 
