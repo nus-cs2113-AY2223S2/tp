@@ -80,6 +80,9 @@ Figure 2.1
 </p>
 </div>
 
+<!-- Eugene's Storage Component Start -->
+<div style="page-break-after: always;"></div>
+
 ### Storage Component
 
 API: ```Storagejava```
@@ -154,22 +157,35 @@ Figure 3.3
 </div>
 
 As shown in the diagram, a failed attempt in loading user data from the json file would result in the program to 
-overwrite an existing userData.json file with a blank state.
-
-<div style="page-break-after: always;"></div>
+overwrite an existing ```userData.json``` file with a blank state.
 
 User data would be written to the json file at various points of the program
-The UserCareerData is saved to the json file whenever there is any modifications made to the object during runtime. This also applies to the UserPlan.
+The ```UserCareerData``` is saved to the json file whenever there is any modifications made to the object during runtime.
+This also applies to the ```UserPlan```.
 
 <div align="center">
 <img src="UML/Images/WritingUserData-0.png"/>
 <p>
-Figure 3.4
+Figure 3.4a
 </p>
 </div>
 
-The sequence diagram above as shown by Figure 3.4 illustrates the interaction of Storage components whenever 
-```writeToJson()``` is invoked. This process is also similar for the saving of ```UserPlan```.
+The sequence diagram above as shown by Figure 3.4a illustrates the interaction of Storage components whenever 
+```writeToJson()``` is invoked for ```UserCareerData```.
+
+<div align="center">
+<img src="UML/Images/WritingUserPlan-0.png"/>
+<p>
+Figure 3.4b
+</p>
+</div>
+
+The process for the saving of ```UserPlan``` is similar to that of saving ```UserCareerData``` as shown in Figure 3.4b. The 
+figure illustrates the interaction of Storage components whenever ```writeToJson()``` is invoked for ```UserPlan```.
+
+
+<div style="page-break-after: always;"></div>
+<!-- Eugene's Storage Component End -->
 
 ### Command Handler Component
 
@@ -248,6 +264,8 @@ Figure 7.1
 1. A workout planner for the user to add and customise their desired sequence or schedule of workouts.
 2. An achievement list that will output messages to congratulate the user based on the different milestones of exercises he/she has achieved when using the program.
 
+# Appendix A
+
 ## Product scope
 
 ### Target user profile
@@ -265,6 +283,8 @@ a healthier lifestyle, regardless of their knowledge in exercises or their indiv
 Through this program, it aims to not only help users learn new workouts, while also keep track of their fitness
 progress.
 
+# Appendix B
+
 ## User Stories
 
 | Version | As a ...                                                                                               | I want to ...                                                                                                                   | So that I can ...                                                              |
@@ -278,11 +298,15 @@ progress.
 | V2.1    | - User who likes to be motivated by incentive                                                          | - Gain achievements throughout my usage of the app                                                                              | - Be more motivated to keep exercising                                         |                                         
 | V2.1    | - SAF personnel                                                                                        | - Track my IPPT scores over a period of time                                                                                    | - achieve gold ranking in my IPPT                                              |
 
+# Appendix C
+
 ## Non-Functional Requirements
 1. The program should be able to generate a list of exercises within 5 seconds
 2. The program should be able to run on any PC (i.e. different OS) <br/> - Be able to handle cases such as user data file corruption
 3. The program is not required to ensure the workouts are carried out safely and properly by the user
 4. Avoid giving repeated workouts in the same session
+
+# Appendix D
 
 ## Glossary
 
@@ -292,6 +316,8 @@ progress.
 * *ExerciseData* - Individual Exercise data from the ```data.json``` file
 * *Ui* - User Interface
 * *UserCareer* - The entire usage journey of using our application
+
+# Appendix E
 
 ## Instructions for manual testing
 
