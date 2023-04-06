@@ -11,6 +11,7 @@ public interface CommandList {
     String FILTERS_COMMAND = "filters";
     String EXIT_COMMAND = "exit";
     String START_COMMAND = "start";
+    String IPPT_COMMAND = "ippt";
     String CURRENT_COMMAND = "current";
     String FINISH_COMMAND = "finish";
     String CANCEL_COMMAND = "cancel";

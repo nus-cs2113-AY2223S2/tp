@@ -43,7 +43,7 @@ public class Session {
         return this.sessionExercises;
     }
 
-    private void checkExerciseDataNullity () throws DukeError {
+    protected void checkExerciseDataNullity () throws DukeError {
         for (ExerciseData exerciseData : sessionExercises) {
             try {
                 if (!exerciseData.checkExerciseNullity()) {

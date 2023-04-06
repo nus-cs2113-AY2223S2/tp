@@ -2,6 +2,7 @@ package seedu.duke.data.userdata;
 
 import java.util.ArrayList;
 
+import seedu.duke.data.ipptcalculator.UserScore;
 import seedu.duke.ui.PrintExercises;
 
 /**
@@ -58,14 +59,22 @@ public class UserCareerData {
         } else {
             PrintExercises exercisePrinter = new PrintExercises();
             for (int i = 0; i < totalUserCareerSessions.size(); i++) {
+                Session sessionInList = totalUserCareerSessions.get(i);
                 System.out.println("Session " + (i + 1));
-                String dateTime = totalUserCareerSessions.get(i).getDateAdded().toString();
+                String dateTime = sessionInList.getDateAdded().toString();
                 String[] dateSplit = dateTime.split("T", 2);
                 assert dateSplit.length == 2;
                 System.out.println("On this date: " + dateSplit[0]);
-                exercisePrinter.printExercise(totalUserCareerSessions.get(i).getSessionExercises());
+                exercisePrinter.printExercise(sessionInList.getSessionExercises());
                 if (i != totalUserCareerSessions.size() - 1) {
                     System.out.println("\n ");
+                }
+                if (sessionInList instanceof IPPTSession){
+                    UserScore sessionScore = ((IPPTSession) sessionInList).getUserScore();
+                    System.out.println("You scored at total of: " + sessionScore.getTotalScore() + '\n' +
+                            "Pushups: " + sessionScore.getPushupScore() + '\n' +
+                            "Situps: " + sessionScore.getSitupScore() + '\n' +
+                            "2.4 Km Run " + sessionScore.getRunScore());
                 }
             }
         }

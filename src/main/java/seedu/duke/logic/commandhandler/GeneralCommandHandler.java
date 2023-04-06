@@ -1,17 +1,17 @@
 package seedu.duke.logic.commandhandler;
 
+import java.util.Arrays;
 import java.util.Scanner;
-
 import seedu.duke.achievements.AchievementListHandler;
-
-import seedu.duke.commons.exceptions.DukeError;
-import seedu.duke.data.exercisegenerator.GenerateExercise;
-import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.logic.commands.Command;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
 import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.logic.commands.HelpCommand;
+import seedu.duke.logic.commands.IPPTCmd;
 import seedu.duke.logic.commands.QuickStartCommand;
+import seedu.duke.commons.exceptions.DukeError;
+import seedu.duke.data.exercisegenerator.GenerateExercise;
+import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.logic.commands.CompletedExerciseSearchCommand;
 
 import seedu.duke.storage.Storage;
@@ -20,7 +20,6 @@ import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.data.userdata.UserExerciseData;
 import seedu.duke.data.userdata.userplan.UserPlan;
-
 import java.util.HashMap;
 
 public class GeneralCommandHandler implements CommandList {
@@ -112,6 +111,10 @@ public class GeneralCommandHandler implements CommandList {
                 } else {
                     ui.showPlan(planner);
                 }
+                break;
+            case IPPT_COMMAND:
+                IPPTCmd generateIPPT = new IPPTCmd(Arrays.copyOfRange(userCommands,1,5));
+                generateIPPT.addIPPTSession(exerciseGenerator,userCareerData,storage);
                 break;
             case QUICK_START_COMMAND:
                 if (additionalDescription.length() == 0) {

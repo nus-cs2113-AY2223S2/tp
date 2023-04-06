@@ -9,9 +9,10 @@ public class PrintHelpMessage {
         System.out.println("[generate]");
         System.out.println("\tGenerate a specific list of exercises: generate FILTER1 FILTER2 ... x");
         System.out.println("\tFILTER stands for a specific requirement you want to include in your exercise");
-        //System.out.println("\tor starts an IPPT session: generate ippt");
         System.out.println("[filters]");
         System.out.println("\tView all available filters");
+        System.out.println("ippt [AGE] [RUNTIME] [PUSHUP SCORE] [SITUP SCORE]");
+        System.out.println("\tStarts an IPPT exercise session with input scores for the 3 sets of exercises.");
         System.out.println("[start]");
         System.out.println("\tStart a workout session");
         System.out.println("[history]");

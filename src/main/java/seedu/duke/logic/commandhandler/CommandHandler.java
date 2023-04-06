@@ -7,6 +7,7 @@ import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.storage.Storage;
+import seedu.duke.ui.ErrorMessages;
 import seedu.duke.ui.Ui;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.commons.util.StringSplitter;
@@ -28,7 +29,7 @@ public class CommandHandler {
         StringSplitter stringSplitter = new StringSplitter();
         String[] userCommands = stringSplitter.splitString(rawUserCommands);
         if (userCommands.length == 0) {
-            throw new DukeError("Empty input");
+            throw new DukeError(ErrorMessages.ERROR_EMPTY_INPUT.toString());
         }
         if (exerciseStateHandler.workoutOngoing) {
             ExerciseSessionCommandHandler exerciseSessionCommandHandler = new ExerciseSessionCommandHandler();
