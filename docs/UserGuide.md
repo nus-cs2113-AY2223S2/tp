@@ -158,16 +158,13 @@ Found 2 cards with the query "fruit":
 [1]
 Q: What is the worst fruit?
 A: Durian
-D: 2023-02-29
 [2]
 Q: What is the Japanese word for "fruit"?
 A: 果物
-D: 2023-02-29
 Which flashcard do you want to update? 1 /q What is the best fruit?
 Understood. The card has been updated to
 Q: What is the best fruit?
 A: Durian
-D: 2023-02-29
 ```
 
 ### Delete a flashcard
@@ -276,8 +273,27 @@ Display the list of possible commands the user can input.
 
 #### Example
 
-![helpMenuDisplay.png](userGuideImages%2FhelpMenuDisplay.png)
-
+```
+> help
+The following are the commands you can use:
+add:     Adds a flashcard to the current list of flashcards.
+         Parameters: add /q QUESTION /a ANSWER
+         Example: add /q What is the worst fruit? /a Durian
+update:  Changes the content of flashcard's question, answer or date.
+         Parameters: update /q QUERY
+         Example: update fruit 
+                  Which flashcard do you want to update? 1 /q What is the best fruit?
+delete:  Removes a flashcard with specified string.
+         Parameters: delete /q QUERY
+         Example: delete fruit 
+review:  Go through all flashcards that are due today.
+list:    lists out the questions and answers in the list of flashcards.
+         Parameters: list all (lists all flashcards)
+         Parameters: list DUE_DATE (list all flashcards with that specified due date)
+         Example: list 2023-05-04
+clear:   Deletes all the flashcards in the list.
+bye:     Exit the program.
+```
 ### Exit program
 
 ```
