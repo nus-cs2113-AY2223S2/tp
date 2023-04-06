@@ -1,7 +1,10 @@
 package com.clanki.ui;
 
+import com.clanki.objects.Flashcard;
+
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -83,5 +86,17 @@ public class Ui {
 
     public void printSeparationLine() {
         System.out.println("==========================================================");
+    }
+
+    public void printFlashCard(Flashcard flashcard) {
+        System.out.println("Q: " + flashcard.getQuestion());
+        System.out.println("A: " + flashcard.getAnswer());
+    }
+
+    public void printFlashCards(ArrayList<Flashcard> flashcards) {
+        for (int i = 0; i < flashcards.size(); i++) {
+            System.out.println("[" + (i + 1) + "]");
+            printFlashCard(flashcards.get(i));
+        }
     }
 }

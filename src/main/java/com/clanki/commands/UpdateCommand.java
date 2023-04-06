@@ -20,18 +20,6 @@ public class UpdateCommand extends Command {
         this.query = query;
     }
 
-    public void printFlashCard(Flashcard flashcard) {
-        System.out.println("Q: " + flashcard.getQuestion());
-        System.out.println("A: " + flashcard.getAnswer());
-    }
-
-    public void printFlashCards(ArrayList<Flashcard> flashcards) {
-        for (int i = 0; i < flashcards.size(); i++) {
-            System.out.println("[" + (i + 1) + "]");
-            printFlashCard(flashcards.get(i));
-        }
-    }
-
     public void findFlashcard(ArrayList<Flashcard> flashcards, String query) {
         for (int i = 0; i < flashcards.size(); i++) {
             Flashcard currentFlashcard = flashcards.get(i);
@@ -73,7 +61,7 @@ public class UpdateCommand extends Command {
         if (matchingFlashcards.size() > 0) {
             System.out.println(
                     "Found " + matchingFlashcards.size() + " cards with the query \"" + query + "\":");
-            printFlashCards(matchingFlashcards);
+            display.printFlashCards(matchingFlashcards);
             System.out.println("Which flashcard do you want to update?");
             int checker = 0;
             while (checker == 0) {
@@ -84,7 +72,7 @@ public class UpdateCommand extends Command {
                     String updatedContent = Parser.parseInputForUpdateCommand(userText);
                     int index = implementUpdate(flashcards, indexInMatchList, identifier, updatedContent);
                     System.out.println("Understood. The card has been updated to");
-                    printFlashCard(flashcards.get(index));
+                    display.printFlashCard(flashcards.get(index));
                     checker = 1;
                 } catch (InvalidIdentifierException e) {
                     System.out.println("You can only enter /q, /a or /d");

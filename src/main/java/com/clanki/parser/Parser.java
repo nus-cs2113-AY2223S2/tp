@@ -5,6 +5,7 @@ import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.DeleteCommand;
 import com.clanki.commands.HelpCommand;
+import com.clanki.commands.ListCommand;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
 import com.clanki.commands.UpdateCommand;
@@ -56,6 +57,8 @@ public class Parser {
             return getByeCommand(parsedInput);
         case "help":
             return new HelpCommand();
+        case "list":
+            return new ListCommand();
         default:
             return new UnknownCommand();
         }
