@@ -18,7 +18,7 @@ public class Duke {
     private static BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
     private static UI ui = new UI();
 
-    private static Parser parser = Parser.getInstance();
+    private static Parser parser = null;
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -30,6 +30,7 @@ public class Duke {
         ArrayList<Deadline> deadlines = deadlineStorage.getDeadlines();
         ui.printGreetingMessage();
         deadlineStorage.compareDeadlines(deadlines);
+        parser = Parser.getInstance();
         while (isContinue) {
             userInput = in.nextLine();
             Command command = parser.parseUserCommand(userInput, universities, modules, allModules, storage,
