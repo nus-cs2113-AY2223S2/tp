@@ -13,13 +13,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CommandOverviewTest {
 
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    private final PrintStream standardOut = System.out;
 
     private static final String MONTH_NAME_ERROR =
             "Incorrect month name. Please key in the full english month name.";
@@ -31,6 +29,9 @@ class CommandOverviewTest {
             "Please enter month name in standard English Month and/or year as a 4 digit number.";
     private static final String NEGATIVE_YEAR_ERROR = "Year cannot be negative. Please input a valid year";
     private static final String INVALID_YEAR_ERROR = "Invalid year. Please enter a year between 1981 and ";
+
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final PrintStream standardOut = System.out;
 
     @Test
     void invalidYearFormatError() {
