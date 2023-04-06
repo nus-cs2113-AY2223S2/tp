@@ -129,10 +129,20 @@ update /q QUERY
   following syntax
 
   ```
-  INDEX [/q NEW_QUESTION] [/a NEW_ANSWER] [/d NEW_DUE_DATE]
+  INDEX /q NEW_QUESTION
   ```
+  
+  - This updates the question of the flashcard to `NEW_QUESTION`
 
-    - Since a slash character (`/`) can be intepreted as a command option,
+
+  - To update the answer of the flashcard, use `/a` 
+  - To update the due date of the flashcard, use `/d`
+    ```
+      INDEX /a NEW_ANSWER
+      INDEX /d NEW_DUE_DATE
+    ```
+    - The user can only update either one of the question, answer or due date at a time
+    - Since a slash character (`/`) can be interpreted as a command option,
       `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
       ` /` (the slash with a space before it).
 
@@ -156,7 +166,7 @@ A: Durian
 D: 2023-02-29
 ```
 
-### Delete flashcards
+### Delete a flashcard
 
 ```
 delete /q QUERY
@@ -181,6 +191,49 @@ Found 2 cards with the query "fruit":
     A: 果物
 Which one do you want to delete? 2
 Understood. The card has been deleted.
+```
+
+### Delete all flashcards in the list
+
+```
+clear
+```
+
+Deletes all the flashcards in the list
+
+#### Example
+
+```
+> clear
+All flashcards have been deleted.
+Your list of flashcards is now empty.
+
+> list
+Your list of flashcards is empty.
+```
+
+### List all flashcards
+
+```
+list
+```
+
+Display the list of flashcards that have been added by the user, regardless of the date.
+
+#### Example
+
+```
+> list
+Here is your list of flashcards:
+[1]
+Q: What is the biggest animal in the world
+A: Antartic blue whale
+[2]
+Q: What are the best food for health
+A: Lemons
+[3]
+Q: What colour is the sun
+A: Red
 ```
 
 ### Help menu
