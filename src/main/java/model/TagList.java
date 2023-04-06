@@ -61,7 +61,7 @@ public class TagList {
 
     public Tag findTagFromUUID(TagUUID tagUUID) {
         for (Tag tag : tags) {
-            if (tag.getUUID().equals(tagUUID)) {
+            if (tag.getUUID().equals(tagUUID.uuid)) {
                 return tag;
             }
         }
