@@ -2,9 +2,11 @@ package com.clanki.parser;
 
 import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
+import com.clanki.commands.ClearCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.DeleteCommand;
 import com.clanki.commands.HelpCommand;
+import com.clanki.commands.ListCommand;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
 import com.clanki.commands.UpdateCommand;
@@ -13,11 +15,13 @@ import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
 import com.clanki.exceptions.NoQueryInInputException;
+import com.clanki.exceptions.UpdatedContentIsEmptyException;
 
 
 public class Parser {
     private static final String QUESTION_OPTION_IDENTIFIER = "q";
     private static final String ANSWER_OPTION_IDENTIFIER = "a";
+    private static final String DATE_OPTION_IDENTIFIER = "d";
     //private static Logger logger = Logger.getLogger("Parser");
 
     public static Command parseCommand(String userInput) {
@@ -55,6 +59,10 @@ public class Parser {
             return getByeCommand(parsedInput);
         case "help":
             return new HelpCommand();
+        case "list":
+            return new ListCommand();
+        case "clear":
+            return new ClearCommand();
         default:
             return new UnknownCommand();
         }
@@ -114,4 +122,55 @@ public class Parser {
     public static ByeCommand getByeCommand(ParsedInput parsedInput) {
         return new ByeCommand();
     }
+
+    public static int getIndexForUpdateCommand(String userInput) {
+        ParsedInput parsedInput = new ParsedInput(userInput);
+        String index = parsedInput.getCommand();
+        return Integer.parseInt(index) - 1;
+    }
+
+    public static String getIdentifierForUpdateCommand(String userInput) throws InvalidIdentifierException {
+        String[] userTexts = userInput.split(" ", 3);
+        String identifier = null;
+        if (userTexts[1] == null) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        if (userTexts[1].equals("/q")) {
+            identifier = "q";
+        }
+        if (userTexts[1].equals("/a")) {
+            identifier = "a";
+        }
+        if (userTexts[1].equals("/d")) {
+            identifier = "d";
+        }
+        return identifier;
+    }
+
+    public static String parseInputForUpdateCommand(String userInput) throws InvalidIdentifierException,
+            UpdatedContentIsEmptyException {
+        ParsedInput parsedInput = new ParsedInput(userInput);
+        String identifier = getIdentifierForUpdateCommand(userInput);
+        String updatedContent = null;
+        if (identifier == null) {
+            throw new InvalidIdentifierException();
+        }
+        if (identifier.equals(QUESTION_OPTION_IDENTIFIER)) {
+            updatedContent = parsedInput.getOptionByName(QUESTION_OPTION_IDENTIFIER);
+        }
+        if (identifier.equals(ANSWER_OPTION_IDENTIFIER)) {
+            updatedContent = parsedInput.getOptionByName(ANSWER_OPTION_IDENTIFIER);
+        }
+        if (identifier.equals(DATE_OPTION_IDENTIFIER)) {
+            updatedContent = parsedInput.getOptionByName(DATE_OPTION_IDENTIFIER);
+        }
+        if (updatedContent.isEmpty()) {
+            throw new UpdatedContentIsEmptyException();
+        }
+        if (updatedContent == null) {
+            throw new InvalidIdentifierException();
+        }
+        return updatedContent;
+    }
+
 }
