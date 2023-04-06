@@ -316,7 +316,7 @@ Yearly Overview for 2022
 
 ### Exiting the program: `exit`
 
-Exits the program without saving expense list.
+Exits the program with all expenses saved.
 
 Format: `exit`
 
