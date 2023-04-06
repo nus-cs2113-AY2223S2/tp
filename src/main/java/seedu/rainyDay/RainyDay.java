@@ -73,16 +73,14 @@ public class RainyDay {
     }
 
     private void runCommand() {
-        Command specificCommand;
-        while (true) {
+        boolean isExit = false;
+        while (!isExit) {
             try {
                 String userInput = ui.readUserCommand();
-                specificCommand = new Parser().parseUserInput(userInput);
+                Command specificCommand = new Parser().parseUserInput(userInput);
                 assert specificCommand != null : "Parser returned null";
                 executeCommand(specificCommand);
-                if (specificCommand.isExit()) {
-                    break;
-                }
+                isExit = specificCommand.isExit();
             } catch (Exception e) {
                 logger.log(Level.WARNING, e.getMessage());
                 System.out.println(e.getMessage());
