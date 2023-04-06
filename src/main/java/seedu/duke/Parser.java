@@ -97,6 +97,7 @@ public class Parser {
     private static boolean extractFields(boolean[] duplicity, String[] information, String[] details,
             boolean isModuleFlag) throws NPExceptions {
 
+
         for (int i = 1; i < details.length; i++) {
             String field = details[i].substring(0, 2).trim();
             String change = details[i].substring(2).trim();
