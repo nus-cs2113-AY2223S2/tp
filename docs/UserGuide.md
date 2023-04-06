@@ -237,22 +237,46 @@ Okay, I have deleted the repeat duration of this task:
 [ID:1]	[ ][todo][Due: 30 Mar 2023 18:00]
 ```
 
-### View all tasks in To-Do list `list`
+### View all/selected tasks in To-Do list `list`
 
-Display all tasks stored in the To-Do List.
+Display all/selected tasks stored in the To-Do List.
 
-Format: `list`
+Format: `list` or `list -done` or `list -undone` or `list -overdue` or `list -priority`
 - Tasks found will be displayed in ascending order, sorted by deadline.
 - Tasks without deadline will be placed at the bottom.
+- Use of `-done` filter will display the list of completed tasks.
+- Use of `-undone` filter will display the list of uncompleted tasks.
+- Use of `-overdue` filter will display the list of uncompleted tasks with deadlines that are already 
+past the current date.
+- Use of `-priority` sorting will display the list sorted by priority.
+- Tasks with the highest priority will be displayed at the top.
 
 Example of usage:
 
 `list`
 ```
 Okay, here is your task list, with 3 tasks
-[ID:2]	[ ][assignment][Due: 23 Mar 2023 18:00]
-[ID:3]	[ ][coursemology homework][Due: 24 Mar 2023 13:00]
-[ID:1]	[ ][homework]
+[#000001][ID:000005][!][baba                                  ][Due by: 05 Apr 2023 23:34]
+[#000002][ID:000006][X][baba                                  ][Due by: 07 Apr 2023 23:34]
+[#000003][ID:000001][X][baba                                  ]
+[#000004][ID:000002][ ][bubu                                  ]
+```
+`list -done`
+```
+Okay, here is your task list, with 2 tasks
+[#000001][ID:000006][X][baba                                  ][Due by: 07 Apr 2023 23:34]
+[#000002][ID:000001][X][baba                                  ]
+```
+`list -undone`
+```
+Okay, here is your task list, with 2 tasks
+[#000001][ID:000005][!][baba                                  ][Due by: 05 Apr 2023 23:34]
+[#000002][ID:000002][ ][bubu                                  ]
+```
+`list -overdue`
+```
+Okay, here is your task list, with 1 tasks
+[#000001][ID:000005][!][baba                                  ][Due by: 05 Apr 2023 23:34]
 ```
 
 ### View detailed information of a task `info`
@@ -294,6 +318,43 @@ Progress: |================----------------------------------|
 [ID:1]	[X][task1][Due: 30 Mar 2023 18:00]
 [ID:2]	[ ][task2][Due: 30 Mar 2023 19:00]
 [ID:3]	[ ][task3][Due: 31 Mar 2023 20:00]
+```
+
+### View/Edit configurable settings `config`
+
+Displays/edits the current configuration for repeating tasks.
+
+Format: `config` or `config -repfreq REPEAT_FREQUENCY` or `config -chkfreq CHECK_FREQUENCY`
+- Users may set a global frequency for repeating tasks to occur and the frequency of which the program checks
+for if any new repeating tasks need to be created.
+- `REPEAT_FREQUENCY` is in days whilst `CHECK_FREQUENCY` is in minutes.
+- `CHECK_FREQUENCY` must be an integer from 0 to 2147483647.
+- `REPEAT_FREQUENCY` must be an integer from 1 to 2147483647.
+- A `CHECK_FREQUENCY` of 0 will mean that the program will check every time a command is executed.
+- Both frequencies can be edited in the same command by appending either flag after the other. 
+Please refer to example below.
+
+Example of usage:
+`config`
+```
+Here are the configuration settings for your system:
+Repeating tasks every 7 days
+Checking for repeating task every: 0 minutes
+Last checked at: 06 Apr 2023 14:22
+```
+`config -chkfreq 5` or `config -repfreq 7`
+```
+Okay, I have changed the configuration to as follows:
+Repeating tasks every 7 days
+Checking for repeating task every: 5 minutes
+Last checked at: 06 Apr 2023 14:35
+```
+`config -chkfreq 6 -repfreq 1`
+```
+Okay, I have changed the configuration to as follows:
+Repeating tasks every 1 days
+Checking for repeating task every: 6 minutes
+Last checked at: 06 Apr 2023 14:35
 ```
 
 ### Help List `help`
@@ -344,12 +405,20 @@ Here are the list of commands that you can use:
 |                                        | task with the given id in the To-Do List.     |
 ------------------------------------------------------------------------------------------
 | list                                   | Display all tasks stored in the To-Do List.   |
+|       -done                            | Display all completed tasks.                  |
+|       -undone                          | Display all uncompleted tasks.                |
+|       -overdue                         | Display all overdue tasks.                    |
+|       -priority                        | Display all tasks sorted by priority.         |
 ------------------------------------------------------------------------------------------
 | info ID                                | Display all the attributes of the task with   |
 |                                        | the given id in the To-Do List.               |
 ------------------------------------------------------------------------------------------
 | progress                               | Displays the progress of and lists tasks      |
 |                                        | that are due this week in To-Do list.         |
+------------------------------------------------------------------------------------------
+| config                                 | Displays current configuratino settings.      |
+|       -chkfreq CHECK_FREQUENCY         | Edits checking frequency for repeating tasks. |
+|       -repfreq REPEAT_FREQUENCY        | Edits repeating frequency of repeating tasks. |
 ------------------------------------------------------------------------------------------
 | help                                   | Displays all possible commands of the program |
 |                                        | and their description                         |
@@ -371,20 +440,6 @@ Example of usage:
 See you again, bye!
 ```
 
-### [*Proposed*] List completion history `history`
-
-Lists the task that have been completed before in the To-Do List.
-
-Format: `history`
-- Displays the tasks which were marked as completed in the previous week
-
-Example of usage:
-
-`history`
-```
-Here are the tasks which were completed in the past week:
-[ID:1]	[X][todo][Due: 20 Mar 2023 18:00]
-```
 
 ## FAQ
 
@@ -412,10 +467,17 @@ Here are the tasks which were completed in the past week:
 | Delete email from a task             | `email ID -del`                                                                                                             |
 | Add/edit tags to a task              | `tags ID -edit LIST_OF_TAGS`                                                                                                |
 | Delete all tags from a task          | `tags ID -del`                                                                                                              |
-| Add/edit repeat duration to a task   | `rep ID -edit REPEAT DURATION`                                                                                              |
+| Add/edit repeat duration to a task   | `rep ID -edit REPEAT_DURATION`                                                                                              |
 | Delete repeat duration from a task   | `rep ID -del`                                                                                                               |
 | List all tasks                       | `list`                                                                                                                      |
+| List completed tasks                 | `list -done`                                                                                                                |
+| List uncompleted tasks               | `list -undone`                                                                                                              |
+| List overdue tasks                   | `list -overdue`                                                                                                             |
+| List all tasks sorted by priority    | `list -priority`                                                                                                            |
 | Check all details of a task          | `info`                                                                                                                      |
 | Check progress of current week tasks | `progress`                                                                                                                  |
+| Show current configuration settings  | `config`                                                                                                                    |
+| Edit check frequency                 | `config -chkfreq CHECK_FREQUENCY`                                                                                           |
+| Edit repeat frequency                | `config -repfreq REPEAT_FREQUENCY`                                                                                          |
 | Check all commands of the program    | `help`                                                                                                                      |
 | Exit program                         | `exit`                                                                                                                      |

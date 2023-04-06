@@ -27,7 +27,7 @@ public class EditConfigCommand extends Command {
                 repeatFrequency = Integer.parseInt(args.get(Flags.CONFIG_REPEAT_FREQ));
                 isEditingRepFreq = true;
             }
-            if (checkFrequency < 0 || repeatFrequency < 0) {
+            if (checkFrequency < 0 || repeatFrequency < 1) {
                 throw new InvalidFrequencyException();
             }
         }
