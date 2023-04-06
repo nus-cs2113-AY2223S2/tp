@@ -9,7 +9,6 @@ import model.CardUUID;
 import model.DeckList;
 import model.Tag;
 import model.TagList;
-import model.TagUUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
