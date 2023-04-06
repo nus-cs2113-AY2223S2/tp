@@ -28,3 +28,6 @@
   - ListCommand
 
 #### Contributions to team-based tasks
+- Assisted in maintaining the issue tracker
+- Assisted group mates with their tasks
+- [PRs reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3Ayixuann02)

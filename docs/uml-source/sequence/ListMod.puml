@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title ListModuleCommand
+
+actor User
+
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":ListModuleCommand" as ListMod
+participant ":Ui" as Ui
+
+User -> Apollo : "listmod"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+
+Parser -> ListMod** : ListModuleCommand()
+activate ListMod
+ListMod -> ListMod : setUpLogger()
+activate ListMod
+deactivate ListMod
+ListMod -> Parser: ListModuleCommand()
+deactivate ListMod
+
+
+
+Parser -> ListMod : execute()
+activate ListMod
+
+ListMod -> Ui : printModuleList()
+activate Ui
+Ui --> ListMod
+deactivate Ui
+destroy Ui
+ListMod --> Parser
+
+deactivate ListMod
+destroy ListMod
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+deactivate Apollo
+@enduml

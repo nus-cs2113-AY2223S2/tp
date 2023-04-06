@@ -1,0 +1,60 @@
+@startuml
+title FindCommand (Find tasks)
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":FindCommand" as Find
+participant ":TaskList" as TaskList
+participant ":Task" as Task
+participant ":Ui" as Ui
+participant ":String" as String
+
+User -> Apollo : "find book"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+Parser -> Find** : FindCommand()
+Find++
+Find -> Find++ : setUpLogger()
+
+
+return
+return
+
+Apollo -> Find : execute()
+Apollo --
+activate Find
+Find --> TaskList : findTasks("book")
+activate TaskList
+TaskList -> String : toLowerCase()
+activate String
+String --> TaskList : "book"
+deactivate String
+destroy String
+TaskList -> Task : getdescription()
+activate Task
+Task --> TaskList
+deactivate Task
+TaskList --> Find: filteredTasks
+deactivate TaskList
+Find -> Ui : printFoundList()
+activate Ui
+Ui --> Find
+deactivate Ui
+destroy Ui
+destroy Find
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml

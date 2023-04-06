@@ -2,9 +2,11 @@ package seedu.apollo.command.module;
 
 import seedu.apollo.calendar.Calendar;
 import seedu.apollo.command.Command;
+import seedu.apollo.exception.module.EmptyLessonTypesInTimetable;
 import seedu.apollo.exception.module.InvalidModule;
-import seedu.apollo.exception.module.LessonNotAddedException;
 import seedu.apollo.exception.module.LessonTypeNotAddedException;
+import seedu.apollo.exception.module.LessonTypeNotInModuleException;
+import seedu.apollo.exception.module.ModuleNotAddedException;
 import seedu.apollo.exception.utils.IllegalCommandException;
 import seedu.apollo.module.LessonType;
 import seedu.apollo.module.Module;
@@ -13,24 +15,15 @@ import seedu.apollo.module.Timetable;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
-import seedu.apollo.utils.LoggerInterface;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
-public class ListModuleWithLessonCommand extends Command implements LoggerInterface {
+public class ListModuleWithLessonCommand extends Command {
 
-    private static Logger logger = Logger.getLogger("ListModuleCommand");
     private String[] args;
     private Module module;
 
@@ -43,8 +36,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      */
     public ListModuleWithLessonCommand(String params, ModuleList allModules) throws InvalidModule,
             IllegalCommandException {
-
-        setUpLogger();
+        super("ListModuleCommand");
         assert (params != null) : "ListModuleWithLessonCommand: ModuleCode should not be null!";
 
         args = params.split("\\s+");
@@ -64,53 +56,26 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
 
     }
 
-    /**
-     * Sets up logger for ListModuleWithLessonCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-
-    }
-
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar) {
-
         try {
             copyModuleListData(moduleList);
-
             if (args.length == 2) {
-                handleMultiCommand(ui);
+                handleMultiCommand(ui, allModules);
             } else {
-                handleSingleCommand(ui);
+                handleSingleCommand(ui, module);
             }
-
-        } catch (LessonNotAddedException e) {
+        } catch (ModuleNotAddedException e) {
             ui.printLessonNotInList(module.getCode());
         } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
         } catch (LessonTypeNotAddedException e) {
             ui.printLessonsNotAdded(module.getCode());
+        } catch (LessonTypeNotInModuleException e) {
+            ui.printLessonTypeNotInModule();
+        } catch (EmptyLessonTypesInTimetable e) {
+            ui.printEmptyLessonTypeInModuleList();
         }
 
     }
@@ -120,10 +85,57 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      *
      * @param ui The Ui object to print the timetable.
      */
-    private void handleSingleCommand(Ui ui) {
+    private void handleSingleCommand(Ui ui, Module module) throws EmptyLessonTypesInTimetable {
+        ArrayList<LessonType> checkLessonTypes = getLessonTypes(module);
+        if (checkLessonTypes.isEmpty()) {
+            throw new EmptyLessonTypesInTimetable();
+        }
         ArrayList<Timetable> copyList = new ArrayList<>(module.getModuleTimetable());
         ArrayList<Timetable> parseList = sortTimetable(copyList);
         ui.printModuleListWithLesson(module, parseList);
+    }
+
+    //@@author yixuann02
+    /**
+     * Handles the command when user wants to see the timetable added of a specific lesson type.
+     *
+     * @param ui The Ui object to print the timetable.
+     * @throws IllegalCommandException If the command is invalid.
+     */
+    private void handleMultiCommand(Ui ui, ModuleList allModules) throws IllegalCommandException,
+            LessonTypeNotInModuleException {
+
+        String type = args[1];
+
+        LessonType lessonType = getCommand(type);
+        if (lessonType == null) {
+            throw new IllegalCommandException();
+        }
+
+        if (!isExistLessonType(allModules, lessonType)) {
+            throw new LessonTypeNotInModuleException();
+        }
+
+        ArrayList<Timetable> timetableList = new ArrayList<>(module.getModuleTimetable());
+
+        ArrayList<Timetable> timetableInModuleList = new ArrayList<>();
+
+        for (Timetable timetable : timetableList) {
+            LessonType checkType = determineLessonType(timetable.getLessonType());
+            assert (checkType != null) : "ListModuleWithLessonCommand: Lesson type should not be null!";
+
+            if (checkType.equals(lessonType)) {
+                timetableInModuleList.add(timetable);
+            }
+        }
+
+        if (timetableInModuleList.size() == 0) {
+            ui.printLessonTypeNotAdded(module.getCode(), lessonType);
+        } else {
+            sortTimetable(timetableInModuleList);
+            ui.printSpecificTimetable(module, lessonType, timetableInModuleList);
+        }
+
     }
 
     /**
@@ -131,13 +143,13 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      *
      * @param moduleList The list of modules.
      * @throws LessonTypeNotAddedException If a lesson type has not been added into module list.
-     * @throws LessonNotAddedException If the lessons have not been added into module list.
+     * @throws ModuleNotAddedException If the lessons have not been added into module list.
      */
-    private void copyModuleListData(ModuleList moduleList) throws LessonTypeNotAddedException,
-            LessonNotAddedException {
+    public void copyModuleListData(ModuleList moduleList) throws LessonTypeNotAddedException,
+            ModuleNotAddedException {
 
         if (!isInModuleList(moduleList, module)) {
-            throw new LessonNotAddedException();
+            throw new ModuleNotAddedException();
         }
 
         int index = 0;
@@ -149,7 +161,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
             index++;
         }
         module.setTimetable(moduleList.get(index).getModuleTimetable());
-        if (module.getModuleTimetable().isEmpty()) {
+        if (module.getModuleTimetable() == null) {
             throw new LessonTypeNotAddedException();
         }
 
@@ -180,7 +192,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      */
     private ArrayList<Timetable> sortTimetable(ArrayList<Timetable> copyList) {
         Comparator<Timetable> compareByLessonType = Comparator.comparing(Timetable::getLessonType);
-        Comparator<Timetable> compareByClassNumber = Comparator.comparing(Timetable::getClassnumber);
+        Comparator<Timetable> compareByClassNumber = Comparator.comparing(Timetable::getClassNumber);
         Comparator<Timetable> compareAll = compareByLessonType.thenComparing(compareByClassNumber);
         ArrayList<Timetable> parseList =
                 copyList.stream().sorted(compareAll).collect(Collectors.toCollection(ArrayList::new));
@@ -194,7 +206,7 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      * @param module     The module to be checked.
      * @return True if the module is in the list of modules.
      */
-    public boolean isInModuleList(ModuleList moduleList, Module module) {
+    private boolean isInModuleList(ModuleList moduleList, Module module) {
         for (Module moduleCheck : moduleList) {
             if (moduleCheck.getCode().equals(module.getCode())) {
                 return true;
@@ -203,41 +215,15 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
         return false;
     }
 
-    /**
-     * Handles the command when user wants to see the timetable added of a specific lesson type.
-     *
-     * @param ui The Ui object to print the timetable.
-     * @throws IllegalCommandException If the command is invalid.
-     */
-    private void handleMultiCommand(Ui ui) throws IllegalCommandException {
-
-        String type = args[1];
-
-        LessonType lessonType = getCommand(type);
-        if (lessonType == null) {
-            throw new IllegalCommandException();
-        }
-
-        ArrayList<Timetable> timetableList = new ArrayList<>(module.getModuleTimetable());
-
-        ArrayList<Timetable> timetableInModuleList = new ArrayList<>();
-
-        for (Timetable timetable : timetableList) {
-            LessonType checkType = determineLessonType(timetable.getLessonType());
-            assert (checkType != null) : "ListModuleWithLessonCommand: Lesson type should not be null!";
-
-            if (checkType.equals(lessonType)) {
-                timetableInModuleList.add(timetable);
+    private boolean isExistLessonType(ModuleList allModules, LessonType lessonType) {
+        Module checkMod = allModules.findModule(args[0]);
+        ArrayList<LessonType> checkLesson = getLessonTypes(checkMod);
+        for (LessonType toCheckType : checkLesson) {
+            if (toCheckType.equals(lessonType)) {
+                return true;
             }
         }
-
-        if (timetableInModuleList.size() == 0) {
-            ui.printLessonTypeNotAdded(module.getCode(), lessonType);
-        } else {
-            sortTimetable(timetableInModuleList);
-            ui.printSpecificTimetable(module, lessonType, timetableInModuleList);
-        }
-
+        return false;
     }
 
 }

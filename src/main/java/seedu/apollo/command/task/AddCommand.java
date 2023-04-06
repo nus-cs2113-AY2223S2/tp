@@ -16,38 +16,30 @@ import seedu.apollo.ui.Ui;
 import seedu.apollo.exception.task.InvalidDeadline;
 import seedu.apollo.exception.task.InvalidEvent;
 import seedu.apollo.task.ToDo;
-import seedu.apollo.utils.LoggerInterface;
 
-import java.io.File;
 import java.io.IOException;
 import java.rmi.UnexpectedException;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import java.util.ArrayList;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
+import static seedu.apollo.calendar.SemesterUtils.getWeekNumber;
 import static seedu.apollo.ui.Parser.COMMAND_DEADLINE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_EVENT_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_TODO_WORD;
-import static seedu.apollo.utils.DayTypeUtil.determineDay;
 
 
 /**
  * Add Command class that adds a Task to the existing TaskList.
  * Handles {@code todo}, {@code deadline}, and {@code event} commands.
  */
-public class AddCommand extends Command implements LoggerInterface {
-
-    private static Logger logger = Logger.getLogger("AddCommand");
+public class AddCommand extends Command {
 
     protected String command;
     protected String desc;
@@ -65,7 +57,7 @@ public class AddCommand extends Command implements LoggerInterface {
      * @throws UnexpectedException If the command word cannot be understood.
      */
     public AddCommand(String command, String param) throws InvalidDeadline, InvalidEvent, UnexpectedException {
-        setUpLogger();
+        super("AddCommand");
         this.command = command;
         assert (command.equals(COMMAND_TODO_WORD) | command.equals(COMMAND_DEADLINE_WORD) |
                 command.equals(COMMAND_EVENT_WORD)) : "AddCommand: Invalid Add Command";
@@ -87,32 +79,6 @@ public class AddCommand extends Command implements LoggerInterface {
         default:
             throw new UnexpectedException("Adding Task");
         }
-    }
-
-    /**
-     * Sets up logger for AddCommand class.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                assert (new File("apollo.log").createNewFile()) : "Error creating logger";
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-
     }
 
     /**
@@ -173,10 +139,7 @@ public class AddCommand extends Command implements LoggerInterface {
         case COMMAND_TODO_WORD:
             ToDo todo = new ToDo(desc);
             taskList.add(todo);
-            if (todo.getDescription().contains("by")||todo.getDescription().contains("/by")||
-                    todo.getDescription().contains("due")){
-                ui.deadlineSuggestion();
-            }
+            checkForDeadlineTask(ui, todo);
             break;
         case COMMAND_DEADLINE_WORD:
             Deadline deadline = new Deadline(desc, by);
@@ -196,6 +159,19 @@ public class AddCommand extends Command implements LoggerInterface {
         }
     }
 
+    /**
+     * Checks if the user has added a deadline task that is similar to the format of a deadline task.
+     * @param ui    For printing warning message.
+     * @param todo  The task being added.
+     */
+    private static void checkForDeadlineTask(Ui ui, ToDo todo) {
+        if (todo.getDescription().matches(".*\\bby\\b.*")||
+                todo.getDescription().matches(".*(/by|\\s+by)\\b.*")||
+                todo.getDescription().matches(".*\\bdue\\b.*") ||
+                todo.getDescription().matches(".*\\bduedate\\b.*")){
+            ui.deadlineSuggestion();
+        }
+    }
 
 
     /**
@@ -210,8 +186,9 @@ public class AddCommand extends Command implements LoggerInterface {
     private void warnDeadlineClash(Ui ui, TaskList taskList, Calendar calendar, LocalDateTime by) {
         TaskList clashTasks = taskList.getTasksOnDate(by.toLocalDate());
         DayOfWeek day = by.getDayOfWeek();
-        int dayNum = determineDay(day);
-        ArrayList<CalendarModule> clashLessons = calendar.get(dayNum);
+        int dayNum = day.getValue() - 1;
+        int week = getWeekNumber(by.toLocalDate());
+        ArrayList<CalendarModule> clashLessons = calendar.getModulesForDay(week, dayNum);
         taskList.sortTaskByDay(clashTasks);
         ui.printClashingDeadlineMessage(clashTasks, clashLessons);
     }
@@ -253,7 +230,7 @@ public class AddCommand extends Command implements LoggerInterface {
 
         do {
             DayOfWeek currentDayOfWeek = currentDay.getDayOfWeek();
-            int currentDayIndex = determineDay(currentDayOfWeek);
+            int currentDayIndex = currentDayOfWeek.getValue() - 1;
             String currentDayString = currentDay.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             if (isClashingEventModule(calendar.get(currentDayIndex), eventStart, eventEnd, currentDayString)) {
                 ui.printClashingEventModuleMessage();
@@ -276,15 +253,27 @@ public class AddCommand extends Command implements LoggerInterface {
     private boolean isClashingEventModule(ArrayList<CalendarModule> calendarModule, LocalDateTime eventStart,
                                           LocalDateTime eventEnd, String currentDate) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        DateTimeFormatter formatterFull = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        DateTimeFormatter formatterPartial = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (CalendarModule module : calendarModule) {
             if (module.getSchedule() == null) {
                 continue;
             }
+
+            LocalDate date = LocalDate.parse(currentDate, formatterPartial);
+
+            int currentWeek = getWeekNumber(date);
+
+            ArrayList<Integer> weeks = module.getSchedule().getWeeks();
+
+            if (!weeks.contains(currentWeek)) {
+                continue;
+            }
+
             String moduleStartString = currentDate + " " + module.getSchedule().getStartTime();
             String moduleEndString = currentDate + " " + module.getSchedule().getEndTime();
-            LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatter);
-            LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatter);
+            LocalDateTime lessonStart = LocalDateTime.parse(moduleStartString, formatterFull);
+            LocalDateTime lessonEnd = LocalDateTime.parse(moduleEndString, formatterFull);
 
             if (isEventLessonClashing(eventStart, eventEnd, lessonStart, lessonEnd) &&
                     isDuringSemester(eventStart,eventEnd)) {

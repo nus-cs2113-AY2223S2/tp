@@ -31,10 +31,7 @@ import java.lang.reflect.Type;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
@@ -64,37 +61,9 @@ public class Storage implements LoggerInterface {
      * @param filePath Location of the local save file.
      */
     public Storage(String filePath, String moduleDataFilePath) {
+        setUpLogger(logger);
         Storage.filePath = filePath;
         Storage.moduleDataFilePath = moduleDataFilePath;
-        setUpLogger();
-    }
-
-    /**
-     * Sets up logger for Storage class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-
     }
 
     /**
@@ -180,7 +149,7 @@ public class Storage implements LoggerInterface {
         ArrayList<Timetable> timetableList = module.getModuleTimetable();
         if (timetableList != null) {
             for (Timetable timetable : timetableList) {
-                overwrite.write(timetable.getLessonType() + ":" + timetable.getClassnumber() + "|");
+                overwrite.write(timetable.getLessonType() + ":" + timetable.getClassNumber() + "|");
             }
         }
         overwrite.write("\n");
@@ -315,7 +284,7 @@ public class Storage implements LoggerInterface {
 
             for (Timetable timetable: searchModule.getModuleTimetable()) {
                 if (timetable.getLessonType().equals(lessonInfo[0])
-                        && timetable.getClassnumber().equals(lessonInfo[1])) {
+                        && timetable.getClassNumber().equals(lessonInfo[1])) {
 
                     if (!module.getModuleTimetable().contains(timetable)) {
                         module.getModuleTimetable().add(timetable);
