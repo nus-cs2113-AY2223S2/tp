@@ -307,6 +307,10 @@ Displays the progress of and lists tasks that are due this week in To-Do list. P
 percentage (up to 2 decimal places) and a progress bar (where `=` denotes the proportion of tasks completed and `-` 
 denotes the proportion of tasks that are left undone. Called automatically on startup.
 
+- "this week" starts from Monday to Sunday of the current week.
+- For example, if `progress` is used at any time on 06/04/2023 (Thursday), "this week" would include any time within 
+03/04/2023 00:00 (Monday 12:00AM) to 09/04/2023 23:59 (Sunday 11:59PM).
+
 Format: `progress`
 
 Example of usage:
