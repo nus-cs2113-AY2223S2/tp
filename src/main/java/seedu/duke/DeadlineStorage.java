@@ -13,17 +13,24 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class DeadlineStorage implements DatabaseInterface {
-
+    private static DeadlineStorage instance = null;
     private static final String SAVED_DEADLINES_FILE_PATH = "data/deadlines.txt";
     private ArrayList<Deadline> deadlines;
 
-    public DeadlineStorage() {
+    private DeadlineStorage() {
         this.deadlines = new ArrayList<>();
         try {
             initialiseDatabase();
         } catch (IOException e) {
             System.out.println("Initialise Deadlines Failure");
         }
+    }
+
+    public static DeadlineStorage getInstance() {
+        if (instance == null) {
+            instance = new DeadlineStorage();
+        }
+        return instance;
     }
 
     @Override
