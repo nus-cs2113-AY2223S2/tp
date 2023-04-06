@@ -19,11 +19,11 @@ In doing so, the user can better manage his daily calorie gain in order to meet 
 ### Construction of Ui of the program
 Implemented the Ui used for LifeTracker, as well as the Ui for the indivdual commands. The Ui is used to improve the accessibility of the program to any potential users,
 to ulimately make the program easier to use by streamlining the process for the user. The Ui consists of:
-* General Ui
-* Calorie Ui
-* Exercise Ui
-* Weight Ui
-* Example Ui
+* General Ui - Handle the general commands as well as start up and exit of the program
+* Calorie Ui - Handle the Ui for the commands relating to calories
+* Exercise Ui - Handle the Ui for the `exercise` command
+* Weight Ui - Handle the Ui for the commands that involve the weight of the user
+* Example Ui - Handle the Ui for the `examples` command
 
 ## UG/DG
 * Added Documentation for the `filter` and `examples` command
