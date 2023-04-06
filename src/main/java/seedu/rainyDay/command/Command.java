@@ -22,8 +22,8 @@ public abstract class Command {
     public static final String COMMAND_EXPORT = "export";
     public static final String COMMAND_SHORTCUT = "shortcut";
     public static final String COMMAND_SET_BUDGET = "setbudget";
-    public static final String COMMAND_DELETE_SHORTCUT = "shortcut_delete";
-    public static final String COMMAND_VIEW_SHORTCUT = "shortcut_view";
+    public static final String COMMAND_SHORTCUT_DELETE = "shortcut_delete";
+    public static final String COMMAND_SHORTCUT_VIEW = "shortcut_view";
     public static final String COMMAND_IGNORE = "ignore";
     public static final String COMMAND_UNIGNORE = "unignore";
     private static boolean isExit = false;
@@ -39,7 +39,7 @@ public abstract class Command {
                 word.equalsIgnoreCase(COMMAND_EXIT) || word.equalsIgnoreCase(COMMAND_FILTER) ||
                 word.equalsIgnoreCase(COMMAND_EDIT) || word.equalsIgnoreCase(COMMAND_EXPORT) ||
                 word.equalsIgnoreCase(COMMAND_SHORTCUT) || word.equalsIgnoreCase(COMMAND_SET_BUDGET) ||
-                word.equalsIgnoreCase(COMMAND_DELETE_SHORTCUT) || word.equalsIgnoreCase(COMMAND_VIEW_SHORTCUT) ||
+                word.equalsIgnoreCase(COMMAND_SHORTCUT_DELETE) || word.equalsIgnoreCase(COMMAND_SHORTCUT_VIEW) ||
                 word.equalsIgnoreCase(COMMAND_IGNORE) || word.equalsIgnoreCase(COMMAND_UNIGNORE);
     }
 
