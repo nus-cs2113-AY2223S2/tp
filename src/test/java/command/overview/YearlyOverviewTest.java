@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import static common.MessageList.TAB;
 import static common.MessageList.WHITESPACE;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class YearlyOverviewTest {
 
@@ -70,14 +70,14 @@ class YearlyOverviewTest {
                 TAB + BREAKDOWN_TITLE + "\n" +
                 TAB + MONTH_DIVIDER + "\n" +
                 TAB + WHITESPACE + "JANUARY 10.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE +"FEBRUARY 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
+                TAB + WHITESPACE + "FEBRUARY 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
                 TAB + WHITESPACE + "MARCH 2.50 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE +"APRIL 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE +"MAY 7.50 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE +"JUNE 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE +"JULY 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE +"AUGUST 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
-                TAB + WHITESPACE +"SEPTEMBER 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
+                TAB + WHITESPACE + "APRIL 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
+                TAB + WHITESPACE + "MAY 7.50 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
+                TAB + WHITESPACE + "JUNE 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
+                TAB + WHITESPACE + "JULY 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
+                TAB + WHITESPACE + "AUGUST 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
+                TAB + WHITESPACE + "SEPTEMBER 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
                 TAB + WHITESPACE + "OCTOBER 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
                 TAB + WHITESPACE + "NOVEMBER 0.00 SGD\n" + TAB + MONTH_DIVIDER + "\n" +
                 TAB + WHITESPACE + "DECEMBER 0.00 SGD\n" + TAB + MONTH_DIVIDER;
