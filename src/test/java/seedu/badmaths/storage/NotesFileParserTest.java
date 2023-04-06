@@ -1,9 +1,8 @@
-package seedu.badmaths;
+package seedu.badmaths.storage;
 
 import org.junit.jupiter.api.Test;
 import seedu.badmaths.note.Note;
 import seedu.badmaths.note.NotePriority;
-import seedu.badmaths.storage.NotesFileParser;
 
 import java.util.ArrayList;
 
