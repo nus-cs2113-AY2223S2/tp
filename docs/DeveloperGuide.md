@@ -224,7 +224,7 @@ Step 3. `FilterCaloriesCommand` will then retrieve the meals that fit within tha
 
 Step 4. `FilterCaloiresCommand` will then print out the meals that has been filtered based on the lower and upper bound
 
-![filter-calories-command]
+![filter-calories-command](./uml/FilterCaloriesCommand.png)
 
 ### Design considerations:
 
@@ -265,7 +265,7 @@ Step 3. `ExamplesCommand` will retrieve either the examples of `meal` or example
 
 Step 4. The examples of `meal` or `exercise` will then be printed out and displayed for the user
 
-![examples-command] 
+![examples-command](./uml/ExamplesCommand.png)
 
 ### Design considerations:
 
