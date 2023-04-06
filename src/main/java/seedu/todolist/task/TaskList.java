@@ -202,6 +202,10 @@ public class TaskList {
         return getTask(id).setTags(tags);
     }
 
+    public String removeTags(int id, TreeSet<String> tags) throws InvalidIdException {
+        return getTask(id).removeTags(tags);
+    }
+
     public String setDone(int id, boolean isDone) throws InvalidIdException {
         return getTask(id).setDone(isDone);
     }
