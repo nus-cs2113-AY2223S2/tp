@@ -19,6 +19,6 @@ public class Deadline {
 
     @Override
     public String toString() {
-        return task + " //" + dueDate;
+        return task + "//" + dueDate;
     }
 }
