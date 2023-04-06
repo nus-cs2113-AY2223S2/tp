@@ -351,18 +351,35 @@ Test case: add /on dummy /type dummy /foods dummy
 
 Expected: No food is added. Error details are shown in the status message, such as "_dummy_ is not a valid date", "Invalid meal type" or "no food found with _dummy_".
 
-
 ### List or foods in database meals added
 
 Test case: list meals
 
-Expected:
+Expected: A list of meals eaten today would be displayed.
+
+Test case: list foods
+
+Expected: A list of all foods in the databse would be displayed.
+
+Test case: list dummy
+
+Expected: An error message would be displayed.
 
 ### Deleting a meal
 
-Test case: 
+Prerequisite: List all meals eaten using the list command. At least 1 meal in the list.
 
-Expected:
+Test case: delete 1
+
+Expected: First meal is deleted from the list. Details of the deleted meal are shown in the status message. 
+
+Test case: delete 0
+
+Expected: No meal is deleted. Error details shown in the status message.
+
+Other incorrect delete commands to try: delete, delete x, (where x is larger than the list size)
+
+Expected: Similar to previous.
 
 ### Filter foods based on calories
 
