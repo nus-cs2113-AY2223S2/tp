@@ -6,11 +6,7 @@ import seedu.duke.command.EditType;
 import seedu.duke.exceptions.EditFormatException;
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.MissingIngredientInputException;
-import seedu.duke.recipe.Ingredient;
-import seedu.duke.recipe.IngredientList;
-import seedu.duke.recipe.Step;
-import seedu.duke.recipe.StepList;
-import seedu.duke.recipe.RecipeList;
+import seedu.duke.recipe.*;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
@@ -56,6 +52,9 @@ public class Parser {
             break;
         case "add":
             type = CommandType.ADD;
+            break;
+        case "addtorecipe":
+            type = CommandType.ADDTORECIPE;
             break;
         case "view":
             type = CommandType.VIEW;
@@ -263,10 +262,41 @@ public class Parser {
             throw new Exception("error in edit step:\n" + e.getMessage());
         }
     }
-    public static String removeForbiddenChars(String ingredient) {
-        for (String chara : StringLib.FORBIDDEN_CHARS) {
-            ingredient.replaceAll(chara, "");
+    public static String[] parseAddToRecipeDescription(String description) {
+        String[] subDescriptions = description.split("/", 3);
+        String element0 = subDescriptions[0].toLowerCase().split("id")[0].trim();
+        subDescriptions[0] = element0.replace("-","");
+        String element1 = subDescriptions[1].toLowerCase().split("desc")[0].trim();
+        subDescriptions[1] = element1;
+        return subDescriptions;
+    }
+    public static boolean isValidAddToRecipe(String description) {
+        String descLowerCase = description.toLowerCase().trim();
+        if ((descLowerCase.contains("step") ||
+                descLowerCase.contains("ingredient")) &&
+                descLowerCase.contains("id/") &&
+                descLowerCase.contains("desc/") &&
+                !(descLowerCase.contains("step") &&
+                        descLowerCase.contains("ingredient"))) {
+            return true;
+        } else {
+            return false;
         }
-        return ingredient;
+    }
+    public static boolean isDuplicateIngredient(IngredientList ingredientList, String newIngredient) {
+        for (Ingredient ingredient : ingredientList.getList()) {
+            if (ingredient.getName().toLowerCase().equals(newIngredient)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static boolean isDuplicateStep(StepList stepList, String newStep) {
+        for (Step step : stepList.getList()) {
+            if (step.getStepDescription().toLowerCase().equals(newStep)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

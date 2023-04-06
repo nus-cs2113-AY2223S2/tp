@@ -42,6 +42,67 @@ Got it. I've added this recipe:
 Now you have 1 recipes in the list.
 
 __________________________________________________________
+The ingredient has been successfully added to the ingredient list!
+__________________________________________________________
+Description of ingredient cannot be empty!
+__________________________________________________________
+OOPS!!!
+Looks like the description of the command is invalid!
+To add elements to the recipe, please follow the following layout:
+
+addtorecipe -[step/ingredient] id/[index] desc/[description of step/ingredient]
+__________________________________________________________
+There are 4 steps in the list
+1. chop beef
+2. add potatoes
+3. add carrots
+4. cook 5 minutes
+Enter step index below:
+
+Please enter a valid step index!
+Valid range: 1 to 5
+Enter step index below:
+
+Please enter a valid step index!
+Valid range: 1 to 5
+Enter step index below:
+The step has been successfully added to the step list!
+__________________________________________________________
+There are 5 steps in the list
+1. chop beef
+2. suggon deez
+3. add potatoes
+4. add carrots
+5. cook 5 minutes
+Enter step index below:
+
+Please enter a valid step index!
+Valid range: 1 to 6
+Enter step index below:
+The step was not added to the step list!
+__________________________________________________________
+Description of step cannot be empty!
+__________________________________________________________
+OOPS!!!
+Looks like the description of the command is invalid!
+To add elements to the recipe, please follow the following layout:
+
+addtorecipe -[step/ingredient] id/[index] desc/[description of step/ingredient]
+__________________________________________________________
+
+Error in adding recipe!
+Exception occurred: The range you have entered for the index is invalid!
+
+Valid Range: 1 to 1
+
+__________________________________________________________
+
+Error in adding recipe!
+Exception occurred: The range you have entered for the index is invalid!
+
+Valid Range: 1 to 1
+
+__________________________________________________________
 
 Please enter the description of step 1:
 

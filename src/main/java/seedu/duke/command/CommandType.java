@@ -5,6 +5,7 @@ package seedu.duke.command;
  *  <p></p>
  *  {@link #LIST}
  *  {@link #ADD}
+ *  {@link #ADDTORECIPE}
  *  {@link #VIEW}
  *  {@link #DELETE}
  *  {@link #HELP}
@@ -12,7 +13,8 @@ package seedu.duke.command;
  *  {@link #EDITSTEP}
  *  {@link #EDITINGREDIENT}
  *  {@link #EDIT}
- *  {@link #FIND}
+ *  {@link #FINDNAME}
+ *  {@link #FINDTAG}
  *  {@link #EXIT}
  *  {@link #UNKNOWN}
  */
@@ -25,6 +27,10 @@ public enum CommandType {
      * Adds a recipe to the recipe list.
      */
     ADD,
+    /**
+     * Adds an element (step or ingredient) to a recipe.
+     */
+    ADDTORECIPE,
     /**
      * Displays a particular recipe in the recipe list.
      */

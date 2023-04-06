@@ -39,7 +39,7 @@ public class StepList {
      * @param index - position to be added. Current step object at this position is
      *              shifted towards the back.
      */
-    private void addStep(Step step, int index) {
+    public void addStep(Step step, int index) {
         stepList.add(index, step);
         currStepNumber++;
         assert (currStepNumber == stepList.size());

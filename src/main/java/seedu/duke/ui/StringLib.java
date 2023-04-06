@@ -158,4 +158,18 @@ public interface StringLib {
     String[] FORBIDDEN_CHARS = {"!","@","#","$","%","&","*","(",")","+",",",
                                 ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};
     String SAVE_SEPARATOR = "#######";
+    String INVALID_ADD_TO_RECIPE_DESCRIPTION = "OOPS!!!\n" +
+            "Looks like the description of the command is invalid!\n" +
+            "To add elements to the recipe, please follow the following layout:\n" +
+            "\naddtorecipe -[step/ingredient] id/[index] desc/[description of step/ingredient]";
+    String INDEX_REQUEST = "Enter step index below:";
+    String DUPLICATE_INGREDIENT_ERROR = "The ingredient you wish to add is already on " +
+                                        "the ingredient list and hence cannot be added.";
+    String DUPLICATE_STEP_ERROR = "The step you wish to add is already on " +
+                                    "the step list and hence cannot be added.";
+    String STEP_ADD_SUCCESS = "The step has been successfully added to the step list!";
+    String INGREDIENT_ADD_SUCCESS = "The ingredient has been successfully added to the ingredient list!";
+    String EMPTY_STEP_DESCRIPTION_MESSAGE = "Description of step cannot be empty!";
+    String EMPTY_INGREDIENT_DESCRIPTION_MESSAGE = "Description of ingredient cannot be empty!";
+    String QUIT_MESSAGE = "The step was not added to the step list!";
 }

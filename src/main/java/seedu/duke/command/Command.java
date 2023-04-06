@@ -4,11 +4,9 @@ import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.parser.Parser;
-import seedu.duke.recipe.IngredientList;
-import seedu.duke.recipe.Recipe;
-import seedu.duke.recipe.RecipeList;
-import seedu.duke.recipe.StepList;
+import seedu.duke.recipe.*;
 import seedu.duke.storage.Storage;
+import seedu.duke.ui.IntLib;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
@@ -84,6 +82,68 @@ public class Command {
                 Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showAddingRecipeErrorMessage(e);
+            }
+            break;
+        case ADDTORECIPE:
+            try {
+                if (fullDescription.isEmpty()) {
+                    throw new IncompleteInputException("The description of " + type + " cannot be empty.\n");
+                }
+                if (!Parser.isValidAddToRecipe(fullDescription)) {
+                    ui.showInvalidAddToRecipeDescription();
+                    break;
+                }
+                String[] parsed = Parser.parseAddToRecipeDescription(fullDescription);
+                if (parsed.length != 3) {
+                    ui.showInvalidAddToRecipeDescription();
+                    break;
+                }
+                String elementType = parsed[0];
+                String id = parsed[1];
+                String description = parsed[2];
+                if (description.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("step")) {
+                    ui.showEmptyStepDescription();
+                    break;
+                }
+                if (description.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("ingredient")) {
+                    ui.showEmptyIngredientDescription();
+                    break;
+                }
+                Recipe recipeToAddTo = recipeList.viewRecipe(id);
+                int index;
+                switch (elementType) {
+                case "step":
+                    StepList stepListToAddTo = recipeToAddTo.getStepList();
+                    if (Parser.isDuplicateStep(stepListToAddTo, description)) {
+                        ui.showDuplicateStep();
+                        break;
+                    }
+                    stepListToAddTo.showFullStepList();
+                    int maxStep = stepListToAddTo.getCurrStepNumber();
+                    index = ui.getIndex(maxStep);
+                    if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
+                        ui.showQuitMessage();
+                        break;
+                    }
+                    stepListToAddTo.addStep(new Step(description), index);
+                    ui.showStepAdded();
+                    Storage.writeSavedFile();
+                    break;
+                case "ingredient":
+                    IngredientList ingredientListToAddTo = recipeToAddTo.getIngredientList();
+                    if (Parser.isDuplicateIngredient(ingredientListToAddTo, description)){
+                        ui.showDuplicateIngredient();
+                        break;
+                    } else {
+                        int maxNum = ingredientListToAddTo.getCurrIngredientNumber();
+                        ingredientListToAddTo.addIngredient(new Ingredient(description), maxNum);
+                        ui.showIngredientAdded();
+                        Storage.writeSavedFile();
+                    }
+                    break;
+                }
+            } catch (Exception e) {
+                ui.showAddingRecipeElementErrorMessage(e);
             }
             break;
         case DELETE:

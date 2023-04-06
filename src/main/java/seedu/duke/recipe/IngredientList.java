@@ -60,7 +60,7 @@ public class IngredientList {
      * @param ingredientIndex - position to be added. Current Ingredient at this position is
      *              shifted towards the back.
      */
-    private void addIngredient(Ingredient item, int ingredientIndex) {
+    public void addIngredient(Ingredient item, int ingredientIndex) {
         list.add(ingredientIndex, item);
         currIngredientNumber++;
         assert (currIngredientNumber == list.size());
