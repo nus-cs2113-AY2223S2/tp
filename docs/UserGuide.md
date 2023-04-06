@@ -1,5 +1,24 @@
 # User Guide
 
+<!-- TOC -->
+* [User Guide](#user-guide)
+  * [Introduction](#introduction)
+  * [Quick Start](#quick-start)
+  * [Features](#features)
+    * [Get helpful instruction: `help`](#get-helpful-instruction--help)
+    * [Adding an expense: `add`](#adding-an-expense--add)
+    * [Listing all expenses: `list`](#listing-all-expenses--list)
+    * [Deleting an expense entry: `delete`](#deleting-an-expense-entry--delete)
+    * [Calculating total expenses: `total`](#calculating-total-expenses--total)
+    * [Sorting all current expenses: `sort`](#sorting-all-current-expenses--sort)
+    * [Obtaining expenses: `category`](#obtaining-expenses--category)
+    * [Finding expenses: `find`](#finding-expenses--find)
+    * [Generating overview: `overview`](#generating-overview--overview)
+    * [Exiting the program: `exit`](#exiting-the-program--exit)
+  * [FAQ](#faq)
+  * [Command Summary](#command-summary)
+<!-- TOC -->
+
 ## Introduction
 
 Our Expense Tracker CLI software ("ET" for short) allows users to create their own bookmakers and helps
@@ -309,7 +328,15 @@ Example of usage:
 
 ## Command Summary
 
-* Add expense `amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_DESCRIPTION] [cur/CURRENCY]`
-* List all expenses `list`
-* Delete entry X in list `delete X`
-* List total `total`
+| Action                      | Command                                                                       |
+|-----------------------------|-------------------------------------------------------------------------------|
+| Add an expense              | `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRENCY]` |
+| Delete an expense           | `delete INDEX`                                                                |
+| List all expenses           | `list`                                                                        |
+| Calculate total expenditure | `total`                                                                       |
+| Sort                        | sort by category: `sort C`<br/>sort by date: `sort D`                         |
+| View expenses by category   | `category CATEGORY`                                                           |
+| Overview                    | monthly overview: `overview MONTH YEAR`<br/>yearly overview: `overview YEAR`  |
+| Find expenses               | `find KEYWORD`                                                                |
+| Exit ET                     | `exit`                                                                        |
+
