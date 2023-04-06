@@ -13,6 +13,7 @@ Hello! Welcome to
 ------------------------------------------------------------
 Hello! I am LifeTracker, a program to aid you in keeping fit!
 
+Please enter command 'help' if you require assistance.
 ------------------------------------------------------------
 
 ------------------------------------------------------------
