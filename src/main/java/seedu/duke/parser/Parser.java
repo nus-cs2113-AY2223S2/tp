@@ -75,8 +75,11 @@ public interface Parser {
             String contactEmail = input.substring(indexOfContactEmail + 2).trim();
 
             //Multiple additions are not allowed.
-            if(!checkMultipleAddition(input)){
+            if(input.indexOf("n/") != input.lastIndexOf("n/")){
                 ui.multipleAdditionErrorMessage();
+                throw new WrongFormatException();
+            } else if(!checkMultipleAddition(input)){
+                ui.multipleInformationErrorMessage();
                 throw new WrongFormatException();
             }
             //Empty company name is not allowed.
@@ -239,9 +242,7 @@ public interface Parser {
     }
 
     private static boolean checkMultipleAddition(String input){
-        if(input.indexOf("n/") != input.lastIndexOf("n/")){
-            return false;
-        } else if(input.indexOf("i/") != input.lastIndexOf("i/") || input.indexOf("c/") != input.lastIndexOf("c/")
+        if(input.indexOf("i/") != input.lastIndexOf("i/") || input.indexOf("c/") != input.lastIndexOf("c/")
                 || input.indexOf("e/") != input.lastIndexOf("e/")){
             return false;
         }
