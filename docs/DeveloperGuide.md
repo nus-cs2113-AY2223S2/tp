@@ -253,6 +253,40 @@ Our product targets students who would like to save money on buying or ordering 
 
 ### Use Cases
 
+**Use Case #1: Make a Recipe** <br>
+**MSS**
+1. User requests to list possible recipes to make
+2. MealCompanion shows list of possible recipes using the current ingredients list of the user
+3. User requests to make a specific recipe from the list
+4. MealCompanion makes this recipe and removes all relevant ingredients from the ingredients list
+<br/><br/>
+   Use case ends.
+
+**Extensions** <br>
+* 2a. The list is empty. 
+  <br/><br/>
+  Use case ends.
+   <br/><br/>
+* 3a. The given index is invalid.
+  * MealCompanion shows an error message.
+  <br/><br/>
+  Use case resumes at step 2.
+
+**Use Case #2: See Missing Ingredients for Recipe:**
+**MSS**
+1. User requests to list all recipes
+2. MealCompanion shows list of all recipes
+3. User requests to see missing ingredients of a specific recipe from the list
+4. MealCompanion shows list of ingredients in the recipe that are not in the ingredients list
+   <br/><br/>
+   Use case ends.
+
+**Extensions** <br>
+* 3a. The given index is invalid.
+   * MealCompanion shows an error message.
+     <br/><br/>
+     Use case resumes at step 2.
+
 
 ###### [Back to table of contents](#table-of-contents)
 
@@ -260,16 +294,50 @@ Our product targets students who would like to save money on buying or ordering 
 
 {Give non-functional requirements}
 
+1. Should work on any mainstream OS as long as it has Java 11 or above installed.
+2. Should respond to a command within a second.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user should be able to predict what the commands do by their names.
+
 ###### [Back to table of contents](#table-of-contents)
 
 ## Glossary
 
 * *glossary item* - Definition
+* **Mainstream OS:** Windows, Linux, Unix, OS-X
 
 ###### [Back to table of contents](#table-of-contents)
 
 ## Appendix: Instructions for manual testing
 
+Given below are instructions to test the app manually.
+
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+### Launch and Shutdown
+
+1. Initial Launch
+   * Download the jar file and copy into an empty folder.
+
+### Make a Recipe
+
+1. Prerequisites: List all possible recipes using the `recipes list` command. Recipe of index `1`  is in the list.
+<br/><br/>
+2. Test Case: `make 1`
+Expected: All ingredients needed to make the recipe is removed from the ingredients list. User is informed of each ingredient that is removed.
+<br/><br/>
+3. Test Case: `make 0`
+Expected: Error message is shown and no changes are made to the ingredients list.
+<br/><br/>
+4. Other incorrect delete commands to try: `delete`, `delete abc`, `delete x`, `...` (where x is a large integer) <br>
+Expected: Similar to previous.
+<br/><br/>
+
+
+### Saving Data
+1. Dealing with corrupted data file
+   * To simulate a corrupted data file, ...(to be completed) <br>
+   Expected: MealCompanion to throw error message notifying users of corrupted data file.
+2. 
 
 ###### [Back to the top](#developer-guide)

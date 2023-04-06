@@ -24,7 +24,8 @@ public class RecipePossibleCommand extends RecipeCommand {
             RecipeList recipes = mealCompanionSession.getRecipes();
             RecipeList possibleRecipes = new RecipeList();
             for (Recipe recipe : recipes.getRecipes()) {
-                if (canMakeRecipe(recipe, fridgeIngredients, mealCompanionSession.getAllergens())) {
+                if (canMakeRecipe(recipe, fridgeIngredients)
+                        && !hasAllergen(recipe, mealCompanionSession.getAllergens())) {
                     possibleRecipes.add(recipe);
                 }
             }
@@ -41,7 +42,7 @@ public class RecipePossibleCommand extends RecipeCommand {
                 mealCompanionSession.getUi().printMessage(Integer.toString(index + 1) + ". " + recipeName);
             }
         } catch (MealCompanionException e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+            mealCompanionSession.getUi().printMessage(e.getMessage());
         }
     }
 }

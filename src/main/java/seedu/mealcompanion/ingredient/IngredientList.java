@@ -69,6 +69,10 @@ public class IngredientList {
     }
 
     //@@author ngyida
+    /**
+     * Get a formatted string of ingredients with based-1 indexes.
+     * @return string of ingredients
+     */
     @Override
     public String toString() {
         StringBuilder ingredientListDetails = new StringBuilder();
