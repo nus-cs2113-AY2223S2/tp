@@ -191,7 +191,7 @@ public class Parser {
         String[] information = new String[7];
         Arrays.fill(information, "");
 
-        addModuleFlag =  extractFields(duplicity, information, details, addModuleFlag);
+        isModuleFlag =  extractFields(duplicity, information, details, isModuleFlag);
 
         addFormatChecker(information);
 
