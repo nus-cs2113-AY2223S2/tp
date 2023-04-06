@@ -19,6 +19,7 @@ public class List {
     public  boolean isInvalidTodo(String todo) {
         return todo.equals("Invalid todo");
     }
+
     public  boolean isAnInt(String todo) {
         try {
             Integer.parseInt(todo);

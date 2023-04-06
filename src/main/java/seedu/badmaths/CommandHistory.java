@@ -19,6 +19,6 @@ public class CommandHistory {
         for (String command : historyCommand) {
             System.out.println(command);
         }
-
+        System.out.println();
     }
 }
