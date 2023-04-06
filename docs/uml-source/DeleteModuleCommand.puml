@@ -50,6 +50,9 @@ alt args.length == 3
     activate Ui
     Ui --> delmod
     deactivate Ui
+
+    deactivate delmod
+
 else
     delmod -> ModuleList : remove(module)
     activate ModuleList
@@ -63,7 +66,6 @@ else
 
 end
 
-deactivate delmod
 destroy Ui
 
 delmod --> Apollo
