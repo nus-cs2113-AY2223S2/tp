@@ -39,7 +39,7 @@ To list unconfirmed attendees, type:
                     list unconfirmed
  
 To add a company, type:
-        add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>
+                    add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>
  
 To delete company, type:
                     delete <INDEX>
