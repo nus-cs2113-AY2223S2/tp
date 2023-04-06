@@ -1,6 +1,7 @@
 package seedu.todolist.model;
 
 import seedu.todolist.constants.Formats;
+import seedu.todolist.constants.Priority;
 import seedu.todolist.exception.InvalidIdException;
 
 import java.time.LocalDateTime;
@@ -41,7 +42,7 @@ public class TaskList {
     }
 
     public String addTask(String description, LocalDateTime deadline, String email, TreeSet<String> tags,
-                          int repeatDuration, int priority) {
+                          int repeatDuration, Priority priority) {
         Task task = new Task(++count, description, deadline, email, tags, repeatDuration, priority);
         tasks.put(count, task);
         return task.toString();
@@ -127,9 +128,9 @@ public class TaskList {
                 .collect(toList());
     }
 
-    public ArrayList<Task> getTaskWithPriority(Integer priority) {
+    public ArrayList<Task> getTaskWithPriority(Priority priority) {
         return (ArrayList<Task>) tasks.values().stream()
-                .filter(t -> t.getPriority() == priority)
+                //.filter(t -> t.getPriority() == priority)
                 .collect(toList());
     }
 
@@ -177,7 +178,7 @@ public class TaskList {
 
     public HashSet<Integer> getAllPrioritiesInTaskList() {
         HashSet<Integer> priorities = new HashSet<>();
-        tasks.values().forEach(task -> priorities.add(task.getPriority()));
+        //tasks.values().forEach(task -> priorities.add(task.getPriority()));
         return priorities;
     }
 
@@ -189,7 +190,7 @@ public class TaskList {
         return getTask(id).setEmail(email);
     }
 
-    public String setPriority(int id, int priority) throws InvalidIdException {
+    public String setPriority(int id, Priority priority) throws InvalidIdException {
         return getTask(id).setPriority(priority);
     }
 
@@ -209,6 +210,7 @@ public class TaskList {
     public String setRepeatDuration(int id, int repeatDuration) throws InvalidIdException {
         return getTask(id).setRepeatDuration(repeatDuration);
     }
+
     public void checkRepeatingTasks(Config config) {
         ArrayList<Task> tasksToBeAdded = new ArrayList<>();
         for (Task task : tasks.values()) {

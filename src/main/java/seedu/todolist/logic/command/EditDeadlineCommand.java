@@ -29,7 +29,6 @@ public class EditDeadlineCommand extends Command  {
         } else if (!args.containsKey(Flags.EDIT_DELETE)) {
             throw new InvalidEditException();
         }
-        // assert id >= 0 : "Invalid id contained in variable";
     }
 
     @Override

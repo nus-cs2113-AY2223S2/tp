@@ -17,7 +17,6 @@ public class EditDescriptionCommand extends Command {
     private HashSet<Integer> idHashSet;
     private String description;
 
-    // probably need to read a few descriptions instead of just one
     public EditDescriptionCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_DESCRIPTION));
         description = args.get(Flags.EDIT);

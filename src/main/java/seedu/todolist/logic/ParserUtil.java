@@ -1,6 +1,7 @@
 package seedu.todolist.logic;
 
 import seedu.todolist.constants.Formats;
+import seedu.todolist.constants.Priority;
 import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidDurationException;
 import seedu.todolist.exception.InvalidEmailFormatException;
@@ -34,19 +35,17 @@ public class ParserUtil {
      * @throws InvalidIdException If any id cannot be parsed to an integer.
      */
     public static HashSet<Integer> parseId(String idList) throws InvalidIdException {
-        int id = 0;
-        try {
-            HashSet<Integer> idHashSet = new HashSet<Integer>();
-            String[] arrayOfIds = idList.split(" ");
-            for (String idString : arrayOfIds) {
-                id = Integer.parseInt(idString);
+        HashSet<Integer> idHashSet = new HashSet<>();
+        for (String idString : idList.split(" ")) {
+            try {
+                int id = Integer.parseInt(idString);
                 assert id >= 0 : "Parser should catch any negative values";
                 idHashSet.add(id);
+            } catch (NumberFormatException e) {
+                throw new InvalidIdException(idString);
             }
-            return idHashSet;
-        } catch (NumberFormatException e) {
-            throw new InvalidIdException(id);
         }
+        return idHashSet;
     }
 
     //@@author RuiShengGit
@@ -58,17 +57,23 @@ public class ParserUtil {
      * @return The priority, as an integer.
      * @throws InvalidPriorityException If the priority cannot be parsed to an integer, or if it is not from 1 to 3.
      */
-    public static int parsePriority(String priorityString) throws InvalidPriorityException {
+    public static Priority parsePriority(String priorityString) throws InvalidPriorityException {
         if (priorityString == null) {
-            return 1;
+            return Priority.NONE;
         }
 
         try {
             int priority = Integer.parseInt(priorityString);
-            if (priority < 1 || priority > 3) {
+            switch (priority) {
+            case 1:
+                return Priority.LOW;
+            case 2:
+                return Priority.MEDIUM;
+            case 3:
+                return Priority.HIGH;
+            default:
                 throw new InvalidPriorityException(priorityString);
             }
-            return priority;
         } catch (NumberFormatException e) {
             throw new InvalidPriorityException(priorityString);
         }
@@ -176,9 +181,9 @@ public class ParserUtil {
      * @return The frequency, as an integer, if it was not null, null otherwise.
      * @throws InvalidFrequencyException If the priority cannot be parsed to an integer.
      */
-    public static Integer parseFrequency(String frequency) throws InvalidFrequencyException {
+    public static int parseFrequency(String frequency) throws InvalidFrequencyException {
         if (frequency == null) {
-            return null;
+            return -1;
         }
 
         try {

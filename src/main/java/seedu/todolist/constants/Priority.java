@@ -1,3 +1,4 @@
+//@@author RuiShengGit
 package seedu.todolist.constants;
 
 public enum Priority {
@@ -6,13 +7,13 @@ public enum Priority {
     LOW("Low"),
     NONE("None");
 
-    private final String PRIORITY_LEVEL;
+    private final String name;
 
-    Priority(String message) {
-        this.PRIORITY_LEVEL = message;
+    Priority(String name) {
+        this.name = name;
     }
 
     public String toString() {
-        return PRIORITY_LEVEL;
+        return name;
     }
 }

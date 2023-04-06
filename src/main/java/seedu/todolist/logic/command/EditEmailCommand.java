@@ -19,7 +19,6 @@ public class EditEmailCommand extends Command {
     private HashSet<Integer> idHashSet;
     private String email;
 
-    // probably need to read a bunch of emails too
     public EditEmailCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_EMAIL));
         if (args.containsKey(Flags.EDIT)) {

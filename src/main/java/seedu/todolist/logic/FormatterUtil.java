@@ -10,19 +10,6 @@ public class FormatterUtil {
     private FormatterUtil() {
     }
 
-    public static String getPriorityAsString(int priority) {
-        switch (priority) {
-        case 1:
-            return Priority.LOW.toString();
-        case 2:
-            return Priority.MEDIUM.toString();
-        case 3:
-            return Priority.HIGH.toString();
-        default:
-            return Priority.NONE.toString();
-        }
-    }
-
     public static String getDeadlineAsString(LocalDateTime deadline) {
         return deadline.format(Formats.TIME_OUT_UI_FORMATTER);
     }

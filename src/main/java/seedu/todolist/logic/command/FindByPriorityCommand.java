@@ -1,6 +1,7 @@
 package seedu.todolist.logic.command;
 //@@author KedrianLoh
 import seedu.todolist.constants.Flags;
+import seedu.todolist.constants.Priority;
 import seedu.todolist.exception.InvalidFindException;
 import seedu.todolist.exception.InvalidPriorityException;
 import seedu.todolist.logic.ParserUtil;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 public class FindByPriorityCommand extends Command{
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_FIND_PRIORITY};
 
-    private int priority;
+    private Priority priority;
 
     public FindByPriorityCommand(HashMap<Flags, String> args) throws InvalidPriorityException {
         if (args.containsKey(Flags.COMMAND_FIND_PRIORITY)) {

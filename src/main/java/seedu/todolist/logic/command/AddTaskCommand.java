@@ -1,5 +1,6 @@
 package seedu.todolist.logic.command;
 
+import seedu.todolist.constants.Priority;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.logic.ParserUtil;
@@ -23,7 +24,7 @@ public class AddTaskCommand extends Command {
     private LocalDateTime deadline;
     private TreeSet<String> tags;
     private int repeatDuration;
-    private int priority;
+    private Priority priority;
 
     /**
      * Constructs an AddTaskCommand object by parsing the provided arguments.

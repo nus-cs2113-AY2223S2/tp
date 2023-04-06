@@ -1,6 +1,7 @@
 package seedu.todolist.model;
 
 import seedu.todolist.constants.Formats;
+import seedu.todolist.constants.Priority;
 import seedu.todolist.logic.FormatterUtil;
 
 import java.time.LocalDate;
@@ -13,7 +14,7 @@ import java.util.function.Predicate;
 public class Task {
     //@@author KedrianLoh
     /**
-     * Comparator for the task class, used for sorting the task list by deadline.
+     * Comparator for sorting the task list by deadline, with older deadlines first.
      * Tasks without deadlines are placed at the bottom.
      */
     public static Comparator<Task> deadlineComparator = (task1, task2) -> {
@@ -28,31 +29,24 @@ public class Task {
 
     //@@author clement559
     /**
-     * Comparator for the task class, used for sorting the task list by deadline.
-     * Tasks without deadlines are placed at the bottom.
+     * Comparator for sorting the task list by priority, with higher priority first.
+     * Tasks without priority are placed at the bottom.
      */
-    public static Comparator<Task> priorityComparator = (task1, task2) -> {
-        if (task1.priority > task2.priority) {
-            return -1;
-        } else if (task1.priority == task2.priority) {
-            return 0;
-        } else {
-            return 1;
-        }
-    };
+    // Uses enum ordinal to sort
+    public static Comparator<Task> priorityComparator = Comparator.comparing(task -> task.priority);
 
     //@@author jeromeongithub
     int id;
+    private boolean isDone = false;
     private String description;
     private String email;
     private LocalDateTime deadline;
-    private TreeSet<String> tags;
-    private boolean isDone = false;
     private int repeatDuration;
-    private int priority;
+    private TreeSet<String> tags;
+    private Priority priority;
 
     public Task(int id, String description, LocalDateTime deadline, String email, TreeSet<String> tags,
-                int repeatDuration, int priority) {
+                int repeatDuration, Priority priority) {
         this.id = id;
         this.description = description;
         this.email = email;
@@ -76,7 +70,7 @@ public class Task {
         StringJoiner infoString = new StringJoiner(System.lineSeparator());
         infoString.add("Description: " + description);
         infoString.add("Completed: " + (isDone ? "Yes" : (isDue() ? "Overdue" : "No")));
-        infoString.add("Priority: " + FormatterUtil.getPriorityAsString(priority));
+        infoString.add("Priority: " + priority.toString());
         if (deadline != null) {
             infoString.add("Due: " + FormatterUtil.getDeadlineAsString(deadline));
         }
@@ -96,6 +90,10 @@ public class Task {
         return id;
     }
 
+    public boolean isDone() {
+        return this.isDone;
+    }
+
     public String getDescription() {
         return this.description;
     }
@@ -112,15 +110,11 @@ public class Task {
         return tags;
     }
 
-    public boolean isDone() {
-        return this.isDone;
-    }
-
     public int getRepeatDuration() {
         return this.repeatDuration;
     }
 
-    public int getPriority() {
+    public Priority getPriority() {
         return this.priority;
     }
 
@@ -154,7 +148,7 @@ public class Task {
         return toString();
     }
 
-    public String setPriority(int priority) {
+    public String setPriority(Priority priority) {
         this.priority = priority;
         return toString();
     }
