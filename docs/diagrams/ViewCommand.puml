@@ -34,5 +34,7 @@ loop sizeOfArrayList
 
 ViewCommand -->[ : null
 deactivate ViewCommand
-
+ViewCommand <-[hidden]- ViewCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy ViewCommand
 @enduml

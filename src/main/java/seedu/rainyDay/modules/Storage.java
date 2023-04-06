@@ -102,16 +102,20 @@ public class Storage {
         if (!savedData.has("shortcutCommands")) {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_SHORTCUT_COMMANDS.toString());
         }
-        if (!savedData.has("budgetGoal") || savedData.get("budgetGoal").getAsDouble() < 0) {
+        if (!savedData.has("budgetGoal")) {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_BUDGET_GOAL.toString());
         }
+        double budgetGoal = savedData.get("budgetGoal").getAsDouble();
+        if (budgetGoal < 0 || budgetGoal > 21474836.47) {
+            throw new RainyDayException(ErrorMessage.INVALID_SAVED_BUDGET_GOAL.toString());
+        }
+
         JsonObject financialReport = savedData.getAsJsonObject("financialReport");
         checkValidFinancialReport(financialReport);
 
         JsonObject shortcutCommands = savedData.getAsJsonObject("shortcutCommands");
         checkValidShortcutCommands(shortcutCommands);
     }
-
 
     /**
      * Checks if the financialReport in the UserData is valid.
@@ -123,7 +127,7 @@ public class Storage {
         if (!financialReport.has("financialStatements")) {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_FINANCIAL_STATEMENTS.toString());
         }
-        
+
         if (!financialReport.has("reportOwner")) {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_REPORT_OWNER.toString());
         }
@@ -167,7 +171,7 @@ public class Storage {
                 throw new RainyDayException(ErrorMessage.INVALID_SAVED_VALUE.toString());
             }
             double value = financialStatement.get("value").getAsDouble();
-            if (value <= 0) {
+            if (value <= 0 || value > 21474836.47) {
                 throw new RainyDayException(ErrorMessage.INVALID_SAVED_VALUE.toString());
             }
 
