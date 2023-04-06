@@ -12,13 +12,13 @@ import java.util.regex.Pattern;
 
 //CLAIM THIS CODE
 public class ParseAdd {
-    private static final Logger logger = Logger.getLogger(Parser.class.getName());
-
     public static String direction;
     public static String description;
     public static String category = "miscellaneous";
     public static double amount = -1.0;
     public static LocalDate date = LocalDate.now();
+
+    private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
     public static Command addStatement(String userInput) throws RainyDayException {
         try {

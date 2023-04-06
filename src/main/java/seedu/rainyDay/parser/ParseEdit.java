@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//CLAIM THIS CODE
+//@@author ChongQiRong
 public class ParseEdit {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
