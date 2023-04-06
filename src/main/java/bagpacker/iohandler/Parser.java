@@ -55,6 +55,11 @@ public class Parser {
         return fullInput;
     }
 
+    /**
+     * Takes in user's input and parses it into the relevant commands and arguments to create an object of type Command:
+     *      {@link Command}
+     * @return command to execute in bagPacker
+     */
     public static Command parse() {
         String inputLine = "";
         while (inputLine.isEmpty()) {
@@ -253,6 +258,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the relevant components of an add command from the user input
+     * @return String array of quantity and itemName
+     * @throws InvalidVariablesException not enough variables
+     */
     public static String[] getAddVariables() throws InvalidVariablesException, StringIndexOutOfBoundsException {
         String[] inputVariables = new String[3];
         String inputWOCommand = fullInput.substring(3).trim();

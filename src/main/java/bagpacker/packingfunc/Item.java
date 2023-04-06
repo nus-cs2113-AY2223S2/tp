@@ -12,7 +12,7 @@ public class Item {
     private int totalQuantity;
 
     /**
-     * Constructor of an Item class used in @AddCommand
+     * Constructor of an Item class used after set-up of program
      * @param quantity no. of items user wants to pack
      * @param description name of the item
      */
@@ -23,7 +23,7 @@ public class Item {
     }
 
     /**
-     * Constructor of an Item class used in @Storage
+     * Constructor of an Item class used during set-up of program
      * @param totalQuantity total no. of items needed to pack shown in save file
      * @param packedQuantity no. of items currently packed shown in the save file
      * @param description name of item to be packed shown in save file
@@ -34,6 +34,10 @@ public class Item {
         this.totalQuantity = totalQuantity;
     }
 
+    /**
+     * Returns whether the item is packed by comparing packedQuantity to totalQuantity
+     * @return true if item is packed, false otherwise
+     */
     public boolean checkFullyPacked(){
         boolean isFullyPacked = totalQuantity == packedQuantity;
         return isFullyPacked;
@@ -60,10 +64,14 @@ public class Item {
 
     public void setPacked(int quantity) {
         this.packedQuantity += quantity;
+        assert (packedQuantity <= totalQuantity) :
+                "The packed quantity of an item is greater than its total quantity.";
     }
 
     public void setUnpacked(int quantity) {
         this.packedQuantity -= quantity;
+        assert (packedQuantity >= 0) :
+                "The packed quantity of an item is smaller than 0.";
     }
 
     public String toString() {
