@@ -1,10 +1,10 @@
 @startuml
 'https://plantuml.com/class-diagram
-skinparam classAttributeIconSize 0
-skinparam maxMessageSize 150
+'skinparam classAttributeIconSize 0
 
 abstract class "{abstract}\nCommand" as Command {
 + isExit: Boolean
+# logger: Logger
 + execute(taskList: TaskList, ui: Ui, storage: Storage, moduleList: ModuleList,
 allModules: ModuleList, calendar Calendar): void
 # setExit(): void
@@ -12,20 +12,52 @@ allModules: ModuleList, calendar Calendar): void
 }
 
 class AddCommand {
-- logger: Logger
+# command: String
+# desc: String
+# by: String
+# from: String
+# to: String
+__
++ AddCommand(command: String, param: String)
+- addTask(taskList: TaskList, calendar: Calendar, ui: Ui): void
+- warnDeadlineClash(ui: Ui, taskList: TaskList,
+calendar: Calendar, by: LocalDateTime): void
+- isClashingEvent(taskList: TaskList,
+from: LocalDateTime, to: LocalDateTime): boolean
+- warnEventModuleClash(ui: Ui, calendar: Calendar,
+event Event): void
+- isClashingEventModule(calendarModule: ArrayList<CalendarModule>,
+eventStart: LocalDateTime, eventEnd: LocalDateTime, currentDate: String): boolean
+- isDuringSemester(eventStart: LocalDateTime,
+eventEnd: LocalDateTime): boolean
+- isEventLessonClashing(eventStart: LocalDateTime, eventEnd: LocalDateTime,
+lessonStart: LocalDateTime, lessonEnd: LocalDateTime): boolean
 }
 AddCommand <|-- Command
 
-class DateCommand
+class DateCommand {
+date: LocalDate
+datePattern: DateTimeFormatter
++ DateCommand(dateString: String)
+}
 DateCommand <|-- Command
 
-class FindCommand
+class FindCommand{
+# keyword: String
++ FindCommand(keyword: String)
+}
 FindCommand <|-- Command
 
 class ListCommand
 ListCommand <|-- Command
 
-class ModifyCommand
+class ModifyCommand{
+# command: String
+# idx: int
++ModifyCommand(command: String, param: String, size: int)
+-markTask(taskList: TaskList, ui: Ui): void
+-unmarkTask(taskList: TaskList, ui: Ui): void
+}
 ModifyCommand <|-- Command
 
 class WeekCommand

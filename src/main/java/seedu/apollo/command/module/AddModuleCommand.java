@@ -97,22 +97,6 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         }
     }
 
-    /**
-     * Checks if the module is already in the module list.
-     *
-     * @param moduleList The list of modules.
-     * @param module The module to be checked.
-     * @return True if the module is already in the list of modules.
-     */
-    public boolean isAdded(ModuleList moduleList, Module module) {
-        for (Module mod: moduleList) {
-            if (mod.getCode().equals(module.getCode())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar) {
@@ -329,5 +313,21 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         return false;
     }
 
+    /**
+     * Checks if the module is already in the module list.
+     *
+     * @author irving11119
+     * @param moduleList The list of modules.
+     * @param module The module to be checked.
+     * @return True if the module is already in the list of modules.
+     */
+    public boolean isAdded(ModuleList moduleList, Module module) {
+        for (Module mod: moduleList) {
+            if (mod.getCode().equals(module.getCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
