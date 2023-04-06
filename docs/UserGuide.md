@@ -1,4 +1,4 @@
-# Apollo User Guide (as of V2.0)
+# Apollo User Guide (as of V2.1)
 
 ## Introduction and Aim
 
@@ -22,9 +22,9 @@ If you can type fast, Apollo can get your timetable management done faster than 
 ## Quick Start
 
 1. Ensure that you have Java `11` or above installed on your Personal Computer.
-2. Download the latest `tp.jar` from [here](https://github.com/AY2223S2-CS2113-T13-4/tp/releases).
+2. Download the latest `Apollo.jar` from [here](https://github.com/AY2223S2-CS2113-T13-4/tp/releases).
 3. Copy the file to the folder you want to use as the home folder for your Apollo. This folder must be *empty*.
-4. Open a command terminal, cd into the directory you put the jar file in and run the command `java -jar tp.jar`.
+4. Open a command terminal, cd into the directory you put the jar file in and run the command `java -jar Apollo.jar`.
 5. On opening, Apollo should greet you with this:
 
 ```
@@ -56,29 +56,31 @@ Hence, users utilising Apollo should input their modules for the current semeste
 
 ## Command Summary
 
-|          Action           |                         Format                         |
-|:-------------------------:|:------------------------------------------------------:|
-|        List Tasks         |                         `list`                         |
-|           Todo            |                     `todo <TASK>`                      |
-|         Deadline          |              `deadline <TASK> -by <DATE>`              |
-|           Event           |         `event <TASK> -from <DATE> -to <DATE>`         |
-|           Mark            |                      `mark <IDX>`                      |
-|          Unmark           |                     `unmark <IDX>`                     |
-|        Delete Task        |                     `delete <IDX>`                     |
-|  Find Tasks with Keyword  |                    `find <KEYWORD>`                    |
-|    Find Tasks on Date     |                     `date <DATE>`                      |
-|       List Modules        |                       `listmod`                        |
-| List Modules with lessons |                `listmod <MODULE CODE>`                 |
-|        Add Module         |                 `addmod <MODULE_CODE>`                 |
-|    Add Module Lessons     |   `addmod MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>`   |
-|  Delete Module by Index   |                     `delmod <IDX>`                     |
-|   Delete Module by Code   |                 `delmod <MODULE_CODE>`                 |
-|    Delete Module Data     | `delmoddata MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>` |
-|  Show Module Information  |                `showmod <MODULE_CODE>`                 |
-|           Help            |                         `help`                         |
-|     Help for Command      |                    `help <COMMAND>`                    |
-|      Weekly Schedule      |                         `week`                         |
-|            Bye            |                         `bye`                          |
+|             Action             |                       Format                       |
+|:------------------------------:|:--------------------------------------------------:|
+|           List Tasks           |                       `list`                       |
+|              Todo              |                   `todo <TASK>`                    |
+|            Deadline            |            `deadline <TASK> -by <DATE>`            |
+|             Event              |       `event <TASK> -from <DATE> -to <DATE>`       |
+|              Mark              |                    `mark <IDX>`                    |
+|             Unmark             |                   `unmark <IDX>`                   |
+|          Delete Task           |                   `delete <IDX>`                   |
+|    Find Tasks with Keyword     |                  `find <KEYWORD>`                  |
+|       Find Tasks on Date       |                   `date <DATE>`                    |
+|          List Modules          |                     `listmod`                      |
+|   List Modules with lessons    |              `listmod <MODULE CODE>`               |
+|  List Module with lesson type  |       `listmod <MODULE CODE> -<LESSON_TYPE>`       |
+|           Add Module           |               `addmod <MODULE_CODE>`               |
+|       Add Module Lessons       | `addmod MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>` |
+|     Delete Module by Index     |                   `delmod <IDX>`                   |
+|     Delete Module by Code      |               `delmod <MODULE_CODE>`               |
+|       Delete Module Data       | `delmod MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>` |
+|    Show Module Information     |              `showmod <MODULE_CODE>`               |
+| Show Module Lesson Information |       `showmod <MODULE_CODE> -<LESSON_TYPE>`       |
+|              Help              |                       `help`                       |
+|        Help for Command        |                  `help <COMMAND>`                  |
+|        Weekly Schedule         |                       `week`                       |
+|              Bye               |                       `bye`                        |
     
 > Notes about the command format:
 > + Words in `<UPPER_CASE>` are the parameters to be supplied by the user.
@@ -98,7 +100,7 @@ Hence, users utilising Apollo should input their modules for the current semeste
 ### `list` - Listing all saved tasks
 
 Shows a numbered list of all tasks (Todos, Events, Deadlines) in Apollo. `list` automatically sorts the tasks by type, 
-then date within each type.
+then date within each task subtype.
 
 Format: `list`
 
@@ -128,11 +130,25 @@ Got it. I've added this todo:
    [T][ ] Feed the fish
 ```
 
+#### `todo` - Adding a ToDo that sounds like a Deadline
+
+In the event that a user inputs a todo that sounds like a deadline, 
+Apollo will prompt the user to consider using the deadline command instead. Users will still be able to add it into the 
+Task List for greater user flexibility.
+```
+>> todo submit TP by 3rd May
+This todo seems to suggest that this is a deadline type task.
+You could consider using the deadline command instead.
+
+Got it. I've added this todo:
+[T][ ] submit TP by 3rd May
+```
+
 ### `deadline` - Adding a Deadline
 
 Adds a task with a due date to Apollo. 
 If deadline clashes with any event or lesson type you will be alerted through a warning message. 
-However, you will still be able to add it into the Task List. 
+However, users will still be able to add it into the Task List. 
 
 Format: `deadline TASK -by DATE`
 
@@ -163,7 +179,8 @@ Got it. I've added this event:
 
 ### `mark` - Marking done
 
-Marks the specified task as completed.
+Marks the specified task as completed. Note that if a task was already marked as completed previously and users attempt 
+to mark the same task as done again, Apollo will alert users to this.
 
 Format: `mark IDX`
 
@@ -174,10 +191,16 @@ Format: `mark IDX`
 Nice!, I've marked this task as done:
 [T][X] Feed the fish
 ```
+> Case when user attempts to mark a task that was already marked as done in the first place.
+```
+>> mark 4
+You have already marked this task as done previously.
+```
 
 ### `unmark` - Marking not done
 
-Marks the specified task as not completed.  
+Marks the specified task as not completed. Note that if a task was never marked as completed in the first place and users
+attempt to mark the same task as not done again, Apollo will alert users to this.
 
 Format: `unmark IDX`
 
@@ -187,6 +210,11 @@ Format: `unmark IDX`
 >> unmark 4
 OK, I've marked this task as not done yet:
   [T][ ] Feed the fish
+```
+> Case when user attempts to unmark a task that was never marked as done in the first place.
+```
+>> unmark 4
+This task was never marked as done!
 ```
 
 ### `delete` - Deleting a task
@@ -248,7 +276,7 @@ You are taking 3 module(s) this semester:
 Total modular credits you have in this semester: 12
 ```
 ### `listmod with lessons` - Lists all the lessons user is taking in that module
-Shows the list of classes user is taking for that module and their lesson type,day,timing and frequency
+Shows the list of classes user is taking for that module and their lesson type, day, timing and frequency.
 ```
 >> listmod cs2113
 These are your classes for Module CS2113: 
@@ -314,10 +342,8 @@ e.g.
 
 ```
 >> addmod CG2028
-____________________________________________________________
 This module does not exist, or is not available this semester!
 Please refer to official NUS module list for more information.
-____________________________________________________________
 ```
 
 ### `delmod` - Deleting a module
@@ -358,7 +384,7 @@ Lessons deleted: SECTIONAL TEACHING - 1
 
 ### `showmod` - Show information of a module
 
-Shows the information of a module.
+Shows the information of a module. 
 Format: `showmod MODULE_CODE`
 
 ```
@@ -370,6 +396,7 @@ Number of MC: 4
 ```
 #### `showmod` flags
 The lesson types and their corresponding guide are the same as `addmod` flags.
+Shows the list of classes a module has and their lesson types, day, timing and frequency.
 To show the information on a lesson, use the following format:
 `showmod MODULE_CODE -FLAG`
 
@@ -377,7 +404,7 @@ To show the information on a lesson, use the following format:
 >> showmod CS1010 -st
 Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
 Class Number: 1
-   Monday 1200 - 1400
+   Tuesday 1000 - 1200 [Weekly]
 ```
 
 The ordering of lessons in the list are sorted as follows:
@@ -402,23 +429,23 @@ The below is a list of commands that you can use with `help`.
 
 Format: `help COMMAND`
 
-|         Command         |                          Help/Information Message contains...                           |
-|:-----------------------:|:---------------------------------------------------------------------------------------:|
-|         `list`          |                      information and format for list tasks command                      |
-|         `todo`          |                                 format for todo command                                 |
-|       `deadline`        |                               format for deadline command                               |
-|         `event`         |                                format for event command                                 |
-|         `mark`          |                                 format for mark command                                 |
-|        `unmark`         |                                format for unmark command                                |
-|        `delete`         |                             format for delete task command                              |
-|         `find`          |                     format for finding matching tasks with keyword                      |
-|         `date`          |                           format for finding tasks with date                            |
-|        `listmod`        |                     information and format for list module command                      |
-| `listmod [MODULE_CODE]` |                 information and format for list specific module command                 |
-|        `addmod`         | information and format of adding modules and module lessons commands, with flag options |
-|        `delmod`         |       information and format of delete module command options, with flag options        |
-|        `showmod`        |                  information and format of show module command options                  |
-|          `bye`          |                         information and format for bye command                          |
+|  Command   |                          Help/Information Message contains...                           |
+|:----------:|:---------------------------------------------------------------------------------------:|
+|   `list`   |                      information and format for list tasks command                      |
+|   `todo`   |                                 format for todo command                                 |
+| `deadline` |                               format for deadline command                               |
+|  `event`   |                                format for event command                                 |
+|   `mark`   |                                 format for mark command                                 |
+|  `unmark`  |                                format for unmark command                                |
+|  `delete`  |                             format for delete task command                              |
+|   `find`   |                     format for finding matching tasks with keyword                      |
+|   `date`   |                           format for finding tasks with date                            |
+| `listmod`  |                     information and format for list module command                      |
+|  `addmod`  | information and format of adding modules and module lessons commands, with flag options |
+|  `delmod`  |       information and format of delete module command options, with flag options        |
+| `showmod`  |                  information and format of show module command options                  |
+|   `help`   |           information for help commands and how to seek specific command help           |
+|   `bye`    |                         information and format for bye command                          |
 
 Format: `help COMMAND`
 
@@ -514,7 +541,7 @@ ____________________________________________________________
 
 ### `bye` - Exiting the program
 
-Format: `exit`
+Format: `bye`
 
 ```
 >> bye 
@@ -532,6 +559,7 @@ Bye. Hope to see you again soon!
 - The save file for your tasks is located at save.txt within the *home folder* for Apollo.
 - The save file for your modules is located at moduleData.txt within the *home folder* for Apollo.
 - If either file is corrupted or has errors, Apollo will show you a warning before the welcome message.
+
 Example message when save.txt has errors:
 ```
 Module Data loaded
