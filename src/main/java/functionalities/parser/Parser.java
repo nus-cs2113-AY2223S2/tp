@@ -23,24 +23,24 @@ public class Parser {
     static Logger logger = Logger.getLogger("parser");
 
     public static Command parse(String userCommand) throws SniffException {
-        String task = userCommand.trim();
-        if (task.toLowerCase().startsWith("consultation")) {
-            parseConsultationCommand(task);
-        } else if (task.toLowerCase().startsWith("vaccination")) {
-            parseVaccinationCommand(task);
-        } else if (task.toLowerCase().startsWith("surgery")) {
-            parseSurgeryCommand(task);
-        } else if (task.toLowerCase().startsWith("find")) {
-            parseFindCommand(task);
-        } else if (task.equalsIgnoreCase("list")) {
+        String[] task = userCommand.trim().split(" ", 2);
+        if (task[0].equalsIgnoreCase("consultation")) {
+            parseConsultationCommand(task[1]);
+        } else if (task[0].equalsIgnoreCase("vaccination")) {
+            parseVaccinationCommand(task[1]);
+        } else if (task[0].equalsIgnoreCase("surgery")) {
+            parseSurgeryCommand(task[1]);
+        } else if (task[0].equalsIgnoreCase("find")) {
+            parseFindCommand(task[1]);
+        } else if (task[0].equalsIgnoreCase("remove")) {
+            parseRemoveCommand(task[1]);
+        } else if (task[0].equalsIgnoreCase("mark")) {
+            parseMarkCommand(task[1]);
+        } else if (task[0].equalsIgnoreCase("unmark")) {
+            parseUnmarkCommand(task[1]);
+        } else if (userCommand.equalsIgnoreCase("list")) {
             parseListCommand();
-        } else if (task.toLowerCase().startsWith("remove")) {
-            parseRemoveCommand(task);
-        } else if (task.toLowerCase().startsWith("mark")) {
-            parseMarkCommand(task);
-        } else if (task.toLowerCase().startsWith("unmark")) {
-            parseUnmarkCommand(task);
-        } else if (task.equalsIgnoreCase("bye")) {
+        } else if (userCommand.equalsIgnoreCase("bye")) {
             parseByeCommand();
         } else {
             throw new SniffException(" Not a recognized Sniff command!");
@@ -48,29 +48,54 @@ public class Parser {
         return command;
     }
 
+//    private static void parseConsultationCommand(String task) throws SniffException {
+//        try {
+//            int animalTypeIndex = task.indexOf("at/");
+//            int animalNameIndex = task.indexOf("an/");
+//            int ownerNameIndex = task.indexOf("on/");
+//            int contactNumberIndex = task.indexOf("cn/");
+//            int consultationDateIndex = task.indexOf("cd/");
+//            int consultationTimeIndex = task.indexOf("ct/");
+//            String animalType = task.substring(animalTypeIndex + 3, animalNameIndex - 1);
+//            String animalName = task.substring(animalNameIndex + 3, ownerNameIndex - 1);
+//            String ownerName = task.substring(ownerNameIndex + 3, contactNumberIndex - 1);
+//            String contactNumber = task.substring(contactNumberIndex + 3, consultationDateIndex - 1);
+//            String date = task.substring(consultationDateIndex + 3, consultationTimeIndex - 1);
+//            LocalDate parsedDate = LocalDate.parse(date);
+//            String time = task.substring(consultationTimeIndex + 3);
+//            LocalTime parsedTime = LocalTime.parse(time);
+//            command = new ConsulationCommand(animalType, animalName, ownerName, contactNumber, parsedDate, parsedTime);
+//        } catch (StringIndexOutOfBoundsException e) {
+//            throw new SniffException(" The consultation description is invalid!");
+//        } catch (DateTimeParseException e) {
+//            throw new SniffException(" The date/time description is invalid.");
+//        }
+//    }
+
     private static void parseConsultationCommand(String task) throws SniffException {
         try {
-            int animalTypeIndex = task.indexOf("at/");
-            int animalNameIndex = task.indexOf("an/");
-            int ownerNameIndex = task.indexOf("on/");
-            int contactNumberIndex = task.indexOf("cn/");
-            int consultationDateIndex = task.indexOf("cd/");
-            int consultationTimeIndex = task.indexOf("ct/");
-            String animalType = task.substring(animalTypeIndex + 3, animalNameIndex - 1);
-            String animalName = task.substring(animalNameIndex + 3, ownerNameIndex - 1);
-            String ownerName = task.substring(ownerNameIndex + 3, contactNumberIndex - 1);
-            String contactNumber = task.substring(contactNumberIndex + 3, consultationDateIndex - 1);
-            String date = task.substring(consultationDateIndex + 3, consultationTimeIndex - 1);
+            String animalType = splitInputBy(task, "at/");
+            String animalName = splitInputBy(task, "an/");
+            String ownerName = splitInputBy(task, "on/");
+            String contactNumber = splitInputBy(task, "cn/");
+            String date = splitInputBy(task, "cd/");
             LocalDate parsedDate = LocalDate.parse(date);
-            String time = task.substring(consultationTimeIndex + 3);
+            String time = splitInputBy(task, "ct/");
             LocalTime parsedTime = LocalTime.parse(time);
             command = new ConsulationCommand(animalType, animalName, ownerName, contactNumber, parsedDate, parsedTime);
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new SniffException(" The consultation description is invalid!");
         } catch (DateTimeParseException e) {
-            throw new SniffException(" The date/time description is invalid.");
+            throw new SniffException("The date/time description is invalid.");
+        } catch (NullPointerException e) {
+            throw new SniffException("The consultation description is invalid!");
         }
     }
+
+    private static String splitInputBy(String input, String splitter) {
+        String[] firstSplit = input.split(splitter);
+        String[] secondSplit = firstSplit[1].split("(at/|an/|on/|cn/|cd/|ct/|vd/|vt/|v/|sd/|st/|ed/|et/|p/)", -1);
+        return secondSplit[0].trim();
+    }
+
 
     private static void parseVaccinationCommand(String task) throws SniffException {
         try {
@@ -188,10 +213,10 @@ public class Parser {
         }
     }
 
-    private static void parseMarkCommand(String task) throws SniffException{
+    private static void parseMarkCommand(String task) throws SniffException {
         try {
             int markIndex = task.indexOf("uID/");
-            String markTask = task.substring(markIndex+4);
+            String markTask = task.substring(markIndex + 4);
             command = new MarkCommand(markTask);
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" The mark description is invalid!");
@@ -201,7 +226,7 @@ public class Parser {
     private static void parseUnmarkCommand(String task) throws SniffException {
         try {
             int unmarkIndex = task.indexOf("uID/");
-            String unmarkTask = task.substring(unmarkIndex+4);
+            String unmarkTask = task.substring(unmarkIndex + 4);
             command = new UnMarkCommand(unmarkTask);
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" The unmark description is invalid!");
