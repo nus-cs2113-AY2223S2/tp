@@ -1,5 +1,7 @@
 Data file does not exist, creating a new one
 Created a new achievementList file
+Corrupted / Missing data file, creating a new one.
+Corrupted / Missing plans file, creating a new one.
 Hello from
     _______ __                          ____        __      
    / ____(_) /_____  ___  __________   / __ \__  __/ /_____ 
@@ -13,8 +15,8 @@ These are some commands available:
 	FILTER stands for a specific requirement you want to include in your exercise
 [filters]
 	View all available filters
-ippt [AGE] [RUNTIME] [PUSHUP SCORE] [SITUP SCORE]
-	Starts an IPPT exercise session with input scores for the 3 sets of exercises.
+[ippt] [AGE] [RUNTIME] [PUSHUPs] [SITUPs]
+	Starts an IPPT exercise session with input repetitions for the 3 sets of exercises.
 [start]
 	Start a workout session
 [history]

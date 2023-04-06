@@ -1,7 +1,8 @@
 @startuml
 hidefootbox
+!include style.puml
 CommandHandler -> PlannerCommandHandler: plannerCommandHandler()
-activate PlannerCommandHandler
+activate PlannerCommandHandler SEA
 PlannerCommandHandler-->CommandHandler: exit()
 deactivate PlannerCommandHandler
 @enduml
