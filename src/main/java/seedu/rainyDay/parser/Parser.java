@@ -81,6 +81,7 @@ public class Parser {
         }
     }
 
+    //@@author lil1n
     public static LocalDate setDate(String input) throws RainyDayException {
         Pattern pattern = Pattern.compile("-date\\s+(.*)");
         Matcher matcher = pattern.matcher(input);
@@ -177,6 +178,7 @@ public class Parser {
         }
     }
 
+    //@@author KN-CY
     private String processShortcutUsage(HashMap<String, String> shortcutCommands, String shortcut) {
         String actualCommand = shortcutCommands.get(shortcut);
         Ui.printShortCutConfirmation(shortcut, actualCommand);
