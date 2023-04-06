@@ -15,6 +15,12 @@ public class SavedData {
         this.budgetGoal = 0;
     }
 
+    public SavedData(FinancialReport financialReport, HashMap<String, String> shortcutCommands) {
+        this.financialReport = financialReport;
+        this.shortcutCommands = shortcutCommands;
+        this.budgetGoal = 0;
+    }
+
     public FinancialReport getFinancialReport() {
         return financialReport;
     }

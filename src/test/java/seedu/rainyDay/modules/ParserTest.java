@@ -1,4 +1,4 @@
-package seedu.rainyDay.data;
+package seedu.rainyDay.modules;
 
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.RainyDay;
@@ -8,9 +8,12 @@ import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.SetBudgetCommand;
 import seedu.rainyDay.command.ViewCommand;
+import seedu.rainyDay.data.FinancialReport;
+import seedu.rainyDay.data.FinancialStatement;
+import seedu.rainyDay.data.MonthlyExpenditures;
+import seedu.rainyDay.data.SavedData;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
-import seedu.rainyDay.modules.Parser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
