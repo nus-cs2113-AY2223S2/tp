@@ -25,10 +25,14 @@ ListMod -> ListMod : setUpLogger()
 activate ListMod
 deactivate ListMod
 
-ListMod -> Parser : ListModuleWithLessonCommand()
+ListMod --> Parser : ListModuleWithLessonCommand()
 deactivate ListMod
 
-Parser -> ListMod : execute()
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+
+Apollo -> ListMod : execute()
 activate ListMod
 
 opt User enters <MODULE_CODE> and <LESSON_TYPE>
@@ -45,19 +49,16 @@ activate Ui
 Ui --> ListMod
 deactivate Ui
 
-end 
+end
 
 destroy Ui
 
-ListMod --> Parser
+ListMod --> Apollo
+
 deactivate ListMod
 destroy ListMod
 
-Parser --> Apollo
-deactivate Parser
-destroy Parser
 
-Apollo --> User
 deactivate Apollo
 
 
