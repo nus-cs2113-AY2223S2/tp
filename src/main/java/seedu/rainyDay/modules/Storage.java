@@ -44,6 +44,7 @@ import seedu.rainyDay.exceptions.RainyDayException;
 
 //@@author KN-CY
 public class Storage {
+    public static final double MAX_VALUE = 21474836.47;
     private static Logger logger = Logger.getLogger(Storage.class.getName());
     private static Gson gson =
             new GsonBuilder().setPrettyPrinting().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
@@ -106,7 +107,7 @@ public class Storage {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_BUDGET_GOAL.toString());
         }
         double budgetGoal = savedData.get("budgetGoal").getAsDouble();
-        if (budgetGoal < 0 || budgetGoal > 21474836.47) {
+        if (budgetGoal < 0 || budgetGoal > MAX_VALUE) {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_BUDGET_GOAL.toString());
         }
 
