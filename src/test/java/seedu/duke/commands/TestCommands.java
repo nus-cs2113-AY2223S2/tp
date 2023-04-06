@@ -55,7 +55,7 @@ public class TestCommands {
         });
     }
 
-    //@author Khulon
+    //@@author Khulon
     @Test
     public void testAddPlanCommand () {
         String[] invalidCommands = {"add", "invalid", "command",};
@@ -69,7 +69,7 @@ public class TestCommands {
         });
     }
 
-    //@author Khulon
+    //@@author Khulon
     @Test
     public void testDeletePlanCommand () throws DukeError {
         new UserPlan();
@@ -86,21 +86,21 @@ public class TestCommands {
         });
     }
 
-    //@author ghzr0
+    //@@author ghzr0
     @Test
-    public void testFindCommand(){
+    public void testFindCommand () {
         String[] invalidCmd = {"Please key in a keyword for Fitness Duke to search!"};
         String[] testInputs1 = {"find"};
-        String[] testInputs2 = {"find","legs"};
+        String[] testInputs2 = {"find", "legs"};
         GenerateExercise generateExercise = new GenerateExercise();
         ArrayList<ExerciseData> exerciseData = generateExercise.generateSetAll();
         assertThrows(DukeError.class, () -> {
-            new ExerciseSearchCommand(testInputs1);});
+            new ExerciseSearchCommand(testInputs1);
+        });
         assertDoesNotThrow(() -> {
             new ExerciseSearchCommand(testInputs2);
         });
 
     }
-
 
 }

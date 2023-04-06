@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 import seedu.duke.commons.LogMaster;
 import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.UserCareerData;
-//@author EangJS
+//@@author EangJS
 
 /**
  * This class is responsible to save all user career into a json file for storage on the hard disk.
@@ -21,9 +21,9 @@ public class JsonUserCareerStorage implements UserCareerStorage {
     private final JsonUserDataWriter jsonUserDataWriter;
 
     /**
-     * Constructor for the Storage handler of user career storage to convert into json format using the gson library
+     * Constructor for the Storage handler of user career storage to convert into json format using the gson library.
      *
-     * @param userFilePath Desired file path in which user career data is saved
+     * @param userFilePath Desired file path in which user career data is saved.
      */
     public JsonUserCareerStorage (String userFilePath) {
         this.gson = new GsonBuilder()
@@ -36,10 +36,10 @@ public class JsonUserCareerStorage implements UserCareerStorage {
     }
 
     /**
-     * Writes the given user career data into json file which is saved on the hard disk
+     * Writes the given user career data into json file which is saved on the hard disk.
      *
-     * @param userCareerData The user career data that is desired to be saved to the hard disk
-     * @throws DukeError Occurs when there is a file write error
+     * @param userCareerData The user career data that is desired to be saved to the hard disk.
+     * @throws DukeError Occurs when there is a file write error.
      */
     @Override
     public void writeToJson (UserCareerData userCareerData) throws DukeError {
@@ -53,7 +53,7 @@ public class JsonUserCareerStorage implements UserCareerStorage {
      * resume previous session's activity.
      * If no previous data was stored, a new {@code UserCareerData} class is instantiated, data is reset.
      *
-     * @return An object of user plans that contain previous user career data (if any)
+     * @return An object of user plans that contain previous user career data (if any).
      */
     @Override
     public UserCareerData loadUserData () {

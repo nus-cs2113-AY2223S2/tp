@@ -10,7 +10,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Objects;
 
-//@author EangJS
+//@@author EangJS
 public class LoadExerciseJson {
 
     public ArrayList<ExerciseData> getExercises () {

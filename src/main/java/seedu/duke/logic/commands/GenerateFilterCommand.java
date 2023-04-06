@@ -50,61 +50,6 @@ public class GenerateFilterCommand extends Command {
 
     //@@author Khulon
 
-    /**
-     * Filters the whole list of available exercises based off the
-     * input from the user.
-     *
-     * @param ui Prints out the respective exercises for a given input
-     * @param exerciseGenerator Generates Exercises
-     * @throws DukeError duke error
-     */
-
-    //test
-    //public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
-    public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
-        ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
-        ArrayList<ExerciseData> ipptList = new ArrayList<>(exerciseGenerator.generateIPPTExercises(exercises));
-        assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())
-            : "Do not modify the ArrayList of GenerateExercise";
-        if(userCommands.length == 1 && userCommands.equals(IPPT)){
-            exerciseGenerator.generateIPPTExercises(ipptList);
-        }else{
-            for (int i = 1; i < filterArguments; i++) {
-                switch (userCommands[i]) {
-                case GYM:
-                    exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
-                    break;
-                case STATIC:
-                    exercises = exerciseGenerator.generateFilteredStaticSetFrom(exercises);
-                    break;
-                case EASY:
-                case MEDIUM:
-                case HARD:
-                    exercises = exerciseGenerator.generateFilteredDifficultySetFrom(exercises, userCommands[i]);
-                    break;
-                case UPPER:
-                case CORE:
-                case LEGS:
-                    exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
-                    break;
-                default:
-                    throw new DukeError(ErrorMessages.ERROR_FILTER_INPUT.toString());
-                }
-            }
-        }
-        if (numberOfExercisesToGenerate == 1337) {
-            exercises = exerciseGenerator.generateFirstThree();
-        } else if (filterArguments == 1 && numberOfExercisesToGenerate > 873) {
-            throw new DukeError(ErrorMessages.ERROR_EXERCISE_LIBRARY_LIMIT.toString());
-        }else if (numberOfExercisesToGenerate > exercises.size()) {
-            throw new DukeError(ErrorMessages.ERROR_EXCESSIVE_FILTERS.toString());
-        } else {
-            exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
-        }
-        exerciseListGenerated = exercises;
-        ui.printExerciseFromList(exercises);
-    }
-
     //@@author Khulon
     public static boolean isAValidSetOfFilters (GenerateExercise exerciseGenerator,
                                                 String[] filterList) throws DukeError {
@@ -141,8 +86,62 @@ public class GenerateFilterCommand extends Command {
         }
     }
 
+    /**
+     * Filters the whole list of available exercises based off the
+     * input from the user.
+     *
+     * @param ui Prints out the respective exercises for a given input
+     * @param exerciseGenerator Generates Exercises
+     * @throws DukeError duke error
+     */
 
-    //@author
+    //test
+    //public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
+    public void executeCommand (Ui ui, GenerateExercise exerciseGenerator) throws DukeError {
+        ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());
+        ArrayList<ExerciseData> ipptList = new ArrayList<>(exerciseGenerator.generateIPPTExercises(exercises));
+        assert System.identityHashCode(exercises) != System.identityHashCode(exerciseGenerator.generateSetAll())
+            : "Do not modify the ArrayList of GenerateExercise";
+        if (userCommands.length == 1 && userCommands.equals(IPPT)) {
+            exerciseGenerator.generateIPPTExercises(ipptList);
+        } else {
+            for (int i = 1; i < filterArguments; i++) {
+                switch (userCommands[i]) {
+                case GYM:
+                    exercises = exerciseGenerator.generateFilteredGymSetFrom(exercises);
+                    break;
+                case STATIC:
+                    exercises = exerciseGenerator.generateFilteredStaticSetFrom(exercises);
+                    break;
+                case EASY:
+                case MEDIUM:
+                case HARD:
+                    exercises = exerciseGenerator.generateFilteredDifficultySetFrom(exercises, userCommands[i]);
+                    break;
+                case UPPER:
+                case CORE:
+                case LEGS:
+                    exercises = exerciseGenerator.generateFilteredWorkoutTypeFrom(exercises, userCommands[i]);
+                    break;
+                default:
+                    throw new DukeError(ErrorMessages.ERROR_FILTER_INPUT.toString());
+                }
+            }
+        }
+        if (numberOfExercisesToGenerate == 1337) {
+            exercises = exerciseGenerator.generateFirstThree();
+        } else if (filterArguments == 1 && numberOfExercisesToGenerate > 873) {
+            throw new DukeError(ErrorMessages.ERROR_EXERCISE_LIBRARY_LIMIT.toString());
+        } else if (numberOfExercisesToGenerate > exercises.size()) {
+            throw new DukeError(ErrorMessages.ERROR_EXCESSIVE_FILTERS.toString());
+        } else {
+            exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
+        }
+        exerciseListGenerated = exercises;
+        ui.printExerciseFromList(exercises);
+    }
+
+    //@@author
 
     public ArrayList<ExerciseData> provideExerciseList () {
         return exerciseListGenerated;

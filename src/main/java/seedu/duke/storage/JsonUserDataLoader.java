@@ -14,7 +14,7 @@ import seedu.duke.data.userdata.Session;
 import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.ui.ErrorMessages;
 
-//@author EangJS
+//@@author EangJS
 
 /**
  * Class to read and parse the json file containing userData into an ArrayList of completed workouts.
@@ -28,7 +28,7 @@ public class JsonUserDataLoader {
 
     /**
      * Reads in the user career data json file and parses the data into an ArrayList of Session.
-     * All elements must be written into the json file
+     * All elements must be written into the json file.
      *
      * @return ArrayList containing all CompletedWorkouts from the json file.
      *
@@ -40,13 +40,13 @@ public class JsonUserDataLoader {
             JsonElement jsonTree = JsonParser.parseReader(reader);
             JsonArray jsonArray = jsonTree.getAsJsonObject().getAsJsonArray("History");
             for (JsonElement element : jsonArray) {
-                if(element.getAsJsonObject().has("userScore")){
+                if (element.getAsJsonObject().has("userScore")) {
                     IPPTSession sessionFromFile = gson.fromJson(element, IPPTSession.class);
                     if (!sessionFromFile.checkIPPTSessionNullity()) {
                         throw new DukeError("Null error");
                     }
                     userCareerData.addWorkoutSession(sessionFromFile);
-                } else{
+                } else {
                     Session sessionFromFile = gson.fromJson(element, Session.class);
                     if (!sessionFromFile.checkSessionNullity()) {
                         throw new DukeError("Null error");

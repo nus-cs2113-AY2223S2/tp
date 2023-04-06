@@ -10,7 +10,7 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.userdata.userplan.Plan;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.ui.ErrorMessages;
-//@author EangJS
+//@@author EangJS
 
 /**
  * Class to read and parse the json file containing {@code userPlans} into an ArrayList of completed workouts.
@@ -24,12 +24,12 @@ public class JsonUserPlansLoader {
 
     /**
      * Loads user plans from json folder and parses the data into an arraylist of plans in a day and adds into a new
-     * user plan class
+     * user plan class.
      *
-     * @param plansFilePath file name in which the user plans are stored
-     * @return returns the UserPlan class for the week
+     * @param plansFilePath file name in which the user plans are stored.
+     * @return returns the UserPlan class for the week.
      *
-     * @throws DukeError Occurs when there is an error in reading the user plans file
+     * @throws DukeError Occurs when there is an error in reading the user plans file.
      */
     public UserPlan loadPlanFromJson (String plansFilePath) throws DukeError {
         UserPlan userPlan = new UserPlan();
