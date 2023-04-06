@@ -153,9 +153,10 @@ This mechanism is facilitated by `CommandSort`.
 - `CommandSort#displayByCategory()` -- Traverse the expense list that is sorted by Category, and print
   out all the expenses classified into different categories.
 
-Displayed below is a part of the class diagram for `CommandSort`
-as well as the class diagram for the main part of class `Time`.
+Displayed below is a part of the class diagram for `CommandSort`as well as the class diagram for the main 
+part of class `Time`.
 ![](diagrams/SortFeature.png)
+
 Give below is an example usage of the feature.
 
 Step 1. The user executes `sort (sortBy)`, indicating they want to sort the list by which criteria. Duke calls
