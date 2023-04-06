@@ -46,12 +46,14 @@ public enum ErrorMessages {
     ERROR_INVALID_DELETE_SESSION("Unable to delete session as the session does not exist!"),
     ERROR_UNABLE_TO_WRITE_TO_FILE("Unable to append to file"),
     ERROR_DELETE_CONTENT_ERROR_TEXT("For some reason I cant delete the content of the folder"),
-    ERROR_EMPTY_INPUT("Empty input"),
     ERROR_IPPT_INVALID_TIMING("Invalid timing!"),
+    ERROR_NO_MATCHING_KEYWORD("There are no matching exercises in the list!"),
+    ERROR_EMPTY_INPUT("Empty input"),
     ERROR_IPPT_INVALID_AGE("Invalid age!"),
     ERROR_LOAD_SCORES_FILE("Failed to load scores from database"),
     ERROR_NEGATIVE_SITUP_NUMBER("How can you do negative situps?"),
     ERROR_NEGATIVE_PUSHUP_NUMBER("How can you do negative pushups?");
+
 
     public final String message;
 
