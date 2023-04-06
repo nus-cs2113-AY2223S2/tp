@@ -17,8 +17,13 @@ In doing so, the user can better manage his daily calorie gain in order to meet 
 * Added the `ExampleData` database to store examples of meals and exercises to be used in the `examples` command
 
 ### Construction of Ui of the program
-Implemented the Ui used for LifeTracker, as well as the Ui for the indivdual commands. Ui used to improve the accessibility of the program to any potential users,
-to ulimately make the program easier to use by streamlining the process for the user
+Implemented the Ui used for LifeTracker, as well as the Ui for the indivdual commands. The Ui is used to improve the accessibility of the program to any potential users,
+to ulimately make the program easier to use by streamlining the process for the user. The Ui consists of:
+* General Ui
+* Calorie Ui
+* Exercise Ui
+* Weight Ui
+* Example Ui
 
 ## UG/DG
 * Added Documentation for the `filter` and `examples` command
