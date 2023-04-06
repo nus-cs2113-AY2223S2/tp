@@ -61,22 +61,6 @@ public class AddModuleCommand extends Command {
 
     }
 
-    /**
-     * Checks if the module is already in the module list.
-     *
-     * @param moduleList The list of modules.
-     * @param module The module to be checked.
-     * @return True if the module is already in the list of modules.
-     */
-    public boolean isAdded(ModuleList moduleList, Module module) {
-        for (Module mod: moduleList) {
-            if (mod.getCode().equals(module.getCode())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar) {
@@ -293,5 +277,21 @@ public class AddModuleCommand extends Command {
         return false;
     }
 
+    //@@author irving11119
+    /**
+     * Checks if the module is already in the module list.
+     *
+     * @param moduleList The list of modules.
+     * @param module The module to be checked.
+     * @return True if the module is already in the list of modules.
+     */
+    public boolean isAdded(ModuleList moduleList, Module module) {
+        for (Module mod: moduleList) {
+            if (mod.getCode().equals(module.getCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
