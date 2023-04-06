@@ -108,10 +108,10 @@ Format: `add_deadline n/<name> t/<time>`
 
 Example: 
 ```
->view_deadline
+>view_deadlines
 1. fix water pipes by: 10 Apr
 >add_deadline n/need to buy more potatoes t/9 Apr 2PM
->view_deadline
+>view_deadlines
 1. fix water pipes by: 10 Apr
 2. need to buy more potatoes deal by: 9 Apr 2PM
 ```
@@ -119,20 +119,19 @@ Example:
 #### View all deadlines:
 View the deadline list.
 
-Format: `view_deadline`
+Format: `view_deadlines`
 
-Note: The price of dishes will be shown in dollars.
 
 #### Delete a deadline:
 Format: `delete_deadline <index>`
 
 Example:
 ```
->>view_deadline
+>>view_deadlines
 1. fix water pipes by: 10 Apr
 2. need to buy more potatoes deal by: 9 Apr 2PM
 >>delete_deadline 2
->>view_deadline
+>>view_deadlines
 1. fix water pipes by: 10 Apr
 ```
 
@@ -141,11 +140,11 @@ Format: `find_deadline <keyword>`
 
 Example: 
 ```
->>view_deadline
+>>view_deadlines
 1. fix water pipes by: 10 Apr
 2. need to buy more potatoes deal by: 9 Apr 2PM
 3. fix fridge by: 15 Apr
->>find_deadline fridge
+>>find_deadline fix
 1. fix water pipes by: 10 Apr
 2. fix fridge by: 15 Apr
 ```
@@ -338,16 +337,16 @@ The data stored in those files are in plaintext format and the user can copy out
 | delete_meeting  | `delete_meeting <index>`                                                                                         |
 | find_meeting    | `find_meeting <string>`                                                                                      |
 | add_dish        | `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]` |
-| view_dish       | `view_dish`                                                                                                  |
-| delete_dish     | `delete_dish <index_number>`                                                                                 |
-| find_dish       | `find_dish <keyword>`                                                                                        |
-| add_deadline    | `add_deadline n/<name> t/<time>`                                                                             |
-| view_deadline   | `view_deadline`                                                                                              |
-| delete_deadline | `delete_deadline <index>`                                                                                    |
-| find_deadline   | `find_deadline <keyword>`                                                                                    |
-| add_staff       | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                               |
-| view_staff      | `view_staff`                                                                                                 |
-| delete_staff    | `delete_staff <staff index>`                                                                                 |
-| find_staff      | `find_staff <keyword>`                                                                                       |
+| view_dish       | `view_dish`                                                                                                    |
+| delete_dish     | `delete_dish <index_number>`                                                                                   |
+| find_dish       | `find_dish <keyword>`                                                                                          |
+| add_deadline    | `add_deadline n/<name> t/<time>`                                                                               |
+| view_deadlines  | `view_deadlines`                                                                                               |
+| delete_deadline | `delete_deadline <index>`                                                                                      |
+| find_deadline   | `find_deadline <keyword>`                                                                                      |
+| add_staff       | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                                 |
+| view_staff      | `view_staff`                                                                                                   |
+| delete_staff    | `delete_staff <staff index>`                                                                                   |
+| find_staff      | `find_staff <keyword>`                                                                                         |
 
 
