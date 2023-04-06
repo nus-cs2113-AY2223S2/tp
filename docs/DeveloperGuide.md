@@ -67,7 +67,7 @@ which would result in the latest data stored in DataStorage being saved into the
 ### Command Component
 **API:** `Command.java`    
 Here's a class diagram of the `Command` component   
-![](../docs/uml-diagrams/Command.png)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/SystemArchitecture.png?raw=true)
 > SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)   
 
 How the `Command` component works:
@@ -158,7 +158,7 @@ A confirmation message is printed to the user indicating that the module lesson 
 
 UML Diagram for AddModCommand Class
 
-![](../docs/uml-diagrams/AddModule-AddModuleCommand__Add_Module_.png)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddModule-AddModuleCommand__Add_Module_.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -265,7 +265,7 @@ and  total modular credits the user is taking this semester.
 
 UML Diagram for ListModuleCommand
 
-![](../docs/uml-diagrams/ListMod-ListModuleCommand.png)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListMod-ListModuleCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -371,7 +371,7 @@ Step 8. If the Task has been added successfully, `Ui#printAddMessage()` prints a
 
 Step 9. `Storage#updateTask()` is called to update the local save file to reflect the changes.
 
-![](../docs/uml-diagrams/AddCommand-AddCommand__for_Tasks_.png)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddCommand-AddCommand__for_Tasks_.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -479,8 +479,8 @@ description (and date of the task deleted if the task is either an event or a de
 Step 7: Update the storage: The storage is updated with the new TaskList with the task marked without a cross next to
 it.
 
-![](../docs/uml-diagrams/ModifyCommand-ModifyCommand__Unmark_Tasks_.png)
-![](../docs/uml-diagrams/UnmarkCommandActivityDiagram.png)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ModifyCommand-ModifyCommand__Unmark_Tasks_.png?raw=true)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/UnmarkCommandActivityDiagram.png?raw=true)
 
 
 [*Return to TOC*](#table-of-contents)
@@ -514,6 +514,8 @@ in `TaskList`, a message is printed to the user indicating that there are no mat
 Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the list of 
 tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description and
 date of the task containing `KEYWORD` if the matching task is either an event or a deadline task.
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/FindCommand-FindCommand__Find_tasks_.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -592,6 +594,8 @@ Step 6. Print the confirmation message: A confirmation message is printed to the
 `TaskList` that are occurring on the `date` input by the user. The message includes the task type, description, date
 and time of the task if the task is either an event or a deadline task.
 
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DateCommand-DateCommand__Find_tasks_by_date_.png?raw=true)
+
 [*Return to TOC*](#table-of-contents)
 
 ### View Week
@@ -620,7 +624,7 @@ Step 5. Starting from Monday, the lessons and tasks occurring on each day of the
 - Step 5f. The current day is increased to the following day.
 - Step 5g. Go back to Step 5a, stop after all lessons and tasks on Sunday have been printed. 
 
-![](../docs/uml-diagrams/Week-WeekCommand.png)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Week-WeekCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
