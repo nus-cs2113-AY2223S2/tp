@@ -15,7 +15,6 @@ If you can type fast, Apollo can get your timetable management done faster than 
     + [Module Commands](#module-commands)
     + [Utility Commands](#utility-commands)
     + [Loading and saving of data](#loading-and-saving-of-data)
-
 3. [Command summary](#command-summary)
 4. [FAQ](#faq)
 
