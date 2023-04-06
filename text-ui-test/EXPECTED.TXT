@@ -44,6 +44,14 @@ Now you have 1 recipes in the list.
 __________________________________________________________
 The ingredient has been successfully added to the ingredient list!
 __________________________________________________________
+There are 4 ingredients in the list:
+1. Beef
+2. Potatoes
+3. Carrots
+4. deez nuts
+Enter step index below:
+The ingredient has been successfully deleted from the ingredient list!
+__________________________________________________________
 Description of ingredient cannot be empty!
 __________________________________________________________
 OOPS!!!
@@ -58,26 +66,45 @@ There are 4 steps in the list
 3. add carrots
 4. cook 5 minutes
 Enter step index below:
-
-Please enter a valid step index!
-Valid range: 1 to 5
+The step has been successfully deleted from the step list!
+__________________________________________________________
+There are 3 steps in the list
+1. chop beef
+2. add carrots
+3. cook 5 minutes
 Enter step index below:
 
 Please enter a valid step index!
-Valid range: 1 to 5
+Valid range: 1 to 4
+Enter step index below:
+
+Please enter a valid step index!
+Valid range: 1 to 4
+Enter step index below:
+The step was not added to the step list!
+__________________________________________________________
+OOPS!!!
+Looks like the description of the command is invalid!
+To add elements to the recipe, please follow the following layout:
+
+deletefromrecipe -[step/ingredient] id/[index]
+__________________________________________________________
+There are 3 steps in the list
+1. chop beef
+2. add carrots
+3. cook 5 minutes
 Enter step index below:
 The step has been successfully added to the step list!
 __________________________________________________________
-There are 5 steps in the list
+There are 4 steps in the list
 1. chop beef
-2. suggon deez
-3. add potatoes
-4. add carrots
-5. cook 5 minutes
+2. user left your channel
+3. add carrots
+4. cook 5 minutes
 Enter step index below:
 
 Please enter a valid step index!
-Valid range: 1 to 6
+Valid range: 1 to 5
 Enter step index below:
 The step was not added to the step list!
 __________________________________________________________

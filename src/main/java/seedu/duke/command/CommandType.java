@@ -40,6 +40,10 @@ public enum CommandType {
      */
     DELETE,
     /**
+     * Deletes an element (step or ingredient) from a recipe.
+     */
+    DELETEFROMRECIPE,
+    /**
      * Shows the full list of commands.
      */
     HELP,

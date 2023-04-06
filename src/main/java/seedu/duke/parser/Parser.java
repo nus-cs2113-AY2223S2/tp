@@ -81,6 +81,9 @@ public class Parser {
         case "delete":
             type = CommandType.DELETE;
             break;
+        case "deletefromrecipe":
+            type = CommandType.DELETEFROMRECIPE;
+            break;
         case "help":
             type = CommandType.HELP;
             break;
@@ -274,12 +277,30 @@ public class Parser {
         subDescriptions[1] = element1;
         return subDescriptions;
     }
+    public static String[] parseDeleteFromRecipeDescription(String description) {
+        String[] subDescriptions = description.split("/", 2);
+        String element0 = subDescriptions[0].toLowerCase().split("id")[0].trim();
+        subDescriptions[0] = element0.replace("-","");
+        return subDescriptions;
+    }
     public static boolean isValidAddToRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
         if ((descLowerCase.contains("step") ||
                 descLowerCase.contains("ingredient")) &&
                 descLowerCase.contains("id/") &&
                 descLowerCase.contains("desc/") &&
+                !(descLowerCase.contains("step") &&
+                        descLowerCase.contains("ingredient"))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public static boolean isValidDeleteFromRecipe(String description) {
+        String descLowerCase = description.toLowerCase().trim();
+        if ((descLowerCase.contains("step") ||
+                descLowerCase.contains("ingredient")) &&
+                descLowerCase.contains("id/") &&
                 !(descLowerCase.contains("step") &&
                         descLowerCase.contains("ingredient"))) {
             return true;

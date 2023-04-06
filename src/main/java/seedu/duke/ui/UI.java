@@ -107,8 +107,20 @@ public class UI {
             System.out.println(StringLib.RECIPE_ADDING_DEFAULT_ERROR + e.getMessage());
         }
     }
+    public void showDeletingRecipeElementErrorMessage(Exception e) {
+        if (e instanceof IncompleteInputException) {
+            System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
+        } else if (e instanceof StringIndexOutOfBoundsException) {
+            System.out.println(StringLib.PARSING_STRING_ERROR + e.getMessage());
+        } else {
+            System.out.println(StringLib.RECIPE_ADDING_DEFAULT_ERROR + e.getMessage());
+        }
+    }
     public void showInvalidAddToRecipeDescription() {
         System.out.println(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION);
+    }
+    public void showInvalidDeleteFromRecipeDescription() {
+        System.out.println(StringLib.INVALID_DELETE_FROM_RECIPE_DESCRIPTION);
     }
     public void showDeletingTaskErrorMessage(Exception e, CommandType type) {
         if (e instanceof IncompleteInputException) {
@@ -171,10 +183,21 @@ public class UI {
     public void showErrorMessage(Exception e) {
         System.out.println(e.getMessage());
     }
-    public boolean isValidIntegerInput(String input, int maxSteps) {
+    public boolean isValidIntegerInputToAdd(String input, int maxSteps) {
         try {
             int integerInput = Integer.parseInt(input.trim());
             if (integerInput < 1 || integerInput > maxSteps + 1) {
+                return false;
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    public boolean isValidIntegerInputToDelete(String input, int maxSteps) {
+        try {
+            int integerInput = Integer.parseInt(input.trim());
+            if (integerInput < 1 || integerInput > maxSteps) {
                 return false;
             }
             return true;
@@ -188,10 +211,10 @@ public class UI {
     public void requestIndexInput() {
         System.out.println(StringLib.INDEX_REQUEST);
     }
-    public int getIndex(int maxSteps) {
+    public int getIndexToAdd(int maxSteps) {
         System.out.println(StringLib.INDEX_REQUEST);
         String userInput = in.nextLine();
-        while (!isValidIntegerInput(userInput, maxSteps)) {
+        while (!isValidIntegerInputToAdd(userInput, maxSteps)) {
             showInvalidIndexMessage();
             System.out.println("Valid range: " + 1 + " to " + (maxSteps + 1));
             requestIndexInput();
@@ -201,6 +224,20 @@ public class UI {
             }
         }
         return Integer.parseInt(userInput.trim()) - 1;
+    }
+    public int getIndexToDelete(int maxSteps) {
+        System.out.println(StringLib.INDEX_REQUEST);
+        String userInput = in.nextLine();
+        while (!isValidIntegerInputToDelete(userInput, maxSteps)) {
+            showInvalidIndexMessage();
+            System.out.println("Valid range: " + 1 + " to " + maxSteps);
+            requestIndexInput();
+            userInput = in.nextLine();
+            if (userInput.trim().toLowerCase().equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
+                return IntLib.ADD_STEP_INDEX_BREAKOUT;
+            }
+        }
+        return Integer.parseInt(userInput.trim());
     }
     public void showDuplicateIngredient() {
         System.out.println(StringLib.DUPLICATE_INGREDIENT_ERROR);
@@ -222,5 +259,11 @@ public class UI {
     }
     public void showQuitMessage() {
         System.out.println(StringLib.QUIT_MESSAGE);
+    }
+    public void showIngredientDeleted() {
+        System.out.println(StringLib.INGREDIENT_DELETE_SUCCESS);
+    }
+    public void showStepDeleted() {
+        System.out.println(StringLib.STEP_DELETE_SUCCESS);
     }
 }

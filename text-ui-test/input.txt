@@ -5,10 +5,17 @@ add potatoes
 add carrots
 cook 5 minutes
 addtorecipe -ingredient id/1 desc/deez nuts
+deletefromrecipe -ingredient id/1
+2
 addtorecipe -ingredient id/1 desc/
 addtorecipe -ingredient id/1
+deletefromrecipe -step id/1
+2
 addtorecipe -step id/1 desc/suggon deez
 quit
+deletefromrecipe -step id/1
+quit
+deletefromrecipe -step
 addtorecipe -step id/1 desc/user left your channel
 2
 addtorecipe -step id/1 desc/and I'm out too

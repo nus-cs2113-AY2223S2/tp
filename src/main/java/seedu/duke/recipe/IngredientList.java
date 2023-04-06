@@ -71,7 +71,7 @@ public class IngredientList {
      *
      * @param ingredientIndex - the index of the ingredient to be removed from the list.
      */
-    private void removeIngredient(int ingredientIndex) {
+    public void removeIngredient(int ingredientIndex) {
         list.remove(ingredientIndex-1);
         currIngredientNumber--;
         assert (currIngredientNumber == list.size());

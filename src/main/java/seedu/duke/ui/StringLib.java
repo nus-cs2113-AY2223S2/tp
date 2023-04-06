@@ -172,4 +172,10 @@ public interface StringLib {
     String EMPTY_STEP_DESCRIPTION_MESSAGE = "Description of step cannot be empty!";
     String EMPTY_INGREDIENT_DESCRIPTION_MESSAGE = "Description of ingredient cannot be empty!";
     String QUIT_MESSAGE = "The step was not added to the step list!";
+    String INVALID_DELETE_FROM_RECIPE_DESCRIPTION = "OOPS!!!\n" +
+            "Looks like the description of the command is invalid!\n" +
+            "To add elements to the recipe, please follow the following layout:\n" +
+            "\ndeletefromrecipe -[step/ingredient] id/[index]";
+    String INGREDIENT_DELETE_SUCCESS = "The ingredient has been successfully deleted from the ingredient list!";
+    String STEP_DELETE_SUCCESS = "The step has been successfully deleted from the step list!";
 }

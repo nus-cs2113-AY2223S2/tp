@@ -125,7 +125,7 @@ public class Command {
                     }
                     stepListToAddTo.showFullStepList();
                     int maxStep = stepListToAddTo.getCurrStepNumber();
-                    index = ui.getIndex(maxStep);
+                    index = ui.getIndexToAdd(maxStep);
                     if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
                         ui.showQuitMessage();
                         break;
@@ -174,6 +174,57 @@ public class Command {
                 Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showDeletingTaskErrorMessage(e, type);
+            }
+            break;
+        case DELETEFROMRECIPE:
+            try {
+                if (fullDescription.isEmpty()) {
+                    throw new IncompleteInputException("The description of " + type + " cannot be empty.\n");
+                }
+                if (!Parser.isValidDeleteFromRecipe(fullDescription)) {
+                    ui.showInvalidDeleteFromRecipeDescription();
+                    break;
+                }
+                String[] parsed = Parser.parseDeleteFromRecipeDescription(fullDescription);
+                if (parsed.length != 2) {
+                    ui.showInvalidDeleteFromRecipeDescription();
+                    break;
+                }
+                String elementType = parsed[0];
+                String id = parsed[1];
+                Recipe recipeToDeleteFrom = recipeList.viewRecipe(id);
+                int index;
+                switch (elementType) {
+                case "step":
+                    StepList stepListToDeleteFrom = recipeToDeleteFrom.getStepList();
+                    stepListToDeleteFrom.showFullStepList();
+                    int maxStep = stepListToDeleteFrom.getCurrStepNumber();
+                    index = ui.getIndexToDelete(maxStep);
+                    if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
+                        ui.showQuitMessage();
+                        break;
+                    }
+                    stepListToDeleteFrom.removeStep(index);
+                    ui.showStepDeleted();
+                    Storage.writeSavedFile();
+                    break;
+                case "ingredient":
+                    IngredientList ingredientListToDeleteFrom = recipeToDeleteFrom.getIngredientList();
+                    ingredientListToDeleteFrom.showList();
+                    int maxCount = ingredientListToDeleteFrom.getCurrIngredientNumber();
+                    index = ui.getIndexToDelete(maxCount);
+                    if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
+                        ui.showQuitMessage();
+                        break;
+                    }
+                    ingredientListToDeleteFrom.removeIngredient(index);
+                    ui.showIngredientDeleted();
+                    Storage.writeSavedFile();
+                    break;
+                default:
+                }
+            } catch (Exception e) {
+                ui.showDeletingRecipeElementErrorMessage(e);
             }
             break;
         case CLEAR:

@@ -49,7 +49,7 @@ public class StepList {
      *
      * @param stepIndex - the index of the step to be removed from the list.
      */
-    private void removeStep(int stepIndex) {
+    public void removeStep(int stepIndex) {
         stepList.remove(stepIndex - 1);
         currStepNumber--;
         assert (currStepNumber == stepList.size());
