@@ -206,6 +206,7 @@ For the user to gain some inspiration on exercises to do, as well as some idea o
 Format: `examples [meal/exercise]`
 
 Example:
+![examples-example](./UG-images/examples-example.PNG)
 
 ### Exiting the program: `bye`
 Allows user to exit the program.
