@@ -5,7 +5,8 @@ import java.util.HashMap;
 
 public class CaloriesRecorder {
     private HashMap<Date, Calories> calorieMap;
-    private Calories calories;
+    private Calories calories = new Calories();
+
     public CaloriesRecorder() {
         calorieMap = new HashMap<>();
     }
@@ -16,6 +17,8 @@ public class CaloriesRecorder {
 
     public void addFoodCalories(Date date, Calories calories){
         calorieMap.put(date, calories);
+        //setDate(date);
+        //setCalories(calories);
         this.calories = calories;
     }
 
@@ -23,6 +26,8 @@ public class CaloriesRecorder {
         this.calories = calories;
     }
 
+    public void setDate(Date date) {
+    }
     public Calories getCalories() {
         return calories;
     }

@@ -59,8 +59,6 @@ public class WorkoutReadFile {
                     String weight = exerciseDetails[1].replace("Weight:", "").trim();
                     String repsString = exerciseDetails[2].replace("Reps:", "").trim();
                     Exercise exercise = new Exercise(exerciseName, weight, repsString);
-                    /* System.out.println("name: " + exerciseName + " weight: "  + weight + "reps: " + repsString);*/
-                    // workoutList.addExerciseToWorkout(currentDate, currentWorkoutName, exercise);
                     Day day = workoutList.getSingleWorkout();
                     Workout workoutForOneDay = day.getWorkout();
                     workoutForOneDay.addExercise(exercise);

@@ -1,12 +1,13 @@
 package seedu.commands.caloriecommands;
 
 import seedu.calorietracker.Calories;
+import seedu.commands.Command;
 import seedu.parser.DateFormatter;
 
 import java.util.Date;
 import java.util.HashMap;
 
-public class StartDayCaloriesCommand extends CaloriesCommand {
+public class StartDayCaloriesCommand extends Command {
 
     private static final String STARTED_DAY_FIRST = "You had started calories record on this day before.";
     private static final String STARTED_DAY_SECOND = "Please use '/cstart' to add a food calories consumption!";
@@ -37,8 +38,8 @@ public class StartDayCaloriesCommand extends CaloriesCommand {
             Calories calories = dailyCalories.get(date);
             // Check if there are food calories record on that day
             if (calories == null) {
-                calories = new Calories(date);
-                caloriesRecorder.addFoodCalories(date, calories);
+
+                caloriesRecorder.addFoodCalories(date, new Calories(date));
                 String formattedDate = DateFormatter.dateToString(date);
                 stringBuilder.append(STARTED_CALORIES)
                         .append(formattedDate);

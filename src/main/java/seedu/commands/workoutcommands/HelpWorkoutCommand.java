@@ -9,6 +9,6 @@ public class HelpWorkoutCommand extends Command {
 
     @Override
     public String execute() {
-        return Ui.getHelpMessage();
+        return Ui.getWorkoutHelpMessage();
     }
 }

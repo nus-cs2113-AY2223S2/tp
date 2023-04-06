@@ -18,9 +18,6 @@ public class FoodList {
         foodCalories.put(name, calories);
     }
 
-    /*public int getCalories(String food) {
-        return foodCalories.get(food);
-    }*/
 
     public HashMap<String, Integer> getFoodCalories() {
         return foodCalories;

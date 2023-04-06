@@ -22,7 +22,7 @@ public class Duke {
     private WorkoutList workoutList = new WorkoutList();
     private Day day;
     // private CalorieTracker calorieTracker = new CalorieTracker();
-    private CaloriesRecorder caloriesRecorder = new CaloriesRecorder();
+    private CaloriesRecorder caloriesRecorder;
 
     private FoodList foodList;
 
@@ -40,6 +40,7 @@ public class Duke {
         //day = new Day();
         workoutList = WorkoutReadFile.readWorkoutFromFile(FILE_PATH_WORKOUT);
         foodList = new FoodList();
+        caloriesRecorder = new CaloriesRecorder();
         //foodList = FoodCaloriesReadFile.readFoodCalorieToFile(FOOD_CALORIE);
         //calorieTracker = DailyCaloriesReadFile.readDailyCalorieToFile(TOTAL_CALORIE);
 

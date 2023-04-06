@@ -5,7 +5,9 @@ import seedu.commands.Command;
 import seedu.commands.IncorrectSyntaxCommand;
 import seedu.commands.caloriecommands.AddCalorieCommand;
 import seedu.commands.caloriecommands.StartDayCaloriesCommand;
+import seedu.commands.caloriecommands.ViewCaloriesCommand;
 
+import java.text.ParseException;
 import java.util.Date;
 
 import static seedu.commands.caloriecommands.AddCalorieCommand.CALORIES_NOT_GIVEN;
@@ -22,7 +24,6 @@ public class CheckCaloriesInput {
     }
 
     public static Command processAddCalories(String arguments) {
-        Date date;
         String food;
         int calories;
 
@@ -53,7 +54,7 @@ public class CheckCaloriesInput {
         return new AddCalorieCommand(food, calories);
     }
 
-    /* public static Command processViewCalories(String arguments) {
+    public static Command processViewCalories(String arguments) {
         Date date;
 
         try {
@@ -62,7 +63,7 @@ public class CheckCaloriesInput {
             return new IncorrectSyntaxCommand("cday");
         }
 
-        return new ViewCaloriesCommand();
-     }*/
+        return new ViewCaloriesCommand(date);
+    }
 
 }
