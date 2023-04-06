@@ -1,5 +1,27 @@
 # Developer Guide
 
+<!-- TOC -->
+* [Developer Guide](#developer-guide)
+  * [Acknowledgements](#acknowledgements)
+  * [Design & implementation](#design--implementation)
+  * [Design](#design)
+  * [Implementation](#implementation)
+    * ['Add' Feature](#-add-feature)
+    * ['Delete' Feature](#-delete-feature)
+    * [Monthly Overview](#monthly-overview)
+    * [Yearly Overview](#yearly-overview)
+    * ['Sort' Feature](#-sort-feature)
+    * ['Total' Feature](#-total-feature)
+    * ['Storage' Feature](#-storage-feature)
+  * [Product scope](#product-scope)
+    * [Target user profile](#target-user-profile)
+    * [Value proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+  * [Instructions for Manual Testing](#instructions-for-manual-testing)
+<!-- TOC -->
+
 ## Acknowledgements
 
 List here sources of all reused/adapted ideas, code, documentation, and third-party libraries
@@ -231,6 +253,6 @@ The `storage` class is responsible for saving and loading of expenses to and fro
 
 * *glossary item* - Definition
 
-## Instructions for manual testing
+## Instructions for Manual Testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
