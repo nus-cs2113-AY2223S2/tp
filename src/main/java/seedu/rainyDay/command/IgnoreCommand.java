@@ -43,8 +43,8 @@ public class IgnoreCommand extends Command {
         assert (index < savedData.getStatementCount() && index >= 0) : "invalid index provided for ignore";
         if (this.command.equalsIgnoreCase("unignore") && currentStatement.isIgnored()) {
             currentStatement.setIgnore(false);
-            output = "Done, Entry " + (index + 1) + " included in overview calculations";
             MonthlyExpenditures.addToMonthlyExpenditure(currentStatement);
+            output = "Done, Entry " + (index + 1) + " included in overview calculations";
             logger.log(Level.INFO, "Ignore status updated in financial report");
         } else if (this.command.equalsIgnoreCase("unignore") && !currentStatement.isIgnored()) {
             output = "Entry " + (index + 1) + " already included in overview calculations";

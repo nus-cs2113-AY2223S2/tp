@@ -10,7 +10,7 @@ import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
-import seedu.rainyDay.modules.Parser;
+import seedu.rainyDay.parser.Parser;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -69,7 +69,7 @@ public class RainyDay {
 
     private void setUpDate() {
         System.out.println(savedData.checkUserBudgetLimit(LocalDate.now()));
-        Storage.writeToFile(RainyDay.savedData, RainyDay.filePath);
+        Storage.writeToFile(savedData, filePath);
     }
 
     private void runCommand() {
