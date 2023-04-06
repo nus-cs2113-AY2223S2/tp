@@ -5,26 +5,9 @@
 FitnessDuke is a **Command Line Application for tracking and managing workouts, optimised for use via the command-line interface (CLI)**.
 
 ## Table of contents
-* [Getting started](#getting-started)
-* [FitnessDuke's Features](#fitnessdukes-features)
-  * [Viewing help: ```help```](#viewing-help--help)
-  * [Exiting the program: ```exit```](#exiting-the-program--exit)
-  * [Getting the filters to generate workout: ```filters```](#getting-the-filters-to-generate-workout--filters)
-  * [Generating a list of workouts according to filters: ```generate [arguments] [number]```](#generating-a-list-of-workouts-according-to-filters--generate-arguments-number)
-  * [Getting into a workout: ```start```](#getting-into-a-workout--start)
-  * [Within your workout session](#within-your-workout-session)
-  * [Seeing your workout history: ```history```](#seeing-your-workout-history--history)
-  * [Seeing your workout summary: ```data```](#seeing-your-workout-summary--data)
-  * [Deleting a workout session: ```delete [number]```](#deleting-a-workout-session--delete-number)
-  * [Searching for a workout: ```find [keyword]```](#searching-for-a-workout--find-keyword)
-  * [Getting into the fitness planner: ```planner```](#getting-into-the-fitness-planner--planner)
-  * [Within your fitness planner](#within-your-fitness-planner)
-  * [Viewing plans: ```plans```](#viewing-plans--plans)
-  * [Generating a list of planned exercises: ```quick [plan_name] [number]```](#generating-a-list-of-planned-exercises--quick-planname-number)
-* [Saving the data](#saving-the-data)
-* [Resource data](#resource-data)
-* [FAQ](#faq)
-* [Command Summary](#command-summary)
+
+* Table of Contents
+{:toc}
 
 ## Getting Started   
 
@@ -165,6 +148,7 @@ Situps: 14
 2.4 Km Run 41
 ________________________________________
 ```
+## Workout Sessions
 
 ### Getting into a workout: ```start```
 
