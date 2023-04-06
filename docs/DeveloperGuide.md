@@ -408,9 +408,13 @@ Expected: Similar to previous.
 
 ### Filter foods based on calories
 
-Test case: 
+Test case: filter 400 600
 
-Expected:
+Expected: A list of all meals within that range will be displayed
+
+Test case: filter 400 300
+
+Expected: An error message will be displayed
 
 ### Find nutrition of a food
 
@@ -430,11 +434,15 @@ Test case:
 
 Expected:
 
-### See examples of meals or exercise
+### See examples of meal or exercise
 
-Test case: 
+Test case: examples exercise
 
-Expected:
+Expected: Examples of different types of exercise will be displayed
+
+Test case: examples weight
+
+Expected: An error message will be displayed
 
 ### See list of available commands
 
