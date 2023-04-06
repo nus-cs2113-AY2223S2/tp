@@ -313,10 +313,10 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         return false;
     }
 
+    //@@author irving11119
     /**
      * Checks if the module is already in the module list.
      *
-     * @author irving11119
      * @param moduleList The list of modules.
      * @param module The module to be checked.
      * @return True if the module is already in the list of modules.

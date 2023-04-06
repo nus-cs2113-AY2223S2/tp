@@ -172,10 +172,10 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
         }
     }
 
+    //@@author irving11119
     /**
      * Checks if the string is an integer.
      *
-     * @author irving11119
      * @param param String to be checked.
      * @return Boolean value of whether the string is an integer.
      */
