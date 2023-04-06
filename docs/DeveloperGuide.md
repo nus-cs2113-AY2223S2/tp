@@ -6,7 +6,7 @@
 1. Command, Parser and UI java files are adapted from one of our group member's [Duke Project](https://github.com/MingEn82/ip)
 ---
 
-## Design & implementation
+## Design
 
 ---
 ### Architecture
@@ -82,6 +82,8 @@ parameters provided.
 
 Step 3. `mealStorage` saves the meal to the database and then `ui` prints out the confirmation of the meal added.
 
+### Design considerations
+
 ## [Proposed] Delete meal feature
 
 ### Proposed Implementation
@@ -93,6 +95,8 @@ which meal they want to delete by viewing the mealData.csv file.
 
 In the above implementation, DeleteMealCommand parses the user input to obtain the index to delete and proceeds to 
 delete it via the method from mealStorage() and prints out the deleted meal to the user.
+
+### Design considerations
 
 ## [Proposed] View feature
 
@@ -177,10 +181,49 @@ modified and the user's weight as well as his caloric limit will be updated in a
 > Insert UML diagram showing the update process
 
 Step 5. The user then executes the command `view` to view his updated weight and daily caloric limits.
+
+### Design considerations
+
+## [Proposed] Update feature
+
+### Proposed Implementation
+
+### Design considerations:
+
+## [Proposed] Nutrition feature
+
+### Proposed Implementation
+
+### Design considerations:
+
+## [Proposed] Filter feature
+
+### Proposed Implementation
+
+### Design considerations:
+
+## [Proposed] Exercise feature
+
+### Proposed Implementation
+
+### Design considerations:
+
+## [Proposed] Track feature
+
+### Proposed Implementation
+
+### Design considerations:
+
+## [Proposed] Examples feature
+
+### Proposed Implementation
+
+### Design considerations:
+
+
 # Appendix: Requirements
 
 ## Product scope
-
 
 ### Target user profile:
 
