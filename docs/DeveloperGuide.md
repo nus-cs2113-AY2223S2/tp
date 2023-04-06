@@ -124,9 +124,10 @@ these conditions are met, an `EditCommand` object will be created to further pro
 **Step 3**. In the `EditCommand` object, the method `setEditInfo()` will be called first. This method will be used
 to not only call other methods for user input processing, but will also handle the exceptions thrown by the other
 methods it has called. It will begin by retrieving the item information from the inventory using
-`retrieveItemFromHashmap()` and storing the item attribute information in two `Item` objects, namely `updatedItem` 
-and `oldItem`. `oldItem` will be used to keep track of the old attribute information, while `updatedItem` will be 
-used to overwrite the old attributes, should the user inputs be valid.
+`retrieveItemFromHashmap()` and storing the item attribute information in three `Item` objects, namely `updatedItem`,
+`oldItem` and `oldItemForCat`. `oldItem` will be used to keep track of the old attribute information, while 
+`updatedItem` will be used to overwrite the old attributes, should the user inputs be valid. `oldItemForCat` will
+exclusively be used for updating of category information.
 
 **Step 4**. Still within the `setEditInfo()` method, `updatedItem` and `oldItem` will be pass into another method
 `updateItemInfo()`. This method calls `handleUserEditCommand()` for further user input processing and also handles
