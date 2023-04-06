@@ -130,8 +130,9 @@ The `Parser` object then returns to `ChChing`. `ChChing` object then runs the `e
 
 ### SetCurrencyCommand
 
-The setCurrencyCommand is facilitated by `System`, `Selector`, `UI` and `ExpenseList`.
-The command receives the instruction from `UI` and will call the `execute` method.
+The setCurrencyCommand is facilitated by `System`, `Selector`, `UI`, `Parser` and `ExpenseList`.
+The command receives the instruction from `UI` and will be parsed by the `parse()` method of the `Parser` object and `getCurrency()` method is called from the `Currency`
+which returns the currency that the user wants to set. Then `SetCurrencyCommand` object is instantiated and returned and `execute()` is called.
 The `execute()` method in setCurrencyCommand will then call the `containsCurrency(currency)` method from `Selector`.
 If the method returns false, which indicates that the currency is not available, the command will throw a new ChChingException and print `"Currency not available"`.
 If the method returns true, the command will continue to set the currency in the selector hashmap to true.
@@ -139,6 +140,25 @@ Afterwards, the `execute()` method will call the `printSelector()` method from `
 The `printSelector()` method will print all the available currencies in the selector hashmap.
 The selected currencies will be marked with a `[X]` and the unselected currencies will be marked with a `[ ]`.
 ![SetCurrencyCommand_sequence_diagram.png](images%2FSetCurrencyCommand_sequence_diagram.png)
+
+### UnsetCurrencyCommand
+
+The unsetCurrencyCommand works in a similar way to the setCurrencyCommand.
+The diagram below shows the sequence diagram for the unsetCurrencyCommand.
+![SetCurrencyCommand_sequence_diagram.png](images%2FUnsetCurrencyCommand_sequence_diagram.png)
+
+
+### Find
+
+The FindCommand is facilitated by `System`, `UI`,`Parser`, `ExpenseList` and `IncomeList`.
+The command receives instruction `UI` and the input will be parsed by `Parser` using `getType`,`getCategory`, `getDescription` and `getDate` to get the necessary search fields, before the `FindCommand` is instantiated by `Parser`.
+The user can choose to search through incomes on description or date. The user can also choose to search through expenses on description, date or category.
+The `execute()` method in `FindCommand` will check if the user is searching for income or expense, and ensure that at least one of the search fields are not empty.
+By using a loop, the `execute()` method will then search through the `ExpenseList` or `IncomeList` and selected the expenses/incomes that matches the search fields.
+The `execute()` method will then print out the selected expenses/incomes that matches the search fields using `showMatchedExpense()` or `showMatchedIncome()` method from `UI` to `System`
+![FindCommand_sequence_diagram.png](images%2FFindCommand_sequence_diagram.png)
+
+
 
 ## Product scope
 
@@ -174,6 +194,7 @@ The value proposition of ChChing is its ability to track income and expenses on 
   - ChChing should not crash under normal circumstances.
   - Dates should be in the format of dd/mm/yyyy, it should be a valid date, and it should not be a future date.
   - Amount should be a positive number.
+  - Only characters in the english keyboard should be used.
 
 - Constraints:
 
@@ -289,7 +310,7 @@ Given below are instructions to test the app manually.
       <br> For expense: `list expense` 
       <br> For both: `list`
       <br> Expected: All incomes and/or expenses should be listed. Note deleted incomes/expenses will not be shown.
-   2. Test case: should there be no income/expense entries in the list
+   3. Test case: should there be no income/expense entries in the list
       <br> For income: `list income`
       <br> For expense: `list expense` 
       <br> For both: `list`
@@ -301,8 +322,28 @@ Given below are instructions to test the app manually.
       <br> Expected: The total expense, total income, current balance and current target will be shown. Should the current balance or equal to the current target, it will prompt a good job message, otherwise it will prompt a message that balance has not reached target.
 
 ### Finding income/expense
-
+1. Finding income/expense
+   1. Prerequisites: List already contains income/expense entry/entries. Can be checked via `list income`/`list expense`/`list` command.
+   2. Test case: 
+      <br> For income: `find /t income /de bonus`
+      <br> For expense: `find /t expense /c food /de sushi /da 03-03-2023 `
+      <br> Expected: All income with description containing "bonus" should be listed. All expense with category containing "food", description containing "sushi" and on date "03-03-2023" should be listed. Note deleted incomes/expenses will not be shown.
+   3. Test case: Should there be no income/expense entries in the list
+      <br> For income: `find /t income /de bonus`
+      <br> For expense: `find /t expense /c food /de sushi /da 03-03-2023 `
+      <br> Expected: No income/expense will be listed. status message will indicate no matching record for these search terms.
 ### Setting target & Unsetting target
 
+
 ### Setting Currency & Unsetting Currency
+1. Setting program to display currency of interest and not display unwanted currencies
+   1. Prerequisites: List already contains income/expense entry/entries. Can be checked via `list income`/`list expense`/`list` command.
+   2. Test case: 
+      <br> For income: `set currency /cr HKD`
+      <br> For expense: `set currency /cr USD`
+      <br> Expected: All income/expense entries, balance and target will be displayed in the SGD as well as any set currencies.
+   3. Test case: Program does not support the currency
+      <br> For income: `set currency /cr JPY`
+      <br> For expense: `set currency /cr EUR`
+      <br> Expected: Error message will be shown. No currency will be set.
 

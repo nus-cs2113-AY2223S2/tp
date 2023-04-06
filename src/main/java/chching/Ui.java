@@ -123,7 +123,7 @@ public class Ui {
                 System.out.println("    " + (i + 1) + ". " + expenses.get(i));
             }
         } else {
-            System.out.println("    No matching records for those keyword");
+            System.out.println("    No matching records for those search terms");
         }
 
     }

@@ -61,7 +61,8 @@ public class Parser {
         String instruction = lineParts.get(0);
         List<String> arguments = lineParts.subList(1, lineParts.size());
         HashMap<String, String> argumentsByField = sortArguments(arguments);
-        Command command = new InvalidCommand();
+        //Command command = new InvalidCommand();
+        Command command = new Command();
         int index;
         try {
             switch (instruction) {
@@ -239,9 +240,9 @@ public class Parser {
     public static LocalDate getDate(HashMap<String, String> argumentsByField) throws ChChingException {
         String dateString = null;
         dateString = argumentsByField.get("da");
-        LocalDate date = null;
+        LocalDate date;
         if (dateString == null) {
-            return date;
+            return null;
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-uuuu")
                 .withResolverStyle(ResolverStyle.STRICT);

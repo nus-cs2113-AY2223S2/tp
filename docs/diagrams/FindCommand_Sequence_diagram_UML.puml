@@ -1,0 +1,91 @@
+@startuml
+
+participant ":System" as System
+participant ":UI" as UI
+participant ":Parser" as Parser
+participant "FindCommand" as FindCommand
+participant "incomes:IncomeList" as IncomeList
+participant "incomesMatched:IncomeList" as incomesMatched
+participant "expenses:ExpenseList" as ExpenseList
+participant "expensesMatched:ExpenseList" as expensesMatched
+participant "ChChingException" as ChChingException
+
+
+activate UI
+UI -> UI:readCommand()
+
+UI -->Parser: input.nextLine()
+activate Parser
+deactivate UI
+Parser -> Parser: getType(argumentsByField)
+Parser -> Parser: getCategory(argumentsByField)
+Parser -> Parser: getDescription(argumentsByField)
+Parser -> Parser: getDate(argumentsByField)
+
+
+Parser -> FindCommand: new FindCommand(type,category,description,date)
+activate FindCommand
+deactivate Parser
+
+FindCommand -> FindCommand: execute(income,expense,ui,storage,selector,converter,targetStorage)
+opt type == "income"
+    FindCommand->IncomeList: income.getDescription().toLowerCase().contains(description.toLowerCase())
+    activate IncomeList
+    FindCommand->IncomeList: income.getDate().equals(date)
+    FindCommand <-- IncomeList
+    FindCommand -> incomesMatched : add(income)
+    activate incomesMatched
+    FindCommand <-- incomesMatched
+    deactivate incomesMatched
+    deactivate IncomeList
+    UI <- FindCommand: ui.showMatchedIncome(incomesMatched)
+    activate UI
+    System <- UI
+    deactivate UI
+end
+
+opt type == "expense"
+    FindCommand->ExpenseList: expense.getDescription().toLowerCase().contains(description.toLowerCase())
+    activate ExpenseList
+    FindCommand->ExpenseList: expense.getDate().equals(date)
+    FindCommand->ExpenseList: expense.getCategory().equals(category)
+    FindCommand <-- ExpenseList
+    FindCommand -> expensesMatched : add(expense)
+    activate expensesMatched
+    FindCommand <-- expensesMatched
+    deactivate expensesMatched
+    deactivate ExpenseList
+    UI <- FindCommand: ui.showMatchedExpense(expensesMatched)
+    activate UI
+    System <- UI
+    deactivate UI
+end
+
+alt type != "income" && type != "expense"
+    FindCommand -> ChChingException: ChChingException("Type specified must be income or expense")
+    activate ChChingException
+    deactivate ChChingException
+end
+
+alt type == "income" && category != null
+    FindCommand -> ChChingException: ChChingException("Income hsa no category")
+    activate ChChingException
+    deactivate ChChingException
+end
+
+alt type == "income" && (description == null && date == null)
+    FindCommand -> ChChingException: ChChingException("No description or date specified for Income")
+    activate ChChingException
+    deactivate ChChingException
+end
+
+alt type == "expense" && (description == null && date == null && category == null)
+    FindCommand -> ChChingException: ChChingException("No description or category or date specified for Expense")
+    activate ChChingException
+    deactivate ChChingException
+end
+deactivate FindCommand
+
+destroy ChChingException 
+
+@enduml

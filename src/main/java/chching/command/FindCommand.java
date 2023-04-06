@@ -28,6 +28,7 @@ public class FindCommand extends Command {
         this.category = category;
         this.description = description;
         this.date = date;
+        
     }
 
     /**
@@ -56,13 +57,13 @@ public class FindCommand extends Command {
         } else if(!type.equals("income") && !type.equals("expense")) {
             throw new ChChingException("Type specified must be income or expense");
 
-        } else if(type == "income" && (description == null || emptyKeyword)  && date == null) {
+        } else if(type.equals("income") && (description == null || emptyKeyword)  && date == null) {
             throw new ChChingException("No description or date specified for Income");
             
-        } else if (category != null && type.equals("income")) {
+        } else if (type.equals("income") && category != null) {
             throw new ChChingException("Income has no category");
 
-        } else if (type == "expense" && (description == null || emptyKeyword) && category == null && date == null) {
+        } else if (type.equals("expense") && (description == null || emptyKeyword) && category == null && date == null) {
             throw new ChChingException("No description or category or date specified");
         }
 
