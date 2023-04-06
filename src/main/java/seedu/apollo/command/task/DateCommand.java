@@ -7,25 +7,16 @@ import seedu.apollo.exception.task.InvalidDateTime;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
-import seedu.apollo.utils.LoggerInterface;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
-
-
 
 /**
  * Date Command class that shortlists Tasks that occur on the given date.
  */
-public class DateCommand extends Command {// implements LoggerInterface {
+public class DateCommand extends Command {
     private static Logger logger = Logger.getLogger("DateCommand");
     LocalDate date;
     DateTimeFormatter datePattern = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -38,7 +29,6 @@ public class DateCommand extends Command {// implements LoggerInterface {
      * @throws InvalidDateTime If the input date does not fit the above format.
      */
     public DateCommand (String dateString) throws InvalidDateTime {
-//        setUpLogger();
         super(logger);
         assert dateString != null : "DateCommand: dateString should not be null!";
         try {
@@ -48,32 +38,6 @@ public class DateCommand extends Command {// implements LoggerInterface {
             throw new InvalidDateTime();
         }
     }
-
-//    /**
-//     * Sets up logger for DateCommand class.
-//     */
-//    @Override
-//    public void setUpLogger() {
-//        LogManager.getLogManager().reset();
-//        logger.setLevel(Level.ALL);
-//        ConsoleHandler logConsole = new ConsoleHandler();
-//        logConsole.setLevel(Level.SEVERE);
-//        logger.addHandler(logConsole);
-//        try {
-//
-//            if (!new File("apollo.log").exists()) {
-//                assert(new File("apollo.log").createNewFile()) : "Error in creating save file";
-//            }
-//
-//            FileHandler logFile = new FileHandler("apollo.log", true);
-//            logFile.setLevel(Level.FINE);
-//            logger.addHandler(logFile);
-//
-//        } catch (IOException e) {
-//            logger.log(Level.SEVERE, "File logger not working.", e);
-//        }
-//
-//    }
 
     /**
      * Shortlists and prints Tasks from the TaskList that occur during the given date.

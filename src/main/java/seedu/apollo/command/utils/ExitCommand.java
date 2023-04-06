@@ -14,8 +14,10 @@ import java.util.logging.Logger;
  */
 public class ExitCommand extends Command {
 
+    private static Logger logger = Logger.getLogger("ExitCommand");
+
     public ExitCommand() {
-        super(Logger.getLogger("ExitCommand"));
+        super(logger);
     }
 
     /**

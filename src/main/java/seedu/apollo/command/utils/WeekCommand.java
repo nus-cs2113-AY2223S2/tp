@@ -17,8 +17,10 @@ import java.util.logging.Logger;
  */
 public class WeekCommand extends Command {
 
+    private static Logger logger = Logger.getLogger("WeekCommand");
+
     public WeekCommand() {
-        super(Logger.getLogger("WeekCommand"));
+        super(logger);
     }
 
     @Override
