@@ -6,7 +6,11 @@ import seedu.duke.command.EditType;
 import seedu.duke.exceptions.EditFormatException;
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.MissingIngredientInputException;
-import seedu.duke.recipe.*;
+import seedu.duke.recipe.Step;
+import seedu.duke.recipe.StepList;
+import seedu.duke.recipe.RecipeList;
+import seedu.duke.recipe.IngredientList;
+import seedu.duke.recipe.Ingredient;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
