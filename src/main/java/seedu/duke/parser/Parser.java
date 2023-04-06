@@ -128,6 +128,9 @@ public interface Parser {
                 throw new WrongFormatException();
             }
         case "help":
+            if (inputWords.length > 1) {
+                throw new WrongFormatException();
+            }
             ui.showGuide();
             break;
         case "exit":
