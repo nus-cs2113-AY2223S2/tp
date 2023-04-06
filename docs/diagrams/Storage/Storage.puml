@@ -32,7 +32,7 @@ deactivate ":File"
 end
 ":Storage" -> ":Storage" : readModData(SAVED_MODULES_FILE_PATH, modules)
 activate ":Storage"
-ref over ":Storage" : readModData
+ref over ":Storage" : [[readModData{diagrams%2FStorage%2FreadModData.png}]]
 ":Storage" --> ":Storage"
 deactivate ":Storage"
 ":Storage" -> ":Storage" : checkDatabaseCorrupted()

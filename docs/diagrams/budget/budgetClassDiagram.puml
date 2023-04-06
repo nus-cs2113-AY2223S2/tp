@@ -60,9 +60,9 @@ class BudgetPlanner {
 }
 BudgetStorage "1" <- BudgetPlanner : manages
 BudgetStorage -left-* "1"AirplaneTicket
-BudgetStorage --* "1"Entertainment
-BudgetStorage --* "1"Food
-BudgetStorage --* "1"Accommodation
+BudgetStorage -left-* "1"Entertainment
+BudgetStorage -left-* "1"Food
+BudgetStorage -left-* "1"Accommodation
 
 class AirplaneTicket extends GoodsAndServices {
 -price:int
