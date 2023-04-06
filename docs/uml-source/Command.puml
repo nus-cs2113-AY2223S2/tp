@@ -1,0 +1,56 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+skinparam maxMessageSize 150
+
+abstract class "{abstract}\nCommand" as Command {
++ isExit: Boolean
++ execute(taskList: TaskList, ui: Ui, storage: Storage, moduleList: ModuleList,
+allModules: ModuleList, calendar Calendar): void
+# setExit(): void
+# getCommand(arg: String): LessonType
+}
+
+class AddCommand {
+- logger: Logger
+
+}
+AddCommand <|-- Command
+
+class DateCommand
+DateCommand <|-- Command
+
+class FindCommand
+FindCommand <|-- Command
+
+class ListCommand
+ListCommand <|-- Command
+
+class ModifyCommand
+ModifyCommand <|-- Command
+
+class ExitCommand
+ExitCommand <|-- Command
+
+class HelpCommand
+HelpCommand <|-- Command
+
+class WeekCommand
+WeekCommand <|-- Command
+
+class AddModuleCommand
+Command --|> AddModuleCommand
+
+class DeleteModuleCommand
+Command --|> DeleteModuleCommand
+
+class ListModuleCommand
+Command --|> ListModuleCommand
+
+class ListModuleWithLessonCommand
+Command --|> ListModuleWithLessonCommand
+
+class ShowModuleCommand
+Command --|> ShowModuleCommand
+
+@enduml
