@@ -68,8 +68,9 @@ public class JsonUserCareerStorage implements UserCareerStorage {
                 logger.log(Level.WARNING,
                            "Data file has been corrupted or missing, we will create a new file and reset " +
                                "your progress.");
+                System.out.println("Corrupted / Missing data file, creating a new one.");
             } catch (DukeError error) {
-                System.out.println("Something went wrong saving your data!");
+                System.out.println("Something went wrong saving your reset data!");
                 logger.log(Level.SEVERE, "Unable to write new user data file to hard disk!");
             }
         }

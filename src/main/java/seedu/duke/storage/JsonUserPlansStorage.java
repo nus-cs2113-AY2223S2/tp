@@ -69,9 +69,11 @@ public class JsonUserPlansStorage implements UserPlansStorage {
                 logger.log(Level.WARNING,
                            "Plans data file has been corrupted or missing, we will create a new file for " +
                                "you, all your plans will be lost.");
+                System.out.println("Corrupted / Missing plans file, creating a new one.");
                 return userPlan;
             } catch (DukeError ex) {
                 logger.log(Level.SEVERE, "Unable to write new user data file to hard disk!");
+                System.out.println("Something went wrong saving your reset plans data!");
             }
         }
         return userPlan;

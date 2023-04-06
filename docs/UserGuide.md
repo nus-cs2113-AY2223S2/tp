@@ -114,10 +114,21 @@ Position a bar in a rack at upper body height., Standing, take a shoulder width 
 
 ________________________________________
 ```
-### IPPT Calculator and session: ```ippt [AGE] [RUNTIME] [PUSHUP SCORE] [SITUP SCORE]```
-Adds an IPPT exercise session and also takes in the input of the user's scores for the exercises.
+### IPPT Calculator and session: ```ippt [AGE] [RUNTIME] [PUSHUPs] [SITUPs]```
+
+**DISCLAIMER** This feature is accurate only for males in SAF (excluding special forces i.e. commandos)
+
+Adds an IPPT exercise session and also takes in the input of the user's timing/repetitions for the exercises.
 It returns the total points obtained by the user from the set of exercises.
 The user can view his history(via ```history``` command) to see the breakdown of the points too.
+
+* ```AGE``` should be an integer ranging 16-60
+* ```Runtime``` in format of ```mm:ss``` where mm is minute (integer) and ss is seconds (integer)
+* ```PUSHUPS``` Integer number of pushups in 1 minute
+* ```SITUPS``` Integer number of situps in 1 minute
+
+For example, person is 23 years old, with 2.4 run time of 10 minutes and 10 seconds.
+Completed 30 pushups and 30 situps, the input would be:
 
 Example of input: ```ippt 23 10:10 30 30```
 Output:
@@ -407,18 +418,65 @@ if a specific line of data is corrupt, that specific achievement is not loaded, 
 
 ## Command Summary
 
-| Action       | Example Command, Examples                                               |
-|--------------|-------------------------------------------------------------------------|
-| **help**     | ```help```                                                              |
-| **exit**     | ```exit```                                                              |
-| **generate** | ```generate [arguments] [number]```<br/>eg. ```generate hard upper 4``` |
-| **filters**  | ```filters```                                                           |
-| **find**     | ```find [keyword]``` <br/>eg. ```find arms```                           |
-| **plans**    | ```plans```                                                             |
-| **planner**  | ```planner```                                                           |
-| **history**  | ```history```                                                           |
-| **data**     | ```data```                                                              |
-| **start**    | ```start```                                                             |
-| **quick**    | ```quick [plan_name] [x]```<br/> eg. ```quick home_leg_day 3```         |
-| **delete**   | ```delete [number]```<br/> eg. ```delete 1```                           |
+```generate```
+
+Generate a specific list of exercises: generate FILTER1 FILTER2 ... x
+FILTER stands for a specific requirement you want to include in your exercise
+
+```filters```
+
+View all available filters
+
+```ippt``` ```AGE``` ```RUNTIME``` ```PUSHUPs``` ```SITUPs```
+
+Starts an IPPT exercise session with input scores for the 3 sets of exercises.
+* ```AGE``` should be an integer ranging 16-60
+* ```Runtime``` in format of ```mm:ss``` where mm is minute (integer) and ss is seconds (integer)
+* ```PUSHUPS``` Integer number of pushups in 1 minute
+* ```SITUPS``` Integer number of situps in 1 minute
+
+```start```
+Start a workout session
+
+```history```
+View the information on all workout sessions you have completed
+
+```data```
+
+View your completed exercises as well as the number of times you have completed each exercise
+
+```delete```
+
+Delete a workout session you have within your workout history: ```delete``` ```NUMBER```
+```NUMBER``` refers to the session number of the workout session you wish to delete
+
+```plans```
+
+Show all plans
+
+```planner```
+
+Enter workout plan editor
+
+```quick```
+
+Generate a planned exercise: ```quick``` ```PLAN_NAME``` ```number```
+PLAN_NAME needs has to be in your planner, and ```number``` is the number of exercises
+
+```find```
+
+finds all relevant exercises based on the keyword : ```find``` ```keyword```
+
+```achievements```
+
+Shows all the available achievements, their requirements and whether they have been achieved or not
+
+```clear_achievements```
+
+Clears all the data of finished exercises for the achievements database, resetting counters for all achievements.
+Do note that this command does not clear the counters for each specific exercise, hence the number of each exercise completed from the data command will NOT be cleared.
+
+```exit```
+
+End the program
 

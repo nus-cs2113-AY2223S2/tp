@@ -72,9 +72,9 @@ public class UserCareerData {
                 if (sessionInList instanceof IPPTSession) {
                     UserScore sessionScore = ((IPPTSession) sessionInList).getUserScore();
                     System.out.println("You scored at total of: " + sessionScore.getTotalScore() + '\n' +
-                                           "Pushups: " + sessionScore.getPushupScore() + '\n' +
-                                           "Situps: " + sessionScore.getSitupScore() + '\n' +
-                                           "2.4 Km Run " + sessionScore.getRunScore() + '\n');
+                                           "Pushups points: " + sessionScore.getPushupScore() + '\n' +
+                                           "Situps points: " + sessionScore.getSitupScore() + '\n' +
+                                           "2.4 Km Run points: " + sessionScore.getRunScore() + '\n');
                 }
                 if (i != totalUserCareerSessions.size() - 1) {
                     System.out.println("\n ");

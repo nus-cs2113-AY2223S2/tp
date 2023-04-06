@@ -51,6 +51,9 @@ public class ExerciseSearchCommand extends Command {
                 index++;
             }
         }
-        System.out.println("There are no exercises found matching your keyword!");
+        if (index == 1) {
+            System.out.println("There are no exercises found matching your keyword!");
+        }
     }
+
 }
