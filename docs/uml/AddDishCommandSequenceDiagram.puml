@@ -1,22 +1,28 @@
 @startuml
+hide footbox
 title Add Dish Sequence Diagram
 
-'actor User
-participant AddDishCommand
-participant Dish
-participant DishManager
+box "AddDishCommand"
+participant ":AddDishCommand" as AddDishCommand
+endbox
 
--> AddDishCommand: AddDishCommand("dish name", price, ["ingredient 1", "ingredient 2", ...])
-'AddDishCommand -> AddDishCommand: AddDishCommand("dish name", price, ["ingredient 1", "ingredient 2", ...])
-Activate AddDishCommand
+box "DishManager"
+participant ":DishManager" as DishManager
+endbox
 
+box "Dish"
+participant ":Dish" as Dish
+endbox
+
+-> AddDishCommand ++ : AddDishCommand("dish name", price, ["ingredient 1", "ingredient 2", ...])
 -> AddDishCommand: execute("dish name", price, ["ingredient 1", "ingredient 2", ...])
-AddDishCommand -> DishManager: execute("dish name", price, ["ingredient 1", "ingredient 2", ...])
-'DishManager -> DishManager: DishManager()
-Activate DishManager
-Dish <- DishManager: create new Dish("dish name", price, ["ingredient 1", "ingredient 2", ...])
-Activate Dish
-Dish --> DishManager:
+AddDishCommand -> DishManager ++ : execute("dish name", price, ["ingredient 1", "ingredient 2", ...])
+
+create Dish
+Dish <- DishManager ++ : create new Dish("dish name", price, ["ingredient 1", "ingredient 2", ...])
+Dish --> DishManager
 AddDishCommand <-- DishManager
-<-- AddDishCommand: ui.printMessage("added dish")
+<-- AddDishCommand: ui.printMessage()
+
+|||
 @enduml

@@ -7,4 +7,8 @@
 !define ENTITY_COLOR #darkgreen
 !define STORAGE_COLOR #pink
 
+skinparam classAttributeIconSize 0
+hide circle
+hide footbox
+
 @enduml

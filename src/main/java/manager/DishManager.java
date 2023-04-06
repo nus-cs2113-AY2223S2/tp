@@ -19,7 +19,7 @@ public class DishManager {
         return dishes.size();
     }
 
-    public static void addDishCommand(String name, int price, ArrayList<String> ingredients, TextUi ui) {
+    public static void addDish(String name, int price, ArrayList<String> ingredients, TextUi ui) {
         Dish dish = new Dish(name, price, ingredients);
         dishes.add(dish);
         try {
@@ -30,7 +30,7 @@ public class DishManager {
         }
     }
 
-    public static void deleteDishCommand(int index, TextUi ui) {
+    public static void deleteDish(int index, TextUi ui) {
         Dish selectedDish = dishes.get(index);
         dishes.remove(index);
         try {
@@ -41,7 +41,7 @@ public class DishManager {
         }
     }
 
-    public static String viewDishCommand() {
+    public static String viewDish() {
         int index = 1;
         String everyDishInList = "";
         for (Dish dish : dishes) {
@@ -51,7 +51,7 @@ public class DishManager {
         return everyDishInList;
     }
 
-    public static String findDishCommand(String stringToFind) {
+    public static String findDish(String stringToFind) {
         ArrayList<Dish> dishesMatchingKeyword = new ArrayList<>();
         ArrayList<Integer> indexes = new ArrayList<Integer>();
         for (int i = 0; i < getDishesSize(); i++) {
