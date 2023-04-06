@@ -22,7 +22,6 @@ return
 return
 
 Apollo -> week : execute()
-Apollo --
 activate week
 
 
@@ -56,6 +55,8 @@ loop 7 times
     end
 end
 destroy Ui
+week --> Apollo
 destroy week
+Apollo--
 
 @enduml

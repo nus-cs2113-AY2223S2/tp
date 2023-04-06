@@ -25,33 +25,43 @@ add -> add ++ : setUpLogger()
 add--
 return
 return
+destroy Parser
 
 Apollo -> add : execute()
-Apollo --
 activate add
 add -> add++ : addTask()
-add -> Event**
+add -> Event** : new Event()
 Event++
 return
 add -> add++ : isClashingEvent()
 TaskList --> add
 add--
-alt Event clashes with Task
+opt Event clashes with Task
 add -> Ui : printClashingEventMessage()
 end
 add -> add++ : warnEventModuleClash()
 Calendar --> add
-alt Event clashes with Lesson
+opt Event clashes with Lesson
 add -> Ui : printClashingEventModuleMessage()
 end
 add--
 add -> TaskList++ : add()
+Event -> TaskList
+Event++
+destroy Event
 add--
 add <-- TaskList--
 
-add -> Ui : printAddMessage()
+
+add -> Ui++ : printAddMessage()
+TaskList -> Ui
+TaskList++
+destroy TaskList
+destroy Ui
 add -> Storage ++ : updateTask()
 return
-
+destroy Storage
+add --> Apollo
 destroy add
+Apollo--
 @enduml

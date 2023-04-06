@@ -15,7 +15,6 @@ If you can type fast, Apollo can get your timetable management done faster than 
     + [Module Commands](#module-commands)
     + [Utility Commands](#utility-commands)
     + [Loading and saving of data](#loading-and-saving-of-data)
-
 3. [Command summary](#command-summary)
 4. [FAQ](#faq)
 
@@ -429,6 +428,7 @@ The below is a list of commands that you can use with `help`.
 
 Format: `help COMMAND`
 
+
 |  Command   |                          Help/Information Message contains...                           |
 |:----------:|:---------------------------------------------------------------------------------------:|
 |   `list`   |                      information and format for list tasks command                      |
@@ -446,6 +446,7 @@ Format: `help COMMAND`
 | `showmod`  |                  information and format of show module command options                  |
 |   `help`   |           information for help commands and how to seek specific command help           |
 |   `bye`    |                         information and format for bye command                          |
+
 
 Format: `help COMMAND`
 
