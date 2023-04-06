@@ -212,16 +212,19 @@ Step 5. The user then executes the command `view` to view his updated weight and
 
 ## [Proposed] Filter feature
 
+### Proposed Implementation
+
 This proposed mechanism for allowing the user to search for meals with a filter, facilitated by `FilterCaloriesCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
-Step 1. The user calls the `examples` command, specifying a particular calorie range through a upper and lower bound
-Step 2. `FilterCaloriesCommand` will parse the lower and upper bound from the input
+Step 1. The user calls the `examples` command, specifying a particular calorie range through a upper and lower bound 
+
+Step 2. `FilterCaloriesCommand` will parse the lower and upper bound from the input 
+
 Step 3. `FilterCaloriesCommand` will then retrieve the meals that fit within that range from `FoodStorage`
+
 Step 4. `FilterCaloiresCommand` will then print out the meals that has been filtered based on the lower and upper bound
 
 ![filter-calories-command]
-
-### Proposed Implementation
 
 ### Design considerations:
 
@@ -249,12 +252,20 @@ Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exerci
 
 ## [Proposed] Examples feature
 
+### Proposed Implementation
+
 The proposed mechanism for displaying examples of exercises and meals is facilitated by `ExamplesCommand`. It extends `Command` and overrides 
 the `execute` method in the `Command` class.
 
+Step 1. The user calls the `examples` command, specifying whether they wish for `meal` or `exercise` to be displayed
 
+Step 2. `ExamplesCommand` will parse the user input
 
-### Proposed Implementation
+Step 3. `ExamplesCommand` will retrieve either the examples of `meal` or examples of `exercise` based on the user input, from the `ExampleData` database
+
+Step 4. The examples of `meal` or `exercise` will then be printed out and displayed for the user
+
+![examples-command] 
 
 ### Design considerations:
 
