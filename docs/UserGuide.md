@@ -129,10 +129,20 @@ update /q QUERY
   following syntax
 
   ```
-  INDEX [/q NEW_QUESTION] [/a NEW_ANSWER] [/d NEW_DUE_DATE]
+  INDEX /q NEW_QUESTION
   ```
+  
+  - This updates the question of the flashcard to `NEW_QUESTION`
 
-    - Since a slash character (`/`) can be intepreted as a command option,
+
+  - To update the answer of the flashcard, use `/a` 
+  - To update the due date of the flashcard, use `/d`
+    ```
+      INDEX /a NEW_ANSWER
+      INDEX /d NEW_DUE_DATE
+    ```
+    - The user can only update either one of the question, answer or due date at a time
+    - Since a slash character (`/`) can be interpreted as a command option,
       `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
       ` /` (the slash with a space before it).
 

@@ -21,6 +21,7 @@ import com.clanki.exceptions.UpdatedContentIsEmptyException;
 public class Parser {
     private static final String QUESTION_OPTION_IDENTIFIER = "q";
     private static final String ANSWER_OPTION_IDENTIFIER = "a";
+    private static final String DATE_OPTION_IDENTIFIER = "d";
     //private static Logger logger = Logger.getLogger("Parser");
 
     public static Command parseCommand(String userInput) {
@@ -154,14 +155,14 @@ public class Parser {
         if (identifier == null) {
             throw new InvalidIdentifierException();
         }
-        if (identifier.equals("q")) {
-            updatedContent = parsedInput.getOptionByName("q");
+        if (identifier.equals(QUESTION_OPTION_IDENTIFIER)) {
+            updatedContent = parsedInput.getOptionByName(QUESTION_OPTION_IDENTIFIER);
         }
-        if (identifier.equals("a")) {
-            updatedContent = parsedInput.getOptionByName("a");
+        if (identifier.equals(ANSWER_OPTION_IDENTIFIER)) {
+            updatedContent = parsedInput.getOptionByName(ANSWER_OPTION_IDENTIFIER);
         }
-        if (identifier.equals("d")) {
-            updatedContent = parsedInput.getOptionByName("d");
+        if (identifier.equals(DATE_OPTION_IDENTIFIER)) {
+            updatedContent = parsedInput.getOptionByName(DATE_OPTION_IDENTIFIER);
         }
         if (updatedContent.isEmpty()) {
             throw new UpdatedContentIsEmptyException();

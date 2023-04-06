@@ -53,25 +53,6 @@ class ParserTest {
                 () -> Parser.parseCommandStrict("add /q  /a Answer"));
     }
 
-
-    @Test
-    public void parseInputForUpdateCommand_emptyInput_updatedContentEmptyException() {
-        assertThrows(UpdatedContentIsEmptyException.class,
-                () -> Parser.parseInputForUpdateCommand("1 /a /aa"));
-        assertThrows(UpdatedContentIsEmptyException.class,
-                () -> Parser.parseInputForUpdateCommand(("1 /a   ")));
-    }
-
-    @Test
-    public void parseInputForUpdateCommand_wrongIdentifier_invalidIdentifierException() {
-        assertThrows(InvalidIdentifierException.class,
-                () -> Parser.parseInputForUpdateCommand("1 /w question"));
-        assertThrows(InvalidIdentifierException.class,
-                () -> Parser.parseInputForUpdateCommand("1 /s "));
-        assertThrows(InvalidIdentifierException.class,
-                () -> Parser.parseInputForUpdateCommand("1 /e       "));
-    }
-
     @Test
     public void parserByeCommand_byeCommand_successful() {
         Command parsedCommand = Parser.parseCommand("bye");
@@ -96,6 +77,24 @@ class ParserTest {
     public void parserUpdateCommand_updateCommand_successful() {
         Command parsedCommand = Parser.parseCommand("update Question");
         assertTrue(parsedCommand instanceof UpdateCommand);
+    }
+
+    @Test
+    public void parseInputForUpdateCommand_emptyInput_updatedContentEmptyException() {
+        assertThrows(UpdatedContentIsEmptyException.class,
+                () -> Parser.parseInputForUpdateCommand("1 /a /aa"));
+        assertThrows(UpdatedContentIsEmptyException.class,
+                () -> Parser.parseInputForUpdateCommand(("1 /a   ")));
+    }
+
+    @Test
+    public void parseInputForUpdateCommand_wrongIdentifier_invalidIdentifierException() {
+        assertThrows(InvalidIdentifierException.class,
+                () -> Parser.parseInputForUpdateCommand("1 /w question"));
+        assertThrows(InvalidIdentifierException.class,
+                () -> Parser.parseInputForUpdateCommand("1 /s "));
+        assertThrows(InvalidIdentifierException.class,
+                () -> Parser.parseInputForUpdateCommand("1 /e       "));
     }
 
     @Test
