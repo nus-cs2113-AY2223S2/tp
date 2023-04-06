@@ -250,16 +250,25 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Prints out a warning message to inform the user that the AlertData.csv file is corrupted.
+     */
     public static void printInvalidAlertFile() {
         System.out.println(INVALID_ALERT_FILE);
         printLine();
     }
 
+    /**
+     * Prints out a message that the AlertData.csv file is empty or does not exist.
+     */
     public static void printEmptyAlertFile() {
         System.out.println(EMPTY_ALERT_FILE);
         printLine();
     }
 
+    /**
+     * Prints out a warning message that the AlertData.csv file has been recovered.
+     */
     public static void printRecoveredAlertFile() {
         System.out.println(RECOVERED_ALERT_FILE);
         printLine();
@@ -314,18 +323,27 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Prints out logo indicating the inventory, and that the list of inventory items has been successfully printed.
+     */
     public static void printSuccessList() {
         printLine();
         System.out.println(INVENTORYLOGO);
         System.out.println(SUCCESS_LIST);
     }
 
+    /**
+     * Prints out message that there are no items in the inventory.
+     */
     public static void printEmptyList() {
         printLine();
         System.out.println(EMPTY_LIST);
         printLine();
     }
 
+    /**
+     * Prints out message that the command format for listing out inventory items is incorrect.
+     */
     public static void printInvalidList() {
         printLine();
         System.out.println(INVALID_LIST);
@@ -361,6 +379,14 @@ public class Ui {
         return table.toString();
     }
 
+
+    /**
+     * Creates a string containing a table of all items in the inventory, including the index, name, UPC, quantity,
+     * price and category of each item.
+     *
+     * @param items The ArrayList containing all items in the inventory.
+     * @return String containing the table of inventory items and their associated details.
+     */
     public static String printTable(ArrayList<Item> items) {
         int[] columnWidths = {INDEX_COL_WIDTH, NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH,
                               CATEGORY_COL_WIDTH};
@@ -384,6 +410,14 @@ public class Ui {
         return table.toString();
     }
 
+    /**
+     * Creates a string containing a table of alerts, including the name and UPC of the item that the alert is set for,
+     * as well as the quantity at which the alert is triggered.
+     *
+     * @param upcMap    The hash map containing the UPC and quantity of the alerts to be printed.
+     * @param inventory The inventory of items that contains the names of items.
+     * @return String containing the table of alert UPCs, names and quantities.
+     */
     public static String printTable(HashMap<String, Integer> upcMap, Inventory inventory) {
 
         int[] columnWidths = {NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH};
@@ -401,17 +435,23 @@ public class Ui {
 
     }
 
+    /**
+     * Prints out the headings for a table.
+     *
+     * @param columnWidths The array of integers that stores the width of each column in the table.
+     * @return String containing the headings for a table.
+     */
     private static String printHeadings(int[] columnWidths) {
         String[] headings = {};
         if (columnWidths.length == INVENTORY_ATTRIBUTE_COUNT) {
-            headings = new String[]{INDEX_HEADING, NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING,
-                                    CATEGORY_HEADING};
+            headings = new String[] {INDEX_HEADING, NAME_HEADING, UPC_HEADING, QTY_HEADING, PRICE_HEADING,
+                                     CATEGORY_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == COMMAND_COL_WIDTH) {
-            headings = new String[]{COMMAND_HEADING, FORMAT_HEADING};
+            headings = new String[] {COMMAND_HEADING, FORMAT_HEADING};
         } else if (columnWidths.length == ALERT_ATTRIBUTE_COUNT) {
-            headings = new String[]{NAME_HEADING, UPC_HEADING, STOCK_HEADING};
+            headings = new String[] {NAME_HEADING, UPC_HEADING, STOCK_HEADING};
         } else if (columnWidths.length == HELP_ATTRIBUTE_COUNT && columnWidths[0] == CATEGORY_COL_WIDTH) {
-            headings = new String[]{CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
+            headings = new String[] {CATEGORY_HEADING, NAME_HEADING + ": " + UPC_HEADING};
         }
         StringBuilder allHeadings = new StringBuilder();
 
@@ -428,6 +468,12 @@ public class Ui {
         return allHeadings.toString();
     }
 
+    /**
+     * Prints out a sequence of - and + characters to form the horizontal row separators of a table.
+     *
+     * @param columnWidths The array of integers that stores the width of each column in the table.
+     * @return String containing one horizontal row separator for a table.
+     */
     private static String printTableSeparator(int[] columnWidths) {
         StringBuilder tableSeparator = new StringBuilder();
 
@@ -492,6 +538,18 @@ public class Ui {
         return row.toString();
     }
 
+    /**
+     * Prints out one row of a table when listing out all the items in the inventory.
+     *
+     * @param name         The name of the item to be printed.
+     * @param upc          The UPC of the item to be printed.
+     * @param qty          The quantity of the item to be printed.
+     * @param price        The price of the item to be printed.
+     * @param category     The category of the item to be printed.
+     * @param index        The index of the item to be printed.
+     * @param columnWidths The array of integers that stores the width of each column in the table.
+     * @return String containing one row of the table.
+     */
     private static String printRow(String name, String upc, String qty, String price, String category, String index,
                                    int[] columnWidths) {
         String[] nameLines = wrapText(name, NAME_COL_WIDTH);
@@ -527,6 +585,15 @@ public class Ui {
         return row.toString();
     }
 
+    /**
+     * Prints out one row of a table when listing all alerts.
+     *
+     * @param name         The name of the item that has an alert.
+     * @param upc          The UPC of the item that has an alert.
+     * @param stock        The minimum or maximum quantity of an item that is specified by the alert.
+     * @param columnWidths The array of integers that stores the width of each column in the table.
+     * @return String containing one row of the table.
+     */
     private static String printRow(String name, String upc, String stock, int[] columnWidths) {
         String[] upcLines = wrapText(upc, UPC_COL_WIDTH);
         String[] stockLines = wrapText(stock, QTY_COL_WIDTH);
@@ -553,6 +620,14 @@ public class Ui {
         return row.toString();
     }
 
+    /**
+     * Prints out one attribute of the object in concern in a row (e.g. the name of an item).
+     *
+     * @param attributeLines The array of strings containing the object attribute to be printed.
+     * @param columnWidth    The width of the column that the attribute is printed in.
+     * @param rowNumber      The number of the current row that the attribute is being printed on.
+     * @return String containing the substring of the attribute that fits within columnWidth.
+     */
     private static String printAttribute(String[] attributeLines, int columnWidth, int rowNumber) {
         StringBuilder attribute = new StringBuilder();
 
@@ -566,8 +641,17 @@ public class Ui {
         return attribute.toString();
     }
 
-    /* Method below adapted from https://stackoverflow.com/questions/4055430/java-
-    code-for-wrapping-text-lines-to-a-max-line-width */
+
+    /**
+     * Splits a string into portions based on the width of the table column that the string will be printed in.
+     * This allows for printing out a string with text wrapping.
+     * Adapted from &lt;a href = "https://stackoverflow.com/questions/4055430/java-code-for-wrapping-text-lines-to-a-
+     * max-line-width&rt;StackOverflow: Java code for wrapping text lines to a max line width&lt;/a&rt;
+     *
+     * @param input The string to be split.
+     * @param width The width of the table column.
+     * @return Array of strings containing the portions of the string.
+     */
     private static String[] wrapText(String input, int width) {
         if (!input.contains("/")) {
             if (input.contains("[")) {
@@ -598,6 +682,17 @@ public class Ui {
         return lines.toArray(new String[0]);
     }
 
+    /**
+     * Adds a word that does not require wrapping to a StringBuilder object.
+     *
+     * @param line    The StringBuilder object that contains previously-added words.
+     * @param words   The array of strings containing whitespace-separated words.
+     * @param lines   The ArrayList that existing words in line will be added to if the word to be added results in
+     *                the length of line exceeding the column width.
+     * @param current The array index indicating the word to be added from the words array.
+     * @param width   The width of the table column that the word will be printed in.
+     * @return StringBuilder object containing the words to be printed.
+     */
     private static StringBuilder addWordWithoutWrap(StringBuilder line, String[] words, ArrayList<String> lines,
                                                     int current, int width) {
         if (words[current].contains("_")) {
@@ -622,6 +717,14 @@ public class Ui {
         return line;
     }
 
+    /**
+     * Adds a word that requires wrapping to the next row to an ArrayList.
+     *
+     * @param words   The array of strings containing whitespace-separated words.
+     * @param lines   The ArrayList that the wrapped word will be added to.
+     * @param current The array index indicating the word to be added from the words array.
+     * @param width   The width of the table column that the word will be printed in.
+     */
     private static void addWordWithWrap(String[] words, ArrayList<String> lines, int current, int width) {
         int start = 0;
         if (words[current].contains("_")) {
@@ -634,6 +737,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Finds the height of a row in a table.
+     *
+     * @param rowHeights The array of strings containing the row height required for each attribute.
+     * @return The integer value representing the required height of the row.
+     */
     private static int findRowHeight(String[]... rowHeights) {
         int maxAttributeHeight = 0;
 
@@ -840,72 +949,110 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Prints out warning message that a minimum alert already exists.
+     */
     public static void printExistingMinAlert() {
         printLine();
         System.out.println(EXISTING_MIN_ALERT);
         printLine();
     }
 
+    /**
+     * Prints out warning message that a maximum alert already exists.
+     */
     public static void printExistingMaxAlert() {
         printLine();
         System.out.println(EXISTING_MAX_ALERT);
         printLine();
     }
 
+    /**
+     * Prints out warning message that the format for adding an alert is incorrect.
+     */
     public static void printInvalidAddAlertCommand() {
         printLine();
         System.out.println(INVALID_ADD_ALERT);
         printLine();
     }
 
+    /**
+     * Prints out warning message that the format for adding a minimum alert is incorrect.
+     */
     public static void printInvalidMinAlert() {
         printLine();
         System.out.println(INVALID_MIN_ALERT);
         printLine();
     }
 
+    /**
+     * Prints out warning message that the format for adding a maximum alert is incorrect.
+     */
     public static void printInvalidMaxAlert() {
         printLine();
         System.out.println(INVALID_MAX_ALERT);
         printLine();
     }
 
+    /**
+     * Prints out message that an alert was successfully added.
+     */
     public static void printSuccessAddAlert() {
         printLine();
         System.out.println(SUCCESS_ADD_ALERT);
         printLine();
     }
 
+    /**
+     * Prints out warning message that an invalid keyword was specified after the "add" command.
+     */
     public static void printInvalidAlertKeyword() {
         printLine();
         System.out.println(INVALID_ALERT_KEYWORD);
         printLine();
     }
 
+    /**
+     * Prints out warning message that the format for the alert command is incorrect.
+     */
     public static void printInvalidAlertParameter() {
         printLine();
         System.out.println(INVALID_ALERT_PARAMETER);
         printLine();
     }
 
+    /**
+     * Prints out warning message that the format for removing an alert is incorrect.
+     */
     public static void printInvalidRemoveAlertCommand() {
         printLine();
         System.out.println(INVALID_REMOVE_ALERT);
         printLine();
     }
 
+    /**
+     * Prints out message that an alert was successfully removed.
+     */
     public static void printSuccessRemoveAlertCommand() {
         printLine();
         System.out.println(SUCCESS_REMOVE_ALERT);
         printLine();
     }
 
+    /**
+     * Prints out warning message that the alert the user is attempting to remove does not exist.
+     */
     public static void printNonExistentRemoveAlert() {
         printLine();
         System.out.println(NONEXISTENT_REMOVE_ALERT);
         printLine();
     }
 
+    /**
+     * Creates error message that the alert type is invalid (neither minimum nor maximum).
+     *
+     * @return String containing the error message to be printed.
+     */
     public static String printInvalidAlertType() {
         StringBuilder sb = new StringBuilder("");
         sb.append(LINE);
@@ -914,6 +1061,13 @@ public class Ui {
         return sb.toString();
     }
 
+    /**
+     * Creates a string containing all alerts, if any.
+     *
+     * @param inventory The inventory of items containing the item names that have alerts associated with them.
+     * @param alertList The AlertList object containing the two hash maps that store minimum and maximum alerts.
+     * @return String containing the table to be printed out, or an error message if there are no alerts to print.
+     */
     private static String printAlerts(Inventory inventory, AlertList alertList) {
 
         StringBuilder alertTable = new StringBuilder();
@@ -1055,12 +1209,24 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints out a warning message when the quantity of an item goes below its minimum alert level.
+     *
+     * @param name       Name of the item in concern.
+     * @param alertLevel The minimum alert level set for the item.
+     */
     public static void printMinAlertWarning(String name, int alertLevel) {
         System.out.println("ALERT: The quantity of " + name +
                 " is below the minimum level of " + alertLevel + ".");
         printLine();
     }
 
+    /**
+     * Prints out a warning message when the quantity of an item exceeds its maximum alert level.
+     *
+     * @param name       Name of the item in concern.
+     * @param alertLevel The maximum alert level set for the item.
+     */
     public static void printMaxAlertWarning(String name, int alertLevel) {
         System.out.println("ALERT: The quantity of " + name +
                 " is above the maximum level of " + alertLevel + ".");

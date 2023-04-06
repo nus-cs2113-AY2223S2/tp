@@ -12,7 +12,8 @@ public class ListCommand extends Command {
     }
 
     /**
-     * Lists all items in the inventory.
+     * Checks if the inventory is empty. Prints an error message if the inventory is empty.
+     * Otherwise, prints a list of all items.
      */
     private void listItems() {
         if (!itemInventory.isEmpty()) {
@@ -24,6 +25,9 @@ public class ListCommand extends Command {
         }
     }
 
+    /**
+     * Lists all items in the inventory.
+     */
     private void printList() {
         String table = Ui.printTable(itemInventory);
         System.out.println(table);
