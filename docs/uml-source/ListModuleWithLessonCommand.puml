@@ -12,7 +12,7 @@ participant ":Parser" as Parser
 participant ":ListModuleCommandWithLessonCommand" as ListMod
 participant ":Ui" as Ui
 
-User -> Apollo : "listmod cs2113 -tut>"
+User -> Apollo : "listmod cs2113 -tut"
 
 activate Apollo
 Apollo -> Parser : getCommand()
