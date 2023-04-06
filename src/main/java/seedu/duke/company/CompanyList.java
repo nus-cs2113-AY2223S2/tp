@@ -19,24 +19,54 @@ public class CompanyList {
     public static ArrayList<Company> getCompanyList() {
         return companyList;
     }
+
     public static void add(String companyName, String industry, int contactNumber, String contactEmail) {
         companyName = companyName.strip().toUpperCase();
         contactEmail = contactEmail.strip().toUpperCase();
         Company newCompany = new Company(companyName, industry, contactNumber, contactEmail);
-        if (!isDuplicateCompany(companyName)) {
+        if (!isDuplicateCompanyName(companyName) && !isDuplicateContactEmail(contactEmail)
+                && !isDuplicateContactNumber(contactNumber)) {
             companyList.add(newCompany);
             ui.showSuccessfulAdditionMessage(companyName);
-        } else {
+        } else if (isDuplicateCompanyName(companyName)) {
             ui.showLine();
             System.out.println("Company already exists in the list!");
+            ui.showLine();
+        } else if (isDuplicateContactEmail(contactEmail)) {
+            ui.showLine();
+            System.out.println("Email already exists in the list!");
+            ui.showLine();
+        } else if (isDuplicateContactNumber(contactNumber)) {
+            ui.showLine();
+            System.out.println("Contact Number already exists in the list!");
             ui.showLine();
         }
     }
 
-    public static boolean isDuplicateCompany(String companyName){
+    public static boolean isDuplicateCompanyName(String companyName) {
         for (int i = 0; i < companyList.size(); i++) {
             String companyAlreadyAdded = companyList.get(i).getCompanyName();
             if (companyAlreadyAdded.contains(companyName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isDuplicateContactEmail(String contactEmail) {
+        for (int i = 0; i < companyList.size(); i++) {
+            String emailAlreadyAdded = companyList.get(i).getContactEmail();
+            if (emailAlreadyAdded.contains(contactEmail)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isDuplicateContactNumber(int contactNumber) {
+        for (int i = 0; i < companyList.size(); i++) {
+            int contactAlreadyAdded = companyList.get(i).getContactNumber();
+            if (contactAlreadyAdded == contactNumber) {
                 return true;
             }
         }
@@ -60,7 +90,7 @@ public class CompanyList {
     }
 
     public void deleteCompanyInformation(int index) throws InvalidIndexException, EmptyListException {
-        if (companyList.isEmpty()){
+        if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
         if (index < 0 | index >= companyList.size()) {
@@ -82,9 +112,9 @@ public class CompanyList {
             throw new EmptyListException();
         }
         ui.showLine();
-        for (int i = 0; i < companyList.size(); i += 1){
+        for (int i = 0; i < companyList.size(); i += 1) {
             Company company = companyList.get(i);
-            if (!company.isConfirmed){
+            if (!company.isConfirmed) {
                 System.out.println((i + 1));
                 System.out.println(companyList.get(i));
             }
@@ -92,33 +122,33 @@ public class CompanyList {
         ui.showLine();
     }
 
-    public void findIndustry(String targetIndustry){
+    public void findIndustry(String targetIndustry) {
         ArrayList<Company> sortedCompanyList = new ArrayList<>();
-        for (Company company : companyList){
-            if(company.getIndustry().equals(targetIndustry)){
+        for (Company company : companyList) {
+            if (company.getIndustry().equals(targetIndustry)) {
                 sortedCompanyList.add(company);
             }
         }
         ui.showSortedCompanyList(targetIndustry, sortedCompanyList);
     }
 
-    public void findCompany(String targetCompany){
+    public void findCompany(String targetCompany) {
         ArrayList<Company> sortedCompanyList = new ArrayList<>();
         targetCompany = targetCompany.toLowerCase();
-        for (Company company : companyList){
+        for (Company company : companyList) {
             int idx = companyList.indexOf(company) + 1;
-            if (company.getCompanyName().toLowerCase().contains(targetCompany)){
+            if (company.getCompanyName().toLowerCase().contains(targetCompany)) {
                 ui.showCompanyFoundMessage(company, idx);
                 sortedCompanyList.add(company);
             }
         }
-        if (sortedCompanyList.isEmpty()){
+        if (sortedCompanyList.isEmpty()) {
             ui.showCompanyNotFoundMessage(targetCompany);
         }
     }
 
     public void loadSampleCompanyInformation() {
-        add("Huawei", "Tech", 80060114 , "APSupport@huawei.com");
+        add("Huawei", "Tech", 80060114, "APSupport@huawei.com");
         add("Google", "Tech", 91002500, "google@google.com");
         add("Tiktok", "Social Media", 91231239, "tiktok@tiktok.com");
         ui.showSampleDataLoadedMessage();
@@ -130,7 +160,7 @@ public class CompanyList {
     }
 
     public void markConfirm(int companyNum) throws InvalidIndexException, EmptyListException {
-        if (companyList.isEmpty()){
+        if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
         if (companyNum < 0 | companyNum >= companyList.size()) {
@@ -142,7 +172,7 @@ public class CompanyList {
     }
 
     public void markUnconfirm(int companyNum) throws InvalidIndexException, EmptyListException {
-        if (companyList.isEmpty()){
+        if (companyList.isEmpty()) {
             throw new EmptyListException();
         }
         if (companyNum < 0 | companyNum >= companyList.size()) {
