@@ -84,8 +84,6 @@ public class Parser {
         final String[] split = userCommand.trim().split("\\s+", 2);
         try {
             return parseCommand(split, size, moduleData);
-        } catch (IllegalCommandException e) {
-            ui.printInvalidCommand();
         } catch (EmptyTaskDescException e) {
             ui.printEmptyDescription();
         } catch (EmptyKeywordException e) {
@@ -96,7 +94,7 @@ public class Parser {
             ui.printEmptyDelMod();
         } catch (NumberFormatException e) {
             ui.printErrorForIdx(size);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalCommandException | IllegalArgumentException e) {
             ui.printInvalidCommand();
         } catch (InvalidDeadline e) {
             ui.printInvalidDeadline();
@@ -157,15 +155,12 @@ public class Parser {
 
         case COMMAND_HELP_WORD:
             if (isOneWord(split)) {
-
                 return new HelpCommand();
             }
             if (!isOneWordSecondClause(split[1])) {
                 throw new IllegalCommandException();
             }
-
             HelpCommand newHelpCommand = chooseHelpCommand(split[1]);
-
             return newHelpCommand;
 
         case COMMAND_LIST_WORD:
@@ -220,7 +215,6 @@ public class Parser {
             }
             String moduleCode = split[1];
             return new DeleteModuleCommand(moduleCode);
-
 
         default:
             throw new IllegalCommandException();
