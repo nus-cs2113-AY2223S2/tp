@@ -232,9 +232,10 @@ Output:
 | Add       | add /on [date] /type [MealType] /foods [foods]                                                           |
 | List      | list foods or list meals                                                                                 |
 | Delete    | delete INDEX e.g delete 3                                                                                |
-| Filter    | filter                                                                                                   |
+| Filter    | filter [lower_bound] [upper_bound]                                                                       |
 | Nutrition | nutrition                                                                                                |
 | Exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date] |
 | Track     | track                                                                                                    |
+| Examples  | examples [meal/exercise]                                                                                 |
 | Bye       | bye                                                                                                      |
 
