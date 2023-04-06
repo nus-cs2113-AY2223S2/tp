@@ -109,7 +109,7 @@ public class DeadlineManager {
                 ui.printMessage(i + ". " + matchingDeadlines.get(i - 1).toString());
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 }

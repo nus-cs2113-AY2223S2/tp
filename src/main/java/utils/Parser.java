@@ -292,7 +292,7 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_WRONG_ORDER);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         String name = (words[0].substring(2)).trim();
@@ -315,7 +315,7 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_LIST_PARAM);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         assert (userInput.trim()).isEmpty() : Messages.ERROR_DEADLINE_EXCESS_LIST_PARAM;
@@ -341,7 +341,7 @@ public class Parser {
             System.out.println(Messages.ERROR_DEADLINE_MISSING_INDEX);
             return new IncorrectCommand();
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         assert index >= 0 : "indexToRemove should be 0 or greater.";
@@ -361,7 +361,7 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_KEYWORD);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         return new FindDeadlineCommand((keyword.trim()));

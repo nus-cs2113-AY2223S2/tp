@@ -41,7 +41,7 @@ public class Messages {
     public static final String MESSAGE_DEADLINE_VIEW_LIST = "Here are the deadlines in your list:";
     public static final String MESSAGE_DEADLINE_VIEW_SEARCH_LIST = "Here are the matching deadlines in your list:";
     public static final String MESSAGE_DEADLINE_REMOVED = "Noted. I've removed this deadline:\n";
-    public static final String MESSAGE_NUMBER_OF_DEADLINES = "\nNow you have %d deadlines in the deadline list.";
+    public static final String MESSAGE_NUMBER_OF_DEADLINES = "\nNow you have %d deadlines in the deadline list.\n";
     public static final String MESSAGE_MEETING_ADDED = "Got it! You have successfully added a meeting:";
     public static final String MESSAGE_MEETING_VIEW_LIST = "Meeting list:";
     public static final String MESSAGE_MEETING_FOUND = "Here's the matching meeting list:";
