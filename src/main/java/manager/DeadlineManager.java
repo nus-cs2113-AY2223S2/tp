@@ -52,16 +52,13 @@ public class DeadlineManager {
      * @param ui manages user output.
      */
     public static void printDeadlines(TextUi ui) {
-        try {
-            if (deadlines.isEmpty()) {
-                throw new DinerDirectorException(Messages.MESSAGE_DEADLINE_EMPTY_LIST);
-            }
-            System.out.println(Messages.MESSAGE_DEADLINE_VIEW_LIST);
-            for (int i = 1; i <= deadlines.size(); i++) {
-                ui.printMessage(i + ". " + deadlines.get(i - 1).toString());
-            }
-        } catch (DinerDirectorException e) {
-            System.out.println(e);
+        if (deadlines.isEmpty()) {
+            System.out.println(Messages.MESSAGE_DEADLINE_EMPTY_LIST);
+            return;
+        }
+        System.out.println(Messages.MESSAGE_DEADLINE_VIEW_LIST);
+        for (int i = 1; i <= deadlines.size(); i++) {
+            ui.printMessage(i + ". " + deadlines.get(i - 1).toString());
         }
     }
 
@@ -99,7 +96,7 @@ public class DeadlineManager {
     public static void findDeadline(String keyword, TextUi ui) {
         ArrayList<Deadline> matchingDeadlines = new ArrayList<>();
         for (Deadline x : deadlines) {
-            if (x.description.contains(keyword)){
+            if (((x.description).toLowerCase()).contains(keyword.toLowerCase())){
                 matchingDeadlines.add(x);
             }
         }

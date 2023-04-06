@@ -22,7 +22,7 @@ public class Messages {
     public static final String MESSAGE_DEADLINE_COMMANDS = "add_deadline n/<name> t/<time>\n" +
             "delete_deadline <integer>\n" +
             "view_deadlines\n" +
-            "find_deadlines <keyword>\n";
+            "find_deadline <keyword>\n";
     public static final String MESSAGE_RECIPE_COMMANDS = "add_dish n/<name> pc/<price in cents> " +
             "[<ingredient 1>;<ingredients 2>;<ingredient 3>; ... ]\n" +
             "delete_dish <integer>\n" +
@@ -62,6 +62,7 @@ public class Messages {
     public static final String ERROR_DEADLINE_MISSING_KEYWORD = "Find deadline command must be followed by keyword!";
     public static final String ERROR_DEADLINE_MISSING_PARAM = "Missing deadline parameter!";
     public static final String ERROR_DEADLINE_EXCESS_PARAM = "You cannot have multiple name/time for your deadline!";
+    public static final String ERROR_DEADLINE_WRONG_ORDER = "Time parameter must be before name parameter!";
     public static final String ERROR_DEADLINE_EXCESS_LIST_PARAM =
             "Excess input detected! Please only type \"view_deadlines\".";
     public static final String ERROR_STAFF_ADD_MISSING_PARAM = "Insufficient information when adding a staff";
