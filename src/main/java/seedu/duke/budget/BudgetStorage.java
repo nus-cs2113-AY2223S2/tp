@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class BudgetStorage implements DatabaseInterface {
 
     private static final String SAVED_BUDGET_FILE_PATH = "data/budget.txt";
+    private static BudgetStorage instance = null;
     private Accommodation accommodation;
     private AirplaneTicket airplaneTicket;
     private Food food;
@@ -20,12 +21,19 @@ public class BudgetStorage implements DatabaseInterface {
 
     private int budget;
 
-    public BudgetStorage() {
+    private BudgetStorage() {
         try {
             initialiseDatabase();
         } catch (IOException e) {
             System.out.println("Initialise Budget Failure");
         }
+    }
+
+    public static BudgetStorage getInstance() {
+        if (instance == null) {
+            instance = new BudgetStorage();
+        }
+        return instance;
     }
 
     @Override

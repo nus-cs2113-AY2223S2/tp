@@ -40,7 +40,7 @@ public class HelpCommandTest {
         Storage storage = new Storage();
         DeadlineStorage deadlineStorage = new DeadlineStorage();
         Parser parser = new Parser();
-        BudgetPlanner budgetPlanner = new BudgetPlanner();
+        BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof HelpCommand);
     }
