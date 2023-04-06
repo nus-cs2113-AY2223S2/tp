@@ -4,9 +4,6 @@ import seedu.rainyDay.command.Command;
 import seedu.rainyDay.command.ShortcutAddCommand;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
-import seedu.rainyDay.modules.Ui;
-
-import java.util.HashMap;
 
 //@@author KN-CY
 public class ParseShortcut {
