@@ -85,6 +85,32 @@ class CommandAddTest {
                         LocalDate.now(),
                 outputStreamCaptor.toString().trim());
     }
+    @Test
+    public void addExpense_nonExistentDate_returnsErrorMessage() {
+        new CommandAdd(expenseList.getExpenseList(),
+                parser.extractAddParameters("add amt/20 t/29-02-2022 cat/food"), currency).execute();
+        assertEquals("Date does not exist, please try again.",
+                outputStreamCaptor.toString().trim());
+    }
+    @Test
+    public void addExpense_pastTime_returnsErrorMessage() {
+        new CommandAdd(expenseList.getExpenseList(),
+                parser.extractAddParameters("add amt/20 t/02-02-1979 cat/food"), currency).execute();
+        assertEquals("Dates beyond 1981 are not supported. Please try again.",
+                outputStreamCaptor.toString().trim());
+    }
+
+    @Test
+    public void addExpense_invalidType_returnsWarningMessage() {
+        new CommandAdd(expenseList.getExpenseList(),
+                parser.extractAddParameters("add amount/20 time/notatime"), currency).execute();
+        assertEquals("WARNING: Invalid input type for \"time/notatime\". Please check again."
+                        + System.lineSeparator() + "WARNING: Invalid input type for \"amount/20\". Please check again."
+                        + System.lineSeparator() + "Please input both the amount and date with amt/ and t/ " +
+                        "respectively.",
+                outputStreamCaptor.toString().trim());
+    }
+
 
     @BeforeEach
     public void setUp() {
