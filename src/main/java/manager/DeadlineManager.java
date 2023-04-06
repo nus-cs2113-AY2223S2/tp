@@ -96,7 +96,7 @@ public class DeadlineManager {
     public static void findDeadline(String keyword, TextUi ui) {
         ArrayList<Deadline> matchingDeadlines = new ArrayList<>();
         for (Deadline x : deadlines) {
-            if (x.description.contains(keyword)){
+            if (((x.description).toLowerCase()).contains(keyword.toLowerCase())){
                 matchingDeadlines.add(x);
             }
         }
