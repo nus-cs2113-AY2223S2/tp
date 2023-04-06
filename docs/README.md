@@ -18,6 +18,6 @@ For more information on how to use MagusStock, please refer to the following doc
 
 ## About Us
 
-We are a team of CS2113 developers dedicated to creating high-quality software. For more information on our team and our projects, please refer to the [About Us](https://ay2223s2-cs2113-w12-3.github.io/tp/AboutUs.html) document.
+We are a team of CS2113 developers dedicated to creating high-quality software. For more information on our team and our projects, please refer to the [About Us](AboutUs.md) document.
 
 ---
