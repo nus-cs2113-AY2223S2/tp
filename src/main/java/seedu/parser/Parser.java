@@ -45,7 +45,7 @@ public class Parser {
         case "/whelp":
             return new HelpWorkoutCommand();
         case "/cday":
-            CaloriesCommand.setDateEntered(true);
+            Command.setDateEntered(true);
             return CheckCaloriesInput.processDayCalories(arguments);
         case "/cadd":
             return CheckCaloriesInput.processAddCalories(arguments);
@@ -54,6 +54,7 @@ public class Parser {
          //   return CheckCaloriesInput.processViewCalories(arguments);
         case "/cview":
             // list all the food calories that been entered for a day
+            return CheckCaloriesInput.processViewCalories(arguments);
         case "/cdelete":
             //delete calories for a specific day for one food follow /cdelete date food name
         case "/chelp":

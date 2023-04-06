@@ -1,6 +1,7 @@
 package seedu.commands;
 
 
+import seedu.calorietracker.Calories;
 import seedu.calorietracker.CaloriesRecorder;
 import seedu.calorietracker.FoodList;
 import seedu.workout.Day;
@@ -13,9 +14,10 @@ import java.util.HashMap;
 public class Command {
 
     protected static boolean isDayEntered;
+    protected static boolean isCaloriesDayEntered;
     protected static boolean isWorkoutEntered;
     protected WorkoutList workoutList = new WorkoutList();
-    protected CaloriesRecorder caloriesRecorder;
+    protected CaloriesRecorder caloriesRecorder = new CaloriesRecorder();
     protected FoodList foodList;
     protected HashMap<Date, Day> workouts;
     protected Workout workoutForOneDay = new Workout();
@@ -31,6 +33,9 @@ public class Command {
     //@@ author ZIZI-czh
     public static void setIsDayEntered(boolean isDayEnter) {
         isDayEntered = isDayEnter;
+    }
+    public static void setDateEntered(boolean isCaloriesDayEnter) {
+        isCaloriesDayEntered = isCaloriesDayEnter;
     }
 
     //@@ author ZIZI-czh

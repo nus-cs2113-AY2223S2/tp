@@ -2,8 +2,9 @@ package seedu.commands.caloriecommands;
 
 
 import seedu.calorietracker.Calories;
+import seedu.commands.Command;
 
-public class AddCalorieCommand extends CaloriesCommand {
+public class AddCalorieCommand extends Command {
 
 
     public static final int CALORIES_NOT_GIVEN = -1;
@@ -12,7 +13,7 @@ public class AddCalorieCommand extends CaloriesCommand {
     private String foodName;
     private int currentFoodCalories;
 
-    private Calories calories = new Calories();
+    private Calories calories;
     private StringBuilder string = new StringBuilder();
 
 
@@ -64,9 +65,10 @@ public class AddCalorieCommand extends CaloriesCommand {
 
     @Override
     public String execute() {
+        calories = caloriesRecorder.getCalories();
         /*calorieTracker.setFoodList(foodList);
         return calorieTracker.addCalories(date, food, calories);*/
-        if (isDateEntered) {
+        if (isCaloriesDayEntered) {
             if (currentFoodCalories == CALORIES_NOT_GIVEN) {
                 //check if the food had been stored in food list before
                 if (foodList.contains(foodName)) {
@@ -101,6 +103,7 @@ public class AddCalorieCommand extends CaloriesCommand {
                     string.append("Added '").append(foodName).append(": ")
                             .append(currentFoodCalories)
                             .append(" kcal' to daily calories consumption!");
+
                 }
             }
         } else {

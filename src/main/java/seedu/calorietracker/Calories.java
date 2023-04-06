@@ -19,6 +19,10 @@ public class Calories {
         this.date = date;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
     public void addFoodCalories(String name, int calories) {
         singleFoodCalories.put(name, calories);
         this.name = name;
