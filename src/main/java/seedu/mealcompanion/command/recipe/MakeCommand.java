@@ -73,7 +73,8 @@ public class MakeCommand extends RecipeCommand {
             int recipeIndex = Integer.parseInt(recipeNumber) - 1;
             Recipe recipe = recipes.getRecipe(recipeIndex);
             IngredientList fridgeIngredients = mealCompanionSession.getIngredients();
-            if (canMakeRecipe(recipe, fridgeIngredients, mealCompanionSession.getAllergens())) {
+            if (canMakeRecipe(recipe, fridgeIngredients)
+                    && !hasAllergen(recipe, mealCompanionSession.getAllergens())) {
                 makeRecipe(mealCompanionSession, recipe);
             } else {
                 throw new MealCompanionException("Ingredients in inventory is insufficient");
@@ -81,7 +82,7 @@ public class MakeCommand extends RecipeCommand {
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             mealCompanionSession.getUi().printMessage("Oops, please input a valid recipe number!");
         } catch (Exception e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+            mealCompanionSession.getUi().printMessage(e.getMessage());
         }
     }
 }

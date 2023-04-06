@@ -24,6 +24,10 @@ public class RecipeDetailCommand extends RecipeCommand {
         return argument.matches("[0-9]+");  //match a number with optional '-' and decimal.
     }
 
+    /**
+     * Get the recipe specified by the index in the argument and print out its details.
+     * @param mealCompanionSession the MealCompanionSession containing the list of recipes, ingredients, and allergens
+     */
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
@@ -47,7 +51,7 @@ public class RecipeDetailCommand extends RecipeCommand {
             Recipe recipe = mealCompanionSession.getRecipes().getRecipe(index);
             mealCompanionSession.getUi().printMessage(recipe.toString());
         } catch (MealCompanionException e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+            mealCompanionSession.getUi().printMessage(e.getMessage());
         }
     }
 }
