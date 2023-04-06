@@ -201,15 +201,15 @@ public class EventList {
     }
 
     public boolean canAddNewEvent(Event newEvent) {
-        boolean overlap = false;
+        boolean isOverlap = false;
         for (Schedule event : taskList) {
             if (newEvent.getStartTime().isBefore(event.getEndTime())
                     && newEvent.getEndTime().isAfter(event.getStartTime())) {
-                overlap = true;
+                isOverlap = true;
                 break;
             }
         }
-        return !overlap;
+        return !isOverlap;
     }
 }
 
