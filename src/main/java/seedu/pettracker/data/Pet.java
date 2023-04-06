@@ -53,7 +53,6 @@ public class Pet {
      * @throws InvalidStatException When stat is not Type/Age/Weight
      */
     public void removeStat(String statName) throws InvalidStatException {
-        // assert statName != null : "statName is null";
         if (statName == null) {
             throw new InvalidStatException();
         } else {
