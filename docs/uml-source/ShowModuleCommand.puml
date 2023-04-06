@@ -1,11 +1,80 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-autonumber
+skinparam maxMessageSize 150
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+title ShowModuleCommand
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+actor User
+
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":ShowModuleCommand" as ShowMod
+participant ":Module" as Module
+participant ":Ui" as Ui
+
+User -> Apollo : "showmod cs2113 -tut"
+
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+
+Parser -> ShowMod** : ShowModuleCommand()
+activate ShowMod
+
+ShowMod -> ShowMod : setUpLogger()
+activate ShowMod
+deactivate ShowMod
+
+ShowMod -> Module** : Module()
+activate Module
+Module --> ShowMod : module
+deactivate Module
+destroy Module
+
+ShowMod --> Parser : ShowModuleCommand()
+deactivate ShowMod
+
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+
+Apollo -> ShowMod : execute()
+activate ShowMod
+
+alt args.length == 2
+ShowMod -> ShowMod : handleMultiCommand()
+activate ShowMod
+ShowMod -> Ui : printModuleTimetable()
+activate Ui
+Ui --> ShowMod
+deactivate Ui
+
+deactivate ShowMod
+
+else
+ShowMod -> ShowMod : handleSingleCommand()
+activate ShowMod
+ShowMod -> Ui : printShowModuleMessage()
+
+activate Ui
+Ui --> ShowMod
+deactivate Ui
+
+deactivate ShowMod
+
+end
+
+destroy Ui
+
+ShowMod --> Apollo
+
+deactivate ShowMod
+destroy ShowMod
+
+deactivate Apollo
+
+
+
+
 @enduml
