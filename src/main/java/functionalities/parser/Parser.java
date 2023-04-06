@@ -104,7 +104,7 @@ public class Parser {
                    "|v/|sd/|st/|ed/|et/|p/)", -1);
            return secondSplit[0].trim();
        } catch (ArrayIndexOutOfBoundsException e) {
-           throw new SniffException(" The " + splitter + " description is empty!");
+           throw new SniffException(" The " + splitter + " description is invalid!");
        }
     }
 
