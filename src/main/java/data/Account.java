@@ -17,7 +17,7 @@ public class Account {
     public static int accountNumber = 1;
     //protected static String ACCOUNTS_FILE = accountName + ".txt";
     protected static String accountName;
-    protected static ExpenseList account;
+    public static ExpenseList account;
     private static String passwordHash;
     private static final int MIN_PASSWORD_LENGTH = 8;
     private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]+");
@@ -136,24 +136,27 @@ public class Account {
     }
 
     private boolean isUsernameTaken() {
-        boolean usernameTaken = true;
-        try (BufferedReader br = new BufferedReader(new FileReader(
-                "./src/main/java/storage/" + accountName + ".txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (line.equals(accountName)) {
-                    usernameTaken = true;
-                    break;
+        File file = new File("./src/main/java/storage/" + accountName + ".txt");
+        if (!file.exists()) {
+            return false;
+        } else {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts[0].equalsIgnoreCase(accountName)) {
+                        return true;
+                    }
                 }
+                return false;
+            } catch (FileNotFoundException e) {
+                // Username file not found, which means the username is not taken
+                return false;
+            } catch (IOException e) {
+                System.out.println("Error: Failed to read username file.");
+                return false;
             }
-        } catch (FileNotFoundException e) {
-            // Username file not found, which means the username is not taken
-            usernameTaken = false;
-        } catch (IOException e) {
-            System.out.println("Error: Failed to read username file.");
         }
-        return usernameTaken;
-
     }
 
     private String hashPassword(String password) {
@@ -167,7 +170,7 @@ public class Account {
         return String.valueOf(passwordChars);
     }
 
-    public static void logout() {
+    public static void save() {
         try (PrintWriter pw = new PrintWriter(new FileWriter(
                 "./src/main/java/storage/" + accountName + ".txt"))) {
             pw.println(accountName + "," + passwordHash);
@@ -181,6 +184,7 @@ public class Account {
             return;
         }
         account = null;
+        System.out.println("Saved successfully.");
     }
 }
 

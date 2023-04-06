@@ -1,29 +1,40 @@
 package seedu.duke;
 
+import command.CommandDelete;
 import command.CommandAdd;
 import command.CommandCategory;
-import command.CommandDelete;
 import command.CommandList;
-import command.CommandSort;
+
 import command.CommandTotal;
+import command.CommandSort;
+import command.CommandHelp;
 import command.CommandFind;
 
+import common.WelcomeMessage;
 import command.overview.CommandOverview;
+
 import data.Account;
 import data.ExpenseList;
 import data.Currency;
+
 import parser.Parser;
 import storage.Storage;
 
 import java.util.Scanner;
 
 import static common.MessageList.HELLO_MESSAGE;
-import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.ACCOUNT_MESSAGE;
 import static common.MessageList.NAME_QUESTION;
-import static data.Account.logout;
+
+//import static data.Account.account;
+import static common.MessageList.MESSAGE_CANCEL;
+import static common.MessageList.MESSAGE_DIVIDER;
+import static common.MessageList.SAVING_EXIT_MESSAGE;
+import static common.MessageList.SAVING_QUESTION_MESSAGE;
+import static data.Account.account;
 import static data.ExpenseList.showToUser;
-import static parser.ParserPassword.initialize;
+import static parser.ParserAccount.caseLogOut;
+import static parser.ParserAccount.initialize;
 
 
 
@@ -33,6 +44,7 @@ public class Duke {
     protected Currency currency;
     protected Storage storage;
     Account currentUser = null;
+    String filePath = "./src/main/java/storage/" + currentUser.getAccountName() + ".txt";
     /**
      * Initialize Duke and instantiate parser and account objects.
      */
@@ -41,7 +53,7 @@ public class Duke {
         expenseList = new ExpenseList();
         currency = new Currency();
         storage = new Storage(expenseList);
-        //account.setExpenseList(storage.loadExpenses(filePath));
+        account.setExpenseList(storage.loadExpenses(filePath));
     }
 
     public void run() {
@@ -54,8 +66,12 @@ public class Duke {
         String input = "";
         while (in.hasNextLine()) {
             input = in.nextLine();
-            if(input.equals("exit")) {
-                break;
+            if (input.equals("exit")) {
+                showToUser(MESSAGE_DIVIDER, SAVING_EXIT_MESSAGE, MESSAGE_DIVIDER);
+                String res = caseLogOut();
+                if (res.equals("yes") || res.equals("no")) {
+                    break;
+                }
             }
             switch (parser.extractCommandKeyword(input)) {
             case "add":
@@ -77,8 +93,14 @@ public class Duke {
                 new CommandCategory(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
             case "logout":
-                logout();
-                initialize(in);
+                showToUser(MESSAGE_DIVIDER, SAVING_QUESTION_MESSAGE, MESSAGE_DIVIDER);
+                String res = caseLogOut();
+                if (!res.equals("cancel")) {
+                    initialize(in);
+                    break;
+                } else {
+                    showToUser(MESSAGE_DIVIDER, MESSAGE_CANCEL, MESSAGE_DIVIDER);
+                }
                 break;
             case "overview":
                 new CommandOverview(expenseList.getExpenseList(),
@@ -87,6 +109,9 @@ public class Duke {
             case "find":
                 // Use the same parser function as category as it also need the input string from user
                 new CommandFind(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
+                break;
+            case "help":
+                new CommandHelp().execute();
                 break;
             default:
                 System.out.println("Unknown command.");

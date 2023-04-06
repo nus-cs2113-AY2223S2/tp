@@ -6,7 +6,11 @@ import java.util.Scanner;
 import static common.MessageList.COMMAND_LIST_MESSAGE;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.ACCOUNT_MESSAGE;
-import static data.Account.logout;
+import static common.MessageList.SAVING_QUESTION_MESSAGE;
+import static common.MessageList.SAVING_EXIT_MESSAGE;
+
+import static data.Account.account;
+import static data.Account.save;
 import static data.ExpenseList.showToUser;
 
 
@@ -40,13 +44,44 @@ public class ParserAccount {
         newAccount.signup();
     }
 
-    public static void caseLogOut() {
+    public static String caseLogOut() {
+        Scanner scanner = new Scanner(System.in);
+        String res = scanner.nextLine();
+        if (res.equals("yes")) {
+            save();
+        } else if (res.equals("no")) {
+            account.clear();
+            return res;
+        } else if (res.equals("cancel")) {
+            return res;
+        } else {
+            System.out.println("Invalid command");
+            showToUser(MESSAGE_DIVIDER, SAVING_QUESTION_MESSAGE, MESSAGE_DIVIDER);
+            caseLogOut();
+            return res;
+        }
+        return res;
+    }
 
+    public static String caseExit() {
+        Scanner scanner = new Scanner(System.in);
+        String res = scanner.nextLine();
+        if (res.equals("yes")) {
+            save();
+        } else if (res.equals("no")) {
+            account.clear();
+            return res;
+        } else {
+            System.out.println("Invalid command");
+            showToUser(MESSAGE_DIVIDER, SAVING_EXIT_MESSAGE, MESSAGE_DIVIDER);
+            caseLogOut();
+            return res;
+        }
+        return res;
     }
 
     public static void initialize(Scanner in) {
         do {
-            //System.out.println("Enter \"login\", \"signup\", or \"logout\"");
             showToUser(MESSAGE_DIVIDER, ACCOUNT_MESSAGE, MESSAGE_DIVIDER);
             String input = in.nextLine();
             if (input.equals("login")) {
@@ -56,13 +91,11 @@ public class ParserAccount {
             } else if (input.equals("signup")) {
                 // get register details
                 caseSignUp();
-            } else if (input.equals("logout")) {
-                logout();
-                break; // exit the loop
             } else {
                 // invalid input, tell them to try again
-                System.out.println("invild option, chose login or signup!");
-                input = in.nextLine();
+                System.out.println("Invalid option, chose login or signup!");
+                initialize(in);
+                break;
             }
         } while (true);
     }
