@@ -310,7 +310,7 @@ public class Parser {
      * @return the split command descriptions
      * @throws BrokeManException the custom exception for specific exception case
      */
-    private static String[] checkAddCommandException(String description) throws BrokeManException {
+    public static String[] checkAddCommandException(String description) throws BrokeManException {
         boolean containsAllFlags = description.contains("a/ ") &&
                 description.contains(" d/ ") && description.contains(" t/")
                 && description.contains(" c/");
@@ -391,10 +391,6 @@ public class Parser {
      * @throws ContainsEmptyFlagException custom exception to indicate flag descriptions is / are empty
      */
     private static void checkEmptyAddFlag(String[] splitDescriptions) throws ContainsEmptyFlagException {
-//        if (splitDescriptions.length == 4) {
-//            throw new ContainsEmptyFlagException();
-//        }
-
         assert (splitDescriptions.length == 4) : "Invalid input\n";
         for (String description : splitDescriptions) {
             if (description.isEmpty()) {
@@ -404,11 +400,7 @@ public class Parser {
     }
 
     private static void checkEmptyFlag(String[] splitDescriptions) throws ContainsEmptyFlagException {
-        if (splitDescriptions.length == 3) {
-            throw new ContainsEmptyFlagException();
-        }
-
-        assert (splitDescriptions.length >= 4) : "Invalid input\n";
+        assert (splitDescriptions.length == 3) : "Invalid input\n";
         for (String description : splitDescriptions) {
             if (description.isEmpty()) {
                 throw new ContainsEmptyFlagException();
@@ -436,8 +428,8 @@ public class Parser {
             return new InvalidCommand(bme.getMessage(), EditExpenseCommand.MESSAGE_USAGE);
         }
 
-        return new EditExpenseCommand(Integer.parseInt(splitDescriptions[1]),
-                splitDescriptions[2], splitDescriptions[3]);
+        return new EditExpenseCommand(Integer.parseInt(splitDescriptions[0]),
+                splitDescriptions[1], splitDescriptions[2]);
     }
 
     /**
@@ -461,8 +453,8 @@ public class Parser {
             return new InvalidCommand(bme.getMessage(), EditIncomeCommand.MESSAGE_USAGE);
         }
 
-        return new EditIncomeCommand(Integer.parseInt(splitDescriptions[1]),
-                splitDescriptions[2], splitDescriptions[3]);
+        return new EditIncomeCommand(Integer.parseInt(splitDescriptions[0]),
+                splitDescriptions[1], splitDescriptions[2]);
     }
 
     /**
@@ -521,22 +513,35 @@ public class Parser {
         if (!isFlagInOrder) {
             throw new WrongFlagOrderException();
         }
-        String[] splitDescriptions = description.split("/");
 
-        int length1 = splitDescriptions[1].length();
-        int length2 = splitDescriptions[2].length();
-        splitDescriptions[1] = splitDescriptions[1].substring(0, length1 - 1).trim();
-        splitDescriptions[2] = splitDescriptions[2].substring(0, length2 - 1).trim();
+        boolean hasDuplicatedFlags = (description.indexOf("i/") != description.lastIndexOf("i/")) ||
+                (description.indexOf("t/") != description.lastIndexOf("t/")) ||
+                (description.indexOf("n/") != description.lastIndexOf("n/"));
+        if (hasDuplicatedFlags) {
+            throw new ContainDuplicatedFlagException();
+        }
+
+        String[] splitDescriptions = new String[3];
+        splitDescriptions[0] = description.substring(description.indexOf("i/") + 2,
+                description.indexOf("t/"));
+        splitDescriptions[1] = description.substring(description.indexOf("t/") + 2,
+                description.indexOf("n/"));
+        splitDescriptions[2] = description.substring(description.indexOf("n/") + 2,
+                description.length());
+
+        splitDescriptions[0] = splitDescriptions[0].trim();
+        splitDescriptions[1] = splitDescriptions[1].trim();
+        splitDescriptions[2] = splitDescriptions[2].trim();
+
         checkEmptyFlag(splitDescriptions);
-        checkIsIntegerIndex(splitDescriptions[1]);
-        checkCorrectType(splitDescriptions[2]);
-        splitDescriptions[3] = splitDescriptions[3].trim();
-        if (splitDescriptions[2].equals("category")) {
-            convertStringToCategory(splitDescriptions[3]);
-        } else if (splitDescriptions[2].equals("amount")) {
-            checkDoubleException(splitDescriptions[3]);
-        } else if (splitDescriptions[2].equals("time")) {
-            checkTimeException((splitDescriptions[3]));
+        checkIsIntegerIndex(splitDescriptions[0]);
+        checkCorrectType(splitDescriptions[1]);
+        if (splitDescriptions[1].equals("category")) {
+            convertStringToCategory(splitDescriptions[2]);
+        } else if (splitDescriptions[1].equals("amount")) {
+            checkDoubleException(splitDescriptions[2]);
+        } else if (splitDescriptions[1].equals("time")) {
+            checkTimeException((splitDescriptions[2]));
         }
 
         return splitDescriptions;

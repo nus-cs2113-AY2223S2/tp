@@ -3,8 +3,10 @@ package seedu.brokeMan.save;
 import seedu.brokeMan.entry.Entry;
 import seedu.brokeMan.entry.expense.Expense;
 import seedu.brokeMan.entry.expense.ExpenseList;
-import seedu.brokeMan.exception.CategoryNotCorrectException;
+import seedu.brokeMan.exception.BrokeManException;
+import seedu.brokeMan.parser.Parser;
 import seedu.brokeMan.parser.StringToCategory;
+import seedu.brokeMan.parser.StringToTime;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,7 +15,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -25,12 +26,12 @@ public class SaveExpense {
         try {
             FileWriter myWriter = new FileWriter("./data/ExpenseData.txt");
             myWriter.flush();
-            String message = "";
+            String message;
             for (Entry expense : expenses) {
-                message = expense.getAmount() +
-                        "/" + expense.getInfo() +
-                        "/" + expense.getTime() +
-                        "/" + expense.getCategory() +
+                message = "a/ " + expense.getAmount() +
+                        " d/ " + expense.getInfo() +
+                        " t/ " + expense.getTime().replaceAll("[T:-]", " ") +
+                        " c/ " + expense.getCategory() +
                         "\n";
                 myWriter.write(message);
             }
@@ -53,18 +54,16 @@ public class SaveExpense {
             expenseEntries = (ArrayList<String>) Files.readAllLines(Paths.get(filePath),
                     StandardCharsets.UTF_8);
             for (String expenseEntry : expenseEntries) {
-                String[] strExpense = expenseEntry.split("/");
-                if (strExpense.length != 4) {
-                    continue;
-                }
+                String[] strExpense;
                 try {
+                    strExpense = Parser.checkAddCommandException(expenseEntry);
+
                     Expense expense = new Expense(Double.parseDouble(strExpense[0]),
                             strExpense[1],
-                            LocalDateTime.parse(strExpense[2]),
+                            StringToTime.convertStringToTime(strExpense[2]),
                             StringToCategory.convertStringToCategory(strExpense[3]));
                     ExpenseList.expenseList.add(expense);
-
-                } catch (NumberFormatException | CategoryNotCorrectException | IndexOutOfBoundsException e) {
+                } catch (BrokeManException bme) {
                     continue;
                 }
             }
@@ -78,7 +77,6 @@ public class SaveExpense {
             }
         }
     }
-
 
 
 }
