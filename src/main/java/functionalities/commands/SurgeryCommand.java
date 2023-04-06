@@ -21,7 +21,7 @@ public class SurgeryCommand extends Command {
 
     public SurgeryCommand(String animalType, String animalName, String ownerName,
                           String contactNumber, LocalDate startDate, LocalTime startTime,
-                          LocalDate endDate, LocalTime endTime, String priority) {
+                          LocalDate endDate, LocalTime endTime, String priority) throws SniffException {
         this.priority = priority;
         this.animal = new Animal(animalType, animalName);
         this.owner = new Owner(ownerName, contactNumber);

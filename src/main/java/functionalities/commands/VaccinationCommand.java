@@ -17,7 +17,8 @@ public class VaccinationCommand extends Command {
     private final LocalTime time;
 
     public VaccinationCommand(String animalType, String animalName, String ownerName,
-                              String contactNumber, String vaccine, LocalDate date, LocalTime time) {
+                              String contactNumber, String vaccine, LocalDate date,
+                              LocalTime time) throws SniffException {
         this.animal = new Animal(animalType, animalName);
         this.owner = new Owner(ownerName, contactNumber);
         this.vaccine = vaccine;
