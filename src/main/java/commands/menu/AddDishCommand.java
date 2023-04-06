@@ -1,7 +1,6 @@
 package commands.menu;
 
 import commands.Command;
-import entity.Dish;
 import manager.DishManager;
 import ui.TextUi;
 
