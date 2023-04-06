@@ -41,4 +41,6 @@ public class Messages {
             "FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, " +
             "SALARY, INVESTMENT," +
             "OTHERS";
+
+    public static final String MESSAGE_CONTAIN_DUPLICATED_FLAGS = "Duplicated flags are not allowed.";
 }

@@ -530,14 +530,14 @@ Example output:
 |
 |  Enter command: help
 |  addExpense: add expense to the expense list.
-|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM HH mm> c/ <category>
+|  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
 |  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
-|  Example: addExpense a/ 4.5 d/ lunch t/ 2023 3 22 20 12 c/ FOOD
+|  Example: addExpense a/ 4.5 d/ lunch t/ 2023 03 22 20 12 c/ FOOD
 |
 |  addIncome: add income to the income list.
 |  Parameters: a/ <amount> d/ <description> t/ <time in YYYY MM DD HH mm> c/ <category>
 |  Valid categories are: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
-|  Example: addIncome a/ 3000 d/ salary t/ 2023 3 10 10 10 c/ SALARY
+|  Example: addIncome a/ 3000 d/ salary t/ 2023 03 10 10 10 c/ SALARY
 |
 |  deleteExpense: deletes an expense from the list
 |  Parameter: <index>
@@ -602,7 +602,7 @@ Example output:
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command:
+|  Enter command: 
 ```
 
 [back to Contents](#table-of-contents)
@@ -662,6 +662,8 @@ BrokeMan data are saved in text files ExpenseData, IncomeData and BudgetData aut
 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous BrokeMan home folder.
 
+[back to Contents](#table-of-contents)
+
 ## Command Summary
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                                |
@@ -676,3 +678,4 @@ BrokeMan data are saved in text files ExpenseData, IncomeData and BudgetData aut
 | **Exit**        | `exit`                                                                                                                                                                                                                                                                          |
 | **Help**        | `help`                                                                                                                                                                                                                                                                          |
 
+[back to Contents](#table-of-contents)
