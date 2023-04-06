@@ -3,6 +3,7 @@ package seedu.rainyDay.parser;
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.AddCommand;
+import seedu.rainyDay.command.DeleteCommand;
 import seedu.rainyDay.command.EditCommand;
 import seedu.rainyDay.command.ExitCommand;
 import seedu.rainyDay.command.FilterCommand;
@@ -13,6 +14,7 @@ import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.MonthlyExpenditures;
 import seedu.rainyDay.data.SavedData;
+import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
@@ -29,6 +31,7 @@ class ParserTest {
     SavedData savedData = new SavedData(financialReport);
     HashMap<Integer, Double> expenditures = new HashMap<>();
     MonthlyExpenditures monthlyExpenditures = new MonthlyExpenditures(expenditures);
+    UserData userData = new UserData(savedData, monthlyExpenditures);
 
     // todo add more test cases
     @Test
@@ -178,6 +181,28 @@ class ParserTest {
         } catch (Exception e) {
             assertEquals(e.getMessage().toString(), ErrorMessage.NO_DELETE_INDEX.toString());
         }
+    }
+
+    @Test
+    public void parseUserInput_validDeleteCommand_deleteCommand() throws RainyDayException {
+        AddCommand addCommand = new AddCommand("Ipad", "out", 120.50, "Default",
+                LocalDate.now());
+        addCommand.setData(userData);
+        addCommand.execute();
+        assertEquals(DeleteCommand.class, new Parser().parseUserInput("delete 1").getClass());
+    }
+
+    @Test
+    public void parseUserInput_invalidDeleteCommand_exception() {
+        RainyDay.savedData = savedData;
+        savedData.getFinancialReport().clearReport();
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("delete"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("delete 2"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("delete 0"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("delete a"));
+        savedData.addStatement(new FinancialStatement("test", "in", 2, "category",
+                LocalDate.now()));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("delete -1"));
     }
 
     @Test
