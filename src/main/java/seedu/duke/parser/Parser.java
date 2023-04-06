@@ -64,14 +64,49 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             input = input.replaceFirst("add", "").trim();
+
             int indexOfName = input.indexOf("n/");
             int indexOfIndustry = input.indexOf("i/");
             int indexOfContactNumber = input.indexOf("c/");
             int indexOfContactEmail = input.indexOf("e/");
-            String companyName = input.substring(indexOfName+2, indexOfIndustry).trim();
-            String industry = input.substring(indexOfIndustry+2, indexOfContactNumber).trim();
-            int contactNumber = Integer.parseInt(input.substring(indexOfContactNumber+2, indexOfContactEmail).trim());
-            String contactEmail = input.substring(indexOfContactEmail+2).trim();
+            String companyName = input.substring(indexOfName + 2, indexOfIndustry).trim();
+            String industry = input.substring(indexOfIndustry + 2, indexOfContactNumber).trim();
+            String contactNumberString = input.substring(indexOfContactNumber + 2, indexOfContactEmail).trim();
+            String contactEmail = input.substring(indexOfContactEmail + 2).trim();
+
+            //Multiple additions are not allowed
+            if(input.indexOf("n/") != input.lastIndexOf("n/")){
+                ui.multipleAdditionErrorMessage();
+                throw new WrongFormatException();
+            }
+            //Empty company name is not allowed
+            if(companyName.equals("")){
+                ui.emptyInputErrorMessage("company name");
+                throw new WrongFormatException();
+            }
+            //Empty industry is not allowed
+            if(industry.equals("")){
+                ui.emptyInputErrorMessage("industry");
+                throw new WrongFormatException();
+            }
+            //Only valid Singaporean number is allowed.
+            if(contactNumberString.length() > 8){
+                ui.invalidInputFormatErrorMessage("contact number",
+                        "8-digit number starting with 3, 6, 8, 9 is expected.");
+                throw new WrongFormatException();
+            }
+            int contactNumber = Integer.parseInt(contactNumberString);
+            if(!checkContactNumberValidity(contactNumber)){
+                ui.invalidInputFormatErrorMessage("contact number",
+                        "8-digit number starting with 3, 6, 8, 9 is expected.");
+                throw new WrongFormatException();
+            } 
+            //Only valid email address is allowed.
+            if(!contactEmail.contains("@") || contactEmail.contains(" ") || contactEmail.endsWith("@")){
+                ui.invalidInputFormatErrorMessage("email address");
+                throw new WrongFormatException();
+            }
+
             AddCommand addCommand = new AddCommand(command, industry, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
@@ -134,6 +169,7 @@ public interface Parser {
                 String targetIndustry = input.replace("find", "").trim();
                 targetIndustry = targetIndustry.replace("industry", "").trim();
                 if (targetIndustry.equals("")) {
+                    ui.emptyInputErrorMessage("target industry type");
                     throw new WrongFormatException();
                 }
                 return new FindIndustryCommand("find industry", targetIndustry.toUpperCase());
@@ -141,6 +177,7 @@ public interface Parser {
                 String targetCompany = input.replace("find", "").trim();
                 targetCompany = targetCompany.replace("company", "").trim();
                 if (targetCompany.equals("")) {
+                    ui.emptyInputErrorMessage("target company name");
                     throw new WrongFormatException();
                 }
                 return new FindCompanyCommand("find company", targetCompany);
@@ -176,5 +213,16 @@ public interface Parser {
         if (intMax.compareTo(currValue) == -1) {
             throw new IntegerSizeExceededException();
         }
+    }
+
+    private static boolean checkContactNumberValidity(int contactNumber){
+        if(contactNumber < 30000000 || contactNumber > 100000000){
+            return false;
+        } else if(contactNumber >= 40000000 && contactNumber < 60000000){
+            return false;
+        } else if(contactNumber >= 70000000 && contactNumber < 80000000){
+            return false;
+        }
+        return true;
     }
 }
