@@ -16,6 +16,10 @@ import java.time.ZoneId;
  */
 public class WeekCommand extends Command {
 
+    public WeekCommand() {
+        super("WeekCommand");
+    }
+
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar) {

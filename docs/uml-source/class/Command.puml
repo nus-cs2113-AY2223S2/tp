@@ -1,0 +1,133 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+abstract class "{abstract}\nCommand" as Command {
++ isExit: Boolean
+# logger: Logger
++ execute(taskList: TaskList, ui: Ui, storage: Storage, moduleList: ModuleList,
+allModules: ModuleList, calendar Calendar): void
+# setExit(): void
+# getCommand(arg: String): LessonType
+}
+Command -> TaskList
+Command -> ModuleList
+Command -> Calendar
+Command -> Storage
+Command -> Ui
+
+class AddCommand {
+# command: String
+# desc: String
+# by: String
+# from: String
+# to: String
+__
++ AddCommand(command: String, param: String)
+- addTask(taskList: TaskList, calendar: Calendar, ui: Ui): void
+- warnDeadlineClash(ui: Ui, taskList: TaskList,
+calendar: Calendar, by: LocalDateTime): void
+- isClashingEvent(taskList: TaskList,
+from: LocalDateTime, to: LocalDateTime): boolean
+- warnEventModuleClash(ui: Ui, calendar: Calendar,
+event Event): void
+- isClashingEventModule(calendarModule: ArrayList<CalendarModule>,
+eventStart: LocalDateTime, eventEnd: LocalDateTime, currentDate: String): boolean
+- isDuringSemester(eventStart: LocalDateTime,
+eventEnd: LocalDateTime): boolean
+- isEventLessonClashing(eventStart: LocalDateTime, eventEnd: LocalDateTime,
+lessonStart: LocalDateTime, lessonEnd: LocalDateTime): boolean
+}
+AddCommand --|> Command
+
+class DateCommand {
+date: LocalDate
+datePattern: DateTimeFormatter
++ DateCommand(dateString: String)
+}
+DateCommand --|> Command
+
+class FindCommand{
+# keyword: String
++ FindCommand(keyword: String)
+}
+FindCommand --|> Command
+
+class ListCommand
+ListCommand --|> Command
+
+class ModifyCommand{
+# command: String
+# idx: int
++ModifyCommand(command: String, param: String, size: int)
+-markTask(taskList: TaskList, ui: Ui): void
+-unmarkTask(taskList: TaskList, ui: Ui): void
+}
+ModifyCommand --|> Command
+
+class WeekCommand
+WeekCommand --|> Command
+
+class ExitCommand
+ExitCommand --|> Command
+
+class HelpCommand
+HelpCommand --|> Command
+
+class SpecificHelpCommand
+SpecificHelpCommand --|> HelpCommand
+
+class AddModuleCommand {
+- module: ModuleList
+- args: String[]
++ AddModuleCommand(param: String, allModules: ModuleList)
+- handleMultiCommand(moduleList: ModuleList, allModules: ModuleList,
+args: String[], ui: Ui, calendar: Calendar): void
+- addTimeTable(searchModule: Module, lessonType: LessonType,
+args: String, ui: Ui, calendar: Calendar): void
+- getLessonTypes(module: Module): ArrayList<LessonType>
+- checkClashingLesson(calendar: Calendar, timetable: Timetable, ui: Ui): void
+- isLessonClashing(schedule: Timetable, timetable: Timetable): boolean
+- isSameWeek(timetable1: Timetable, timetable2: Timetable): boolean
+- isAdded(moduleList: ModuleList, module: Module): boolean
+}
+Command <|-- AddModuleCommand
+
+class DeleteModuleCommand{
+# args: String[]
++ DeleteModuleCommand(params: String)
+- isInteger(param: String): Boolean
+- handleMultiCommand(moduleList: ModuleList, ui: Ui): void
+- deleteTimetable(module: Module, lessonType: LessonType,
+lessonNumber: String): void
+}
+Command <|-- DeleteModuleCommand
+
+class ListModuleCommand
+Command <|-- ListModuleCommand
+
+class ListModuleWithLessonCommand {
+- args: String[]
+- module: Module
++ ListModuleWithLessonCommand(params: String, allModules: ModuleList)
+- handleSingleCommand(ui: Ui): void
+- handleMultiCommand(moduleList: ModuleList, ui: Ui): void
+- copyModuleListData(moduleList: ModuleList): void
+- getLessonTypes(module: Module): ArrayList<LessonType>
+- sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
+- isInModuleList(moduleList: ModuleList, module: Module): boolean
+- isExistLessonType(allModules: ModuleList, lessonType: LessonType): boolean
+}
+Command <|-- ListModuleWithLessonCommand
+
+class ShowModuleCommand {
+- args: String[]
+- module: Module
++ ShowModuleCommand(params: String, allModules: ModuleList)
+- getLessonTypes(module: Module): ArrayList<LessonType>
+- handleMultiCommand(ui: Ui): void
+- sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
+}
+Command <|-- ShowModuleCommand
+
+@enduml
