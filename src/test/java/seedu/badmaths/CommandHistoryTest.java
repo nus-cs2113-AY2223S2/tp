@@ -9,6 +9,16 @@ import java.util.ArrayList;
 import java.io.ByteArrayOutputStream;
 
 public class CommandHistoryTest {
+
+    @Test
+    void checkStoreCommand() {
+        ArrayList<String> historyCommand = new ArrayList<>();
+        String inputCommand = "Hello";
+        CommandHistory commandHistoryTest = new CommandHistory(historyCommand);
+        commandHistoryTest.storeCommand(inputCommand);
+        assertEquals(1, historyCommand.size());
+    }
+
     @Test
     void checkDisplayHistory() {
         String correctDisplayOutput = "";
