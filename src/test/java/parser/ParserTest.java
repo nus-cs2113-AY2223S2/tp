@@ -53,4 +53,14 @@ class ParserTest {
         assertNull(invalidMonth);
     }
 
+    @Test
+    void extractYear_successful() {
+        String monthlyOverviewYear = parser.extractYear("overview March 2021");
+        String yearlyOverviewYear = parser.extractYear("overview 2022");
+        String invalidYear = parser.extractYear("overview");
+        assertEquals("2021", monthlyOverviewYear);
+        assertEquals("2022", yearlyOverviewYear);
+        assertEquals("", invalidYear);
+    }
+
 }
