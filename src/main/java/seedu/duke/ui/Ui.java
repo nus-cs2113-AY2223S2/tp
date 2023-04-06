@@ -179,7 +179,8 @@ public class Ui {
 
     public void multipleAdditionErrorMessage(){
         showLine();
-        System.out.println("Multiple companies cannot be added at once. Please add companies separately!");
+        System.out.println("Multiple companies cannot be added at once.\n" +
+                "Please add companies separately with single corresponding information at each field!");
     }
 
 }
