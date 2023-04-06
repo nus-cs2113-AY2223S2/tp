@@ -107,9 +107,9 @@ that all the expenses are sorted by category, which is a stable sort according t
 
 
 Displayed below is a part of the class diagram for `CommandSort` 
-as well as the class diagram for the main part of class `Time`.
+as well as the class diagram for the main part of class `Time` and `Expense`.
 ![](diagrams/SortFeature.png)
-Give below is an example usage of the feature.
+Given below is an example usage of the feature.
 
 Step 1. The user executes `sort (sortBy)`, indicating they want to sort the list by which criteria. Duke calls on `CommandSort#execute()` 
 with the help of `Parser#extractSortBy`, and pass the control to `CommandSort` by `execute()`.
@@ -131,7 +131,7 @@ This mechanism is facilitated by `CommandTotal`.
 
 Displayed below is a part of the class diagram for `CommandTotal`.
 ![](diagrams/TotalFeature.png)
-Give below is an example usage of the feature.
+Given below is an example usage of the feature.
 
 Step 1. The user executes `total`. Duke calls on `CommandTotal#execute()` to calculate the total expenses, which in turn calls
 `expenseList#getExpenseList()` to retrieve the expense list.
