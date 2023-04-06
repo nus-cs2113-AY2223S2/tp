@@ -32,6 +32,7 @@ class UITest {
     private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n"
             + "Please ensure that you have typed in the correct NUS Module Code";
     private static final String PU_UNI_NAME_MAPS_TO_NUS_MESSAGE = " Module] maps to ----> [NUS Module]";
+    private static final String INVALID_MODULE_INDEX_MESSAGE = "Module not found :( Please type in a correct index";
 
     /*
         Testing below sets up an ByteArrayOutputStream where prints to System.out would go to.
@@ -118,7 +119,7 @@ class UITest {
     void getInvalidModuleMessage_correctLines_success() {
         UI ui = new UI();
         String invalidModuleMessage = ui.getInvalidModuleMessage();
-        assertEquals(INVALID_MODULE_MESSAGE, invalidModuleMessage.stripTrailing());
+        assertEquals(INVALID_MODULE_INDEX_MESSAGE, invalidModuleMessage.stripTrailing());
         outContent.reset();
     }
 
@@ -579,8 +580,8 @@ class UITest {
                 + "list of interest\n"
                 + "LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list of\n"
                 + "                                   list of interest for the specified PU\n"
-                + "ADD [PU ABBRV]/[MODULE CODE]     : Adds the specified module into user's current list of modules\n"
-                + "REMOVE [PU ABBRV]/[INDEX]        : Removes the specified module by index from user's current list\n"
+                + "ADD [PU ABBRV]/[INDEX]           : Adds the specified module into user's current list of modules\n"
+                + "REMOVE [PU ABBRV]/[INDEX]       : Removes the specified module by index from user's current list\n"
                 + "SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module\n"
                 + "/budget budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for "
                 + "his/her SEP trip\n"
