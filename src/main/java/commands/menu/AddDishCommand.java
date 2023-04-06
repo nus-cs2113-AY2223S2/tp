@@ -1,7 +1,6 @@
 package commands.menu;
 
 import commands.Command;
-import entity.Dish;
 import manager.DishManager;
 import ui.TextUi;
 
@@ -24,7 +23,6 @@ public class AddDishCommand extends Command {
     @Override
     public void execute(TextUi ui) {
         DishManager.addDishCommand(this.dishName, this.dishPrice, this.ingredientsList, ui);
-        Dish dish = new Dish(this.dishName, this.dishPrice, this.ingredientsList);
     }
 
     @Override

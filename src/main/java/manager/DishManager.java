@@ -22,7 +22,7 @@ public class DishManager {
     public static void addDishCommand(String name, int price, ArrayList<String> ingredients, TextUi ui) {
         Dish dish = new Dish(name, price, ingredients);
         dishes.add(dish);
-        ui.printMessage(DishManager.stringOfDishWithIndex(DishManager.getDishesSize(), dish));
+        ui.printMessage("Added dish: " + DishManager.stringOfDishWithIndex(DishManager.getDishesSize(), dish));
         try {
             DishStorage dishStorage = new DishStorage();
             dishStorage.writeToDishFile(dishes);
@@ -34,7 +34,7 @@ public class DishManager {
     public static void deleteDishCommand(int index, TextUi ui) {
         Dish selectedDish = dishes.get(index);
         dishes.remove(index);
-        ui.printMessage("deleted dish");
+        ui.printMessage("Deleted dish: " + DishManager.stringOfDishWithIndex(index + 1, selectedDish));
         try {
             DishStorage dishStorage = new DishStorage();
             dishStorage.writeToDishFile(dishes);
@@ -62,7 +62,7 @@ public class DishManager {
         for (int i = 0; i < getDishesSize(); i++) {
             String[] words = dishes.get(i).getDishName().split(" ");
             for (String word : words) {
-                if (word.equals(stringToFind) || word.contains(stringToFind)) {
+                if (word.toLowerCase().contains(stringToFind.toLowerCase())) {
                     dishesMatchingKeyword.add(dishes.get(i));
                     indexes.add(i + 1);
                 }
@@ -92,6 +92,15 @@ public class DishManager {
         return dish.getDishName() + "; $"
                 + dish.getPriceOfDishInDollars() + "; "
                 + dish.getIngredientsList();
+    }
+
+    public static boolean isInsideDishes(String name) {
+        for (Dish dish : dishes) {
+            if (dish.getDishName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

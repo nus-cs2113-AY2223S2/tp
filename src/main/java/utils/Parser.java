@@ -24,6 +24,7 @@ import commands.Command;
 import common.Messages;
 import exceptions.DinerDirectorException;
 import entity.Deadline;
+import manager.DishManager;
 import manager.StaffManager;
 
 import java.util.ArrayList;
@@ -365,9 +366,9 @@ public class Parser {
         }
         return new FindDeadlineCommand((keyword.trim()));
     }
-    
+
     private Command prepareDeleteDishCommand(String userInputNoCommand) {
-    
+
         int indexToRemove = 0;
 
         try {
@@ -414,6 +415,9 @@ public class Parser {
         try {
             if (parsedDishInput.matches()) {
                 name = parsedDishInput.group(1);
+                if (DishManager.isInsideDishes(name)) {
+                    throw new DinerDirectorException(Messages.ERROR_DUPLICATE_DISH_NAME);
+                }
                 try {
                     price = Integer.parseInt(parsedDishInput.group(2));
                 } catch (NumberFormatException e) {
@@ -421,7 +425,10 @@ public class Parser {
                 }
                 String[] ingredientList = parsedDishInput.group(3).split(";");
                 for (String ingredient : ingredientList) {
-                    if (!ingredient.isBlank()) {
+                    String regexNumbers = "^[+-]?\\d+(?:\\.\\d+)?$";
+                    Pattern pattern = Pattern.compile(regexNumbers);
+                    Matcher parsedIngredient = pattern.matcher(ingredient);
+                    if (!ingredient.isBlank() && !parsedIngredient.matches()) {
                         ingredients.add(ingredient);
                     }
                 }
@@ -429,11 +436,12 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
             }
         } catch (DinerDirectorException e) {
-            if (e.getMessage() != Messages.ERROR_COMMAND_INVALID) {
+            if (!e.getMessage().equals(Messages.ERROR_COMMAND_INVALID)) {
                 System.out.println(e.getMessage());
             }
             return new IncorrectCommand();
         }
+
         return new AddDishCommand(name, price, ingredients);
     }
 
