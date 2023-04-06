@@ -16,6 +16,10 @@ public class OptionsBuilder {
     public static final String DECK_ACTION = "deck";
     public static final String EDIT_ACTION = "edit";
     public static final String LIST_ACTION = "list";
+    protected static final String FLAG_TAG_UUID_NAME = "t";
+    protected static final String FLAG_LONG_TAG_UUID_NAME = "tag";
+    protected static final String FLAG_TAG_INDEX = "x";
+    protected static final String FLAG_LONG_TAG_INDEX = "tag index";
     protected static final String FLAG_CARD_UUID = "c";
     protected static final String FLAG_LONG_CARD_UUID = "card";
     protected static final String FLAG_CARD_INDEX = "i";
@@ -89,10 +93,7 @@ public class OptionsBuilder {
     public static Options buildTagOptions() {
         Options options = new Options();
         options.addOptionGroup(buildCardSelectOption());
-
-        Option tag = buildMultipleTokenOption("t", "tag", true, "tag name", true);
-        options.addOption(tag);
-
+        options.addOptionGroup(buildTagSelectOption());
         return options;
     }
 
@@ -110,7 +111,7 @@ public class OptionsBuilder {
             options.addOptionGroup(buildCardSelectOption());
             break;
         case TAG_MODEL:
-            options.addRequiredOption("t", "tag", true, "tag name");
+            options.addOptionGroup(buildTagSelectOption());
             break;
         case DECK_MODEL:
             options.addRequiredOption("d", "deck", true, "deck name");
@@ -129,7 +130,7 @@ public class OptionsBuilder {
             options.addOptionGroup(buildCardSelectOption());
             break;
         case TAG_MODEL:
-            options.addRequiredOption("t", "tag", true, "tag name");
+            options.addOptionGroup(buildTagSelectOption());
             break;
         default:
         }
@@ -159,7 +160,8 @@ public class OptionsBuilder {
         Options options = new Options();
         switch (model) {
         case TAG_MODEL:
-            options.addOption("t", "tag", true, "tag name (optional)");
+            options.addOption("t", "tags", true, "tag UUID or name (optional)");
+            options.addOption("x","tag index",true, "tag index (optional)");
             break;
         case DECK_MODEL:
             options.addOption("c", "cards", true, "deck name to list cards from (optional)");
@@ -187,6 +189,21 @@ public class OptionsBuilder {
         Option cardIndexOption = new Option(FLAG_CARD_INDEX, FLAG_LONG_CARD_INDEX, true, "card index");
         cardIndexOption.setType(Number.class);
         optionGroup.addOption(cardIndexOption);
+
+        return optionGroup;
+    }
+
+    protected static OptionGroup buildTagSelectOption() {
+        // Mutually exclusive options
+        OptionGroup optionGroup = new OptionGroup();
+        optionGroup.setRequired(true);
+
+        Option tagStringOption = new Option(FLAG_TAG_UUID_NAME, FLAG_LONG_TAG_UUID_NAME, true, "tag UUID or name");
+        optionGroup.addOption(tagStringOption);
+
+        Option tagIndexOption = new Option(FLAG_TAG_INDEX, FLAG_LONG_TAG_INDEX, true, "tag index");
+        tagIndexOption.setType(Number.class);
+        optionGroup.addOption(tagIndexOption);
 
         return optionGroup;
     }

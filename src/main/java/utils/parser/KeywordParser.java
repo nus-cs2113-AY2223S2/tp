@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import model.CardSelector;
+import model.TagSelector;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.MissingArgumentException;
@@ -18,24 +19,26 @@ import utils.command.Command;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.InvalidUUIDException;
-import utils.exceptions.UUIDWrongFormatException;
 import utils.exceptions.UnrecognizedCommandException;
 
 /**
  * Abstract class for parsing keyword-specific commands
  */
 public abstract class KeywordParser {
+    protected static final String FLAG_TAG_UUID_NAME = "t";
+    protected static final String FLAG_LONG_TAG_UUID_NAME = "tag";
+    protected static final String FLAG_TAG_INDEX = "x";
+    protected static final String FLAG_LONG_TAG_INDEX = "tag index";
     protected static final String FLAG_CARD_UUID = "c";
     protected static final String FLAG_LONG_CARD_UUID = "card";
     protected static final String FLAG_CARD_INDEX = "i";
-    protected static final String FLAG_LONG_CARD_INDEX = "index";
+    protected static final String FLAG_LONG_CARD_INDEX = "card index";
     protected static final int FORMAT_HELP_WIDTH = 200;
     protected static final int FORMAT_HELP_LEFT_PAD = 0;
     protected static final int FORMAT_HELP_DESC_PAD = 10;
 
-
     protected static CardSelector getSelectedCard(CommandLine cmd)
-            throws ParseException, UUIDWrongFormatException, InvalidUUIDException {
+            throws ParseException, InvalidUUIDException {
         if (cmd.hasOption(FLAG_CARD_UUID)) {
             String cardUUID = cmd.getOptionValue(FLAG_CARD_UUID);
             return new CardSelector(cardUUID);
@@ -46,6 +49,18 @@ public abstract class KeywordParser {
 
         // Shouldn't be called
         assert false;
+        return null;
+    }
+
+    protected static TagSelector getSelectedTag(CommandLine cmd)
+            throws ParseException {
+        if (cmd.hasOption(FLAG_TAG_UUID_NAME)) {
+            String tagString = cmd.getOptionValue(FLAG_TAG_UUID_NAME);
+            return new TagSelector(tagString);
+        } else if (cmd.hasOption(FLAG_TAG_INDEX)) {
+            int index = Integer.parseInt(cmd.getOptionValue(FLAG_TAG_INDEX));
+            return new TagSelector(index);
+        }
         return null;
     }
 
@@ -106,7 +121,7 @@ public abstract class KeywordParser {
      * @return Formatted help string
      */
     protected String formatHelpMessage(String keyword, String[] actionList, String[] headerList,
-                                       Options[] optionsList) {
+            Options[] optionsList) {
         assert optionsList.length == headerList.length;
         assert optionsList.length == actionList.length;
 

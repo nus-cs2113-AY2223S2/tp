@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.Card;
 import model.CardSelector;
+import model.TagSelector;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
@@ -104,15 +105,8 @@ public class CardKeywordParser extends KeywordParser {
         Options tagOptions = new OptionsBuilder(CARD_MODEL, TAG_ACTION).buildOptions();
         CommandLine cmd = parser.parse(tagOptions, tokens.toArray(new String[0]));
         CardSelector cardSelector = getSelectedCard(cmd);
-
-        String[] tagNameTokens = cmd.getOptionValues("t");
-        if (tagNameTokens.length > 1) {
-            // Notify user
-            String tagName = String.join("-", tagNameTokens);
-            return new AddCardToTagCommand(tagName, cardSelector);
-        } else {
-            return new AddCardToTagCommand(tagNameTokens[0], cardSelector);
-        }
+        TagSelector tagSelector = getSelectedTag(cmd);
+        return new AddCardToTagCommand(tagSelector, cardSelector);
     }
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {

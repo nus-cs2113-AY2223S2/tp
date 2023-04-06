@@ -70,7 +70,6 @@ public class Inka {
             } catch (InkaException e) {
                 ui.printException(e);
             }
-            ui.printInputIdentifier();
         }
     }
 }

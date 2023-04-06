@@ -1,12 +1,12 @@
 package utils.command;
-import java.util.UUID;
+
 import model.CardList;
 import model.Deck;
 import model.DeckList;
 import model.DeckUUID;
 import model.Tag;
 import model.TagList;
-import model.TagUUID;
+import model.TagSelector;
 import utils.UserInterface;
 import utils.exceptions.CreateTagBeforeAddingToDeck;
 import utils.exceptions.InkaException;
@@ -17,22 +17,21 @@ import utils.storage.IDataStorage;
 public class AddTagToDeckCommand extends Command {
     private String deckName;
     private DeckUUID deckUUID;
-    private TagUUID tagUUID;
+    private TagSelector tagSelector;
 
-    public AddTagToDeckCommand(String deckName, String tagUUID) throws InkaException {
+    public AddTagToDeckCommand(String deckName, TagSelector tagSelector) throws InkaException {
         this.deckName = deckName;
-        //this.tagName = tagName;
         try {
-            this.tagUUID = new TagUUID(UUID.fromString(tagUUID));
+            this.tagSelector = tagSelector;
         } catch (IllegalArgumentException e) {
             throw new UUIDWrongFormatException();
         }
     }
 
     private void addTagToDeck(DeckList deckList, TagList tagList, UserInterface ui) throws InkaException {
-        //find the corresponding Deck and Card based on its deckName and card uuid
-        Tag tagToAdd = tagList.findTagFromUUID(tagUUID);
-        if(tagToAdd==null) {
+        Tag tagToAdd = tagList.findTag(tagSelector);
+
+        if (tagToAdd == null) {
             // exception here
             throw new CreateTagBeforeAddingToDeck();
         }
@@ -41,12 +40,12 @@ public class AddTagToDeckCommand extends Command {
         Deck deckToAdd = deckList.findDeckFromName(deckName);
         if (deckToAdd == null) {
             ui.printDeckCreationSuccess();
-            deckToAdd = new Deck(deckName, tagUUID);
+            deckToAdd = new Deck(deckName, tagToAdd.getUUID());
             deckList.addDeck(deckToAdd);
-        } else if(deckToAdd.tagIsInDeck(tagUUID)) {
+        } else if (deckToAdd.tagIsInDeck(tagToAdd.getUUID())) {
             throw new TagInDeckException();
         } else {
-            deckToAdd.addTag(tagUUID);
+            deckToAdd.addTag(tagToAdd.getUUID());
         }
         deckUUID = deckToAdd.getDeckUUID();
         tagToAdd.addDeck(deckUUID);
@@ -59,9 +58,11 @@ public class AddTagToDeckCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, TagList tagList, DeckList deckList,UserInterface ui, IDataStorage storage)
+    public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {
         addTagToDeck(deckList, tagList, ui);
-        ui.printAddTagToDeckSuccess(tagUUID, deckUUID);
+
+        Tag tagToBeAdded = tagList.findTag(tagSelector);
+        ui.printAddTagToDeckSuccess(tagToBeAdded.getUUID(), deckUUID);
     }
 }

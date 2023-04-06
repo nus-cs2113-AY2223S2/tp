@@ -2,6 +2,7 @@ package utils.parser;
 
 import java.util.List;
 
+import model.TagSelector;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
@@ -53,8 +54,8 @@ public class TagKeywordParser extends KeywordParser {
         Options deleteOption = new OptionsBuilder(TAG_MODEL, DELETE_ACTION).buildOptions();
         CommandLine cmd = parser.parse(deleteOption, tokens.toArray(new String[0]));
 
-        String tagName = cmd.getOptionValue("t");
-        return new DeleteTagCommand(tagName);
+        TagSelector tagSelector = getSelectedTag(cmd);
+        return new DeleteTagCommand(tagSelector);
     }
 
     private Command handleEdit(List<String> tokens) throws ParseException {
@@ -87,11 +88,11 @@ public class TagKeywordParser extends KeywordParser {
         Options listOption = new OptionsBuilder(TAG_MODEL, LIST_ACTION).buildOptions();
         CommandLine cmd = parser.parse(listOption, tokens.toArray(new String[0]));
 
-        if (cmd.hasOption("t")) {
-            String tagName = cmd.getOptionValue("t");
-            return new ListCardsUnderTagCommand(tagName);
-        } else {
+        TagSelector tagSelector = getSelectedTag(cmd);
+        if (tagSelector == null) {
             return new ListTagsCommand();
+        } else {
+            return new ListCardsUnderTagCommand(tagSelector);
         }
     }
 
@@ -99,9 +100,9 @@ public class TagKeywordParser extends KeywordParser {
         Options deckOption = new OptionsBuilder(TAG_MODEL, DECK_ACTION).buildOptions();
         CommandLine cmd = parser.parse(deckOption, tokens.toArray(new String[0]));
 
-        String tagUUID = cmd.getOptionValue("t");
         String deckName = cmd.getOptionValue("d");
+        TagSelector tagSelector = getSelectedTag(cmd);
 
-        return new AddTagToDeckCommand(deckName, tagUUID);
+        return new AddTagToDeckCommand(deckName, tagSelector);
     }
 }

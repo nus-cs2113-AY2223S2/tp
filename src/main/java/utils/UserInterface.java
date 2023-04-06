@@ -22,12 +22,12 @@ public class UserInterface {
         scanner = new Scanner(System.in);
     }
 
-    public void printInputIdentifier() {
+    public void printUserPrompt() {
         System.out.print("> ");
     }
 
     public String getUserInput() {
-        System.out.print("> ");
+        printUserPrompt();
         return scanner.nextLine().trim();
     }
 

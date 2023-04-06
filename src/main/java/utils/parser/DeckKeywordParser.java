@@ -1,6 +1,7 @@
 package utils.parser;
 
 import java.util.List;
+import model.TagSelector;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
@@ -50,11 +51,12 @@ public class DeckKeywordParser extends KeywordParser{
         Options deleteOptions =  new OptionsBuilder(DECK_MODEL, DELETE_ACTION).buildOptions();
         CommandLine cmd = parser.parse(deleteOptions, tokens.toArray(new String[0]));
 
+        TagSelector tagSelector = getSelectedTag(cmd);
         String deckName = cmd.getOptionValue("d");
         if(cmd.hasOption("c")) {
             return new RemoveCardFromDeckCommand(cmd.getOptionValue("c"), deckName);
         } else if (cmd.hasOption("t")) {
-            return new RemoveTagFromDeckCommand(cmd.getOptionValue("t"), deckName);
+            return new RemoveTagFromDeckCommand(tagSelector, deckName);
         } else {
             return new DeleteDeckCommand(deckName);
         }

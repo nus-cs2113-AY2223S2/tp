@@ -7,16 +7,17 @@ import model.CardUUID;
 import model.DeckList;
 import model.Tag;
 import model.TagList;
+import model.TagSelector;
 import utils.UserInterface;
 import utils.exceptions.InkaException;
 import utils.exceptions.TagNotFoundException;
 import utils.storage.IDataStorage;
 
 public class ListCardsUnderTagCommand extends Command {
-    private String tagName;
+    private TagSelector tagSelector;
 
-    public ListCardsUnderTagCommand(String tagName) {
-        this.tagName = tagName;
+    public ListCardsUnderTagCommand(TagSelector tagSelector) {
+        this.tagSelector = tagSelector;
     }
 
     /**
@@ -28,7 +29,7 @@ public class ListCardsUnderTagCommand extends Command {
      * @throws InkaException
      */
     private CardList findCardsUnderTag(CardList cardList, TagList tagList) throws InkaException {
-        Tag foundTag = tagList.findTagFromName(tagName);
+        Tag foundTag = tagList.findTag(tagSelector);
         if (foundTag == null) {
             throw new TagNotFoundException();
         }
@@ -47,7 +48,7 @@ public class ListCardsUnderTagCommand extends Command {
     }
 
     @Override
-    public void execute(CardList cardList, TagList tagList, DeckList deckList,UserInterface ui, IDataStorage storage)
+    public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {
         CardList foundCardList = findCardsUnderTag(cardList, tagList);
         ui.printCardList(foundCardList);
