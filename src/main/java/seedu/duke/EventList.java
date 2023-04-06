@@ -87,6 +87,11 @@ public class EventList {
         }
     }
 
+    // private boolean checkConfliction(String description, String startTime, S\
+    //tring startDay, String endTime, String endDay) {
+    //     return
+    // }
+
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay)
             throws NPExceptions {
 
