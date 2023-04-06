@@ -1,4 +1,4 @@
-package seedu.rainyDay.modules;
+package seedu.rainyDay.parser;
 
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.RainyDay;
