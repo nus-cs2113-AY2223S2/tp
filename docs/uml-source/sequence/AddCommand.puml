@@ -29,7 +29,7 @@ return
 Apollo -> add : execute()
 activate add
 add -> add++ : addTask()
-add -> Event**
+add -> Event** : new Event()
 Event++
 return
 add -> add++ : isClashingEvent()
