@@ -11,7 +11,12 @@ public class ListCommand extends Command {
     @Override
     public void execute(FlashcardList flashcardList, Ui display) {
         ArrayList<Flashcard> flashcards = flashcardList.getFlashCards();
-        System.out.println("Here is your list of flashcards:");
-        display.printFlashCards(flashcards);
+        if (flashcards.size() > 0) {
+            System.out.println("Here is your list of flashcards:");
+            display.printFlashCards(flashcards);
+        }
+        if (flashcards.size() == 0) {
+            System.out.println("Your list of flashcards is empty.");
+        }
     }
 }

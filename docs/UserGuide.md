@@ -156,7 +156,7 @@ A: Durian
 D: 2023-02-29
 ```
 
-### Delete flashcards
+### Delete a flashcard
 
 ```
 delete /q QUERY
@@ -181,6 +181,25 @@ Found 2 cards with the query "fruit":
     A: 果物
 Which one do you want to delete? 2
 Understood. The card has been deleted.
+```
+
+### Delete all flashcards in the list
+
+```
+clear
+```
+
+Deletes all the flashcards in the list
+
+#### Example
+
+```
+> clear
+All flashcards have been deleted.
+Your list of flashcards is now empty.
+
+> list
+Your list of flashcards is empty.
 ```
 
 ### List all flashcards

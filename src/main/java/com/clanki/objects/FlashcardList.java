@@ -26,4 +26,8 @@ public class FlashcardList {
     public ArrayList<Flashcard> getFlashCards() {
         return flashcards;
     }
+
+    public void deleteAllFlashcards() {
+        flashcards.clear();
+    }
 }

@@ -2,6 +2,7 @@ package com.clanki.parser;
 
 import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
+import com.clanki.commands.ClearCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.DeleteCommand;
 import com.clanki.commands.HelpCommand;
@@ -59,6 +60,8 @@ public class Parser {
             return new HelpCommand();
         case "list":
             return new ListCommand();
+        case "clear":
+            return new ClearCommand();
         default:
             return new UnknownCommand();
         }
