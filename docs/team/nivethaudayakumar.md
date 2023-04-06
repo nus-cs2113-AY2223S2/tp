@@ -15,7 +15,7 @@ Given below are my contributions to the project:
 #### 2) Enhancements Implemented: <br>
 1. [x] Implemented v.1.0 code for Main, Command, Parser & UI classes & Sniff Exception for `Sniff v.1.0`: [#11](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/11)
 2. [x] Implemented JUnit Testing for Parser Class: [#45](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/45) [#49](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/49)
-3. [x] Bug Fixes for Parser: [#27](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/27)
+3. [x] Bug Fixes for Parser: [#27](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/27) [#44](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/44)
 4. [ ] **New Feature: `Archive`** for Sniff v.2.1 <br>
    * **`What it does:`** Save all Appointments that are marked as done into an Archive Save File (different from Appointments Save File). 
    Load Archive Save File when Sniff starts and read in Archived Appointments.
