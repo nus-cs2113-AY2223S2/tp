@@ -99,7 +99,7 @@ class ParserTest {
 
     @Test
     public void parserDeleteCommand_deleteCommand_successful() {
-        Command parsedCommand = Parser.parseCommand("del query");
+        Command parsedCommand = Parser.parseCommand("delete query");
         assertTrue(parsedCommand instanceof DeleteCommand);
     }
 }
