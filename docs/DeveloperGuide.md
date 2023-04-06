@@ -428,8 +428,9 @@ Below is an example usage scenario and how the `Matrix` feature behaves at each 
 
 When user enters an input:
 ```
-Matrix. [1,2;3,4] .* [5,6;7,8]
+Matrix [1,2;3,4] .* [5,6;7,8]
 ```
+
 #### Calculator class
 
 step 1. `run()` function in `Calculator.class` firstly get `toDo` as the argument which is `[1,2;3,4] .* [5,6;7,8]` in the above example.

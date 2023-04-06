@@ -108,7 +108,7 @@ This is the vertical shift: 0.0
 ### 2) Matrix Calculation: `Matrix`
 This feature accepts matrix equation and outputs calculation result.
 
-Format: `Matrix. [Matrix] [operator] [Matrix]`
+Format: `Matrix [Matrix] [operator] [Matrix]`
 
 * `[Matrix]` is the 2 dimensional matrix with integer elements. When you declare the matrix, you should follow the matrix format below:
   ```
@@ -129,10 +129,86 @@ Format: `Matrix. [Matrix] [operator] [Matrix]`
    * `+` : matrix addition
    * `-` : matrix subtraction
 
-Example input:
+#### Examples for the matrix multiplication
+
+Input:
  ```
- Matrix. [1,2;3,4] .* [4,5;6,7]
+ Matrix [1,2;3,4] .* [4,5;6,7]
  ```
+
+Expected output:
+ ```
+ Result.
+     1. shape : 2 x 2
+     2. value : 
+         0) 16 19 
+         1) 36 43 
+ ```
+
+#### Examples for the matrix multiplication with transpose
+
+Input:
+ ```
+ Matrix [1,2;3,4] .* [4,5;6,7].T
+ ```
+
+output:
+ ```
+ Result.
+     1. shape : 2 x 2
+     2. value : 
+         0) 14 20 
+         1) 32 46 
+ ```
+
+#### Examples for the matrix element wise product
+
+Input:
+ ```
+ Matrix [1,2;3,4] * [4,5;6,7]
+ ```
+
+output:
+ ```
+ Result.
+     1. shape : 2 x 2
+     2. value : 
+         0) 4 10 
+         1) 18 28 
+ ```
+
+#### Examples for the matrix addition
+
+Input:
+ ```
+ Matrix [1,2;3,4] + [4,5;6,7]
+ ```
+
+output:
+ ```
+ Result.
+     1. shape : 2 x 2
+     2. value : 
+         0) 5 7 
+         1) 9 11 
+ ```
+
+#### Examples for the matrix subtraction
+
+Input:
+ ```
+ Matrix [1,2;3,4] - [4,5;6,7]
+ ```
+
+output:
+ ```
+ Result.
+     1. shape : 2 x 2
+     2. value : 
+         0) -3 -3 
+         1) -3 -3 
+ ```
+
 ### 3) Store Notes: `Store`
 * Adds a new item to the Notes list.
 * Format: `Store <item description>`
