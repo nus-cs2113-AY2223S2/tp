@@ -33,31 +33,47 @@ help
 ____________________________________________________________
 Here are the functions of the application!
 To display this guide at any time, type:
-help
+                    help
+ 
 To list companies, type:
-list companies
+                    list companies
+ 
 To list venues, type:
-list venues
+                    list venues
+ 
 To list unconfirmed attendees, type:
-list unconfirmed
+                    list unconfirmed
+ 
 To add a company, type:
-add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>
+                    add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>
+ 
 To delete company, type:
-delete <INDEX>
+                    delete <INDEX>
+ 
 To mark a company's attendance, type:
-confirm <INDEX>
+                    confirm <INDEX>
+ 
 To unmark a company's attendance, type:
-unconfirm <INDEX>
+                    unconfirm <INDEX>
+ 
 To load sample data, type:
-load samples
+                    load samples
+ 
 To purge company list data, type:
-purge
+                    purge
+ 
 To search for a company, type:
-find company <COMPANY_NAME>
+                    find company <COMPANY_NAME>
+ 
 To filter according to industry, type:
-find industry <INDUSTRY>
+                    find industry <INDUSTRY>
+ 
 To choose a venue, type:
-choose venue <INDEX>
+                    choose venue <INDEX>
+ 
+To exit the program, type:
+                    exit
+ 
 ____________________________________________________________
 ____________________________________________________________
 ```
@@ -110,7 +126,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 
-### `confirm` - Marks a specific company's attendance as confirmed
+### `confirm <INDEX>` - Marks a specific company's attendance as confirmed
 Mark the status of a specific company's attendance as confirmed, and 
 updates a status icon to [Confirmed] that represents it being marked confirmed.
 
@@ -125,7 +141,7 @@ ____________________________________________________________
 
 ```
 
-### `unconfirm` - Marks a specific company's attendance as unconfirmed
+### `unconfirm <INDEX>` - Marks a specific company's attendance as unconfirmed
 Mark the status of a specific company's attendance as unconfirmed, and
 updates a status icon to [Unconfirmed] that represents it being marked unconfirmed.
 
@@ -175,8 +191,17 @@ ____________________________________________________________
 TESLA added successfully!
 ____________________________________________________________
 ```
+The same company cannot be added twice. If the same company is added twice, a warning will be displayed to the user
+instead.]
 
-### `delete ` - Delete a company from the company list
+Expected outcome:
+```
+____________________________________________________________
+Company already exists in the list!
+____________________________________________________________
+```
+
+### `delete <INDEX>` - Delete a company from the company list
 Delete a company from the company list, and updates the company list text file.
 
 Example of usage:
@@ -210,7 +235,7 @@ ____________________________________________________________
 Sample data has been loaded into the list!
 ____________________________________________________________
 ```
-### `purge ` - delete the company list data
+### `purge` - delete the company list data
 delete the company list data, and updates the company list text file
 
 Example of usage:
@@ -223,7 +248,7 @@ Data has been deleted successfully!
 ____________________________________________________________
 ```
 
-### `find companies ` - find the companies based on a company name
+### `find company <KEYWORD>` - find the companies based on a company name
 find the companies based on a company name, or any of the alphabets in the company name
 
 Example of usage:
@@ -274,8 +299,10 @@ Company industry: TECH
 ____________________________________________________________
 ```
 
-### `choose venue <index>` - updates the venue of the event
+
+### `choose venue <INDEX>` - updates the venue of the event
 Updates the venue of the event from a list of venues, and updates the event details file
+
 
 Example of usage:
 

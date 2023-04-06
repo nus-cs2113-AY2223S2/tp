@@ -44,7 +44,7 @@ public class Ui {
         System.out.println("                    list unconfirmed");
         System.out.println(" ");
         System.out.println("To add a company, type:");
-        System.out.println("        add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>");
+        System.out.println("                    add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>");
         System.out.println(" ");
         System.out.println("To delete company, type:");
         System.out.println("                    delete <INDEX>");
