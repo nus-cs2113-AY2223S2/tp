@@ -9,6 +9,8 @@ participant ":MonthlyOverview" as MonthlyOverview
 participant "yearFilter:YearFilter" as YearFilter
 participant "monthFilter:MonthFilter" as MonthFilter
 
+activate Duke
+
 create CommandOverview
 Duke -> CommandOverview
 activate CommandOverview
@@ -21,14 +23,16 @@ activate CommandOverview
 create MonthlyOverview
 CommandOverview -> MonthlyOverview
 activate MonthlyOverview
+MonthlyOverview -> MonthlyOverview : obtainFilteredExpenses()
+activate MonthlyOverview
 create YearFilter
-MonthlyOverview -> YearFilter : obtainFilteredExpenses()
+MonthlyOverview -> YearFilter
 activate YearFilter
 YearFilter --> MonthlyOverview
 deactivate YearFilter
 
 create MonthFilter
-MonthlyOverview -> MonthFilter : obtainFilteredExpenses()
+MonthlyOverview -> MonthFilter
 activate MonthFilter
 MonthFilter -> YearFilter : getYearlyExpenses()
 activate YearFilter
@@ -37,12 +41,12 @@ deactivate YearFilter
 MonthFilter -->MonthlyOverview
 deactivate MonthFilter
 
-deactivate YearFilter
 MonthlyOverview -> MonthFilter : getMonthlyExpenses()
 activate MonthFilter
-MonthFilter --> MonthlyOverview : filteredExpenses(
+MonthFilter --> MonthlyOverview : filteredExpenses
 deactivate MonthFilter
-
+MonthlyOverview --> MonthlyOverview
+deactivate MonthlyOverview
 MonthlyOverview --> CommandOverview
 deactivate MonthlyOverview
 

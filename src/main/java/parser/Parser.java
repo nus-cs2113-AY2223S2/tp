@@ -93,7 +93,7 @@ public class Parser {
 
     public String extractYear(String userInput){
         String[] input = userInput.split(WHITESPACE,3);
-        String year = "-1";
+        String year = "";
         if (isMonthlyOverview(userInput)) {
             year = input[2].toLowerCase().trim();
         } else if (input.length == 2) {
