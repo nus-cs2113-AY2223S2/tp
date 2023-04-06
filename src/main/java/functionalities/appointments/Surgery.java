@@ -44,6 +44,9 @@ public class Surgery extends Appointment {
     }
 
     public priorityLevel setPriority(String priority) throws SniffException{
+        if (priority.isBlank()) {
+            throw new SniffException(" Priority cannot be empty!");
+        }
         switch (priority) {
         case "H":
             return priorityLevel.HIGH;
