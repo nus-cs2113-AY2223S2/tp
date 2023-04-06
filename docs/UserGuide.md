@@ -13,7 +13,7 @@
        * [3.2.1.3 List the Modules from a Partner University](#3213-listing-out-all-partner-universities--list-pu)
        * [3.2.1.4 List the Saved Modules from a Partner 
 University](#3214-listing-modules-user-has-selected-for-specific-partner-university--list-current-pu-abbreviation)
-     * [3.2.2 Add](#322-add)
+     * [3.2.2 Add](#322-add-user-selected-modules-to-list--add)
      * [3.2.3 Remove](#323-remove-user-selected-modules-from-list--remove)
      * [3.2.4 Search](#324-search-by-nus-module-code--search)
    * [3.3 Deadline](#33-deadlines)
@@ -21,12 +21,12 @@ University](#3214-listing-modules-user-has-selected-for-specific-partner-univers
      * [3.3.2 Add Deadlines](#332-add-a-new-deadline--deadlineadd)
      * [3.3.3 Remove Deadlines](#333-remove-a-deadline-from-the-list--deadlineremove)
    * [3.4 Budget Planner](#34-budget-planner--budget)
-     * [3.4.1 Edit the Budget](#341-budget---edits-the-budget)
-     * [3.4.2 Edit the Accommodation Cost](#342-accommodation---edits-the-accommodation-cost)
-     * [3.4.3 Edit the Airplane Ticket Cost](#343-airplane---edits-the-airplane-ticket-cost)
-     * [3.4.4 Edit the Food Cost](#344-food---edits-the-food-cost)
-     * [3.4.5 Edit the Entertainment Cost](#345-entertainment---edits-the-entertainment-cost)
-     * [3.4.6 View the Budget Plan](#346-view---views-the-entire-budget-plan)
+     * [3.4.1 Edit the Budget](#341-edits-the-budget---budget)
+     * [3.4.2 Edit the Accommodation Cost](#342-edits-the-accommodation-cost---accommodation)
+     * [3.4.3 Edit the Airplane Ticket Cost](#343-edits-the-airplane-ticket-cost---airplane)
+     * [3.4.4 Edit the Food Cost](#344-edits-the-food-cost---food)
+     * [3.4.5 Edit the Entertainment Cost](#345-edits-the-entertainment-cost---entertainment)
+     * [3.4.6 View the Budget Plan](#346-views-the-entire-budget-plan---view)
 * **[4 FAQ](#4-faq)**
 * **[5 Command Summary](#5-command-summary)**
 
