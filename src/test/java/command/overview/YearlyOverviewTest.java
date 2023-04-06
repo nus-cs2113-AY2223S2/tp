@@ -19,14 +19,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class YearlyOverviewTest {
 
-    public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private final PrintStream standardOut = System.out;
-
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private static final String TITLE = "Yearly Overview for ";
     private static final String MONTH_DIVIDER = "----------------------------";
     private static final String YEARLY_OVERVIEW_TOTAL = "Total expenses: ";
     private static final String BREAKDOWN_TITLE = "Breakdown of expenses by month:";
+
+    public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
 
     @Test
     void printOverviewEmptyArrayList_successful() {
