@@ -8,7 +8,9 @@ import java.util.List;
 import seedu.constants.DateConstants;
 import seedu.entities.Exercise;
 import seedu.entities.Meal;
+import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.LifeTrackerException;
+import seedu.exceptions.MissingArgumentsException;
 import seedu.parser.DateParser;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
@@ -17,9 +19,15 @@ import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
 
 public class TrackCalorieCommand extends Command {
+    private String commandWord;
     private String userInput;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private DateTimeFormatter dtf;
 
-    public TrackCalorieCommand(String userInput) {
+
+    public TrackCalorieCommand(String commandWord, String userInput) {
+        this.commandWord = commandWord;
         this.userInput = userInput;
     }
 
@@ -28,53 +36,60 @@ public class TrackCalorieCommand extends Command {
             ExerciseStorage exerciseStorage) throws LifeTrackerException {
         ArrayList<Meal> meals = mealStorage.getMeals();
         ArrayList<Exercise> exercises = exerciseStorage.getExercises();
+        String[] userInputArgs = userInput.split("\\s+");
+        if (userInputArgs.length == 1){
+            throw new MissingArgumentsException(commandWord, "[all] / [/from, /to]");
+        } else if (userInputArgs[1].equals("all") && userInputArgs.length == 2){
+            this.startDate = getStartingDate(meals, exercises);
+            this.endDate = getEndingDate(meals, exercises);
+            getMealsWithinDates(mealStorage, exerciseStorage, ui, startDate, endDate);
+        } else if (userInputArgs.length > 5){
+            throw new InvalidCommandException();
+        } else {
+            parseUserInput();
+            getMealsWithinDates(mealStorage, exerciseStorage, ui, startDate, endDate);
+        }
+    }
+
+    private void parseUserInput() throws LifeTrackerException {
+        dtf = DateConstants.PARSE_DTF;
+        int startDateIndex;
+        int endDateIndex;
+        String startDateIdentifier = "/from";
+        String endDateIdentifier = "/to";
+
+        startDateIndex = userInput.indexOf(startDateIdentifier);
+        if (startDateIndex == -1) {
+            throw new MissingArgumentsException(commandWord, startDateIdentifier);
+        }
+        endDateIndex = userInput.indexOf(endDateIdentifier);
+        if (endDateIndex == -1) {
+            throw new MissingArgumentsException(commandWord, endDateIdentifier);
+        }
+        String startDateString = userInput.substring(startDateIndex + startDateIdentifier.length(), endDateIndex-1)
+                .trim();
+        String endDateString = userInput.substring(endDateIndex + endDateIdentifier.length()).trim();
+        this.startDate = DateParser.parse(startDateString, dtf);
+        this.endDate = DateParser.parse(endDateString, dtf);
+    }
+
+    private void getMealsWithinDates(MealStorage mealStorage, ExerciseStorage exerciseStorage, GeneralUi ui,
+                                     LocalDate startDate, LocalDate endDate)
+            throws LifeTrackerException {
         List<Meal> filteredMeals;
         List<Exercise> filteredExercises;
-        LocalDate startDate;
-        LocalDate endDate;
+
         double caloriesConsumed;
         double caloriesBurnt;
         DateTimeFormatter dtf = DateConstants.PARSE_DTF;
-        String startDateIdentifier = "/start";
-        String endDateIdentifier = "/end";
-        String startDateString;
-        String endDateString;
-        int startDateIndex;
-        int endDateIndex;
-        int nextSpaceIndex;
-        
-        startDateIndex = userInput.indexOf(startDateIdentifier);
-        if (startDateIndex == -1) {
-            startDate = getStartingDate(meals, exercises);
-        } else {
-            nextSpaceIndex = getIndex(
-                userInput.indexOf(" ", startDateIndex+startDateIdentifier.length()+1), 
-                userInput.length()
-            );
-            startDateString = userInput.substring(startDateIndex+startDateIdentifier.length(), nextSpaceIndex).trim();
-            startDate = DateParser.parse(startDateString, dtf);
-        }
-
-        endDateIndex = userInput.indexOf(endDateIdentifier);
-        if (endDateIndex == -1) {
-            endDate = getEndingDate(meals, exercises);
-        } else {
-            nextSpaceIndex = getIndex(
-                userInput.indexOf(" ", endDateIndex+endDateIdentifier.length()+1), 
-                userInput.length()
-            );
-            endDateString = userInput.substring(endDateIndex+endDateIdentifier.length(), nextSpaceIndex).trim();
-            endDate = DateParser.parse(endDateString, dtf);
-        }
-
         if (startDate == null || endDate == null) {
-            throw new LifeTrackerException("No Meals and Exercises Found!");
-        } else if (startDate.isAfter(endDate)) {
-            throw new LifeTrackerException(startDate + " cannot be later than " + endDate);
+            System.out.println("No Meals and Exercises Found!");
+            return;
         }
-
+        if (startDate.isAfter(endDate)){
+            throw new LifeTrackerException("Oops! End date cannot be before Start date!");
+        }
         System.out.println("Showing your history from " + startDate + " to " + endDate);
-
         while (startDate.compareTo(endDate) <= 0) {
             caloriesConsumed = caloriesBurnt = 0;
             filteredMeals = mealStorage.getMealByDate(startDate);
@@ -84,7 +99,7 @@ public class TrackCalorieCommand extends Command {
                 startDate = startDate.plusDays(1);
                 continue;
             }
-            
+
             ui.printLine();
             System.out.printf("Date: %s\n", startDate.format(dtf));
 

@@ -1,8 +1,14 @@
-Apr 06, 2023 2:39:21 PM seedu.logger.LogFileHandler logInfo
+Apr 06, 2023 1:00:47 PM seedu.logger.LogFileHandler logInfo
 INFO: Lunch was consumed on 1/1/2023
-Total Calories are: 649.0
+Total Calories are: 1447.0
 Here are the foods you ate:
 1) Chicken Ngoyang from Nasi Padang
+2) Curry Chicken Noodles from Chicken Rice
+3) Cuttlefish Ball from Mala
 
-Apr 06, 2023 2:40:02 PM seedu.logger.LogFileHandler logInfo
-INFO: User exited the programme.
+Apr 06, 2023 1:01:19 PM seedu.logger.LogFileHandler logInfo
+INFO: Lunch was consumed on 1/1/2023
+Total Calories are: 238.0
+Here are the foods you ate:
+1) Chicken Rendang from Nasi Padang
+
