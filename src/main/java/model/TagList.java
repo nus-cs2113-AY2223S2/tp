@@ -43,6 +43,7 @@ public class TagList {
 
         return null;
     }
+
     /**
      * Find the tag with tagName specified from the tagList.
      *
@@ -99,8 +100,9 @@ public class TagList {
                     return;
                 }
             }
+        } else {
+            throw new TagNotFoundException();
         }
-        throw new TagNotFoundException();
     }
 
     public boolean isEmpty() {
