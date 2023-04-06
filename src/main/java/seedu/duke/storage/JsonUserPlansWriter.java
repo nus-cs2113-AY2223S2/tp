@@ -25,14 +25,15 @@ public class JsonUserPlansWriter {
      * plansData.json.
      *
      * @param plansFilePath File path in which user plans are stored.
-     * @param userPlans The user plans containing all workout plans by the user.
+     * @param userPlans The user plans containing all workout plans by the user. (Should not be access via static
+     *     reference but UserPlan was implemented as static)
      * @return returns a boolean value on the success of saving the file, true if success, false otherwise.
      *
      * @throws DukeError Occurs when there is an error in writing the file.
      */
     public boolean saveToJson (String plansFilePath, UserPlan userPlans) throws DukeError {
         try (Writer writer = new FileWriter(plansFilePath)) {
-            JsonArray jsonArray = gson.toJsonTree(UserPlan.getPlan()).getAsJsonArray();
+            JsonArray jsonArray = gson.toJsonTree(userPlans.getPlan()).getAsJsonArray();
             JsonObject jsonObject = new JsonObject();
             jsonObject.add("UserPlans", jsonArray);
             writer.write(gson.toJson(jsonObject));

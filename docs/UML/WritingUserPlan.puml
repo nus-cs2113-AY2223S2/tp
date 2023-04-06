@@ -1,0 +1,23 @@
+@startuml
+hide footbox
+!include style.puml
+
+participant "Storage" as Storage
+participant "JsonUserPlansStorage" as JsonUserPlansStorage
+participant "JsonUserPlansWriter" as JsonUserPlansWriter
+-> Storage : writeToJson(userPlan)
+activate Storage STORAGE_COLOUR
+
+        Storage -> JsonUserPlansStorage : writeToJson(userPlan)
+            activate JsonUserPlansStorage ORANGE
+                JsonUserPlansStorage -> JsonUserPlansWriter : saveToJson(filepath,userPlan)
+            activate JsonUserPlansWriter LAPIS
+            JsonUserPlansWriter --> JsonUserPlansStorage : save status boolean
+            deactivate JsonUserPlansWriter
+            JsonUserPlansStorage --> Storage
+            deactivate JsonUserPlansStorage
+<-- Storage
+
+
+
+@enduml

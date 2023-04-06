@@ -46,7 +46,6 @@ public class JsonUserPlansStorage implements UserPlansStorage {
         boolean isSaved = jsonUserPlansWriter.saveToJson(userPlansFilePath, userPlan);
         assert isSaved : "An exception should be thrown, this part of code should not be run";
         logger.log(Level.INFO, "User Plan has been written to file");
-
     }
 
     /**
