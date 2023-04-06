@@ -65,6 +65,8 @@ which would result in the latest data stored in DataStorage being saved into the
 ### UI Component
 ### Parser Component
 ### Command Component
+**API:** `Command.java`
+Here's a class diagram of the `Command` component
 ### Storage Component
 
 ## Implementation
