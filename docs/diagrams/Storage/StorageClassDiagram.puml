@@ -11,9 +11,8 @@ class Storage implements DatabaseInterface {
 initialiseDatabase():void
 writeTaskPreparation(String saveString):String
 checkDatabaseCorrupted():boolean
-- instance: Storage
-- SAVED_MODULES_FILE_PATH: String
-- modules: ArrayList<Module>
+- {static}instance: Storage
+- {static}SAVED_MODULES_FILE_PATH: String
 + getInstance(): Storage
 - Storage()
 + initialiseDatabase(): void
@@ -23,10 +22,14 @@ checkDatabaseCorrupted():boolean
 + addModuleToModuleList(moduleToAdd: Module): boolean
 + doesModuleExist(moduleToAdd: Module): boolean
 - saveModuleToStorage(saveModuleString: String): void
-+ deleteModule(indexToDeletePuSpecificList: int, modules: ArrayList<Module>, database: Storage, uniID: int): boolean
++ {static}deleteModule(indexToDeletePuSpecificList: int, modules: ArrayList<Module>, database: Storage, uniID: int): boolean
++ writeModListToFile(modules: ArrayList<Module>): void
++ getModules(): ArrayList<Module>
++ {static}sortModulesAccordingToPrintingLength(modules: ArrayList<Module>): void
 }
 
-Storage "modules"-> "*"Module
+Storage "modules: ArrayList<Module>"--> "*"Module
+
 class Module {
 -univId: int
 -moduleCode: String

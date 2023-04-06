@@ -89,10 +89,8 @@ How module data is stored in text file:
 Module information is stored in one single line separated by commas
 `univID`,`moduleCode`,`moduleName`,`moduleMCs`,`nusModuleCode`,`nusModuleName`,`nusModuleMcs`
 
-Sequence Diagram of Storage initialisation:
-
-![Storage.png](diagrams%2FStorage%2FStorage.png)
-![readModData.png](diagrams%2FStorage%2FreadModData.png)
+Class Diagram of Storage:
+![StorageClassDiagram.png](diagrams%2FStorage%2FStorageClassDiagram.png)
 
 The Storage class follows the Singleton pattern, where there is only one instance of Storage class. During the
 fist initialisation of the Storage class, Storage also tries to handle the case where the txt have been tampered.
@@ -101,6 +99,11 @@ the Database Interface. The Storage class would save module mappings which conta
 that such module mappings are not corrupted, it is cross-referenced with the main Module database from the
 DataReader class, and also checked for duplication. Tampered data will be removed or the module database would reset if
 too many modules are affected.
+
+Sequence Diagram of Storage initialisation:
+
+![Storage.png](diagrams%2FStorage%2FStorage.png)
+![readModData.png](diagrams%2FStorage%2FreadModData.png)
 
 The Storage class also handles the adding of new modules and the deleting of past modules. When any of this occurs, the
 txt file will be updated immediately after the successful adding/deletion of saved modules in the Storage.
