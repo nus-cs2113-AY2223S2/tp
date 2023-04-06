@@ -9,9 +9,9 @@ import seedu.duke.ui.Ui;
 import java.io.IOException;
 
 public class UnconfirmCommand extends Command {
-    Ui ui = new Ui();
-    protected int companyNum;
 
+    protected int companyNum;
+    Ui ui = new Ui();
     public UnconfirmCommand(String commandType, int companyNum){
         super(commandType);
         this.companyNum = companyNum;
