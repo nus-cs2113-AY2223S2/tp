@@ -67,7 +67,7 @@ public class CommandParser {
         case KEYWORD_REMOVE_PET:
             return new RemovePetParser().parse(arguments);
         case KEYWORD_LIST_PET:
-            return new ListPetCommand();
+            return new ListPetParser().parse(arguments);
         case KEYWORD_ADD_STAT:
             return new AddStatParser().parse(arguments);
         case KEYWORD_REMOVE_STAT:

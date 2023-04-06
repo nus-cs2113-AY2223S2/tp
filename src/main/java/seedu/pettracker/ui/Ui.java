@@ -15,6 +15,7 @@ public class Ui {
     private static final String PET_NOT_FOUND_ERROR = "ERROR: Pet not Found";
     private static final String EMPTY_PET_NAME_ERROR = "ERROR: Pet Name is empty";
     private static final String DUPLICATE_PET_ERROR = "ERROR: Pet already exists";
+    private static final String EMPTY_TASK_ERROR = "ERROR: Task description is empty";
 
 
     private Scanner in;
@@ -212,6 +213,12 @@ public class Ui {
     public void duplicatePetMessage() {
         System.out.println(DIVIDER);
         System.out.println(DUPLICATE_PET_ERROR);
+        System.out.println(DIVIDER);
+    }
+
+    public void EmptyTaskMessage() {
+        System.out.println(DIVIDER);
+        System.out.println(EMPTY_TASK_ERROR);
         System.out.println(DIVIDER);
     }
 
