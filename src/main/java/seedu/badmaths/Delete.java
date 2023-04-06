@@ -1,6 +1,8 @@
 //@@author WilsonLee2000
 
 package seedu.badmaths;
+import seedu.badmaths.note.NotesList;
+import seedu.badmaths.storage.NotesFileWriter;
 import seedu.badmaths.ui.Ui;
 
 public class Delete {
@@ -39,7 +41,7 @@ public class Delete {
             }
             Ui.printDelete(notes.getText(deleteIndex), notes.getSize());
             notes.remove(deleteIndex);
-            Storage.saveFile(filePath, notes.getAll());
+            NotesFileWriter.saveFile(filePath, notes.getAll());
         } catch (IllegalIndexException exceptionIndex) {
             System.out.println("Oops! This note does not exist. Please try again.");
         } catch (IllegalTodoException exceptionTodo) {

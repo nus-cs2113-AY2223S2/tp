@@ -1,5 +1,7 @@
 package seedu.badmaths;
 
+import seedu.badmaths.note.NotesList;
+import seedu.badmaths.storage.NotesFileParser;
 import seedu.badmaths.ui.Ui;
 
 import java.util.ArrayList;
@@ -45,7 +47,7 @@ public class BadMaths {
         Command inputCommand = null;
         Ui.printWelcomeMessage();
         notesCreator(path);
-        NotesList notes = new NotesList(Storage.loadFile(path));
+        NotesList notes = new NotesList(NotesFileParser.loadFile(path));
         ArrayList<String> historyCommand = new ArrayList<>();
         CommandHistory commandHist = new CommandHistory(historyCommand);
 

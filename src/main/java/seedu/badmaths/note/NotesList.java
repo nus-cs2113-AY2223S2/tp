@@ -1,4 +1,4 @@
-package seedu.badmaths;
+package seedu.badmaths.note;
 
 import java.util.ArrayList;
 import java.util.Collections;

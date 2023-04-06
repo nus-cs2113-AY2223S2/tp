@@ -1,11 +1,13 @@
-package seedu.badmaths;
+package seedu.badmaths.storage;
+
+import seedu.badmaths.note.Note;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static seedu.badmaths.NotesFileContentManager.fileContent;
+import static seedu.badmaths.storage.NotesFileContentManager.fileContent;
 
 public class NotesFileWriter {
     public static void saveFile(String path, ArrayList<Note> notes) {

@@ -1,4 +1,4 @@
-package seedu.badmaths;
+package seedu.badmaths.storage;
 
 import java.io.FileWriter;
 import java.io.IOException;

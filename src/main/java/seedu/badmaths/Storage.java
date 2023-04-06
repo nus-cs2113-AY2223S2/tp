@@ -1,5 +1,8 @@
 package seedu.badmaths;
 
+import seedu.badmaths.note.Note;
+import seedu.badmaths.note.NotePriority;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

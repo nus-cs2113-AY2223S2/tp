@@ -1,4 +1,4 @@
-package seedu.badmaths;
+package seedu.badmaths.note;
 
 public class NotePriority {
     public enum Priority {

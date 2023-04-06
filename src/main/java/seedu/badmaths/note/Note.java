@@ -1,4 +1,4 @@
-package seedu.badmaths;
+package seedu.badmaths.note;
 
 //@@author ZiqiuZeng
 public class Note {

@@ -1,4 +1,8 @@
-package seedu.badmaths;
+package seedu.badmaths.storage;
+
+import seedu.badmaths.InvalidFormatException;
+import seedu.badmaths.note.Note;
+import seedu.badmaths.note.NotePriority;
 
 import java.io.File;
 import java.io.FileNotFoundException;

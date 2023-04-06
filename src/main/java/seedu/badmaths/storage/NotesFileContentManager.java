@@ -1,4 +1,7 @@
-package seedu.badmaths;
+package seedu.badmaths.storage;
+
+import seedu.badmaths.note.Note;
+import seedu.badmaths.note.NotePriority;
 
 import java.util.ArrayList;
 
