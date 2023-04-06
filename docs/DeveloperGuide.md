@@ -641,13 +641,15 @@ Step 5. Starting from Monday, the lessons and tasks occurring on each day of the
 
 [*Return to TOC*](#table-of-contents)
 
+
 ### Exiting the Program
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ExitCommand-ExitCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
 ## *Storage*
-(TO BE ADDED SOON)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)
+
 
 ## *Logging*
 (TO BE ADDED SOON)
@@ -852,12 +854,15 @@ Prerequisite: Make sure you are in the main interface.
 1. Test case for empty task description: ```todo ``` or ```deadline``` or ```event```
 Expected: Exception thrown. Error details shown in status message
 2. Test case for invalid formats
-   - Out of calendar range: ```deadline return book -by 40-11-2023-11:23``` or ```event wedding -from 40-11-2023-11:23 -to 41-11-2023-11:23```
+   - Out of calendar range: ```deadline return book -by 40-11-2023-23:23``` or ```event wedding -from 40-11-2023-22:23 -to 41-11-2023-11:23```
    - Invalid dateTime format ```deadline return book -by 2023-10-11-11:23``` or ```event wedding -from 2023-10-11-11:23 -to 2023-10-12-11:23```
    - Missing parameters ``` deadline return book 15-11-2023-11:23``` or ```event wedding 16-11-2023-11:23 -to 20-11-2023-11:23```
    - Extra parameters ```deadline return book -by 17-11-2023-11:23 blah blah```
+   - Occurs before system dateTime `deadline return book 15-01-2023-11:23` or `event wedding 16-01-2023-11:23 -to 20-01-2023-11:23`
    
-   For all these cases Expected: Exception thrown. Error details shown in status message
+   For all these cases Expected: Exception thrown. Error details shown in status message. 
+   For instance invalid dateTime format prints `Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
+   eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM`
 ### Adding a ToDo
 1. Test case : ```todo Feed the fish```
 
@@ -917,12 +922,14 @@ Expected: Module under index 1 is deleted from moduleList. Confirmation message 
 Expected: CS1010 is removed from moduleList. Confirmation message is printed 
 3. Test case: ```delmod cs2040c``` assuming cs2040c is not in your moduleList 
 
-Expected: Exception thrown,error message printed.
+Expected: Exception thrown, `Sorry, the module cs2040c does not exist in your Module list!
+Total modular credits you have in this semester:`[Number of MCs in your moduleList]
+
 #### Deleting a Lesson
-1. Test case: ```delmod CS1010 -st 1``` assuming cs1010 -st 1 is inside moduleList
+1. Test case: `delmod CS1010 -st 1` assuming cs1010 -st 1 is inside moduleList
 
 Expected: Deletes SECTIONAL TEACHING - 1 of CS1010.
-2.Test case: ```delmod CS1010 -st 5``` assuming cs1010 -st 5 not inside moduleList
+2.Test case: `delmod CS1010 -st 5` assuming cs1010 -st 5 not inside moduleList
 
 Expected: Exception thrown, error message printed 
 ### Saving Data
