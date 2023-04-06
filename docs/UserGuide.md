@@ -16,6 +16,8 @@ FitnessDuke is a **Command Line Application for tracking and managing workouts, 
    page [here](https://github.com/AY2223S2-CS2113-W13-2/tp/releases).
 3. Copy the file to the folder where you want to use fitness duke.
 4. Open a command terminal, ```cd``` into the folder you put the jar file in, and use the ```java -jar duke.jar``` command to run the application.
+   <br>The below output should be shown. (If data files are not loaded in yet, some messages might appear above this output)
+   ![img_1.png](img_1.png)
 5. Type the command in the command box and press Enter to execute it.
    e.g. typing help and pressing Enter will open the help window.
 Some example commands you can try:
@@ -26,6 +28,17 @@ Some example commands you can try:
 6. Refer to [FitnessDuke's Features](#fitnessdukes-features) below for details of each command.
 
 # FitnessDuke's Features
+
+<div class="alert alert-info">
+<p> <strong>
+<img class="emoji" title=":information_source:" alt=":information_source:" src="https://github.githubassets.com/images/icons/emoji/unicode/2139.png" height="20" width="20">
+Notes about the command format:</strong></p>
+<ul>
+<li>Headers</li>
+<li>asdsad</li>
+<li>asdsad</li>
+</ul>
+</div>
 
 # *General*
 
@@ -55,7 +68,7 @@ Generates a number of random exercises from a pool of exercises stored within Fi
 <br>
 Example input:
 ```generate 3```
-<br>
+<br><br>
 Example output:
 ```
 Exercise ID: 227. 
@@ -105,6 +118,7 @@ The filters are shown here:
 
 Shows a list containing *number* of _random_ workouts that suits the arguments filter.
 
+
 *Possible arguments are*:
 
 *Body Part*: ```upper```, ```core```, ```legs```
@@ -113,10 +127,26 @@ Shows a list containing *number* of _random_ workouts that suits the arguments f
 
 *Type*: ```static```, ```gym```
 
+<div class="alert alert-primary">
+<img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tip:</strong>
+The generate command can accept any combination of parameters (including no parameter at all) <br>
+E.g.
+<br>
+<img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
+Do not put in multiple arguments from the same category <br>
+e.g. Do not put in both easy and medium in the same generate function, as no exercise has both "easy" and "medium" difficulties.
+</div>
+
 Example Command: ```generate easy 3```, ```generate hard upper 4```
 
-<p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#995000"> **Do note that the exercises that you generate might not be the same as the exercises in the example below! This is due to the 873 exercises that we have in our library! </p>
-<p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#995000"> **Do also note that you can only generate a maximum of 873 exercises at a time! Any more and the program will not generate your exercises for you! </p>
+
+<div class="alert alert-warning">
+   <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
+   <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000"> The exercises that you generate might not be the same as the exercises in the example below! This is due to the 873 exercises that we have in our library! </p>
+   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> You can only generate a maximum of 873 exercises at a time! Any input higher than 873 and the program will not generate your exercises for you! </p>
+</div>
+
+
 Examples:
 
 ```
@@ -138,8 +168,16 @@ ________________________________________
 
 ## Getting into a workout: ```start```
 Enters a workout session with the **previously (latest) generated** workout session.
-**Note that you must have at least one previously generated workout to start.
-**Note that you will not be able to access any other features until you complete your exercise
+
+<div class="alert alert-warning">
+   <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
+   <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000"> **Note that you must have at least one previously generated workout to start.
+   </p>
+   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> **Note that you will not be able to access some features until you complete your exercise </p>
+</div>
+
+
+
 Example Command: ```start```
 For example, let the previously generated workout be the following workout:
 
@@ -164,12 +202,12 @@ The current workout contains:
 Start workout! You got this, all the best!
 ```
 
-## Achievements: ```achievements```
+## Achievements: ```achievements``` ```clear_achievements```
 A list of achievements exist to provide motivation upon the completion of a workout.
-Each achievement consists of:
-1) A name
-2) A set number of exercises required to complete the achievement
-3) The achievement's difficulty level
+Each achievement consists of:<br>
+1) A name <br>
+2) A set number of exercises required to complete the achievement<br>
+3) The achievement's difficulty level<br>
 4) The current number of exercises under the achievement's category completed.
    <br><br>
    Calling the ```achievements``` command will list out all the details of all the available achievements.
@@ -179,6 +217,20 @@ Each achievement consists of:
 Difficulty: **
 Not Achieved :(
 Current Count: 0
+```
+
+For testing purposes, there is also a ```clear_achievements``` command that allows a tester to 
+clear all the data for a user. This means that all the exercises logged by the achievements is erased, and all completed
+achievements are removed. 
+<br><br>
+
+**This is meant for testing purposes, as it allows a tester to easily reset and test whether an achievement
+works or not for different inputs.**
+
+Expected Output on command call:
+```
+Cleared achievement data
+________________________________________
 ```
 
 More details on how the achievements are used can be seen
@@ -327,18 +379,21 @@ Begin with a box or bench 1-2 feet in front of you. Stand with your feet shoulde
 ________________________________________
 ```
 
-<p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#995000">**Please note: The storage methods for 
-data and achievements are different.
-<br>
-This means that when deleting sessions, the number of times a specific exercise is deleted will be updated, but the 
-number of times a category of exercise
-is completed (i.e. Storage used for achievements) will not be updated. <br><br>
-Justification: The data command is meant to store a user's completed exercise history, hence it should be updated. <br>
-<br> However, achievements are meant to motivate users to continue using FitnessDuke. Deleting one's counts from their 
-achievements and hence removing one's achievements would serve to demotivate users, being counter-intuitive 
-from the feature's purpose.
-** 
-</p>
+<div class="alert alert-warning">
+   <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
+   <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000">The storage methods for 
+      data and achievements are different.
+      <br>
+      This means that when deleting sessions, the number of times a specific exercise is deleted will be updated, but the 
+      number of times a category of exercise
+      is completed (i.e. Storage used for achievements) will not be updated. <br><br>
+      Justification: The data command is meant to store a user's completed exercise history, hence it should be updated. <br>
+      <br> However, achievements are meant to motivate users to continue using FitnessDuke. Deleting one's counts from their 
+      achievements and hence removing one's achievements would serve to demotivate users, being counter-intuitive 
+      from the feature's purpose.
+      ** 
+   </p>
+</div>
 
 ## Searching for a workout: ```find [keyword]```
 
@@ -507,15 +562,19 @@ User data files are saved in the hard disk automatically after any command that 
 save manually. :-)
 Advanced users are welcome to update data directly by editing that data file.
 
-<p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#995000">**Caution: If your changes to the data 
+<div class="alert alert-warning">
+   <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
+<p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000">If your changes to the data 
 file makes its format invalid, FitnessDuke will discard all data and start with an empty data file at the next run.** 
 </p>
-<p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#995000">**Caution: Altering the contents 
+<p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000">Altering the contents 
 of the achievement list data will possibly cause the achievements features not to work. Altering the 
 contents might also give rise to discrepancies between completed achievements and non-completed achievements.** </p>
-<p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#995000">
+<p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000">
 We here at Fitness Duke PTE LTD are not liable for any problems with our product should the 
 data files be tampered with. </p>
+</div>
+
 
 
 # Resource data
@@ -529,90 +588,103 @@ tampered with, the data will not be loaded in, and the achievement will not be l
 if a specific line of data is corrupt, that specific achievement is not loaded, but the rest will work.)
 
 # FAQ
-
 **Q**: Can I add my own workouts to the program?
 
 **A**: This is a very intuitive feature, but we have not implemented it yet.
 
 # Command Summary
 
-```generate```
+<table>
+  <thead>
+    <tr>
+      <th>Action</th>
+      <th>Example Command, Examples  </th>
+      <th>Short Description </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>help</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">help</code></td>
+      <td>Prints available commands message</td>
+    </tr>
+    <tr>
+      <td><strong>generate</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">generate [arguments] [number]</code> <br>  e.g.,<br> <code class="language-plaintext highlighter-rouge">generate hard upper 4</code></td>
+      <td>Generates an exercise with certain parameters</td>
+    </tr>
+    <tr>
+      <td><strong>filters</strong></td>
+      <td>
+<code class="language-plaintext highlighter-rouge">filters</code><br>
+</td>
+    <td>Shows the available filters  </td>
+    </tr>
+    <tr>
+      <td><strong>find</strong></td>
+      <td>
+<code class="language-plaintext highlighter-rouge">find [keyword]</code> <br> e.g., <code class="language-plaintext highlighter-rouge">find arms</code>
+</td>
+    <td>Finds all workouts with a certain keyword  </td>
+    </tr>
+    <tr>
+      <td><strong>ippt session</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">ippt [AGE] [RUNTIME] [PUSHUPs] [SITUPs]</code> <br> e.g.,<code class="language-plaintext highlighter-rouge"> ippt 23 10:10 30 30 </code></td>
+      <td>Adds an IPPT session to one's completed exercise sessions and outputs total points for the IPPT session</td>
+    </tr>
+    <tr>
+      <td><strong>plans</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">plans</code></td>
+      <td>Shows all of one's exercise plans</td>
+    </tr>
+    <tr>
+      <td><strong>planner</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">planner</code></td>
+      <td>Goes into the planner for editing</td>
+    </tr>
+    <tr>
+      <td><strong>history</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">history</code></td>
+      <td>Shows the session history of a user's exercises</td>
+    </tr>
+    <tr>
+      <td><strong>data</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">data</code></td>
+      <td>Shows a count of all the user's completed exercises</td>
+    </tr>
+    <tr>
+      <td><strong>start</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">start</code></td>
+      <td>Starts an exercise  </td>
+    </tr>
+    <tr>
+      <td><strong>quick</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">quick [plan_name] [x]</code> e.g., <code 
+class="language-plaintext highlighter-rouge">quick home_leg_day 3</code></td>
+      <td>Starts an exercise specific to a plan's name in the Planner   </td>
+    </tr>
+    <tr>
+      <td><strong>delete</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">delete [number]</code>e.g., 
+<code class="language-plaintext highlighter-rouge">delete 1</code></td>
+      <td>Deletes an entire session from a user's history. Does not affect achievements</td>
+    </tr>
+    <tr>
+      <td><strong>achievements</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">achievements</code></td>
+      <td>Shows all available achievements and their details</td>
+    </tr>
+    <tr>
+      <td><strong>clear_achievements</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">clear_achievements</code></td>
+      <td> Clears all user data on achievements, resetting the count for all achievements to 0. (meant for testing purposes)</td>
+    </tr>
+    <tr>
+      <td><strong>exit</strong></td>
+      <td><code class="language-plaintext highlighter-rouge">exit</code></td>
+      <td>Exits Fitness Duke        </td>
+    </tr>
+  </tbody>
+</table>
 
-Generate a specific list of exercises: generate FILTER1 FILTER2 ... x
-FILTER stands for a specific requirement you want to include in your exercise
-
-```filters```
-
-View all available filters
-
-```ippt``` ```AGE``` ```RUNTIME``` ```PUSHUPs``` ```SITUPs```
-
-Starts an IPPT exercise session with input scores for the 3 sets of exercises.
-* ```AGE``` should be an integer ranging 16-60
-* ```Runtime``` in format of ```mm:ss``` where mm is minute (integer) and ss is seconds (integer)
-* ```PUSHUPS``` Integer number of pushups in 1 minute
-* ```SITUPS``` Integer number of situps in 1 minute
-
-```start```
-Start a workout session
-
-```history```
-View the information on all workout sessions you have completed
-
-```data```
-
-View your completed exercises as well as the number of times you have completed each exercise
-
-```delete```
-
-Delete a workout session you have within your workout history: ```delete``` ```NUMBER```
-```NUMBER``` refers to the session number of the workout session you wish to delete
-
-```plans```
-
-Show all plans
-
-```planner```
-
-Enter workout plan editor
-
-```quick```
-
-Generate a planned exercise: ```quick``` ```PLAN_NAME``` ```number```
-PLAN_NAME needs has to be in your planner, and ```number``` is the number of exercises
-
-```find```
-
-finds all relevant exercises based on the keyword : ```find``` ```keyword```
-
-```achievements```
-
-Shows all the available achievements, their requirements and whether they have been achieved or not
-
-```clear_achievements```
-
-Clears all the data of finished exercises for the achievements' database, resetting counters for all achievements.
-Do note that this command does not clear the counters for each specific exercise, hence the number of each exercise completed from the data command will NOT be cleared.
-
-```exit```
-
-End the program
-
-# Command Summary
-| Action                 | Example Command, Examples                                               | Short Description                                                                                                 |
-|------------------------|-------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| **help**               | ```help```                                                              | Prints available commands message                                                                                 |
-| **generate**           | ```generate [arguments] [number]```<br/>eg. ```generate hard upper 4``` | Generates an exercise with certain parameters                                                                     |
-| **filters**            | ```filters```                                                           | Shows the available filters                                                                                       |
-| **find**               | ```find [keyword]``` <br/>eg. ```find arms```                           | Finds all workouts with a certain keyword                                                                         |
-| **ippt session**       | ```ippt [AGE] [RUNTIME] [PUSHUPs] [SITUPs]``` <br/>eg. ```find arms```  | Finds all workouts with a certain keyword                                                                         |
-| **plans**              | ```plans```                                                             | Shows all of one's exercise plans                                                                                 |
-| **planner**            | ```planner```                                                           | Goes into the planner for editing                                                                                 |
-| **history**            | ```history```                                                           | Shows the session history of a user's exercises                                                                   |
-| **data**               | ```data```                                                              | Shows a count of all of the user's completed exercises                                                            |
-| **start**              | ```start```                                                             | Starts an exercise                                                                                                |
-| **quick**              | ```quick [plan_name] [x]```<br/> eg. ```quick home_leg_day 3```         | Starts an exercise specific to a plan's name in the Planner                                                       |
-| **delete**             | ```delete [number]```<br/> eg. ```delete 1```                           | Deletes an entire session from a user's history. Does not affect achievements                                     |
-| **achievements**       | ```achievements```<br/>                                                 | Shows all available achievements and their details                                                                |
-| **clear_achievements** | ```clear_achievements```<br/>                                           | Clears all user data on achievements, resetting the count for all achievements to 0. (meant for testing purposes) |
-| **exit**               | ```exit```                                                              | Exits Fitness Duke                                                                                                |
+Thank you for using Fitness Duke!
