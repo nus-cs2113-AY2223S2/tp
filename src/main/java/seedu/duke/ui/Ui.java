@@ -183,9 +183,9 @@ public class Ui {
                 "Please add companies separately with single corresponding information at each field!");
     }
 
-   public void multipleInformationErrorMessage(){
-       showLine();
-       System.out.println("Only one industry(i/), contact number(c/), and email address(e/) are allowed.");
+    public void multipleInformationErrorMessage(){
+        showLine();
+        System.out.println("Only one industry(i/), contact number(c/), and email address(e/) are allowed.");
     }
 
 }
