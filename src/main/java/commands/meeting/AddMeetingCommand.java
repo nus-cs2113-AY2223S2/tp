@@ -27,6 +27,5 @@ public class AddMeetingCommand extends Command {
         ui.printMessage(Messages.MESSAGE_MEETING_ADDED);
         Meeting meeting = new Meeting(this.issue, this.time);
         MeetingManager.addMeeting(meeting, ui);
-        ui.printMessage(issue + " at " + time);
     }
 }

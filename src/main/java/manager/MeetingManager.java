@@ -17,6 +17,7 @@ public class MeetingManager {
 
     public static void addMeeting(Meeting meeting, TextUi ui) {
         meetings.add(meeting);
+        ui.printMessage(meeting.getIssue() + " at " + meeting.getTime());
         try {
             MeetingStorage meetingStorage = new MeetingStorage();
             meetingStorage.writeToDeadlineFile(meetings);
