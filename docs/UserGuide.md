@@ -6,18 +6,18 @@
 2. [Quick Start](#quick-start)
 3. [Features](#features):
 
-    * [help](#help---shows-help-guide)
-    * [load samples](#load-samples---load-samples-company-data-for-manual-testing)
-    * [add](#add----add-a-company-to-the-company-list)
-    * [choose venue](#choose-venue-index---updates-the-venue-of-the-event)
-    * [confirm](#confirm---marks-a-specific-companys-attendance-as-confirmed) 
-    | [unconfirm](#unconfirm---marks-a-specific-companys-attendance-as-unconfirmed)
-    * [list companies](#list-companies---shows-all-current-stored-companies)
-    | [venues](#list-venues---shows-all-venues)
-    | [unconfirmed](#list-unconfirmed---shows-all-stored-companies-marked-with-unconfirmed-attendance)
-    * [delete](#delete----delete-a-company-from-the-company-list) | [purge](#purge----delete-the-company-list-data)
-    * [find companies](#find-companies----find-the-companies-based-on-a-company-name)
-    | [industry](#find-industry-industry-----find-the-companies-within-an-industry)
+    * [help](#help)
+    * [load samples](#load-samples)
+    * [add](#add)
+    * [choose venue](#choose-venue)
+    * [confirm](#confirm) 
+    | [unconfirm](#unconfirm)
+    * [list companies](#list-companies)
+    | [venues](#list-venues)
+    | [unconfirmed](#list-unconfirmed)
+    * [delete](#delete) | [purge](#purge)
+    * [find companies](#find-companies)
+    | [industry](#find-industry)
 
 4. [Commands summary](#command-summary)
 
@@ -38,7 +38,7 @@ EveNtUS is a desktop application designed for career fair managers to manage car
 
 * Words written in upper case between square brackets([ ]) are parts that users can change.
 
-### `Help`
+### Help
 
 Shows the help guide that contains the features that are available for use, as well as the features' corresponding 
 syntax for user input
@@ -99,7 +99,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `Load Samples`
+### Load Samples
 Populate the company list with sample companies, and updates the company list text file
 
 * Format: `load samples`
@@ -124,7 +124,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `Add`
+### Add
 Add the company to the list of companies, and updates the company list text file.
 
 * Format: `add n/[COMPANY_NAME] i/[INDUSTRY] c/[CONTACT_NUMBER] e/[EMAIL]`
@@ -155,10 +155,8 @@ Company already exists in the list!
 ____________________________________________________________
 ```
 
-### `delete <INDEX>` - Delete a company from the company list
-Delete a company from the company list, and updates the company list text file.
 
-### `Choose Venue`
+### Choose Venue
 Updates the venue of the event from a list of venues, and updates the event details file
 
 * Format: `choose venue [INDEX]`
@@ -183,7 +181,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `Confirm`
+### Confirm
 Mark the status of a specific company's attendance as confirmed, and 
 updates a status icon to [Confirmed] that represents it being marked confirmed.
 
@@ -202,7 +200,7 @@ ____________________________________________________________
 <br>
 
 
-### `Unconfirm`
+### Unconfirm
 Mark the status of a specific company's attendance as unconfirmed, and
 updates a status icon to [Unconfirmed] that represents it being marked unconfirmed.
 
@@ -220,7 +218,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `List Companies`
+### List Companies
 Shows all companies currently stored in the company list.
 
 * Format: `list companies`
@@ -251,7 +249,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `List Venues`
+### List Venues
 Shows all venues available for the user to choose
 
 * Format: `list venues`
@@ -271,7 +269,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `list unconfirmed`
+### List Unconfirmed
 Shows all the unconfirmed companies that are stored in the company list.
 
 * Format: `list unconfirmed`
@@ -298,7 +296,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `delete `
+### Delete
 Delete a company from the company list, and updates the company list text file.
 
 * Format: `delete [INDEX]`
@@ -314,7 +312,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `purge `
+### Purge
 Delete the company list data, and updates the company list text file
 
 * Format: `purge`
@@ -330,7 +328,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `Find Companies`
+### Find Companies
 Find the companies based on a company name, or any of the alphabets in keyword provided by the user.
 
 * Format: `find companies [KEYWORD]`
@@ -359,7 +357,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `Find Industry`
+### Find Industry
 Find the companies within an industry based on the keyword provided by the user.
 
 * Format: `find industry [KEYWORD]`
@@ -387,7 +385,7 @@ ____________________________________________________________
 ```
 <br>
 
-### `exit `
+### Exit
 Exit the application
 
 * Format: `exit`
