@@ -1,12 +1,6 @@
 package common;
 
-/**
- * A class containing the list of messages that will be shown to the user. "ERROR for error. MESSAGE for message"
- */
 public class Messages {
-    /**
-     * Messages for programs to print.
-     */
     public static final String MESSAGE_VALID_COMMAND_LIST = "List of valid commands:\n" +
             "GENERIC COMMANDS:\n%s\n" +
             "MEETING COMMANDS:\n%s\n" +
