@@ -29,7 +29,12 @@ to view my codes contributed for this project.
 `FindMark`, `FindUnmark`, `FindInfo`, `FindPrior`, `History`, `Help`, `Bye`
 
 ### 4) DeveloperGuide Contributions:
-*
+* Added Introduction
+* Added Table of Contents 
+* Added Sequence Diagrams
+* Added design & implementation details for `Notes` class
+* Added design & implementation details for `Ui` class
+* Added design & implementation details for `notes.txt` file
 
 ### 5) Review/Mentoring Contributions:
 * Link to PRs reviewed [here](https://github.com/AY2223S2-CS2113-F10-2/tp/pulls?q=is%3Apr+reviewed-by%3AWilsonLee2000)
