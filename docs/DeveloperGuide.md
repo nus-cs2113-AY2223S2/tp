@@ -10,6 +10,7 @@
     * [RecipeList Component](#recipelist-component)
     * [WeeklyPlan Component](#weeklyplan-component)
     * [Database Component](#database-component)
+    * [Ingredient Component](#ingredient-component)
 * [Implementation](#implementation)
     * [Add Recipes Feature](#add-recipes-feature)
     * [Edit Recipes Feature](#edit-recipes-feature)

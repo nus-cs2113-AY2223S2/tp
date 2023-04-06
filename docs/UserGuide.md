@@ -2,9 +2,10 @@
 
 ## Introduction
 
-Meal360 is a desktop app for managing your recipes, optimized for use via a Command Line Interface (
-CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
-Meal360 can get your recipe management tasks done faster than traditional GUI apps.
+Meal360 is a desktop app for managing your recipes and weekly meal plans, optimized for use via a
+Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If
+you can type fast, Meal360 can get your recipe management tasks done faster than traditional GUI
+apps.
 
 ___
 
@@ -333,8 +334,8 @@ Format : `view_ingredients`
 | View recipe                        | `view INDEX`<br/>e.g `view 1`                                                                               |
 | Add tag/Categorise to recipes      | `tag LABEL << RECIPE_NAME`<br/>e.g `tag western << pizza`                                                   |
 | Remove tag/Categorise from recipes | `tag LABEL >> RECIPE_NAME`<br/>e.g `tag western >> pizza`                                                   |
-| Add to weekly plan                 | `weekly /add RECIPE NAME QUANTITY`<br/>e.g `weekly /add pizza 2`                                            |
-| Add multiple to weekly plan        | `weekly /multiadd [/r RECIPE NAME /q QUANTITY]` <br/>e.g `weekly /multiadd /r pizza /q 1 /r burger /q 3`    |
+| Add to weekly plan                 | `weekly /add RECIPE_NAME QUANTITY`<br/>e.g `weekly /add pizza 2`                                            |
+| Add multiple to weekly plan        | `weekly /multiadd [/r RECIPE_NAME /q QUANTITY]` <br/>e.g `weekly /multiadd /r pizza /q 1 /r burger /q 3`    |
 | Delete from weekly plan            | `weekly /delete RECIPE_NAME`<br/>e.g `weekly /delete pizza`                                                 |
 | Delete multiple from weekly plan   | `weekly /multidelete [/r RECIPE_NAME /q QUANTITY]` <br/>e.g `weekly /multiadd /r pizza /q 1 /r burger /q 4` |
 | Clear weekly plan                  | `weekly /clear`                                                                                             |
