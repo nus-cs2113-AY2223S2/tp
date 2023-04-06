@@ -261,15 +261,17 @@ public class Parser {
      * @param description contains the deadline description and due date.
      * @return the add deadline command.
      */
-    private Command prepareAddDeadlineCommand(String description) { //  n/ t/
-        String[] words = (description.trim()).split("t/"); // n/
+    private Command prepareAddDeadlineCommand(String description) {
+        String[] words = (description.trim()).split("t/");
         try {
-            String[] testName = (words[0].trim()).split("n/");  // n/
+            String[] testName = (words[0].trim()).split("n/");
             if (((description.trim()).isEmpty()) || (!description.contains("n/"))
                     || (words.length < 2) || (testName.length < 1)) {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_PARAM);
+            } else if (words[1].contains("n/")) {
+                throw new DinerDirectorException(Messages.ERROR_DEADLINE_WRONG_ORDER);
             }
         } catch (DinerDirectorException e) {
             System.out.println(e);

@@ -61,6 +61,7 @@ public class Messages {
     public static final String ERROR_DEADLINE_MISSING_KEYWORD = "Find deadline command must be followed by keyword!";
     public static final String ERROR_DEADLINE_MISSING_PARAM = "Missing deadline parameter!";
     public static final String ERROR_DEADLINE_EXCESS_PARAM = "You cannot have multiple name/time for your deadline!";
+    public static final String ERROR_DEADLINE_WRONG_ORDER = "Time parameter must be before name parameter!";
     public static final String ERROR_DEADLINE_EXCESS_LIST_PARAM =
             "Excess input detected! Please only type \"view_deadlines\".";
     public static final String ERROR_STAFF_ADD_MISSING_PARAM = "Insufficient information when adding a staff";
