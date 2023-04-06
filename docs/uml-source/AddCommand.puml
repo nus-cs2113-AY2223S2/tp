@@ -27,7 +27,6 @@ return
 return
 
 Apollo -> add : execute()
-Apollo --
 activate add
 add -> add++ : addTask()
 add -> Event**
@@ -52,6 +51,7 @@ add <-- TaskList--
 add -> Ui : printAddMessage()
 add -> Storage ++ : updateTask()
 return
-
+return
 destroy add
+Apollo--
 @enduml
