@@ -12,6 +12,21 @@ Given below are my contributions to Pet Tracker:
 ### Summary of Contributions
 * **Code Contributed**: [RepoSense Link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=shawntangy&breakdown=true&sort=groupTitle%20dsc&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
+* **New Feature**: Help Command
+  * What it does: Explains to user what the pet-related commands or task-related commands does and provide examples on 
+    how to use it
+  * Justification: This feature improves the program significantly for newer users as they can
+    directly view help from the program without assessing any User/Developer Guide
+  * Highlights: This enhancement allows faster troubleshoot for users when a command does not work
+  * Related PR:   [\#86](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/86)
+
+
+* **New Feature**: Saving of Pet/Task information to storage
+  * What it does: Allows user to close the program knowing that their data is saved for the next use
+  * Justification: This feature allows the program to be closed without losing data for the next use
+  * Highlights: This enhancement allows users to also export their data if they want to run this program in a different
+    computer
+
 
 * **Enhancements Implemented**:
   * Handled Exceptions & Errors for `add-stat`, `add-pet`, `edit-stat`, `remove-stat` for v2.1 
@@ -20,38 +35,29 @@ Given below are my contributions to Pet Tracker:
   * Increased JUnit Test Coverage for pet and stat related commands 
 [\#182](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/182),
 [\#191](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/191)
-  * Help Command for viewers to view commands
-  [\#86](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/86)
 
-
-* **Contributions to the UG**:
-
-  * Introduction, Quick Start, Feature List, FAQ
-  * Command Summary for `add-pet`, `remove-pet`, `add-stat`, `remove-stat`,
-  `list`, `exit`
-
-    
-* **Contributions to the DG**:
+* **Documentations**:
+  * User Guide:
+    * Introduction, Quick Start, Feature List, FAQ
+    * Command Summary for `add-pet`, `remove-pet`, `add-stat`, `remove-stat`,
+    `list`, `exit`
+  * Developer Guide:
     * Class Diagram for `Ui`
     * Sequence Diagram for `Exit Command`
     * Appendix: Product Scope, User Stories, Non-Functional Requirements,
-  Glossary [\#175](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/175)
-
+    Glossary [\#175](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/175)
     * Manual Testing - `Launch & Shutdown`, `Testing Storage`
 
 
-* **Contributions to team-based tasks**:
-  * Release Managment: v1.0
+* **Contributions to team-based tasks / Project Management**:
+  * Release Management: `v1.0`
   * Maintaining and clearing Issue Tracker
   * Documenting Introduction of UG
   * Documenting Appendix of DG
 
 
-* **Review/Mentoring Contributions**:
+* **Community**:
   * PRs Reviewed: [\#194](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/194)
-
-
-* **Contributions beyond the project team**:
   * Reported Bugs and Suggestions for Taste Of Mom's (TOM) by Team F13-1:
   [\#2](https://github.com/shawntangy/ped/issues/2),
   [\#3](https://github.com/shawntangy/ped/issues/3),
