@@ -9,9 +9,9 @@ In doing so, the user can better manage his daily calorie gain in order to meet 
 ## Summary of Contributions
 
 ### Commands
-* `filter` command
+`filter` command
 
-* `examples` command
+`examples` command
 
 ### Database
 * Added the `ExampleData` database to store examples of meals and exercises to be used in the `examples` command
