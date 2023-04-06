@@ -3,6 +3,7 @@ package functionalities.parser;
 import exception.SniffException;
 import functionalities.commands.Command;
 import functionalities.commands.ConsultationCommand;
+import functionalities.commands.HelpCommand;
 import functionalities.commands.VaccinationCommand;
 import functionalities.commands.RemoveCommand;
 import functionalities.commands.SurgeryCommand;
@@ -42,6 +43,8 @@ public class Parser {
                 parseUnmarkCommand(userCommand.trim());
             } else if (userCommand.equals("list")) {
                 parseListCommand();
+            } else if (userCommand.equals("help")) {
+                parseHelpCommand();
             } else if (userCommand.equals("bye")) {
                 parseByeCommand();
             } else {
@@ -303,5 +306,9 @@ public class Parser {
 
     private static void parseByeCommand() {
         command = new ExitCommand();
+    }
+
+    private static void parseHelpCommand() {
+        command = new HelpCommand();
     }
 }
