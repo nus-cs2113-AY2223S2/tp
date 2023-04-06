@@ -13,8 +13,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-
-
 public class GsonLocalDateAdaptor implements JsonSerializer<LocalDate>, JsonDeserializer<LocalDate> {
 
     @Override
