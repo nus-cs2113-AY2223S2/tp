@@ -38,6 +38,7 @@ public class Eventus {
         venueList = new VenueList(VenueListData.returnVenueList(), ui);
         run();
     }
+
     public void run() {
         ui.showWelcome();
         loadSavedInformation();
@@ -47,7 +48,7 @@ public class Eventus {
             input = in.nextLine();
             try {
                 Command c = Parser.parse(input);
-                if (c.getCommandType().equals("list venues")){
+                if (c.getCommandType().equals("list venues")) {
                     c.execute(venueList);
                 } else if (c.getCommandType().equals("choose venue")) {
                     c.execute(event, venueList);
@@ -57,13 +58,21 @@ public class Eventus {
                     c.execute(companyList);
                 }
             } catch (WrongFormatException | NullPointerException | IndexOutOfBoundsException err) {
+                ui.showLine();
                 System.out.println("Wrong Format! Please type <help> for more information");
+                ui.showLine();
             } catch (NumberFormatException err) {
+                ui.showLine();
                 System.out.println("Number expected! Please type <help> for more information");
+                ui.showLine();
             } catch (TooManyVariablesException err) {
+                ui.showLine();
                 System.out.println("Too many input field variables! Please type <help> for more information");
+                ui.showLine();
             } catch (IntegerSizeExceededException err) {
+                ui.showLine();
                 System.out.println("Integer value exceeds the maximum integer size. Please try a smaller number");
+                ui.showLine();
             }
         }
     }

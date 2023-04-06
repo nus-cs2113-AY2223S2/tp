@@ -2,8 +2,10 @@ package seedu.duke.command;
 
 import seedu.duke.company.CompanyList;
 import seedu.duke.exception.EmptyListException;
+import seedu.duke.ui.Ui;
 
 public class ListUnconfirmedCommand extends Command {
+    Ui ui = new Ui();
     public ListUnconfirmedCommand(String commandType) {
         super(commandType);
     }
@@ -19,7 +21,9 @@ public class ListUnconfirmedCommand extends Command {
         try {
             companyList.printUnconfirmed();
         } catch (EmptyListException err) {
+            ui.showLine();
             System.out.println("Nothing inside company list");
+            ui.showLine();
         }
     }
 

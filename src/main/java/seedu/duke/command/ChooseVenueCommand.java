@@ -3,11 +3,14 @@ package seedu.duke.command;
 import seedu.duke.event.Event;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.storage.EventDetailsStorage;
+import seedu.duke.ui.Ui;
 import seedu.duke.venue.VenueList;
 
 public class ChooseVenueCommand extends Command{
 
     protected int venueNum;
+
+    Ui ui = new Ui();
 
     public ChooseVenueCommand(String commandType, int venueNum) {
         super(commandType);
@@ -27,7 +30,9 @@ public class ChooseVenueCommand extends Command{
             event.updateVenue(venueList, venueNum);
             EventDetailsStorage.updateFile(event, venueNum);
         } catch (InvalidIndexException err){
+            ui.showLine();
             System.out.println("Invalid index provided! Please try again");
+            ui.showLine();
         }
     }
 }
