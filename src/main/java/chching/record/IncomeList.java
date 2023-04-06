@@ -74,7 +74,7 @@ public class IncomeList extends RecordList {
             try {
                 double amount = Double.parseDouble(value);
                 if (amount < 0.01) {
-                    throw new ChChingException("Income must be greater than or equals 0.01");
+                    throw new ChChingException("Income value must be greater than 0");
                 } else if (amount > 999999.99) {
                     throw new ChChingException("Income value must be less than 1000000");
                 }

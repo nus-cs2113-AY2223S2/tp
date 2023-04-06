@@ -76,7 +76,7 @@ public class ExpenseList extends RecordList {
             try {
                 double amount = Double.parseDouble(value);
                 if (amount < 0.01) {
-                    throw new ChChingException("Expense must be greater than or equals 0.01");
+                    throw new ChChingException("Expense value must be greater than 0");
                 } else if (amount > 999999.99) {
                     throw new ChChingException("Expense value must be less than 1000000");
                 }
