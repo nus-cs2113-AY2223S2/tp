@@ -33,6 +33,7 @@ import seedu.brokeMan.exception.InvalidEditCommandException;
 import seedu.brokeMan.exception.InvalidMonthTimeException;
 import seedu.brokeMan.exception.InvalidOptionalTimeFlagException;
 import seedu.brokeMan.exception.NegativeAmountException;
+import seedu.brokeMan.exception.NewDescriptionContainFlagsException;
 import seedu.brokeMan.exception.WrongFlagOrderException;
 import seedu.brokeMan.exception.hasNotSetBudgetException;
 
@@ -312,7 +313,7 @@ public class Parser {
      */
     public static String[] checkAddCommandException(String description) throws BrokeManException {
         boolean containsAllFlags = description.contains("a/ ") &&
-                description.contains(" d/ ") && description.contains(" t/")
+                description.contains(" d/ ") && description.contains(" t/ ")
                 && description.contains(" c/");
 
         if (!containsAllFlags) {
@@ -326,10 +327,11 @@ public class Parser {
             throw new WrongFlagOrderException();
         }
 
-        boolean hasDuplicatedFlags = (description.indexOf("a/") != description.lastIndexOf("a/")) ||
-                (description.indexOf("d/") != description.lastIndexOf("d/")) ||
-                (description.indexOf("t/") != description.lastIndexOf("t/")) ||
-                (description.indexOf("c/") != description.lastIndexOf("c/"));
+        description = " " + description;
+        boolean hasDuplicatedFlags = (description.indexOf(" a/ ") != description.lastIndexOf(" a/ ")) ||
+                (description.indexOf(" d/ ") != description.lastIndexOf(" d/ ")) ||
+                (description.indexOf(" t/ ") != description.lastIndexOf(" t/ ")) ||
+                (description.indexOf(" c/ ") != description.lastIndexOf(" c/ "));
         if (hasDuplicatedFlags) {
             throw new ContainDuplicatedFlagException();
         }
@@ -514,9 +516,10 @@ public class Parser {
             throw new WrongFlagOrderException();
         }
 
-        boolean hasDuplicatedFlags = (description.indexOf("i/") != description.lastIndexOf("i/")) ||
-                (description.indexOf("t/") != description.lastIndexOf("t/")) ||
-                (description.indexOf("n/") != description.lastIndexOf("n/"));
+        description = " " + description;
+        boolean hasDuplicatedFlags = (description.indexOf(" i/ ") != description.lastIndexOf(" i/ ")) ||
+                (description.indexOf(" t/ ") != description.lastIndexOf(" t/ ")) ||
+                (description.indexOf(" n/ ") != description.lastIndexOf(" n/ "));
         if (hasDuplicatedFlags) {
             throw new ContainDuplicatedFlagException();
         }
@@ -542,9 +545,20 @@ public class Parser {
             checkDoubleException(splitDescriptions[2]);
         } else if (splitDescriptions[1].equals("time")) {
             checkTimeException((splitDescriptions[2]));
+        } else if (splitDescriptions[1].equals("info")) {
+            checkContainFlagsException(splitDescriptions[2]);
         }
 
         return splitDescriptions;
+    }
+
+    private static void checkContainFlagsException(String newDescription) throws NewDescriptionContainFlagsException {
+        newDescription = " " + newDescription + " ";
+        boolean isContainFlags = newDescription.contains(" c/ ") ||
+                newDescription.contains(" a/ ") || newDescription.contains(" d/ ");
+        if (isContainFlags) {
+            throw new NewDescriptionContainFlagsException();
+        }
     }
 
     /**
