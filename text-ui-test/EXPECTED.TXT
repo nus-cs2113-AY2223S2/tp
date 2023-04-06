@@ -135,8 +135,8 @@ ________________________________________________________________________________
 ERROR: Pet Name is empty
 
 Name: Bob
-Type:
-Age:
+Type: -
+Age: -
 Weight: 30
 ____________________
 Number of pets: 1

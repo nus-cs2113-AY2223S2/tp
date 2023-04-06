@@ -150,7 +150,7 @@ public class Ui {
      */
     public void scheduleCommandMessage() {
         System.out.println(DIVIDER);
-        System.out.println("Here is your schedule: ");
+        System.out.println("Here is your schedule:");
     }
 
     /**
