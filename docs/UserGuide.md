@@ -410,7 +410,7 @@ If you have any queries, please contact [wilsonleejunwei@u.nus.edu].
 -------------------------------------------------------------------
 ```
 
-### 18) Exit BadMaths `Bye`
+### 19) Exit BadMaths `Bye`
 * Exit and leave BadMaths:
 * Format: `Bye`
 
