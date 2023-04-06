@@ -28,7 +28,7 @@ The rest of the Application consists of three components:
 
 ---
 ### UI Component
-The UI is made up of three classes, `GeneralUi`, `CalorieUi` and `WeightUi`, and together,
+The UI is made up of five classes, `GeneralUi`, `CalorieUi`, `ExampleUi`,  `ExerciseUi` and `WeightUi`, and together,
 they improve on the accessibility of the application.
 
 The `UI` component,
@@ -212,6 +212,15 @@ Step 5. The user then executes the command `view` to view his updated weight and
 
 ## [Proposed] Filter feature
 
+This proposed mechanism for allowing the user to search for meals with a filter, facilitated by `FilterCaloriesCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+
+Step 1. The user calls the `examples` command, specifying a particular calorie range through a upper and lower bound
+Step 2. `FilterCaloriesCommand` will parse the lower and upper bound from the input
+Step 3. `FilterCaloriesCommand` will then retrieve the meals that fit within that range from `FoodStorage`
+Step 4. `FilterCaloiresCommand` will then print out the meals that has been filtered based on the lower and upper bound
+
+![filter-calories-command]
+
 ### Proposed Implementation
 
 ### Design considerations:
@@ -239,6 +248,11 @@ Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exerci
 ### Design considerations:
 
 ## [Proposed] Examples feature
+
+The proposed mechanism for displaying examples of exercises and meals is facilitated by `ExamplesCommand`. It extends `Command` and overrides 
+the `execute` method in the `Command` class.
+
+
 
 ### Proposed Implementation
 
