@@ -11,7 +11,6 @@ public class Calculate {
     Logger logger = Logger.getLogger("Exception");
     ExceptionPrinter ep = new ExceptionPrinter();
 
-    // TODO : Implement exception related to tensor's shape mismatch
     public Tensor2D mul(Tensor2D t1, Tensor2D t2) {
         Shape t1Shape = t1.shape();
         Shape t2Shape = t2.shape();
@@ -39,7 +38,6 @@ public class Calculate {
         }
     }
 
-    // TODO : Implement exception related to tensor's shape mismatch
     public Tensor2D dot(Tensor2D t1, Tensor2D t2) {
         Shape t1Shape = t1.shape();
         Shape t2Shape = t2.shape();
@@ -62,7 +60,6 @@ public class Calculate {
         }
     }
 
-    // TODO : Implement exception related to tensor's shape mismatch
     public Tensor2D add(Tensor2D t1, Tensor2D t2) {
         Shape t1Shape = t1.shape();
         Shape t2Shape = t2.shape();

@@ -10,53 +10,35 @@ public class Parser {
 
     public Tensor2D parse(String command) {
         CalType type;
+        Tensor2D result;
+        Execute ex = new Execute();
 
         command = command.replace(" ", "");
 
         try {
             check.checkUnknownOperator(command);
 
-            if(command.contains("+")) {
-                type = CalType.ADDITION;
-            } else if(command.contains("-")) {
-                type = CalType.SUBTRACTION;
-            } else if(command.contains(".*")) {
-                type = CalType.MULTIPLICATION;
-            } else if(command.contains("*")) {
-                type = CalType.ELEMENT_WISE_DOT_PRODUCT;
-            } else {
-                type = CalType.UNKNOWN;
-            }
-
-            Tensor2D op1;
-            Tensor2D op2;
-            Tensor2D result = null;
-            String[] op;
-
-            Calculate c = new Calculate();
-            Execute e = new Execute();
-
-            switch(type) {
-            case ADDITION:
-                result = e.executeAdd(command);
-                break;
-            case SUBTRACTION:
-                result = e.executeSub(command);
-                break;
-            case MULTIPLICATION:
-                result = e.executeMul(command);
-                break;
-            case ELEMENT_WISE_DOT_PRODUCT:
-                result = e.executeDot(command);
-                break;
-            default:
-                break;
-            }
+            type = parseOp(command);
+            result = ex.execute(type, command);
 
             return result;
         } catch (UnknownOperatorException e) {
             ep.printUnknownOperatorExceptionLog();
             return null;
+        }
+    }
+
+    protected CalType parseOp(String command){
+        if(command.contains("+")) {
+            return CalType.ADDITION;
+        } else if(command.contains("-")) {
+            return CalType.SUBTRACTION;
+        } else if(command.contains(".*")) {
+            return CalType.MULTIPLICATION;
+        } else if(command.contains("*")) {
+            return CalType.ELEMENT_WISE_DOT_PRODUCT;
+        } else {
+            return CalType.UNKNOWN;
         }
     }
 
