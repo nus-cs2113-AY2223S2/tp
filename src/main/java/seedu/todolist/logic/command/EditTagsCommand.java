@@ -41,8 +41,8 @@ public class EditTagsCommand extends Command {
         for (int id : idHashSet) {
             if (purpose.equals("delete")) {
                 String taskString = taskList.removeTags(id, tags);
-                ui.printEditDeleteTaskMessage("tags", taskString);
-            } else { // purpose.equals("edit")
+                ui.printDeleteTagsMessage(FormatterUtil.getTagsAsString(tags), taskString);
+                } else { // purpose.equals("edit")
                 String taskString = taskList.setTags(id, tags);
                 ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
             }

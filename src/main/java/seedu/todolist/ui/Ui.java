@@ -80,6 +80,9 @@ public class Ui {
         println(String.format(Messages.EDIT_TASK, parameterType, newValue), taskString);
     }
 
+    public void printDeleteTagsMessage(String tagsRemoved, String taskString) {
+        println("Okay, I have removed the following tags [" + tagsRemoved + "] of this task:", taskString);
+    }
     public void printEditDeleteTaskMessage(String parameterType, String taskString) {
         println(String.format(Messages.EDIT_DELETE_TASK, parameterType), taskString);
     }
