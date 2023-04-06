@@ -9,6 +9,8 @@ In doing so, the user can better manage his daily calorie gain in order to meet 
 ## Summary of Contributions
 
 ### Commands
+Commands are the ways in which the user interacts with our program, through the usage of particular inputs that are defined as commands.
+These are the main commands that I worked on.
 `filter` command
 * Allows the user to filter meals based on their calorie content
 
