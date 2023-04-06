@@ -95,7 +95,8 @@ public class Parser {
         String[] words = (description.trim()).split("t/");
         String[] testName = (description.trim()).split("n/");
         try {
-            if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (words.length < 2)) {
+            if (((description.trim()).isEmpty()) || (!description.contains("n/"))||
+                    (!description.contains("t/")) || (words.length < 2)||(words[0].trim().length()<3)) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_ADD_PARAM);
