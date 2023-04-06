@@ -7,8 +7,7 @@ public class TuitionExpenditure extends Expenditure {
     public static final String EXPENDITURE_TYPE = "Tu";
     public static String iconPaid = "[X]";
     public static String iconUnpaid = "[ ]";
-    LocalDate nextRepeatDate = super.getDate();
-    LocalDate currentDate = LocalDate.now();
+    private LocalDate nextRepeatDate = super.getDate();
     boolean isPaid;
 
     public TuitionExpenditure(String description, double value, LocalDate date) {
@@ -29,6 +28,7 @@ public class TuitionExpenditure extends Expenditure {
     }
 
     public void checkMark() {
+        LocalDate currentDate = LocalDate.now();
         if (currentDate.equals(nextRepeatDate) || currentDate.isAfter(nextRepeatDate)) {
             isPaid = false;
             nextRepeatDate = getNextRepeatDate();
