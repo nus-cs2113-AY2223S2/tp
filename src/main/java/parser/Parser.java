@@ -70,6 +70,7 @@ public class Parser {
         return parserAdd.parseInput(userInput);
     }
 
+
     /**
      * Checks if the overview requested is a monthly one.
      *
