@@ -29,4 +29,5 @@ class ListModuleCommandTest {
         assertDoesNotThrow(() -> new ListModuleCommand()
                 .execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
+
 }
