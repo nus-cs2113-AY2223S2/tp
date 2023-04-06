@@ -26,7 +26,7 @@ public class EditCommandTest {
         System.out.println("Test 1: Empty Name:");
         EditParser editParser = new EditParser("upc/123 n/", inventory);
         editParser.run();
-        assertEquals("", inventory.getItemInventory().get(0).getName());
+        assertEquals("orange", inventory.getItemInventory().get(0).getName());
 
         //Test 2: Same Quantity, Should have no output
         System.out.println("Test 2: Same Quantity, Should have no output");
@@ -72,10 +72,10 @@ public class EditCommandTest {
         assertEquals("fruit", inventory.getItemInventory().get(0).getCategory());
 
         //Test 9: Create category with multiple spaces. (Not allowed at the moment).
-        System.out.println("Test 9: Create category with multiple spaces. (Not allowed at the moment).");
+        System.out.println("Test 9: Create category with multiple spaces.");
         editParser = new EditParser("upc/123 c/fruit and vegetables", inventory);
         editParser.run();
-        assertEquals("fruit", inventory.getItemInventory().get(0).getCategory());
+        assertEquals("fruit and vegetables", inventory.getItemInventory().get(0).getCategory());
 
         //Test 10: String input as price edit.
         System.out.println("Test 10: String input as price edit.");
