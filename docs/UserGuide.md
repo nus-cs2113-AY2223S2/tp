@@ -15,6 +15,31 @@
 
 Enjoy your revision!
 
+### Use Case
+Cards that you add to Inka can be organized using tags, and decks can be flexibly constructed either by adding **individual cards** and/or multiple cards with the **same tag**.
+
+For example, suppose you had the following cards:
+
+|            | **Question**                 | **Answer**                  | **Tags**                 |
+|------------|------------------------------|-----------------------------|--------------------------|
+| **Card 1** | What does UML stand for?     | Unified Markup Language     | _cs2113-wk8_             |
+| **Card 2** | What is my favourite module? | CS2113                      | _cs2113-wk1, freq-wrong_ |
+| **Card 3** | Is P = NP?                   | Most definitely not         | _freq-wrong_             |
+| **Card 4** | What does OOP stand for?     | Object-Oriented Programming | _cs2113-wk8_             |
+
+You might organize your cards in the following fashion:
+- Adding the `cs2113-wk1` and `cs2113-wk8` tags to group together cards of similar topics
+- Adding the `freq-wrong` tag to cards that you wish to review more frequently
+
+This allows you to create the following decks easily:
+
+| **Deck Name**    | **Added Card(s)** | **Added Tag(s)**         | **Cards in Deck** |
+|------------------|-------------------|--------------------------|-------------------|
+| CS2113           | -                 | _cs2113-wk1, cs2113-wk8_ | Cards 1, 2, 4     |
+| Frequently-Wrong | -                 | _freq-wrong_             | Cards 2, 3        |
+| Acronyms         | Card 3            | _cs2113-wk8_             | Cards 1, 3, 4     |
+
+
 ## Features
 
 ### Get help manual :
