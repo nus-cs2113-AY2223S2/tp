@@ -9,7 +9,7 @@ quadratic equations, and trigonemetric graphs.
 
 ### 🧑🏻‍💻 Code contributed
 
-You can see my code contributions in [here]((https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=0nandon&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=0nandon&tabRepo=AY2223S2-CS2113-F10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false))
+You can see my code contributions in [here](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=0nandon&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=0nandon&tabRepo=AY2223S2-CS2113-F10-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### 📌 General functionalities implemented
 
