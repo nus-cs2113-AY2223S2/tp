@@ -1,42 +1,36 @@
 @startuml
 hide footbox
-":duke" -> ":Storage" : loadUserData()
-activate ":Storage"
-
-
-    ":Storage" -> ":UserCareerStorage": loadFromJson()
-    activate ":UserCareerStorage"
-        ":UserCareerStorage"-> ":UserCareerData": UserCareerData()
-        activate ":UserCareerData"
+!include style.puml
+participant ":Duke" MAIN_COLOUR
+participant ":Storage" as Storage STORAGE_COLOUR
+participant ":UserCareerData" COMMONS_COLOUR
+participant ":UserPlan" LAPIS
+Storage++ STORAGE_COLOUR
+":Duke" -> Storage : loadUserData()
+activate Storage STORAGE_FADED_COLOUR
+        Storage -> ":UserCareerData"
+        activate ":UserCareerData" COMMONS_COLOUR
             loop sessions in file times
-                ":UserCareerStorage" -> ":UserCareerData" : addWorkoutSession()
+                Storage -> ":UserCareerData" : addWorkoutSession()
             end
-            ":UserCareerData" --> ":UserCareerStorage" : :UserCareerData
-        ":UserCareerStorage" --> ":Storage" : :UserCareerData
+            ":UserCareerData" --> Storage : UserCareerData
     deactivate ":UserCareerData"
-    deactivate ":UserCareerStorage"
-    ":Storage" --> ":duke" : :UserCareerData
-deactivate ":Storage"
-":duke" -> ":Storage" : loadUserPlans()
-    activate ":Storage"
-
-    ":Storage" -> ":UserCareerStorage" : loadPlanFromJson()
-    activate ":UserCareerStorage"
-    ":UserCareerStorage" -> ":UserPlan" : UserPlan()
-    activate ":UserPlan"
+    Storage --> ":Duke" : UserCareerData
+deactivate Storage
+":Duke" -> Storage : loadUserPlans()
+    activate Storage STORAGE_FADED_COLOUR
+    Storage -> ":UserPlan"
+    activate ":UserPlan" LAPIS
     loop days in a week times
-            loop plans from file in a day times
-                ":UserCareerStorage" -> ":UserPlan" : addDayPlan()
+            loop num of plans from file in a day times
+                Storage -> ":UserPlan" : addDayPlan()
             end
     end
-    ":UserPlan" --> ":UserCareerStorage" : :UserPlan
+    ":UserPlan" --> Storage : UserPlan()
     deactivate ":UserPlan"
-    ":UserCareerStorage" --> ":Storage" : :UserPlan
-    deactivate ":UserCareerStorage"
-    ":Storage" --> ":duke" : :UserPlan
-    destroy ":UserCareerStorage"
+    Storage --> ":Duke" : UserPlan
 
-deactivate ":Storage"
+deactivate Storage
 
 
 @enduml

@@ -91,6 +91,7 @@ public class ExerciseSessionCommandHandler implements CommandList {
                     if (exit) {
                         exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData, achievementListHandler);
                         System.out.println("Back to main menu...");
+                        ui.splitLine();
                         return;
                     } else {
                         System.out.println("You got this! Finish your exercise session!");
@@ -111,6 +112,8 @@ public class ExerciseSessionCommandHandler implements CommandList {
                     ui.unknownCommand();
                 } else {
                     exerciseStateHandler.endWorkout(COMPLETED_EXERCISE, userCareerData, achievementListHandler);
+                    System.out.println("Back to main menu...");
+                    ui.splitLine();
                 }
                 return;
             case CANCEL_COMMAND:
@@ -118,6 +121,8 @@ public class ExerciseSessionCommandHandler implements CommandList {
                     ui.unknownCommand();
                 } else {
                     exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData, achievementListHandler);
+                    System.out.println("Back to main menu...");
+                    ui.splitLine();
                 }
                 return;
             case HISTORY_COMMAND:
@@ -132,6 +137,7 @@ public class ExerciseSessionCommandHandler implements CommandList {
                 break;
             }
             ui.workoutMode();
+            ui.splitLine();
         } catch (DukeError e) {
             System.out.println(e.getMessage());
         }

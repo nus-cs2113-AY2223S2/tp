@@ -106,7 +106,7 @@ The Storage API interacts with the other classes as shown in the *Sequence Diagr
 where it shows how the Storage API loads the local user data json file as well as the user plans json file upon the 
 resumption of the program.
 <div align="center">
-<img src="UML/Images/LoadingUserCareerData.png"/>
+<img src="UML/Images/LoadingUserData.png"/>
 <p>
 Figure 1.5
 </p>

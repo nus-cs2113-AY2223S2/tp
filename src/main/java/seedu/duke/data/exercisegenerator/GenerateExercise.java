@@ -70,7 +70,6 @@ public class GenerateExercise {
      *
      * @param workoutBodyType The workout type as input by the user.
      * @return The corresponding workout type within the data file.
-     *
      * @throws DukeError if the workout type input provided by the user is invalid
      */
     private static String parseWorkoutType (String workoutBodyType) throws DukeError {
@@ -166,7 +165,6 @@ public class GenerateExercise {
      * @param exerciseList Arraylist containing the entire set of workout exercises.
      * @param workoutType The workout type as input by the user.
      * @return returns list of exercises filtered according to work out type input by the user.
-     *
      * @throws DukeError Occurs if user inputs invalid workout type.
      */
     public ArrayList<ExerciseData> generateFilteredWorkoutTypeFrom (ArrayList<ExerciseData> exerciseList,
@@ -191,13 +189,14 @@ public class GenerateExercise {
         }
         return filteredExerciseList;
     }
+
     //@@author ghzr0
-    public ArrayList<ExerciseData> generateIPPTExercises (ArrayList<ExerciseData> exerciseList){
+    public ArrayList<ExerciseData> generateIPPTExercises (ArrayList<ExerciseData> exerciseList) {
         assert exerciseList != null : "Exercise List should not be null.";
         ipptExercises = new ArrayList<>();
         for (ExerciseData exercise : exerciseList) {
-            // 563 -> push-up wide , 686 -> sit-up , 999 -> timed 2.4km run
-            if (exercise.getId().equals("563")  || exercise.getId().equals("686") || exercise.getId().equals("999")) {
+            // 563 -> push-up wide , 686 -> sit-up , 873 -> timed 2.4km run
+            if (exercise.getId().equals("563") || exercise.getId().equals("686") || exercise.getId().equals("873")) {
                 ipptExercises.add(exercise);
             }
         }

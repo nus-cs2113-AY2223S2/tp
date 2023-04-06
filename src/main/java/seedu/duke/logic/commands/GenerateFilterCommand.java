@@ -94,7 +94,9 @@ public class GenerateFilterCommand extends Command {
         }
         if (numberOfExercisesToGenerate == 1337) {
             exercises = exerciseGenerator.generateFirstThree();
-        } else if (numberOfExercisesToGenerate > exercises.size()) {
+        } else if (filterArguments == 1 && numberOfExercisesToGenerate > 873) {
+            throw new DukeError(ErrorMessages.ERROR_EXERCISE_LIBRARY_LIMIT.toString());
+        }else if (numberOfExercisesToGenerate > exercises.size()) {
             throw new DukeError(ErrorMessages.ERROR_EXCESSIVE_FILTERS.toString());
         } else {
             exercises = exerciseGenerator.generateRandomSetFrom(exercises, numberOfExercisesToGenerate);
@@ -103,7 +105,7 @@ public class GenerateFilterCommand extends Command {
         ui.printExerciseFromList(exercises);
     }
 
-
+    //@@author Khulon
     public static boolean isAValidSetOfFilters (GenerateExercise exerciseGenerator,
                                                 String[] filterList) throws DukeError {
         ArrayList<ExerciseData> exercises = new ArrayList<>(exerciseGenerator.generateSetAll());

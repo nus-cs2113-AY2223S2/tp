@@ -1,9 +1,12 @@
 package seedu.duke.ui;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.userdata.userplan.UserPlan;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -12,11 +15,12 @@ import java.util.List;
 
 public class TestUi {
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.splitLine() method prints the correct output.
      */
     @Test
-    void testSplitLine() {
+    void testSplitLine () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -35,11 +39,12 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.printFilters() method prints the correct output.
      */
     @Test
-    void testPrintFiltersAvailable() {
+    void testPrintFiltersAvailable () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -78,11 +83,12 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.unknownCommand() method prints the correct output.
      */
     @Test
-    void testUnknownCommand() {
+    void testUnknownCommand () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -101,11 +107,12 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.printHelp() method prints the correct output.
      */
     @Test
-    void testPrintHelp() {
+    void testPrintHelp () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -176,11 +183,12 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.greetUser() method prints the correct output.
      */
     @Test
-    void testGreetUser() {
+    void testGreetUser () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -210,13 +218,13 @@ public class TestUi {
         assertEquals(expectedOutput, actualOutput.toString());
     }
 
-
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.byeUser() method prints the correct output.
      */
     @Test
-    void testByeUser() {
+    void testByeUser () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -253,11 +261,12 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if the ui.printPlannerHelp() method prints the correct output.
      */
     @Test
-    void testPrintPlannerHelp() {
+    void testPrintPlannerHelp () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -303,7 +312,7 @@ public class TestUi {
      * Checks if the ui.printExerciseSessionHelp() method prints the correct output.
      */
     @Test
-    void testPrintExerciseSessionHelp() {
+    void testPrintExerciseSessionHelp () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -334,14 +343,16 @@ public class TestUi {
     }
 
     //@@author L-K-Chng
+
     /**
      * Checks if printUserExerciseHistory() method prints the correct output.
      */
     @Test
-    void testPrintUserExerciseHistory() {
+    void testPrintUserExerciseHistory () {
         //add one value then compare.
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
+
         HashMap<String,Integer> userExerciseDataMap = new HashMap<>();
 
         String exerciseDescription = "Exercise Name: 3/4 Sit-Up" + System.lineSeparator() +
@@ -359,7 +370,6 @@ public class TestUi {
 
         Ui ui = new Ui();
         ui.printUserExerciseHistory(userExerciseDataMap);
-
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 
@@ -396,12 +406,12 @@ public class TestUi {
                     "Times Completed: 1\n" +
                     "\n";
         }
-        assertEquals(expectedOutput,actualOutput.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     //@author Khulon
     @Test
-    void testPrintPlans() {
+    void testPrintPlans () {
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
 
@@ -445,7 +455,7 @@ public class TestUi {
                     "_________\n" +
                     "SUNDAY\n";
         }
-        assertEquals(expectedOutput,actualOutput.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
 
     //@author L-K-Chng
@@ -454,7 +464,7 @@ public class TestUi {
      * Checks if printExerciseFromList() method prints the correct output.
      */
     @Test
-    void testPrintExerciseFromList() {
+    void testPrintExerciseFromList () {
 
         ByteArrayOutputStream actualOutput = new ByteArrayOutputStream();
         System.setOut(new PrintStream(actualOutput));
@@ -470,12 +480,12 @@ public class TestUi {
         exerciseData.setWorkoutType(workoutType);
         List<String> instructions = new ArrayList<String>();
         instructions.add("Lie down on the floor and secure your feet. Your legs should be bent" +
-                " at the knees.");
+                                 " at the knees.");
         instructions.add("Place your hands behind or to the side of your head. You will begin " +
-                "with your back on the ground. This will be your starting position.");
+                                 "with your back on the ground. This will be your starting position.");
         instructions.add("Flex your hips and spine to raise your torso toward your knees.");
         instructions.add("At the top of the contraction your torso should be perpendicular to " +
-                "the ground. Reverse the motion, going only Â¾ of the way down.");
+                                 "the ground. Reverse the motion, going only Â¾ of the way down.");
         instructions.add("Repeat for the recommended amount of repetitions.");
         exerciseData.setInstructions(instructions);
 
@@ -491,12 +501,12 @@ public class TestUi {
                     "Difficulty Level: beginner\r\n" +
                     "Workout Type: core\r\n" +
                     "Lie down on the floor and secure your feet. Your legs should be bent" +
-                    " at the knees., " +
+                    " at the knees. " +
                     "Place your hands behind or to the side of your head. You will begin " +
-                    "with your back on the ground. This will be your starting position., " +
-                    "Flex your hips and spine to raise your torso toward your knees., " +
+                    "with your back on the ground. This will be your starting position. " +
+                    "Flex your hips and spine to raise your torso toward your knees. " +
                     "At the top of the contraction your torso should be perpendicular to " +
-                    "the ground. Reverse the motion, going only Â¾ of the way down., " +
+                    "the ground. Reverse the motion going only Â¾ of the way down. " +
                     "Repeat for the recommended amount of repetitions.\r\n" +
                     "\r\n";
         } else {
@@ -505,15 +515,16 @@ public class TestUi {
                     "Difficulty Level: beginner\n" +
                     "Workout Type: core\n" +
                     "Lie down on the floor and secure your feet. Your legs should be bent" +
-                    " at the knees., " +
+                    " at the knees. " +
                     "Place your hands behind or to the side of your head. You will begin " +
-                    "with your back on the ground. This will be your starting position., " +
-                    "Flex your hips and spine to raise your torso toward your knees., " +
+                    "with your back on the ground. This will be your starting position. " +
+                    "Flex your hips and spine to raise your torso toward your knees. " +
                     "At the top of the contraction your torso should be perpendicular to " +
-                    "the ground. Reverse the motion, going only Â¾ of the way down., " +
+                    "the ground. Reverse the motion going only Â¾ of the way down. " +
                     "Repeat for the recommended amount of repetitions.\n" +
                     "\n";
         }
-        assertEquals(expectedOutput,actualOutput.toString());
+        assertEquals(expectedOutput, actualOutput.toString());
     }
+
 }

@@ -10,7 +10,8 @@ public enum ErrorMessages {
     ERROR_EXCESSIVE_FILTERS("You have a too specific filter, no such exercises " +
                                 "exists! Try generating with less filters or less number " +
                                 "of exercises"),
-
+    ERROR_EXERCISE_LIBRARY_LIMIT("The number of exercises you have input is above the number of exercises in the " +
+                                "library, please try generating less."),
     ERROR_DIFFICULTY_INPUT("Incorrect difficulty level input, " +
                                "please input one of the following levels : (easy/medium/hard)"),
     ERROR_EXERCISE_NUM_INPUT_STRING("Invalid input! " +
