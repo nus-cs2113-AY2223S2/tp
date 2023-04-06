@@ -30,11 +30,13 @@ public class Ui {
     private static final String NEW_USER_GREET = "No save files detected. Hello new user!";
 
     public static void printErrorLine() {
-        System.out.println("/////////////////////////////////////////////////////////////");
+        System.out.println("///////////////////////////////////////////////////////////////////////////" +
+                "///////////////////////////////////////////////");
     }
 
     public static void printLine() {
-        System.out.println("____________________________________________________________");
+        System.out.println("___________________________________________________________________________" +
+                "_____________________________________________");
     }
 
     /**

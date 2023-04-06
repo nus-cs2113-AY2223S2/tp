@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+
+skinparam linetype polyline
+hide circle
+
+
+
+note "All associations for exceptions \nand packingfunc omitted for clarity" as note
+note .[Hidden] exceptions
+
+namespace exceptions #AAADDD {
+    class EmptyInputException{}
+    class InvalidIndexException{}
+    class InvalidVariablesException{}
+}
+
+@enduml
