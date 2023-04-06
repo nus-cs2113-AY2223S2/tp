@@ -236,10 +236,10 @@ Storage occur even when the user performs other commands to edit the task list.
     - Cons: Difficult to implement, especially when considering the current mark task operation.
 - **Option 3 (current choice)**: Save task list as a json file using the GSON library.
     - Pros: Easy to implement and easy to maintain as Storage class does not have to be updated whenever new fields are 
-            added to Task class. Do not need to consider whether we use append or overwrite when saving task list as
-            it is irrelevant when using this implementation. The GSON library's pretty printing functionality makes the
-            json file very easy to read for humans and understand which allows advanced users to easily modify the file 
-            for quick updating of their task list.
+added to Task class. Do not need to consider whether we use append or overwrite when saving task list as it is 
+irrelevant when using this implementation. The GSON library's pretty printing functionality makes the json file very 
+easy to read for humans and understand which allows advanced users to easily modify the file for quick updating of their
+task list.
     - Cons: Users have to download some dependencies to be able to use the GSON library.
 
 Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives,
