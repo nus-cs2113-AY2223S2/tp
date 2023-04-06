@@ -388,6 +388,77 @@ UML Diagram for ListModuleCommand
 
 [*Return to TOC*](#table-of-contents)
 
+### List Module With Lesson
+
+The List Module with Lesson functionality allows users to list the lessons of a specific module in their timetable.
+The use of flags, for eg. `-lec`, `-st` etc., allows users to view specific LessonType information for the module
+that they have added into their timetable.
+
+It is facilitated by ListModuleWithLessonCommand class which is an extension of the Command class.
+
+Given below is an example usage scenario of how to view the information of a specific module in the timetable
+using the moduleCode and how the mechanism behaves at each step.
+
+#### For when user request to show the module (e.g. CS2113) in their timetable:
+
+Step 1. Define the Constructor: When user executes the command `listmod cs2113`, the Parser class calls the
+`ListModuleWithLessonCommand()` method of the ListModuleWithLessonCommand class. The constructor of the
+ListModuleWithLessonCommand class takes in a parameter of type `String`, which will be split into `moduleCode` and
+`-FLAG`. In this case, only `cs2113` is parsed in as the parameter. This is then used to find `cs2113` from the
+existing timetable. If a moduleCode does not exist in NUS modules, an `InvalidModule()` is thrown.
+
+Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
+class. It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the List Module with
+Lesson functionality. It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and
+Calendar.
+
+Step 4. Find the module from the timetable: The first step in the `execute()` method is to find the module from 
+timetable using the `Module` class with the module code parameter `cs2113` and using the `getModuleTimetable()` 
+function of the `Module` class. If the module `cs2113` has not been added to the timetable, `ModuleNotAddedException` 
+will be thrown.
+
+Step 5. Calls the `handleSingleCommand()` method: The `handleSingleCommand()` method is called to handle the command
+with only the `moduleCode` as the parameter.
+
+Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the module and lesson 
+information that the user has added into their module list. The message will include the `ModuleCode`, `LessonTypes`
+of that user has added, `Classnumber` of the `LessonType` that user has added and `Day` and `Time` of the lesson.
+
+#### For when user request to show a specific lesson of the module (e.g. CS2113 -tut) in their timetable:
+
+Step 1. Define the Constructor: When user executes the command `listmod cs2113`, the Parser class calls the
+`ListModuleWithLessonCommand()` method of the ListModuleWithLessonCommand class. The constructor of the
+ListModuleWithLessonCommand class takes in a parameter of type `String`, which will be split into `moduleCode`, 
+`cs2113` and `-FLAG`, `-tut`. In this case, `cs2113 -tut` is parsed in as the parameter. This is stored in the `args` 
+array field of the `ListModuleWithLessonCommand` class.
+
+Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
+class. It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the List Module with
+Lesson functionality. It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and
+Calendar. The lesson type is determined by calling the `getLessonType()` method of the `lessonType` class and 
+parsing in `args[1]` while the moduleCode is set by `args[0]`. If the lessonType is not valid, an 
+`InvalidCommandException` is thrown.
+
+Step 4. Find the module from the timetable: The first step in the `execute()` method is to find the module from
+timetable using the `Module` class with the module code parameter `cs2113` and using the `getModuleTimetable()`
+function of the `Module` class. If the module `cs2113` has not been added to the timetable, `ModuleNotAddedException`
+will be thrown.
+
+Step 5. Calls the `handleMultiCommand()` method: The `handleMultiCommand()` method is called to handle the command.
+
+Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the module and lesson
+information that the user has added into their module list. The message will include the `ModuleCode`, the 
+specific `LessonTypes` of that user has added, `Classnumber` of the `LessonType` that user has added and 
+`Day` and `Time` of the lesson.
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleWithLessonCommand-ListModuleWithLessonCommand.png?raw=true)
+
+[*Return to TOC*](#table-of-contents)
+
 ### Add Module
 
 The AddModule functionality allows users to add a module to their Module List. Beyond just adding their modules to the
@@ -468,7 +539,7 @@ UML Diagram for AddModCommand Class
 
 The DeleteModule functionality allows users to remove either a module from the ModuleList or a lesson associated with 
 the module. It is facilitated by DeleteModuleCommand class which is an extension of the Command class.
-Given below is an example usage scenario and how the delete mechanism behaves at each step.
+Given below is an example usage scenario and how to delete mechanism behaves at each step.
 
 #### For when a user deletes only a module (e.g CS2113) from the module list:
 
@@ -573,12 +644,12 @@ Step 5. Print the confirmation message: A confirmation message is printed to the
 of the module requested by the user. The message includes the `ModuleCode`, `LessonTypes` of the module, `Classnumber` 
 of each `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
 
-#### For when a user request to show a specific lessonType of the module (e.g. CS2113 -st):
+#### For when a user request to show a specific lessonType of the module (e.g. CS2113 -tut):
 
 Step 1. Define the Constructor: When user executes the command `showmod cs2113`, the Parser class calls the
 `ShowModuleCommand()` method of the ShowModuleCommand class. The constructor of the ShowModuleCommand class takes
-in a parameter of type `String`, which will be split into `moduleCode`, `cs2113`, and `-FLAG`, `-st`. In this case, only `cs2113` is
-parsed in as the parameter. This is stored in the `args` array field of the `ShowModuleCommand` class.
+in a parameter of type `String`, which will be split into `moduleCode`, `cs2113`, and `-FLAG`, `-tut`. In this case, 
+`cs2113 -tut` is parsed in as the parameter. This is stored in the `args` array field of the `ShowModuleCommand` class.
 
 Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
@@ -589,7 +660,7 @@ type is determined by calling the `getLessonType()` method of the `lessonType` c
 the moduleCode is set by `args[0]`. If the lessonType is not valid, an `InvalidCommandException` is thrown.
 
 Step 4. Calls the `handleMultiCommand()` method: The `handleMultiCommand()` method is called to handle the command. 
-It takes ini `moduleList`, `lessonType` and `args` as parameters.
+It takes in `moduleList`, `lessonType` and `args` as parameters.
 
 Step 5. Find the module to display information: The first step in the `execute()` method is to find the module from
 `Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
