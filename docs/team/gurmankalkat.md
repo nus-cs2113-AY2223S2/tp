@@ -2,8 +2,10 @@
 
 ## Project: Meal360
 ### Overview
-Meal360 is a desktop application that helps user organize recipes. The user interacts with it using a Command Line
-Interface (CLI). Meal360 can help users manage all their favorite recipes as well as their weekly diet and ingredients.
+Meal360 is a desktop app for managing your recipes and weekly meal plans, optimized for use via a
+Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If
+you can type fast, Meal360 can get your recipe management tasks done faster than traditional GUI
+apps.
 
 ### Summary of Contributions
 * __Code contributed__: [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=gurmankalkat&breakdown=true)
