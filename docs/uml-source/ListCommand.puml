@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+skinparam maxMessageSize 150
+
+title ListCommand
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":ListCommand" as list
+participant ":Ui" as Ui
+
+User -> Apollo : "list"
+activate Apollo
+
+Apollo -> Parser : getCommand()
+activate Parser
+
+Parser -> list** : ListCommand()
+activate list
+
+list -> list : setUpLogger()
+activate list
+deactivate list
+
+list --> Parser : ListCommand()
+deactivate list
+
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+
+Apollo -> list : execute()
+activate list
+
+list -> Ui :  printList()
+
+activate Ui
+Ui --> list
+deactivate Ui
+
+deactivate list
+
+destroy Ui
+
+list --> Apollo
+
+deactivate list
+destroy list
+
+deactivate Apollo
+
+
+
+
+
+@enduml
