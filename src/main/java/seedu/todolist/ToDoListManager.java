@@ -50,8 +50,6 @@ public class ToDoListManager {
             ui.printNewSaveMessage();
         } catch (FailedLoadDataException e3) {
             ui.printError(e3);
-            // Caught an error in the saved file, terminate first
-            isRunning = false;
         }
     }
 

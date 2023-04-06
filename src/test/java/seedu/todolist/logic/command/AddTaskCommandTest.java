@@ -35,7 +35,7 @@ public class AddTaskCommandTest {
             HashMap<Flags, String> args = generateInputArguments("0", date, TIME_EXAMPLE, REPEAT_EXAMPLE);
             try {
                 Command testDelete = new AddTaskCommand(args);
-                testDelete.execute(testList, , ui);
+                testDelete.execute(testList, null, ui);
             } catch (ToDoListException e) {
                 continue;
             }
@@ -50,7 +50,7 @@ public class AddTaskCommandTest {
             HashMap<Flags, String> args = generateInputArguments("0", DATE_EXAMPLE, time, REPEAT_EXAMPLE);
             try {
                 Command testDelete = new AddTaskCommand(args);
-                testDelete.execute(testList, , ui);
+                testDelete.execute(testList, null, ui);
             } catch (ToDoListException e) {
                 continue;
             }

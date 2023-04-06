@@ -25,19 +25,6 @@ public class TaskList {
     private HashMap<Integer, Task> tasks = new HashMap<>();
 
     /**
-     * Returns the task at the given id of the task list.
-     *
-     * @param id The id of the task to return.
-     * @return The task at the given id of the task list.
-     */
-    private Task getTask(int id) throws InvalidIdException {
-        if (!tasks.containsKey(id)) {
-            throw new InvalidIdException(id);
-        }
-        return tasks.get(id);
-    }
-
-    /**
      * Returns a stream of tasks with the given ids.
      *
      * @param ids The ids of the tasks to return.
@@ -71,8 +58,8 @@ public class TaskList {
      * @throws InvalidIdException If there is no task with any of the provided ids.
      */
     public String deleteTask(HashSet<Integer> ids) throws InvalidIdException {
-        String taskString = tasksStreamToString(getTasks(ids));
-        tasks.entrySet().removeIf(e -> ids.contains(e.getKey()));
+        String taskString = joinStringStream(getTasks(ids).map(Task::toString));
+        tasks.keySet().removeAll(ids);
         return taskString;
     }
 
@@ -91,14 +78,14 @@ public class TaskList {
 
     //@@author clement559
     /**
-     * Converts a stream of tasks into its string representation, with numbering (#1, #2, etc...).
+     * Joins a stream of strings together with numbering (#1, #2, etc...).
      *
-     * @param stream The stream of tasks to convert to a string.
-     * @return The string representation of the stream of tasks.
+     * @param stream The stream of strings to join together.
+     * @return A single string composed of numbered strings.
      */
-    private String tasksStreamToString(Stream<Task> stream) {
+    private String joinStringStream(Stream<String> stream) {
         AtomicInteger count = new AtomicInteger(1);
-        return stream.map(task -> String.format(Formats.TASK_STRING_INDEXED, count.getAndIncrement(), task.toString()))
+        return stream.map(string -> String.format(Formats.TASK_STRING_INDEXED, count.getAndIncrement(), string))
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
@@ -108,7 +95,7 @@ public class TaskList {
      * @return String representation of the task list.
      */
     public String toString() {
-        return tasksStreamToString(tasks.values().stream());
+        return joinStringStream(tasks.values().stream().map(Task::toString));
     }
 
     /**
@@ -118,7 +105,7 @@ public class TaskList {
      * @return Filtered string representation of the task list.
      */
     public String toString(Predicate<Task> p) {
-        return tasksStreamToString(tasks.values().stream().filter(p));
+        return joinStringStream(tasks.values().stream().filter(p).map(Task::toString));
     }
 
     //@@author KedrianLoh
@@ -129,7 +116,7 @@ public class TaskList {
      * @return Sorted string representation of the task list.
      */
     public String toString(Comparator<Task> c) {
-        return tasksStreamToString(tasks.values().stream().sorted(c));
+        return joinStringStream(tasks.values().stream().sorted(c).map(Task::toString));
     }
 
     /**
@@ -141,7 +128,7 @@ public class TaskList {
      * @return Filtered string representation of the task list.
      */
     public String toString(Predicate<Task> p, Comparator<Task> c) {
-        return tasksStreamToString(tasks.values().stream().filter(p).sorted(c));
+        return joinStringStream(tasks.values().stream().filter(p).sorted(c).map(Task::toString));
     }
 
     //@@author ERJUNZE
@@ -157,52 +144,88 @@ public class TaskList {
     }
 
     public String setDescription(HashSet<Integer> ids, String description) throws InvalidIdException {
-        return getTasks(ids).map(task -> task.setDescription(description))
-                .collect(Collectors.joining(System.lineSeparator()));
+        return joinStringStream(getTasks(ids).map(task -> task.setDescription(description)));
     }
 
     public String setTags(HashSet<Integer> ids, TreeSet<String> tags) throws InvalidIdException {
-        return getTasks(ids).map(task -> task.setTags(tags))
-                .collect(Collectors.joining(System.lineSeparator()));
+        return joinStringStream(getTasks(ids).map(task -> task.setTags(tags)));
     }
 
     //@@author RuiShengGit
     public String setEmail(HashSet<Integer> ids, String email) throws InvalidIdException {
-        return getTasks(ids).map(task -> task.setEmail(email))
-                .collect(Collectors.joining(System.lineSeparator()));
+        return joinStringStream(getTasks(ids).map(task -> task.setEmail(email)));
     }
 
     public String setPriority(HashSet<Integer> ids, Priority priority) throws InvalidIdException {
-        return getTasks(ids).map(task -> task.setPriority(priority))
-                .collect(Collectors.joining(System.lineSeparator()));
+        return joinStringStream(getTasks(ids).map(task -> task.setPriority(priority)));
     }
 
     public String setDone(HashSet<Integer> ids, boolean isDone) throws InvalidIdException {
-        return getTasks(ids).map(task -> task.setDone(isDone))
-                .collect(Collectors.joining(System.lineSeparator()));
+        return joinStringStream(getTasks(ids).map(task -> task.setDone(isDone)));
     }
 
     //@@author clement559
     public String setDeadline(HashSet<Integer> ids, LocalDateTime deadline) throws InvalidIdException {
-        return getTasks(ids).map(task -> task.setDeadline(deadline))
-                .collect(Collectors.joining(System.lineSeparator()));
+        return joinStringStream(getTasks(ids).map(task -> task.setDeadline(deadline)));
     }
 
     public String setRepeatDuration(HashSet<Integer> ids, int repeatDuration)
             throws InvalidDateException, InvalidIdException {
-        Stream<Task> stream = getTasks(ids);
         // Cannot set the repeat duration of a task if it does not have a deadline
-        if (repeatDuration != 0) {
-            for (int id : ids) {
-                if (getTask(id).getDeadline() == null) {
-                    throw new InvalidDateException("Task with ID " + id + " has no deadline.");
-                }
-            }
+        Task noDeadlineTask = getTasks(ids).filter(task -> task.getDeadline() == null).findFirst().orElse(null);
+        if (noDeadlineTask != null) {
+            throw new InvalidDateException("Task with ID " + noDeadlineTask.id + " has no deadline.");
         }
-        return stream.map(task -> task.setRepeatDuration(repeatDuration))
-                .collect(Collectors.joining(System.lineSeparator()));
+        return joinStringStream(getTasks(ids).map(task -> task.setRepeatDuration(repeatDuration)));
     }
 
+    //@@author KedrianLoh
+    public String deleteTask(Predicate<Task> p) {
+        String taskString = joinStringStream(tasks.values().stream().filter(p).map(Task::toString));
+        tasks.values().removeIf(p);
+        return taskString;
+    }
+
+    public String getFullInfo(Predicate<Task> p) {
+        return tasks.values().stream().filter(p).map(Task::getFullInfo)
+                .collect(Collectors.joining(System.lineSeparator() + Messages.LINE + System.lineSeparator()));
+    }
+
+    public String setDescription(Predicate<Task> p, String description) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setDescription(description)));
+    }
+
+    public String setTags(Predicate<Task> p, TreeSet<String> tags) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setTags(tags)));
+    }
+
+    public String setEmail(Predicate<Task> p, String email) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setEmail(email)));
+    }
+
+    public String setPriority(Predicate<Task> p, Priority priority) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setPriority(priority)));
+    }
+
+    public String setDone(Predicate<Task> p, boolean isDone) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setDone(isDone)));
+    }
+
+    public String setDeadline(Predicate<Task> p, LocalDateTime deadline) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setDeadline(deadline)));
+    }
+
+    public String setRepeatDuration(Predicate<Task> p, int repeatDuration) throws InvalidDateException {
+        // Cannot set the repeat duration of a task if it does not have a deadline
+        Task noDeadlineTask = tasks.values().stream().filter(p).
+                filter(task -> task.getDeadline() == null).findFirst().orElse(null);
+        if (noDeadlineTask != null) {
+            throw new InvalidDateException("Task with ID " + noDeadlineTask.id + " has no deadline.");
+        }
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setRepeatDuration(repeatDuration)));
+    }
+
+    //@@author clement559
     public void checkRepeatingTasks(Config config) {
         ArrayList<Task> tasksToBeAdded = new ArrayList<>();
         for (Task task : tasks.values()) {

@@ -45,6 +45,10 @@ public class ParserUtil {
      * @throws InvalidIdException If any id cannot be parsed to an integer.
      */
     public static HashSet<Integer> parseId(String idList) throws InvalidIdException {
+        if (idList.isEmpty()) {
+            return new HashSet<>();
+        }
+
         HashSet<Integer> idHashSet = new HashSet<>();
         for (String idString : idList.split(" ")) {
             try {
@@ -95,12 +99,15 @@ public class ParserUtil {
      * The deadline is allowed to be null as it is an optional parameter.
      *
      * @param deadline The deadline string.
+     * @param afterThisDate The date-time that the parsed deadline cannot be before.
+     *                      For adding tasks or editing deadlines, that will be the current date-time.
      * @return A LocalDateTime object that contains the date and time in the string,
      *         if it was not null, null otherwise.
      * @throws InvalidDateException If the string is not in a valid date time format,
      *                              or if the parsed date is before the current time.
      */
-    public static LocalDateTime parseDeadline(String deadline) throws InvalidDateException, PassedDateException {
+    public static LocalDateTime parseDeadline(String deadline, LocalDateTime afterThisDate)
+            throws InvalidDateException, PassedDateException {
         if (deadline == null) {
             return null;
         }
@@ -110,13 +117,17 @@ public class ParserUtil {
                     .withResolverStyle(ResolverStyle.STRICT);
             LocalDateTime date = LocalDateTime.parse(deadline, inputFormatter);
 
-            if (!date.isAfter(LocalDateTime.now())) {
+            if (!date.isAfter(afterThisDate)) {
                 throw new PassedDateException(deadline);
             }
             return date;
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(deadline);
         }
+    }
+
+    public static LocalDateTime parseDeadline(String deadline) throws InvalidDateException, PassedDateException {
+        return parseDeadline(deadline, LocalDateTime.now());
     }
 
     //@@author RuiShengGit
@@ -235,7 +246,7 @@ public class ParserUtil {
      * Parses the filter options.
      *
      * @param args Hashmap containing filter flags and their arguments, if any.
-     * @return A predicate matching all the given filters.
+     * @return Null, if no filters are provided, otherwise, a predicate matching all the given filters.
      * @throws ToDoListException If the argument for any filter is invalid.
      */
     public static Predicate<Task> parseFilter(HashMap<Flags, String> args) throws ToDoListException {
@@ -256,10 +267,12 @@ public class ParserUtil {
             predicate = predicate.and(Task.matchesEmail(parseEmail(args.get(Flags.EMAIL))));
         }
         if (args.containsKey(Flags.FILTER_BEFORE)) {
-            predicate = predicate.and(Task.beforeDeadline(parseDeadline(args.get(Flags.FILTER_BEFORE))));
+            predicate = predicate.and(Task.beforeDeadline(
+                    parseDeadline(args.get(Flags.FILTER_BEFORE), LocalDateTime.MIN)));
         }
         if (args.containsKey(Flags.FILTER_AFTER)) {
-            predicate = predicate.and(Task.afterDeadline(parseDeadline(args.get(Flags.FILTER_AFTER))));
+            predicate = predicate.and(Task.afterDeadline(
+                    parseDeadline(args.get(Flags.FILTER_AFTER), LocalDateTime.MIN)));
         }
         if (args.containsKey(Flags.REPEAT)) {
             predicate = predicate.and(parseBoolean(args.get(Flags.REPEAT))

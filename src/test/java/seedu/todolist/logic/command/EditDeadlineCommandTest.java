@@ -35,7 +35,7 @@ public class EditDeadlineCommandTest {
         String sampleTask = "add something -due 02-02-2033 18:00 -rep 0";
         testList = new TaskList();
         try {
-            parser.parseCommand(sampleTask).execute(testList, , ui);
+            parser.parseCommand(sampleTask).execute(testList, null, ui);
         } catch (ToDoListException e) {
             fail("Failed to initialize test task list");
         }
@@ -48,7 +48,7 @@ public class EditDeadlineCommandTest {
             HashMap<Flags, String> args = generateInputArguments(id, DATE_EXAMPLE, TIME_EXAMPLE, REPEAT_EXAMPLE);
             try {
                 Command testEdit = new EditDeadlineCommand(args);
-                testEdit.execute(testList, , ui);
+                testEdit.execute(testList, null, ui);
             } catch (ToDoListException e) {
                 continue;
             } catch (NullPointerException e) {
@@ -65,7 +65,7 @@ public class EditDeadlineCommandTest {
             HashMap<Flags, String> args = generateInputArguments("0", date, TIME_EXAMPLE, REPEAT_EXAMPLE);
             try {
                 Command testEdit = new EditDeadlineCommand(args);
-                testEdit.execute(testList, , ui);
+                testEdit.execute(testList, null, ui);
             } catch (ToDoListException e) {
                 continue;
             } catch (NullPointerException e) {
@@ -82,7 +82,7 @@ public class EditDeadlineCommandTest {
             HashMap<Flags, String> args = generateInputArguments("0", DATE_EXAMPLE, time, REPEAT_EXAMPLE);
             try {
                 Command testEdit = new EditDeadlineCommand(args);
-                testEdit.execute(testList, , ui);
+                testEdit.execute(testList, null, ui);
             } catch (ToDoListException e) {
                 continue;
             } catch (NullPointerException e) {

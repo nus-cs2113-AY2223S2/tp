@@ -10,6 +10,7 @@ import seedu.todolist.model.Task;
 import seedu.todolist.ui.Ui;
 import seedu.todolist.model.TaskList;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.function.Predicate;
@@ -22,7 +23,7 @@ public class ListTasksCommand extends Command {
             Flags.DESCRIPTION, Flags.EMAIL, Flags.FILTER_BEFORE, Flags.FILTER_AFTER,
             Flags.REPEAT, Flags.TAG, Flags.PRIORITY, Flags.SORT};
 
-    private Predicate<Task> predicate;
+    private Predicate<Task> predicate = null;
     private Comparator<Task> comparator = null;
 
     /**
@@ -32,7 +33,10 @@ public class ListTasksCommand extends Command {
      * @throws InvalidBooleanException If any of the provided boolean values are invalid.
      */
     public ListTasksCommand(HashMap<Flags, String> args) throws ToDoListException {
-        predicate = ParserUtil.parseFilter(args);
+        if (!Collections.disjoint(args.keySet(), Flags.filterFlags)) {
+            // At least one filter flag is present
+            predicate = ParserUtil.parseFilter(args);
+        }
         if (args.containsKey(Flags.SORT)) {
             comparator = ParserUtil.parseSort(args.get(Flags.SORT));
         }
@@ -42,9 +46,14 @@ public class ListTasksCommand extends Command {
      * Displays the full or filtered task list, depending on filters chosen.
      */
     public void execute(TaskList taskList, Config config, Ui ui) {
-        int taskListSize = taskList.size(predicate);
-        String taskListString = comparator == null
-                ? taskList.toString(predicate) : taskList.toString(predicate, comparator);
-        ui.printTaskList(taskListSize, taskListString);
+        if (predicate == null && comparator == null) {
+            ui.printTaskList(taskList.size(), taskList.toString());
+        } else if (predicate == null) {
+            ui.printTaskList(taskList.size(), taskList.toString(comparator));
+        } else if (comparator == null) {
+            ui.printTaskList(taskList.size(predicate), taskList.toString(predicate));
+        } else {
+            ui.printTaskList(taskList.size(predicate), taskList.toString(predicate, comparator));
+        }
     }
 }

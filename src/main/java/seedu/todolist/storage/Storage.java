@@ -17,6 +17,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
@@ -26,6 +29,9 @@ import java.time.format.DateTimeParseException;
 public class Storage {
     public static final String DEFAULT_DATA_PATH = "./data.json";
     public static final String DEFAULT_CONFIG_PATH = "./config.json";
+    public static final String INVALID_DATA_BACKUP_PATH = "./invalid_data.json";
+    public static final String INVALID_CONFIG_BACKUP_PATH = "./invalid_config.json";
+
     private File dataFile;
     private File configFile;
     private Gson gson;
@@ -47,6 +53,14 @@ public class Storage {
         try (FileWriter fw = new FileWriter(file)) {
             fw.write(textToAdd);
         }
+    }
+
+    private void copyToBackup(File file, String backupPath) throws IOException {
+        Files.copy(file.toPath(), Paths.get(backupPath), StandardCopyOption.REPLACE_EXISTING);
+    }
+
+    private void validateLoadedData(TaskList taskList) {
+        
     }
 
     /**
@@ -73,11 +87,17 @@ public class Storage {
                 return new TaskList();
             }
             return taskList;
-        } catch (JsonParseException | DateTimeParseException e) {
+        } catch (JsonParseException | DateTimeParseException e1) {
+            try {
+                copyToBackup(dataFile, INVALID_DATA_BACKUP_PATH);
+            } catch (IOException e2) {
+                // Do nothing if the invalid data file cannot be backed up
+            }
             throw new FailedLoadDataException();
         }
     }
 
+    //@@author clement559
     public Config loadConfig() throws FileNotFoundException, FailedLoadConfigException {
         try {
             JsonReader reader = new JsonReader(new FileReader(configFile));
@@ -86,7 +106,12 @@ public class Storage {
                 return new Config();
             }
             return config;
-        } catch (JsonParseException | DateTimeParseException e) {
+        } catch (JsonParseException | DateTimeParseException e1) {
+            try {
+                copyToBackup(configFile, INVALID_CONFIG_BACKUP_PATH);
+            } catch (IOException e2) {
+                // Do nothing if the invalid config file cannot be backed up
+            }
             throw new FailedLoadConfigException();
         }
     }

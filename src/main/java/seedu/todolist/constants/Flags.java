@@ -1,6 +1,8 @@
 package seedu.todolist.constants;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Enum that holds all the flags allowed in commands.
@@ -15,19 +17,19 @@ public enum Flags {
 
     // Command flags that take arguments
     COMMAND_ADD("add", false),
-    COMMAND_MARK("mark", false),
-    COMMAND_UNMARK("unmark", false),
-    COMMAND_DELETE("delete", false),
-    COMMAND_FULL_INFO("info", false),
+    COMMAND_MARK("mark", true),
+    COMMAND_UNMARK("unmark", true),
+    COMMAND_DELETE("delete", true),
+    COMMAND_FULL_INFO("info", true),
     COMMAND_CONFIG("config", true),
 
     // Flags for commands that edit task parameters
-    COMMAND_EDIT_DESCRIPTION("desc", false),
-    COMMAND_EDIT_DEADLINE("due", false),
-    COMMAND_EDIT_EMAIL("email", false),
-    COMMAND_EDIT_TAGS("tags", false),
-    COMMAND_EDIT_REPEAT("rep", false),
-    COMMAND_EDIT_PRIORITY("prio", false),
+    COMMAND_EDIT_DESCRIPTION("desc", true),
+    COMMAND_EDIT_DEADLINE("due", true),
+    COMMAND_EDIT_EMAIL("email", true),
+    COMMAND_EDIT_TAGS("tags", true),
+    COMMAND_EDIT_REPEAT("rep", true),
+    COMMAND_EDIT_PRIORITY("prio", true),
 
     // Argument flags
     DESCRIPTION("-desc", false),
@@ -52,6 +54,11 @@ public enum Flags {
     CONFIG_REPEAT_FREQ("-repfreq", false);
 
     private static final HashMap<String, Flags> map = new HashMap<>();
+    public static final HashSet<Flags> filterFlags = new HashSet<>(Arrays.asList(
+            Flags.FILTER_DONE, Flags.FILTER_OVERDUE,
+            Flags.DESCRIPTION, Flags.EMAIL, Flags.FILTER_BEFORE, Flags.FILTER_AFTER,
+            Flags.REPEAT, Flags.TAG, Flags.PRIORITY
+    ));
     private final String name;
     private final boolean canBeEmpty;
 

@@ -2,10 +2,8 @@ package seedu.todolist.ui;
 
 import seedu.todolist.constants.HelpMessages;
 import seedu.todolist.constants.Messages;
-import seedu.todolist.model.Task;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -100,6 +98,10 @@ public class Ui {
         println(String.format(Messages.CONFIG_INFO), taskString);
     }
 
+    public void printFilteredNoTasksFoundMessage() {
+        println(Messages.FILTERED_NONE);
+    }
+
     public void printTaskList(int taskListSize, String taskListString) {
         if (taskListSize == 0) {
             println(Messages.LIST_EMPTY);
@@ -132,7 +134,6 @@ public class Ui {
             return;
         }
 
-        assert tasksThisWeek != 0;
         double progress = (double) completedTasksThisWeek / tasksThisWeek;
         int completedSections = (int) (progress * totalSections);
         int incompleteSections = totalSections - completedSections;
@@ -141,15 +142,6 @@ public class Ui {
         println("You have completed " + progressPercentage + "% of the " + generateTaskCountString(tasksThisWeek)
                 + " due this week!", "Progress: |" + "=".repeat(completedSections)
                 + "-".repeat(incompleteSections) + "|", taskListString);
-    }
-
-    //@@author KedrianLoh
-    public void printTasksWithTag(ArrayList<Task> taskList) {
-        taskList.forEach(System.out::println);
-    }
-    //@@author KedrianLoh
-    public void printTasksWithPriority(ArrayList<Task> taskList) {
-        taskList.forEach(System.out::println);
     }
 
     public void printHelpList() {
