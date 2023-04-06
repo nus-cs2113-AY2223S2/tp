@@ -35,6 +35,11 @@ public class ListUnpackedCommand extends Command{
         Ui.printLine();
     }
 
+    /**
+     * Returns ArrayList of Item {@link Item} that are not yet packed by using
+     *      checkFullyPacked: {@link Item#checkFullyPacked()}
+     * @return list of items that are unpacked
+     */
     private ArrayList<Item> getUnpackedList(){
         Item currItem;
         ArrayList<Item> unpackedList = new ArrayList<>();
