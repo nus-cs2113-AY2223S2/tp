@@ -208,7 +208,7 @@ The sequence diagram for the implementation of add is as shown below.
 ![AddCommandSequenceDiagram.png](images\DeveloperGuide\AddCommandSequenceDiagram.png)
 
 > ℹ️ The lifeline for `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the
-> lifeline reaches the end of the
+> lifeline reaches the end of the diagram
 
 #### Design considerations
 
@@ -238,7 +238,7 @@ The sequence diagram for the implementation of delete is as shown below.
 ![DeleteCommandSequenceDiagram.png](images\DeveloperGuide\DeleteCommandSequenceDiagram.png)
 
 > ℹ️ The lifeline for `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the
-> lifeline reaches the end of the
+> lifeline reaches the end of the diagram
 
 #### Design considerations
 
