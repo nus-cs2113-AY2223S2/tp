@@ -3,6 +3,8 @@ package seedu.duke;
 import seedu.duke.company.CompanyList;
 import seedu.duke.data.VenueListData;
 import seedu.duke.event.Event;
+import seedu.duke.exception.TooManyVariablesException;
+import seedu.duke.exception.IntegerSizeExceededException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.CompanyListDecoder;
 import seedu.duke.storage.EventDetailsStorage;
@@ -47,15 +49,21 @@ public class Eventus {
                 Command c = Parser.parse(input);
                 if (c.getCommandType().equals("list venues")){
                     c.execute(venueList);
-                } else if (c.getCommandType().equals("choose venue")){
+                } else if (c.getCommandType().equals("choose venue")) {
+                    c.execute(event, venueList);
+                } else if (c.getCommandType().equals("update event name")) {
                     c.execute(event, venueList);
                 } else {
                     c.execute(companyList);
                 }
-            } catch (WrongFormatException | NullPointerException | IndexOutOfBoundsException err){
+            } catch (WrongFormatException | NullPointerException | IndexOutOfBoundsException err) {
                 System.out.println("Wrong Format! Please type <help> for more information");
-            } catch (NumberFormatException err){
+            } catch (NumberFormatException err) {
                 System.out.println("Number expected! Please type <help> for more information");
+            } catch (TooManyVariablesException err) {
+                System.out.println("Too many input field variables! Please type <help> for more information");
+            } catch (IntegerSizeExceededException err) {
+                System.out.println("Integer value exceeds the maximum integer size. Please try a smaller number");
             }
         }
     }
