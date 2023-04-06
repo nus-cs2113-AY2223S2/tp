@@ -1,11 +1,11 @@
 package seedu.todolist.logic;
 
 import seedu.todolist.constants.Formats;
-import seedu.todolist.exception.InvalidPriorityException;
-import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.InvalidDateException;
-import seedu.todolist.exception.InvalidEmailFormatException;
 import seedu.todolist.exception.InvalidDurationException;
+import seedu.todolist.exception.InvalidEmailFormatException;
+import seedu.todolist.exception.InvalidIdException;
+import seedu.todolist.exception.InvalidPriorityException;
 import seedu.todolist.exception.PassedDateException;
 
 import java.time.LocalDateTime;
@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.regex.Pattern;
 
@@ -23,31 +24,28 @@ public class ParserUtil {
     private ParserUtil() {
     }
 
+    //@@author jeromeongithub
     /**
      * Parses the id string into an integer. Does not check if id is in task list.
      *
-     * @param id The id string.
-     * @return The id, as an integer.
-     * @throws InvalidIdException If the id cannot be parsed to an integer.
+     * @param idList The string containing the list of ids.
+     * @return The ids, as a HashSet of integers.
+     * @throws InvalidIdException If any id cannot be parsed to an integer.
      */
-    public static int parseId(String id) throws InvalidIdException {
+    public static HashSet<Integer> parseId(String idList) throws InvalidIdException {
+        int id = 0;
         try {
-            return Integer.parseInt(id);
+            HashSet<Integer> idHashSet = new HashSet<Integer>();
+            String[] arrayOfIds = idList.split(" ");
+            for (String idString : arrayOfIds) {
+                id = Integer.parseInt(idString);
+                assert id >= 0 : "Invalid id contained in variable";
+                idHashSet.add(id);
+            }
+            return idHashSet;
         } catch (NumberFormatException e) {
             throw new InvalidIdException(id);
         }
-    }
-
-    /**
-     * Parses (returns) the description string. Does not check if description is null or empty.
-     *
-     * @param description The description string.
-     * @return The description of the task.
-     */
-    public static String parseDescription(String description) {
-        // Empty descriptions should have been caught by the command parser
-        assert description != null && !description.isEmpty();
-        return description;
     }
 
     //@@author RuiShengGit
@@ -66,7 +64,7 @@ public class ParserUtil {
 
         try {
             int priority = Integer.parseInt(priorityString);
-            if (priority < 1 || priority > 3){
+            if (priority < 1 || priority > 3) {
                 throw new InvalidPriorityException(priorityString);
             }
             return priority;
@@ -92,14 +90,14 @@ public class ParserUtil {
         }
 
         try {
-            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1.getFormat()
-                            + Formats.TIME_IN_2.getFormat()).withResolverStyle(ResolverStyle.STRICT);
-            if (!LocalDateTime.parse(deadline, inputFormatter).isAfter(LocalDateTime.now())) {
-                throw new PassedDateException();
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_IN_1 + Formats.TIME_IN_2)
+                    .withResolverStyle(ResolverStyle.STRICT);
+            LocalDateTime date = LocalDateTime.parse(deadline, inputFormatter);
+
+            if (!date.isAfter(LocalDateTime.now())) {
+                throw new PassedDateException(deadline);
             }
-            else {
-                return LocalDateTime.parse(deadline, inputFormatter);
-            }
+            return date;
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(deadline);
         }
@@ -169,5 +167,4 @@ public class ParserUtil {
             throw new InvalidDurationException(repeatDuration);
         }
     }
-
 }

@@ -296,6 +296,68 @@ Progress: |================----------------------------------|
 [ID:3]	[ ][task3][Due: 31 Mar 2023 20:00]
 ```
 
+### Help List `help`
+
+Displays all possible commands of the NUS To-Do List program.
+
+Format: `help`
+
+Example of usage:
+
+`help`
+```
+Here are the list of commands that you can use:
++----------------------------------------------------------------------------------------+
+| Command                                | Description                                   |
++----------------------------------------------------------------------------------------+
+| add DESCRIPTION [-due DEADLINE]        | Adds a new task to your To-Do list.           |
+|                 [-email EMAIL_ADDRESS] |                                               |
+|                 [-email EMAIL_ADDRESS] |                                               |
+|                 [-rep REPEAT_DURATION] |                                               |
+|                 [-prio PRIORITY_LEVEL] |                                               |
+------------------------------------------------------------------------------------------
+| mark ID                                | Marks a task with the given id by the user    |
+|                                        | as completed                                  |
+------------------------------------------------------------------------------------------
+| unmark ID                              | Unmarks a task with the given id by the user  |
+|                                        | as incomplete.                                |
+------------------------------------------------------------------------------------------
+| delete ID                              | Removes the task with the given id by the     |
+|                                        | user from the To-Do list.                     |
+------------------------------------------------------------------------------------------
+| desc ID -edit DESCRIPTION              | Edits the description of a task with the      |
+|                                        | given id in the ToDo List.                    |
+------------------------------------------------------------------------------------------
+| prio ID -edit PRIORITY_LEVEL           | Edits, or deletes the priority level of a     |
+|                                        | task with the given id in the ToDo List.      |
+------------------------------------------------------------------------------------------
+| due ID -edit DEADLINE                  | Edits or deletes the deadline of a task with  |
+|        -del                            | the given id in the To-Do List.               |
+------------------------------------------------------------------------------------------
+| email ID -edit EMAIL_ADDRESS           | Adds, edits, or deletes the email address of  |
+|          -del                          | a task with the given id in the To-Do List.   |
+------------------------------------------------------------------------------------------
+| tags ID -edit LIST_OF_TAGS             | Adds, edits, or deletes the tags of a task    |
+|         -del                           | with the given id in the To-Do List.          |
+------------------------------------------------------------------------------------------
+| rep ID -edit REPEAT_DURATION           | Edits or deletes the recurring count of a     |
+|                                        | task with the given id in the To-Do List.     |
+------------------------------------------------------------------------------------------
+| list                                   | Display all tasks stored in the To-Do List.   |
+------------------------------------------------------------------------------------------
+| info ID                                | Display all the attributes of the task with   |
+|                                        | the given id in the To-Do List.               |
+------------------------------------------------------------------------------------------
+| progress                               | Displays the progress of and lists tasks      |
+|                                        | that are due this week in To-Do list.         |
+------------------------------------------------------------------------------------------
+| help                                   | Displays all possible commands of the program |
+|                                        | and their description                         |
+------------------------------------------------------------------------------------------
+| exit                                   | Exits the program.                            |
+------------------------------------------------------------------------------------------
+```
+
 ### Exit program `exit`
 
 Exits the program.
@@ -355,4 +417,5 @@ Here are the tasks which were completed in the past week:
 | List all tasks                       | `list`                                                                                                                      |
 | Check all details of a task          | `info`                                                                                                                      |
 | Check progress of current week tasks | `progress`                                                                                                                  |
+| Check all commands of the program    | `help`                                                                                                                      |
 | Exit program                         | `exit`                                                                                                                      |
