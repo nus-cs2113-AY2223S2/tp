@@ -1,4 +1,5 @@
 Initialised Meal Storage
+Gender not provided, cannot calculate caloric needs accurately
 Initialised User Storage
 Initialised Exercise Storage
 ------------------------------------------------------------
