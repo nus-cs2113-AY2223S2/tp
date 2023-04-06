@@ -39,8 +39,8 @@ public enum Flags {
     REPEAT("-rep", false),
     TAG("-tags", false),
     EDIT("-edit", false),
-    DEFAULT("-default", false),
     EDIT_DELETE("-del", true),
+    RESET("-reset", true),
 
     // Filter flags
     FILTER_DONE("-done", true),

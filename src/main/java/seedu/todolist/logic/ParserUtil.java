@@ -4,6 +4,7 @@ import seedu.todolist.constants.Formats;
 import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidDurationException;
 import seedu.todolist.exception.InvalidEmailFormatException;
+import seedu.todolist.exception.InvalidFrequencyException;
 import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.InvalidPriorityException;
 import seedu.todolist.exception.PassedDateException;
@@ -39,7 +40,7 @@ public class ParserUtil {
             String[] arrayOfIds = idList.split(" ");
             for (String idString : arrayOfIds) {
                 id = Integer.parseInt(idString);
-                assert id >= 0 : "Invalid id contained in variable";
+                assert id >= 0 : "Parser should catch any negative values";
                 idHashSet.add(id);
             }
             return idHashSet;
@@ -55,7 +56,7 @@ public class ParserUtil {
      *
      * @param priorityString The priority string.
      * @return The priority, as an integer.
-     * @throws InvalidPriorityException If the priority cannot be parsed to an integer, or if is not from 1 to 3.
+     * @throws InvalidPriorityException If the priority cannot be parsed to an integer, or if it is not from 1 to 3.
      */
     public static int parsePriority(String priorityString) throws InvalidPriorityException {
         if (priorityString == null) {
@@ -165,6 +166,26 @@ public class ParserUtil {
             return Integer.parseInt(repeatDuration);
         } catch (NumberFormatException e) {
             throw new InvalidDurationException(repeatDuration);
+        }
+    }
+
+    /**
+     * Parses the frequency to be set in the config.
+     *
+     * @param frequency The frequency, as a string.
+     * @return The frequency, as an integer, if it was not null, null otherwise.
+     * @throws InvalidFrequencyException If the priority cannot be parsed to an integer.
+     */
+    public static Integer parseFrequency(String frequency) throws InvalidFrequencyException {
+        if (frequency == null) {
+            return null;
+        }
+
+        try {
+            assert Integer.parseInt(frequency) >= 0 : "Parser should catch any negative values";
+            return Integer.parseInt(frequency);
+        } catch (NumberFormatException e) {
+            throw new InvalidFrequencyException(frequency);
         }
     }
 }

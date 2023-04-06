@@ -7,13 +7,17 @@ import seedu.todolist.logic.FormatterUtil;
 import java.time.LocalDateTime;
 
 public class Config {
-    private int checkFrequency = 0;
     private int repeatFrequency = 7;
+    private int checkFrequency = 0;
     private LocalDateTime lastChecked = LocalDateTime.now();
 
     public String toString() {
-        String lastCheckedString = FormatterUtil.getDeadlineAsString(lastChecked);
-        return String.format(Formats.CONFIG_STRING, repeatFrequency, checkFrequency, lastCheckedString);
+        return String.format(Formats.CONFIG_STRING, repeatFrequency, checkFrequency);
+    }
+
+    public void reset() {
+        repeatFrequency = 7;
+        checkFrequency = 0;
     }
 
     public void setCheckFrequency(int checkFrequency) {

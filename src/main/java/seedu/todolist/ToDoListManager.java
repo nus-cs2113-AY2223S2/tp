@@ -67,6 +67,7 @@ public class ToDoListManager {
         }
     }
 
+    //@@author
     public void run() {
         while (isRunning) {
             String inputCommand = ui.getUserInput();
