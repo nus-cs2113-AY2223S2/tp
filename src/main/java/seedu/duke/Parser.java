@@ -95,7 +95,7 @@ public class Parser {
     }
 
     private static boolean extractFields(boolean[] duplicity, String[] information, String[] details,
-            boolean addModuleFlag) throws NPExceptions {
+            boolean isModuleFlag) throws NPExceptions {
 
         for (int i = 1; i < details.length; i++) {
             String field = details[i].substring(0, 2).trim();
@@ -173,7 +173,7 @@ public class Parser {
             }
         }
 
-        return addModuleFlag;
+        return isModuleFlag;
     }
 
     private static void parseAddCommand(String remainder, EventList eventList) throws NPExceptions {
