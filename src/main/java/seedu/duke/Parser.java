@@ -66,7 +66,7 @@ public class Parser {
 
         String information = details[1].substring(2).trim();
         int weekNumber = Integer.parseInt(information);
-        UserUtility.printScheduleTable(eventList.getFullList(), weekNumber);
+        Ui.printScheduleTable(eventList.getFullList(), weekNumber);
 
     }
 
