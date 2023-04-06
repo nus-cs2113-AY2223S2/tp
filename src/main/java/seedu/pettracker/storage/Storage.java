@@ -6,6 +6,7 @@ import seedu.pettracker.data.Task;
 import seedu.pettracker.data.TaskList;
 import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
+import seedu.pettracker.exceptions.EmptyTaskNameException;
 import seedu.pettracker.exceptions.InvalidMarkTaskSymbolException;
 import seedu.pettracker.exceptions.InvalidSeparatorException;
 import seedu.pettracker.exceptions.InvalidStatException;
@@ -241,9 +242,14 @@ public class Storage {
         return weight;
     }
 
-    private String getTaskName(String line) {
+    private String getTaskName(String line) throws EmptyTaskNameException {
         String[] words = line.split("\\|", 3);
         String taskName = words[1];
+
+        if (taskName.trim().isEmpty()) {
+            throw new EmptyTaskNameException();
+        }
+
         return taskName;
     }
 
