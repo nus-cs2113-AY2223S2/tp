@@ -336,7 +336,6 @@ public class Parser {
 
         assert(isFlagInCorrectOrder) : "|  flag is not in order";
 
-        //String[] splitDescriptions = description.split("/");
         String[] splitDescriptions = new String[4];
         splitDescriptions[0] = description.substring(description.indexOf("a/") + 2,
                 description.indexOf("d/"));
@@ -347,20 +346,12 @@ public class Parser {
         splitDescriptions[3] = description.substring(description.indexOf("c/") + 2,
                 description.length());
 
-//        int length1 = splitDescriptions[0].length();
-//        int length2 = splitDescriptions[1].length();
-//        int length3 = splitDescriptions[2].length();
-
-//        splitDescriptions[1] = splitDescriptions[1].substring(0, length1 - 1).trim();
-//        splitDescriptions[2] = splitDescriptions[2].substring(0, length2 - 1).trim();
-//        splitDescriptions[3] = splitDescriptions[3].substring(0, length3 - 1).trim();
         splitDescriptions[0] = splitDescriptions[0].trim();
         splitDescriptions[1] = splitDescriptions[1].trim();
         splitDescriptions[2] = splitDescriptions[2].trim();
         splitDescriptions[3] = splitDescriptions[3].trim();
 
         checkEmptyAddFlag(splitDescriptions);
-//        splitDescriptions[4] = splitDescriptions[4].substring(1).trim();
         checkDoubleException(splitDescriptions[0]);
         checkTimeException(splitDescriptions[2]);
         convertStringToCategory(splitDescriptions[3]);
