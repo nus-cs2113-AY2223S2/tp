@@ -71,33 +71,32 @@ public interface Parser {
             String contactNumberString = input.substring(indexOfContactNumber + 2, indexOfContactEmail).trim();
             String contactEmail = input.substring(indexOfContactEmail + 2).trim();
 
-            //Multiple additions are not allowed
+            //Multiple additions are not allowed.
             if(input.indexOf("n/") != input.lastIndexOf("n/")){
                 ui.multipleAdditionErrorMessage();
                 throw new WrongFormatException();
             }
-            //Empty company name is not allowed
+            //Empty company name is not allowed.
             if(companyName.equals("")){
                 ui.emptyInputErrorMessage("company name");
                 throw new WrongFormatException();
             }
-            //Empty industry is not allowed
-            if(industry.equals("")){
+            //Empty industry is not allowed.
+            if(industry.equals(" ")){
                 ui.emptyInputErrorMessage("industry");
+                throw new WrongFormatException();
+            }else if(!checkIndustryValidity(industry)){
+                ui.invalidInputFormatErrorMessage("industry",
+                        "Industry cannot be a word without alphabet.");
                 throw new WrongFormatException();
             }
             //Only valid Singaporean number is allowed.
-            if(contactNumberString.length() > 8){
+            int contactNumber = Integer.parseInt(contactNumberString);
+            if(contactNumberString.length() > 8 || !checkContactNumberValidity(contactNumber)){
                 ui.invalidInputFormatErrorMessage("contact number",
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
                 throw new WrongFormatException();
             }
-            int contactNumber = Integer.parseInt(contactNumberString);
-            if(!checkContactNumberValidity(contactNumber)){
-                ui.invalidInputFormatErrorMessage("contact number",
-                        "8-digit number starting with 3, 6, 8, 9 is expected.");
-                throw new WrongFormatException();
-            } 
             //Only valid email address is allowed.
             if(!contactEmail.contains("@") || contactEmail.contains(" ") || contactEmail.endsWith("@")){
                 ui.invalidInputFormatErrorMessage("email address");
@@ -220,4 +219,18 @@ public interface Parser {
         }
         return true;
     }
+
+    private static boolean checkIndustryValidity(String industry){
+        if(industry.contains("a")||industry.contains("b")||industry.contains("c")||industry.contains("d")||
+                industry.contains("e")||industry.contains("f")||industry.contains("g")||industry.contains("h")||
+                industry.contains("i")||industry.contains("j")||industry.contains("k")||industry.contains("l")||
+                industry.contains("m")||industry.contains("n")||industry.contains("o")||industry.contains("p")||
+                industry.contains("q")||industry.contains("r")||industry.contains("s")||industry.contains("t")||
+                industry.contains("u")||industry.contains("v")||industry.contains("w")||industry.contains("x")||
+                industry.contains("y")||industry.contains("z")){
+            return true;
+        }
+        return false;
+    }
+
 }
