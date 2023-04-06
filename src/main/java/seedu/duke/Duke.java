@@ -12,10 +12,10 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     private static DataReader dataReader = new DataReader();
-    private static Storage storage = new Storage();
-    private static DeadlineStorage deadlineStorage = new DeadlineStorage();
+    private static DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
+    private static Storage storage = Storage.getInstance();
 
-    private static BudgetPlanner budgetPlanner = new BudgetPlanner();
+    private static BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
     private static UI ui = new UI();
 
     private static Parser parser = Parser.getInstance();
