@@ -21,7 +21,7 @@ public class Storage {
             savedFile.write(System.getProperty("line.separator"));
             savedFile.close();
         } catch (IOException a) {
-            throw new SniffException("Save file not found!");
+            throw new SniffException(" Save File \"SniffAppointments.txt\" not found!");
         }
     }
 
@@ -36,27 +36,28 @@ public class Storage {
         } catch (IOException e) {
             Ui.printFileCreated(false);
         } catch (IndexOutOfBoundsException e) {
-            throw new SniffException("\tFile \"SniffAppointments.txt\" saved in incorrect format!");
+            throw new SniffException(" File \"SniffAppointments.txt\" saved in incorrect format!");
         }
     }
 
-    public static void extractData(File fileName) throws FileNotFoundException, SniffException {
-        Scanner s = new Scanner(fileName);
-        int count = 0;
-        while (s.hasNext()) {
-            String currentLine = s.nextLine();
-            char appointmentType = currentLine.charAt(0);
-            if (appointmentType == 'C') {
-                FileParser.addConsultation(currentLine);
-            } else if (appointmentType == 'S') {
-                FileParser.addSurgery(currentLine);
-            } else if (appointmentType == 'V') {
-                FileParser.addVaccination(currentLine);
-            } else {
-                throw new SniffException("Appointments saved in wrong format!");
+    public static void extractData(File fileName) throws SniffException, FileNotFoundException {
+        try {
+            Scanner s = new Scanner(fileName);
+            while (s.hasNext()) {
+                String currentLine = s.nextLine();
+                char appointmentType = currentLine.charAt(0);
+                if (appointmentType == 'C') {
+                    FileParser.addConsultation(currentLine);
+                } else if (appointmentType == 'S') {
+                    FileParser.addSurgery(currentLine);
+                } else if (appointmentType == 'V') {
+                    FileParser.addVaccination(currentLine);
+                } else {
+                    throw new SniffException(" File \"SniffAppointments.txt\" saved in incorrect format!");
+                }
             }
-            count++;
+        } catch (FileNotFoundException f) {
+            throw new SniffException(" Save File \"SniffAppointments.txt\" not found!");
         }
-        SniffTasks.setAppointmentCount(count);
     }
 }

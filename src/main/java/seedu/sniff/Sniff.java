@@ -18,7 +18,11 @@ public class Sniff {
 
     public void run() throws SniffException {
         String absolutePath = getPath();
-        Storage.openFile(absolutePath);
+        try {
+            Storage.openFile(absolutePath);
+        } catch (SniffException file) {
+            UI.showErrorMessage();
+        }
         UI.showWelcomeMessage();
         boolean isExit = false;
         while (!isExit) {
