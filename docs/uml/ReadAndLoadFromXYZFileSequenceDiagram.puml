@@ -1,0 +1,27 @@
+@startuml
+!include Style.puml
+
+title Read And Load From XYZFile Sequence Diagram
+
+box "DinerDirector"
+participant ":DinerDirector" as DinerDirector DINERDIRECTOR_COLOR
+endbox
+
+box "XYZStorage"
+participant ":XYZStorage" as XYZStorage STORAGE_COLOR
+
+activate DinerDirector
+DinerDirector -> DinerDirector ++ : start()
+
+create XYZStorage
+DinerDirector -> XYZStorage ++ : XYZStorage()
+return
+
+DinerDirector -> XYZStorage ++ : readAndLoadFromXYZFile()
+return
+destroy XYZStorage
+
+|||
+return
+
+@enduml
