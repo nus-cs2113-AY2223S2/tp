@@ -9,6 +9,8 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //@@author ChongQiRong
 
@@ -54,14 +56,44 @@ public class FilterCommand extends Command {
         ArrayList<FinancialStatement> listToFilter = new ArrayList<>();
         ArrayList<Integer> listToFilterStatementIndex = new ArrayList<>();
 
+        boolean hasInOutFlag = false;
         if (filterFlagAndField.get(0).equalsIgnoreCase("-in") ||
                 filterFlagAndField.get(0).equalsIgnoreCase("-out")) {
+            hasInOutFlag = true;
             filterFlagAndField.add(filterFlagAndField.get(0));
             filterFlagAndField.remove(0);
         }
 
+        boolean hastwoDates = false;
+        if (filterFlagAndField.contains("-date")) {
+            int sizeOfFilterFlagAndField = filterFlagAndField.size();
+            String possibleDate1 = filterFlagAndField.get(sizeOfFilterFlagAndField - 2);
+            String possibleDate2 = "";
+            if (hasInOutFlag == true) {
+                possibleDate2 = filterFlagAndField.get(sizeOfFilterFlagAndField - 3);
+            } else {
+                possibleDate2 = filterFlagAndField.get(sizeOfFilterFlagAndField - 1);
+            }
+
+            Pattern pattern = Pattern.compile("(\\d{2}\\/\\d{2}\\/\\d{4})");
+            Matcher matcher = pattern.matcher(possibleDate1);
+            Matcher matcherTwo = pattern.matcher(possibleDate2);
+
+            if (matcher.find() && matcherTwo.find()) {
+                hastwoDates = true;
+            }
+        }
+
+        boolean filteredTwoDates = false;
         boolean isFirstFlag = true;
         for (int i = 0; i < filterFlagAndField.size(); i += 2) {
+            if (filteredTwoDates == true) {
+                if (i != filterFlagAndField.size() - 1) {
+                    i -= 1;
+                    continue;
+                }
+            }
+
             if (filterFlagAndField.get(i).equalsIgnoreCase("-d")) {
                 isFirstFlag = false;
                 filterByDescriptionFirstFlag(filteredList, statementIndex, i);
@@ -73,11 +105,21 @@ public class FilterCommand extends Command {
                     filterByCategory(filteredList, statementIndex, listToFilter, listToFilterStatementIndex, i);
                 }
             } else if (filterFlagAndField.get(i).equalsIgnoreCase("-date")) {
-                if (isFirstFlag) {
-                    isFirstFlag = false;
-                    filterByDateFirstFlag(filteredList, statementIndex, i);
+                if (hastwoDates == false) {
+                    if (isFirstFlag) {
+                        isFirstFlag = false;
+                        filterByDateFirstFlag(filteredList, statementIndex, i);
+                    } else {
+                        filterByDate(filteredList, statementIndex, listToFilter, listToFilterStatementIndex, i);
+                    }
                 } else {
-                    filterByDate(filteredList, statementIndex, listToFilter, listToFilterStatementIndex, i);
+                    if (isFirstFlag) {
+                        isFirstFlag = false;
+                        filterByTwoDatesFirstFlag(filteredList, statementIndex, i);
+                    } else {
+                        filterByTwoDates(filteredList, statementIndex, listToFilter, listToFilterStatementIndex, i);
+                    }
+                    filteredTwoDates = true;
                 }
             } else if (filterFlagAndField.get(i).equalsIgnoreCase("-in")) {
                 if (isFirstFlag) {
@@ -207,6 +249,37 @@ public class FilterCommand extends Command {
             if (savedData.getStatement(j).getDescription().contains(filterFlagAndField.get(i + 1))) {
                 filteredList.add(savedData.getStatement(j));
                 statementIndex.add(j + 1);
+            }
+        }
+    }
+
+    private void filterByTwoDatesFirstFlag(ArrayList<FinancialStatement> filteredList,
+                                           ArrayList<Integer> statementIndex, int i) {
+        LocalDate lowerLimit = LocalDate.parse(filterFlagAndField.get(i + 1),
+                DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        LocalDate upperLimit = LocalDate.parse(filterFlagAndField.get(i + 2),
+                DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        for (int j = 0; j < savedData.getStatementCount(); j += 1) {
+            LocalDate statementDate = savedData.getStatement(j).getDate();
+            if (!statementDate.isBefore(lowerLimit) && !statementDate.isAfter(upperLimit)) {
+                filteredList.add(savedData.getStatement(j));
+                statementIndex.add(j + 1);
+            }
+        }
+    }
+
+    private void filterByTwoDates(ArrayList<FinancialStatement> filteredList, ArrayList<Integer> statementIndex,
+                                  ArrayList<FinancialStatement> listToFilter,
+                                  ArrayList<Integer> listToFilterStatementIndex, int i) {
+        LocalDate lowerLimit = LocalDate.parse(filterFlagAndField.get(i + 1),
+                DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        LocalDate upperLimit = LocalDate.parse(filterFlagAndField.get(i + 2),
+                DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+        for (int j = 0; j < listToFilter.size(); j += 1) {
+            LocalDate statementDate = listToFilter.get(j).getDate();
+            if (!statementDate.isBefore(lowerLimit) && !statementDate.isAfter(upperLimit)) {
+                filteredList.add(listToFilter.get(j));
+                statementIndex.add(listToFilterStatementIndex.get(j));
             }
         }
     }
