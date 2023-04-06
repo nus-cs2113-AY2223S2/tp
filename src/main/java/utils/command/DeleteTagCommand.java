@@ -64,7 +64,7 @@ public class DeleteTagCommand extends Command {
         removeTagFromCards(cardList, tagList, ui);
         removeTagsFromDecks(deckList, tagList);
 
-        tagList.delete(this.tagSelector);
+        tagList.delete(tagSelector);
         ui.printRemoveTagFromTagList(tagToDelete.getUUID());
     }
 }

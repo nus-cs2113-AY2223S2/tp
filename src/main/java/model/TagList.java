@@ -88,7 +88,7 @@ public class TagList {
             }
         } else if (uuid.isPresent()) {
             for (int i = 0; i < tags.size(); i++) {
-                if (tags.get(i).getUUID().equals(uuid.get())) {
+                if (tags.get(i).getUUID().equals(uuid.get().uuid)) { 
                     delete(i);
                     return;
                 }
@@ -100,9 +100,8 @@ public class TagList {
                     return;
                 }
             }
-        } else {
-            throw new TagNotFoundException();
         }
+        throw new TagNotFoundException();
     }
 
     public boolean isEmpty() {
