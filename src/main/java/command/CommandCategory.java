@@ -12,7 +12,7 @@ import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.MESSAGE_DIVIDER_CATEGORY;
 
 public class CommandCategory extends Command {
-    public static final String COMMAND_NAME = "classify";
+    public static final String COMMAND_NAME = "category";
     public static final String ALL_CATEGORY = "Here are all your expense categories: ";
 
     protected ArrayList<Expense> expenseList;
@@ -114,7 +114,7 @@ public class CommandCategory extends Command {
         System.out.println("Category: " + category);
         int index = 1;
         for (Expense e : expenseList) {
-            if (e.getDescription().equals(category)) {
+            if (e.getDescription().toLowerCase().equals(category)) {
                 System.out.print((index) + ".");
                 System.out.println(e.sortedDisplay("C"));
                 index++;
