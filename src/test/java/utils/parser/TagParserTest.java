@@ -9,6 +9,7 @@ import model.CardUUID;
 import model.DeckList;
 import model.Tag;
 import model.TagList;
+import model.TagUUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
@@ -62,12 +63,35 @@ public class TagParserTest {
     }
 
     @Test
-    public void parse_tag_delete() throws InkaException {
+    public void parse_tag_deleteWithString() throws InkaException {
         Card card = Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000");
         cardList.addCard(card);
         tagList.addTag(new Tag("tagName", card.getUuid()));
 
         Command cmd = parser.parseCommand("tag delete -t tagName");
+        assert cmd instanceof DeleteTagCommand;
+        cmd.execute(cardList, tagList, deckList, ui, storage);
+        assert tagList.isEmpty();
+    }
+
+    @Test
+    public void parse_tag_deleteWithIndex() throws InkaException {
+        Card card = Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000");
+        cardList.addCard(card);
+        tagList.addTag(new Tag("tagName", card.getUuid()));
+
+        Command cmd = parser.parseCommand("tag delete -x 1");
+        assert cmd instanceof DeleteTagCommand;
+        cmd.execute(cardList, tagList, deckList, ui, storage);
+        assert tagList.isEmpty();
+    }
+
+    @Test
+    public void parse_tag_deleteWithUUID() throws InkaException {
+        Tag tag = new Tag("tagName", "00000000-0000-0000-0000-000000000000");
+        tagList.addTag(tag);
+
+        Command cmd = parser.parseCommand("tag delete -t 00000000-0000-0000-0000-000000000000");
         assert cmd instanceof DeleteTagCommand;
         cmd.execute(cardList, tagList, deckList, ui, storage);
         assert tagList.isEmpty();
