@@ -18,7 +18,7 @@ Meal Companion is a recipe book which allows you to search by the ingredients yo
 - Easter Egg
     - `hello world` to reveal easter egg hint
     - `hello psle` to reveal easter egg puzzle
-    - `hello 40$1.80` to reveal easter egg
+    - `hello <easter_egg_answer>` to reveal easter egg
 
 
 #### UG
