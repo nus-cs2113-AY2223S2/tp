@@ -36,11 +36,11 @@ Adds a new item to the list of expenses.
 
 Format: `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRENCY]`
 
+* The `EXPENSE_AMOUNT` must be an integer or decimal number without comma.
 * The `TIME` must be in the DD-MM-YYYY format. 
   * Future dates beyond today's date and Past dates before 1981 are invalid. 
   * A warning will be shown if the input date has been adjusted as such a date may not exist for that particular month or 
   year.
-* The `EXPENSE_AMOUNT` must be an integer or decimal number.  
 * The `EXPENSE_CATERGORY` can be any string that does not contain a whitespace symbol.
 * The `EXPENSE_CURRENCY` has 22 currencies to choose from. 
   * The list of available currencies are
