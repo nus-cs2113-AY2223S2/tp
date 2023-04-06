@@ -1,7 +1,6 @@
 package seedu.todolist.ui;
 
-import seedu.todolist.constants.Errors;
-import seedu.todolist.constants.HelpMessage;
+import seedu.todolist.constants.HelpMessages;
 import seedu.todolist.constants.Messages;
 import seedu.todolist.task.Task;
 
@@ -85,6 +84,22 @@ public class Ui {
         println(String.format(Messages.EDIT_DELETE_TASK, parameterType), taskString);
     }
 
+    public void printEditConfigMessage(String taskString) {
+        println(String.format(Messages.EDIT_CONFIG_INFO), taskString);
+    }
+
+    public void printConfigInfo(String taskString) {
+        println(String.format(Messages.CONFIG_INFO), taskString);
+    }
+
+    public void printMissingConfigMessage() {
+        println(Messages.MISSING_CONFIG);
+    }
+
+    public void printLoadConfigMessage() {
+        println(Messages.LOAD_CONFIG);
+    }
+
     public void printTaskList(int taskListSize, String taskListString) {
         if (taskListSize == 0) {
             println(Messages.LIST_EMPTY);
@@ -129,10 +144,6 @@ public class Ui {
                 + "-".repeat(incompleteSections) + "|", taskListString);
     }
 
-    public void printSavedFileSyntaxError() {
-        println(Errors.SAVED_FILE_SYNTAX_ERROR);
-    }
-
     //@@author KedrianLoh
     public void printTasksWithTag(ArrayList<Task> taskList) {
         taskList.forEach(System.out::println);
@@ -143,6 +154,6 @@ public class Ui {
     }
 
     public void printHelpList() {
-        println(HelpMessage.HELP_COMMAND);
+        println(HelpMessages.HELP_COMMAND);
     }
 }

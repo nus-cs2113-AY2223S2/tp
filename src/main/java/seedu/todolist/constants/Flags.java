@@ -21,6 +21,7 @@ public enum Flags {
     COMMAND_FULL_INFO("info", false),
     COMMAND_FIND_TAG("findbytag", false),
     COMMAND_FIND_PRIORITY("findbypriority", false),
+    COMMAND_CONFIG("config", true),
 
     // Flags for commands that edit task parameters
     COMMAND_EDIT_DESCRIPTION("desc", false),
@@ -38,12 +39,15 @@ public enum Flags {
     REPEAT("-rep", false),
     TAG("-tags", false),
     EDIT("-edit", false),
+    DEFAULT("-default", false),
     EDIT_DELETE("-del", true),
 
     // Filter flags
     FILTER_DONE("-done", true),
     FILTER_UNDONE("-undone", true),
     FILTER_OVERDUE("-overdue", true),
+    CONFIG_CHECK_FREQ("-chkfreq", false),
+    CONFIG_REPEAT_FREQ("-repfreq", false),
     SORT_PRIORITY("-priority", true);
 
     private static final HashMap<String, Flags> map = new HashMap<>();

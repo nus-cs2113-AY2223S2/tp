@@ -1,5 +1,6 @@
 package seedu.todolist.logic.command;
 
+
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidEditException;
 import seedu.todolist.exception.InvalidIdException;
@@ -10,16 +11,17 @@ import seedu.todolist.task.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.TreeSet;
 
 public class EditTagsCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_TAGS, Flags.EDIT, Flags.EDIT_DELETE};
 
-    private int id;
+    private HashSet<Integer> idHashSet;
     private TreeSet<String> tags;
 
     public EditTagsCommand(HashMap<Flags, String> args) throws ToDoListException {
-        id = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_TAGS));
+        idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_TAGS));
         if (args.containsKey(Flags.EDIT)) {
             tags = ParserUtil.parseTags(args.get(Flags.EDIT));
         } else if (!args.containsKey(Flags.EDIT_DELETE)) {
@@ -29,11 +31,14 @@ public class EditTagsCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
-        String taskString = taskList.setTags(id, tags);
-        if (tags == null) {
-            ui.printEditDeleteTaskMessage("tags", taskString);
-        } else {
-            ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
+        for (int id : idHashSet) {
+            if (tags == null) {
+                String taskString = taskList.getTaskString(id);
+                ui.printEditDeleteTaskMessage("tags", taskString);
+            } else {
+                String taskString = taskList.setTags(id, tags);
+                ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
+            }
         }
     }
 }

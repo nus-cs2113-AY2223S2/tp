@@ -11,7 +11,7 @@ public abstract class Command {
     /**
      * Executes the command.
      */
-    public abstract void execute(TaskList taskList, Ui ui) throws ToDoListException;
+    public void execute(TaskList taskList, Ui ui) throws ToDoListException{}
 
     /**
      * Returns whether a command, by default, should terminate the program.

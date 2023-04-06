@@ -1,7 +1,8 @@
 //@@author RuiShengGit
 package seedu.todolist.constants;
 
-public class HelpMessage {
+public class HelpMessages {
+    public static final String PRIORITY_HELP = "Please enter a number from 1-3 = 1:Low, 2:Medium, 3:High)";
     public static final String HELP_COMMAND = "Here are the list of commands that you can use:\n" +
             "+----------------------------------------------------------------------------------------+\n" +
             "| Command                                | Description                                   |\n" +

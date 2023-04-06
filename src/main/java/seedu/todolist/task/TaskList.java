@@ -2,6 +2,7 @@ package seedu.todolist.task;
 
 import seedu.todolist.constants.Formats;
 import seedu.todolist.exception.InvalidIdException;
+import seedu.todolist.logic.Config;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -209,8 +210,7 @@ public class TaskList {
     public String setRepeatDuration(int id, int repeatDuration) throws InvalidIdException {
         return getTask(id).setRepeatDuration(repeatDuration);
     }
-
-    public void checkRepeatingTasks() {
+    public void checkRepeatingTasks(Config config) {
         ArrayList<Task> tasksToBeAdded = new ArrayList<>();
         for (Task task : tasks.values()) {
             int repeatDuration = task.getRepeatDuration();
@@ -224,7 +224,7 @@ public class TaskList {
             task.setRepeatDuration(0);
             while (repeatDuration > 0 && !deadline.isAfter(LocalDateTime.now())) {
                 // Calculate new deadline and recur duration
-                deadline = deadline.plusWeeks(1);
+                deadline = deadline.plusDays(config.getRepeatFrequency());
                 repeatDuration--;
                 // Hold new task in temp array to avoid concurrent modification exception
                 tasksToBeAdded.add(new Task(++count, task.getDescription(), deadline,
@@ -236,5 +236,6 @@ public class TaskList {
         for (Task task : tasksToBeAdded) {
             addTask(task);
         }
+        config.setLastChecked(LocalDateTime.now());
     }
 }
