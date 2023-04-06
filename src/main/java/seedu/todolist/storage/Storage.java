@@ -59,10 +59,6 @@ public class Storage {
         Files.copy(file.toPath(), Paths.get(backupPath), StandardCopyOption.REPLACE_EXISTING);
     }
 
-    private void validateLoadedData(TaskList taskList) {
-        
-    }
-
     /**
      * Writes the current task list to the local save file.
      *

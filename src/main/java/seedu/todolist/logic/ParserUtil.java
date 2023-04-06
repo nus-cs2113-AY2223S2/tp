@@ -79,6 +79,8 @@ public class ParserUtil {
         try {
             int priority = Integer.parseInt(priorityString);
             switch (priority) {
+            case 0:
+                return Priority.NONE;
             case 1:
                 return Priority.LOW;
             case 2:
@@ -160,7 +162,7 @@ public class ParserUtil {
      * @return A hashset containing the extracted tags.
      */
     public static TreeSet<String> parseTags(String tags) {
-        if (tags == null) {
+        if (tags == null || tags.isEmpty()) {
             return new TreeSet<>();
         }
         return new TreeSet<>(Arrays.asList(tags.split(" ")));

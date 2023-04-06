@@ -225,6 +225,23 @@ public class TaskList {
         return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setRepeatDuration(repeatDuration)));
     }
 
+    //@@author jeromeongithub
+    public String addTags(HashSet<Integer> ids, TreeSet<String> tags) throws InvalidIdException {
+        return joinStringStream(getTasks(ids).map(task -> task.addTags(tags)));
+    }
+
+    public String addTags(Predicate<Task> p, TreeSet<String> tags) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.addTags(tags)));
+    }
+
+    public String removeTags(HashSet<Integer> ids, TreeSet<String> tags) throws InvalidIdException {
+        return joinStringStream(getTasks(ids).map(task -> task.removeTags(tags)));
+    }
+
+    public String removeTags(Predicate<Task> p, TreeSet<String> tags) {
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.removeTags(tags)));
+    }
+
     //@@author clement559
     public void checkRepeatingTasks(Config config) {
         ArrayList<Task> tasksToBeAdded = new ArrayList<>();

@@ -20,6 +20,7 @@ public final class Messages {
     public static final String DELETE_TASK = "Okay, I have removed the following task(s):";
     public static final String EDIT_TASK = "Okay, I have edited the %s of the following task(s) to [%s]:";
     public static final String EDIT_DELETE_TASK = "Okay, I have deleted the %s of the following task(s):";
+    public static final String EDIT_TAGS_TASK = "Okay, I have %s the tags [%s] %s the following task(s):";
     public static final String EDIT_CONFIG = "Okay, I have changed the configuration to as follows:";
     public static final String FILTERED_NONE = "No tasks matched the given filter.";
 

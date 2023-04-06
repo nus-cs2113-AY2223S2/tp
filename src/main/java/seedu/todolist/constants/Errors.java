@@ -18,6 +18,8 @@ public final class Errors {
     public static final String INVALID_DURATION = "Invalid repeat duration: ";
     public static final String INVALID_EDIT = "Task edit commands must have either "
             + Flags.EDIT.getName() + " or " + Flags.EDIT_DELETE.getName() + ", not both or neither.";
+    public static final String INVALID_TAG_EDIT = "Tag edit commands must have exactly one of "
+            + Flags.EDIT.getName() + ", " + Flags.EDIT_ADD.getName() + ", or " + Flags.EDIT_DELETE.getName();
     public static final String INVALID_SELECT = "Commands taking IDs/filters must have either "
             + "IDs or filters, not both or neither.";
     public static final String INVALID_FREQUENCY = "Invalid frequency: ";

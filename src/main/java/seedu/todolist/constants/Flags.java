@@ -39,6 +39,7 @@ public enum Flags {
     REPEAT("-rep", false),
     TAG("-tags", false),
     EDIT("-edit", false),
+    EDIT_ADD("-add", false),
     EDIT_DELETE("-del", true),
     RESET("-reset", true),
     SORT("-sort", false),

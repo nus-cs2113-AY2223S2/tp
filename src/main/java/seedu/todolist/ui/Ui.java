@@ -86,6 +86,10 @@ public class Ui {
         println(String.format(Messages.EDIT_TASK, parameterType, newValue), Messages.LINE, taskString);
     }
 
+    public void printEditTagsMessage(String action, String preposition, String tagString, String taskString) {
+        println(String.format(Messages.EDIT_TAGS_TASK, action, tagString, preposition), taskString);
+    }
+
     public void printEditDeleteTaskMessage(String parameterType, String taskString) {
         println(String.format(Messages.EDIT_DELETE_TASK, parameterType), Messages.LINE, taskString);
     }

@@ -41,12 +41,20 @@ public class HelpMessages {
             "|                                        | task with the given id in the To-Do List.     |\n" +
             "------------------------------------------------------------------------------------------\n" +
             "| list                                   | Display all tasks stored in the To-Do List.   |\n" +
+            "|       -done                            | Display all completed tasks.                  |\n" +
+            "|       -undone                          | Display all uncompleted tasks.                |\n" +
+            "|       -overdue                         | Display all overdue tasks.                    |\n" +
+            "|       -priority                        | Display all tasks sorted by priority.         |\n" +
             "------------------------------------------------------------------------------------------\n" +
             "| info ID                                | Display all the attributes of the task with   |\n" +
             "|                                        | the given id in the To-Do List.               |\n" +
             "------------------------------------------------------------------------------------------\n" +
             "| progress                               | Displays the progress of and lists tasks      |\n" +
             "|                                        | that are due this week in To-Do list.         |\n" +
+            "------------------------------------------------------------------------------------------\n" +
+            "| config                                 | Displays current configuratino settings.      |\n" +
+            "|       -chkfreq CHECK_FREQUENCY         | Edits checking frequency for repeating tasks. |\n" +
+            "|       -repfreq REPEAT_FREQUENCY        | Edits repeating frequency of repeating tasks. |\n" +
             "------------------------------------------------------------------------------------------\n" +
             "| help                                   | Displays all possible commands of the program |\n" +
             "|                                        | and their description                         |\n" +
