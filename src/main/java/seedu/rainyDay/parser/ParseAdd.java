@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 //CLAIM THIS CODE
 public class ParseAdd {
+    public static final double MAX_AMOUNT = 21474836.47;
     public static String direction;
     public static String description;
     public static String category = "miscellaneous";
@@ -76,10 +77,13 @@ public class ParseAdd {
                 throw new RainyDayException(ErrorMessage.EMPTY_DESCRIPTION_NAME.toString());
             }
 
-            double exactAmount = Double.parseDouble(matcher.group(3)); // check
+            double exactAmount = Double.parseDouble(matcher.group(3));
+            if (exactAmount > MAX_AMOUNT) {
+                throw new RainyDayException(ErrorMessage.INVALID_VALUE.toString());
+            }
             exactAmount = (int) (exactAmount * 100);
             if (exactAmount == 0) {
-                throw new RainyDayException(ErrorMessage.WRONG_ADD_FORMAT.toString());
+                throw new RainyDayException(ErrorMessage.INVALID_VALUE.toString());
             }
             amount = exactAmount / 100;
 
