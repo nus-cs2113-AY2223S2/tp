@@ -152,10 +152,10 @@ public class ExpenditureList {
         case SortCommand.AMOUNT_DESCENDING:
             sortList.sort(Comparator.comparing(Expenditure::getValue).reversed());
             break;
-        case SortCommand.DATE_FROM_LATEST:
+        case SortCommand.DATE_FROM_EARLIEST:
             sortList.sort(Comparator.comparing(Expenditure::getDate));
             break;
-        case SortCommand.DATE_FROM_EARLIEST:
+        case SortCommand.DATE_FROM_LATEST:
             sortList.sort(Comparator.comparing(Expenditure::getDate).reversed());
             break;
         default:

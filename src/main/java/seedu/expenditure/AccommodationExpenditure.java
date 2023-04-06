@@ -1,17 +1,21 @@
 package seedu.expenditure;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 public class AccommodationExpenditure extends Expenditure {
     public static final String EXPENDITURE_TYPE = "Accom";
     public static String iconPaid = "[X]";
     public static String iconUnpaid = "[ ]";
-    private LocalDate nextRepeatDate = super.getDate();
     private boolean isPaid;
+    private LocalDate nextRepeatDate;
 
     public AccommodationExpenditure(String description, double value, LocalDate date) {
         super(description, value, date);
         isPaid = false;
+        nextRepeatDate = date;
+        //nextRepeatDate = getNextRepeatDate();
     }
 
     public void setPaid() {
@@ -54,11 +58,18 @@ public class AccommodationExpenditure extends Expenditure {
 
     public String fetchNextMonth() {
         int nextMonth = nextRepeatDate.getMonthValue();
-        return Integer.toString(nextMonth);
+        if (nextMonth < 10) {
+            return  "0" + nextMonth;
+        } else {
+            return Integer.toString(nextMonth);
+        }
     }
 
     public String fetchNextDay() {
         int nextDay = nextRepeatDate.getDayOfMonth();
+        if (nextDay < 10) {
+            return "0" + nextDay;
+        }
         return Integer.toString(nextDay);
     }
 
