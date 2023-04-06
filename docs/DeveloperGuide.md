@@ -39,7 +39,7 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
 The class diagram below shows the overall structure of BagPacker application, many methods, variables and associations are omitted for improved clarity
 
 ![BagPackerClassDiagram.png](umlDiagrams%2FBagPackerClassDiagram.png)
-
+![ExceptionClassDiagram.png](umlDiagrams%2FExceptionClassDiagram.png)
 
 ### Command Mechanisms:
 For all valid commands, the mechanism of implementation are as follows:

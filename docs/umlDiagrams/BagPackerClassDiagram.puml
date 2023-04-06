@@ -7,17 +7,6 @@ autonumber
 
 skinparam linetype polyline
 hide circle
-namespace packingfunc #DDDDDD {
-    note "associations \nto PackingList \nomitted for \nclarity of diagram" as PackingListNote
-    class Item{
-    packedQuantity: int
-    totalQuantity: int
-    itemName: String
-    }
-    class "<<static>>\nPackingList" as PackingList{
-    itemList: ArrayList<Item>
-    }
-}
 class BagPacker{
 runBagPacker():void
 }
@@ -36,14 +25,19 @@ namespace iohandler #DDDAAA {
             printToUser():void
     }
 }
-namespace exceptions #AAADDD {
-    class EmptyInputException{}
-    class InvalidIndexException{}
-    class InvalidVariablesException{}
-}
 note "Ui class is associated with all child classes \nof Command class these association lines \nare omitted to reduce mess" as uiNote
 uiNote .[Hidden] Ui
 skinparam groupInheritance 2
+namespace packingfunc #DDDDDD {
+    class Item{
+    packedQuantity: int
+    totalQuantity: int
+    itemName: String
+    }
+    class "<<static>>\nPackingList" as PackingList{
+    itemList: ArrayList<Item>
+    }
+}
 namespace commands #AAAAAA {
     class "{Abstract}\nCommand" as Command{
     execute(<<static>> PackingList):void
@@ -68,7 +62,7 @@ namespace commands #AAAAAA {
 BagPacker "App 1" --> "1..*" Parser : > Parse user \ninput
 BagPacker "1" --> "1" Storage : > Manage saved data upon \ninitialisation and closing
 BagPacker "1" --> "*" Ui : > Send message \nto CLI using
-PackingList "1" *-- "*" Item : packing list composed of items >
+PackingList "1" *-- "*" Item : > packing list \ncomposed \nof items
 Parser "Parser 1" --> "1" Command : Parser creates relevant Command >
 
 @enduml
