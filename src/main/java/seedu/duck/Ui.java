@@ -735,8 +735,8 @@ public class Ui {
         System.out.println("\t            (eg. Meeting /from 2023-03-15 2015 /to 2023-03-15 2215)");
         System.out.println("\t Recurring events: /re <description> /from <HHmm> /to <HHmm> /day <DAY_OF_WEEK>");
         System.out.println("\t            (eg. /re Meeting /from 2015 /to 2215 /day MONDAY)");
-        System.out.println("\t Todo     : <description>");
-        System.out.println("\t            (eg. Water the plants)");
+        System.out.println("\t Todo     : /todo <description>");
+        System.out.println("\t            (eg. /todo Water the plants)");
         System.out.println("\t Classes  : <description> /class <class_name> /day <DAY_OF_WEEK> " +
                 "/from <HHmm> /to <HHmm>");
         System.out.println("\t            (eg. Bring laptop /class CS2113 /day TUESDAY /from 1100 /to 1200) \n");

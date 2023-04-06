@@ -29,9 +29,9 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [Purge expired tasks :](#purge-expired-tasks--purge) `purge`
     * [Clearing all tasks (including datafile) :](#clearing-tasks-from-storage-clear) `clear `
     * [Find tasks matching a given keyword :](#finding-tasks-from-storage-that-match-a-keyword-find-keyword) `find <keyword>`
-    * [Add tasks that can be broken down into the following 6 types:](#adding-a-todo-task--description)
+    * [Add tasks that can be broken down into the following 6 types:](#adding-a-todo-task--todo-description)
     
-            * Add ToDo: <description>
+            * Add ToDo: /todo <description>
             * Add Deadline: <description> /by <yyyy-MM-dd HHmm>
             * Add RecurringDeadline: /re <description> /by <HHmm> /day <DAY_OF_WEEK>
             * Add Event: <description> /from <yyyy-MM-dd HHmm> /to <yyyy-MM-dd HHmm>
@@ -519,13 +519,13 @@ Here are the matching tasks in your list:
 
 
 
-## **Adding a ToDo Task : `<description>`**
+## **Adding a ToDo Task : `/todo <description>`**
 
 Adds a ToDo task to the storage of Duck
 
-**Input:** `<description>`
+**Input:** `/todo <description>`
 
-**Output:  Demonstrated by inputting `Todo`**
+**Output:  Demonstrated by inputting `/todo todo`**
 
 
 ```
