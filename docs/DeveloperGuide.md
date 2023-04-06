@@ -176,7 +176,7 @@ expenditures for the month.
 
 The exceptions component consists of classes `ErrorMessage` and `RainyDayException`.
 
-- `ErrprMessages`:
+- `ErrorMessages`:
 - `RainyDayException`:
 
 ## Implementation
