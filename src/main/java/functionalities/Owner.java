@@ -26,7 +26,10 @@ public class Owner {
     }
 
     public String setContactNumber(String contactNumber) throws SniffException {
-        if (!isNumeric(contactNumber)) {
+        if (contactNumber.isBlank()) {
+            throw new SniffException(" Contact Number cannot be empty!");
+        }
+        else if (!isNumeric(contactNumber)) {
             throw new SniffException(" Contact Number must only contain numbers!");
         }
         else if (contactNumber.length() != 8) {
