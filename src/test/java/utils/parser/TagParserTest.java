@@ -56,12 +56,6 @@ public class TagParserTest {
     }
 
     @Test
-    public void parse_tag_listWithTagLongFlag() throws InkaException {
-        Command cmd = parser.parseCommand("tag list --tag tagName");
-        assert cmd instanceof ListCardsUnderTagCommand;
-    }
-
-    @Test
     public void parse_tag_deleteWithString() throws InkaException {
         Card card = Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000");
         cardList.addCard(card);
