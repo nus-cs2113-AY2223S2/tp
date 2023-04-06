@@ -20,7 +20,7 @@ text-ui-test/EXPECTED-UNIX.TXT
 log.txt
 .gitignore
 
-log.txt
+log.txt.lck
 .gitignore
 save.json
 .vscode

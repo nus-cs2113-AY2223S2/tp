@@ -1,17 +1,10 @@
 package seedu.duke;
 
-// import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static seedu.duke.Parser.SEMESTER_START_DATES;
 
 // User utility class. This class will hold methods required by user.
 public class UserUtility {
@@ -22,80 +15,6 @@ public class UserUtility {
             user = new User();
         }
         return user;
-    }
-
-    public static void printScheduleTable(List<Schedule> events, int semesterWeek) {
-        System.out.println("Showing schedule for semester " + UserUtility.getUser().getSemester()
-                + " and week " + semesterWeek);
-
-        Ui.listTask((ArrayList<Schedule>) events.stream().filter(e -> e.getEndTime() == null)
-                .collect(Collectors.toList()));
-
-        events = events.stream().filter(e -> e.getEndTime() != null).collect(Collectors.toList());
-
-        // define the starting and ending times for the table
-        LocalTime start = LocalTime.of(8, 0);
-        LocalTime end = LocalTime.of(23, 59);
-
-        // define the semester start date and the current week number
-        LocalDate semesterStartDate = SEMESTER_START_DATES.get(getUser().getSemester());
-
-        int currentWeek = semesterWeek;
-
-        if (currentWeek >= 7) {
-            currentWeek++;
-        }
-
-        // get the start and end dates for the current week
-        LocalDate weekStartDate = semesterStartDate.plusWeeks(currentWeek - 1);
-        LocalDate weekEndDate = weekStartDate.plusDays(6);
-
-        // print the table header
-        System.out.print(String.format("%-10s|", "TIME"));
-        for (DayOfWeek day : DayOfWeek.values()) {
-            System.out.print(String.format("%-15s|", day));
-        }
-        System.out.println();
-        System.out.print(String.format("%-10s+", "----------"));
-        for (int i = 0; i < DayOfWeek.values().length; i++) {
-            System.out.print(String.format("%-15s+", "---------------"));
-        }
-        System.out.println();
-
-        ArrayList<Schedule> eventToShow = new ArrayList<>();
-
-        for (Schedule event : events) {
-            if (event.isRecurring() && (event instanceof Event)) {
-                Event now = (Event) event;
-                ArrayList<Event> recurEventInWeek = eventInThisWeek(now, weekStartDate, weekEndDate);
-                eventToShow.addAll(recurEventInWeek);
-            }
-            eventToShow.add(event);
-        }
-
-        // loop through the starting times and print the table rows
-        LocalDateTime time = LocalDateTime.of(weekStartDate, start);
-        int count = 0;
-        while (count++ <= 32) {
-            if (time.toLocalTime().equals(LocalTime.of(0, 0))) {
-                System.out.print(String.format("%-10s|", end.format(DateTimeFormatter.ofPattern("HH:mm"))));
-                time = time.minusMinutes(1).plusDays(1);
-            } else {
-                System.out.print(String.format("%-10s|", time.format(DateTimeFormatter.ofPattern("HH:mm"))));
-            }
-
-            drawEventThisWeek(eventToShow, time, weekStartDate, weekEndDate);
-
-            System.out.println();
-            System.out.print(String.format("%-10s+", ""));
-            for (int i = 0; i < DayOfWeek.values().length; i++) {
-                System.out.print(String.format("%-15s+", "---------------"));
-            }
-            System.out.println();
-            time = LocalDateTime.of(weekStartDate, start.plusMinutes(count * 30));
-        }
-        System.out.println();
-        Ui.printDash();
     }
 
     public static ArrayList<Event> eventInThisWeek(Event curEvent, LocalDate weekStartDate,
@@ -129,8 +48,8 @@ public class UserUtility {
         return events;
     }
 
-    private static void drawEventThisWeek(ArrayList<Schedule> eventToShow, LocalDateTime time,
-            LocalDate weekStartDate, LocalDate weekEndDate) {
+    static void drawEventThisWeek(ArrayList<Schedule> eventToShow, LocalDateTime time,
+                                  LocalDate weekStartDate, LocalDate weekEndDate) {
 
         for (DayOfWeek day : DayOfWeek.values()) {
             boolean found = false;
