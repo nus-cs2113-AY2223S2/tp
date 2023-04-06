@@ -16,7 +16,7 @@ class YearFilterTest {
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     @Test
-    void getYearlyExpenses() {
+    void getYearlyExpenses_successful() {
         ArrayList<Expense> expenses = new ArrayList<>();
         expenses.add(new Expense(new BigDecimal("2.5"),
                 new Time(LocalDate.parse("02-03-2012", formatter)),
@@ -39,5 +39,8 @@ class YearFilterTest {
                 "travel", "SGD", new BigDecimal(1)));
         YearFilter yearFilter = new YearFilter(testExpenses, "2012");
         assertEquals(yearFilter.getYearlyExpenses(), expenses);
+
+        expenses.clear();
+        testExpenses.clear();
     }
 }
