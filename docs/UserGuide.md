@@ -145,7 +145,7 @@ TESLA added successfully!
 ____________________________________________________________
 ```
 
-* The same company cannot be added twice. If the same company is added twice, a warning will be displayed to the user
+* The same company cannot be added twice. If a company with existing name or contact detail is added, a warning will be displayed to the user
 instead.
 
 * Expected outcome:
