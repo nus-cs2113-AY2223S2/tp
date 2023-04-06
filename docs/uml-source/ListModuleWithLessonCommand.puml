@@ -1,0 +1,66 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam maxMessageSize 150
+
+title ListModuleWithLessonCommand
+
+actor User
+
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":ListModuleCommandWithLessonCommand" as ListMod
+participant ":Ui" as Ui
+
+User -> Apollo : "listmod <MODULE_CODE> <LESSON_TYPE>"
+
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+
+Parser -> ListMod** : ListModuleWithLessonCommand()
+activate ListMod
+
+ListMod -> ListMod : setUpLogger()
+activate ListMod
+deactivate ListMod
+
+ListMod -> Parser : ListModuleWithLessonCommand()
+deactivate ListMod
+
+Parser -> ListMod : execute()
+activate ListMod
+
+opt User enters <MODULE_CODE> and <LESSON_TYPE>
+ListMod -> Ui : printSpecificTimetable()
+
+activate Ui
+Ui --> ListMod
+deactivate Ui
+
+else User enters only <MODULE_CODE>
+ListMod -> Ui : printModuleListWithLesson()
+
+activate Ui
+Ui --> ListMod
+deactivate Ui
+
+destroy Ui
+
+ListMod --> Parser
+deactivate ListMod
+destroy ListMod
+
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+
+Apollo --> User
+deactivate Apollo
+
+end
+
+
+
+
+@enduml
