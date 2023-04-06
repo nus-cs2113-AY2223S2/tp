@@ -3,7 +3,6 @@ package seedu.duke;
 import seedu.duke.company.CompanyList;
 import seedu.duke.data.VenueListData;
 import seedu.duke.event.Event;
-import seedu.duke.exception.TooManyVariablesException;
 import seedu.duke.exception.IntegerSizeExceededException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.CompanyListDecoder;
@@ -64,10 +63,6 @@ public class Eventus {
             } catch (NumberFormatException err) {
                 ui.showLine();
                 System.out.println("Number expected! Please type <help> for more information");
-                ui.showLine();
-            } catch (TooManyVariablesException err) {
-                ui.showLine();
-                System.out.println("Too many input field variables! Please type <help> for more information");
                 ui.showLine();
             } catch (IntegerSizeExceededException err) {
                 ui.showLine();
