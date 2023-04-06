@@ -1,6 +1,5 @@
 package seedu.duke.utils;
 
-import seedu.duke.objects.Alert;
 import seedu.duke.objects.AlertList;
 import seedu.duke.objects.Inventory;
 import seedu.duke.objects.Item;
@@ -9,7 +8,6 @@ import seedu.duke.types.Types;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,10 +15,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 public class Storage {
     public static final int BEFORE_INDEX = -1;
@@ -51,49 +45,27 @@ public class Storage {
      */
     public static synchronized Inventory readCSV(String filePath) {
         inventory = new Inventory();
-        isRaceConditionDetected = false;
-        while (!isStorageWriteDone) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ie) {
-                Thread.currentThread().interrupt();
-                isRaceConditionDetected = true;
-                Ui.printRaceCondition();
-                return new Inventory();
-            }
+        Types.FileHealth fileHealth = checkFileValid(filePath, true);
+        switch(fileHealth){
+        case EMPTY:
+            //fallthrough
+        case MISSING:
+            Ui.printEmptySessionFile();
+            return new Inventory();
+        case CORRUPT:
+            Ui.printInvalidSessionFile();
+            return new Inventory();
+        case OK:
+            //fallthrough
+        default:
+            break;
         }
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            Types.FileHealth fileStatus = checkFileValid(filePath, VALID_DATAROW_REGEX);
-            switch (fileStatus) {
-            case MISSING:
-                //fallthrough
-            case EMPTY:
-                Ui.printEmptySessionFile();
-                return new Inventory();
-            default:
-                break;
-            }
             String line = reader.readLine();
-            if (line == null) {
-                Ui.printEmptySessionFile();
-                return new Inventory();
-            }
             Inventory tempInventory = new Inventory();
             while (line != null) {
                 String[] fields = line.trim().split(",");
-                if (fields.length != MAX_NUMBER_OF_FIELDS) {
-                    Ui.printInvalidSessionFile();
-                    return new Inventory();
-                }
-                try {
-                    LocalDateTime.parse(fields[DATE_INDEX]);
-                    Integer.parseInt(fields[QUANTITY_INDEX]);
-                    Double.parseDouble(fields[PRICE_INDEX]);
-                } catch (DateTimeParseException | NumberFormatException e) {
-                    Ui.printInvalidSessionFile();
-                    return new Inventory();
-                }
                 Item item = parseItem(fields);
                 updateInventory(tempInventory, item);
                 updateHistory(inventory, item);
@@ -101,11 +73,10 @@ public class Storage {
             }
             updateInventory(tempInventory);
             reader.close();
-        } catch (IOException | NumberFormatException e) {
+        } catch (IOException e) {
             Ui.printEmptySessionFile();
             return new Inventory();
         }
-
         Ui.printRecoveredSessionFile();
         return inventory;
     }
@@ -255,38 +226,33 @@ public class Storage {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(Types.ALERTFILEPATH));
             String line = reader.readLine();
-            if (line == null) {
-                Ui.printEmptyAlertFile();
+            AlertList tempAlertList = new AlertList();
+            Types.FileHealth fileHealth = checkFileValid(Types.ALERTFILEPATH, false);
+            switch(fileHealth){
+            case EMPTY:
+                //fallthrough
+            case MISSING:
+                Ui.printEmptySessionFile();
                 return new AlertList();
+            case CORRUPT:
+                Ui.printInvalidSessionFile();
+                return new AlertList();
+            case OK:
+                //fallthrough
+            default:
+                break;
             }
-
-            AlertList tempAlertList = new AlertList(); //can set min and max hash maps in here
             while (line != null) {
                 line = line.trim();
                 String[] fields = line.split(",");
-                if (fields.length != ALERT_FIELDS) {
-                    Ui.printInvalidAlertFile();
-                    return new AlertList();
-                }
-                String upc = fields[ALERT_UPC_INDEX];
-                if (!inventory.getUpcCodes().containsKey(upc)) {
-                    Ui.printInvalidAlertFile();
-                    return new AlertList();
-                }
-                Alert alert = new Alert(fields[ALERT_UPC_INDEX], fields[ALERT_MINMAX_INDEX], fields[ALERT_QTY_INDEX]);
-
                 if (fields[ALERT_MINMAX_INDEX].equals("min")) {
                     tempAlertList.setMinAlertUpcs(fields[ALERT_UPC_INDEX], Integer.parseInt(fields[ALERT_QTY_INDEX]));
                 } else if (fields[ALERT_MINMAX_INDEX].equals("max")) {
                     tempAlertList.setMaxAlertUpcs(fields[ALERT_UPC_INDEX], Integer.parseInt(fields[ALERT_QTY_INDEX]));
-                } else {
-                    Ui.printInvalidAlertFile();
-                    return new AlertList();
                 }
 
                 line = reader.readLine();
             }
-
             for (Map.Entry<String, Integer> entry : tempAlertList.getMinAlertUpcs().entrySet()) {
                 inventory.getAlertList().setMinAlertUpcs(entry.getKey(), entry.getValue());
             }
@@ -298,9 +264,6 @@ public class Storage {
         } catch (IOException ioException) {
             Ui.printEmptyAlertFile();
             return new AlertList();
-        } catch (NumberFormatException numberFormatException) {
-            Ui.printInvalidAlertFile();
-            return new AlertList();
         }
         Ui.printRecoveredAlertFile();
         return inventory.getAlertList();
@@ -308,40 +271,101 @@ public class Storage {
     }
 
     /**
-     * Checks if a given file path is valid.
+     * Delegates the logic to check if a given file path is valid.
      *
      * @param path File path
      * @return FileHealth enum that indicates the state of the file (MISSING/CORRUPT/OK)
      */
-    public static synchronized Types.FileHealth checkFileValid(final String path, String validRow) {
-        File file = new File(path);
-
-        // Check if directory exists
-        if (!file.exists()) {
-            return Types.FileHealth.MISSING;
+    public static synchronized Types.FileHealth checkFileValid(final String path, boolean isInventoryData) {
+        if(isInventoryData){
+            return checkFileValidSession(path);
         }
+        return checkFileValidAlert(path);
+    }
 
+    private static Types.FileHealth checkFileValidAlert(String path) {
         try {
-            Scanner scanner = new Scanner(file);
-            // Check if file is empty
-            if (!scanner.hasNextLine()) {
-                scanner.close();
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            String line = reader.readLine();
+            if (line == null) {
                 return Types.FileHealth.EMPTY;
             }
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                Pattern pattern = Pattern.compile(validRow);
-                Matcher matcher = pattern.matcher(line);
 
-                if (!matcher.matches()) {
-                    scanner.close();
+            while (line != null) {
+                line = line.trim();
+                String[] fields = line.split(",");
+                if (fields.length != ALERT_FIELDS) {
                     return Types.FileHealth.CORRUPT;
                 }
+                String upc = fields[ALERT_UPC_INDEX];
+                if (!inventory.getUpcCodes().containsKey(upc)) {
+                    return Types.FileHealth.CORRUPT;
+                }
+                int qty;
+                try {
+                    qty = Integer.parseInt(fields[ALERT_QTY_INDEX]);
+                } catch (NumberFormatException e){
+                    return Types.FileHealth.CORRUPT;
+                }
+                if (qty > 99999999 || qty < 1){
+                    return Types.FileHealth.CORRUPT;
+                }
+                if(!fields[ALERT_MINMAX_INDEX].equals("min") && !fields[ALERT_MINMAX_INDEX].equals("max")){
+                    return Types.FileHealth.CORRUPT;
+                }
+                line = reader.readLine();
             }
-
-            scanner.close();
-        } catch (FileNotFoundException e) {
+            reader.close();
+        } catch (IOException ioException) {
             return Types.FileHealth.MISSING;
+        }
+        return Types.FileHealth.OK;
+    }
+
+    private static Types.FileHealth checkFileValidSession(String path) {
+        isRaceConditionDetected = false;
+        while (!isStorageWriteDone) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+                isRaceConditionDetected = true;
+                return Types.FileHealth.CORRUPT;
+            }
+        }
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            String line = reader.readLine();
+            if (line == null) {
+                return Types.FileHealth.EMPTY;
+            }
+            while (line != null) {
+                String[] fields = line.trim().split(",");
+                if (fields.length != MAX_NUMBER_OF_FIELDS) {
+                    return Types.FileHealth.CORRUPT;
+                }
+                int qty;
+                double price;
+                try {
+                    LocalDateTime.parse(fields[DATE_INDEX]);
+                    qty = Integer.parseInt(fields[QUANTITY_INDEX]);
+                    price = Double.parseDouble(fields[PRICE_INDEX]);
+                } catch (DateTimeParseException | NumberFormatException e) {
+                    return Types.FileHealth.CORRUPT;
+                }
+                if(qty <= 0 || price <= 0){
+                    return Types.FileHealth.CORRUPT;
+                }
+                if(qty > 99999999 || price > 99999999){
+                    return Types.FileHealth.CORRUPT;
+                }
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException ioException) {
+            return Types.FileHealth.EMPTY;
+        } catch (NumberFormatException numberFormatException){
+            return Types.FileHealth.CORRUPT;
         }
 
         return Types.FileHealth.OK;
@@ -355,11 +379,10 @@ public class Storage {
     public static synchronized String checkDataFileExist(boolean isInventoryData) {
         Types.FileHealth fileHealth;
         if (isInventoryData) {
-            fileHealth = checkFileValid(Types.SESSIONFILEPATH, VALID_DATAROW_REGEX);
+            fileHealth = checkFileValid(Types.SESSIONFILEPATH, true);
         } else {
-            fileHealth = checkFileValid(Types.ALERTFILEPATH, VALID_ALERT_REGEX);
+            fileHealth = checkFileValid(Types.ALERTFILEPATH, false);
         }
-
         switch (fileHealth) {
         case OK:
             return "VALID";
