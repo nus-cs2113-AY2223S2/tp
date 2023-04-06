@@ -84,15 +84,17 @@ public class Messages {
     public static final String ERROR_DISH_EMPTY_INDEX = "Index cannot be empty!";
     public static final String ERROR_DISH_MISSING_KEYWORD = "Please key in 1 keyword";
     public static final String ERROR_DISH_MULTIPLE_KEYWORDS = "Please key in only 1 keyword.";
-    public static final String ERROR_CREATE_DIRECTORY = "Unable to create directory at\n%s";
+    public static final String ERROR_CREATE_DIRECTORY = "Unable to create directory at\n%s\n" +
+            "Please check your directory permissions.\n";
     public static final String ERROR_STORAGE_FILE_NOT_FOUND = "The following file was not found:\n%s\n" +
-            "A new file will be created when a new task is added.\n";
+            "The application, if write permissions is correct," +
+            " will try to create a new file for writing when a new task is added.\n";
     public static final String ERROR_STORAGE_INVALID_READ_LINE = "There is an error reading this line.\n%s\n" +
             "Skipping line...\n";
-    public static final String ERROR_STORAGE_INVALID_WRITE_LINE = "There is an error writing this line.\n%s\n" +
-            "Please check your file permissions.";
+    public static final String ERROR_STORAGE_INVALID_WRITE_LINE = "There is an error writing this line. " +
+            "Either the file is missing or write permissions is unavailable.";
     public static final String ERROR_STORAGE_DELETE_FAILED = "There is an error deleting trying " +
-            "to delete from the file. Please check your file permissions.";
+            "to delete from the file. Either the file is missing or Write permissions is unavailable.";
 
     public static final String ERROR_STAFF_INVALID_INDEX = "Invalid staff index number";
     public static final String ERROR_STAFF_EXCESS_VIEW_PARAM = "Excessive parameter given to view staff command!";
