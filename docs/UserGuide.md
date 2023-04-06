@@ -387,7 +387,6 @@ Format: `help COMMAND`
 |         `find`          |                     format for finding matching tasks with keyword                      |
 |         `date`          |                           format for finding tasks with date                            |
 |        `listmod`        |                     information and format for list module command                      |
-| `listmod [MODULE_CODE]` |                 information and format for list specific module command                 |
 |        `addmod`         | information and format of adding modules and module lessons commands, with flag options |
 |        `delmod`         |       information and format of delete module command options, with flag options        |
 |        `showmod`        |                  information and format of show module command options                  |

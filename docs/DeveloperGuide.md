@@ -498,7 +498,7 @@ in `TaskList`, a message is printed to the user indicating that there are no mat
 Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the list of 
 tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description and
 date of the task containing `KEYWORD` if the matching task is either an event or a deadline task.
-
+![](../docs/uml-diagrams/FindCommand-FindCommand__Find_tasks_.png)
 [*Return to TOC*](#table-of-contents)
 
 ### List Task
@@ -539,6 +539,7 @@ Step 4. Print the confirmation message: A confirmation message is printed to the
 in `TaskList` that the user updated and the total number of unmarked tasks. The message includes the task type, 
 description and date of all tasks if the tasks are either an event or a deadline task.
 
+
 [*Return to TOC*](#table-of-contents)
 
 ### Find Task on Date
@@ -576,6 +577,7 @@ Step 6. Print the confirmation message: A confirmation message is printed to the
 `TaskList` that are occurring on the `date` input by the user. The message includes the task type, description, date
 and time of the task if the task is either an event or a deadline task.
 
+![](../docs/uml-diagrams/DateCommand-DateCommand__Find_tasks_by_date_.png)
 [*Return to TOC*](#table-of-contents)
 
 ### View Week
@@ -809,6 +811,18 @@ There are -FLAGS for the various lessons options per module:
 ____________________________________________________________
 ```
 #### Adding a ToDo/Event/Deadline
+1. Make sure you are in the main interface.
+#### Invalid Commands
+1. Test case for empty task description: ```todo ``` or ```deadline``` or ```event```
+Expected: Empty task description exception thrown. Error details shown in status message
+2. Test case for invalid dateTime format
+   - Out of calender range: ```deadline return book 40-11-2023-11:23``` or ```event wedding -from 40-11-2023-11:23 - to 41-11-2023-11:23```
+   Expected 
+### Adding a ToDo
+1. Test case : ```todo Feed the fish```
+Expected: ToDo is added into TasksList. Details shown in status message.
+2. Test case : ```todo```
+Expected: Empty task description exception thrown. Error details shown in status message 
 
 #### Deleting a Todo/Event/Deadline
 
