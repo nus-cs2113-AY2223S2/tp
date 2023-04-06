@@ -43,15 +43,15 @@ public class TagList {
 
     public Tag findTagFromUUID(TagUUID tagUUID) {
         for (Tag tag : tags) {
-            if (tag.getUUID().equals(tagUUID)) {
+            if (tag.getUUID().equals(tagUUID.uuid)) {
                 return tag;
             }
         }
         return null;
     }
 
-    public boolean deleteTagByUUID(TagUUID uuid) {
-        return tags.removeIf(tag -> (tag.getUUID().equals(uuid)));
+    public boolean deleteTagByUUID(TagUUID tagUUID) {
+        return tags.removeIf(tag -> (tag.getUUID().equals(tagUUID.uuid)));
     }
 
     public void delete(int id) {
