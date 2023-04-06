@@ -78,7 +78,7 @@ public interface Parser {
             if(input.indexOf("n/") != input.lastIndexOf("n/")){
                 ui.multipleAdditionErrorMessage();
                 throw new WrongFormatException();
-            } else if(!checkMultipleAddition(input)){
+            } else if(isMultipleInfo(input)){
                 ui.multipleInformationErrorMessage();
                 throw new WrongFormatException();
             }
@@ -91,14 +91,14 @@ public interface Parser {
             if(industry.equals(" ")){
                 ui.emptyInputErrorMessage("industry");
                 throw new WrongFormatException();
-            }else if(!checkIndustryValidity(industry)){
+            }else if(!isIndustryValid(industry)){
                 ui.invalidInputFormatErrorMessage("industry",
                         "Industry cannot be a word without alphabet.");
                 throw new WrongFormatException();
             }
             //Only valid Singaporean number is allowed.
             int contactNumber = Integer.parseInt(contactNumberString);
-            if(contactNumberString.length() > 8 || !checkContactNumberValidity(contactNumber)){
+            if(contactNumberString.length() > 8 || !isContactNumberValid(contactNumber)){
                 ui.invalidInputFormatErrorMessage("contact number",
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
                 throw new WrongFormatException();
@@ -217,7 +217,7 @@ public interface Parser {
         }
     }
 
-    private static boolean checkContactNumberValidity(int contactNumber){
+    private static boolean isContactNumberValid(int contactNumber){
         if(contactNumber < 30000000 || contactNumber > 100000000){
             return false;
         } else if(contactNumber >= 40000000 && contactNumber < 60000000){
@@ -228,7 +228,7 @@ public interface Parser {
         return true;
     }
 
-    private static boolean checkIndustryValidity(String industry){
+    private static boolean isIndustryValid(String industry){
         if(industry.contains("a")||industry.contains("b")||industry.contains("c")||industry.contains("d")||
                 industry.contains("e")||industry.contains("f")||industry.contains("g")||industry.contains("h")||
                 industry.contains("i")||industry.contains("j")||industry.contains("k")||industry.contains("l")||
@@ -241,12 +241,12 @@ public interface Parser {
         return false;
     }
 
-    private static boolean checkMultipleAddition(String input){
+    private static boolean isMultipleInfo(String input){
         if(input.indexOf("i/") != input.lastIndexOf("i/") || input.indexOf("c/") != input.lastIndexOf("c/")
                 || input.indexOf("e/") != input.lastIndexOf("e/")){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }
