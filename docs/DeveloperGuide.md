@@ -72,7 +72,7 @@ How the `Command` component works:
 A logger is set up during the initialisation of the `Command`, after which it is sent back to `Apollo`. 
 2. If the command entered was valid, `Apollo` then executes the `Command`. 
 3. `Command` can communicate with `TaskList`, `ModuleList` and `Calendar` when it is executed (eg. to modify Tasks, to 
-add Modules)
+add Modules).
 4. `Command` can also communicate with `Storage` to update the local save files if there are changes.
 5. The result of the command execution is sent to `Ui` to be printed out to the user.   
 
@@ -386,7 +386,7 @@ and  total modular credits the user is taking this semester.
 
 UML Diagram for ListModuleCommand
 
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListMod-ListModuleCommand.png?raw=true)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleWithLessonCommand-ListModuleWithLessonCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -539,7 +539,7 @@ is printed by calling the `printModuleLessonDeleteMessage()` method of the `Ui` 
 the message is printed by calling the `printModuleNotFoundMessage()` method of the `Ui` class. If the 
 argument is invalid, the message is printed by calling the `printInvalidCommand()` method of the `Ui` class.
 
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteMod-DeleteModuleCommand.png?raw=true)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteModuleCommand-DeleteModuleCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -602,7 +602,7 @@ Step 6. Print the confirmation message: A confirmation message is printed to the
 of the module requested by the user. The message includes the `ModuleCode`, the specific `LessonType` of the module, 
 `Classnumber`of requested `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
 
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ShowMod-ShowModuleCommand.png?raw=true)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ShowModuleCommand-ShowModuleCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
