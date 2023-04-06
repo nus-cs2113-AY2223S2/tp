@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Random;
 
+import static java.lang.Math.abs;
+
 public class GeneralUi {
     private static Scanner sc = new Scanner(System.in);
     private static int minimumNumber = 1; //inclusive
@@ -214,7 +216,7 @@ public class GeneralUi {
         } else if (netCalories == 0) {
             System.out.println("Your net calories on " + date + "is zero.");
         } else {
-            System.out.println("You have lost " + netCalories + " calories on " + date);
+            System.out.println("You have lost " + abs(netCalories) + " calories on " + date);
         }
     }
 

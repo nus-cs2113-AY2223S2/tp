@@ -1,6 +1,10 @@
-# Duke project template
+# LifeTracker
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+LifeTracker is a desktop application used for encouraging users to lead a healthier life by tracking their net calorie intake. The user interacts with it using a CLI. LifeTracker is written in Java 11 and has about 4 kLoC.
+
+Useful links:
+* [User Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
 
 ## Setting up in Intellij
 

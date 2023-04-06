@@ -2,6 +2,8 @@ package seedu.entities;
 
 import java.util.Objects;
 
+import seedu.logger.LogFileHandler;
+
 public class User {
     private String name;
     private float weight;
@@ -125,7 +127,7 @@ public class User {
             assert caloricNeeds > 0: "Caloric Needs should be more than O";
             return caloricNeeds;
         default:
-            System.out.println("Gender not provided, cannot calculate caloric needs accurately");
+            LogFileHandler.logWarning("Gender not provided, cannot calculate caloric needs accurately");
             return 0;
         }
     }

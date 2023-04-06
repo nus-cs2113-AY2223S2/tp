@@ -10,6 +10,7 @@ import seedu.constants.DateConstants;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
+import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.InvalidIndexException;
 import seedu.exceptions.InvalidMealException;
@@ -156,6 +157,8 @@ public class AddMealCommand extends Command {
         dateIndex = userInput.indexOf(dateIdentifier);
         if (dateIndex == -1) {
             throw new MissingArgumentsException(commandWord, dateIdentifier);
+        } else if (dateIndex > commandWord.length()+1) {
+            throw new InvalidCommandException();
         }
         mealTypeIndex = userInput.indexOf(mealTypeIdentifier);
         if (mealTypeIndex == -1) {
