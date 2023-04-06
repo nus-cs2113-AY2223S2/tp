@@ -163,7 +163,7 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  You have not set your budget.
+|  Enter command: |  You have not set your budget for this month.
 |
 |  setBudget: sets your budget for current month.
 |  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
