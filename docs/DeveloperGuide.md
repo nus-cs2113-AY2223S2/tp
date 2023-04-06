@@ -14,6 +14,8 @@ For all valid commands, the mechanism of implementation are as follows:
 3. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object 
    which runs the actual command function
 
+---
+
 #### Add Command
 
 Add command is used to add a quantity of item(s) to the packing list.
@@ -22,13 +24,13 @@ Mechanism: ```AddCommand.execute()``` calls the ```PackingList.addItem()``` meth
 It then updates the ```quantity``` variable according to the quantity inputted by the user.
 
 
-#### Preventing duplicate items
+##### Preventing duplicate items
 
-When using the `add` function, we have decided to implement method that checks whether the item with the same name already exists in the packingList.
+When using the `add` function, we have decided to implement a method to check whether the item with the same name already exists in the packingList.
 
 This is done through the `itemFinder()` method in class `PackingList()`, which is called during `AddCommand.execute()`.
 
-Below is the UML diagram showing what occurs during `add` function when trying to add an item that already exists.
+Below is the UML diagram showing what occurs during `add` function when trying to add a duplicate item.
 
 ![AddExistingItemDiagram.png](umlDiagrams%2FAddExistingItemDiagram.png)
 
@@ -43,11 +45,15 @@ If `PackingList.itemFinder()` returns false, the item will be added onto `packin
 In both scenarios, the relevant `ui.printToUser` messages (omitted in the sequence diagram for easier reading) will be called to print a message to the user.
 
 
+---
+
 #### Delete Command
 
 Delete command is used to delete an item from the packing list.
 
 Mechanism: ```DeleteCommand.execute()``` calls the ```PackingList.deleteItem()``` method from the ```PackingList``` class which executes the ```ArrayList.remove()``` method to remove the item from the ```PackingList``` ArrayList.
+
+---
 
 #### Help Command
 Help command is used to exit the BagPacker application.
@@ -56,36 +62,98 @@ Execute: ```HelpCommand.execute()``` prints the following help message.
 
 ```
 All Commands:
-1. add : Adds quantity and name of item to the packing list.
-   Example: Example: add 3 /of toothbrush
-   Meaning: Meaning: add quantity of 3 toothbrushes to the packing list
-2. delete : Deletes an item from the packing list.
-   Example: delete 1
-   Meaning: removes the first item in the packing list
-3. list : List all items in packing list.
-   Example: list
-4. pack : Adds to the current quantity of items packed in the packing list.
-   Example: pack 2 /of 3
-   Meaning: packs 2 more quantities of the third item in the packing list
-5. packkall: Marks all quantity of the specified item as packed in the packing list.
-   Example: packall /of 3
-   Meaning: packs all of the quantities of the third item in the packing list.
-6. unpack : Deducts from the current quantity of items packed in the packing list.
-   Example: unpack 1 /of 2
-   Meaning: unpacks 1 quantity of the second item in the packing list
-7. deletelist : Deletes all items in the packing list.
-   Example: deletelist
-8. bye : Stops the BagPacker Application
-   Example: bye
+1. add: Adds quantity and name of item to the packing list.
+	Example: add 3 /of toothbrush
+	Meaning: Add quantity of 3 toothbrushes to the packing list
+2. delete: Deletes an item from the packing list.
+	Example: delete 1
+	Meaning: Removes the first item in the packing list
+3. list: List all items and their total quantities packed in packing list.
+	Example: list
+4. pack: Adds to the current quantity of items packed in the packing list.
+	Example: pack 2 /of 3
+	Meaning: Packs 2 more quantities of the third item in the packing list
+5. unpack: Deducts from the current quantity of items packed in the packing list.
+	Example: unpack 1 /of 2
+	Meaning: Unpacks 1 quantity of the second item in the packing list
+6. deletelist: Deletes all items in the packing list.
+	Example: deletelist
+7. listunpacked: List all items and their total quantities if they are not fully packed yet.
+	Example: listunpacked
+8. editquantity: Edit the total quantity of an item to be packed.
+	Example: editquantity 3 /of 2
+	Meaning: Change the total quantity of the second item to 3
+9. packall: Fully pack an item of choice from the packing list.
+	Example: packall /of 3
+	Meaning: Set the third item in the packing list as fully packed
+10. unpackall: Fully unpacks an item of choice from the packing list.
+	Example: unpackall /of 3
+	Meaning: Set the third item in the packing list as totally not packed yet
+11. find: Displays all items in the packingList as a list that contains the keyword used in the command.
+	Example: find jacket
+12. bye: Stops the BagPacker Application
+	Example: bye
 ____________________________________________________________
 
+
 ```
+
+---
+
+#### List Command
+
+List command is used to list out all items in the packing list.
+
+Mechanism: ```ListCommand.execute()``` prints the full list of items in `PackingList` to the CLI.
+
+List format: `ITEM_INDEX. [CURRENTLY_PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`
+
+Example:
+```
+____________________________________________________________
+list
+____________________________________________________________
+Here are the items in your list
+1. [0/1] passport
+2. [2/3] shirts
+3. [0/2] phones
+4. [3/3] pairs of socks
+____________________________________________________________
+```
+
+---
+
+#### List Unpacked Command
+
+`listunpacked` command is used to list out all items in the packing list that are not fully packed.
+
+Mechanism: ```ListUnpackedCommand.execute()``` calls `getUnpackedList()`, which iterates through every item in `PackingList` to check if it is fully packed.
+In each iteration, `Item.checkFullyPacked()` is called which checks `packedQuantity == totalQuantity` for a particular item and returns its packed status (true if fully packed, else false).
+Each item that is not fully packed is added to an ArrayList of unpacked items.
+Finally, `ListUnpackedCommand.execute()` prints the full list of unpacked items in `unpackedlist` to the CLI.
+
+Example:
+```
+____________________________________________________________
+listunpacked
+____________________________________________________________
+Here are the unpacked items in your list
+1. [0/1] passport
+2. [2/3] shirts
+3. [0/2] phones
+____________________________________________________________
+```
+
+---
+
 
 #### DeleteList Command
 ```DeleteListCommand``` is used to delete a whole packing list in the BagPacker application.
 
 Mechanism: ```DeleteListCommand.execute()``` reassigns the existing ```packingList``` to a new empty ArrayList of Items, thus deleting the ```packingList```.
 
+
+---
 
 #### Bye Command
 ```ByeCommand``` is used to exit the BagPacker application.
@@ -119,6 +187,8 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 | v2.0    | user     | specify the quantity of an item I need to pack | keep track of individual item quantities being packed                        |
 | v2.1    | user     | find an item by name                           | find the pack status of an item without having to go through the entire list |
 | v2.1    | user     | save my packing list                           | keep track of my packing list even after leaving the app                     |
+| v2.1    | user     | see the list of items I have yet to pack       | easily track what I am missing                                               |
+
 
 ## Non-Functional Requirements
 
