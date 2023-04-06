@@ -68,8 +68,8 @@ Here's a class diagram of the `Command` component
 > SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)   
 
 How the `Command` component works:
-1. When a command is entered by the user, `Parser` will create the relevant subclass of `Command` and send it back to 
-`Apollo`. 
+1. When a command is entered by the user, `Parser` will create the relevant subclass of `Command`. 
+A logger is set up during the initialisation of the `Command`, after which it is sent back to `Apollo`. 
 2. If the command entered was valid, `Apollo` then executes the `Command`. 
 3. `Command` can communicate with `TaskList`, `ModuleList` and `Calendar` when it is executed (eg. to modify Tasks, to 
 add Modules)
