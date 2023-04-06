@@ -1,15 +1,15 @@
 @startuml
 hide footbox
 !include style.puml
-participant ":Duke" MAIN_COLOUR
-participant ":Storage" as Storage STORAGE_COLOUR
-participant ":UserCareerData" COMMONS_COLOUR
-participant ":UserPlan" LAPIS
-Storage++ STORAGE_COLOUR
+participant ":Duke"
+participant ":Storage" as Storage
+participant ":UserCareerData"
+participant ":UserPlan"
+Storage++ MAIN_COLOUR
 ":Duke" -> Storage : loadUserData()
 activate Storage STORAGE_FADED_COLOUR
         Storage -> ":UserCareerData"
-        activate ":UserCareerData" COMMONS_COLOUR
+        activate ":UserCareerData" ORANGE
             loop sessions in file times
                 Storage -> ":UserCareerData" : addWorkoutSession()
             end

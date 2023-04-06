@@ -71,12 +71,12 @@ Types of pre-defined messages:
 3. Error messages that trigger when a user's input is incorrect and provides an explanation to the
    user. (`ErrorMessages` class)
 
-The class diagram as shown in Figure *1.3* illustrates the structure of the different classes in Ui.
+The class diagram as shown in Figure *2.1* illustrates the structure of the different classes in Ui.
 
 <div align="center">
 <img src="UML/Images/Ui.png"/>
 <p>
-Figure 1.3
+Figure 2.1
 </p>
 </div>
 
@@ -94,21 +94,21 @@ Key Aspects:
 * Handles the creation of user data file when previous one is missing or corrupted
 * Handles the loading of user data and plans upon start of the program
 
-The class diagram as shown in *Figure 1.4* illustrates the structure of the different classes in Storage.
+The class diagram as shown in *Figure 3.1* illustrates the structure of the different classes in Storage.
 <div align="center">
 <img src="UML/Images/Storage.png"/>
 <p>
-Figure 1.4
+Figure 3.1
 </p>
 </div>
 
-The Storage API interacts with the other classes as shown in the *Sequence Diagram*
+The Storage API interacts with the other classes as shown in the *Sequence Diagram* as per *Figure 3.2*
 where it shows how the Storage API loads the local user data json file as well as the user plans json file upon the 
 resumption of the program.
 <div align="center">
 <img src="UML/Images/LoadingUserData.png"/>
 <p>
-Figure 1.5
+Figure 3.2
 </p>
 </div>
 
@@ -125,7 +125,7 @@ It controls where the user input is being processed.
 <div align="center">
 <img src="UML/Images/CommandHandler.png"/>
 <p>
-Figure 1.6
+Figure 4.1
 </p>
 </div>
 
@@ -139,7 +139,7 @@ ending, cancelling workouts.
 <div align="center">
 <img src="UML/Images/CommandHandler.png"/>
 <p>
-Figure 1.7
+Figure 5.1
 </p>
 </div>
 
@@ -157,7 +157,7 @@ and viewing the workout plans.
 <div align="center">
 <img src="UML/Images/PlannerCommandHandler.png"/>
 <p>
-Figure X.X
+Figure 6.1
 </p>
 </div>
 
@@ -166,7 +166,7 @@ Figure X.X
 <div align="center">
 <img src="UML/Images/addPlan.png"/>
 <p>
-Figure X.X
+Figure 6.2
 </p>
 </div>
 
@@ -180,7 +180,7 @@ All error messages are stored in the ErrorMessage enumeration for easy access ac
 <img src="UML/Images/ErrorMessagesEnum.png"/>
 <div align="center">
 <p>
-Figure 1.8
+Figure 7.1
 </p>
 </div>
 
@@ -217,6 +217,8 @@ progress.
 | V2.0    | - User looking for motivation                                                                            | - be able to track my workout history as statistics                                                                             | - better visualise my overall progress                                         |
 | V2.0    | - user with little to no experience with exercise                                                        | - be given instructions for the specific exercise that I am working on                                                          | be educated on how to complete the exercise correctly                          |
 | V2.0    | - User who wants to stay motivated to workout </br> - User who wants to feel good about my past workouts | - See myself be able to accomplish or achieve incrementally greater goals </br> - Keep track of all my exercises                | - Continue to stay motivated in making exercise a fun, long-lasting habit      |
+| V2.1    | - User who likes to be motivated by incentive                                                            | - Gain achievements throughout my usage of the app                                                                              | - Be more motivated to keep exercising                                         |                                        | - 
+| V2.1    | - SAF personnel                                                                                          | - Track my IPPT scores over a period of time                                                                                    | - achieve gold ranking in my IPPT                                              |
 
 ## Non-Functional Requirements
 1. The program should be able to generate a list of exercises within 5 seconds
@@ -231,11 +233,12 @@ progress.
 * *CLI* - Command Line Interface - The terminal in the PC OS
 * *ExerciseData* - Individual Exercise data from the ```data.json``` file
 * *Ui* - User Interface
+* *UserCareer* - The entire usage journey of using our application
 
 ## Instructions for manual testing
 
 ### Launch and shutdown of program
-1. Download the latest version of the .jar file and copy the file to the folder where you want the Fitness Duke program to run.
+1. Download the latest version of the jar file and copy the file to the folder where you want the Fitness Duke program to run.
 2. Run the .jar file based on the instructions on the User Guide.
 Expected: Shows the CLI with the welcome message. alongside some logging messages.
 

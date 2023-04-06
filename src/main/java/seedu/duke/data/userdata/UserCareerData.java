@@ -14,6 +14,7 @@ public class UserCareerData {
     /**
      * ArrayList of Session that consists of all sessions completed by the user
      */
+    private static final String SPLIT_LINE = "--------------------------";
     private ArrayList<Session> totalUserCareerSessions;
 
     /**
@@ -42,19 +43,21 @@ public class UserCareerData {
     }
 
     //@@author L-K-Chng
+
     /**
      * Deletes a workout session according to the session number as
      * input by the user.
+     *
      * @param i the session number input by the user.
      */
     public void deleteWorkoutSession (int i) {
-        totalUserCareerSessions.remove(i-1);
+        totalUserCareerSessions.remove(i - 1);
     }
 
     //@@author ChubbsBunns
     public void printAllFinishedWorkoutSessions () {
         if (totalUserCareerSessions.isEmpty()) {
-            System.out.println("You have not completed any exercises ☹");
+            System.out.println("You have not completed any exercises :(");
             System.out.println("Add on to this list by completing a workout session!");
         } else {
             PrintExercises exercisePrinter = new PrintExercises();
@@ -66,17 +69,19 @@ public class UserCareerData {
                 assert dateSplit.length == 2;
                 System.out.println("On this date: " + dateSplit[0]);
                 exercisePrinter.printExercise(sessionInList.getSessionExercises());
-                if (i != totalUserCareerSessions.size() - 1) {
-                    System.out.println("\n ");
-                }
-                if (sessionInList instanceof IPPTSession){
+                if (sessionInList instanceof IPPTSession) {
                     UserScore sessionScore = ((IPPTSession) sessionInList).getUserScore();
                     System.out.println("You scored at total of: " + sessionScore.getTotalScore() + '\n' +
-                            "Pushups: " + sessionScore.getPushupScore() + '\n' +
-                            "Situps: " + sessionScore.getSitupScore() + '\n' +
-                            "2.4 Km Run " + sessionScore.getRunScore());
+                                           "Pushups points: " + sessionScore.getPushupScore() + '\n' +
+                                           "Situps points: " + sessionScore.getSitupScore() + '\n' +
+                                           "2.4 Km Run points: " + sessionScore.getRunScore() + '\n');
+                }
+                if (i != totalUserCareerSessions.size() - 1) {
+                    System.out.println("\n ");
+                    System.out.println(SPLIT_LINE);
                 }
             }
         }
     }
+
 }

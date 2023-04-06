@@ -1,8 +1,8 @@
 package seedu.duke.storage;
-//@author EangJS
+//@@author EangJS
 
 /**
- * Interface for the handling of user data storage
+ * Interface for the handling of user data storage.
  */
 public interface Storage extends UserCareerStorage, UserPlansStorage {
 

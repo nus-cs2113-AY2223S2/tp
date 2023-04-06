@@ -12,16 +12,17 @@ import seedu.duke.storage.Storage;
 
 import java.util.ArrayList;
 
-//@author ghzr0
-public class IPPTCmd{
+//@@author ghzr0
+public class IPPTCmd {
     private IPPTCalc ipptCalculator;
+
     // pass in input : IPPT [age] [runtime] [pushup score] [situp score]
-    public IPPTCmd(String[] userCommands) throws DukeError{
+    public IPPTCmd (String[] userCommands) throws DukeError {
         String userInputAge = userCommands[0];
         String userInputRunTime = userCommands[1];
         String userInputPushUps = userCommands[2];
         String userInputSitups = userCommands[3];
-        if (userInputRunTime.length() > 5){
+        if (userInputRunTime.length() > 5) {
             throw new DukeError(ErrorMessages.ERROR_IPPT_INVALID_TIMING.toString());
         }
         try {
@@ -29,13 +30,15 @@ public class IPPTCmd{
             int pushupReps = Integer.parseInt(userInputPushUps);
             int situpReps = Integer.parseInt(userInputSitups);
             ipptCalculator = new IPPTCalc(ageGroup, userInputRunTime, pushupReps, situpReps);
-        } catch (Exception e){
+        } catch (NullPointerException | NumberFormatException numberFormatError) {
+            throw new DukeError("Invalid IPPT input (ensure that you have a reasonable input)");
+        } catch (Exception e) {
             throw new DukeError(e.getMessage());
         }
     }
 
-    public void addIPPTSession(GenerateExercise exerciseGenerator, UserCareerData userCareerData,
-                               Storage storage) throws DukeError{
+    public void addIPPTSession (GenerateExercise exerciseGenerator, UserCareerData userCareerData,
+                                Storage storage) throws DukeError {
         UserScore userScore = new UserScore();
         ArrayList<ExerciseData> exercises = exerciseGenerator.generateIPPTExercises(exerciseGenerator.generateSetAll());
         try {
@@ -45,14 +48,15 @@ public class IPPTCmd{
             userScore.setRunScore(runScore);
             userScore.setPushupScore(pushupScore);
             userScore.setSitupScore(situpScore);
-            IPPTSession ipptsession = new IPPTSession(exercises,userScore);
+            IPPTSession ipptsession = new IPPTSession(exercises, userScore);
             userCareerData.addWorkoutSession(ipptsession);
             storage.writeToJson(userCareerData);
             System.out.println("We added your IPPT as a session");
             System.out.println("Your total score is " + userScore.getTotalScore());
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DukeError(e.getMessage());
         }
     }
+
 }
 

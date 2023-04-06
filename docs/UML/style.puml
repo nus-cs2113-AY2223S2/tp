@@ -10,4 +10,6 @@
 !define BLUE #004e89
 !define ORANGE #ff6b35
 !define LAPIS #76AED8
+!define SEA #16AED8
+!define MAROON #AE4D64
 @enduml

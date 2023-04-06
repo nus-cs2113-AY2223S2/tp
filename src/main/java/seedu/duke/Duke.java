@@ -62,7 +62,12 @@ public class Duke {
             } catch (DukeError dukeError) {
                 System.out.println(dukeError.getMessage());
             } catch (Exception e) {
-                System.out.println("An unexpected error has occurred");
+                if (e.getMessage() == "No line found") {
+                    System.out.println("Keyboard interrupt detected, Bye!");
+                    return;
+                } else {
+                    System.out.println("An unexpected error has occurred");
+                }
             }
         }
     }
