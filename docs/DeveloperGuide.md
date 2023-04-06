@@ -231,12 +231,6 @@ Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exerci
 
 ### Design considerations:
 
-## [Proposed] Track feature
-
-### Proposed Implementation
-
-### Design considerations:
-
 ## [Proposed] Examples feature
 
 ### Proposed Implementation

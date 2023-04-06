@@ -153,13 +153,5 @@ public class TrackCalorieCommand extends Command {
             return null;
         }
     }
-
-    private int getIndex(int valOne, int valTwo) {
-        if (valOne == -1) {
-            return valTwo;
-        } else {
-            return valOne;
-        }
-    }
     
 }
