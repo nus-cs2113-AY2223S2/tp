@@ -123,7 +123,7 @@ public class Ui {
         System.out.println("This company is already uncomfirmed!");
         showLine();
     }
-      
+
 
     public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList) {
         showLine();
@@ -162,22 +162,22 @@ public class Ui {
         showLine();
     }
 
-    public void emptyInputErrorMessage(String emptyPart){
+    public void emptyInputErrorMessage(String emptyPart) {
         showLine();
         System.out.println("Empty " + emptyPart + " is not allowed. Please check " + emptyPart + " again!");
     }
 
-    public void invalidInputFormatErrorMessage(String invalidPart){
+    public void invalidInputFormatErrorMessage(String invalidPart) {
         showLine();
         System.out.println("Invalid " + invalidPart + ". Please check the " + invalidPart + " again!");
     }
 
-    public void invalidInputFormatErrorMessage(String invalidPart, String expectedInput){
+    public void invalidInputFormatErrorMessage(String invalidPart, String expectedInput) {
         showLine();
         System.out.println("Invalid " + invalidPart + ".\n" + expectedInput);
     }
 
-    public void multipleAdditionErrorMessage(){
+    public void multipleAdditionErrorMessage() {
         showLine();
         System.out.println("Multiple companies cannot be added at once. Please add companies separately!");
     }

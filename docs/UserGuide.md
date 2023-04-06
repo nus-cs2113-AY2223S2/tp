@@ -4,7 +4,7 @@
 1. Introduction
 2. Quick Start
 3. Features
-4. Commands summary
+4. Summary of the commands
 
 ## Introduction
 
@@ -340,19 +340,20 @@ ____________________________________________________________
 
 ## Command Summary
 
-| Command                                                        | Usage                                              |
-|----------------------------------------------------------------|----------------------------------------------------|
-| help                                                           | display the commands of the application            |
-| list companies                                                 | list the companies                                 |
-| list venues                                                    | list the venues                                    |
-| list unconfirmed                                               | list the companies yet to confirm their attendance |
+| Command                                                       | Usage                                              |
+|---------------------------------------------------------------|----------------------------------------------------|
+| help                                                          | display the commands of the application            |
+| list companies                                                | list the companies                                 |
+| list venues                                                   | list the venues                                    |
+| list unconfirmed                                              | list the companies yet to confirm their attendance |
 | add n/[COMPANY_NAME] i/[INDUSTRY] c/[CONTACT_NUMBER] e/[EMAIL] | add a company to the company list                  |
-| delete [INDEX]                                                 | delete a company in the company list               |
-| confirm [INDEX]                                                | confirm a companies' attendance                    |
-| unconfirm [INDEX]                                              | unconfirm a companies' attendance                  |
-| load samples                                                   | load samples company data for manual testing       |
-| purge                                                          | delete the company list data                       |
-| find company [COMPANY_NAME]                                    | find the companies based on a company name         |
-| find industry [INDUSTRY]                                       | find the companies within an industry              | 
-| choose venue [INDEX]                                           | updates the venue of the event                     |
-| exit                                                           | exit the application                               |
+| delete [INDEX]                                                | delete a company in the company list               |
+| confirm [INDEX]                                               | confirm a companies' attendance                    |
+| unconfirm [INDEX]                                             | unconfirm a companies' attendance                  |
+| load samples                                                  | load samples company data for manual testing       |
+| purge                                                         | delete the company list data                       |
+| find company [COMPANY_NAME]                                   | find the companies based on a company name         |
+| find industry [INDUSTRY]                                      | find the companies within an industry              | 
+| choose venue [INDEX]                                          | updates the venue of the event                     |
+| update event name [EVENT_NAME]                                | updates the name of the event                      |
+| exit                                                          | exit the application                               |
