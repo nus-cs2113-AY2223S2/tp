@@ -1,23 +1,32 @@
 package seedu.todolist.logic;
 
+import seedu.todolist.constants.Flags;
 import seedu.todolist.constants.Formats;
-import seedu.todolist.constants.Priority;
+import seedu.todolist.model.Priority;
+import seedu.todolist.exception.InvalidBooleanException;
 import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidDurationException;
 import seedu.todolist.exception.InvalidEmailFormatException;
 import seedu.todolist.exception.InvalidFrequencyException;
 import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.InvalidPriorityException;
+import seedu.todolist.exception.InvalidSortException;
 import seedu.todolist.exception.PassedDateException;
+import seedu.todolist.model.Task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
+
+import static java.util.function.Predicate.not;
 
 /**
  * Utility class for parsing arguments that are in the form of strings.
@@ -191,6 +200,50 @@ public class ParserUtil {
             return Integer.parseInt(frequency);
         } catch (NumberFormatException e) {
             throw new InvalidFrequencyException(frequency);
+        }
+    }
+
+    public static boolean parseBoolean(String boolString) throws InvalidBooleanException {
+        switch (boolString.toLowerCase()) {
+        case "1":
+        case "y":
+        case "yes":
+        case "t":
+        case "true":
+            return true;
+        case "0":
+        case "n":
+        case "no":
+        case "f":
+        case "false":
+            return false;
+        default:
+            throw new InvalidBooleanException(boolString);
+        }
+    }
+
+    public static Predicate<Task> parseFilter(HashMap<Flags, String> args) throws InvalidBooleanException {
+        Predicate<Task> predicate = task -> true;
+        if (args.containsKey(Flags.FILTER_DONE)) {
+            predicate = predicate.and(parseBoolean(args.get(Flags.FILTER_DONE))
+                    ? Task.isDonePredicate() : not(Task.isDonePredicate()));
+        }
+        if (args.containsKey(Flags.FILTER_OVERDUE)) {
+            predicate = predicate.and(parseBoolean(args.get(Flags.FILTER_OVERDUE))
+                    ? Task.isOverdue() : not(Task.isOverdue()));
+        }
+        return predicate;
+    }
+
+    //@@author KedrianLoh
+    public static Comparator<Task> parseSort(String sortType) throws InvalidSortException {
+        switch (sortType) {
+        case "due":
+            return Task.deadlineComparator;
+        case "prio":
+            return Task.priorityComparator;
+        default:
+            throw new InvalidSortException(sortType);
         }
     }
 }

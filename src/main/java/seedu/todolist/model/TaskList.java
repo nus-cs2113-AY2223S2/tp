@@ -1,7 +1,6 @@
 package seedu.todolist.model;
 
 import seedu.todolist.constants.Formats;
-import seedu.todolist.constants.Priority;
 import seedu.todolist.exception.InvalidIdException;
 
 import java.time.LocalDateTime;

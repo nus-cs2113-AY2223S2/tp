@@ -1,5 +1,5 @@
 //@@author RuiShengGit
-package seedu.todolist.constants;
+package seedu.todolist.model;
 
 public enum Priority {
     HIGH("High"),

@@ -104,8 +104,7 @@ public class Ui {
         if (taskListSize == 0) {
             println(Messages.LIST_EMPTY);
         } else {
-            println(Messages.LIST_TASKS + generateTaskCountString(taskListSize),
-                    taskListString);
+            println(Messages.LIST_TASKS + generateTaskCountString(taskListSize), taskListString);
         }
     }
 

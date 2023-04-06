@@ -41,14 +41,15 @@ public enum Flags {
     EDIT("-edit", false),
     EDIT_DELETE("-del", true),
     RESET("-reset", true),
+    SORT("-sort", false),
 
     // Filter flags
-    FILTER_DONE("-done", true),
-    FILTER_UNDONE("-undone", true),
-    FILTER_OVERDUE("-overdue", true),
+    FILTER_DONE("-done", false),
+    FILTER_OVERDUE("-overdue", false),
+
+    // Config flags
     CONFIG_CHECK_FREQ("-chkfreq", false),
-    CONFIG_REPEAT_FREQ("-repfreq", false),
-    SORT_PRIORITY("-priority", true);
+    CONFIG_REPEAT_FREQ("-repfreq", false);
 
     private static final HashMap<String, Flags> map = new HashMap<>();
     private final String name;

@@ -19,6 +19,8 @@ public final class Errors {
     public static final String INVALID_EDIT = "Task edit commands must have a "
             + Flags.EDIT.getName() + " or " + Flags.EDIT_DELETE.getName() + " flag.";
     public static final String INVALID_FREQUENCY = "Invalid frequency: ";
+    public static final String INVALID_BOOLEAN = "Invalid boolean value: ";
+    public static final String INVALID_SORT = "Invalid sort option: ";
     public static final String INVALID_FIND_TAG = "Unable to find desired tag. Please try again.";
 
     //@@author clement559

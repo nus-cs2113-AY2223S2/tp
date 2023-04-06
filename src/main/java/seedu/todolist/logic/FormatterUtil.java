@@ -1,7 +1,6 @@
 package seedu.todolist.logic;
 
 import seedu.todolist.constants.Formats;
-import seedu.todolist.constants.Priority;
 
 import java.time.LocalDateTime;
 import java.util.TreeSet;

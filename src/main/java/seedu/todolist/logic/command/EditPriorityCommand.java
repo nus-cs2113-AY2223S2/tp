@@ -2,10 +2,9 @@
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
-import seedu.todolist.constants.Priority;
+import seedu.todolist.model.Priority;
 import seedu.todolist.exception.InvalidEditException;
 import seedu.todolist.exception.ToDoListException;
-import seedu.todolist.logic.FormatterUtil;
 import seedu.todolist.logic.ParserUtil;
 import seedu.todolist.model.Config;
 import seedu.todolist.model.TaskList;

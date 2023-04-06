@@ -18,7 +18,6 @@ public class UnmarkTaskCommand extends Command{
 
     public UnmarkTaskCommand(HashMap<Flags, String> args) throws InvalidIdException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_UNMARK));
-        // assert id >= 0 : "Invalid id contained in variable";
     }
 
     @Override

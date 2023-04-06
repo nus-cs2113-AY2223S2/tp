@@ -18,7 +18,6 @@ public class MarkTaskCommand extends Command{
 
     public MarkTaskCommand(HashMap<Flags, String> args) throws InvalidIdException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_MARK));
-        // assert idHashSet >= 0 : "Invalid id contained in variable";
     }
 
     @Override

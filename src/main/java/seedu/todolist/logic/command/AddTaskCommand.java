@@ -1,6 +1,6 @@
 package seedu.todolist.logic.command;
 
-import seedu.todolist.constants.Priority;
+import seedu.todolist.model.Priority;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.logic.ParserUtil;

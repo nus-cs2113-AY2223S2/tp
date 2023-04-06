@@ -1,7 +1,7 @@
 package seedu.todolist.logic.command;
 //@@author KedrianLoh
 import seedu.todolist.constants.Flags;
-import seedu.todolist.constants.Priority;
+import seedu.todolist.model.Priority;
 import seedu.todolist.exception.InvalidFindException;
 import seedu.todolist.exception.InvalidPriorityException;
 import seedu.todolist.logic.ParserUtil;
