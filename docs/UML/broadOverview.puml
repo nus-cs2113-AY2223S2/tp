@@ -3,7 +3,7 @@
 left to right direction
 skinparam componentStyle rectangle
 
-component User_Input
+component userInput
 
 component EveNtUS {
 component main COLOR1
@@ -14,16 +14,16 @@ component Storage COLOR1
 component Parser COLOR1
 }
 
-component "TextFile"
+component "textFile"
 
-[User_Input]..>[Ui]
+[userInput]..>[Ui]
 [Ui]-->[main]
 [main]-->[Storage]
-[TextFile]..>[Storage]
+[textFile]..>[Storage]
 [main]-->[Command]
 [main]->[Ui]
 [main]->[Parser]
 [Parser]-->[main]
 [Command]..>[main]
-[Storage]-->[TextFile]
+[Storage]-->[textFile]
 @enduml

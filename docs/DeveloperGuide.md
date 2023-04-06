@@ -46,7 +46,6 @@ Parser involves dealing with parsing user input to understand what the user want
 
 ### Command
 
-Commands are the way we execute the programme features, based on parsed user input
 
 <code>List of commands</code>
 

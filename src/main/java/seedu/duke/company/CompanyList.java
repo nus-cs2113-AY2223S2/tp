@@ -154,7 +154,10 @@ public class CompanyList {
         ui.showSampleDataLoadedMessage();
     }
 
-    public void purgeData() {
+    public void purgeData() throws EmptyListException {
+        if (companyList.isEmpty()) {
+            throw new EmptyListException();
+        }
         companyList.clear();
         ui.showSuccessfulPurgingMessage();
     }
@@ -166,9 +169,14 @@ public class CompanyList {
         if (companyNum < 0 | companyNum >= companyList.size()) {
             throw new InvalidIndexException();
         }
+
         Company company = companyList.get(companyNum);
-        company.markConfirmed();
-        ui.showSuccessfulConfirmedMessage();
+        if (company.isConfirmed) {
+            ui.showExistingConfirmationMessage();
+        } else {
+            company.markConfirmed();
+            ui.showSuccessfulConfirmedMessage();
+        }
     }
 
     public void markUnconfirm(int companyNum) throws InvalidIndexException, EmptyListException {
@@ -179,7 +187,11 @@ public class CompanyList {
             throw new InvalidIndexException();
         }
         Company company = companyList.get(companyNum);
-        company.markUnconfirmed();
-        ui.showSuccessfulConfirmedMessage();
+        if (!company.isConfirmed) {
+            ui.showExistingUnconfirmationMessage();
+        } else {
+            company.markUnconfirmed();
+            ui.showSuccessfulUnconfirmedMessage();
+        }
     }
 }

@@ -38,6 +38,7 @@ public class EventDetailsStorage extends Storage{
             ui.showLine();
         } catch (NoSuchElementException e) {
             event.updateEventName("Default Event");
+            System.out.println("Choose an event name using update event name <EVENT_NAME>");
             updateFile(event);
         }
     }
