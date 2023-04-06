@@ -121,7 +121,7 @@ rainyDay on your device and how to start using it. Please refer to the steps bel
 - A [CLI](#glossary) receive commands from a user, that is you, in the form of lines of text.
 - In rainyDay, we make it simple for you. Whenever we require you to input, we will prompt you with a `>` as shown below
   with a sample input boxed in red.
-  ![understandingCLI.png](/images/UserGuide/understandingCLI.png)
+  ![understandingCLI.png](images/UserGuide/understandingCLI.png)
 - If you are interested in learning more about CLI, you may refer to the following 
 [guide](https://www.freecodecamp.org/news/how-to-use-the-cli-beginner-guide/).
 
