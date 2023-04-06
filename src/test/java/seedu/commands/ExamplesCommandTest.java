@@ -1,11 +1,13 @@
 package seedu.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 import seedu.exceptions.LifeTrackerException;
 import seedu.ui.ExampleUi;
-import seedu.ui.GeneralUi;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class ExamplesCommandTest {
 
@@ -24,7 +26,7 @@ class ExamplesCommandTest {
         ExamplesCommand examplesCommand = new ExamplesCommand("examples", " food");
         LifeTrackerException thrown = assertThrows(LifeTrackerException.class, () -> {
             examplesCommand.printExamples("food", ui);
-                });
+        });
 
         String expectedErrorMessage = "You can only input exercise/meal for this command!";
         assertEquals(expectedErrorMessage, thrown.getMessage());

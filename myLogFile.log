@@ -1,2 +1,8 @@
-Apr 04, 2023 1:42:56 PM seedu.logger.LogFileHandler logInfo
+Apr 06, 2023 2:39:21 PM seedu.logger.LogFileHandler logInfo
+INFO: Lunch was consumed on 1/1/2023
+Total Calories are: 649.0
+Here are the foods you ate:
+1) Chicken Ngoyang from Nasi Padang
+
+Apr 06, 2023 2:40:02 PM seedu.logger.LogFileHandler logInfo
 INFO: User exited the programme.

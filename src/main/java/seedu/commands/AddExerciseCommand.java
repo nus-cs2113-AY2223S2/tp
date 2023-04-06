@@ -7,6 +7,7 @@ import java.time.format.DateTimeParseException;
 import seedu.constants.DateConstants;
 import seedu.entities.Exercise;
 import seedu.exceptions.InvalidArgumentsException;
+import seedu.exceptions.InvalidCommandException;
 import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.MissingArgumentsException;
@@ -57,6 +58,8 @@ public class AddExerciseCommand extends Command {
         exerciseNameIndex = userInput.indexOf(exerciseNameIdentifier);
         if (exerciseNameIndex == -1) {
             throw new MissingArgumentsException(commandWord, exerciseNameIdentifier);
+        } else if (exerciseNameIndex > commandWord.length() + 1) {
+            throw new InvalidCommandException();
         }
         exerciseDescriptionIndex = userInput.indexOf(exerciseDescriptionIdentifier);
         if (exerciseDescriptionIndex == -1) {

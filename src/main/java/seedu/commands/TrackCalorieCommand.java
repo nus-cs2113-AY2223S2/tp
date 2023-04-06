@@ -9,6 +9,7 @@ import seedu.constants.DateConstants;
 import seedu.entities.Exercise;
 import seedu.entities.Meal;
 import seedu.exceptions.LifeTrackerException;
+import seedu.parser.DateParser;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
@@ -16,6 +17,12 @@ import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
 
 public class TrackCalorieCommand extends Command {
+    private String userInput;
+
+    public TrackCalorieCommand(String userInput) {
+        this.userInput = userInput;
+    }
+
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
             ExerciseStorage exerciseStorage) throws LifeTrackerException {
@@ -28,13 +35,44 @@ public class TrackCalorieCommand extends Command {
         double caloriesConsumed;
         double caloriesBurnt;
         DateTimeFormatter dtf = DateConstants.PARSE_DTF;
-
-        startDate = getStartingDate(meals, exercises);
-        endDate = getEndingDate(meals, exercises);
-        if (startDate == null || endDate == null) {
-            System.out.println("No Meals and Exercises Found!");
-            return;
+        String startDateIdentifier = "/start";
+        String endDateIdentifier = "/end";
+        String startDateString;
+        String endDateString;
+        int startDateIndex;
+        int endDateIndex;
+        int nextSpaceIndex;
+        
+        startDateIndex = userInput.indexOf(startDateIdentifier);
+        if (startDateIndex == -1) {
+            startDate = getStartingDate(meals, exercises);
+        } else {
+            nextSpaceIndex = getIndex(
+                userInput.indexOf(" ", startDateIndex+startDateIdentifier.length()+1), 
+                userInput.length()
+            );
+            startDateString = userInput.substring(startDateIndex+startDateIdentifier.length(), nextSpaceIndex).trim();
+            startDate = DateParser.parse(startDateString, dtf);
         }
+
+        endDateIndex = userInput.indexOf(endDateIdentifier);
+        if (endDateIndex == -1) {
+            endDate = getEndingDate(meals, exercises);
+        } else {
+            nextSpaceIndex = getIndex(
+                userInput.indexOf(" ", endDateIndex+endDateIdentifier.length()+1), 
+                userInput.length()
+            );
+            endDateString = userInput.substring(endDateIndex+endDateIdentifier.length(), nextSpaceIndex).trim();
+            endDate = DateParser.parse(endDateString, dtf);
+        }
+
+        if (startDate == null || endDate == null) {
+            throw new LifeTrackerException("No Meals and Exercises Found!");
+        } else if (startDate.isAfter(endDate)) {
+            throw new LifeTrackerException(startDate + " cannot be later than " + endDate);
+        }
+
         System.out.println("Showing your history from " + startDate + " to " + endDate);
 
         while (startDate.compareTo(endDate) <= 0) {
@@ -98,6 +136,14 @@ public class TrackCalorieCommand extends Command {
             }
         } else {
             return null;
+        }
+    }
+
+    private int getIndex(int valOne, int valTwo) {
+        if (valOne == -1) {
+            return valTwo;
+        } else {
+            return valOne;
         }
     }
     

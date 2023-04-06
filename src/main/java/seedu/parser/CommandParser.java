@@ -51,7 +51,7 @@ public class CommandParser {
             command = new AddExerciseCommand(commandWord, userInput);
             break;
         case "track":
-            command = new TrackCalorieCommand();
+            command = new TrackCalorieCommand(userInput);
             break;
         case "help":
             command = new HelpCommand();
