@@ -76,7 +76,9 @@ add Modules)
 4. `Command` can also communicate with `Storage` to update the local save files if there are changes.
 5. The result of the command execution is sent to `Ui` to be printed out to the user.   
 
-Further elaboration on how the individual `Command` components work can be found under [Implementation](#implementation)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command_Seq-Command.png?raw=true)
+
+Further elaboration on how the individual `Command` subclasses work can be found under [Implementation](#implementation)
 
 ### Storage Component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)

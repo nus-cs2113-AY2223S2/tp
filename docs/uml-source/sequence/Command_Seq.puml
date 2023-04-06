@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam maxMessageSize 150
+
+title Command
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":Command" as Command
+participant ":TaskList/\nModuleList/\nCalendar" as TaskList
+participant ":Storage" as Storage
+participant ":Ui" as Ui
+
+User -> Apollo : command
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+Parser -> Command** : Command()
+Command++
+Command -> Command ++ : setUpLogger()
+Command--
+return
+return
+destroy Parser
+
+Apollo -> Command : execute()
+activate Command
+Command -> TaskList : modify
+Command -> Storage : update
+Command -> Ui : print message to user
+
+Command --> Apollo
+destroy Command
+Apollo--
+@enduml
+
+@enduml
