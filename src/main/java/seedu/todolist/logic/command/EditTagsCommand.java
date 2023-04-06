@@ -18,27 +18,24 @@ public class EditTagsCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_TAGS, Flags.EDIT, Flags.EDIT_DELETE};
 
     private HashSet<Integer> idHashSet;
-    private TreeSet<String> tags;
+    private TreeSet<String> tags = new TreeSet<>();
 
     public EditTagsCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_TAGS));
-        if (args.containsKey(Flags.EDIT)) {
-            tags = ParserUtil.parseTags(args.get(Flags.EDIT));
-        } else if (!args.containsKey(Flags.EDIT_DELETE)) {
+        if (args.containsKey(Flags.EDIT) == args.containsKey(Flags.EDIT_DELETE)) {
             throw new InvalidEditException();
+        } else if (args.containsKey(Flags.EDIT)) {
+            tags = ParserUtil.parseTags(args.get(Flags.EDIT));
         }
     }
 
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
-        for (int id : idHashSet) {
-            if (tags == null) {
-                String taskString = taskList.getTaskString(id);
-                ui.printEditDeleteTaskMessage("tags", taskString);
-            } else {
-                String taskString = taskList.setTags(id, tags);
-                ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
-            }
+        String taskString = taskList.setTags(idHashSet, tags);
+        if (tags.isEmpty()) {
+            ui.printEditDeleteTaskMessage("tags", taskString);
+        } else {
+            ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
         }
     }
 }

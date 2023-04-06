@@ -56,9 +56,10 @@ public class Task {
     }
 
     public String toString() {
-        String descriptionString = description.length() > 35 ? description.substring(0, 35) + "..." : description;
+        String descriptionString = description.length() > 32 ? description.substring(0, 32) + "..." : description;
         String isDoneString = isDone ? "X" : (isDue() ? "!" : " ");
-        String taskString = String.format(Formats.TASK_STRING, id, isDoneString, descriptionString);
+        String taskString = String.format(Formats.TASK_STRING, id, isDoneString,
+                priority.toDisplayString(), descriptionString);
         if (deadline != null) {
             taskString += "[Due by: " + FormatterUtil.getDeadlineAsString(deadline) + "]";
         }
@@ -67,9 +68,12 @@ public class Task {
 
     public String getFullInfo() {
         StringJoiner infoString = new StringJoiner(System.lineSeparator());
+        infoString.add("ID: " + id);
         infoString.add("Description: " + description);
         infoString.add("Completed: " + (isDone ? "Yes" : (isDue() ? "Overdue" : "No")));
-        infoString.add("Priority: " + priority.toString());
+        if (priority != Priority.NONE) {
+            infoString.add("Priority: " + priority.toString());
+        }
         if (deadline != null) {
             infoString.add("Due: " + FormatterUtil.getDeadlineAsString(deadline));
         }
@@ -80,7 +84,7 @@ public class Task {
             infoString.add("Tags: " + FormatterUtil.getTagsAsString(tags));
         }
         if (repeatDuration > 0) {
-            infoString.add("Repeat duration: " + repeatDuration);
+            infoString.add("Repeat times: " + repeatDuration);
         }
         return infoString.toString();
     }
@@ -134,6 +138,9 @@ public class Task {
 
     public String setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
+        if (deadline == null) {
+            repeatDuration = 0;
+        }
         return toString();
     }
 

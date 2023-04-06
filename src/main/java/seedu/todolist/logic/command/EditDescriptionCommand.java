@@ -25,9 +25,6 @@ public class EditDescriptionCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
-        for (int id: idHashSet) {
-            String taskString = taskList.setDescription(id, description);
-            ui.printEditTaskMessage("description", description, taskString);
-        }
+        ui.printEditTaskMessage("description", description, taskList.setDescription(idHashSet, description));
     }
 }

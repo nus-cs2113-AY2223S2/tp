@@ -21,22 +21,20 @@ public class EditEmailCommand extends Command {
 
     public EditEmailCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_EMAIL));
-        if (args.containsKey(Flags.EDIT)) {
-            email = ParserUtil.parseEmail(args.get(Flags.EDIT));
-        } else if (!args.containsKey(Flags.EDIT_DELETE)) {
+        if (args.containsKey(Flags.EDIT) == args.containsKey(Flags.EDIT_DELETE)) {
             throw new InvalidEditException();
+        } else if (args.containsKey(Flags.EDIT)) {
+            email = ParserUtil.parseEmail(args.get(Flags.EDIT));
         }
     }
 
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
-        for (int id : idHashSet) {
-            String taskString = taskList.setEmail(id, email);
-            if (email == null) {
-                ui.printEditDeleteTaskMessage("email address", taskString);
-            } else {
-                ui.printEditTaskMessage("email address", email, taskString);
-            }
+        String taskString = taskList.setEmail(idHashSet, email);
+        if (email == null) {
+            ui.printEditDeleteTaskMessage("email address", taskString);
+        } else {
+            ui.printEditTaskMessage("email address", email, taskString);
         }
     }
 }

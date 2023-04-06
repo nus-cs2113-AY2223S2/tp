@@ -16,8 +16,10 @@ public final class Errors {
     public static final String INVALID_EMAIL = "Invalid email address: ";
     public static final String INVALID_PRIORITY = "Invalid priority: ";
     public static final String INVALID_DURATION = "Invalid repeat duration: ";
-    public static final String INVALID_EDIT = "Task edit commands must have a "
-            + Flags.EDIT.getName() + " or " + Flags.EDIT_DELETE.getName() + " flag.";
+    public static final String INVALID_EDIT = "Task edit commands must have either "
+            + Flags.EDIT.getName() + " or " + Flags.EDIT_DELETE.getName() + ", not both or neither.";
+    public static final String INVALID_SELECT = "Commands taking IDs/filters must have either "
+            + "IDs or filters, not both or neither.";
     public static final String INVALID_FREQUENCY = "Invalid frequency: ";
     public static final String INVALID_BOOLEAN = "Invalid boolean value: ";
     public static final String INVALID_SORT = "Invalid sort option: ";

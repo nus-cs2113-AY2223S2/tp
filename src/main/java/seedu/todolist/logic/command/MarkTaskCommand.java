@@ -22,9 +22,6 @@ public class MarkTaskCommand extends Command{
 
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
-        for (int id : idHashSet) {
-            String taskString = taskList.setDone(id, true);
-            ui.printMarkTaskMessage(taskString);
-        }
+        ui.printMarkTaskMessage(taskList.setDone(idHashSet, true));
     }
 }

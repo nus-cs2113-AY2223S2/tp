@@ -1,12 +1,15 @@
 package seedu.todolist.model;
 
 import seedu.todolist.constants.Formats;
+import seedu.todolist.constants.Messages;
+import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidIdException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
@@ -34,6 +37,22 @@ public class TaskList {
         return tasks.get(id);
     }
 
+    /**
+     * Returns a stream of tasks with the given ids.
+     *
+     * @param ids The ids of the tasks to return.
+     * @return A stream of tasks with the given ids.
+     * @throws InvalidIdException If there is no task with any of the provided ids.
+     */
+    private Stream<Task> getTasks(HashSet<Integer> ids) throws InvalidIdException {
+        for (int id : ids) {
+            if (!tasks.containsKey(id)) {
+                throw new InvalidIdException(id);
+            }
+        }
+        return ids.stream().map(tasks::get);
+    }
+
     private void addTask(Task task) {
         tasks.put(task.getId(), task);
     }
@@ -46,14 +65,14 @@ public class TaskList {
     }
 
     /**
-     * Deletes the task at the given id of the task list.
+     * Deletes the task at the given ids of the task list.
      *
-     * @param id The id of the task to be deleted.
-     * @throws InvalidIdException If there is no task with the given id.
+     * @param ids The ids of the task to be deleted.
+     * @throws InvalidIdException If there is no task with any of the provided ids.
      */
-    public String deleteTask(int id) throws InvalidIdException {
-        String taskString = getTask(id).toString();
-        tasks.remove(id);
+    public String deleteTask(HashSet<Integer> ids) throws InvalidIdException {
+        String taskString = tasksStreamToString(getTasks(ids));
+        tasks.entrySet().removeIf(e -> ids.contains(e.getKey()));
         return taskString;
     }
 
@@ -71,6 +90,12 @@ public class TaskList {
     }
 
     //@@author clement559
+    /**
+     * Converts a stream of tasks into its string representation, with numbering (#1, #2, etc...).
+     *
+     * @param stream The stream of tasks to convert to a string.
+     * @return The string representation of the stream of tasks.
+     */
     private String tasksStreamToString(Stream<Task> stream) {
         AtomicInteger count = new AtomicInteger(1);
         return stream.map(task -> String.format(Formats.TASK_STRING_INDEXED, count.getAndIncrement(), task.toString()))
@@ -120,74 +145,62 @@ public class TaskList {
     }
 
     //@@author ERJUNZE
-    /**
-     * Gets the string representation of the task at the given id of the task list.
-     *
-     * @param id The id of the task whose tags are being set.
-     * @return The string representation of the task.
-     * @throws InvalidIdException If there is no task with the given id.
-     */
-    public String getTaskString(int id) throws InvalidIdException {
-        return  getTask(id).toString();
-    }
-
-    public String getDescription(int id) throws InvalidIdException {
-        return getTask(id).getDescription();
-    }
-
-    public String getEmail(int id) throws InvalidIdException {
-        return getTask(id).getEmail();
-    }
-
-    public LocalDateTime getDeadline(int id) throws InvalidIdException {
-        return getTask(id).getDeadline();
-    }
-
-    public TreeSet<String> getTags(int id) throws InvalidIdException {
-        return getTask(id).getTags();
-    }
-
-    public boolean isDone(int id) throws InvalidIdException {
-        return getTask(id).isDone();
-    }
-
-    public String getFullInfo(int id) throws InvalidIdException {
-        return "ID: " + id + System.lineSeparator() + getTask(id).getFullInfo();
-    }
-
     public TreeSet<String> getAllTags() {
         TreeSet<String> tags = new TreeSet<>();
         tasks.values().forEach(task -> tags.addAll(task.getTags()));
         return tags;
     }
 
-    public String setDescription(int id, String description) throws InvalidIdException {
-        return getTask(id).setDescription(description);
+    public String getFullInfo(HashSet<Integer> ids) throws InvalidIdException {
+        return getTasks(ids).map(Task::getFullInfo)
+                .collect(Collectors.joining(System.lineSeparator() + Messages.LINE + System.lineSeparator()));
     }
 
-    public String setEmail(int id, String email) throws InvalidIdException {
-        return getTask(id).setEmail(email);
+    public String setDescription(HashSet<Integer> ids, String description) throws InvalidIdException {
+        return getTasks(ids).map(task -> task.setDescription(description))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public String setPriority(int id, Priority priority) throws InvalidIdException {
-        return getTask(id).setPriority(priority);
+    public String setTags(HashSet<Integer> ids, TreeSet<String> tags) throws InvalidIdException {
+        return getTasks(ids).map(task -> task.setTags(tags))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public String setDeadline(int id, LocalDateTime deadline) throws InvalidIdException {
-        return getTask(id).setDeadline(deadline);
+    //@@author RuiShengGit
+    public String setEmail(HashSet<Integer> ids, String email) throws InvalidIdException {
+        return getTasks(ids).map(task -> task.setEmail(email))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public String setTags(int id, TreeSet<String> tags) throws InvalidIdException {
-        return getTask(id).setTags(tags);
+    public String setPriority(HashSet<Integer> ids, Priority priority) throws InvalidIdException {
+        return getTasks(ids).map(task -> task.setPriority(priority))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public String setDone(int id, boolean isDone) throws InvalidIdException {
-        return getTask(id).setDone(isDone);
+    public String setDone(HashSet<Integer> ids, boolean isDone) throws InvalidIdException {
+        return getTasks(ids).map(task -> task.setDone(isDone))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     //@@author clement559
-    public String setRepeatDuration(int id, int repeatDuration) throws InvalidIdException {
-        return getTask(id).setRepeatDuration(repeatDuration);
+    public String setDeadline(HashSet<Integer> ids, LocalDateTime deadline) throws InvalidIdException {
+        return getTasks(ids).map(task -> task.setDeadline(deadline))
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    public String setRepeatDuration(HashSet<Integer> ids, int repeatDuration)
+            throws InvalidDateException, InvalidIdException {
+        Stream<Task> stream = getTasks(ids);
+        // Cannot set the repeat duration of a task if it does not have a deadline
+        if (repeatDuration != 0) {
+            for (int id : ids) {
+                if (getTask(id).getDeadline() == null) {
+                    throw new InvalidDateException("Task with ID " + id + " has no deadline.");
+                }
+            }
+        }
+        return stream.map(task -> task.setRepeatDuration(repeatDuration))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     public void checkRepeatingTasks(Config config) {

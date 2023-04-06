@@ -21,8 +21,6 @@ public class ListFullInfoCommand extends Command{
 
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
-        for (int id : idHashSet) {
-            ui.printGetFullInfoMessage(taskList.getFullInfo(id));
-        }
+        ui.printGetFullInfoMessage(taskList.getFullInfo(idHashSet));
     }
 }

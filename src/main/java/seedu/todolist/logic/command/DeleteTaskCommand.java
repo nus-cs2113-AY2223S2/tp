@@ -24,11 +24,6 @@ public class DeleteTaskCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
-        StringJoiner stringJoiner = new StringJoiner(System.lineSeparator());
-        for (int id : idHashSet) {
-            String taskString = taskList.deleteTask(id);
-            stringJoiner.add(taskString);
-        }
-        ui.printDeleteTaskMessage(stringJoiner.toString());
+        ui.printDeleteTaskMessage(taskList.deleteTask(idHashSet));
     }
 }

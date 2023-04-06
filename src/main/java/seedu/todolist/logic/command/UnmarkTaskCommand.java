@@ -22,9 +22,6 @@ public class UnmarkTaskCommand extends Command{
 
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
-        for (int id : idHashSet) {
-            String taskString = taskList.setDone(id, false);
-            ui.printUnmarkTaskMessage(taskString);
-        }
+        ui.printUnmarkTaskMessage(taskList.setDone(idHashSet, false));
     }
 }

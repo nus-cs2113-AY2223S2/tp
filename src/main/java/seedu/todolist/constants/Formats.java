@@ -4,8 +4,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
 public final class Formats {
-    public static final String TASK_STRING = "[ID:%06d][%s][%-38s]";
-    public static final String TASK_STRING_INDEXED = "[#%06d]%s";
+    public static final String TASK_STRING = "[ID:%05d][%s][%s][%-35s]";
+    public static final String TASK_STRING_INDEXED = "[#%05d]%s";
     public static final String TIME_IN_1 = "[d-M-uuuu H:m]";
     public static final String TIME_IN_2 = "[d/M/uuuu H:m]";
     public static final String TIME_OUT = "dd LLL uuuu HH:mm";

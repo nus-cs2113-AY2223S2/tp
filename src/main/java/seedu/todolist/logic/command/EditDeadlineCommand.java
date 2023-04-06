@@ -21,26 +21,22 @@ public class EditDeadlineCommand extends Command  {
     private HashSet<Integer> idHashSet;
     private LocalDateTime deadline;
 
-    // probably need to read a few deadlines instead of just one
     public EditDeadlineCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_DEADLINE));
-        if (args.containsKey(Flags.EDIT)) {
-            deadline = ParserUtil.parseDeadline(args.get(Flags.EDIT));
-        } else if (!args.containsKey(Flags.EDIT_DELETE)) {
+        if (args.containsKey(Flags.EDIT) == args.containsKey(Flags.EDIT_DELETE)) {
             throw new InvalidEditException();
+        } else if (args.containsKey(Flags.EDIT)) {
+            deadline = ParserUtil.parseDeadline(args.get(Flags.EDIT));
         }
     }
 
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
-        for (int id : idHashSet) {
-            String taskString = taskList.setDeadline(id, deadline);
-            if (deadline == null) {
-                taskList.setRepeatDuration(id, 0);
-                ui.printEditDeleteTaskMessage("deadline", taskString);
-            } else {
-                ui.printEditTaskMessage("deadline", FormatterUtil.getDeadlineAsString(deadline), taskString);
-            }
+        String taskString = taskList.setDeadline(idHashSet, deadline);
+        if (deadline == null) {
+            ui.printEditDeleteTaskMessage("deadline", taskString);
+        } else {
+            ui.printEditTaskMessage("deadline", FormatterUtil.getDeadlineAsString(deadline), taskString);
         }
     }
 }

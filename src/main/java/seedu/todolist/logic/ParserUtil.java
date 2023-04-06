@@ -75,8 +75,6 @@ public class ParserUtil {
         try {
             int priority = Integer.parseInt(priorityString);
             switch (priority) {
-            case 0:
-                return Priority.NONE;
             case 1:
                 return Priority.LOW;
             case 2:
@@ -264,7 +262,8 @@ public class ParserUtil {
             predicate = predicate.and(Task.afterDeadline(parseDeadline(args.get(Flags.FILTER_AFTER))));
         }
         if (args.containsKey(Flags.REPEAT)) {
-            predicate = predicate.and(Task.isRepeating());
+            predicate = predicate.and(parseBoolean(args.get(Flags.REPEAT))
+                    ? Task.isRepeating() : not(Task.isRepeating()));
         }
         if (args.containsKey(Flags.TAG)) {
             predicate = predicate.and(Task.matchesTags(parseTags(args.get(Flags.TAG))));

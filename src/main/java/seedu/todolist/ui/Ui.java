@@ -73,11 +73,11 @@ public class Ui {
     }
 
     public void printMarkTaskMessage(String taskString) {
-        println(Messages.MARK_TASK, taskString);
+        println(Messages.MARK_TASK, Messages.LINE, taskString);
     }
 
     public void printUnmarkTaskMessage(String taskString) {
-        println(Messages.UNMARK_TASK, taskString);
+        println(Messages.UNMARK_TASK, Messages.LINE, taskString);
     }
 
     public void printDeleteTaskMessage(String taskString) {
@@ -85,11 +85,11 @@ public class Ui {
     }
 
     public void printEditTaskMessage(String parameterType, String newValue, String taskString) {
-        println(String.format(Messages.EDIT_TASK, parameterType, newValue), taskString);
+        println(String.format(Messages.EDIT_TASK, parameterType, newValue), Messages.LINE, taskString);
     }
 
     public void printEditDeleteTaskMessage(String parameterType, String taskString) {
-        println(String.format(Messages.EDIT_DELETE_TASK, parameterType), taskString);
+        println(String.format(Messages.EDIT_DELETE_TASK, parameterType), Messages.LINE, taskString);
     }
 
     public void printEditConfigMessage(String taskString) {
@@ -104,12 +104,12 @@ public class Ui {
         if (taskListSize == 0) {
             println(Messages.LIST_EMPTY);
         } else {
-            println(Messages.LIST_TASKS + generateTaskCountString(taskListSize), taskListString);
+            println(Messages.LIST_TASKS + generateTaskCountString(taskListSize), Messages.LINE, taskListString);
         }
     }
 
     public void printGetFullInfoMessage(String infoString) {
-        println(Messages.FULL_INFO, infoString);
+        println(Messages.FULL_INFO, Messages.LINE, infoString);
     }
 
     public void printGetTagsMessage(int tagCount, String tagsString) {
