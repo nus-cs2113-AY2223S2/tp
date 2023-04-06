@@ -3,6 +3,7 @@ package seedu.duke.storage;
 import seedu.duke.company.Company;
 import seedu.duke.company.CompanyList;
 import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.ui.Ui;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,6 +13,7 @@ public class CompanyListEncoder extends Storage {
     private static final String filePath = "data/companyList.txt";
 
     public static void write(CompanyList companyList) throws IOException, InvalidIndexException {
+        Ui ui = new Ui();
         try {
             FileWriter fw = new FileWriter(filePath);
             int numberOfCompanies = companyList.getNumberOfCompanies();
@@ -26,7 +28,9 @@ public class CompanyListEncoder extends Storage {
             }
             fw.close();
         } catch (IOException | InvalidIndexException e) {
+            ui.showLine();
             System.out.println("File not found");
+            ui.showLine();
         }
     }
 

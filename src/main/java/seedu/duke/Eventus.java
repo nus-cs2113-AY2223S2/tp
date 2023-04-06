@@ -36,6 +36,7 @@ public class Eventus {
         venueList = new VenueList(VenueListData.returnVenueList(), ui);
         run();
     }
+
     public void run() {
         ui.showWelcome();
         loadSavedInformation();
@@ -45,17 +46,21 @@ public class Eventus {
             input = in.nextLine();
             try {
                 Command c = Parser.parse(input);
-                if (c.getCommandType().equals("list venues")){
+                if (c.getCommandType().equals("list venues")) {
                     c.execute(venueList);
-                } else if (c.getCommandType().equals("choose venue")){
+                } else if (c.getCommandType().equals("choose venue")) {
                     c.execute(event, venueList);
                 } else {
                     c.execute(companyList);
                 }
-            } catch (WrongFormatException | NullPointerException | IndexOutOfBoundsException err){
+            } catch (WrongFormatException | NullPointerException | IndexOutOfBoundsException err) {
+                ui.showLine();
                 System.out.println("Wrong Format! Please type <help> for more information");
-            } catch (NumberFormatException err){
+                ui.showLine();
+            } catch (NumberFormatException err) {
+                ui.showLine();
                 System.out.println("Number expected! Please type <help> for more information");
+                ui.showLine();
             }
         }
     }

@@ -1,9 +1,11 @@
 package seedu.duke.command;
 
 import seedu.duke.exception.EmptyListException;
+import seedu.duke.ui.Ui;
 import seedu.duke.venue.VenueList;
 
 public class ListVenueCommand extends Command{
+    Ui ui = new Ui();
     public ListVenueCommand(String commandType){
         super(commandType);
     }
@@ -19,7 +21,9 @@ public class ListVenueCommand extends Command{
         try {
             venueList.printVenueInformation();
         } catch (EmptyListException err){
+            ui.showLine();
             System.out.println("Nothing inside venue list");
+            ui.showLine();
         }
     }
 }

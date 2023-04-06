@@ -4,10 +4,12 @@ import seedu.duke.company.CompanyList;
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.storage.CompanyListEncoder;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
 public class UnconfirmCommand extends Command {
+    Ui ui = new Ui();
     protected int companyNum;
 
     public UnconfirmCommand(String commandType, int companyNum){
@@ -28,9 +30,13 @@ public class UnconfirmCommand extends Command {
             companyList.markUnconfirm(companyNum);
             CompanyListEncoder.write(companyList);
         } catch (InvalidIndexException | IOException e) {
+            ui.showLine();
             System.out.println("Invalid index provided! Please try again");
+            ui.showLine();
         } catch (EmptyListException e) {
+            ui.showLine();
             System.out.println("Nothing inside company list");
+            ui.showLine();
         }
     }
 
