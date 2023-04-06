@@ -11,7 +11,7 @@
 ---
 ### Architecture
 
-![](./uml/architecture.svg)
+![](./uml/architecture.PNG)
 
 **Main Components of LifeTracker**
 
@@ -182,6 +182,29 @@ modified and the user's weight as well as his caloric limit will be updated in a
 
 Step 5. The user then executes the command `view` to view his updated weight and daily caloric limits.
 
+## [Proposed] List feature
+
+The proposed mechanism for listing stored foods, meals and exercises is facilitated by `ListCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+
+Step 1: The user will input either `list foods`, `list meals`, `list exercises` based on which information the user wants to retrieve.
+Step 2: Based the input, `ListCommand` will call either `printAllFoods`, `printAllMeals`, or `printAllExercises` method of the `ui` object
+Step 3: The `ui` will retreive the relevant information from the storage and print out their details
+
+![list-command](./uml/ListCommand.PNG)
+
+## [Proposed] Track feature
+
+The proposed mechanism for tracking net calorie intake is facilitated by `TrackCalorieCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+
+Step 1: The user will input `track` and optional arguments `/start` and `/end` to filter the results based on date
+Step 2a: Based the input, `TrackCalorieCommand` will either parse the start date from user input or set the start date to the earliest meal or exercise added by calling `getStartingDate`.
+Step 2b: Based the input, `TrackCalorieCommand` will either parse the end date from user input or set the end date to the latest meal or exercise added by calling `getEndingDate`.
+Step 3: `TrackCalorieCommand` will retrieve the meals and exercises filtered from the starting date by calling `getMealByDate` and `getExerciseByDate` respectively.
+Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exercises day by day and print out the net calorie intake for each day.
+
+![track-calories-command](./uml/TrackCaloriesCommand.PNG)
+
+
 ### Design considerations
 
 ## [Proposed] Update feature
@@ -203,12 +226,6 @@ Step 5. The user then executes the command `view` to view his updated weight and
 ### Design considerations:
 
 ## [Proposed] Exercise feature
-
-### Proposed Implementation
-
-### Design considerations:
-
-## [Proposed] Track feature
 
 ### Proposed Implementation
 

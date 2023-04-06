@@ -121,7 +121,7 @@ Format: `add`
 
 ### Listing foods: `list`
 
-For uses to view all foods currently supported in the *LifeTracker* database
+For users to view all foods currently supported in the *LifeTracker* database
 
 Format: `list foods`
 
@@ -137,14 +137,23 @@ Format: `list meals`
 Example:
 ![list-meals-example](./UG-images/list-meals-example.PNG)
 
+### Listing exercises: `list`
+
+For users to view previously added exercises
+
+Format `list exercises`
+
+Example:
+![list-exercises-example](./UG-images/list-exercises-example.PNG)
+
 ### Deleting meals: `delete`
 
-For users to remove previously added meals
+For users to remove previously added meals and exercises
 
-Format: `delete [index]`
+Format: `delete [/meal, /exercise] [index]`
 
-* The `index` should be a positive integer and must be less than number of meals added
-* It is recommended to run `list meals` beforehand to get the index of the meal you want to delete
+* The `index` should be a positive integer and must be less than number of meals/exercises added
+* It is recommended to run `list meals/exercises` beforehand to get the index of the meal/exercise you want to delete
 
 Example:
 ![delete-example](./UG-images/delete-example.PNG)
@@ -194,7 +203,12 @@ Example:
 
 For user to track their previous net calorie intake
 
-Format: `track`
+Format: `track /start [start date] /end [end date]`
+
+* `/start` and `/end` arguments are optional
+* The dates should be in `d/M/yyyy` format
+* If `/start` command is not provided, defaults to earliest date with meal/exercise added
+* If `/end` command is not provided, defaults to latest date with meal/exercise added
 
 Output:
 ![track-example](./UG-images/track-example.PNG)
