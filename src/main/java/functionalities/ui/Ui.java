@@ -80,4 +80,29 @@ public class Ui {
     public static void printAppointmentUnMarkMessage() {
         System.out.println("The appointment has been unmarked successfully");
     }
+
+    public static void showHelpMessage() {
+        showLine();
+        System.out.println(" These are the following Sniff commands available:\n"
+                + "Add consultation appointment:\n"
+                + "consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME\n"
+                + "Add vaccination appointment:\n"
+                + "vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE vd/DATE " +
+                        "vt/TIME\n"
+                + "Add surgery appointment:\n"
+                + "surgery at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE " +
+                                "st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL\n"
+                + "Listing all appointments:\n"
+                + "list\n"
+                + "Removing an appointment:\n"
+                + "remove uid/UID\n"
+                + "Finding an appointment:\n"
+                + "find a/ANIMAL_TYPE or find t/APPOINTMENT_TYPE or find uid/UID\n"
+                + "Marking/Unmarking an appointment:\n"
+                + "mark uid/UID or unmark uid/UID\n"
+                + "Exiting the program:\n"
+                + "bye\n");
+        showLine();
+    }
+
 }
