@@ -1,17 +1,14 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-### Command Mechanisms:
-For all valid commands, the mechanism of implementation are as follows:
-1. Read input - ```runBagPacker()``` method in ```BagPacker``` calls the ```Parser``` class to read user input command
-2. Create command object - The ```Parser``` class creates a corresponding command object of the relevant command
-3. Execute command object - ```runBagPacker()``` method executes the ```.execute()``` method (overridden by child classes) of the command object
-   which runs the actual command function
+
 autonumber
 
 @startuml
+
 skinparam linetype polyline
 hide circle
 namespace packingfunc #DDDDDD {
+    note "associations \nto PackingList \nomitted for \nclarity of diagram" as PackingListNote
     class Item{
     packedQuantity: int
     totalQuantity: int
@@ -39,9 +36,15 @@ namespace iohandler #DDDAAA {
             printToUser():void
     }
 }
+namespace exceptions #AAADDD {
+    class EmptyInputException{}
+    class InvalidIndexException{}
+    class InvalidVariablesException{}
+}
 note "Ui class is associated with all child classes \nof Command class these association lines \nare omitted to reduce mess" as uiNote
 uiNote .[Hidden] Ui
-namespace commands {
+skinparam groupInheritance 2
+namespace commands #AAAAAA {
     class "{Abstract}\nCommand" as Command{
     execute(<<static>> PackingList):void
     }
@@ -50,21 +53,21 @@ namespace commands {
     (DeleteList, Help, UnpackAll, ListUnpacked,
     and Incorrect Command)
     end note
-    skinparam groupInheritance 2
+
 
     class AddCommand extends Command
     class DeleteCommand extends Command
     class ListCommand extends Command
     class ByeCommand extends Command
-    class EditQuantity extends Command
+    class EditQuantityCommand extends Command
     class FindCommand extends Command
     class HelpCommand extends Command
     class PackCommand extends Command
     class UnpackCommand extends Command
 }
-BagPacker "App 1" --> "1..*" Parser : Parse user \ninput >
-BagPacker "1" --> "1" Storage : Manage saved data upon \ninitialisation and closing >
-BagPacker "1" --> "*" Ui : Send message \nto CLI using >
+BagPacker "App 1" --> "1..*" Parser : > Parse user \ninput
+BagPacker "1" --> "1" Storage : > Manage saved data upon \ninitialisation and closing
+BagPacker "1" --> "*" Ui : > Send message \nto CLI using
 PackingList "1" *-- "*" Item : packing list composed of items >
 Parser "Parser 1" --> "1" Command : Parser creates relevant Command >
 

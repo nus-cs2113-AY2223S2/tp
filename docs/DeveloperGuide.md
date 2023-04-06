@@ -6,6 +6,40 @@
 This project is based on the AddressBook-Level3 project created by the SE-EDU initiative.
 
 ## Design & implementation
+#### BagPacker Class is the main entry point for the BagPacker Program, below are the Packages and every class contained within each Package
+1. commands 
+   - Command
+   - AddCommand
+   - ByeCommand
+   - DeleteCommand
+   - DeleteListCommand
+   - EditQuantityCommand
+   - FindCommand
+   - HelpCommand
+   - IncorrectCommand
+   - ListCommand
+   - ListUnpackedCommand
+   - PackAllCommand
+   - PackCommand
+   - UnpackAllCommand
+   - UnpackCommand
+2. exception
+   - EmptyInputException
+   - InvalidIndexException
+   - InvalidVariablesException
+3. iohandler
+   - Parser
+   - Storage
+   - Ui
+4. packingfunc
+   - Parser
+   - Storage
+   - Ui
+
+The class diagram below shows the overall structure of BagPacker application, many methods, variables and associations are omitted for improved clarity
+
+![BagPackerClassDiagram.png](umlDiagrams%2FBagPackerClassDiagram.png)
+
 
 ### Command Mechanisms:
 For all valid commands, the mechanism of implementation are as follows:
