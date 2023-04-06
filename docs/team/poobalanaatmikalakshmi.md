@@ -17,11 +17,14 @@
 - Added code to detect duplicate modules in moduleList and its exception 
 - Added some JUnit tests for Parser class 
 - Added Junit tests for task command portion of help command class
+- Changed datetime format from yyyy-MM-ddThh:mm to dd-MM-yyyy-hh:mm to increase user-friendliness and updated all relevant files(including error,Ui messages)
 - Patches 
 
 #### Contributions to the UG
 - Updated user guide with information about clashes between event/deadline/modules 
 - Updated user guide on listmod list module with lessons command 
+- Updated user guide on change in datetime format from yyyy-MM-ddThh:mm to dd-MM-yyyy-hh:mm  
+
 #### Contributions to the DG
 - Delete Module 
 - UML diagrams for DateCommand, FindCommand
