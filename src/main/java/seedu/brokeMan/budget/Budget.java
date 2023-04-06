@@ -17,19 +17,6 @@ import static seedu.brokeMan.parser.StringToTime.createDateString;
 public class Budget {
     public static HashMap<Integer, HashMap<Month, Double>> budgetEachMonth = new HashMap<>();
 
-    // will remove when read write function works
-    //static {
-    //    HashMap<Month, Double> budget2022 = new HashMap<>();
-    //    budget2022.put(Month.of(11), 1000.0);
-    //    budget2022.put(Month.of(12), 1200.0);
-    //    HashMap<Month, Double> budget2023 = new HashMap<>();
-    //    budget2023.put(Month.of(1), 1400.0);
-    //    budget2023.put(Month.of(2), 1600.0);
-    //    budget2023.put(Month.of(3), 1800.0);
-    //    budgetEachMonth.put(2023, budget2023);
-    //    budgetEachMonth.put(2022, budget2022);
-    //}
-
     public static void viewBudget(Optional<String> dateInString) {
         int year = StringToTime.createYearFromString(dateInString);
         Month month = StringToTime.createMonthFromString(dateInString);
