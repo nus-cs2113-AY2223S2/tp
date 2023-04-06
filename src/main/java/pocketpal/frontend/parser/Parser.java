@@ -7,7 +7,14 @@ import java.util.logging.Logger;
 import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.constants.ParserConstants;
-import pocketpal.frontend.exceptions.*;
+import pocketpal.frontend.exceptions.InvalidArgumentsException;
+import pocketpal.frontend.exceptions.InvalidCategoryException;
+import pocketpal.frontend.exceptions.InvalidCommandException;
+import pocketpal.frontend.exceptions.InvalidDateException;
+import pocketpal.frontend.exceptions.MissingArgumentsException;
+import pocketpal.frontend.exceptions.MissingDateException;
+import pocketpal.frontend.exceptions.UnknownArgumentException;
+import pocketpal.frontend.exceptions.UnknownOptionException;
 
 public class Parser {
 
@@ -51,6 +58,13 @@ public class Parser {
         return parser.parseArguments(arguments);
     }
 
+    /**
+     * Returns a parser which will be used to parse user input for the corresponding command.
+     *
+     * @param command User specified command.
+     * @return ParseCommand  Command parser.
+     * @throws InvalidCommandException If command specified is not recognised.
+     */
     private ParseCommand commandParser(String command) throws InvalidCommandException {
         switch (command) {
         case ParserConstants.COMMAND_ADD:
@@ -67,7 +81,6 @@ public class Parser {
             return new ParseByeCommand();
         default:
             logger.log(Level.WARNING, "User command is invalid");
-            logger.exiting(Parser.class.getName(), "parseUserInput()");
             throw new InvalidCommandException(MessageConstants.MESSAGE_INVALID_COMMAND);
         }
     }

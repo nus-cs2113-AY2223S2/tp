@@ -2,7 +2,6 @@ package pocketpal.frontend.parser;
 
 import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.commands.ExitCommand;
-import pocketpal.frontend.exceptions.UnknownOptionException;
 
 
 public class ParseByeCommand extends ParseCommand {

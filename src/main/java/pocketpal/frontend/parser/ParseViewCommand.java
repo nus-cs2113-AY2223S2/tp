@@ -151,6 +151,14 @@ public class ParseViewCommand extends ParseCommand {
         return prices;
     }
 
+    /**
+     * Checks if the date range specified by the user is valid.
+     *
+     * @param startDate Start date specified by user.
+     * @param endDate End date specified by user.
+     * @return True if range is valid, else false.
+     * @throws InvalidDateException If end date is before start date, and if it is in a correct format.
+     */
     private Boolean isDateRangeValid(String startDate, String endDate) throws InvalidDateException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(ParserConstants.DATE_FORMAT);
         LocalDateTime startDateTime = LocalDateTime.parse(startDate, formatter);

@@ -7,9 +7,12 @@ import pocketpal.frontend.exceptions.InvalidArgumentsException;
 import pocketpal.frontend.exceptions.MissingArgumentsException;
 import pocketpal.frontend.exceptions.UnknownOptionException;
 
+import java.util.logging.Logger;
+
 
 public class ParseDeleteCommand extends ParseCommand {
     Integer[] expenseIds;
+    private Logger logger = Logger.getLogger(ParseDeleteCommand.class.getName());
 
     /**
      * Returns an DeleteCommand object to be executed by the backend. The
@@ -24,6 +27,7 @@ public class ParseDeleteCommand extends ParseCommand {
     @Override
     public Command parseArguments(String input) throws InvalidArgumentsException, MissingArgumentsException,
             UnknownOptionException {
+        logger.entering(ParseDeleteCommand.class.getName(), "parseArguments()");
         checkUnknownOptionExistence(input.trim(), "");
         if (input.isEmpty()) {
             throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_ID_DELETE);
@@ -35,6 +39,7 @@ public class ParseDeleteCommand extends ParseCommand {
             checkIdValidity(expenseId);
             expenseIds[i] = Integer.parseInt(expenseId);
         }
+        logger.exiting(ParseDeleteCommand.class.getName(), "parseArguments()");
         return new DeleteCommand(expenseIds);
     }
 }

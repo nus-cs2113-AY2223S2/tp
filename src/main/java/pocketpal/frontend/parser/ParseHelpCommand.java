@@ -2,7 +2,6 @@ package pocketpal.frontend.parser;
 
 import pocketpal.frontend.commands.Command;
 import pocketpal.frontend.commands.HelpCommand;
-import pocketpal.frontend.exceptions.UnknownOptionException;
 
 public class ParseHelpCommand extends ParseCommand {
     /**
@@ -13,7 +12,7 @@ public class ParseHelpCommand extends ParseCommand {
      * @return Command HelpCommand to be executed.
      */
     @Override
-    public Command parseArguments(String input) throws UnknownOptionException {
+    public Command parseArguments(String input) {
         return new HelpCommand();
     }
 }

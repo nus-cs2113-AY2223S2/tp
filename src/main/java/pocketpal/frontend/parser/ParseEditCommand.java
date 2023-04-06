@@ -9,12 +9,16 @@ import pocketpal.frontend.exceptions.InvalidCategoryException;
 import pocketpal.frontend.exceptions.MissingArgumentsException;
 import pocketpal.frontend.exceptions.UnknownOptionException;
 
+import java.util.logging.Logger;
+
 
 public class ParseEditCommand extends ParseCommand {
     String expenseId;
     String description;
     String price;
     String category;
+    private Logger logger = Logger.getLogger(ParseEditCommand.class.getName());
+
 
     /**
      * Returns an EditCommand object to be executed by the backend. The object
@@ -31,6 +35,7 @@ public class ParseEditCommand extends ParseCommand {
     @Override
     public Command parseArguments(String input) throws InvalidArgumentsException, InvalidCategoryException,
             MissingArgumentsException, UnknownOptionException {
+        logger.entering(ParseEditCommand.class.getName(), "parseArguments()");
         checkUnknownOptionExistence(input.trim(), ParserConstants.EDIT_OPTIONS);
         expenseId = extractArgumentsBeforeOption(input, ParserConstants.ID_PATTERN);
         description = extractDetail(input, ParserConstants.DESCRIPTION_PATTERN);
@@ -46,6 +51,7 @@ public class ParseEditCommand extends ParseCommand {
         if (description == null && price == null && category == null) {
             throw new MissingArgumentsException(MessageConstants.MESSAGE_MISSING_OPTION_EDIT);
         }
+        logger.exiting(ParseEditCommand.class.getName(), "parseArguments()");
         return new EditCommand(expenseId, description, category, price);
     }
 
