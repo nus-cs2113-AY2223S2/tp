@@ -18,7 +18,7 @@ In doing so, the user can better manage his daily calorie gain in order to meet 
 ### Database
 * Added the `ExampleData` database to store examples of meals and exercises to be used in the `examples` command
 
-### Construction of Ui of the program
+### Contribution to team-based tasks
 Implemented the Ui used for LifeTracker, as well as the Ui for the indivdual commands. The Ui is used to improve the accessibility of the program to any potential users,
 to ulimately make the program easier to use by streamlining the process for the user. The Ui consists of:
 * General Ui - Handle the general commands as well as start up and exit of the program
