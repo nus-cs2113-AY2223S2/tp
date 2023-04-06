@@ -81,10 +81,12 @@ Hence, users utilising Apollo should input their modules for the current semeste
 |            Bye            |                         `bye`                          |
     
 > Notes about the command format:
-> + Words in `UPPER_CASE` are the parameters to be supplied by the user.
-> > e.g. in 'todo TASK', `TASK` is a parameter that can be used as `todo read book`.
-> + `DATE`s should be input in the format `dd-MM-yyyy-HH:mm` where HH is 24-hour format
-> > e.g. `deadline read book /by 30-10-2023-23:59` sets a deadline for Oct 20 2023, 11:59PM
+> + Words in `<UPPER_CASE>` are the parameters to be supplied by the user.
+> > e.g. in 'todo <TASK>', `<TASK>` is a parameter that can be used as `todo read book`.
+> + `<DATE>`s should be input in the format `dd-MM-yyyy-HH:mm` where HH is 24-hour format
+> > e.g. `deadline read book -by 30-10-2023-23:59` sets a deadline for Oct 20 2023, 11:59PM
+> + Words preceded by a `-` are command flags.
+> > e.g. in `addmod MODULE_CODE -<LESSON_TYPE> <CLASS_NUMBER>`, `-<LESSON_TYPE>` is a command flag that can be used as `addmod CS2113 -LEC 1`.
 > + Tasks that have occurred prior to the current date cannot be added. 
 > + `IDX` can be obtained by using `list` for tasks or `listmod` for modules.  
 > + By default, all newly added tasks are not completed.
