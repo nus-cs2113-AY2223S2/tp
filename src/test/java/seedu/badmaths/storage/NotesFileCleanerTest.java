@@ -1,4 +1,4 @@
-package seedu.badmaths;
+package seedu.badmaths.storage;
 
 import org.junit.After;
 import org.junit.Before;

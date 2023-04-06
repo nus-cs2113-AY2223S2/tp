@@ -1,6 +1,7 @@
-package seedu.badmaths;
+package seedu.badmaths.help;
 
 import org.junit.jupiter.api.Test;
+import seedu.badmaths.HelpManual;
 
 import java.io.IOException;
 import java.io.ByteArrayOutputStream;
