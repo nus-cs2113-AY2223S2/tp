@@ -180,4 +180,18 @@ public class ExpenditureList {
         }
         return sortedExpenditures;
     }
+
+    public static void queryLumpSumDates() {
+        for (Expenditure expenditure: expenditures) {
+            processLumpSumDates(expenditure);
+        }
+    }
+
+    public static void processLumpSumDates(Expenditure expenditure) {
+        if (expenditure instanceof TuitionExpenditure) {
+            ((TuitionExpenditure) expenditure).resetPaid();
+        } else if (expenditure instanceof AccommodationExpenditure) {
+            ((AccommodationExpenditure) expenditure).resetPaid();
+        }
+    }
 }
