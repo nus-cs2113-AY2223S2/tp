@@ -56,10 +56,10 @@ public class Parser {
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SET_BUDGET)) {
                 logger.info("set budget command executing");
                 return ParseSetBudget.setUserBudgetGoal(action[1].trim());
-            } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE_SHORTCUT)) {
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT_DELETE)) {
                 logger.info("delete_shortcut command executing");
                 return new ShortcutDeleteCommand(action[1].trim());
-            } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW_SHORTCUT)) {
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT_VIEW)) {
                 logger.info("view_shortcut command executing");
                 return new ShortcutViewCommand();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_IGNORE)) {

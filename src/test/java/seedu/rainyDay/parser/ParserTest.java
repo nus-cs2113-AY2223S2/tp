@@ -4,9 +4,13 @@ import org.junit.jupiter.api.Test;
 import seedu.rainyDay.RainyDay;
 import seedu.rainyDay.command.EditCommand;
 import seedu.rainyDay.command.ExitCommand;
+import seedu.rainyDay.command.ExportCommand;
 import seedu.rainyDay.command.FilterCommand;
 import seedu.rainyDay.command.HelpCommand;
 import seedu.rainyDay.command.SetBudgetCommand;
+import seedu.rainyDay.command.ShortcutAddCommand;
+import seedu.rainyDay.command.ShortcutDeleteCommand;
+import seedu.rainyDay.command.ShortcutViewCommand;
 import seedu.rainyDay.command.ViewCommand;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
@@ -191,5 +195,39 @@ class ParserTest {
     @Test
     public void parseByeCommand() throws RainyDayException {
         assertEquals(ExitCommand.class, new Parser().parseUserInput("bye").getClass());
+    }
+
+    @Test
+    public void parseExportCommand() throws RainyDayException {
+        assertEquals(ExportCommand.class, new Parser().parseUserInput("export").getClass());
+    }
+    @Test
+    public void parseShortcutCommand() throws RainyDayException {
+        assertEquals(ShortcutAddCommand.class, new Parser().parseUserInput("shortcut a -maps b").getClass());
+    }
+
+    @Test
+    public void parseShortcutCommand_invalidCommand_exceptionThrown() {
+        assertThrows(RainyDayException.class,
+                () -> new Parser().parseUserInput("shortcut a -maps b -maps c").getClass());
+        assertThrows(RainyDayException.class,
+                () -> new Parser().parseUserInput("shortcut a -map c").getClass());
+        assertThrows(RainyDayException.class,
+                () -> new Parser().parseUserInput("shortcut a b -maps c").getClass());
+    }
+    
+    @Test
+    public void parseShortcutViewCommand() throws RainyDayException {
+        assertEquals(ShortcutViewCommand.class, new Parser().parseUserInput("shortcut_view").getClass());
+    }
+
+    @Test
+    public void parseShortcutDeleteCommand() throws RainyDayException {
+        assertEquals(ShortcutDeleteCommand.class, new Parser().parseUserInput("shortcut_delete 4").getClass());
+    }
+
+    @Test
+    public void parseInvalidCommand_exceptionThrown() throws RainyDayException {
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("hello_world").getClass());
     }
 }
