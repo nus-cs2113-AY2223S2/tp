@@ -85,20 +85,32 @@ public class ExpenditureList {
         StringBuilder stringOfExpenditures = new StringBuilder();
         for (int i = 0; i < expenditures.size(); i++) {
             final int expenditureNumber = i + LIST_OFFSET;
-            stringOfExpenditures.append(String.format("%d. %s\n", expenditureNumber, expenditures.get(i)));
+            stringOfExpenditures.append(String.format("%d. %s\n",
+                    expenditureNumber, expenditures.get(i)));
         }
         return stringOfExpenditures.toString().stripTrailing();
     }
 
-    public static String specificDateString(LocalDate date) {
+    public String listString(String currency) {
         StringBuilder stringOfExpenditures = new StringBuilder();
-        int counter = 1;
-        double totalValue = 0;
+        for (int i = 0; i < expenditures.size(); i++) {
+            final int expenditureNumber = i + LIST_OFFSET;
+            stringOfExpenditures.append(String.format("%d. %s\n",
+                    expenditureNumber, expenditures.get(i).expenditureString(currency)));
+        }
+        return stringOfExpenditures.toString().stripTrailing();
+    }
+
+    public static String specificDateString(LocalDate date, String currency) {
+        StringBuilder stringOfExpenditures = new StringBuilder();
+        int counter = 1; //index of expenditures in the filter list
+        double totalValue = 0; //tallies total value
         for (int i = 0; i < expenditures.size(); i++) {
             Expenditure expenditure = expenditures.get(i);
             if (date.equals(expenditure.getDate())) {
-                totalValue += expenditure.getValue();
-                stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure));
+                totalValue += expenditure.getConvertedValue(currency);
+                stringOfExpenditures.append(
+                        String.format("%d. %s\n", counter, expenditure.expenditureString(currency)));
                 counter += 1;
             }
         }
@@ -106,15 +118,16 @@ public class ExpenditureList {
         return stringOfExpenditures.toString().stripTrailing();
     }
 
-    public static String specificTypeString(String expenditureType) {
+    public static String specificTypeString(String expenditureType, String currency) {
         StringBuilder stringOfExpenditures = new StringBuilder();
-        int counter = 1;
-        double totalValue = 0;
+        int counter = 1; //index of expenditures in the filter list
+        double totalValue = 0; //tallies total value
         for (int i = 0; i < expenditures.size(); i++) {
             Expenditure expenditure = expenditures.get(i);
             if (expenditureType.equals(expenditure.getExpenditureType())) {
-                totalValue += expenditure.getValue();
-                stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure));
+                totalValue += expenditure.getConvertedValue(currency);
+                stringOfExpenditures.append(
+                        String.format("%d. %s\n", counter, expenditure.expenditureString(currency)));
                 counter += 1;
             }
         }

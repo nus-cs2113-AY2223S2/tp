@@ -18,7 +18,7 @@ public class ParserTest {
     void parseViewListCommand() {
         String inputString = "list";
         Command finalCommand = MainInputParser.parseInputs(inputString);
-        assertEquals(finalCommand.getClass().getName(), "seedu.commands.ListExpenditureCommand");
+        assertEquals(finalCommand.getClass().getName(), "seedu.commands.InvalidCommand");
     }
 
     @Test

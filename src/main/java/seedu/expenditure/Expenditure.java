@@ -2,6 +2,7 @@ package seedu.expenditure;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import static seedu.expenditure.CurrencyValue.sgDConversion;
 
 public abstract class Expenditure {
     private String description;
@@ -40,6 +41,10 @@ public abstract class Expenditure {
         return value;
     }
 
+    public double getConvertedValue (String currency) {
+        return sgDConversion(value, currency);
+    }
+
     public LocalDate getDate() {
         return date;
     }
@@ -54,6 +59,19 @@ public abstract class Expenditure {
     }
 
     /**
+     * Returns string in the same format as toString, but accounts for currency conversion.
+     * If currency is irrelevent input field should be "SGD".
+     * @param currency
+     * @return
+     */
+    public String expenditureString(String currency) {
+        return String.format("Date: %s || Value: %.2f || Description: %s",
+                getFullDate(), getConvertedValue(currency), getDescription());
+    }
+
+    public abstract String getPaidIcon();
+
+    /**
      * @return String representing the type of expenditure
      */
     public abstract String getExpenditureType();
@@ -61,10 +79,7 @@ public abstract class Expenditure {
     /**
      * Outputs a formatted String containing information of the task saved in a text
      * file.
-     * Overridden for expenditure types with extra descriptions
-     * 
      * @return String containing information of the expenditure.
      */
-    // override not done for special expenditures
     public abstract String saveInfo();
 }

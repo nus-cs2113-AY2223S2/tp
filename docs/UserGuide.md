@@ -4,20 +4,45 @@
     <img src="team/images/MyLedger.jpeg" width="30%">
 </p>
 
+<!-- TOC -->
+* [MyLedger - User Guide](#myledger---user-guide)
+  * [Introduction](#introduction)
+  * [Quick Start](#quick-start)
+  * [Managing Transactions](#managing-transactions)
+    * [4.1. Adding an expenditure](#41-adding-an-expenditure)
+    * [4.2. Adding a lend/borrow record](#42-adding-a-lendborrow-record)
+    * [4.3. Editing an Expenditure](#43-editing-an-expenditure)
+    * [4.4. Editing a Lend/Borrow record](#44-editing-a-lendborrow-record)
+    * [4.5. Deleting an expenditure record](#45-deleting-an-expenditure-record)
+    * [4.6. Duplicating an expenditure record](#46-duplicating-an-expenditure-record)
+    * [4.7. Marking a lend or borrow expenditure record](#47-marking-a-lend-or-borrow-expenditure-record)
+    * [4.8. Unmarking a lend or borrow expenditure record](#48-unmarking-a-lend-or-borrow-expenditure-record)
+    * [4.9. Setting a budget](#49-setting-a-budget)
+    * [4.10. Checking expenditures against the set budget](#410-checking-expenditures-against-the-set-budget)
+    * [4.11. Marking a lend or borrow expenditure record](#411-marking-a-lend-or-borrow-expenditure-record)
+    * [4.12. List out and display the expenditure list](#412-list-out-and-display-the-expenditure-list)
+    * [4.13. Finding expenditure records by keyword](#413-finding-expenditure-records-by-keyword)
+    * [4.14. Sorting the expenditure list](#414-sorting-the-expenditure-list)
+    * [4.15. View the expenditure list by expenditure category or type](#415-view-the-expenditure-list-by-expenditure-category-or-type)
+    * [4.16. View the expenditure list by date](#416-view-the-expenditure-list-by-date)
+  * [FAQ](#faq)
+  * [Command Summary](#command-summary)
+<!-- TOC -->
+
 ## Introduction
 
 MyLedger is a desktop app for managing finances, designed for university students studying locally or on exchange. It is optimized for use via a Command Line Interface (CLI). For students that can type fast, MyLedger can help them record and monitor their budget and expenses, managing their transactions more effciently. 
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `MyLedger` from [here](https://github.com/AY2223S2-CS2113-T14-3/tp/releases/tag/v2.0).
-
+3. Open the command terminal on your device.
+4. Navigate to the folder in command terminal and run the command `java -jar [filename].jar`
+5. Alternatively, double click on the JAR file to run the app.
 ## Managing Transactions
 
-### 4.1 Adding an expenditure
+### 4.1. Adding an expenditure
 
 Adds an expenditure to the record
 
@@ -71,7 +96,7 @@ Output:
 Added other expenditure: [Other] || Date: 31 Jan 2000 || Value: 26.0 || Description: Eating lunch
 ```
 
-### 4.2 Adding a lend/borrow record
+### 4.2. Adding a lend/borrow record
 
 Adds a lending or borrowing transaction to the record
 
@@ -181,7 +206,7 @@ Edited! Here is the updated list:
 
 ```
 
-### 4.5 Deleting an expenditure record
+### 4.5. Deleting an expenditure record
 
 Deletes an existing expenditure record from the expenditure list. After a successful delete, the updated list is shown.
 
@@ -207,7 +232,7 @@ Entry has been deleted
 Here is your updated list:
 ```
 
-### 4.6 Duplicating an expenditure record
+### 4.6. Duplicating an expenditure record
 
 Duplicates an existing expenditure record from the expenditure list. After a successful duplicate, it will be appended to the expenditure list.
 
@@ -221,7 +246,7 @@ Duplicates an existing expenditure record from the expenditure list. After a suc
 
 - Providing special characters and indices out of the range of the number of expenditures in the expenditure list are invalid.
 
-### 4.5 Marking a lend or borrow expenditure record
+### 4.7. Marking a lend or borrow expenditure record
 
 Marks an existing lend or borrow expenditure in the expenditure list as completed.
 
@@ -236,7 +261,7 @@ Marks an existing lend or borrow expenditure in the expenditure list as complete
 - Marking expenditures that are not lend or borrow expenditures are invalid.
 - Marking lend or borrow expenditures that is already marked is invalid.
 
-### 4.6 Unmarking a lend or borrow expenditure record
+### 4.8. Unmarking a lend or borrow expenditure record
 
 Unmarks an existing lend or borrow expenditure in the expenditure list as incomplete.
 
@@ -251,7 +276,7 @@ Unmarks an existing lend or borrow expenditure in the expenditure list as incomp
 - Unmarking expenditures that are not lend or borrow expenditures are invalid.
 - Unmarking lend or borrow expenditures that is already marked is invalid.
 
-### 4.7 Setting a budget
+### 4.9. Setting a budget
 
 Sets a budget amount that one would like to keep within.
 
@@ -265,7 +290,7 @@ Sets a budget amount that one would like to keep within.
 
 - The set budget can be compared with the total sum of expenditures with the [`check`](#48-checking-expenditures-against-the-set-budget) command.
 - The set budget will not be saved after the `exit` command, thus it will be 0 when MyLedger is restarted.
-### 4.8 Checking expenditures against the set budget
+### 4.10. Checking expenditures against the set budget
 
 Compares the set budget via the [`set`](#47-setting-a-budget) command against the total sum of expenditures in the expenditures.
 
@@ -277,7 +302,7 @@ Compares the set budget via the [`set`](#47-setting-a-budget) command against th
 - If budget set is 0, message will prompt user to `set` a value before calling `check` again. `check` will not work if budget is 0.
 - Borrowed expenditure amount owed is separated for a better view of expenditures.
 
-### 4.9 Marking a lend or borrow expenditure record
+### 4.11. Marking a lend or borrow expenditure record
 
 Marks an existing lend or borrow expenditure in the expenditure list as completed.
 
@@ -292,7 +317,7 @@ Marks an existing lend or borrow expenditure in the expenditure list as complete
 - Marking expenditures that are not lend or borrow expenditures are invalid.
 - Marking lend or borrow expenditures that is already marked is invalid.
 
-### 4.10 List out and display the expenditure list
+### 4.12. List out and display the expenditure list
 
 Displays all expenditures in the expenditure list.
 
@@ -302,7 +327,7 @@ Displays all expenditures in the expenditure list.
 
 - It reads saved expenditures from a save file upon launch of MyLedger. Else, the expenditure list is empty by default.
 
-### 4.11 Finding expenditure records by keyword
+### 4.13. Finding expenditure records by keyword
 
 Find expenditures by description 
 
@@ -318,7 +343,7 @@ Find expenditures by description
 - Keyword is case-sensitive
 - Works like "Ctrl-F", the find command is able to search for all characters matching the keyword in the expenditure descriptions.
 
-### 4.12 Sorting the expenditure list
+### 4.14. Sorting the expenditure list
 
 Sorts the expenditure list by ascending or descending amount, or from earliest to latest date added. It will then display the sorted expenditure list.
 
@@ -333,7 +358,7 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The parameter must not be empty
 - The use of sort must follow with a valid parameter or the command would not be valid.
 
-### 4.13 View the expenditure list by expenditure category or type
+### 4.15. View the expenditure list by expenditure category or type
 
 Sorts the expenditure list by ascending or descending amount, or from earliest to latest date added. It will then display the sorted expenditure list.
 
@@ -348,11 +373,11 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The parameter must not be empty
 - The use of viewdate must follow with a valid expenditure type or category or the command would not be valid.
 
-### 4.14 View the expenditure list by date
+### 4.16. View the expenditure list by date
 
 Sorts the expenditure list by ascending or descending amount, or from earliest to latest date added. It will then display the sorted expenditure list.
 
-**Format:** `viewtype DATE`
+**Format:** `viewdate DATE`
 
 | Parameter     | Description                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|

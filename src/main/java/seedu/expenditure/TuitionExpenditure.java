@@ -32,6 +32,11 @@ public class TuitionExpenditure extends Expenditure {
         return String.format("[Tuition] || %s || %s", getPaidIcon(), super.toString());
     }
 
+    @Override
+    public String expenditureString(String currency) {
+        return String.format("[Tuition] || %s || %s", getPaidIcon(), super.expenditureString(currency));
+    }
+
     public String getExpenditureType() {
         return EXPENDITURE_TYPE;
     }

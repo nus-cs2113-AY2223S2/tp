@@ -18,6 +18,10 @@ public class AccommodationExpenditure extends Expenditure {
         isPaid = true;
     }
 
+    public String getPaidIcon() {
+        return (isPaid) ? iconPaid : iconUnpaid;
+    }
+
     public void resetPaid() {
         isPaid = false;
     }
@@ -29,6 +33,10 @@ public class AccommodationExpenditure extends Expenditure {
     @Override
     public String toString() {
         return String.format("[Accommodation] || %s || %s", getStatusIcon(), super.toString());
+    }
+    @Override
+    public String expenditureString(String currency) {
+        return String.format("[Accommodation] || %s || %s", getStatusIcon(), super.expenditureString(currency));
     }
 
     @Override
