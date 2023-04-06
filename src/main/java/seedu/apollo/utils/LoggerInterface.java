@@ -16,7 +16,6 @@ public interface LoggerInterface {
         logConsole.setLevel(Level.SEVERE);
         logger.addHandler(logConsole);
         try {
-
             if (!new File("apollo.log").exists()) {
                 assert (new File("apollo.log").createNewFile()) : "Error creating logger";
             }
