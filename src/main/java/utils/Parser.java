@@ -365,9 +365,9 @@ public class Parser {
         }
         return new FindDeadlineCommand((keyword.trim()));
     }
-    
+
     private Command prepareDeleteDishCommand(String userInputNoCommand) {
-    
+
         int indexToRemove = 0;
 
         try {
@@ -421,7 +421,10 @@ public class Parser {
                 }
                 String[] ingredientList = parsedDishInput.group(3).split(";");
                 for (String ingredient : ingredientList) {
-                    if (!ingredient.isBlank()) {
+                    String regexNumbers = "^[+-]?\\d+(?:\\.\\d+)?$";
+                    Pattern pattern = Pattern.compile(regexNumbers);
+                    Matcher parsedIngredient = pattern.matcher(ingredient);
+                    if (!ingredient.isBlank() && !parsedIngredient.matches()) {
                         ingredients.add(ingredient);
                     }
                 }
