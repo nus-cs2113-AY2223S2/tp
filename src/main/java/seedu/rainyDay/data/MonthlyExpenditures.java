@@ -13,7 +13,9 @@ public class MonthlyExpenditures {
         FinancialStatement currentStatement;
         for(int index = 0; index < fullFinancialReport.getStatementCount(); index++) {
             currentStatement = fullFinancialReport.getFinancialStatement(index);
-            addToMonthlyExpenditure(currentStatement);
+            if(!currentStatement.isIgnored()) {
+                addToMonthlyExpenditure(currentStatement);
+            }
         }
     }
 

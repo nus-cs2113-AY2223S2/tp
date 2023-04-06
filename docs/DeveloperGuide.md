@@ -400,9 +400,9 @@ The sequence diagram for the implementation of filter is as shown below:
   shortcut command: `shortcut [SHORTCUTNAME] -maps [ACTUALCOMMAND]`
     - Furthermore, the `[SHORTCUTNAME]` should be given without spaces
 - Commands in the correct format will then be parsed to create a `ShortcutAddCommand` object with a constructor
-    - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
     - The given `[SHORTCUTNAME]` and `[ACTUALCOMMAND]` will be the key value pair of the hashmap.
 - `RainyDay` will then call the `execute` method in `ShortcutAddCommand`
+    - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
     - A self-call will be made to the `checkShortcutValidity` method to ensure that the shortcut to be added is valid
     - If the shortcut is valid, the new shortcut mapping will be added into the hashmap
 
@@ -415,9 +415,9 @@ The sequence diagram for the implementation of adding a shortcut is as shown bel
 - When a command is given to delete a shortcut, the command is first parsed to check if it follows the format of a
   delete shortcut command: `shortcut_delete [SHORTCUTNAME]`
 - Commands in the correct format will then be parsed to create a `ShortcutDeleteCommand` object with a constructor
-    - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
     - The given `[SHORTCUTNAME]` will be the key of the hashmap
 - `RainyDay` will then call the `execute` method in `ShortcutDeleteCommand`.
+    - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
     - If the shortcut key exists in the `shortcutCommands` hashmap, it will be deleted from the hashmap
 
 The sequence diagram for the implementation of deleting a shortcut is as shown below:
@@ -428,8 +428,8 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
 
 - The command `shortcut_view` is used to view all currently configured shortcuts
 - The command will create a `ShortcutViewCommand` object with a constructor
-    - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
 - `RainyDay` will then call the `execute` method in `ShortcutViewCommand`
+    - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
     - For each shortcut in the hashmap, the corresponding actual command will be obtained from the
       `shortcutCommands` hashmap with the `get` method
     - The mapping between the shortcut and actual command will then be printed to the user by calling

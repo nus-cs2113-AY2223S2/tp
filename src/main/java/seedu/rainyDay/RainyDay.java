@@ -4,20 +4,23 @@ import seedu.rainyDay.command.CommandResult;
 import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.data.MonthlyExpenditures;
 import seedu.rainyDay.data.SavedData;
+import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 import seedu.rainyDay.modules.Storage;
 import seedu.rainyDay.modules.Ui;
 import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
-import seedu.rainyDay.modules.Parser;
+import seedu.rainyDay.parser.Parser;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+
 
 public class RainyDay {
     public static String filePath = "./data/rainyDay.json";
@@ -41,6 +44,11 @@ public class RainyDay {
             assert savedData != null : "Error loading from json file";
             logger.log(Level.INFO, "File loaded successfully.");
         } catch (Exception e) {
+            if (e instanceof RainyDayException) {
+                System.out.println(e.getMessage());
+            } else if (e instanceof DateTimeParseException) {
+                System.out.println(ErrorMessage.INVALID_SAVED_DATE);
+            }
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
             String username = ui.readUserName();
@@ -61,7 +69,7 @@ public class RainyDay {
 
     private void setUpDate() {
         System.out.println(savedData.checkUserBudgetLimit(LocalDate.now()));
-        Storage.writeToFile(RainyDay.savedData, RainyDay.filePath);
+        Storage.writeToFile(savedData, filePath);
     }
 
     private void runCommand() {

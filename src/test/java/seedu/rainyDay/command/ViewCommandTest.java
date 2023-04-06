@@ -25,8 +25,16 @@ public class ViewCommandTest {
     UserData userData = new UserData(savedData, monthlyExpenditures);
 
     @Test
-    public void execute_emptyReport_emptyReportStatement() {
+    public void viewAllEmptyReport() {
         ViewCommand viewList = new ViewCommand(LocalDate.now(), LocalDate.now(), false, true);
+        viewList.setData(userData);
+        String expectedReport = "Your financial report is completely empty!";
+        assertEquals(expectedReport, viewList.execute().output);
+    }
+
+    @Test
+    public void viewEmptyReport() {
+        ViewCommand viewList = new ViewCommand(LocalDate.now(), LocalDate.now(), false, false);
         viewList.setData(userData);
         String expectedReport = String.format("Your financial report is empty for %s till %s",
                 LocalDate.now(), LocalDate.now());
