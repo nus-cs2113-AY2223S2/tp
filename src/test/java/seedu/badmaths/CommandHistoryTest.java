@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.PrintStream;
-import java.io.FileOutputStream;
-import java.io.FileDescriptor;
 import java.util.ArrayList;
 import java.io.ByteArrayOutputStream;
 
