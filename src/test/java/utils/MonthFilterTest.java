@@ -36,7 +36,7 @@ class MonthFilterTest {
     @Test
     void getMonthFromExpenseTime_successful() {
         MonthFilter monthFilter = new MonthFilter(new ArrayList<>(), "June");
-        assertEquals(monthFilter.getMonthFromExpenseTime("05/06/2021"), "06");
+        assertEquals(monthFilter.getMonthFromExpenseTime("05-06-2021"), "06");
     }
 
     @Test
