@@ -22,16 +22,12 @@ import storage.Storage;
 
 import java.util.Scanner;
 
-import static common.MessageList.HELLO_MESSAGE;
-import static common.MessageList.ACCOUNT_MESSAGE;
-import static common.MessageList.NAME_QUESTION;
-
 //import static data.Account.account;
 import static common.MessageList.MESSAGE_CANCEL;
 import static common.MessageList.MESSAGE_DIVIDER;
 import static common.MessageList.SAVING_EXIT_MESSAGE;
 import static common.MessageList.SAVING_QUESTION_MESSAGE;
-import static data.Account.account;
+//import static data.Account.account;
 import static data.ExpenseList.showToUser;
 import static parser.ParserAccount.caseLogOut;
 import static parser.ParserAccount.initialize;
