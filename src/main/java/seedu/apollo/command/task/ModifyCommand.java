@@ -116,6 +116,7 @@ public class ModifyCommand extends Command implements LoggerInterface {
         }
     }
 
+    //@@author T-Wan-Lin
     private void markTask(TaskList taskList, Ui ui) throws IndexOutOfBoundsException {
         if (!taskList.get(idx).isDone()){
             taskList.get(idx).setDone(true);
