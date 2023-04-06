@@ -1,0 +1,3 @@
+HIGH	Y	1	Note 1
+MEDIUM	N	0	Note 2
+LOW	Y	2	Note 3
