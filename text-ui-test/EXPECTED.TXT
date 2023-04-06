@@ -380,7 +380,7 @@ Added new task to list
 
 ________________________________________________________________________________________________________
 
-Here is your schedule:
+Here is your schedule: 
 1. [ ] Feed Bob (Deadline: 2021-01-01)
 2. [ ] Buy Food (Deadline: 2021-03-01)
 
