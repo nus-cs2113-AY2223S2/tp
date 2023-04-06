@@ -42,7 +42,7 @@ public class DeadlineManager {
             DeadlineStorage deadlineStorage = new DeadlineStorage();
             deadlineStorage.writeToDeadlineFile(deadlines);
         } catch (IOException e) {
-            ui.printMessage(String.format(Messages.ERROR_STORAGE_INVALID_WRITE_LINE, deadline));
+            ui.printMessage(Messages.ERROR_STORAGE_INVALID_WRITE_LINE);
         }
     }
 

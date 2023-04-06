@@ -22,7 +22,7 @@ public class MeetingManager {
             MeetingStorage meetingStorage = new MeetingStorage();
             meetingStorage.writeToDeadlineFile(meetings);
         } catch (IOException e) {
-            ui.printMessage(String.format(Messages.ERROR_STORAGE_INVALID_WRITE_LINE, meeting));
+            ui.printMessage(Messages.ERROR_STORAGE_INVALID_WRITE_LINE);
         }
     }
 

@@ -40,7 +40,7 @@ public class Parser {
 
     public Command parseCommand(String userInput) {
         assert userInput != null : "userInput should not be null";
-        String[] userInputSplit = userInput.split(" ");
+        String[] userInputSplit = userInput.trim().split(" ");
         String commandWord = userInputSplit[0];
         String userInputNoCommand = userInput.replace(userInputSplit[0], "");
         //@@damithc darrenangwx-reused
@@ -49,9 +49,9 @@ public class Parser {
         //Reused the switch skeleton
         switch (commandWord) {
         case HelpCommand.COMMAND_WORD:
-            return prepareHelpCommand();
+            return prepareHelpCommand(userInputNoCommand);
         case ExitCommand.COMMAND_WORD:
-            return prepareExitCommand();
+            return prepareExitCommand(userInputNoCommand);
         case AddMeetingCommand.COMMAND_WORD:
             return prepareAddMeetingCommand(userInputNoCommand);
         case DeleteMeetingCommand.COMMAND_WORD:
@@ -245,11 +245,27 @@ public class Parser {
         return new FindStaffCommand(description.trim());
 
     }
-    private Command prepareHelpCommand() {
+    private Command prepareHelpCommand(String userInputNoCommand) {
+        try {
+            if (!userInputNoCommand.isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_HELP_EXCESS_PARAM);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
+            return new IncorrectCommand();
+        }
         return new HelpCommand();
     }
 
-    private Command prepareExitCommand() {
+    private Command prepareExitCommand(String userInputNoCommand) {
+        try {
+            if (!userInputNoCommand.isEmpty()) {
+                throw new DinerDirectorException(Messages.ERROR_EXIT_EXCESS_PARAM);
+            }
+        } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
+            return new IncorrectCommand();
+        }
         return new ExitCommand();
     }
 
