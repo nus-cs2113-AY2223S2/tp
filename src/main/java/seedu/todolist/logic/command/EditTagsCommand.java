@@ -54,7 +54,7 @@ public class EditTagsCommand extends Command {
         }
         switch (purpose) {
         case EDIT_DELETE:
-                ui.printDeleteTagsMessage(FormatterUtil.getTagsAsString(tags), stringJoiner.toString());
+            ui.printDeleteTagsMessage(FormatterUtil.getTagsAsString(tags), stringJoiner.toString());
             break;
         case EDIT:
             ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), stringJoiner.toString());

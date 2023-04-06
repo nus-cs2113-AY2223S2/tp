@@ -82,7 +82,8 @@ public class Ui {
     }
 
     public void printDeleteTagsMessage(String tagsRemoved, String taskString) {
-        println("Okay, I have removed the following tag(s) [" + tagsRemoved + "] of the following task(s):", taskString);
+        println("Okay, I have removed the following tag(s) [" + tagsRemoved + "] of the following task(s):",
+                taskString);
     }
 
     public void printEditDeleteTaskMessage(String parameterType, String taskString) {

@@ -4,7 +4,7 @@ package seedu.todolist.logic.command;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidFlagException;
 import seedu.todolist.exception.InvalidIdException;
-import seedu.todolist.logic.ParserUtil;
+
 import seedu.todolist.task.TaskList;
 import seedu.todolist.ui.Ui;
 
@@ -23,7 +23,7 @@ public class DeleteTaskCommand extends Command {
 
     public DeleteTaskCommand(HashMap<Flags, String> args) throws InvalidIdException, InvalidFlagException {
         String idList = args.get(Flags.COMMAND_DELETE);
-        if (idList.equals("all")){
+        if (idList.equals("all")) {
             isDeletingAll = true;
         } else {
             idHashSet = parseId(idList);
@@ -33,13 +33,13 @@ public class DeleteTaskCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
         if (isDeletingAll) {
-                String confirmationMessage = ui.printConfirmationMessage();
-                if (confirmationMessage.equals("Yes")){
-                    taskList.deleteAllTasks();
-                    ui.printDeleteAllMessage();
-                } else {
-                    ui.printCancelDeleteAllMessage();
-                }
+            String confirmationMessage = ui.printConfirmationMessage();
+            if (confirmationMessage.equals("Yes")) {
+                taskList.deleteAllTasks();
+                ui.printDeleteAllMessage();
+            } else {
+                ui.printCancelDeleteAllMessage();
+            }
         } else {
             StringJoiner stringJoiner = new StringJoiner(System.lineSeparator());
             for (int id : idHashSet) {
