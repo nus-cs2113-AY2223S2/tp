@@ -190,7 +190,7 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  Invalid Date Format!
-|  Years starting from 1 and months from 1 to 12 are accepted!
+|  Years starting from 0001 and months from 01 to 12 are accepted!
 |
 |  setBudget: sets your budget for current month.
 |  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
@@ -202,7 +202,7 @@
 |  -----------------------------------------------------------------------
 |
 |  Enter command: |  The budget you have set is not a double.
-|  If you are trying to enter date information, please use t/.
+|  If you are trying to enter date information, please use the 't/' flag.
 |
 |  setBudget: sets your budget for current month.
 |  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month

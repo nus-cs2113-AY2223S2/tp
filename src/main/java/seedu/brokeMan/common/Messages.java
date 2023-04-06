@@ -37,8 +37,10 @@ public class Messages {
     public static final String MESSAGE_INVALID_OPTIONAL_TIME_FLAG = "Invalid optional time flag format.";
     public static final String MESSAGE_WRONG_FLAG_ORDER = "Wrong flags order.";
 
-    public static final String MESSAGE_INVALID_CATEGORY = "Invalid category tag. You can add category tags: " +
+    public static final String MESSAGE_INVALID_CATEGORY = "Invalid category tag.\n|  You can add category tags: " +
             "FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, " +
-            "SALARY, INVESTMENT," +
+            "SALARY, INVESTMENT, " +
             "OTHERS";
+
+    public static final String MESSAGE_CONTAIN_DUPLICATED_FLAGS = "Duplicated flags are not allowed.";
 }
