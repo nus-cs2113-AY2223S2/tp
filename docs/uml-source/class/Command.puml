@@ -69,23 +69,60 @@ ExitCommand <|-- Command
 class HelpCommand
 HelpCommand <|-- Command
 
-class SpecificHelpCommand {
-}
+class SpecificHelpCommand
 SpecificHelpCommand <|-- HelpCommand
 
-class AddModuleCommand
+class AddModuleCommand {
+- module: ModuleList
+- args: String[]
++ AddModuleCommand(param: String, allModules: ModuleList)
+- handleMultiCommand(moduleList: ModuleList, allModules: ModuleList,
+args: String[], ui: Ui, calendar: Calendar): void
+- addTimeTable(searchModule: Module, lessonType: LessonType,
+args: String, ui: Ui, calendar: Calendar): void
+- getLessonTypes(module: Module): ArrayList<LessonType>
+- checkClashingLesson(calendar: Calendar, timetable: Timetable, ui: Ui): void
+- isLessonClashing(schedule: Timetable, timetable: Timetable): boolean
+- isSameWeek(timetable1: Timetable, timetable2: Timetable): boolean
+- isAdded(moduleList: ModuleList, module: Module): boolean
+}
 Command --|> AddModuleCommand
 
-class DeleteModuleCommand
+class DeleteModuleCommand{
+# args: String[]
++ DeleteModuleCommand(params: String)
+- isInteger(param: String): Boolean
+- handleMultiCommand(moduleList: ModuleList, ui: Ui): void
+- deleteTimetable(module: Module, lessonType: LessonType,
+lessonNumber: String): void
+}
 Command --|> DeleteModuleCommand
 
 class ListModuleCommand
 Command --|> ListModuleCommand
 
-class ListModuleWithLessonCommand
+class ListModuleWithLessonCommand {
+- args: String[]
+- module: Module
++ ListModuleWithLessonCommand(params: String, allModules: ModuleList)
+- handleSingleCommand(ui: Ui): void
+- handleMultiCommand(moduleList: ModuleList, ui: Ui): void
+- copyModuleListData(moduleList: ModuleList): void
+- getLessonTypes(module: Module): ArrayList<LessonType>
+- sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
+- isInModuleList(moduleList: ModuleList, module: Module): boolean
+- isExistLessonType(allModules: ModuleList, lessonType: LessonType): boolean
+}
 Command --|> ListModuleWithLessonCommand
 
-class ShowModuleCommand
+class ShowModuleCommand {
+- args: String[]
+- module: Module
++ ShowModuleCommand(params: String, allModules: ModuleList)
+- getLessonTypes(module: Module): ArrayList<LessonType>
+- handleMultiCommand(ui: Ui): void
+- sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
+}
 Command --|> ShowModuleCommand
 
 @enduml

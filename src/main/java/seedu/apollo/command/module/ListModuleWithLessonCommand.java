@@ -137,6 +137,49 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
     }
 
     /**
+     * Handles the command when user wants to see the timetable added of a specific lesson type.
+     *
+     * @author gohyixuan
+     * @param ui The Ui object to print the timetable.
+     * @throws IllegalCommandException If the command is invalid.
+     */
+    private void handleMultiCommand(Ui ui, ModuleList allModules) throws IllegalCommandException,
+            LessonTypeNotInModuleException {
+
+        String type = args[1];
+
+        LessonType lessonType = getCommand(type);
+        if (lessonType == null) {
+            throw new IllegalCommandException();
+        }
+
+        if (!isExistLessonType(allModules, lessonType)) {
+            throw new LessonTypeNotInModuleException();
+        }
+
+        ArrayList<Timetable> timetableList = new ArrayList<>(module.getModuleTimetable());
+
+        ArrayList<Timetable> timetableInModuleList = new ArrayList<>();
+
+        for (Timetable timetable : timetableList) {
+            LessonType checkType = determineLessonType(timetable.getLessonType());
+            assert (checkType != null) : "ListModuleWithLessonCommand: Lesson type should not be null!";
+
+            if (checkType.equals(lessonType)) {
+                timetableInModuleList.add(timetable);
+            }
+        }
+
+        if (timetableInModuleList.size() == 0) {
+            ui.printLessonTypeNotAdded(module.getCode(), lessonType);
+        } else {
+            sortTimetable(timetableInModuleList);
+            ui.printSpecificTimetable(module, lessonType, timetableInModuleList);
+        }
+
+    }
+
+    /**
      * Copies the timetable information into the private module.
      *
      * @param moduleList The list of modules.
@@ -204,55 +247,13 @@ public class ListModuleWithLessonCommand extends Command implements LoggerInterf
      * @param module     The module to be checked.
      * @return True if the module is in the list of modules.
      */
-    public boolean isInModuleList(ModuleList moduleList, Module module) {
+    private boolean isInModuleList(ModuleList moduleList, Module module) {
         for (Module moduleCheck : moduleList) {
             if (moduleCheck.getCode().equals(module.getCode())) {
                 return true;
             }
         }
         return false;
-    }
-
-    /**
-     * Handles the command when user wants to see the timetable added of a specific lesson type.
-     *
-     * @param ui The Ui object to print the timetable.
-     * @throws IllegalCommandException If the command is invalid.
-     */
-    private void handleMultiCommand(Ui ui, ModuleList allModules) throws IllegalCommandException,
-            LessonTypeNotInModuleException {
-
-        String type = args[1];
-
-        LessonType lessonType = getCommand(type);
-        if (lessonType == null) {
-            throw new IllegalCommandException();
-        }
-
-        if (!isExistLessonType(allModules, lessonType)) {
-            throw new LessonTypeNotInModuleException();
-        }
-
-        ArrayList<Timetable> timetableList = new ArrayList<>(module.getModuleTimetable());
-
-        ArrayList<Timetable> timetableInModuleList = new ArrayList<>();
-
-        for (Timetable timetable : timetableList) {
-            LessonType checkType = determineLessonType(timetable.getLessonType());
-            assert (checkType != null) : "ListModuleWithLessonCommand: Lesson type should not be null!";
-
-            if (checkType.equals(lessonType)) {
-                timetableInModuleList.add(timetable);
-            }
-        }
-
-        if (timetableInModuleList.size() == 0) {
-            ui.printLessonTypeNotAdded(module.getCode(), lessonType);
-        } else {
-            sortTimetable(timetableInModuleList);
-            ui.printSpecificTimetable(module, lessonType, timetableInModuleList);
-        }
-
     }
 
     private boolean isExistLessonType(ModuleList allModules, LessonType lessonType) {

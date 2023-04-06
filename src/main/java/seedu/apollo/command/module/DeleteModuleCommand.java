@@ -107,21 +107,6 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
     }
 
     /**
-     * Checks if the string is an integer.
-     *
-     * @param param String to be checked.
-     * @return Boolean value of whether the string is an integer.
-     */
-    private Boolean isInteger(String param) {
-        try {
-            Integer.parseInt(param);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
-
-    /**
      * Handles the deletion of a lesson from a module.
      *
      * @param moduleList ModuleList to be deleted from.
@@ -161,7 +146,7 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
     private void deleteTimetable(Module module, LessonType lessonType, String lessonNumber)
             throws ClassNotFoundException {
 
-        Boolean isFound = false;
+        boolean isFound = false;
 
         if (module.getModuleTimetable() == null) {
             throw new ClassNotFoundException();
@@ -187,5 +172,20 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
         }
     }
 
+    /**
+     * Checks if the string is an integer.
+     *
+     * @author irving11119
+     * @param param String to be checked.
+     * @return Boolean value of whether the string is an integer.
+     */
+    private boolean isInteger(String param) {
+        try {
+            Integer.parseInt(param);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
 
 }
