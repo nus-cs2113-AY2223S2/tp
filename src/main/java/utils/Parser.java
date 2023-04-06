@@ -95,7 +95,8 @@ public class Parser {
         String[] words = (description.trim()).split("t/");
         String[] testName = (description.trim()).split("n/");
         try {
-            if (((description.trim()).isEmpty()) || (!description.contains("n/")) || (words.length < 2)) {
+            if (((description.trim()).isEmpty()) || (!description.contains("n/"))||
+                    (!description.contains("t/")) || (words.length < 2)||(words[0].trim().length()<3)) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_ADD_PARAM);
@@ -397,7 +398,11 @@ public class Parser {
         try {
             if (parsedDishInput.matches()) {
                 name = parsedDishInput.group(1);
-                price = Integer.parseInt(parsedDishInput.group(2));
+                try {
+                    price = Integer.parseInt(parsedDishInput.group(2));
+                } catch (NumberFormatException e) {
+                    throw new DinerDirectorException(Messages.ERROR_PRICE_EXCEED_INTEGER_BOUNDS);
+                }
                 String[] ingredientList = parsedDishInput.group(3).split(";");
                 for (String ingredient : ingredientList) {
                     if (!ingredient.isBlank()) {
@@ -408,6 +413,9 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
             }
         } catch (DinerDirectorException e) {
+            if (e.getMessage() != Messages.ERROR_COMMAND_INVALID) {
+                System.out.println(e.getMessage());
+            }
             return new IncorrectCommand();
         }
         return new AddDishCommand(name, price, ingredients);
