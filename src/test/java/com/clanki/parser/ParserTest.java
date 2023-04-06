@@ -12,6 +12,7 @@ import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
 
+import com.clanki.exceptions.UpdatedContentIsEmptyException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -50,6 +51,25 @@ class ParserTest {
                 () -> Parser.parseCommandStrict("add /q Question /a "));
         assertThrows(EmptyFlashcardQuestionException.class,
                 () -> Parser.parseCommandStrict("add /q  /a Answer"));
+    }
+
+
+    @Test
+    public void parseInputForUpdateCommand_emptyInput_updatedContentEmptyException() {
+        assertThrows(UpdatedContentIsEmptyException.class,
+                () -> Parser.parseInputForUpdateCommand("1 /a /aa"));
+        assertThrows(UpdatedContentIsEmptyException.class,
+                () -> Parser.parseInputForUpdateCommand(("1 /a   ")));
+    }
+
+    @Test
+    public void parseInputForUpdateCommand_wrongIdentifier_invalidIdentifierException() {
+        assertThrows(InvalidIdentifierException.class,
+                () -> Parser.parseInputForUpdateCommand("1 /w question"));
+        assertThrows(InvalidIdentifierException.class,
+                () -> Parser.parseInputForUpdateCommand("1 /s "));
+        assertThrows(InvalidIdentifierException.class,
+                () -> Parser.parseInputForUpdateCommand("1 /e       "));
     }
 
     @Test
