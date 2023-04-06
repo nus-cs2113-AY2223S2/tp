@@ -2,6 +2,7 @@ package data;
 
 import command.CommandAdd;
 import parser.Parser;
+import storage.Storage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -17,6 +18,7 @@ public class Account {
     public static int accountNumber = 1;
     //protected static String ACCOUNTS_FILE = accountName + ".txt";
     protected static String accountName;
+    protected static Storage storage;
     public static ExpenseList account;
     private static String passwordHash;
     private static final int MIN_PASSWORD_LENGTH = 8;
@@ -27,6 +29,7 @@ public class Account {
         this.passwordHash = hashPassword(password);
         accountNumber++;
         this.account = new ExpenseList();
+        storage = new Storage(account);
 
         // Read the expense list from the file with the file path of accountName + ".txt" if it exists
         try (BufferedReader br = new BufferedReader(new FileReader(
@@ -37,6 +40,10 @@ public class Account {
         } catch (IOException e) {
             System.out.println("Error: Failed to read expense list from file.");
         }
+    }
+
+    public Account() {
+        this.account = new ExpenseList();
     }
 
     public String getAccountName() {
@@ -70,7 +77,7 @@ public class Account {
         } else if (isUsernameTaken()) {  // Check if username is taken
             System.out.println("The username is taken, please use another username.");
             return;
-        } try (PrintWriter pw = new PrintWriter(new FileWriter(
+        } /*try (PrintWriter pw = new PrintWriter(new FileWriter(
                 "./src/main/java/storage/" + accountName + ".txt", true))) {
             // Save the account to the "accountName.txt" file
             pw.println(accountName);
@@ -80,6 +87,12 @@ public class Account {
             return;
         }
         try (PrintWriter pw = new PrintWriter(new FileWriter("./src/main/java/storage/" + accountName + ".txt"))) {
+            pw.println(accountName + "," + passwordHash);
+            pw.close();*/
+        try {
+            storage.createFile("./src/main/java/storage/" + accountName + ".txt");
+            storage.createFile("./src/main/java/storage/" + accountName + ".json");
+            PrintWriter pw = new PrintWriter(new PrintWriter("./src/main/java/storage/" + accountName + ".txt"));
             pw.println(accountName + "," + passwordHash);
             pw.close();
         } catch (IOException e) {
@@ -116,6 +129,8 @@ public class Account {
                                 parser.extractAddParameters(line), new Currency()).executeLogIn();
                     }
                 }
+                //TODO: modify loadExpenses to ExpenseList instead of ArrayList<Expense>
+                //storage.loadExpenses("./src/main/java/storage/" + accountName + ".json");
                 bufferedReader.close();
                 reader.close();
 
@@ -177,6 +192,7 @@ public class Account {
             for (Expense expense : account.getExpenseList()) {
                 pw.println(expense.toAdd());
             }
+            storage.saveExpenses("./src/main/java/storage/" + accountName + ".json");
             account.clear();
             pw.close();
         } catch (IOException e) {

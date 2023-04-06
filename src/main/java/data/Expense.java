@@ -10,7 +10,6 @@ public class Expense {
     protected String description;
     protected String currencyType;
     protected BigDecimal rate;
-    protected String VERTICAL_BAR = " | ";
 
     public Expense(BigDecimal expenseAmount, Time expenseTime, String description, String currencyType,
                    BigDecimal rate) {
@@ -124,11 +123,6 @@ public class Expense {
 
     }
 
-
-    public String toSave() {
-        return (this.currencyType + VERTICAL_BAR + this.expenseAmount + VERTICAL_BAR + this.expenseTime
-                + VERTICAL_BAR + this.description + "\n");
-    }
 
     public String toAdd() {
         return ("add amt/" + this.expenseAmount + " t/" + this.expenseTime.toStringSave() + " cat/" + this.description

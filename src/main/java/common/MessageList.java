@@ -18,7 +18,6 @@ public class MessageList {
 
     public static final String TAB = "    ";
     public static final String ACCOUNT_MESSAGE = "> Type \"login\" to start manage your expense. \n" +
-            "> Haven't got your account yet? Type \"signup\" to create your account.\n" +
             "> Haven't got your account yet? Type \"signup\" to create your account.";
 
     public static final String COMMAND_LIST_MESSAGE =

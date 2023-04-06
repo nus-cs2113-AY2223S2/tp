@@ -35,6 +35,7 @@ import static data.Account.account;
 import static data.ExpenseList.showToUser;
 import static parser.ParserAccount.caseLogOut;
 import static parser.ParserAccount.initialize;
+import static parser.ParserAccount.caseExit;
 
 
 
@@ -42,9 +43,12 @@ public class Duke {
     protected Parser parser;
     protected ExpenseList expenseList;
     protected Currency currency;
-    protected Storage storage;
-    Account currentUser = null;
-    String filePath = "./src/main/java/storage/" + currentUser.getAccountName() + ".txt";
+    protected static Storage storage;
+    protected Account currentUser;
+
+    //TODO: arbitrary filePath
+    //protected String filePath;
+
     /**
      * Initialize Duke and instantiate parser and account objects.
      */
@@ -53,22 +57,26 @@ public class Duke {
         expenseList = new ExpenseList();
         currency = new Currency();
         storage = new Storage(expenseList);
-        account.setExpenseList(storage.loadExpenses(filePath));
+        currentUser = new Account();
+        //this.filePath = filePath;
+        //expenseList.setExpenseList(storage.loadExpenses(filePath));
     }
 
     public void run() {
-        showToUser(HELLO_MESSAGE, MESSAGE_DIVIDER, ACCOUNT_MESSAGE, MESSAGE_DIVIDER, NAME_QUESTION);
+        WelcomeMessage.printWelcomeLogo();
+        System.out.println("Hello! What is your name?");
         Scanner in = new Scanner(System.in);
         if (in.hasNextLine()) {
             System.out.println("Hello " + in.nextLine());
         }
         initialize(in);
+        WelcomeMessage.welcomeHelper();
         String input = "";
         while (in.hasNextLine()) {
             input = in.nextLine();
             if (input.equals("exit")) {
                 showToUser(MESSAGE_DIVIDER, SAVING_EXIT_MESSAGE, MESSAGE_DIVIDER);
-                String res = caseLogOut();
+                String res = caseExit();
                 if (res.equals("yes") || res.equals("no")) {
                     break;
                 }
@@ -116,7 +124,6 @@ public class Duke {
             default:
                 System.out.println("Unknown command.");
             }
-            //storage.saveExpenses(filePath);
         }
         in.close();
     }
