@@ -3,6 +3,7 @@ package seedu.duke.command;
 import seedu.duke.company.CompanyList;
 import seedu.duke.exception.InvalidIndexException;
 import seedu.duke.storage.CompanyListEncoder;
+import seedu.duke.ui.Ui;
 
 import java.io.IOException;
 
@@ -11,6 +12,8 @@ public class AddCommand extends Command {
     protected int contactNumber;
     protected String contactEmail;
     protected String industry;
+
+    Ui ui = new Ui();
 
     public AddCommand(String commandType, String industry, String companyName, int contactNumber, String contactEmail) {
         super(commandType);
@@ -33,7 +36,9 @@ public class AddCommand extends Command {
             companyList.add(companyName, industry, contactNumber, contactEmail);
             CompanyListEncoder.write(companyList);
         } catch (InvalidIndexException | IOException err) {
+            ui.showLine();
             System.out.println("Unsuccessful in saving your file :/");
+            ui.showLine();
         }
     }
 }

@@ -2,6 +2,7 @@ package seedu.duke.storage;
 
 import seedu.duke.event.Event;
 import seedu.duke.exception.InvalidIndexException;
+import seedu.duke.ui.Ui;
 import seedu.duke.venue.VenueList;
 
 import java.io.File;
@@ -19,15 +20,22 @@ public class EventDetailsStorage extends Storage{
     private static final String filePath = "data/eventDetails.txt";
 
     public static void eventDetailsInit(Event event, VenueList venueList) {
+        Ui ui = new Ui();
         try {
             checkFileAccess(filePath);
             load(event, venueList);
         } catch (FileNotFoundException err) {
+            ui.showLine();
             System.out.println("File not Found");
+            ui.showLine();
         } catch (IOException err) {
+            ui.showLine();
             System.out.println("Something went wrong");
+            ui.showLine();
         } catch (InvalidIndexException | NumberFormatException e) {
+            ui.showLine();
             System.out.println("Choose a new venue using choose venue <index>");
+            ui.showLine();
         } catch (NoSuchElementException e) {
             event.updateEventName("Default Event");
             System.out.println("Choose an event name using update event name <EVENT_NAME>");
@@ -64,12 +72,15 @@ public class EventDetailsStorage extends Storage{
      * @throws IOException if error occurred during file writing
      */
     public static void updateFile(Event event, int indexOfVenue) {
+        Ui ui = new Ui();
         try {
             String eventName = event.getEventName();
             writeToFile("", filePath);
             appendToFile(eventName + "|" + indexOfVenue, filePath);
         } catch (IOException err) {
+            ui.showLine();
             System.out.println("Something went wrong: " + err.getMessage());
+            ui.showLine();
         }
     }
 
@@ -79,12 +90,15 @@ public class EventDetailsStorage extends Storage{
      * @throws IOException if error occurred during file writing
      */
     public static void updateFile(Event event){
+        Ui ui = new Ui();
         try {
             String eventName = event.getEventName();
             writeToFile("", filePath);
             appendToFile(eventName + "|", filePath);
         } catch (IOException err) {
+            ui.showLine();
             System.out.println("Something went wrong: " + err.getMessage());
+            ui.showLine();
         }
     }
 
