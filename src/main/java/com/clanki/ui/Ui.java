@@ -4,6 +4,7 @@ import com.clanki.objects.Flashcard;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -80,6 +81,12 @@ public class Ui {
                         + BEFORE_ELABORATION_SPACING + "Parameters: delete /q QUERY\n"
                         + BEFORE_ELABORATION_SPACING + "Example: delete fruit \n"
                         + "review:  Go through all flashcards that are due today.\n"
+                        + "list:    lists out the questions and answers in the list of flashcards.\n"
+                        + BEFORE_ELABORATION_SPACING + "Parameters: list all (lists all flashcards)\n"
+                        + BEFORE_ELABORATION_SPACING + "Parameters: list DUE_DATE (list all flashcards with that " +
+                        "specified due date)\n"
+                        + BEFORE_ELABORATION_SPACING + "Example: list 2023-05-04\n"
+                        + "clear:   Deletes all the flashcards in the list.\n"
                         + "bye:     Exit the program.\n"
         );
     }
@@ -88,15 +95,45 @@ public class Ui {
         System.out.println("==========================================================");
     }
 
+    /**
+     * Prints the question and answer of a single flashcard to the console.
+     *
+     * @Param flashcard the flashcard to be print
+     */
     public void printFlashCard(Flashcard flashcard) {
         System.out.println("Q: " + flashcard.getQuestion());
         System.out.println("A: " + flashcard.getAnswer());
     }
 
+    /**
+     * Prints the questions and answers of a list of flashcards to the console.
+     *
+     * @param flashcards the list of flashcards to be printed
+     */
     public void printFlashCards(ArrayList<Flashcard> flashcards) {
         for (int i = 0; i < flashcards.size(); i++) {
             System.out.println("[" + (i + 1) + "]");
             printFlashCard(flashcards.get(i));
+        }
+    }
+
+    public void printSuccessfulUpdateMessage(Flashcard updatedFlashcard) {
+        System.out.println("Understood. The card has been updated to");
+        printFlashCard(updatedFlashcard);
+    }
+
+    public void printFlashCardsOnDate(ArrayList<Flashcard> flashcards, LocalDate date) {
+        System.out.println("Here is your list of flashcards with the specified due date:");
+        int countFlashcardsPrinted = 0;
+        for (int i = 0; i < flashcards.size(); i++) {
+            if (flashcards.get(i).getDueDate().compareTo(date) == 0) {
+                countFlashcardsPrinted++;
+                System.out.println("[" + (countFlashcardsPrinted) + "]");
+                printFlashCard(flashcards.get(i));
+            }
+        }
+        if (countFlashcardsPrinted == 0) {
+            System.out.println("Your list of flashcards with the specified due date is empty.");
         }
     }
 }

@@ -117,34 +117,38 @@ You have finished reviewing for today. Congratulations.
 ### Update flashcards
 
 ```
-update /q QUERY
+update QUERY
 ```
 
 - `QUERY` can be the card's date or be part of the card's question or answer.
 
-- A list of cards that contain this query will be listed, with an index assigned
-  to each.
+  - A list of cards that contain this query will be listed, with an index assigned
+    to each.
 
-- The user can then type the index of the card they wish to update with the
-  following syntax
+    - The user can then type the index of the card they wish to update with the
+      following syntax
 
-  ```
-  INDEX /q NEW_QUESTION
-  ```
+      ```
+      INDEX /q NEW_QUESTION
+      ```
   
-  - This updates the question of the flashcard to `NEW_QUESTION`
+    - This updates the question of the flashcard to `NEW_QUESTION`
 
+      - To update the answer of the flashcard, use `/a` 
+          ```
+          INDEX /a NEW_ANSWER
+          ```
+    
+      - To update the due date of the flashcard, use `/d`
 
-  - To update the answer of the flashcard, use `/a` 
-  - To update the due date of the flashcard, use `/d`
-    ```
-      INDEX /a NEW_ANSWER
-      INDEX /d NEW_DUE_DATE
-    ```
-    - The user can only update either one of the question, answer or due date at a time
-    - Since a slash character (`/`) can be interpreted as a command option,
-      `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
-      ` /` (the slash with a space before it).
+        ```
+        INDEX /d NEW_DUE_DATE
+        ```
+        - `DUE_DATE` has to be in the format `yyyy-mm-dd`
+        - The user can only update either one of the question, answer or due date at a time
+        - Since a slash character (`/`) can be interpreted as a command option,
+          `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
+          ` /` (the slash with a space before it).
 
 #### Example
 
@@ -212,19 +216,41 @@ Your list of flashcards is now empty.
 Your list of flashcards is empty.
 ```
 
-### List all flashcards
+### List flashcards
 
 ```
-list
+list all
 ```
 
-Display the list of flashcards that have been added by the user, regardless of the date.
+Display the questions and answers for all the flashcards in the list that have been added by the user, 
+regardless of the date.
 
 #### Example
 
 ```
-> list
+> list all
 Here is your list of flashcards:
+[1]
+Q: What is the biggest animal in the world
+A: Antartic blue whale
+[2]
+Q: What are the best food for health
+A: Lemons
+[3]
+Q: What colour is the sun
+A: Red
+```
+
+```
+list DUE_DATE
+```
+
+Display the questions and answers for all the flashcards in the list that has the due date specified by the user
+- `DUE_DATE` has to be in the format `yyyy-mm-dd`
+
+```
+> list 2023-04-05
+Here is your list of flashcards with the specified due date:
 [1]
 Q: What is the biggest animal in the world
 A: Antartic blue whale

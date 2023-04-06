@@ -5,6 +5,7 @@ import com.clanki.commands.AddCommand;
 import com.clanki.commands.ByeCommand;
 import com.clanki.commands.Command;
 import com.clanki.commands.DeleteCommand;
+import com.clanki.commands.ListCommand;
 import com.clanki.commands.ReviewCommand;
 import com.clanki.commands.UnknownCommand;
 import com.clanki.commands.UpdateCommand;
@@ -101,5 +102,13 @@ class ParserTest {
     public void parserDeleteCommand_deleteCommand_successful() {
         Command parsedCommand = Parser.parseCommand("del query");
         assertTrue(parsedCommand instanceof DeleteCommand);
+    }
+
+    @Test
+    public void parserListCommand_listCommand_successful() {
+        Command parsedCommand = Parser.parseCommand("list all");
+        assertTrue(parsedCommand instanceof ListCommand);
+        parsedCommand = Parser.parseCommand("list 2023-04-06");
+        assertTrue(parsedCommand instanceof ListCommand);
     }
 }
