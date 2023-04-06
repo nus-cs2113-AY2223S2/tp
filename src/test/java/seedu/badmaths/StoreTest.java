@@ -1,5 +1,6 @@
 package seedu.badmaths;
 
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import seedu.badmaths.note.Note;
 import seedu.badmaths.note.NotesList;
+
 
 public class StoreTest {
 

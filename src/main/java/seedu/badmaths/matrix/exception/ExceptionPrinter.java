@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 public class ExceptionPrinter {
     Logger logger = Logger.getLogger("exception");
 
-    public void printShapeMismatchExceptionLog(){
+    public void printShapeMismatchExceptionLog() {
         String ExceptionMessage = "";
         ExceptionMessage += "<Exception occurs>\n";
         ExceptionMessage += "There is shape mismatch between t1 and t2 : cannot execute matrix calculation.";
@@ -15,7 +15,7 @@ public class ExceptionPrinter {
         logger.log(Level.WARNING, "shape mismatch occur.");
     }
 
-    public void printUnknownOperatorExceptionLog(){
+    public void printUnknownOperatorExceptionLog() {
         String ExceptionMessage = "";
         ExceptionMessage += "<Exception occurs>\n";
         ExceptionMessage += "Operator in expression is unknown.";

@@ -16,15 +16,15 @@ public class Parser {
         try {
             check.checkUnknownOperator(command);
 
-            if(command.contains("+")){
-                type = CalType.ADD;
-            }else if(command.contains("-")){
-                type = CalType.SUB;
-            }else if(command.contains(".*")){
-                type = CalType.MUL;
-            }else if(command.contains("*")){
-                type = CalType.DOT;
-            }else{
+            if(command.contains("+")) {
+                type = CalType.ADDITION;
+            } else if(command.contains("-")) {
+                type = CalType.SUBTRACTION;
+            } else if(command.contains(".*")) {
+                type = CalType.MULTIPLICATION;
+            } else if(command.contains("*")) {
+                type = CalType.ELEMENT_WISE_DOT_PRODUCT;
+            } else {
                 type = CalType.UNKNOWN;
             }
 
@@ -36,17 +36,17 @@ public class Parser {
             Calculate c = new Calculate();
             Execute e = new Execute();
 
-            switch(type){
-            case ADD:
+            switch(type) {
+            case ADDITION:
                 result = e.executeAdd(command);
                 break;
-            case SUB:
+            case SUBTRACTION:
                 result = e.executeSub(command);
                 break;
-            case MUL:
+            case MULTIPLICATION:
                 result = e.executeMul(command);
                 break;
-            case DOT:
+            case ELEMENT_WISE_DOT_PRODUCT:
                 result = e.executeDot(command);
                 break;
             default:
@@ -54,7 +54,7 @@ public class Parser {
             }
 
             return result;
-        }catch (UnknownOperatorException e){
+        } catch (UnknownOperatorException e) {
             ep.printUnknownOperatorExceptionLog();
             return null;
         }
@@ -78,8 +78,8 @@ public class Parser {
         assert rowNum == 1 || colNum == rows[1].split(",").length;
 
         tensor = new int[rowNum][colNum];
-        for(int i=0; i<rowNum; i++){
-            for(int j=0; j<colNum; j++){
+        for(int i = 0; i < rowNum; i++) {
+            for(int j = 0; j < colNum; j++) {
                 column = rows[i].split(",");
                 tensor[i][j] = Integer.parseInt(column[j]);
             }
@@ -89,6 +89,6 @@ public class Parser {
     }
 
     enum CalType {
-        ADD, SUB, MUL, DOT, UNKNOWN
+        ADDITION, SUBTRACTION, MULTIPLICATION, ELEMENT_WISE_DOT_PRODUCT, UNKNOWN
     }
 }
