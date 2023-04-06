@@ -12,14 +12,15 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class UpdateCommand extends Command {
-    String query;
-    ArrayList<Flashcard> matchingFlashcards = new ArrayList<>();
     private static final String INVALID_IDENTIFIER_ERROR = "You can only enter /q, /a or /d";
     private static final String EMPTY_CONTENT_ERROR = "Please enter the changes to be modified.";
-    private static final String INCORRECT_FORMAT_ERROR = "Please enter the input in the correct format as shown in the user guide.";
+    private static final String INCORRECT_FORMAT_ERROR =
+            "Please enter the input in the correct format as shown in the user guide.";
     private static final String EMPTY_INPUT_ERROR = "Please enter the index of the flashcard you want to update.";
     private static final String INDEX_OUT_OF_LIST_ERROR = "You have selected an index out of the list.";
     private static final String INVALID_DATE_FORMAT_ERROR = "Please enter the date in the format: yyyy-mm-dd";
+    String query;
+    ArrayList<Flashcard> matchingFlashcards = new ArrayList<>();
 
     public UpdateCommand(String query) {
         super();
