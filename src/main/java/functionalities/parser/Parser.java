@@ -33,13 +33,13 @@ public class Parser {
             } else if (task[0].equals("surgery")) {
                 parseSurgeryCommand(task[1]);
             } else if (task[0].equals("find")) {
-                parseFindCommand(task[1]);
+                parseFindCommand(userCommand.trim());
             } else if (task[0].equals("remove")) {
-                parseRemoveCommand(task[1]);
+                parseRemoveCommand(userCommand.trim());
             } else if (task[0].equals("mark")) {
-                parseMarkCommand(task[1]);
+                parseMarkCommand(userCommand.trim());
             } else if (task[0].equals("unmark")) {
-                parseUnmarkCommand(task[1]);
+                parseUnmarkCommand(userCommand.trim());
             } else if (userCommand.equals("list")) {
                 parseListCommand();
             } else if (userCommand.equals("bye")) {
