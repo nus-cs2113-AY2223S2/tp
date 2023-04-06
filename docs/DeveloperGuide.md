@@ -10,6 +10,7 @@
     * [RecipeList Component](#recipelist-component)
     * [WeeklyPlan Component](#weeklyplan-component)
     * [Database Component](#database-component)
+    * [Ingredient Component](#ingredient-component)
 * [Implementation](#implementation)
     * [Add Recipes Feature](#add-recipes-feature)
     * [Edit Recipes Feature](#edit-recipes-feature)
@@ -29,8 +30,8 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries --
-include links to the original source as well}
+* [GSON](https://github.com/google/gson) library used for saving and loading databases easily in
+  JSON format.
 
 ---
 
@@ -50,14 +51,28 @@ include links to the original source as well}
 
 ### Architecture
 
+The Architecture Diagram below shows a high-level design of the Meal360 application:
+![](../docs/UML/Architecture/ArchitectureUML.png)
+
+**How the architecture components interact with each other:**
+
+Based on the user input, only certain components will be called to execute the command. For example,
+if the user inputs `view 1`, the `Parser` component will call the `RecipeList` component to retrieve
+the recipe at index 0, following which the `Ui` component will then display it to the user. The
+sequence diagram below shows how the
+interaction described above:
+![](../docs/UML/Architecture/ArchitectureExampleUML.png)
 
 ### UI Component
+
 API: `Ui.java`
 
 ### Parser Component
+
 API: `Parser.java`
 
 ### Recipe Component
+
 API: `Recipe.java`
 
 The `Recipe` component:
@@ -133,9 +148,13 @@ How the `Database` component works at start up:
 
 The activity diagram below shows how the `Database` component works at start up:
 ![](../docs/UML/Database/DatabaseStartupUML.png)
+
+### Ingredient Component
+
 ---
 
 ## Implementation
+
 * [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
 * [List Recipes Feature](#list-recipes-feature)
 * [Add Recipes Feature](#add-recipes-feature)
@@ -145,19 +164,25 @@ The activity diagram below shows how the `Database` component works at start up:
 ### Categorise/Tag Recipes Feature
 
 The current implementation:
+
 * add single or multiples recipes into a tag
 * remove single or multiples recipes from a tag
 
 It is implemented through the following step:
+
 1. When the user enters an input with the first word being `tag`, the input is passed to
    the `Parser` component.
 2. In `Parser`, `parseTagRecipe()` is executed to identify whether user want to add recipes
    to a tag (`<<`), or remove recipes from a tag(`>>`). Then,
-    * If `isAddTag`, user want to add recipes to a tag, `parseAddRecipeTag()` will be executed to extract
-      the all the recipes to be added, separated by `&&`, and pass those recipes and tag label to `RecipeList`
+    * If `isAddTag`, user want to add recipes to a tag, `parseAddRecipeTag()` will be executed to
+      extract
+      the all the recipes to be added, separated by `&&`, and pass those recipes and tag label
+      to `RecipeList`
       component.
-    * If `isRemoveTag`, user want to remove recipes from a tag, `parseRemoveRecipeTag()` will be executed to
-      extract the all the recipes to be removed, separated by `&&`, and pass those recipes and tag label to
+    * If `isRemoveTag`, user want to remove recipes from a tag, `parseRemoveRecipeTag()` will be
+      executed to
+      extract the all the recipes to be removed, separated by `&&`, and pass those recipes and tag
+      label to
       `RecipeList` component.
     * If user enter invalid command, an error message will be thrown.
 3. In `RecipeList`,
@@ -173,28 +198,31 @@ The sequence diagram below shows how this feature works:
 ### List Recipes Feature
 
 The current implementation:
+
 * list all recipes
 * list recipe with filters (name, ingredients, tags)
 
 It is implemented through the following step:
+
 1. When the user enters an input with the first word being `list`, the input is passed to
    the `Parser` component.
 2. In `Parser`, `parseListRecipe()` is executed to first identify whether user want to filter
-   by tag (`/t`). 
-   * If user filters the recipes by tag (`/t`), `isTag` is set to `true`.
-   * Otherwise, `isTag` is set to `false`.
-   
-   Then, it will extract all the filters separated by `&&`, if any. All the filters are 
+   by tag (`/t`).
+    * If user filters the recipes by tag (`/t`), `isTag` is set to `true`.
+    * Otherwise, `isTag` is set to `false`.
+
+   Then, it will extract all the filters separated by `&&`, if any. All the filters are
    extracted out and passed to `RecipeList`component.
 3. In `RecipeList`, `listRecipes()` is executed to first identify whether user want to
    filter by tag.
-   * If `isTag` is true, `listTagRecipes()` is called to filter all recipes that meet
-   all the filters by tag, and return the `recipeList` containing all relevant recipes to `listRecipes()` 
-   and `ParserRecipe()`, respectively.
-   * If user `isTag` is false, it filters all recipes that meet all the filters by name
-   and ingredients, and return `recipeList` containing all relevant recipes to 
-   `ParselistRecipe()`.
-   
+    * If `isTag` is true, `listTagRecipes()` is called to filter all recipes that meet
+      all the filters by tag, and return the `recipeList` containing all relevant recipes
+      to `listRecipes()`
+      and `ParserRecipe()`, respectively.
+    * If user `isTag` is false, it filters all recipes that meet all the filters by name
+      and ingredients, and return `recipeList` containing all relevant recipes to
+      `ParselistRecipe()`.
+
 The sequence diagram below shows how this feature works:
 
 ![](../docs/UML/Implementation/ListFunction/ListFunction.png)
@@ -202,16 +230,20 @@ The sequence diagram below shows how this feature works:
 ### Delete Recipes Feature
 
 The current implementation:
+
 * deletes a single recipe by name or recipe's index in recipe list
 * deletes a range of recipes
 * deletes all recipes
 
 It is implemented through the following step:
+
 1. When the user enters an input with the first word being `delete`, the input is passed to
    the `Parser` component.
-2. In `Parser`, `parseDeleteRecipe()` is executed to identify whether the user wants to delete all recipes, a single
+2. In `Parser`, `parseDeleteRecipe()` is executed to identify whether the user wants to delete all
+   recipes, a single
    recipe, or range of recipes.
-3. In `RecipeList`, `deleteRecipe()` is executed to delete the recipe at whatever index is passed as a parameter,
+3. In `RecipeList`, `deleteRecipe()` is executed to delete the recipe at whatever index is passed as
+   a parameter,
    and return the `Recipe` object at that index/the one just deleted.
 
 ![](../docs/UML/Implementation/DeleteFunction/DeleteFunction.jpg)
@@ -219,20 +251,28 @@ It is implemented through the following step:
 ### Add Recipes Feature
 
 The current implementation:
-* Add a single recipe in 1 line and followed by all the ingredients in next another line after being prompted.
+
+* Add a single recipe in 1 line and followed by all the ingredients in next another line after being
+  prompted.
 
 It is implemented through the following steps:
-1. When the user enters an input with the first word being `add`, the input is passed to the `Parser` component.
-2. In `Parser`, the `parseAddRecipe` is executed to identify whether the recipe is an already existing recipe or
+
+1. When the user enters an input with the first word being `add`, the input is passed to
+   the `Parser` component.
+2. In `Parser`, the `parseAddRecipe` is executed to identify whether the recipe is an already
+   existing recipe or
    it's a new recipe that is being added.
-3. After the user enters the ingredients in 1 line, the input is passed to `parseIngredientName` which returns a
+3. After the user enters the ingredients in 1 line, the input is passed to `parseIngredientName`
+   which returns a
    hashmap<string,integer> with the ingredient name as 'key' and quantity as 'value'.
-4. After the recipe name and ingredients are accepted and processed, the input is sent to `recipeList.addRecipe()`
+4. After the recipe name and ingredients are accepted and processed, the input is sent
+   to `recipeList.addRecipe()`
    to store the new recipe data.
 
 ### Edit Recipes Feature
 
 The current implementation:
+
 * There are 3 ways to edit:
     * Edit all ingredients.
     * Edit 1 particular ingredient.
@@ -240,21 +280,27 @@ The current implementation:
 
 It is implemented through the following steps:
 
-1. When the user enters an input with the first word being `edit`, the input is passed to the `Parser` component.
-2. In `Parser`, the `parseEditRecipe` is executed to identify whether the recipe is an already existing recipe to make edits.
-3. The user will then be prompted with 3 options as mentioned above to make edits to the recipe ingredients.
-4. After the new ingredients are accepted and processed, the input is sent to `recipeList.editRecipe()`
+1. When the user enters an input with the first word being `edit`, the input is passed to
+   the `Parser` component.
+2. In `Parser`, the `parseEditRecipe` is executed to identify whether the recipe is an already
+   existing recipe to make edits.
+3. The user will then be prompted with 3 options as mentioned above to make edits to the recipe
+   ingredients.
+4. After the new ingredients are accepted and processed, the input is sent
+   to `recipeList.editRecipe()`
    to update the new recipe data.
 
 ### Random a Recipe Feature
 
 The current implementation:
+
 * randomly pick a recipe and display to the user
 
 It is implemented through the following step:
-1. When the user enters an input with the first word being `random`, the `Parser` 
+
+1. When the user enters an input with the first word being `random`, the `Parser`
    component will be executed.
-2. In `Parser`, `parseRandomRecipe()` is executed and call `randomRecipe()` in 
+2. In `Parser`, `parseRandomRecipe()` is executed and call `randomRecipe()` in
    `RecipeList` component.
 3. In `RecipeList`, `randomRecipe()` is executed to random a recipe and return a
    `recipe` to `parseRandomRecipe()`.
@@ -263,6 +309,7 @@ The sequence diagram below shows how this feature works:
 
 ![](../docs/UML/Implementation/RandomFunction/RandomFunction.png)
 ---
+
 ## Appendix: Requirements
 
 ### Product scope
@@ -283,29 +330,33 @@ driven app.
 
 ### User Stories
 
-| Version | As a ... | I want to ...                                     | So that I can ...                                                 |
-|---------|----------|---------------------------------------------------|-------------------------------------------------------------------|
-| v1.0    | user     | add my own recipes to the list                    | refer to them when next time                                      |
-| v1.0    | user     | edit the existing recipe                          |                                                                   |
-| v1.0    | user     | delete a recipe from the list                     | clear the unused recipes                                          |
-| v1.0    | user     | view ingredients of the recipe                    | know what is needed to be prepared                                |
-| v1.0    | user     | list all recipes I have                           | know what I have some idea of what to cook                        |
-| v1.0    | user     | find the recipe that contain specific ingredients | find specific recipe without having to go through the entire list |
-| v1.0    | user     | exit from the program                             |                                                                   |
-| v2.0    | new user | list all the command that can be used             | know what command I can use                                       |
-| v2.0    | user     | add meals I plan to make for the week             | refer to the weekly meals plan next time                          |
-| v2.0    | user     | delete meals I plan to make for the week          | remove some meals from the weekly plan if I change my mind        |
-| v2.0    | user     | categorise recipes using tags                     | group recipes with similar theme together                         |
-| v2.0    | user     | list the recipes by tag                           | list recipes that are under the specific category                 |
-| v2.0    | user     | random a recipe                                   | have a suggestion when do not know what to cook                   |
+| Version  | As a ... | I want to ...                                     | So that I can ...                                                 |
+|----------|----------|---------------------------------------------------|-------------------------------------------------------------------|
+| v1.0     | user     | add my own recipes to the list                    | refer to them when next time                                      |
+| v1.0     | user     | edit the existing recipe                          |                                                                   |
+| v1.0     | user     | delete a recipe from the list                     | clear the unused recipes                                          |
+| v1.0     | user     | view ingredients of the recipe                    | know what is needed to be prepared                                |
+| v1.0     | user     | list all recipes I have                           | know what I have some idea of what to cook                        |
+| v1.0     | user     | find the recipe that contain specific ingredients | find specific recipe without having to go through the entire list |
+| v1.0     | user     | exit from the program                             |                                                                   |
+| v2.0     | new user | list all the command that can be used             | know what command I can use                                       |
+| v2.0     | user     | add meals I plan to make for the week             | refer to the weekly meals plan next time                          |
+| v2.0     | user     | delete meals I plan to make for the week          | remove some meals from the weekly plan if I change my mind        |
+| v2.0     | user     | categorise recipes using tags                     | group recipes with similar theme together                         |
+| v2.0     | user     | list the recipes by tag                           | list recipes that are under the specific category                 |
+| v2.0     | user     | random a recipe                                   | have a suggestion when do not know what to cook                   |
+| v2.0     | user     | know what ingredients I have                      | know what ingredients I need to buy                               |
+| v2.0     | user     | add the ingredients I have                        | easily track the ingredients I have                               |
+| v2.0     | user     | delete the ingredients I have                     | easily track the ingredients I have                               |
+| v2.0     | user     | be able to cross recipes off my weekly plan       | have a neater weekly plan                                         |
 
 ### Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any *mainstream OS* as long as it has Java 11 or above installed.
 
 ### Glossary
 
-* *glossary item* - Definition
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 ### Instructions for manual testing
 

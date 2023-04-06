@@ -3,7 +3,7 @@ package seedu.meal360;
 import java.io.IOException;
 import java.util.Scanner;
 import seedu.meal360.exceptions.IngredientNotFoundException;
-import seedu.meal360.exceptions.InvalidNegativeValueException;
+import seedu.meal360.exceptions.InvalidValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
 import seedu.meal360.storage.Database;
 
@@ -63,10 +63,9 @@ public class Meal360 {
     }
 
     public static void receiveInput(String input) {
-        input = input.replaceAll("\\s+", " ");
-        String[] command = input.trim().split(" ");
+        String[] command = parser.cleanUserInput(input);
 
-        if (input.equalsIgnoreCase("bye")) {
+        if (input.trim().equalsIgnoreCase("bye")) {
             canExit = true;
         } else if (command[0].equals("delete")) {
             ui.printSeparator();
@@ -182,25 +181,20 @@ public class Meal360 {
                     weeklyPlan.clearPlan();
                     ui.printMessage("I've cleared your entire weekly plan!");
                     break;
+                case "/done":
+                    parser.parseMarkDone(command, userIngredients, weeklyPlan, recipeList);
+                    ui.printMessage("I've recorded that you've done this recipe!");
+                    ui.printMessage("Ingredients list has been updated accordingly!");
+                    break;
                 default:
                     ui.printMessage("Please enter a valid command.");
                     break;
                 }
-            } catch (IllegalArgumentException | InvalidNegativeValueException | InvalidRecipeNameException |
-                     ArrayIndexOutOfBoundsException e) {
+            } catch (IllegalArgumentException | InvalidValueException | InvalidRecipeNameException |
+                     ArrayIndexOutOfBoundsException | IngredientNotFoundException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
-        } else if (command[0].equals("weeklydone")) {
-            ui.printSeparator();
-            try {
-                parser.parseMarkDone(command, userIngredients, weeklyPlan, recipeList);
-                ui.printMessage("I've recorded that you've done this recipe!");
-                ui.printMessage("Ingredients list has been updated accordingly!");
-            } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException |
-                     IngredientNotFoundException e) {
-                ui.printMessage(e.getMessage());
-            }
         } else if (command[0].equals("available")) {
             // list recipes with ingredients all in ingredient list
             ui.printSeparator();
@@ -220,7 +214,7 @@ public class Meal360 {
             try {
                 parser.parseAddUserIngredients(command, userIngredients);
                 ui.printMessage("Ingredient successfully added!");
-            } catch (IllegalArgumentException | IndexOutOfBoundsException e) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | InvalidValueException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
@@ -229,7 +223,8 @@ public class Meal360 {
             try {
                 parser.parseDeleteUserIngredients(command, userIngredients);
                 ui.printMessage("Ingredients successfully deleted!");
-            } catch (IllegalArgumentException | IndexOutOfBoundsException | IngredientNotFoundException e) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | IngredientNotFoundException |
+                     InvalidValueException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
