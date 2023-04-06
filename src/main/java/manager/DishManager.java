@@ -27,7 +27,7 @@ public class DishManager {
             DishStorage dishStorage = new DishStorage();
             dishStorage.writeToDishFile(dishes);
         } catch (IOException e) {
-            ui.printMessage(String.format(Messages.ERROR_STORAGE_INVALID_WRITE_LINE, dish));
+            ui.printMessage(Messages.ERROR_STORAGE_INVALID_WRITE_LINE);
         }
     }
 
