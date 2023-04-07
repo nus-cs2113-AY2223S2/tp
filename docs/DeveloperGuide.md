@@ -141,8 +141,11 @@ update the item attributes instead.
 the data structures responsible for tracking of the item  and its attributes using the `handleTrie()`, `remove()` and
 `put()` methods.
 
-Included below is a UML Sequence Diagram for the `EditParser` and `EditCommand` respectively:
+Included below are UML Sequence Diagrams for `EditParser` and `EditCommand`. The second diagram shows a 
+more detailed reference frame for `Process User Edit Input` found in the first diagram.
 
+![EditParser.png](UML/Edit/EditParser.png)
+![EditCommand.png](UML/Edit/EditCommand.png)
 
 ### 2.4. Restock
 The `restock` command is mainly handled by the `RestockCommand` class, which extends the `Command` class. It is parsed 
@@ -174,7 +177,8 @@ reference from the `oldItem` and `updatedItem` objects. The `UI` class will be c
 to inform the user on the status of the program, based on whether quantity addition has been done successfully or
 if an `Exception` has been thrown.
 
-Included below is a sequence diagram for the `RestockParser` and `RestockCommand` respectively:
+Included below are UML Sequence Diagrams for the `RestockParser` and `RestockCommand`. The second diagram shows a more
+detailed version of what happens in the reference frame of `Increase Quantity of the Item`.
 
 ![RestockParser.png](UML/Restock/RestockParser.png)
 ![RestockCommand.png](UML/Restock/RestockCommand.png)
