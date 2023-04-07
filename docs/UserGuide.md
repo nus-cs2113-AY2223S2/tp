@@ -273,7 +273,7 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
     * `YEAR` needs to be a four-digit number
     * When this field is omitted, the default date will be set to the day when the transaction is added to rainyDay
 
-> ⚠️ Amount has a maximum of $21,474,836.47 and will be rounded off to 2 decimal places!
+> ⚠️ Amount provided cannot be less than 0 and cannot be more than $21,474,836.47!
 
 > 💡 The flags `-c` and `-date` can be used exclusively. The following are also valid formats:
 >
