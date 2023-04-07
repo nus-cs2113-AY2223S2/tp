@@ -4,6 +4,7 @@
 - [Design](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design)
   - [Architecture](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#architecture)
   - [UI Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#ui-component)
+  - [Command Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#command-component)
   - [Storage Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#storage-component)
   - [Interfaces](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#interfaces)
 - [Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#implementation)
@@ -93,6 +94,9 @@ The `UI` component,
 - Displays what are the possible inputs at any one time
 - Allows the user to check that a value added is correct
 - Informs the user whenever there is an invalid input
+
+### Command Component
+
 
 ### Storage Component
 
