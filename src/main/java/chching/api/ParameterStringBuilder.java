@@ -14,7 +14,7 @@ public class ParameterStringBuilder {
     /**
      * Program Logging
      */
-    private final static Logger logger = Logger.getLogger(ChChing.class.getName());
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
 
     static {
         Handler handler = new ConsoleHandler();
