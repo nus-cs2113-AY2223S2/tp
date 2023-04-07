@@ -150,11 +150,15 @@ public class Account {
         return String.valueOf(passwordChars);
     }
 
-    public static void save() {
+    public static void saveLogOut() {
         storage.saveExpenses("./src/main/java/storage/" + accountName + ".json");
         account.clear();
         account = null;
         System.out.println("Saved successfully.");
+    }
+
+    public static void autoSave() {
+        storage.saveExpenses("./src/main/java/storage/" + accountName + ".json");
     }
 }
 

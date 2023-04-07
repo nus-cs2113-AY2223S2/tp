@@ -41,10 +41,8 @@ public class MessageList {
             "> If you type \"no\", a recent copy of the expense list will be available. \n" +
             "> Type \"cancel\" to cancel the logging out process and continue your work.";
 
-    public static final String SAVING_EXIT_MESSAGE = "You are logging out. Do you want to save your expense? \n" +
-            "> Type \"yes\" to save your expense \n" +
-            "> If you type \"no\", a recent copy of the expense list will be available.";
-    public static final String MESSAGE_CANCEL = "Note. You can continue to experience our program!";
+    public static final String EXIT_MESSAGE = "Goodbye! Hope to see you again soon! \n";
+    public static final String LOGOUT_MESSAGE = "You are logged out successfully!";
     public static String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"

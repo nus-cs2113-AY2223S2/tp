@@ -135,6 +135,7 @@ public class CommandCategoryTest {
         new CommandCategory(expenseList.getExpenseList(), input).execute();
         String actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
         assertEquals(expected.replaceAll(System.lineSeparator(), "\n"), actual);
+        expenseList.clear();
     }
 
 

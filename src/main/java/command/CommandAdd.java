@@ -82,38 +82,11 @@ public class CommandAdd extends Command {
         } catch (FutureDateException e) {
             System.out.println("Invalid date. Please input a date before today's date.\nToday's date is: " +
                     LocalDate.now());
-        }catch (PastDateException e) {
+        } catch (PastDateException e) {
             System.out.println("Dates beyond 1981 are not supported. Please try again.");
-        }catch (InvalidDateException e) {
+        } catch (InvalidDateException e) {
             System.out.println("Date does not exist, please try again.");
         }
         return null;
     }
-    public void executeLogIn() {
-        try {
-            if (LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter).isAfter(LocalDate.now())) {
-                throw new FutureDateException();
-            } else {
-                Time date = new Time(LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter));
-                String exchangeRateDate = LocalDate.parse(parsedInput[ParserAdd.TIME_INDEX], formatter)
-                        .with(Temporals.previousWorkingDay()).toString();
-                Expense addedExpense = new Expense(currency.roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
-                        date, parsedInput[ParserAdd.CATEGORY_INDEX],
-                        Currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX]),
-                        Currency.getExchangeRate(LocalDate.parse(exchangeRateDate),
-                                currency.convertCurrency(parsedInput[ParserAdd.CURRENCY_INDEX])));
-                expenseList.add(addedExpense);
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Please input a valid amount.");
-        } catch (NullPointerException e) {
-            System.out.println("Please input both the amount and date with amt/ and t/ respectively.");
-        } catch (DateTimeException e) {
-            System.out.println("Invalid date. Please input the date in dd-MM-yyyy format.");
-        } catch (Exception e) {
-            System.out.println("Invalid date. Please input a date before today's date.\nToday's date is: " +
-                    LocalDate.now());
-        }
-    }
-
 }

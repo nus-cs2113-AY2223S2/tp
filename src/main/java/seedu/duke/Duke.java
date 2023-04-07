@@ -22,13 +22,7 @@ import storage.Storage;
 
 import java.util.Scanner;
 
-//import static data.Account.account;
-import static common.MessageList.MESSAGE_CANCEL;
-import static common.MessageList.MESSAGE_DIVIDER;
-import static common.MessageList.SAVING_EXIT_MESSAGE;
-import static common.MessageList.SAVING_QUESTION_MESSAGE;
-//import static data.Account.account;
-import static data.ExpenseList.showToUser;
+import static data.Account.autoSave;
 import static parser.ParserAccount.caseLogOut;
 import static parser.ParserAccount.initialize;
 import static parser.ParserAccount.caseExit;
@@ -71,18 +65,17 @@ public class Duke {
         while (in.hasNextLine()) {
             input = in.nextLine();
             if (input.equals("exit")) {
-                showToUser(MESSAGE_DIVIDER, SAVING_EXIT_MESSAGE, MESSAGE_DIVIDER);
-                String res = caseExit();
-                if (res.equals("yes") || res.equals("no")) {
-                    break;
-                }
+                caseExit();
+                break;
             }
             switch (parser.extractCommandKeyword(input)) {
             case "add":
                 new CommandAdd(expenseList.getExpenseList(), parser.extractAddParameters(input), currency).execute();
+                autoSave();
                 break;
             case "delete":
                 new CommandDelete(expenseList.getExpenseList(), parser.extractIndex(input)).execute();
+                autoSave();
                 break;
             case "list":
                 new CommandList(expenseList.getExpenseList()).run();
@@ -97,14 +90,7 @@ public class Duke {
                 new CommandCategory(expenseList.getExpenseList(), parser.extractCategory(input)).execute();
                 break;
             case "logout":
-                showToUser(MESSAGE_DIVIDER, SAVING_QUESTION_MESSAGE, MESSAGE_DIVIDER);
-                String res = caseLogOut();
-                if (!res.equals("cancel")) {
-                    initialize(in);
-                    break;
-                } else {
-                    showToUser(MESSAGE_DIVIDER, MESSAGE_CANCEL, MESSAGE_DIVIDER);
-                }
+                caseLogOut();
                 break;
             case "overview":
                 new CommandOverview(expenseList.getExpenseList(),

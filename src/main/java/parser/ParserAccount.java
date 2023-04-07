@@ -3,14 +3,8 @@ package parser;
 import data.Account;
 import java.util.Scanner;
 
-import static common.MessageList.COMMAND_LIST_MESSAGE;
-import static common.MessageList.MESSAGE_DIVIDER;
-import static common.MessageList.ACCOUNT_MESSAGE;
-import static common.MessageList.SAVING_QUESTION_MESSAGE;
-import static common.MessageList.SAVING_EXIT_MESSAGE;
-
-import static data.Account.account;
-import static data.Account.save;
+import static common.MessageList.*;
+import static data.Account.saveLogOut;
 import static data.ExpenseList.showToUser;
 
 
@@ -22,7 +16,6 @@ public class ParserAccount {
         System.out.println("Password");
         String password = scanner.nextLine();
         Account existingAccount = new Account(user, password);
-        String filepath = "./src/main/java/storage/" + user + ".json";
         String res = existingAccount.login();
         System.out.println(res);
         if (res.equals("Invalid username or password.")
@@ -42,44 +35,20 @@ public class ParserAccount {
         System.out.println("Password");
         String password = scanner.nextLine();
         Account newAccount = new Account(user, password);
-        String filepath = "./src/main/java/storage/" + user + ".json";
         newAccount.signup();
     }
 
-    public static String caseLogOut() {
+    public static void caseLogOut() {
         Scanner scanner = new Scanner(System.in);
-        String res = scanner.nextLine();
-        if (res.equals("yes")) {
-            save();
-        } else if (res.equals("no")) {
-            account.clear();
-            return res;
-        } else if (res.equals("cancel")) {
-            return res;
-        } else {
-            System.out.println("Invalid command");
-            showToUser(MESSAGE_DIVIDER, SAVING_QUESTION_MESSAGE, MESSAGE_DIVIDER);
-            caseLogOut();
-            return res;
-        }
-        return res;
+        saveLogOut();
+        showToUser(LOGOUT_MESSAGE);
+        initialize(scanner);
     }
 
-    public static String caseExit() {
+    public static void caseExit() {
         Scanner scanner = new Scanner(System.in);
-        String res = scanner.nextLine();
-        if (res.equals("yes")) {
-            save();
-        } else if (res.equals("no")) {
-            account.clear();
-            return res;
-        } else {
-            System.out.println("Invalid command");
-            showToUser(MESSAGE_DIVIDER, SAVING_EXIT_MESSAGE, MESSAGE_DIVIDER);
-            caseLogOut();
-            return res;
-        }
-        return res;
+        saveLogOut();
+        showToUser(EXIT_MESSAGE);
     }
 
     public static void initialize(Scanner in) {
