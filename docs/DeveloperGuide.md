@@ -436,12 +436,16 @@ the category that user input is found. Otherwise, the method will inform user th
 
 ## Product scope
 ### Target user profile
-
-{Describe the target user profile}
+* Has a need to manage a wide variety of items, and track various information related to the item.
+* Is able to type fast which leads to usage of CLI applications being a more efficient method of managing inventories
+as compared to tradition inventory management systems.
+* Prefers a desktop application for inventory management and tracking rather than traditional pen and paper or
+smartphones.
 
 ### Value proposition
-
-{Describe the value proposition: what problem does it solve?}
+* For users who can type fast, usage of MagusStock over conventional GUI applications for inventory management will be
+significantly faster.
+* MagusStock offers a wide variety of features that improves the user's experience in inventory management.
 
 ## User Stories
 
@@ -469,11 +473,15 @@ the category that user input is found. Otherwise, the method will inform user th
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. MagusStock should be able to hold up to 10,000 unique items, without a noticeable drop in its speed or performance.
+2. MagusStock should be able to work on both Windows and macOS with Java `11` installed.
 
 ## Glossary
 
-* *glossary item* - Definition
+* **MagusStock**: The name of the Inventory Management Program.
+* **UPC**:Universal Product Code, used to track, edit, or find a unique item found in MagusStock's inventory database.
+* **CLI**:Command Line Interface, a text-based user interface (UI) used to run programs, manage computer files and 
+interact with the computer.
 
 ## Instructions for manual testing
 
