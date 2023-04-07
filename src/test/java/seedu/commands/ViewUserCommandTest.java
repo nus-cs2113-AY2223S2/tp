@@ -2,7 +2,7 @@ package seedu.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.entities.CaloricIntake;
-import seedu.exceptions.InvalidChoiceException;
+import seedu.exceptions.InvalidFieldNameException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.MissingArgumentsException;
 import seedu.storage.FoodStorage;
@@ -25,32 +25,32 @@ public class ViewUserCommandTest {
     private final GeneralUi ui = new GeneralUi();
     private final CaloricIntake meals = new CaloricIntake(mealStorage.getMealByDate(LocalDate.now()));
     @Test
-    void viewUser_missingNumber_expectMissingArgumentsException() throws LifeTrackerException {
+    void viewUser_missingFieldName_expectMissingArgumentsException() throws LifeTrackerException {
         String commandWord = "view";
         String userInput = "view";
         ViewUserCommand command = new ViewUserCommand(commandWord, userInput);
         MissingArgumentsException thrown = assertThrows(MissingArgumentsException.class, () -> {
             command.execute(ui,null,mealStorage,userStorage,null);
         });
-        String expectedErrorMessage = "Oops! Missing argument [number] for command view";
+        String expectedErrorMessage = "Oops! Missing argument [fieldName] for command view";
         assertEquals(expectedErrorMessage, thrown.getMessage());
     }
 
     @Test
-    void viewUser_wrongNumber_expectInvalidChoiceMessage() throws LifeTrackerException{
+    void viewUser_invalidFieldName_expectInvalidFieldNameException() throws LifeTrackerException{
         String commandWord = "view";
-        String userInput = "view 9";
+        String userInput = "view /nil";
         ViewUserCommand command = new ViewUserCommand(commandWord, userInput);
-        InvalidChoiceException thrown = assertThrows(InvalidChoiceException.class, () -> {
+        InvalidFieldNameException thrown = assertThrows(InvalidFieldNameException.class, () -> {
             command.execute(ui,null,mealStorage,userStorage,null);
         });
-        String expectedMessage = "This is an invalid choice! Please input a valid choice!";
+        String expectedMessage = "Oops! Invalid field name /nil for command view";
         assertEquals(expectedMessage,thrown.getMessage());
     }
     @Test
     void viewUser_viewName_expectName() throws LifeTrackerException{
         String commandWord = "view";
-        String userInput = "view 1";
+        String userInput = "view /name";
         ViewUserCommand command = new ViewUserCommand(commandWord, userInput);
         PrintStream oldOut = System.out;
         System.setOut(oldOut);
@@ -65,7 +65,7 @@ public class ViewUserCommandTest {
     @Test
     void viewUser_viewWeight_expectWeight() throws LifeTrackerException{
         String commandWord = "view";
-        String userInput = "view 2";
+        String userInput = "view /weight";
         ViewUserCommand command = new ViewUserCommand(commandWord, userInput);
         PrintStream oldOut = System.out;
         System.setOut(oldOut);
@@ -80,7 +80,7 @@ public class ViewUserCommandTest {
     @Test
     void viewUser_viewHeight_expectHeight() throws LifeTrackerException{
         String commandWord = "view";
-        String userInput = "view 3";
+        String userInput = "view /height";
         ViewUserCommand command = new ViewUserCommand(commandWord, userInput);
         PrintStream oldOut = System.out;
         System.setOut(oldOut);
@@ -95,7 +95,7 @@ public class ViewUserCommandTest {
     @Test
     void viewUser_viewAge_expectAge() throws LifeTrackerException{
         String commandWord = "view";
-        String userInput = "view 4";
+        String userInput = "view /age";
         ViewUserCommand command = new ViewUserCommand(commandWord, userInput);
         PrintStream oldOut = System.out;
         System.setOut(oldOut);
@@ -110,7 +110,7 @@ public class ViewUserCommandTest {
     @Test
     void viewUser_viewGender_expectGender() throws LifeTrackerException{
         String commandWord = "view";
-        String userInput = "view 5";
+        String userInput = "view /gender";
         ViewUserCommand command = new ViewUserCommand(commandWord, userInput);
         PrintStream oldOut = System.out;
         System.setOut(oldOut);
@@ -125,7 +125,7 @@ public class ViewUserCommandTest {
     @Test
     void viewUser_viewCaloricLimit_expectCaloricLimit() throws LifeTrackerException{
         String commandWord = "view";
-        String userInput = "view 6";
+        String userInput = "view /caloricLimit";
         ViewUserCommand command = new ViewUserCommand(commandWord, userInput);
         PrintStream oldOut = System.out;
         System.setOut(oldOut);
@@ -141,7 +141,7 @@ public class ViewUserCommandTest {
     @Test
     void viewUser_viewCaloriesLeft_expectCaloriesLeft() throws LifeTrackerException{
         String commandWord = "view";
-        String userInput = "view 7";
+        String userInput = "view /caloriesLeft";
         ViewUserCommand command = new ViewUserCommand(commandWord, userInput);
         PrintStream oldOut = System.out;
         System.setOut(oldOut);
@@ -158,7 +158,7 @@ public class ViewUserCommandTest {
     @Test
     void viewUser_viewTargetWeight_expectTargetWeight() throws LifeTrackerException{
         String commandWord = "view";
-        String userInput = "view 8";
+        String userInput = "view /targetWeight";
         ViewUserCommand command = new ViewUserCommand(commandWord, userInput);
         PrintStream oldOut = System.out;
         System.setOut(oldOut);

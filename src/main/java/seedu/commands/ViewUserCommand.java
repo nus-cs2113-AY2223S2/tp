@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import seedu.entities.CaloricIntake;
 import seedu.entities.User;
 import seedu.exceptions.ExtraArgumentsException;
-import seedu.exceptions.InvalidChoiceException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.MissingArgumentsException;
+import seedu.exceptions.InvalidFieldNameException;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
@@ -16,7 +16,7 @@ import seedu.ui.CalorieUi;
 
 
 public class ViewUserCommand extends Command {
-    private int number;
+    private String fieldName;
     private String command;
     private String userInput;
 
@@ -25,14 +25,40 @@ public class ViewUserCommand extends Command {
         this.userInput = userInput;
     }
 
+    public boolean isValidFieldName(String fieldName){
+        switch(fieldName){
+        case "/name":
+            return true;
+        case "/weight":
+            return true;
+        case "/height":
+            return true;
+        case "/age":
+            return true;
+        case "/gender":
+            return true;
+        case "/caloricLimit":
+            return true;
+        case "/caloriesLeft":
+            return true;
+        case "/targetWeight":
+            return true;
+        default:
+            return false;
+        }
+    }
     public void parseCommand() throws LifeTrackerException{
         String[] userInputSplit = userInput.split(" ");
         if(command.length() == userInput.length() || userInputSplit.length < 2){
-            throw new MissingArgumentsException(command, "[number]");
+            throw new MissingArgumentsException(command, "[fieldName]");
         } else if (userInputSplit.length > 2) {
             throw new ExtraArgumentsException();
         }
-        number = Integer.parseInt(userInputSplit[1]);
+        fieldName = userInputSplit[1];
+
+        if(!isValidFieldName(fieldName)){
+            throw new InvalidFieldNameException(command, fieldName);
+        }
     }
 
     @Override
@@ -43,8 +69,8 @@ public class ViewUserCommand extends Command {
         this.parseCommand();
         CalorieUi calorieUi = new CalorieUi();
         CaloricIntake meals = new CaloricIntake(mealStorage.getMealByDate(LocalDate.now()));
-        switch (number) {
-        case 1:
+        switch (fieldName) {
+        case "/name":
             String name = user.getName();
             if(name.isBlank()){
                 ui.printFieldNotStored();
@@ -52,7 +78,7 @@ public class ViewUserCommand extends Command {
                 ui.printName(name);
             }
             break;
-        case 2:
+        case "/weight":
             float weight = user.getWeight();
             if(weight == 0.0){
                 ui.printFieldNotStored();
@@ -60,7 +86,7 @@ public class ViewUserCommand extends Command {
                 ui.printWeight(weight);
             }
             break;
-        case 3:
+        case "/height":
             float height = user.getHeight();
             if(height == 0.0){
                 ui.printFieldNotStored();
@@ -68,7 +94,7 @@ public class ViewUserCommand extends Command {
                 ui.printHeight(height);
             }
             break;
-        case 4:
+        case "/age":
             int age = user.getAge();
             if(age == 0){
                 ui.printFieldNotStored();
@@ -76,7 +102,7 @@ public class ViewUserCommand extends Command {
                 ui.printAge(age);
             }
             break;
-        case 5:
+        case "/gender":
             String gender = user.getGender();
             if(gender.isBlank()){
                 ui.printFieldNotStored();
@@ -84,21 +110,21 @@ public class ViewUserCommand extends Command {
                 ui.printGender(gender);
             }
             break;
-        case 6:
+        case "/caloricLimit":
             double caloricLimit = user.getCaloricLimit();
             calorieUi.showDailyCaloricLimit(caloricLimit);
             break;
-        case 7:
+        case "/caloriesLeft":
             double calorieIntake = meals.getTotalDailyCalories();
             double caloriesLeft = user.getCaloriesLeft(calorieIntake);
             calorieUi.showRemainingIntake(caloriesLeft);
             break;
-        case 8:
+        case "/targetWeight":
             float targetWeight = user.getTargetWeight();
             System.out.println("Target Weight: " + targetWeight + " kg");
             break;
         default:
-            throw new InvalidChoiceException();
+            break;
         }
     }
 }
