@@ -28,9 +28,9 @@
 
 ## Acknowledgements
 
-
-The template of ChChing is from the [tp project](https://github.com/nus-cs2113-AY2223S2/tp) of the nus-cs2113-AY2223S2 organisation.
-<br>The format and coding style of ChChing is largely inspired by the [addressbook-level2](https://github.com/se-edu/addressbook-level2) & [addressbook-level3](https://github.com/se-edu/addressbook-level3) project.
+We first give acknowledgement to Module Coordinator, Dr Akshay Narayan, and Teaching Assistant, Aditi Chadha for guidance and supervision over the ChChing project. <br>
+We utilized the [tp project](https://github.com/nus-cs2113-AY2223S2/tp) of the nus-cs2113-AY2223S2 organisation as our template for ChChing.
+<br>The [addressbook-level2](https://github.com/se-edu/addressbook-level2) & [addressbook-level3](https://github.com/se-edu/addressbook-level3) project largely inspired the format and coding style of ChChing.
 
 ### ExchangeRateApi
 
@@ -40,12 +40,12 @@ The `LiveCurrencyApi` class uses the [ExchangeRateApi](https://www.exchangerate-
 ## Design & implementation
 
 Below are the design and implementations of key features of the ChChing program.
-<br> We used various diagrams such as UML class diagrams, sequence diagrams and activity diagrams
+<br> We used various diagrams such as architectural diagram, UML class diagrams, sequence diagrams and activity diagrams
 to illustrate our methodology and approach.
 
 
 ## Design
-The architecture diagram of ChChing below provides an overview of the design of our program.
+The architectural diagram of ChChing below provides an overview of the design of our program.
 
 ![Design](images/ArchitectureDiagram.png)
 
