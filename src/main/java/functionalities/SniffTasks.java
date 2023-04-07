@@ -93,8 +93,10 @@ public class SniffTasks {
             Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
             assert Objects.equals(newAppointment.uid, uid) : "consultation uid should be " + uid;
             assert !newAppointment.isDone : "consultation isDone should be false when initialized.";
-            assert Objects.equals(newAppointment.animal.type, animal.type) : "consultation animal type should be " + animal.type;
-            assert Objects.equals(newAppointment.animal.name, animal.name) : "consultation animal name should be " + animal.name;
+            assert Objects.equals(newAppointment.animal.type, animal.type) :
+                    "consultation animal type should be " + animal.type;
+            assert Objects.equals(newAppointment.animal.name, animal.name) :
+                    "consultation animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             Ui.showUserMessage(" Consultation added successfully!");
@@ -142,8 +144,10 @@ public class SniffTasks {
             Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
             assert Objects.equals(newAppointment.uid, uid) : "vaccination uid should be " + uid;
             assert !newAppointment.isDone : "vaccination isDone should be false when initialized.";
-            assert Objects.equals(newAppointment.animal.type, animal.type) : "vaccination animal type should be " + animal.type;
-            assert Objects.equals(newAppointment.animal.name, animal.name) : "vaccination animal name should be " + animal.name;
+            assert Objects.equals(newAppointment.animal.type, animal.type) :
+                    "vaccination animal type should be " + animal.type;
+            assert Objects.equals(newAppointment.animal.name, animal.name) :
+                    "vaccination animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             Ui.showUserMessage(" Vaccination added successfully!");
@@ -194,8 +198,10 @@ public class SniffTasks {
                     endTime);
             assert Objects.equals(newAppointment.uid, uid) : "surgery uid should be " + uid;
             assert !newAppointment.isDone : "surgery isDone should be false when initialized.";
-            assert Objects.equals(newAppointment.animal.type, animal.type) : "surgery animal type should be " + animal.type;
-            assert Objects.equals(newAppointment.animal.name, animal.name) : "surgery animal name should be " + animal.name;
+            assert Objects.equals(newAppointment.animal.type, animal.type) :
+                    "surgery animal type should be " + animal.type;
+            assert Objects.equals(newAppointment.animal.name, animal.name) :
+                    "surgery animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             Ui.showUserMessage(" Surgery added successfully!");

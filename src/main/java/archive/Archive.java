@@ -56,7 +56,8 @@ public class Archive {
                 } else if (type == 'S') {
                     ArchiveParser.addSurgery(content);
                 } else {
-                    throw new SniffException(" Incorrect appointment format found in line " + lineNo + " of the archive file!");
+                    throw new SniffException(" Incorrect appointment format found in line " + lineNo +
+                            " of the archive file!");
                 }
             }
         } catch (FileNotFoundException e) {

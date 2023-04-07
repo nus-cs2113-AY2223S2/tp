@@ -1,7 +1,18 @@
 package functionalities.parser;
 
 import exception.SniffException;
-import functionalities.commands.*;
+import functionalities.commands.ArchiveCommand;
+import functionalities.commands.Command;
+import functionalities.commands.ConsultationCommand;
+import functionalities.commands.ExitCommand;
+import functionalities.commands.FindCommand;
+import functionalities.commands.HelpCommand;
+import functionalities.commands.ListCommand;
+import functionalities.commands.MarkCommand;
+import functionalities.commands.RemoveCommand;
+import functionalities.commands.SurgeryCommand;
+import functionalities.commands.UnMarkCommand;
+import functionalities.commands.VaccinationCommand;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
