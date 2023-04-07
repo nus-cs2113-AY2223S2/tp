@@ -643,6 +643,28 @@ Step 5. Starting from Monday, the lessons and tasks occurring on each day of the
 
 
 ### Exiting the Program
+
+The `bye` command allows the user to exit the program. It is facilitated by `ExitCommand` which is an extension of the `Command` class.
+The `ExitCommand` class overrides the `execute()` method from the `Command` class and is only excuted when the user inputs `bye`
+with no additional parameters (e.g `bye bye` would not exit the program).
+
+Given below is an example usage scenario and how the add task mechanism behaves at each step.
+
+Step 1. The user executes the command `bye` and handled by `Apollo` class. It is parsed by the `Parser` class which 
+then creates a new `ExitCommand`.
+
+Step 2. The `setUpLogger()` method of the `ExitCommand` class is called. It creates a `ConsoleHandler` and a `FileHandler`
+to handle logging.
+
+Step 3. The `execute()` method of `ExitCommand` is called from `Apollo` class. It takes in the necessary parameters.
+
+Step 4. Within the `execute()` method, the method `printExitMessage()` is called from `Ui` class to print the exit message.
+
+Step 5. The `setExit()` method of `ExitCommand` class is called to set the `isExit` boolean to true. Subsequently, the
+program exceeds the loop in the `run()` method of `Apollo` class and the program terminates.
+
+Below is a sequence diagram of the `bye` command.
+
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ExitCommand-ExitCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
