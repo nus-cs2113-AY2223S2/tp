@@ -21,19 +21,21 @@ expenses, and categorize them for better organization.
 
 ## Features 
 
+"/" is a special character that is used to start command parameters. Other uses of "/" are not allowed except for t/ in event command
+
 ### Add an Event: `event`
-Add an event which is to be recorded by Moneymind.
+Add an event which is to be recorded by Moneymind. Event must be placed in a category.
 
 Format: `event NAME e/<expense number> [(optional) t/<time>]`
 
 * `NAME` is the name of the event.
 * `<expense number>` is the expense number of the event.
-* `<time>` is the date of the monthly recurring event, in the pattern of "dd/MM/yyyy". 
+* `<time>` is the date of the monthly recurring event, in the pattern of "dd/MM/yyyy hh:mm". 
 Invalid patterns are replaced with the current System date.
 * The `t/` parameters is optional.
 * This gives you the flexibility to add a one-time expense or monthly recurring expenses.
 * Monthly recurring expenses will be require the user to update the expense number every month.
-* In the context of this application, the 'MM' and 'yyyy' in the data format of `<time>` is less important
+* In the context of this application, the 'MM', 'yyyy', 'hh' and 'mm' in the data format of `<time>` is less important
 as the frequency is set as *monthly*. Hence, whatever valid month input that the user types
 in, the event will be always recorded as a monthly recurring event based on its date.
 To avoid confusion, the user is advised to type in the month and year of the first occurrence of the event
@@ -41,13 +43,13 @@ which they want to record down.
 
 Example of usage:
 
-`event bus travel fee e/2`
+`event bus travel fee e/2 t/01/01/2020 12:00`
 
 `event bubble tea e/6`
 
 ### Add a Category: `category`
 
-Add a category of event  to be recorded on Moneymind
+Add a category of event  to be recorded on Moneymind.
 
 Format: `category NAME [(optional) b/<budget number>]`
 
@@ -82,11 +84,11 @@ Example of usage:
 
 Edit the details of an event on Moneymind.
 
-Format: `edit c/<category name> e/<event index> `
+Format: `edit c/<category name> [(optional) e/<event index>] `
 
-* `<category name>` is the name of the category.
+* `<category name>` is the name of the category the user want to edit.
 * `<event index>` is the position of the event that the user want to edit (1 based).
-* The user will be prompted to enter the new details of the event.
+* The user will be prompted to enter the new details of the event or category
 
 Example of usage:
 

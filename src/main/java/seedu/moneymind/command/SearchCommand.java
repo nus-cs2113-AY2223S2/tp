@@ -17,6 +17,7 @@ public class SearchCommand implements Command{
         this.word = word;
     }
 
+    //@@author mingyuannus
     @Override
     public void execute(Ui ui) {
         boolean hasMatch = false;
@@ -34,10 +35,11 @@ public class SearchCommand implements Command{
                 }
             }
             if (isMatch || matchedEvents.size() != 0) {
-                int categoryIndex = CategoryCommand.categoryMap.get(category.getName());
-                System.out.println((categoryIndex + 1) + DOT + category.getName());
+                System.out.println("Category: " + category.getName() + " (budget: " + category.getBudget() + ")");
+                int count = 1;
                 for (Event event : matchedEvents) {
-                    System.out.println(event.toString());
+                    System.out.println(count + DOT + event.toString());
+                    ++count;
                 }
             }
         }
