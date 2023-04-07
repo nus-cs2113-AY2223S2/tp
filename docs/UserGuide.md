@@ -51,62 +51,51 @@ Their net calorie gain/loss can then be viewed.
 ### Viewing User Profile: `view`
 
 To view user's profile. 
-User will come across a menu that shows them what information they can choose to view
-,and they will input the number in order to view the information they want to see.
+User can simply input a single line command to view the specific information in their user profile using the format
+below.
 
-User can also choose to back out of the menu in the event that they have entered the view 
-command by accident. They can do so by inputting the number 8.
+Format: `view /[fieldName]`
 
-Format: `view`
+Here is a table of the information that the user can choose to view alongside the field name of it:
 
-Menu Output:
-
-![view-menu](./UG-images/view-menu.PNG)
-
-User can input a value from **1 to 9** to view their current profile:
-
-1. Name
-2. Weight
-3. Height
-4. Age
-5. Gender
-6. Daily Caloric Limit
-7. Calories Remaining for today
-8. View Target Weight
-9. Exit
+| Information                  | /[fieldName]  |
+|------------------------------|---------------|
+| Name                         | /name         |
+| Weight                       | /weight       |
+| Height                       | /height       |
+| Age                          | /age          |
+| Gender                       | /gender       |
+| Daily caloric limit          | /caloricLimit | 
+| Calories remaining for today | /caloriesLeft |
+| Target weight                | /targetWeight | 
 
 Example:
 
 ![view-example](./UG-images/view-example.PNG)
 
-User then can input **1** to continue viewing their profile or **2** to exit
 
 ### Updating User Profile: `update`
 
 Allows the user to update any of their information.
-User will come across a menu that shows them what information they can choose to update, they will need
-to input the number in order to update the specific information they want to change.
+User can simply input a single line command to update the specific information in their user profile using the format
+below.
 
-Format: `update`
+Format: `update /[fieldName] [newInfo]`
 
-Menu Output:
+Here is a table of the information that the user can choose to update alongside the field name of it:
 
-![update-menu](./UG-images/update-menu.PNG)
-
-User can input a value from **1 to 6** to customise their profile:
-1. Name
-2. Weight
-3. Height
-4. Age
-5. Gender
-6. Target Weight
-7. Exit
+| Information   | /[fieldName]  |
+|---------------|---------------|
+| Name          | /name         |
+| Weight        | /weight       |
+| Height        | /height       |
+| Age           | /age          |
+| Gender        | /gender       |
+| Target weight | /targetWeight | 
 
 Example:
 
 ![update-example](./UG-images/update-example.PNG)
-
-User then can input **1** to continue updating their profile or **2** to exit
 
 ### Adding a meal: `add`
 

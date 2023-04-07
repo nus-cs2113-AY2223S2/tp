@@ -172,7 +172,7 @@ Step 3. `mealStorage` saves the meal to the database and then `ui` prints out th
   - Pros: Usage would be easier for new users.
   - Cons: Slower to input for experienced users.
 
-Therefore our group chose to implement both ways. 
+Therefor our group chose to implement both ways. 
 
 ## [Proposed] List feature
 
