@@ -31,31 +31,31 @@ public class Parser {
             String[] action = userInput.split("\\s+", 2);
             if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
                 logger.info("add command executing");
-                return ParseAdd.addStatement(userInput);
+                return new ParseAdd().addStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
                 logger.info("delete command executing");
-                return ParseDelete.parseDeleteStatement(userInput);
+                return new ParseDelete().parseDeleteStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
                 logger.info("view command executing");
-                return ParseView.generateReport(userInput);
+                return new ParseView().generateReport(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
                 logger.info("help command executing");
-                return ParseHelp.displayHelp(userInput.trim());
+                return new ParseHelp().displayHelp(userInput.trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
                 logger.info("filter command executing");
-                return ParseFilter.filterStatement(userInput);
+                return new ParseFilter().filterStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EDIT)) {
                 logger.info("edit command executing");
-                return ParseEdit.editStatement(userInput);
+                return new ParseEdit().editStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EXPORT)) {
                 logger.info("export command executing");
                 return new ExportCommand();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT)) {
                 logger.info("shortcut command executing");
-                return ParseShortcut.generateShortcut(action[1].trim());
+                return new ParseShortcut().generateShortcut(action[1].trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SET_BUDGET)) {
                 logger.info("set budget command executing");
-                return ParseSetBudget.setUserBudgetGoal(action[1].trim());
+                return new ParseSetBudget().setUserBudgetGoal(action[1].trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT_DELETE)) {
                 logger.info("delete_shortcut command executing");
                 return new ShortcutDeleteCommand(action[1].trim());
@@ -64,10 +64,10 @@ public class Parser {
                 return new ShortcutViewCommand();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_IGNORE)) {
                 logger.info("ignore command executing");
-                return ParseIgnore.ignoreStatement(userInput);
+                return new ParseIgnore().ignoreStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_UNIGNORE)) {
                 logger.info("ignore command executing");
-                return ParseIgnore.ignoreStatement(userInput);
+                return new ParseIgnore().ignoreStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EXIT)) {
                 logger.info("exit command executing");
                 return new ExitCommand();
