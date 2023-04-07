@@ -1,26 +1,27 @@
 package seedu.badmaths.storage;
 
-import org.junit.After;
 import org.junit.jupiter.api.Test;
 import seedu.badmaths.note.Note;
 import seedu.badmaths.note.NotePriority;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NotesFileWriterTest {
-
-    private static final String NotesFileWriterTestPath = "src/test/java/seedu/badmaths/NotesFileWriterTestFile.txt";
-    private ArrayList<Note> testNotes = new ArrayList<>();
-
     @Test
-    public void testSaveFile() {
+    public void testSaveFile() throws IOException{
+
+        Path tempFile = Files.createTempFile("temp", ".txt");
+        String fileContents = "This is a test file.";
+        Files.writeString(tempFile, fileContents);
+
+        ArrayList<Note> testNotes = new ArrayList<>();
 
         Note note1 = new Note("Note 1", NotePriority.Priority.HIGH);
         note1.markAsDone();
@@ -38,10 +39,10 @@ public class NotesFileWriterTest {
         testNotes.add(note3);
 
         // save the test notes to the test file
-        NotesFileWriter.saveFile(NotesFileWriterTestPath, testNotes);
+        NotesFileWriter.saveFile(tempFile.toString(), testNotes);
 
         // check that the file exists
-        File file = new File(NotesFileWriterTestPath);
+        File file = new File(tempFile.toString());
         assertTrue(file.exists());
 
         // check that the actual file content matches the expected string
@@ -52,19 +53,13 @@ public class NotesFileWriterTest {
         expectedContent = expectedContent.replace("\r\n", "\n").replace("\r", "\n");
 
         String actualContent = "";
-        try {
-            actualContent = new String(Files.readAllBytes(file.toPath()));
-            actualContent = actualContent.replace("\r\n", "\n").replace("\r", "\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        actualContent = new String(Files.readAllBytes(file.toPath()));
+        actualContent = actualContent.replace("\r\n", "\n").replace("\r", "\n");
         assertEquals(expectedContent, actualContent);
-    }
 
-    @After
-    public void tearDown() throws IOException {
-        FileWriter writer = new FileWriter(NotesFileWriterTestPath);
-        writer.write("");
-        writer.close();
+        // clean up
+        Files.delete(tempFile);
+        System.setIn(System.in);
+        System.setOut(System.out);
     }
 }
