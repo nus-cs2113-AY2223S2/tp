@@ -865,7 +865,7 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 2__
 
-- **Prerequisites:** Fewer than **5** expenses pre-added into the program
+- **Prerequisites:** Fewer than **20** expenses pre-added into the program
 - __Input:__ `/delete 20`
 
 <details markdown=1>
@@ -873,7 +873,8 @@ __Test case 2__
 
 ```
 ________________________________________________
-Please enter a valid numerical index!
+Item ID does not exist: 20
+Please specify a valid integer from 1 to 2147483647!
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -910,7 +911,7 @@ Enter a command or /help to see the list of commands available.
 
 ### Edit expense: /edit
 
-**Usage:** `/edit <EXPENSE_ID> [-c | -category NEW_CATEGORY] [-p | -price NEW_PRICE] [-d | -description NEW_DESC]`
+**Usage:** `/edit <index> [options]`
 
 __Test case 1 (Editing all flags)__
 
@@ -926,6 +927,7 @@ The following expenditure has been updated:
 Description: MacBook Air
 Price: $300.50
 Category: Others
+7 Apr 2023; 16:22
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -947,6 +949,7 @@ The following expenditure has been updated:
 Description: MacBook Air
 Price: $300.50
 Category: Others
+7 Apr 2023; 16:22
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -967,21 +970,46 @@ __Test case__
 
 ```
 ________________________________________________
-PocketPal is a expense tracking app, optimised for use via a Command Line Interface.
+PocketPal is a expense tracking app, optimised for use via a Command Line Interface. 
 Users can take advantage of the input flags for entering entries quickly.
 Listed below are the various commands that are currently supported.
 
 Add - Adds an expense to your current expenditure.
-Usage: /add <DESCRIPTION> <-c CATEGORY> <-p PRICE>
+Usage: /add -d <description> -c <category> -p <price>
+Options:
+-d <description>
+-c <category>
+-p <price>
+See below for examples
+/add -d Apple Macbook Air -p 1300 -c Personal
+/add -p 1300 -c Personal -d Apple Macbook Air
 
-Delete - Deletes a specified expense from your expenditure.
-Usage: /delete <EXPENSE_ID>
+Delete - Deletes specified expense(s) from your expenditure.
+Usage: /delete <index> [additional_index...]
+See below for examples
+/delete 10 11 13 
+/delete 1
 
 Edit - Edits a specified expense in your current expenditure.
-Usage: /edit <EXPENSE_ID> [FLAG...]
+Usage: /edit <index> [options]
+Options:
+-d <description>
+-c <category>
+-p <price>
+See below for examples
+/edit 5 -d Grab to school -c Transportation -p 20.00
 
 View - Displays a list of your current expenditure.
-Usage: /view [COUNT]
+Usage: /view [count] [filter_options]
+Filter options:
+-c <category>
+-sp <startprice>
+-ep <endprice>
+-sd <startdate>, -ed <enddate>
+See below for examples
+/view 100 -c Transportation -sp 2.00 -ep 5.00
+/view -sd 21/11/97 -ed 22/11/97 -c Transportation -sp 2.00
+/view 10 -sd 21/11/97 -ed 22/12/97 -c Transportation -sp 2.00 -ep 6.00
 
 Help - Displays the help menu.
 Usage: /help
@@ -1001,7 +1029,7 @@ Enter a command or /help to see the list of commands available.
 __Test case__
 
 - **Prerequisites:** None.
-- __Input:__ `/delete 3`
+- __Input:__ `/bye`
 
 <details markdown=1>
 <summary markdown="span">Expected output:</summary>
