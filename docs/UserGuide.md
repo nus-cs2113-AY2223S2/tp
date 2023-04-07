@@ -11,10 +11,12 @@ Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managin
 * **[Features](#features)**
     * **[Viewing help：`help`](#viewing-help-help)**
     * **[Adding a recipe: `add`](#adding-a-recipe-add)**
+    * **[Adding an element to a recipe: `addtorecipe`](#adding-elements-to-recipe)**
     * **[Editing steps for a recipe: `editstep`](#editing-a-recipe-step-editstep)**
     * **[Editing ingredients for a recipe: `editingredient`](#editing-a-recipe-ingredient-editingredient)**
     * **[Editing recipe with one line command:`edit`](#editing-a-recipe-edit)**
     * **[Deleting a recipe: `delete`](#deleting-a-recipe-delete)**
+    * **[Deleting an element from a recipe: `deletefromrecipe`](#deleting-elements-from-recipe)**
     * **[Finding recipes by name: `findname`](#finding-recipes-findname)**
     * **[Finding recipes by tag: `findtag`](#finding-recipes-findtag)**
     * **[Viewing a recipe: `view`](#viewing-a-recipe-view)**
@@ -84,6 +86,32 @@ Now you have 2 recipes in the list.
 Data saved successfully!
 __________________________________________________________
 ```
+<h2 id="adding-elements-to-recipe"> Adding an element to a recipe: <code class="language-plaintext highlighter-rouge">addtorecipe</code></h2>
+
+Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
+**Format**: `addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]`<br>
+**Examples**:<br>
+```
+__________________________________________________________
+addtorecipe --i id/1 desc/mala sauce
+The ingredient has been successfully added to the ingredient list!
+__________________________________________________________
+```
+```
+__________________________________________________________
+addtorecipe --s id/1 desc/Add mala sauce when water has reached a rolling boil.
+There are 4 steps in the list
+1. chop beef
+2. add potatoes
+3. add carrots
+4. cook 5 minutes
+Enter step index below:
+4
+The step has been successfully added to the step list!
+__________________________________________________________
+```
+<p>App will add an element to the recipe with the given index.</p>
+<p>If a step is added, the user will be prompted for an index which the new step will be given.</p>
 
 <h2 id="editing-a-recipe-step-editstep"> Editing a recipe's steps: <code class="language-plaintext highlighter-rouge">editstep</code></h2>
 
@@ -151,7 +179,6 @@ Ingredient has been edited:
 Data saved successfully!
 __________________________________________________________
 ```
-
 ```
 __________________________________________________________
 editingredient 1
@@ -197,6 +224,40 @@ Data saved successfully!
 __________________________________________________________
 ```
 <p>App will remove the recipe with the corresponding index.</p>
+
+<h2 id="deleting-elements-from-recipe"> Deleting an element from a recipe: <code class="language-plaintext highlighter-rouge">deletefromrecipe</code></h2>
+
+Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
+**Format**: `deletefromrecipe --[s/i] id/[index]`<br>
+**Examples**:<br>
+```
+__________________________________________________________
+deletefromrecipe --i id/1
+There are 4 ingredients in the list:
+1. Beef
+2. Potatoes
+3. Carrots
+4. mala sauce
+Enter step index below:
+4
+The ingredient has been successfully deleted from the ingredient list!
+__________________________________________________________
+```
+```
+__________________________________________________________
+deletefromrecipe --s id/1
+There are 5 steps in the list
+1. chop beef
+2. add potatoes
+3. add carrots
+4. Add mala sauce when water has reached a rolling boil.
+5. cook 5 minutes
+Enter step index below:
+4
+The step has been successfully deleted from the step list!
+__________________________________________________________
+```
+<p>App will remove the element of the second given index from the recipe with the first given index.</p>
 
 <h2 id="finding-recipes-findname"> Finding recipes: <code class="language-plaintext highlighter-rouge">findname</code></h2>
 

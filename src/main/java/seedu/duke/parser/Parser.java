@@ -270,7 +270,8 @@ public class Parser {
     public static String[] parseAddToRecipeDescription(String description) {
         String[] subDescriptions = description.split("/", 3);
         String element0 = subDescriptions[0].toLowerCase().split("id")[0].trim();
-        subDescriptions[0] = element0.replace("-","");
+        element0 = element0.toLowerCase().split(" ")[0].trim();
+        subDescriptions[0] = element0.replaceAll("-","");
         String element1 = subDescriptions[1].toLowerCase().split("desc")[0].trim();
         subDescriptions[1] = element1;
         return subDescriptions;
@@ -278,17 +279,18 @@ public class Parser {
     public static String[] parseDeleteFromRecipeDescription(String description) {
         String[] subDescriptions = description.split("/", 2);
         String element0 = subDescriptions[0].toLowerCase().split("id")[0].trim();
-        subDescriptions[0] = element0.replace("-","");
+        element0 = element0.toLowerCase().split(" ")[0].trim();
+        subDescriptions[0] = element0.replaceAll("-","");
         return subDescriptions;
     }
     public static boolean isValidAddToRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
-        if ((descLowerCase.contains("step") ||
-                descLowerCase.contains("ingredient")) &&
+        if ((descLowerCase.contains("--s") ||
+                descLowerCase.contains("--i")) &&
                 descLowerCase.contains("id/") &&
                 descLowerCase.contains("desc/") &&
-                !(descLowerCase.contains("step") &&
-                        descLowerCase.contains("ingredient"))) {
+                !(descLowerCase.contains("--s") &&
+                        descLowerCase.contains("--i"))) {
             return true;
         } else {
             return false;
@@ -296,11 +298,11 @@ public class Parser {
     }
     public static boolean isValidDeleteFromRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
-        if ((descLowerCase.contains("step") ||
-                descLowerCase.contains("ingredient")) &&
+        if ((descLowerCase.contains("--s") ||
+                descLowerCase.contains("--i")) &&
                 descLowerCase.contains("id/") &&
-                !(descLowerCase.contains("step") &&
-                        descLowerCase.contains("ingredient"))) {
+                !(descLowerCase.contains("--s") &&
+                        descLowerCase.contains("--i"))) {
             return true;
         } else {
             return false;

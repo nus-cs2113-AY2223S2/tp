@@ -165,7 +165,7 @@ public interface StringLib {
     String INVALID_ADD_TO_RECIPE_DESCRIPTION = "OOPS!!!\n" +
             "Looks like the description of the command is invalid!\n" +
             "To add elements to the recipe, please follow the following layout:\n" +
-            "\naddtorecipe -[step/ingredient] id/[index] desc/[description of step/ingredient]";
+            "\naddtorecipe --[s/i] id/[index] desc/[description of step/ingredient]";
     String INDEX_REQUEST = "Enter step index below:";
     String DUPLICATE_INGREDIENT_ERROR = "The ingredient you wish to add is already on " +
                                         "the ingredient list and hence cannot be added.";
@@ -180,7 +180,7 @@ public interface StringLib {
     String INVALID_DELETE_FROM_RECIPE_DESCRIPTION = "OOPS!!!\n" +
             "Looks like the description of the command is invalid!\n" +
             "To add elements to the recipe, please follow the following format:\n" +
-            "\ndeletefromrecipe -[step/ingredient] id/[index]";
+            "\ndeletefromrecipe --[s/i] id/[index]";
     String INGREDIENT_DELETE_SUCCESS = "The ingredient has been successfully deleted from the ingredient list!";
     String STEP_DELETE_SUCCESS = "The step has been successfully deleted from the step list!";
 }

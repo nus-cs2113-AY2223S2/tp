@@ -106,18 +106,18 @@ public class Command {
                 String elementType = parsed[0];
                 String id = parsed[1];
                 String description = parsed[2];
-                if (description.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("step")) {
+                if (description.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("s")) {
                     ui.showEmptyStepDescription();
                     break;
                 }
-                if (description.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("ingredient")) {
+                if (description.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("i")) {
                     ui.showEmptyIngredientDescription();
                     break;
                 }
                 Recipe recipeToAddTo = RecipeList.viewRecipe(id);
                 int index;
                 switch (elementType) {
-                case "step":
+                case "s":
                     StepList stepListToAddTo = recipeToAddTo.getStepList();
                     if (Parser.isDuplicateStep(stepListToAddTo, description)) {
                         ui.showDuplicateStep();
@@ -134,7 +134,7 @@ public class Command {
                     ui.showStepAdded();
                     Storage.writeSavedFile();
                     break;
-                case "ingredient":
+                case "i":
                     IngredientList ingredientListToAddTo = recipeToAddTo.getIngredientList();
                     if (Parser.isDuplicateIngredient(ingredientListToAddTo, description)){
                         ui.showDuplicateIngredient();
@@ -195,7 +195,7 @@ public class Command {
                 Recipe recipeToDeleteFrom = RecipeList.viewRecipe(id);
                 int index;
                 switch (elementType) {
-                case "step":
+                case "s":
                     StepList stepListToDeleteFrom = recipeToDeleteFrom.getStepList();
                     stepListToDeleteFrom.showFullStepList();
                     int maxStep = stepListToDeleteFrom.getCurrStepNumber();
@@ -208,7 +208,7 @@ public class Command {
                     ui.showStepDeleted();
                     Storage.writeSavedFile();
                     break;
-                case "ingredient":
+                case "i":
                     IngredientList ingredientListToDeleteFrom = recipeToDeleteFrom.getIngredientList();
                     ingredientListToDeleteFrom.showList();
                     int maxCount = ingredientListToDeleteFrom.getCurrIngredientNumber();

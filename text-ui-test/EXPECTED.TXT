@@ -58,7 +58,7 @@ OOPS!!!
 Looks like the description of the command is invalid!
 To add elements to the recipe, please follow the following layout:
 
-addtorecipe -[step/ingredient] id/[index] desc/[description of step/ingredient]
+addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]
 __________________________________________________________
 There are 4 steps in the list
 1. chop beef
@@ -77,9 +77,16 @@ Enter step index below:
 Please enter a valid step index!
 Valid range: 1 to 4
 Enter step index below:
+The step was not added to the step list!
+__________________________________________________________
+There are 3 steps in the list
+1. chop beef
+2. add carrots
+3. cook 5 minutes
+Enter step index below:
 
 Please enter a valid step index!
-Valid range: 1 to 4
+Valid range: 1 to 3
 Enter step index below:
 The step was not added to the step list!
 __________________________________________________________
@@ -87,7 +94,7 @@ OOPS!!!
 Looks like the description of the command is invalid!
 To add elements to the recipe, please follow the following format:
 
-deletefromrecipe -[step/ingredient] id/[index]
+deletefromrecipe --[s/i] id/[index]
 __________________________________________________________
 There are 3 steps in the list
 1. chop beef
@@ -114,7 +121,7 @@ OOPS!!!
 Looks like the description of the command is invalid!
 To add elements to the recipe, please follow the following layout:
 
-addtorecipe -[step/ingredient] id/[index] desc/[description of step/ingredient]
+addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]
 __________________________________________________________
 
 Error in adding element to recipe!
