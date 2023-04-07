@@ -30,6 +30,7 @@ Meal Companion is designed by computing students, for computing students, especi
        - [Check Ingredients for Recipe](#check-ingredients-for-recipe)
        - [Almost Completed Recipe](#almost-completed-recipe)
        - [Make Recipe](#make-recipe)
+       - [Favourite/Unfavourite Recipe](#favouriteunfavourite-recipe)
    5. [Saving Data](#saving-data)
        - [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
    6. [Help](#help)
@@ -240,6 +241,30 @@ If you decide to cook one of the recipes and you have sufficient ingredients, yo
 <sub>Fig 19: Sample of Make command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
 
 
+### Favourite/Unfavourite Recipe  
+If you would like to mark a recipe as your favourite, you may simply use the command `recipe favourite <index_number>`. For example, `recipe favourite 1` (recipe for beef burger). 
+
+![fav11.png](images/fav11.png)  
+<sub>Fig 20: Sample of Recipe Favourite Command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
+
+![fav2.png](images/fav2.png)  
+<sub>Fig 21: Sample of Recipe list after Recipe 1 (Beef Burger) is added to favourites with the modified list highlighted.</sub>
+
+<br>
+<br>
+
+If you would like to unmark a recipe as your favourite, you may use the command `recipe unfavourite <index_number>`. For example, `recipe unfavourite 1` (recipe for beef burger).  
+
+![unfav1.png](images/unfav1.png)  
+<sub>Fig 22: Sample of Recipe Unfavourite command with Recipe 6 (Hainanese Chicken Rice) used, with user input highlighted.</sub>
+
+![unfav2.png](images/unfav2.png)  
+<sub>Fig 23: Sample of Recipe list after Recipe 6 (Hainanese Chicken Rice) is removed from favourites with the modified list highlighted.</sub>
+
+> **Warning**
+> Please note that the current iteration of favourites does not preserve your preferences after closing the app. This functionality will be added in future iterations.
+
+
 #### [Back to table of contents](#table-of-contents)
 
 
@@ -248,10 +273,11 @@ If you decide to cook one of the recipes and you have sufficient ingredients, yo
 Meal Companion automatically saves the ingredients you add to a text file named `ingredients.txt`. This text file can be accessed from the same folder where you downloaded the original `mealcompanion.jar` file. 
 
 ![save1.png](images/save1.png)  
-<sub>Fig 19: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
+<sub>Fig 24: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
 
 > **Warning**:
-> Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program.
+> Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program. 
+> We cannot guarantee Meal Companion will perform as expected if the file is corrupted or modified incorrectly.
 
 ### Transferring Saved Data to Other Devices
 If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
@@ -266,7 +292,7 @@ If you are unsure of which commands to use, the `help` command will display a li
 For a comprehensive list of commands available to you, please refer to the [Command List](#command-list) section.
 
 ![help1.png](images/help1.png)  
-<sub>Fig 20: Sample of Help command with listed output of in-built commands.</sub>
+<sub>Fig 25: Sample of Help command with listed output of in-built commands.</sub>
 
 #### [Back to table of contents](#table-of-contents)
 
@@ -293,7 +319,10 @@ Please see the below table for the list of available commands.
 | Check if current list of ingredients is sufficient to cook a recipe | `recipe need <index_number>` | `recipe need 1` (recipe for Beef Burger) |
 | See which recipe is lacking the fewest ingredients to complete | `recipe almost` | `recipe almost` |
 | Remove all the ingredients that you used to cook a recipe | `make <index_number>` | `make 1` (recipe for Beef Burger) |
+| Mark a recipe as your favourite | `recipe favourite <index_number>` | `recipe favourite 6` (recipe for Hainanese Chicken Rice |
+| Unmark a recipe as your favourite | `recipe unfavourite <index_number>` | `recipe unfavourite 6` (recipe for Hainanese Chicken Rice |
 | Terminate the program | `bye` | `bye` |
+| Hello World | `hello world` | `hello world` |
 
 #### [Back to table of contents](#table-of-contents)
 
