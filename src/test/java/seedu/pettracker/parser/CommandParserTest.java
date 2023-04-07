@@ -16,6 +16,7 @@ import seedu.pettracker.commands.ScheduleCommand;
 import seedu.pettracker.commands.HelpCommand;
 import seedu.pettracker.commands.EditStatCommand;
 import seedu.pettracker.commands.EditTaskCommand;
+import seedu.pettracker.commands.InvalidCommand;
 
 import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
@@ -300,5 +301,19 @@ class CommandParserTest {
     void parseEmpty() {
         CommandParser cp = new CommandParser();
         assertThrows(EmptyArgException.class, () -> cp.newCommand(""));
+    }
+
+    // parseCommand() valid commands
+    @Test
+    void parseCommandHelp() {
+        CommandParser cp = new CommandParser();
+        assertAll(() -> assertTrue(cp.parseCommand("help") instanceof HelpCommand));
+    }
+
+    // parseCommand() invalid commands
+    @Test
+    void parseCommandNonsense() {
+        CommandParser cp = new CommandParser();
+        assertAll(() -> assertTrue(cp.parseCommand("nonsense") instanceof InvalidCommand));
     }
 }
