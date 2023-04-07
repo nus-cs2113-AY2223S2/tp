@@ -24,7 +24,7 @@ public class HelpCommand extends Command {
             "|[] :  Denotes compulsory fields. Relevant details / flags must be included.                         |\n" +
             "|{} :  Denotes optional fields. Can be ignored                                                       |\n" +
             "|For more information on any command: type   < help {command} >   as shown above (e.g. help add)     |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
 
     private static final String HELP_ADD_COMMAND = "" +
             "+====================================================================================================+\n" +
@@ -56,7 +56,7 @@ public class HelpCommand extends Command {
             "|                             |                                                                      |\n" +
             "| add -out Bubble Tea $5.20   | Adds entry with description: Bubble Tea and value: $5.20 as outflow, |\n" +
             "| -c Food -date 22/03/2018    | with its category set to Food and date set to 22nd March, 2018       |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
 
     private static final String HELP_DELETE_COMMAND = "" +
             "+====================================================================================================+\n" +
@@ -69,7 +69,7 @@ public class HelpCommand extends Command {
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| delete 7                    | Deletes the 7th entry from the list                                  |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
 
     private static final String HELP_VIEW_COMMAND = "" +
             "+====================================================================================================+\n" +
@@ -95,7 +95,7 @@ public class HelpCommand extends Command {
             "| view 12m                    | View entries starting from the past 12 months / 1 year               |\n" +
             "| view 3y                     | View entries starting from the past 3 years                          |\n" +
             "| view -sort                  | View entries starting from the past 1 month in sorted order          |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
     private static final String HELP_FILTER_COMMAND = "" +
             "+====================================================================================================+\n" +
             "| Filter command              | Filters entries by specific constraints                              |\n" +
@@ -119,7 +119,7 @@ public class HelpCommand extends Command {
             "| filter -d Bubble Tea        | View all entries containing the phrase: Bubble Tea                   |\n" +
             "| filter -out -c Transfers    | View all outflows with the category: Transfers                       |\n" +
             "| filter -out -d Shark -c Toys| View all outflows containing the word: Shark and the category: Toys  |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
     private static final String HELP_EDIT_COMMAND = "" +
             "+====================================================================================================+\n" +
             "| Edit command                | Edits a specific entry                                               |\n" +
@@ -146,7 +146,7 @@ public class HelpCommand extends Command {
             "| edit 4 -out -c Transfers    | Change flow direction of entry 4 to outflow and category to Transfers|\n" +
             "| edit 5 -out -d Shark -c Toys| Change flow direction of entry 5 to outflow, description to Shark,   |\n" +
             "| -date 22/03/2023            | category to Toys and date to 22/03/2023                              |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
     private static final String HELP_EXPORT_COMMAND = "" +
             "+====================================================================================================+\n" +
             "| Export command              | Used to export all entries in rainyDay to CSV                        |\n" +
@@ -154,7 +154,7 @@ public class HelpCommand extends Command {
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| export                      | Creates a CSV file with all entries                                  |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
     private static final String HELP_SET_BUDGET_COMMAND = "" +
             "+====================================================================================================+\n" +
             "| Set budget command          | Used to set the user's Monthly Budget Goal                           |\n" +
@@ -167,7 +167,7 @@ public class HelpCommand extends Command {
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| setbudget 44.5              | Sets the user's Budget Goal to be $44.50                             |\n" +
             "| setbudget 0                 | Remove the user's Budget Goal                                        |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
 
     private static final String HELP_SHORTCUT_COMMAND = "" +
             "+====================================================================================================+\n" +
@@ -193,7 +193,7 @@ public class HelpCommand extends Command {
             "| shortcut_view               | Views all shortcuts created and what they are mapped to              |\n" +
             "|                             |                                                                      |\n" +
             "| shortcut_delete salary      | Remove the shortcut: salary                                          |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
 
     private static final String HELP_IGNORE_COMMAND = "" +
             "+====================================================================================================+\n" +
@@ -207,7 +207,7 @@ public class HelpCommand extends Command {
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| ignore 7                    | Ignores the 7th entry from the list                                  |\n" +
             "| unignore 7                  | Un-ignores the 7th entry from the list                               |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
 
     private static final String HELP_BYE_COMMAND = "" +
             "+====================================================================================================+\n" +
@@ -216,7 +216,7 @@ public class HelpCommand extends Command {
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| bye                         | Closes rainyDay                                                      |\n" +
-            "+====================================================================================================+\n";
+            "+====================================================================================================+";
     private static final String HELP_HELP_COMMAND = "You funny guy. I like you.";
 
     private final String description;
