@@ -24,7 +24,6 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-
 public class RainyDay {
     public static String filePath = "./data/rainyDay.json";
     public static UserData userData;

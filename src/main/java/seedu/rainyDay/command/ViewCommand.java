@@ -1,5 +1,6 @@
 package seedu.rainyDay.command;
 
+import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 
 import java.time.LocalDate;
@@ -69,10 +70,16 @@ public class ViewCommand extends Command {
      * Helper function used to sort the indexes
      * Sorts in non-decreasing order of absolute value, with inflows always prioritised over outflows
      */
-    class sortByValue implements Comparator<Integer> {
+    static class sortByValue implements Comparator<Integer> {
+        private FinancialReport report;
+
+        public void setReport(FinancialReport report) {
+            this.report = report;
+        }
+
         public int compare(Integer firstIndex, Integer secondIndex) {
-            FinancialStatement firstStatement = savedData.getStatement(firstIndex);
-            FinancialStatement secondStatement = savedData.getStatement(secondIndex);
+            FinancialStatement firstStatement = report.getFinancialStatement(firstIndex);
+            FinancialStatement secondStatement = report.getFinancialStatement(secondIndex);
             if (firstStatement.getFlowSymbol().equals("+") && secondStatement.getFlowSymbol().equals("-")) {
                 return -1;
             }
@@ -104,7 +111,9 @@ public class ViewCommand extends Command {
         }
         assert savedData.getStatementCount() != 0 : "statement count mismatch";
         if (sortingRequired) {
-            validIndexes.sort(new sortByValue());
+            sortByValue sortingClass = new sortByValue();
+            sortingClass.setReport(savedData.getFinancialReport());
+            validIndexes.sort(sortingClass);
         }
         ViewResult.printReport(validIndexes, lowerLimit, upperLimit, sortingRequired, viewAll);
         return null;
