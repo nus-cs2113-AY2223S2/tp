@@ -132,7 +132,7 @@ class CommandParserTest {
     @Test
     void parseListTasksWithArgs() {
         CommandParser cp = new CommandParser();
-        assertAll(() -> assertTrue(cp.newCommand("list-tasks 1") instanceof ListTasksCommand));
+        assertThrows(IllegalArgException.class, () -> cp.newCommand("list-tasks 1"));
     }
 
     @Test

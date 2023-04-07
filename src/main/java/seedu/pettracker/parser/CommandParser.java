@@ -46,6 +46,9 @@ public class CommandParser {
      */
     public Command newCommand(String commandString) throws Exception {
         final Matcher matcher = COMMAND_FORMAT.matcher(commandString.trim());
+        if (!matcher.matches()) {
+            return new InvalidCommand(UNKNOWN_KEYWORD_MESSAGE);
+        }
 
         final String keyword = matcher.group("keyword");
         assert keyword != null;
