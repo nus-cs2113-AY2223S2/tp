@@ -24,20 +24,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class EfficiencyBenchmark {
     private static final long timeToBeat = 1000;
-    private static final int DATASET_SIZE = 10000;
+    private static final int DATASET_SIZE = 4000;
+    private static final String BENCHMARK_FILEPATH = "./data/test/BenchmarkData.txt";
     private static long totalTime = 0;
-    Inventory inventory = Storage.readCSV("./src/test/data/BenchmarkData.csv");
+    Inventory inventory = Storage.readCSV(BENCHMARK_FILEPATH);
     @Test
     @Order(1)
     public void loadInventoryTest(){
         Inventory loadInventory;
         long start = System.currentTimeMillis();
-        loadInventory = Storage.readCSV("./src/test/data/BenchmarkData.csv");
+        loadInventory = Storage.readCSV(BENCHMARK_FILEPATH);
         long end = System.currentTimeMillis();
         long timeTaken = end - start;
         totalTime += timeTaken;
         System.out.println("Time taken to load: " + timeTaken + "ms");
-        assertTrue(timeTaken<=2*timeToBeat);
+        assertTrue(timeTaken<=timeToBeat);
         assertEquals(DATASET_SIZE,loadInventory.getItemInventory().size());
     }
     @Test
