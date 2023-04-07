@@ -4,8 +4,8 @@ import model.CardList;
 import model.DeckList;
 import model.TagList;
 import utils.UserInterface;
+import utils.exceptions.DeckNotFoundException;
 import utils.exceptions.InkaException;
-import utils.exceptions.TagNotFoundException;
 import utils.storage.IDataStorage;
 import model.Deck;
 
@@ -23,7 +23,7 @@ public class EditDeckNameCommand extends Command{
             throws InkaException {
         Deck deck = deckList.findDeckFromName(oldDeckName);
         if (deck == null) {
-            throw new TagNotFoundException();
+            throw new DeckNotFoundException();
         }
 
         deck.editDeckName(newDeckName);

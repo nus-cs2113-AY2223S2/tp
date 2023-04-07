@@ -5,12 +5,13 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import model.CardSelector;
+import model.TagSelector;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.MissingArgumentException;
 import org.apache.commons.cli.MissingOptionException;
-import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
@@ -24,60 +25,20 @@ import utils.exceptions.UnrecognizedCommandException;
  * Abstract class for parsing keyword-specific commands
  */
 public abstract class KeywordParser {
-
+    protected static final String FLAG_TAG_UUID_NAME = "t";
+    protected static final String FLAG_LONG_TAG_UUID_NAME = "tag";
+    protected static final String FLAG_TAG_INDEX = "x";
+    protected static final String FLAG_LONG_TAG_INDEX = "tag index";
     protected static final String FLAG_CARD_UUID = "c";
     protected static final String FLAG_LONG_CARD_UUID = "card";
     protected static final String FLAG_CARD_INDEX = "i";
-    protected static final String FLAG_LONG_CARD_INDEX = "index";
-
+    protected static final String FLAG_LONG_CARD_INDEX = "card index";
     protected static final int FORMAT_HELP_WIDTH = 200;
     protected static final int FORMAT_HELP_LEFT_PAD = 0;
     protected static final int FORMAT_HELP_DESC_PAD = 10;
 
-    /**
-     * Wrapper around {@link Option} constructor to set option to accept multiple tokens (whitespace-separated
-     * arguments). The arguments to this option should then be obtained using
-     * {@link org.apache.commons.cli.CommandLine#getOptionValues(char)}.
-     *
-     * @param option      See {@link Option#Option(String, String, boolean, String)}
-     * @param longOption  See {@link Option#Option(String, String, boolean, String)}
-     * @param hasArg      See {@link Option#Option(String, String, boolean, String)}
-     * @param description See {@link Option#Option(String, String, boolean, String)}
-     * @param required    If Option is a required option
-     * @return Configured Option
-     */
-    protected static Option buildMultipleTokenOption(String option, String longOption, boolean hasArg,
-            String description,
-            boolean required) {
-        Option opt = new Option(option, longOption, hasArg, description);
-        opt.setArgs(Option.UNLIMITED_VALUES);
-        opt.setRequired(required);
-
-        return opt;
-    }
-
-    /**
-     * Build an {@link Option} for selecting Card based on either {@link model.CardUUID} or card index from list
-     *
-     * @return Configured OptionGroup
-     */
-    protected static OptionGroup buildCardSelectOption() {
-        // Mutually exclusive options
-        OptionGroup optionGroup = new OptionGroup();
-        optionGroup.setRequired(true);
-
-        Option cardUuidOption = new Option(FLAG_CARD_UUID, FLAG_LONG_CARD_UUID, true, "card UUID");
-        optionGroup.addOption(cardUuidOption);
-
-        Option cardIndexOption = new Option(FLAG_CARD_INDEX, FLAG_LONG_CARD_INDEX, true, "card index");
-        cardIndexOption.setType(Number.class);
-        optionGroup.addOption(cardIndexOption);
-
-        return optionGroup;
-    }
-
-    protected static CardSelector getSelectedCard(CommandLine cmd) throws ParseException, InvalidUUIDException {
-
+    protected static CardSelector getSelectedCard(CommandLine cmd)
+            throws ParseException, InvalidUUIDException {
         if (cmd.hasOption(FLAG_CARD_UUID)) {
             String cardUUID = cmd.getOptionValue(FLAG_CARD_UUID);
             return new CardSelector(cardUUID);
@@ -88,6 +49,18 @@ public abstract class KeywordParser {
 
         // Shouldn't be called
         assert false;
+        return null;
+    }
+
+    protected static TagSelector getSelectedTag(CommandLine cmd)
+            throws ParseException {
+        if (cmd.hasOption(FLAG_TAG_UUID_NAME)) {
+            String tagString = cmd.getOptionValue(FLAG_TAG_UUID_NAME);
+            return new TagSelector(tagString);
+        } else if (cmd.hasOption(FLAG_TAG_INDEX)) {
+            int index = Integer.parseInt(cmd.getOptionValue(FLAG_TAG_INDEX));
+            return new TagSelector(index);
+        }
         return null;
     }
 
