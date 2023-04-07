@@ -25,7 +25,8 @@ public class Storage {
      * @param line  The line of input from the save file
      * @param tasks The array list of tasks
      */
-    static void loadTask(String line, ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes, String doneStatus) {
+    static void loadTask(String line, ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes, String doneStatus)
+            throws IndexOutOfBoundsException {
         if (line.contains("/by")) {
             if (line.contains("/day")) {
                 loadRecurringDeadline(line, tasks);
@@ -251,7 +252,8 @@ public class Storage {
      *
      * @param tasks The array list of tasks
      */
-    static void load(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) throws IOException {
+    static void load(ArrayList<Task> tasks, PriorityQueue<SchoolClass> classes) throws IOException,
+            IndexOutOfBoundsException {
         File folder = new File(SAVEFOLDER);
         if (!folder.exists()) {
             new File(SAVEFOLDER).mkdir();
@@ -272,7 +274,12 @@ public class Storage {
                 command += formattedInput[i];
                 command += " ";
             }
+            try {
             loadTask(command, tasks, classes, doneStatus);
+            } catch (IndexOutOfBoundsException e) {
+                FileWriter fw = new FileWriter(SAVEPATH);
+                throw new IndexOutOfBoundsException();
+            }
         }
     }
 
@@ -285,7 +292,9 @@ public class Storage {
         try {
             load(tasks, classes);
         } catch (IOException e) {
-            System.out.println("Error loading save file.");
+            Ui.loadingErrorMessage();
+        } catch (IndexOutOfBoundsException e) {
+            Ui.loadingErrorMessage();
         }
     }
 }

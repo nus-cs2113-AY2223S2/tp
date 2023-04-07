@@ -880,6 +880,12 @@ public class Ui {
         borderLine();
     }
 
+    static void loadingErrorMessage() {
+        borderLine();
+        System.out.println("\t Error loading save file.");
+        borderLine();
+    }
+
     /**
      * Prints the startup message, includes instructions on available commands
      */
