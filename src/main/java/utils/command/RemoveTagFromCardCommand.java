@@ -42,9 +42,6 @@ public class RemoveTagFromCardCommand extends Command {
     private void removeTagFromCard(Card cardAffected, Tag tagToDelete)
             throws TagNotInCardException {
 
-        Optional<TagUUID> uuid = tagSelector.getUuid();
-        Optional<String> tagName = tagSelector.getTagName();
-
         if (!tagToDelete.cardIsInTag(cardAffected.getUuid())) {
             throw new TagNotInCardException();
         }
