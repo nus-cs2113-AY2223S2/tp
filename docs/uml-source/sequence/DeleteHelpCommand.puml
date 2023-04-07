@@ -8,19 +8,17 @@ actor User
 participant ":Apollo" as Apollo
 participant ":Parser" as Parser
 participant ":DeleteHelpCommand" as DeleteHelp
-participant ":HelpCommand" as HelpCommand
 participant ":Ui" as Ui
 
 User -> Apollo : "help delete"
 activate Apollo
 Apollo -> Parser : getCommand()
 activate Parser
-Parser -> HelpCommand** : chooseHelpCommand("delete")
-activate HelpCommand
-HelpCommand -> DeleteHelp** : DeleteHelpCommand()
+Parser -> DeleteHelp ** : chooseHelpCommand("delete")
+
 activate DeleteHelp
 return
-return
+
 destroy HelpCommand
 
 Parser --> Apollo

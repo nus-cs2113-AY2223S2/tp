@@ -34,7 +34,7 @@ class TaskList {
     + getAllTasks(): List<Task>
 }
 
-class Task {
+abstract class Task {
     - description: String
     - isDone: boolean
     - storePattern: DateTimeFormatter
@@ -71,7 +71,7 @@ class Ui {
     + showLine(): void
 }
 
-class ModuleList extends Module {
+class ModuleList  {
      -modules: Module[*]
     + ModuleList()
     + addModule(Module): void
@@ -98,7 +98,7 @@ class Timetable {
     + getClassNumber(): String
 }
 
-Storage -> LoggerInterface
+Storage ..|> LoggerInterface
 Storage -> TaskList
 Storage -> Task
 Storage -> Todo
