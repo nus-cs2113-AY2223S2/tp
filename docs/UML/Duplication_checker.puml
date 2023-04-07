@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+
+activate ":AddCommand"
+    ":AddCommand" -> ":CompanyList" : execute(CompanyList companyList)
+    activate ":CompanyList"
+    par
+        ":CompanyList" -> ":CompanyList" : add(companyName, industry, contactNumber, contactEmail)
+        activate ":CompanyList"
+            ":CompanyList" -> ":CompanyList" : isDuplicateCompanyName(companyName)
+            activate ":CompanyList"
+                ":CompanyList" --> ":CompanyList"
+            deactivate ":CompanyList"
+            ":CompanyList" -> ":CompanyList" : isDuplicateContactEmail(contactEmail)
+            activate ":CompanyList"
+                ":CompanyList" --> ":CompanyList"
+            deactivate ":CompanyList"
+            ":CompanyList" -> ":CompanyList" : isDuplicateContactNumber(contactNumber)
+            activate ":CompanyList"
+                ":CompanyList" --> ":CompanyList"
+            deactivate ":CompanyList"
+        ":CompanyList" --> ":CompanyList"
+        deactivate ":CompanyList"
+    end
+    ":CompanyList" --> ":AddCommand"
+    deactivate ":CompanyList"
+
+@enduml
