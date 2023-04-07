@@ -33,7 +33,6 @@ If you can type fast, Apollo can get your timetable management done faster than 
       + [`delmod lessons` - Deleting a lesson from a module](#delmod-lessons---deleting-a-lesson-from-a-module)
       + [`show mod` - Showing a module](#showmod---show-information-of-a-module)
       + [`show mod lessons` - Showing a lesson](#showmod-lessons---show-information-of-a-lesson-from-a-module)
-      + 
     + [Utility Commands](#utility-commands)
       + [`help` - Viewing help](#help---viewing-help)
       + [`help` - For help with a specific command](#help---for-help-with-specific-commands)
@@ -402,7 +401,7 @@ Total modular credits you have in this semester: 8
 The lesson types and their corresponding guide are the same as `addmod` flags.
 
 To delete a lesson, use the following format:
-`delmod MODULE_CODE -FLAG LESSON NUMBER`
+`delmod <MODULE_CODE> -<FLAG> <LESSON NUMBER>`
 
 ```
 >> delmod CS1010 -st 1
@@ -594,6 +593,26 @@ There are no lessons on this day.
 There are no tasks on this day.
 ____________________________________________________________
 
+```
+
+If the date is currently outside the semester, Apollo will display the following message as the week field:
+```
+It is currently not AY22/23 Semester 2
+```
+
+If the date is during recess week, Apollo will display the following message as the week field:
+```
+Recess Week
+```
+
+If the date is during reading week, Apollo will display the following message as the week field:
+```
+Reading Week
+```
+
+If the date is during exam week, Apollo will display the following message as the week field:
+```
+Examination week
 ```
 
 ### `bye` - Exiting the program
