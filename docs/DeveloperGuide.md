@@ -59,6 +59,8 @@ which would result in the latest data stored in DataStorage being saved into the
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Ui.png?raw=true)
 
 ### Parser Component
+**API:** `Parser.java`
+Here's a class diagram of the `Parser` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser.png?raw=true)
 
 ### Command Component
