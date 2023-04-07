@@ -171,6 +171,40 @@ ____________________________________________________________
    maps to ----> [ME4661][Exchange Elective][4]
 ____________________________________________________________
 ```
+
+****
+#### 3.2.1.2.a Listing out PU Module List with filters: `list [PU Abbreviation/PU INDEX] /filter [FILTER]`
+
+Example of usage: `list ku /filter mc == 3` 
+
+Expected outcome:
+
+```
+KOREA UNIVERSITY Modules
+____________________________________________________________
+1. [AMSE216][Introduction to biomaterials][3]
+   maps to ----> [ME4253][Biomaterials Engineering][4]
+2. [IWC311][Heat Transfer][3]
+   maps to ----> [ME3122][Heat Transfer][4]
+3. [AE320][Aerodynamics II][3]
+   maps to ----> [ME4231][Aerodynamics][4]
+4. [IWC109][Engineering Design][3]
+   maps to ----> [ME4661][Exchange Elective][4]
+____________________________________________________________
+```
+
+Example of usage: `list ku /filter bio in name`
+
+Expected outcome:
+
+```
+KOREA UNIVERSITY Modules
+____________________________________________________________
+1. [AMSE216][Introduction to biomaterials][3]
+   maps to ----> [ME4253][Biomaterials Engineering][4]
+____________________________________________________________
+```
+
 ****
 ##### 3.2.1.3 Listing out all Partner Universities: `list pu`
 
