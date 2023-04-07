@@ -12,7 +12,8 @@ package seedu.duke.command;
  *  {@link #EDITSTEP}
  *  {@link #EDITINGREDIENT}
  *  {@link #EDIT}
- *  {@link #FIND}
+ *  {@link #FINDNAME}
+ *  {@link #FINDTAG}
  *  {@link #EXIT}
  *  {@link #UNKNOWN}
  */

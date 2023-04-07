@@ -18,13 +18,20 @@ import static seedu.duke.ui.StringLib.MATCHING_ITEMS;
 import static seedu.duke.ui.StringLib.NO_MATCHING_RECIPE_ERROR;
 
 public class RecipeList {
+    private static RecipeList instance;
     protected static ArrayList<Recipe> recipeList;
 
     protected static int currRecipeNumber;
 
-    public RecipeList() {
+    private RecipeList() {
         recipeList = new ArrayList<>();
         currRecipeNumber = 0;
+    }
+
+    public static void createRecipeList() {
+        if (instance == null) {
+            instance = new RecipeList();
+        }
     }
 
     public static boolean isEmpty() {
@@ -96,7 +103,7 @@ public class RecipeList {
         }
     }
 
-    public void editIngredient(int recipeIndex, int ingredientIndex, String newIngredient) throws EditFormatException {
+    public static void editIngredient(int recipeIndex, int ingredientIndex, String newIngredient) throws EditFormatException {
         if (recipeIndex > getCurrRecipeNumber() || recipeIndex < 1) {
             throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX);
         }
@@ -108,7 +115,7 @@ public class RecipeList {
         ingredientList.editIngredient(newIngredient, ingredientIndex - 1);
     }
 
-    public void editStep(Integer recipeIndex, int stepIndex, String newStep) throws EditFormatException {
+    public static void editStep(Integer recipeIndex, int stepIndex, String newStep) throws EditFormatException {
         if (recipeIndex > getCurrRecipeNumber() || recipeIndex < 1) {
             throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX);
         }
