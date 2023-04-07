@@ -96,6 +96,7 @@ public class Strings {
     public static final String CATEGORY_DOES_NOT_EXIST_MESSAGE = "Category does not exist!";
     public static final String ENTERING_POSITIVE_NUMBER_MESSAGE =
             "Please enter a positive number or enter back to go back to the main program";
+    public static final String NO_SEARCH_KEYWORD_MESSAGE = "Please use the format: search <keyword>";
 
     /**
      * Returns the input string with all the storage delimiter replaced with the default string.

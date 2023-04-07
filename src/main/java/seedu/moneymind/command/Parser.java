@@ -1,5 +1,6 @@
 package seedu.moneymind.command;
 
+import java.lang.module.InvalidModuleDescriptorException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,6 +42,7 @@ import static seedu.moneymind.string.Strings.EDIT_FORMAT;
 import static seedu.moneymind.string.Strings.BUDGET_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.INDEX_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.EXPENSE_LIMIT_MESSAGE;
+import static seedu.moneymind.string.Strings.NO_SEARCH_KEYWORD_MESSAGE;
 /**
  * A class to parse the user input.
  */
@@ -233,7 +235,10 @@ public class Parser {
         }
     }
 
-    private Command createSearchCommand(String[] separatedKeywordAndDescription) {
+    private Command createSearchCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
+        if (separatedKeywordAndDescription.length < 2) {
+            throw new InvalidCommandException(NO_SEARCH_KEYWORD_MESSAGE);
+        }
         return new SearchCommand(separatedKeywordAndDescription[1]);
     }
 }
