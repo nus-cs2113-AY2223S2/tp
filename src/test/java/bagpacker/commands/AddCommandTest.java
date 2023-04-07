@@ -14,6 +14,7 @@ public class AddCommandTest {
 
     @Test
     public void testAddCommand() {
+        //@@author tangphi
         PackingList packingList = new PackingList();
         Item item = new Item(1, "toothbrush");
         Command addCommand = new AddCommand(item);
@@ -30,7 +31,7 @@ public class AddCommandTest {
 
         assertEquals("toothpaste", PackingList.get(1).getItemName());
         Assertions.assertNotEquals("toothbrush", PackingList.get(1).getItemName());
-
+        //@@author linuspuah
         DeleteListCommand delList = new DeleteListCommand();
         delList.execute(packingList);
     }
