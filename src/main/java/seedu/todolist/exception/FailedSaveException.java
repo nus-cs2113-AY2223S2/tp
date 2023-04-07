@@ -5,6 +5,7 @@ import seedu.todolist.constants.Errors;
 //@@author jeromeongithub
 public class FailedSaveException extends ToDoListException {
     public FailedSaveException() {
-        super(Errors.FAILED_SAVE.getMessage());
+        super(Errors.FAILED_SAVE);
     }
 }
+

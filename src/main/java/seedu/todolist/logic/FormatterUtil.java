@@ -1,6 +1,7 @@
 package seedu.todolist.logic;
 
 import seedu.todolist.constants.Formats;
+import seedu.todolist.constants.Priority;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,18 +14,18 @@ public class FormatterUtil {
     public static String getPriorityAsString(int priority) {
         switch (priority) {
         case 1:
-            return "Low";
+            return Priority.LOW.toString();
         case 2:
-            return "Medium";
+            return Priority.MEDIUM.toString();
         case 3:
-            return "High";
+            return Priority.HIGH.toString();
         default:
-            return "Unexpected value";
+            return Priority.NONE.toString();
         }
     }
 
     public static String getDeadlineAsString(LocalDateTime deadline) {
-        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_OUT.getFormat());
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(Formats.TIME_OUT);
         return deadline.format(outputFormatter);
     }
 

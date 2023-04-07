@@ -78,8 +78,8 @@ The code for this component is found in [`TaskList.java`](https://github.com/AY2
 
 The code for this component is found in [`Storage.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/storage/Storage.java).
 
-The Storage component can save the task list as TaskList objects in a .txt file format using Serialization and read it 
-back into a TaskList object.
+The Storage component can save the task list as TaskList objects in a .json file format using the GSON library and read 
+it back into a TaskList object.
 
 ## Implementation
 
@@ -234,14 +234,16 @@ Storage occur even when the user performs other commands to edit the task list.
 - **Option 2**: Append rather than overwrite when saving the task list.
     - Pros: Will likely be able to save the task list much faster.
     - Cons: Difficult to implement, especially when considering the current mark task operation.
-- **Option 3 (current choice)**: Save task list as a Serializable TaskList object in a .txt file.
+- **Option 3 (current choice)**: Save task list as a json file using the GSON library.
     - Pros: Easy to implement and easy to maintain as Storage class does not have to be updated whenever new fields are 
-            added to Task class. Do not need to consider whether we use append or overwrite when saving task list as
-            it is irrelevant when using this implementation.
-    - Cons: No physical task list to use as the saved .txt file is practically unreadable.
+added to Task class. Do not need to consider whether we use append or overwrite when saving task list as it is 
+irrelevant when using this implementation. The GSON library's pretty printing functionality makes the json file very 
+easy to read for humans and understand which allows advanced users to easily modify the file for quick updating of their
+task list.
+    - Cons: Users have to download some dependencies to be able to use the GSON library.
 
 Main reasons for choosing Alternative 3: It is much easier to implement and maintain than the other 2 alternatives,
-and we found that the lack of a physical task list to use is not a very significant issue.
+and we found that the need to download dependencies to use the GSON library would not be a big issue.
 
 ### Progress Bar Feature
 The ProgressBarCommand extends NUS To-Do List with a progress bar feature for tracking the progress on tasks in the task 
@@ -316,7 +318,6 @@ bring an application to keep you aware of your deadlines and not miss them.
 | v2.0    | user     | set a task to repeat                                                                                             | create 1 task to represent repeating tasks every week                     |
 | v2.0    | user     | set priority level and can sort the tasks based on the priority level                                            | identify high priority tasks                                              |
 | v2.0    | user     | see a progress bar                                                                                               | track my progress of unfinished tasks                                     |
-| v2.0    | user     | view up to 10 previously completed tasks tied with the completion date and time                                  | track my progress of finished tasks                                       |
 
 ### Non-Functional Requirements
 
