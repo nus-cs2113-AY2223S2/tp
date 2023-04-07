@@ -282,23 +282,6 @@ Examples:
 || Author: Abraham Silberschatz
 || Topic: Operating Systems
 || ===================================================
-|| No.5
-|| ISBN: 978-1492051299
-|| Title: Head First Python A Learner Guide to the Fundamentals of Python Programming
-|| Author: Paul Barry
-|| Topic: Computer Programming
-|| ===================================================
-|| No.6
-|| ISBN: 978-0201835953
-|| Title: The Mythical Man Month Essays on Software Engineering
-|| Author: Frederick P Brooks
-|| Topic: Software Engineering
-|| ===================================================
-|| No.7
-|| ISBN: 978-0357433836
-|| Title: Guide to Operating Systems
-|| Author: Greg Tomsho
-|| Topic: Operating Systems
 ```
 
 ### <a name="history"> View history: `history` </a>
