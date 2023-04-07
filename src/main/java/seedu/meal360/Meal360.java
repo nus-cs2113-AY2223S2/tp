@@ -76,8 +76,8 @@ public class Meal360 {
                 ui.printMessage("Now you have " + recipeList.size() + " recipes in the list.");
             } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage =
-                        "Please enter a valid recipe number or name. You did not enter a recipe number "
-                                + "or " + "name.";
+                        "Please enter a valid recipe number or name in the correct format. You did not enter a recipe" +
+                                " number or name. See 'help' for more details.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
@@ -145,8 +145,9 @@ public class Meal360 {
         } else if (command[0].equals("tag")) {
             try {
                 ui.printSeparator();
-                String tag = parser.parseTagRecipe(command, recipeList);
-                ui.printMessage("You have modified the recipe(s) in this \"" + tag + "\" tag.");
+                String returnMessage = parser.parseTagRecipe(command, recipeList);
+                ui.printTagMessage(returnMessage);
+                //ui.printMessage("You have modified the recipe(s) in this \"" + tag + "\" tag.");
             } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException e) {
                 ui.printMessage(e.getMessage());
             }
@@ -156,7 +157,7 @@ public class Meal360 {
             try {
                 Recipe randomRecipe = parser.parseRandomRecipe(recipeList);
                 ui.printRecipe(randomRecipe);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();

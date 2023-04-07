@@ -83,7 +83,7 @@ public class Ui {
     }
 
     private void listRecipes(RecipeList recipeListToPrint, String emptyListMsg,
-            String listHeaderMsg) {
+                             String listHeaderMsg) {
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
         if (numberOfRecipes == 0) {
@@ -104,8 +104,8 @@ public class Ui {
         printMessage("1. Add Recipe: add /r {recipe name}");
         printMessage("2. View Recipe: view {index number}");
         printMessage("3. Edit Recipe: edit {recipe name}");
-        printMessage("4. Delete Recipe: delete {index number} or delete {index range} or");
-        printMessage("   delete /r {recipe name}or delete /r all");
+        printMessage("4. Delete Recipe: delete {index number} or delete {starting index-ending index} or");
+        printMessage("delete /r {recipe name} or delete /r all");
         printMessage("5. List All Recipes: list");
         printMessage("6. Add Single Recipe to Weekly Plan: weekly /add {recipe name} {quantity}");
         printMessage("7. Add Multiple Recipes to Weekly Plan: weekly /multiadd /r {recipe1 name} /q {quantity1}");
@@ -140,5 +140,24 @@ public class Ui {
                 System.out.println(formatMessage(outputMessage));
             });
         }
+    }
+
+    public void printTagMessage(String receivedMessage) {
+        String[] args = receivedMessage.split(" ", 2);
+        String command = args[0].trim();
+        String tag = args[1].trim();
+        if (command.equals("add")) {
+            printSuccessfullyAddTag(tag);
+        } else if (command.equals("remove")) {
+            printSuccessfullyRemoveTag(tag);
+        }
+    }
+
+    public void printSuccessfullyAddTag(String tag) {
+        printMessage("You have successfully added the recipe(s) to \"" + tag + "\" tag.");
+    }
+
+    public void printSuccessfullyRemoveTag(String tag) {
+        printMessage("You have successfully removed the recipe(s) from \"" + tag + "\" tag.");
     }
 }
