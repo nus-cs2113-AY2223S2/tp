@@ -33,15 +33,17 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the 
+original source as well}
 
 ## Setup & Prerequisites
 1. Ensure you have `Java 11` installed.
-2. Ensure your local repository is synced with the main repository at [AY2223S2-CS2113-F13-1/tp](https://github.com/AY2223S2-CS2113-F13-1/tp)
+2. Ensure your local repository is synced with the main repository at 
+[AY2223S2-CS2113-F13-1/tp](https://github.com/AY2223S2-CS2113-F13-1/tp).
 3. Download the latest `tp.main.jar` from [here](https://github.com/AY2223S2-CS2113-F13-1/tp/releases).
 4. Copy the file to the folder you want to use as home folder for the recipe manager.
 5. Use `Win+R` to open the command prompt and type `cmd` and press Enter.
-6. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`
+6. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`.
 7. Type `java -jar tp.main.jar` and press Enter to start the program.
 
 ## Design & implementation
@@ -69,12 +71,14 @@ The rest of the App consists of five components.
 
 **How the components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues 
+the command `delete 1`.
 
 ![image](./PlantUML/ArchitectureInteract.png)
 
-#### UI component
-The **API** of this component is specified in [`UI.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/ui/UI.java)
+### UI Component
+The **API** of this component is specified in 
+[`UI.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/ui/UI.java).
 
 <!-- ![image](./PlantUML/UIcomponent.png) -->
 
@@ -84,32 +88,41 @@ UI class implements the StringLib interface for some output strings. It is respo
 * Prints the log messages for some managing operations.
 * Prints the error messages for some exceptions.
 
-#### Parser component
-The **API** of this component is specified in [`Parser.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/parser/Parser.java)
+### Parser Component
+The **API** of this component is specified in 
+[`Parser.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/parser/Parser.java).
 
 ![image](./PlantUML/ParserComponent.png)
 
-Parser class implements the StringLib interface for some output strings. It is responsible for the following tasks:
-* Executes the particular command received from the user input.
-* Determines if the program termination command has been sent.
+Parser class implements the StringLib interface for some output strings and uses `CommandType` enum. 
+It is responsible for the following tasks:
+* Separates user input into various elements in `Strings` to obtain `Command`, `Recipes`, `Ingredients`, 
+`Steps`, `Tag`, etc.
+* Uses `CommandType` to generate each type of command.
+* Separates `Recipes` into its elements, namely `Ingredients` and `Steps`.
+* Handles any other separation tasks in regard to handling various user input `Commands`.
 
-#### Command component
-The **API** of this component is specified in [`Command.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/command/Command.java)
+### Command Component
+The **API** of this component is specified in 
+[`Command.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/command/Command.java).
 
 ![image](./PlantUML/CommandComponent.png) 
 
 Command class the StringLib interface for some output strings. It also inherits CommandType Enums for determining the 
-correct tasks to be executed. It is responsible for the following tasks
+correct tasks to be executed. It is responsible for the following tasks:
+* Executes the particular command received from the user input, case-by-case.
+* Determines if the program termination command has been sent.
 
 
-#### RecipeList component 
-The **API** for this component is specified in [`RecipeList.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/recipe/RecipeList.java)
+### RecipeList Component 
+The **API** for this component is specified in 
+[`RecipeList.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/recipe/RecipeList.java).
 
 ![RecipeList Component](./PlantUML/RecipeListComponent.png)
 
-The class contains the list of `Recipe` objects stored in an `ArrayList`by the program. 
+The class contains the list of `Recipe` objects stored in an `ArrayList` by the program. 
 It provides methods for the addition, retrieval and removal of `Recipe` objects from the list.
-A `clearRecipeList` method also exists to allow for quick deletion of all `Recipe` objects.
+A `RecipeList#clearRecipeList()` method also exists to allow for quick deletion of all `Recipe` objects.
 
 Each `Recipe` object stores the name of the dish, as well as lists storing `Ingredient` and `Step`
 objects, to keep track of the ingredients and steps to create the dish respectively.
@@ -118,8 +131,9 @@ While each `Recipe` object will have only one `IngredientList` and `StepList`, e
 are not limited in how many `Ingredient` and `Step` objects they can store respectively.
 
 
-#### Storage component
-The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java)
+### Storage Component
+The **API** of this component is specified in 
+[`Storage.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java).
 
 ![image](./PlantUML/StorageComponent.png)
 
