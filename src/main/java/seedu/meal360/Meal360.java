@@ -157,7 +157,7 @@ public class Meal360 {
             try {
                 Recipe randomRecipe = parser.parseRandomRecipe(recipeList);
                 ui.printRecipe(randomRecipe);
-            } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
