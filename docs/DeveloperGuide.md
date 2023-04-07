@@ -83,15 +83,16 @@ the `data/notes.txt` file, and users are able to keep track
 of their notes by reading the content from the `data/notes.txt file/`.
 
 #### Note Class:
-The Note class represents a note that has a text information, priority, review count, and is marked as done or not. 
+The Note class represents a note item, which includes information about the note, 
+its priority level, its review count, and whether the note has been marked as completed or not.
 
 ##### Class Structure:
 The Note class is defined with the following instance variables:
 
 `text` (String): the note information
-`reviewCount` (int): how many times the note has been reviewed
-`isDone` (boolean): whether the note is marked as done or not
-`priority` (NotePriority.Priority): the priority of the note
+`reviewCount` (int): the number of times the note has been reviewed
+`isDone` (boolean): whether the note is marked as complete or incomplete
+`priority` (NotePriority.Priority): the priority level of the note
 
 The class contains the following methods:
 
@@ -110,7 +111,7 @@ The class contains the following methods:
 `toString`: returns a string representation of the note in the format `[priority][completion status][review count]text`.
 
 #### Notes Text:
-The `notes.txt` is a text file that contains the list of Notes stored by users while using `BadMaths`.
+The `notes.txt` file is a text file that contains the list of Notes stored by users using `BadMaths`.
 It is located in the `data` directory of the project.
 The purpose of this file is to allow users to keep a list of their notes stored 
 and to display their notes item stored as and when is needed for their educational purposes.
@@ -134,12 +135,12 @@ This allows the user to keep track of how many times a note has been reviewed.
 ###### Text:
 The text field contains the actual content of the note. This can be any text-based information provide by the user.
 
-###### Example of `notes.txt`:
+###### Example of information displayed in `notes.txt`:
 
 ````
-HIGH  Y  1  Note_1
-MEDIUM   N  2  Note_2
-LOW   Y  3  Note_3
+HIGH  Y  1  Note_Item_1
+MEDIUM   N  2  Note_Item_2
+LOW   Y  3  Note_Item_3
 ````
 
 ### Storage
@@ -223,19 +224,75 @@ Step 2. A new `FileWriter` object is created using the specified path.
 
 Step 3. The `write` method of the `FileWriter` object is called with an empty string as the argument. This clears the content of the file.
 
+### Store class:
+The `Store` class takes in inputs from users and store these notes into the
+`notes.txt` file. It consists of a static boolean method that detects invalid `todo` input entered by users
+and a public method that stores notes to the notes list.
+
+Step 1. The `Store` class takes in two variables `notes` and `todo`, and constructs a new `Store` instance
+using the two variables.
+
+Step 2. The `isInvalidTodo` static boolean method will check for the validity of the `todo` string input.
+
+Step 3. The `storeNotes` public method will then store the note item input by users into the notes list.
+
+### List class:
+The `List` class takes in inputs from users and list either all the notes stored in notes list or specific notes
+based on the index that users have input to BadMaths.
+It consists of a few public boolean method that detects invalid `todo` input entered by users,
+detects if `todo` provided is not an integer, and detects if `todo` provided is an invalid index.
+It also consists of a public method that list notes stored in notes list.
+
+Step 1. The `List` class takes in two variables `notes` and `todo`, and constructs a new `List` instance
+using the two variables.
+
+Step 2. The `isInvalidTodo`, `isInvalidIndex` and `isAnInt` boolean method will check for the validity of the `todo` string input.
+
+Step 3. The `listNotes` public method will then list either all the notes stored in notes list or specific notes
+based on the index that users have input to BadMaths.
+
+
+### Delete class:
+The `Delete` class takes in inputs from users and deletes the respective specific notes in the notes list
+based on the index that users have input to BadMaths.
+It consists of two static boolean methods that detects whether `todo` provided by users
+is not an integer, and detects whether `todo` provided is an invalid index.
+It also consists of a public method that deletes notes stored in notes list.
+
+Step 1. The `Delete` class takes in two variables `notes` and `todo`, and constructs a new `Delete`
+instance using the two variables.
+
+Step 2. The `isInvalidIndex` and `isAnInt` static boolean methods will check for the validity of the `todo` string input.
+
+Step 3. The `deleteNotes` public method will then delete the respective specific notes in the notes list
+based on the index that users have input to BadMaths.
+
+### CommandHistory class:
+The `CommandHistory` class stores a list of all inputs entered by users during the current programme run session.
+It consists of only a two public class methods, `storeCommand` and `displayHistory`. 
+
+Step 1. The `CommandHistory` class takes in only one variable `historyCommand`, 
+and constructs a new `CommandHistory` instance using that one variable.
+
+Step 2. The `storeCommand` public method adds the input command given by users into the 
+`historyCommand` ArrayList.
+
+Step 3. The `displayHistory` public method outputs a list of past commands entered by users during
+the current programme run.
+
 ### Command class:
 Step 1. Define the `Command` class: The `Command` class takes in a command takes in a `command` and a `toDo` item and
 based on both of these inputs, the `Command` class then identifies the relevant functions
 to be executed.
 
 Step 2. The `executeCommand` method does the executing of the relevant functions depending on the `command` that
-was input by users. There are several functionalities provided in the `executeCommand` for users, including but
+was being input by users. There are several functionalities provided in the `executeCommand` for users, including but
 not limited to the Storing and Deleting of Notes, Marking and Unmarking of notes items as completed or incomplete, and
-the searching for notes based through keywords or priorities of the notes. 
+the searching for notes through keywords or priorities of the notes. 
 
 ### Ui class:
-Step 1. Define the `Ui` class: The `Ui` class consists of several static methods which are used
-for the purposes of printing the user interface messages when users are performing the
+The `Ui` class consists of several static methods which are used
+to print user interface messages when users are performing the
 operations of BadMaths such as the notes and calculation operations and functionalities.
 
 The methods that are in the Ui class are as follows:
@@ -298,8 +355,8 @@ The Help feature allows users to view possible options by calling `Help.` which 
 The feature implemented involves reading the content from HelpManual.txt file and logging the result of read operation using the Java Logging API.
 
 #### HelpManual text:
-`HelpManual.txt` is a text file that contains the help manual for the application. It is located in the `src/main/resources` directory of the project.
-The purpose of this file is to provide users with helpful information on how to use the application.
+`HelpManual.txt` is a text file that contains the help manual for BadMaths. It is located in the `src/main/resources` directory of the project.
+The purpose of this file is to provide users with helpful instructions on how to operate BadMaths.
 
 #### HelpManual class:
 Step 1. Define the HelpManual class: The HelpManual class is defined as a public class with two static fields: filePath and logFilePath. 
@@ -320,7 +377,6 @@ Step 4. Logging the result: After reading the file, the `readHelpManual()` metho
 objects and logs the success or failure of the read operation using the logger. If the read operation is successful, a message
 is logged to the console and log file indicating that the HelpManual file was successfully read. If an exception occurs during
 the read operation, an error message is logged to the console and log file.
-
 
 ### Graph
 The Graph feature allows users to analyse basic Trigonometry signals by calling `startGraphAnalysis()` which

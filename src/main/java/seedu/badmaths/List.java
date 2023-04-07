@@ -13,13 +13,12 @@ public class List {
         this.notes = notes;
         this.toDo = toDo;
     }
-    public  boolean isInvalidIndex(int index, NotesList notes) {
+    public boolean isInvalidIndex(int index, NotesList notes) {
         return (index < 0 || index >= notes.getSize());
     }
-    public  boolean isInvalidTodo(String todo) {
+    public boolean isInvalidTodo(String todo) {
         return todo.equals("Invalid todo");
     }
-
     public  boolean isAnInt(String todo) {
         try {
             Integer.parseInt(todo);
