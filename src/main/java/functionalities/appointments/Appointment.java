@@ -1,7 +1,10 @@
 package functionalities.appointments;
 
+import exception.SniffException;
 import functionalities.Animal;
 import functionalities.Owner;
+
+import java.time.LocalDate;
 
 /**
  * The Appointment class represents an appointment for an animal with its owner.
@@ -32,6 +35,8 @@ public abstract class Appointment {
     }
 
     public abstract String toString();
+
+    public abstract boolean isDate(String date) throws SniffException;
 
     public abstract String getDescription();
 
