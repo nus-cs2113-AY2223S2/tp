@@ -37,6 +37,9 @@ public class Ui {
             "loading aborted.";
     private static final String INVALID_MARK_TASK_SYMBOL_FILE_ERROR = "ERROR: Task save file has invalid mark task " +
             "symbol. File loading aborted.";
+    private static final String INVALID_PET_NAME_ERROR = "ERROR: Invalid pet name. Pet name cannot contain pipes.";
+    private static final String INVALID_PET_NAME_FILE_ERROR = "ERROR: Pet save file has invalid pet name. Pet name " +
+            "cannot contain pipes. File Loading aborted";
 
     private Scanner in;
 
@@ -242,6 +245,14 @@ public class Ui {
 
     public void printFileInvalidMarkTaskSymbolMessage() {
         System.out.println(INVALID_MARK_TASK_SYMBOL_FILE_ERROR);
+    }
+
+    public void printInvalidPetNameMessage() {
+        System.out.println(INVALID_PET_NAME_ERROR);
+    }
+
+    public void printFileInvalidPetNameMessage() {
+        System.out.println(INVALID_PET_NAME_FILE_ERROR);
     }
 
     /**

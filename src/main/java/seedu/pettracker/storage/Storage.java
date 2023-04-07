@@ -8,6 +8,7 @@ import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.exceptions.EmptyTaskNameException;
 import seedu.pettracker.exceptions.InvalidMarkTaskSymbolException;
+import seedu.pettracker.exceptions.InvalidPetNameException;
 import seedu.pettracker.exceptions.InvalidSeparatorException;
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
@@ -76,6 +77,8 @@ public class Storage {
             ui.printFileDuplicatePetMessage();
         } catch (InvalidSeparatorException e) {
             ui.printPetFileInvalidSeparatorMessage();
+        } catch (InvalidPetNameException e) {
+            ui.printFileInvalidPetNameMessage();
         }
     }
 
@@ -180,7 +183,7 @@ public class Storage {
 
     private void parsePetFile(ArrayList<String> data) throws NumberFormatException, NonPositiveIntegerException,
             InvalidStatException, PetNotFoundException, EmptyPetNameException, DuplicatePetException,
-            InvalidSeparatorException {
+            InvalidSeparatorException, InvalidPetNameException {
         for (String line : data) {
             validatePetDataSep(line);
             String petName = getPetName(line);
