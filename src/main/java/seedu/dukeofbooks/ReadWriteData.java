@@ -1,6 +1,7 @@
 package seedu.dukeofbooks;
 
 import seedu.dukeofbooks.controller.InventoryController;
+import seedu.dukeofbooks.controller.ListController;
 import seedu.dukeofbooks.controller.SearchController;
 import seedu.dukeofbooks.data.book.Book;
 import seedu.dukeofbooks.data.book.Isbn;
@@ -61,6 +62,7 @@ public class ReadWriteData {
                 try {
                     InventoryController.setData(inventory);
                     SearchController.setData(inventory);
+                    ListController.setData(inventory);
                     isbn = new Isbn(originalString.substring(ISBN_SUBSTRING));
                     originalString = s.nextLine();
                     title = new Title(originalString.substring(TITLE_SUBSTRING));
