@@ -19,30 +19,39 @@ public final class MessageConstants {
     public static final String MESSAGE_EXPENDITURE_EDITED = "The following expenditure has been updated:" + NEWLINE;
     public static final String MESSAGE_NO_ENTRIES = "There are no entries available." + NEWLINE;
     public static final String MESSAGE_ADD_COMMAND = "Add - Adds an expense to your current expenditure." + NEWLINE
-            + "Usage: /add <-d | -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c | -category CATEGORY>" + " <-p " +
-            "| -price PRICE>" + NEWLINE
-            + "see below for examples" + NEWLINE
+            + "Usage: /add -d <description> -c <category> -p <price>" + NEWLINE
+            + "Options:" + NEWLINE
+            + "-d <description>" + NEWLINE
+            + "-c <category>" + NEWLINE
+            + "-p <price>" + NEWLINE
+            + "See below for examples" + NEWLINE
             + "/add -d Apple Macbook Air -p 1300 -c Personal" + NEWLINE
-            + "/add -price 1300 -category Personal -d Apple Macbook Air" + NEWLINE + NEWLINE;
+            + "/add -p 1300 -c Personal -d Apple Macbook Air" + NEWLINE + NEWLINE;
     public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified expense(s) from your expenditure."
             + NEWLINE
-            + "Usage: /delete <EXPENSE_ID> [ADDITIONAL_EXPENSE_ID...]" + NEWLINE
-            + "see below for examples" + NEWLINE
+            + "Usage: /delete <index> [additional_index...]" + NEWLINE
+            + "See below for examples" + NEWLINE
             + "/delete 10 11 13 " + NEWLINE
             + "/delete 1" + NEWLINE + NEWLINE;
     public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified expense in your current expenditure."
             + NEWLINE
-            + "Usage: /edit <EXPENSE_ID> [-c | -category NEW_CATEGORY] [-p | -price NEW_PRICE]" +
-            " [-d | -description NEW_DESC]" + NEWLINE
-            + "see below for examples" + NEWLINE
-            + "/edit 5 -description Grab to school -c Transportation -price 20.00" + NEWLINE
-            + "/edit 5 -d Grab to school -category Transportation -p 20.00" + NEWLINE + NEWLINE;
+            + "Usage: /edit <index> [options]" + NEWLINE
+            + "Options:" + NEWLINE
+            + "-d <description>" + NEWLINE
+            + "-c <category>" + NEWLINE
+            + "-p <price>" + NEWLINE
+            + "See below for examples" + NEWLINE
+            + "/edit 5 -d Grab to school -c Transportation -p 20.00" + NEWLINE + NEWLINE;
 
     public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current expenditure."
             + NEWLINE
-            + "Usage: /view [COUNT] [-c | -category CATEGORY] [-sp | -startprice PRICE_MIN] [-ep | -endprice PRICE_MAX]"
-            + " [<-sd | -startdate START_DATE -ed | -enddate END_DATE>]" + NEWLINE
-            + "see below for examples" + NEWLINE
+            + "Usage: /view [count] [filter_options]" + NEWLINE
+            + "Filter options:" + NEWLINE
+            + "-c <category>" + NEWLINE
+            + "-sp <startprice>" + NEWLINE
+            + "-ep <endprice>" + NEWLINE
+            + "-sd <startdate>, -ed <enddate>" + NEWLINE
+            + "See below for examples" + NEWLINE
             + "/view 100 -c Transportation -sp 2.00 -ep 5.00" + NEWLINE
             + "/view -sd 21/11/97 -ed 22/11/97 -c Transportation -sp 2.00" + NEWLINE
             + "/view 10 -sd 21/11/97 -ed 22/12/97 -c Transportation -sp 2.00 -ep 6.00" + NEWLINE + NEWLINE;
