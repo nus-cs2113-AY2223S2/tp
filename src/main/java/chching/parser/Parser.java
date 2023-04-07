@@ -25,9 +25,7 @@ import chching.command.UnsetCurrencyCommand;
 import chching.command.FindCommand;
 import chching.command.EditIncomeCommand;
 import chching.record.Expense;
-import chching.record.ExpenseList;
 import chching.record.Income;
-import chching.record.IncomeList;
 import chching.record.Target;
 
 import java.time.LocalDate;
