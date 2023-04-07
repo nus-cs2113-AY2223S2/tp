@@ -1,5 +1,6 @@
 package pocketpal.backend.endpoints;
 
+import pocketpal.backend.constants.MiscellaneousConstants;
 import pocketpal.communication.Request;
 import pocketpal.communication.RequestParams;
 import pocketpal.communication.Response;
@@ -39,7 +40,7 @@ public class EntryEndpoint extends Endpoint {
             return new Response(ResponseStatus.OK, deletedEntry.serialise());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             logger.warning("/entry [DELETE]: received invalid entry ID");
-            return new Response(ResponseStatus.NOT_FOUND, "");
+            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage(request.getBody()));
         }
     }
 
@@ -50,13 +51,13 @@ public class EntryEndpoint extends Endpoint {
             int targetEntryId = getPositiveIntegerFromString(request.getBody());
             Entry entry = entries.getEntry(targetEntryId);
             if (entry == null) {
-                throw new NumberFormatException();
+                throw new NumberFormatException(getInvalidIDMessage(String.valueOf(targetEntryId)));
             }
             logger.info("/entry [GET]: OK");
             return new Response(ResponseStatus.OK, entry.serialise());
         } catch (NumberFormatException e) {
             logger.warning("/entry [GET]: received invalid entry ID " + request.getBody());
-            return new Response(ResponseStatus.NOT_FOUND, "");
+            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage(request.getBody()));
 
         }
     }
@@ -79,8 +80,7 @@ public class EntryEndpoint extends Endpoint {
             int targetEntryId = getPositiveIntegerFromString(request.getBody());
             editEntry = entries.getEntry(targetEntryId);
             if (editEntry == null) {
-                throw new NumberFormatException(MessageConstants.MESSAGE_NON_EXISTENT_ID
-                        + targetEntryId + System.lineSeparator() + MessageConstants.MESSAGE_INVALID_ID);
+                throw new NumberFormatException(getInvalidIDMessage(String.valueOf(targetEntryId)));
             }
 
             if (request.hasParam(RequestParams.EDIT_CATEGORY)) {
@@ -103,10 +103,11 @@ public class EntryEndpoint extends Endpoint {
             return new Response(ResponseStatus.OK, editEntry.serialise());
         } catch (NumberFormatException e) {
             logger.warning("/entry [PATCH]: received invalid entry ID " + request.getBody());
-            return new Response(ResponseStatus.NOT_FOUND, MessageConstants.MESSAGE_INVALID_ID);
+            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage(request.getBody()));
         } catch (InvalidCategoryException e) {
             logger.warning("/entry [PATCH]: received invalid category" + request.getBody());
-            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, "");
+            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT,
+                    MessageConstants.MESSAGE_INVALID_CATEGORY);
         } catch (InvalidArgumentsException e) {
             logger.warning("/entry [PATCH]: received invalid arguments" + request.getBody());
             return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, e.getMessage());
@@ -118,15 +119,38 @@ public class EntryEndpoint extends Endpoint {
      *
      * @param request The request should have the following data
      *                - data: Serialised Entry to be added
-     * @return Created response
+     * @return Created response if Entry data is valid, otherwise Unprocessable Content with error message
      */
     @Override
     public Response handlePost(Request request) {
         logger.info("/entry [POST]: request received");
         String json = request.getBody();
         Entry entry = EntryParser.deserialise(json);
+
+        // validate entry parameters
+        boolean isValidDescription = entry.getDescription() != null && !entry.getDescription().trim().isEmpty();
+        boolean isValidAmount = entry.getAmount() >= MiscellaneousConstants.AMOUNT_MIN_DOUBLE &&
+                entry.getAmount() <= MiscellaneousConstants.AMOUNT_MAX_DOUBLE;
+        if (!isValidDescription) {
+            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_INVALID_DESCRIPTION);
+        }
+        if (!isValidAmount) {
+            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_INVALID_AMOUNT);
+        }
+
         entries.addEntry(entry);
         logger.info("/entry [POST]: CREATED");
-        return new Response(ResponseStatus.CREATED, "");
+        return new Response(ResponseStatus.CREATED, entry.serialise());
+    }
+
+    /**
+     * Utility method when user inputs invalid entry ID
+     *
+     * @param entryId The requested entry ID
+     * @return Invalid ID Message
+     */
+    private String getInvalidIDMessage(String entryId) {
+        return MessageConstants.MESSAGE_NON_EXISTENT_ID + entryId + System.lineSeparator()
+                + MessageConstants.MESSAGE_ID_NOT_FOUND + entries.getSize() + ".";
     }
 }
