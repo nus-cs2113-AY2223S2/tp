@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class AlertParserTest {
 
     Inventory inventory;
+
     @Test
     void addAlertAllParameters() {
         inventory = new Inventory();
@@ -48,52 +49,51 @@ public class AlertParserTest {
 
         String expectedOutput = "Wrong/Incomplete Entry For Add Alert!";
         assertTrue(outContent.toString().contains(expectedOutput));
-        
+
     }
 
-   @Test
+    @Test
     void removeAlertAllParameters() {
-       inventory = new Inventory();
-       Item newItem = new Item("apples", "1234", 6, 15.0);
-       Command command = new AddCommand(inventory, newItem);
-       command.run();
+        inventory = new Inventory();
+        Item newItem = new Item("apples", "1234", 6, 15.0);
+        Command command = new AddCommand(inventory, newItem);
+        command.run();
 
-       String inventoryUpc = inventory.getItemInventory().get(0).getUpc();
-       Alert maxAlert = new Alert(inventoryUpc, "max", "10");
-       Command addAlertCommandMax = new AddAlertCommand(inventory, maxAlert);
-       addAlertCommandMax.run();
-       assertEquals(1, inventory.getAlertList().getMaxAlertUpcs().size());
+        String inventoryUpc = inventory.getItemInventory().get(0).getUpc();
+        Alert maxAlert = new Alert(inventoryUpc, "max", "10");
+        Command addAlertCommandMax = new AddAlertCommand(inventory, maxAlert);
+        addAlertCommandMax.run();
+        assertEquals(1, inventory.getAlertList().getMaxAlertUpcs().size());
 
-       Alert minAlert = new Alert(inventoryUpc, "min", "2");
-       Command addAlertCommandMin = new AddAlertCommand(inventory, minAlert);
-       addAlertCommandMin.run();
-       assertEquals(1, inventory.getAlertList().getMinAlertUpcs().size());
+        Alert minAlert = new Alert(inventoryUpc, "min", "2");
+        Command addAlertCommandMin = new AddAlertCommand(inventory, minAlert);
+        addAlertCommandMin.run();
+        assertEquals(1, inventory.getAlertList().getMinAlertUpcs().size());
 
-       String removeMaxAlert = "remove upc/1234 level/max";
-       AlertParser alertParserMax = new AlertParser(removeMaxAlert, inventory);
-       alertParserMax.run();
-       assertEquals(0, inventory.getAlertList().getMaxAlertUpcs().size());
+        String removeMaxAlert = "remove upc/1234 level/max";
+        AlertParser alertParserMax = new AlertParser(removeMaxAlert, inventory);
+        alertParserMax.run();
+        assertEquals(0, inventory.getAlertList().getMaxAlertUpcs().size());
 
-       String removeMinAlert = "remove upc/1234 level/min";
-       AlertParser alertParserMin = new AlertParser(removeMinAlert, inventory);
-       alertParserMin.run();
-       assertEquals(0, inventory.getAlertList().getMinAlertUpcs().size());
+        String removeMinAlert = "remove upc/1234 level/min";
+        AlertParser alertParserMin = new AlertParser(removeMinAlert, inventory);
+        alertParserMin.run();
+        assertEquals(0, inventory.getAlertList().getMinAlertUpcs().size());
 
-   }
+    }
 
-   @Test
+    @Test
     void removeAlertInvalidFormat() {
-       ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-       System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
 
-       String rawInput = "remove upc/1234 level/abcd";
-       AlertParser alertParser = new AlertParser(rawInput, inventory);
-       alertParser.run();
+        String rawInput = "remove upc/1234 level/abcd";
+        AlertParser alertParser = new AlertParser(rawInput, inventory);
+        alertParser.run();
 
-       String expectedOutput = "Wrong/Incomplete Entry For Remove Alert!";
-       assertTrue(outContent.toString().contains(expectedOutput));
+        String expectedOutput = "Wrong/Incomplete Entry For Remove Alert!";
+        assertTrue(outContent.toString().contains(expectedOutput));
 
-
-   }
+    }
 
 }

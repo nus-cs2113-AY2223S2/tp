@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RemoveAlertCommandTest {
     Inventory inventory;
-
     @Test
     void removeMinAlert() {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -32,7 +31,6 @@ public class RemoveAlertCommandTest {
 
         String expectedOutput = "Successfully removed the alert.";
         assertTrue(outContent.toString().contains(expectedOutput));
-
     }
 
     @Test

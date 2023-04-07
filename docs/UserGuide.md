@@ -456,7 +456,7 @@ Restock quantities of an item in the inventory list.
 
 Format: `restock upc/[UPC] qty/[Quantity]`
 
-**Required** Parameters:
+**REQUIRED** Parameters:
 
 * The `upc/` parameter  whereby `[UPC]` refers to the identification number assigned to the item at the point 
 of **initial addition** of the item.
@@ -505,7 +505,7 @@ session configurations.
 
 Format: `db`
 
-**Required** Parameters:
+**REQUIRED** Parameters:
 * Only the `db` command keyword is needed. 
 
 !> Note: There should **NOT** be any further user inputs after typing `db`.
@@ -551,7 +551,7 @@ Format: <br />
 `cat list`: Shows list of all categories in the inventory. <br />
 `cat table`: Shows table of all categories and all items in each category.
 
-**Required** Parameters:
+**REQUIRED** Parameters:
 * The `list` which tells the program to show a list of categories, **OR**
 * The `table` keyword, which tells the program to show a table of all categories and items in each category.
 
@@ -590,7 +590,15 @@ __________________________________________________________________________
 ```
 
 ### Alert for an item: `alert` <a name = "alert"></a>
-Add alerts that will display when the quantity of an item falls below a set minimum or exceeds a maximum level.
+Add alerts that will display messages when the quantity of an item falls below a set minimum or exceeds a maximum level.
+
+Example of Alert Message:
+```
+__________________________________________________________________________
+ALERT: The quantity of apples is below the minimum level of 2.
+__________________________________________________________________________
+```
+
 
 Add Alert Format:  
 `alert add upc/[UPC] min/[Quantity] ` to set an alert when quantity falls below a minimum  
@@ -608,6 +616,7 @@ Remove Alert Format:
 
 `alert remove upc/[UPC] level/min` to remove an alert for the minimum quantity of an item  
 `alert remove upc/[UPC] level/max` to remove an alert for the maximum quantity of an item  
+
 
 **REQUIRED** parameters:
 
@@ -637,6 +646,9 @@ Successfully removed the alert.
 __________________________________________________________________________
 ``` 
 
+
+
+Example of
 ---
 ### Change Auto save Mode: `autosave` <a name = "autosave"></a>
 
@@ -645,7 +657,7 @@ successful write command issued.
 
 Format: `autosave [on/off]`
 
-**Required** Parameters:
+**REQUIRED** Parameters:
 * The `on` **OR** `off` parameter, whereby it toggles the auto save function **ON** and **OFF** respectively.
 
 !> Note: if auto save is disabled, the program will **NOT** save on exit. This is because auto save `off` functions
