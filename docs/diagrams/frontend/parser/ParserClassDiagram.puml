@@ -1,15 +1,18 @@
 @startuml
 !include ../../Style.puml
+hide members
+class Parser
 
-class Parser {
-    +parseUserInput(userInput: String) : Command
-    -parseXCommand(arguments: String) : Command
-    -parseXArguments(arguments: String) : String[]
-}
-note left: parseXArguments() is invoked\nwithin corresponding parseXCommand().\nE.g. parseAddCommand() invokes\nparseAddArguments().
-class Command
+scale 1.2
+class ParseXYZCommand
+class "{abstract}\nParseCommand"
+class XYZCommand
+note left: XYZCommand = AddCommand,\nDeleteCommand,ViewCommand, etc.
 
-Parser -[dotted]-> Command : Returns
+Parser ..> ParseXYZCommand : creates >
+ParseXYZCommand .up.|> "{abstract}\nParseCommand"
+ParseXYZCommand ..> XYZCommand : returns >
+
 
 
 
