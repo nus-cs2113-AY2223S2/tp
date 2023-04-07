@@ -89,6 +89,31 @@ public class ViewCommand extends Command {
             return (int) ((firstStatement.getValue() * 100) - (secondStatement.getValue() * 100));
         }
     }
+    /**
+     * Helper function used to sort the indexes
+     * Sorts in ascending orders of date first, breaking ties by ascending orders of index.
+     */
+    static class sortByDate implements Comparator<Integer> {
+        private FinancialReport report;
+
+        public void setReport(FinancialReport report) {
+            this.report = report;
+        }
+
+        public int compare(Integer firstIndex, Integer secondIndex) {
+            FinancialStatement firstStatement = report.getFinancialStatement(firstIndex);
+            FinancialStatement secondStatement = report.getFinancialStatement(secondIndex);
+            LocalDate firstDate = firstStatement.getDate();
+            LocalDate secondDate = secondStatement.getDate();
+            if(firstDate.isBefore(secondDate)) {
+                return -1;
+            }
+            if (firstDate.isAfter(secondDate)) {
+                return 1;
+            }
+            return (firstIndex - secondIndex);
+        }
+    }
 
     /**
      * Executes the command and print the relevant statements by calling ViewResult
@@ -114,8 +139,12 @@ public class ViewCommand extends Command {
             sortByValue sortingClass = new sortByValue();
             sortingClass.setReport(savedData.getFinancialReport());
             validIndexes.sort(sortingClass);
+        } else {
+            sortByDate sortingClass = new sortByDate();
+            sortingClass.setReport(savedData.getFinancialReport());
+            validIndexes.sort(sortingClass);
         }
         ViewResult.printReport(validIndexes, lowerLimit, upperLimit, sortingRequired, viewAll);
-        return null;
+        return new CommandResult("");
     }
 }
