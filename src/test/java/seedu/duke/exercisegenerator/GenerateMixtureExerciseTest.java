@@ -7,7 +7,8 @@ import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@@author ChubbsBunns
 

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class GenerateDifficultyExerciseTest {
     private static final String EASY = "beginner";

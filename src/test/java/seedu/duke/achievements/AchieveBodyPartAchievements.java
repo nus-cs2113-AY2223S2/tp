@@ -26,11 +26,12 @@ public class AchieveBodyPartAchievements {
     private static final String UPPER = "upper";
     private static final String CORE = "core";
     private static final String LEGS = "legs";
-    AchievementListHandler achievementListTestHandler = new AchievementListHandler();
     private static final int NUMBER_OF_PRELOADED_ACHIEVEMENTS = 24;
+    AchievementListHandler achievementListTestHandler = new AchievementListHandler();
+
 
     @Test
-    void testE_CoreAchievementUpdateSession() {
+    void testECoreAchievementUpdateSession() {
         achievementListTestHandler.clearAchievementsData();
         assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
         ArrayList<ExerciseData> exerciseData;
@@ -48,13 +49,18 @@ public class AchieveBodyPartAchievements {
         Session session = new Session(actualExerciseData);
         Storage dummyStorage = new Storage() {
             @Override
-            public void writeToJson(UserCareerData userCareerData) throws DukeError {}
+            public void writeToJson(UserCareerData userCareerData) throws DukeError {
+            }
+
+            @Override
+            public void writeToJson(UserPlan userPlan) throws DukeError {
+            }
+
             @Override
             public UserCareerData loadUserData() {
                 return null;
             }
-            @Override
-            public void writeToJson(UserPlan userPlan) throws DukeError {}
+
             @Override
             public UserPlan loadUserPlans() {
                 return null;
@@ -69,7 +75,7 @@ public class AchieveBodyPartAchievements {
     }
 
     @Test
-    void testM_CoreAchievementUpdateSession() {
+    void testMCoreAchievementUpdateSession() {
         achievementListTestHandler.clearAchievementsData();
         assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
         ArrayList<ExerciseData> exerciseData;
@@ -91,16 +97,22 @@ public class AchieveBodyPartAchievements {
             @Override
             public void writeToJson(UserCareerData userCareerData) throws DukeError {
             }
+
+            @Override
+            public void writeToJson(UserPlan userPlan) throws DukeError {
+            }
+
             @Override
             public UserCareerData loadUserData() {
                 return null;
             }
-            @Override
-            public void writeToJson(UserPlan userPlan) throws DukeError {}
+
             @Override
             public UserPlan loadUserPlans() {
                 return null;
             }
+
+
         };
         ExerciseStateHandler exerciseStateHandler = new ExerciseStateHandler(dummyStorage);
         exerciseStateHandler.updateWorkoutAchievements(session, achievementListTestHandler);
@@ -111,7 +123,7 @@ public class AchieveBodyPartAchievements {
     }
 
     @Test
-    void testH_CoreAchievementUpdateSession() {
+    void testHCoreAchievementUpdateSession() {
         achievementListTestHandler.clearAchievementsData();
         assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
         ArrayList<ExerciseData> exerciseData;
@@ -133,12 +145,16 @@ public class AchieveBodyPartAchievements {
             @Override
             public void writeToJson(UserCareerData userCareerData) throws DukeError {
             }
+
+            @Override
+            public void writeToJson(UserPlan userPlan) throws DukeError {
+            }
+
             @Override
             public UserCareerData loadUserData() {
                 return null;
             }
-            @Override
-            public void writeToJson(UserPlan userPlan) throws DukeError {}
+
             @Override
             public UserPlan loadUserPlans() {
                 return null;
@@ -153,7 +169,7 @@ public class AchieveBodyPartAchievements {
     }
 
     @Test
-    void testE_LegsAchievementUpdateSession() {
+    void testELegsAchievementUpdateSession() {
         achievementListTestHandler.clearAchievementsData();
         assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
         ArrayList<ExerciseData> exerciseData;
@@ -175,13 +191,18 @@ public class AchieveBodyPartAchievements {
         Session session = new Session(actualExerciseData);
         Storage dummyStorage = new Storage() {
             @Override
-            public void writeToJson(UserCareerData userCareerData) throws DukeError {}
+            public void writeToJson(UserCareerData userCareerData) throws DukeError {
+            }
+
+            @Override
+            public void writeToJson(UserPlan userPlan) throws DukeError {
+            }
+
             @Override
             public UserCareerData loadUserData() {
                 return null;
             }
-            @Override
-            public void writeToJson(UserPlan userPlan) throws DukeError {}
+
             @Override
             public UserPlan loadUserPlans() {
                 return null;
@@ -196,7 +217,7 @@ public class AchieveBodyPartAchievements {
     }
 
     @Test
-    void testM_LegsAchievementUpdateSession() {
+    void testMLegsAchievementUpdateSession() {
         achievementListTestHandler.clearAchievementsData();
         assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
         ArrayList<ExerciseData> exerciseData;
@@ -218,13 +239,18 @@ public class AchieveBodyPartAchievements {
         Session session = new Session(actualExerciseData);
         Storage dummyStorage = new Storage() {
             @Override
-            public void writeToJson(UserCareerData userCareerData) throws DukeError {}
+            public void writeToJson(UserCareerData userCareerData) throws DukeError {
+            }
+
+            @Override
+            public void writeToJson(UserPlan userPlan) throws DukeError {
+            }
+
             @Override
             public UserCareerData loadUserData() {
                 return null;
             }
-            @Override
-            public void writeToJson(UserPlan userPlan) throws DukeError {}
+
             @Override
             public UserPlan loadUserPlans() {
                 return null;
@@ -239,7 +265,7 @@ public class AchieveBodyPartAchievements {
     }
 
     @Test
-    void testH_LegsAchievementUpdateSession() {
+    void testHLegsAchievementUpdateSession() {
         achievementListTestHandler.clearAchievementsData();
         assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
         ArrayList<ExerciseData> exerciseData;
@@ -261,13 +287,18 @@ public class AchieveBodyPartAchievements {
         Session session = new Session(actualExerciseData);
         Storage dummyStorage = new Storage() {
             @Override
-            public void writeToJson(UserCareerData userCareerData) throws DukeError {}
+            public void writeToJson(UserCareerData userCareerData) throws DukeError {
+            }
+
+            @Override
+            public void writeToJson(UserPlan userPlan) throws DukeError {
+            }
+
             @Override
             public UserCareerData loadUserData() {
                 return null;
             }
-            @Override
-            public void writeToJson(UserPlan userPlan) throws DukeError {}
+
             @Override
             public UserPlan loadUserPlans() {
                 return null;
@@ -282,7 +313,7 @@ public class AchieveBodyPartAchievements {
     }
 
     @Test
-    void testE_UpperBodyAchievementUpdateSession() {
+    void testEUpperBodyAchievementUpdateSession() {
         achievementListTestHandler.clearAchievementsData();
         assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
         ArrayList<ExerciseData> exerciseData;
@@ -304,13 +335,18 @@ public class AchieveBodyPartAchievements {
         Session session = new Session(actualExerciseData);
         Storage dummyStorage = new Storage() {
             @Override
-            public void writeToJson(UserCareerData userCareerData) throws DukeError {}
+            public void writeToJson(UserCareerData userCareerData) throws DukeError {
+            }
+
+            @Override
+            public void writeToJson(UserPlan userPlan) throws DukeError {
+            }
+
             @Override
             public UserCareerData loadUserData() {
                 return null;
             }
-            @Override
-            public void writeToJson(UserPlan userPlan) throws DukeError {}
+
             @Override
             public UserPlan loadUserPlans() {
                 return null;
@@ -325,7 +361,7 @@ public class AchieveBodyPartAchievements {
     }
 
     @Test
-    void testM_UpperBodyAchievementUpdateSession() {
+    void testMUpperBodyAchievementUpdateSession() {
         achievementListTestHandler.clearAchievementsData();
         assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
         ArrayList<ExerciseData> exerciseData;
@@ -347,13 +383,18 @@ public class AchieveBodyPartAchievements {
         Session session = new Session(actualExerciseData);
         Storage dummyStorage = new Storage() {
             @Override
-            public void writeToJson(UserCareerData userCareerData) throws DukeError {}
+            public void writeToJson(UserCareerData userCareerData) throws DukeError {
+            }
+
+            @Override
+            public void writeToJson(UserPlan userPlan) throws DukeError {
+            }
+
             @Override
             public UserCareerData loadUserData() {
                 return null;
             }
-            @Override
-            public void writeToJson(UserPlan userPlan) throws DukeError {}
+
             @Override
             public UserPlan loadUserPlans() {
                 return null;
@@ -368,7 +409,7 @@ public class AchieveBodyPartAchievements {
     }
 
     @Test
-    void testH_UpperBodyAchievementUpdateSession() {
+    void testHUpperBodyAchievementUpdateSession() {
         achievementListTestHandler.clearAchievementsData();
         assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
         ArrayList<ExerciseData> exerciseData;
@@ -390,13 +431,18 @@ public class AchieveBodyPartAchievements {
         Session session = new Session(actualExerciseData);
         Storage dummyStorage = new Storage() {
             @Override
-            public void writeToJson(UserCareerData userCareerData) throws DukeError {}
+            public void writeToJson(UserCareerData userCareerData) throws DukeError {
+            }
+
+            @Override
+            public void writeToJson(UserPlan userPlan) throws DukeError {
+            }
+
             @Override
             public UserCareerData loadUserData() {
                 return null;
             }
-            @Override
-            public void writeToJson(UserPlan userPlan) throws DukeError {}
+
             @Override
             public UserPlan loadUserPlans() {
                 return null;
