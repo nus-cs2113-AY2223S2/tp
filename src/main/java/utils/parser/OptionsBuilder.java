@@ -43,6 +43,52 @@ public class OptionsBuilder {
         this.keyword = action;
     }
 
+    public Options buildOptions() {
+        switch (model) {
+        case CARD_KEYWORD:
+            switch (keyword) {
+            case ADD_ACTION:
+                return buildAddOptions();
+            case TAG_ACTION:
+                return buildTagOptions();
+            case VIEW_ACTION:
+                return buildViewOptions();
+            case DELETE_ACTION:
+                return buildDeleteOptions(CARD_KEYWORD);
+            case DECK_ACTION:
+                return buildDeckOptions(CARD_KEYWORD);
+            default:
+                return null;
+            }
+        case TAG_KEYWORD:
+            switch (keyword) {
+            case DELETE_ACTION:
+                return buildDeleteOptions(TAG_KEYWORD);
+            case DECK_ACTION:
+                return buildDeckOptions(TAG_KEYWORD);
+            case EDIT_ACTION:
+                return buildEditOptions(TAG_KEYWORD);
+            case LIST_ACTION:
+                return buildListOptions(TAG_KEYWORD);
+            default:
+                return null;
+            }
+        case DECK_KEYWORD:
+            switch (keyword) {
+            case DELETE_ACTION:
+                return buildDeleteOptions(DECK_KEYWORD);
+            case EDIT_ACTION:
+                return buildEditOptions(DECK_KEYWORD);
+            case LIST_ACTION:
+                return buildListOptions(DECK_KEYWORD);
+            default:
+                return null;
+            }
+        default:
+            return null;
+        }
+    }
+
     public static Options buildAddOptions() {
         Options options = new Options();
 
@@ -197,49 +243,4 @@ public class OptionsBuilder {
         return opt;
     }
 
-    public Options buildOptions() {
-        switch (model) {
-        case CARD_KEYWORD:
-            switch (keyword) {
-            case ADD_ACTION:
-                return buildAddOptions();
-            case TAG_ACTION:
-                return buildTagOptions();
-            case VIEW_ACTION:
-                return buildViewOptions();
-            case DELETE_ACTION:
-                return buildDeleteOptions(CARD_KEYWORD);
-            case DECK_ACTION:
-                return buildDeckOptions(CARD_KEYWORD);
-            default:
-                return null;
-            }
-        case TAG_KEYWORD:
-            switch (keyword) {
-            case DELETE_ACTION:
-                return buildDeleteOptions(TAG_KEYWORD);
-            case DECK_ACTION:
-                return buildDeckOptions(TAG_KEYWORD);
-            case EDIT_ACTION:
-                return buildEditOptions(TAG_KEYWORD);
-            case LIST_ACTION:
-                return buildListOptions(TAG_KEYWORD);
-            default:
-                return null;
-            }
-        case DECK_KEYWORD:
-            switch (keyword) {
-            case DELETE_ACTION:
-                return buildDeleteOptions(DECK_KEYWORD);
-            case EDIT_ACTION:
-                return buildEditOptions(DECK_KEYWORD);
-            case LIST_ACTION:
-                return buildListOptions(DECK_KEYWORD);
-            default:
-                return null;
-            }
-        default:
-            return null;
-        }
-    }
 }
