@@ -53,7 +53,8 @@ public class EditCommand extends Command {
         Response response = backend.requestEndpointEntry(request);
         // throw errors if input values are erroneous
         if (response.getResponseStatus() == ResponseStatus.NOT_FOUND) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_NON_EXISTENT_ID
+                    + expenseId + System.lineSeparator() + MessageConstants.MESSAGE_INVALID_ID);
         }
         if (response.getResponseStatus() == ResponseStatus.UNPROCESSABLE_CONTENT) {
             throw new InvalidCategoryException(MessageConstants.MESSAGE_INVALID_CATEGORY);

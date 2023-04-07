@@ -723,13 +723,13 @@ in PocketPal.
 
 ---
 
-**Do note that the test cases provided are not exhaustive and may not cover all possible outcomes.**
+**Do note that the expenses depicted in the test cases below may vary depending on the expenses you have added.**
 
 ---
 
 ### Add expense: /add
 
-**Usage:** `/add <-d | -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c | -category CATEGORY> <-p | -price PRICE>`
+**Usage:** `/add -d <description> -c <category> -p <price>`
 
 __Test Case 1 (All required flags are provided):__
 
@@ -763,7 +763,8 @@ __Test Case 2 (Missing price flag):__
 
 ```
 ________________________________________________
-Please specify the price using the '-p' flag!
+Missing required options: 
+-p|-price
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -772,12 +773,11 @@ Enter a command or /help to see the list of commands available.
 
 ### View expense: /view
 
-**Usage:** `/view [COUNT] [-c | -category CATEGORY] [-p | -price PRICE_MIN] [-p | -price PRICE_MAX]
-[<-sd | -startdate START_DATE -ed | -enddate END_DATE>]`
+**Usage:** `/view [count] [filter_options]`
 
 __Test case 1 (No expenses exist):__
 
-- **Prerequisites:** None.
+- **Prerequisites:** Ensure that there are currently no expenses added.
 - __Input:__ `/view`
 
 <details markdown=1>
@@ -804,11 +804,12 @@ __Test case 2 (Multiple expenses exist):__
 ```
 ________________________________________________
 These are the latest 3 entries.
-<1>: McDonalds (Food) - $10.50 <<28 Mar 2023, 01:03:39>>
-<2>: Air Jordan 1 (Clothing) - $200.00 <<28 Mar 2023, 01:04:30>>
-<3>: Birthday Dinner (Food) - $150.00 <<28 Mar 2023, 01:04:42>>
+Total expenditure: $360.50
+Total income: $0.00
+<1>: McDonalds (Food) - $10.50 <<7 Apr 2023; 15:53>>
+<2>: Air Jordan 1 (Clothing) - $200.00 <<7 Apr 2023; 15:53>>
+<3>: Birthday Dinner (Food) - $150.00 <<7 Apr 2023; 15:53>>
 ________________________________________________
-
 Enter a command or /help to see the list of commands available.
 ```
 
@@ -816,8 +817,8 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 3 (View entries in price range)__
 
-- **Prerequisites:** At least **1** existing expense.
-- __Input:__ ```/view -p 120.50 -p 210.00```
+- **Prerequisites:** At least **2** existing expenses with price range between $120.50 and $210.00 inclusive.
+- __Input:__ ```/view -sp 120.50 -ep 210.00```
 
 <details markdown=1>
 <summary markdown="span">Expected output:</summary>
@@ -825,10 +826,11 @@ __Test case 3 (View entries in price range)__
 ```
 ________________________________________________
 These are the latest 2 entries.
-<1>: Air Jordan 1 (Clothing) - $200.00 <<28 Mar 2023, 01:04:30>>
-<2>: Birthday Dinner (Food) - $150.00 <<28 Mar 2023, 01:04:42>>
+Total expenditure: $350.00
+Total income: $0.00
+<1>: Air Jordan 1 (Clothing) - $200.00 <<7 Apr 2023; 15:53>>
+<2>: Birthday Dinner (Food) - $150.00 <<7 Apr 2023; 15:53>>
 ________________________________________________
-
 Enter a command or /help to see the list of commands available.
 ```
 
@@ -836,14 +838,13 @@ Enter a command or /help to see the list of commands available.
 
 ### Delete expense: /delete
 
-**Usage:** `/delete <EXPENSE_ID>`
+**Usage:** `/delete <index> [additional_index...]`
 
 You may view the list of existing expenses along with their corresponding indexes with `/view`.
 
 __Test case 1:__
 
-- **Prerequisites:** At least **3** expenses pre-added into the program, with the 3rd expense matching the one shown
-  in the example above.
+- **Prerequisites:** At least **3** expenses pre-added into the program.
 - __Input:__ `/delete 3`
 
 <details markdown=1>
