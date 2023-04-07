@@ -33,10 +33,30 @@ public class StaffStorage {
             try {
                 if (components.length != 4) {
                     throw new DinerDirectorException(Messages.ERROR_STORAGE_INVALID_READ_LINE);
-                } else {
-                    staff = new Staff(components[0], components[1], components[2], components[3]);
-                    listOfStaffs.add(staff);
                 }
+                String name = components[0].trim();
+                String workingDay = components[1].trim();
+                String dateOfBirth = components[2].trim();
+                String phoneNumber = components[3].trim();
+
+                if (!name.matches("[\\w\\s]+")) {
+                    throw new DinerDirectorException("Name does not follow the format");
+                }
+
+                if (!workingDay.matches("[\\w\\s]+")) {
+                    throw new DinerDirectorException("Working day does not follow the format");
+                }
+
+                if (!dateOfBirth.matches("(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])")) {
+                    throw new DinerDirectorException("Date of birth does not follow the format");
+                }
+                if (!phoneNumber.matches("[\\d\\s]+")) {
+                    throw new DinerDirectorException("Phone number does not follow the format");
+                }
+
+                staff = new Staff(name, workingDay, dateOfBirth, phoneNumber);
+                listOfStaffs.add(staff);
+
             } catch (DinerDirectorException e) {
                 System.out.println(String.format(Messages.ERROR_STORAGE_INVALID_READ_LINE, text));
             }
