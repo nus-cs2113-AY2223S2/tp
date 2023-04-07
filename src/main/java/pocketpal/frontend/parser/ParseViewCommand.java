@@ -108,8 +108,6 @@ public class ParseViewCommand extends ParseCommand {
             logger.info("Missing at least one date as view command request parameter");
             throw new MissingDateException(MessageConstants.MESSAGE_MISSING_DATE);
         }
-        assert startDateString != null: "Start date should not be null";
-        assert endDateString != null: "End date should not be null";
         dates[0] = startDateString;
         dates[1] = endDateString;
         return dates;

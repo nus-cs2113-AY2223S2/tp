@@ -139,8 +139,11 @@ public abstract class ParseCommand {
      * @throws InvalidDateException If date is invalid.
      */
     public void checkDateValidity(String dateString) throws InvalidDateException {
-        assert dateString != null;
         logger.entering(ParseCommand.class.getName(), "checkDateValidity()");
+        if (dateString == null) {
+            logger.exiting(ParseCommand.class.getName(), "checkDateValidity()");
+            return;
+        }
         Matcher matcher = ParserConstants.DATE_FORMATTER.matcher(dateString);
         if (!matcher.find()) { //Date incorrect format
             throw new InvalidDateException(MessageConstants.MESSAGE_INVALID_DATE);
