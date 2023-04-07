@@ -17,6 +17,10 @@ import java.util.HashMap;
  * Models a class to handle the EditExpense command. Inherited from Command class.
  */
 public class EditExpenseCommand extends Command {
+    public static final String CATEGORY_FIELD = "c";
+    public static final String DESCRIPTION_FIELD = "de";
+    public static final String DATE_FIELD = "da";
+    public static final String VALUE_FIELD = "v";
     private int index;
     private HashMap<String, String> argumentsByField;
     private boolean hasCategory;
@@ -29,10 +33,10 @@ public class EditExpenseCommand extends Command {
         this.argumentsByField = argumentsByField;
     
         index = Expenses.getIndex(argumentsByField);
-        hasCategory = argumentsByField.containsKey("c");
-        hasDescription = argumentsByField.containsKey("de");
-        hasDate = argumentsByField.containsKey("da");
-        hasValue = argumentsByField.containsKey("v");
+        hasCategory = argumentsByField.containsKey(CATEGORY_FIELD);
+        hasDescription = argumentsByField.containsKey(DESCRIPTION_FIELD);
+        hasDate = argumentsByField.containsKey(DATE_FIELD);
+        hasValue = argumentsByField.containsKey(VALUE_FIELD);
     }
 
     /**
@@ -67,20 +71,20 @@ public class EditExpenseCommand extends Command {
         
         // edit the fields accordingly
         if (hasCategory) {
-            String value = argumentsByField.get("c");
-            expenses.editExpense(index, "c", value);
+            String value = argumentsByField.get(CATEGORY_FIELD);
+            expenses.editExpense(index, CATEGORY_FIELD, value);
         }
         if (hasDescription) {
-            String value = argumentsByField.get("de");
-            expenses.editExpense(index, "de", value);
+            String value = argumentsByField.get(DESCRIPTION_FIELD);
+            expenses.editExpense(index, DESCRIPTION_FIELD, value);
         }
         if (hasDate) {
-            String value = argumentsByField.get("da");
-            expenses.editExpense(index, "da", value);
+            String value = argumentsByField.get(DATE_FIELD);
+            expenses.editExpense(index, DATE_FIELD, value);
         }
         if (hasValue) {
-            String value = argumentsByField.get("v");
-            expenses.editExpense(index, "v", value);
+            String value = argumentsByField.get(VALUE_FIELD);
+            expenses.editExpense(index, VALUE_FIELD, value);
         }
         
         boolean isExpense = true;
