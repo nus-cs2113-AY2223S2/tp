@@ -44,7 +44,7 @@ public class Ui {
         System.out.println("                    list unconfirmed");
         System.out.println(" ");
         System.out.println("To add a company, type:");
-        System.out.println("        add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>");
+        System.out.println("                    add n/<COMPANY_NAME> i/<INDUSTRY> c/<CONTACT_NUMBER> e/<EMAIL>");
         System.out.println(" ");
         System.out.println("To delete company, type:");
         System.out.println("                    delete <INDEX>");
@@ -123,7 +123,7 @@ public class Ui {
         System.out.println("This company is already uncomfirmed!");
         showLine();
     }
-      
+
 
     public void showSortedCompanyList(String industry, ArrayList<Company> sortedCompanyList) {
         showLine();
@@ -161,4 +161,25 @@ public class Ui {
         System.out.println(eventName + " is your event name!");
         showLine();
     }
+
+    public void emptyInputErrorMessage(String emptyPart) {
+        showLine();
+        System.out.println("Empty " + emptyPart + " is not allowed. Please check " + emptyPart + " again!");
+    }
+
+    public void invalidInputFormatErrorMessage(String invalidPart) {
+        showLine();
+        System.out.println("Invalid " + invalidPart + ". Please check the " + invalidPart + " again!");
+    }
+
+    public void invalidInputFormatErrorMessage(String invalidPart, String expectedInput) {
+        showLine();
+        System.out.println("Invalid " + invalidPart + ".\n" + expectedInput);
+    }
+
+    public void multipleAdditionErrorMessage() {
+        showLine();
+        System.out.println("Multiple companies cannot be added at once. Please add companies separately!");
+    }
+
 }

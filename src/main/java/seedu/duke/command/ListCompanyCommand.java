@@ -2,8 +2,10 @@ package seedu.duke.command;
 
 import seedu.duke.company.CompanyList;
 import seedu.duke.exception.EmptyListException;
+import seedu.duke.ui.Ui;
 
 public class ListCompanyCommand extends Command {
+    Ui ui = new Ui();
     public ListCompanyCommand(String commandType) {
         super(commandType);
     }
@@ -19,7 +21,9 @@ public class ListCompanyCommand extends Command {
         try {
             companyList.printCompanyInformation();
         } catch (EmptyListException err) {
+            ui.showLine();
             System.out.println("Nothing inside company list");
+            ui.showLine();
         }
     }
 }

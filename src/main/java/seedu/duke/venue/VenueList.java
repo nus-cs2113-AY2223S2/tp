@@ -27,7 +27,7 @@ public class VenueList {
         }
         ui.showLine();
         for (int i = 0; i < venueList.size(); i++) {
-            System.out.println(i + 1 + ". " + venueList.get(i));
+            System.out.println(venueList.get(i));
         }
         ui.showLine();
     }
