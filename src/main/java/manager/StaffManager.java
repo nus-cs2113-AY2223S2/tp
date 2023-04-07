@@ -39,8 +39,7 @@ public class StaffManager {
     }
 
     /**
-     * Format all staff into readable list of staffs.
-     * @return String representation of all staffs.
+     * Format all staff into readable list of staffs and display it
      */
     public static void viewStaff(TextUi ui) {
         String staffsString = "";
