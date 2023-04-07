@@ -147,7 +147,7 @@ public class Database {
             }
         }));
 
-        defaultRecipeList.add(new Recipe("creamy Hummus Pasta", new HashMap<>() {
+        defaultRecipeList.add(new Recipe("creamy hummus pasta", new HashMap<>() {
             {
                 put("pasta", 1);
                 put("hummus", 1);

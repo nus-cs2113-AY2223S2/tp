@@ -250,7 +250,7 @@ public class Meal360 {
         ui.printMessage("Saving recipes...");
         try {
             database.saveRecipesDatabase(recipeList);
-            ui.printMessage("Database saved successfully.");
+            ui.printMessage("Recipes saved successfully.");
         } catch (IOException error) {
             ui.printMessage("Error saving database.");
         }

@@ -601,8 +601,112 @@ Given below are instructions to test the app manually.
     1. A user input of `bye` allows the user to exit the app. The app will then save the data for
        recipes, ingredients and weekly meal plan automatically before exiting.
 
+   Expected output:
+    ```
+    ----------------------------------------------------------------------------------------------------
+    | Saving recipes...                                                                                |
+    | Recipes saved successfully.                                                                      |
+    | Saving weekly plan...                                                                            |
+    | Weekly plan saved successfully.                                                                  |
+    | Saving ingredients...                                                                            |
+    | Ingredients saved successfully.                                                                  |
+    | Bye. Hope to see you again soon!                                                                 |
+    ----------------------------------------------------------------------------------------------------
+   ```
+
 #### Ingredients
 
 1. Test case: `add_i /n fish /c 10 /d 10/10/2024`
    Expected: The ingredient `fish` with quantity `10` and expiry date `10/10/2024` should be added
    into the user ingredients list. A success message should be displayed.
+
+   Expected output:
+   ```
+    ----------------------------------------------------------------------------------------------------
+    | Ingredient successfully added!                                                                   |
+    ----------------------------------------------------------------------------------------------------
+   ```
+
+2. Test case: `del_i /n fish /c 5`
+   Expected: The ingredient `fish` with quantity `5` should be deleted from the user ingredients.
+
+   Expected output:
+    ```
+     ----------------------------------------------------------------------------------------------------
+     | Ingredient successfully deleted!                                                                 |
+     ----------------------------------------------------------------------------------------------------
+    ```
+
+3. Test case: `view_ingredients`
+   Expected: The list of ingredients should be displayed.
+
+   Expected output:
+    ```
+    ----------------------------------------------------------------------------------------------------
+    | Here is your ingredient list:                                                                    |
+    | fish (5) [by:10/10/2024]                                                                         |
+    ----------------------------------------------------------------------------------------------------
+    ```
+
+#### Weekly Plan
+
+1. Test case: `weekly /add avocado toast 2`
+   Expected: The recipe `avocado toast` should be added into the weekly plan with count `2`.
+   A success message should be displayed.
+
+   Expected output:
+     ```
+     ----------------------------------------------------------------------------------------------------
+     |  I've added the recipes to your weekly plan!                                                     |
+     ----------------------------------------------------------------------------------------------------
+     ```
+
+2. Test case: `weekly /delete avocado toast 1`
+   Expected: The recipe `avocado toast` should be deleted from the weekly plan with count `1`.
+   A success message should be displayed.
+
+   Expected output:
+     ```
+     ----------------------------------------------------------------------------------------------------
+     | I've deleted the recipes from your weekly plan!                                                  |
+     ----------------------------------------------------------------------------------------------------
+     ```
+
+3. Test case: `weeklyplan`
+   Expected: The list of recipes in the weekly plan should be displayed.
+
+   Expected output:
+      ```
+      ----------------------------------------------------------------------------------------------------
+      | Here is your weekly plan:                                                                        |
+      | avocado toast x1                                                                                 |
+      ----------------------------------------------------------------------------------------------------
+      ```
+
+4. Test case: `weekly /multiadd /r chicken rice /q 3 /r seafood paella /q 1`
+   Expected: The recipes `chicken rice` and `seafood paella` should be added into the weekly plan
+   with count `3` and `1` respectively. A success message should be displayed.
+
+   Expected output:
+     ```
+     ----------------------------------------------------------------------------------------------------
+     |  I've added the recipes to your weekly plan!                                                     |
+     ----------------------------------------------------------------------------------------------------
+     ```
+
+5. Test case: `weekly /multidelete /r chicken rice /q 2 /r seafood paella /q 1`
+   Expected: The recipes `chicken rice` and `seafood paella` should be deleted from the weekly plan
+   with count `2` and `1` respectively. A success message should be displayed.
+
+   Expected output:
+      ```
+      ----------------------------------------------------------------------------------------------------
+      | I've deleted the recipes from your weekly plan!                                                  |
+      ----------------------------------------------------------------------------------------------------
+      >>> weeklyplan
+      ----------------------------------------------------------------------------------------------------
+      | Here is your weekly plan:                                                                        |
+      | chicken rice x1                                                                                  |
+      | avocado toast x1                                                                                 |
+      ----------------------------------------------------------------------------------------------------
+      ```
