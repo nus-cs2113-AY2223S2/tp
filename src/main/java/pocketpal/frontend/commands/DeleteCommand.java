@@ -4,7 +4,6 @@ package pocketpal.frontend.commands;
 import pocketpal.backend.Backend;
 import pocketpal.data.entry.Entry;
 import pocketpal.data.parsing.EntryParser;
-import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.exceptions.InvalidEntryIdException;
 import pocketpal.communication.Request;
 import pocketpal.communication.RequestMethod;
@@ -47,18 +46,12 @@ public class DeleteCommand extends Command {
             Response responseGet = backend.requestEndpointEntry(requestGet);
             if (responseGet.getResponseStatus() == ResponseStatus.NOT_FOUND) {
                 logger.log(Level.WARNING, "Input entry ID is invalid");
-                throw new InvalidEntryIdException(MessageConstants.MESSAGE_NON_EXISTENT_ID
-                        + entryId + System.lineSeparator() + MessageConstants.MESSAGE_INVALID_ID);
+                throw new InvalidEntryIdException(responseGet.getData());
             }
         }
         for(int entryId: uniqueEntryIds){
             Request requestDelete = new Request(RequestMethod.DELETE, String.valueOf(entryId));
             Response responseDelete = backend.requestEndpointEntry(requestDelete);
-            if (responseDelete.getResponseStatus() == ResponseStatus.NOT_FOUND) {
-                logger.log(Level.WARNING, "Input entry ID is invalid");
-                throw new InvalidEntryIdException(MessageConstants.MESSAGE_NON_EXISTENT_ID
-                        + entryId + System.lineSeparator() + MessageConstants.MESSAGE_INVALID_ID);
-            }
             Entry deletedEntry = EntryParser.deserialise(responseDelete.getData());
             ui.printExpenditureDeleted(deletedEntry);
         }
