@@ -89,7 +89,7 @@ meeting with boss
 #### Delete meeting:
 Will delete the meeting specified from the list.
 
-Format: `delete_meeting <index_number>`
+Format: `delete_meeting <meeting index>`
 
 Example:
 ```
@@ -124,7 +124,7 @@ Format: `view_deadlines`
 
 
 #### Delete a deadline:
-Format: `delete_deadline <index>`
+Format: `delete_deadline <deadline index>`
 
 Example:
 ```
@@ -193,7 +193,7 @@ Format: `view_dish`
 
 Deletes the dish in the list based on the index given, if a dish exists at that index.
 
-Format: `delete_dish <index_number>`
+Format: `delete_dish <dish index>`
 
 Example: 
 
