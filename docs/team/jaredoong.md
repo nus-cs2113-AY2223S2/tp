@@ -50,6 +50,13 @@ apps.
     * Added documentation for the following classes:
         * `Database`
         * `WeeklyPlan`
+    * Added documentation for the following implementations:
+        * Add Ingredient Feature
+        * Delete Ingredient Feature
+        * List Ingredient Feature
+        * Edit Weekly Meal Plan Feature
+        * List Weekly Plan Feature
+        * Mark Recipe as Done Feature
 * __Contributions to the team-based tasks__:
     * Setting up of GitHub team org/repo
     * Maintaining issue tracker

@@ -40,7 +40,7 @@ public class IngredientList extends HashMap<String, Ingredient> {
         if (this.containsKey(ingredient.ingredientName)) {
             ingredient.ingredientCount = ingredientCount;
             ingredient.expiryDate = parser.parseDate(expiryDate);
-            ingredient.expired = ingredient.expiryDate.isBefore(LocalDate.now());
+            ingredient.isExpired = ingredient.expiryDate.isBefore(LocalDate.now());
             super.put(ingredient.ingredientName, ingredient);
         }
         throw new IngredientNotFoundException("Ingredient not found");
@@ -83,7 +83,7 @@ public class IngredientList extends HashMap<String, Ingredient> {
         String expiredIngredients = "";
         int index = 1;
         for (Ingredient ingredient : this.values()) {
-            if (ingredient.expired) {
+            if (ingredient.isExpired) {
                 expiredIngredients += String.format("%d. %s (expires on %s)", index,
                         ingredient.ingredientName, ingredient.expiryDate);
             }
@@ -103,7 +103,7 @@ public class IngredientList extends HashMap<String, Ingredient> {
     // public method to clear expired ingredients
     public void clearExpiredIngredients() {
         for (Ingredient ingredient : this.values()) {
-            if (ingredient.expired) {
+            if (ingredient.isExpired) {
                 this.remove(ingredient.ingredientName);
             }
         }

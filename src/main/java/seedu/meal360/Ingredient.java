@@ -8,7 +8,7 @@ public class Ingredient {
     public String ingredientName;
     public Integer ingredientCount;
     public LocalDate expiryDate;
-    public Boolean expired;
+    public Boolean isExpired;
 
     public Ingredient(String ingredientName, Integer ingredientCount, String expiryDate) {
         this.ingredientName = ingredientName;
@@ -27,9 +27,9 @@ public class Ingredient {
 
     public void updateExpired() {
         if (expiryDate.isBefore(LocalDate.now())) {
-            expired = true;
+            isExpired = true;
         } else {
-            expired = false;
+            isExpired = false;
         }
     }
 }
