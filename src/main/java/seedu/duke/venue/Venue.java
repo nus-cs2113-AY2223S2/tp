@@ -1,13 +1,16 @@
 package seedu.duke.venue;
 
 public class Venue {
+
+    private int venueIndex;
     private String venueName;
 
     private String venueLocation;
 
     private int venueCapacity;
 
-    public Venue(String venueName, String venueLocation, int venueCapacity){
+    public Venue(int venueIndex, String venueName, String venueLocation, int venueCapacity){
+        this.venueIndex = venueIndex;
         this.venueName = venueName;
         this.venueLocation = venueLocation;
         this.venueCapacity = venueCapacity;
@@ -17,17 +20,13 @@ public class Venue {
         return venueName;
     }
 
-    public String getVenueLocation(){
-        return venueLocation;
-    }
-
-    public int getVenueCapacity(){
-        return venueCapacity;
+    public int getVenueIndex(){
+        return venueIndex;
     }
 
     @Override
     public String toString() {
-        return venueName + " " + venueLocation + " " + venueCapacity;
+        return venueIndex + ". " +venueName + " " + venueLocation + " " + venueCapacity;
     }
 }
 

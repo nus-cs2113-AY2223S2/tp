@@ -21,5 +21,8 @@ public class Command {
     public void execute(VenueList venueList) {}
 
     public void execute(Event event, VenueList venueList) {}
+
+    public void execute(Event event) {}
+
 }
 

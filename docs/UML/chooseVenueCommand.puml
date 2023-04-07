@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+hide footbox
+activate ":ChooseVenueCommand"
+-> ":ChooseVenueCommand": execute()
+
+":ChooseVenueCommand" -> ":Event": updateVenue()
+activate ":Event"
+":Event" -> ":VenueList": getVenue()
+activate ":VenueList"
+":VenueList" --> ":Event": Venue
+deactivate ":VenueList"
+":Event" -> ":Ui": showVenueSelectionMessage()
+activate ":Ui"
+":Ui" --> ":Event":
+deactivate ":Ui"
+":Event" --> ":ChooseVenueCommand":
+deactivate ":Event"
+
+":ChooseVenueCommand" -> ":EventDetailsStorage": updateFile()
+activate ":EventDetailsStorage"
+":EventDetailsStorage" --> ":ChooseVenueCommand":
+
+deactivate ":EventDetailsStorage"
+<-- ":ChooseVenueCommand"
+
+deactivate ":ChooseVenueCommand"
+
+destroy ":ChooseVenueCommand"
+@enduml

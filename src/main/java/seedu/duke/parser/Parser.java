@@ -15,7 +15,6 @@ import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.PurgeCommand;
 import seedu.duke.command.UpdateEventNameCommand;
 
-import seedu.duke.exception.TooManyVariablesException;
 import seedu.duke.exception.IntegerSizeExceededException;
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
@@ -29,29 +28,26 @@ public interface Parser {
      *
      * @param input the information that requires parsing
      * @return command type that would represent what to execute
-     *
-     * @throws WrongFormatException if error occurs when the input is in the wrong format
-     * @throws NumberFormatException if error occurred due to user not providing a number where expected
-     * @throws NullPointerException if error occurred due to null pointers
-     * @throws IndexOutOfBoundsException if error occurred due to an index being out of bounds
+     * @throws WrongFormatException         if error occurs when the input is in the wrong format
+     * @throws NumberFormatException        if error occurred due to user not providing a number where expected
+     * @throws NullPointerException         if error occurred due to null pointers
+     * @throws IndexOutOfBoundsException    if error occurred due to an index being out of bounds
+     * @throws IntegerSizeExceededException if error occurs due to number size exceeded supposed value
      */
     static Command parse(String input) throws WrongFormatException, NumberFormatException,
-            NullPointerException, IndexOutOfBoundsException, TooManyVariablesException, IntegerSizeExceededException {
+            NullPointerException, IndexOutOfBoundsException, IntegerSizeExceededException {
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");
         String command = inputWords[0];
         switch (command) {
         case "list":
-            if (inputWords.length == 1) {
+            if (inputWords.length != 2) {
                 throw new WrongFormatException();
             }
             if (inputWords[1].equals("companies")) {
                 ListCompanyCommand companyCommand = new ListCompanyCommand(command + " companies");
                 return companyCommand;
             } else if (inputWords[1].equals("venues")) {
-                if (inputWords.length > 2){
-                    throw new TooManyVariablesException();
-                }
                 ListVenueCommand venueCommand = new ListVenueCommand(command + " venues");
                 return venueCommand;
             } else if (inputWords[1].equals("unconfirmed")) {
@@ -75,7 +71,7 @@ public interface Parser {
             String contactEmail = input.substring(indexOfContactEmail + 2).trim();
 
             //Multiple additions are not allowed.
-            if(input.indexOf("n/") != input.lastIndexOf("n/")){
+            if (input.indexOf("n/") != input.lastIndexOf("n/")) {
                 ui.multipleAdditionErrorMessage();
                 throw new WrongFormatException();
             } else if(isMultipleInfo(input)){
@@ -83,28 +79,28 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             //Empty company name is not allowed.
-            if(companyName.equals("")){
+            if (companyName.equals("")) {
                 ui.emptyInputErrorMessage("company name");
                 throw new WrongFormatException();
             }
             //Empty industry is not allowed.
-            if(industry.equals(" ")){
+            if (industry.equals(" ")) {
                 ui.emptyInputErrorMessage("industry");
                 throw new WrongFormatException();
-            }else if(!isIndustryValid(industry)){
+            } else if (!isIndustryValid(industry)){
                 ui.invalidInputFormatErrorMessage("industry",
                         "Industry cannot be a word without alphabet.");
                 throw new WrongFormatException();
             }
             //Only valid Singaporean number is allowed.
             int contactNumber = Integer.parseInt(contactNumberString);
-            if(contactNumberString.length() > 8 || !isContactNumberValid(contactNumber)){
+            if (contactNumberString.length() > 8 || !isContactNumberValid(contactNumber)) {
                 ui.invalidInputFormatErrorMessage("contact number",
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
                 throw new WrongFormatException();
             }
             //Only valid email address is allowed.
-            if(!contactEmail.contains("@") || contactEmail.contains(" ") || contactEmail.endsWith("@")){
+            if (!contactEmail.contains("@") || contactEmail.contains(" ") || contactEmail.endsWith("@")) {
                 ui.invalidInputFormatErrorMessage("email address");
                 throw new WrongFormatException();
             }
@@ -112,11 +108,8 @@ public interface Parser {
             AddCommand addCommand = new AddCommand(command, industry, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
-            if (inputWords.length == 1) {
+            if (inputWords.length != 2) {
                 throw new WrongFormatException();
-            }
-            if (inputWords.length > 2) {
-                throw new TooManyVariablesException();
             }
             BigInteger currValue = new BigInteger(inputWords[1]);
             checkInputLimit(currValue);
@@ -124,7 +117,7 @@ public interface Parser {
             DeleteCommand deleteCommand = new DeleteCommand(command, companyNum);
             return deleteCommand;
         case "load":
-            if (inputWords.length == 1) {
+            if (inputWords.length != 2) {
                 throw new WrongFormatException();
             }
             if (inputWords[1].equals("samples")) {
@@ -133,8 +126,8 @@ public interface Parser {
             }
             throw new WrongFormatException();
         case "purge":
-            if (inputWords.length > 1){
-                throw new TooManyVariablesException();
+            if (inputWords.length != 1) {
+                throw new WrongFormatException();
             }
             PurgeCommand purgeCommand = new PurgeCommand(command);
             return purgeCommand;
@@ -143,13 +136,13 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             if (inputWords[1].equals("venue")) {
-                int venueNum = Integer.parseInt(inputWords[2]) - 1;
+                int venueNum = Integer.parseInt(inputWords[2]);
                 ChooseVenueCommand chooseVenueCommand = new ChooseVenueCommand(command + " venue", venueNum);
                 return chooseVenueCommand;
             }
             throw new WrongFormatException();
         case "confirm":
-            if (inputWords.length == 1) {
+            if (inputWords.length != 2) {
                 throw new WrongFormatException();
             }
             BigInteger currConfirmNum = new BigInteger(inputWords[1]);
@@ -158,7 +151,7 @@ public interface Parser {
             ConfirmCommand confirmCommand = new ConfirmCommand(command, companyConfirmNum);
             return confirmCommand;
         case "unconfirm":
-            if (inputWords.length == 1){
+            if (inputWords.length != 2) {
                 throw new WrongFormatException();
             }
             BigInteger currUnconfirmNum = new BigInteger(inputWords[1]);
@@ -167,7 +160,7 @@ public interface Parser {
             UnconfirmCommand unconfirmCommand = new UnconfirmCommand(command, companyUnconfirmNum);
             return unconfirmCommand;
         case "find":
-            if(inputWords[1].equals("industry")){
+            if (inputWords[1].equals("industry")) {
                 String targetIndustry = input.replace("find", "").trim();
                 targetIndustry = targetIndustry.replace("industry", "").trim();
                 if (targetIndustry.equals("")) {
@@ -175,7 +168,7 @@ public interface Parser {
                     throw new WrongFormatException();
                 }
                 return new FindIndustryCommand("find industry", targetIndustry.toUpperCase());
-            } else if(inputWords[1].equals("company")){
+            } else if (inputWords[1].equals("company")) {
                 String targetCompany = input.replace("find", "").trim();
                 targetCompany = targetCompany.replace("company", "").trim();
                 if (targetCompany.equals("")) {
@@ -191,7 +184,8 @@ public interface Parser {
                 throw new WrongFormatException();
             }
             String commandType = command + " " + inputWords[1] + " " + inputWords[2];
-            UpdateEventNameCommand updateEventNameCommand = new UpdateEventNameCommand(commandType, inputWords[3]);
+            String eventName = input.substring(17).trim();
+            UpdateEventNameCommand updateEventNameCommand = new UpdateEventNameCommand(commandType, eventName);
             return updateEventNameCommand;
         case "help":
             if (inputWords.length > 1) {
@@ -220,13 +214,14 @@ public interface Parser {
     private static boolean isContactNumberValid(int contactNumber){
         if(contactNumber < 30000000 || contactNumber > 100000000){
             return false;
-        } else if(contactNumber >= 40000000 && contactNumber < 60000000){
+        } else if (contactNumber >= 40000000 && contactNumber < 60000000) {
             return false;
-        } else if(contactNumber >= 70000000 && contactNumber < 80000000){
+        } else if (contactNumber >= 70000000 && contactNumber < 80000000) {
             return false;
         }
         return true;
     }
+
 
     private static boolean isIndustryValid(String industry){
         if(industry.contains("a")||industry.contains("b")||industry.contains("c")||industry.contains("d")||
@@ -248,5 +243,6 @@ public interface Parser {
         }
         return false;
     }
+
 
 }
