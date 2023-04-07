@@ -25,14 +25,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class EfficiencyBenchmark {
     private static final long timeToBeat = 1000;
     private static final int DATASET_SIZE = 4000;
+    public static final String BENCHMARK_FILEPATH = "./data/test/BenchmarkData.txt";
     private static long totalTime = 0;
-    Inventory inventory = Storage.readCSV("./src/test/data/BenchmarkData.txt");
+    Inventory inventory = Storage.readCSV(BENCHMARK_FILEPATH);
     @Test
     @Order(1)
     public void loadInventoryTest(){
         Inventory loadInventory;
         long start = System.currentTimeMillis();
-        loadInventory = Storage.readCSV("./src/test/data/BenchmarkData.txt");
+        loadInventory = Storage.readCSV(BENCHMARK_FILEPATH);
         long end = System.currentTimeMillis();
         long timeTaken = end - start;
         totalTime += timeTaken;
