@@ -375,6 +375,7 @@ public class TestUi {
         System.setOut(new PrintStream(actualOutput));
 
         HashMap<String, Integer> userExerciseDataMap = new HashMap<>();
+        int overallCount = 1;
 
         String exerciseDescription = "Exercise Name: 3/4 Sit-Up" + System.lineSeparator() +
             "Difficulty Level: beginner" + System.lineSeparator() + "Workout type: core" +
@@ -390,7 +391,8 @@ public class TestUi {
         userExerciseDataMap.put(exerciseDescription, 1);
 
         Ui ui = new Ui();
-        ui.printUserExerciseHistory(userExerciseDataMap);
+        ui.printUserExerciseHistory(userExerciseDataMap, overallCount);
+        //ui.printUserExerciseHistory(userExerciseDataMap);
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 

@@ -161,7 +161,8 @@ public class GeneralCommandHandler implements CommandList {
                 } else {
                     HashMap<String, Integer> userExerciseDataMap = UserExerciseData
                             .addUserExerciseHistory(userCareerData);
-                    ui.printUserExerciseHistory(userExerciseDataMap);
+                    int overallCount = UserExerciseData.getOverallCount();
+                    ui.printUserExerciseHistory(userExerciseDataMap, overallCount);
                 }
                 break;
             case ACHIEVEMENTS:

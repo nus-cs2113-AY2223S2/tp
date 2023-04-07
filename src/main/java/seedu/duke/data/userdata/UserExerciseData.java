@@ -6,11 +6,13 @@ public class UserExerciseData {
 
     private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
+    private static int overallCount = 0;
 
     /**
      * This class takes in data from all workout sessions finished by
      * the user and stores these exercises as the key and their
-     * frequencies as the value in a HashMap.
+     * frequencies as the value in a HashMap. It also calculates the
+     * total number of exercises which the user has completed.
      *
      * @param userCareerData Contains data on all the user sessions completed by the user.
      * @return HashMap containing unique exercises and their frequencies of completion.
@@ -49,12 +51,25 @@ public class UserExerciseData {
                 if (userExerciseDataMap.containsKey(exerciseDescription)) {
                     int count = userExerciseDataMap.get(exerciseDescription);
                     userExerciseDataMap.put(exerciseDescription, count + 1);
+                    overallCount++;
                 } else {
                     userExerciseDataMap.put(exerciseDescription, 1);
+                    overallCount++;
                 }
             }
         }
         return userExerciseDataMap;
+    }
+
+    /**
+     * Function to calculate the number of exercises the user has
+     * completed.
+     *
+     * @return returns the total number of exercises the user has completed.
+     */
+
+    public static int getOverallCount() {
+        return overallCount;
     }
 
 }
