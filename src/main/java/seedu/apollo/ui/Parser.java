@@ -159,7 +159,7 @@ public class Parser {
             if (isOneWord(split)) {
                 return new HelpCommand();
             }
-            return chooseHelpCommand(split[1]);
+            return getHelpCommand(split[1]);
 
         case COMMAND_LIST_WORD:
             if (!isOneWord(split)) {
@@ -227,7 +227,7 @@ public class Parser {
      * @return The appropriate HelpCommandClass child
      * @throws IllegalArgumentException If an unknown command is input by the user.
      */
-    public static HelpCommand chooseHelpCommand(String param) throws IllegalArgumentException {
+    private static HelpCommand getHelpCommand(String param) throws IllegalArgumentException {
         switch (param) {
         case "list":
             return new ListHelpCommand();
@@ -267,26 +267,6 @@ public class Parser {
     }
 
     /**
-     * Checks if the user's input parameter is empty.
-     *
-     * @param split Parsed user input split into command and parameter.
-     * @return {@code true} if the input parameter is empty, {@code false} otherwise.
-     */
-    private static Boolean isEmptyParam(String[] split) {
-        return (split.length != 2);
-    }
-
-    /**
-     * Checks if the user's input is only one word.
-     *
-     * @param split Parsed user input split into command and parameter.
-     * @return {@code true} if the input is only one word, {@code false} otherwise.
-     */
-    private static Boolean isOneWord(String[] split) {
-        return (split.length == 1);
-    }
-
-    /**
      * Separates a Deadline's input data into its description, and due date.
      *
      * @param param User input data describing the Deadline.
@@ -316,6 +296,27 @@ public class Parser {
             throw new InvalidEvent();
         }
         return split;
+    }
+
+    /**
+     * Checks if the user's input parameter is empty.
+     *
+     * @param split Parsed user input split into command and parameter.
+     * @return {@code true} if the input parameter is empty, {@code false} otherwise.
+     */
+    private static boolean isEmptyParam(String[] split) {
+        return (split.length != 2);
+    }
+
+    //@@author T-Wan-Lin
+    /**
+     * Checks if the user's input is only one word.
+     *
+     * @param split Parsed user input split into command and parameter.
+     * @return {@code true} if the input is only one word, {@code false} otherwise.
+     */
+    private static boolean isOneWord(String[] split) {
+        return (split.length == 1);
     }
 
 }
