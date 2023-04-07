@@ -242,7 +242,7 @@ Example of usage:
 
 `/view -sd 12/03/23 -ed 11/04/23 -c food`
 
-`/view -c food -p 2 -sd 12/03/23 -ed 11/04/23`
+`/view -c food -sp 2 -sd 12/03/23 -ed 11/04/23`
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
