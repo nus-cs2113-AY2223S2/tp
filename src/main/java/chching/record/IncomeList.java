@@ -67,7 +67,7 @@ public class IncomeList extends RecordList {
             income.setDate(date);
             break;
         case "v":
-            boolean isTwoDecimalsOrLess = DecimalsChecker.isTwoDecimals(value);
+            boolean isTwoDecimalsOrLess = DecimalsChecker.isPositiveTwoDecimals(value);
             if(!isTwoDecimalsOrLess) {
                 throw new ChChingException("Income value must be a valid positive double that is 2 d.p. or less");
             }

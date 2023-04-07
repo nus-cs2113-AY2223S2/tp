@@ -53,7 +53,7 @@ public class Incomes {
         double incomeValue;
         LocalDate incomeDate = parseDate(incomeDateString);
 
-        if(!DecimalsChecker.isTwoDecimals(incomeValueString)) {
+        if(!DecimalsChecker.isPositiveTwoDecimals(incomeValueString)) {
             throw new ChChingException("Expense value must be a valid positive double that is 2 d.p. or less");
         }
         try {

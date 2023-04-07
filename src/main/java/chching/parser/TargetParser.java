@@ -26,11 +26,11 @@ public class TargetParser {
             throw new ChChingException("Trouble adding target value");
         }
         if(!DecimalsChecker.isTwoDecimals(targetValueString)) {
-            throw new ChChingException("Target value must be a valid positive double that is 2 d.p. or less");
-        } else if (targ.getValue() > 999999.99) {
-            throw new ChChingException("target value must be less than 1000000");
-        } else if (targ.getValue() <= 0) {
-            throw new ChChingException("target value must be greater than 0");
+            throw new ChChingException("Target value must be a valid double that is 2 d.p. or less");
+        } else if (targ.getValue() > 9999999.99) {
+            throw new ChChingException("target value must be less than 10 000 000");
+        } else if(targ.getValue() < -9999999.99) {
+            throw new ChChingException("target value must be greater than -10 000 000");
         }
         return targ;
     }
