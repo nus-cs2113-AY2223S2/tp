@@ -1,5 +1,6 @@
 package utils.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import model.Card;
@@ -7,7 +8,6 @@ import model.CardList;
 import model.DeckList;
 import model.TagList;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.AddCardCommand;
@@ -133,12 +133,13 @@ public class CardParserTest {
     }
 
     @Test
-    public void parse_card_deleteBadIndex() throws InkaException {
-        cardList.addCard(new Card("QUESTION", "ANSWER"));
-
-        Command cmd = parser.parseCommand("card delete -i 0");
-        assertThrows(CardNotFoundException.class, () -> cmd.execute(cardList, tagList, deckList, ui, storage),
-                "Should fail to delete nothing");
+    public void parse_card_deleteInvalidIndex() {
+        String[] testInputs = {"card delete -i -1", "card delete -i 0", "card delete -i 0.1", "card delete -i -0.1",
+            "card delete -i STRING"};
+        for (String testInput : testInputs) {
+            assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testInput),
+                    "Should be invalid index");
+        }
     }
 
     @Test
@@ -181,14 +182,11 @@ public class CardParserTest {
         assert tagList.findTagFromName("tagName") != null;
     }
 
-    @Disabled
     @Test
-    public void parse_card_tagWhitespaceName() throws InkaException {
-        cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
-        Command cmd = parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 -t tag name");
-        assert cmd instanceof AddCardToTagCommand;
-        cmd.execute(cardList, tagList, deckList, ui, storage);
-        assert tagList.findTagFromName("tag-name") != null;
+    public void parse_card_tagWhitespaceName() {
+        InkaException ex = assertThrows(InvalidSyntaxException.class,
+                () -> parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 -t tag name"));
+        assertEquals(ex.getUiMessage(), InvalidSyntaxException.buildTooManyTokensMessage().getUiMessage());
     }
 
     //endregion

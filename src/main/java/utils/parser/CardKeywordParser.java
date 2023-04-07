@@ -1,12 +1,10 @@
 package utils.parser;
 
 import java.util.List;
-
 import model.Card;
 import model.CardSelector;
 import model.TagSelector;
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import utils.command.AddCardCommand;
@@ -18,8 +16,7 @@ import utils.command.ListCardCommand;
 import utils.command.PrintHelpCommand;
 import utils.command.ViewCardCommand;
 import utils.exceptions.InkaException;
-import utils.exceptions.InvalidUUIDException;
-import utils.exceptions.UUIDWrongFormatException;
+import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.UnrecognizedCommandException;
 
 public class CardKeywordParser extends KeywordParser {
@@ -32,12 +29,6 @@ public class CardKeywordParser extends KeywordParser {
     public static final String TAG_ACTION = "tag";
     public static final String VIEW_ACTION = "view";
     public static final String DECK_ACTION = "deck";
-
-    private DefaultParser parser;
-
-    public CardKeywordParser() {
-        this.parser = new DefaultParser(false);
-    }
 
     @Override
     protected Command handleAction(String action, List<String> tokens) throws ParseException, InkaException {
@@ -61,9 +52,10 @@ public class CardKeywordParser extends KeywordParser {
         }
     }
 
-    private Command handleAdd(List<String> tokens) throws ParseException {
+    private Command handleAdd(List<String> tokens) throws ParseException, InvalidSyntaxException {
         Options addOptions = new OptionsBuilder(CARD_MODEL, ADD_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(addOptions, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(addOptions, tokens);
+
         String question = String.join(" ", cmd.getOptionValues("q"));
         String answer = String.join(" ", cmd.getOptionValues("a"));
         Card card = new Card(question, answer);
@@ -71,10 +63,10 @@ public class CardKeywordParser extends KeywordParser {
         return new AddCardCommand(card);
     }
 
-    private Command handleDelete(List<String> tokens)
-            throws ParseException, InvalidUUIDException, UUIDWrongFormatException {
+    private Command handleDelete(List<String> tokens) throws ParseException, InkaException {
         Options deleteOptions = new OptionsBuilder(CARD_MODEL, DELETE_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(deleteOptions, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(deleteOptions, tokens);
+
         CardSelector cardSelector = getSelectedCard(cmd);
 
         return new DeleteCardCommand(cardSelector);
@@ -102,7 +94,8 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleTag(List<String> tokens) throws ParseException, InkaException {
         Options tagOptions = new OptionsBuilder(CARD_MODEL, TAG_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(tagOptions, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(tagOptions, tokens);
+
         CardSelector cardSelector = getSelectedCard(cmd);
         TagSelector tagSelector = getSelectedTag(cmd);
         return new AddCardToTagCommand(tagSelector, cardSelector);
@@ -110,7 +103,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
         Options deckOptions = new OptionsBuilder(CARD_MODEL, DECK_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(deckOptions, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(deckOptions, tokens);
 
         CardSelector cardSelector = getSelectedCard(cmd);
         String deckName = cmd.getOptionValue("d");
@@ -119,9 +112,9 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleView(List<String> tokens) throws ParseException, InkaException {
         Options viewOptions = new OptionsBuilder(CARD_MODEL, VIEW_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(viewOptions, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(viewOptions, tokens);
+
         CardSelector cardSelector = getSelectedCard(cmd);
         return new ViewCardCommand(cardSelector);
     }
 }
-

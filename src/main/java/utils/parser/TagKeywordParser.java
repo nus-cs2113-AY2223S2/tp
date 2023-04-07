@@ -1,10 +1,8 @@
 package utils.parser;
 
 import java.util.List;
-
 import model.TagSelector;
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import utils.command.AddTagToDeckCommand;
@@ -15,6 +13,7 @@ import utils.command.ListCardsUnderTagCommand;
 import utils.command.ListTagsCommand;
 import utils.command.PrintHelpCommand;
 import utils.exceptions.InkaException;
+import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.UnrecognizedCommandException;
 
 public class TagKeywordParser extends KeywordParser {
@@ -25,11 +24,6 @@ public class TagKeywordParser extends KeywordParser {
     public static final String HELP_ACTION = "help";
     public static final String LIST_ACTION = "list";
     public static final String DECK_ACTION = "deck";
-    private DefaultParser parser;
-
-    public TagKeywordParser() {
-        this.parser = new DefaultParser(false);
-    }
 
     @Override
     protected Command handleAction(String action, List<String> tokens)
@@ -50,17 +44,17 @@ public class TagKeywordParser extends KeywordParser {
         }
     }
 
-    private Command handleDelete(List<String> tokens) throws ParseException {
+    private Command handleDelete(List<String> tokens) throws ParseException, InvalidSyntaxException {
         Options deleteOption = new OptionsBuilder(TAG_MODEL, DELETE_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(deleteOption, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(deleteOption, tokens);
 
         TagSelector tagSelector = getSelectedTag(cmd);
         return new DeleteTagCommand(tagSelector);
     }
 
-    private Command handleEdit(List<String> tokens) throws ParseException {
+    private Command handleEdit(List<String> tokens) throws ParseException, InvalidSyntaxException {
         Options editOption = new OptionsBuilder(TAG_MODEL, EDIT_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(editOption, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(editOption, tokens);
 
         String oldTagName = cmd.getOptionValue("o");
         String newTagName = cmd.getOptionValue("n");
@@ -84,9 +78,9 @@ public class TagKeywordParser extends KeywordParser {
         return new PrintHelpCommand(helpMessage);
     }
 
-    private Command handleList(List<String> tokens) throws ParseException {
+    private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {
         Options listOption = new OptionsBuilder(TAG_MODEL, LIST_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(listOption, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(listOption, tokens);
 
         TagSelector tagSelector = getSelectedTag(cmd);
         if (tagSelector == null) {
@@ -98,7 +92,7 @@ public class TagKeywordParser extends KeywordParser {
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
         Options deckOption = new OptionsBuilder(TAG_MODEL, DECK_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(deckOption, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(deckOption, tokens);
 
         String deckName = cmd.getOptionValue("d");
         TagSelector tagSelector = getSelectedTag(cmd);

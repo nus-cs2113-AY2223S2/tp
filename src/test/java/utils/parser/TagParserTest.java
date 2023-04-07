@@ -10,7 +10,6 @@ import model.DeckList;
 import model.Tag;
 import model.TagList;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.Command;
@@ -56,7 +55,6 @@ public class TagParserTest {
         assert cmd instanceof ListCardsUnderTagCommand;
     }
 
-    @Disabled
     @Test
     public void parse_tag_listWithTagLongFlag() throws InkaException {
         Command cmd = parser.parseCommand("tag list --tag tagName");
@@ -76,24 +74,24 @@ public class TagParserTest {
     }
 
     @Test
-    public void parse_tag_deleteWithString() throws InkaException {
-        Card card = Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000");
-        cardList.addCard(card);
-        tagList.addTag(new Tag("tagName", card.getUuid()));
-
-        Command cmd = parser.parseCommand("tag delete -t tagName");
-        assert cmd instanceof DeleteTagCommand;
-        cmd.execute(cardList, tagList, deckList, ui, storage);
-        assert tagList.isEmpty();
-    }
-
-    @Test
     public void parse_tag_deleteWithIndex() throws InkaException {
         Card card = Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000");
         cardList.addCard(card);
         tagList.addTag(new Tag("tagName", card.getUuid()));
 
         Command cmd = parser.parseCommand("tag delete -x 1");
+        assert cmd instanceof DeleteTagCommand;
+        cmd.execute(cardList, tagList, deckList, ui, storage);
+        assert tagList.isEmpty();
+    }
+
+    @Test
+    public void parse_tag_deleteWithLongIndex() throws InkaException {
+        Card card = Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000");
+        cardList.addCard(card);
+        tagList.addTag(new Tag("tagName", card.getUuid()));
+
+        Command cmd = parser.parseCommand("tag delete --tagindex 1");
         assert cmd instanceof DeleteTagCommand;
         cmd.execute(cardList, tagList, deckList, ui, storage);
         assert tagList.isEmpty();

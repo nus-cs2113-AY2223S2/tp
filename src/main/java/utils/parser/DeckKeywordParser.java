@@ -3,7 +3,6 @@ package utils.parser;
 import java.util.List;
 import model.TagSelector;
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import utils.command.Command;
@@ -17,9 +16,10 @@ import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromDeckCommand;
 import utils.command.RunCommand;
 import utils.exceptions.InkaException;
+import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.UnrecognizedCommandException;
 
-public class DeckKeywordParser extends KeywordParser{
+public class DeckKeywordParser extends KeywordParser {
 
     public static final String DECK_MODEL = "deck";
     public static final String DELETE_ACTION = "delete";
@@ -27,14 +27,10 @@ public class DeckKeywordParser extends KeywordParser{
     public static final String HELP_ACTION = "help";
     public static final String LIST_ACTION = "list";
     public static final String RUN_ACTION = "run";
-    private DefaultParser parser;
-    public DeckKeywordParser() {
-        this.parser = new DefaultParser(false);
-    }
 
     @Override
     protected Command handleAction(String action, List<String> tokens)
-            throws ParseException, UnrecognizedCommandException, InkaException {
+            throws ParseException, InkaException {
         switch (action) {
         case DELETE_ACTION:
             return handleDelete(tokens);
@@ -53,11 +49,11 @@ public class DeckKeywordParser extends KeywordParser{
 
     private Command handleDelete(List<String> tokens) throws ParseException, InkaException {
         Options deleteOptions =  new OptionsBuilder(DECK_MODEL, DELETE_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(deleteOptions, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(deleteOptions, tokens);
 
         TagSelector tagSelector = getSelectedTag(cmd);
         String deckName = cmd.getOptionValue("d");
-        if(cmd.hasOption("c")) {
+        if (cmd.hasOption("c")) {
             return new RemoveCardFromDeckCommand(cmd.getOptionValue("c"), deckName);
         } else if (cmd.hasOption("t")) {
             return new RemoveTagFromDeckCommand(tagSelector, deckName);
@@ -66,23 +62,23 @@ public class DeckKeywordParser extends KeywordParser{
         }
     }
 
-    private Command handleList(List<String> tokens) throws ParseException {
+    private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {
         Options listOptions =  new OptionsBuilder(DECK_MODEL, LIST_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(listOptions, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(listOptions, tokens);
 
         if (cmd.hasOption("c")) {
             String deckName = cmd.getOptionValue("c");
             return new ListCardsUnderDeckCommand(deckName);
-        } else if(cmd.hasOption("t")) {
+        } else if (cmd.hasOption("t")) {
             String deckName = cmd.getOptionValue("t");
             return new ListTagsUnderDeckCommand(deckName);
         } else {
             return new ListDecksCommand();
         }
     }
-    private Command handleEdit(List<String> tokens) throws ParseException {
+    private Command handleEdit(List<String> tokens) throws ParseException, InvalidSyntaxException {
         Options editOptions =  new OptionsBuilder(DECK_MODEL, EDIT_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(editOptions, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(editOptions, tokens);
 
         String oldDeckName = cmd.getOptionValue("o");
         String newDeckName = cmd.getOptionValue("n");
@@ -102,9 +98,9 @@ public class DeckKeywordParser extends KeywordParser{
         return new PrintHelpCommand(helpMessage);
     }
 
-    private Command handleRun(List<String> tokens) throws ParseException{
+    private Command handleRun(List<String> tokens) throws ParseException, InvalidSyntaxException {
         Options runOptions = new OptionsBuilder(DECK_MODEL, RUN_ACTION).buildOptions();
-        CommandLine cmd = parser.parse(runOptions, tokens.toArray(new String[0]));
+        CommandLine cmd = parseUsingOptions(runOptions, tokens);
 
         String deckName = cmd.getOptionValue("d");
         return new RunCommand(deckName);
