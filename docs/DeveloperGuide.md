@@ -108,7 +108,7 @@ API: `Ui.java`
 
 The `Ui` component:
 
-![](../docs/UML/Ui/Ui%20class%20diagram)
+![](../docs/UML/Ui/UiClassDiagram.drawio.png)
 
 - displays the welcome message upon startup of the program.
 - formats all the output to be displayed to the user.
