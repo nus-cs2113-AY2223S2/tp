@@ -57,6 +57,7 @@ public class CommandParser {
         }
 
         final String keyword = matcher.group("keyword");
+        assert keyword != null;
         final String arguments = matcher.group("arguments").trim();
 
         switch (keyword) {
