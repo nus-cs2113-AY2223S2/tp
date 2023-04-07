@@ -48,9 +48,6 @@ public class Ui {
                     + "- [Delete calories record for one food: /wdelete]" + System.lineSeparator()
                     + "- [Exit app: /exit]" + System.lineSeparator() + LINE;
 
-    public static final String INFORMATION = "Information of exercises for the week of ";
-
-    public static final String EMPTY_WORKOUT = "There are no workouts reported during this week !";
 
     public static void showGreeting() {
         System.out.println(WELCOME_MESSAGE);
@@ -87,6 +84,10 @@ public class Ui {
     public static String getCaloriesHelpMessage() {
         return HELP_MESSAGE_CALORIES;
     }
+
+    public static final String EMPTY_WORKOUT = "There are no workouts reported during this week !";
+
+    public static final String INFORMATION = "Information of exercises for the week of ";
 
     //@@ author ZIZI-czh
     public static String displayCountSetsReps(ArrayList<Exercise> distinctExercisesList, Date dayInSpecificWeekDate) {

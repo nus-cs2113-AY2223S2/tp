@@ -1,8 +1,5 @@
 package seedu.workout;
 
-
-import seedu.parser.DateFormatter;
-
 import seedu.ui.Ui;
 
 import java.util.ArrayList;
