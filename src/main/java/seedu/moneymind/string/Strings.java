@@ -32,7 +32,10 @@ public class Strings {
     public static final String DELETE_INSTRUCTION = "6. delete - delete an event or a category\n" +
             "delete c/<category name> [(optional) e/<event index>]\n" +
             "Example: delete c/food e/1\n" + "Example: delete c/food\n";
-    public static final String BYE_INSTRUCTION = "7. bye - exit the app\n" + "Format: bye\n" + "Example: bye\n";
+    public static final String SEARCH_INSTRUCTION = "7. search - search for matching events and categories\n" +
+            "Format: search <keyword>\n" +
+            "Example: search bill\n";
+    public static final String BYE_INSTRUCTION = "8. bye - exit the app\n" + "Format: bye\n" + "Example: bye\n";
     public static final String SELECTING_CATEGORY_MESSAGE = "Please select the category you want to add the event to:";
     public static final String GO_BACK_MESSAGE = "Please try again or enter back to go back to the main program";
     public static final String BACK = "back";
