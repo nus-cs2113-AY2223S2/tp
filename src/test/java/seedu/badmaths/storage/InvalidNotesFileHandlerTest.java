@@ -39,13 +39,11 @@ public class InvalidNotesFileHandlerTest {
         System.setOut(new PrintStream(out));
 
         InvalidNotesFileHandler.responseHandler(tempFile.toString(), notes);
-        String expectedOutput = "Sorry, your notes file seems to be corrupted :(\n" +
-                "Do you want to reset the file? (y/n)\n\n" +
-                "File contents have rest successfully.\n" +
-                "You can continue to use the application\n" +
-                "If you want to read Help Manual, please type 'Help' to learn what I can do for you.\n";
-        expectedOutput = expectedOutput.replace("\r\n", "\n").replace("\r", "\n").
-                replace("\r\n\r\n", "\n\n").replace("\r\r", "\n\n");
+        String expectedOutput = "Sorry, your notes file seems to be corrupted :(" + System.lineSeparator() +
+                "Do you want to reset the file? (y/n)" + System.lineSeparator() + System.lineSeparator() +
+                "File contents have rest successfully." + System.lineSeparator() +
+                "You can continue to use the application" + System.lineSeparator() +
+                "If you want to read Help Manual, please type 'Help' to learn what I can do for you." + System.lineSeparator();
         assertEquals(expectedOutput, out.toString());
 
         // verify that the file contents were cleared
@@ -85,13 +83,11 @@ public class InvalidNotesFileHandlerTest {
 
         // call the responseHandler method and verify the output
         InvalidNotesFileHandler.responseHandler(tempFile.toString(), notes);
-        String expectedOutput = "Sorry, your notes file seems to be corrupted :(\n" +
-                "Do you want to reset the file? (y/n)\n\n" +
-                "You choose not to rest the file.\n" +
-                "Please ensure your file status before using the application.\n" +
-                "The program will exit in 10 seconds. See you next time.\n";
-        expectedOutput = expectedOutput.replace("\r\n", "\n").replace("\r", "\n").
-                replace("\r\n\r\n", "\n\n").replace("\r\r", "\n\n");
+        String expectedOutput = "Sorry, your notes file seems to be corrupted :(" + System.lineSeparator() +
+                "Do you want to reset the file? (y/n)" + System.lineSeparator() + System.lineSeparator() +
+                "You choose not to rest the file." + System.lineSeparator() +
+                "Please ensure your file status before using the application." + System.lineSeparator() +
+                "The program will exit in 10 seconds. See you next time." + System.lineSeparator();
         assertEquals(expectedOutput, out.toString());
 
         // verify that the file contents were not cleared
