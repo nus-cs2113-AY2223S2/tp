@@ -14,8 +14,8 @@ import java.io.FileNotFoundException;
  */
 public class Duke {
 
-//    private final RecipeList recipes;
     private final UI ui = new UI();
+
     /**
      * Class constructor specifying filePath for saving data.
      *
@@ -28,7 +28,6 @@ public class Duke {
         } catch (Exception e) {
             ui.showLoadingErrorMessage(e);
         } finally {
-//            recipes = new RecipeList();
             RecipeList.createRecipeList();
             ui.showLine();
         }
