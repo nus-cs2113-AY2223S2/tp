@@ -1,7 +1,6 @@
 package commands.staff;
 
 import commands.Command;
-import entity.Staff;
 import manager.StaffManager;
 import ui.TextUi;
 
