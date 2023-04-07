@@ -18,6 +18,7 @@ public class CheckBudgetCommand extends Command {
     public static final String MSLASH = "m/";
     public static final String YSLASH = "y/";
     public static final String SLASH = "/";
+    public static final String TSLASH = "t/";
     private final String userInput;
     private double totalAmount = 0;
     private double borrowedAmount = 0;
@@ -43,10 +44,11 @@ public class CheckBudgetCommand extends Command {
                 checkYear(expenditures);
                 return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
             case "c":
-                for (Expenditure individualExpenditure : expenditures.getExpenditures()) {
-                    updateAmount(individualExpenditure);
-                }
+                checkAll(expenditures);
                 return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+            case "t":
+                String category = ParseIndividualValue.parseIndividualValue(userInput, TSLASH, BLANK);
+                return checkCategory(expenditures, category, budget);
             default:
                 return new CommandResult("Failed to check! Please check the format and try again!");
             }
@@ -59,6 +61,47 @@ public class CheckBudgetCommand extends Command {
         }
     }
 
+    private void checkAll(ExpenditureList expenditures) {
+        for (Expenditure individualExpenditure : expenditures.getExpenditures()) {
+            updateAmount(individualExpenditure);
+        }
+    }
+
+    private CommandResult checkCategory(ExpenditureList expenditures, String category, double budget) {
+        switch (category) {
+        case "academic":
+            checkRespectiveExpenditureType(expenditures, "Acad");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "accommodation":
+            checkRespectiveExpenditureType(expenditures, "Accom");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "entertainment":
+            checkRespectiveExpenditureType(expenditures, "En");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "food":
+            checkRespectiveExpenditureType(expenditures, "F");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "other":
+            checkRespectiveExpenditureType(expenditures, "O");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "transport":
+            checkRespectiveExpenditureType(expenditures, "Tr");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "tuition":
+            checkRespectiveExpenditureType(expenditures, "Tu");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        default:
+            return new CommandResult("Category stated does not exist! Please check the format and try again!");
+        }
+    }
+
+    private void checkRespectiveExpenditureType(ExpenditureList expenditures, String category) {
+        for (Expenditure individualExpenditure : expenditures.getExpenditures()) {
+            if (individualExpenditure.getExpenditureType().equals(category)) {
+                updateAmount(individualExpenditure);
+            }
+        }
+    }
 
     private void updateAmount(Expenditure individualExpenditure) {
         if (individualExpenditure.getExpenditureType().equals("B")) {
