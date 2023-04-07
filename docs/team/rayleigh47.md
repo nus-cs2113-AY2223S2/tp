@@ -25,6 +25,7 @@ Given below are my contributions to the project.
 * Created invalid command to show users a default invalid message.
 * Contributed to add income command.
 * Contributed to add expense command.
+* Contributed to add target command.
 * Contributed to JUnit tests for 
 `IncomeTest`, `ExpenseTest`, `ListCommandTest`, `ClearCommandTest`.
 
