@@ -19,7 +19,7 @@ public class ViewStaffCommand extends Command {
      */
     @Override
     public void execute(TextUi ui) {
-        ui.printMessage(StaffManager.getStaffsString());
+        StaffManager.viewStaff(ui);
     }
 
     /**

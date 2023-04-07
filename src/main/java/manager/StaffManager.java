@@ -42,13 +42,13 @@ public class StaffManager {
      * Format all staff into readable list of staffs.
      * @return String representation of all staffs.
      */
-    public static String getStaffsString() {
+    public static void viewStaff(TextUi ui) {
         String staffsString = "";
         int counter = 1;
         for (Staff staff : staffs) {
             staffsString += (counter++) + ". " + staff.toString() + System.lineSeparator();
         }
-        return staffsString;
+        ui.printMessage(staffsString);
     }
 
     /**
