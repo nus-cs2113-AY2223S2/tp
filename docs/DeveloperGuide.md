@@ -16,8 +16,13 @@ The CS2113 Team (Professor Akshay <3) for the guidance and teaching us concepts 
 
 ![broadOverview.png](UML%2FImage%2FbroadOverview.png)
 
-Fig 1
+Fig 1: Shows the architecture diagram of the main components of EveNtUs.
 
+### Event Class
+
+![event.png](UML%2FImage%2Fevent.png)
+
+Fig 2: Shows the class Event that holds event details and the company list.
 
 ### Ui 
 
@@ -29,17 +34,14 @@ Types of methods:
 2. Confirmation Messages: Messages shown to inform user that their desired action has been carried out
 3. Exception Messages: Messages shown to inform user of their invalid actions and its reasons
 
-Figure 1 below shows the class diagram of the `Ui` class. There are no attributes for the `Ui` class.
 
-![img_3.png](img_3.png)
+![Ui_class.png](UML%2FImage%2FUi_class.png)
 
-Fig 1
+Fig 3: Shows the class diagram of the `Ui` class. There are no attributes for the `Ui` class.
 
-Figure 2 below shows the sequence diagram for when `showWelcome` is called by `Eventus` during the startup of the application.
+![Ui_sequence_diagram.png](UML%2FImage%2FUi_sequence_diagram.png)
 
-![img.png](img.png)!
-
-Fig 2
+Fig 4: Shows the sequence diagram for when `showWelcome` is called by `EveNtUS` during the startup of the application.
 
 
 ### Storage
@@ -59,75 +61,64 @@ Parser involves dealing with parsing user input to understand what the user want
 
 <code> Seq of 1 command</code>
 
-### [DONE] Duplication checker feature
-#### Implementation
-The proposed <code>duplicationChecker</code> is facilitated by <code>CompanyList</code>. It will check against the existing
+### Features
+
+#### Duplication checker feature
+
+The <code>duplicationChecker</code> is facilitated by <code>CompanyList</code>. It will check against the existing
 <code>CompanyList</code> to check if the company has already been added. The check is done in 3 ways: `company name`,
 `contact number`, and `contact email`. If any one of the above-mentioned details are identical to the ones already present
 in the <code>CompanyList</code>, it will inform the user by displaying a message to the user. Otherwise, it will proceed to 
 format the data that was entered by the user so that the parameters that are passed into <code>addCommand</code> are
-standardized to remove any potential duplicated addition issues. Figure 3 below shows the sequence diagram for the 
-duplication checker feature.
+standardized to remove any potential duplicated addition issues. 
 
-![img_4.png](img_4.png)
+![Duplication_checker.png](UML%2FImage%2FDuplication_checker.png)
 
-Fig 3
+Fig 5: Shows the sequence diagram for when `showWelcome` is called by `EveNtUS` during the startup of the application.
 
-### [DONE] Storing company list feature
-#### Implementation
-The proposed Storing company list feature will allow the user to save the information of companies to disk. A text file will be 
-created to store all the company information the user wishes to save. This text file will be overwritten everytime the 
-user makes changes to the stored information. When relaunching EventUS, the program will check if there is a text file 
-which contains the information of previously saved companies. If the text file exists, the information of the companies 
-stored will be copied over to a local ArrayList. If there is no text file, a text file will be created as soon as the 
-user tries to add company information.
-
-### [DONE] Add feature
-#### Implementation
-The proposed <code>CompanyList.add</code> is facilitated by <code>AddCommand</code>. It will add new company to existing 
-list of companies. It has three parameters, <code>String companyName </code>, <code>Int contactNumber </code>, and <code>
-String contactEmail</code>. Using this information, <code>CompanyList.add</code> creates new Company object and adds it 
-at the end of the company list. After successfully executing the command, it will show successful addition message using
+####  Add feature
+The adding to company list feature  is facilitated by <code>AddCommand</code>. It will add new <code>Company</code> to existing 
+list of companies. It has four parameters, <code>companyName</code>, <code>industry</code>, <code>contactNumber</code>, and <code>contactEmail</code>. 
+After successfully executing the command, it will show successful addition message using
 the related method in the <code>Ui</code>.
 
-### [DONE] Delete feature
-#### Implementation
-The proposed <code>CompanyList.deleteCompanyInformation(index)</code> is facilitated by <code>DeleteCommand</code>. 
-It will delete the company at the specified index in the list of companies. After successfully executing the command, 
+####  Delete feature
+The deleting company feature  is facilitated by <code>DeleteCommand</code>. It will delete the company at the specified 
+index in the list of companies. After successfully executing the command,
 it will show successful deletion message using the related method in the <code>Ui</code>.
 
-### [DONE] Storing event details feature
-#### Implementation
-The proposed eventDetailStorage feature will allow users to save the event details of the current session to hard disk. 
-A text file will be created to store information such as event name and venue information. This text file will be 
-overwritten everytime the user makes changes to the stored information, such as renaming the event name or changing the 
-venue of the event. When relaunching EventUS, the program will check if there is a text file which contains the 
-information of an event. If the text file exists, the information of the Event instance will be updated with the event 
-details. If there is no text file, a text file will be created.
+#### List companies feature
+The listing company feature  is facilitated by <code>ListCompanyCommand</code>. It will print out the companies
+in the list of companies.
+The Company object is then printed out with
+an integer denoting its index, and four parameters, <code>companyName</code>, <code>industry</code>,
+<code>contactNumber</code>, and <code>contactEmail </code>, and its confirmation status.
 
-### [DONE] List companies feature
-#### Implementation
-The proposed <code>CompanyList.printCompanyInformation</code> is facilitated by <code>ListCompanyCommand</code>. It will
-print out the companies that are stored in an ArrayList called companyList. The Company object is then printed out with 
-an integer denoting its index, four parameters, <code>String companyName </code>, <code>String industry </code>, 
-<code>Int contactNumber </code>, and <code>String contactEmail </code>, and its confirmation status. It will print out 
-each company from the entire companyList from index 0 to the final index of the last company stored in companyList.
+####  Store/Load Company information to text file feature
+The Storing company list feature will allow the user to save the information of companies to disk. A text file will be
+created to store all the company information the user wishes to save. This text file will be overwritten everytime the
+user makes changes to the stored information. 
 
-### [DONE] Store Company information to text file feature
-#### Implementation
-The proposed <code>CompanyListEncoder.write()</code> feature checks if a text file of name "companyList.txt" exists.
-If the text file does not exist, it is created when the programme boots up.
-If the text file exists, this method iterates through the list of company information in the list of companies and 
-stores the companies' information in the text file. Prior to writing the company information to this text file, all 
-previously saved text in this file is overwritten.
+When relaunching EventUS, the program will check if there is a text file which contains the information of previously 
+saved companies. If the text file exists, the information of the companies
+stored will be parsed and added to a local ArrayList. If the text file does not exist, it is created.
+
 ![Encoder.png](UML%2FImage%2FEncoder.png)
 
-### [DONE] Load Company information from text file feature
-#### Implementation
-The proposed <code>CompanyListDecoder.load()</code> feature checks if a text file of name "companyList.txt" exists.
-If the text file does not exist, a message is printed to the user indicating that the file is not found.
-If the text file exists, this method iterates through the text file line by line and parses the input. Then the parsed
-input is added to the list of companies using the method <code>CompanyList.add</code>.
+Fig 6: Shows how the <code>CompanyListEncoder</code> deals with storing the data to the text file.
+
+####  Storing event details feature
+The eventDetailStorage feature will allow users to save the event details of the current session to hard disk.
+A text file will be created to store information such as event name and venue information. This text file will be
+overwritten everytime the user makes changes to the stored information, such as renaming the event name or changing the
+venue of the event. When relaunching EventUS, the program will check if there is a text file which contains the
+information of an event. If the text file exists, the information of the Event instance will be updated with the event
+details. If there is no text file, a text file will be created.
+
+![chooseVenueCommand.png](UML%2FImage%2FchooseVenueCommand.png)
+
+Fig 7: Shows how the <code>ChooseVenueCommand</code> updates the venue in the <code>Event</code> class and updates
+the text file through <code>EventDetailsStorage</code>
 
 ## Product scope
 ### Target user profile
