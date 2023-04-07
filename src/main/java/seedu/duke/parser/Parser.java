@@ -107,7 +107,7 @@ public class Parser {
             matcher=matcher.substring(matcher.indexOf(regex)+1);
             ++count;
         }
-        boolean isMatch = (count==1);
+        boolean isMatch = (count == 1);
         return isMatch;
     }
     /**
@@ -217,15 +217,14 @@ public class Parser {
             throw new IncompleteInputException(errorLog);
         }
         try {
-            Integer recipeIndex = Integer.parseInt(parsedDescription[0]);
+            int recipeIndex = Integer.parseInt(parsedDescription[0]);
             return new Object[]{recipeIndex, parsedDescription[1].trim()};
         } catch (NumberFormatException e) {
             throw new IncompleteInputException(errorLog);
         }
     }
 
-    public static void parseEditIngredient(RecipeList recipeList,
-                                           Integer recipeIndex, String description) throws Exception {
+    public static void parseEditIngredient(Integer recipeIndex, String description) throws Exception {
         String[] parsedDescription = description.split("i/");
         if (parsedDescription.length < 2) {
             throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
@@ -239,7 +238,7 @@ public class Parser {
             if (newIngredient.isEmpty()) {
                 throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
             }
-            recipeList.editIngredient(recipeIndex, ingredientIndex, newIngredient);
+            RecipeList.editIngredient(recipeIndex, ingredientIndex, newIngredient);
         } catch (NumberFormatException e) {
             throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
         } catch (EditFormatException e) {
@@ -247,8 +246,7 @@ public class Parser {
         }
     }
 
-    public static void parseEditStep(RecipeList recipeList,
-                                     Integer recipeIndex, String description) throws Exception {
+    public static void parseEditStep(Integer recipeIndex, String description) throws Exception {
         String[] parsedDescription = description.split("s/");
         if (parsedDescription.length < 2) {
             throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
@@ -262,7 +260,7 @@ public class Parser {
             if (newStep.isEmpty()) {
                 throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
             }
-            recipeList.editStep(recipeIndex, stepIndex, newStep);
+            RecipeList.editStep(recipeIndex, stepIndex, newStep);
         } catch (NumberFormatException e) {
             throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
         } catch (EditFormatException e) {

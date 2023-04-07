@@ -14,8 +14,8 @@ import java.io.FileNotFoundException;
  */
 public class Duke {
 
-    private final RecipeList recipes;
     private final UI ui = new UI();
+
     /**
      * Class constructor specifying filePath for saving data.
      *
@@ -28,7 +28,7 @@ public class Duke {
         } catch (Exception e) {
             ui.showLoadingErrorMessage(e);
         } finally {
-            recipes = new RecipeList();
+            RecipeList.createRecipeList();
             ui.showLine();
         }
     }
@@ -51,7 +51,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parseCommands(fullCommand);
-                c.execute(recipes,ui);
+                c.execute(ui);
                 isExit = c.isExit();
             } catch (Exception e) {
                 ui.showDukeMainError(e);

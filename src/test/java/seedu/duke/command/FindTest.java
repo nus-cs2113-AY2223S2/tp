@@ -16,11 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class FindTest {
     ByteArrayOutputStream output;
     PrintStream console;
-    RecipeList recipeList;
     @BeforeEach
     public void setup() throws Exception {
-        recipeList = new RecipeList();
-        recipeList.addNewRecipe(new
+        RecipeList.createRecipeList();
+        RecipeList.addNewRecipe(new
                 Recipe("Spaghetti", "Italian", new IngredientList(), new StepList()));
         output = new ByteArrayOutputStream();
         console = System.out;
@@ -30,6 +29,7 @@ public class FindTest {
     @AfterEach
     public void end() throws Exception {
         System.setOut(console);
+        RecipeList.clearRecipeList();
     }
 
     /**
@@ -38,13 +38,13 @@ public class FindTest {
      */
     @Test
     public void testResultA() throws Exception {
-        recipeList.searchRecipeList("");
+        RecipeList.searchRecipeList("");
         String s = "Find is missing KEYWORDS!";
         assertEquals(s,output.toString().trim());
     }
     @Test
     public void testResultC() throws Exception {
-        recipeList.searchRecipeList("  ");
+        RecipeList.searchRecipeList("  ");
         String s = "Find is missing KEYWORDS!";
         assertEquals(s,output.toString().trim());
     }
@@ -55,25 +55,25 @@ public class FindTest {
      */
     @Test
     public void testResultB() throws Exception {
-        recipeList.searchRecipeList("Pasta");
+        RecipeList.searchRecipeList("Pasta");
         String s = "No dishes matches what you are looking for! :(";
         assertEquals(s,output.toString().trim());
     }
     @Test
     public void testFindByTagEmpty1() throws Exception {
-        recipeList.searchByTag("");
+        RecipeList.searchByTag("");
         String s = "Find is missing KEYWORDS!";
         assertEquals(s,output.toString().trim());
     }
     @Test
     public void testFindByTagEmpty2() throws Exception {
-        recipeList.searchByTag("Chinese ");
+        RecipeList.searchByTag("Chinese ");
         String s = "No dishes matches what you are looking for! :(";
         assertEquals(s,output.toString().trim());
     }
     @Test
     public void testFindByTagNoMatch() throws Exception {
-        recipeList.searchByTag("XXX");
+        RecipeList.searchByTag("XXX");
         String s = "No dishes matches what you are looking for! :(";
         assertEquals(s, output.toString().trim());
     }

@@ -108,7 +108,7 @@ public class StepList {
         System.out.println("There are " + currStepNumber + " steps in the list");
         System.out.println(StringLib.STEPBYSTEP_PROMPT);
         String input = ui.readCommand();
-        if (input.toLowerCase().equals("yes")) {
+        if (input.equalsIgnoreCase("yes")) {
             System.out.println(StringLib.STEPBYSTEP_EARLY_TERMINATION_PROMPT);
             showStepByStep(ui);
         } else {
