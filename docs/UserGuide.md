@@ -2,7 +2,6 @@
 
 * **[1 Introduction](#1-introduction)**
    * [1.1 What is SEP Helper](#11-what-is-sep-helper)
-   * [1.2 How to use this User Guide](#12-how-to-use-this-user-guide)
 * **[2 Quick Start](#2-quick-start)**
 * **[3 Features Overview](#3-features-overview)**
 * [3.1 Help Command](#31-help-command-help)
@@ -33,11 +32,10 @@ University](#3214-listing-modules-user-has-selected-for-specific-partner-univers
 ---
 ## 1 Introduction
 ### 1.1 What is SEP Helper
+
+
 SEP Helper is a desktop application for Mechanical Engineering students, studying at the
 National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
----
-### 1.2 How to Use this User Guide
-
 ---
 ## 2 Quick Start
 
@@ -77,7 +75,7 @@ LIST CURRENT                     : Provides the list of modules that the user ha
 LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list of
                                    list of interest for the specified PU
 ADD [PU ABBRV]/[MODULE CODE]     : Adds the specified module into user's current list of modules
-REMOVE [PU ABBRV]/ [INDEX]       : Removes the specified module by index from user's current list
+REMOVE [PU ABBRV]/[INDEX]       : Removes the specified module by index from user's current list
 SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module
 /budget budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for his/her SEP trip
 /budget accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation cost
