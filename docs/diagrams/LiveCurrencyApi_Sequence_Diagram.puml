@@ -1,0 +1,45 @@
+@startuml
+participant ":ChChing" as CC
+participant ":Converter" as Converter
+participant ":Selector" as Selector
+participant ":LiveCurrencyApi" as Api
+participant "ExchangeRateApi" as source
+participant ":ChChingException" as ChChingException
+
+-> CC : run()
+activate CC
+CC -> Selector : new Selector()
+activate Selector
+deactivate Selector
+CC -> Converter : new Converter()
+activate Converter
+deactivate Converter
+ChChing -> LiveCurrencyApi : new LiveCurrencyApi()
+activate LiveCurrencyApi
+LiveCurrencyApi -> ExchangeRateApi : GET request to https://v6.exchangerate-api.com/
+activate ExchangeRateApi
+ExchangeRateApi --> LiveCurrencyApi : response
+deactivate ExchangeRateApi
+LiveCurrencyApi --> LiveCurrencyApi : parse response
+LiveCurrencyApi -> Selector : containsCurrency(currencyCode)
+activate Selector
+
+opt currencyCode is in the list
+    Selector --> LiveCurrencyApi : true
+    LiveCurrencyApi -> Converter : setConversionRate(currencyCode, rate)
+end
+
+alt currencyCode is not in the list
+    Selector --> LiveCurrencyApi : false
+    deactivate Selector
+    LiveCurrencyApi -> ChChingException : throw new ChChingException("currency not available")
+    activate ChChingException
+    deactivate ChChingException
+end
+CC <-- LiveCurrencyApi
+deactivate LiveCurrencyApi
+<- CC
+deactivate CC
+
+
+@enduml

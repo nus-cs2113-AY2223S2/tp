@@ -28,24 +28,21 @@
 
 ## Acknowledgements
 
+
 The template of ChChing is from the [tp project](https://github.com/nus-cs2113-AY2223S2/tp) of the nus-cs2113-AY2223S2 organisation.
 <br>The format and coding style of ChChing is largely inspired by the [addressbook-level2](https://github.com/se-edu/addressbook-level2) & [addressbook-level3](https://github.com/se-edu/addressbook-level3) project.
 
 ### ExchangeRateApi
 
-`LiveCurrencyApi` class makes an API call to obtain the latest exchange rates from the[ExchangeRateApi](https://www.exchangerate-api.com/). The API call is made using the `HttpUrlConnection` class.
-The API key is used directly in the API call URL, and stored in the URL itself and not as a variable. The values response of the API call is then parse as a string,
-by formatting the string to obtain the exchange rates of the currencies and ignoring the other text.
-The currency name is then used as a key to see if it exist in the `selector` hashmap. If it does the exchange rate is added to the `converter` hashmap.
-The `converter` hashmap is then used to convert the currency of interest to SGD.
-If the API call somehow fails, there are hardcoded values in the `converter` hashmap that are outdated, but it allows the program to continue to run.
-The live currency rates are updated every time the user starts the program, however the API itself only updates the rates every 24 hours.
+The `LiveCurrencyApi` class uses the [ExchangeRateApi](https://www.exchangerate-api.com/) to retrieve the latest exchange rates.
+
 
 ## Design & implementation
 
 Below are the design and implementations of key features of the ChChing program.
 <br> We used various diagrams such as UML class diagrams, sequence diagrams and activity diagrams
 to illustrate our methodology and approach.
+
 
 ## Design
 The architecture diagram of ChChing below provides an overview of the design of our program.
@@ -65,6 +62,7 @@ When the program is to exit, `Command` instructs `Storage` to write the entries 
 
 `Storage` will read from `Data` when the program is launched and write and update to `Data`
 when the program exits.
+
 
 ## Implementation
 
@@ -162,6 +160,11 @@ The `Parser` object then returns to `ChChing`. `ChChing` object then runs the `e
 
 ![SetTargetCommand UML](images/SetTargetCommand.png)
 
+### LiveCurrencyApi
+
+`LiveCurrencyApi` class makes an API call to obtain the latest exchange rates from the [ExchangeRateApi](https://www.exchangerate-api.com/). The API call is made using the `HttpUrlConnection` class. The API key is used directly in the API call URL, and stored in the URL itself and not as a variable. The values response of the API call is then parse as a string, by formatting the string to obtain the exchange rates of the currencies and ignoring the other text. The currency name is then used as a key to see if it exist in the `selector` hashmap. If it does the exchange rate is added to the `converter` hashmap. The `converter` hashmap is then used to convert the currency of interest to SGD. If the API call somehow fails, there are hardcoded values in the `converter` hashmap that are outdated, but it allows the program to continue to run. The live currency rates are updated every time the user starts the program, however the API itself only updates the rates every 24 hours.
+![LiveCurrencyApi_sequence_diagram.png](images%2FLiveCurrencyApi_sequence_diagram.png)
+
 ### SetCurrencyCommand
 
 The setCurrencyCommand is facilitated by `System`, `Selector`, `UI`, `Parser` and `ExpenseList`.
@@ -181,7 +184,6 @@ The unsetCurrencyCommand works in a similar way to the setCurrencyCommand.
 The diagram below shows the sequence diagram for the unsetCurrencyCommand.
 ![SetCurrencyCommand_sequence_diagram.png](images%2FUnsetCurrencyCommand_sequence_diagram.png)
 
-
 ### Find
 
 The FindCommand is facilitated by `System`, `UI`,`Parser`, `ExpenseList` and `IncomeList`.
@@ -191,8 +193,6 @@ The `execute()` method in `FindCommand` will check if the user is searching for 
 By using a loop, the `execute()` method will then search through the `ExpenseList` or `IncomeList` and selected the expenses/incomes that matches the search fields.
 The `execute()` method will then print out the selected expenses/incomes that matches the search fields using `showMatchedExpense()` or `showMatchedIncome()` method from `UI` to `System`
 ![FindCommand_sequence_diagram.png](images%2FFindCommand_sequence_diagram.png)
-
-
 
 ## Product scope
 
@@ -270,6 +270,7 @@ in a simple and convenient manner through a command line interface.
 Given below are instructions to test the app manually.
 
 ### Launch and Shutdown
+
 1. Initial launch
    1. Download the jar file and copy into an empty folder.
    2. Open a command prompt in the folder and run the command `java -jar tp.jar`. ChChing should start up.
@@ -277,29 +278,30 @@ Given below are instructions to test the app manually.
    1. Type `exit` into the command prompt and press enter. ChChing should shut down and update the save file accordingly.
 
 ### Adding an income/expense
+
 1. Adding an income/expense
    1. Test case:
       <br> For income:`add income /de salary /da 12-12-2022 /v 350`
       <br> For expense:`add expense /c meal /de food /da 13-12-2022 /v 3.50`
       <br>Expected: The income/expense should be added to the income/expense list and the balance should be updated accordingly.
-   2. Test case: 
+   2. Test case:
       <br> For income: `add income /da 12-12-2022 /v 3.50`
       <br> For expense: `add expense /de food /v 3.50`
-      <br>Expected: No income is added. Error details shown in the status message.
-      3. Other incorrect add income commands to try:
+      <br>Expected: No income is added. Error details shown in the status message. 3. Other incorrect add income commands to try:
       <br> no fields/missing fields - `add income` `add expense`.
       <br> incorrect date format/invalid date/future date - `add income /de ang pao /da 30-02-2022 /v 10` `add expense /c transport /de bus fare /da 31-04-2029 /v 5.30`.
       <br> negative value/zero value/1000000000 and above value/non-float value/non 2 d.p. values - `add income /de salary /da 12-12-2022 /v -3.50` `add expense /c transport /de bus fare /da 10-10-2019 /v 0`.
       <br> Expected: Similar to previous.
 
 ### Editing an income/expense
+
 1. Editing an income/expense
    1. Prerequisites: List already contains income/expense entry at specified index to be edited. Their index can be found using the `list` command. Note that index may vary after every `delete income`/`delete expense` command.
-   2. Test case: 
+   2. Test case:
       <br> For income: `edit income 1 /de bonus /da 12-12-2022 /v 350`
       <br> For expense: `edit expense 1 /c meal /de food /da 13-12-2022 /v 3.50`
       <br> Expected: The income/expense at index 1 should be edited with updated changes should be reflected in list and the balance should be updated accordingly.
-   3. Test case: 
+   3. Test case:
       <br> For income: `edit income /in 0 /de toto /da 12-12-2022 /v 100`
       <br> For expense: `edit expense /in 0 /c meal /de food /da 13-12-2022 /v 3.50`
       <br> Expected: income/expense will not be edited. Error details shown in the status message.
@@ -311,13 +313,15 @@ Given below are instructions to test the app manually.
       <br> Expected: Similar to previous.
 
 ### Deleting an income/expense
+
 1. Deleting an income/expense
+
    1. Prerequisites: List already contains income/expense entry at specified index to be deleted. Their index can be found using the `list` command. Note that index may vary after every `delete income`/`delete expense` command.
-   2. Test case: 
+   2. Test case:
       <br> For income: `delete income /in 1`
       <br> For expense: `delete expense /in 1`
       <br> Expected: The income/expense at index 1 should be deleted from the income/expense list and the balance should be updated accordingly. <br> Depending on the index of the deleted income/expense, the index of the other incomes/expenses after it will be updated accordingly.
-   3. Test case: 
+   3. Test case:
       <br> For income: `delete income /in 0`
       <br> For expense: `delete expense /in 0`
       <br> Expected: income/expense will not be deleted. Error details shown in the status message.
@@ -327,11 +331,12 @@ Given below are instructions to test the app manually.
       <br> Expected: Similar to previous.
 
 2. Clearing all incomes/expenses
+
    1. Prerequisites: List already contains income/expense entry/entries. Can be checked via `list income`/`list expense`/`list` command.
    2. Test case:
       <br> For incomes: `clear income`
       <br> For expenses: `clear expense`
-        <br> Expected: All incomes/expenses should be deleted from the income/expense list and the balance should be updated accordingly.
+      <br> Expected: All incomes/expenses should be deleted from the income/expense list and the balance should be updated accordingly.
 
 3. Clearing all incomes and expenses
    1. Prerequisites: List already contains income and/or expense entry/entries. Can be checked via `list income`/`list expense`/`list` command.
@@ -339,28 +344,31 @@ Given below are instructions to test the app manually.
       <br> Expected: All incomes and expenses should be deleted from both the income and expense list and the balance should be updated to 0.
 
 ### Listing all income/expense & Viewing balance
+
 1. List all incomes and/or expenses
+
    1. Prerequisites: Should there be a currency set, it will be shown based on the set currency. Otherwise, records will be displayed in SGD.
    2. Test case: should there be income/expense entries in the list
       <br> For income: `list income`
-      <br> For expense: `list expense` 
+      <br> For expense: `list expense`
       <br> For both: `list`
       <br> Expected: All incomes and/or expenses should be listed. Note deleted incomes/expenses will not be shown.
    3. Test case: should there be no income/expense entries in the list
       <br> For income: `list income`
-      <br> For expense: `list expense` 
+      <br> For expense: `list expense`
       <br> For both: `list`
       <br> Expected: No income/expense will be listed. Status message will indicate that the list is empty.
 
 2. View balance
-    1. Prerequisites: If the target has not been set by the user, it will be set to 0 by default. should there be no currency set, only SGD will be shown, else it will additionally show the set currency.
+   1. Prerequisites: If the target has not been set by the user, it will be set to 0 by default. should there be no currency set, only SGD will be shown, else it will additionally show the set currency.
    2. Test case: `balance`
       <br> Expected: The total expense, total income, current balance and current target will be shown. Should the current balance or equal to the current target, it will prompt a good job message, otherwise it will prompt a message that balance has not reached target.
 
 ### Finding income/expense
+
 1. Finding income/expense
    1. Prerequisites: List already contains income/expense entry/entries. Can be checked via `list income`/`list expense`/`list` command.
-   2. Test case: 
+   2. Test case:
       <br> For income: `find /t income /de bonus`
       <br> For expense: `find /t expense /c food /de sushi /da 03-03-2023 `
       <br> Expected: All income with description containing "bonus" should be listed. All expense with category containing "food", description containing "sushi" and on date "03-03-2023" should be listed. Note deleted incomes/expenses will not be shown.
@@ -368,6 +376,7 @@ Given below are instructions to test the app manually.
       <br> For income: `find /t income /de bonus`
       <br> For expense: `find /t expense /c food /de sushi /da 03-03-2023 `
       <br> Expected: No income/expense will be listed. status message will indicate no matching record for these search terms.
+
 
 ### Setting target & Clearing target
 1. Setting Target
@@ -378,9 +387,10 @@ Given below are instructions to test the app manually.
    2. Test Case: `clear target` <br> Expected: Program will indicate to user that target has been cleared.
 
 ### Setting Currency & Unsetting Currency
+
 1. Setting program to display currency of interest and not display unwanted currencies
    1. Prerequisites: List already contains income/expense entry/entries. Can be checked via `list income`/`list expense`/`list` command.
-   2. Test case: 
+   2. Test case:
       <br> For income: `set currency /cr HKD`
       <br> For expense: `set currency /cr USD`
       <br> Expected: All income/expense entries, balance and target will be displayed in the SGD as well as any set currencies.
@@ -388,4 +398,3 @@ Given below are instructions to test the app manually.
       <br> For income: `set currency /cr JPY`
       <br> For expense: `set currency /cr EUR`
       <br> Expected: Error message will be shown. No currency will be set.
-

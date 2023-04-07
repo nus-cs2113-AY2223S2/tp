@@ -28,9 +28,9 @@ public class LiveCurrencyApi {
             String[] arr = temp.split(",");
             for (String s : arr) {
                 String[] tempArr = s.split(":");
-                String countryCode = tempArr[0].substring(3, tempArr[0].length() - 1);
-                if (selector.containsCurrency(countryCode)) {
-                    converter.setConversionRate(countryCode, Double.parseDouble(tempArr[1].trim()));
+                String currencyCode = tempArr[0].substring(3, tempArr[0].length() - 1);
+                if (selector.containsCurrency(currencyCode)) {
+                    converter.setConversionRate(currencyCode, Double.parseDouble(tempArr[1].trim()));
                 }
             }
         } catch (Exception e) {
