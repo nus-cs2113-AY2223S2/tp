@@ -6,6 +6,9 @@ import seedu.pettracker.data.Task;
 import seedu.pettracker.data.TaskList;
 import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
+import seedu.pettracker.exceptions.EmptyTaskNameException;
+import seedu.pettracker.exceptions.InvalidMarkTaskSymbolException;
+import seedu.pettracker.exceptions.InvalidSeparatorException;
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
@@ -22,6 +25,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class Storage {
+    private static final int EXPECTED_PET_SEP_COUNT = 3;
+    private static final int EXPECTED_TASK_SEP_MAX_COUNT = 2;
+    private static final int EXPECTED_TASK_SEP_MIN_COUNT = 1;
     private final String petFilePath;
     private final String taskFilePath;
 
@@ -56,6 +62,20 @@ public class Storage {
             parsePetFile(data);
         } catch (IOException e) {
             ui.printFileIOErrorMessage();
+        } catch (NumberFormatException e) {
+            ui.printFileNonIntegerMessage();
+        } catch (NonPositiveIntegerException e) {
+            ui.printFileIntegerNotPositiveMessage();
+        } catch (InvalidStatException e) {
+            ui.printFileInvalidStatMessage();
+        } catch (PetNotFoundException e) {
+            ui.printFilePetNotFoundMessage();
+        } catch (EmptyPetNameException e) {
+            ui.printFilePetNameEmptyMessage();
+        } catch (DuplicatePetException e) {
+            ui.printFileDuplicatePetMessage();
+        } catch (InvalidSeparatorException e) {
+            ui.printPetFileInvalidSeparatorMessage();
         }
     }
 
@@ -85,6 +105,14 @@ public class Storage {
             parseTaskFile(data);
         } catch (IOException e) {
             ui.printFileIOErrorMessage();
+        } catch (InvalidSeparatorException e) {
+            ui.printTaskFileInvalidSeparatorMessage();
+        } catch (DateTimeParseException e) {
+            ui.printFileInvalidDateMessage();
+        } catch (EmptyTaskNameException e) {
+            ui.printFileEmptyTaskNameMessage();
+        } catch (InvalidMarkTaskSymbolException e) {
+            ui.printFileInvalidMarkTaskSymbolMessage();
         }
     }
 
@@ -150,71 +178,67 @@ public class Storage {
         return data;
     }
 
-    private void parsePetFile(ArrayList<String> data) {
+    private void parsePetFile(ArrayList<String> data) throws NumberFormatException, NonPositiveIntegerException,
+            InvalidStatException, PetNotFoundException, EmptyPetNameException, DuplicatePetException,
+            InvalidSeparatorException {
         for (String line : data) {
+            validatePetDataSep(line);
             String petName = getPetName(line);
-            try {
-                PetList.addPet(petName);
-                String petType = getPetType(line);
-                if (!petType.equals("")) {
-                    PetList.addStat(petName, "type", petType);
-                }
+            String petType = getPetType(line);
+            String age = getAge(line);
+            String weight = getWeight(line);
 
-                String age = getAge(line);
-                if (!age.equals("")) {
-                    PetList.addStat(petName, "age", age);
-                }
+            PetList.addPet(petName);
+            if (!petType.equals("")) {
+                PetList.addStat(petName, "type", petType);
+            }
 
-                String weight = getWeight(line);
-                if (!weight.equals("")) {
-                    PetList.addStat(petName, "weight", weight);
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Output File has non-integer values for age/weight");
-            } catch (NonPositiveIntegerException e) {
-                System.out.println("Output File has non-positive values for age/weight");
-            } catch (InvalidStatException e) {
-                System.out.println("Output File has invalid Stats");
-            } catch (PetNotFoundException e) {
-                System.out.println("Stat belongs to a pet that does not exist");
-            } catch (EmptyPetNameException e) {
-                System.out.println("Pet name in file is empty");
-            } catch (DuplicatePetException e) {
-                System.out.println("File contains duplicate pet names");
+            if (!age.equals("")) {
+                PetList.addStat(petName, "age", age);
+            }
+
+            if (!weight.equals("")) {
+                PetList.addStat(petName, "weight", weight);
             }
         }
     }
 
-    private void parseTaskFile(ArrayList<String> data) {
+    private void parseTaskFile(ArrayList<String> data) throws InvalidSeparatorException,
+            DateTimeParseException, EmptyTaskNameException, InvalidMarkTaskSymbolException {
         for (String line : data) {
             try {
-                String taskName = getTaskName(line);
+                validateTaskDataSep(line);
                 LocalDate deadline = getDeadline(line);
-                TaskList.addTask(taskName, deadline);
-
+                String taskName = getTaskName(line);
                 String taskStatus = getTaskStatus(line);
-                if (taskStatus.startsWith("1")) {
+
+                TaskList.addTask(taskName, deadline);
+                if (taskStatus.equals("1")) {
                     int taskNumber = TaskList.getNumberOfTasks();
                     TaskList.markTask(taskNumber, true);
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                String taskName = getTaskName(line);
-                TaskList.addTask(taskName);
-
-                String taskStatus = getTaskStatus(line);
-                if (taskStatus.startsWith("1")) {
-                    int taskNumber = TaskList.getNumberOfTasks();
-                    TaskList.markTask(taskNumber, true);
-                }
-            } catch (DateTimeParseException e) {
-                System.out.println("A task in output file has invalid date format");
+                parseTaskWithoutDeadline(line);
             }
+        }
+    }
+
+    private void parseTaskWithoutDeadline(String line) throws EmptyTaskNameException,
+            InvalidMarkTaskSymbolException {
+        String taskName = getTaskName(line);
+        String taskStatus = getTaskStatus(line);
+
+        TaskList.addTask(taskName);
+        if (taskStatus.equals("1")) {
+            int taskNumber = TaskList.getNumberOfTasks();
+            TaskList.markTask(taskNumber, true);
         }
     }
 
     private String getPetName(String line) {
         String[] words = line.split("\\|", 2);
         String petName = words[0];
+
         return petName;
     }
 
@@ -236,15 +260,25 @@ public class Storage {
         return weight;
     }
 
-    private String getTaskName(String line) {
+    private String getTaskName(String line) throws EmptyTaskNameException {
         String[] words = line.split("\\|", 3);
         String taskName = words[1];
+
+        if (taskName.trim().isEmpty()) {
+            throw new EmptyTaskNameException();
+        }
+
         return taskName;
     }
 
-    private String getTaskStatus(String line) {
+    private String getTaskStatus(String line) throws InvalidMarkTaskSymbolException {
         String[] words = line.split("\\|", 2);
         String taskStatus = words[0];
+
+        if (!taskStatus.equals("1") && !taskStatus.equals("0")) {
+            throw new InvalidMarkTaskSymbolException();
+        }
+
         return taskStatus;
     }
 
@@ -252,5 +286,21 @@ public class Storage {
         String[] words = line.split("\\|", 3);
         LocalDate deadline = LocalDate.parse(words[2]);
         return deadline;
+    }
+
+    private void validatePetDataSep(String line) throws InvalidSeparatorException {
+        int sepCount = (int) line.chars().filter(ch -> ch == '|').count();
+
+        if (sepCount != EXPECTED_PET_SEP_COUNT) {
+            throw new InvalidSeparatorException();
+        }
+    }
+
+    private void validateTaskDataSep(String line) throws InvalidSeparatorException {
+        int sepCount = (int) line.chars().filter(ch -> ch == '|').count();
+
+        if (sepCount != EXPECTED_TASK_SEP_MIN_COUNT && sepCount != EXPECTED_TASK_SEP_MAX_COUNT) {
+            throw new InvalidSeparatorException();
+        }
     }
 }
