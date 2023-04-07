@@ -163,6 +163,17 @@ Step 3. `mealStorage` saves the meal to the database and then `ui` prints out th
 
 ### Design considerations
 
+#### Aspect: How to add meals
+
+- Alternative 1 (current choice): Use a one-line command for the CLI.
+  - Pros: Faster to input for experienced users.
+  - Cons: Format might be difficult for new users.
+- Alternative 2 (current choice): Follow printed prompts for data. 
+  - Pros: Usage would be easier for new users.
+  - Cons: Slower to input for experienced users.
+
+Therefore our group chose to implement both ways. 
+
 ## [Proposed] List feature
 
 ### Proposed Implementation
@@ -179,6 +190,15 @@ Step 3: The `ui` will retreive the relevant information from the storage and pri
 
 ### Design Considerations
 
+#### Aspect: How to list all of the foods in the database, and the meals and the exercises of the user
+
+- Alternative 1 (current choice): List information based on input command.
+  - Pros: More concise, no unnecessary information.
+  - Cons: Slightly slower to input command.
+- Alternative 2: List all meals, exercises, and foods at once. 
+  - Pros: Slightly faster to input command.
+  - Cons: Lots of unnecessary information would be displayed. 
+
 ## [Proposed] Delete meal feature
 
 ### Proposed Implementation
@@ -192,6 +212,15 @@ In the above implementation, DeleteMealCommand parses the user input to obtain t
 delete it via the method from mealStorage() and prints out the deleted meal to the user.
 
 ### Design considerations
+
+#### Aspect: How to delete meals
+
+- Alternative 1 (current choice): Delete items from list based on index.
+  - Pros: Does not neededlessly delete wanted items. 
+  - Cons: Need to get the index from `list` command first.
+- Alternative 2: Clears all data.
+  - Pros: Faster input, no need for `list` command to retrive index.
+  - Cons: Deletes data that user might want to keep.
 
 ## [Proposed] View feature
 
@@ -279,6 +308,15 @@ Step 5. The user then executes the command `view` to view his updated weight and
 
 ### Design considerations
 
+#### Aspect: How to view user data
+
+- Alternative 1 (current choice): 
+  - Pros: 
+  - Cons:
+- Alternative 2: 
+  - Pros: 
+  - Cons: 
+
 ## [Proposed] Update feature
 
 ### Proposed Implementation
@@ -286,6 +324,15 @@ Step 5. The user then executes the command `view` to view his updated weight and
 The proposed update mechanism is facilitated by `UpdateUserCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
 ### Design considerations:
+
+#### Aspect:
+
+- Alternative 1 (current choice): 
+  - Pros:
+  - Cons:
+- Alternative 2:
+  - Pros:
+  - Cons:
 
 ## [Proposed] Nutrition feature
 
@@ -307,23 +354,41 @@ Step 5: The nutritional information for that food will then be displayed.
 
 ### Design considerations:
 
+#### Aspect: How to update user data
+
+- Alternative 1 (current choice): Follow prompts for information.
+  - Pros: User can get accurate information about the food. 
+  - Cons: Slower input.
+- Alternative 2: Use a one line command for the CLI.
+  - Pros: Faster input.
+  - Cons: User might input food that's not in the database and therefore there is no nutritional information available. 
+
 ## [Proposed] Filter feature
 
 ### Proposed Implementation
 
 This proposed mechanism for allowing the user to search for meals with a filter, facilitated by `FilterCaloriesCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
-Step 1. The user calls the `examples` command, specifying a particular calorie range through a upper and lower bound 
+Step 1. The user calls the `filter` command, specifying a particular calorie range through a upper and lower bound.
 
-Step 2. `FilterCaloriesCommand` will parse the lower and upper bound from the input 
+Step 2. `FilterCaloriesCommand` will parse the lower and upper bound from the input.
 
-Step 3. `FilterCaloriesCommand` will then retrieve the meals that fit within that range from `FoodStorage`
+Step 3. `FilterCaloriesCommand` will then retrieve the meals that fit within that range from `FoodStorage`.
 
-Step 4. `FilterCaloiresCommand` will then print out the meals that has been filtered based on the lower and upper bound
+Step 4. `FilterCaloiresCommand` will then print out the meals that has been filtered based on the lower and upper bound.
 
 ![filter-calories-command](./uml/FilterCaloriesCommand.png)
 
 ### Design considerations:
+
+#### Aspect: How to find foods from the database based on calories
+
+- Alternative 1 (current choice): Use a one line command for the CLI. 
+  - Pros: Faster input for experienced users.
+  - Cons: 
+- Alternative 2: 
+  - Pros:
+  - Cons:
 
 ## [Proposed] Exercise feature
 
@@ -332,6 +397,15 @@ Step 4. `FilterCaloiresCommand` will then print out the meals that has been filt
 The proposed update mechanism is facilitated by `AddExerciseCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
 ### Design considerations:
+
+#### Aspect: How to add exercises
+
+- Alternative 1 (current choice): Use a one-line command for the CLI.
+  - Pros: Faster to input for experienced users.
+  - Cons: Format might be difficult for new users.
+- Alternative 2 (current choice): Follow printed prompts for data. 
+  - Pros: Usage would be easier for new users.
+  - Cons: Slower to input for experienced users.
 
 ## [Proposed] Track feature
 
@@ -349,6 +423,15 @@ Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exerci
 
 ### Design considerations:
 
+#### Aspect: How to track the calories of the user
+
+- Alternative 1 (current choice): Use a one-line command for the CLI.
+  - Pros: Faster to input for experienced users.
+  - Cons: Format might be difficult for new users.
+- Alternative 2 (current choice): Follow printed prompts for data. 
+  - Pros: Usage would be easier for new users.
+  - Cons: Slower to input for experienced users.
+
 ## [Proposed] Examples feature
 
 ### Proposed Implementation
@@ -356,18 +439,26 @@ Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exerci
 The proposed mechanism for displaying examples of exercises and meals is facilitated by `ExamplesCommand`. It extends `Command` and overrides 
 the `execute` method in the `Command` class.
 
-Step 1. The user calls the `examples` command, specifying whether they wish for `meal` or `exercise` to be displayed
+Step 1. The user calls the `examples` command, specifying whether they wish for `meal` or `exercise` to be displayed.
 
-Step 2. `ExamplesCommand` will parse the user input
+Step 2. `ExamplesCommand` will parse the user input.
 
-Step 3. `ExamplesCommand` will retrieve either the examples of `meal` or examples of `exercise` based on the user input, from the `ExampleData` database
+Step 3. `ExamplesCommand` will retrieve either the examples of `meal` or examples of `exercise` based on the user input, from the `ExampleData` database.
 
-Step 4. The examples of `meal` or `exercise` will then be printed out and displayed for the user
+Step 4. The examples of `meal` or `exercise` will then be printed out and displayed for the user.
 
 ![examples-command](./uml/ExamplesCommand.png)
 
-### Design considerations:
+### Design considerations: How to list examples of exercises and meals
 
+#### Aspect:
+
+- Alternative 1 (current choice): List examples based on input command.
+  - Pros: More concise, no unnecessary information.
+  - Cons: Slightly slower to input command.
+- Alternative 2: List all examples. 
+  - Pros: Slightly faster to input command.
+  - Cons: Lots of unnecessary information would be displayed. 
 
 # Appendix: Requirements
 
