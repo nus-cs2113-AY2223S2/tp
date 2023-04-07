@@ -25,13 +25,14 @@ Taste of Mom's (TOM) is a <strong>desktop recipe manager application for managin
     * **[Editing the data file](#edit-data)**
 * **[FAQ](#faq)**
 * **[Command Summary](#command-summary)**
+
 <h2 id="quick-start"> Quick Start</h2>
 
-1. Enusure you have `Java 11` installed on your Computer.
+1. Ensure you have `Java 11` installed on your Computer.
 2. Download the latest `tp.main.jar` from [here](https://github.com/AY2223S2-CS2113-F13-1/tp/releases).
 3. Copy the file to the folder you want to use as home folder for the recipe manager.
 4. Open the command prompt.
-5. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`
+5. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`.
 6. Type `java -jar tp.main.jar` and press Enter to start the program.
 <h2 id="features"> Features</h2>
 <ol>
@@ -203,7 +204,7 @@ __________________________________________________________
 Find recipes whose names contain any of the given keywords. The results will be displayed in a list, telling you the index of the recipe in the recipe list. Only the name of the recipe will be searched.<br>
 
 **Format**: `findname KEYWORD`<br>
-**constraints**: `KEYWORD` cannot be empty.<br>
+**Constraints**: `KEYWORD` cannot be empty.<br>
 **Examples**:<br>
 ```
 __________________________________________________________
@@ -218,7 +219,7 @@ __________________________________________________________
 
 Find recipes whose tag contain any of the given keywords. The results will be displayed in a list, telling you the index of the recipe in the recipe list. Only the tag of the recipe will be searched.<br>
 **Format**: `findtag KEYWORD`<br>
-**constraints**: `KEYWORD` cannot be empty.<br>
+**Constraints**: `KEYWORD` cannot be empty.<br>
 **Examples**:<br>
 ```
 __________________________________________________________
@@ -232,37 +233,71 @@ __________________________________________________________
 
 <div>Views a detailed recipe from the recipe manager if INDEX is entered.</div>
 
-**Format**: `view INDEX` <br>
-**Hint**: If you want to view a recipe **by name**, use the **find** command first to find the index of the recipe, then use the view command to view the recipe.<br>
-**Constraints**: The index must be a positive integer larger than 0.<br>
-**Examples**:<br>
-```
-__________________________________________________________
-view 1
-Here is the recipe you requested, which is a Chinese flavour:
-name: Hotpot
-__________________________________________________________
-Here are 3 ingredients in the list:
-1. Beef
-2. Potatoes
-3. Carrots
-__________________________________________________________
-There are 4 steps in the list
-Do you want to view step-by-step?
-Type "yes" if so
-yes
-To exit recipe view, type "quit"
-Else, enter any key to continue
-1. chop beef
+**Format**: `view INDEX` or `view NAME`<br>
+**Constraints**: 
+* INDEX: The index must be a positive integer within the range: `[1, total number of recipes in the list]`
+(Provided the list is not empty).
+* NAME: The **exact** full name of the recipe must be given as input, partial names will not be processed .
 
-2. add potatoes
-
-3. add carrots
-
-4. cook 5 minutes
-
-__________________________________________________________
-```
+**Examples**:
+<br>
+* INDEX:
+  ```
+  __________________________________________________________
+  view 1
+  Here is the recipe you requested, which is a Chinese flavour:
+  name: Hotpot
+  __________________________________________________________
+  Here are 3 ingredients in the list:
+  1. Beef
+  2. Potatoes
+  3. Carrots
+  __________________________________________________________
+  There are 4 steps in the list
+  Do you want to view step-by-step?
+  Type "yes" if so
+  yes
+  To exit recipe view, type "quit"
+  Else, enter any key to continue
+  1. chop beef
+  
+  2. add potatoes
+  
+  3. add carrots
+  
+  4. cook 5 minutes
+  
+  __________________________________________________________
+  ```
+  <br/>
+* NAME:
+  ```
+  __________________________________________________________
+  view Hotpot
+  Here is the recipe you requested, which is a Chinese flavour:
+  name: Hotpot
+  __________________________________________________________
+  Here are 3 ingredients in the list:
+  1. Beef
+  2. Potatoes
+  3. Carrots
+  __________________________________________________________
+  There are 4 steps in the list
+  Do you want to view step-by-step?
+  Type "yes" if so
+  yes
+  To exit recipe view, type "quit"
+  Else, enter any key to continue
+  1. chop beef
+  
+  2. add potatoes
+  
+  3. add carrots
+  
+  4. cook 5 minutes
+  
+  __________________________________________________________
+  ```
 
 <h2 id="listing-all-recipes-list"> Listing all recipes: <code class="language-plaintext highlighter-rouge">list</code></h2>
 
@@ -317,16 +352,16 @@ The first line is the name of the dish. And the second line is the tag of the di
 <h2 id='command-summary'> Command Summary </h2>
 
 
-|  Action   | 	Format  | Example                                                                               |
-|  ----  | ----  |---------------------------------------------------------------------------------------|
-| [**help**](#viewing-help-help)  | `help` |                                                                                       |
-| [**add**](#adding-a-recipe-add) | `add n/NAME t/TAG i/INGREDIENT ... s/SUMOFSTEP [STEP]...` | `add n/Hotpot t/Chinese i/Beef, Potatoes, Carrots s/2` `add carrots` `cook 5 minutes` |
-| [**editingredient**](#editing-a-recipe-ingredient-editingredient)  | `editingredient INDEX` |                                                                                       |
-| [**editstep**](#editing-steps-editstep)  | `editstep INDEX` |                                                                                       |
-| [**delete**](#deleting-a-recipe-delete)  | `delete INDEX` | `delete 1`                                                                            |
-| [**find**](#finding-recipes-find)  | `find KEYWORD ` | `find Hotpot`                                                                         |
-| [**view**](#viewing-a-recipe-view)  | `view INDEX` | `view 1`                                                                              |
-| [**list**](#listing-all-recipes-list)  | `list` |                                                                                       |
-| [**clear**](#clearing-all-entries-clear)  | `clear` |                                                                                       |
-| [**exit**](#exiting-the-program-exit)  | `exit` |                                                                                       |
+| Action                                                            | 	Format                                                   | Example                                                                                         |
+|-------------------------------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| [**help**](#viewing-help-help)                                    | `help`                                                    |                                                                                                 |
+| [**add**](#adding-a-recipe-add)                                   | `add n/NAME i/INGREDIENT ... t/TAG s/SUMOFSTEP [STEP]...` | `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/2` <br/>`add carrots` <br/>`cook 5 minutes` |
+| [**editingredient**](#editing-a-recipe-ingredient-editingredient) | `editingredient INDEX`                                    |                                                                                                 |
+| [**editstep**](#editing-steps-editstep)                           | `editstep INDEX`                                          |                                                                                                 |
+| [**delete**](#deleting-a-recipe-delete)                           | `delete INDEX`                                            | `delete 1`                                                                                      |
+| [**find**](#finding-recipes-find)                                 | `find KEYWORD `                                           | `find Hotpot`                                                                                   |
+| [**view**](#viewing-a-recipe-view)                                | `view INDEX`<br/>`view NAME`                              | `view 1`<br/>`view Hotpot`                                                                      |
+| [**list**](#listing-all-recipes-list)                             | `list`                                                    |                                                                                                 |
+| [**clear**](#clearing-all-entries-clear)                          | `clear`                                                   |                                                                                                 |
+| [**exit**](#exiting-the-program-exit)                             | `exit`                                                    |                                                                                                 |
 
