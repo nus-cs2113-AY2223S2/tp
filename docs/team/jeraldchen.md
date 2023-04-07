@@ -52,8 +52,7 @@ Given below are my contributions to the project.
   
   
 * **Project Management**:
-  * Managed releases `v1.0` - `v2.0` (2 releases) on GitHub
-  * Currently managing `v2.1`  
+  * Managed releases `v1.0` - `v2.1` (3 releases) on GitHub 
   
 
 * **Enhancements to existing features**:
