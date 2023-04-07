@@ -32,8 +32,6 @@ public class Moneymind {
             storage.load();
             CategoryList.categories = storage.getSavedCategories();
             CategoryCommand.categoryMap = storage.getSavedCategoryHashMap();
-        } catch (IllegalArgumentException e) {
-            ui.loadingError(e);
         } catch (Exception e) {
             ui.loadingError(e);
         }
