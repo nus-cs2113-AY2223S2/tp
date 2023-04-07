@@ -382,7 +382,9 @@ Step 4. Print the confirmation message: A confirmation message is printed to the
 in `ModuleList` that the user updated. The message includes the module code and name, modular credits for each module
 and  total modular credits the user is taking this semester.
 
-UML Diagram for ListModuleCommand
+UML Sequence Diagram for ListModuleCommand
+
+The following sequence diagram shows how the list module command works when the user inputs the command `listmod`:
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListMod-ListModuleCommand.png?raw=true)
 
@@ -458,7 +460,10 @@ Step 6:
 Print the confirmation message :
 A confirmation message is printed to the user indicating that the module lesson has been successfully added.
 
-UML Diagram for AddModCommand Class
+UML Sequence Diagram for AddModCommand Class
+
+The following sequence diagram shows how the AddModCommand class works for both adding modules and adding lessons to 
+the module list.:
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddModule-AddModuleCommand__Add_Module_.png?raw=true)
 
