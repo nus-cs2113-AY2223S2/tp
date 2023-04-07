@@ -332,7 +332,7 @@ Given below are instructions on how to test the application by yourself manually
 
 ### View user profile
 
-Test case: view
+Test case: 'view'
 
 Expected: Menu where user can input a value from 1 to 9 to view their current profile: 
 
@@ -350,7 +350,7 @@ User can then input 1 to continue viewing their profile or 2 to exit.
 
 ### Update user profile
 
-Test case: update
+Test case: 'update'
 
 Expected: Menu where user can input a value from 1 to 7 to update their current profile: 
 
@@ -366,29 +366,29 @@ User can then input 1 to continue viewing their ofile or 2 to exit.
 
 ### Adding a meal
 
-Test case: add /on 3/3/2023 /type Lunch /foods Spaghetti, Alfredo (Small)
+Test case: 'add /on 3/3/2023 /type Lunch /foods Spaghetti, Alfredo (Small)'
 
 Expected: Spaghetti and Alfredo are added to the list. Details of the food such as calories are shown in the status message.
 
-Test case: add
+Test case: 'add'
 
 Expected: Application will then ask for date of meal, type of meal, and food, and will then display the foods in the database containing the food that was added. Food is then added to the list and details of the food such as calories are shown in the status message.
 
-Test case: add /on dummy /type dummy /foods dummy
+Test case: 'add /on dummy /type dummy /foods dummy'
 
 Expected: No food is added. Error details are shown in the status message, such as "_dummy_ is not a valid date", "Invalid meal type" or "no food found with _dummy_".
 
 ### List or foods in database meals added
 
-Test case: list meals
+Test case: 'list meals'
 
 Expected: A list of meals eaten today would be displayed.
 
-Test case: list foods
+Test case: 'list foods'
 
 Expected: A list of all foods in the databse would be displayed.
 
-Test case: list dummy
+Test case: 'list dummy'
 
 Expected: An error message would be displayed.
 
@@ -396,11 +396,11 @@ Expected: An error message would be displayed.
 
 Prerequisite: List all meals eaten using the list command. At least 1 meal in the list.
 
-Test case: delete 1
+Test case: 'delete 1'
 
 Expected: First meal is deleted from the list. Details of the deleted meal are shown in the status message. 
 
-Test case: delete 0
+Test case: 'delete 0'
 
 Expected: No meal is deleted. Error details shown in the status message.
 
@@ -410,51 +410,68 @@ Expected: Similar to previous.
 
 ### Filter foods based on calories
 
-Test case: filter 400 600
+Test case: 'filter 400 600'
 
 Expected: A list of all meals within that range will be displayed
 
-Test case: filter 400 300
+Test case: 'filter 400 300'
 
 Expected: An error message will be displayed
 
 ### Find nutrition of a food
 
-Test case: 
+Prerequisite: Food needs to exist in the database.
 
-Expected:
+Test case: 'nutrition'
+
+Expected: Prompt will ask you to enter the food you would like to see the nutrition for. A menu displaying all foods which contain the food entered will appear, which you can then enter the index to see the specific food. 
 
 ### Add a exericse
 
-Test case: 
+Test case: 'exercise /type running /description 5km /calories 500 /on 5/5/2023'
 
-Expected:
+Expected: An exercise of running for 5km that burnt 500 calories on 5/5/2023 is added.
+
+Test case: 'exercise /type dummy /description dummy /calories dummy /on dummy'
+
+Expected: No exercise is added, error message will be displayed. 
 
 ### Track calorie intake
 
-Test case: 
+Test case: 'track /start 5/5/2023 /end 6/5/2023'
 
-Expected:
+Expected: Calories consumed, cloaries burnt and net calories for 5/5/2023 and 6/5/2023 would be displayed in the status message.
+
+Test case: 'track /start dummy /end dummy'
+
+Expected: Error message will be dislayed.
 
 ### See examples of meal or exercise
 
-Test case: examples exercise
+Test case: 'examples exercise'
 
 Expected: Examples of different types of exercise will be displayed
 
-Test case: examples weight
+Test case: 'examples weight'
 
 Expected: An error message will be displayed
 
 ### See list of available commands
 
-Test case: 
+Test case: help
 
-Expected:
+Expected: List of available commands for this application will be displayed.
 
 ### Exiting the program
 
-Test case: 
+Test case: bye
 
-Expected:
+Expected: Application exits. 
+
+### Saving data
+Meal data, user data and exercise data will be saved in ./data/mealData.csv, ./data/userData.csv, ./data/exerciseData.csv respectively.
+
+### Dealing with missing/corrupted data files
+Delete the ./data/mealData.csv, ./data/userData.csv, ./data/exerciseData.csv files for corrupted data and restart the programme.
+
 
