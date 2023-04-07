@@ -1,3 +1,5 @@
+<link type="text/css" rel="stylesheet" href="main.css" />
+
 # User Guide
 
 ## Introduction
@@ -28,6 +30,7 @@ Meal Companion is designed by computing students, for computing students, especi
        - [Check Ingredients for Recipe](#check-ingredients-for-recipe)
        - [Almost Completed Recipe](#almost-completed-recipe)
        - [Make Recipe](#make-recipe)
+       - [Favourite/Unfavourite Recipe](#favouriteunfavourite-recipe)
    5. [Saving Data](#saving-data)
        - [Transferring Saved Data to other devices](#transferring-saved-data-to-other-devices) 
    6. [Help](#help)
@@ -37,13 +40,13 @@ Meal Companion is designed by computing students, for computing students, especi
 
 # Using this Guide
 
-This guide will introduce you to the basics of using Meal Companion and its current set of features. Here we will briefly explain the types of icons and text you can expect to see, and how to interpret them. 
+The purpose of this guide is to introduce you to the basics of using Meal Companion and its current set of features. Here we will briefly explain the types of icons and text you can expect to see, and how to interpret them. 
 
-`Markdown text` like this indicates a command you can input, or a file name. For example, `this is a command you can enter` or `this_is_a_file.exe`. 
+`A code block` like this indicates a command you can input, or a file name. For example, `this is a command you can enter` or `this_is_a_file.exe`. 
 
-Within the `markdown text` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this field in the command is a placeholder, to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
+Within the `code block` you may see segments of text wrapped in `<chevrons>`. These chevrons indicate that this text is meant to be replaced with your input. For example, a command `add <ingredient>` means you should enter the command `add apples`. 
 
-##### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
 
 # Getting Started
 
@@ -51,29 +54,29 @@ Within the `markdown text` you may see segments of text wrapped in `<chevrons>`.
 
 2. Once you have ascertained that your device has Java 11 installed, you may download the `.jar file` [here](https://github.com/AY2223S2-CS2113T-T09-3/tp/releases/tag/v2.0). 
 
-![jar2.png](images/jar2.png)
-<sub>Fig 1: Version release page with download links for Meal Companion.</sub>
+    ![jar2.png](images/jar2.png)
+    <sub>Fig 1: Version release page with download links for Meal Companion.</sub>
 
-Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
+    Click on `mealcompanion.jar` to automatically download the file. Place the file in a folder of your choice.
 
 3. Open the command terminal and navigate to the folder where you downloaded `mealcompanion.jar` using `cd <file_path>` commands as necessary.
 4. Ensure the terminal is within the correct folder.
 5. Use the command `java -jar mealcompanion.jar` to launch Meal Companion.
 6. When you are finished using Meal Companion, use the `bye` command to terminate the application. This will ensure your stored data is saved correctly for future access.
 
-![startup.png](images/startup.png)  
-<sub>Fig 2: Command to start using Meal Companion.</sub>
+    ![startup.png](images/startup.png)  
+    <sub>Fig 2: Command to start using Meal Companion.</sub>
 
 7. To get started using Meal Companion, take a look at the [`add`](#add-ingredients) command to let the app know what ingredients you have available to you, then use the [`recipe possible`](#possible-recipes) command to figure out what recipes you can make!
 8. Alternatively, if you don't have any ingredients on hand but are interested in learning a new recipe, you can use the [`recipe all`](#all-recipes) command to browse through our recipe book and find a recipe you're interested in making, then use the [`recipe details`](#recipe-details) command to view how to make it.
 
 Meal Companion uses a Command Line Interface (CLI), as the current version is just a proof of concept. We have plans to further develop Meal Companion to include a Graphical User Interface (GUI), or even to a mobile application platform. However as we have not yet reached that stage in our development, the CLI will suffice as the input method to operate Meal Companion. We apologize for any inconvenience caused.
 
-##### [Back to table of contents](#table-of-contents)  
+#### [Back to table of contents](#table-of-contents)  
 
 
 
-# Features
+# Features   
 This section will focus on some of the key features of Meal Companion and explain their usage. We will go over several features, including the Ingredients functions, Allergen functions, and Recipe functions. 
 
 
@@ -127,7 +130,7 @@ To remove all ingredients from Meal Companion's storage, use the `clear` command
 
 > **Warning**: This move cannot be undone.
  
-##### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
 
 
 
@@ -163,7 +166,7 @@ If you wish to see the entire list of ingredients you are allergic to, you may s
 
 If you wish to take a look at how the allergens you have added will affect the recipes available to you, please see the section on [Possible Recipes](#possible-recipes).
 
-##### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
  
  
 
@@ -238,7 +241,31 @@ If you decide to cook one of the recipes and you have sufficient ingredients, yo
 <sub>Fig 19: Sample of Make command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
 
 
-##### [Back to table of contents](#table-of-contents)
+### Favourite/Unfavourite Recipe  
+If you would like to mark a recipe as your favourite, you may simply use the command `recipe favourite <index_number>`. For example, `recipe favourite 1` (recipe for beef burger). 
+
+![fav11.png](images/fav11.png)  
+<sub>Fig 20: Sample of Recipe Favourite Command with Recipe 1 (Beef Burger) used, with user input highlighted.</sub>
+
+![fav2.png](images/fav2.png)  
+<sub>Fig 21: Sample of Recipe list after Recipe 1 (Beef Burger) is added to favourites with the modified list highlighted.</sub>
+
+<br>
+<br>
+
+If you would like to unmark a recipe as your favourite, you may use the command `recipe unfavourite <index_number>`. For example, `recipe unfavourite 1` (recipe for beef burger).  
+
+![unfav1.png](images/unfav1.png)  
+<sub>Fig 22: Sample of Recipe Unfavourite command with Recipe 6 (Hainanese Chicken Rice) used, with user input highlighted.</sub>
+
+![unfav2.png](images/unfav2.png)  
+<sub>Fig 23: Sample of Recipe list after Recipe 6 (Hainanese Chicken Rice) is removed from favourites with the modified list highlighted.</sub>
+
+> **Warning**
+> Please note that the current iteration of favourites does not preserve your preferences after closing the app. This functionality will be added in future iterations.
+
+
+#### [Back to table of contents](#table-of-contents)
 
 
 
@@ -246,15 +273,16 @@ If you decide to cook one of the recipes and you have sufficient ingredients, yo
 Meal Companion automatically saves the ingredients you add to a text file named `ingredients.txt`. This text file can be accessed from the same folder where you downloaded the original `mealcompanion.jar` file. 
 
 ![save1.png](images/save1.png)  
-<sub>Fig 19: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
+<sub>Fig 24: Location of saved file containing all user-entered ingredients, within the same folder that</sub> `mealcompanion.jar` <sub>is stored.</sub>
 
 > **Warning**:
-> Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program.
+> Please refrain from editing the `ingredients.txt` file as it could result in undesirable behaviour of the program. 
+> We cannot guarantee Meal Companion will perform as expected if the file is corrupted or modified incorrectly.
 
 ### Transferring Saved Data to Other Devices
 If you would like to access your saved ingredients list on a new instance of Meal Companion on a different device, it is as simple as copying and pasting the `ingredients.txt` text file to the new device. As long as it is saved in the same folder, Meal Companion will be able to detect it and utilize the existing data. 
 
-##### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
 
 
 
@@ -264,9 +292,9 @@ If you are unsure of which commands to use, the `help` command will display a li
 For a comprehensive list of commands available to you, please refer to the [Command List](#command-list) section.
 
 ![help1.png](images/help1.png)  
-<sub>Fig 20: Sample of Help command with listed output of in-built commands.</sub>
+<sub>Fig 25: Sample of Help command with listed output of in-built commands.</sub>
 
-##### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
 
 
 
@@ -291,13 +319,16 @@ Please see the below table for the list of available commands.
 | Check if current list of ingredients is sufficient to cook a recipe | `recipe need <index_number>` | `recipe need 1` (recipe for Beef Burger) |
 | See which recipe is lacking the fewest ingredients to complete | `recipe almost` | `recipe almost` |
 | Remove all the ingredients that you used to cook a recipe | `make <index_number>` | `make 1` (recipe for Beef Burger) |
+| Mark a recipe as your favourite | `recipe favourite <index_number>` | `recipe favourite 6` (recipe for Hainanese Chicken Rice |
+| Unmark a recipe as your favourite | `recipe unfavourite <index_number>` | `recipe unfavourite 6` (recipe for Hainanese Chicken Rice |
 | Terminate the program | `bye` | `bye` |
+| Hello World | `hello world` | `hello world` |
 
-##### [Back to table of contents](#table-of-contents)
+#### [Back to table of contents](#table-of-contents)
 
 
 
 # Conclusion
 Congratulations! You have reached the end of this user guide, which means you are ready to make full use of Meal Companion! Of course, you may refer to this guide at any time, and if you have any further questions, feel free to reach out to the Meal Companion team at any of our contact links at the top of the page! Have a good time, and we hope you enjoy using Meal Companion!
 
-##### [Back to top](#user-guide)
+#### [Back to top](#user-guide)

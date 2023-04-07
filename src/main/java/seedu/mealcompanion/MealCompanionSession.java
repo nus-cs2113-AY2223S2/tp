@@ -10,6 +10,8 @@ import seedu.mealcompanion.command.factory.ingredients.IngredientsSearchCommandF
 import seedu.mealcompanion.command.factory.misc.AddCommandFactory;
 import seedu.mealcompanion.command.factory.misc.ByeCommandFactory;
 import seedu.mealcompanion.command.factory.misc.ClearCommandFactory;
+import seedu.mealcompanion.command.factory.misc.HelloAnswerCommandFactory;
+import seedu.mealcompanion.command.factory.misc.HelloPSLECommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelloWorldCommandFactory;
 import seedu.mealcompanion.command.factory.misc.HelpCommandFactory;
 import seedu.mealcompanion.command.factory.misc.RecipeFavouriteCommandFactory;
@@ -45,6 +47,8 @@ public class MealCompanionSession {
 
                     .route("hello", new CommandRouterNode()
                             .route("world", new HelloWorldCommandFactory())
+                            .route("psle", new HelloPSLECommandFactory())
+                            .route("40$1.80", new HelloAnswerCommandFactory())
                     )
                     .route("bye", new ByeCommandFactory())
                     .route("add", new AddCommandFactory())

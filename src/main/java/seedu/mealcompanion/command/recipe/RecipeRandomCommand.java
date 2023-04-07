@@ -29,7 +29,7 @@ public class RecipeRandomCommand extends RecipeCommand {
     }
 
     /**
-     * Executes the recipe random command
+     * Get a random index and print out the recipe specified by the index.
      *
      * @param mealCompanionSession the MealCompanionSession containing the list of ingredients
      */
@@ -40,9 +40,13 @@ public class RecipeRandomCommand extends RecipeCommand {
             int index = getRandomIndex(recipes);
             Recipe recipe = recipes.getRecipe(index);
             mealCompanionSession.getUi().printMessage("A random recipe is chosen:");
+            if (hasAllergen(recipe, mealCompanionSession.getAllergens())) {
+                mealCompanionSession.getUi().printMessage("IMPORTANT: You are allergic to the ingredient(s) in this " +
+                        "recipe. Proceed with care or run command again to get a different random recipe.");
+            }
             mealCompanionSession.getUi().printMessage(recipe.toString());
         } catch (MealCompanionException e) {
-            mealCompanionSession.getUi().printMessage(String.valueOf(e));
+            mealCompanionSession.getUi().printMessage(e.getMessage());
         }
     }
 }

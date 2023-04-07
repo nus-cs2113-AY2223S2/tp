@@ -59,17 +59,31 @@ public class Recipe {
     }
 
     //@@author ngyida
+    /**
+     * Get the list of ingredients of the recipe
+     * @return IngredientList of recipe
+     */
     public IngredientList getIngredients() {
         return ingredients;
     }
 
     //@@author ngyida
+
+    /**
+     * Get the list of instructions of the recipe
+     * @return InstructionList of recipe
+     */
     public InstructionList getInstructions() {
         return instructions;
     }
 
-    @Override
+
     //@@author ngyida
+    /**
+     * Get a formatted string of recipe details.
+     * @return string of recipe details
+     */
+    @Override
     public String toString() {
         StringBuilder recipeDetails = new StringBuilder();
         recipeDetails.append("Recipe for " + this.name + System.lineSeparator());

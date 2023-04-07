@@ -88,7 +88,7 @@ class RecipePossibleCommandTest {
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("water", 100));
         fridgeIngredients.add(new Ingredient("chicken", 5));
-        assertEquals(true, command.canMakeRecipe(cupOfWater, fridgeIngredients, Arrays.asList()));
+        assertEquals(true, command.canMakeRecipe(cupOfWater, fridgeIngredients));
     }
 
     @Test
@@ -101,7 +101,7 @@ class RecipePossibleCommandTest {
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("water", 90));
         fridgeIngredients.add(new Ingredient("chicken", 5));
-        assertEquals(false, command.canMakeRecipe(cupOfWater, fridgeIngredients, Arrays.asList()));
+        assertEquals(false, command.canMakeRecipe(cupOfWater, fridgeIngredients));
     }
 
     @Test
@@ -114,7 +114,7 @@ class RecipePossibleCommandTest {
         IngredientList fridgeIngredients = new IngredientList();
         fridgeIngredients.add(new Ingredient("apple", 9));
         fridgeIngredients.add(new Ingredient("chicken", 5));
-        assertEquals(false, command.canMakeRecipe(cupOfWater, fridgeIngredients, Arrays.asList()));
+        assertEquals(false, command.canMakeRecipe(cupOfWater, fridgeIngredients));
     }
 }
 

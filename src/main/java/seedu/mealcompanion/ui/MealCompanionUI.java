@@ -186,4 +186,5 @@ public class MealCompanionUI {
         System.out.println("If keyword is omitted, all ingredients will be printed.");
         System.out.println(DIVIDER);
     }
+
 }

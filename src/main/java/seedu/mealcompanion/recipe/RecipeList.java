@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import seedu.mealcompanion.MealCompanionException;
 import seedu.mealcompanion.serde.SerializableRecipe;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
@@ -15,23 +16,29 @@ import java.util.List;
 public class RecipeList {
     public ArrayList<Recipe> recipes;
 
+    /**
+     * Constructor for RecipeList class with no recipe initialized.
+     */
     public RecipeList() {
         this.recipes = new ArrayList<>();
     }
 
+    /**
+     * Constructor for RecipeList class with recipes initialized from saved file.
+     * @param file file containing recipes
+     */
     public RecipeList(String file) {
         this.recipes = new ArrayList<>();
         Gson gson = new Gson();
-        try (Reader reader = new InputStreamReader(this.getClass().getResourceAsStream(file))) {
+        InputStream in = this.getClass().getResourceAsStream(file);
+        try (Reader reader = new InputStreamReader(in)) {
             // This is needed for GSON to return the expected instance of List<SerializableRecipe>
-            Type recipeListType =
-                    TypeToken.getParameterized(List.class, SerializableRecipe.class).getType();
+            TypeToken<?> typeToken= TypeToken.getParameterized(List.class, SerializableRecipe.class);
+            Type recipeListType = typeToken.getType();
             List<SerializableRecipe> recipeList = gson.fromJson(reader, recipeListType);
-
             for (SerializableRecipe recipe : recipeList) {
                 this.recipes.add(recipe.toRecipe());
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Invalid ingredients list JSON resource." +
@@ -39,14 +46,27 @@ public class RecipeList {
         }
     }
 
+    /**
+     * Get ArrayList of Recipes
+     * @return ArrayList of Recipes
+     */
     public ArrayList<Recipe> getRecipes() {
         return recipes;
     }
 
+    /**
+     * Add a recipe into RecipeList.
+     * @param recipe the recipe to be added
+     */
     public void add(Recipe recipe) {
         recipes.add(recipe);
     }
 
+    /**
+     * Get a recipe from RecipeList using an index.
+     * @param index the index of the recipe to be retrieved
+     * @return the recipe specified by the index
+     */
     public Recipe getRecipe(int index) {
         return recipes.get(index);
     }
@@ -83,11 +103,19 @@ public class RecipeList {
         }
         throw new MealCompanionException("Recipe not found!");
     }
-    
+
+    /**
+     * Get the number of recipes in RecipeList.
+     * @return the number of recipes
+     */
     public int size() {
         return recipes.size();
     }
 
+    /**
+     * Check if RecipeList contains any recipe.
+     * @return True if RecipeList does not contain any recipe. Else, false.
+     */
     public boolean isEmpty() {
         return recipes.isEmpty();
     }

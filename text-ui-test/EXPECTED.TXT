@@ -1,3 +1,14 @@
 Welcome to Meal Companion!
 Hello, world!
-Hello, test!
+Congratulations! You found our hidden easter egg!
+Try the command <hello psle>
+Congratulations! You have unlocked the secret puzzle!
+To unlock the hidden secret, solve this puzzle!
+Jamie and John used $61.20 each to buy some egg tarts. Jamie has a 15% discount coupon and bought 6 more egg tarts than John.
+a) How many egg tarts did Jamie buy?
+b) What is the cost of an egg tart (in dollars)?
+Enter your answer in the following format (ensure there is no space): hello <answer for a>$<answer for b>
+Congratulations! You have solved our puzzle and unlocked our hidden easter egg!
+This easter egg is dedicated to our amazing CS2101 Professor, Professor Serene Yeo! We hope you enjoy this light read!
+https://coconuts.co/singapore/news/singaporean-mother-complains-to-education-minister-over-unreasonably-tough-mathematics-psle-paper/
+We hope you have enjoyed using Meal Companion and we hope this easter egg has been fun!
