@@ -17,6 +17,12 @@
     * [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
     * [List Recipes Feature](#list-recipes-feature)
     * [Delete Recipes Feature](#delete-recipes-feature)
+    * [Add Ingredients Feature](#add-ingredients-feature)
+    * [Delete Ingredients Feature](#delete-ingredients-feature)
+    * [List Ingredients Feature](#list-ingredients-feature)
+    * [Edit Weekly Meal Plan Feature](#edit-weekly-meal-plan-feature)
+    * [List Weekly Plan Feature](#list-weekly-plan-feature)
+    * [Mark Recipe as Done Feature](#mark-recipe-as-done-feature)
 
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -25,6 +31,7 @@
     * [User Stories](#user-stories)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
+    * [Instructions for manual testing](#instructions-for-manual-testing)
 
 ---
 
@@ -213,7 +220,7 @@ The activity diagram below shows how the `Database` component works at start up:
 * [Delete Ingredients Feature](#delete-ingredients-feature)
 * [List Ingredients Feature](#list-ingredients-feature)
 * [Edit Weekly Meal Plan Feature](#edit-weekly-meal-plan-feature)
-* [List Weekly Meal Plan Feature](#list-weekly-meal-plan-feature)
+* [Mark Recipe as Done Feature](#mark-recipe-as-done-feature)
 
 ### Categorise/Tag Recipes Feature
 
@@ -431,7 +438,7 @@ The sequence diagram below shows how this feature works:
 
 ![](../docs/UML/Implementation/ViewIngredientFunction/ViewIngredientFunction.png)
 
-### Edit weekly meal plan Feature
+### Edit Weekly Meal Plan Feature
 
 The current implementation:
 
