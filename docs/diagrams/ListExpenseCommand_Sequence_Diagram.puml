@@ -3,6 +3,7 @@ participant ":Parser" as Parser
 participant ":ListExpenseCommand" as ListExpenseCommand
 participant "expenses:ExpenseList" as ExpenseList
 
+[-> Parser : parse()
 activate Parser
 
 create ListExpenseCommand

@@ -1,10 +1,13 @@
 @startuml
+
 participant ":Parser" as Parser
 participant ":AddIncomeCommand" as AddIncomeCommand
 participant "incomes:IncomeList" as IncomeList
 participant ":Ui" as Ui
 
+[-> Parser : parse()
 activate Parser
+
 create AddIncomeCommand
 Parser -> AddIncomeCommand : AddIncomeCommand(income)
 
