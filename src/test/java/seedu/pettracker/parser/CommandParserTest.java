@@ -15,6 +15,7 @@ import seedu.pettracker.commands.UnMarkTaskCommand;
 import seedu.pettracker.commands.ScheduleCommand;
 import seedu.pettracker.commands.HelpCommand;
 import seedu.pettracker.commands.EditStatCommand;
+import seedu.pettracker.commands.EditTaskCommand;
 
 import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
@@ -247,6 +248,23 @@ class CommandParserTest {
     void parseUnmarkTaskInvalidIndex() {
         CommandParser cp = new CommandParser();
         assertThrows(IllegalArgException.class, () -> cp.newCommand("unmark-task 0"));
+    }
+
+    // newCommand() edit-task
+    @Test
+    void parseEditTask() {
+        CommandParser cp = new CommandParser();
+        assertAll(() -> assertTrue(cp.newCommand("edit-task 1 desc") instanceof EditTaskCommand));
+    }
+    @Test
+    void parseEditTaskNoArgs() {
+        CommandParser cp = new CommandParser();
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("edit-task"));
+    }
+    @Test
+    void parseEditTaskNoDesc() {
+        CommandParser cp = new CommandParser();
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("edit-task 1"));
     }
 
     // newCommand() nonsense
