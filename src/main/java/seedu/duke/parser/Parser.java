@@ -199,6 +199,12 @@ public class Parser {
         } else if (isStep) {
             return EditType.STEP;
         } else {
+            if(description.equals("--s")){
+                throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+            }
+            if(description.equals("--i")){
+                throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+            }
             throw new IncompleteInputException(StringLib.EDIT_TYPE_ERROR);
         }
     }
