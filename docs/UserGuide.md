@@ -195,7 +195,7 @@ Clear the entire list of incomes.
 Format:
 <br> `clear income`
 
-### Clear entire expense list: `clear income`
+### Clear entire expense list: `clear expense`
 
 Clear the entire list of expenses.
 
