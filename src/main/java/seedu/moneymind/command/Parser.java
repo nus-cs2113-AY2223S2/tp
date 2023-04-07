@@ -238,6 +238,7 @@ public class Parser {
         if (separatedKeywordAndDescription.length < 2) {
             throw new InvalidCommandException(NO_SEARCH_KEYWORD_MESSAGE);
         }
+
         return new SearchCommand(separatedKeywordAndDescription[1]);
     }
 }
