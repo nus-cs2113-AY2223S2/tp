@@ -371,6 +371,7 @@ public class Parser {
         return recipeListToPrint;
     }
 
+    //@@author jaredoong
     public Recipe parseViewRecipe(String[] command, RecipeList recipes) {
         assert command[0].equals("view");
         Recipe requestedRecipe;
@@ -395,6 +396,7 @@ public class Parser {
         return requestedRecipe;
     }
 
+    //@@author
     public Recipe parseViewRecipe(String recipeName, RecipeList recipes) {
         int recipeIndex = 1;
         for (Recipe recipe : recipes) {
@@ -413,6 +415,7 @@ public class Parser {
         return recipes.randomRecipe();
     }
 
+    //@@author jaredoong
     public WeeklyPlan parseWeeklyPlan(String[] command, RecipeList recipes)
             throws ArrayIndexOutOfBoundsException, NumberFormatException, InvalidRecipeNameException,
             InvalidValueException {
@@ -544,6 +547,7 @@ public class Parser {
         return recipeName;
     }
 
+    //@@author
     // parser to read dd/mm/yyyy format as local date catching invalid date format
     public LocalDate parseDate(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -554,6 +558,7 @@ public class Parser {
         }
     }
 
+    //@@author jaredoong
     public void parseAddUserIngredients(String[] command, IngredientList ingredientList)
             throws InvalidValueException {
         String ingredientName = null;

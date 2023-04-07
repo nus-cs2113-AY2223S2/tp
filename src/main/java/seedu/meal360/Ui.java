@@ -114,12 +114,15 @@ public class Ui {
         printMessage("9. Delete Multiple Recipes from Weekly Plan: weekly /multidelete /r {recipe1 name}");
         printMessage("   /q {quantity1} /r {recipe2 name} /q {quantity2}");
         printMessage("10. View Weekly Plan: weeklyplan");
-        printMessage("11. Clearing weekly plan: weekly /clear");
-        printMessage("12. View Weekly Ingredients: weeklyingredients");
-        printMessage("13. Give a random recipe: random");
-        printMessage("14. Tagging/Categorizing Recipes: tag {LABEL_name} << {RECIPE_NAME && RECIPE_NAME && ...}");
-        printMessage("15. Removing recipes from a Tag: tag {LABEL_name} >> {RECIPE_NAME && RECIPE_NAME && ...}");
-        printMessage("16. Exit: bye");
+        printMessage("11. Marking recipe in weekly plan as done: weekly /done RECIPE_NAME");
+        printMessage("12. Clearing weekly plan: weekly /clear");
+        printMessage("13. View Weekly Ingredients: weeklyingredients");
+        printMessage("14. Give a random recipe: random");
+        printMessage("15. Tagging/Categorizing Recipes: tag {LABEL_name} << {RECIPE_NAME && RECIPE_NAME && "
+                + "...}");
+        printMessage("16. Removing recipes from a Tag: tag {LABEL_name} >> {RECIPE_NAME && RECIPE_NAME && ."
+                + "..}");
+        printMessage("17. Exit: bye");
         printMessage("HOW TO ADD INGREDIENTS?");
         printMessage("ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...");
     }
