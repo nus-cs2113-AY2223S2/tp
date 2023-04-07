@@ -53,7 +53,7 @@ public class ChChing {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand, incomes, expenses, ui);
+                Command c = Parser.parse(fullCommand, ui);
                 c.execute(incomes, expenses, ui, storage, selector, converter, targetStorage);
                 isExit = c.isExit();
             } catch (ChChingException e) {

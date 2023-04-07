@@ -4,11 +4,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DecimalsChecker {
-    public static boolean isTwoDecimals(String valueString) {
+
+    /**
+     * Checks that input value satisfies the positive and 2 decimal place requirement
+     * @param valueString string of value field
+     * @return true if requirements is satisfied, false otherwise
+     */
+    public static boolean isPositiveTwoDecimals(String valueString) {
         Pattern pattern = Pattern.compile("^\\d+(\\.\\d{1,2})?$");
         Matcher matcher = pattern.matcher(valueString);
         boolean isMatch = matcher.matches();
         return isMatch;
+    }
 
+    public static boolean isTwoDecimals(String valueString) {
+        Pattern pattern = Pattern.compile("^-?\\d+(\\.\\d{1,2})?$");
+        Matcher matcher = pattern.matcher(valueString);
+        boolean isMatch = matcher.matches();
+        return isMatch;
     }
 }

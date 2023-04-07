@@ -197,7 +197,7 @@ Clear the entire list of incomes.
 Format:
 <br> `clear income`
 
-### Clear entire expense list: `clear income`
+### Clear entire expense list: `clear expense`
 
 Clear the entire list of expenses.
 
@@ -219,10 +219,10 @@ Format:
 <br> `set target /v VALUE`
 
 Use case:
-
-- VALUE ranges from negative to positive
-- Target must be within the range of -9999999.99 to 9999999.99
-- Target will be set to the nearest 2 decimal place
+- VALUE will be recorded as SGD, regardless of the currency set.
+- VALUE ranges from negative to positive.
+- Target must be within the range of -9999999.99 to 9999999.99.
+- Target will be set to 2 decimal places.
 
 Example of usage:
 <br> `set target /v 350`
