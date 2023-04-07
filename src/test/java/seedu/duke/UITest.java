@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public class UITest {
     UI ui;
-    RecipeList recipeList;
     private final CommandType type = CommandType.DELETE;
     @Test
     void printGreeting() {
@@ -25,7 +24,7 @@ public class UITest {
     @BeforeEach
     void setUp() {
         ui = new UI();
-        recipeList = new RecipeList();
+        RecipeList.createRecipeList();
         try{
             ArrayList<String> parsed = Parser.parseRecipe(
                     "n/Spaghetti i/Pasta, Tomato Sauce, Cheese t/Italian s/0");
@@ -35,22 +34,22 @@ public class UITest {
             StepList recipeSteps = new StepList();
             //TODO: add recipeSteps parser
             Recipe recipe = new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps);
-            recipeList.addNewRecipe(recipe);
+            RecipeList.addNewRecipe(recipe);
         } catch (Exception e) {
             ui.showAddingRecipeErrorMessage(e);
         }
     }
     @Test
     void addRecipe() {
-        assert(recipeList.getCurrRecipeNumber() == 1);
+        assert(RecipeList.getCurrRecipeNumber() == 1);
     }
     @Test
     void deleteRecipe() {
         try {
-            recipeList.removeRecipe(1);
+            RecipeList.removeRecipe(1);
         } catch (Exception e) {
             ui.showDeletingTaskErrorMessage(e,type);
         }
-        assert(recipeList.getCurrRecipeNumber() == 0);
+        assert(RecipeList.getCurrRecipeNumber() == 0);
     }
 }

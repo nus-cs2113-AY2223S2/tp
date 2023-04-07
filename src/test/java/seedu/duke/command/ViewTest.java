@@ -41,17 +41,16 @@ public class ViewTest {
 
     ByteArrayOutputStream output;
     PrintStream console;
-    RecipeList recipeList;
     UI ui;
     
     @BeforeEach
     public void setup() throws Exception {
-        recipeList = new RecipeList();
-        recipeList.addNewRecipe(new
+        RecipeList.createRecipeList();
+        RecipeList.addNewRecipe(new
                 Recipe("Oyakodon", "Japanese", new IngredientList(), new StepList()));
-        recipeList.addNewRecipe(new
+        RecipeList.addNewRecipe(new
                 Recipe("OyakodON", "Japanese", new IngredientList(), new StepList()));
-        recipeList.addNewRecipe(new
+        RecipeList.addNewRecipe(new
                 Recipe("Hotpot", "Chinese", new IngredientList(), new StepList()));
         output = new ByteArrayOutputStream();
         console = System.out;
@@ -62,6 +61,7 @@ public class ViewTest {
     @AfterEach
     public void end() throws Exception {
         System.setOut(console);
+        RecipeList.clearRecipeList();
     }
 
     /**
@@ -71,7 +71,7 @@ public class ViewTest {
      */
     @Test
     public void viewPositiveTestCase() throws Exception {
-        new Command(VIEW, "3").execute(recipeList, ui);
+        new Command(VIEW, "3").execute(ui);
         assertEquals(VIEW_HOTPOT, output.toString().trim());
     }
 
@@ -82,7 +82,7 @@ public class ViewTest {
      */
     @Test
     public void viewEmptyDescription() throws Exception {
-        new Command(VIEW, "").execute(recipeList, ui);
+        new Command(VIEW, "").execute(ui);
         assertEquals(MISSING_DESCRIPTION_ERROR, output.toString().trim());
     }
 
@@ -93,7 +93,7 @@ public class ViewTest {
      */
     @Test
     public void viewNullRecipe() throws Exception {
-        new Command(VIEW, null).execute(recipeList, ui);
+        new Command(VIEW, null).execute(ui);
         assertEquals(PREFIX_EMPTY_LIMIT_LIST_ERROR + "VIEW" + SUFFIX_EMPTY_LIMIT_LIST_ERROR,
                 output.toString().trim());
     }
@@ -105,7 +105,7 @@ public class ViewTest {
      */
     @Test
     public void noMatchingRecipe() throws Exception {
-        new Command(VIEW, "Gyudon").execute(recipeList, ui);
+        new Command(VIEW, "Gyudon").execute(ui);
         assertEquals(RECIPE_VIEWING_DEFAULT_ERROR + NO_MATCHING_RECIPE_ERROR, output.toString().trim());
     }
 
@@ -116,7 +116,7 @@ public class ViewTest {
      */
     @Test
     public void duplicateRecipes() throws Exception {
-        new Command(VIEW, "Oyakodon").execute(recipeList, ui);
+        new Command(VIEW, "Oyakodon").execute(ui);
         assertEquals(RECIPE_VIEWING_DEFAULT_ERROR + DUPLICATE_RECIPE_NAMES_ERROR, output.toString().trim());
     }
 
@@ -127,7 +127,7 @@ public class ViewTest {
      */
     @Test
     public void recipeIndexOutOfBound() throws Exception {
-        new Command(VIEW, "-10").execute(recipeList, ui);
+        new Command(VIEW, "-10").execute(ui);
         assertEquals(RECIPE_VIEWING_DEFAULT_ERROR + INVALID_RANGE,
                 output.toString().trim());
     }
@@ -140,8 +140,8 @@ public class ViewTest {
      */
     @Test
     public void viewingByIndexOnEmptyRecipeList() throws Exception {
-        recipeList.clearRecipeList();
-        new Command(VIEW, "2").execute(recipeList, ui);
+        RecipeList.clearRecipeList();
+        new Command(VIEW, "2").execute(ui);
         assertEquals(PREFIX_EMPTY_LIMIT_LIST_ERROR + "VIEW" + SUFFIX_EMPTY_LIMIT_LIST_ERROR,
                 output.toString().trim());
     }
@@ -153,8 +153,8 @@ public class ViewTest {
      */
     @Test
     public void viewingByNameOnEmptyRecipeList() throws Exception {
-        recipeList.clearRecipeList();
-        new Command(VIEW, "Hotpot").execute(recipeList, ui);
+        RecipeList.clearRecipeList();
+        new Command(VIEW, "Hotpot").execute(ui);
         assertEquals(PREFIX_EMPTY_LIMIT_LIST_ERROR + "VIEW" + SUFFIX_EMPTY_LIMIT_LIST_ERROR,
                 output.toString().trim());
     }

@@ -100,7 +100,7 @@ public class Storage {
                 }
                 saveWriter.write(dish.getStepList().getCurrStepNumber() + "\n");
                 for (Step step : dish.getStepList().getList()) {
-                    saveWriter.write(step.getStep() + "\n");
+                    saveWriter.write(step.getStepDescription() + "\n");
                 }
                 saveWriter.close();
                 dishIndex++;

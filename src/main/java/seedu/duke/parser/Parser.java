@@ -5,6 +5,7 @@ import seedu.duke.command.CommandType;
 import seedu.duke.command.EditType;
 import seedu.duke.exceptions.EditFormatException;
 import seedu.duke.exceptions.IncompleteInputException;
+import seedu.duke.exceptions.MissingIngredientInputException;
 import seedu.duke.recipe.Ingredient;
 import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Step;
@@ -100,7 +101,7 @@ public class Parser {
             matcher=matcher.substring(matcher.indexOf(regex)+1);
             ++count;
         }
-        boolean isMatch = (count==1);
+        boolean isMatch = (count == 1);
         return isMatch;
     }
     /**
@@ -158,12 +159,20 @@ public class Parser {
         }
     }
 
-    public static IngredientList parseIngredients(String inputIngredients) {
+    public static IngredientList parseIngredients(String inputIngredients) throws MissingIngredientInputException{
         ArrayList<Ingredient> parsed = new ArrayList<>();
         String[] parsedIngredients = inputIngredients.split(",");
-        for (String ingredient : parsedIngredients) {
-            parsed.add(new Ingredient(ingredient.trim()));
+        if (parsedIngredients.length == 0) {
+            throw new MissingIngredientInputException();
         }
+        for (String ingredient : parsedIngredients) {
+            if (ingredient.trim().isEmpty()) {
+                throw new MissingIngredientInputException();
+            } else {
+                parsed.add(new Ingredient(ingredient.trim()));
+            }
+        }
+        assert (parsed.size() != 0);
         return new IngredientList(parsed);
     }
 
@@ -202,15 +211,14 @@ public class Parser {
             throw new IncompleteInputException(errorLog);
         }
         try {
-            Integer recipeIndex = Integer.parseInt(parsedDescription[0]);
+            int recipeIndex = Integer.parseInt(parsedDescription[0]);
             return new Object[]{recipeIndex, parsedDescription[1].trim()};
         } catch (NumberFormatException e) {
             throw new IncompleteInputException(errorLog);
         }
     }
 
-    public static void parseEditIngredient(RecipeList recipeList,
-                                           Integer recipeIndex, String description) throws Exception {
+    public static void parseEditIngredient(Integer recipeIndex, String description) throws Exception {
         String[] parsedDescription = description.split("i/");
         if (parsedDescription.length < 2) {
             throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
@@ -224,7 +232,7 @@ public class Parser {
             if (newIngredient.isEmpty()) {
                 throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
             }
-            recipeList.editIngredient(recipeIndex, ingredientIndex, newIngredient);
+            RecipeList.editIngredient(recipeIndex, ingredientIndex, newIngredient);
         } catch (NumberFormatException e) {
             throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
         } catch (EditFormatException e) {
@@ -232,8 +240,7 @@ public class Parser {
         }
     }
 
-    public static void parseEditStep(RecipeList recipeList,
-                                     Integer recipeIndex, String description) throws Exception {
+    public static void parseEditStep(Integer recipeIndex, String description) throws Exception {
         String[] parsedDescription = description.split("s/");
         if (parsedDescription.length < 2) {
             throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
@@ -247,7 +254,7 @@ public class Parser {
             if (newStep.isEmpty()) {
                 throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
             }
-            recipeList.editStep(recipeIndex, stepIndex, newStep);
+            RecipeList.editStep(recipeIndex, stepIndex, newStep);
         } catch (NumberFormatException e) {
             throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
         } catch (EditFormatException e) {

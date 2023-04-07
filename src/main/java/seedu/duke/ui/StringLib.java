@@ -89,6 +89,8 @@ public interface StringLib {
             + "\nException occurred: ";
     String RECIPE_VIEWING_DEFAULT_ERROR = "\nError in viewing recipe!"
             + "\nException occurred: ";
+    String RECIPE_EDITING_DEFAULT_ERROR = "\nError in editing recipe!"
+            + "\nException occurred: ";
     String FORMAT_CONVERT_ERROR = "\nError in inputs!"
             + "\nException occurred: The number is too big to process or the inputs contains words when "
             + "it is supposed to be numbers."
@@ -126,8 +128,8 @@ public interface StringLib {
     String STEP_EDIT_SUCCESS = "Step has been edited:";
     String STEP_VIEW_QUIT_KEYWORD = "quit";
     String RECIPE_NO_STEPS = "This recipe has no steps!";
-    String STEPBYSTEP_PROMPT = "Do you want to view step-by-step?\nType \"yes\" if so";
-    String STEPBYSTEP_EARLY_TERMINATION_PROMPT = "To exit recipe view, type \"quit\"\nElse, enter any key to continue";
+    String STEPBYSTEP_PROMPT = "Do you want to view step-by-step?\nEnter \"yes\" if so";
+    String STEPBYSTEP_EARLY_TERMINATION_PROMPT = "To exit recipe view, type \"quit\"\nElse, press enter to continue";
     String ENTER_INGREDIENT_DESCRIPTION = "Enter the description of the ingredient:";
     String INGREDIENT_EDIT_SUCCESS = "Ingredient has been edited:";
     String NO_INGREDIENTS_ERROR = "There are no ingredients to edit!";
@@ -149,6 +151,9 @@ public interface StringLib {
     String EDIT_STEP_ERROR = "\nPlease keep format as edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP\n";
     String INVALID_STEP_INDEX = "\nPlease enter a valid step index!";
     String POS_INT = "\nPlease enter a valid index!";
+
+    String INVALID_INPUT_VALID_RANGE_PREFIX = "Invalid Input! Valid Range: ";
+    String MISSING_INGREDIENT_INPUT = "Ingredient cannot be empty!";
     String EMPTY_STRING = "";
     String[] FORBIDDEN_CHARS = {"!","@","#","$","%","&","*","(",")","+",",",
                                 ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};

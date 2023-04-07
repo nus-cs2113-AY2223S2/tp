@@ -1,6 +1,5 @@
 package seedu.duke.command;
 
-
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.RecipeListEmptyException;
@@ -57,15 +56,15 @@ public class Command {
      * Based on the <code>type</code>, carries out different tasks assigned
      * while fully checking for any exceptions that may occur along the way.
      *
-     * @param recipeList the current list of recipes to be modified or used.
+     * @param ui the instantiated object to handle all user interactions.
      */
-    public void execute(RecipeList recipeList, UI ui) throws IOException {
+    public void execute(UI ui) throws IOException {
 
         int recipeListIndex;
-        int recipeCount = recipeList.getCurrRecipeNumber();
+        int recipeCount = RecipeList.getCurrRecipeNumber();
         switch (type) {
         case LIST:
-            ui.showRecipeList(recipeList.getRecipeList());
+            ui.showRecipeList(RecipeList.getRecipeList());
             break;
         case ADD:
             try {
@@ -79,9 +78,9 @@ public class Command {
                 String recipeTag = parsed.get(RECIPE_TAG_INDEX).toString();
                 int sumOfSteps = Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
                 StepList recipeSteps = Parser.parseSteps(ui,sumOfSteps);
-                recipeList.addNewRecipe(new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps));
-                recipeCount = recipeList.getCurrRecipeNumber();
-                ui.showRecipeAdded(recipeList.getNewestRecipe(), recipeCount);
+                RecipeList.addNewRecipe(new Recipe(recipeName, recipeTag, ingredientLists, recipeSteps));
+                recipeCount = RecipeList.getCurrRecipeNumber();
+                ui.showRecipeAdded(RecipeList.getNewestRecipe(), recipeCount);
                 Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showAddingRecipeErrorMessage(e);
@@ -102,9 +101,9 @@ public class Command {
                     System.out.println("Valid range: " + 1 + " to " + recipeCount);
                     break;
                 }
-                Recipe recipeToBeDeleted = recipeList.getRecipeFromList(recipeListIndex);
-                recipeList.removeRecipe(recipeListIndex);
-                recipeCount = recipeList.getCurrRecipeNumber();
+                Recipe recipeToBeDeleted = RecipeList.getRecipeFromList(recipeListIndex);
+                RecipeList.removeRecipe(recipeListIndex);
+                recipeCount = RecipeList.getCurrRecipeNumber();
                 ui.showRecipeDeleted(recipeToBeDeleted, recipeCount);
                 Storage.writeSavedFile();
             } catch (Exception e) {
@@ -112,7 +111,7 @@ public class Command {
             }
             break;
         case CLEAR:
-            recipeList.clearRecipeList();
+            RecipeList.clearRecipeList();
             ui.showRecipeListCleared();
             Storage.writeSavedFile();
             break;
@@ -121,10 +120,10 @@ public class Command {
                 if (fullDescription.isEmpty()) {
                     throw new IncompleteInputException("The KEYWORDS of " + type + " cannot be empty.\n");
                 }
-                if (recipeList.isEmpty()) {
+                if (RecipeList.isEmpty()) {
                     throw new RecipeListEmptyException();
                 }
-                Recipe recipeToBeViewed = recipeList.viewRecipe(fullDescription);
+                Recipe recipeToBeViewed = RecipeList.viewRecipe(fullDescription);
                 ui.showRecipeViewed(recipeToBeViewed, ui);
             } catch (Exception e) {
                 ui.showViewingRecipeErrorMessage(e);
@@ -151,7 +150,7 @@ public class Command {
                     System.out.println("Valid range: " + 1 + " to " + recipeCount);
                     break;
                 }
-                Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
+                Recipe recipeToEdit = RecipeList.getRecipeFromList(recipeListNum);
                 StepList recipeToEditStepList = recipeToEdit.getStepList();
                 int maxSteps = recipeToEditStepList.getCurrStepNumber();
                 if (maxSteps == 0) {
@@ -199,7 +198,7 @@ public class Command {
                     System.out.println("Valid range: " + 1 + " to " + recipeCount);
                     break;
                 }
-                Recipe recipeToEdit = recipeList.getRecipeFromList(recipeListNum);
+                Recipe recipeToEdit = RecipeList.getRecipeFromList(recipeListNum);
                 IngredientList recipeToEditIngredientList = recipeToEdit.getIngredientList();
                 int maxSteps = recipeToEditIngredientList.getCurrIngredientNumber();
                 if (maxSteps == 0) {
@@ -214,16 +213,12 @@ public class Command {
                 }
                 int ingredientIndex = Integer.parseInt(input) - 1;
 
-                if (ingredientIndex >= maxSteps) {
-                    throw new OutOfIndexException(StringLib.INPUT_INGREDIENTS_INDEX_EXCEEDED +
-                            "\nValid Range: 1 to " + maxSteps);
+                if (recipeToEditIngredientList.isIndexWithinRange(ingredientIndex)) {
+                    System.out.println(StringLib.ENTER_INGREDIENT_DESCRIPTION);
+                    String newIngredientDescription = ui.readCommand();
+                    recipeToEditIngredientList.editIngredient(newIngredientDescription, ingredientIndex);
+                    Storage.writeSavedFile();
                 }
-                if (ingredientIndex <= 0) {
-                    System.out.println(StringLib.POS_INT);
-                    System.out.println("Valid Range: 1 to " + maxSteps);
-                }
-                recipeToEditIngredientList.editIngredient(ui, ingredientIndex);
-                Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showEditErrorMessage(e);
             }
@@ -237,9 +232,9 @@ public class Command {
                 int recipeIndex = (int) parsed[0];
                 String editDescription = (String) parsed[1];
                 if(isEditIngredient) {
-                    Parser.parseEditIngredient(recipeList, recipeIndex, editDescription);
+                    Parser.parseEditIngredient(recipeIndex, editDescription);
                 } else if (isEditStep) {
-                    Parser.parseEditStep(recipeList, recipeIndex, editDescription);
+                    Parser.parseEditStep(recipeIndex, editDescription);
                 }
             } catch (Exception e) {
                 ui.showErrorMessage(e);
