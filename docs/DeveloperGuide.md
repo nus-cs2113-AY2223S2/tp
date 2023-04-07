@@ -113,7 +113,6 @@ correct tasks to be executed. It is responsible for the following tasks:
 * Executes the particular command received from the user input, case-by-case.
 * Determines if the program termination command has been sent.
 
-
 ### RecipeList Component 
 The **API** for this component is specified in 
 [`RecipeList.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/recipe/RecipeList.java).
@@ -130,7 +129,6 @@ objects, to keep track of the ingredients and steps to create the dish respectiv
 While each `Recipe` object will have only one `IngredientList` and `StepList`, each of the lists 
 are not limited in how many `Ingredient` and `Step` objects they can store respectively.
 
-
 ### Storage Component
 The **API** of this component is specified in 
 [`Storage.java`](https://github.com/AY2223S2-CS2113-F13-1/tp/blob/master/src/main/java/seedu/duke/storage/Storage.java).
@@ -146,7 +144,8 @@ Storage class is responsible for the following tasks:
 
 ### Recipe Manage Feature
 #### Implementation
-The recipe manage feature is facilitated by the `command`,`parser`,`recipe` package. It implements the following operations: 
+The recipe manage feature is facilitated by the `command`,`parser`,`recipe` package. 
+It implements the following operations: 
 
 - `RecipeList#addNewRecipe()` - Add a new recipe to the recipe list.
 - `RecipeList#getRecipeList()` - Get the recipe list.
@@ -155,21 +154,39 @@ The recipe manage feature is facilitated by the `command`,`parser`,`recipe` pack
 #### Example Usage
 Given below is an example usage scenario and how the recipe manage mechanism behaves at each step.
 
-**Step 1.** The user launches the application for the first time, then inputs `add n/MaLaXiangGuo i/Beef, Mutton, Mushrooms t/Chinese s/1` to add a new recipe to the recipe manager. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `Parser#parseSteps()` method to get the steps of the recipe. 
+**Step 1.** The user launches the application for the first time, then inputs 
+`add n/MaLaXiangGuo i/Beef, Mutton, Mushrooms t/Chinese s/1` to add a new recipe to the recipe manager. `Duke` calls 
+the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. 
+The `Command` object will then be executed by calling the `Command#execute()` method, which will call the 
+`Parser#parseSteps()` method to get the steps of the recipe. 
 
-**Step 2.** The user inputs `chop beef` to add a step for the recipe. `Parser#parseSteps()` receives all the steps and returns a `StepList` object. Then we return to the `Command#execute()` method in the `Command` class and call the `RecipeList#addNewRecipe()` to add the recipe to the recipe list.
+**Step 2.** The user inputs `chop beef` to add a step for the recipe. `Parser#parseSteps()` receives all the steps and 
+returns a `StepList` object. Then we return to the `Command#execute()` method in the `Command` class and call the 
+`RecipeList#addNewRecipe()` to add the recipe to the recipe list.
 
-**Step 3.** The user inputs `list` to list all the recipes in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `RecipeList#getRecipeList()` to get the recipe list. Then we return to the `Command#execute()` method in the `Command` class and call the `UI#showRecipeList()` to show the recipe list.
+**Step 3.** The user inputs `list` to list all the recipes in the recipe list. `Duke` calls the `parseCommands()` 
+method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will 
+then be executed by calling the `Command#execute()` method, which will call the `RecipeList#getRecipeList()` to get the 
+recipe list. Then we return to the `Command#execute()` method in the `Command` class and call the `UI#showRecipeList()` 
+to show the recipe list.
 
-**Step 4.** The user inputs `delete 1` to delete the first recipe in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `RecipeList#removeRecipe()` to remove the recipe from the recipe list.
+**Step 4.** The user inputs `delete 1` to delete the first recipe in the recipe list. `Duke` calls the 
+`parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The 
+`Command` object will then be executed by calling the `Command#execute()` method, which will call the 
+`RecipeList#removeRecipe()` to remove the recipe from the recipe list.
 
-**Step 5.** The user executes the `clear` to clear all the recipes in the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the RecipeList#clearRecipeList()` to clear all the recipes from the recipe list.
+**Step 5.** The user executes the `clear` to clear all the recipes in the recipe list. `Duke` calls the 
+`parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. 
+The `Command` object will then be executed by calling the `Command#execute()` method, which will call the 
+`RecipeList#clearRecipeList()` to clear all the recipes from the recipe list.
 
 > The following sequence diagram shows how the recipe manage feature works:
 ![Sequence Diagram for Recipe Manage](./PlantUML/RecipeManage.png)
+
 ### Recipe Find Feature
 #### Implementation
-The recipe find feature is facilitated by the `command`,`parser`,`recipe` package. It implements the following operations:
+The recipe find feature is facilitated by the `command`,`parser`,`recipe` package. 
+It implements the following operations:
 - `RecipeList#searchRecipeList()` - Find a recipe from the recipe list.
 #### Example Usage
 Given below is an example usage scenario and how the recipe find mechanism behaves at each step.
@@ -178,28 +195,28 @@ In the command line, the user inputs `find MaLaXiangGuo` to find a recipe from t
 
 > The following sequence diagram shows how the recipe find feature works:
 ![Sequence Diagram for Recipe Find](./PlantUML/FindRecipe.png)
+
 ### Recipe Steps Edit Feature
 #### Implementation
 The recipe steps edit feature is handled by the `command`, `recipe` and `stepList` classes.
 The following operations are implemented:
-* `RecipeList#getRecipe()` - Retrieves the `recipe` object to be edited
-* `Recipe#getStepList()` - Retrieves the `StepList` of the recipe object to be edited
+* `RecipeList#getRecipe()` - Retrieves the `recipe` object to be edited.
+* `Recipe#getStepList()` - Retrieves the `StepList` of the recipe object to be edited.
 * `StepList#editStep()` - Takes in a `stepIndex` of the step to edit, and the user's input,
-then replaces the step stored at `stepIndex` with a newly created one
+then replaces the step stored at `stepIndex` with a newly created one.
 
 #### Example Usage
 The example usage is based on the assumption that there currently exists at least one step in
 the recipe specified.
 
-**Step 1** In the command line, user inputs `editstep 1` to edit the step in the first `Recipe`
+**Step 1.** In the command line, user inputs `editstep 1` to edit the step in the first `Recipe`
 object in the `RecipeList`. `Duke` calls the `parseCommands()` method in the `Parser` class to
 parse the user input, which returns a `Command` object of type `EDITSTEP`. Under
 `Command#execute()`, this object will be executed.
 
-**Step 2** Under the `EDITSTEP` case, the number of steps in the specified recipe is first checked.
+**Step 2.** Under the `EDITSTEP` case, the number of steps in the specified recipe is first checked.
 If there is at least one step in the recipe, a further user input `1` is parsed to an `int` to specify
 the step number in the list. It is further converted to the 0-based indexing in the `stepList` by subtracting 1.
-
 
 
 ### Recipe Ingredients Edit Feature
