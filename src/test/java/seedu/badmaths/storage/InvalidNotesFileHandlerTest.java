@@ -43,7 +43,8 @@ public class InvalidNotesFileHandlerTest {
                 "Do you want to reset the file? (y/n)" + System.lineSeparator() + System.lineSeparator() +
                 "File contents have rest successfully." + System.lineSeparator() +
                 "You can continue to use the application" + System.lineSeparator() +
-                "If you want to read Help Manual, please type 'Help' to learn what I can do for you." + System.lineSeparator();
+                "If you want to read Help Manual, please type 'Help' to learn what I can do for you."
+                + System.lineSeparator();
         assertEquals(expectedOutput, out.toString());
 
         // verify that the file contents were cleared
