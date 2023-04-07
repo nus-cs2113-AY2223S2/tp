@@ -3,26 +3,25 @@
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
-  - [Architecture](#architecture)
-  - [UI Component](#ui-component)
-  - [Parser Component](#parser-component)
-  - [Storage Component](#storage-component)
-  - [CardList Component](#cardlist-component)
-  - [TagList Component](#taglist-component)
+    - [Architecture](#architecture)
+    - [UI Component](#ui-component)
+    - [Parser Component](#parser-component)
+    - [Storage Component](#storage-component)
+    - [CardList Component](#cardlist-component)
+    - [TagList Component](#taglist-component)
 - [Implementation](#implementation)
 
-  - [card feature](#card-feature)
-  - [tag feature](#tag-feature)
-  - [export feature](#export-feature)
-  - [[Proposed] deck feature](#deck-feature)
+    - [card feature](#card-feature)
+    - [tag feature](#tag-feature)
+    - [[Proposed] deck feature](#deck-feature)
 
 - [Appendix: Requirements](#appendix-requirements)
-  - [Product scope](#product-scope)
-  - [Target user profile](#target-user-profile)
-  - [Value proposition](#value-proposition)
-  - [User Stories](#user-stories)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
+    - [Product scope](#product-scope)
+    - [Target user profile](#target-user-profile)
+    - [Value proposition](#value-proposition)
+    - [User Stories](#user-stories)
+    - [Non-Functional Requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
 
 ---
 
@@ -67,7 +66,8 @@ API: Ui.java
 
 API: `Parser.java`
 
-Inka's parser has a hierarchical design built on top of Apache Commons CLI which allows for parsing of flags in any order. Modularity also allows for new commands to be easily added.
+Inka's parser has a hierarchical design built on top of Apache Commons CLI which allows for parsing of flags in any
+order. Modularity also allows for new commands to be easily added.
 
 ![Parser Class](img/ParserClass.svg)
 
@@ -82,18 +82,20 @@ For example, a command such as `card add -q QN -a ANS` would be broken down as:
 - Keyword: `card`
 - Action: `add`
 - Flags
-  - `-q`: Question text
-  - `-a`: Answer text
+    - `-q`: Question text
+    - `-a`: Answer text
 
 When the user's input is passed to `Parser`:
 
 1. User input is split into a series of _tokens_
 2. `Parser` looks at the keyword token and dispatches the appropriate `KeywordParser`
-3. `KeywordParser` looks at the action token and calls `OptionBuilder` to create an `Options` object for the flags it expects
+3. `KeywordParser` looks at the action token and calls `OptionBuilder` to create an `Options` object for the flags it
+   expects
 4. Apache Commons CLI Parser is called with `Options`
 5. The Apache Parser returns the arguments of the flags
 6. The respective `Command` is constructed and returned through the parser chain
-7. The `Command` is executed to modify state (`CardList`, `TagList` and `DeckList`), and may interact with the `UserInterface` and `Storage` objects to print output or save the program state respectively.
+7. The `Command` is executed to modify state (`CardList`, `TagList` and `DeckList`), and may interact with
+   the `UserInterface` and `Storage` objects to print output or save the program state respectively.
 
 The following is the sequence diagram for parsing `card add -q QN -a ANS`:
 ![Parser Sequence Diagram](img/ParserSequence.svg)
@@ -108,7 +110,16 @@ API: CardList.java
 
 ### TagList Component
 
-API: TagList.java
+API: `TagList.java`
+
+Inka's TagList Component stores a list of `Tag` as tags. Each `Tag` contains its own uuid, which is auto generated in
+the constructor of `Tag`, as well as the cards and decks that it
+is associated with in the form of `CardUUID` and `DeckUUID`. All `CardUUID`, `TagUUID`, and `DeckUUID` inherit
+from `InkaUUID` as they all
+share the same methods and implementations.
+
+The following describes the class diagram for TagList Component :
+![TagList Class Diagram](img/TagListClass.svg)
 
 ## Implementation
 
@@ -131,8 +142,10 @@ The implementation of the features are shown below:
 
 - Adding a card
 
-1. When the user enters `card add -q ... -a ...`, the input is passed to `Parser` class which calls `Parser#parseCommand()`.
-2. The parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on the user inputs excluding the "card" keyword.
+1. When the user enters `card add -q ... -a ...`, the input is passed to `Parser` class which
+   calls `Parser#parseCommand()`.
+2. The parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on the user inputs excluding the "
+   card" keyword.
 3. The `Parser#CardKeywordParser()` uses the Apache Commons CLI library to parse the remaining user input.
 
 The sequence diagram below shows how this feature works:
@@ -140,7 +153,34 @@ The sequence diagram below shows how this feature works:
 
 ### Tag Feature
 
-### Export Feature
+Tag Feature currently supports the following functionalities :
+
+- add a tag to a card
+- delete a tag from the tagList and all the associated cards
+- list all the existing tags in the tagList
+- list all the cards under a tag
+- edit the tag name
+
+The implementation of the ***add a tag to a card*** feature is as follows :
+
+- When the user enters `card tag -c {cardUUID} -t {tagName}`, the input is passed to `CardKeywordParser` class which
+  calls `HandleTag()` method and returns a `addCardToTagCommand`. The sequence diagram for this section has been
+  shown [above](#parser-component).
+- This `AddCardToTagCommand` will first find the card to which the tag should be added to by calling
+  the `CardList#findCard()` which will in turn call the `CardSelector#getIndex()`
+  and `CardSelector#getUUID()`. `CardSelector` will then return the `cardToAdd` to `CardList` and
+  to `AddCardToTagCommand`.
+- After finding the card on which to add the tag, `AddCardToTagCommand` will check if the tag has already existed by
+  calling `TagList#findTagFromName` which will return a `tagToAdd`. If the `tagToAdd` currently does not
+  exist, `AddCardToTagCommand` will then create a new `Tag` and add it to `TagList` by
+  calling `TagList#addCard(tagToAdd)`. If it already exists, it will just use the
+  existing `tagToAdd`.
+- Once the `tagToAdd` and `cardToAdd` are ready, `AddCardToTagCommand` will then call `Card#getUUID()` and add the
+  returned `cardUUID` into `tagToAdd` by calling `Tag#addCard(cardUUID)`.
+- Similarly, `AddCardToTagCommand` will also call `Tag#getUUID()` and add the returned `tagUUID` into `cardToAdd` by
+  calling `Card#addTag(tagUUID)`.
+
+![Tag feature](img/TagListSequence.png)
 
 ### Deck Feature
 
@@ -158,12 +198,14 @@ The sequence diagram below shows how this feature works:
 
 ### Value proposition
 
-User will be able to revise while coding or using the terminal so they don&#39;t have to switch between apps. This will maximize their productivity and refresh their memory instantly whenever they want to recall some topics suddenly appear on their mind.
+User will be able to revise while coding or using the terminal so they don&#39;t have to switch between apps. This will
+maximize their productivity and refresh their memory instantly whenever they want to recall some topics suddenly appear
+on their mind.
 
 ### User Stories
 
 | Version | As a ... | I want to ...                                   | So that I could ...                                              |
-| ------- | -------- | ----------------------------------------------- | ---------------------------------------------------------------- |
+|---------|----------|-------------------------------------------------|------------------------------------------------------------------|
 | v1.0    | new user | add a card containing the questions and answers | store the question in the system for later revision              |
 | v1.0    | new user | see a list of all cards                         | I can see what are all the cards I have regardless of their tags |
 | v1.0    | new user | delete some cards                               | I can remove unwanted cards                                      |
