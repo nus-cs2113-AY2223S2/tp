@@ -21,7 +21,7 @@ public class ParseMark {
             int posToMark = Integer.parseInt(details) - ExpenditureList.LIST_OFFSET;
             return new MarkCommand(posToMark);
         } catch (NumberFormatException numberFormatException) {
-            return new InvalidCommand("Invalid");
+            return new InvalidCommand("Index to be marked must be an integer and within bounds! Please try again");
         } catch (StringIndexOutOfBoundsException | EmptyStringException s) {
             return new InvalidCommand(s.getMessage());
         }
@@ -33,7 +33,7 @@ public class ParseMark {
             int posToUnMark = Integer.parseInt(details) - ExpenditureList.LIST_OFFSET;
             return new UnmarkCommand(posToUnMark);
         } catch (NumberFormatException numberFormatException) {
-            return new InvalidCommand("Invalid");
+            return new InvalidCommand("Index to be unmarked must be an integer and within bounds! Please try again");
         } catch (StringIndexOutOfBoundsException | EmptyStringException s) {
             return new InvalidCommand(s.getMessage());
         }
