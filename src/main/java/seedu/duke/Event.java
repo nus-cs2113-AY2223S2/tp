@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 // import java.util.ArrayList;
 
 public class Event extends Schedule {
-
+    private boolean isModule;
     private String description;
 
     public Event(String eventDescription, LocalDateTime start, LocalDateTime end, boolean hasSt,

@@ -108,7 +108,7 @@ public class Ui {
     }
 
     /**
-     * Prints list of events
+     cc* Prints list of events
      * @param eventList Array List containing events to be printed to user
      */
     public static void listTask(ArrayList<Schedule> eventList) {
@@ -298,5 +298,12 @@ public class Ui {
         System.out.println("Semester saved!");
         printDash();
         System.out.println("Hello there! What can we do for you today?");
+    }
+
+    public static void printOverlapInfo(String info) {
+        printDash();
+        System.out.println("The current task clashes with this task: ");
+        System.out.println("    > "+info);
+        printDash();
     }
 }

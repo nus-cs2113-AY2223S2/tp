@@ -1,8 +1,17 @@
 package seedu.duke;
 
 import java.util.ArrayList;
+
+import seedu.duke.storage.EventListAdapter;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import static seedu.duke.Parser.SEMESTER_START_DATES;
+import static seedu.duke.Parser.SEMESTER_END_DATES;
+import static seedu.duke.UserUtility.getUser;
+
 
 public class EventList {
     private static final String DTINIT = "2000/01/01 01:01";
@@ -53,13 +62,11 @@ public class EventList {
     }
 
     /**
-     * For two addEvent funcs below: if user doesn't input endDay(which means there is also no endTime), 
-     * you can just call .addEvent(description, startTime, startDay) I also make the specific time(hh:mm) 
-     * optional, so if user doesn't input the specfic time, you can just pass an empty String to that param 
-     * and it will handle the rest things 
-     * e.g.addEvent(descrption, "", startDay, "", endDay) 
-     *     addEvent(descrption, "", startDay, endTime, endDay)
-     *     addEvent(descrption, "", startDay) so only startDay is strictly required. and the same for reviseTimeInfo()
+     * For two addEvent funcs below: if user doesn't input endDay(which means there is also no endTime), you can just call
+     * .addEvent(description, startTime, startDay) I also make the specific time(hh:mm) optional, so if user doesn't input
+     * the specfic time, you can just pass an empty String to that param and it will handle the rest things
+     * e.g.addEvent(descrption, "", startDay, "", endDay) addEvent(descrption, "", startDay, endTime, endDay)
+     * addEvent(descrption, "", startDay) so only startDay is strictly required. and the same for reviseTimeInfo()
      * 
      * @param time String representing Time to be converted to dateTime format in combinedTime. Format "HH:MM".
      * @param day String representing Date to be converted to dateTime format in combinedTime. Format "YYYY/MM/DD".
@@ -87,10 +94,60 @@ public class EventList {
         }
     }
 
-    // private boolean checkConfliction(String description, String startTime, S\
-    //tring startDay, String endTime, String endDay) {
-    //     return
-    // }
+    private boolean checkSingleOverlap(Event eventA, Event eventB) {
+        return ((eventA.getStartTime().isAfter(eventB.getStartTime()) && eventA.getStartTime().isBefore(eventB.getEndTime()))
+                ||(eventA.getEndTime().isAfter(eventB.getStartTime()) && eventA.getEndTime().isBefore(eventB.getEndTime())));
+    }
+
+    public boolean canAddNewEvent(Event newEvent) {
+        boolean isOverlap = false;
+        for (int i =0; i< listSize; i++) {
+            if (!taskList.get(i).isRecurring()) {
+                if(!(checkSingleOverlap(newEvent, taskList.get(i)) && checkSingleOverlap(taskList.get(i), newEvent))) {
+                    isOverlap = true;
+                    Ui.printOverlapInfo(taskList.get(i).toString());
+                    break;
+                }    
+            } else {
+                Boolean swapFlag = false;
+                Event eventA = (taskList.get(i) instanceof Event) ? taskList.get(i) : null;
+                Event eventB = newEvent;
+                if(eventA.getStartTime().isAfter(newEvent.getStartTime())) {
+                    Event tmp = eventA;
+                    eventA = eventB;
+                    eventB = tmp;
+                    swapFlag = true;
+                }
+                LocalDate semStart = SEMESTER_START_DATES.get(getUser().getSemester());
+                LocalDate semEnd = SEMESTER_END_DATES.get(getUser().getSemester());
+                LocalDate eventADate = eventA.getStartTime().toLocalDate();    
+                LocalDate eventBDate = eventB.getStartTime().toLocalDate();
+                
+                int minKa = eventADate.isBefore(semStart) ? 0 : (eventADate.toEpochDay() - semStart.toEpochDay()) / eventA.getActualInterval();
+                int maxKa = eventADate.isAfter(semEnd) ? 0 : (semEnd.toEpochDay() - eventADate.toEpochDay()) / eventA.getActualInterval();
+                int minKb = eventBDate.isBefore(semStart) ? 0 : (eventBDate.toEpochDay() - semStart.toEpochDay()) / eventB.getActualInterval();
+                int maxKb = eventBDate.isAfter(semEnd) ? 0 : (semEnd.toEpochDay() - eventBDate.toEpochDay()) / eventB.getActualInterval();
+                
+                if(maxKa != 0 && minKb != 0) {
+                    for(int j = minKa; j<= maxKa; i++) {
+                        for (int k = minKb; k <= maxKb; k++) {
+                            Schedule curA = new Schedule(eventA.getStartTime().plusDays(eventA.getActualInterval()*j),
+                                    eventA.getEndTime().plusDays(eventA.getActualInterval()*j, true, true));
+                            Schedule curB = new Schedule(eventB.getStartTime().plusDays(eventB.getActualInterval()*k),
+                                    eventB.getEndTime().plusDays(eventB.getActualInterval()*k, true, true));
+                        
+                            if((checkSingleOverlap(curA, curB) && checkSingleOverlap(curB, curA))) {
+                                isOverlap = true;
+                                Ui.printOverlapInfo(curB.toString()); 
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return !isOverlap;
+    }
 
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay)
             throws NPExceptions {
@@ -100,11 +157,9 @@ public class EventList {
         Event newEvent =
                 new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
 
-        // if (!canAddNewEvent(newEvent)) {
-        // throw new NPExceptions(
-        // "Slot " + startTime + " - " + endTime + " on " +
-        // startDay + " is already occupied. You can't attend this class.");
-        // }
+        if (!canAddNewEvent(newEvent)) {
+        throw new NPExceptions("Events/classes conflition!");
+        }
 
         taskList.add(newEvent);
         listSize++;
@@ -203,18 +258,6 @@ public class EventList {
             this.listSize = 0;
             Ui.deleteAllSuccess();
         }
-    }
-
-    public boolean canAddNewEvent(Event newEvent) {
-        boolean isOverlap = false;
-        for (Schedule event : taskList) {
-            if (newEvent.getStartTime().isBefore(event.getEndTime())
-                    && newEvent.getEndTime().isAfter(event.getStartTime())) {
-                isOverlap = true;
-                break;
-            }
-        }
-        return !isOverlap;
     }
 }
 

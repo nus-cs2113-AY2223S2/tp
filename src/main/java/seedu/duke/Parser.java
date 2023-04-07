@@ -14,6 +14,11 @@ import java.util.logging.Level;
 public class Parser {
     public static final Map<Integer, LocalDate> SEMESTER_START_DATES = Map.of(1, LocalDate.of(2022, 8, 8), 2,
             LocalDate.of(2023, 1, 9), 3, LocalDate.of(2023, 5, 8), 4, LocalDate.of(2023, 6, 19));
+
+    public static final Map<Integer, LocalDate> SEMESTER_END_DATES = Map.of(1, LocalDate.of(2022, 12, 3), 2,
+            LocalDate.of(2023, 5, 6), 3, LocalDate.of(2023, 6, 17), 4, LocalDate.of(2023, 7, 29));
+
+    
     private static final int OFFSET = 1;
     private static final JsonNusModuleLoader converter = new JsonNusModuleLoader();
     private final Ui ui;
@@ -96,7 +101,6 @@ public class Parser {
 
     private static boolean extractFields(boolean[] duplicity, String[] information, String[] details,
             boolean isModuleFlag) throws NPExceptions {
-
 
         for (int i = 1; i < details.length; i++) {
             String field = details[i].substring(0, 2).trim();
