@@ -2,6 +2,9 @@
 'https://plantuml.com/class-diagram
 skinparam classAttributeIconSize 0
 
+Apollo --> Parser : interprets \ncommands for <
+Storage --> Parser : interprets locally \nsaved data for <
+
 class Parser {
 + COMMAND_EXIT_WORD: String
 + getCommand(userCommand: String, ui: Ui, size: int, moduleData: ModuleList): Command
