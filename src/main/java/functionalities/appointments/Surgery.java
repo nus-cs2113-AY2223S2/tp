@@ -16,7 +16,7 @@ import java.time.LocalTime;
 public class Surgery extends Appointment {
 
     public enum PriorityLevel {
-        HIGH, MEDIUM, LOW, NA
+        HIGH, MEDIUM, LOW
     }
 
     protected PriorityLevel priority;
@@ -64,10 +64,6 @@ public class Surgery extends Appointment {
 
     public LocalTime getStartTime() {
         return startTime;
-    }
-
-    public PriorityLevel getPriority() {
-        return priority;
     }
 
     public LocalDate getEndDate() {
