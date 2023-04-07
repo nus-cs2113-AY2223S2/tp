@@ -62,6 +62,20 @@ public class Storage {
             parsePetFile(data);
         } catch (IOException e) {
             ui.printFileIOErrorMessage();
+        } catch (NumberFormatException e) {
+            ui.printFileNonIntegerMessage();
+        } catch (NonPositiveIntegerException e) {
+            ui.printFileIntegerNotPositiveMessage();
+        } catch (InvalidStatException e) {
+            ui.printFileInvalidStatMessage();
+        } catch (PetNotFoundException e) {
+            ui.printFilePetNotFoundMessage();
+        } catch (EmptyPetNameException e) {
+            ui.printFilePetNameEmptyMessage();
+        } catch (DuplicatePetException e) {
+            ui.printFileDuplicatePetMessage();
+        } catch (InvalidSeparatorException e) {
+            ui.printPetFileInvalidSeparatorMessage();
         }
     }
 
@@ -156,42 +170,27 @@ public class Storage {
         return data;
     }
 
-    private void parsePetFile(ArrayList<String> data) {
+    private void parsePetFile(ArrayList<String> data) throws NumberFormatException, NonPositiveIntegerException,
+            InvalidStatException, PetNotFoundException, EmptyPetNameException, DuplicatePetException,
+            InvalidSeparatorException {
         for (String line : data) {
-            try {
-                validatePetDataSep(line);
-                String petName = getPetName(line);
-                String petType = getPetType(line);
-                String age = getAge(line);
-                String weight = getWeight(line);
+            validatePetDataSep(line);
+            String petName = getPetName(line);
+            String petType = getPetType(line);
+            String age = getAge(line);
+            String weight = getWeight(line);
 
-                PetList.addPet(petName);
-                if (!petType.equals("")) {
-                    PetList.addStat(petName, "type", petType);
-                }
+            PetList.addPet(petName);
+            if (!petType.equals("")) {
+                PetList.addStat(petName, "type", petType);
+            }
 
+            if (!age.equals("")) {
+                PetList.addStat(petName, "age", age);
+            }
 
-                if (!age.equals("")) {
-                    PetList.addStat(petName, "age", age);
-                }
-
-                if (!weight.equals("")) {
-                    PetList.addStat(petName, "weight", weight);
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Output File has non-integer values for age/weight");
-            } catch (NonPositiveIntegerException e) {
-                System.out.println("Output File has non-positive values for age/weight");
-            } catch (InvalidStatException e) {
-                System.out.println("Output File has invalid Stats");
-            } catch (PetNotFoundException e) {
-                System.out.println("Stat belongs to a pet that does not exist");
-            } catch (EmptyPetNameException e) {
-                System.out.println("Pet name in file is empty");
-            } catch (DuplicatePetException e) {
-                System.out.println("File contains duplicate pet names");
-            } catch (InvalidSeparatorException e) {
-                System.out.println("Output File contains invalid separator/invalid number of separator");
+            if (!weight.equals("")) {
+                PetList.addStat(petName, "weight", weight);
             }
         }
     }
