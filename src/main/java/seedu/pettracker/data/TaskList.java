@@ -1,5 +1,6 @@
 package seedu.pettracker.data;
 
+import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 
@@ -28,7 +29,10 @@ public class TaskList {
         numberOfTasks += 1;
     }
 
-    public static void addTask(String todoDescription) {
+    public static void addTask(String todoDescription) throws EmptyArgException {
+        if (todoDescription == null) {
+            throw new EmptyArgException("Todo description cannot be empty");
+        }
         Task newTask = new Task(todoDescription, null);
         taskList.add(newTask);
         numberOfTasks += 1;

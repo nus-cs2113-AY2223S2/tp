@@ -14,6 +14,7 @@ import seedu.pettracker.commands.MarkTaskCommand;
 import seedu.pettracker.commands.UnMarkTaskCommand;
 import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
+import seedu.pettracker.exceptions.IllegalArgException;
 import seedu.pettracker.exceptions.UnknownKeywordException;
 
 
@@ -40,7 +41,7 @@ class CommandParserTest {
     @Test
     void parseListPetWithArgs() {
         CommandParser cp = new CommandParser();
-        assertAll(() -> assertTrue(cp.newCommand("list 1") instanceof ListPetCommand));
+        assertThrows(IllegalArgException.class, () -> cp.newCommand("list 1"));
     }
 
     @Test
