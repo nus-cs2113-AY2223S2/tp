@@ -3,7 +3,11 @@ package parser;
 import data.Account;
 import java.util.Scanner;
 
-import static common.MessageList.*;
+import static common.MessageList.COMMAND_LIST_MESSAGE;
+import static common.MessageList.MESSAGE_DIVIDER;
+import static common.MessageList.ACCOUNT_MESSAGE;
+import static common.MessageList.LOGOUT_MESSAGE;
+import static common.MessageList.EXIT_MESSAGE;
 import static data.Account.saveLogOut;
 import static data.ExpenseList.showToUser;
 
