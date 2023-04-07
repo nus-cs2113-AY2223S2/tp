@@ -1,5 +1,6 @@
 package seedu.moneymind.command;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -238,6 +239,7 @@ public class Parser {
         if (separatedKeywordAndDescription.length < 2) {
             throw new InvalidCommandException(NO_SEARCH_KEYWORD_MESSAGE);
         }
+
         return new SearchCommand(separatedKeywordAndDescription[1]);
     }
 }
