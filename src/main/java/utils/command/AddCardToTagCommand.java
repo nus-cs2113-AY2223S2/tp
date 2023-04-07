@@ -15,7 +15,6 @@ import utils.exceptions.CardInTagException;
 import utils.exceptions.InkaException;
 import utils.exceptions.TagNotFoundException;
 import utils.exceptions.UUIDWrongFormatException;
-import utils.exceptions.WrongTagCreation;
 import utils.storage.IDataStorage;
 
 public class AddCardToTagCommand extends Command {
@@ -39,21 +38,15 @@ public class AddCardToTagCommand extends Command {
      * @param ui        The userInterface to print the success of the tag creation
      */
     private void addCardToTag(TagList tagList, Card cardToAdd, UserInterface ui)
-            throws CardInTagException, TagNotFoundException, WrongTagCreation {
+            throws CardInTagException, TagNotFoundException {
         //find the corresponding Tag and Card based on its tagName and card uuid
         Tag tagToAdd = tagList.findTag(tagSelector);
-        Optional<TagUUID> uuid = tagSelector.getUuid();
         Optional<String> tagName = tagSelector.getTagName();
 
         if (tagToAdd == null) {
-            if (uuid.isPresent()) {
-                // Can not create new tag with index or uuid
-                throw new WrongTagCreation();
-            } else {
-                ui.printTagCreationSuccess(tagName.get());
-                tagToAdd = new Tag(tagName.get(), cardToAdd.getUuid());
-                tagList.addTag(tagToAdd);
-            }
+            ui.printTagCreationSuccess(tagName.get());
+            tagToAdd = new Tag(tagName.get(), cardToAdd.getUuid());
+            tagList.addTag(tagToAdd);
         } else if (tagToAdd.cardIsInTag(cardToAdd.getUuid())) {
             throw new CardInTagException();
         }

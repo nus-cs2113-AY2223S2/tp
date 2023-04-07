@@ -40,12 +40,7 @@ public class Deck {
         return deckName;
     }
     public boolean cardIsInDeck(CardUUID cardUUID) {
-        for(CardUUID cardUUIDHolder : cards) {
-            if(cardUUIDHolder.equals(cardUUID)) {
-                return true;
-            }
-        }
-        return false;
+        return cardsSet.contains(cardUUID);
     }
 
     public boolean tagIsInDeck(TagUUID tagUUID) {

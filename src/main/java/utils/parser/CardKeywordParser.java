@@ -40,9 +40,9 @@ public class CardKeywordParser extends KeywordParser {
         case DECK_ACTION:
             return handleDeck(tokens);
         case HELP_ACTION:
-            return handleHelp();
+            return handleHelp(tokens);
         case LIST_ACTION:
-            return handleList();
+            return handleList(tokens);
         case TAG_ACTION:
             return handleTag(tokens);
         case VIEW_ACTION:
@@ -72,8 +72,11 @@ public class CardKeywordParser extends KeywordParser {
         return new DeleteCardCommand(cardSelector);
     }
 
-    //TODO: Fix issue here
-    private Command handleHelp() {
+    private Command handleHelp(List<String> tokens) throws  InvalidSyntaxException {
+        if (tokens.size() != 0) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options addOptions = new OptionsBuilder(CARD_MODEL, ADD_ACTION).buildOptions();
         Options deleteOptions = new OptionsBuilder(CARD_MODEL, DELETE_ACTION).buildOptions();
         Options tagOptions = new OptionsBuilder(CARD_MODEL, TAG_ACTION).buildOptions();
@@ -83,12 +86,17 @@ public class CardKeywordParser extends KeywordParser {
         String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, VIEW_ACTION, DECK_ACTION};
         String[] headerList = new String[]{"Adding cards", "Deleting cards",
             "List all cards", "Tagging cards", "View cards", "Adding cards to Deck"};
-        Options[] optionsList = {addOptions, deleteOptions, tagOptions, viewOptions, deckOptions};
+        Options[] optionsList = {addOptions, deleteOptions, new Options(), tagOptions, viewOptions, deckOptions};
         String helpMessage = formatHelpMessage("card", actionList, headerList, optionsList);
+
         return new PrintHelpCommand(helpMessage);
     }
 
-    private Command handleList() {
+    private Command handleList(List<String> tokens) throws InvalidSyntaxException {
+        if (tokens.size() != 0) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         return new ListCardCommand();
     }
 

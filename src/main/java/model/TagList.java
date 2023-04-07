@@ -35,8 +35,6 @@ public class TagList {
             } catch (IndexOutOfBoundsException e) {
                 throw new TagNotFoundException();
             }
-        } else if (tagSelector.getUuid().isPresent()) {
-            return findTagFromUUID(tagSelector.getUuid().get());
         } else if (tagSelector.getTagName().isPresent()) {
             return findTagFromName(tagSelector.getTagName().get());
         }
@@ -75,7 +73,6 @@ public class TagList {
 
     public void delete(TagSelector tagSelector) throws TagNotFoundException {
         Optional<Integer> index = tagSelector.getIndex();
-        Optional<TagUUID> uuid = tagSelector.getUuid();
         Optional<String> tagName = tagSelector.getTagName();
 
         if (index.isPresent()) {
@@ -85,13 +82,6 @@ public class TagList {
                 return;
             } catch (IndexOutOfBoundsException e) {
                 throw new TagNotFoundException();
-            }
-        } else if (uuid.isPresent()) {
-            for (int i = 0; i < tags.size(); i++) {
-                if (tags.get(i).getUUID().equals(uuid.get().uuid)) { 
-                    delete(i);
-                    return;
-                }
             }
         } else if (tagName.isPresent()) {
             for (int i = 0; i < tags.size(); i++) {
