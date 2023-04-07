@@ -225,7 +225,7 @@ public class Parser {
     /**
      * Method that selects which help command class to invoke
      *
-     * @param helpCommandName
+     * @param helpCommandName Name of specific help command
      * @return The appropriate HelpCommandClass child
      * @throws IllegalArgumentException If an unknown command is input by the user.
      */
@@ -300,9 +300,6 @@ public class Parser {
     }
 
 
-    private static Boolean isTwoWord(String[] split) {
-        return (split.length == 2);
-    }
 
     /**
      * Separates a Deadline's input data into its description, and due date.
