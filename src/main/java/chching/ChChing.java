@@ -10,9 +10,13 @@ import chching.record.IncomeList;
 import chching.record.Target;
 import chching.record.TargetStorage;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
@@ -23,10 +27,19 @@ public class ChChing {
     private static final  Logger logger = Logger.getLogger(ChChing.class.getName());
 
     static {
-        Handler handler = new ConsoleHandler();
-        handler.setLevel(Level.ALL);
-        logger.addHandler(handler);
+        LogManager.getLogManager().reset();
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.SEVERE);
+        logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
+        try {
+            new File("data/MainChChing.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/MainChChing.log");
+            fileHandler.setLevel(Level.FINE);
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
     }
     private Storage storage;
     private IncomeList incomes;
