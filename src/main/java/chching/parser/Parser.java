@@ -47,6 +47,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class Parser {
+    public static final String FIELD_DEMARCATION = " /";
     private static final Logger logger = Logger.getLogger(ChChing.class.getName());
 
     static {
@@ -64,8 +65,6 @@ public class Parser {
             logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }
-
-    public static final String FIELD_DEMARCATION = " /";
 
     /**
      * Method that parses command to the relevant classes to execute
