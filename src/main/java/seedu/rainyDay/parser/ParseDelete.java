@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class ParseDelete {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    public static Command parseDeleteStatement(String userInput) throws RainyDayException {
+    public Command parseDeleteStatement(String userInput) throws RainyDayException {
         String[] tokens = userInput.split("\\s+");
         if (tokens.length != 2) {
             logger.warning("invalid delete index from user");
