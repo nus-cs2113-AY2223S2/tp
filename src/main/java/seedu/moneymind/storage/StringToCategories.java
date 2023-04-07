@@ -46,9 +46,13 @@ public class StringToCategories {
      */
     private static Event loadEvent(String savedLine) throws IllegalArgumentException {
         String[] savedEvent = savedLine.split(STORAGE_NEXT_VARIABLE);
-        if (savedEvent.length == 3) {
-            return new Event(savedEvent[1], Integer.parseInt(savedEvent[2]));
-        } else if (savedEvent.length == 4) {
+        Boolean isOneTimeExpense = Boolean.parseBoolean(savedEvent[4]);
+        Event eventToBeAdded;
+        if (isOneTimeExpense) {
+            eventToBeAdded = new Event(savedEvent[1], Integer.parseInt(savedEvent[2]));
+            eventToBeAdded.setTime(savedEvent[3]);
+            return eventToBeAdded;
+        } else if (!isOneTimeExpense) {
             return new Event(savedEvent[1], Integer.parseInt(savedEvent[2]), updateDate(savedEvent[3]));
         } else {
             throw new IllegalArgumentException("Invalid event format in storage file.");
