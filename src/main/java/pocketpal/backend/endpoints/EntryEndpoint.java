@@ -1,5 +1,6 @@
 package pocketpal.backend.endpoints;
 
+import pocketpal.backend.constants.MiscellaneousConstants;
 import pocketpal.communication.Request;
 import pocketpal.communication.RequestParams;
 import pocketpal.communication.Response;
@@ -125,13 +126,26 @@ public class EntryEndpoint extends Endpoint {
         logger.info("/entry [POST]: request received");
         String json = request.getBody();
         Entry entry = EntryParser.deserialise(json);
+
+        // validate entry parameters
+        boolean isValidDescription = entry.getDescription() != null && !entry.getDescription().trim().isEmpty();
+        boolean isValidAmount = entry.getAmount() >= MiscellaneousConstants.AMOUNT_MIN_DOUBLE &&
+                entry.getAmount() <= MiscellaneousConstants.AMOUNT_MAX_DOUBLE;
+        if (!isValidDescription) {
+            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_INVALID_DESCRIPTION);
+        }
+        if (!isValidAmount) {
+            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, MessageConstants.MESSAGE_INVALID_AMOUNT);
+        }
+
         entries.addEntry(entry);
         logger.info("/entry [POST]: CREATED");
-        return new Response(ResponseStatus.CREATED, "");
+        return new Response(ResponseStatus.CREATED, entry.serialise());
     }
 
     /**
      * Utility method when user inputs invalid entry ID
+     *
      * @return Invalid ID Message
      */
     private String getInvalidIDMessage() {
