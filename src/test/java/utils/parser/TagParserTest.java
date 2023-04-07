@@ -18,6 +18,7 @@ import utils.command.EditTagNameCommand;
 import utils.command.ListCardsUnderTagCommand;
 import utils.command.ListTagsCommand;
 import utils.exceptions.InkaException;
+import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.TagNotFoundException;
 import utils.storage.FakeStorage;
 import utils.storage.Storage;
@@ -41,6 +42,14 @@ public class TagParserTest {
         storage = new FakeStorage();
         parser = new Parser();
         deckList = new DeckList();
+    }
+
+    @Test
+    public void parse_tagSelector() {
+        String[] testCases = {"tag delete -x", "tag delete -x test", "tag delete -t"};
+        for (String testCase : testCases) {
+            assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testCase), "Invalid syntax");
+        }
     }
 
     @Test
@@ -92,17 +101,6 @@ public class TagParserTest {
         tagList.addTag(new Tag("tagName", card.getUuid()));
 
         Command cmd = parser.parseCommand("tag delete --tagindex 1");
-        assert cmd instanceof DeleteTagCommand;
-        cmd.execute(cardList, tagList, deckList, ui, storage);
-        assert tagList.isEmpty();
-    }
-
-    @Test
-    public void parse_tag_deleteWithUUID() throws InkaException {
-        Tag tag = new Tag("tagName", "00000000-0000-0000-0000-000000000000");
-        tagList.addTag(tag);
-
-        Command cmd = parser.parseCommand("tag delete -t 00000000-0000-0000-0000-000000000000");
         assert cmd instanceof DeleteTagCommand;
         cmd.execute(cardList, tagList, deckList, ui, storage);
         assert tagList.isEmpty();

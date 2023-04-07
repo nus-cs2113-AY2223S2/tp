@@ -64,7 +64,7 @@ public class CardList {
      */
     public Card findCardFromUUID(CardUUID cardUUID) throws CardNotFoundException {
         for (Card card : cards) {
-            if (card.getUuid().equals(cardUUID.uuid)) {
+            if (card.getUuid().equals(cardUUID)) {
                 return card;
             }
         }
