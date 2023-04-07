@@ -29,9 +29,9 @@ Types of methods:
 2. Confirmation Messages: Messages shown to inform user that their desired action has been carried out
 3. Exception Messages: Messages shown to inform user of their invalid actions and its reasons
 
-Figure 1 below shows the class diagram of the `Ui` class.
+Figure 1 below shows the class diagram of the `Ui` class. There are no attributes for the `Ui` class.
 
-
+![img_3.png](img_3.png)
 
 Fig 1
 
