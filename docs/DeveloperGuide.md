@@ -373,38 +373,79 @@ The following are instructions for testers to manual test:
 - Alternatively, double click on the JAR file to run the app.
 #### Adding a record
 1. Adding an expenditure
-- Test case : `academic d/2023-02-02 a/25.10 s/NUS`
-- Expected : `Added academic expenditure: [Academic] || Date: 2 Feb 2023 || Value: 25.1 || Description: NUS`
-<br /> An expenditure of type : `academic` will be added if all inputs are added in the correct format. 
+
+Test Case 1:
+```
+academic d/2023-02-02 a/25.10 p/NUS
+```
+Expected:
+```
+Added academic expenditure: [Academic] || Date: 2 Feb 2023 || Value: 25.1 || Description: NUS
+```
+An expenditure of type : `academic` will be added if all inputs are added in the correct format. 
 <br /> Otherwise, error messages will be printed.
 
+Test Case 2:
+```
+food d/2023-03-03 a/5.30 p/Fish Soup
+```
+Expected:
+```
+Added food expenditure: [Food] || Date: 3 Mar 2023 || Value: 5.3 || Description: Fish Soup
+```
+An expenditure of type `food` will be added
 
-- Test case : `food d/2023-03-03 a/5.30 s/Fish Soup`
-- Expected : `Added food expenditure: [Food] || Date: 3 Mar 2023 || Value: 5.3 || Description: Fish Soup`
-<br /> An expenditure of type `food` will be added
+Test Case 3 (Wrong date-time input):
+```
+transport d/13-03-2023 a/2 p/Bus
+```
+Expected:
+```
+Date error! Please enter a single date in yyyy-mm-dd format!
+```
 
-
-- Test case : `transport d/13-03-2023 a/2 s/Bus`
-- Expected : A status message highlighting the wrong format for date will be indicated. No expenditure will
-be added. 
-
-
-- Test case : `transport d/2023-03-13 a/two dollars s/Bus`
-- Expected : Similar to previous, but with a different invalid message.
+Test Case 4 (Wrong input format):
+```
+transport d/2023-03-13 a/two dollars p/Bus
+```
+Expected:
+```
+The amount you provided is not in the right format! Please enter a single number value
+```
 
 2. Adding a lend/borrow spending
-- Test case : `lend d/2023-02-02 n/Bob a/25.10 b/2023-04-02 s/CS2113`
-- Expected : `Added lend expenditure: [Lend] || Lent to: Bob || Date: 2 Feb 2023 || Value: 25.1 || 
-Description: CS2113 || by: 2 Apr 2023`
-<br /> Similar to add an expenditure, adding a lend/borrow will add the expenditure to the list. 
+   
+Test Case 1:
+```
+lend d/2023-02-02 n/Bob a/25.10 b/2023-06-02 p/CS2113
+```
+Expected:
+```
+Added lend expenditure: [Lend] || Lent to: Bob || Date: 2 Feb 2023 || Value: 25.1 || Description: CS2113 || by: 2 Jun 2023
+```
+Similar to add an expenditure, adding a lend/borrow will add the expenditure to the list. 
 Details of all parameters will be shown to the user.
 
+Test Case 2:
+```
+borrow d/2023-02-02 n/Mandy a/25.10 b/2023-09-02 p/payment for notes
+```
+Expected:
+```
+Added borrow expenditure: [Borrow] || Borrowed from: Mandy || Date: 2 Feb 2023 || Value: 25.1 || Description: payment for notes || By: 2 Sep 2023
+```
+Similar to previous, but with a different expenditure type : `borrow`.
 
-- Test case : `borrow d/2023-02-02 n/Mandy a/25.10 b/2023-04-02 s/payment for notes`
-- Expected : `Added borrow expenditure: [Borrow] || Borrowed from: Mandy || Date: 2 Feb 2023 || Value: 25.1 
-|| Description: payment for notes || By: 2 Apr 2023`
-<br /> Similar to previous, but with a different expenditure type : `borrow`.
-
+Test Case 3 (Return date is earlier than current date):
+```
+borrow d/2023-02-02 n/Marco a/10.10 b/2023-03-03 p/bowling
+```
+Expected:
+```
+Return date must be after today's date! Today's date is 2023-04-07```
+```
+Today's date in the expected output will correspond to the day that the user is using MyLedger.
+In our example case, the day in which the user was attempting to add the `borrow` command was on 2023-04-07.
 #### Deleting an expenditure
 1. Deleting an expenditure from the list of inputs.
 - Prerequisite: There should be at least one expenditure in the list for `delete` to work. The list can be checked
