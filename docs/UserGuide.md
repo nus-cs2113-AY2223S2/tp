@@ -420,93 +420,42 @@ Format : `edit [INDEX] [FLAG] {NEWFIELD}`
     * `-date` to edit the date in `DD/MM/YYYY` format
     * `-in` to change direction to inflow
     * `-out` to change direction to outflow
-
 * No `NEWFIELD` required for changing direction
 
 Example of usage:
 
-After requesting to view the transactions from rainyDay, the following is shown to you:
+Suppose you realised you forgot to add the "Category" for entry 1 and you would like to place it under "Food and Drinks",
+you can use the following command: `edit 1 -c Food and Drinks`
 
-```
-> view
-+====================================================================================================+
-|Here is your financial report!                                                                      |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food                 |25/03/2023|
-|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
-|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
-|000004|Pay                                          | +$50000.00   |miscellaneous        |26/03/2023|
-|000005|Allowance                                    | +$20.00      |Allowance            |01/03/2023|
-|000006|Angpao                                       | +$2000.00    |Chinese New Year     |26/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
-|Total Inflow: $52020.00                                                                             |
-|Total Outflow: $539.00                                                                              |
-|Remaining value: $51481.00                                                                          |
-+====================================================================================================+
-```
+![editCategory.png](images/UserGuide/editCategory.png)
 
-Suppose you realised you made a mistake in the "category" portion of entry 1 and want to replace the "category" data
-with
-'Food and Drinks' instead of 'Food', you can use this command:
+and using the "view" command to verify the edits are accurate.
 
-`edit 1 -c Food and Drinks`
+![editCategoryView.png](images/UserGuide/editCategoryView.png)
 
-```
-> edit 1 -c Food and Drinks
-Done, edited entry 1 from the financial report
-> view
-+====================================================================================================+
-|Here is your financial report!                                                                      |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food and Drinks      |25/03/2023|
-|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
-|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
-|000004|Pay                                          | +$50000.00   |miscellaneous        |26/03/2023|
-|000005|Allowance                                    | +$20.00      |Allowance            |01/03/2023|
-|000006|Angpao                                       | +$2000.00    |Chinese New Year     |26/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
-|Total Inflow: $52020.00                                                                             |
-|Total Outflow: $539.00                                                                              |
-|Remaining value: $51481.00                                                                          |
-+====================================================================================================+
-```
+Perhaps you realised you made a mistake in the "Amount" for entry 2 and your allowance is $75 instead.
+You can use the following command:  `edit 2 -v $75`
 
-> 💡 Multiple flags may be used at once but must be in this order:
+![editValue.png](images/UserGuide/editValue.png)
+
+
+![editValueView.png](images/UserGuide/editValueView.png)
+
+
+What happens if you realised you made multiple mistakes in entry 3. Don't worry! You can edit multiple fields at the
+same time using multiple flags. However, do take note of the flag order as listed below.
+> ⚠️  Multiple flags may be used at once but must be in this order:
 >
 > `-in` or `out` -> `-d` -> `-v` -> `-c` -> `-date`
 
-Suppose you want to edit multiple fields of entry 2, instead of deleting and adding an entirely new entry, you can use
-the following command to update the required fields:
-`edit 2 -out -d Beef noodles $15 -c Food -date 22/03/2023`
+So instead of deleting and adding an entirely new entry, you can use the following command to update the required fields:
+`edit 3 -v $5000 -c Monthly Pay -date 01/04/2023`
 
-```
-> edit 2 -out -d Beef noodles $15 -c Food -date 22/03/2023
-Done, edited entry 2 from the financial report
-> view
-+====================================================================================================+
-|Here is your financial report!                                                                      |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food and Drinks      |25/03/2023|
-|000002|beef noodles                                 | -$12.00      |Food                 |22/03/2023|
-|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
-|000004|Pay                                          | +$50000.00   |miscellaneous        |26/03/2023|
-|000005|Allowance                                    | +$20.00      |Allowance            |01/03/2023|
-|000006|Angpao                                       | +$2000.00    |Chinese New Year     |26/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
-|Total Inflow: $52020.00                                                                             |
-|Total Outflow: $539.00                                                                              |
-|Remaining value: $51481.00                                                                          |
-+====================================================================================================+
-```
+![editMultipleEntries.png](images/UserGuide/editMultipleEntries.png)
+
+
+![editMultipleEntriesView.png](images/UserGuide/editMultipleEntriesView.png)
+
 
 [Jump back to features overview](#features-overview)
 
@@ -522,85 +471,39 @@ Format : `filter [FLAG] {FIELD}`
     * `-out` to filter by [outflows](#glossary)
     * `-d` to filter by description
     * `-c` to filter by category
-    * `-date` to filter by date
+    * `-date` to filter by a specific date or timespan
 * No `FIELD` is required when `-in` or `-out` flag is used
 * date `FIELD` must be in the form DD/MM/YYYY
+* For the `-date` flag, if one date `FIELD` is specified then it is for a specific date. If two date `FIELD` is present
+    then it filters by a range. An example is provided below.
 
 Example of usage:
 
-After requesting to view the transactions from rainyDay, the following is shown to you:
+Let's say you added a couple more entries. And using `view -all` provides you with this
 
-```
-> view
-+====================================================================================================+
-|Here is your financial report!                                                                      |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food                 |25/03/2023|
-|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
-|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
-|000004|Pay                                          | +$50000.00   |miscellaneous        |26/03/2023|
-|000005|Allowance                                    | +$20.00      |Allowance            |01/03/2023|
-|000006|Angpao                                       | +$2000.00    |Chinese New Year     |26/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
-|Total Inflow: $52020.00                                                                             |
-|Total Outflow: $539.00                                                                              |
-|Remaining value: $51481.00                                                                          |
-+====================================================================================================+
-```
+![filterViewAll.png](images/UserGuide/filterViewAll.png)
 
-Suppose you want to find out transactions with descriptions related to chicken, you can use this command:
+> 💡 Note the use of `view -all` instead of `view` as `view` only provides entries in the current month. 
 
-`filter -d chicken`
+Suppose you want to find out transactions that was labelled "Food and Drinks", you can use this command:
+`filter -c Food and Drinks`
 
-```
-> filter -d chicken
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Here is your filtered financial report!                                                             |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food                 |25/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-```
+![filterFood.png](images/UserGuide/filterFood.png)
 
-Suppose you want to check your outflows only, you can use this command:
+What happens if you want to filter to a specific set of transactions based on multiple types. We got you covered!
+But do take note of the order as listed below:
 
-`filter -out`
-
-```
-> filter -out
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Here is your filtered financial report!                                                             |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|chicken rice                                 | -$5.00       |Food                 |25/03/2023|
-|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
-|000003|Haidilao                                     | -$500.00     |miscellaneous        |22/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-```
-
-> 💡 Multiple flags may be used at once but must be in this order:
+> ⚠️ Multiple flags may be used at once but must be in this order:
 >
 > `-in` or `out` -> `-d` -> `-c` -> `-date`
 
-Suppose you want to find out what food you ate on a particular day, you can use this command:
+Suppose you want to find out what "Food and Drinks" you consumed you ate on a from 30 March 2023 to 7 April 2023, you 
+can use this command: `filter -c Food and Drinks -date 30/3/2023 7/4/2023`.
 
-`filter -c Food and Drinks -date 26/03/2023`
+> 💡 Note that the first date(eg. 30/3/2023) provided must be before the second date(eg. 7/4/2023) when you are 
+>  indicating a date range.
 
- ```
- > filter -c Food and Drinks -date 26/03/2023
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Here is your filtered financial report!                                                             |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000002|beef noodles                                 | -$12.00      |Food and Drinks      |26/03/2023|
-|000007|Fried chicken                                | -$22.00      |Food and Drinks      |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-```
+![filterMultipleFlags.png](images/UserGuide/filterMultipleFlags.png)
 
 [Jump back to features overview](#features-overview)
 
@@ -898,8 +801,7 @@ this, it is recommended keep an extra copy of the data somewhere else before you
 | Delete a transaction | `delete INDEX` <br><br> **Example:** <br> `delete 1` <br> `delete 2`                                                                                                                                                                                   |
 | View transactions    | `view TIMESPAN -sort`                                                                                                                                                                                                                                  |
 | Help                 | `help` or `help COMMAND`                                                                                                                                                                                                                               |
-| Filter transactions  | `filter FLAG FIELD` <br><br> **Example:** <br> `filter -d school` <br>`filter -date 22/03/2023`                                                                                                                                                        |
-| Edit transaction     | `edit INDEX FLAG NEWFIELD` or `edit INDEX FLAG` <br><br> **Example:** <br> `edit 1 -in Beef noodles $15 -c Food` <br> `edit -d school` <br> `edit -in`                                                                                                 |
+| Filter transactions  | `filter FLAG FIELD` <br><br> **Example:** <br> `filter -d school` <br>`filter -date 22/03/2023` <br> `filter -date 01/01/2023 18/03/2023`                                                                                                              |
 | Ignore transaction   | `ignore INDEX` <br><br> **Example:** <br> `ignore 1` <br> `ignore 2`                                                                                                                                                                                   |
 | Unignore transaction | `unignore INDEX` <br><br> **Example:** <br> `unignore 1` <br> `unignore 2`                                                                                                                                                                             |
 | Set Budget           | `setbudget VALUE`                                                                                                                                                                                                                                      |   
