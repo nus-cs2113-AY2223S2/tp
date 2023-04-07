@@ -28,9 +28,11 @@ public class SortCommandTest {
         testExpenditures.addExpenditure(
                 new TransportExpenditure("circle line", 2.10, LocalDate.parse("2023-03-22")));
         testExpenditures.addExpenditure(
-                new TuitionExpenditure("school", 8100, LocalDate.parse("2022-09-10")));
+                new TuitionExpenditure("school", 8100, LocalDate.parse("2022-09-10"),
+                        LocalDate.parse("2022-09-10")));
         testExpenditures.addExpenditure(
-                new AccommodationExpenditure("rc", 3000, LocalDate.parse("2021-12-30")));
+                new AccommodationExpenditure("rc", 3000, LocalDate.parse("2021-12-30"),
+                        LocalDate.parse("2021-12-30")));
         testExpenditures.addExpenditure(
                 new EntertainmentExpenditure("cod skins", 4.99, LocalDate.parse("2021-08-08")));
         testExpenditures.addExpenditure(

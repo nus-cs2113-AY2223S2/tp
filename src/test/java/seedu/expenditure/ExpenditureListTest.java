@@ -15,7 +15,7 @@ public class ExpenditureListTest {
         AcademicExpenditure testAcademicExpenditure = new AcademicExpenditure("Laptop",
                 1500.00, LocalDate.parse("2021-10-10"));
         TuitionExpenditure testTuitionExpenditure = new TuitionExpenditure("NUS Year 2 Semester 2",
-                8000.50, LocalDate.parse("2023-01-20"));
+                8000.50, LocalDate.parse("2023-01-20"), LocalDate.parse("2023-01-20"));
         BorrowExpenditure testBorrowExpenditure = new BorrowExpenditure("School Loan", "BankX",
                 8100.00, LocalDate.parse("2021-07-20"), LocalDate.parse("2025-05-30"));
         testExpenditures.addExpenditure(testAcademicExpenditure);

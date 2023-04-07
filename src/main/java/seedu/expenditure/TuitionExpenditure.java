@@ -7,12 +7,13 @@ public class TuitionExpenditure extends Expenditure {
     public static final String EXPENDITURE_TYPE = "Tu";
     public static String iconPaid = "[X]";
     public static String iconUnpaid = "[ ]";
-    
-    boolean isPaid;
+    private boolean isPaid;
+    private LocalDate repeatDate;
 
-    public TuitionExpenditure(String description, double value, LocalDate date) {
+    public TuitionExpenditure(String description, double value, LocalDate date, LocalDate repeatDate) {
         super(description, value, date);
-        isPaid = false;
+        resetPaid();
+        setRepeatDate(repeatDate);
     }
 
     public void setPaid() {
@@ -23,8 +24,68 @@ public class TuitionExpenditure extends Expenditure {
         isPaid = false;
     }
 
+    public void setRepeatDate(LocalDate repeatDate) {
+        this.repeatDate = repeatDate;
+    }
+
+
     public String getPaidIcon() {
         return (isPaid) ? iconPaid : iconUnpaid;
+    }
+
+    public void checkMark() {
+        LocalDate currentDate = LocalDate.now();
+        checkNextRepeatDate();
+        handleNextRepeat(currentDate);
+    }
+
+    public void checkNextRepeatDate() {
+        LocalDate firstDate = getDate();
+        if (firstDate.equals(repeatDate)) {
+            repeatDate = getRepeatDate();
+        }
+    }
+
+    public void handleNextRepeat(LocalDate currentDate) {
+        if (currentDate.equals(repeatDate) || currentDate.isAfter(repeatDate)) {
+            System.out.println("entered if");
+            isPaid = false;
+            repeatDate = getRepeatDate();
+        }
+    }
+
+    public LocalDate getRepeatDate() {
+        String stringNextYear = fetchNextYear();
+        String stringNextMonth = fetchMonth();
+        String stringNextDay = fetchDay();
+        String newDate = String.format("%s-%s-%s", stringNextYear, stringNextMonth, stringNextDay);
+        return LocalDate.parse(newDate);
+    }
+
+    public String fetchNextYear() {
+        // Repeats annually
+        final int incrementYear = 1;
+        int nextYear = repeatDate.getYear() + incrementYear;
+        return Integer.toString(nextYear);
+    }
+
+    public String fetchMonth() {
+        int nextMonth = repeatDate.getMonthValue();
+        final int doubleDigitMonth = 10;
+        if (nextMonth < doubleDigitMonth) {
+            return  "0" + nextMonth;
+        } else {
+            return Integer.toString(nextMonth);
+        }
+    }
+
+    public String fetchDay() {
+        int nextDay = repeatDate.getDayOfMonth();
+        final int doubleDigitDay = 10;
+        if (nextDay < doubleDigitDay) {
+            return "0" + nextDay;
+        }
+        return Integer.toString(nextDay);
     }
 
     @Override
@@ -49,6 +110,7 @@ public class TuitionExpenditure extends Expenditure {
                 "t/" + getDate() +
                 "p/" + getPaidIcon() +
                 "n/" + "None" +
-                "o/" + "None" + "\n";
+                "o/" + "None" +
+                "r/" + repeatDate + "\n";
     }
 }

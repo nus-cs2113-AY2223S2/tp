@@ -75,6 +75,7 @@ public class LendExpenditure extends Expenditure {
                 "t/" + getDate() +
                 "p/" + "None" +
                 "n/" + getLenderName() +
-                "o/" + getDeadline() + "\n";
+                "o/" + getDeadline() +
+                "r/" + "None" + "\n";
     }
 }
