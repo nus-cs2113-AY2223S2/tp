@@ -14,6 +14,7 @@ import seedu.pettracker.commands.MarkTaskCommand;
 import seedu.pettracker.commands.UnMarkTaskCommand;
 import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
+import seedu.pettracker.exceptions.IllegalArgException;
 import seedu.pettracker.exceptions.UnknownKeywordException;
 
 
@@ -24,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CommandParserTest {
 
+    // newCommand() non-parsed keywords
     @Test
     void parseExit() {
         CommandParser cp = new CommandParser();
@@ -40,7 +42,7 @@ class CommandParserTest {
     @Test
     void parseListPetWithArgs() {
         CommandParser cp = new CommandParser();
-        assertAll(() -> assertTrue(cp.newCommand("list 1") instanceof ListPetCommand));
+        assertThrows(IllegalArgException.class, () -> cp.newCommand("list 1"));
     }
 
     @Test
@@ -130,7 +132,7 @@ class CommandParserTest {
     @Test
     void parseListTasksWithArgs() {
         CommandParser cp = new CommandParser();
-        assertAll(() -> assertTrue(cp.newCommand("list-tasks 1") instanceof ListTasksCommand));
+        assertThrows(IllegalArgException.class, () -> cp.newCommand("list-tasks 1"));
     }
 
     @Test

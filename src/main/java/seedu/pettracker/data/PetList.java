@@ -115,10 +115,22 @@ public class PetList {
      */
     public static void list() {
         for (Pet pet : petList) {
+            String type = "-";
+            String age = "-";
+            String weight = "-";
+            if (!pet.getPetType().isEmpty()) {
+                type = pet.getPetType();
+            }
+            if (!pet.getAge().isEmpty()) {
+                age = pet.getAge();
+            }
+            if (!pet.getWeight().isEmpty()) {
+                weight = pet.getWeight();
+            }
             System.out.println("Name: " + pet.getPetName());
-            System.out.println("Type: " + pet.getPetType());
-            System.out.println("Age: " + pet.getAge());
-            System.out.println("Weight: " + pet.getWeight());
+            System.out.println("Type: " + type);
+            System.out.println("Age: " + age);
+            System.out.println("Weight: " + weight);
             System.out.println(LINE);
         }
         System.out.println("Number of pets: " + numberOfPets);

@@ -1,6 +1,7 @@
 package seedu.pettracker.data;
 
 import seedu.pettracker.exceptions.InvalidTaskNameException;
+import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 
@@ -33,9 +34,13 @@ public class TaskList {
         numberOfTasks += 1;
     }
 
-    public static void addTask(String todoDescription) throws InvalidTaskNameException {
+    public static void addTask(String todoDescription) throws InvalidTaskNameException, EmptyArgException {
         if (todoDescription.trim().contains("|")) {
             throw new InvalidTaskNameException();
+        }
+
+        if (todoDescription == null) {
+            throw new EmptyArgException("Todo description cannot be empty");
         }
 
         Task newTask = new Task(todoDescription, null);

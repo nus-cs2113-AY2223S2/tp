@@ -4,8 +4,6 @@ import seedu.pettracker.data.Pet;
 import seedu.pettracker.data.PetList;
 import seedu.pettracker.data.Task;
 import seedu.pettracker.data.TaskList;
-import seedu.pettracker.exceptions.DuplicatePetException;
-import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.exceptions.EmptyTaskNameException;
 import seedu.pettracker.exceptions.InvalidMarkTaskSymbolException;
 import seedu.pettracker.exceptions.InvalidPetNameException;
@@ -14,6 +12,9 @@ import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.InvalidTaskNameException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
+import seedu.pettracker.exceptions.EmptyPetNameException;
+import seedu.pettracker.exceptions.DuplicatePetException;
+import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.ui.Ui;
 
 import java.io.File;
@@ -217,6 +218,11 @@ public class Storage {
                 validateTaskDataSep(line);
                 LocalDate deadline = getDeadline(line);
                 String taskName = getTaskName(line);
+                try {
+                    TaskList.addTask(taskName);
+                } catch (EmptyArgException x) {
+                    System.out.println("A task in output file has empty description");
+                }
                 String taskStatus = getTaskStatus(line);
 
                 TaskList.addTask(taskName, deadline);
@@ -225,13 +231,17 @@ public class Storage {
                     TaskList.markTask(taskNumber, true);
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                parseTaskWithoutDeadline(line);
+                try {
+                    parseTaskWithoutDeadline(line);
+                } catch (EmptyArgException x) {
+                    System.out.println("A task in output file has empty description");
+                }
             }
         }
     }
 
     private void parseTaskWithoutDeadline(String line) throws EmptyTaskNameException,
-            InvalidMarkTaskSymbolException, InvalidTaskNameException {
+            InvalidMarkTaskSymbolException, InvalidTaskNameException, EmptyArgException {
         String taskName = getTaskName(line);
         String taskStatus = getTaskStatus(line);
 
