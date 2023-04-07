@@ -6,8 +6,65 @@
 - [NUS SC2113 tp](https://github.com/nus-cs2113-AY2223S2)
 
 
-## Design & implementation
+## Design & Implementation for Access Commands 
+Access commands (those related to accounts) will be fetched by the `getUserCommand()` method in the *TextUi* class.
+These commands will be parsed using `parseAccessCommand()` method in the *AccessCommandParser* class and parse to 
+the respective command classes. The command classes will be responsible for executing the relevant features.
 
+Access commands will return an AccessResponse object after executing, which contains a User object and a message. 
+The User object will be null if log in/sign up is not successfully, and will return the signed-in 
+User object if log in / sign up is successful. The accompanied message will display related message to the user.
+
+Null User will be returned regardless of the result of changing password, but the message will be different depends 
+on the result.
+
+User data are stored in a hashmap mapping from unique usernames to *User* objects. *User* stores person information 
+as well as username and hash code of the password. Passwords are not explicit stored for security reasons.
+
+The user can only execute user commands such as history, borrow after successfully logged in to the system, and they 
+need to log out before exiting the application.
+
+### Log in 
+Description: Log in to the account using saved username and password
+
+Format: `login -username USERNAME -password PASSWORD`  
+
+Example: 
+- `login -username me -password mypassword`  
+
+For successful logging in, the application will print a welcome message and allow the user to execute user commands 
+such as borrowing and returning books. Only exact match will be allowed.
+
+If the logging in is unsuccessful, the application will wait for the next access command(login again or signup).
+
+### Sign up
+Description: For users who do not have an account in the system, they need to sign up their account with a unique 
+username, a password and a name. The username and password can only contain letters and numbers, but name can 
+contain spaces.
+
+Format: `signup -username USERNAME -password PASSWORD -NAME FULL_NAME`
+
+Example:
+- `signup -username me -password apassword -name my name`
+
+If the username is unique in the database and password is valid, the user has created account successfully. But if 
+the username is already in the database or the username/password contains invalid characters (e.g. '$', '^'), the 
+signing up will be unsuccessful.
+
+### Change Password
+Description: For existing users who want to change their passwords, they can change it with their username, old 
+password and new password.
+
+Format: `password -username USERNAME -old OLD_PASSWORD -new NEW_PASSWORD`
+
+Examples:
+- `password -username joe123 -old 123456 -new 654321`
+
+The password changing is successful only if the username exist in the database, the old password match with the 
+username, and new password is valid (does not contain invalid characters).
+
+
+## Design & Implementation for Users Commands
 All commands will be fetched by the getUserCommand() method in the TextUi class. The parseCommand() method in the Parser class will then parse the command and pass it to the respective command classes. The command classes will be responsible for executing the relevant features.
 
 
