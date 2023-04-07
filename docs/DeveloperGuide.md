@@ -90,9 +90,11 @@ How the parsing works:
   `ParseIndividualValue` class will be called to parse all the input fields by the user.
 
 The following shows the UML diagram used for the parser component implemented in MyLedger.
+To reduce complexity of the sequence diagram, only commands `exit`, `lend` and `borrow` 
+will be displayed
 
 <p align="center">
-    <img src="team/images/parserOverview.png">
+    <img src="team/images/simplifiedParserOverview.png">
     <br/>
     <i>Figure 2: UML diagram for the parser component</i>
 </p>
