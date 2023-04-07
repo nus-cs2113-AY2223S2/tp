@@ -14,11 +14,11 @@ import java.time.LocalTime;
  */
 public class Surgery extends Appointment {
 
-    public enum priorityLevel {
+    public enum PriorityLevel {
         HIGH, MEDIUM, LOW, NA
     }
 
-    protected priorityLevel priority;
+    protected PriorityLevel priority;
     protected LocalDate startDate;
     protected LocalTime startTime;
     protected LocalDate endDate;
@@ -40,17 +40,37 @@ public class Surgery extends Appointment {
         this.endTime = endTime;
     }
 
-    public priorityLevel setPriority(String priority) {
+    public PriorityLevel setPriority(String priority) {
         switch (priority) {
         case "H":
-            return priorityLevel.HIGH;
+            return PriorityLevel.HIGH;
         case "M":
-            return priorityLevel.MEDIUM;
+            return PriorityLevel.MEDIUM;
         case "L":
-            return priorityLevel.LOW;
+            return PriorityLevel.LOW;
         default:
-            return priorityLevel.NA;
+            return PriorityLevel.NA;
         }
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public PriorityLevel getPriority() {
+        return priority;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
     }
 
     @Override

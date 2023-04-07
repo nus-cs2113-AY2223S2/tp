@@ -4,7 +4,6 @@ import exception.SniffException;
 import functionalities.Animal;
 import functionalities.Owner;
 import functionalities.SniffTasks;
-import functionalities.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -28,6 +27,5 @@ public class ConsulationCommand extends Command {
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
         tasks.addConsultation(animal, owner, date, time);
-        Ui.showUserMessage(" Consultation added successfully!");
     }
 }

@@ -33,7 +33,7 @@ public class Parser {
         } else if (task.toLowerCase().startsWith("find")) {
             parseFindCommand(task);
         } else if (task.toLowerCase().startsWith("list")) {
-            parseListCommand();
+            parseListCommand(task);
         } else if (task.toLowerCase().startsWith("remove")) {
             parseRemoveCommand(task);
         } else if (task.toLowerCase().startsWith("mark")) {
@@ -167,8 +167,13 @@ public class Parser {
         }
     }
 
-    private static void parseListCommand() {
-        command = new ListCommand();
+    private static void parseListCommand(String task) throws SniffException {
+        if (task.equals("list")) {
+            command = new ListCommand();
+        } else {
+            throw new SniffException(" Not a recognized Sniff command!");
+        }
+
     }
 
     private static void parseRemoveCommand(String task) throws SniffException {

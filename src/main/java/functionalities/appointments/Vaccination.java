@@ -35,9 +35,21 @@ public class Vaccination extends Appointment {
                 + " Owner Name: " + owner.toString();
     }
 
+    public String getVaccine() {
+        return vaccine;
+    }
+
     @Override
     public String getDescription() {
         return description;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public LocalTime getTime() {
+        return time;
     }
 
     @Override

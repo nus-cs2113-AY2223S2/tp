@@ -4,7 +4,6 @@ import exception.SniffException;
 import functionalities.Animal;
 import functionalities.Owner;
 import functionalities.SniffTasks;
-import functionalities.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -34,6 +33,5 @@ public class SurgeryCommand extends Command {
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
         tasks.addSurgery(animal, owner, priority, startDate, startTime, endDate, endTime);
-        Ui.showUserMessage(" Surgery added successfully!");
     }
 }

@@ -9,10 +9,10 @@ import functionalities.SniffTasks;
 
 public class Sniff {
     private static SniffTasks tasks;
-    private static Ui UI;
+    private static Ui ui;
 
     public Sniff() {
-        UI = new Ui();
+        ui = new Ui();
         tasks = new SniffTasks();
     }
 
@@ -21,19 +21,19 @@ public class Sniff {
         try {
             Storage.openFile(absolutePath);
         } catch (SniffException file) {
-            UI.showErrorMessage();
+            ui.showErrorMessage();
         }
-        UI.showWelcomeMessage();
+        ui.showWelcomeMessage();
         boolean isExit = false;
         while (!isExit) {
             try {
-                String fullCommand = UI.readUserCommand();
+                String fullCommand = ui.readUserCommand();
                 Ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.executeCommand(tasks);
                 isExit = c.isExit();
             } catch (SniffException e) {
-                UI.showErrorMessage();
+                ui.showErrorMessage();
             } finally {
                 Storage.saveAppointments(absolutePath);
                 Ui.showLine();
