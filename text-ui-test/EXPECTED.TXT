@@ -101,7 +101,7 @@ Welcome to Meal360, your ultimate Recipe Manager!
 ----------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------
 | Saving recipes...                                                                                |
-| Database saved successfully.                                                                     |
+| Recipes saved successfully.                                                                      |
 | Saving weekly plan...                                                                            |
 | Weekly plan saved successfully.                                                                  |
 | Saving ingredients...                                                                            |

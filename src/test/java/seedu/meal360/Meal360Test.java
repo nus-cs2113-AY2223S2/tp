@@ -31,6 +31,7 @@ class Meal360Test {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
+    //@@author jaredoong
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
@@ -179,6 +180,7 @@ class Meal360Test {
         }
     }
 
+    //@@author
     @Test
     public void testDeleteRecipe() {
         HashMap<String, Integer> testIngredients = new HashMap<>();
@@ -195,6 +197,7 @@ class Meal360Test {
         assertEquals((oldRecipeListSize - 1), newRecipeListSize);
     }
 
+    //@@author jaredoong
     @Test
     public void testAddWeeklyPlan() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
@@ -795,6 +798,7 @@ class Meal360Test {
         }
     }
 
+    //@@author
     @Test
     public void testClearWeeklyPlan() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
@@ -821,6 +825,7 @@ class Meal360Test {
                 + ui.formatMessage("penne (1)"), outContent.toString().trim());
     }
 
+    //@@author jaredoong
     @Test
     public void testViewEmptyWeeklyPlan() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
@@ -838,6 +843,7 @@ class Meal360Test {
                         "salad x1"), outContent.toString().trim());
     }
 
+    //@@author
     @Test
     public void testListRecipe() {
         RecipeList recipeListToPrint;
@@ -993,6 +999,7 @@ class Meal360Test {
         assertNotNull(recipes.randomRecipe());
     }
 
+    //@@author jaredoong
     @Test
     public void testWeeklyDone() {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
@@ -1344,5 +1351,19 @@ class Meal360Test {
     @Test
     public void testLoadDatabase() {
         assertDoesNotThrow(database::loadRecipesDatabase);
+    }
+
+
+    @Test
+    public void testCombineWords(){
+        String[] input1 = {"One", "Two" , "Three"};
+        assertEquals("One Two Three", parser.combineWords(input1, 0, 3));
+
+        String[] input2 = {"Pizza  ", "Burger  " , "   Ice Cream"};
+        assertEquals("Pizza Burger Ice Cream", parser.combineWords(input2, 0, 3));
+
+        String[] input3 = {"1 1 1", "2  2  2" , "3   3   3"};
+        assertEquals("1 1 1 2  2  2 3   3   3", parser.combineWords(input3, 0, 3));
+
     }
 }

@@ -17,6 +17,12 @@
     * [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
     * [List Recipes Feature](#list-recipes-feature)
     * [Delete Recipes Feature](#delete-recipes-feature)
+    * [Add Ingredients Feature](#add-ingredients-feature)
+    * [Delete Ingredients Feature](#delete-ingredients-feature)
+    * [List Ingredients Feature](#list-ingredients-feature)
+    * [Edit Weekly Meal Plan Feature](#edit-weekly-meal-plan-feature)
+    * [List Weekly Plan Feature](#list-weekly-plan-feature)
+    * [Mark Recipe as Done Feature](#mark-recipe-as-done-feature)
 
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -25,6 +31,7 @@
     * [User Stories](#user-stories)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
+    * [Instructions for manual testing](#instructions-for-manual-testing)
 
 ---
 
@@ -63,13 +70,58 @@ sequence diagram below shows how the
 interaction described above:
 ![](../docs/UML/Architecture/ArchitectureExampleUML.png)
 
+Depending on whether the user input is to make changes to the recipes, ingredients, or weekly plan,
+the `Parser` component will call the `RecipeList`, `Ingredient`, and/or `WeeklyPlan` component
+respectively. The class diagrams below shows the subsystems for recipes, ingredients and weekly
+plan. For the class diagrams, `Meal360` and the `Ui` component are not shown for simplicity.
+Additionally, methods irrelevant to the subsystem shown are also omitted for simplicity.
+
+1. Recipe related
+   ![](../docs/UML/Architecture/RecipeRelated.png)
+
+2. Ingredient related
+   ![](../docs/UML/Architecture/IngredientRelated.png)
+
+3. WeeklyPlan related
+   ![](../docs/UML/Architecture/WeeklyPlanRelated.png)
+
+### Meal360 Component
+
+API: `Meal360.java`
+
+The `Meal360` component:
+
+* initializes the databases for the recipes, ingredients, and weekly plan upon program startup.
+* receives the user input once initialization is complete.
+* passes the user input to the `Parser` component.
+* receives the output from the `Parser` component and passes it to the `Ui` component to be
+  displayed
+  to the user.
+* saves the databases for the recipes, ingredients, and weekly plan upon receiving the `bye`
+  command.
+* terminates the program once the databases have been saved.
+
 ### UI Component
 
 API: `Ui.java`
 
+The `Ui` component:
+
+* displays the welcome message upon startup of the program.
+* formats all the output to be displayed to the user.
+* provides the user with information on whether command was executed successfully or not.
+* displays the error message if the command was not executed successfully.
+* displays the goodbye message upon receiving the `bye` command.
+
 ### Parser Component
 
 API: `Parser.java`
+
+The `Parser` component:
+
+* receives the user input from the `Meal360` component
+* interacts with the `RecipeList`, `WeeklyPlan`, and/or `Ingredient` components to execute the
+  commands.
 
 ### Recipe Component
 
@@ -129,12 +181,12 @@ API: `Database.java`
 
 The `Database` component:
 
-* stores the recipes in a local database in json format
+* stores the recipes, ingredients, and weeklyplan in a local database in json format
 * loads up automatically upon startup of program
 * saves automatically upon exit of program
 * comes with a default database of 10 recipes for new users
 
-How the `Database` component works at start up:
+How the `Database` component works at start up for the recipes:
 
 1. Upon starting up the program, the `Database` component will check for the existence of a
    database file in the local directory.
@@ -145,6 +197,9 @@ How the `Database` component works at start up:
 4. If the database file does not exist or if the file was empty, the `Database` component will
    create a new `RecipeList`
    with 10 default recipes and return this `RecipeList`.
+
+* The loading of the ingredients and weekly plan works in a similar manner, except that the default
+  ingredient list and weekly plan are empty.
 
 The activity diagram below shows how the `Database` component works at start up:
 ![](../docs/UML/Database/DatabaseStartupUML.png)
@@ -157,9 +212,15 @@ The activity diagram below shows how the `Database` component works at start up:
 
 * [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
 * [List Recipes Feature](#list-recipes-feature)
+* [Delete Recipes Feature](#delete-recipes-feature)
 * [Add Recipes Feature](#add-recipes-feature)
 * [Edit Recipes Feature](#edit-recipes-feature)
 * [Random a Recipe Feature](#random-a-recipe-feature)
+* [Add Ingredients Feature](#add-ingredients-feature)
+* [Delete Ingredients Feature](#delete-ingredients-feature)
+* [List Ingredients Feature](#list-ingredients-feature)
+* [Edit Weekly Meal Plan Feature](#edit-weekly-meal-plan-feature)
+* [Mark Recipe as Done Feature](#mark-recipe-as-done-feature)
 
 ### Categorise/Tag Recipes Feature
 
@@ -308,6 +369,154 @@ It is implemented through the following step:
 The sequence diagram below shows how this feature works:
 
 ![](../docs/UML/Implementation/RandomFunction/RandomFunction.png)
+
+### Add Ingredients Feature
+
+The current implementation:
+
+* allows for adding only 1 ingredient at a time.
+* ingredient needs to have its name, quantity and expiry date specified.
+
+It is implemented through the following steps:
+
+* When the user enters an input with the first word being `add_i`, the input is passed to
+  the `Parser` component.
+* In `Parser`, the `parseAddUserIngredient` is executed to identify whether all the required
+  parameters are provided.
+* If any of the parameters are missing/invalid, the user will be alerted with a relevant error
+  message.
+* If all the parameters are valid, the input is sent to `IngredientList` component.
+* In `IngredientList`, `addIngredient()` is executed to first check if the ingredient already
+  exists in the list.
+* If the ingredient already exists, the quantity of the ingredient will be updated.
+* If the ingredient does not exist, the ingredient will be added to the list.
+
+The simplified sequence diagram below shows how this feature works assuming all inputs are correct:
+
+![](../docs/UML/Implementation/AddIngredientFunction/AddIngredientFunction.png)
+
+### Delete Ingredients Feature
+
+The current implementation:
+
+* allows for deleting only 1 ingredient at a time.
+* ingredient needs to have its name and quantity specified.
+
+It is implemented through the following steps:
+
+* When the user enters an input with the first word being `del_i`, the input is passed to
+  the `Parser` component.
+* In `Parser`, the `parseDeleteUserIngredient` is executed to identify whether all the required
+  parameters are provided.
+* If any of the parameters are missing/invalid, the user will be alerted with a relevant error
+  message.
+* If all the parameters are valid, the input is sent to `IngredientList` component.
+* In `IngredientList`, `deleteIngredient()` is executed to first check if the ingredient exists in
+  the list.
+* If the ingredient does not exist, the user will be alerted with a relevant error message.
+* If the ingredient exists and the new quantity is more than 0, the quantity of the ingredient will
+  be updated. Otherwise, the ingredient would be deleted entirely from the list.
+
+The sequence diagram of deleting an ingredient is similar to adding an ingredient.
+
+### List Ingredients Feature
+
+The current implementation:
+
+* allows for listing all ingredients in the list.
+
+It is implemented through the following steps:
+
+* When the user enters an input with the first word being `view_ingredients`, the list of user
+  ingredients that is represented by `userIngredients` is passed to the `Ui` component.
+* In `Ui`, `printUserIngredients()` first checks if the list is empty.
+* If the list is empty, the user will be alerted with a relevant message and the function exits.
+* If the list is not empty, the list of ingredients will be printed out, with information regarding
+  the names, quanntity, and expiry date of each ingredient displayed.
+
+The sequence diagram below shows how this feature works:
+
+![](../docs/UML/Implementation/ViewIngredientFunction/ViewIngredientFunction.png)
+
+### Edit Weekly Meal Plan Feature
+
+The current implementation:
+
+* allows for adding single recipe to the weekly meal plan.
+* allows for deleting single recipe from the weekly meal plan.
+* allow for adding multiple recipes to the weekly meal plan.
+* allow for deleting multiple recipes from the weekly meal plan.
+
+It is implemented through the following steps:
+
+* When the user enters an input with the first word being `weekly`, the input is passed to
+  the `Parser` component.
+* In `Parser`, the `parseWeeklyMealPlan` is executed to identify whether the user wants to
+  add/delete only one or multiple recipes.
+* If the user wants to add/delete only one recipe, parseEditSingleWeeklyPlan() is executed.
+* If the user wants to add/delete multiple recipes, parseEditMultiWeeklyPlan() is executed.
+* `parseEditSingleWeeklyPlan()` and `parseEditMultiWeeklyPlan()` checks if the command parameters
+  are valid first, then it returns the
+  name and quantity of the recipes specified by the user. If the command parameters are invalid or
+  the recipe is not a valid recipe, a relevant error message will be displayed.
+* In `Meal360`, the second argument of the user input is then use to determine whether the user
+  wants to add or delete the recipes.
+* If the user wants to add the recipes, the list of recipe(s) would be passed to the `WeeklyPlan`
+  component to execute `addPlans()`.
+* If the user wants to delete the recipes, the list of recipe(s) would be passed to the `WeeklyPlan`
+  component to execute `deletePlans()`.
+
+The sequence diagram below shows how this feature works:
+
+![](../docs/UML/Implementation/EditWeeklyPlan/EditWeeklyPlan.png)
+
+### List Weekly Plan Feature
+
+The current implementation:
+
+* allows for listing all recipes that are in the weekly plan.
+
+It is implemented through the following steps:
+
+* When the user enters an input with the first word being `weeklyplan`, the list of user
+  ingredients that is represented by `userIngredients` is passed to the `Ui` component.
+* In `Ui`, `printUserIngredients()` first checks if the list is empty.
+* If the list is empty, the user will be alerted with a relevant message and the function exits.
+* If the list is not empty, the list of ingredients will be printed out, with information regarding
+  the names, quanntity, and expiry date of each ingredient displayed.
+
+The sequence diagram below shows how this feature works:
+
+![](../docs/UML/Implementation/ViewWeeklyPlan/ViewWeeklyPlan.png)
+
+### Mark Recipe as Done Feature
+
+The current implementation:
+
+* allows for marking a recipe in the weekly plan as done.
+* marking a recipe as done automatically removes the recipe and one set of its ingredients from the
+  weekly plan.
+
+It is implemented through the following steps:
+
+* When the user enters an input with the first two word being `weekly` and `/done` respectively, the
+  input is passed to the `Parser` component.
+* In `Parser`, the `parseMarkDone` is executed, which then send the input to `Recipe` component to
+  obtain the list of ingredients of the recipe using `getIngredients()`.
+* The list of ingredients is then passed to `IngredientList` component to check if the user has all
+  the necessary ingredients using `findIngredientCount()`.
+* If the user does not have all the necessary ingredients, the user will be alerted with a relevant
+  error message.
+* If the user has all the necessary ingredients, the `IngredientList` component will then remove the
+  ingredients from the list using `deleteIngredient()`.
+* The `WeeklyPlan` component will then remove the recipe from the weekly plan using `remove()` if no
+  counts of the recipe is left, otherwise it will reduce the count of the recipe by 1 using `put()`.
+
+The simplified sequence diagram below shows how this feature works assuming no counts of the recipe
+is left after the deletion:
+
+![](../docs/UML/Implementation/MarkDoneWeeklyPlan/MarkDoneWeeklyPlan.png)
+
 ---
 
 ## Appendix: Requirements
@@ -353,6 +562,11 @@ driven app.
 ### Non-Functional Requirements
 
 1. Should work on any *mainstream OS* as long as it has Java 11 or above installed.
+2. The number of recipes and user ingredients is limited to only 1000 items each.
+3. A user with above average typing speed for regular English text (i.e. not code, not system
+   admin commands) should be able to accomplish most of the tasks faster using commands than
+   using the mouse, especially for the more advanced commands that allow for editing multiple items
+   at once.
 
 ### Glossary
 
@@ -360,5 +574,146 @@ driven app.
 
 ### Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used
-for testing}
+Given below are instructions to test the app manually.
+
+#### Launch and Shutdown
+
+1. Initial launch
+
+    1. Download the jar file and copy into an empty folder
+    2. Run the jar file using the command `java -jar meal360.jar`. The GUI similar to the below
+       should appear in a few seconds. The app comes with a smaall sample data of 10 recipes to
+       allow for easy testing.
+
+   Expected output:
+   ```
+   ----------------------------------------------------------------------------------------------------
+    Welcome to Meal360, your ultimate Recipe Manager!
+    __  __          _ ____  __  __
+    |  \/  |___ __ _| |__ / / / /  \
+    | |\/| / -_) _` | ||_ \/ _ \ () |
+    |_|  |_\___\__,_|_|___/\___/\__/
+    
+    ----------------------------------------------------------------------------------------------------
+    | Loading recipes...                                                                               |
+    | Recipes loaded successfully.                                                                     |
+    | Loading weekly plan...                                                                           |
+    | Weekly plan loaded successfully.                                                                 |
+    | Loading ingredients...                                                                           |
+    | Ingredients loaded successfully.                                                                 |
+    ----------------------------------------------------------------------------------------------------
+   ```
+
+2. Shutdown
+    1. A user input of `bye` allows the user to exit the app. The app will then save the data for
+       recipes, ingredients and weekly meal plan automatically before exiting.
+
+   Expected output:
+    ```
+    ----------------------------------------------------------------------------------------------------
+    | Saving recipes...                                                                                |
+    | Recipes saved successfully.                                                                      |
+    | Saving weekly plan...                                                                            |
+    | Weekly plan saved successfully.                                                                  |
+    | Saving ingredients...                                                                            |
+    | Ingredients saved successfully.                                                                  |
+    | Bye. Hope to see you again soon!                                                                 |
+    ----------------------------------------------------------------------------------------------------
+   ```
+
+#### Ingredients
+
+1. Test case: `add_i /n fish /c 10 /d 10/10/2024`
+   Expected: The ingredient `fish` with quantity `10` and expiry date `10/10/2024` should be added
+   into the user ingredients list. A success message should be displayed.
+
+   Expected output:
+   ```
+    ----------------------------------------------------------------------------------------------------
+    | Ingredient successfully added!                                                                   |
+    ----------------------------------------------------------------------------------------------------
+   ```
+
+2. Test case: `del_i /n fish /c 5`
+   Expected: The ingredient `fish` with quantity `5` should be deleted from the user ingredients.
+
+   Expected output:
+    ```
+     ----------------------------------------------------------------------------------------------------
+     | Ingredient successfully deleted!                                                                 |
+     ----------------------------------------------------------------------------------------------------
+    ```
+
+3. Test case: `view_ingredients`
+   Expected: The list of ingredients should be displayed.
+
+   Expected output:
+    ```
+    ----------------------------------------------------------------------------------------------------
+    | Here is your ingredient list:                                                                    |
+    | fish (5) [by:10/10/2024]                                                                         |
+    ----------------------------------------------------------------------------------------------------
+    ```
+
+#### Weekly Plan
+
+1. Test case: `weekly /add avocado toast 2`
+   Expected: The recipe `avocado toast` should be added into the weekly plan with count `2`.
+   A success message should be displayed.
+
+   Expected output:
+     ```
+     ----------------------------------------------------------------------------------------------------
+     |  I've added the recipes to your weekly plan!                                                     |
+     ----------------------------------------------------------------------------------------------------
+     ```
+
+2. Test case: `weekly /delete avocado toast 1`
+   Expected: The recipe `avocado toast` should be deleted from the weekly plan with count `1`.
+   A success message should be displayed.
+
+   Expected output:
+     ```
+     ----------------------------------------------------------------------------------------------------
+     | I've deleted the recipes from your weekly plan!                                                  |
+     ----------------------------------------------------------------------------------------------------
+     ```
+
+3. Test case: `weeklyplan`
+   Expected: The list of recipes in the weekly plan should be displayed.
+
+   Expected output:
+      ```
+      ----------------------------------------------------------------------------------------------------
+      | Here is your weekly plan:                                                                        |
+      | avocado toast x1                                                                                 |
+      ----------------------------------------------------------------------------------------------------
+      ```
+
+4. Test case: `weekly /multiadd /r chicken rice /q 3 /r seafood paella /q 1`
+   Expected: The recipes `chicken rice` and `seafood paella` should be added into the weekly plan
+   with count `3` and `1` respectively. A success message should be displayed.
+
+   Expected output:
+     ```
+     ----------------------------------------------------------------------------------------------------
+     |  I've added the recipes to your weekly plan!                                                     |
+     ----------------------------------------------------------------------------------------------------
+     ```
+
+5. Test case: `weekly /multidelete /r chicken rice /q 2 /r seafood paella /q 1`
+   Expected: The recipes `chicken rice` and `seafood paella` should be deleted from the weekly plan
+   with count `2` and `1` respectively. A success message should be displayed.
+
+   Expected output:
+      ```
+      ----------------------------------------------------------------------------------------------------
+      | I've deleted the recipes from your weekly plan!                                                  |
+      ----------------------------------------------------------------------------------------------------
+      >>> weeklyplan
+      ----------------------------------------------------------------------------------------------------
+      | Here is your weekly plan:                                                                        |
+      | chicken rice x1                                                                                  |
+      | avocado toast x1                                                                                 |
+      ----------------------------------------------------------------------------------------------------
+      ```
