@@ -21,7 +21,7 @@ Fig 1
 
 ### Ui 
 
-Ui class involves all the methods that display messages to the user when the user is interacting with the porgram.
+Ui class involves all the methods that display messages to the user when the user is interacting with the program.
 
 Types of methods:
 
