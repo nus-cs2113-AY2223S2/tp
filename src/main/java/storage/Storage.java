@@ -104,24 +104,26 @@ public class Storage {
      * @throws NullPointerException if json file is empty.
      */
 
-    public ArrayList<Expense> loadExpenses(String filePath) throws NullPointerException {
-        ArrayList<Expense> expenses = new ArrayList<>();
+    public ExpenseList loadExpenses(String filePath) throws NullPointerException {
+
+        ExpenseList expenseList = new ExpenseList();
         createFile(filePath);
         try {
             Reader reader = Files.newBufferedReader(Paths.get(filePath));
             Type typeOfObject = new TypeToken<ArrayList<Expense>>() {
             }.getType();
-            expenses = GSON.fromJson(reader, typeOfObject);
+            ArrayList<Expense> expenses = GSON.fromJson(reader, typeOfObject);
+            expenseList.setExpenseList(expenses);
         } catch (JsonSyntaxException | MalformedJsonException | DateTimeParseException e) {
             System.out.println(DATA_CORRUPTED_ERROR);
             System.exit(0);
         } catch (IOException e) {
             System.out.println(CREATE_FILE_ERROR);
         }
-        if (expenses != null) {
-            checkValidExpenseList(expenses, filePath);
+        if (expenseList.getExpenseList() != null) {
+            checkValidExpenseList(expenseList.getExpenseList(), filePath);
         }
-        return Objects.requireNonNullElseGet(expenses, ArrayList::new);
+        return Objects.requireNonNullElseGet(expenseList, ExpenseList::new);
     }
 
     /**

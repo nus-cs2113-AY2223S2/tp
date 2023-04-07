@@ -1,16 +1,12 @@
 package data;
 
-import command.CommandAdd;
-import parser.Parser;
 import storage.Storage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.FileWriter;
-import java.io.File;
 
 import java.util.regex.Pattern;
 
@@ -79,101 +75,67 @@ public class Account {
         } else if (isUsernameTaken()) {  // Check if username is taken
             System.out.println("The username is taken, please use another username.");
             return;
-        } /*try (PrintWriter pw = new PrintWriter(new FileWriter(
-                "./src/main/java/storage/" + accountName + ".txt", true))) {
-            // Save the account to the "accountName.txt" file
-            pw.println(accountName);
-            pw.close();
-        } catch (IOException e) {
-            System.out.println("Error: Failed to create username file.");
-            return;
+        } else {
+            try {
+                storage.createFile("./src/main/java/storage/" + accountName + ".json");
+                FileWriter pw = new FileWriter("./src/main/java/storage/userList.txt", true);
+                pw.write(accountName + "," + passwordHash + "\n");
+                pw.close();
+            } catch (IOException e) {
+                System.out.println("Error: Failed to create account file.");
+                return;
+            }
+            System.out.printf("User %s has been created\n", accountName);
+            System.out.println("Signup successful.");
         }
-        try (PrintWriter pw = new PrintWriter(new FileWriter("./src/main/java/storage/" + accountName + ".txt"))) {
-            pw.println(accountName + "," + passwordHash);
-            pw.close();*/
-        try {
-            storage.createFile("./src/main/java/storage/" + accountName + ".txt");
-            storage.createFile("./src/main/java/storage/" + accountName + ".json");
-            PrintWriter pw = new PrintWriter(new PrintWriter("./src/main/java/storage/" + accountName + ".txt"));
-            pw.println(accountName + "," + passwordHash);
-            pw.close();
-        } catch (IOException e) {
-            System.out.println("Error: Failed to create account file.");
-            return;
-        }
-        System.out.printf("User %s has been created\n", accountName);
-        System.out.println("Signup successful.");
     }
 
     public String login() {
-        File file = new File("./src/main/java/storage/" + accountName + ".txt");
-        if (!file.exists()) {
-            return "Log In Failed. Invalid login credentials";
-        } else {
-            // Check if username and password match the ones stored in the "username.txt" file
-            boolean found = false;
-            try {
-                FileReader reader = new FileReader("./src/main/java/storage/" + accountName + ".txt");
-                BufferedReader bufferedReader = new BufferedReader(reader);
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    String[] parts = line.split(",");
-                    if (parts[0].equals(accountName) && parts[1].equals(passwordHash)) {
-                        found = true;
-                        break;
-                    }
+        boolean found = false;
+        try {
+            FileReader reader = new FileReader("./src/main/java/storage/userList.txt");
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].equals(accountName) && parts[1].equals(passwordHash)) {
+                    found = true;
+                    break;
                 }
-                while ((line = bufferedReader.readLine()) != null && found) {
-                    String[] parts2 = line.split(" ");
-                    Parser parser = new Parser();
-                    if (!(parts2[0].equals(accountName)) && found) {
-                        new CommandAdd(account.getExpenseList(),
-                                parser.extractAddParameters(line), new Currency()).executeLogIn();
-                    }
-                }
-                //TODO: modify loadExpenses to ExpenseList instead of ArrayList<Expense>
-                //storage.loadExpenses("./src/main/java/storage/" + accountName + ".json");
-                bufferedReader.close();
-                reader.close();
-
-                if (found) {
-                    //System.out.println("Login successful.");
-                    return "Login successful.";
-                } else {
-                    //System.out.println("Invalid username or password.");
-                    return "Invalid username or password.";
-                }
-            } catch (FileNotFoundException e) {
-                System.out.println("Sorry, there is no username found.");
-            } catch (IOException e) {
-                System.out.println("An error occurred while logging in.");
-                e.printStackTrace();
             }
+            bufferedReader.close();
+            reader.close();
+            if (found) {
+                storage.loadExpenses("./src/main/java/storage/" + accountName + ".json");
+                return "Login successful.";
+            } else {
+                return "Invalid username or password.";
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Sorry, there is no username found.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while logging in.");
+            e.printStackTrace();
         }
         return "Login successfully.";
     }
 
     private boolean isUsernameTaken() {
-        File file = new File("./src/main/java/storage/" + accountName + ".txt");
-        if (!file.exists()) {
-            return false;
-        } else {
-            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String[] parts = line.split(",");
-                    if (parts[0].equalsIgnoreCase(accountName)) {
-                        return true;
-                    }
+        try (BufferedReader br = new BufferedReader(new FileReader("./src/main/java/storage/userList.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts[0].equalsIgnoreCase(accountName)) {
+                    return true;
                 }
-                return false;
-            } catch (FileNotFoundException e) {
-                // Username file not found, which means the username is not taken
-                return false;
-            } catch (IOException e) {
-                System.out.println("Error: Failed to read username file.");
-                return false;
             }
+            return false;
+        } catch (FileNotFoundException e) {
+            // Username file not found, which means the username is not taken
+            return false;
+        } catch (IOException e) {
+            System.out.println("Error: Failed to read username file.");
+            return false;
         }
     }
 
@@ -189,19 +151,8 @@ public class Account {
     }
 
     public static void save() {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(
-                "./src/main/java/storage/" + accountName + ".txt"))) {
-            pw.println(accountName + "," + passwordHash);
-            for (Expense expense : account.getExpenseList()) {
-                pw.println(expense.toAdd());
-            }
-            storage.saveExpenses("./src/main/java/storage/" + accountName + ".json");
-            account.clear();
-            pw.close();
-        } catch (IOException e) {
-            System.out.println("Error: Failed to save expenses.");
-            return;
-        }
+        storage.saveExpenses("./src/main/java/storage/" + accountName + ".json");
+        account.clear();
         account = null;
         System.out.println("Saved successfully.");
     }

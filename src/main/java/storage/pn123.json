@@ -1,0 +1,29 @@
+[
+  {
+    "expenseAmount": 22.00,
+    "expenseTime": {
+      "date": "2022-04-10"
+    },
+    "description": "mrt",
+    "currencyType": "SGD",
+    "rate": 1
+  },
+  {
+    "expenseAmount": 5.00,
+    "expenseTime": {
+      "date": "2023-04-05"
+    },
+    "description": "rice",
+    "currencyType": "SGD",
+    "rate": 1
+  },
+  {
+    "expenseAmount": 8.00,
+    "expenseTime": {
+      "date": "2023-04-03"
+    },
+    "description": "card",
+    "currencyType": "SGD",
+    "rate": 1
+  }
+]

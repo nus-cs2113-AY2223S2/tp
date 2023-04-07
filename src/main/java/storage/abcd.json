@@ -1,0 +1,11 @@
+[
+  {
+    "expenseAmount": 8.00,
+    "expenseTime": {
+      "date": "2023-04-03"
+    },
+    "description": "card",
+    "currencyType": "SGD",
+    "rate": 1
+  }
+]
