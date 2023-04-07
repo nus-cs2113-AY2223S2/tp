@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CommandParserTest {
 
+    // newCommand() non-parsed keywords
     @Test
     void parseExit() {
         CommandParser cp = new CommandParser();
@@ -131,7 +132,7 @@ class CommandParserTest {
     @Test
     void parseListTasksWithArgs() {
         CommandParser cp = new CommandParser();
-        assertAll(() -> assertTrue(cp.newCommand("list-tasks 1") instanceof ListTasksCommand));
+        assertThrows(IllegalArgException.class, () -> cp.newCommand("list-tasks 1"));
     }
 
     @Test
