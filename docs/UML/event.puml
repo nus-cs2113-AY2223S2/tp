@@ -51,8 +51,8 @@ class CompanyList {
 +markUnconfirm(companyNum: int)
 }
 
-Event *---- "1" CompanyList : contains >
-Event *-- "1" Venue : contains >
+"Event" ---- "1" "CompanyList" : contains >
+"Event" -- "0-1" "Venue" : contains >
 
 
 @enduml
