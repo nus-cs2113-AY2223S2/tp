@@ -4,6 +4,7 @@ import java.util.Optional;
 import model.Card;
 import model.CardList;
 import model.CardSelector;
+import model.CardUUID;
 import model.DeckList;
 import model.Tag;
 import model.TagList;
@@ -55,11 +56,13 @@ public class AddCardToTagCommand extends Command {
             }
         } else if (tagToAdd.cardIsInTag(cardToAdd.getUuid())) {
             throw new CardInTagException();
-        } else {
-            tagToAdd.addCard(cardToAdd.getUuid());
         }
 
+        CardUUID cardUUID = cardToAdd.getUuid();
+        tagToAdd.addCard(cardUUID);
+
         //add the tag uuid to the card
+
         TagUUID tagUUID = tagToAdd.getUUID();
 
         cardToAdd.addTag(tagUUID);

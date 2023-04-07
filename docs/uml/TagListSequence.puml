@@ -1,0 +1,52 @@
+@startuml TagListSequence
+autoactivate on
+
+participant ":AddCardToTagCommand" as AddCardToTagCommand
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagList" as TagList
+participant ":Tag" as Tag
+participant ":Card" as Card
+
+'create AddCardToTagCommand
+[-> AddCardToTagCommand : AddCardToTagCommand()
+activate AddCardToTagCommand
+
+AddCardToTagCommand -> CardList : findCard()
+
+CardList -> CardSelector : getIndex()
+return cardIndex
+
+CardList -> CardSelector : getUUID()
+return cardUUID
+
+return cardToAdd
+
+AddCardToTagCommand -> AddCardToTagCommand : addCardToTag(cardToAdd)
+
+AddCardToTagCommand -> TagList : findTagFromName()
+return tagToAdd
+
+opt tagToAdd == null
+  create Tag
+  AddCardToTagCommand -> Tag : Tag()
+  return tagToAdd
+  AddCardToTagCommand -> TagList : addTag(tagToAdd)
+  return
+end
+
+
+AddCardToTagCommand -> Card : getUUID()
+return cardUUID
+
+AddCardToTagCommand -> Tag : addCard(cardUUID)
+return
+AddCardToTagCommand -> Tag : getUUID()
+return tagUUID
+
+AddCardToTagCommand -> Card : addTag(tagUUID)
+return
+
+
+@enduml
+
