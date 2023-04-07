@@ -47,7 +47,8 @@ public class DeleteCommand extends Command {
             Response responseGet = backend.requestEndpointEntry(requestGet);
             if (responseGet.getResponseStatus() == ResponseStatus.NOT_FOUND) {
                 logger.log(Level.WARNING, "Input entry ID is invalid");
-                throw new InvalidEntryIdException(MessageConstants.MESSAGE_INVALID_ID);
+                throw new InvalidEntryIdException(MessageConstants.MESSAGE_NON_EXISTENT_ID
+                        + entryId + System.lineSeparator() + MessageConstants.MESSAGE_INVALID_ID);
             }
         }
         for(int entryId: uniqueEntryIds){
@@ -55,7 +56,8 @@ public class DeleteCommand extends Command {
             Response responseDelete = backend.requestEndpointEntry(requestDelete);
             if (responseDelete.getResponseStatus() == ResponseStatus.NOT_FOUND) {
                 logger.log(Level.WARNING, "Input entry ID is invalid");
-                throw new InvalidEntryIdException(MessageConstants.MESSAGE_INVALID_ID);
+                throw new InvalidEntryIdException(MessageConstants.MESSAGE_NON_EXISTENT_ID
+                        + entryId + System.lineSeparator() + MessageConstants.MESSAGE_INVALID_ID);
             }
             Entry deletedEntry = EntryParser.deserialise(responseDelete.getData());
             ui.printExpenditureDeleted(deletedEntry);
