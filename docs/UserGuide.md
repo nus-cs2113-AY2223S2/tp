@@ -1,7 +1,33 @@
 # User Guide
 
-## Introduction
+<!-- TOC -->
 
+- [User Guide](#user-guide)
+    - [Introduction](#introduction)
+        - [Target user profile](#target-user-profile)
+        - [Problem addressed](#problem-addressed) 
+    - [Access Management](#access-management)
+        - [Login an account](#login)
+        - [Signup an account](#signup)
+        - [Change password](#password)
+        - [Help in login/signup](#help)
+        - [Logout from an account](#logout)
+        - [Exit the application](#exit)
+    - [Features](#features)
+        - [Search book](#search)
+        - [Check book availability](#check)
+        - [Borrow book](#borrow)
+        - [Renew borrow period of book](#renew)
+        - [Check borrowing status](#status)
+        - [Return book](#return)
+        - [Add/delete book](#librarian)
+        - [List book](#list)
+        - [View history](#history)
+    - [FAQ](#faq)
+    - [Command Summary](#command-summary)
+  <!-- TOC -->
+
+## Introduction
 Product Name: Duke of Books
 
 ### Target user profile:
@@ -19,7 +45,7 @@ CS students are incredibly busy and hence having a command line interface (CLI) 
 ## Access Management
 The application requires user to login before performing other actions.
 
-### Login an account: `login`
+### <a name="login"> Login an account: `login` </a>
 Login the system using username and password. 
 
 Format:
@@ -33,7 +59,7 @@ Examples:
 || Welcome My Name!
 ```
 
-### Signup an account: `signup`
+### <a name="signup"> Signup an account: `signup` </a>
 Sign up a new account with a unique username, password and user's actual name.
 
 Format: 
@@ -47,7 +73,7 @@ Examples:
 || Welcome My Name!
 ```
 
-### Change password: `password`
+### <a name="password"> Change password: `password` </a>
 Change the password of a user.
 
 Format: 
@@ -59,7 +85,7 @@ Examples:
 || Password has been reset!
 ```
 
-### Help in login/signup: `help`
+### <a name="help"> Help in login/signup: `help` </a>
 Get the list of command related to accessing the system.
 
 Format:
@@ -74,7 +100,7 @@ Examples:
 || exit: exits the application
 ```
 
-### Logout from an account: `logout`
+### <a name="logout"> Logout from an account: `logout` </a>
 Logout the user. This command can only be used after logging in. The user can then log in again with the same / different account.  
 
 Format:
@@ -86,7 +112,7 @@ Examples:
 || Logging out...
 ```
 
-### Exit the application: `exit`
+### <a name="exit"> Exit the application: `exit` </a>
 Exits the application. This command should be executed only after logging out of the system.  
 
 Format: 
@@ -103,7 +129,7 @@ Examples:
 
 ## Features
 
-### Search book: `search`
+### <a name="search"> Search book: `search` </a>
 Search for a book with matching title and/or topic. Only strings with exact match will be returned.
 
 Format:
@@ -147,7 +173,7 @@ Examples:
 || Topic: Operating Systems
 ```
 
-### Check book availability: `check`
+### <a name="check"> Check book availability: `check` </a>
 Check if a book is available for borrowing. Will return either borrowed or not borrowed.
 
 Format:
@@ -159,7 +185,7 @@ Examples:
 || Status: Not borrowed
 ```
 
-### Borrow book: `borrow`
+### <a name="borrow"> Borrow book: `borrow` </a>
 Borrow a book from the library.
 
 Format:
@@ -171,7 +197,7 @@ Examples:
 || Borrow is successful.
 ```
 
-### Renew borrow period of book: `renew`
+### <a name="renew"> Renew borrow period of book: `renew` </a>
 Renew borrowing of books for a fixed duration.
 
 Format:
@@ -183,7 +209,7 @@ Examples:
 || Item has been renewed!
 ```
 
-### Check borrowing status: `status`
+### <a name="status"> Check borrowing status: `status` </a>
 Check borrowing status of book. Will return not borrowed, borrowed with details, or overdue with details.
 
 Format:
@@ -195,7 +221,7 @@ Examples:
 || Status: Not borrowed
 ```
 
-### Return book: `return`
+### <a name="return"> Return book: `return` </a>
 Return a book to the library.
 
 Format:
@@ -207,7 +233,7 @@ Examples:
 || Item has been returned!
 ```
 
-### Adding/Deleting book: `librarian`
+### <a name="librarian"> Add/Delete book: `librarian` </a>
 Adds/deletes a book to/from the library for users. This is a superuser method and should only be used by the librarian.
 
 Format:
@@ -223,7 +249,7 @@ Examples:
 || Action: delete is successful. Introduction to OOP updated
 ```
 
-### List book: `list`
+### <a name="list"> List book: `list` </a>
 List all the books in the library.
 
 Format:
@@ -295,7 +321,7 @@ Examples:
 || Topic: Software Engineering
 ```
 
-### View history: `history`
+### <a name="history"> View history: `history` </a>
 Check the borrow history of the books.
 
 Format:
@@ -343,5 +369,3 @@ Examples:
 | Delete book                 | `librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action delete` | `librarian -title C++Primer -topic Programming -author James -isbn 12345 -action delete` |
 | List book                   | `list`                                                                         | `list`                                                                                        |
 | View history                | `history`                                                                      | `history`                                                                                    |
-
-
