@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import utils.exceptions.TagNotFoundException;
 
 public class TagList {
@@ -23,6 +25,23 @@ public class TagList {
 
     public void addTag(Tag tag) {
         this.tags.add(tag);
+    }
+
+    public Tag findTag(TagSelector tagSelector) throws TagNotFoundException {
+        if (tagSelector.getIndex().isPresent()) {
+            // Index from user input is 1-indexed
+            try {
+                return tags.get(tagSelector.getIndex().get() - 1);
+            } catch (IndexOutOfBoundsException e) {
+                throw new TagNotFoundException();
+            }
+        } else if (tagSelector.getUuid().isPresent()) {
+            return findTagFromUUID(tagSelector.getUuid().get());
+        } else if (tagSelector.getTagName().isPresent()) {
+            return findTagFromName(tagSelector.getTagName().get());
+        }
+
+        return null;
     }
 
     /**
@@ -50,12 +69,39 @@ public class TagList {
         return null;
     }
 
-    public boolean deleteTagByUUID(TagUUID tagUUID) {
-        return tags.removeIf(tag -> (tag.getUUID().equals(tagUUID.uuid)));
+    public void delete(int id) throws IndexOutOfBoundsException {
+        this.tags.remove(id);
     }
 
-    public void delete(int id) {
-        this.tags.remove(id);
+    public void delete(TagSelector tagSelector) throws TagNotFoundException {
+        Optional<Integer> index = tagSelector.getIndex();
+        Optional<TagUUID> uuid = tagSelector.getUuid();
+        Optional<String> tagName = tagSelector.getTagName();
+
+        if (index.isPresent()) {
+            // Index from user input is 1-indexed
+            try {
+                delete(index.get() - 1);
+                return;
+            } catch (IndexOutOfBoundsException e) {
+                throw new TagNotFoundException();
+            }
+        } else if (uuid.isPresent()) {
+            for (int i = 0; i < tags.size(); i++) {
+                if (tags.get(i).getUUID().equals(uuid.get().uuid)) { 
+                    delete(i);
+                    return;
+                }
+            }
+        } else if (tagName.isPresent()) {
+            for (int i = 0; i < tags.size(); i++) {
+                if (tags.get(i).getTagName().equals(tagName.get())) {
+                    delete(i);
+                    return;
+                }
+            }
+        }
+        throw new TagNotFoundException();
     }
 
     public boolean isEmpty() {

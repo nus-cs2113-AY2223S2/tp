@@ -5,22 +5,25 @@
       "deckUUID": {
         "uuid": "c83e08ad-e5b7-4812-9dd1-4b44504386ad"
       },
-      "cardsSet": [],
-      "cardUUIDIntegerHashMap": {},
       "cards": [
         {
           "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
         }
       ],
-      "tags": []
+      "tags": [
+        {
+          "uuid": "c8259fee-125d-4700-829c-0da79eba1e91"
+        },
+        {
+          "uuid": "f0721ed3-f357-4a6d-9d35-cd436ec5d280"
+        }
+      ]
     },
     {
       "deckName": "decktag",
       "deckUUID": {
         "uuid": "46f82128-0ee7-4f8c-baa3-e4ca255eeb45"
       },
-      "cardsSet": [],
-      "cardUUIDIntegerHashMap": {},
       "cards": [],
       "tags": [
         {
@@ -33,66 +36,15 @@
       "deckUUID": {
         "uuid": "e723ebf2-57e4-4f5f-98f2-564dd824f517"
       },
-      "cardsSet": [],
-      "cardUUIDIntegerHashMap": {},
       "cards": [
         {
           "uuid": "619c689d-395a-4bb8-ab00-6ae9972bb929"
         }
       ],
       "tags": []
-    },
-    {
-      "deckName": "newdeck",
-      "deckUUID": {
-        "uuid": "5863983b-cf64-465a-8146-b858b3b2231a"
-      },
-      "cardsSet": [],
-      "cardUUIDIntegerHashMap": {},
-      "cards": [],
-      "tags": []
-    },
-    {
-      "deckName": "new_deck",
-      "deckUUID": {
-        "uuid": "0103f971-b24c-4a70-a553-65e41b1d18c2"
-      },
-      "cardsSet": [
-        {
-          "uuid": "6ca22dad-f835-4e7d-95f9-e8124db36469"
-        },
-        {
-          "uuid": "09084971-8799-4e32-bbfb-6a2d46ba3810"
-        }
-      ],
-      "cardUUIDIntegerHashMap": {
-        "09084971-8799-4e32-bbfb-6a2d46ba3810": 1
-      },
-      "cards": [
-        {
-          "uuid": "6ca22dad-f835-4e7d-95f9-e8124db36469"
-        }
-      ],
-      "tags": [
-        {
-          "uuid": "fa0623cb-3867-438c-9eba-09b626322a31"
-        }
-      ]
     }
   ],
   "tags": [
-    {
-      "uuid": {
-        "uuid": "03658854-e5d4-468f-8c41-74917e5d4515"
-      },
-      "tagName": "tag1",
-      "cards": [
-        {
-          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
-        }
-      ],
-      "decks": []
-    },
     {
       "uuid": {
         "uuid": "c8259fee-125d-4700-829c-0da79eba1e91"
@@ -110,58 +62,15 @@
     },
     {
       "uuid": {
-        "uuid": "63590be8-bcfd-4c39-9181-79f92670cc65"
+        "uuid": "f0721ed3-f357-4a6d-9d35-cd436ec5d280"
       },
-      "tagName": "new_tag",
+      "tagName": "Test",
       "cards": [
         {
-          "uuid": "df3eaf22-60ea-4545-859b-f86e39f42693"
-        },
-        {
-          "uuid": "09084971-8799-4e32-bbfb-6a2d46ba3810"
+          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
         }
       ],
       "decks": []
-    },
-    {
-      "uuid": {
-        "uuid": "e4cc7c26-a6b2-4c38-835e-bc533784b7c0"
-      },
-      "tagName": "newtest",
-      "cards": [
-        {
-          "uuid": "207e3601-98cd-4cad-8068-6facecf70427"
-        }
-      ],
-      "decks": []
-    },
-    {
-      "uuid": {
-        "uuid": "7f61b83e-4051-4b2b-8340-08e42d17dc20"
-      },
-      "tagName": "newnew",
-      "cards": [
-        {
-          "uuid": "e1b6f0dd-a03c-4fcb-a6fa-adf0eb669f31"
-        }
-      ],
-      "decks": []
-    },
-    {
-      "uuid": {
-        "uuid": "fa0623cb-3867-438c-9eba-09b626322a31"
-      },
-      "tagName": "newnewtag",
-      "cards": [
-        {
-          "uuid": "09084971-8799-4e32-bbfb-6a2d46ba3810"
-        }
-      ],
-      "decks": [
-        {
-          "uuid": "0103f971-b24c-4a70-a553-65e41b1d18c2"
-        }
-      ]
     }
   ],
   "cards": [
@@ -177,6 +86,9 @@
         },
         {
           "uuid": "c8259fee-125d-4700-829c-0da79eba1e91"
+        },
+        {
+          "uuid": "f0721ed3-f357-4a6d-9d35-cd436ec5d280"
         }
       ],
       "decks": [
@@ -213,110 +125,6 @@
       "answer": "ans",
       "tags": [],
       "decks": []
-    },
-    {
-      "uuid": {
-        "uuid": "f729a5b4-6bd1-4ce2-b060-037954fa6749"
-      },
-      "question": "new",
-      "answer": "new",
-      "tags": [],
-      "decks": []
-    },
-    {
-      "uuid": {
-        "uuid": "aba7976b-5ad8-4e7c-bbf6-145ca6848196"
-      },
-      "question": "new",
-      "answer": "new",
-      "tags": [],
-      "decks": []
-    },
-    {
-      "uuid": {
-        "uuid": "630ab6af-2c84-4f51-8efa-8397f3ac21e0"
-      },
-      "question": "jaskdflsldfa;sldfjkajsdfklja;sldfjalsdjf;alksjdf;lajsdf;ja;sljdfakljsdflkajsdk;fja;klsdjf;lajsdfl;ajs;kldfja;lsdjkfl;ajsdfl;kajsdflk;jakl;sdfjlka;sjdfl;asjdf;ak",
-      "answer": "jasidkfl;jaskdf;jak;sldfjasjdfla;sjdf;asjdfja;sdkjfaiworncva;ncso;aisehfajsf;da",
-      "tags": [],
-      "decks": []
-    },
-    {
-      "uuid": {
-        "uuid": "df3eaf22-60ea-4545-859b-f86e39f42693"
-      },
-      "question": "how",
-      "answer": "now",
-      "tags": [
-        {
-          "uuid": "63590be8-bcfd-4c39-9181-79f92670cc65"
-        }
-      ],
-      "decks": [
-        {
-          "uuid": "d7a92ea9-82cf-44ff-a2b7-6967a6622f7a"
-        }
-      ]
-    },
-    {
-      "uuid": {
-        "uuid": "e1b6f0dd-a03c-4fcb-a6fa-adf0eb669f31"
-      },
-      "question": "new",
-      "answer": "ans",
-      "tags": [
-        {
-          "uuid": "7f61b83e-4051-4b2b-8340-08e42d17dc20"
-        }
-      ],
-      "decks": [
-        {
-          "uuid": "54cea702-2910-42fd-a70b-8d307491a4db"
-        },
-        {
-          "uuid": "1d1ca8cb-2a79-430e-ae85-a70900ffcefc"
-        }
-      ]
-    },
-    {
-      "uuid": {
-        "uuid": "6ca22dad-f835-4e7d-95f9-e8124db36469"
-      },
-      "question": "cardtest",
-      "answer": "card test",
-      "tags": [
-        {
-          "uuid": "ff82165d-ec4a-4c79-86f7-af3b6e58308a"
-        }
-      ],
-      "decks": [
-        {
-          "uuid": "1d1ca8cb-2a79-430e-ae85-a70900ffcefc"
-        },
-        {
-          "uuid": "0103f971-b24c-4a70-a553-65e41b1d18c2"
-        }
-      ]
-    },
-    {
-      "uuid": {
-        "uuid": "09084971-8799-4e32-bbfb-6a2d46ba3810"
-      },
-      "question": "tagtest",
-      "answer": "tagtest",
-      "tags": [
-        {
-          "uuid": "63590be8-bcfd-4c39-9181-79f92670cc65"
-        },
-        {
-          "uuid": "fa0623cb-3867-438c-9eba-09b626322a31"
-        }
-      ],
-      "decks": [
-        {
-          "uuid": "1d1ca8cb-2a79-430e-ae85-a70900ffcefc"
-        }
-      ]
     }
   ]
 }
