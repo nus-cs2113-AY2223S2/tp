@@ -217,8 +217,7 @@ Format:
 <br> `set target /v VALUE`
 
 Use case:
-- VALUE must be greater than - 10 000 000 and less than 10 000 000.
-- VALUE will be stored as a positive double up to 2 decimal places.
+- VALUE must be greater than -10 000 000 and less than 10 000 000.
 - VALUE will not accept doubles with more than 2 decimal places.
 - VALUE will be recorded as SGD, regardless of the currency set.
 

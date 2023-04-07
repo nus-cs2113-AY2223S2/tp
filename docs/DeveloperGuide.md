@@ -345,8 +345,12 @@ Given below are instructions to test the app manually.
       <br> Expected: target value added of 500.50 SGD
    3. Test case: `set target /v 500.123`
       <br> Expected: target value will not be added as value is not 2 d.p., error details shown in status message.
-   4. Test case: `set target /v 9999999`
-      <br> Expected: target value will not be added as value is out of range, error details shown in statu message.
+   4. Test case: `set target /v 999999999`
+      <br> Expected: target value will not be added as value is out of range, error details shown in status message.
+2. Show target
+    1. Test case:
+    <br> `show target`
+    <br> Expected: Current target to be shown in status message.
 
 ### Setting Currency & Unsetting Currency
 1. Setting program to display currency of interest and not display unwanted currencies
