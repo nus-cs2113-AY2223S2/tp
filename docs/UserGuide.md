@@ -1,12 +1,12 @@
 # User Guide
+# Table of contents
 
-## Table of Contents
-- [Introduction](#7-introduction)
-- [Quick Start](#14-quick-start)
-- [Features](#25-features)
-- [FAQ](#100-faq)
-- [Command Summary](#113-command-summary)
-
+- [User Guide](#user-guide)
+    - [1.0 Introduction](#10-introduction)
+    - [2.0 Quick Start](#20-quick-start)
+    - [3.0 Features](#30-features)
+    - [FAQ](#faq)
+    - [Command Summary](#command-summary)
 ## 1.0 Introduction
 🗓️ NUSPlanner is a desktop app that allows for an *easy* and *straightforward* way for NUS students to manage their schedule ranging from person, school or external related activities. This application makes use of a desktop Command Line Interface (CLI), enabling a quick and sleek method of getting your schedule in check.
 
@@ -21,24 +21,24 @@ Before we get started, here's what you need to do:
 2. Down the latest version of `NUSPlanner.jar` from [here](https://github.com/AY2223S2-CS2113-F13-3/tp/releases).
 3. Open your terminal or command prompt
 4. Navigate to the file directory of where the jar file is saved
-5. Execute `NUSPlanner.jar` using the following command: `java -jar NUSPlanner.jar` 
+5. Execute `NUSPlanner.jar` using the following command: `java -jar NUSPlanner.jar`
 6. Refer to section [3.0 Features] for more details of commands
 
-## 3.0 Features 
+## 3.0 Features
 
 Read this section to find out how NUSPlanner can make your life easier!
 
 ### Adding an event: `add`
-Adds an event to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit. 
+Adds an event to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit.
 
 Format: `add –e EVENTNAME –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r RECURRING TIME`
 * sd and ed must be of the format YYYY/MM/DD
-* e, sd and st are compulsory fields 
+* e, sd and st are compulsory fields
 * ed and et are optional, but they must be written together if you use them
 * v is optional
 * r is optional, the format is x D/ x W, which means the event will happen in every x day/x week.
 
-#### Examples of usage  
+#### Examples of usage
 * Add event that starts and ends on different days: `add –e Career Fair –st 14:00 –sd 2023/02/10 –et 16:00 –ed 2023-02-11`
 
 * Add event that happens every week: `add –e collect mails –st 8:00 –sd 2023/02/10 –et 8:10 -ed 2023/02/10 -r 1 W`
@@ -54,7 +54,7 @@ ____________________________________________________________
 Adds a module to the schedule. Assuming x is an switch. Use –x to specify the attributes to edit.
 
 Format: `add –m MODULECODE -n CLASSNUMBER -l LESSONTYPE`
-* All fields are compulsory 
+* All fields are compulsory
 
 #### Examples of usage
 * Add a lecture of module: `add -m AC5001 -n 1 -l lecture`
@@ -97,7 +97,7 @@ ____________________________________________________________
 ### List an event: `list`
 Displays a list of all events that have been added to the schedule.
 
-Format: 
+Format:
 * List all events: `list`
 * List timetable of specific week: `list -w WEEKNUM`
 
@@ -193,7 +193,7 @@ Format: `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME �
 
 #### Examples of usage
 * Edit the start time of an event: `edit –i 2 –st 16:00`
-* Edit the start date, start time and end time of an event: `edit -i 3 –sd 2023/02/11 –st 8:00 –et 10:00 ` 
+* Edit the start date, start time and end time of an event: `edit -i 3 –sd 2023/02/11 –st 8:00 –et 10:00 `
 
 Expected outcome:
 ~~~
@@ -208,13 +208,13 @@ NusPlanner data are saved to the hard drive automatically after the `bye` comman
 ### Editing the data file
 Data for NUSPlanner is saved as a `.json` file. The path for the save file is `[JAR file location]/save.json`. Advanced users are welcome to update data directly by editing the data file.
 
-🚧 **Warning**: If your changes to the data file makes its format invalid, NUSPlanner will discard all data and load an empty data file at the next run. 
+🚧 **Warning**: If your changes to the data file makes its format invalid, NUSPlanner will discard all data and load an empty data file at the next run.
 
 ## FAQ
 
 **Q**: Why is a JAR file required?
 
-**A**: Java ARchive, also known as JAR, is a container that groups multiple small files to enable efficient execution, which is similar to a ZIP file. 
+**A**: Java ARchive, also known as JAR, is a container that groups multiple small files to enable efficient execution, which is similar to a ZIP file.
 
 
 **Q**: Where can I report bugs I found while using NUSPlanner?
@@ -235,6 +235,3 @@ Please add a description of the bug found under our [Issue Tracker](https://gith
 * `delete -all` | Delete all events
 * `list` | List all events
 * `edit -i INDEX_OF_EVENT –st STARTTIME –sd STARTDATE –et ENDTIME –ed ENDDATE -v VENUE -r x D/W` | Edit event
-
-
-
