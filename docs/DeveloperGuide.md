@@ -29,7 +29,9 @@
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+Below are the design and implementations of key features of the ChChing program.
+<br> We used various diagrams such as UML class diagrams, sequence diagrams and activity diagrams
+to illustrate our methodology and approach.
 
 ### ExchangeRateApi
 
@@ -332,8 +334,13 @@ Given below are instructions to test the app manually.
       <br> For income: `find /t income /de bonus`
       <br> For expense: `find /t expense /c food /de sushi /da 03-03-2023 `
       <br> Expected: No income/expense will be listed. status message will indicate no matching record for these search terms.
-### Setting target & Unsetting target
-
+### Setting target & Clearing target
+1. Setting Target
+   1. Prerequisites: Target set has to be within -99999.99 to 99999.99.
+   2. Test case: `set target /v 350.50` <br> Expected: Program will indicate to user that target has been set. If the target is out of range, program will indicate to users that target setting is invalid.
+2. Clearing Target
+   1. Prerequisites: Target must have been set in the first place.
+   2. Test Case: `clear target` <br> Expected: Program will indicate to user that target has been cleared.
 
 ### Setting Currency & Unsetting Currency
 1. Setting program to display currency of interest and not display unwanted currencies

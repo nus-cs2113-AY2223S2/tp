@@ -4,23 +4,25 @@
   * [Introduction](#introduction)
   * [Quick Start](#quick-start)
   * [Features](#features)
-    * [Adding an entry: ```add```](#adding-an-entry-add)
-    * [Listing all expenses and incomes: ```list```](#listing-all-expenses-and-incomes-list)
-    * [Updating an entry: ```edit```](#updating-an-entry-edit)
-    * [Setting currency to be converted: ```set currency```](#setting-currency-to-be-converted-set-currency)
-    * [Unset currency to be converted: ```unset currency```](#unset-currency-to-be-converted-unset-currency)
-    * [Finding an entry: ```find```](#finding-an-entry-find)
-    * [Deleting an entry: ```delete```](#deleting-an-entry-delete)
-    * [Clear entire income list: ```clear income```](#clear-entire-income-list-clear-income)
-    * [Clear entire expense list: ```clear income```](#clear-entire-expense-list-clear-income)
-    * [Clear entire both income and expense lists: ```clear all```](#clear-entire-both-income-and-expense-lists-clear-all)
-    * [Set a target for balance of finances: ```set target```](#set-a-target-for-balance-of-finances-set-target)
-    * [See target set: ```show target```](#see-target-set-show-target)
-    * [Finding balance of finances: ```balance```](#finding-balance-of-finances-balance)
-    * [View help: ```help```](#view-help-help)
-    * [Exit: ```exit```](#exit-exit)
+    * [Adding an entry: `add`](#adding-an-entry--add)
+    * [Listing all expenses and incomes: `list`](#listing-all-expenses-and-incomes--list)
+    * [Updating an entry: `edit`](#updating-an-entry--edit)
+    * [Setting currency to be converted: `set currency`](#setting-currency-to-be-converted--set-currency)
+    * [Unset currency to be converted: `unset currency`](#unset-currency-to-be-converted--unset-currency)
+    * [Finding an entry: `find`](#finding-an-entry--find)
+    * [Deleting an entry: `delete`](#deleting-an-entry--delete)
+    * [Clear entire income list: `clear income`](#clear-entire-income-list--clear-income)
+    * [Clear entire expense list: `clear income`](#clear-entire-expense-list--clear-income)
+    * [Clear entire both income and expense lists: `clear all`](#clear-entire-both-income-and-expense-lists--clear-all)
+    * [Set a target for balance of finances: `set target`](#set-a-target-for-balance-of-finances--set-target)
+    * [See target set: `show target`](#see-target-set--show-target)
+    * [Clear Target Set: `clear target`](#clear-target-set--clear-target)
+    * [Finding balance of finances: `balance`](#finding-balance-of-finances--balance)
+    * [View help: `help`](#view-help--help)
+    * [Exit: `exit`](#exit--exit)
     * [Saving and loading of data](#saving-and-loading-of-data)
-  * [Command Summary (Alphabetical Order)](#command-summary-alphabetical-order)
+    * [Other Notes](#other-notes)
+  * [Command Summary (Alphabetical Order)](#command-summary--alphabetical-order-)
 <!-- TOC -->
 
 ## Introduction
@@ -219,6 +221,8 @@ Format:
 Use case:
 
 - VALUE ranges from negative to positive
+- Target must be within the range of -99999.99 to 99999.99
+- Target will be set to the nearest 2 decimal place
 
 Example of usage:
 <br> `set target /v 350`
@@ -229,6 +233,16 @@ Allows users to see the target they have set.
 
 Format:
 <br> `show target`
+
+### Clear Target Set: `clear target`
+
+Allow users to clear the target they have set.
+
+Format:
+<br> `clear target`
+
+Use case:
+- A target must have been set in the first place.
 
 ### Finding balance of finances: `balance`
 
@@ -279,6 +293,7 @@ The data file is not to be edited manually.
 | Clear All Lists    | `clear all`                                                                                                                                |
 | Clear Expense List | `clear expense`                                                                                                                            |
 | Clear Income List  | `clear income`                                                                                                                             |
+| Clear Target       | `clear target`                                                                                                                             |
 | Delete Expense     | `delete expense /in INDEX`<br>e.g. `delete expense /in 1`                                                                                  |
 | Delete Income      | `delete income /in INDEX`<br>e.g. `delete income /in 2`                                                                                    |
 | Edit Expense       | `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit expense /in 1 /de Lunch @Technoedge /v 5.20`  |
