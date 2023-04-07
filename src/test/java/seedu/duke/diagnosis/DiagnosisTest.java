@@ -16,7 +16,8 @@ public class DiagnosisTest {
     //@@BrennanZuz
     @Test
     public void diagnoseGeneralCold() {
-        ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(Symptom.FATIGUE,
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(List.of(
+                Symptom.FATIGUE,
                 Symptom.RUNNY_NOSE,
                 Symptom.SNEEZING,
                 Symptom.CHILLS,
@@ -157,4 +158,145 @@ public class DiagnosisTest {
                 ));
     }
 
+    //@@author JeraldChen
+    @Test
+    public void diagnoseGeneralToothAche() {
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(
+                List.of(Symptom.TOOTH_ACHE
+                ));
+        ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
+        assertTrue(testIllnesses.stream()
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Tooth Ache")
+                ));
+    }
+
+    //@@author JeraldChen
+    @Test
+    public void diagnoseToothDecay() {
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(
+                List.of(Symptom.TOOTH_ACHE,
+                        Symptom.BLACK_TEETH
+                ));
+        ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
+        assertTrue(testIllnesses.stream()
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Tooth Decay")
+                ));
+    }
+
+    //@@author JeraldChen
+    @Test
+    public void diagnoseGeneralRash() {
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(
+                List.of(Symptom.ITCHY_SKIN,
+                        Symptom.RED_SKIN
+                ));
+        ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
+        assertTrue(testIllnesses.stream()
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Rashes")
+                ));
+    }
+
+    //@@author JeraldChen
+    @Test
+    public void diagnoseHives() {
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(
+                List.of(Symptom.ITCHY_EYE,
+                        Symptom.RED_SKIN,
+                        Symptom.SWELLING_SKIN
+                ));
+        ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
+        assertTrue(testIllnesses.stream()
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Hives")
+                ));
+    }
+
+    //@@author JeraldChen
+    @Test
+    public void diagnosePsoriasis() {
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(
+                List.of(Symptom.ITCHY_SKIN,
+                        Symptom.RED_SKIN,
+                        Symptom.DRY_SCALING_SKIN
+                ));
+        ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
+        assertTrue(testIllnesses.stream()
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Psoriasis")
+                ));
+    }
+
+    //@@author JeraldChen
+    @Test
+    public void diagnoseConstipation() {
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(
+                List.of(Symptom.HARD_LUMPY_STOOL
+                ));
+        ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
+        assertTrue(testIllnesses.stream()
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Constipation")
+                ));
+    }
+
+    //@@author JeraldChen
+    @Test
+    public void diagnoseDiarrhoea() {
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(
+                List.of(Symptom.WET_STOOL,
+                        Symptom.STOMACH_ACHE,
+                        Symptom.DIARRHOEA
+                ));
+        ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
+        assertTrue(testIllnesses.stream()
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Diarrhoea")
+                ));
+    }
+
+    //@@author JeraldChen
+    @Test
+    public void diagnoseFoodPoisoning() {
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(
+                List.of(Symptom.DIARRHOEA,
+                        Symptom.STOMACH_ACHE,
+                        Symptom.NAUSEA,
+                        Symptom.VOMITING,
+                        Symptom.FEVER
+                ));
+        ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
+        assertTrue(testIllnesses.stream()
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Food Poisoning")
+                ));
+    }
+
+    //@@author JeraldChen
+    @Test
+    public void diagnoseGeneralStomachAche() {
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(
+                List.of(Symptom.STOMACH_ACHE
+                ));
+        ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
+        assertTrue(testIllnesses.stream()
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Stomach Ache")
+                ));
+    }
+
+    //@@author JeraldChen
+    @Test
+    public void diagnoseHemorrhoids() {
+        ArrayList<Symptom> testSymptoms = new ArrayList<>(
+                List.of(Symptom.BLOODIED_STOOLS
+                ));
+        ArrayList<IllnessMatch> testIllnesses = Diagnosis.getPossibleIllnesses(testSymptoms);
+        assertTrue(testIllnesses.stream()
+                .anyMatch(illnessMatch ->
+                        illnessMatch.getIllness().getIllnessName().equals("Hemorrhoids")
+                ));
+    }
 }

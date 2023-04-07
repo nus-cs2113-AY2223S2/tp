@@ -152,11 +152,11 @@ public class Information {
      */
     public static void viewSymptomHistory(ArrayList<Symptom> symptoms) {
         if (symptoms.size() == 0) {
+            System.out.println("---------------------------------------------------");
             System.out.println("You have not entered any symptoms.");
         } else {
-            for (Symptom symptom : symptoms) {
-                System.out.println(SymptomHandler.toString(symptom));
-            }
+            System.out.println("---------------------------------------------------");
+            SymptomHandler.printSymptoms(symptoms);
         }
     }
 
@@ -245,7 +245,6 @@ public class Information {
     private static void displayInvalidSymptomChoiceErrorMessage() {
         System.out.println("Invalid number! Please enter a valid symptom number.");
         System.out.println("Returning to main menu.");
-        //Parser.parseAccountCommand("5");
     }
 
 

@@ -5,6 +5,7 @@ import seedu.duke.Duke;
 import seedu.duke.diagnosis.Diagnosis;
 import seedu.duke.diagnosis.IllnessMatch;
 import seedu.duke.diagnosis.symptoms.Symptom;
+import seedu.duke.diagnosis.symptoms.SymptomHandler;
 import seedu.duke.patient.Patient;
 import seedu.duke.save.Storage;
 
@@ -181,7 +182,7 @@ public class Menu {
                     break;
                 } else {
                     System.out.println("Your entered symptoms are: ");
-                    System.out.println(symptoms);
+                    SymptomHandler.printSymptoms(symptoms);
                     break;
                 }
             } else {
@@ -402,6 +403,7 @@ public class Menu {
     /**
      * Adds the users' inputted symptom into the symptoms array.
      *
+     * @author brennanzuz
      * @param symptom  The symptom indicated by the user. Defined and passed from the case statement.
      * @param symptoms List of symptoms
      */
