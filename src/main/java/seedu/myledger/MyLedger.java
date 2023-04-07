@@ -47,6 +47,7 @@ public class MyLedger {
         Command finalCommand = MainInputParser.parseInputs(line);
         CommandResult result = finalCommand.execute(expenditures);
         String textOutput = result.getCommandResult();
+        ExpenditureList.queryLumpSumDates();
         ExpenditureList.saveList();
         System.out.println(textOutput);
         return finalCommand.isExit();

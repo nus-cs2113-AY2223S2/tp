@@ -23,6 +23,11 @@ public class FoodExpenditure extends Expenditure {
     }
 
     @Override
+    public String expenditureString(String currency) {
+        return String.format("[Food] || %s", super.expenditureString(currency));
+    }
+
+    @Override
     public String getExpenditureType() {
         return EXPENDITURE_TYPE;
     }
@@ -35,6 +40,7 @@ public class FoodExpenditure extends Expenditure {
                 "t/" + getDate() +
                 "p/" + "None" +
                 "n/" + "None" +
-                "o/" + "None" + "\n";
+                "o/" + "None" +
+                "r/" + "None" + "\n";
     }
 }

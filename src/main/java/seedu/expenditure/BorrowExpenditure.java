@@ -53,6 +53,12 @@ public class BorrowExpenditure extends Expenditure {
     }
 
     @Override
+    public String expenditureString(String currency) {
+        return String.format("[Borrow] || Borrowed from: %s || %s || By: %s",
+                getBorrowerName(), super.expenditureString(currency), getFullDeadline());
+    }
+
+    @Override
     public String getExpenditureType() {
         return EXPENDITURE_TYPE;
     }
@@ -65,6 +71,7 @@ public class BorrowExpenditure extends Expenditure {
                 "t/" + getDate() +
                 "p/" + "None" +
                 "n/" + getBorrowerName() +
-                "o/" + getDeadline() + "\n";
+                "o/" + getDeadline() +
+                "r/" + "None" + "\n";
     }
 }

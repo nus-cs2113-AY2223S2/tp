@@ -9,6 +9,7 @@ import seedu.commands.FindCommand;
 import seedu.commands.ListExpenditureCommand;
 import seedu.commands.ViewDateExpenditureCommand;
 import seedu.commands.ViewTypeExpenditureCommand;
+import seedu.commands.ShowRatesCommand;
 import seedu.commands.AcademicExpenditureCommand;
 import seedu.commands.AccommodationExpenditureCommand;
 import seedu.commands.EntertainmentExpenditureCommand;
@@ -34,7 +35,7 @@ import java.time.format.DateTimeParseException;
 import static seedu.ui.ErrorMessages.ERROR_COMMAND_NOT_RECOGNISED_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_LACK_OF_PARAMETERS_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_DATE_TIME_ERROR_MESSAGE;
-import static seedu.ui.ErrorMessages.ERROR_INVALID_EXPENDITURE_TYPE_MESSAGE;
+import static seedu.ui.ErrorMessages.ERROR_INVALID_INPUT_MESSAGE;
 import static seedu.ui.ErrorMessages.ERROR_NOT_POSITIVE_VALUE_MESSAGE;
 
 public class MainInputParser {
@@ -52,7 +53,7 @@ public class MainInputParser {
         } catch (DateTimeParseException d) {
             return new InvalidCommand(ERROR_DATE_TIME_ERROR_MESSAGE.toString());
         } catch (WrongInputException e) {
-            return new InvalidCommand(ERROR_INVALID_EXPENDITURE_TYPE_MESSAGE.toString());
+            return new InvalidCommand(ERROR_INVALID_INPUT_MESSAGE.toString());
         } catch (NotPositiveValueException p) {
             return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
         } catch (InvalidDateException e) {
@@ -86,11 +87,13 @@ public class MainInputParser {
 
         // Commands that support basic functionalities of MyLedger
         case ListExpenditureCommand.COMMAND_WORD:
-            return new ListExpenditureCommand();
+            return new ListExpenditureCommand(splitValues[INDEX_USERSTRING]);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case ShowRatesCommand.COMMAND_WORD:
+            return new ShowRatesCommand();
 
         // Commands that mark and unmark inputs in list
         case MarkCommand.COMMAND_WORD:

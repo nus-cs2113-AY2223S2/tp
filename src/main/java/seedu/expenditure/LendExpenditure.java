@@ -57,6 +57,12 @@ public class LendExpenditure extends Expenditure {
     }
 
     @Override
+    public String expenditureString(String currency) {
+        return String.format("[Lend] || Lent to: %s || %s || by: %s",
+                getLenderName(), super.expenditureString(currency), getFullDeadline());
+    }
+
+    @Override
     public String getExpenditureType() {
         return EXPENDITURE_TYPE;
     }
@@ -69,6 +75,7 @@ public class LendExpenditure extends Expenditure {
                 "t/" + getDate() +
                 "p/" + "None" +
                 "n/" + getLenderName() +
-                "o/" + getDeadline() + "\n";
+                "o/" + getDeadline() +
+                "r/" + "None" + "\n";
     }
 }

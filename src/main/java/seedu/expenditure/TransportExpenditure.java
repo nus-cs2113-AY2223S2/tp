@@ -22,6 +22,11 @@ public class TransportExpenditure extends Expenditure {
     }
 
     @Override
+    public String expenditureString(String currency) {
+        return String.format("[Transport] || %s", super.expenditureString(currency));
+    }
+
+    @Override
     public String getExpenditureType() {
         return EXPENDITURE_TYPE;
     }
@@ -34,6 +39,7 @@ public class TransportExpenditure extends Expenditure {
                 "t/" + getDate() +
                 "p/" + "None" +
                 "n/" + "None" +
-                "o/" + "None" + "\n";
+                "o/" + "None" +
+                "r/" + "None" + "\n";
     }
 }

@@ -28,6 +28,7 @@ public class ParseLendBorrow {
     public static final String BSLASH = "b/";
     public static final String NSLASH = "n/";
     private final String userInput;
+
     public ParseLendBorrow(String userInput) {
         this.userInput = userInput;
     }
@@ -38,7 +39,7 @@ public class ParseLendBorrow {
     public Command addItem(String command) throws NotPositiveValueException, InvalidDateException {
         try {
             // Format: category d/date, n/name, a/amount, b/deadline, s/description
-            
+
             LocalDate date = fetchDate();
             String name = fetchName();
             double amount = fetchDouble();
@@ -60,11 +61,11 @@ public class ParseLendBorrow {
             return new InvalidCommand(ERROR_DATE_TIME_ERROR_MESSAGE.toString());
         } catch (NumberFormatException n) {
             return new InvalidCommand(ERROR_AMOUNT_FORMAT_MESSAGE.toString());
-        }  catch (StringIndexOutOfBoundsException n) {
+        } catch (StringIndexOutOfBoundsException n) {
             return new InvalidCommand(ERROR_NUMBER_FORMAT_MESSAGE.toString());
         } catch (EmptyStringException e) {
             return new InvalidCommand(ERROR_EMPTY_STRING_MESSAGE.toString());
-        } catch (InvalidDeadlineException | SmallAmountException | InvalidCharacterInAmount e) {
+        } catch (InvalidDeadlineException | SmallAmountException | InvalidCharacterInAmount | InvalidDateException e) {
             return new InvalidCommand(e.getMessage());
         } catch (NotPositiveValueException p) {
             return new InvalidCommand(ERROR_NOT_POSITIVE_VALUE_MESSAGE.toString());
@@ -78,7 +79,7 @@ public class ParseLendBorrow {
 
     public String fetchName() throws EmptyStringException, StringIndexOutOfBoundsException {
         // Extracts the fields from user input
-        return ParseIndividualValue.parseIndividualValue(userInput,NSLASH, ASLASH);
+        return ParseIndividualValue.parseIndividualValue(userInput, NSLASH, ASLASH);
     }
 
     public double fetchDouble() throws InvalidCharacterInAmount, EmptyStringException,
@@ -94,7 +95,7 @@ public class ParseLendBorrow {
     public LocalDate fetchDate() throws EmptyStringException, StringIndexOutOfBoundsException,
             DateTimeParseException {
         // Converts from string to date to fit Command class
-        String dateVal = ParseIndividualValue.parseIndividualValue(userInput,DSLASH, NSLASH);
+        String dateVal = ParseIndividualValue.parseIndividualValue(userInput, DSLASH, NSLASH);
         return LocalDate.parse(dateVal);
     }
 
@@ -105,5 +106,3 @@ public class ParseLendBorrow {
         return LocalDate.parse(dateVal);
     }
 }
-
-

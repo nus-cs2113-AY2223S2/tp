@@ -85,20 +85,32 @@ public class ExpenditureList {
         StringBuilder stringOfExpenditures = new StringBuilder();
         for (int i = 0; i < expenditures.size(); i++) {
             final int expenditureNumber = i + LIST_OFFSET;
-            stringOfExpenditures.append(String.format("%d. %s\n", expenditureNumber, expenditures.get(i)));
+            stringOfExpenditures.append(String.format("%d. %s\n",
+                    expenditureNumber, expenditures.get(i)));
         }
         return stringOfExpenditures.toString().stripTrailing();
     }
 
-    public static String specificDateString(LocalDate date) {
+    public String listString(String currency) {
         StringBuilder stringOfExpenditures = new StringBuilder();
-        int counter = 1;
-        double totalValue = 0;
+        for (int i = 0; i < expenditures.size(); i++) {
+            final int expenditureNumber = i + LIST_OFFSET;
+            stringOfExpenditures.append(String.format("%d. %s\n",
+                    expenditureNumber, expenditures.get(i).expenditureString(currency)));
+        }
+        return stringOfExpenditures.toString().stripTrailing();
+    }
+
+    public static String specificDateString(LocalDate date, String currency) {
+        StringBuilder stringOfExpenditures = new StringBuilder();
+        int counter = 1; //index of expenditures in the filter list
+        double totalValue = 0; //tallies total value
         for (int i = 0; i < expenditures.size(); i++) {
             Expenditure expenditure = expenditures.get(i);
             if (date.equals(expenditure.getDate())) {
-                totalValue += expenditure.getValue();
-                stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure));
+                totalValue += expenditure.getConvertedValue(currency);
+                stringOfExpenditures.append(
+                        String.format("%d. %s\n", counter, expenditure.expenditureString(currency)));
                 counter += 1;
             }
         }
@@ -106,15 +118,16 @@ public class ExpenditureList {
         return stringOfExpenditures.toString().stripTrailing();
     }
 
-    public static String specificTypeString(String expenditureType) {
+    public static String specificTypeString(String expenditureType, String currency) {
         StringBuilder stringOfExpenditures = new StringBuilder();
-        int counter = 1;
-        double totalValue = 0;
+        int counter = 1; //index of expenditures in the filter list
+        double totalValue = 0; //tallies total value
         for (int i = 0; i < expenditures.size(); i++) {
             Expenditure expenditure = expenditures.get(i);
             if (expenditureType.equals(expenditure.getExpenditureType())) {
-                totalValue += expenditure.getValue();
-                stringOfExpenditures.append(String.format("%d. %s\n", counter, expenditure));
+                totalValue += expenditure.getConvertedValue(currency);
+                stringOfExpenditures.append(
+                        String.format("%d. %s\n", counter, expenditure.expenditureString(currency)));
                 counter += 1;
             }
         }
@@ -130,41 +143,46 @@ public class ExpenditureList {
         }
     }
 
-    public static ExpenditureList sortAmount(String sortType) {
-        ArrayList<Expenditure> sortExpenditureAmount = expenditures;
+    public static ArrayList<Expenditure> sortList(String sortType) {
+        ArrayList<Expenditure> sortList = expenditures;
         switch (sortType) {
         case SortCommand.AMOUNT_ASCENDING:
-            sortExpenditureAmount.sort(Comparator.comparing(Expenditure::getValue));
+            sortList.sort(Comparator.comparing(Expenditure::getValue));
             break;
         case SortCommand.AMOUNT_DESCENDING:
-            sortExpenditureAmount.sort(Comparator.comparing(Expenditure::getValue).reversed());
+            sortList.sort(Comparator.comparing(Expenditure::getValue).reversed());
+            break;
+        case SortCommand.DATE_FROM_EARLIEST:
+            sortList.sort(Comparator.comparing(Expenditure::getDate));
+            break;
+        case SortCommand.DATE_FROM_LATEST:
+            sortList.sort(Comparator.comparing(Expenditure::getDate).reversed());
             break;
         default:
             break;
         }
+        return sortList;
+    }
+
+    public static ExpenditureList getSortedExpenditures(ArrayList<Expenditure> sortList) {
         ExpenditureList sortedExpenditures = new ExpenditureList();
-        for (Expenditure expenditure : sortExpenditureAmount) {
+        for (Expenditure expenditure : sortList) {
             sortedExpenditures.addExpenditure(expenditure);
         }
         return sortedExpenditures;
     }
 
-    public static ExpenditureList sortDate(String sortType) {
-        ArrayList<Expenditure> sortExpenditureDate = expenditures;
-        switch (sortType) {
-        case SortCommand.DATE_FROM_EARLIEST:
-            sortExpenditureDate.sort(Comparator.comparing(Expenditure::getDate));
-            break;
-        case SortCommand.DATE_FROM_LATEST:
-            sortExpenditureDate.sort(Comparator.comparing(Expenditure::getDate).reversed());
-            break;
-        default:
-            break;
+    public static void queryLumpSumDates() {
+        for (Expenditure expenditure: expenditures) {
+            processLumpSumDates(expenditure);
         }
-        ExpenditureList sortedExpenditures = new ExpenditureList();
-        for (Expenditure expenditure : sortExpenditureDate) {
-            sortedExpenditures.addExpenditure(expenditure);
+    }
+
+    public static void processLumpSumDates(Expenditure expenditure) {
+        if (expenditure instanceof TuitionExpenditure) {
+            ((TuitionExpenditure) expenditure).checkMark();
+        } else if (expenditure instanceof AccommodationExpenditure) {
+            ((AccommodationExpenditure) expenditure).checkMark();
         }
-        return sortedExpenditures;
     }
 }

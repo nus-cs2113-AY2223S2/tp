@@ -16,6 +16,7 @@ class TuitionExpenditureCommandTest {
         TuitionExpenditureCommand testTuitionExpenditureCommand = new TuitionExpenditureCommand(
                 "NUS Y2S2",
                 8500.5,
+                LocalDate.parse("2021-01-27"),
                 LocalDate.parse("2021-01-27"));
         assertEquals("Added tuition expenditure: " +
                         "[Tuition] || [ ] || Date: 27 Jan 2021 || Value: 8500.5 || Description: NUS Y2S2",
@@ -32,6 +33,7 @@ class TuitionExpenditureCommandTest {
         TuitionExpenditureCommand testTuitionExpenditureCommand = new TuitionExpenditureCommand(
                 "NUS Y2S2",
                 8500.5,
+                LocalDate.parse("2021-01-27"),
                 LocalDate.parse("2021-01-27"));
         assertEquals("Added tuition expenditure: " +
                         "[Tuition] || [ ] || Date: 27 Jan 2021 || Value: 8500.5 || Description: NUS Y2S2",

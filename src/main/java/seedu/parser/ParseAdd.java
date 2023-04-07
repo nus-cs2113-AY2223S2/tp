@@ -50,7 +50,7 @@ public class ParseAdd {
             case AcademicExpenditureCommand.COMMAND_WORD:
                 return new AcademicExpenditureCommand(descriptionVal, amount, date);
             case AccommodationExpenditureCommand.COMMAND_WORD:
-                return new AccommodationExpenditureCommand(descriptionVal, amount, date);
+                return new AccommodationExpenditureCommand(descriptionVal, amount, date, date);
             case EntertainmentExpenditureCommand.COMMAND_WORD:
                 return new EntertainmentExpenditureCommand(descriptionVal, amount, date);
             case FoodExpenditureCommand.COMMAND_WORD:
@@ -60,7 +60,7 @@ public class ParseAdd {
             case TransportExpenditureCommand.COMMAND_WORD:
                 return new TransportExpenditureCommand(descriptionVal, amount, date);
             case TuitionExpenditureCommand.COMMAND_WORD:
-                return new TuitionExpenditureCommand(descriptionVal, amount, date);
+                return new TuitionExpenditureCommand(descriptionVal, amount, date, date);
             default:
                 return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
             }

@@ -1,6 +1,9 @@
 package seedu.commands;
 
+import seedu.expenditure.Expenditure;
 import seedu.expenditure.ExpenditureList;
+
+import java.util.ArrayList;
 
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
@@ -16,27 +19,32 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
+        ArrayList<Expenditure> sortedList;
         ExpenditureList sortedExpenditures;
         if(expenditures.getSize() == 0) {
             return new CommandResult("Unable to sort as list is currently empty!");
         }
         switch (sortType) {
         case AMOUNT_ASCENDING:
-            sortedExpenditures = ExpenditureList.sortAmount(sortType);
+            sortedList = ExpenditureList.sortList(sortType);
+            sortedExpenditures = ExpenditureList.getSortedExpenditures(sortedList);
             return new CommandResult("Here is your list of expenditures sorted in ascending amount: \n"
-                    + sortedExpenditures.toString());
+                    + sortedExpenditures);
         case AMOUNT_DESCENDING:
-            sortedExpenditures = ExpenditureList.sortAmount(sortType);
+            sortedList = ExpenditureList.sortList(sortType);
+            sortedExpenditures = ExpenditureList.getSortedExpenditures(sortedList);
             return new CommandResult("Here is your list of expenditures sorted in descending amount: \n"
-                    + sortedExpenditures.toString());
+                    + sortedExpenditures);
         case DATE_FROM_EARLIEST:
-            sortedExpenditures = ExpenditureList.sortDate(sortType);
+            sortedList = ExpenditureList.sortList(sortType);
+            sortedExpenditures = ExpenditureList.getSortedExpenditures(sortedList);
             return new CommandResult("Here is your list of expenditures sorted from the earliest date: \n"
-                    + sortedExpenditures.toString());
+                    + sortedExpenditures);
         case DATE_FROM_LATEST:
-            sortedExpenditures = ExpenditureList.sortDate(sortType);
+            sortedList = ExpenditureList.sortList(sortType);
+            sortedExpenditures = ExpenditureList.getSortedExpenditures(sortedList);
             return new CommandResult("Here is your list of expenditures sorted from the latest date: \n"
-                    + sortedExpenditures.toString());
+                    + sortedExpenditures);
         default:
             return new CommandResult("<sort ascend> to sort amount in ascending order. " +
                     "<sort descend> to sort amount in descending order.\n" +
