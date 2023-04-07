@@ -102,17 +102,21 @@ facilitated by ListCommand class which is an extension of the Command class.
 Given below is an example usage scenario of how to list the tasks in the TaskList and how the mechanism behaves
 at each step.
 
-Step 1. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+**Step 1. Define the `setUpLogger()` method:**
+The `setUpLogger()` method sets up the logger for the ModifyCommand
 class.
 It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 2. Override the `execute()` method: The `execute()` method is overridden to execute the list task
+**Step 2. Override the `execute()` method:**
+The `execute()` method is overridden to execute the list task
 functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
 <!--@@author T-Wan-Lin -->
 
-Step 3. Iterate through the list of tasks and perform sorting: The `execute()` method will iterate through `TaskList`
+**Step 3. Iterate through the list of tasks and perform sorting:**
+
+The `execute()` method will iterate through `TaskList`
 and first calls the
 `sortTaskByDay()` method in the TaskList class that takes in the list of tasks, `TaskList` that the user has updated
 as a parameter. During the iteration, this method will first sort the task in the list by type with the method
@@ -126,13 +130,17 @@ events being compared.
 
 <!--@@author yixuann02 -->
 
-Step 4. Iterate through the list of sorted tasks and print it:The `execute()` method then calls the `printList()` method
+**Step 4. Iterate through the list of sorted tasks and print it:**
+
+The `execute()` method then calls the `printList()` method
 in the Ui class that takes in the list of tasks,`TaskList` that the user has updated, as a parameter.
 During the iteration, the `printList()` method will check the `taskStatus` of each task and calculate
 the total number of unmarked tasks. If the list is empty, a message is printed to the user indicating that there are
 no tasks in the list.
 
-Step 4. Print the confirmation message: A confirmation message is printed to the user indicating the list of tasks
+**Step 4. Print the confirmation message:**
+
+A confirmation message is printed to the user indicating the list of tasks
 in `TaskList` that the user updated and the total number of unmarked tasks. The message includes the task type,
 description and date of all tasks if the tasks are either an event or a deadline task.
 
@@ -149,39 +157,57 @@ types of `Task`s to the TaskList, namely: `ToDo`, `Deadline`, and `Event`.
 
 Given below is an example usage scenario and how the add task mechanism behaves at each step as the user adds an event.
 
-Step 1. The user enters the command `event concert /from 2023-06-06T20:00 /to 2023-06-06T22:00`.  
+**Step 1.**
+
+The user enters the command `event concert /from 2023-06-06T20:00 /to 2023-06-06T22:00`.  
 This is to add a `Task` with the description "concert" on Jun 6 2023 from 8-10pm to their TaskList.
 The String containing the command is parsed in `Parser` and determined to be an `AddCommand`.
 
-Step 2. Within `Parser`, an `AddCommand` is initialised with the String `command` "event".
+**Step 2.**
+
+Within `Parser`, an `AddCommand` is initialised with the String `command` "event".
 The remaining params of the command are further parsed into Strings: `desc` "concert" (description), `from`
 "2023-06-06T20:00" (start date), and `to` "2023-06-06T22:00" (end date) based on the delimiters "/from" and "/to".
 - For `command` "deadline", remaining params are parsed into `desc` and `by` (due date) based on the delimiter "/by".
 - For `command` "todo", all remaining params are parsed into `desc`.
 
-Step 3. The initialised `AddCommand` is returned to Apollo.
+**Step 3.**
+
+The initialised `AddCommand` is returned to Apollo.
 In the event of the following, an error message is printed and no more steps are executed.
 - Delimiters are not entered correctly
 - Remaining params of the command are empty (i.e. CLI input of user is "todo"/"deadline"/"event" only)
 
-Step 4. `Command#execute()` is called. This in turn calls `AddCommand#addTask()`.
+**Step 4.**
+
+`Command#execute()` is called. This in turn calls `AddCommand#addTask()`.
 `addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into LocalDateTimes.
 In the event of the following, an error message is printed and no more steps are executed.
 - String for date cannot be parsed into LocalDateTime (wrong format of input)
 - Task occurs entirely before the current date
 - (for `Event`) Start date occurs after end date
 
-Step 5. `addTask()` checks if the initialised `Event` clashes with any existing tasks. If so,
+**Step 5.**
+
+`addTask()` checks if the initialised `Event` clashes with any existing tasks. If so,
 `Ui#printClashingEventMessage()` is called to print a warning message.
 
-Step 6. Similarly, `addTask()` also checks if the initialised `Event` clashes with any existing lessons. If so,
+**Step 6.**
+
+Similarly, `addTask()` also checks if the initialised `Event` clashes with any existing lessons. If so,
 `Ui#printClashingEventModuleMessage()` is called to print a warning message.
 
-Step 7. The initialised `Event` is added to the `TaskList`. Return to `AddCommand#execute`.
+**Step 7.**
 
-Step 8. If the Task has been added successfully, `Ui#printAddMessage()` prints a success message.
+The initialised `Event` is added to the `TaskList`. Return to `AddCommand#execute`.
 
-Step 9. `Storage#updateTask()` is called to update the local save file to reflect the changes.
+**Step 8.**
+
+If the Task has been added successfully, `Ui#printAddMessage()` prints a success message.
+
+**Step 9.**
+
+`Storage#updateTask()` is called to update the local save file to reflect the changes.
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddCommand-AddCommand__for_Tasks_.png?raw=true)
 
@@ -199,31 +225,45 @@ It is facilitated by the ModifyCommand class which is an extension of the Comman
 Below is an example usage of how the DeleteTask command can be used to delete a task and how it behaves
 at each step.
 
-Step 1: Define the Constructor: When the user executes the command `delete 1`, the Parser class calls the
+**Step 1: Define the Constructor:**
+
+When the user executes the command `delete 1`, the Parser class calls the
 `ModifyCommand()` method of the ModifyCommand. The constructor of the ModifyCommand class takes in the taskIndex `1`
 as a parameter. This index is used to find the task to be deleted from the TaskList.
 
-Step 2: Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+**Step 2: Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ModifyCommand
 class.
 It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 3: Override the `execute()` method: The `execute()` method is overridden to execute the delete task functionality.
+**Step 3: Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the delete task functionality.
 It takes in the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`, `allModules`.
 
-Step 4: Find out how to modify the TaskList: The first step in the `execute()` method is to find out how to modify the
+**Step 4: Find out how to modify the TaskList:**
+
+The first step in the `execute()` method is to find out how to modify the
 TaskList. In this case, the task at a user-provided index is to be deleted.
 
-Step 5: Find the task to delete: Using the parameter `taskIndex`, the `execute()` method will iterate to that
+**Step 5: Find the task to delete:**
+
+Using the parameter `taskIndex`, the `execute()` method will iterate to that
 index in the `TaskList` and call the `remove()` method of the `TaskList` class. If the index is outside the bounds of
 the size of the `TaskList`, a `NumberFormatException` is thrown, calling the `printErrorForIdx()` method in the Ui class
 that takes in the size of the `TaskList` as a parameter.
 
-Step 6: Print the confirmation message: A confirmation message is printed to the user indicating what task has been
+**Step 6: Print the confirmation message:**
+
+A confirmation message is printed to the user indicating what task has been
 successfully removed from the user-provided index of the `TaskList`. The message includes the task type, description
 (and date of the task deleted if the task is either an event or a deadline).
 It also includes the updated size of the `TaskList`, obtained with the `size()` method of the `TaskList` class.
 
-Step 7: Update the storage: The storage is updated with the new TaskList without the deleted task.
+**Step 7: Update the storage:**
+
+The storage is updated with the new TaskList without the deleted task.
 
 [*Return to TOC*](#table-of-contents)
 
@@ -233,20 +273,40 @@ The MarkTask functionality allows users to mark a task (todo, event and deadline
 It is facilitated by the ModifyCommand class which is an extension of the Command class.
 Below is an example usage of how the MarkTask command can be used to mark a task as done.
 
-Step 1: Define the Constructor: When the user executes the command `mark 1`, the Parser class calls the
+**Step 1: Define the Constructor:**
+
+When the user executes the command `mark 1`, the Parser class calls the
 `ModifyCommand()` method of the ModifyCommand. The constructor of the ModifyCommand class takes in the taskIndex `1`
 as a parameter. This index is used to find the task to be marked as done from the TaskList.
 
-Step 2: Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+**Step 2: Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ModifyCommand
 class.
 It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 3: Override the `execute()` method: The `execute()` method is overridden to execute the mark task functionality.
+**Step 3: Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the mark task functionality.
 It takes in the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`, `allModules`.
 
-Step 4: Find out how to modify the TaskList: The first step in the `execute()` method is to find out how to modify the
+**Step 4: Find out how to modify the TaskList:**
+
+The first step in the `execute()` method is to find out how to modify the
 TaskList. In this case, the task at a user-provided index is to be marked as done.
 
+<<<<<<< HEAD
+**Step 5: Find the task to mark as done:**
+
+Using the parameter `taskIndex`, the `execute()` method will iterate to that
+index in the `TaskList` and call the `setAsDone()` method of the `Task` class, setting the boolean `isDone` to `true`.
+If the index is outside the bounds of the size of the `TaskList`, a `NumberFormatException` is thrown,
+calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
+
+**Step 6: Print the confirmation message:**
+
+A confirmation message is printed to the user indicating what task has been
+=======
 Step 5: Find the task to mark as done: The `execute()` method will perform a call to the method `markTask()`
 that takes in the `TaskList` and `Ui` as parameters. It will iterate to the user-given index, and it will first check
 the task completeness status. If it is not, call the `setAsDone()` method of the `Task` class, setting the boolean `isDone`
@@ -256,13 +316,16 @@ If the index is outside the bounds of the size of the `TaskList`, a `NumberForma
 calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
 
 Step 6a: Print the confirmation message: A confirmation message is printed to the user indicating what task has been
+>>>>>>> master
 successfully marked as done from the user-provided index of the `TaskList`. The message includes the task type,
 description (and date of the task deleted if the task is either an event or a deadline).The execution will proceed to step 7.
 
 Step 6b: Apollo will print an message to the user to state that the task was marked as done previously. The execution of the mark
 command will stop here.
 
-Step 7: Update the storage: The storage is updated with the new TaskList with the task marked with a cross next to it.
+**Step 7: Update the storage:**
+
+The storage is updated with the new TaskList with the task marked with a cross next to it.
 
 
 
@@ -274,36 +337,54 @@ The UnmarkTask functionality allows users to toggle a task (todo, event and dead
 It is facilitated by the ModifyCommand class which is an extension of the Command class.
 Below is an example usage of how the UnmarkTask command can be used to unmark a task as not done.
 
-Step 1: Define the Constructor: When the user executes the command `unmark 1`, the Parser class calls the
+**Step 1: Define the Constructor:**
+
+When the user executes the command `unmark 1`, the Parser class calls the
 `ModifyCommand()` method of the ModifyCommand. The constructor of the ModifyCommand class takes in the taskIndex `1`
 as a parameter. This index is used to find the task to be unmarked from the TaskList.
 
-Step 2: Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+**Step 2: Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ModifyCommand
 class.
 It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 3: Override the `execute()` method: The `execute()` method is overridden to execute the mark task functionality.
+**Step 3: Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the mark task functionality.
 It takes in the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`, `allModules`.
 
-Step 4: Find out how to modify the TaskList: The first step in the `execute()` method is to find out how to modify the
+**Step 4: Find out how to modify the TaskList:**
+
+The first step in the `execute()` method is to find out how to modify the
 TaskList. In this case, the task at a user-provided index is to be unmarked.
 
-Step 5: Find the task to unmark as not done: The `execute()` method will perform a call to the method `unmarkTask()` 
-that takes in the `TaskList` and `Ui` as parameters. It will iterate to the user-given index, and it will first check 
+
+**Step 5: Find the task to unmark as not done:**
+
+The `execute()` method will perform a call to the method `unmarkTask()`
+that takes in the `TaskList` and `Ui` as parameters. It will iterate to the user-given index, and it will first check
 the task completeness status. If it is done, call the `setAsDone()` method of the `Task` class, setting the boolean `isDone`
 to `false`, proceeding on to step 6a. If the task the user is trying to unmark is not done from previous iterations
 , it will proceed to step 6b.
 If the index is outside the bounds of the size of the `TaskList`, a `NumberFormatException` is thrown,
 calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
 
-Step 6a: Print the confirmation message: A confirmation message is printed to the user indicating what task has been
+
+**Step 6a: Print the confirmation message:**
+
+A confirmation message is printed to the user indicating what task has been
 successfully unmarked from the user-provided index of the `TaskList`. The message includes the task type,
 description (and date of the task deleted if the task is either an event or a deadline). The execution will move on to step 7.
 
-Step 6b: Apollo will print an message to the user to state that the task was never marked as done. The execution of the unmark
+**Step 6b:**
+
+Apollo will print an message to the user to state that the task was never marked as done. The execution of the unmark
 command will stop here.
 
-Step 7: Update the storage: The storage is updated with the new TaskList with the task marked without a cross next to
+**Step 7: Update the storage:**
+
+The storage is updated with the new TaskList with the task marked without a cross next to
 it.
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ModifyCommand-ModifyCommand__Unmark_Tasks_.png?raw=true)
@@ -321,25 +402,35 @@ specific keyword. The FindTask mechanism is facilitated by FindCommand which ext
 Below is an example usage of how the FindTask command can be used to search for a task in the TaskList using a keyword
 and how it behaves at each step.
 
-Step 1. Define the Constructor: When the user executes the command `find read`, the Parser class calls the
+**Step 1. Define the Constructor:**
+
+When the user executes the command `find read`, the Parser class calls the
 `FindCommand()` method of the FindCommand class. The constructor of the FindCommand class takes in the keyword
 string `read` as a parameter. This string is used to find tasks in the TaskList that contains this keyword.
 
-Step 2: Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+**Step 2: Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ModifyCommand
 class.
 It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the find task
+**Step 3. Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the find task
 functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
-Step 4. Find the list of tasks containing the `KEYWORD`: Using the parameter string `KEYWORD`, the `execute()` method
+**Step 4. Find the list of tasks containing the `KEYWORD`:**
+
+Using the parameter string `KEYWORD`, the `execute()` method
 will iterate through `TaskList` and call `printFoundList()` method in the Ui class that takes in a list of task,
 `ArrayList<Tasks>`, containing the `KEYWORD` as a parameter. If the `KEYWORD` does not exist in any tasks
 in `TaskList`, a message is printed to the user indicating that there are no matching tasks that contains the
 `KEYWORD`.
 
-Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the list of
+**Step 5. Print the confirmation message:**
+
+A confirmation message is printed to the user indicating the list of
 tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description and
 date of the task containing `KEYWORD` if the matching task is either an event or a deadline task.
 
@@ -360,29 +451,41 @@ the Command class.
 Below is an example usage of how the Find Task on Date command can be used to search for tasks happening or due on
 a specific date in the TaskList and how it behaves at each step.
 
-Step 1. Define the Constructor: When the user executes the command `date 2023-03-22`, the Parser class calls the    
+**Step 1. Define the Constructor:**
+
+When the user executes the command `date 2023-03-22`, the Parser class calls the    
 `DateCommand()` method of the DateCommand class. The constructor of the DateCommand class takes in the dateString
 `2023-03-22`  as a parameter. This date is used to find the corresponding tasks happening or due on this date from
 the TaskList.
 
-Step 2. This date is then passed into the `LocalDate`. If the date parsed is in the wrong format (date format is not
+**Step 2.**
+
+This date is then passed into the `LocalDate`. If the date parsed is in the wrong format (date format is not
 `yyyy-MM-dd`), a `DateTimeParseException` is thrown, calling the `printInvalidDate()` method in the Ui class.
 
-Step 3. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+**Step 3. Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ModifyCommand
 class.
 It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 4. Override the `execute()` method: The `execute()` method is overridden to execute the find task
+**Step 4. Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the find task
 functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
-Step 5. Find the list of tasks happening or due on the `date`: Using the parameter string `date` in the format
+**Step 5.**
+
+Find the list of tasks happening or due on the `date`: Using the parameter string `date` in the format
 `yyyy-MM-dd`, the `execute()` method will iterate through the `TaskList` to look for tasks that occurs on the given
 `date`. It will then call `printDateList()` method in the Ui class that takes in the list of tasks happening on the
 given `date` and the LocalDate `date`. If there are no tasks on the specific `date`, a message is printed to the user
 indicating that there are no tasks on that day.
 
-Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the list of tasks in
+**Step 6.**
+
+Print the confirmation message: A confirmation message is printed to the user indicating the list of tasks in
 `TaskList` that are occurring on the `date` input by the user. The message includes the task type, description, date
 and time of the task if the task is either an event or a deadline task.
 
@@ -403,21 +506,29 @@ ListModuleCommand class which is an extension of the Command class.
 Given below is an example usage scenario of how to list the modules in the ModuleList and how the mechanism behaves
 at each step.
 
-Step 1. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ModifyCommand
+**Step 1. Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ModifyCommand
 class.
 It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 2. Override the `execute()` method: The `execute()` method is overridden to execute the list module
+**Step 2. Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the list module
 functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
-Step 3. Iterate through the list of modules: The `execute` method will iterate through `ModuleList` and call
+**Step 3. Iterate through the list of modules:**
+
+The `execute` method will iterate through `ModuleList` and call
 `printModuleList()` method in the Ui class that takes in the list of modules, `ModuleList` that the user has updated,
 as a parameter. During the iteration, the `printModuleList()` method will get the number of modular credits for each
 module the user is taking and calculate the total modular credits in that semester. If the list is empty, a message
 is printed to the user indicating that there are no modules in the list.
 
-Step 4. Print the confirmation message: A confirmation message is printed to the user indicating the list of modules
+**Step 4. Print the confirmation message:**
+
+A confirmation message is printed to the user indicating the list of modules
 in `ModuleList` that the user updated. The message includes the module code and name, modular credits for each module
 and  total modular credits the user is taking this semester.
 
@@ -444,56 +555,79 @@ using the moduleCode and how the mechanism behaves at each step.
 
 #### For when user request to show the module (e.g. CS2113) in their timetable:
 
-Step 1. Define the Constructor: When user executes the command `listmod cs2113`, the Parser class calls the
+**Step 1. Define the Constructor:**
+
+When user executes the command `listmod cs2113`, the Parser class calls the
 `ListModuleWithLessonCommand()` method of the ListModuleWithLessonCommand class. The constructor of the
 ListModuleWithLessonCommand class takes in a parameter of type `String`, which will be split into `moduleCode` and
 `-FLAG`. In this case, only `cs2113` is parsed in as the parameter. This is then used to find `cs2113` from the
 existing timetable. If a moduleCode does not exist in NUS modules, an `InvalidModule()` is thrown.
 
-Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
+**Step 2. Define the `setUpLogger()` method:**
+The `setUpLogger()` method sets up the logger for the ShowModuleCommand
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the List Module with
+**Step 3. Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the List Module with
 Lesson functionality. It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and
 Calendar.
 
-Step 4. Find the module from the timetable: The first step in the `execute()` method is to find the module from 
+**Step 4. Find the module from the timetable:**
+
+The first step in the `execute()` method is to find the module from 
 timetable using the `Module` class with the module code parameter `cs2113` and using the `getModuleTimetable()` 
 function of the `Module` class. If the module `cs2113` has not been added to the timetable, `ModuleNotAddedException` 
 will be thrown.
 
-Step 5. Calls the `handleSingleCommand()` method: The `handleSingleCommand()` method is called to handle the command
+**Step 5. Calls the `handleSingleCommand()` method:**
+
+The `handleSingleCommand()` method is called to handle the command
 with only the `moduleCode` as the parameter.
 
-Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the module and lesson 
+**Step 6. Print the confirmation message:**
+
+A confirmation message is printed to the user indicating the module and lesson 
 information that the user has added into their module list. The message will include the `ModuleCode`, `LessonTypes`
 of that user has added, `Classnumber` of the `LessonType` that user has added and `Day` and `Time` of the lesson.
 
 #### For when user request to show a specific lesson of the module (e.g. CS2113 -tut) in their timetable:
 
-Step 1. Define the Constructor: When user executes the command `listmod cs2113`, the Parser class calls the
+**Step 1. Define the Constructor:**
+
+When user executes the command `listmod cs2113`, the Parser class calls the
 `ListModuleWithLessonCommand()` method of the ListModuleWithLessonCommand class. The constructor of the
 ListModuleWithLessonCommand class takes in a parameter of type `String`, which will be split into `moduleCode`, 
 `cs2113` and `-FLAG`, `-tut`. In this case, `cs2113 -tut` is parsed in as the parameter. This is stored in the `args` 
 array field of the `ListModuleWithLessonCommand` class.
 
-Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
+**Step 2. Define the `setUpLogger()` method:**
+
+The `setUpLogger()` method sets up the logger for the ShowModuleCommand
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
 
-Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the List Module with
+**Step 3. Override the `execute()` method:**
+
+The `execute()` method is overridden to execute the List Module with
 Lesson functionality. It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and
 Calendar. The lesson type is determined by calling the `getLessonType()` method of the `lessonType` class and 
 parsing in `args[1]` while the moduleCode is set by `args[0]`. If the lessonType is not valid, an 
 `InvalidCommandException` is thrown.
 
-Step 4. Find the module from the timetable: The first step in the `execute()` method is to find the module from
+**Step 4. Find the module from the timetable:**
+
+The first step in the `execute()` method is to find the module from
 timetable using the `Module` class with the module code parameter `cs2113` and using the `getModuleTimetable()`
 function of the `Module` class. If the module `cs2113` has not been added to the timetable, `ModuleNotAddedException`
 will be thrown.
 
-Step 5. Calls the `handleMultiCommand()` method: The `handleMultiCommand()` method is called to handle the command.
+**Step 5. Calls the `handleMultiCommand()` method:**
 
-Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the module and lesson
+The `handleMultiCommand()` method is called to handle the command.
+
+**Step 6. Print the confirmation message:**
+
+A confirmation message is printed to the user indicating the module and lesson
 information that the user has added into their module list. The message will include the `ModuleCode`, the 
 specific `LessonTypes` of that user has added, `Classnumber` of the `LessonType` that user has added and 
 `Day` and `Time` of the lesson.
@@ -513,63 +647,69 @@ the AddMod command can be used to add both modules and their specific lessons.
 
 #### For when a user adds only a module (e.g CS2113) to the module list with no specific lessons:
 
-Step 1: Define the Constructor :
+**Step 1: Define the Constructor :**
+
 When user executes the command `addmod cs2113` the Parser class calls the `AddModCommand()` method of the AddModCommand.
 The constructor of the AddModCommand class takes in a moduleCode `cs2113` as a parameter and `allModules`. This
 moduleCode is used to find `cs2113` from the ModuleData list.
 
-Step 2: Define the `setUpLogger()` method :
+**Step 2: Define the `setUpLogger()` method :**
+
 The `setUpLogger()` method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
 FileHandler to handle logging.
 
-Step 3: Override the `execute()` method :
+**Step 3: Override the `execute()` method :**
+
 The `execute()` method is overridden to execute the delete module functionality. It takes in the necessary parameters,
 including the `ModuleList`, `Ui`, `Storage`, `TaskList` and `allModules`.
 
-Step 4: Check if the module exists in the list :
+**Step 4: Check if the module exists in the list :**
+
 The first step in the `execute()` method is to split the parameters into the module code and the lesson type. It then
 calls the `isAdded()` method of the `ModuleList` class to check if the module already exists in the list. If the module
 exists, a `DuplicateModuleException` is thrown.
 
-Step 5: Add the module to the ModuleList :
+**Step 5: Add the module to the ModuleList :**
+
 If the module does not exist, it is added to the `ModuleList` by calling the `add()` method of the `ModuleList` class.
 The module is sorted alphabetically by the `sort()` method of the `ModuleList` class.
 
-Step 6: Print the confirmation message :
+**Step 6: Print the confirmation message :**
+
 A confirmation message is printed to the user indicating that the module has been successfully added. The message
 includes the module code and title of the module added as well as the available lesson types for the module.
 
 
 #### For when a user adds a module's specific lesson (e.g CS2113 -lec 1) to the module list:
 
-Step 1: Define the Constructor :
+**Step 1: Define the Constructor :**
 
 When user executes the command `addmod cs2113 -lec 1` the Parser class calls the `AddModCommand()` method of the 
 AddModCommand class. The constructor of the AddModCommand class takes in the string `cs2113 -lec 1` as a parameter and
 `allModules`. The string is split into a moduleCode `cs2113`, lessonType `-lec` and `1` as class number.
 
-Step 2: Define the `setUpLogger()` method :
+**Step 2: Define the `setUpLogger()` method :**
 
 The setUpLogger() method sets up the logger for the DeleteModuleCommand class. It creates a ConsoleHandler and a
 FileHandler to handle logging.
 
-Step 3: Override `execute()` method :
+**Step 3: Override `execute()` method :**
 
 The `execute()` method is overridden to execute the delete module functionality. It takes in the necessary parameters,
 including the ModuleList, Ui, Storage, and TaskList.
 
-Step 4: Calls the `handleMultiCommand()` method:
+**Step 4: Calls the `handleMultiCommand()` method:**
 
 The `handleMultiCommand()` method is called to handle the command. It takes in `moduleList`, `lessonType` and `args` as
 parameters. It then checks if the module already exists in the `ModuleList` by calling the `isAdded()` method.
 
-Step 5: Add the module lessons to the ModuleList :
+**Step 5: Add the module lessons to the ModuleList :**
 
 If the module already exists, the timetable of the classes are added to the module by calling the `addTimetable()` 
 method which takes in `searchModule` and `lessonType` as parameters. If the module does not exist, it is added to the
 Module list and the lessons are added to the module using the `addTimetable()` method of the `ModuleList` class.
 
-Step 6: 
+**Step 6:** 
 
 Print the confirmation message :
 A confirmation message is printed to the user indicating that the module lesson has been successfully added.
@@ -798,7 +938,48 @@ Below is a sequence diagram of the `bye` command.
 [*Return to TOC*](#table-of-contents)
 
 ## *Logging*
-(TO BE ADDED SOON)
+- We are using `java.util.logging` package for logging. The `Logger` class is used to log messages for the different
+  error levels
+
+- Each command class has a private static final field called `logger` for logging and a `setUpLogger()` method to set
+  up the logging properties such as the logging level and the format of logging messages.
+
+- The `setUpLogger()` method is called in the constructor of the command class. It is implemented from the `LoggerInterface`
+  interface. Details of the implementation can be found further down in the subsection.
+
+- Log messages are output to a file called `Apollo.log` in the `data` folder. All error messages of logging level
+  `FINE` and above are logged to the file. Additionally, all log messages of logging level `SEVERE` are logged 
+  to the console.
+
+
+### *The `LoggerInterface` Interface*
+The `LoggerInterface` interface is used to implement the `setUpLogger()` method in the command classes. This design choice
+was made to reduce code duplication and to improve the maintainability of the code. It also allows for multi-level inheritance
+amongst different command classes. The implementation of the `setUpLogger()` method is shown below.
+
+**Step 1**:
+
+The `setUpLogger()` method calls `getLogManager().reset()` of the `LogManager` class to reset the logging properties
+to the default values.
+
+**Step 2**:
+
+The logger is set to log messages of logging level `WARNING` and above. A new `ConsoleHandler` is created to handle logging
+to the console. The `ConsoleHandler` is set to log messages of logging level `SEVERE` and above. The `ConsoleHandler` is
+then added to the logger using the `addHandler()` method.
+
+**Step 3**:
+
+First, apollo.log is checked to see if it exists, if it does not exist, a new file is created. A new `FileHandler` is created
+to handle logging to the file. The `FileHandler` is set to log messages of logging level `FINE` and above. The `FileHandler`
+is then added to the logger using the `addHandler()` method. 
+
+**Step 4**:
+
+If the file cannot be created, a `SecurityException` is thrown. The `IOException` is caught and logged using the ConsoleHandler.
+Subsequently, the only logging will be through the ConsoleHandler.
+
+
 
 # Appendix
 
