@@ -7,8 +7,8 @@ import seedu.pettracker.data.TaskList;
 import seedu.pettracker.exceptions.IllegalArgException;
 
 public class RemoveTaskCommand extends Command{
-    final String NEGATIVE_ARG_MESSAGE = "Task number must be a positive integer";
     protected int taskNumber;
+    final String NEGATIVE_ARG_MESSAGE = "Task number must be a positive integer";
 
     public RemoveTaskCommand(int taskNumber) throws IllegalArgException{
         super();

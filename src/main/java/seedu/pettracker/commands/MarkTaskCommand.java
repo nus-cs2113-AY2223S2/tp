@@ -6,8 +6,8 @@ import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
 
 public class MarkTaskCommand extends Command{
-    final String NEGATIVE_ARG_MESSAGE = "Task number must be a positive integer";
     protected int taskNumber;
+    final String NEGATIVE_ARG_MESSAGE = "Task number must be a positive integer";
     public MarkTaskCommand(int taskNumber) throws IllegalArgException {
         super();
         if (taskNumber <= 0) {
