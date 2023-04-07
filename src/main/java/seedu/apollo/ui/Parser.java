@@ -219,7 +219,6 @@ public class Parser {
         }
     }
 
-
     /**
      * Method that selects which help command class to invoke
      *
