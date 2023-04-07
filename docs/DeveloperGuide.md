@@ -89,6 +89,7 @@ The rest of the Application consists of three components:
 ### UI Component
 
 API: ui.java
+
 INSERT UI UML HERE
 
 The UI is made up of five classes, `GeneralUi`, `CalorieUi`, `ExampleUi`,  `ExerciseUi` and `WeightUi`, and together,
@@ -102,6 +103,7 @@ The `UI` component,
 ### Command Component
 
 API: commands.java
+
 INSERT COMMAND UML HERE
 
 How the `Command` component works:
@@ -113,6 +115,8 @@ How the `Command` component works:
 6. In the case of command execution failures, an Exception Object (more precisely, an object of one of its subclasses, e.g. LifeTrackerException is thrown.
 
 ### Storage Component
+
+API: storage.java
 
 ![storage-class-diagram](./uml/storage-class-diagram.PNG)
 
@@ -166,8 +170,10 @@ Step 3. `mealStorage` saves the meal to the database and then `ui` prints out th
 The proposed mechanism for listing stored foods, meals and exercises is facilitated by `ListCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
 Step 1: The user will input either `list foods`, `list meals`, `list exercises` based on which information the user wants to retrieve.
-Step 2: Based the input, `ListCommand` will call either `printAllFoods`, `printAllMeals`, or `printAllExercises` method of the `ui` object
-Step 3: The `ui` will retreive the relevant information from the storage and print out their details
+
+Step 2: Based the input, `ListCommand` will call either `printAllFoods`, `printAllMeals`, or `printAllExercises` method of the `ui` object.
+
+Step 3: The `ui` will retreive the relevant information from the storage and print out their details.
 
 ![list-command](./uml/ListCommand.PNG)
 
@@ -277,11 +283,27 @@ Step 5. The user then executes the command `view` to view his updated weight and
 
 ### Proposed Implementation
 
+The proposed update mechanism is facilitated by `UpdateUserCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+
 ### Design considerations:
 
 ## [Proposed] Nutrition feature
 
 ### Proposed Implementation
+
+The proposed update mechanism is facilitated by `NutritionCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+
+Step 1: The user inputs `nutrition` into the command line. 
+
+Step 2: The user will then be prompted to enter what food they would like to see the nutrition for. 
+
+Step 3: A list of type `food` will then be created called `filteredFoods`, populated by foods from `foodStorage` that contains the user's input.
+
+Step 4: The list will then be displayed to the user, who can pick which food by its index.
+
+Step 5: The nutritional information for that food will then be displayed.
+
+![nutrition-command](./uml/NutritionCommand.png)
 
 ### Design considerations:
 
@@ -306,6 +328,8 @@ Step 4. `FilterCaloiresCommand` will then print out the meals that has been filt
 ## [Proposed] Exercise feature
 
 ### Proposed Implementation
+
+The proposed update mechanism is facilitated by `AddExerciseCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
 ### Design considerations:
 
