@@ -13,9 +13,9 @@ public class DeleteCommand implements Command {
     public static final String CATEGORY_DELETION_MESSAGE = "Category deleted: ";
     public static final String NON_EXISTENT_EVENT = "Event does not exist";
     public static final String NULL_CATEGORY_ASSERTION = "Category name should not be null";
-    private String categoryName;
+    private final String categoryName;
     private int eventIndex;
-    private boolean isEvent;
+    private final boolean isEvent;
 
     /**
      * Constructs a new DeleteCommand object and deletes the event.
