@@ -9,9 +9,25 @@ The app also allows users to keep track of their daily exercises to compute thei
 
 Their net calorie gain/loss can then be viewed.
 
+- [Quick Start](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#quick-start)
+- [Features](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#features-v20)
+  - [Viewing User Profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#viewing-user-profile-view)
+  - [Updating User Profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#updating-user-profile-update)
+  - [Adding a meal](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#adding-a-meal-add)
+  - [Listing foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-foods-list)
+  - [Listing meals](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-meals-list)
+  - [Listing exercises](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-exercises-list)
+  - [Deleting meals](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#deleting-meals-delete)
+  - [Filtering foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#filtering-foods-filter)
+  - [Viewing nutrition content of foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#view-nutrition-content-of-food-nutrition)
+  - [Adding an exercise](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#adding-an-exercise-exercise)
+  - [Tracking net calorie intake](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#tracking-net-calorie-intake-track)
+  - [Displaying examples of meals and exercises](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#displaying-examples-of-meals-and-exercises-examples)
+ - [Exiting the application](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#exiting-the-application-bye)
+- [FAQ](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#faq)
+- [Command Summary](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#command-summary)
 
 ## Quick Start
-
 
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `LifeTracker` from [here](https://github.com/AY2223S2-CS2113-W15-1/tp).
@@ -20,7 +36,7 @@ Their net calorie gain/loss can then be viewed.
 5. Type the command in the command box and press Enter to execute it. 
 6. Refer to the features below for details of each command.
 
-## Features v2.0
+## Features
 
 * View and Update user profile
 * Add meal
@@ -173,7 +189,7 @@ Format: `filter [lower_bound] [upper_bound]`
 Example:
 ![filter-example](./UG-images/filter-example.PNG)
 
-### View Nutrition Content of food: `nutrition`
+### View nutrition content of food: `nutrition`
 
 For users to view the nutrition content of the food. The user first needs to search for the food, then the nutrition content of the food will be printed.
 
@@ -186,7 +202,7 @@ Format: `nutrition`
 Example:
 ![nutrition-example](./UG-images/nutrition-example.PNG)
 
-### Add Exercise: `exercise`
+### Adding an exercise: `exercise`
 
 For user to input the exercise done previously
 
@@ -199,7 +215,7 @@ Format: `exercise /type [exercise name] /description [exercise description] /cal
 Example:
 ![exercise-example](./UG-images/exercise-example.PNG)
 
-### Track net calorie intake: `track`
+### Tracking net calorie intake: `track`
 
 For user to track their previous net calorie intake
 
@@ -213,7 +229,7 @@ Format: `track /start [start date] /end [end date]`
 Output:
 ![track-example](./UG-images/track-example.PNG)
 
-### Display examples for meals and exercises: `examples`
+### Displaying examples of meals and exercises: `examples`
 
 For the user to gain some inspiration on exercises to do, as well as some idea on the meals that they can eat.
 
@@ -222,8 +238,8 @@ Format: `examples [meal/exercise]`
 Example:
 ![examples-example](./UG-images/examples-example.PNG)
 
-### Exiting the program: `bye`
-Allows user to exit the program.
+### Exiting the application: `bye`
+Allows user to exit the application.
 
 Format: `bye`
 
