@@ -1,5 +1,8 @@
 # Developer Guide
-This developer guide will help you to get started with our product, badMaths!
+This developer guide will help you to get started with our product, BadMaths! 
+
+BadMaths is an integrated study tool that performs Mathematical Operations and contains
+various features for note-taking.
 
 ## Table of Contents
 
@@ -62,16 +65,22 @@ minimum point.
 
 Step 5. If any exceptions are caught in the above steps, `printQuadraticFormulaError` would be called from UI to show an error message
 to the user.
+<details>
+<summary>Sequence Diagram for solving Quadratic Equations</summary>
+<div markdown="1">
 
 ![img_3.png](img_3.png)
 
-### Notes
-The Notes feature allows users to input their notes for storage purposes 
-and to keep track of their notes.
+</div>
+</details>
 
-This feature is implemented by storing the notes input from users into
-the data/notes.txt file, and users are able to keep track
-of their notes by reading the content from the data/notes.txt file/.
+### Notes
+The Notes feature allows users to input their notes for note-taking purposes
+and to keep track of their notes through various functionalities provided by BadMaths.
+
+This feature is implemented by storing the notes input from users into 
+the `data/notes.txt` file, and users are able to keep track
+of their notes by reading the content from the `data/notes.txt file/`.
 
 #### Note Class:
 The Note class represents a note that has a text information, priority, review count, and is marked as done or not. 
@@ -275,7 +284,7 @@ The `NotePriority` class is utilised to set the priority level (LOW, MEDIUM, HIG
 of the notes stored in the Notes List by users.
 
 <details>
-<summary>See the Sequence Diagram for Notes</summary>
+<summary>Sequence Diagram for Notes</summary>
 <div markdown="1">
 
 ![img_2.png](img_2.png)
@@ -329,8 +338,14 @@ The command class creates a new instance of `TrigoGraph` and pass in `toDo` as a
 then executes `trigoGraph.startGraphAnalysis()`based on `command` using switch-case statements.
 
 #### TrigoGraph class:
+<details>
+<summary>Sequence Diagram for TrigoGraph class</summary>
+<div markdown="1">
 
 ![img_1.png](img_1.png)
+
+</div>
+</details>
 
 **"--->", empty headed arrow represents constructor call**
 
@@ -470,13 +485,14 @@ the result is printed in terminal.
 
 ## Product Scope
 ### Target user profile
-
-Students studying maths that cover topics on matrices, quadratic equations, or Sinusoidal signals.
+Mathematics students who are studying and practicing Mathematical topics on Matrices, Quadratic Equations 
+or Sinusoidal Signals.
 
 ### Value proposition
 
 Students can access mathematical tools like matrix calculator, quadratic equation solver, and trigonometry graph analyser
-quickly when studying. At the same time, they are able to store notes that might be important in BadMaths. 
+quickly when studying. Concurrently, students are also able to make use of the Notes function in BadMaths
+to do note-taking and to keep track of their notes through the use of various Notes features in BadMaths.
 
 This integrated mathematical tool aims to help users solve their mathematical doubts or clarifications quickly which saves time, as they do not
 have to search for different tools online.
