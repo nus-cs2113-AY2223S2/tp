@@ -34,7 +34,12 @@ public class HelpCommandTest extends CommandTest {
                 "delete c/<category name> [(optional) e/<event index>]\n" +
                 "Example: delete c/food e/1\n" +
                 "Example: delete c/food\n" + System.lineSeparator() +
-                "7. bye - exit the app\n" + "Format: bye\n" + "Example: bye\n" + System.lineSeparator();
+
+                "7. search - search for matching events and categories\n" +
+                "Format: search <keyword>\n" +
+                "Example: search bill\n" + System.lineSeparator() +
+
+                "8. bye - exit the app\n" + "Format: bye\n" + "Example: bye\n" + System.lineSeparator();
         assertEquals(expected, terminalOutput);
         clear();
     }
