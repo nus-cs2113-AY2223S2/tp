@@ -116,6 +116,11 @@ The `Ui` component:
 - displays the error message if the command was not executed successfully.
 - displays the goodbye message upon receiving the `bye` command.
 
+The sequence diagram below shows how the `Ui` component works together with `Parser`
+when the user inputs `list`.
+
+![](../docs/UML/Ui/commandListUML.drawio.png)
+
 ### Parser Component
 
 API: `Parser.java`
