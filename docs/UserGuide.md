@@ -82,7 +82,7 @@ Use case:
 - VALUE will be stored as a positive double up to 2 decimal places.
 - VALUE will not accept doubles with more than 2 decimal places.
 - VALUE will be recorded as SGD, regardless of the currency set.
-- Format for DATE will be dd-MM-yyyy.
+- Format for DATE will be DD-MM-YYYY.
 - DATE needs to be a valid date, and it cannot be a date in the future.
 
 Example of usage:

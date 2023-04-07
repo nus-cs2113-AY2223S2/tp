@@ -11,13 +11,13 @@ import chching.record.TargetStorage;
 /**
  * Models a class that clears target already set. Inherited from Command class.
  */
-public class ClearTargetCommand  extends Command{
+public class ClearTargetCommand extends Command {
     /**
      * Executes clearing of targetStorage
      *
      * @param incomes       ArrayList of income.
      * @param expenses      ArrayList of income.
-     * @param ui        User interface
+     * @param ui            User interface
      * @param storage       Storage of data
      * @param converter     Convert value
      * @param targetStorage store target
@@ -28,3 +28,5 @@ public class ClearTargetCommand  extends Command{
         targetStorage.clearTargetList();
     }
 }
+
+
