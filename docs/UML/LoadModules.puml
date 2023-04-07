@@ -10,9 +10,9 @@ Alt modulesLoaded
 else else
     ":Storage" -> ":NusModuleLoader" : loadModules()
     activate ":NusModuleLoader"
-    ":NusModuleLoader" -> ":ModuleAdapter" :<<create>>
+    ":NusModuleLoader" -> ":ModuleAdapter" : ModuleAdapter()
     activate ":ModuleAdapter"
-    ":ModuleAdapter" -> ":HashMap<String, NusModule>" : <<create>>
+    ":ModuleAdapter" -> ":HashMap<String, NusModule>" : HashMap<String, NusModule>()
     activate ":HashMap<String, NusModule>"
     ":ModuleAdapter" -> ":ModuleAdapter" : read()
     loop module in NusMods.json

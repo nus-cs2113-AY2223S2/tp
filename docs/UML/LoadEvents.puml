@@ -8,7 +8,7 @@ activate ":Storage"
 activate ":EventListStorage"
 ":EventListStorage" ->":EventListAdapter" : gson.fromJson(fileReader, ArrayList.class)
 activate ":EventListAdapter"
-":EventListAdapter" -> ":ArrayList<Event>" : <<create>>
+":EventListAdapter" -> ":ArrayList<Event>" : ArrayList<Event>()
 activate ":ArrayList<Event>"
 ":EventListAdapter" -> ":EventListAdapter" : read()
 loop events in file
