@@ -257,6 +257,12 @@ class CommandParserTest {
         assertAll(() -> assertTrue(cp.newCommand("edit-task 1 desc") instanceof EditTaskCommand));
     }
     @Test
+    void parseEditTaskWithDeadline () {
+        CommandParser cp = new CommandParser();
+        assertAll(() -> assertTrue(cp.newCommand("edit-task 1 desc /by 2024-04-02")
+                instanceof EditTaskCommand));
+    }
+    @Test
     void parseEditTaskNoArgs() {
         CommandParser cp = new CommandParser();
         assertThrows(EmptyArgException.class, () -> cp.newCommand("edit-task"));
@@ -265,6 +271,16 @@ class CommandParserTest {
     void parseEditTaskNoDesc() {
         CommandParser cp = new CommandParser();
         assertThrows(EmptyArgException.class, () -> cp.newCommand("edit-task 1"));
+    }
+    @Test
+    void parseEditTaskInvalidInput() {
+        CommandParser cp = new CommandParser();
+        assertThrows(IllegalArgException.class, () -> cp.newCommand("edit-task test desc"));
+    }
+    @Test
+    void parseEditTaskInvalidDate() {
+        CommandParser cp = new CommandParser();
+        assertThrows(IllegalArgException.class, () -> cp.newCommand("edit-task 1 desc /by 2024-04-32"));
     }
 
     // newCommand() nonsense
