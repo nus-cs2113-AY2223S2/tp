@@ -216,15 +216,15 @@ ____________________________________________________________
 ****
 #### 3.2.2 Add user selected modules to list: `add`
 
-Format: `add [PU ABBREVIATION]/[MODULE CODE]`
+Format: `add [PU ABBREVIATION]/[INDEX]`
 
 * The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
 * The  `MODULE CODE` is the Partner University's module code provided by ` list current`
   or ` list current [PU Abbreviation]` command.
 
-Example of usage: `add KU/AMSE216`
+Example of usage: `add KU/1`
 
-Expected outcome: Adds the module AMSE216 from Korea University to the list of user selected modules.
+Expected outcome: Adds the module IWC311 from Korea University to the list of user selected modules.
 
 Description of outcome:
 ```
@@ -232,19 +232,19 @@ This module has been added to the current module list!
 ____________________________________________________________
 ```
 
-**Before Command** `add KU/AMSE216`
+**Before Command** `add KU/1`
 ```
 The current module list is empty for: KOREA UNIVERSITY
 ____________________________________________________________
 ____________________________________________________________
 ```
 
-**After Command** `add KU/AMSE216`
+**After Command** `add KU/1`
 ```
 List of Added Modules for: KOREA UNIVERSITY
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
-1.[AMSE216][Introduction to biomaterials][3]
-   maps to ----> [ME4253][Biomaterials Engineering][4]
+1.[IWC311][Heat Transfer][3]   maps to ----> [ME3122][Heat Transfer][4]
 ____________________________________________________________
 ```
 ---
@@ -391,13 +391,13 @@ All Budget Planner commands start with /budget.
 
 Edits the current total budget to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget /budget /[AMOUNT]`
+Format: `/budget /budget [AMOUNT]`
 
 - The `AMOUNT` is the user's input budget for his/her SEP trip in SGD.
 - Initial budget is set to 0 when user has not set any budget before.
 
 Example of Usage:
-`/budget /budget /2000`
+`/budget /budget 2000`
 
 Expected Outcome:
 
@@ -418,13 +418,13 @@ ____________________________________________________________
 
 Edits the current accommodation planned cost to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget /accommodation /[AMOUNT]`
+Format: `/budget /accommodation [AMOUNT]`
 
 - The `AMOUNT` is the user's input accommodation cost for his/her SEP trip in SGD.
 - Initial accommodation cost is set to 0 when user has not set any accommodation cost before.
 
 Example of usage:
-`/budget /accommodation /2000`
+`/budget /accommodation 2000`
 
 Expected outcome:
 
@@ -445,13 +445,13 @@ ____________________________________________________________
 
 Edits the current Airplane Ticket planned cost to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget /airplane /[AMOUNT]`
+Format: `/budget /airplane [AMOUNT]`
 
 - The `AMOUNT` is the user's input airplane ticket cost for his/her SEP trip in SGD.
 - Initial airplane ticket cost is set to 0 when user has not set any airplane ticket cost before.
 
 Example of usage:
-`/budget /airplane /2000`
+`/budget /airplane 2000`
 
 Expected outcome:
 
@@ -472,13 +472,13 @@ ____________________________________________________________
 
 Edits the current Food planned cost to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget /food /[AMOUNT]`
+Format: `/budget /food [AMOUNT]`
 
 - The `AMOUNT` is the user's input food cost for his/her SEP trip in SGD.
 - Initial food cost is set to 0 when user has not set any food cost before.
 
 Example of usage:
-`/budget /food /2000`
+`/budget /food 2000`
 
 Expected outcome:
 
@@ -499,13 +499,13 @@ ____________________________________________________________
 
 Edits the current Entertainment planned cost to a new amount the user plans to spend on his/her SEP trip
 
-Format: `/budget /entertainment /[AMOUNT]`
+Format: `/budget /entertainment [AMOUNT]`
 
 - The `AMOUNT` is the user's input entertainment cost for his/her SEP trip in SGD.
 - Initial entertainment cost is set to 0 when user has not set any entertainment cost before.
 
 Example of usage:
-`/budget /entertainment /2000`
+`/budget /entertainment 2000`
 
 Expected outcome:
 
