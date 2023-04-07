@@ -23,7 +23,7 @@ public class MarkTaskParser implements ArgParser<MarkTaskCommand>{
             }
             return new MarkTaskCommand(taskNum);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new EmptyArgException(INVALID_ARG_FORMAT_MESSAGE);
+            throw new IllegalArgException(INVALID_ARG_FORMAT_MESSAGE);
         }
     }
 }

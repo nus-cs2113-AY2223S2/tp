@@ -23,7 +23,7 @@ public class RemoveTaskParser implements ArgParser<RemoveTaskCommand>{
             }
             return new RemoveTaskCommand(taskNum);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new EmptyArgException(INVALID_ARG_FORMAT_MESSAGE);
+            throw new IllegalArgException(INVALID_ARG_FORMAT_MESSAGE);
         }
     }
 }

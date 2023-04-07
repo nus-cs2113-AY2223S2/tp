@@ -23,7 +23,7 @@ public class UnMarkTaskParser implements ArgParser<UnMarkTaskCommand>{
             }
             return new UnMarkTaskCommand(taskNum);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new EmptyArgException(INVALID_ARG_FORMAT_MESSAGE);
+            throw new IllegalArgException(INVALID_ARG_FORMAT_MESSAGE);
         }
     }
 }
