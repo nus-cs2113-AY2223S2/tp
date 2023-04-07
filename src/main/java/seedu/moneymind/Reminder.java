@@ -36,7 +36,7 @@ public class Reminder {
     private static String checkEventReminder(Category category) {
         String reminder = "";
         for (Event event : category.getEvents()) {
-            if (event.getTime() != null && isApproaching(event.getTime())) {
+            if (event.isOneTimeExpense() == false && isApproaching(event.getTime())) {
                 reminder += category.getName() + " has an event: " + event.getDescription() 
                         + stringOfDaysAway(event);
             }
@@ -48,7 +48,7 @@ public class Reminder {
         if (numberDaysAway(event.getTime()) > 1) {
             return " in " + numberDaysAway(event.getTime()) + " days" + NEW_LINE;
         } else if (numberDaysAway(event.getTime()) == 1) {
-            return "in 1 day" + NEW_LINE;
+            return " in 1 day" + NEW_LINE;
         } else {
             return "today" + NEW_LINE;
         }

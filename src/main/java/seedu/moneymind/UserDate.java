@@ -2,7 +2,7 @@ package seedu.moneymind;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -11,13 +11,18 @@ import java.time.format.DateTimeFormatter;
 public class UserDate {
 
     /**
+     *
+     */
+    private static final String DD_MM_YYYY = "dd/MM/yyyy HH:mm";
+
+    /**
      * Returns the current system date.
      *
      * @return The current system date.
      */
     public static String getSystemDate() {
-        LocalDate now = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DD_MM_YYYY);
         String formattedDate = now.format(formatter);
         return formattedDate;
     }
@@ -29,9 +34,9 @@ public class UserDate {
      * @return True if the date is valid.
      */
     public static Boolean isValidDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DD_MM_YYYY);
         try {
-            LocalDate.parse(date, formatter);
+            LocalDateTime.parse(date, formatter);
             return true;
         } catch (Exception e) {
             return false;
@@ -55,9 +60,9 @@ public class UserDate {
      * @return The number of days away from the current date.
      */
     public static Integer numberDaysAway(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate now = LocalDate.now();
-        LocalDate inputDate = LocalDate.parse(date, formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DD_MM_YYYY);
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime inputDate = LocalDateTime.parse(date, formatter);
         return (int) now.until(inputDate, DAYS);
     }
 
@@ -68,9 +73,9 @@ public class UserDate {
      * @return The date after updating.
      */
     public static String updateDate(String oldDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate inputDate = LocalDate.parse(oldDate, formatter);
-        while (inputDate.isBefore(LocalDate.now())) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DD_MM_YYYY);
+        LocalDateTime inputDate = LocalDateTime.parse(oldDate, formatter);
+        while (inputDate.isBefore(LocalDateTime.now())) {
             inputDate = inputDate.plusMonths(1);
         }
         return inputDate.format(formatter);

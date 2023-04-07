@@ -87,6 +87,15 @@ public class Event {
     public String getTime() {
         return time;
     }
+    
+    /**
+     * Gets the boolean value of isOneTimeExpense.
+     * 
+     * @return the boolean value of isOneTimeExpense
+     */
+    public boolean isOneTimeExpense() {
+        return isOneTimeExpense;
+    }
 
     /**
      * Returns a string representation of the event.
@@ -100,3 +109,4 @@ public class Event {
         return description + " (expense: " + expense + ") (start date: " + time + ")";
     }
 }
+

@@ -34,7 +34,7 @@ public class EventCommandTest extends CommandTest {
         setup();
         String categoryName = "food" + Strings.NEW_LINE; // replace with the correct input string
         Moneymind.in = new Scanner(categoryName);
-        executeInput("event banana e/20 t/123");
+        executeInput("event banana e/20 t/13/02/2024 12:00");
         assertEquals("banana", food.events.get(2).getDescription(),
                 "expected: banana, actual: " + food.events.get(2).getDescription());
         assertEquals(20, food.events.get(2).getExpense(),
