@@ -29,7 +29,15 @@ Types of methods:
 2. Confirmation Messages: Messages shown to inform user that their desired action has been carried out
 3. Exception Messages: Messages shown to inform user of their invalid actions and its reasons
 
-![img_2.png](img_2.png)
+Figure 1 below shows the class diagram of the `Ui` class.
+
+
+
+Fig 1
+
+Figure 2 below shows the sequence diagram for when `showWelcome` is called by `Eventus` during the startup of the application.
+
+![img.png](img.png)!
 
 Fig 2
 
