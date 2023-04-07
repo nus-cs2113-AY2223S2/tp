@@ -67,7 +67,7 @@ class CommandParserTest {
     @Test
     void parseScheduleTasksWithArgs() {
         CommandParser cp = new CommandParser();
-        assertThrows(IllegalArgException.class, () -> cp.newCommand("schedule-tasks 1"));
+        assertThrows(IllegalArgException.class, () -> cp.newCommand("schedule 1"));
     }
     @Test
     void parseHelp() {
