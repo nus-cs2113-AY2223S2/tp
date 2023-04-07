@@ -44,6 +44,7 @@ public class InvalidNotesFileHandlerTest {
                 "File contents have rest successfully.\n" +
                 "You can continue to use the application\n" +
                 "If you want to read Help Manual, please type 'Help' to learn what I can do for you.\n";
+        expectedOutput = expectedOutput.replace("\r\n", "\n").replace("\r", "\n");
         assertEquals(expectedOutput, out.toString());
 
         // verify that the file contents were cleared
@@ -88,6 +89,7 @@ public class InvalidNotesFileHandlerTest {
                 "You choose not to rest the file.\n" +
                 "Please ensure your file status before using the application.\n" +
                 "The program will exit in 10 seconds. See you next time.\n";
+        expectedOutput = expectedOutput.replace("\r\n", "\n").replace("\r", "\n");
         assertEquals(expectedOutput, out.toString());
 
         // verify that the file contents were not cleared
