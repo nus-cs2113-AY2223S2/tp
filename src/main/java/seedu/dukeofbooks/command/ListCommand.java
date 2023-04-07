@@ -33,8 +33,7 @@ public class ListCommand extends UserCommand {
         if (listedBooks.size() == 0) {
             returnString = returnString.concat(DIVIDER).concat(NEW_LINE);
             returnString = returnString.concat(NO_BOOKS_IN_LIBRARY).concat(NEW_LINE);
-        }
-        else {
+        } else {
             for (int i = 0; i < listedBooks.size(); i++) {
                 Book book = listedBooks.get(i);
                 returnString = returnString.concat(DIVIDER).concat(NEW_LINE);

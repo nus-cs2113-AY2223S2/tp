@@ -14,7 +14,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class LoanController {
-    final static DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     private static final String AVAILABLE_STATUS_FORMAT = "Status: Not borrowed";
     private static final String BORROWED_STATUS_FORMAT = "Status: Borrowed (borrower: %s, due: %s)";
     private static final String OVERDUE_STATUS_FORMAT = "Status: Overdue (borrower: %s, due: %s)";
@@ -23,6 +22,8 @@ public class LoanController {
     private static final String BORROWED_STATUS_STRING = "Status: Borrowed";
 
     private static final int DEFAULT_RENEW_DAYS = 30;
+
+    final static DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     
     public static String checkBorrowingStatus(BorrowableItem item) {
         if (!item.isBorrowed()) {
