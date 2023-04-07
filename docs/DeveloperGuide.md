@@ -411,6 +411,8 @@ The following sequence diagram shows how the list module command works when the 
 
 [*Return to TOC*](#table-of-contents)
 
+<!--@@author yixuann02 -->
+
 ### List Module With Lesson
 
 The List Module with Lesson functionality allows users to list the lessons of a specific module in their timetable.
@@ -481,6 +483,8 @@ specific `LessonTypes` of that user has added, `Classnumber` of the `LessonType`
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleWithLessonCommand-ListModuleWithLessonCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
+
+<!--@@author irving11119 -->
 
 ### Add Module
 
