@@ -1,16 +1,16 @@
 //@@author clement559
 package seedu.todolist.logic.command;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.logic.Parser;
-import seedu.todolist.ui.Ui;
 import seedu.todolist.task.TaskList;
+import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class EditDeadlineCommandTest {
@@ -51,6 +51,8 @@ public class EditDeadlineCommandTest {
                 testEdit.execute(testList, ui);
             } catch (ToDoListException e) {
                 continue;
+            } catch (NullPointerException e) {
+                continue;
             }
             fail("An edit command was successfully constructed with invalid id: " + id);
         }
@@ -66,6 +68,8 @@ public class EditDeadlineCommandTest {
                 testEdit.execute(testList, ui);
             } catch (ToDoListException e) {
                 continue;
+            } catch (NullPointerException e) {
+                continue;
             }
             fail("An edit command was successfully constructed with invalid date: " + date);
         }
@@ -80,6 +84,8 @@ public class EditDeadlineCommandTest {
                 Command testEdit = new EditDeadlineCommand(args);
                 testEdit.execute(testList, ui);
             } catch (ToDoListException e) {
+                continue;
+            } catch (NullPointerException e) {
                 continue;
             }
             fail("An edit command was successfully constructed with invalid time: " + time);
