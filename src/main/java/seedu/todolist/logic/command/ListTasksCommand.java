@@ -1,61 +1,59 @@
+//@@author KedrianLoh
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
+import seedu.todolist.exception.InvalidBooleanException;
 import seedu.todolist.exception.ToDoListException;
-import seedu.todolist.task.Task;
+import seedu.todolist.logic.ParserUtil;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.Task;
 import seedu.todolist.ui.Ui;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.TaskList;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.function.Predicate;
 
-import static java.util.function.Predicate.not;
-
-//@@author KedrianLoh
 /**
  * Command for displaying the current task list.
  */
 public class ListTasksCommand extends Command {
-    // @@author clement559
-    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_LIST,
-        Flags.FILTER_DONE, Flags.FILTER_UNDONE, Flags.FILTER_OVERDUE, Flags.SORT_PRIORITY};
+    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_LIST, Flags.SORT,
+        Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.FILTER_ALL,
+        Flags.DESCRIPTION, Flags.EMAIL, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
-    private Predicate<Task> predicate = task -> true;
-    private String sortMethod;
-    private Comparator<Task> comparator = Task.deadlineComparator;
+    private Predicate<Task> predicate = null;
+    private Comparator<Task> comparator = null;
 
     /**
-     * Constructs an ListTaskCommand object by parsing the provided arguments.
-     * Optional parameters are allowed to be null.
+     * Constructs a ListTaskCommand object by parsing the provided arguments.
      *
      * @param args The provided arguments, parsed from the user's input.
-     * @throws ToDoListException If any of the provided arguments are invalid.
+     * @throws InvalidBooleanException If any of the provided boolean values are invalid.
      */
     public ListTasksCommand(HashMap<Flags, String> args) throws ToDoListException {
-        if (args.containsKey(Flags.FILTER_DONE)) {
-            predicate = predicate.and(Task.isDonePredicate());
+        if (!Collections.disjoint(args.keySet(), Flags.FILTER_FLAGS)) {
+            // At least one filter flag is present
+            predicate = ParserUtil.parseFilter(args);
         }
-        if (args.containsKey(Flags.FILTER_UNDONE)) {
-            predicate = predicate.and(not(Task.isDonePredicate()));
-        }
-        if (args.containsKey(Flags.FILTER_OVERDUE)) {
-            predicate = predicate.and(Task.isOverdue());
-        }
-        if (args.containsKey(Flags.SORT_PRIORITY)) {
-            sortMethod = "priority";
+        if (args.containsKey(Flags.SORT)) {
+            comparator = ParserUtil.parseSort(args.get(Flags.SORT));
         }
     }
 
     /**
      * Displays the full or filtered task list, depending on filters chosen.
      */
-    public void execute(TaskList taskList, Ui ui) {
-        if (sortMethod != null && sortMethod.equals("priority")) {
-            comparator = Task.priorityComparator;
+    public void execute(TaskList taskList, Config config, Ui ui) {
+        if (predicate == null && comparator == null) {
+            ui.printTaskList(taskList.size(), taskList.toString());
+        } else if (predicate == null) {
+            ui.printTaskList(taskList.size(), taskList.toString(comparator));
+        } else if (comparator == null) {
+            ui.printTaskList(taskList.size(predicate), taskList.toString(predicate));
+        } else {
+            ui.printTaskList(taskList.size(predicate), taskList.toString(predicate, comparator));
         }
-        int taskListSize = taskList.size(predicate);
-        String taskListString = taskList.toString(predicate, comparator);
-        ui.printTaskList(taskListSize, taskListString);
     }
 }

@@ -1,10 +1,12 @@
 package seedu.todolist.logic.command;
 
+import seedu.todolist.model.Priority;
 import seedu.todolist.exception.ToDoListException;
 import seedu.todolist.constants.Flags;
 import seedu.todolist.logic.ParserUtil;
+import seedu.todolist.model.Config;
 import seedu.todolist.ui.Ui;
-import seedu.todolist.task.TaskList;
+import seedu.todolist.model.TaskList;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -22,7 +24,7 @@ public class AddTaskCommand extends Command {
     private LocalDateTime deadline;
     private TreeSet<String> tags;
     private int repeatDuration;
-    private int priority;
+    private Priority priority;
 
     /**
      * Constructs an AddTaskCommand object by parsing the provided arguments.
@@ -42,7 +44,7 @@ public class AddTaskCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui) {
+    public void execute(TaskList taskList, Config config, Ui ui) {
         String taskString = taskList.addTask(description, deadline, email, tags, repeatDuration, priority);
         ui.printAddTaskMessage(taskString);
     }

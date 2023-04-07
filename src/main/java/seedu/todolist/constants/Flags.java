@@ -1,6 +1,8 @@
 package seedu.todolist.constants;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Enum that holds all the flags allowed in commands.
@@ -8,28 +10,27 @@ import java.util.HashMap;
 public enum Flags {
     // Command flags that do not take arguments
     COMMAND_EXIT("exit", true),
-    COMMAND_LIST("list", true),
     COMMAND_TAG_LIST("taglist", true),
     COMMAND_PROGRESS("progress", true),
     COMMAND_HELP("help", true),
+    COMMAND_RESET("reset", true),
 
-    // Command flags that take arguments
+    // Command flags that can take arguments
+    COMMAND_LIST("list", true),
     COMMAND_ADD("add", false),
-    COMMAND_MARK("mark", false),
-    COMMAND_UNMARK("unmark", false),
-    COMMAND_DELETE("delete", false),
-    COMMAND_FULL_INFO("info", false),
-    COMMAND_FIND_TAG("findbytag", false),
-    COMMAND_FIND_PRIORITY("findbypriority", false),
+    COMMAND_MARK("mark", true),
+    COMMAND_UNMARK("unmark", true),
+    COMMAND_DELETE("delete", true),
+    COMMAND_FULL_INFO("info", true),
     COMMAND_CONFIG("config", true),
 
-    // Flags for commands that edit task parameters
-    COMMAND_EDIT_DESCRIPTION("desc", false),
-    COMMAND_EDIT_DEADLINE("due", false),
-    COMMAND_EDIT_EMAIL("email", false),
-    COMMAND_EDIT_TAGS("tags", false),
-    COMMAND_EDIT_REPEAT("rep", false),
-    COMMAND_EDIT_PRIORITY("prio", false),
+    // Commands that edit task parameters
+    COMMAND_EDIT_DESCRIPTION("desc", true),
+    COMMAND_EDIT_DEADLINE("due", true),
+    COMMAND_EDIT_EMAIL("email", true),
+    COMMAND_EDIT_TAGS("tags", true),
+    COMMAND_EDIT_REPEAT("rep", true),
+    COMMAND_EDIT_PRIORITY("prio", true),
 
     // Argument flags
     DESCRIPTION("-desc", false),
@@ -39,17 +40,26 @@ public enum Flags {
     REPEAT("-rep", false),
     TAG("-tags", false),
     EDIT("-edit", false),
-    DEFAULT("-default", false),
+    EDIT_ADD("-add", false),
     EDIT_DELETE("-del", true),
+    RESET("-reset", true),
+    SORT("-sort", false),
 
     // Filter flags
-    FILTER_DONE("-done", true),
-    FILTER_UNDONE("-undone", true),
-    FILTER_OVERDUE("-overdue", true),
-    CONFIG_CHECK_FREQ("-chkfreq", false),
-    CONFIG_REPEAT_FREQ("-repfreq", false),
-    SORT_PRIORITY("-priority", true);
+    FILTER_DONE("-done", false),
+    FILTER_OVERDUE("-overdue", false),
+    FILTER_BEFORE("-before", false),
+    FILTER_AFTER("-after", false),
+    FILTER_ALL("-all", true),
 
+    // Config flags
+    CONFIG_CHECK_FREQ("-chkfreq", false),
+    CONFIG_REPEAT_FREQ("-repfreq", false);
+
+    public static final HashSet<Flags> FILTER_FLAGS = new HashSet<>(Arrays.asList(
+            Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.FILTER_ALL,
+            Flags.DESCRIPTION, Flags.EMAIL, Flags.REPEAT, Flags.TAG, Flags.PRIORITY
+    ));
     private static final HashMap<String, Flags> map = new HashMap<>();
     private final String name;
     private final boolean canBeEmpty;

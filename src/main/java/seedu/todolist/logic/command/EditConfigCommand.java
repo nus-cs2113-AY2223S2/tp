@@ -1,51 +1,47 @@
+//@@author clement559
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
 import seedu.todolist.exception.InvalidFrequencyException;
-import seedu.todolist.exception.ToDoListException;
-import seedu.todolist.logic.Config;
+import seedu.todolist.logic.ParserUtil;
+import seedu.todolist.model.Config;
+import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 
 public class EditConfigCommand extends Command {
-    public static final Flags[] EXPECTED_FLAGS = { Flags.COMMAND_CONFIG, Flags.CONFIG_CHECK_FREQ,
-        Flags.CONFIG_REPEAT_FREQ, Flags.DEFAULT};
+    public static final Flags[] EXPECTED_FLAGS = { Flags.COMMAND_CONFIG,
+        Flags.CONFIG_CHECK_FREQ, Flags.CONFIG_REPEAT_FREQ, Flags.RESET};
 
     private int checkFrequency;
     private int repeatFrequency;
-    private boolean isEditingCheckFreq = false;
-    private boolean isEditingRepFreq = false;
+    private boolean shouldReset;
 
-    public EditConfigCommand(HashMap<Flags, String> args) throws ToDoListException {
-        if (args.containsKey(Flags.COMMAND_CONFIG)) {
-            if (args.containsKey(Flags.CONFIG_CHECK_FREQ)) {
-                checkFrequency = Integer.parseInt(args.get(Flags.CONFIG_CHECK_FREQ));
-                isEditingCheckFreq = true;
-            }
-            if (args.containsKey(Flags.CONFIG_REPEAT_FREQ)) {
-                repeatFrequency = Integer.parseInt(args.get(Flags.CONFIG_REPEAT_FREQ));
-                isEditingRepFreq = true;
-            }
-            if (checkFrequency < 0 || repeatFrequency < 1) {
-                throw new InvalidFrequencyException();
-            }
-        }
+    public EditConfigCommand(HashMap<Flags, String> args) throws InvalidFrequencyException {
+        // Use -1 to represent no value as the flag was not in the command
+        checkFrequency = ParserUtil.parseFrequency(args.get(Flags.CONFIG_CHECK_FREQ), 0);
+        repeatFrequency = ParserUtil.parseFrequency(args.get(Flags.CONFIG_REPEAT_FREQ), 1);
+        shouldReset = args.containsKey(Flags.RESET);
     }
 
-    public void execute(Config config, Ui ui) {
-        if (isEditingCheckFreq) {
-            config.setCheckFrequency(checkFrequency);
-        }
-        if (isEditingRepFreq) {
-            config.setRepeatFrequency(repeatFrequency);
+    @Override
+    public void execute(TaskList taskList, Config config, Ui ui) {
+        if (shouldReset) {
+            config.reset();
+        } else {
+            if (checkFrequency != -1) {
+                config.setCheckFrequency(checkFrequency);
+            }
+            if (repeatFrequency != -1) {
+                config.setRepeatFrequency(repeatFrequency);
+            }
         }
         String taskString = config.toString();
-        if (isEditingRepFreq || isEditingCheckFreq) {
+        if (shouldReset || checkFrequency != -1 || repeatFrequency != -1) {
             ui.printEditConfigMessage(taskString);
         } else {
             ui.printConfigInfo(taskString);
         }
-
     }
 }
