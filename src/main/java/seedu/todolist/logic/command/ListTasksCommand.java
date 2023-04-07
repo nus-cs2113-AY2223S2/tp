@@ -19,9 +19,9 @@ import java.util.function.Predicate;
  * Command for displaying the current task list.
  */
 public class ListTasksCommand extends Command {
-    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_LIST, Flags.FILTER_DONE, Flags.FILTER_OVERDUE,
-        Flags.DESCRIPTION, Flags.EMAIL, Flags.FILTER_BEFORE, Flags.FILTER_AFTER,
-        Flags.REPEAT, Flags.TAG, Flags.PRIORITY, Flags.SORT};
+    public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_LIST, Flags.SORT,
+            Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.FILTER_ALL,
+            Flags.DESCRIPTION, Flags.EMAIL, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
     private Predicate<Task> predicate = null;
     private Comparator<Task> comparator = null;

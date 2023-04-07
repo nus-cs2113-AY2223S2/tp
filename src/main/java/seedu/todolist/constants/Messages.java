@@ -31,10 +31,9 @@ public final class Messages {
     public static final String FULL_INFO = "Okay, here is the detailed information of the following task(s):";
     public static final String CONFIG_INFO = "Here are the configuration settings for your system:";
 
-    public static final String CONFIRM = "Are you sure you want to delete all tasks from the To-Do list?"
-            + System.lineSeparator() + "This action cannot be undone. Enter (Yes) or (No) to proceed.";
-    public static final String DELETE_ALL_TASKS = "Okay, I have deleted all the tasks from the To-Do list.";
-    public static final String CANCEL = "Okay, your request to delete all items in your To-Do list has been cancelled.";
+    public static final String CONFIRM = "Are you sure you want to reset your To-Do List?"
+            + System.lineSeparator() + "This cannot be undone. Enter \"YES\" to confirm, or anything else to cancel: ";
+    public static final String RESET = "Okay, your To-Do List has been reset.";
 
     private Messages() {
     }

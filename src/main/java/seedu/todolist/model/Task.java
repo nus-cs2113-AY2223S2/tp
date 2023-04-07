@@ -26,6 +26,16 @@ public class Task {
         return task1.deadline.compareTo(task2.deadline);
     };
 
+    /**
+     * Comparator for sorting the task list by description, in lexicographic order.
+     */
+    public static Comparator<Task> descriptionComparator = Comparator.comparing(task -> task.description);
+
+    /**
+     * Comparator for sorting the task list by completion status, with incomplete tasks first.
+     */
+    public static Comparator<Task> doneComparator = Comparator.comparing(task -> task.isDone);
+
     //@@author clement559
     /**
      * Comparator for sorting the task list by priority, with higher priority first.

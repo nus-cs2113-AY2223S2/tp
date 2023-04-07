@@ -337,6 +337,11 @@ public class ParserUtil {
             return Task.deadlineComparator;
         case "prio":
             return Task.priorityComparator;
+        case "desc":
+            return Task.descriptionComparator;
+        case "done":
+            // Sort overdue tasks before non-overdue incomplete tasks
+            return Task.doneComparator.thenComparing(Task.deadlineComparator);
         default:
             throw new InvalidSortException(sortType);
         }

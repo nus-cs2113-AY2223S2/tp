@@ -24,6 +24,11 @@ public class TaskList {
     private int count = 0;
     private HashMap<Integer, Task> tasks = new HashMap<>();
 
+    public void reset() {
+        count = 0;
+        tasks.clear();
+    }
+
     /**
      * Returns a stream of tasks with the given ids.
      *

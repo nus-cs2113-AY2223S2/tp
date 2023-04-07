@@ -25,7 +25,6 @@ public final class Errors {
     public static final String INVALID_FREQUENCY = "Invalid frequency: ";
     public static final String INVALID_BOOLEAN = "Invalid boolean value: ";
     public static final String INVALID_SORT = "Invalid sort option: ";
-    public static final String INVALID_CONFIRM = "Invalid Response, please enter Yes or No.";
 
     //@@author clement559
     public static final String FAILED_SAVE = "Error when saving to "

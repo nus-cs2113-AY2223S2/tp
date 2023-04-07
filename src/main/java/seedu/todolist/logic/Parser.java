@@ -22,6 +22,7 @@ import seedu.todolist.logic.command.ListTagsCommand;
 import seedu.todolist.logic.command.ListTasksCommand;
 import seedu.todolist.logic.command.MarkTaskCommand;
 import seedu.todolist.logic.command.ProgressBarCommand;
+import seedu.todolist.logic.command.ResetCommand;
 import seedu.todolist.logic.command.UnmarkTaskCommand;
 import seedu.todolist.logic.command.EditConfigCommand;
 
@@ -113,6 +114,8 @@ public class Parser {
             return new ProgressBarCommand();
         case COMMAND_HELP:
             return new HelpCommand();
+        case COMMAND_RESET:
+            return new ResetCommand();
         case COMMAND_LIST:
             return new ListTasksCommand(getArguments(splitInput, ListTasksCommand.EXPECTED_FLAGS));
         case COMMAND_ADD:

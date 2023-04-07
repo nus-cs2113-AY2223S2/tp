@@ -10,13 +10,18 @@ import java.util.Scanner;
 public class Ui {
     private final Scanner input = new Scanner(System.in);
 
+    public void close() {
+        input.close();
+    }
+
     public String getUserInput() {
         System.out.print("> ");
         return input.nextLine();
     }
 
-    public void close() {
-        input.close();
+    public boolean getUserConfirmation() {
+        System.out.print(Messages.CONFIRM);
+        return input.nextLine().equals("YES");
     }
 
     /**
@@ -149,24 +154,12 @@ public class Ui {
                 + "-".repeat(incompleteSections) + "|", taskListString);
     }
 
+    //@@author RuiShengGit
     public void printHelpList() {
         println(HelpMessages.HELP_COMMAND);
     }
 
-    public void printCancelDeleteAllMessage() {
-        println(Messages.CANCEL);
-    }
-
-    public void printDeleteAllMessage(){
-        println((Messages.DELETE_ALL_TASKS));
-    }
-    public String printConfirmationMessage() {
-        println(Messages.CONFIRM);
-        String input = getUserInput();
-        while (!(input.equals("Yes") || input.equals("No"))){
-            println(Errors.INVALID_CONFIRM);
-            input = getUserInput();
-        }
-        return input;
+    public void printResetMessage() {
+        println((Messages.RESET));
     }
 }
