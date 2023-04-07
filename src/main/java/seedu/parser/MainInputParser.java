@@ -23,6 +23,7 @@ import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
 import seedu.commands.SortCommand;
+import seedu.exceptions.EmptyStringException;
 import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.WrongInputException;
@@ -134,7 +135,7 @@ public class MainInputParser {
             ParseSetBudget prepareBudget = new ParseSetBudget(splitValues[INDEX_USERSTRING]);
             return prepareBudget.setBudget();
         case CheckBudgetCommand.COMMAND_WORD:
-            if (splitValues.length == 1 || splitValues[1].isEmpty()) {
+            if (splitValues.length == 1 || splitValues[1].isEmpty() || splitValues[1].isBlank()) {
                 return new CheckBudgetCommand("c/");
             }
             return new CheckBudgetCommand(splitValues[INDEX_USERSTRING]);
