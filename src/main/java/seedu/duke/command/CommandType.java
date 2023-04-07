@@ -8,6 +8,7 @@ package seedu.duke.command;
  *  {@link #ADDTORECIPE}
  *  {@link #VIEW}
  *  {@link #DELETE}
+ *  {@link #DELETEFROMRECIPE}
  *  {@link #HELP}
  *  {@link #CLEAR}
  *  {@link #EDITSTEP}

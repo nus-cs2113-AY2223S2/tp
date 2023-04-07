@@ -104,7 +104,7 @@ public class UI {
         } else if (e instanceof StringIndexOutOfBoundsException) {
             System.out.println(StringLib.PARSING_STRING_ERROR + e.getMessage());
         } else {
-            System.out.println(StringLib.RECIPE_ADDING_DEFAULT_ERROR + e.getMessage());
+            System.out.println(StringLib.RECIPE_ADDING_TO_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showDeletingRecipeElementErrorMessage(Exception e) {
@@ -113,7 +113,7 @@ public class UI {
         } else if (e instanceof StringIndexOutOfBoundsException) {
             System.out.println(StringLib.PARSING_STRING_ERROR + e.getMessage());
         } else {
-            System.out.println(StringLib.RECIPE_ADDING_DEFAULT_ERROR + e.getMessage());
+            System.out.println(StringLib.RECIPE_DELETING_FROM_DEFAULT_ERROR + e.getMessage());
         }
     }
     public void showInvalidAddToRecipeDescription() {
@@ -257,8 +257,11 @@ public class UI {
     public void showEmptyIngredientDescription() {
         System.out.println(StringLib.EMPTY_INGREDIENT_DESCRIPTION_MESSAGE);
     }
-    public void showQuitMessage() {
-        System.out.println(StringLib.QUIT_MESSAGE);
+    public void showStepQuitMessage() {
+        System.out.println(StringLib.STEP_QUIT_MESSAGE);
+    }
+    public void showIngredientQuitMessage() {
+        System.out.println(StringLib.STEP_QUIT_MESSAGE);
     }
     public void showIngredientDeleted() {
         System.out.println(StringLib.INGREDIENT_DELETE_SUCCESS);

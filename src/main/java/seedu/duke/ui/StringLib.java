@@ -83,6 +83,10 @@ public interface StringLib {
 
     String RECIPE_ADDING_DEFAULT_ERROR = "\nError in adding recipe!"
             + "\nException occurred: ";
+    String RECIPE_ADDING_TO_DEFAULT_ERROR = "\nError in adding element to recipe!"
+            + "\nException occurred: ";
+    String RECIPE_DELETING_FROM_DEFAULT_ERROR = "\nError in deleting element from recipe!"
+            + "\nException occurred: ";
     String RECIPE_DELETING_DEFAULT_ERROR = "\nError in deleting recipe!"
             + "\nException occurred: ";
     String RECIPE_FINDING_DEFAULT_ERROR = "\nError in finding recipe!"
@@ -171,10 +175,11 @@ public interface StringLib {
     String INGREDIENT_ADD_SUCCESS = "The ingredient has been successfully added to the ingredient list!";
     String EMPTY_STEP_DESCRIPTION_MESSAGE = "Description of step cannot be empty!";
     String EMPTY_INGREDIENT_DESCRIPTION_MESSAGE = "Description of ingredient cannot be empty!";
-    String QUIT_MESSAGE = "The step was not added to the step list!";
+    String STEP_QUIT_MESSAGE = "The step was not added to the step list!";
+    String INGREDIENT_QUIT_MESSAGE = "The ingredient was not added to the ingredient list!";
     String INVALID_DELETE_FROM_RECIPE_DESCRIPTION = "OOPS!!!\n" +
             "Looks like the description of the command is invalid!\n" +
-            "To add elements to the recipe, please follow the following layout:\n" +
+            "To add elements to the recipe, please follow the following format:\n" +
             "\ndeletefromrecipe -[step/ingredient] id/[index]";
     String INGREDIENT_DELETE_SUCCESS = "The ingredient has been successfully deleted from the ingredient list!";
     String STEP_DELETE_SUCCESS = "The step has been successfully deleted from the step list!";

@@ -114,7 +114,7 @@ public class Command {
                     ui.showEmptyIngredientDescription();
                     break;
                 }
-                Recipe recipeToAddTo = recipeList.viewRecipe(id);
+                Recipe recipeToAddTo = RecipeList.viewRecipe(id);
                 int index;
                 switch (elementType) {
                 case "step":
@@ -127,7 +127,7 @@ public class Command {
                     int maxStep = stepListToAddTo.getCurrStepNumber();
                     index = ui.getIndexToAdd(maxStep);
                     if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
-                        ui.showQuitMessage();
+                        ui.showStepQuitMessage();
                         break;
                     }
                     stepListToAddTo.addStep(new Step(description), index);
@@ -192,7 +192,7 @@ public class Command {
                 }
                 String elementType = parsed[0];
                 String id = parsed[1];
-                Recipe recipeToDeleteFrom = recipeList.viewRecipe(id);
+                Recipe recipeToDeleteFrom = RecipeList.viewRecipe(id);
                 int index;
                 switch (elementType) {
                 case "step":
@@ -201,7 +201,7 @@ public class Command {
                     int maxStep = stepListToDeleteFrom.getCurrStepNumber();
                     index = ui.getIndexToDelete(maxStep);
                     if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
-                        ui.showQuitMessage();
+                        ui.showStepQuitMessage();
                         break;
                     }
                     stepListToDeleteFrom.removeStep(index);
@@ -214,7 +214,7 @@ public class Command {
                     int maxCount = ingredientListToDeleteFrom.getCurrIngredientNumber();
                     index = ui.getIndexToDelete(maxCount);
                     if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
-                        ui.showQuitMessage();
+                        ui.showIngredientQuitMessage();
                         break;
                     }
                     ingredientListToDeleteFrom.removeIngredient(index);
