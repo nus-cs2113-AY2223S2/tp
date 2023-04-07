@@ -25,7 +25,9 @@
 - Command Component
 - Add Task
 - View Week
+- Adding in completed diagrams
+- Reorganisation
 #### Contributions to team-based tasks
 - [PRs reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+reviewed-by%3Ahonglinshang+)
-- Most instances of helping team members were done offline during our weekly meetings. 
-
+- Created issues and assisted in maintaining issue tracker
+- Most instances of helping team members were done offline during our weekly meetings

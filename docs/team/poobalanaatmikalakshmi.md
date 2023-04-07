@@ -17,14 +17,19 @@
 - Added code to detect duplicate modules in moduleList and its exception 
 - Added some JUnit tests for Parser class 
 - Added Junit tests for task command portion of help command class
+- Changed datetime format from yyyy-MM-ddThh:mm to dd-MM-yyyy-hh:mm to increase user-friendliness and updated all relevant files(including Exception,Ui,Test files)
 - Patches 
 
 #### Contributions to the UG
 - Updated user guide with information about clashes between event/deadline/modules 
 - Updated user guide on listmod list module with lessons command 
+- Updated user guide on change in datetime format from yyyy-MM-ddThh:mm to dd-MM-yyyy-hh:mm  
+
 #### Contributions to the DG
 - Delete Module 
 - UML diagrams for DateCommand, FindCommand
+- Class diagram for Storage 
+- Appendix E: Adding a ToDo/Event/Deadline,Deleting a Todo/Event/Deadline,Adding a Module,Adding a Lesson,Deleting a Module,Deleting a Lesson
 #### Contributions to team-based tasks
 - Helped maintain issue tracker 
-- [PRs Reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+- [PRs Reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3Apoobalanaatmikalakshmi+)

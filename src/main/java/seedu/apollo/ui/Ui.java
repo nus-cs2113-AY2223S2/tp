@@ -506,7 +506,7 @@ public class Ui {
      * @param date           Date that was used to shortlist the tasks.
      */
     public void printDateList(TaskList happeningTasks, LocalDate date) {
-        String dateString = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy", Locale.ENGLISH));
+        String dateString = date.format(DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH));
         if (happeningTasks.size() == 0) {
             System.out.println("There are no tasks on " + dateString + "!");
             return;
@@ -596,7 +596,7 @@ public class Ui {
      * For Date command.
      */
     public void printInvalidDate() {
-        System.out.println("Please enter date in the format of yyyy-MM-dd.");
+        System.out.println("Please enter date in the format of dd-MM-yyyy.");
     }
 
     /**
@@ -854,7 +854,7 @@ public class Ui {
                 "\n" +
                 "Format: date DATE\n" +
                 "\n" +
-                "Note: `DATE` should be entered in the format `yyyy-MM-dd`.");
+                "Note: `DATE` should be entered in the format `dd-MM-yyyy`.");
     }
     /**
      * Prints a help message for find command
@@ -903,7 +903,7 @@ public class Ui {
                 "a warning message will be printed. \n" +
                 "However, you will still be able to add it.\n\n" +
                 "Format: event TASK -from DATE -to DATE\n" +
-                "Note: DATE must be entered in the format yyyy-MM-ddThh:mm.");
+                "Note: DATE must be entered in the format dd-MM-yyyy-hh:mm.");
     }
     /**
      * Prints a help message for list command
@@ -924,7 +924,7 @@ public class Ui {
      */
     public void printDeadlineHelpMessage() {
         System.out.println("Adds a task with a due date to Apollo \n" + "Format: deadline TASK -by DATE\n" +
-                "Note: DATE must be entered in the format yyyy-MM-ddThh:mm.\n"+
+                "Note: DATE must be entered in the format dd-MM-yyyy-HH:mm.\n"+
                 "If deadline clashes with any event or lesson type you will be alerted through a warning message. \n" +
                 "However, you will still be able to add it into the tasklist.");
     }
