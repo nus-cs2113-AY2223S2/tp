@@ -1,6 +1,5 @@
 package functionalities.commands;
 
-import exception.SniffException;
 import functionalities.SniffTasks;
 
 /**
