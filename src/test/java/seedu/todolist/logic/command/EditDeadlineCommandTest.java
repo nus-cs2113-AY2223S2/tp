@@ -51,8 +51,6 @@ public class EditDeadlineCommandTest {
                 testEdit.execute(testList, null, ui);
             } catch (ToDoListException e) {
                 continue;
-            } catch (NullPointerException e) {
-                continue;
             }
             fail("An edit command was successfully constructed with invalid id: " + id);
         }
@@ -68,8 +66,6 @@ public class EditDeadlineCommandTest {
                 testEdit.execute(testList, null, ui);
             } catch (ToDoListException e) {
                 continue;
-            } catch (NullPointerException e) {
-                continue;
             }
             fail("An edit command was successfully constructed with invalid date: " + date);
         }
@@ -84,8 +80,6 @@ public class EditDeadlineCommandTest {
                 Command testEdit = new EditDeadlineCommand(args);
                 testEdit.execute(testList, null, ui);
             } catch (ToDoListException e) {
-                continue;
-            } catch (NullPointerException e) {
                 continue;
             }
             fail("An edit command was successfully constructed with invalid time: " + time);

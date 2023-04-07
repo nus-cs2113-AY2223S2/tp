@@ -34,6 +34,7 @@ public final class Messages {
     public static final String CONFIRM = "Are you sure you want to reset your To-Do List?"
             + System.lineSeparator() + "This cannot be undone. Enter \"YES\" to confirm, or anything else to cancel: ";
     public static final String RESET = "Okay, your To-Do List has been reset.";
+    public static final String CANCEL = "Reset command canceled.";
 
     private Messages() {
     }

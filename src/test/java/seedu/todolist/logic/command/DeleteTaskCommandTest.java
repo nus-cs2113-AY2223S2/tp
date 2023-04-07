@@ -42,8 +42,6 @@ public class DeleteTaskCommandTest {
             testDelete.execute(testList, null, ui);
         } catch (ToDoListException e) {
             return;
-        } catch (NullPointerException e) {
-            return;
         }
         fail("A delete command was successfully constructed with missing id");
     }
@@ -56,8 +54,6 @@ public class DeleteTaskCommandTest {
                 Command testDelete = new DeleteTaskCommand(generateInputArguments(id));
                 testDelete.execute(testList, null, ui);
             } catch (ToDoListException e) {
-                continue;
-            } catch (NullPointerException e) {
                 continue;
             }
             fail("A delete command was successfully constructed with invalid id: " + id);

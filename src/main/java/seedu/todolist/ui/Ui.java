@@ -1,6 +1,5 @@
 package seedu.todolist.ui;
 
-import seedu.todolist.constants.Errors;
 import seedu.todolist.constants.HelpMessages;
 import seedu.todolist.constants.Messages;
 
@@ -159,7 +158,7 @@ public class Ui {
         println(HelpMessages.HELP_COMMAND);
     }
 
-    public void printResetMessage() {
-        println((Messages.RESET));
+    public void printResetMessage(boolean reset) {
+        println(reset ? Messages.RESET : Messages.CANCEL);
     }
 }

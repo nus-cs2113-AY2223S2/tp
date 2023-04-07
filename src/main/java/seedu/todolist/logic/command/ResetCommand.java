@@ -9,7 +9,9 @@ public class ResetCommand extends Command {
     public void execute(TaskList taskList, Config config, Ui ui) {
         if (ui.getUserConfirmation()) {
             taskList.reset();
-            ui.printResetMessage();
+            ui.printResetMessage(true);
+        } else {
+            ui.printResetMessage(false);
         }
     }
 }
