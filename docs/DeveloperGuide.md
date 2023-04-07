@@ -441,11 +441,16 @@ the category that user input is found. Otherwise, the method will inform user th
 as compared to tradition inventory management systems.
 * Prefers a desktop application for inventory management and tracking rather than traditional pen and paper or
 smartphones.
+* Requires only a simplistic solution to the management of inventories, rather than a complex but costly one.
 
 ### Value proposition
 * For users who can type fast, usage of MagusStock over conventional GUI applications for inventory management will be
 significantly faster.
 * MagusStock offers a wide variety of features that improves the user's experience in inventory management.
+* A low-cost solution for small companies whom do not require a costly and complex inventory management system for
+tracking of their stocks.
+* Simple command formats that are easy to learn and get used to, without complex functions and terms that may be 
+unsuitable for the less seasoned users of the application.
 
 ## User Stories
 
