@@ -20,9 +20,9 @@ Duck is a **desktop app for managing tasks and deadlines, as well as a school cl
     * [Deleting a task :](#deleting-a-task--delete) `delete <task number> `
     * [Deleting a school class :](#deleting-a-school-class--remove-class) `remove /class <class_name> /description <description> /day <DAY_OF_WEEK> /from <HHmm> /to <HHmm> `
     * [Designate a priority to a given task :](#designate-a-task-priority--priority-task_number-priority) `priority <task number> <priority>` 
-    * [Adding notes for a specific task :](#adding-notes-for-a-specific-task--add_note) `add_note <task number>`
-    * [Deleting notes for a specific task :](#deleting-notes-for-a-specific-task--delete_note) `delete_note <task number>`
-    * [Editing notes for a specific task :](#editing-notes-for-a-specific-task--edit_note) `edit_note <task number> <note number>`
+    * [Adding notes for a specific task :](#adding-notes-for-a-specific-task--add_note) `add_notes <task number>`
+    * [Deleting notes for a specific task :](#deleting-notes-for-a-specific-task--delete_note) `delete_notes <task number>`
+    * [Editing notes for a specific task :](#editing-notes-for-a-specific-task--edit_note) `edit_notes <task number> <note number>`
     * [Viewing notes for a specific task :](#printing-notes-for-a-specific-task--view_notes) `view_notes <task number>`
     * [List tasks of low/medium/high priority :](#listing-all-low-priority-tasks--low_priority) `low_priority`/`medium_priority`/`high_priority`
     * [List tasks in priority order:](#listing-all-tasks-arranged-by-priority--priority_list) `priority_list`
@@ -388,10 +388,10 @@ Understood. The task's new priority is:
 	 Low priority.
 ```
 
-## **Adding notes for a specific task : `add_note`**
+## **Adding notes for a specific task : `add_notes`**
 Adds a note to the specified task
 
-**Input:** `add_note <Task_Number>`  
+**Input:** `add_notes <Task_Number>`  
 **Output: Demonstrated below adding "Bring own recyclable bag"**
 ```
     What note would you like to add to the following task?
@@ -402,11 +402,11 @@ Bring own recyclable bag
     ____________________________________________________________
 ```
 
-## **Deleting notes for a specific task : `delete_note`**
+## **Deleting notes for a specific task : `delete_notes`**
 Deletes the specified note for the task
 
-**Input:** `delete_note <Task_Number> <Note_number>`  
-**Output: Demonstrated below to delete 1 task**
+**Input:** `delete_notes <Task_Number> <Note_number>`  
+**Output: Demonstrated below to delete 1 task note**
 
 ```
         ____________________________________________________________
@@ -414,10 +414,10 @@ Deletes the specified note for the task
 	 	Bring own recyclable bag
 	____________________________________________________________
 ```
-## **Editing notes for a specific task : `edit_note`**
+## **Editing notes for a specific task : `edit_notes`**
 Edits the specified note for a specific task.
 
-**Input:** `edit_note <Task_Number> <Note_Number>`  
+**Input:** `edit_notes <Task_Number> <Note_Number>`  
 **Output: Demonstrated below to edit "Bring recyclable bag" to "Bring tote bag"**
 ```
         ____________________________________________________________
