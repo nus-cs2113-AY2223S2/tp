@@ -336,7 +336,7 @@ Given below are instructions to test the app manually.
       <br> Expected: No income/expense will be listed. status message will indicate no matching record for these search terms.
 ### Setting target & Clearing target
 1. Setting Target
-   1. Prerequisites: Target set has to be within -99999.99 to 99999.99.
+   1. Prerequisites: Target set has to be within -9999999.99 to 9999999.99.
    2. Test case: `set target /v 350.50` <br> Expected: Program will indicate to user that target has been set. If the target is out of range, program will indicate to users that target setting is invalid.
 2. Clearing Target
    1. Prerequisites: Target must have been set in the first place.

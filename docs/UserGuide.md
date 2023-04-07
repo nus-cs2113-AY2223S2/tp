@@ -221,7 +221,7 @@ Format:
 Use case:
 
 - VALUE ranges from negative to positive
-- Target must be within the range of -99999.99 to 99999.99
+- Target must be within the range of -9999999.99 to 9999999.99
 - Target will be set to the nearest 2 decimal place
 
 Example of usage:
