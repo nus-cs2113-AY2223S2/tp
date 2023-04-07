@@ -331,7 +331,7 @@ date of the task containing `KEYWORD` if the matching task is either an event or
 
 [*Return to TOC*](#table-of-contents)
 
-<!--@@author  -->
+<!--@@author yixuann02 -->
 
 ### Find Task on Date
 
