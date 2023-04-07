@@ -27,7 +27,7 @@ public class EditRepeatCommand extends Command {
 
     public EditRepeatCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_REPEAT));
-         predicate = ParserUtil.parseFilter(args);
+        predicate = ParserUtil.parseFilter(args);
         if (idHashSet.isEmpty() == (predicate == null)) {
             throw new InvalidSelectException();
         }
