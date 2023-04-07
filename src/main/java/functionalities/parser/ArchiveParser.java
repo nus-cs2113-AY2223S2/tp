@@ -13,6 +13,9 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Parser Class for Archive Functionality
+ * */
 public class ArchiveParser {
 
     static String uID;
@@ -27,6 +30,12 @@ public class ArchiveParser {
     static LocalTime startTime;
     static LocalTime endTime;
 
+    /**
+     * Parser to add Consultation
+     *
+     * @param content the consultation type task to add to the Appointment task list
+     * @throws SniffException when incorrect date and time format is stored
+     * */
     public static void addConsult(String content) throws SniffException {
         try {
             String[] Consult = content.split(" \\| ");
@@ -44,6 +53,12 @@ public class ArchiveParser {
         SniffTasks.addAppointment(consultation);
     }
 
+    /**
+     * Parser to add Vaccination
+     *
+     * @param content the vaccination type task to add to the Appointment task list
+     * @throws SniffException when incorrect date and time format is stored
+     * */
     public static void addVaccine(String content) throws SniffException {
         try {
             String[] Vaccine = content.split(" \\| ");
@@ -62,6 +77,12 @@ public class ArchiveParser {
         SniffTasks.addAppointment(vaccination);
     }
 
+    /**
+     * Parser to add Surgery
+     *
+     * @param content the surgery type task to add to the Appointment task list
+     * @throws SniffException when incorrect date and time format is stored
+     * */
     public static void addSurgery(String content) throws SniffException {
         try {
             String[] Surgery = content.split(" \\| ");

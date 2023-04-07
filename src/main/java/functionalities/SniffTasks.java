@@ -38,19 +38,36 @@ public class SniffTasks {
         }
     }
 
-    public static void archivedTasks(FileWriter archiveSavedFile) throws IOException {
-        for (Appointment appointment : APPOINTMENTS) {
-            if (appointment.isDone) {
-                archiveSavedFile.write(appointment.retrieveStorageInfo());
-                archiveSavedFile.write(System.getProperty("line.separator"));
+    /**
+     * Stores the data of archived tasks into SniffArchive file
+     *
+     * @param archiveSavedFile The SniffArchive file
+     * @throws SniffException if there are errors when storing appointment data
+     * */
+    public static void archivedTasks(FileWriter archiveSavedFile) throws SniffException {
+        int no = 1;
+        try {
+            for (Appointment appointment : APPOINTMENTS) {
+                if (appointment.isDone) {
+                    archiveSavedFile.write(appointment.retrieveStorageInfo());
+                    archiveSavedFile.write(System.getProperty("line.separator"));
+                }
+                no++;
             }
+        } catch (IOException e) {
+            throw new SniffException(" Error encountered storing appointment no" + no + " from task list!");
         }
     }
 
+    /**
+     * Sorts the ArrayList by date and time before listing out all the appointment currently in the appointment list.
+     */
     public static void listArchivedAppointments() {
+        APPOINTMENTS.sort(new DateTimeComparator());
         int counter = 1;
+        int marked = 0;
         if (APPOINTMENTS.isEmpty()) {
-            assert false : "There are no appointments in the Archive task list";
+            assert false : "There are no appointments in the task list";
             Ui.showUserMessage(" No entries found!");
         }
         for (Appointment appointment : APPOINTMENTS) {
@@ -58,7 +75,12 @@ public class SniffTasks {
             if (appointment.isDone) {
                 Ui.formatPrintList(counter, appointment.toString());
                 counter++;
+                marked++;
             }
+        }
+        if (marked == 0) {
+            assert false : "There are no archived appointments in the task list";
+            Ui.showUserMessage(" No entries found!");
         }
     }
 
@@ -68,6 +90,7 @@ public class SniffTasks {
     public void listAppointments() {
         APPOINTMENTS.sort(new DateTimeComparator());
         int counter = 1;
+        int notMarked = 0;
         if (APPOINTMENTS.isEmpty()) {
             assert false : "There are no appointments in the task list";
             Ui.showUserMessage(" No entries found!");
@@ -77,7 +100,12 @@ public class SniffTasks {
             if (appointment.getStatus().equals(" ")) {
                 Ui.formatPrintList(counter, appointment.toString());
                 counter++;
+                notMarked++;
             }
+        }
+        if (notMarked == 0) {
+            assert false : "There are no unmarked appointments in the task list";
+            Ui.showUserMessage(" No entries found!");
         }
     }
 
