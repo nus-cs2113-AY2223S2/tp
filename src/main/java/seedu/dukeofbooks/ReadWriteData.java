@@ -84,13 +84,13 @@ public class ReadWriteData {
         File f = new File(USER_FILEPATH);
         Scanner s = new Scanner(f);
 
-        while (s.hasNext()) {
+        while (s.hasNextLine()) {
             String line = s.nextLine();
             String[] args = line.split(",");
             String username = args[USERNAME_POSITION];
             int passwordHash = Integer.parseInt(args[PASSWORD_HASH_POSITION]);
             String name = unquoteString(args[NAME_POSITION]);
-            assert userRecords.addUser(username, passwordHash, name) : "Cannot insert data: " + line;
+            userRecords.addUser(username, passwordHash, name);
         }
     }
 
