@@ -69,7 +69,7 @@ public class ExpenseList extends RecordList {
             expense.setDate(date);
             break;
         case "v":
-            boolean isTwoDecimalsOrLess = DecimalsChecker.isTwoDecimals(value);
+            boolean isTwoDecimalsOrLess = DecimalsChecker.isPositiveTwoDecimals(value);
             if(!isTwoDecimalsOrLess) {
                 throw new ChChingException("Expense value must be a valid positive double that is 2 d.p. or less");
             }

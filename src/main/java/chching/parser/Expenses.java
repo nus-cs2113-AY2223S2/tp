@@ -65,7 +65,7 @@ public class Expenses {
         double expenseValue;
         LocalDate expenseDate = parseDate(expenseDateString);
 
-        if(!DecimalsChecker.isTwoDecimals(expenseValueString)) {
+        if(!DecimalsChecker.isPositiveTwoDecimals(expenseValueString)) {
             throw new ChChingException("Expense value must be a valid positive double that is 2 d.p. or less");
         }
         try {
