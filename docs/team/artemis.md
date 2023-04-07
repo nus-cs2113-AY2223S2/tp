@@ -12,20 +12,20 @@ Code contributions: [reposense link](https://nus-cs2113-ay2223s2.github.io/tp-da
 
 Enhancements implemented:
 * Refactored the parser class to a `MainParser` that delegates parsing to the respective `Parser`, which is abstract and has a Parser for most commands.
-* Created the SearchParser and SearchCommand feature, as well as related exceptions.
-* Created the Trie and TrieNode classes to complement the search feature and ensure functionality with a large dataset expected with medium-sized enterprises.
-* Created the FilterParser and FilterCommand feature, as well as related exceptions.
-* Created the HistoryParser and HistoryCommand feature, as well as related exceptions.
-* Hardened the loading and saving of the data file for session and alert persistent functionality, along with a small Sanitizer.
-* Integrated search and history to work with add, edit, remove, restock and sell, save and load functions. This is necessary as they use separate data.
+* Created the `SearchParser` and `SearchCommand` feature, as well as related exceptions.
+* Created the `Trie` and `TrieNode` classes to complement the search feature and ensure functionality with a large dataset expected with medium-sized enterprises.
+* Created the `FilterParser` and `FilterCommand` feature, as well as related exceptions.
+* Created the `HistoryParser` and `HistoryCommand` feature, as well as related exceptions.
+* Hardened the loading and saving of the data file for session and alert persistent functionality, along with a small `Sanitizer`.
+* Integrated `search` and `history` to work with `add`, `edit`, `remove`, `restock` and `sell`, `save` and `load` functions. This is necessary as they use separate data.
 * Javadocs implementation for relevant classes.
-* Unit mock tests and integration tests for search, filter, history and trie (only unit tests for trie).
+* Unit mock tests and integration tests for `search`, `filter`, `history` and `trie` (only unit tests for `trie`).
 
 Contributions to the UG:
-* Sections contributed: Search, Filter, History.
+* Sections contributed: `Search`, `Filter`, `History`.
 
 Contributions to the DG:
-* Sections contributed: Search, Filter, History.
+* Sections contributed: `Search`, `Filter`, `History`.
 * UML Diagrams added are shown at the bottom of the page.
 
 Contributions to team-based tasks:
