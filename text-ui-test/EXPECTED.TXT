@@ -270,17 +270,27 @@ Here are your tasks:
 3. [ ] Buy Food (Deadline: 2021-03-01)
 4. [ ] Feed Bob
 5. [ ] Feed Bob
-6. [ ] Feed Bob (Deadline: 2021-01-01)
-7. [ ] Feed Bob
-8. [ ] Feed Candi
-9. [ ] Feed Alice
-10. [ ] Buy Food
-11. [ ] Buy Food (Deadline: 2021-03-01)
-12. [ ] Feed Bob
-13. [ ] Feed Bob (Deadline: 2021-01-01)
+6. [ ] Feed Bob
+7. [ ] Feed Bob (Deadline: 2021-01-01)
+8. [ ] Feed Bob
+9. [ ] Feed Candi
+10. [ ] Feed Alice
+11. [ ] Buy Food
+12. [ ] Buy Food
+13. [ ] Buy Food (Deadline: 2021-03-01)
 14. [ ] Feed Bob
-15. [ ] Feed Candi
-16. [ ] Feed Alice
+15. [ ] Feed Bob
+16. [ ] Feed Bob (Deadline: 2021-01-01)
+17. [ ] Feed Bob
+18. [ ] Feed Candi
+19. [ ] Feed Alice
+20. [ ] Buy Food
+21. [ ] Buy Food (Deadline: 2021-03-01)
+22. [ ] Feed Bob
+23. [ ] Feed Bob (Deadline: 2021-01-01)
+24. [ ] Feed Bob
+25. [ ] Feed Candi
+26. [ ] Feed Alice
 
 
 ________________________________________________________________________________________________________
@@ -307,17 +317,27 @@ Here are your tasks:
 3. [ ] Buy Food (Deadline: 2021-03-01)
 4. [ ] Feed Bob
 5. [ ] Feed Bob
-6. [ ] Feed Bob (Deadline: 2021-01-01)
-7. [ ] Feed Bob
-8. [ ] Feed Candi
-9. [ ] Feed Alice
-10. [ ] Buy Food
-11. [ ] Buy Food (Deadline: 2021-03-01)
-12. [ ] Feed Bob
-13. [ ] Feed Bob (Deadline: 2021-01-01)
+6. [ ] Feed Bob
+7. [ ] Feed Bob (Deadline: 2021-01-01)
+8. [ ] Feed Bob
+9. [ ] Feed Candi
+10. [ ] Feed Alice
+11. [ ] Buy Food
+12. [ ] Buy Food
+13. [ ] Buy Food (Deadline: 2021-03-01)
 14. [ ] Feed Bob
-15. [ ] Feed Candi
-16. [ ] Feed Alice
+15. [ ] Feed Bob
+16. [ ] Feed Bob (Deadline: 2021-01-01)
+17. [ ] Feed Bob
+18. [ ] Feed Candi
+19. [ ] Feed Alice
+20. [ ] Buy Food
+21. [ ] Buy Food (Deadline: 2021-03-01)
+22. [ ] Feed Bob
+23. [ ] Feed Bob (Deadline: 2021-01-01)
+24. [ ] Feed Bob
+25. [ ] Feed Candi
+26. [ ] Feed Alice
 
 Here is Pet Tracker's Help Page
 Words in uppercase is used to show the user's input
@@ -422,9 +442,11 @@ Here is your schedule:
 1. [ ] Feed Bob (Deadline: 2021-01-01)
 2. [ ] Feed Bob (Deadline: 2021-01-01)
 3. [ ] Feed Bob (Deadline: 2021-01-01)
-4. [ ] Buy Food (Deadline: 2021-03-01)
+4. [ ] Feed Bob (Deadline: 2021-01-01)
 5. [ ] Buy Food (Deadline: 2021-03-01)
 6. [ ] Buy Food (Deadline: 2021-03-01)
+7. [ ] Buy Food (Deadline: 2021-03-01)
+8. [ ] Buy Food (Deadline: 2021-03-01)
 
 
 ________________________________________________________________________________________________________
