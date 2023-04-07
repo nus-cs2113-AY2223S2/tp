@@ -45,6 +45,11 @@ public class SearchCommand implements Command {
 
     private void printMatchingCategories(Set<Category> matchingCategories) {
         System.out.println("Matching Categories:");
+
+        if (matchingCategories.size() == 0) {
+            System.out.println(NO_SEARCH_RESULTS);
+        }
+
         for (Category category : matchingCategories) {
             int categoryIndex = CategoryCommand.categoryMap.get(category.getName());
             System.out.println((categoryIndex + 1) + DOT + category.getName());
@@ -53,6 +58,11 @@ public class SearchCommand implements Command {
 
     private void printMatchingEvents(Set<Event> matchingEvents) {
         System.out.println("\nMatching Events:");
+
+        if (matchingEvents.size() == 0) {
+            System.out.println(NO_SEARCH_RESULTS);
+        }
+
         for (Event event : matchingEvents) {
             Category categoryOfEvent = getCategoryOfEvent(event);
             assert categoryOfEvent != null;
@@ -70,6 +80,11 @@ public class SearchCommand implements Command {
             similarCategoryCount = similarCategories.size();
         }
 
+        if (similarCategoryCount == 0) {
+            System.out.println(NO_SEARCH_RESULTS);
+            return;
+        }
+
         for (int i = 0; i < similarCategoryCount; i++) {
             Category category = similarCategoriesList.get(i);
             int categoryIndex = CategoryCommand.categoryMap.get(category.getName());
@@ -84,6 +99,11 @@ public class SearchCommand implements Command {
         int similarEventsCount = 3;
         if (similarEventsList.size() < 3) {
             similarEventsCount = similarEvents.size();
+        }
+
+        if (similarEventsCount == 0) {
+            System.out.println(NO_SEARCH_RESULTS);
+            return;
         }
 
         for (int i = 0; i < similarEventsCount; i++) {
