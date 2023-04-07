@@ -27,7 +27,7 @@
 
 ## Introduction
 
-ChChing is a desktop app for tracking spending, and it uses a Command Line Interface (CLI) for managing finances. If you are someone who needs a simple interface to get a better hold of your finances, this app is for you!
+ChChing is a Command Line Interface (CLI) desktop app for tracking spending and managing finances, with currency conversion capabilities. If you are someone who needs a simple interface to get a better hold of your finances, this app is for you!
 
 ## Quick Start
 
