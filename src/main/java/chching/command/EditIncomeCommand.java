@@ -17,6 +17,9 @@ import java.util.HashMap;
  * Models a class to handle the EditIncome command. Inherited from Command class.
  */
 public class EditIncomeCommand extends Command {
+    public static final String DESCRIPTION_FIELD = "de";
+    public static final String DATE_FIELD = "da";
+    public static final String VALUE_FIELD = "v";
     private int index;
     private HashMap<String, String> argumentsByField;
     private boolean hasDescription;
@@ -27,9 +30,9 @@ public class EditIncomeCommand extends Command {
         this.argumentsByField = argumentsByField;
         
         index = Incomes.getIndex(argumentsByField);
-        hasDescription = argumentsByField.containsKey("de");
-        hasDate = argumentsByField.containsKey("da");
-        hasValue = argumentsByField.containsKey("v");
+        hasDescription = argumentsByField.containsKey(DESCRIPTION_FIELD);
+        hasDate = argumentsByField.containsKey(DATE_FIELD);
+        hasValue = argumentsByField.containsKey(VALUE_FIELD);
     }
     
     /**
@@ -64,16 +67,16 @@ public class EditIncomeCommand extends Command {
         
         // edit the fields accordingly
         if (hasDescription) {
-            String value = argumentsByField.get("de");
-            incomes.editIncome(index, "de", value);
+            String value = argumentsByField.get(DESCRIPTION_FIELD);
+            incomes.editIncome(index, DESCRIPTION_FIELD, value);
         }
         if (hasDate) {
-            String value = argumentsByField.get("da");
-            incomes.editIncome(index, "da", value);
+            String value = argumentsByField.get(DATE_FIELD);
+            incomes.editIncome(index, DATE_FIELD, value);
         }
         if (hasValue) {
-            String value = argumentsByField.get("v");
-            incomes.editIncome(index, "v", value);
+            String value = argumentsByField.get(VALUE_FIELD);
+            incomes.editIncome(index, VALUE_FIELD, value);
         }
         
         boolean isExpense = false;
