@@ -10,6 +10,7 @@ import model.DeckList;
 import model.Tag;
 import model.TagList;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.Command;
@@ -53,6 +54,25 @@ public class TagParserTest {
     public void parse_tag_listWithTag() throws InkaException {
         Command cmd = parser.parseCommand("tag list -t tagName");
         assert cmd instanceof ListCardsUnderTagCommand;
+    }
+
+    @Disabled
+    @Test
+    public void parse_tag_listWithTagLongFlag() throws InkaException {
+        Command cmd = parser.parseCommand("tag list --tag tagName");
+        assert cmd instanceof ListCardsUnderTagCommand;
+    }
+
+    @Test
+    public void parse_tag_delete() throws InkaException {
+        Card card = Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000");
+        cardList.addCard(card);
+        tagList.addTag(new Tag("tagName", card.getUuid()));
+
+        Command cmd = parser.parseCommand("tag delete -t tagName");
+        assert cmd instanceof DeleteTagCommand;
+        cmd.execute(cardList, tagList, deckList, ui, storage);
+        assert tagList.isEmpty();
     }
 
     @Test

@@ -7,6 +7,7 @@ import model.CardList;
 import model.DeckList;
 import model.TagList;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.AddCardCommand;
@@ -179,6 +180,17 @@ public class CardParserTest {
         cmd.execute(cardList, tagList, deckList, ui, storage);
         assert tagList.findTagFromName("tagName") != null;
     }
+
+    @Disabled
+    @Test
+    public void parse_card_tagWhitespaceName() throws InkaException {
+        cardList.addCard(Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000"));
+        Command cmd = parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 -t tag name");
+        assert cmd instanceof AddCardToTagCommand;
+        cmd.execute(cardList, tagList, deckList, ui, storage);
+        assert tagList.findTagFromName("tag-name") != null;
+    }
+
     //endregion
 
     //region `card view` tests

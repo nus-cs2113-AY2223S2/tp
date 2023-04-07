@@ -43,10 +43,10 @@ public class RemoveTagFromDeckCommand extends Command {
         }
         ArrayList<TagUUID> deckTagList = deck.getTagsUUID();
         boolean wasTagInDeck = deckTagList.removeIf(tag -> tag.equals(tagToBeDeleted.getUUID()));
-        if (wasTagInDeck == false) {
+        if (!wasTagInDeck) {
             throw new TagNeverWasInDeck();
         }
-        deck.removeTaggedCardsMap(tagUUID, tagList);
+        deck.removeTaggedCardsMap(tagToBeDeleted.getUUID(), tagList);
         deck.setTags(deckTagList);
 
     }

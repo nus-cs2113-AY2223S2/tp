@@ -46,8 +46,8 @@ public class AddTagToDeckCommand extends Command {
         } else {
             deckToAdd.addTag(tagToAdd.getUUID());
         }
-        deckToAdd.addCardstoMap(tagUUID, tagList); // add tagged cards to set
-        deckToAdd.addCardsToSet(tagUUID, tagList); // add tagged cards to map
+        deckToAdd.addCardstoMap(tagToAdd.getUUID(), tagList); // add tagged cards to set
+        deckToAdd.addCardsToSet(tagToAdd.getUUID(), tagList); // add tagged cards to map
         deckUUID = deckToAdd.getDeckUUID();
         tagToAdd.addDeck(deckUUID);
     }

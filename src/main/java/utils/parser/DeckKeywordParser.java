@@ -103,7 +103,9 @@ public class DeckKeywordParser extends KeywordParser{
     }
 
     private Command handleRun(List<String> tokens) throws ParseException{
-        CommandLine cmd = parser.parse(buildRunOptions(), tokens.toArray(new String[0]));
+        Options runOptions = new OptionsBuilder(DECK_MODEL, RUN_ACTION).buildOptions();
+        CommandLine cmd = parser.parse(runOptions, tokens.toArray(new String[0]));
+
         String deckName = cmd.getOptionValue("d");
         return new RunCommand(deckName);
     }
