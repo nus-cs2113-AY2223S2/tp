@@ -14,9 +14,9 @@ Given below are my contributions to the project.
     - Justification: This feature is essential so that users can see what they have.
 
 - **New Feature**: Created a `findbytag` command to allow users to find tasks of a particular tag.
-    - What it does: find out all relevant tasks that correspond to the tag.
-    - Justification: Students can have a better overview of different tags, for example tagging by module, to have a
-      clearer idea of what is needed.
+- New Feature: Created the list command to allow users to list out their ToDos by deadline.
+    - What it does: Reads the data file and prints out all the saved tasks to the user.
+    - Justification: This feature is essential so that users can see what they have.
 
 - **New Feature**: Created a `findbypriority` command to allow users to find tasks of a priority value.
     - What it does: find out all relevant tasks that correspond to the priority value.
@@ -37,7 +37,7 @@ Given below are my contributions to the project.
 
 ### Contributions to the DG:
 
-- Added implementation for details for list fucntion
+- Added implementation for details for list function
 - Created Sequence Diagrams using Plant UML for list commands.
 
 ### Contributions to team-based tasks:
