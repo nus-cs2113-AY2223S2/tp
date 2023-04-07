@@ -9,32 +9,21 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import com.google.gson.Gson;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 import model.TagList;
 import model.CardList;
 import model.TagUUID;
-import model.Tag;
 import model.Memory;
 import model.DeckList;
-import model.Card;
-import model.Deck;
 import model.CardUUID;
-import model.DeckUUID;
 
 import utils.exceptions.InkaException;
 import utils.exceptions.StorageCorrupted;
@@ -69,146 +58,43 @@ public class JsonStorage extends Storage {
 
     @Override
     public Memory load() throws InkaException {
-        CardList cardList = null;
-        TagList tagList = null;
-        DeckList deckList = null;
-        boolean useBackup = false;
         try {
             FileReader fileReader = new FileReader(saveFile);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-
             gsonBuilder.setLenient();
             JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
             JsonObject saveDataObject = jsonElement.getAsJsonObject();
-            JsonArray jsonArray = saveDataObject.getAsJsonArray("cards");
-            ArrayList<Card> cards = new ArrayList<>();
+            Memory savedMemory = JsonToMemory.convert(saveDataObject);
 
-            for (JsonElement jsonCard : jsonArray) {
-                JsonObject cardObject = jsonCard.getAsJsonObject();
-
-                JsonObject uuidObject = cardObject.getAsJsonObject("uuid");
-                String uuidString = uuidObject.get("uuid").getAsString();
-
-                String question = cardObject.get("question").getAsString();
-                String answer = cardObject.get("answer").getAsString();
-
-                Card card = Card.createCardWithUUID(question, answer, uuidString);
-
-                JsonArray tagsArray = cardObject.getAsJsonArray("tags");
-                JsonArray decksArray = cardObject.getAsJsonArray("decks");
-
-                for (JsonElement tagListElement : tagsArray) {
-                    JsonObject tagUuidObject = tagListElement.getAsJsonObject();
-
-                    String tagUuidString = tagUuidObject.get("uuid").getAsString();
-                    card.addTag(new TagUUID(UUID.fromString(tagUuidString)));
-                }
-
-                for (JsonElement deckListElement : decksArray) {
-
-                    JsonObject deckUuidObject = deckListElement.getAsJsonObject();
-                    String deckUuidString = deckUuidObject.get("uuid").getAsString();
-                    card.addDeck(new DeckUUID(UUID.fromString(deckUuidString)));
-                }
-
-                cards.add(card);
-            }
-
-            cardList = new CardList(cards); // assign cardList object with cards
-
-            tagList = new TagList(); // construct empty taglist to append stuff to
-            JsonArray tagJsonArray = saveDataObject.getAsJsonArray("tags");
-            for (JsonElement jsonTag : tagJsonArray) {
-                JsonObject tagObject = jsonTag.getAsJsonObject();
-                JsonObject uuidObject = tagObject.getAsJsonObject("uuid");
-                String uuidString = uuidObject.get("uuid").getAsString();
-
-                String tagName = tagObject.get("tagName").getAsString();
-                JsonArray tagCardArray = tagObject.getAsJsonArray("cards");
-                Tag tag = new Tag(tagName, uuidString);
-
-                for (JsonElement cardListElement : tagCardArray) {
-                    JsonObject cardUuidObject = cardListElement.getAsJsonObject();
-
-                    String cardUuidString = cardUuidObject.get("uuid").getAsString();
-                    tag.addCard(new CardUUID(UUID.fromString(cardUuidString)));
-                }
-
-                tagList.addTag(tag);
-            }
-
-            deckList = new DeckList();
-            JsonArray deckJsonArray = saveDataObject.getAsJsonArray("decks");
-            for (JsonElement jsonDeck : deckJsonArray) {
-                JsonObject deckObject = jsonDeck.getAsJsonObject();
-                JsonObject uuidObject = deckObject.getAsJsonObject("deckUUID");
-                String uuidString = uuidObject.get("uuid").getAsString();
-
-                String deckName = deckObject.get("deckName").getAsString();
-                Deck deck = new Deck(deckName);
-                deck.setDeckUUID(uuidString);
-
-                //obtain cards from a jsonDeck
-                JsonArray deckCardArray = deckObject.getAsJsonArray("cards");
-
-                for (JsonElement deckListElement : deckCardArray) {
-                    JsonObject cardUuidObject = deckListElement.getAsJsonObject();
-                    String cardUuidString = cardUuidObject.get("uuid").getAsString();
-                    deck.addCard(new CardUUID(UUID.fromString(cardUuidString)));
-                }
-
-                //obtain tags from a jsonDeck
-                JsonArray deckTagArray = deckObject.getAsJsonArray("tags");
-                for (JsonElement deckListElement : deckTagArray) {
-                    JsonObject tagUuidObject = deckListElement.getAsJsonObject();
-                    String tagUuidString = tagUuidObject.get("uuid").getAsString();
-                    deck.addTag(new TagUUID(UUID.fromString(tagUuidString)));
-                }
-
-                deckList.addDeck(deck);
-            }
+            return savedMemory;
         } catch (IOException e) {
-
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Failed to load file from " + absolutePath, e);
-
             throw new StorageLoadFailure(absolutePath);
         } catch (NullPointerException | JsonSyntaxException e) {
             String absolutePath = this.saveFile.getAbsolutePath();
             logger.log(Level.WARNING, "Corrupted save file: " + absolutePath, e);
-            //useBackup = true;
+            return loadBackup();
+        }
+    }
+
+    private Memory loadBackup() throws InkaException {
+        try {
+            FileReader fileReader = new FileReader(backupFile);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
+            JsonObject saveDataObject = jsonElement.getAsJsonObject();
+            Memory savedMemory = JsonToMemory.convert(saveDataObject);
+            logger.log(Level.INFO, "Loaded backup file successfully");
+            return savedMemory;
+        } catch (IOException | NullPointerException | JsonSyntaxException ex) {
+            String absolutePath = this.backupFile.getAbsolutePath();
+            logger.log(Level.WARNING, "Corrupted backup file: " + absolutePath, ex);
             throw new StorageCorrupted(absolutePath);
         }
-
-        if (useBackup == true) {
-            logger.log(Level.INFO, "Trying to load backup file");
-            try {
-                FileReader fileReader = new FileReader(backupFile);
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-                JsonElement jsonElement = gsonBuilder.create().fromJson(bufferedReader, JsonElement.class);
-                JsonObject jsonObject = jsonElement.getAsJsonObject();
-                String deckName = jsonObject.get("deckName").getAsString();
-
-                JsonArray jsonArray = jsonObject.getAsJsonArray("cards");
-                Type cardListType = new TypeToken<ArrayList<Card>>() {
-                }.getType();
-
-                ArrayList<Card> cards = gsonBuilder.create().fromJson(jsonArray, cardListType);
-                cardList = new CardList(cards);
-            } catch (IOException | NullPointerException | JsonSyntaxException ex) {
-                String absolutePath = this.backupFile.getAbsolutePath();
-                logger.log(Level.WARNING, "Corrupted backup file: " + absolutePath, ex);
-                throw new StorageCorrupted(absolutePath);
-            }
-        }
-
-        Memory savedMemory = new Memory();
-        savedMemory.setCardList(cardList);
-        savedMemory.setTagList(tagList);
-        savedMemory.setDeckList(deckList);
-
-        return savedMemory;
     }
+
+
 
     public static Memory makeMemory(CardList cardList, TagList tagList, DeckList deckList) {
         Memory memory = new Memory();

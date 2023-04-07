@@ -1,6 +1,7 @@
 package utils.command;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.UUID;
 import model.CardList;
 import model.CardUUID;
@@ -35,10 +36,15 @@ public class RemoveCardFromDeckCommand extends Command {
         if (deck == null) {
             throw new DeckNotFoundException();
         }
+        //This is only for isolated cards, not for the cards that are tagged
         ArrayList<CardUUID> deckCardList = deck.getCardsUUID();
+        HashSet<CardUUID> deckCardSet = deck.getCardsSet();
         boolean wasCardInDeck = deckCardList.removeIf(card -> card.equals(cardUUID));
         if (wasCardInDeck == false) {
             throw new CardNotInDeck();
+        } else if(!deck.cardIsInMap(cardUUID)) { // if the card does not exist under any tag
+            deckCardSet.remove(cardUUID);
+            deck.setCardsSet(deckCardSet);
         }
         deck.setCards(deckCardList);
     }

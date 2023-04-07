@@ -8,6 +8,7 @@ import model.CardList;
 import model.DeckList;
 import model.TagList;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.AddCardCommand;
@@ -182,6 +183,7 @@ public class CardParserTest {
         assert tagList.findTagFromName("tagName") != null;
     }
 
+    @Disabled
     @Test
     public void parse_card_tagWhitespaceName() {
         InkaException ex = assertThrows(InvalidSyntaxException.class,

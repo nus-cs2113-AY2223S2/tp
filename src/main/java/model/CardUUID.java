@@ -2,19 +2,9 @@ package model;
 
 import java.util.UUID;
 
-public class CardUUID {
-    UUID uuid;
+public class CardUUID extends InkaUUID {
 
     public CardUUID(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public boolean equals(CardUUID cardUUID) {
-        return this.uuid.equals(cardUUID.uuid);
-    }
-
-    @Override
-    public String toString() {
-        return this.uuid.toString();
+        super(uuid);
     }
 }

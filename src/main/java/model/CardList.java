@@ -41,7 +41,7 @@ public class CardList {
             }
         } else if (uuid.isPresent()) {
             for (int i = 0; i < cards.size(); i++) {
-                if (cards.get(i).getUuid().equals(uuid.get())) {
+                if (cards.get(i).getUuid().equals(uuid.get().uuid)) {
                     delete(i);
                     return;
                 }
@@ -64,7 +64,7 @@ public class CardList {
      */
     public Card findCardFromUUID(CardUUID cardUUID) throws CardNotFoundException {
         for (Card card : cards) {
-            if (card.getUuid().equals(cardUUID)) {
+            if (card.getUuid().equals(cardUUID.uuid)) {
                 return card;
             }
         }
