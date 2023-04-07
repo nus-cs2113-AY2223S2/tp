@@ -76,6 +76,9 @@ public class Parser {
         if (details.length <= 1) {
             throw new NPExceptions("need a flag to specify your action!");
         }
+        if (details.length > 2){
+            throw new NPExceptions("Too many flags, or negative index entered");
+        }
 
         String information = details[1].substring(0, 1).trim();
         if (information.equals("s")) {
@@ -85,7 +88,9 @@ public class Parser {
             // TODO: Show successful add on UI. (For all cases)
             Duke.LOGGER.log(Level.INFO, "User deleted event in event list.");
             Ui.deleteSuccessMsg(deletedTask);
-        } else if (details[1].substring(0, 3).trim().equals("all")) {
+        } else if (details[1].length()<3){
+            throw new NPExceptions("please input a valid flag");
+        }else if (details[1].substring(0, 3).trim().equals("all")) {
             eventList.deleteAll();
             Duke.LOGGER.log(Level.INFO, "User deleted all events in event list.");
         } else {
