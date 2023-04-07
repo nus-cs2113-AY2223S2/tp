@@ -4,7 +4,11 @@ import seedu.moneymind.category.Category;
 import seedu.moneymind.event.Event;
 import seedu.moneymind.ui.Ui;
 
-import java.util.*;
+import java.util.Set;
+import java.util.LinkedHashSet;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 import static seedu.moneymind.category.CategoryList.categories;
 import static seedu.moneymind.string.Strings.DOT;
