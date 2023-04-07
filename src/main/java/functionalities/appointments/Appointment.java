@@ -4,8 +4,6 @@ import exception.SniffException;
 import functionalities.Animal;
 import functionalities.Owner;
 
-import java.time.LocalDate;
-
 /**
  * The Appointment class represents an appointment for an animal with its owner.
  * This class is abstract and provides methods for retrieving and setting appointment information.
