@@ -17,7 +17,7 @@ alt Contains "upc/" && User input length > 1
     ":EditParser" -> ":EditCommand" : run()
     activate ":EditCommand"
     ":EditCommand" -> ":EditCommand": setEditInfo()
-    activate ":EditCommand"
+    activate ":EditCommand" #Cyan
     ref over ":EditCommand" : Process User Edit Input
     ":EditCommand" --> ":EditCommand"
     deactivate ":EditCommand"
@@ -26,7 +26,7 @@ alt Contains "upc/" && User input length > 1
     destroy ":EditCommand"
 else else
     ":EditParser" -> ":EditParser": EditErrorException()
-    activate ":EditParser"
+    activate ":EditParser" #Cyan
     ":EditParser" -> "<<Class>>\nUI": printInvalidEditCommand()
     activate "<<Class>>\nUI"
     ref over "<<Class>>\nUI": Print Error Message

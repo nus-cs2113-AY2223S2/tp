@@ -213,7 +213,8 @@ reference from the `oldItem` and `updatedItem` objects. The `UI` class will be c
 to inform the user on the status of the program, based on whether quantity deduction has been done successfully or
 if an `Exception` has been thrown.
 
-Included below is a sequence diagram for the `SellParser` and the `SellCommand` respectively:
+Included below are UML Sequence Diagrams for `SellParser` and `SellCommand`. The second diagram gives a detailed
+version of what happens in the reference frame 'Deduct Quantity of the Item'.
 
 ![SellParser.png](UML/Sell/SellParser.png)
 ![SellCommand.png](UML/Sell/SellCommand.png)

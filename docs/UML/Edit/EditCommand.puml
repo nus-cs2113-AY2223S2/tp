@@ -8,10 +8,10 @@ deactivate ":EditCommand"
 ":EditParser" -> ":EditCommand": run()
 activate ":EditCommand"
 ":EditCommand" -> ":EditCommand": setEditInfo()
-activate ":EditCommand"
+activate ":EditCommand" #Cyan
 group sd [Process User Edit Input]
     ":EditCommand"->":EditCommand": updateItemInfo()
-    activate ":EditCommand"
+    activate ":EditCommand" #Green
     ref over ":EditCommand": Update Item Attributes
     ":EditCommand"-->":EditCommand"
     deactivate ":EditCommand"
@@ -21,7 +21,7 @@ group sd [Process User Edit Input]
     "<<Class>>\nCategoryCommand" --> ":EditCommand"
     deactivate "<<Class>>\nCategoryCommand"
     ":EditCommand"->":EditCommand": handleTrie()
-    activate ":EditCommand"
+    activate ":EditCommand" #Green
     ref over ":EditCommand": Update Inventory Data Structure
     ":EditCommand"-->":EditCommand"
     deactivate ":EditCommand"

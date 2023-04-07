@@ -10,10 +10,10 @@ deactivate ":RestockCommand"
 activate ":RestockCommand"
 ":RestockCommand"->":RestockCommand": restockItem()
 group sd Increase Quantity of the Item
-activate ":RestockCommand"
+activate ":RestockCommand" #Cyan
 ref over ":RestockCommand": Retrieve Item from \n Hashmap and keep \n track of previous Quantity Value.
 ":RestockCommand" -> ":RestockCommand": checkRestockCommandLength()
-activate ":RestockCommand"
+activate ":RestockCommand" #Red
 
 alt Command Length != 2
 ref over ":RestockCommand": Handle Missing Parameters \n Exception
@@ -24,7 +24,7 @@ activate ":RestockCommand"
 ":RestockCommand" --> ":RestockCommand"
 deactivate ":RestockCommand"
 ":RestockCommand" -> ":RestockCommand": updateItemQuantity()
-activate ":RestockCommand"
+activate ":RestockCommand" #Green
 
 
 ref over ":RestockCommand"
@@ -37,7 +37,7 @@ deactivate ":RestockCommand"
 
 
 ":RestockCommand"->":RestockCommand": handleTrie()
-activate ":RestockCommand"
+activate ":RestockCommand" #Green
 ref over ":RestockCommand": Update Inventory Data Structure
 ":RestockCommand"-->":RestockCommand"
 deactivate ":RestockCommand"
