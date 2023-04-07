@@ -40,6 +40,7 @@ public class StaffManager {
 
     /**
      * Format all staff into readable list of staffs and display it
+     * @param ui Ui object in if there is anything to be printed.
      */
     public static void viewStaff(TextUi ui) {
         String staffsString = "";
