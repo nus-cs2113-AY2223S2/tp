@@ -134,6 +134,9 @@ public class MainInputParser {
             ParseSetBudget prepareBudget = new ParseSetBudget(splitValues[INDEX_USERSTRING]);
             return prepareBudget.setBudget();
         case CheckBudgetCommand.COMMAND_WORD:
+            if (splitValues.length == 1 || splitValues[1].isEmpty()) {
+                return new CheckBudgetCommand("c/");
+            }
             return new CheckBudgetCommand(splitValues[INDEX_USERSTRING]);
 
         // Commands that do not fulfill requirements above

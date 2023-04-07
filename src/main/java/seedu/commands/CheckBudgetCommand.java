@@ -83,6 +83,17 @@ public class CheckBudgetCommand extends Command {
                     }
                 }
                 return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+            case "c":
+                for (Expenditure individualExpenditure : expenditures.getExpenditures()) {
+                    if (individualExpenditure.getExpenditureType().equals("B")) {
+                        borrowedAmount += individualExpenditure.getValue();
+                    } else if (individualExpenditure.getExpenditureType().equals("L")) {
+                        lentAmount += individualExpenditure.getValue();
+                    } else if (!individualExpenditure.getPaidIcon().equals("[X]")) {
+                        totalAmount += individualExpenditure.getValue();
+                    }
+                }
+                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
             default:
                 return new CommandResult("Failed to check! Please check the format and try again!");
             }
