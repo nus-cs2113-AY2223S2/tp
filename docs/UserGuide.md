@@ -62,10 +62,7 @@ This user guide adopts the following conventions for the command-line syntax:
 - All arguments starting with a dash (`-`) will be treated as options.
 
 - For all specified options, only the arguments that follow the first declaration will be parsed. **i.e. any
-  subsequent re-declarations of the same option will be ignored.**
-
-- All arguments specified without a preceding option will be ignored.
-    - The exception to this rule is when specifying the count in `/view`, or item ID in `/edit` and `/edit`.
+  subsequent re-declarations of the same option will be ignored.**<br>For example, for the following input:<br>`/view -c food -c clothing`<br>Only expenses in the `food` category will be listed.
 
 If you face any problems, do visit the [FAQ](#frequently-asked-questions) segment!
 
@@ -225,9 +222,10 @@ Note:
 - `start_date`, `end_date` must be in `dd/MM/yy` format.
 - Both flags are **required** if user wishes to use this
   option.
-- `start_date` **must** be before `end_date`.
+- `start_date` should not be after `end_date`.
+- If both specified dates are the same, the expenses on that date will be listed.
 
-Order of options are interchangeable.
+Order of options are **interchangeable**.
 
 Example of usage:
 
