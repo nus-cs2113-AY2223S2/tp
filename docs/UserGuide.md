@@ -679,7 +679,7 @@ for Apollo will be needed to be updated manually by the developers for each seme
 **Q**: Does Apollo have data for all modules available in NUS?
 
 **A**: No. Apollo only has data for modules that are available in the current semester. Additionally, modules which have 
-timetables which fall outside of the official NUS Semester 2 timetable will not be available in Apollo. These includes
+timetables which fall outside of the official NUS Semester 2 timetable will not be available in Apollo. These include
 certain modules such as Special Term Modules and iBloc Modules (CS1010x).
 
 **Q**: Should I edit the save file manually?

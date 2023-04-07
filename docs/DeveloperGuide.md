@@ -109,7 +109,7 @@ It creates a ConsoleHandler and a FileHandler to handle logging.
 
 **Step 2. Override the `execute()` method:**
 The `execute()` method is overridden to execute the list task
-functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+functionality. It takes the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
 <!--@@author T-Wan-Lin -->
@@ -320,7 +320,7 @@ Step 6a: Print the confirmation message: A confirmation message is printed to th
 successfully marked as done from the user-provided index of the `TaskList`. The message includes the task type,
 description (and date of the task deleted if the task is either an event or a deadline).The execution will proceed to step 7.
 
-Step 6b: Apollo will print an message to the user to state that the task was marked as done previously. The execution of the mark
+Step 6b: Apollo will print a message to the user to state that the task was marked as done previously. The execution of the mark
 command will stop here.
 
 **Step 7: Update the storage:**
@@ -379,7 +379,7 @@ description (and date of the task deleted if the task is either an event or a de
 
 **Step 6b:**
 
-Apollo will print an message to the user to state that the task was never marked as done. The execution of the unmark
+Apollo will print a message to the user to state that the task was never marked as done. The execution of the unmark
 command will stop here.
 
 **Step 7: Update the storage:**
@@ -417,7 +417,7 @@ It creates a ConsoleHandler and a FileHandler to handle logging.
 **Step 3. Override the `execute()` method:**
 
 The `execute()` method is overridden to execute the find task
-functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+functionality. It takes the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
 **Step 4. Find the list of tasks containing the `KEYWORD`:**
@@ -472,7 +472,7 @@ It creates a ConsoleHandler and a FileHandler to handle logging.
 **Step 4. Override the `execute()` method:**
 
 The `execute()` method is overridden to execute the find task
-functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+functionality. It takes the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
 **Step 5.**
@@ -515,7 +515,7 @@ It creates a ConsoleHandler and a FileHandler to handle logging.
 **Step 2. Override the `execute()` method:**
 
 The `execute()` method is overridden to execute the list module
-functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+functionality. It takes the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
 **Step 3. Iterate through the list of modules:**
@@ -589,7 +589,7 @@ with only the `moduleCode` as the parameter.
 
 A confirmation message is printed to the user indicating the module and lesson 
 information that the user has added into their module list. The message will include the `ModuleCode`, `LessonTypes`
-of that user has added, `Classnumber` of the `LessonType` that user has added and `Day` and `Time` of the lesson.
+of that user has added, `ClassNumber` of the `LessonType` that user has added and `Day` and `Time` of the lesson.
 
 #### For when user request to show a specific lesson of the module (e.g. CS2113 -tut) in their timetable:
 
@@ -833,8 +833,8 @@ Step 4. Find the module to display information: The first step in the `execute()
 `Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
 
 Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the information
-of the module requested by the user. The message includes the `ModuleCode`, `LessonTypes` of the module, `Classnumber` 
-of each `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
+of the module requested by the user. The message includes the `ModuleCode`, `LessonTypes` of the module, `ClassNumber` 
+of each `lessonTypes` and `Day` and `Time` of the existing `ClassNumber`.
 
 #### For when a user request to show a specific lessonType of the module (e.g. CS2113 -tut):
 
@@ -913,7 +913,7 @@ Step 5. Starting from Monday, the lessons and tasks occurring on each day of the
 ### Exiting the Program
 
 The `bye` command allows the user to exit the program. It is facilitated by `ExitCommand` which is an extension of the `Command` class.
-The `ExitCommand` class overrides the `execute()` method from the `Command` class and is only excuted when the user inputs `bye`
+The `ExitCommand` class overrides the `execute()` method from the `Command` class and is only executed when the user inputs `bye`
 with no additional parameters (e.g `bye bye` would not exit the program).
 
 Given below is an example usage scenario and how the add task mechanism behaves at each step.
