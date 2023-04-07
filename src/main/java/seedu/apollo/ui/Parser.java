@@ -84,8 +84,6 @@ public class Parser {
         final String[] split = userCommand.trim().split("\\s+", 2);
         try {
             return parseCommand(split, size, moduleData);
-        } catch (IllegalCommandException e) {
-            ui.printInvalidCommand();
         } catch (EmptyTaskDescException e) {
             ui.printEmptyDescription();
         } catch (EmptyKeywordException e) {
@@ -96,8 +94,10 @@ public class Parser {
             ui.printEmptyDelMod();
         } catch (NumberFormatException e) {
             ui.printErrorForIdx(size);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
+        } catch (IllegalArgumentException e) {
+            ui.printInvalidCommandForHelp(e);
         } catch (InvalidDeadline e) {
             ui.printInvalidDeadline();
         } catch (InvalidEvent e) {
@@ -157,16 +157,9 @@ public class Parser {
 
         case COMMAND_HELP_WORD:
             if (isOneWord(split)) {
-
                 return new HelpCommand();
             }
-            if (!isOneWordSecondClause(split[1])) {
-                throw new IllegalCommandException();
-            }
-
-            HelpCommand newHelpCommand = chooseHelpCommand(split[1]);
-
-            return newHelpCommand;
+            return getHelpCommand(split[1]);
 
         case COMMAND_LIST_WORD:
             if (!isOneWord(split)) {
@@ -221,22 +214,20 @@ public class Parser {
             String moduleCode = split[1];
             return new DeleteModuleCommand(moduleCode);
 
-
         default:
             throw new IllegalCommandException();
         }
     }
 
-
     /**
      * Method that selects which help command class to invoke
      *
-     * @param helpCommandName
+     * @param param The parameters entered after "help" by the user.
      * @return The appropriate HelpCommandClass child
      * @throws IllegalArgumentException If an unknown command is input by the user.
      */
-    public static HelpCommand chooseHelpCommand(String helpCommandName) throws IllegalArgumentException {
-        switch (helpCommandName) {
+    private static HelpCommand getHelpCommand(String param) throws IllegalArgumentException {
+        switch (param) {
         case "list":
             return new ListHelpCommand();
         case "todo":
@@ -270,44 +261,8 @@ public class Parser {
         case "addmod":
             return new AddModHelpCommand();
         default:
-            throw new IllegalArgumentException("Invalid command name: " + helpCommandName);
-
+            throw new IllegalArgumentException(param);
         }
-    }
-
-    /**
-     * Checks if the user's input parameter is empty.
-     *
-     * @param split Parsed user input split into command and parameter.
-     * @return {@code true} if the input parameter is empty, {@code false} otherwise.
-     */
-    private static Boolean isEmptyParam(String[] split) {
-        return (split.length != 2);
-    }
-
-    /**
-     * Checks if the user's input is only one word.
-     *
-     * @param split Parsed user input split into command and parameter.
-     * @return {@code true} if the input is only one word, {@code false} otherwise.
-     */
-    private static Boolean isOneWord(String[] split) {
-        return (split.length == 1);
-    }
-
-    /**
-     * Checks if user input a one word [command] when using the help [command] function
-     * @param myString Second clause of user input with the command user needs help for
-     * @return {@code true} if user input a one word command,{@code false} otherwise
-     */
-    private static Boolean isOneWordSecondClause(String myString) {
-        String[] words = myString.split("\\s+");
-        return (words.length == 1);
-    }
-
-
-    private static Boolean isTwoWord(String[] split) {
-        return (split.length == 2);
     }
 
     /**
@@ -340,6 +295,27 @@ public class Parser {
             throw new InvalidEvent();
         }
         return split;
+    }
+
+    /**
+     * Checks if the user's input parameter is empty.
+     *
+     * @param split Parsed user input split into command and parameter.
+     * @return {@code true} if the input parameter is empty, {@code false} otherwise.
+     */
+    private static boolean isEmptyParam(String[] split) {
+        return (split.length != 2);
+    }
+
+    //@@author T-Wan-Lin
+    /**
+     * Checks if the user's input is only one word.
+     *
+     * @param split Parsed user input split into command and parameter.
+     * @return {@code true} if the input is only one word, {@code false} otherwise.
+     */
+    private static boolean isOneWord(String[] split) {
+        return (split.length == 1);
     }
 
 }

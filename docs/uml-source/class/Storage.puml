@@ -1,0 +1,112 @@
+@startuml
+'https://plantuml.com/class-diagram
+scale 2.0
+
+interface LoggerInterface {
+    + setUpLogger(): void
+}
+class Storage {
+    - filePath: String
+    - moduleDataFilePath: String
+    - TYPE_POS: int
+    - STATUS_POS: int
+    - PARAM_POS: int
+    - TXT_TODO_WORD: char
+    - TXT_DEADLINE_WORD: char
+    - TXT_EVENT_WORD: char
+    - logger: Logger
+
+    + Storage(String, String)
+    + setUpLogger(): void
+    + updateTask(TaskList): void
+    + loadTaskList(Ui): TaskList
+    + updateModule(ModuleList, Calendar): void
+    - writeModules(FileWriter, Module): void
+}
+
+class TaskList {
+    -tasks: Task[*]
+    + TaskList()
+    + addTask(Task): void
+    + deleteTask(int): Task
+    + markTaskAsDone(int): Task
+    + getTask(int): Task
+    + getAllTasks(): List<Task>
+}
+
+abstract class Task {
+    - description: String
+    - isDone: boolean
+    - storePattern: DateTimeFormatter
+
+    + Task(String)
+    + getDescription(): String
+    + markAsDone(): void
+    + getStatus(): String
+    + getType(): String
+}
+
+class Todo extends Task {
+- description: String
++getDescription(): String
+}
+
+class Deadline extends Task {
+    - by: LocalDateTime
+
+    + Deadline(String, LocalDateTime)
+    + getBy(DateTimeFormatter): String
+}
+
+class Event extends Task {
+    - from: LocalDateTime
+    - to: LocalDateTime
+
+    + Event(String, LocalDateTime, LocalDateTime)
+    + getFrom(DateTimeFormatter): String
+    + getTo(DateTimeFormatter): String
+}
+
+class Ui {
+    + showLine(): void
+}
+
+class ModuleList  {
+     -modules: Module[*]
+    + ModuleList()
+    + addModule(Module): void
+    + deleteModule(int): Module
+    + getModule(int): Module
+    + getAllModules(): List<Module>
+}
+
+class Module {
+    - code: String
+    - moduleTimetable: List<Timetable>
+
+    + Module(String)
+    + getCode(): String
+    + addTimetable(Timetable): void
+    + getModuleTimetable(): List<Timetable>
+}
+
+class Timetable {
+    - lessonType: String
+    - classNumber: String
+
+    + getLessonType(): String
+    + getClassNumber(): String
+}
+
+Storage ..|> LoggerInterface
+Storage -> TaskList
+Storage -> Task
+Storage -> Todo
+Storage -> Deadline
+Storage -> Event
+Storage -> Ui
+Storage -> ModuleList
+Storage -> Module
+Storage -> Timetable
+
+@enduml

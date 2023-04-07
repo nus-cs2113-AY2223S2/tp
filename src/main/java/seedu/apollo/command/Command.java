@@ -7,15 +7,23 @@ import seedu.apollo.storage.Storage;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
+import seedu.apollo.utils.LoggerInterface;
 
 import java.rmi.UnexpectedException;
+import java.util.logging.Logger;
 
 /**
  * Parent class of all types of Commands.
  */
-public abstract class Command {
+public abstract class Command implements LoggerInterface {
 
+    protected static Logger logger;
     public Boolean isExit = false;
+
+    public Command(String commandName) {
+        logger = Logger.getLogger(commandName);
+        setUpLogger(logger);
+    }
 
     /**
      * Executes the command.

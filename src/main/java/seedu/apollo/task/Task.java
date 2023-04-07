@@ -11,9 +11,10 @@ import java.util.Locale;
 public abstract class Task {
 
     // Formatters used to parse and print date and time
-    public static DateTimeFormatter storePattern = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    public static DateTimeFormatter storePattern = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm", Locale.ENGLISH);
     public static DateTimeFormatter printPattern = DateTimeFormatter
-            .ofPattern("MMM dd yyyy, hh:mma", Locale.ENGLISH);
+            .ofPattern("dd MMM yyyy, hh:mma", Locale.ENGLISH);
+
 
     protected String description;
     protected boolean isDone;
