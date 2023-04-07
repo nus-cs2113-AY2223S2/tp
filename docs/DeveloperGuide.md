@@ -84,12 +84,17 @@ Figure 2.1
 </p>
 </div>
 
+<!-- Eugene's Storage Component Start -->
+<div style="page-break-after: always;"></div>
+
 ### Storage Component
 
 API: ```Storagejava```
 
 The *Storage* component handles the reading and writing of user data to and from the local hard disk in the form of
 a json file.
+```UserCareerData``` will be stored as ```userData.json```
+```UserPlan``` will be stored as ```plansData.json```
 
 Key Aspects:
 
@@ -98,23 +103,93 @@ Key Aspects:
 * Handles the creation of user data file when previous one is missing or corrupted
 * Handles the loading of user data and plans upon start of the program
 
-The class diagram as shown in *Figure 3.1* illustrates the structure of the different classes in Storage.
 <div align="center">
-<img src="UML/Images/Storage.png"/>
+<img src="UML/Images/Storage-0.png"/>
 <p>
 Figure 3.1
 </p>
 </div>
 
+The class diagram as shown in *Figure 3.1* illustrates the structure of the different classes in Storage.
+The ```Storage``` Interface is implemented by the ```StorageManager``` class.
+The ```StorageManager``` class is associated with the ```UserPlansStorage``` interface which handles the reading and writing of 
+all ```UserPlan``` ,and the ```UserCareerStorage``` interface which handles the reading and writing of all 
+```UserCareerData```. ```UserPlansStorage``` class. These two interfaces are implemented by the JsonUserPlansStorage 
+and JsonUserCareerStorage classes respectively.
+
+<div style="page-break-after: always;"></div>
+
 The Storage API interacts with the other classes as shown in the *Sequence Diagram* as per *Figure 3.2*
-where it shows how the Storage API loads the local user data json file as well as the user plans json file upon the 
-resumption of the program.
+where it shows how the Storage API loads the local user data json file as well as the user plans json file upon the
+resumption of the program assuming data file is **present and not corrupted**.
+
 <div align="center">
-<img src="UML/Images/LoadingUserData.png"/>
+<img src="UML/Images/LoadingUserData-0.png"/>
 <p>
 Figure 3.2
 </p>
 </div>
+
+During the initialisation of FitnessDuke, the ```loadUserData``` method from the Storage API which firstly 
+instantiates a new ```UserCareerData``` object. The method would subsequently iterate and parse through all the 
+sessions from the local hard disk into the new ```UserCareerData``` object.
+
+The populated ```UserCareerData``` which now contains all the previous sessions is returned back to be used by the main 
+method of the program.
+
+This process is similar for the loading of the ```UserPlan``` object except where we loop through seven times 
+(number of days in a week) and for each loop, iterate and parse through each plan from the local hard disk into the 
+newly instantiated ```UserPlan``` object.
+
+<div style="page-break-after: always;"></div>
+
+In the unlikely event that the user accidentally deleted or modify the json files stored on the hard disk incorrectly,
+the sequence diagram below as per Figure 3.3 illustrates how the program loads a fresh set of data. This means all 
+previous data will be lost.
+
+There are a few cases where this could happen **(non-exhaustive)** causing a DukeError to be thrown:
+* File missing or not named correctly
+* File does not follow json format
+* Missing or deleted entries
+* Invalid inputs of user data.
+
+<div align="center">
+<img src="UML/Images/invalidFile-0.png"/>
+<p>
+Figure 3.3
+</p>
+</div>
+
+As shown in the diagram, a failed attempt in loading user data from the json file would result in the program to 
+overwrite an existing ```userData.json``` file with a blank state.
+
+User data would be written to the json file at various points of the program
+The ```UserCareerData``` is saved to the json file whenever there is any modifications made to the object during runtime.
+This also applies to the ```UserPlan```.
+
+<div align="center">
+<img src="UML/Images/WritingUserData-0.png"/>
+<p>
+Figure 3.4a
+</p>
+</div>
+
+The sequence diagram above as shown by Figure 3.4a illustrates the interaction of Storage components whenever 
+```writeToJson()``` is invoked for ```UserCareerData```.
+
+<div align="center">
+<img src="UML/Images/WritingUserPlan-0.png"/>
+<p>
+Figure 3.4b
+</p>
+</div>
+
+The process for the saving of ```UserPlan``` is similar to that of saving ```UserCareerData``` as shown in Figure 3.4b. The 
+figure illustrates the interaction of Storage components whenever ```writeToJson()``` is invoked for ```UserPlan```.
+
+
+<div style="page-break-after: always;"></div>
+<!-- Eugene's Storage Component End -->
 
 ### Command Handler Component
 
@@ -156,8 +231,6 @@ and ensures that users will not be bombarded by a long list of commands in the h
 To manage this exists the ```PlannerCommandHandler```, which allows for adding, deleting, 
 and viewing the workout plans.
 
-<p>
-
 <div align="center">
 <img src="UML/Images/PlannerCommandHandler.png"/>
 <p>
@@ -165,7 +238,6 @@ Figure 6.1
 </p>
 </div>
 
-<p>
 
 <div align="center">
 <img src="UML/Images/addPlan.png"/>
@@ -179,10 +251,12 @@ Figure 6.2
 Accounts for the different scenarios that may trigger an error during user's interactions with the program
 
 #### Error Message Handling
+
 Enumeration: [```ErrorMessages.java```]
 All error messages are stored in the ErrorMessage enumeration for easy access across different classes that could run into similar exceptions.
-<img src="UML/Images/ErrorMessagesEnum.png"/>
+
 <div align="center">
+<img src="UML/Images/ErrorMessagesEnum.png"/>
 <p>
 Figure 7.1
 </p>
@@ -193,6 +267,8 @@ Figure 7.1
 
 1. A workout planner for the user to add and customise their desired sequence or schedule of workouts.
 2. An achievement list that will output messages to congratulate the user based on the different milestones of exercises he/she has achieved when using the program.
+
+# Appendix A
 
 ## Product scope
 
@@ -211,24 +287,30 @@ a healthier lifestyle, regardless of their knowledge in exercises or their indiv
 Through this program, it aims to not only help users learn new workouts, while also keep track of their fitness
 progress.
 
+# Appendix B
+
 ## User Stories
 
-| Version | As a ...                                                                                                 | I want to ...                                                                                                                   | So that I can ...                                                              |
-|---------|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| v1.0    | - User who wants to start working out<br/>- User who wants to train a specific part of my body           | - Select a specific intensity workout<br/>- Request a workout that comprises exercises that thoroughly exercises that body part | - Exercise according to selected intensity<br/> - Work on my target body part. |
-| V1.0    | - User                                                                                                   | - be able to filter my exercises by body part                                                                                   | - train a specific part of my body                                             |
-| V2.0    | - User                                                                                                   | - be able to start a workout and set it as complete and save it                                                                 | - reflect and track my progress                                                |
-| V2.0    | - User looking for motivation                                                                            | - be able to track my workout history as statistics                                                                             | - better visualise my overall progress                                         |
-| V2.0    | - user with little to no experience with exercise                                                        | - be given instructions for the specific exercise that I am working on                                                          | be educated on how to complete the exercise correctly                          |
-| V2.0    | - User who wants to stay motivated to workout </br> - User who wants to feel good about my past workouts | - See myself be able to accomplish or achieve incrementally greater goals </br> - Keep track of all my exercises                | - Continue to stay motivated in making exercise a fun, long-lasting habit      |
-| V2.1    | - User who likes to be motivated by incentive                                                            | - Gain achievements throughout my usage of the app                                                                              | - Be more motivated to keep exercising                                         |                                        | - 
-| V2.1    | - SAF personnel                                                                                          | - Track my IPPT scores over a period of time                                                                                    | - achieve gold ranking in my IPPT                                              |
+| Version | As a ...                                                                                               | I want to ...                                                                                                                   | So that I can ...                                                              |
+|---------|--------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| v1.0    | - User who wants to start working out<br/>- User who wants to train a specific part of my body         | - Select a specific intensity workout<br/>- Request a workout that comprises exercises that thoroughly exercises that body part | - Exercise according to selected intensity<br/> - Work on my target body part. |
+| V1.0    | - User                                                                                                 | - be able to filter my exercises by body part                                                                                   | - train a specific part of my body                                             |
+| V2.0    | - User                                                                                                 | - be able to start a workout and set it as complete and save it                                                                 | - reflect and track my progress                                                |
+| V2.0    | - User looking for motivation                                                                          | - be able to track my workout history as statistics                                                                             | - better visualise my overall progress                                         |
+| V2.0    | - user with little to no experience with exercise                                                      | - be given instructions for the specific exercise that I am working on                                                          | - be educated on how to complete the exercise correctly                        |
+| V2.0    | - User who wants to stay motivated to workout</br>- User who wants to feel good about my past workouts | - See myself be able to accomplish or achieve incrementally greater goals</br>- Keep track of all my exercises                  | - Continue to stay motivated in making exercise a fun, long-lasting habit      |
+| V2.1    | - User who likes to be motivated by incentive                                                          | - Gain achievements throughout my usage of the app                                                                              | - Be more motivated to keep exercising                                         |                                         
+| V2.1    | - SAF personnel                                                                                        | - Track my IPPT scores over a period of time                                                                                    | - achieve gold ranking in my IPPT                                              |
+
+# Appendix C
 
 ## Non-Functional Requirements
 1. The program should be able to generate a list of exercises within 5 seconds
 2. The program should be able to run on any PC (i.e. different OS) <br/> - Be able to handle cases such as user data file corruption
 3. The program is not required to ensure the workouts are carried out safely and properly by the user
 4. Avoid giving repeated workouts in the same session
+
+# Appendix D
 
 ## Glossary
 
@@ -239,24 +321,32 @@ progress.
 * *Ui* - User Interface
 * *UserCareer* - The entire usage journey of using our application
 
+# Appendix E
+
 ## Instructions for manual testing
 
 ### Launch and shutdown of program
+
 1. Download the latest version of the jar file and copy the file to the folder where you want the Fitness Duke program to run.
 2. Run the .jar file based on the instructions on the User Guide.
 Expected: Shows the CLI with the welcome message. alongside some logging messages.
 
 ### Input of commands 
+
 1. Input of unlisted/unknown commands that are not listed in the help command:
 Test cases:  ```o``` , ```hi```
 Expected: Error details will be shown in the terminal
+
 ### ```find``` command
+
 1. Find a set of exercises based on a specified keyword : ```find [keyword]```
 2.  Test case: ```find```
 Expected: The list of exercises will not be shown. Error details will be shown in the terminal.
 3. Test case :```find arm```
 Expected: The list of exercises containing keyword ```arm``` will be shown.
+
 ### ```generate``` command
+
 1. Get a list of workouts
 2. Test case: ```generate```
 Expected: The list of exercises will not be shown. Error details will be shown in the terminal.
@@ -264,7 +354,9 @@ Expected: The list of exercises will not be shown. Error details will be shown i
 Expected: A list of 2 random exercises will be shown, alongside their respective IDs, names, difficulty levels, workout types and descriptions.
 4. Test case: ```generate easy```
 Expected: The list of exercises will not be shown. Error details will be shown in the terminal.
+
 ### ```quick``` command
+
 1. Prerequisites : An existing plan under ```plans``` 
 2. Test case: ```quick```
 Expected: The list of exercises will not be shown. Error details will be shown in the terminal.
