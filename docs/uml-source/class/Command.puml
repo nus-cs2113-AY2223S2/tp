@@ -2,9 +2,13 @@
 'https://plantuml.com/class-diagram
 skinparam classAttributeIconSize 0
 
-interface LoggerInterface {
-setUpLogger(logger: Logger): void
+title for Task, Util Commands
+
+class Parser {
++ getCommand(userCommand: String, ui: Ui, size: int,
+moduleData: ModuleList): Command
 }
+Parser --> Command : creates >
 
 abstract class "{abstract}\nCommand" as Command {
 + isExit: Boolean
@@ -15,12 +19,15 @@ allModules: ModuleList, calendar Calendar): void
 # setExit(): void
 # getCommand(arg: String): LessonType
 }
-LoggerInterface <|.. Command
-Command -> TaskList
-Command -> ModuleList
-Command -> Calendar
-Command -> Storage
-Command -> Ui
+
+note right of Command::execute
+    All Command subclasses overwrite the execute() method
+end note
+
+interface LoggerInterface {
+setUpLogger(logger: Logger): void
+}
+LoggerInterface <|.. Command : sets up logger for >
 
 class AddCommand {
 # command: String
@@ -44,23 +51,23 @@ eventEnd: LocalDateTime): boolean
 - isEventLessonClashing(eventStart: LocalDateTime, eventEnd: LocalDateTime,
 lessonStart: LocalDateTime, lessonEnd: LocalDateTime): boolean
 }
-AddCommand --|> Command
+AddCommand -|> Command
 
 class DateCommand {
 date: LocalDate
 datePattern: DateTimeFormatter
 + DateCommand(dateString: String)
 }
-DateCommand --|> Command
+Command <|-- DateCommand
 
 class FindCommand{
 # keyword: String
 + FindCommand(keyword: String)
 }
-FindCommand --|> Command
+Command <|-- FindCommand
 
 class ListCommand
-ListCommand --|> Command
+Command <|-- ListCommand
 
 class ModifyCommand{
 # command: String
@@ -69,71 +76,26 @@ class ModifyCommand{
 -markTask(taskList: TaskList, ui: Ui): void
 -unmarkTask(taskList: TaskList, ui: Ui): void
 }
-ModifyCommand --|> Command
+Command <|-- ModifyCommand
 
 class WeekCommand
-WeekCommand --|> Command
+Command <|-- WeekCommand
 
 class ExitCommand
-ExitCommand --|> Command
+Command <|-- ExitCommand
 
 class HelpCommand
-HelpCommand --|> Command
+Command <|-- HelpCommand
 
 class SpecificHelpCommand
-SpecificHelpCommand --|> HelpCommand
+HelpCommand <|-- SpecificHelpCommand
 
-class AddModuleCommand {
-- module: ModuleList
-- args: String[]
-+ AddModuleCommand(param: String, allModules: ModuleList)
-- handleMultiCommand(moduleList: ModuleList, allModules: ModuleList,
-args: String[], ui: Ui, calendar: Calendar): void
-- addTimeTable(searchModule: Module, lessonType: LessonType,
-args: String, ui: Ui, calendar: Calendar): void
-- getLessonTypes(module: Module): ArrayList<LessonType>
-- checkClashingLesson(calendar: Calendar, timetable: Timetable, ui: Ui): void
-- isLessonClashing(schedule: Timetable, timetable: Timetable): boolean
-- isSameWeek(timetable1: Timetable, timetable2: Timetable): boolean
-- isAdded(moduleList: ModuleList, module: Module): boolean
-}
-Command <|-- AddModuleCommand
+Storage <-- Command : updates <
+Ui <-- Command : calls for printing <
+TaskList "1 " <-- Command : "reads and\n writes to" <
+Task "*" <--* "1" TaskList : contains <
+Calendar "1   " <-- Command : reads <
+"ArrayList<CalendarModule>" "*" <--* "1" Calendar : contains <
 
-class DeleteModuleCommand{
-# args: String[]
-+ DeleteModuleCommand(params: String)
-- isInteger(param: String): Boolean
-- handleMultiCommand(moduleList: ModuleList, ui: Ui): void
-- deleteTimetable(module: Module, lessonType: LessonType,
-lessonNumber: String): void
-}
-Command <|-- DeleteModuleCommand
-
-class ListModuleCommand
-Command <|-- ListModuleCommand
-
-class ListModuleWithLessonCommand {
-- args: String[]
-- module: Module
-+ ListModuleWithLessonCommand(params: String, allModules: ModuleList)
-- handleSingleCommand(ui: Ui): void
-- handleMultiCommand(moduleList: ModuleList, ui: Ui): void
-- copyModuleListData(moduleList: ModuleList): void
-- getLessonTypes(module: Module): ArrayList<LessonType>
-- sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
-- isInModuleList(moduleList: ModuleList, module: Module): boolean
-- isExistLessonType(allModules: ModuleList, lessonType: LessonType): boolean
-}
-Command <|-- ListModuleWithLessonCommand
-
-class ShowModuleCommand {
-- args: String[]
-- module: Module
-+ ShowModuleCommand(params: String, allModules: ModuleList)
-- getLessonTypes(module: Module): ArrayList<LessonType>
-- handleMultiCommand(ui: Ui): void
-- sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
-}
-Command <|-- ShowModuleCommand
 
 @enduml

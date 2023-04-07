@@ -1,0 +1,90 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+title for Module Commands
+
+class Parser {
++ getCommand(userCommand: String, ui: Ui, size: int, moduleData: ModuleList): Command
+}
+Parser --> Command : creates >
+
+abstract class "{abstract}\nCommand" as Command {
++ isExit: Boolean
+# logger: Logger
++ Command(commandName: String)
++ execute(taskList: TaskList, ui: Ui, storage: Storage, moduleList: ModuleList,
+allModules: ModuleList, calendar Calendar): void
+# setExit(): void
+# getCommand(arg: String): LessonType
+}
+
+interface LoggerInterface {
+setUpLogger(logger: Logger): void
+}
+
+note right of Command::execute
+    All Command subclasses overwrite the execute() method
+end note
+LoggerInterface <|.. Command : sets up logger for >
+
+class AddModuleCommand {
+- module: ModuleList
+- args: String[]
++ AddModuleCommand(param: String, allModules: ModuleList)
+- handleMultiCommand(moduleList: ModuleList, allModules: ModuleList,
+args: String[], ui: Ui, calendar: Calendar): void
+- addTimeTable(searchModule: Module, lessonType: LessonType,
+args: String, ui: Ui, calendar: Calendar): void
+- getLessonTypes(module: Module): ArrayList<LessonType>
+- checkClashingLesson(calendar: Calendar, timetable: Timetable, ui: Ui): void
+- isLessonClashing(schedule: Timetable, timetable: Timetable): boolean
+- isSameWeek(timetable1: Timetable, timetable2: Timetable): boolean
+- isAdded(moduleList: ModuleList, module: Module): boolean
+}
+AddModuleCommand -|> Command
+
+class DeleteModuleCommand{
+# args: String[]
++ DeleteModuleCommand(params: String)
+- isInteger(param: String): Boolean
+- handleMultiCommand(moduleList: ModuleList, ui: Ui): void
+- deleteTimetable(module: Module, lessonType: LessonType,
+lessonNumber: String): void
+}
+Command <|-- DeleteModuleCommand
+
+class ListModuleCommand
+Command <|-- ListModuleCommand
+
+class ListModuleWithLessonCommand {
+- args: String[]
+- module: Module
++ ListModuleWithLessonCommand(params: String, allModules: ModuleList)
+- handleSingleCommand(ui: Ui): void
+- handleMultiCommand(moduleList: ModuleList, ui: Ui): void
+- copyModuleListData(moduleList: ModuleList): void
+- getLessonTypes(module: Module): ArrayList<LessonType>
+- sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
+- isInModuleList(moduleList: ModuleList, module: Module): boolean
+- isExistLessonType(allModules: ModuleList, lessonType: LessonType): boolean
+}
+Command <|-- ListModuleWithLessonCommand
+
+class ShowModuleCommand {
+- args: String[]
+- module: Module
++ ShowModuleCommand(params: String, allModules: ModuleList)
+- getLessonTypes(module: Module): ArrayList<LessonType>
+- handleMultiCommand(ui: Ui): void
+- sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
+}
+Command <|-- ShowModuleCommand
+Storage <-- Command : updates <
+Ui <-- Command : calls for \nprinting <
+ModuleList "2  " <-- Command : reads and writes to <
+Module "*" <--* "1" ModuleList : contains <
+Calendar "1   " <-- Command : reads and writes to <
+"ArrayList<CalendarModule>" "*" <--* "1" Calendar : contains <
+
+@enduml
