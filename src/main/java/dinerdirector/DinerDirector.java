@@ -17,7 +17,7 @@ import java.io.IOException;
 public class DinerDirector {
     private TextUi ui;
     private Storage storage;
-    
+
     //Solution below adopted from:
     //https://github.com/nus-cs2113-AY2223S2/personbook/blob/main/src/main/java/seedu/personbook/Main.java
     //Implemented the main, run, start method in the similar way.
