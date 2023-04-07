@@ -30,46 +30,44 @@ public class ViewCardCommand extends Command {
      * @return The ArrayList consisting the tags that have been found based on the UUID specified.
      */
     public TagList findTagsFromTagUUID(ArrayList<TagUUID> uuids, TagList tagList) {
-        TagList tags = new TagList();
+        TagList tagsFound = new TagList();
         for (TagUUID uuid : uuids) {
             for (Tag tag : tagList.getTags()) {
                 if (tag.getUUID().equals(uuid)) {
-                    tags.addTag(tag);
+                    tagsFound.addTag(tag);
                 }
             }
         }
-        return tags;
+        return tagsFound;
     }
 
     public DeckList findDecksFromDeckUUID(ArrayList<DeckUUID> uuids, DeckList deckList) {
-        DeckList decks = new DeckList();
+        DeckList decksFound = new DeckList();
         for (DeckUUID uuid : uuids) {
             for (Deck deck : deckList.getDecks()) {
                 if (deck.getDeckUUID().equals(uuid)) {
-                    decks.addDeck(deck);
+                    decksFound.addDeck(deck);
                 }
             }
         }
-        return decks;
+        return decksFound;
     }
 
     public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {
-        Card card = cardList.findCard(cardSelector);
-        TagList tags;
-        DeckList decks;
+        Card cardToView = cardList.findCard(cardSelector);
 
         //find the card with the specified uuid, print the card, find all the tags under it, print all the tags
-        if (card != null) {
-            ui.printCard(card);
+        if (cardToView != null) {
+            ui.printCard(cardToView);
 
-            ArrayList<TagUUID> tagsUUID = card.getTagsUUID();
-            ArrayList<DeckUUID> decksUUID = card.getDecksUUID();
+            ArrayList<TagUUID> tagsUUID = cardToView.getTagsUUID();
+            ArrayList<DeckUUID> decksUUID = cardToView.getDecksUUID();
 
-            tags = findTagsFromTagUUID(tagsUUID, tagList);
-            decks = findDecksFromDeckUUID(decksUUID, deckList);
-            ui.printTags(tags);
-            ui.printDecks(decks);
+            TagList tagsFound = findTagsFromTagUUID(tagsUUID, tagList);
+            DeckList decksFound = findDecksFromDeckUUID(decksUUID, deckList);
+            ui.printTags(tagsFound);
+            ui.printDecks(decksFound);
         } else {
             throw new CardNotFoundException();
         }
