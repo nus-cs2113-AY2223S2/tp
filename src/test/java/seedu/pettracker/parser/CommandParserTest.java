@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CommandParserTest {
 
+    // newCommand() non-parsed keywords
     @Test
     void parseExit() {
         CommandParser cp = new CommandParser();
