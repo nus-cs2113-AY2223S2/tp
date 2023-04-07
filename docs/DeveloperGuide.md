@@ -120,33 +120,30 @@ Some of its core features include:
 - Converting the input data into the correct format and returning it as a `Command` class to be further processed by the
   application.
 
-Here's a class diagram that shows the core structure of the `Parser` class.
+Here's a class diagram that shows only the core structure of the `Parser` class.
 
 ![ParserClassDiagram](static/frontend/parser/ParserClassDiagram.png)
 
 How `Parser` works:
 
-1. When a user enters a command, the `Frontend` uses `Parser` to resolve the user input via `parseUserInput()`.
-2. Within `parseUserInput()`, the corresponding `parseXCommand()` (`X` is a placeholder for the various command
-   names[^1] e.g. `parseAddCommand()`, `parseDeleteCommand()`.)  is invoked to validate that the user input is in the
-   correct format. Any exceptions will be thrown and their corresponding error messages will be shown to the user via
-   the `ui` class.
+1. When a user enters a command, the `Frontend` uses `Parser` to resolve the user input. 
+2. Parser creates `ParseXYZCommand` (`XYZ` is a placeholder for the various command names[^1] e.g.`ParseAddCommand()`, `ParseDeleteCommand()`, etc.), which inherits the abstract class `ParseCommand`, to parse the input for the corresponding command.
+2. Within `ParseXYZCommand`, other methods are called to extract and check the validity of the required parameters for that particular command. Any exceptions will be thrown and their corresponding error messages will be shown to the user via the `ui` class.
 2. If the user input is valid, an `XCommand` object containing the relevant data is created and returned.
-   E.g. `parseAddCommand()` would create a `AddCommand` object containing the description, price and category.
+   E.g. `ParseAddCommand` would return a `AddCommand` object containing the description, price and category.
 3. From there, the `XCommand` is ready to be executed by the program. (All `XCommand` classes inherit from `Command` and
    have corresponding `execute()` that carry out their specific instructions.)
 
 [^1]: A list of currently supported commands in PocketPal can be found [here](../../UserGuide.html/features/)
 
 The Sequence Diagram below illustrates the interactions within the `Parser` component when a user inputs the following
-command: `/add McDonalds -c Food -p 10.50`
+command: `/add -d McDonalds -c Food -p 10.50`
 
 ![ParserSequenceDiagram](static/frontend/parser/ParserSequenceDiagram.png)
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>
 </div>
-<!-- @@author -->
 <!-- @@author kaceycsn -->
 
 ### Commands
