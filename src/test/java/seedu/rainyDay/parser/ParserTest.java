@@ -2,6 +2,8 @@ package seedu.rainyDay.parser;
 
 import org.junit.jupiter.api.Test;
 import seedu.rainyDay.RainyDay;
+import seedu.rainyDay.command.AddCommand;
+import seedu.rainyDay.command.DeleteCommand;
 import seedu.rainyDay.command.EditCommand;
 import seedu.rainyDay.command.ExitCommand;
 import seedu.rainyDay.command.ExportCommand;
@@ -16,6 +18,7 @@ import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.MonthlyExpenditures;
 import seedu.rainyDay.data.SavedData;
+import seedu.rainyDay.data.UserData;
 import seedu.rainyDay.exceptions.ErrorMessage;
 import seedu.rainyDay.exceptions.RainyDayException;
 
@@ -32,6 +35,7 @@ class ParserTest {
     SavedData savedData = new SavedData(financialReport);
     HashMap<Integer, Double> expenditures = new HashMap<>();
     MonthlyExpenditures monthlyExpenditures = new MonthlyExpenditures(expenditures);
+    UserData userData = new UserData(savedData, monthlyExpenditures);
 
     // todo add more test cases
     @Test
@@ -279,6 +283,7 @@ class ParserTest {
     public void parseExportCommand() throws RainyDayException {
         assertEquals(ExportCommand.class, new Parser().parseUserInput("export").getClass());
     }
+
     @Test
     public void parseShortcutCommand() throws RainyDayException {
         assertEquals(ShortcutAddCommand.class, new Parser().parseUserInput("shortcut a -maps b").getClass());
@@ -293,7 +298,7 @@ class ParserTest {
         assertThrows(RainyDayException.class,
                 () -> new Parser().parseUserInput("shortcut a b -maps c").getClass());
     }
-    
+
     @Test
     public void parseShortcutViewCommand() throws RainyDayException {
         assertEquals(ShortcutViewCommand.class, new Parser().parseUserInput("shortcut_view").getClass());
