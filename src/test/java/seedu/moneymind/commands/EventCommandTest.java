@@ -89,7 +89,7 @@ public class EventCommandTest extends CommandTest {
     void addEvent_negativeExpense_expectGivingPositiveIntegerMessage() {
         setup();
         String terminalOutput = executeInput("event banana e/-20").toString();
-        assertEquals("Please give a positive integer for expense" + System.lineSeparator(), terminalOutput);
+        assertEquals("Please give a non-negative integer for expense" + System.lineSeparator(), terminalOutput);
         assertEquals(2, food.events.size());
         clear();
     }
@@ -98,7 +98,7 @@ public class EventCommandTest extends CommandTest {
     void addEvent_dummyExpense_expectGivingPositiveIntegerMessage() {
         setup();
         String terminalOutput = executeInput("event banana e/abc").toString();
-        assertEquals("Please give a positive integer for expense" + System.lineSeparator(), terminalOutput);
+        assertEquals("Please give a non-negative integer for expense" + System.lineSeparator(), terminalOutput);
         assertEquals(2, food.events.size());
         clear();
     }

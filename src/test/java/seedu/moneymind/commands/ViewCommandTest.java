@@ -14,12 +14,12 @@ public class ViewCommandTest extends CommandTest {
     void viewCommand_viewAll_expectEverythingToBePrintedOut() {
         setup();
         String terminalOutput = executeInput("view").toString();
-        String expected = "1.food (budget: 0)" + System.lineSeparator()
-                + "salad [expense]100" + System.lineSeparator()
-                + "pizza [expense]200" + System.lineSeparator()
-                + "2.book (budget: 0)" + System.lineSeparator()
-                + "Harry Potter [expense]70" + System.lineSeparator()
-                + "Lord of the Rings [expense]90" + System.lineSeparator();
+        String expected = "Category: food (budget: 0)" + System.lineSeparator()
+                + "1.salad (expense: 100)" + System.lineSeparator()
+                + "2.pizza (expense: 200)" + System.lineSeparator()
+                + "Category: book (budget: 0)" + System.lineSeparator()
+                + "1.Harry Potter (expense: 70)" + System.lineSeparator()
+                + "2.Lord of the Rings (expense: 90)" + System.lineSeparator();
         assertEquals(expected, terminalOutput);
         clear();
     }
@@ -28,8 +28,8 @@ public class ViewCommandTest extends CommandTest {
     void viewCommand_viewOneCategory_expectCategoryToBePrintedOut() {
         setup();
         String terminalOutput = executeInput("view food").toString();
-        String expected = "1. salad [expense]100" + System.lineSeparator()
-                + "2. pizza [expense]200" + System.lineSeparator();
+        String expected = "1.salad (expense: 100)" + System.lineSeparator()
+                + "2.pizza (expense: 200)" + System.lineSeparator();
         assertEquals(expected, terminalOutput);
         clear();
     }

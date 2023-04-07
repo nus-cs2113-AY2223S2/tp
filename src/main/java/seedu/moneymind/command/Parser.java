@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 import seedu.moneymind.exceptions.IntegerOverflowException;
 import seedu.moneymind.exceptions.InvalidCommandException;
 import seedu.moneymind.exceptions.NegativeNumberException;
+import seedu.moneymind.exceptions.NonPositiveNumberException;
 
 import static seedu.moneymind.string.Strings.EDIT;
 import static seedu.moneymind.string.Strings.NULL_INPUT_ASSERTION;
@@ -28,8 +29,8 @@ import static seedu.moneymind.string.Strings.EMPTY_DELETION;
 import static seedu.moneymind.string.Strings.DELETE_FORMAT;
 import static seedu.moneymind.string.Strings.REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY;
 import static seedu.moneymind.string.Strings.POSITIVE_INTEGER_FOR_EVENT_INDEX;
-import static seedu.moneymind.string.Strings.POSITIVE_INTEGER_FOR_BUDGET;
-import static seedu.moneymind.string.Strings.POSITIVE_INTEGER_FOR_EXPENSE;
+import static seedu.moneymind.string.Strings.NON_NEGATIVE_INTEGER_FOR_BUDGET;
+import static seedu.moneymind.string.Strings.NON_NEGATIVE_INTEGER_FOR_EXPENSE;
 import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
 import static seedu.moneymind.string.Strings.EVENT_EMPTY;
 import static seedu.moneymind.string.Strings.EVENT_FORMAT;
@@ -118,16 +119,16 @@ public class Parser {
                 if (matcher.group(2) == null) {
                     return new DeleteCommand(categoryName);
                 }
+                checkNonPositive(matcher.group(2));
                 checkBigNumber(matcher.group(2));
                 int eventIndex = Integer.parseInt(matcher.group(2));
-                checkNegative(eventIndex - 1);
                 return new DeleteCommand(categoryName, eventIndex - 1);
             } else {
                 throw new InvalidCommandException(DELETE_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
             }
         } catch (IntegerOverflowException error) {
             throw new InvalidCommandException(INDEX_LIMIT_MESSAGE);
-        } catch (NumberFormatException | NegativeNumberException error) {
+        } catch (NumberFormatException | NonPositiveNumberException error) {
             throw new InvalidCommandException(POSITIVE_INTEGER_FOR_EVENT_INDEX);
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(DELETE_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
@@ -142,10 +143,10 @@ public class Parser {
             Matcher matcher = pattern.matcher(separatedKeywordAndDescription[1]);
             if (matcher.find()) {
                 String eventName = matcher.group(1);
+                checkNegative(matcher.group(2));
                 checkBigNumber(matcher.group(2));
                 int expenseNumber = Integer.parseInt(matcher.group(2));
                 String time = matcher.group(3);
-                checkNegative(expenseNumber);
                 if (matcher.group(3) == null) {
                     return new EventCommand(eventName, expenseNumber);
                 }
@@ -158,7 +159,7 @@ public class Parser {
         } catch (IntegerOverflowException error) {
             throw new InvalidCommandException(EXPENSE_LIMIT_MESSAGE);
         } catch (NegativeNumberException | NumberFormatException error) {
-            throw new InvalidCommandException(POSITIVE_INTEGER_FOR_EXPENSE);
+            throw new InvalidCommandException(NON_NEGATIVE_INTEGER_FOR_EXPENSE);
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(EVENT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
         } catch (Exception error) {
@@ -178,16 +179,16 @@ public class Parser {
                 if (matcher.group(2) == null) {
                     return new EditCommand(categoryName);
                 }
+                checkNonPositive(matcher.group(2));
                 checkBigNumber(matcher.group(2));
                 int eventIndex = Integer.parseInt(matcher.group(2));
-                checkNegative(eventIndex - 1);
                 return new EditCommand(categoryName, eventIndex - 1);
             } else {
                 throw new InvalidCommandException(EDIT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
             }
         } catch (IntegerOverflowException error) {
             throw new InvalidCommandException(INDEX_LIMIT_MESSAGE);
-        } catch (NumberFormatException | NegativeNumberException error) {
+        } catch (NumberFormatException | NonPositiveNumberException error) {
             throw new InvalidCommandException(POSITIVE_INTEGER_FOR_EVENT_INDEX);
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(EDIT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
@@ -196,14 +197,20 @@ public class Parser {
         }
     }
 
-    private void checkNegative(int number) throws NegativeNumberException {
-        if (number < 0) {
+    private void checkNegative(String number) throws NegativeNumberException {
+        if (number.matches("^-\\d+")) {
             throw new NegativeNumberException();
         }
     }
 
-    private void checkBigNumber(String expense) throws IntegerOverflowException {
-        if (expense.length() > 9) {
+    private void checkNonPositive(String number) throws NonPositiveNumberException {
+        if (number.matches("^-\\d+") || number.matches("^0")) {
+            throw new NonPositiveNumberException();
+        }
+    }
+
+    private void checkBigNumber(String number) throws IntegerOverflowException {
+        if (number.matches("\\d+") && number.length() > 9) {
             throw new IntegerOverflowException();
         }
     }
@@ -217,9 +224,9 @@ public class Parser {
                 if (matcher.group(2) == null) {
                     return new CategoryCommand(categoryName, 0);
                 }
+                checkNegative(matcher.group(2));
                 checkBigNumber(matcher.group(2));
                 int budget = Integer.parseInt(matcher.group(2));
-                checkNegative(budget);
                 return new CategoryCommand(categoryName, budget);
             } else {
                 throw new InvalidCommandException(EMPTY_STRING);
@@ -229,7 +236,7 @@ public class Parser {
         } catch (IndexOutOfBoundsException error) {
             throw new InvalidCommandException(CATEGORY_EMPTY);
         } catch (NegativeNumberException | NumberFormatException error) {
-            throw new InvalidCommandException(POSITIVE_INTEGER_FOR_BUDGET);
+            throw new InvalidCommandException(NON_NEGATIVE_INTEGER_FOR_BUDGET);
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(CATEGORY_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
         } catch (Exception error) {

@@ -8,12 +8,12 @@ import seedu.moneymind.exceptions.NegativeNumberException;
 import seedu.moneymind.ui.Ui;
 
 import static seedu.moneymind.command.DeleteCommand.NON_EXISTENT_EVENT;
+import static seedu.moneymind.command.DeleteCommand.NO_CATEGORY_MESSAGE;
+import static seedu.moneymind.string.Strings.EDIT_EXPENSE_LIMIT_MESSAGE;
+import static seedu.moneymind.string.Strings.EDIT_BUDGET_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
-import static seedu.moneymind.string.Strings.ENTERING_POSITIVE_NUMBER_MESSAGE;
-import static seedu.moneymind.string.Strings.NO_CATEGORY_MESSAGE;
 import static seedu.moneymind.string.Strings.BACK;
-import static seedu.moneymind.string.Strings.EXPENSE_LIMIT_MESSAGE;
-import static seedu.moneymind.string.Strings.BUDGET_LIMIT_MESSAGE;
+import static seedu.moneymind.string.Strings.ENTERING_NON_NEGATIVE_NUMBER_MESSAGE;
 
 public class EditCommand implements Command {
     private boolean isEvent;
@@ -70,14 +70,18 @@ public class EditCommand implements Command {
         }
     }
 
-    private void checkNegative(int newExpense) throws NegativeNumberException {
-        if (newExpense < 0) {
+    private void checkNumber(String newAmount) throws NumberFormatException {
+        Integer.parseInt(newAmount);
+    }
+
+    private void checkNegative(String newAmount) throws NegativeNumberException {
+        if (newAmount.matches("^-\\d+")) {
             throw new NegativeNumberException();
         }
     }
 
-    private void checkAmountUnderLimit(String amount) throws IntegerOverflowException {
-        if (amount.length() > 9) {
+    private void checkAmountUnderLimit(String newAmount) throws IntegerOverflowException {
+        if (newAmount.matches("\\d+") && newAmount.length() > 9) {
             throw new IntegerOverflowException();
         }
     }
@@ -90,19 +94,19 @@ public class EditCommand implements Command {
      */
     private boolean isEditSuccessful(String userInput) {
         try {
+            checkNegative(userInput);
             checkAmountUnderLimit(userInput);
-            int newAmount = Integer.parseInt(userInput);
-            checkNegative(newAmount);
+            checkNumber(userInput);
             return true;
         }
         catch (IntegerOverflowException error) {
             if (isEvent) {
-                System.out.println(EXPENSE_LIMIT_MESSAGE);
+                System.out.println(EDIT_EXPENSE_LIMIT_MESSAGE);
             } else {
-                System.out.println(BUDGET_LIMIT_MESSAGE);
+                System.out.println(EDIT_BUDGET_LIMIT_MESSAGE);
             }
         } catch (NumberFormatException | NegativeNumberException error) {
-            System.out.println(ENTERING_POSITIVE_NUMBER_MESSAGE);
+            System.out.println(ENTERING_NON_NEGATIVE_NUMBER_MESSAGE);
         } catch (Exception error) {
             System.out.println(SUBTLE_BUG_MESSAGE);
         }

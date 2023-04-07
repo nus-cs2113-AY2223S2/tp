@@ -35,7 +35,7 @@ public class CategoryCommandTest extends CommandTest {
     void addCategory_dummyBudget_expectGivingPositiveIntegerMessage() {
         setup();
         String terminalOutput = executeInput("category travel b/ad").toString();
-        assertEquals("Please give a positive integer for budget" + System.lineSeparator(), terminalOutput);
+        assertEquals("Please give a non-negative integer for budget" + System.lineSeparator(), terminalOutput);
         assertEquals(2, CategoryList.categories.size());
         assertEquals("food", CategoryList.categories.get(0).getName());
         clear();
@@ -45,7 +45,7 @@ public class CategoryCommandTest extends CommandTest {
     void addCategory_negativeBudget_expectGivingPositiveIntegerMessage() {
         setup();
         String terminalOutput = executeInput("category travel b/-12").toString();
-        assertEquals("Please give a positive integer for budget" + System.lineSeparator(), terminalOutput);
+        assertEquals("Please give a non-negative integer for budget" + System.lineSeparator(), terminalOutput);
         assertEquals(2, CategoryList.categories.size());
         clear();
     }

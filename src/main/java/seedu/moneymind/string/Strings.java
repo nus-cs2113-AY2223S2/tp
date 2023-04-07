@@ -4,7 +4,7 @@ public class Strings {
 
     public static final String BUDGET_LIMIT_MESSAGE = "The budget limit is 999999999$, please give a smaller budget";
     public static final String INDEX_LIMIT_MESSAGE = "The limit for index is 999999999, please try again.";
-    public static final String EXPENSE_LIMIT_MESSAGE = "The expense limit is 999999999$, please give a smaller expense";
+    public static final String EXPENSE_LIMIT_MESSAGE = "The expense limit is 999999999$, give a smaller expense";
     public static final String NO_CATEGORY_MESSAGE = "Category does not exist";
     public static final String CAT_NOT_FOUND = "Category is not found!";
     public static final String DOT = ".";
@@ -35,6 +35,8 @@ public class Strings {
     public static final String BYE_INSTRUCTION = "7. bye - exit the app\n" + "Format: bye\n" + "Example: bye\n";
     public static final String SELECTING_CATEGORY_MESSAGE = "Please select the category you want to add the event to:";
     public static final String GO_BACK_MESSAGE = "Please try again or enter back to go back to the main program";
+    public static final String EDIT_EXPENSE_LIMIT_MESSAGE = "The expense limit is 999999999$\n" + GO_BACK_MESSAGE;
+    public static final String EDIT_BUDGET_LIMIT_MESSAGE = "The budget limit is 999999999$\n" + GO_BACK_MESSAGE;
     public static final String BACK = "back";
     public static final String EVENT_ADDED_MESSAGE = "New event added: ";
     public static final String NULL_EVENT_ASSERTION = "Event name cannot be null";
@@ -80,14 +82,14 @@ public class Strings {
     public static final String NO_DESCRIPTION_FOR_BYE = "Bye command should not have any description";
     public static final String NO_DESCRIPTION_FOR_HELP = "Help command should not have any description";
     public static final String POSITIVE_INTEGER_FOR_EVENT_INDEX = "Please give a positive integer for event index";
-    public static final String POSITIVE_INTEGER_FOR_EXPENSE = "Please give a positive integer for expense";
+    public static final String NON_NEGATIVE_INTEGER_FOR_EXPENSE = "Please give a non-negative integer for expense";
     public static final String EMPTY_DESCRIPTION_FOR_EDIT = "OOPS!!! The description of an edit cannot be empty.";
     public static final String EMPTY_STRING = "";
-    public static final String POSITIVE_INTEGER_FOR_BUDGET = "Please give a positive integer for budget";
+    public static final String NON_NEGATIVE_INTEGER_FOR_BUDGET = "Please give a non-negative integer for budget";
     public static final String EDIT = "edit";
     public static final String CATEGORY_DOES_NOT_EXIST_MESSAGE = "Category does not exist!";
-    public static final String ENTERING_POSITIVE_NUMBER_MESSAGE =
-            "Please enter a positive number or enter back to go back to the main program";
+    public static final String ENTERING_NON_NEGATIVE_NUMBER_MESSAGE =
+            "Please enter a non-negative number or enter back to go back to the main program";
 
     /**
      * Returns the input string with all the storage delimiter replaced with the default string.

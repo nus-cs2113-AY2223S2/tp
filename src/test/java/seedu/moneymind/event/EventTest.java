@@ -39,7 +39,7 @@ class EventTest {
 
     @Test
     void testToString() {
-        assertEquals("salad [expense]100", salad.toString());
-        assertEquals("pizza [expense]200 [time]10/10/2010", pizza.toString());
+        assertEquals("salad (expense: 100)", salad.toString());
+        assertEquals("pizza (expense: 200) (time: 10/10/2010)", pizza.toString());
     }
 }
