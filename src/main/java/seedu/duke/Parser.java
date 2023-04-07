@@ -201,7 +201,7 @@ public class Parser {
             int count = 0;
 
             // fetching information
-            String moduleCode = information[0];
+            String moduleCode = information[0].toUpperCase();
             String classNumber = information[1];
             String lectureType = information[2];
 
