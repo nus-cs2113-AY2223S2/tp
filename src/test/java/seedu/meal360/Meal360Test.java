@@ -1320,4 +1320,18 @@ class Meal360Test {
     public void testLoadDatabase() {
         assertDoesNotThrow(database::loadRecipesDatabase);
     }
+
+
+    @Test
+    public void testCombineWords(){
+        String[] input1 = {"One", "Two" , "Three"};
+        assertEquals("One Two Three", parser.combineWords(input1, 0, 3));
+
+        String[] input2 = {"Pizza  ", "Burger  " , "   Ice Cream"};
+        assertEquals("Pizza Burger Ice Cream", parser.combineWords(input2, 0, 3));
+
+        String[] input3 = {"1 1 1", "2  2  2" , "3   3   3"};
+        assertEquals("1 1 1 2  2  2 3   3   3", parser.combineWords(input3, 0, 3));
+
+    }
 }
