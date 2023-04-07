@@ -134,22 +134,12 @@ ________________________________________________________________________________
 
 ERROR: Pet Name is empty
 
-Name: Alice
-Type: Cat
-Age: 5
-Weight: 20
-____________________
-Name: Candy
-Type: Dog
-Age: -
-Weight: 10
-____________________
 Name: Bob
 Type: -
 Age: -
 Weight: 30
 ____________________
-Number of pets: 3
+Number of pets: 1
 
 
 ________________________________________________________________________________________________________
@@ -170,7 +160,7 @@ ________________________________________________________________________________
 
 ________________________________________________________________________________________________________
 
-ERROR: Pet already exists
+Successfully added new pet: Alice
 
 ________________________________________________________________________________________________________
 
@@ -202,7 +192,7 @@ ________________________________________________________________________________
 
 ________________________________________________________________________________________________________
 
-ERROR: Pet already exists
+Successfully added new pet: Candy
 
 ________________________________________________________________________________________________________
 
@@ -265,32 +255,8 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________________
 
 Here are your tasks:
-1. [X] Buy Food
-2. [ ] Buy Food
-3. [ ] Buy Food (Deadline: 2021-03-01)
-4. [ ] Feed Bob
-5. [ ] Feed Bob
-6. [ ] Feed Bob
-7. [ ] Feed Bob (Deadline: 2021-01-01)
-8. [ ] Feed Bob
-9. [ ] Feed Candi
-10. [ ] Feed Alice
-11. [ ] Buy Food
-12. [ ] Buy Food
-13. [ ] Buy Food (Deadline: 2021-03-01)
-14. [ ] Feed Bob
-15. [ ] Feed Bob
-16. [ ] Feed Bob (Deadline: 2021-01-01)
-17. [ ] Feed Bob
-18. [ ] Feed Candi
-19. [ ] Feed Alice
-20. [ ] Buy Food
-21. [ ] Buy Food (Deadline: 2021-03-01)
-22. [ ] Feed Bob
-23. [ ] Feed Bob (Deadline: 2021-01-01)
-24. [ ] Feed Bob
-25. [ ] Feed Candi
-26. [ ] Feed Alice
+1. [X] Feed Candi
+2. [ ] Feed Alice
 
 
 ________________________________________________________________________________________________________
@@ -313,31 +279,7 @@ ________________________________________________________________________________
 
 Here are your tasks:
 1. [ ] Feed Candy
-2. [ ] Buy Food
-3. [ ] Buy Food (Deadline: 2021-03-01)
-4. [ ] Feed Bob
-5. [ ] Feed Bob
-6. [ ] Feed Bob
-7. [ ] Feed Bob (Deadline: 2021-01-01)
-8. [ ] Feed Bob
-9. [ ] Feed Candi
-10. [ ] Feed Alice
-11. [ ] Buy Food
-12. [ ] Buy Food
-13. [ ] Buy Food (Deadline: 2021-03-01)
-14. [ ] Feed Bob
-15. [ ] Feed Bob
-16. [ ] Feed Bob (Deadline: 2021-01-01)
-17. [ ] Feed Bob
-18. [ ] Feed Candi
-19. [ ] Feed Alice
-20. [ ] Buy Food
-21. [ ] Buy Food (Deadline: 2021-03-01)
-22. [ ] Feed Bob
-23. [ ] Feed Bob (Deadline: 2021-01-01)
-24. [ ] Feed Bob
-25. [ ] Feed Candi
-26. [ ] Feed Alice
+2. [ ] Feed Alice
 
 Here is Pet Tracker's Help Page
 Words in uppercase is used to show the user's input
@@ -440,13 +382,7 @@ ________________________________________________________________________________
 
 Here is your schedule:
 1. [ ] Feed Bob (Deadline: 2021-01-01)
-2. [ ] Feed Bob (Deadline: 2021-01-01)
-3. [ ] Feed Bob (Deadline: 2021-01-01)
-4. [ ] Feed Bob (Deadline: 2021-01-01)
-5. [ ] Buy Food (Deadline: 2021-03-01)
-6. [ ] Buy Food (Deadline: 2021-03-01)
-7. [ ] Buy Food (Deadline: 2021-03-01)
-8. [ ] Buy Food (Deadline: 2021-03-01)
+2. [ ] Buy Food (Deadline: 2021-03-01)
 
 
 ________________________________________________________________________________________________________

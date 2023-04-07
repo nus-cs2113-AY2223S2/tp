@@ -1,2 +1,0 @@
-Alice|Cat|5|20
-Candy|Dog||10
