@@ -52,7 +52,7 @@ public class Calendar extends ArrayList<ArrayList<CalendarModule>> {
 
             }
         } catch (NullPointerException e) {
-            throw new InvalidSaveFile();
+            return;
         }
 
     }
