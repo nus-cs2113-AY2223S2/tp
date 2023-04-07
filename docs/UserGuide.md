@@ -10,12 +10,35 @@ If you can type fast, Apollo can get your timetable management done faster than 
 ## Table of Contents
 
 1. [Quick Start](#quick-start)
-2. [Features](#features)
+2. [Command summary](#command-summary)
+3. [Features](#features)
     + [Task Commands](#task-commands)
+      + [`list` - Listing all saved tasks](#list---listing-all-saved-tasks)
+      + [`todo` - Adding a ToDo](#todo---adding-a-todo)
+      + [`todo` - Adding a ToDo that sounds like a Deadline](#todo---adding-a-todo-that-sounds-like-a-deadline)
+      + [`deadline` - Adding a Deadline](#deadline---adding-a-deadline)
+      + [`event` - Adding an Event](#event---adding-an-event)
+      + [`mark` - Marking done](#mark---marking-done)
+      + [`unmark` - Marking undone](#unmark---marking-not-done)
+      + [`delete` - Deleting a task](#delete---deleting-a-task)
+      + [`find` - Finding a task](#find---finding-a-task)
+      + [`date` - Listing tasks on a specific date](#date---find-tasks-on-date)
+      
     + [Module Commands](#module-commands)
+      + [`listmod` - Listing all modules](#listmod---listing-all-modules)
+      + [`listmod` - Listing all added lessons for a Module](#listmod-with-lessons---lists-all-the-lessons-user-is-taking-in-that-module)
+      + [`addmod` - Adding a module](#addmod---adding-a-module)
+      + [`addmod lessons` - Adding a lesson to a module](#addmod-lessons---adding-lessons-to-a-module) 
+      + [`delmod` - Deleting a module](#delmod---deleting-a-module)
+      + [`delmod lessons` - Deleting a lesson from a module](#delmod-lessons---deleting-a-lesson-from-a-module)
+      + [`show mod` - Showing a module](#showmod---show-information-of-a-module)
+      + [`show mod lessons` - Showing a lesson](#showmod-lessons---show-information-of-a-lesson-from-a-module)
+      + 
     + [Utility Commands](#utility-commands)
+      + [`help` - Viewing help](#help---viewing-help)
+      + [`help` - For help with a specific command](#help---for-help-with-specific-commands)
+      + [`bye` - Exiting the program](#bye---exiting-the-program)
     + [Loading and saving of data](#loading-and-saving-of-data)
-3. [Command summary](#command-summary)
 4. [FAQ](#faq)
 
 ## Quick Start
@@ -303,7 +326,11 @@ Here are the lesson types for this module:
 Lecture (-lec)
 Tutorial (-tut)
 ```
-#### `addmod` flags
+### `addmod lessons` - Adding lessons to a module
+
+To add a lesson of a particular module, use the following format:
+`addmod <MODULE_CODE> -FLAG LESSON_NUMBER`
+
 There are many lesson options and types, the below is a list of all the flags and their respective lesson types.
 ```
 -lec        LECTURE
@@ -320,9 +347,6 @@ There are many lesson options and types, the below is a list of all the flags an
 -tt2        TUTORIAL TYPE 2
 ```
 
-To add a lesson, use the following format:
-`addmod MODULE_CODE -FLAG LESSON_NUMBER`
-
 Example:
 ```
 addmod CS1010 -st 1
@@ -331,8 +355,13 @@ This will add the first section teaching lesson of CS1010 to your module list.
 If this lesson clashes with any of your other lessons a warning message will be displayed. 
 However, the lesson will still be added to your timetable, similar to NUSMods.
 
+#### Behaviour of Command:
 
-Invalid Modules:
+Should the user not have the Module in their list, Apollo will add the module to the list and add the lesson to the module.
+If the module is already in the list, Apollo will only add the lesson to the module.
+
+
+#### Invalid Modules:
 
 If the module code is invalid or the module is not offered in the current semester, Apollo will display an error message.
 
@@ -369,7 +398,7 @@ Got it, removed DTK1234 from your Module list.
 Total modular credits you have in this semester: 8
 ```
 
-#### `delmod` flags
+### `delmod lessons` - Deleting a lesson from a module
 The lesson types and their corresponding guide are the same as `addmod` flags.
 
 To delete a lesson, use the following format:
@@ -393,7 +422,7 @@ Sectional Teaching (-st)
 Tutorial (-tut)
 Number of MC: 4
 ```
-#### `showmod` flags
+### `showmod lessons` - Show information of a lesson from a module 
 The lesson types and their corresponding guide are the same as `addmod` flags.
 Shows the list of classes a module has and their lesson types, day, timing and frequency.
 To show the information on a lesson, use the following format:
@@ -420,7 +449,7 @@ Shows a menu of commands available in Apollo and their usage, as well as their r
 
 Format: `help`
 
-#### `help` for specific commands
+### `help` - For help with specific commands
 
 To see a shorter help menu for a specific command instead of the longer help command or to find out more about a command, 
 you can do so by typing `help COMMAND`.
@@ -581,6 +610,10 @@ Your personal task and timetable manager!
 Enter "help" to see a list of commands.
 ____________________________________________________________
 ```
+
+## FAQ
+
+
 
 
 
