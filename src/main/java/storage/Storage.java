@@ -97,10 +97,10 @@ public class Storage {
     //TODO: JSON
 
     /**
-     * Loads expenses from json file and save as an ArrayList of Expenses
+     * Loads expenses from json file and save as an ExpenseList
      *
      * @param filePath Path at which the json file is stored.
-     * @return An arraylist of expenses.
+     * @return An ExpenseList.
      * @throws NullPointerException if json file is empty.
      */
 

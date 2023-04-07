@@ -50,7 +50,113 @@ Our overall project design is split into 5 components, `command`, `common`,`data
 - `common`: Holds mainly static data that is used by multiple components.
 - `storage`: Handles the reading and storing of our data.
 
+## Account Implementation
+
+### 'Login' Feature 
+
+This mechanism is facilitated by `Account`, as well as `ParserAccount` and `Storage`. `ParserAccount` will scan the user
+input, and then transfer that information to `Account`. `Account` will manage the login status of that account, and load 
+the expense data via `Storage` from the user storage file (in .json) if the login status is successful, or stop access 
+the file otherwise. Then, based on the login status, `ParserAccount` will show to the user the next step.
+
+`ParserAccount` implements the following operations for `login`:
+
+- `ParserAccount#caseLogIn()` -- Read in the username and password that the user type, and call a new `Account` object 
+to process the `login` command.
+- `ParserAccount#initialize()` -- Call the `ParserAccount#caseLogIn()` if command input is `login` when the user is not
+inside an account.
+
+`Account` implements the following operations:
+
+- `Account#login()` -- A String functions reading the account list file to find if the username and password inputted by 
+the user is matched or not. If it is matched, the function will call the `Storage` to load all the saved expenses 
+in the stored .json file to the account's expense list, and return a String to denote that the log in status is 
+successful. Else, it will return a String to denote that the log in status is not successful.
+
+`Storage` implements the following operations:
+
+- `Storage#loadExpenses(filePath)` -- Loading the expenses from the json file to the account's expense list, and save
+it in the type of ExpenseList.
+- `Storage#checkValidExpenseList(expenses, filePath)` -- Checking if the expenseList read from the json file is valid,
+which helps to detect any data changes in the file or file corruption.
+Given below is an example usage of the feature. //TODO: img
+
+### 'Signup' Feature
+
+This mechanism is facilitated by `Account`, as well as `ParserAccount` and `Storage`. `ParserAccount` will scan the user
+input, and then transfer that information to `Account`. `Account` will manage the signup status of that account, and 
+call `Storage` to create a json file to store the data of the account if the signup status is successful, or print a 
+message that the account can't be created since it does not follow the account creation requirement. 
+
+`ParserAccount` implements the following operations for `signup`:
+
+- `ParserAccount#caseSignUp()` -- Read in the username and password that the user type, and call a new `Account` object
+  to process the `signup` command.
+- `ParserAccount#initialize()` -- Call the `ParserAccount#caseSignUp()` if command input is `signup` when the user is 
+not inside an account.
+
+`Account` implements the following operations:
+
+- `Account#signup()` -- Checking if the username and password meets the requirement. If it does, the function will call 
+the `Storage` to create a new json file to be ready to store the account data, and print a message to show that the
+username is created successfully. Else, it will print a message that denote the reason why the process is not successful.
+- `Account#isUserNameTaken()` -- A boolean function to check if the username is taken or not, by scanning through the
+account list file. If it is taken already, the function return true, and return false otherwise.
+
+`Storage` implements the following operations:
+
+- `Storage#createFile(filePath)` -- Create a new file with a given file path.
+
+  Given below is an example usage of the feature. //TODO: img
+
+### 'Logout' Feature
+
+This mechanism is facilitated by `Account`, as well as `ParserAccount` and `Storage`. `ParserAccount` will call 
+`Account` to save the account data to its json file via `Storage`, and then `Account` will set the expenseList to be 
+empty. After that, `Account` will print a message to denote that the process is successful, and `ParserAccount` will 
+display the account command box to the user to log in, sign up or exit.
+
+`ParserAccount` implements the following operations for `logout`:
+
+- `ParserAccount#caseLogOut()` -- Call the `Account#saveLogOut()` first and then `ParserAccount#initialize()` after the 
+logout process is completed.
+- `ParserAccount#initialize()` -- Display the account command box to the user after logging out.
+
+`Account` implements the following operations:
+
+- `Account#saveLogOut()` -- Call the `Storage` to save the user expense list to the json file, and clear the expense 
+list that store the account data inside the 'account process'.
+
+`Storage` implements the following operations:
+
+- `Storage#saveExpenses(filePath)` -- Save the expense list to the json file with given file path.
+
+  Given below is an example usage of the feature. //TODO: img
+
+### 'Exit' Feature (Outside the Account)
+
+This mechanism is facilitated by `ParserAccount`, with just a simple task - exit the program.
+
+`ParserAccount` implements the following operations for `exit`:
+
+- `ParserAccount#initialize()` -- Call the `exit(0)` function to exit the program immediately when the user typed `exit`
+before logged in or after logged out.
+
+  Given below is an example usage of the feature. //TODO: img
+
 ## Implementation
+
+### 'List' Feature
+
+This mechanism is facilitated by `CommandList`, which extends `Command`. `CommanList` will access `expenseList` to 
+print all the expenses in the user expense list when the command `list` is called.
+
+`CommandList` implements the following operations:
+
+- `CommandList#run()` -- A boolean functions return false and print a 'no-expense' message if there are no expenses in 
+the expense list, or return true and print all the expenses if the expense list has at least 1 of them.
+
+Given below is an example usage of the feature. //TODO: img
 
 ### 'Add' Feature
 
@@ -236,6 +342,23 @@ The `storage` class is responsible for saving and loading of expenses to and fro
 - Saving expenses
     - The ArrayList of Expense from `ExpenseList` class is converted to json object with the help of the `Gson` library.
       Saving is called every time an edit is made to the ExpenseList.
+
+### 'Exit' Feature (Inside the Account)
+
+This mechanism is facilitated by `ParserAccount` and `Account`.
+
+`ParserAccount` implements the following operations:
+- `ParserAccount#caseExit()` -- call the `Account#saveLogOut()` and show to the user a message that confirm the account
+data is saved.
+
+`Account` implements the following operations:
+`Account#saveLogOut()` -- Call the `Storage` to save the user expense list to the json file, and clear the expense
+list that store the account data inside the 'account process'.
+
+`Storage` implements the following operations:
+
+- `Storage#saveExpenses(filePath)` -- Save the expense list to the json file with given file path.
+
 
 ## Product scope
 

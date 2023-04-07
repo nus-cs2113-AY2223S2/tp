@@ -9,7 +9,7 @@
     * [Note: Username and password rules:](#note-username-and-password-rules)
     * [Log In To Your Account: `login`](#log-in-to-your-account-login)
     * [Sign out and save your expense: `logout`](#sign-out-and-save-your-expense-logout)
-    * [Exiting the program (inside the account): `exit`](#exiting-the-program-inside-the-account-exit)
+    * [Exiting the program (outside the account): `exit`](#exiting-the-program-outside-the-account-exit)
   * [Features](#features)
     * [Get helpful instruction: `help`](#get-helpful-instruction--help)
     * [Adding an expense: `add`](#adding-an-expense--add)
@@ -20,7 +20,7 @@
     * [Obtaining expenses: `category`](#obtaining-expenses--category)
     * [Finding expenses: `find`](#finding-expenses--find)
     * [Generating overview: `overview`](#generating-overview--overview)
-    * [Exiting the program (outside the account): `exit`](#exiting-the-program-outside-the-account-exit)
+    * [Exiting the program (inside the account): `exit`](#exiting-the-program-inside-the-account-exit)
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
 <!-- TOC -->
@@ -175,17 +175,15 @@ ________________________________________________________________________________
 _____________________________________________________________________________________
 ```
 
-### Exiting the program (inside the account): `exit`
-* When you are inside the account (ie: after logging in and before logging out of your account), typing `exit` will
-automatically save your account expense list, and then terminate the application.
+### Exiting the program (outside the account): `exit`
 
-Format `exit`
+Exits the program immediately.
 
-Expected Output:
-```
-Saved successfully.
-Goodbye! Hope to see you again soon!
-```
+Format: `exit`
+
+Example of usage:
+
+`exit`
 
 
 ## Features
@@ -462,15 +460,17 @@ Yearly Overview for 2022
     ----------------------------
 ```
 
-### Exiting the program (outside the account): `exit`
+### Exiting the program (inside the account): `exit`
+* When you are inside the account (ie: after logging in and before logging out of your account), typing `exit` will
+  automatically save your account expense list, and then terminate the application.
 
-Exits the program immediately.
+Format `exit`
 
-Format: `exit`
-
-Example of usage:
-
-`exit`
+Expected Output:
+```
+Saved successfully.
+Goodbye! Hope to see you again soon!
+```
 
 ## FAQ
 

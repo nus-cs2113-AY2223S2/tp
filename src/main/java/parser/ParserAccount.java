@@ -18,7 +18,7 @@ public class ParserAccount {
         System.out.println("username");
         Scanner scanner = new Scanner(System.in);
         String user = scanner.nextLine();
-        System.out.println("Password");
+        System.out.println("password");
         String password = scanner.nextLine();
         Account existingAccount = new Account(user, password);
         String res = existingAccount.login();
