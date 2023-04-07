@@ -12,8 +12,17 @@ import functionalities.SniffTasks;
 import functionalities.parser.ArchiveParser;
 import functionalities.ui.Ui;
 
+/**
+ * This class deals with Archive (Loading and Saving Archived Tasks in the File)
+ **/
 public class Archive {
 
+    /**
+     * Saves the Archived task contents into the SniffArchive File
+     *
+     * @param filePath The path of the SniffArchive file
+     * @throws SniffException if Archive file is not found
+     * */
     public static void saveArchivedAppointments(String filePath) throws SniffException {
         try {
             File archiveFile = new File(filePath);
@@ -26,6 +35,12 @@ public class Archive {
         }
     }
 
+    /**
+     * Reads and adds the Archived task contents into the Appointments task list
+     *
+     * @param filePath The path of the SniffArchive file
+     * @throws SniffException if Archive file is not found
+     * */
     public static void openArchiveFile(String filePath) throws SniffException {
         try {
             File archiveFile = new File(filePath);
@@ -41,6 +56,13 @@ public class Archive {
         }
     }
 
+    /**
+     * Calls ArchiveParser to parse Archived task contents
+     *
+     * @param archiveFile The SniffArchive file
+     * @throws SniffException if errors are encountered while parsing
+     * @throws FileNotFoundException if Archive file is not found
+     * */
     public static void extractArchiveData(File archiveFile) throws SniffException, FileNotFoundException {
         try {
             Scanner s = new Scanner(archiveFile);
