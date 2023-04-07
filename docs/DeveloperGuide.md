@@ -1,5 +1,63 @@
 # Developer Guide
 
+- [Acknowledgements](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#acknowledgements)
+- [Design](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design)
+  - [Architecture](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#architecture)
+  - [UI Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#ui-component)
+  - [Storage Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#storage-component)
+  - [Interfaces](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#interfaces)
+- [Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#implementation)
+  - [[Proposed] Add meal feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-add-meal-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-1)
+  - [[Proposed] Delete meal feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-delete-meal-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-2)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-2)
+  - [[Proposed] View feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-view-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-3)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-3)
+  - [[Proposed] Update feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-update-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-4)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-4)
+  - [[Proposed] Nutrition feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-nutrition-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-5)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-5)
+  - [[Proposed] Filter feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-filter-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-6)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-6)
+  - [[Proposed] Exercise feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-exercise-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-7)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-7)
+  - [[Proposed] Track feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-track-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-8)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-8)
+  - [[Proposed] Examples feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-examples-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-9)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-9)
+- [Appendix: Requirements](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#appendix-requirements)
+  - [Product Scope](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#product-scope)
+    - [Target user profile:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#target-user-profile)
+    - [Value proposition:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#value-proposition)
+    - [User Stories](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#user-stories)
+  - [Non-Functional Requirements](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#non-functional-requirements)
+  - [Glossary](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#glossary)
+  - [Instructions for manual testing](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#instructions-for-manual-testing)
+    - [Launch and Shutdown](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#launch-and-shutdown)
+    - [View user profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#view-user-profile)
+    - [Update user profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#update-user-profile)
+    - [Adding a meal](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#adding-a-meal)
+    - [List meals or foods in database meals added](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#list-or-foods-in-database-meals-added)
+    - [Deleting a meal](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#deleting-a-meal)
+    - [Filtering foods based on calories](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#filter-foods-based-on-calories)
+    - [Find nutrition of a food](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#find-nutrition-of-a-food)
+    - [Add a exercise](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#add-a-exericse)
+    - [Track calorie intake](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#track-calorie-intake)
+    - [See examples of meal or exercise](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#see-examples-of-meal-or-exercise)
+    - [See list of available commands](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#see-list-of-available-commands)
+    - [Exiting the application](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#exiting-the-program)
+    - [Saving data](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#saving-data)
+    - [Dealing with missing/corrupted data files](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#dealing-with-missingcorrupted-data-files)
+
 ---
 ### Acknowledgements
 
@@ -378,7 +436,7 @@ Test case: 'add /on dummy /type dummy /foods dummy'
 
 Expected: No food is added. Error details are shown in the status message, such as "_dummy_ is not a valid date", "Invalid meal type" or "no food found with _dummy_".
 
-### List or foods in database meals added
+### List meals or foods in database meals added
 
 Test case: 'list meals'
 
@@ -462,7 +520,7 @@ Test case: help
 
 Expected: List of available commands for this application will be displayed.
 
-### Exiting the program
+### Exiting the application
 
 Test case: bye
 
