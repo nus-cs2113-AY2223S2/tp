@@ -1,5 +1,64 @@
 # Developer Guide
 
+- [Acknowledgements](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#acknowledgements)
+- [Design](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design)
+  - [Architecture](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#architecture)
+  - [UI Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#ui-component)
+  - [Command Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#command-component)
+  - [Storage Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#storage-component)
+  - [Interfaces](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#interfaces)
+- [Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#implementation)
+  - [[Proposed] Add meal feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-add-meal-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-1)
+  - [[Proposed] Delete meal feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-delete-meal-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-2)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-2)
+  - [[Proposed] View feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-view-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-3)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-3)
+  - [[Proposed] Update feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-update-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-4)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-4)
+  - [[Proposed] Nutrition feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-nutrition-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-5)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-5)
+  - [[Proposed] Filter feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-filter-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-6)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-6)
+  - [[Proposed] Exercise feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-exercise-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-7)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-7)
+  - [[Proposed] Track feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-track-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-8)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-8)
+  - [[Proposed] Examples feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-examples-feature)
+    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-9)
+    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-9)
+- [Appendix: Requirements](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#appendix-requirements)
+  - [Product Scope](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#product-scope)
+    - [Target user profile:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#target-user-profile)
+    - [Value proposition:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#value-proposition)
+    - [User Stories](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#user-stories)
+  - [Non-Functional Requirements](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#non-functional-requirements)
+  - [Glossary](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#glossary)
+  - [Instructions for manual testing](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#instructions-for-manual-testing)
+    - [Launch and Shutdown](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#launch-and-shutdown)
+    - [View user profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#view-user-profile)
+    - [Update user profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#update-user-profile)
+    - [Adding a meal](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#adding-a-meal)
+    - [List meals or foods in database meals added](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#list-or-foods-in-database-meals-added)
+    - [Deleting a meal](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#deleting-a-meal)
+    - [Filtering foods based on calories](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#filter-foods-based-on-calories)
+    - [Find nutrition of a food](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#find-nutrition-of-a-food)
+    - [Add a exercise](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#add-a-exericse)
+    - [Track calorie intake](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#track-calorie-intake)
+    - [See examples of meal or exercise](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#see-examples-of-meal-or-exercise)
+    - [See list of available commands](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#see-list-of-available-commands)
+    - [Exiting the application](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#exiting-the-program)
+    - [Saving data](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#saving-data)
+    - [Dealing with missing/corrupted data files](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#dealing-with-missingcorrupted-data-files)
+
 ---
 ### Acknowledgements
 
@@ -28,6 +87,11 @@ The rest of the Application consists of three components:
 
 ---
 ### UI Component
+
+API: ui.java
+
+INSERT UI UML HERE
+
 The UI is made up of five classes, `GeneralUi`, `CalorieUi`, `ExampleUi`,  `ExerciseUi` and `WeightUi`, and together,
 they improve on the accessibility of the application.
 
@@ -36,7 +100,23 @@ The `UI` component,
 - Allows the user to check that a value added is correct
 - Informs the user whenever there is an invalid input
 
+### Command Component
+
+API: commands.java
+
+INSERT COMMAND UML HERE
+
+How the `Command` component works:
+1. When `Command` is called upon to execute a command, it first uses the `CommandParser` subclass from the `Parser` class to parse the user command. 
+2. This results in a Command object (more precisely, an object of one its subclasses e.g. AddMealCommand), which would then be excuted by LifeTracker.
+3. The command can communicate with ENTITIES?
+4. The command can also communicate with the Storage Component when it is executed, such as saving and loading of User Data.
+5. In addition, the command also communicates with the UI Component to display the results of the execution of the command back to the user. 
+6. In the case of command execution failures, an Exception Object (more precisely, an object of one of its subclasses, e.g. LifeTrackerException is thrown.
+
 ### Storage Component
+
+API: storage.java
 
 ![storage-class-diagram](./uml/storage-class-diagram.PNG)
 
@@ -58,7 +138,6 @@ For example, `FoodStorage` is not meant to be edited by user, hence it does not 
 
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.  
-<p>&nbsp;</p>
 
 ## [Proposed] Add meal feature
 
@@ -91,8 +170,10 @@ Step 3. `mealStorage` saves the meal to the database and then `ui` prints out th
 The proposed mechanism for listing stored foods, meals and exercises is facilitated by `ListCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
 Step 1: The user will input either `list foods`, `list meals`, `list exercises` based on which information the user wants to retrieve.
-Step 2: Based the input, `ListCommand` will call either `printAllFoods`, `printAllMeals`, or `printAllExercises` method of the `ui` object
-Step 3: The `ui` will retreive the relevant information from the storage and print out their details
+
+Step 2: Based the input, `ListCommand` will call either `printAllFoods`, `printAllMeals`, or `printAllExercises` method of the `ui` object.
+
+Step 3: The `ui` will retreive the relevant information from the storage and print out their details.
 
 ![list-command](./uml/ListCommand.PNG)
 
@@ -202,11 +283,27 @@ Step 5. The user then executes the command `view` to view his updated weight and
 
 ### Proposed Implementation
 
+The proposed update mechanism is facilitated by `UpdateUserCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+
 ### Design considerations:
 
 ## [Proposed] Nutrition feature
 
 ### Proposed Implementation
+
+The proposed update mechanism is facilitated by `NutritionCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+
+Step 1: The user inputs `nutrition` into the command line. 
+
+Step 2: The user will then be prompted to enter what food they would like to see the nutrition for. 
+
+Step 3: A list of type `food` will then be created called `filteredFoods`, populated by foods from `foodStorage` that contains the user's input.
+
+Step 4: The list will then be displayed to the user, who can pick which food by its index.
+
+Step 5: The nutritional information for that food will then be displayed.
+
+![nutrition-command](./uml/NutritionCommand.png)
 
 ### Design considerations:
 
@@ -231,6 +328,8 @@ Step 4. `FilterCaloiresCommand` will then print out the meals that has been filt
 ## [Proposed] Exercise feature
 
 ### Proposed Implementation
+
+The proposed update mechanism is facilitated by `AddExerciseCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
 ### Design considerations:
 
@@ -328,67 +427,45 @@ Given below are instructions on how to test the application by yourself manually
   - Type "java -jar tp.jar" and press enter to run the file.
  
 - Shutdown
-  - Type "bye" into the command line and press enter to exit the application.
+  - Type `bye` into the command line and press enter to exit the application.
 
 ### View user profile
 
-Test case: view
+Test case: `view`
 
-Expected: Menu where user can input a value from 1 to 9 to view their current profile: 
-
-1. Name
-2. Weight
-3. Height
-4. Age
-5. Gender
-6. Daily Caloric Limit
-7. Calories Remaining for today
-8. View Target Weight
-9. Exit
-
-User can then input 1 to continue viewing their profile or 2 to exit.
+Expected: Menu where user can input a value from 1 to 9 to view their current profile. User can then input 1 to continue viewing their profile or 2 to exit.
 
 ### Update user profile
 
-Test case: update
+Test case: `update`
 
-Expected: Menu where user can input a value from 1 to 7 to update their current profile: 
-
-1. Name
-2. Weight
-3. Height
-4. Age
-5. Gender
-6. Target Weight
-7. Exit
-
-User can then input 1 to continue viewing their ofile or 2 to exit.
+Expected: Menu where user can input a value from 1 to 7 to update their current profile. User can then input 1 to continue viewing their ofile or 2 to exit.
 
 ### Adding a meal
 
-Test case: add /on 3/3/2023 /type Lunch /foods Spaghetti, Alfredo (Small)
+Test case: `add /on 3/3/2023 /type Lunch /foods Spaghetti, Alfredo (Small)`
 
 Expected: Spaghetti and Alfredo are added to the list. Details of the food such as calories are shown in the status message.
 
-Test case: add
+Test case: `add`
 
 Expected: Application will then ask for date of meal, type of meal, and food, and will then display the foods in the database containing the food that was added. Food is then added to the list and details of the food such as calories are shown in the status message.
 
-Test case: add /on dummy /type dummy /foods dummy
+Test case: `add /on dummy /type dummy /foods dummy`
 
 Expected: No food is added. Error details are shown in the status message, such as "_dummy_ is not a valid date", "Invalid meal type" or "no food found with _dummy_".
 
-### List or foods in database meals added
+### List meals or foods in database meals added
 
-Test case: list meals
+Test case: `list meals`
 
 Expected: A list of meals eaten today would be displayed.
 
-Test case: list foods
+Test case: `list foods`
 
 Expected: A list of all foods in the databse would be displayed.
 
-Test case: list dummy
+Test case: `list dummy`
 
 Expected: An error message would be displayed.
 
@@ -396,11 +473,11 @@ Expected: An error message would be displayed.
 
 Prerequisite: List all meals eaten using the list command. At least 1 meal in the list.
 
-Test case: delete 1
+Test case: `delete 1`
 
 Expected: First meal is deleted from the list. Details of the deleted meal are shown in the status message. 
 
-Test case: delete 0
+Test case: `delete 0`
 
 Expected: No meal is deleted. Error details shown in the status message.
 
@@ -410,51 +487,68 @@ Expected: Similar to previous.
 
 ### Filter foods based on calories
 
-Test case: filter 400 600
+Test case: `filter 400 600`
 
 Expected: A list of all meals within that range will be displayed
 
-Test case: filter 400 300
+Test case: `filter 400 300`
 
 Expected: An error message will be displayed
 
 ### Find nutrition of a food
 
-Test case: 
+Prerequisite: Food needs to exist in the database.
 
-Expected:
+Test case: `nutrition`
+
+Expected: Prompt will ask you to enter the food you would like to see the nutrition for. A menu displaying all foods which contain the food entered will appear, which you can then enter the index to see the specific food. 
 
 ### Add a exericse
 
-Test case: 
+Test case: `exercise /type running /description 5km /calories 500 /on 5/5/2023`
 
-Expected:
+Expected: An exercise of running for 5km that burnt 500 calories on 5/5/2023 is added.
+
+Test case: `exercise /type dummy /description dummy /calories dummy /on dummy`
+
+Expected: No exercise is added, error message will be displayed. 
 
 ### Track calorie intake
 
-Test case: 
+Test case: `track /start 5/5/2023 /end 6/5/2023`
 
-Expected:
+Expected: Calories consumed, cloaries burnt and net calories for 5/5/2023 and 6/5/2023 would be displayed in the status message.
+
+Test case: `track /start dummy /end dummy`
+
+Expected: Error message will be dislayed.
 
 ### See examples of meal or exercise
 
-Test case: examples exercise
+Test case: `examples exercise`
 
 Expected: Examples of different types of exercise will be displayed
 
-Test case: examples weight
+Test case: `examples weight`
 
 Expected: An error message will be displayed
 
 ### See list of available commands
 
-Test case: 
+Test case: `help`
 
-Expected:
+Expected: List of available commands for this application will be displayed.
 
-### Exiting the program
+### Exiting the application
 
-Test case: 
+Test case: `bye`
 
-Expected:
+Expected: Application exits. 
+
+### Saving data
+Meal data, user data and exercise data will be saved in ./data/mealData.csv, ./data/userData.csv, ./data/exerciseData.csv respectively.
+
+### Dealing with missing/corrupted data files
+Delete the ./data/mealData.csv, ./data/userData.csv, ./data/exerciseData.csv files for corrupted data and restart the programme.
+
 
