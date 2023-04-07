@@ -218,4 +218,16 @@ public class UserInterface {
                         + " to " + deck.getDeckName());
         printDivider();
     }
+
+    public void printQuestion(String question) {
+        System.out.println("Q: " + question);
+    }
+
+    public void printAnswer(String answer) {
+        System.out.println("A: " + answer + "\n");
+    }
+
+    public void printExitingRunMode() {
+        System.out.println("Exiting run mode!\n");
+    }
 }

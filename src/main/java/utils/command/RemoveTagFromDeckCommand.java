@@ -28,7 +28,7 @@ public class RemoveTagFromDeckCommand extends Command {
         }
     }
 
-    public void removeTagFromDeck(DeckList deckList,String deckName, TagUUID tagUUID)
+    public void removeTagFromDeck(DeckList deckList,String deckName,TagList tagList, TagUUID tagUUID)
             throws InkaException {
         Deck deck = deckList.findDeckFromName(deckName);
         if(deck==null) {
@@ -39,12 +39,14 @@ public class RemoveTagFromDeckCommand extends Command {
         if(wasTagInDeck==false) {
             throw new TagNeverWasInDeck();
         }
+        deck.removeTaggedCardsMap(tagUUID, tagList);
         deck.setTags(deckTagList);
+
     }
     @Override
     public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {
-        removeTagFromDeck(deckList, deckName, tagUUID);
+        removeTagFromDeck(deckList, deckName, tagList, tagUUID);
         ui.printRemoveTagFromDeckSuccess(tagUUID, deckName);
     }
 }

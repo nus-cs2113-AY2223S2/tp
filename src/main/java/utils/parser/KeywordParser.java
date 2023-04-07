@@ -104,7 +104,11 @@ public abstract class KeywordParser {
             return handleAction(action, flags);
         } catch (MissingArgumentException e) {
             String missingArgumentOption = e.getOption().getArgName();
-            throw InvalidSyntaxException.buildMissingArgumentMessage(missingArgumentOption);
+            if(missingArgumentOption==null) {
+                throw  InvalidSyntaxException.buildGenericMessage();
+            } else {
+                throw InvalidSyntaxException.buildMissingArgumentMessage(missingArgumentOption);
+            }
         } catch (MissingOptionException e) {
             // Apache will return a List containing either String or OptionGroup
             List<String> missingOptions = new ArrayList<>();
