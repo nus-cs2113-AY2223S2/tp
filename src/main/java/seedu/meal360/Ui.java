@@ -109,10 +109,10 @@ public class Ui {
         printMessage("5. List All Recipes: list");
         printMessage("6. Add Single Recipe to Weekly Plan: weekly /add {recipe name} {quantity}");
         printMessage("7. Add Multiple Recipes to Weekly Plan: weekly /multiadd /r {recipe1 name} /q {quantity1}");
-        printMessage("/r {recipe2 name} /q {quantity2}");
+        printMessage("   /r {recipe2 name} /q {quantity2}");
         printMessage("8. Delete Single Recipe from Weekly Plan: weekly /delete {recipe name} {quantity}");
         printMessage("9. Delete Multiple Recipes from Weekly Plan: weekly /multidelete /r {recipe1 name}");
-        printMessage("/q {quantity1} /r {recipe2 name} /q {quantity2}");
+        printMessage("   /q {quantity1} /r {recipe2 name} /q {quantity2}");
         printMessage("10. View Weekly Plan: weeklyplan");
         printMessage("11. Clearing weekly plan: weekly /clear");
         printMessage("12. View Weekly Ingredients: weeklyingredients");

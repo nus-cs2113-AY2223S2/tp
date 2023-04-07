@@ -6,13 +6,25 @@ import java.util.HashMap;
 public class WeeklyPlan extends HashMap<String, Integer> {
 
     public void addPlans(WeeklyPlan recipeMap) {
+        final boolean[] validNumber = {true};
         recipeMap.forEach((recipe, count) -> {
-            if (this.containsKey(recipe)) {
-                this.put(recipe, this.get(recipe) + count); // Case when recipe already exists in plan
-            } else {
-                this.put(recipe, count);
+            if (validNumber[0] && this.containsKey(recipe)) {
+                int newCount = this.get(recipe) + count;
+                validNumber[0] = (newCount > 1000) ? false : true;
             }
         });
+
+        if (validNumber[0]) {
+            recipeMap.forEach((recipe, count) -> {
+                if (this.containsKey(recipe)) {
+                    this.put(recipe, this.get(recipe) + count);
+                } else {
+                    this.put(recipe, count);
+                }
+            });
+        } else {
+            throw new IllegalArgumentException("Total quantity cannot exceed 1000!");
+        }
     }
 
     public void deletePlans(WeeklyPlan recipeMap) {
