@@ -8,9 +8,17 @@ participant ":TagList" as TagList
 participant ":Tag" as Tag
 participant ":Card" as Card
 
-'create AddCardToTagCommand
-[-> AddCardToTagCommand : AddCardToTagCommand()
+Create AddCardToTagCommand
+CardKeywordParser -> AddCardToTagCommand : AddCardToTagCommand()
 activate AddCardToTagCommand
+
+Create CardSelector
+AddCardToTagCommand -> CardSelector : CardSelector()
+return
+
+Create TagSelector
+AddCardToTagCommand -> TagSelector : TagSelector()
+return
 
 AddCardToTagCommand -> CardList : findCard()
 
@@ -24,7 +32,7 @@ return cardToAdd
 
 AddCardToTagCommand -> AddCardToTagCommand : addCardToTag(cardToAdd)
 
-AddCardToTagCommand -> TagList : findTagFromName()
+AddCardToTagCommand -> TagList : findTag()
 return tagToAdd
 
 opt tagToAdd == null

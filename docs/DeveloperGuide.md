@@ -190,6 +190,7 @@ similar.
 3. The `Parser#CardKeywordParser()` uses the Apache Commons CLI library to parse the remaining user input.
 
 The sequence diagram below shows how this feature works:
+![Card View feature](img/CardViewSequence.png)
 
 ### Tag Feature
 
