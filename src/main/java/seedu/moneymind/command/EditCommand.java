@@ -98,8 +98,7 @@ public class EditCommand implements Command {
             checkAmountUnderLimit(userInput);
             checkNumber(userInput);
             return true;
-        }
-        catch (IntegerOverflowException error) {
+        } catch (IntegerOverflowException error) {
             if (isEvent) {
                 System.out.println(EDIT_EXPENSE_LIMIT_MESSAGE);
             } else {

@@ -10,7 +10,6 @@ import static seedu.moneymind.string.Strings.NO_CATEGORY_MESSAGE;
 import static seedu.moneymind.string.Strings.NULL_CATEGORY_LIST_ASSERTION;
 import static seedu.moneymind.string.Strings.NO_CATEGORIES_TO_VIEW;
 import static seedu.moneymind.string.Strings.DOT;
-import static seedu.moneymind.string.Strings.COUNT_ASSERTION;
 
 /**
  * ViewCommand class to view the categories and events.
