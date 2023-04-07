@@ -294,4 +294,11 @@ class CommandParserTest {
         CommandParser cp = new CommandParser();
         assertThrows(UnknownKeywordException.class, () -> cp.newCommand("nonsense 1"));
     }
+
+    // newCommand() empty
+    @Test
+    void parseEmpty() {
+        CommandParser cp = new CommandParser();
+        assertThrows(EmptyArgException.class, () -> cp.newCommand(""));
+    }
 }
