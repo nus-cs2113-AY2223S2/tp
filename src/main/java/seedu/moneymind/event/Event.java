@@ -106,7 +106,7 @@ public class Event {
         if (isOneTimeExpense) {
             return description + " (expense: " + expense + ") (time added: " + time + ")";
         }
-        return description + " (expense: " + expense + ") (start date: " + time + ")";
+        return description + " (expense: " + expense + ") (start time: " + time + ")";
     }
 }
 

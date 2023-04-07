@@ -148,4 +148,31 @@ public class EventCommandTest extends CommandTest {
         clear();
     }
 
+    @Test
+    void addEvent_oneEventWithCorrectTime_expectCorrectTime() {
+        setup();
+        String categoryName = "food" + Strings.NEW_LINE; // replace with the correct input string
+        Moneymind.in = new Scanner(categoryName);
+        executeInput("event banana e/20 t/13/02/2024 12:00");
+        assertEquals("banana", food.events.get(2).getDescription(),
+                "expected: banana, actual: " + food.events.get(2).getDescription());
+        assertEquals(20, food.events.get(2).getExpense(),
+                "expected: 20, actual: " + food.events.get(2).getExpense());
+        assertEquals("13/02/2024 12:00", food.events.get(2).getTime(),
+                "expected: 13/02/2024 12:00, actual: " + food.events.get(2).getTime());
+        clear();
+    }
+
+    @Test
+    void addEvent_oneEventWithIncorrectTime_expectTimeFormatMessage() {
+        setup();
+        String categoryName = "food" + Strings.NEW_LINE; // replace with the correct input string
+        Moneymind.in = new Scanner(categoryName);
+        String terminalOutput = executeInput("event banana e/20 t/13/02/2024 12:00:00").toString();
+        assertEquals("Please enter a valid time in the format of dd/mm/yyyy hh:mm"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
+        clear();
+    }
+
 }

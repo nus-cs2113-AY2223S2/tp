@@ -46,6 +46,7 @@ public class Moneymind {
             try {
                 getInput();
                 String refinedUserInput = userInput.trim().replaceAll(Strings.EXTRA_SPACE_REGEX_FORMAT, " ");
+
                 Command command = parser.parseNextCommand(refinedUserInput);
                 if (command.isExit()) {
                     ui.goodbye();

@@ -167,7 +167,7 @@ public class Parser {
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(EVENT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
         } catch (InvalidTimeFormatException error) {
-            throw new InvalidCommandException("Please enter a valid date in the format of dd/mm/yyyy");
+            throw new InvalidCommandException("Please enter a valid time in the format of dd/mm/yyyy hh:mm");
         } catch (Exception error) {
             throw new InvalidCommandException(SUBTLE_BUG_MESSAGE);
         }
