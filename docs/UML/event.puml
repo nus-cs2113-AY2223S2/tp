@@ -1,0 +1,58 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include Style.puml
+hide circle
+skinparam classAttributeIconSize 0
+
+class Venue {
+-venueIndex: int
+-venueName: String
+-venueLocation: String
+-venueCapacity: int
++Venue(venueIndex: int, venueName: String, venueLocation: String, venueCapacity: int)
++getVenueName(): String
++getVenueIndex(): int
++toString(): String
+}
+
+class Event {
+-venue: Venue
+-eventName: String
+-companyList: CompanyList
+-ui: Ui
++Event(companyList: CompanyList, ui: Ui)
++updateVenue(venueList: VenueList, venueNum: int)
++updateEventName(eventName: String)
++getEventName(): String
++getVenue(): Venue
++toString(): String
+}
+
+class CompanyList {
+-companyList: ArrayList<Company>
+-ui: Ui
++CompanyList(companyList: ArrayList<Company> , ui: Ui) {
++getCompanyList(): ArrayList<Company>
++add(companyName: String, industry: String , contactNumber: int, contactEmail: String)
++isDuplicateCompanyName(companyName: String): boolean
++isDuplicateContactEmail(contactEmail: String): boolean
++isDuplicateContactNumber(contactNumber: int): boolean
++printCompanyInformation()
++getNumberOfCompanies(): int
++deleteCompanyInformation(index: int)
++getCompany(index: int): Company
++printUnconfirmed()
++findIndustry(targetIndustry: String)
++findCompany(targetCompany: String)
++loadSampleCompanyInformation()
++purgeData()
++markConfirm(companyNum: int)
++markUnconfirm(companyNum: int)
+}
+
+Event *--- "1" CompanyList : contains >
+Event *--- "1" Venue : contains >
+
+
+@enduml
