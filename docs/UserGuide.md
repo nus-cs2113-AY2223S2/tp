@@ -422,11 +422,22 @@ Sectional Teaching (-st)
 Tutorial (-tut)
 Number of MC: 4
 ```
+
+#### Invalid Module Code
+
+If the module code is invalid or the module is not offered in the current semester, Apollo will display an error message:
+
+```
+>>> showmod CG2028
+This module does not exist, or is not available this semester!
+Please refer to official NUS module list for more information.
+```
+
 ### `showmod lessons` - Show information of a lesson from a module 
 The lesson types and their corresponding guide are the same as `addmod` flags.
 Shows the list of classes a module has and their lesson types, day, timing and frequency.
 To show the information on a lesson, use the following format:
-`showmod MODULE_CODE -FLAG`
+`showmod <MODULE_CODE> -<FLAG>`
 
 ```
 >> showmod CS1010 -st
@@ -440,6 +451,13 @@ The ordering of lessons in the list are sorted as follows:
 1. Lesson Type
 2. Lesson Number (lexicographically)
 3. Lesson Day and time
+
+If module does not have specified lesson type, Apollo will display an error message:
+
+```
+>> showmod CS1010 -lec
+This module does not have this lesson type
+```
 
 ## *Utility Commands*
 
@@ -504,6 +522,15 @@ There are -FLAGS for the various lessons options per module:
 -smc			SEMINAR STYLE MODULE CLASS
 -mp 			MINI PROJECT
 -tt2			TUTORIAL TYPE 2
+```
+
+#### Invalid Help Command Message:
+
+If the command is invalid, Apollo will display an error message.
+
+```
+>> help me
+Sorry, but I don't know what that means :(
 ```
 
 ### `week` - Viewing weekly schedule
@@ -578,7 +605,13 @@ Format: `bye`
 Bye. Hope to see you again soon!
 ```
 
+#### Invalid Bye Command:
+An invalid bye command (e.g `bye` followed by a word) will result in the following message:
 
+```
+>> bye bye
+Sorry, but I don't know what that means :(
+```
 ## *Loading and saving of data*
 
 - Apollo automatically loads up your todo and module lists on start-up.
@@ -612,6 +645,29 @@ ____________________________________________________________
 ```
 
 ## FAQ
+
+**Q**: How do I transfer my data to another Computer?
+
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous Apollo home folder. 
+
+**Q**: Why does Apollo only have data for NUS Modules in Academic Year 2022/2023 Semester 2?
+
+**A**: Due to requirements constraints of Apollo, we are not able to store multiple years of data due to data size limits.
+Additionally, we are not able to store data in a database due to the lack of a database server. As a result, data 
+for Apollo will be needed to be updated manually by the developers for each semester.
+
+**Q**: Does Apollo have data for all modules available in NUS?
+
+**A**: No. Apollo only has data for modules that are available in the current semester. Additionally, modules which have 
+timetables which fall outside of the official NUS Semester 2 timetable will not be available in Apollo. These includes
+certain modules such as Special Term Modules and iBloc Modules (CS1010x).
+
+**Q**: Should I edit the save file manually?
+
+**A**: No. Apollo is not designed to be edited manually. If you edit the save file manually, you may corrupt the data 
+and cause weird behaviours in Apollo. If you want to edit the save file, you can do so at your own risk. Editing the file
+while Apollo is running will not affect the data in Apollo.
 
 
 
