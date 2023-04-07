@@ -4,8 +4,6 @@ import pocketpal.communication.Serialisable;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
 import pocketpal.data.parsing.EntryLogParser;
-import pocketpal.frontend.constants.MessageConstants;
-import pocketpal.frontend.exceptions.InvalidDateException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -140,12 +138,8 @@ public class EntryLog implements Serialisable {
         return new EntryLog(filteredEntries);
     }
 
-    public EntryLog filterBetweenDates(LocalDateTime startDateTime, LocalDateTime endDateTime)
-            throws InvalidDateException {
+    public EntryLog filterBetweenDates(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         assert startDateTime != null && endDateTime != null;
-        if (startDateTime.isAfter(endDateTime)) {
-            throw new InvalidDateException(MessageConstants.MESSAGE_MIXED_DATE);
-        }
         List<Entry> filteredEntries = entries
                 .stream()
                 .filter((entry -> startDateTime.isBefore(entry.getDateTime()) &&
@@ -190,8 +184,37 @@ public class EntryLog implements Serialisable {
         return entries.size();
     }
 
+    /**
+     * This method returns the sum of the prices of all entries,
+     * excluding those of the income category.
+     */
+    public double getTotalExpenditure(){
+        double totalExpenditure = 0;
+        for(int index = 1; index <= getSize(); index++){
+            if(getEntry(index).getCategory() != Category.INCOME) {
+                totalExpenditure += getEntry(index).getAmount();
+            }
+        }
+        return totalExpenditure;
+    }
+    /**
+    * This method returns the sum of the prices of all entries
+    * of the income category.
+    */
+    public double getTotalIncome(){
+        double totalIncome = 0;
+        for(int index = 1; index <= getSize(); index++){
+            if(getEntry(index).getCategory() == Category.INCOME) {
+                totalIncome += getEntry(index).getAmount();
+            }
+        }
+        return totalIncome;
+    }
+
+
     @Override
     public String serialise() {
         return EntryLogParser.serialise(this);
     }
+
 }

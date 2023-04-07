@@ -13,6 +13,7 @@ import pocketpal.data.EntryTestUtil;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
 import pocketpal.data.parsing.EntryParser;
+import pocketpal.frontend.constants.MessageConstants;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -135,6 +136,18 @@ public class EntryEndpointTest extends EntryTestUtil {
             request.addParam(RequestParams.EDIT_CATEGORY, "Fruits");
             Response response = TEST_BACKEND.requestEndpointEntry(request);
             assertEquals(response.getResponseStatus(), ResponseStatus.UNPROCESSABLE_CONTENT);
+        }
+
+        @Test
+        void entryEndpointPATCH_invalidAmount_patchFailure() {
+            addEntry(ENTRY_1);
+
+            Request request = new Request(RequestMethod.PATCH, "1");
+            request.addParam(RequestParams.EDIT_AMOUNT, "2147483648");
+            Response response = TEST_BACKEND.requestEndpointEntry(request);
+
+            assertEquals(response.getResponseStatus(), ResponseStatus.UNPROCESSABLE_CONTENT);
+            assertEquals(response.getData(), MessageConstants.MESSAGE_INVALID_AMOUNT);
         }
     }
 
