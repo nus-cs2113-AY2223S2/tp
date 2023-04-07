@@ -16,19 +16,20 @@ Given below are my contributions to the project.
 * Managed release of v2.0 on GitHub
 
 #### Enhancements Implemented:
-* Created a balance command to allow users to check their balance when total income deducts total expense.
+* Created a balance command to allow users to check their balance when total income deducts total expense and compare with their target.
 * Created a clear incomes feature which allow users to clear their income list.
 * Created a clear expenses feature which allow users to clear their expense list.
 * Created a clear all feature which allow users to clear both income and expense lists.
 * Created an AddTarget feature which allow users to set their target.
 * Created a ShowTarget feature which allow users to see the target they have set.
+* Created a ClearTarget feature which allow users to clear the target they have set to the default value.
 * Created tests for `AddIncomeCommand`, `AddExpenseCommand`, `DeleteExpenseCommand`, `DeleteIncomeCommand`, `BalanceCommand`, `ShowTargetCommand`, `AddTargetCommand`, 
 `IncomeTest`, `ExpenseTest`, `IncomeListTest`, `ExpenseListTest`, `ParserTest`, `ExitTest`. 
 
 #### Contributions to the UG:
 * Created `Table of Contents`
 * Contributed to `Quick Start` portion
-* Created documentation for the feature `edit`, `find`, `clear income`, `clear expense`, `clear all`, `set target`, `show target`, `balance`, `exit`
+* Created documentation for the feature `edit`, `find`, `clear income`, `clear expense`, `clear all`, `set target`, `show target`,`clear target`, `balance`, `exit`
 * Created `Command Summary`
 
 #### Contributions to the DG:
@@ -41,14 +42,17 @@ Given below are my contributions to the project.
 * Added documentation for `Value Proposition`
 * Added documentation for `v2.0` of `User Stories`
 * Added documentation for `Glossary`
+* Added Non-Functional Requirements section
 
 #### Contributions to team-based tasks:
 * Method documentations
 * Assertions enabled
 * Ensured GitHub's Java CI checks pass
+* v1.0 wrap-up
 * v2.0 wrap-up
 * v2.0 release
 * v2.1 set-up
+* v2.1 wrap-up
 
 #### Review/monitoring contributions
 * PRs reviewed for the following team: [CS2113-W13-2](https://github.com/nus-cs2113-AY2223S2/tp/pull/53)

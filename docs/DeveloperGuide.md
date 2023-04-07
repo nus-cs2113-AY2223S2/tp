@@ -380,7 +380,7 @@ Given below are instructions to test the app manually.
 
 ### Setting target & Clearing target
 1. Setting Target
-   1. Prerequisites: Target set has to be within -9999999.99 to 9999999.99.
+   1. Prerequisites: Target set has to be within -9999999.99 to 9999999.99. Keep in mind that the default target is 0.00
    2. Test case: `set target /v 350.50` <br> Expected: Program will indicate to user that target has been set. If the target is out of range, program will indicate to users that target setting is invalid.
 2. Clearing Target
    1. Prerequisites: Target must have been set in the first place.

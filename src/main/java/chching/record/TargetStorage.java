@@ -21,7 +21,9 @@ public class TargetStorage {
      * Default Constructor to instantiate TargetStorage objects
      */
     public TargetStorage() {
+        Target defaultTarget = new Target(0);
         targetsList = new Target[1];
+        targetsList[0] = defaultTarget;
     }
 
     public void addTarget(Target target) {
@@ -33,7 +35,8 @@ public class TargetStorage {
     }
 
     public void clearTargetList() {
-        targetsList[0] = null;
+        Target defaultTarget = new Target(0);
+        targetsList[0] = defaultTarget;
     }
 }
 
