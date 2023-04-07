@@ -23,8 +23,10 @@ public class ViewResult {
             "|Index |Description                                  |Amount        |Category             |Date      |\n";
     private static final String TABLE_BORDER = "" +
             "+------+---------------------------------------------+--------------+---------------------+----------+\n";
-    private static final String TABLE_OUTSIDE_BORDER = "" +
+    private static final String TABLE_TOP_BORDER = "" +
             "+====================================================================================================+\n";
+    private static final String TABLE_BOTTOM_BORDER = "" +
+            "+====================================================================================================+";
     private static final Logger logger = Logger.getLogger(ViewResult.class.getName());
 
     /**
@@ -188,7 +190,7 @@ public class ViewResult {
         double totalInflow = 0;
         double totalOutflow = 0;
 
-        System.out.print(TABLE_OUTSIDE_BORDER);
+        System.out.print(TABLE_TOP_BORDER);
         System.out.print(ACKNOWLEDGE_VIEW_COMMAND);
         System.out.print(TABLE_FORMAT);
         for (Integer index : validIndexes) {
@@ -205,7 +207,7 @@ public class ViewResult {
         }
         System.out.print(TABLE_BORDER);
         System.out.print(formatSummary(totalInflow, totalOutflow, startDate, endDate, isSorted, viewAll));
-        System.out.print(TABLE_OUTSIDE_BORDER);
+        System.out.print(TABLE_BOTTOM_BORDER);
     }
 }
 

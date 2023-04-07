@@ -71,8 +71,8 @@ goals.
 
 #### Purpose and target reader
 
-This guide is designed for potential engineers and professors who may want to who may want to understand how rainyDay is
-implemented. We assume that you already have a certain level of technical knowledge as we will be going into detail of
+This guide is designed for potential engineers and professors who may want to understand how rainyDay is implemented. 
+We assume that you already have a certain level of technical knowledge as we will be going into detail of
 the technical aspects of rainyDay. <br> If you are a user looking for instructions on how to use rainyDay, please refer
 to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html).
 
