@@ -115,7 +115,7 @@ public class Storage implements LoggerInterface {
             newTaskList = readFileContents(save, ui);
             return newTaskList;
         } catch (FileNotFoundException e) {
-            save.createNewFile();
+            assert (save.createNewFile()) : "Save file creation failed.";
             logger.log(Level.INFO, "File not found, creating new file.");
             return newTaskList;
         }
@@ -141,9 +141,6 @@ public class Storage implements LoggerInterface {
 
     /**
      * Reads all lines in the moduleData file, initialises them as an ModuleList of Modules.
-     * @param overwrite
-     * @param module
-     * @throws IOException
      */
     private void writeModules(FileWriter overwrite, Module module) throws IOException {
         ArrayList<Timetable> timetableList = module.getModuleTimetable();
@@ -171,7 +168,7 @@ public class Storage implements LoggerInterface {
             return newModuleList;
         } catch (FileNotFoundException e) {
             logger.log(Level.INFO, "File for ModuleList not found, creating new file.");
-            save.createNewFile();
+            assert (save.createNewFile()) : "Save file creation failed.";
             return newModuleList;
         }
     }

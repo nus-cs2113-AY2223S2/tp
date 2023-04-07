@@ -108,7 +108,6 @@ public class TaskList extends ArrayList<Task> {
 
     /**
      * Sorts the deadline tasks in the TaskList by their respective due dates.
-     * @param allTasks
      */
     private void sortDeadlineTasks(TaskList allTasks){
         assert allTasks != null : "TaskList should not be null";
@@ -129,9 +128,7 @@ public class TaskList extends ArrayList<Task> {
 
     /**
      * Sorts the event tasks in the TaskList by their respective from and to dates.
-     * @param allTasks
      */
-
     private void sortEventTasks(TaskList allTasks){
         assert allTasks != null : "TaskList should not be null";
         allTasks.sort((Task task1, Task task2) -> {
@@ -151,18 +148,15 @@ public class TaskList extends ArrayList<Task> {
 
     /**
      * Sorts the TaskList by date.
-     *
-     * @param allTasks The TaskList containing different task types to be sorted.
      */
-    public void sortTaskByDay(TaskList allTasks) {
-        assert allTasks != null : "TaskList should not be null";
-        allTasks.clusterByType();
+    public void sortTaskByDay() {
+        this.clusterByType();
         //do nothing for todo type tasks
-        for (int i = 0; i < allTasks.size(); i++) {
-            if (allTasks.get(i).getType().equals("deadline")) {
-                sortDeadlineTasks(allTasks);
-            } else if (allTasks.get(i).getType().equals("event")) {
-                sortEventTasks(allTasks);
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).getType().equals("deadline")) {
+                sortDeadlineTasks(this);
+            } else if (this.get(i).getType().equals("event")) {
+                sortEventTasks(this);
             }
         }
     }

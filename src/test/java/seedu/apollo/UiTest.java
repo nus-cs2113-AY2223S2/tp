@@ -23,7 +23,7 @@ class UiTest {
     }
 
     @Test
-    void printList_emptyInput_noExceptionThrown() throws IOException {
+    void printList_emptyInput_noExceptionThrown() {
         Storage storage = new Storage("test.txt", "moduleData.txt");
         Ui ui = new Ui();
         TaskList taskList = new TaskList();
@@ -39,7 +39,7 @@ class UiTest {
     }
 
     @Test
-    void printFoundList_emptyInput_noExceptionThrown() throws IOException {
+    void printFoundList_emptyInput_noExceptionThrown() {
 
         Ui ui = new Ui();
         TaskList taskList = new TaskList();
@@ -47,7 +47,7 @@ class UiTest {
     }
 
     @Test
-    void printModuleList_emptyInput_noExceptionThrown() throws IOException {
+    void printModuleList_emptyInput_noExceptionThrown() {
 
         Ui ui = new Ui();
         ModuleList moduleList = new ModuleList();
@@ -55,7 +55,7 @@ class UiTest {
     }
 
     @Test
-    void printModuleList_normalInput_noExceptionThrown() throws IOException {
+    void printModuleList_normalInput_noExceptionThrown() {
         Ui ui = new Ui();
         ModuleList moduleList = new ModuleList();
         moduleList.add(new Module("CS1010", "Programming Methodology", "4"));

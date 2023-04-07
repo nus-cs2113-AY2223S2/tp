@@ -35,7 +35,7 @@ class DeleteModuleCommandTest {
 
     @Test
     void testDeleteModuleCommand_validParams_expectsNoException() throws
-            FileNotFoundException, IllegalCommandException, InvalidModule {
+            IllegalCommandException, InvalidModule {
         AddModuleCommand newCommand  = new AddModuleCommand("CS2113", allModules);
         newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         assertDoesNotThrow(() -> new DeleteModuleCommand("CS2113"));
@@ -43,7 +43,7 @@ class DeleteModuleCommandTest {
 
     @Test
     void testDeleteModuleCommand_invalidLessonType_expectsNoException()
-            throws IllegalCommandException, FileNotFoundException, InvalidModule {
+            throws IllegalCommandException, InvalidModule {
 
         new AddModuleCommand("CS2113 -lec 1", allModules).
                 execute(taskList, ui, storage, moduleList, allModules, calendar);
