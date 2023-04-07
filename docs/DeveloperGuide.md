@@ -119,7 +119,7 @@ The `Ui` component:
 The sequence diagram below shows how the `Ui` component works together with `Parser`
 when the user inputs `list`.
 
-![](../docs/UML/Ui/commandListUML.drawio.png)
+![](../docs/UML/Ui/commandList.drawio.png)
 
 ### Parser Component
 
@@ -128,8 +128,11 @@ API: `Parser.java`
 The `Parser` component:
 
 - receives the user input from the `Meal360` component
-- interacts with the `RecipeList`, `WeeklyPlan`, and/or `Ingredient` components to execute the
-  commands.
+- checks and filters input string
+- catches `exceptions` and throws error messages via `UI` to
+  1.  prompts user to enter valid input
+  2.  prevent `Meal360` from crashing upon invalid input
+- interacts with the `RecipeList`, `WeeklyPlan`, and/or `Ingredient` components to execute the commands.
 
 ### Recipe Component
 
