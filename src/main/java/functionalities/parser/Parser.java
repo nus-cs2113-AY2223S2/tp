@@ -42,7 +42,7 @@ public class Parser {
             } else if (task[0].equals("unmark")) {
                 parseUnmarkCommand(userCommand.trim());
             } else if (userCommand.equals("list")) {
-                parseListCommand();
+                parseListCommand(userCommand.trim());
             } else if (userCommand.equals("help")) {
                 parseHelpCommand();
             } else if (userCommand.equals("bye")) {
@@ -263,8 +263,13 @@ public class Parser {
         }
     }
 
-    private static void parseListCommand() {
-        command = new ListCommand();
+    private static void parseListCommand(String task) throws SniffException {
+        if (task.equals("list")) {
+            command = new ListCommand();
+        } else {
+            throw new SniffException(" Not a recognized Sniff command!");
+        }
+
     }
 
     private static void parseRemoveCommand(String task) throws SniffException {

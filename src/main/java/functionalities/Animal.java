@@ -16,6 +16,11 @@ public class Animal {
         return name + " | Animal Type: " + type;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Animal other = (Animal) o;
+        return this.name.equals(other.name) && this.type.equals(other.type);
+    }
     public String getAnimalName() {
         return name;
     }
