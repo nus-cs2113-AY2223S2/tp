@@ -90,6 +90,84 @@ class ParserTest {
     }
 
     @Test
+    public void parseUserInput_validAddCommand_addCommand() throws RainyDayException {
+        assertEquals(AddCommand.class, new Parser().parseUserInput("add -in abc $40.2").getClass());
+        assertEquals(AddCommand.class, new Parser().parseUserInput("add -out abcedfg $4").getClass());
+        assertEquals(AddCommand.class, new Parser().parseUserInput("add -out new phone $1800.99 -c electronics")
+                .getClass());
+        assertEquals(AddCommand.class, new Parser().parseUserInput("add -in income $3000.5 -c income from side job")
+                .getClass());
+        assertEquals(AddCommand.class, new Parser().parseUserInput
+                ("add -out computer $4000 -c new gadget -date 1/4/2023").getClass());
+        assertEquals(AddCommand.class, new Parser().parseUserInput
+                ("add -in youtube $400 -c full time job -date 20/4/2023").getClass());
+        assertEquals(AddCommand.class, new Parser().parseUserInput
+                ("add -out food $3.20 -date 22/05/2023").getClass());
+        assertEquals(AddCommand.class, new Parser().parseUserInput
+                ("add -in allowance $20 -date 22/10/2023").getClass());
+    }
+
+    @Test
+    public void parseUserInput_invalidAddCommand_exception() {
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("add"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("add -a"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("add -"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("add -out"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("add -in $12"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("add -in description"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("add -in des-cription $12"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("add -in description $12 abc"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -c cat-egory"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -c"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -date"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -date 1"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -date 34/2/2024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -date 31/2/2024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -c category -date 12/12a/2024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -c category -date 12/12/2024a"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -c category -date a/12/2024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -c category -date 1/ 12/2024 "));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -c category -date 1/12/ 2024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -c category -date 1/12/2024 abc"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 abc -c category -date 1/12/2024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12.a -c category -date 1/12/2024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -c category -daate 1/12/2024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -date 12/2024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -date 11/13/2024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -date 11/12/024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $0"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out description $12 -date 11/12/024"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out        $12"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out abc $21474836.48"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out abc $21474836.47 -c -date"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput
+                ("add -out abc $21474836.47 -c category -date"));
+    }
+
+    @Test
     public void parseDeleteCommand() {
         financialReport.clearReport();
         financialReport.addStatement(new FinancialStatement("noodles", "in", 5, "miscellaneous",
