@@ -27,6 +27,7 @@ public class Ui {
      * Program Logging
      */
     private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+
     static {
         LogManager.getLogManager().reset();
         ConsoleHandler consoleHandler = new ConsoleHandler();
@@ -34,8 +35,8 @@ public class Ui {
         logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
-            new File("data/UILog.log").createNewFile();
-            FileHandler fileHandler = new FileHandler("data/UILog.log");
+            new File("data/LogFiles/UILog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/LogFiles/UILog.log");
             fileHandler.setLevel(Level.FINE);
             logger.addHandler(fileHandler);
         } catch (IOException e) {

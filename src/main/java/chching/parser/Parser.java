@@ -1,5 +1,6 @@
 package chching.parser;
 
+import chching.ChChing;
 import chching.ChChingException;
 import chching.Ui;
 import chching.command.AddExpenseCommand;
@@ -29,6 +30,8 @@ import chching.record.Expense;
 import chching.record.Income;
 import chching.record.Target;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -37,16 +40,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class Parser {
-    
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+
+    static {
+        LogManager.getLogManager().reset();
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setLevel(Level.SEVERE);
+        logger.addHandler(consoleHandler);
+        logger.setLevel(Level.ALL);
+        try {
+            new File("data/LogFiles/ParserLog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/LogFiles/ParserLog.log");
+            fileHandler.setLevel(Level.FINE);
+            logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
+    }
+
     public static final String FIELD_DEMARCATION = " /";
-    
+
     /**
      * Method that parses command to the relevant classes to execute
      *
-     * @param line        User input
-     * @param ui          User interface
+     * @param line User input
+     * @param ui   User interface
      * @return Appropriate command to be executed
      */
     public static Command parse(String line, Ui ui) throws ChChingException {
@@ -146,7 +171,7 @@ public class Parser {
         }
         return command;
     }
-    
+
     /**
      * Split the String of user input into relevant partitions
      *
@@ -158,18 +183,18 @@ public class Parser {
         lineParts.addAll(Arrays.asList(line.split(FIELD_DEMARCATION)));
         return lineParts;
     }
-    
+
     /**
      * Sort the arguments
      *
      * @param arguments arguments
      * @return Hashmap of sorted arguments
      */
-    
+
     public static HashMap<String, String> sortArguments(List<String> arguments) throws ChChingException {
         HashMap<String, String> argumentsByField = new HashMap<String, String>();
         int argumentsCount = arguments.size();
-        
+
         // split each argument according to their field and their value, and add into
         // hashmap accordingly
         // Hashmap's key is its field, value is the value of the field
@@ -188,7 +213,7 @@ public class Parser {
                     throw new ChChingException("Arguments not inputted correctly / Missing details");
                 }
             }
-            
+
             // checks if it is an existing field
             boolean isDuplicateField = argumentsByField.containsKey(field);
             // check if field/value is empty or just spaces
@@ -203,7 +228,7 @@ public class Parser {
         }
         return argumentsByField;
     }
-    
+
     public static String getType(HashMap<String, String> argumentsByField) throws ChChingException {
         String type = null;
         try {
@@ -223,7 +248,7 @@ public class Parser {
         }
         return category;
     }
-    
+
     public static String getDescription(HashMap<String, String> argumentsByField) throws ChChingException {
         String description = null;
         try {
@@ -233,7 +258,7 @@ public class Parser {
         }
         return description;
     }
-    
+
     public static LocalDate getDate(HashMap<String, String> argumentsByField) throws ChChingException {
         String dateString = null;
         dateString = argumentsByField.get("da");
@@ -253,6 +278,6 @@ public class Parser {
         }
         return date;
     }
-    
-    
+
+
 }

@@ -24,7 +24,7 @@ public class ChChing {
     /**
      * Program Logging
      */
-    private static final  Logger logger = Logger.getLogger(ChChing.class.getName());
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
 
     static {
         LogManager.getLogManager().reset();
@@ -33,14 +33,15 @@ public class ChChing {
         logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
-            new File("data/MainChChing.log").createNewFile();
-            FileHandler fileHandler = new FileHandler("data/MainChChing.log");
+            new File("data/LogFiles/MainChChingLog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/LogFiles/MainChChingLog.log");
             fileHandler.setLevel(Level.FINE);
             logger.addHandler(fileHandler);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "File logger not working.", e);
         }
     }
+
     private Storage storage;
     private IncomeList incomes;
     private ExpenseList expenses;

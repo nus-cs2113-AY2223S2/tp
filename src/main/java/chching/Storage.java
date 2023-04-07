@@ -32,6 +32,7 @@ public class Storage {
      * Program Logging
      */
     private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+
     static {
         LogManager.getLogManager().reset();
         ConsoleHandler consoleHandler = new ConsoleHandler();
@@ -39,8 +40,8 @@ public class Storage {
         logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
-            new File("data/StorageLog.log").createNewFile();
-            FileHandler fileHandler = new FileHandler("data/StorageLog.log");
+            new File("data/LogFiles/StorageLog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/LogFiles/StorageLog.log");
             fileHandler.setLevel(Level.FINE);
             logger.addHandler(fileHandler);
         } catch (IOException e) {
