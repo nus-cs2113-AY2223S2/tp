@@ -353,9 +353,9 @@ The main callable functions to be used are:
 - `writeToDatabase()` - Serializes `Entry` objects in `EntryLog` into text form.
 - `reset()` - Clears whatever is in the stored text file, without affecting what is in the current `EntryLog`.
 
-The structure of the Storage class is as follows:
+<!-- The structure of the Storage class is as follows:
 
-![StorageClassDiagram](static/backend/storage/StorageClassDiagram.png)
+![StorageClassDiagram](static/backend/storage/StorageClassDiagram.png) -->
 
 #### Reading from Database
 
@@ -448,8 +448,8 @@ Entry entry = EntryParser.deserialise(res.getData());
 
 `GET /entries`
 
-<details>
-   <summary>Sequence diagram</summary>
+<details markdown=1>
+   <summary markdown="span">Sequence diagram</summary>
 
    <img alt="Entries Endpoint [GET] Sequence Diagram" src="./static/backend/endpoint/EntriesEndpointGetSequence.png" />
 
@@ -501,8 +501,8 @@ __Responses__
 
 `POST /entry`
 
-<details>
-   <summary>Sequence diagram</summary>
+<details markdown=1>
+   <summary markdown="span">Sequence diagram</summary>
 
    <img alt="Entry Endpoint [POST] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointPostSequence.png" />
 
@@ -526,8 +526,8 @@ __Responses__
 
 `GET /entry`
 
-<details>
-   <summary>Sequence diagram</summary>
+<details markdown=1>
+   <summary markdown="span">Sequence diagram</summary>
 
    <img alt="Entry Endpoint [GET] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointGetSequence.png" />
 
@@ -552,8 +552,8 @@ __Responses__
 
 `DELETE /entry`
 
-<details>
-   <summary>Sequence diagram</summary>
+<details markdown=1>
+   <summary markdown="span">Sequence diagram</summary>
 
    <img alt="Entry Endpoint [DELETE] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointDeleteSequence.png" />
 
@@ -578,8 +578,8 @@ __Responses__
 
 `PATCH /entry`
 
-<details>
-   <summary>Sequence diagram</summary>
+<details markdown=1>
+   <summary markdown="span">Sequence diagram</summary>
 
    <img alt="Entry Endpoint [PATCH] Sequence Diagram" src="./static/backend/endpoint/EntryEndpointPatchSequence.png" />
 
@@ -651,8 +651,8 @@ clear separation of the setup, operations and results.
 For backend testing, we use utility classes such as `EntryTestUtil` and `BackendTestUtil` to reduce code repetition and
 to simplify the testing process.
 
-<details>
-<summary>Example</summary>
+<details markdown=1>
+<summary markdown="span">Example</summary>
 
   ```java
 
@@ -714,7 +714,7 @@ for each major component is working, before they are combined and tested through
 
 ## Instructions for manual testing
 
-Refer to the [user guide](../docs/UserGuide.md#getting-started) on launching PocketPal.
+Refer to the [user guide](./UserGuide.md#getting-started) on launching PocketPal.
 
 ### Feature Testing
 
@@ -723,21 +723,21 @@ in PocketPal.
 
 ---
 
-**Do note that the test cases provided are not exhaustive and may not cover all possible outcomes.**
+**Do note that the expenses depicted in the test cases below may vary depending on the expenses you have added.**
 
 ---
 
 ### Add expense: /add
 
-**Usage:** `/add <-d | -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c | -category CATEGORY> <-p | -price PRICE>`
+**Usage:** `/add -d <description> -c <category> -p <price>`
 
 __Test Case 1 (All required flags are provided):__
 
 - **Prerequisites:** None
 - __Input:__ `/add -d McDonalds -c Food -p 10.50`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -758,12 +758,13 @@ __Test Case 2 (Missing price flag):__
 - **Prerequisites:** None
 - __Input:__ `/add -d McDonalds -c Food`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
-Please specify the price using the '-p' flag!
+Missing required options: 
+-p|-price
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -772,16 +773,15 @@ Enter a command or /help to see the list of commands available.
 
 ### View expense: /view
 
-**Usage:** `/view [COUNT] [-c | -category CATEGORY] [-p | -price PRICE_MIN] [-p | -price PRICE_MAX]
-[<-sd | -startdate START_DATE -ed | -enddate END_DATE>]`
+**Usage:** `/view [count] [filter_options]`
 
 __Test case 1 (No expenses exist):__
 
-- **Prerequisites:** None.
+- **Prerequisites:** Ensure that there are currently no expenses added.
 - __Input:__ `/view`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -798,17 +798,18 @@ __Test case 2 (Multiple expenses exist):__
 - **Prerequisites:** At least **3** existing expenses.
 - __Input:__ ```/view 3```
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
 These are the latest 3 entries.
-<1>: McDonalds (Food) - $10.50 <<28 Mar 2023, 01:03:39>>
-<2>: Air Jordan 1 (Clothing) - $200.00 <<28 Mar 2023, 01:04:30>>
-<3>: Birthday Dinner (Food) - $150.00 <<28 Mar 2023, 01:04:42>>
+Total expenditure: $360.50
+Total income: $0.00
+<1>: McDonalds (Food) - $10.50 <<7 Apr 2023; 15:53>>
+<2>: Air Jordan 1 (Clothing) - $200.00 <<7 Apr 2023; 15:53>>
+<3>: Birthday Dinner (Food) - $150.00 <<7 Apr 2023; 15:53>>
 ________________________________________________
-
 Enter a command or /help to see the list of commands available.
 ```
 
@@ -816,19 +817,20 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 3 (View entries in price range)__
 
-- **Prerequisites:** At least **1** existing expense.
-- __Input:__ ```/view -p 120.50 -p 210.00```
+- **Prerequisites:** At least **2** existing expenses with price range between $120.50 and $210.00 inclusive.
+- __Input:__ ```/view -sp 120.50 -ep 210.00```
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
 These are the latest 2 entries.
-<1>: Air Jordan 1 (Clothing) - $200.00 <<28 Mar 2023, 01:04:30>>
-<2>: Birthday Dinner (Food) - $150.00 <<28 Mar 2023, 01:04:42>>
+Total expenditure: $350.00
+Total income: $0.00
+<1>: Air Jordan 1 (Clothing) - $200.00 <<7 Apr 2023; 15:53>>
+<2>: Birthday Dinner (Food) - $150.00 <<7 Apr 2023; 15:53>>
 ________________________________________________
-
 Enter a command or /help to see the list of commands available.
 ```
 
@@ -836,18 +838,17 @@ Enter a command or /help to see the list of commands available.
 
 ### Delete expense: /delete
 
-**Usage:** `/delete <EXPENSE_ID>`
+**Usage:** `/delete <index> [additional_index...]`
 
 You may view the list of existing expenses along with their corresponding indexes with `/view`.
 
 __Test case 1:__
 
-- **Prerequisites:** At least **3** expenses pre-added into the program, with the 3rd expense matching the one shown
-  in the example above.
+- **Prerequisites:** At least **3** expenses pre-added into the program.
 - __Input:__ `/delete 3`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -864,15 +865,16 @@ Enter a command or /help to see the list of commands available.
 
 __Test case 2__
 
-- **Prerequisites:** Fewer than **5** expenses pre-added into the program
+- **Prerequisites:** Fewer than **20** expenses pre-added into the program
 - __Input:__ `/delete 20`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
-Please enter a valid numerical index!
+Item ID does not exist: 20
+Please specify a valid integer from 1 to 2147483647!
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -885,8 +887,8 @@ __Test case 3__
 - **Prerequisites:** At least **2** expenses pre-added into the program
 - __Input:__ `/delete 1 2`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -909,15 +911,15 @@ Enter a command or /help to see the list of commands available.
 
 ### Edit expense: /edit
 
-**Usage:** `/edit <EXPENSE_ID> [-c | -category NEW_CATEGORY] [-p | -price NEW_PRICE] [-d | -description NEW_DESC]`
+**Usage:** `/edit <index> [options]`
 
 __Test case 1 (Editing all flags)__
 
 - **Prerequisites:** At least **2** expenses pre-added into the program.
 - __Input:__ `/edit 2 -p 300.50 -c others -d MacBook Air`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -925,6 +927,7 @@ The following expenditure has been updated:
 Description: MacBook Air
 Price: $300.50
 Category: Others
+7 Apr 2023; 16:22
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -937,8 +940,8 @@ __Test case 2 (Editing price only)__
   the example above.
 - __Input:__ `/edit 2 -p 300.50`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
@@ -946,6 +949,7 @@ The following expenditure has been updated:
 Description: MacBook Air
 Price: $300.50
 Category: Others
+7 Apr 2023; 16:22
 ________________________________________________
 Enter a command or /help to see the list of commands available.
 ```
@@ -961,26 +965,51 @@ __Test case__
 - **Prerequisites:** None.
 - __Input:__ `/help`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________
-PocketPal is a expense tracking app, optimised for use via a Command Line Interface.
+PocketPal is a expense tracking app, optimised for use via a Command Line Interface. 
 Users can take advantage of the input flags for entering entries quickly.
 Listed below are the various commands that are currently supported.
 
 Add - Adds an expense to your current expenditure.
-Usage: /add <DESCRIPTION> <-c CATEGORY> <-p PRICE>
+Usage: /add -d <description> -c <category> -p <price>
+Options:
+-d <description>
+-c <category>
+-p <price>
+See below for examples
+/add -d Apple Macbook Air -p 1300 -c Personal
+/add -p 1300 -c Personal -d Apple Macbook Air
 
-Delete - Deletes a specified expense from your expenditure.
-Usage: /delete <EXPENSE_ID>
+Delete - Deletes specified expense(s) from your expenditure.
+Usage: /delete <index> [additional_index...]
+See below for examples
+/delete 10 11 13 
+/delete 1
 
 Edit - Edits a specified expense in your current expenditure.
-Usage: /edit <EXPENSE_ID> [FLAG...]
+Usage: /edit <index> [options]
+Options:
+-d <description>
+-c <category>
+-p <price>
+See below for examples
+/edit 5 -d Grab to school -c Transportation -p 20.00
 
 View - Displays a list of your current expenditure.
-Usage: /view [COUNT]
+Usage: /view [count] [filter_options]
+Filter options:
+-c <category>
+-sp <startprice>
+-ep <endprice>
+-sd <startdate>, -ed <enddate>
+See below for examples
+/view 100 -c Transportation -sp 2.00 -ep 5.00
+/view -sd 21/11/97 -ed 22/11/97 -c Transportation -sp 2.00
+/view 10 -sd 21/11/97 -ed 22/12/97 -c Transportation -sp 2.00 -ep 6.00
 
 Help - Displays the help menu.
 Usage: /help
@@ -1000,10 +1029,10 @@ Enter a command or /help to see the list of commands available.
 __Test case__
 
 - **Prerequisites:** None.
-- __Input:__ `/delete 3`
+- __Input:__ `/bye`
 
-<details>
-<summary>Expected output:</summary>
+<details markdown=1>
+<summary markdown="span">Expected output:</summary>
 
 ```
 ________________________________________________

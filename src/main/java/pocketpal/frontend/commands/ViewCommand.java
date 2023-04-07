@@ -28,7 +28,7 @@ public class ViewCommand extends Command {
 
     public ViewCommand(int numberOfEntriesToView) {
         this(numberOfEntriesToView, null, MiscellaneousConstants.AMOUNT_MIN_DOUBLE,
-                MiscellaneousConstants.AMOUNT_MAX_DOUBLE, "", "");
+                MiscellaneousConstants.AMOUNT_MAX_DOUBLE, null, null);
     }
 
     public ViewCommand(int numberOfEntriesToView,
@@ -60,7 +60,7 @@ public class ViewCommand extends Command {
         if (numberOfEntriesToView <= 0) {
             throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
         }
-        if (!startDateString.isEmpty() && !endDateString.isEmpty()){
+        if (startDateString != null && endDateString != null) {
             request.addParam(RequestParams.FILTER_BY_TIME_START, startDateString);
             request.addParam(RequestParams.FILTER_BY_TIME_END, endDateString);
         }

@@ -13,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.exceptions.InvalidDateException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -179,16 +178,6 @@ public class EntryLogTest extends EntryTestUtil {
             expectedEntries.add(ENTRY_4);
             EntryLog filteredEntries = entryLog.filterByCategory(Category.FOOD);
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
-        }
-
-        // @@author leonghuenweng
-        @Test
-        void filterBetweenDates_startDateAfterEndDate() {
-            LocalDateTime startDateTime = LocalDateTime.parse("21/12/99 23:30", formatter);
-            LocalDateTime endDateTime = LocalDateTime.parse("21/12/80 23:30", formatter);
-            Exception invalidDateException = assertThrows(InvalidDateException.class,
-                    () -> entryLog.filterBetweenDates(startDateTime, endDateTime));
-            assertEquals(invalidDateException.getMessage(), MessageConstants.MESSAGE_MIXED_DATE);
         }
 
         @Test

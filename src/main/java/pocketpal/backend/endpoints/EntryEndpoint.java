@@ -40,7 +40,7 @@ public class EntryEndpoint extends Endpoint {
             return new Response(ResponseStatus.OK, deletedEntry.serialise());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             logger.warning("/entry [DELETE]: received invalid entry ID");
-            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage());
+            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage(request.getBody()));
         }
     }
 
@@ -51,13 +51,13 @@ public class EntryEndpoint extends Endpoint {
             int targetEntryId = getPositiveIntegerFromString(request.getBody());
             Entry entry = entries.getEntry(targetEntryId);
             if (entry == null) {
-                throw new NumberFormatException();
+                throw new NumberFormatException(getInvalidIDMessage(String.valueOf(targetEntryId)));
             }
             logger.info("/entry [GET]: OK");
             return new Response(ResponseStatus.OK, entry.serialise());
         } catch (NumberFormatException e) {
             logger.warning("/entry [GET]: received invalid entry ID " + request.getBody());
-            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage());
+            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage(request.getBody()));
 
         }
     }
@@ -80,7 +80,7 @@ public class EntryEndpoint extends Endpoint {
             int targetEntryId = getPositiveIntegerFromString(request.getBody());
             editEntry = entries.getEntry(targetEntryId);
             if (editEntry == null) {
-                throw new NumberFormatException();
+                throw new NumberFormatException(getInvalidIDMessage(String.valueOf(targetEntryId)));
             }
 
             if (request.hasParam(RequestParams.EDIT_CATEGORY)) {
@@ -103,7 +103,7 @@ public class EntryEndpoint extends Endpoint {
             return new Response(ResponseStatus.OK, editEntry.serialise());
         } catch (NumberFormatException e) {
             logger.warning("/entry [PATCH]: received invalid entry ID " + request.getBody());
-            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage());
+            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage(request.getBody()));
         } catch (InvalidCategoryException e) {
             logger.warning("/entry [PATCH]: received invalid category" + request.getBody());
             return new Response(ResponseStatus.UNPROCESSABLE_CONTENT,
@@ -119,7 +119,7 @@ public class EntryEndpoint extends Endpoint {
      *
      * @param request The request should have the following data
      *                - data: Serialised Entry to be added
-     * @return Created response
+     * @return Created response if Entry data is valid, otherwise Unprocessable Content with error message
      */
     @Override
     public Response handlePost(Request request) {
@@ -146,9 +146,11 @@ public class EntryEndpoint extends Endpoint {
     /**
      * Utility method when user inputs invalid entry ID
      *
+     * @param entryId The requested entry ID
      * @return Invalid ID Message
      */
-    private String getInvalidIDMessage() {
-        return MessageConstants.MESSAGE_ID_NOT_FOUND + entries.getSize() + ".";
+    private String getInvalidIDMessage(String entryId) {
+        return MessageConstants.MESSAGE_NON_EXISTENT_ID + entryId + System.lineSeparator()
+                + MessageConstants.MESSAGE_ID_NOT_FOUND + entries.getSize() + ".";
     }
 }
