@@ -39,36 +39,28 @@ class ParserTest {
 
     // todo add more test cases
     @Test
-    public void parseAddInCommand() {
+    public void parseAddInCommand() throws RainyDayException {
         FinancialReport testReport = new FinancialReport(statements);
         testReport.addStatement(new FinancialStatement("noodles", "in", 5, "miscellaneous",
                 LocalDate.now()));
-        try {
-            new Parser().parseUserInput("add -in noodles $5");
-            assertEquals(financialReport.getFullStatement(0),
-                    testReport.getFullStatement(0)); // todo, update after modified
-            testReport.addStatement(new FinancialStatement("rice", "in", 10, "food",
-                    LocalDate.now()));
-            new Parser().parseUserInput("add -in rice $10 -c food");
-            assertEquals(financialReport.getFullStatement(1),
-                    testReport.getFullStatement(1));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        new Parser().parseUserInput("add -in noodles $5");
+        assertEquals(financialReport.getFullStatement(0),
+                testReport.getFullStatement(0)); // todo, update after modified
+        testReport.addStatement(new FinancialStatement("rice", "in", 10, "food",
+                LocalDate.now()));
+        new Parser().parseUserInput("add -in rice $10 -c food");
+        assertEquals(financialReport.getFullStatement(1),
+                testReport.getFullStatement(1));
     }
 
     @Test
-    public void parseAddOutCommand() {
-        try {
-            FinancialReport testReport = new FinancialReport(statements);
-            testReport.addStatement(new FinancialStatement("noodles", "out", 5,
-                    "miscellaneous", LocalDate.now()));
-            new Parser().parseUserInput("add -out noodles $5");
-            assertEquals(financialReport.getFullStatement(0),
-                    testReport.getFullStatement(0)); // todo, update after modified
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public void parseAddOutCommand() throws RainyDayException {
+        FinancialReport testReport = new FinancialReport(statements);
+        testReport.addStatement(new FinancialStatement("noodles", "out", 5,
+                "miscellaneous", LocalDate.now()));
+        new Parser().parseUserInput("add -out noodles $5");
+        assertEquals(financialReport.getFullStatement(0),
+                testReport.getFullStatement(0)); // todo, update after modified
     }
 
     @Test
