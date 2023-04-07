@@ -27,17 +27,17 @@ import com.google.gson.JsonElement;
  * Models a class to handle storage for the program.
  */
 public class Storage {
-    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
-
     /**
      * Program Logging
      */
+    private final static Logger logger = Logger.getLogger(ChChing.class.getName());
     static {
         Handler handler = new ConsoleHandler();
         handler.setLevel(Level.ALL);
         logger.addHandler(handler);
         logger.setLevel(Level.ALL);
     }
+
     private final File file;
 
     /**

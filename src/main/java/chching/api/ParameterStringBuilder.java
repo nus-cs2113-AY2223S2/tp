@@ -11,7 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ParameterStringBuilder {
-    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+    /**
+     * Program Logging
+     */
+    private final static Logger logger = Logger.getLogger(ChChing.class.getName());
 
     static {
         Handler handler = new ConsoleHandler();

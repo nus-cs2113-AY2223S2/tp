@@ -9,11 +9,10 @@ import java.util.logging.Logger;
  * Models a class for exception thrown
  */
 public class ChChingException extends Exception {
-    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
-
     /**
      * Program Logging
      */
+    private final static Logger logger = Logger.getLogger(ChChing.class.getName());
     static {
         Handler handler = new ConsoleHandler();
         handler.setLevel(Level.ALL);
@@ -25,9 +24,5 @@ public class ChChingException extends Exception {
         super(message);
         this.message = message;
     }
-
-    // public void printChChingException() {
-    //     System.out.println(message);
-    // }
 }
 

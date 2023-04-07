@@ -30,7 +30,7 @@ public class ChChing {
     /**
      * Program Logging
      */
-    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+    private final static  Logger logger = Logger.getLogger(ChChing.class.getName());
 
     static {
         Handler handler = new ConsoleHandler();

@@ -19,17 +19,18 @@ import java.util.logging.Logger;
  * Models a class for user interface of the program
  */
 public class Ui {
-    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
-
     /**
      * Program Logging
      */
+    private final static Logger logger = Logger.getLogger(ChChing.class.getName());
+
     static {
         Handler handler = new ConsoleHandler();
         handler.setLevel(Level.ALL);
         logger.addHandler(handler);
         logger.setLevel(Level.ALL);
     }
+
     public String readCommand() {
         Scanner input = new Scanner((new InputStreamReader(System.in, Charset.forName("UTF-8"))));
         return input.nextLine();
@@ -78,13 +79,13 @@ public class Ui {
     }
 
     public void showAllRecords(IncomeList incomes, ExpenseList expenses, Selector selector, Converter converter) {
-        if(incomes.size() == 0 && expenses.size() == 0) {
+        if (incomes.size() == 0 && expenses.size() == 0) {
             System.out.println("    Both lists are empty. Start adding!");
-        } else if(incomes.size() == 0) {
+        } else if (incomes.size() == 0) {
             System.out.println("    Income list is empty. Start adding!");
             System.out.println();
             showExpenseList(expenses, selector, converter);
-        } else if(expenses.size() == 0) {
+        } else if (expenses.size() == 0) {
             showIncomeList(incomes, selector, converter);
             System.out.println();
             System.out.println("    Expense list is empty. Start adding!");
@@ -202,6 +203,7 @@ public class Ui {
 
         System.out.println("    Target added");
     }
+
     public void clearTarget() {
         System.out.println("    Target cleared");
     }
@@ -211,7 +213,7 @@ public class Ui {
     }
 
     public void showExpenseList(ExpenseList expenses, Selector selector, Converter converter) {
-        if(expenses.size() == 0) {
+        if (expenses.size() == 0) {
             showEmptyListMessage();
         } else {
             System.out.println("    Here are the expenses in your list:");
@@ -220,7 +222,7 @@ public class Ui {
     }
 
     public void showIncomeList(IncomeList income, Selector selector, Converter converter) {
-        if(income.size() == 0) {
+        if (income.size() == 0) {
             showEmptyListMessage();
         } else {
             System.out.println("    Here are the incomes in your list:");
