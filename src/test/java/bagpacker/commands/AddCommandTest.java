@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * CommandsTest to test methods in Commands class
+ * AddCommandTest to test methods in AddCommand class
  */
 public class AddCommandTest {
 
