@@ -27,7 +27,7 @@ public class ParseAdd {
     public static final String BLANK = "";
     public static final String DSLASH = "d/";
     public static final String ASLASH = "a/";
-    public static final String SSLASH = "s/";
+    public static final String PSLASH = "p/";
     private final String userInput;
 
     public ParseAdd(String userInput) {
@@ -80,13 +80,13 @@ public class ParseAdd {
 
     public String fetchDescription() throws EmptyStringException, StringIndexOutOfBoundsException {
         // Removes indicators and backslashes from the user input
-        return ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
+        return ParseIndividualValue.parseIndividualValue(userInput, PSLASH, BLANK);
     }
 
     public double fetchDouble() throws InvalidCharacterInAmount, EmptyStringException,
             StringIndexOutOfBoundsException, SmallAmountException, NotPositiveValueException, NumberFormatException {
         // Converts string to double for numerical addition functionalities
-        String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, SSLASH);
+        String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH, PSLASH);
         ExceptionChecker.checkValidDoubleInput(amountVal);
         double amount = Double.parseDouble(amountVal);
         ExceptionChecker.checkValidAmount(amount);
