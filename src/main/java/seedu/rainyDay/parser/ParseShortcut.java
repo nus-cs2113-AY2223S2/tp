@@ -8,7 +8,7 @@ import seedu.rainyDay.exceptions.RainyDayException;
 //@@author KN-CY
 public class ParseShortcut {
 
-    public static Command generateShortcut(String userInput) throws RainyDayException {
+    public Command generateShortcut(String userInput) throws RainyDayException {
         if (!userInput.contains(" -maps ")) {
             throw new RainyDayException(ErrorMessage.WRONG_SHORTCUT_FORMAT.toString());
         }

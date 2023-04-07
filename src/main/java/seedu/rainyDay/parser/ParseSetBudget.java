@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 public class ParseSetBudget {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    public static Command setUserBudgetGoal(String userInput) throws RainyDayException {
+    public Command setUserBudgetGoal(String userInput) throws RainyDayException {
         try {
             double amount = Double.parseDouble(userInput);
             amount = (int) (amount * 100);

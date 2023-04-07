@@ -179,7 +179,7 @@ expenditures for the month.
 
 The exceptions component consists of classes `ErrorMessage` and `RainyDayException`.
 
-- `ErrprMessages`:
+- `ErrorMessages`:
 - `RainyDayException`:
 
 ## Implementation
@@ -210,8 +210,6 @@ The sequence diagram for the implementation of add is as shown below.
 
 ![AddCommandSequenceDiagram.png](images\DeveloperGuide\AddCommandSequenceDiagram.png)
 
-
-
 #### Design considerations
 
 Format of add command
@@ -238,8 +236,6 @@ Format of add command
 The sequence diagram for the implementation of delete is as shown below.
 
 ![DeleteCommandSequenceDiagram.png](images\DeveloperGuide\DeleteCommandSequenceDiagram.png)
-
-
 
 #### Design considerations
 

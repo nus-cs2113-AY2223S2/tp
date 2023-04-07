@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class ParseEdit {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    public static Command editStatement(String userInput) throws RainyDayException {
+    public Command editStatement(String userInput) throws RainyDayException {
         String[] tokens = userInput.split("\\s+", 3);
         if (tokens.length < 3) {
             logger.warning("invalid edit index from user");
@@ -64,7 +64,7 @@ public class ParseEdit {
         }
     }
 
-    private static ArrayList<String> parseEditMultipleFlags(String input, int sizeOfEditFlagAndField) throws
+    private ArrayList<String> parseEditMultipleFlags(String input, int sizeOfEditFlagAndField) throws
             RainyDayException {
         Pattern pattern = Pattern.compile("(?:(-in|-out)\\s*)?\\s*" +
                 "(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +

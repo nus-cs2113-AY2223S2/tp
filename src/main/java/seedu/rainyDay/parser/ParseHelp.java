@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 public class ParseHelp {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    public static HelpCommand displayHelp(String input) {
+    public HelpCommand displayHelp(String input) {
         input = input.substring(4);
         return new HelpCommand(input.trim());
     }

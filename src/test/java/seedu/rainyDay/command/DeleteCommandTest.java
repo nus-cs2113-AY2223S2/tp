@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class DeleteCommandTest {
     ArrayList<FinancialStatement> statements = new ArrayList<>();
@@ -23,26 +24,41 @@ public class DeleteCommandTest {
 
     @Test
     public void execute() {
-        AddCommand addFirstCommand = new AddCommand("Ipad", "out", 120, "Default",
+        AddCommand addCommand = new AddCommand("Ipad", "out", 120, "Default",
                 LocalDate.now());
-        addFirstCommand.setData(userData);
-        addFirstCommand.execute();
-        AddCommand addSecondCommand = new AddCommand("angpao", "in", 3000, "Default",
+        addCommand.setData(userData);
+        addCommand.execute();
+
+        addCommand = new AddCommand("noodles", "out", 3, "Default",
                 LocalDate.now());
-        addSecondCommand.setData(userData);
-        addSecondCommand.execute();
+        addCommand.setData(userData);
+        addCommand.execute();
+
+        addCommand = new AddCommand("angpao", "in", 3000, "Default",
+                LocalDate.now());
+        addCommand.setData(userData);
+        addCommand.execute();
 
         DeleteCommand deleteCommand = new DeleteCommand(1);
         deleteCommand.setData(userData);
         CommandResult result = deleteCommand.execute();
         String expectedDeleteStatement = "Done, deleted \"Ipad\" from the financial report";
         assertEquals(expectedDeleteStatement, result.output);
-        System.out.println(result.output);
+        FinancialStatement statement = new FinancialStatement("Ipad", "out", 120,
+                "Default", LocalDate.now());
+        for (int i = 0; i < userData.getSavedData().getFinancialReport().getStatementCount(); i += 1) {
+            assertNotEquals(statement, userData.getSavedData().getStatement(i));
+        }
 
-        DeleteCommand deleteSecondCommand = new DeleteCommand(1);
-        deleteSecondCommand.setData(userData);
-        CommandResult secondResult = deleteSecondCommand.execute();
+        deleteCommand = new DeleteCommand(2);
+        deleteCommand.setData(userData);
+        CommandResult secondResult = deleteCommand.execute();
         expectedDeleteStatement = "Done, deleted \"angpao\" from the financial report";
         assertEquals(expectedDeleteStatement, secondResult.output);
+        statement = new FinancialStatement("angpao", "in", 3000,
+                "Default", LocalDate.now());
+        for (int i = 0; i < userData.getSavedData().getFinancialReport().getStatementCount(); i += 1) {
+            assertNotEquals(statement, userData.getSavedData().getStatement(i));
+        }
     }
 }

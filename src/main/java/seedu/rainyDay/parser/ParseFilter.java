@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class ParseFilter {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    public static Command filterStatement(String userInput) throws RainyDayException {
+    public Command filterStatement(String userInput) throws RainyDayException {
         String[] action = userInput.split("\\s+", 2);
         if (action.length == 1) {
             logger.warning("No flags in filter");
@@ -49,7 +49,7 @@ public class ParseFilter {
         }
     }
 
-    private static ArrayList<String> parseFilterMultipleFlags(String input, int sizeOfFilterFlagAndField) throws
+    private ArrayList<String> parseFilterMultipleFlags(String input, int sizeOfFilterFlagAndField) throws
             RainyDayException {
         Pattern pattern = Pattern.compile("(?:(-in|-out)\\s*)?\\s*" +
                 "(?:(-d)\\s+([^\\s-]+(?:\\s+[^\\s-]+)*)\\s*)?" +
