@@ -1,5 +1,6 @@
 package functionalities.commands;
 
+import exception.SniffException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -10,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ConsultationCommandTest {
 
     @Test
-    void consultationCommandNotNull() {
-        String animalName = "";
-        String animalType = "";
-        String ownerName = "";
-        String contactNumber = "";
+    void consultationCommandNotNull() throws SniffException {
+        String animalName = "lulu";
+        String animalType = "cat";
+        String ownerName = "jon";
+        String contactNumber = "91919191";
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
-        ConsulationCommand c = new ConsulationCommand(animalType, animalName, ownerName,
+        ConsultationCommand c = new ConsultationCommand(animalType, animalName, ownerName,
                 contactNumber, date, time);
         assertNotNull(c);
     }

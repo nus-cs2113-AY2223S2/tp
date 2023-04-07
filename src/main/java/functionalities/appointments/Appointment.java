@@ -27,6 +27,10 @@ public abstract class Appointment {
         this.owner = owner;
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
+
     public abstract String toString();
 
     public abstract String getDescription();

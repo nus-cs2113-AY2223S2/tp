@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import exception.SniffException;
 import functionalities.commands.Command;
-import functionalities.commands.ConsulationCommand;
+import functionalities.commands.ConsultationCommand;
 import functionalities.commands.ExitCommand;
 import functionalities.commands.FindCommand;
 import functionalities.commands.ListCommand;
@@ -27,7 +27,7 @@ public class ParserTest {
         } catch (SniffException e) {
             Assertions.fail("SniffException thrown when not expected");
         }
-        assertTrue(consultationParsedCommand instanceof ConsulationCommand,
+        assertTrue(consultationParsedCommand instanceof ConsultationCommand,
                 "consultationParsedCommand is not an instance of ConsultationCommand");
     }
 

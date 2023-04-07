@@ -4,7 +4,6 @@ import exception.SniffException;
 import functionalities.Animal;
 import functionalities.Owner;
 import functionalities.SniffTasks;
-import functionalities.ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,7 +20,7 @@ public class SurgeryCommand extends Command {
 
     public SurgeryCommand(String animalType, String animalName, String ownerName,
                           String contactNumber, LocalDate startDate, LocalTime startTime,
-                          LocalDate endDate, LocalTime endTime, String priority) {
+                          LocalDate endDate, LocalTime endTime, String priority) throws SniffException {
         this.priority = priority;
         this.animal = new Animal(animalType, animalName);
         this.owner = new Owner(ownerName, contactNumber);
@@ -34,6 +33,5 @@ public class SurgeryCommand extends Command {
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
         tasks.addSurgery(animal, owner, priority, startDate, startTime, endDate, endTime);
-        Ui.showUserMessage(" Surgery added successfully!");
     }
 }
