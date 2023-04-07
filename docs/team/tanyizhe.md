@@ -60,17 +60,4 @@ can be used to treat their current ailment.
             how MedicineManager, Medicine, Parser, and IllnessMatch classes work and how they interact.
   * Community contributions:
     * Reported bugs for other teams:
-      * [#1](https://github.com/tanyizhe/ped/issues/1)
-      * [#2](https://github.com/tanyizhe/ped/issues/2)
-      * [#3](https://github.com/tanyizhe/ped/issues/3)
-      * [#4](https://github.com/tanyizhe/ped/issues/4)
-      * [#5](https://github.com/tanyizhe/ped/issues/5)
-      * [#6](https://github.com/tanyizhe/ped/issues/6)
-      * [#7](https://github.com/tanyizhe/ped/issues/7)
-      * [#8](https://github.com/tanyizhe/ped/issues/8)
-      * [#9](https://github.com/tanyizhe/ped/issues/9)
-      * [#10](https://github.com/tanyizhe/ped/issues/10)
-      * [#11](https://github.com/tanyizhe/ped/issues/11)
-      * [#12](https://github.com/tanyizhe/ped/issues/12)
-      * [#13](https://github.com/tanyizhe/ped/issues/13)
-      * [#14](https://github.com/tanyizhe/ped/issues/14)
+      * [#1](https://github.com/tanyizhe/ped/issues/1), [#2](https://github.com/tanyizhe/ped/issues/2), [#3](https://github.com/tanyizhe/ped/issues/3), [#4](https://github.com/tanyizhe/ped/issues/4), [#5](https://github.com/tanyizhe/ped/issues/5), [#6](https://github.com/tanyizhe/ped/issues/6), [#7](https://github.com/tanyizhe/ped/issues/7), [#8](https://github.com/tanyizhe/ped/issues/8), [#9](https://github.com/tanyizhe/ped/issues/9), [#10](https://github.com/tanyizhe/ped/issues/10), [#11](https://github.com/tanyizhe/ped/issues/11), [#12](https://github.com/tanyizhe/ped/issues/12), [#13](https://github.com/tanyizhe/ped/issues/13), [#14](https://github.com/tanyizhe/ped/issues/14)
