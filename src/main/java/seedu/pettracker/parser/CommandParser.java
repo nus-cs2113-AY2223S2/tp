@@ -4,6 +4,7 @@ import seedu.pettracker.commands.Command;
 import seedu.pettracker.commands.InvalidCommand;
 
 import seedu.pettracker.exceptions.UnknownKeywordException;
+import seedu.pettracker.exceptions.EmptyArgException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,6 +27,7 @@ public class CommandParser {
     final String KEYWORD_SCHEDULE_TASKS = "schedule";
     final String KEYWORD_HELP = "help";
     final String UNKNOWN_KEYWORD_MESSAGE = "Please enter a valid command!";
+    final String EMPTY_CMD_MESSAGE = "Please enter a command!";
 
     public CommandParser() {
     }
@@ -47,7 +49,7 @@ public class CommandParser {
     public Command newCommand(String commandString) throws Exception {
         final Matcher matcher = COMMAND_FORMAT.matcher(commandString.trim());
         if (!matcher.matches()) {
-            return new InvalidCommand(UNKNOWN_KEYWORD_MESSAGE);
+            throw new EmptyArgException(EMPTY_CMD_MESSAGE);
         }
 
         final String keyword = matcher.group("keyword");
