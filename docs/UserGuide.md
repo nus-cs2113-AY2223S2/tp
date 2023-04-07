@@ -170,4 +170,5 @@ Example of usage:
 * `edit` - Edit an event in Moneymind
 * `view` - View all events in a category or view all categories in Moneymind
 * `help` - Show the help message
+* `search` - Search for a Category or Event
 * `bye` - Exit the program
