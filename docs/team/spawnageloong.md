@@ -33,7 +33,8 @@ Given below are my contributions to Pet Tracker:
       [\#79](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/79)
     * Increased JUnit Test Coverage for parser related commands
       [\#65](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/65),
-      [\#191](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/191)
+      [\#191](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/191),
+      [\#206](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/206)
 
 * **Documentations**:
     * Developer Guide:
