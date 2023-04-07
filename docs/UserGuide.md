@@ -369,20 +369,20 @@ John Doe~|~Sunday~|~2001-03-09~|~82802123
 
 ## Summary of Commands
 
-| Action          | Command                                                                                                      |
-|-----------------|--------------------------------------------------------------------------------------------------------------|
-| help            | `help`                                                                                                       |
-| add_meeting     | `add_meeting n/<name> t/<time>`                                                                              |
-| view_meetings   | `view_meetings`                                                                                              |
-| delete_meeting  | `delete_meeting <index>`                                                                                         |
-| find_meeting    | `find_meeting <string>`                                                                                      |
+| Action          | Command                                                                                                        |
+|-----------------|----------------------------------------------------------------------------------------------------------------|
+| help            | `help`                                                                                                         |
+| add_meeting     | `add_meeting n/<name> t/<time>`                                                                                |
+| view_meetings   | `view_meetings`                                                                                                |
+| delete_meeting  | `delete_meeting <meeting index>`                                                                               |
+| find_meeting    | `find_meeting <string>`                                                                                        |
 | add_dish        | `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]` |
 | view_dish       | `view_dish`                                                                                                    |
-| delete_dish     | `delete_dish <index_number>`                                                                                   |
+| delete_dish     | `delete_dish <dish index>`                                                                                     |
 | find_dish       | `find_dish <keyword>`                                                                                          |
 | add_deadline    | `add_deadline n/<name> t/<time>`                                                                               |
 | view_deadlines  | `view_deadlines`                                                                                               |
-| delete_deadline | `delete_deadline <index>`                                                                                      |
+| delete_deadline | `delete_deadline <deadline index>`                                                                             |
 | find_deadline   | `find_deadline <keyword>`                                                                                      |
 | add_staff       | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                                 |
 | view_staff      | `view_staff`                                                                                                   |
