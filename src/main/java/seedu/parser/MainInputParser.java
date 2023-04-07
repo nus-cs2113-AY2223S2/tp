@@ -23,7 +23,6 @@ import seedu.commands.InvalidCommand;
 import seedu.commands.UnmarkCommand;
 import seedu.commands.MarkCommand;
 import seedu.commands.SortCommand;
-import seedu.exceptions.EmptyStringException;
 import seedu.exceptions.InvalidDateException;
 import seedu.exceptions.NotPositiveValueException;
 import seedu.exceptions.WrongInputException;
