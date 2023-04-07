@@ -290,6 +290,13 @@ public class Parser {
 
     public String parseDeleteRecipe(String[] input, RecipeList recipeList) {
         // user inputted recipe name
+        try {
+            if (!input[1].equals("/r") && !input[1].contains("-")) {
+                Integer.parseInt(input[1]);
+            }
+        } catch (NumberFormatException e){
+            throw new IndexOutOfBoundsException();
+        }
         if (input[1].contains("/r")) {
             // skip over /r in recipe name
             String recipeToDelete = "";
@@ -320,12 +327,16 @@ public class Parser {
         } else {
             // deleting a range of recipes
             if (input[1].length() >= 3) {
-                String rangeRecipes = "";
-                int startIndex = Integer.parseInt(input[1].charAt(0) + "");
-                int endIndex = Integer.parseInt(input[1].charAt(2) + "");
+                String[] range = input[1].trim().split("-");
+                int startIndex = Integer.parseInt(range[0]);
+                int endIndex = Integer.parseInt(range[1]);
                 startIndex -= 1;
                 endIndex -= 1;
+                if (startIndex < 0 || endIndex >= recipeList.size() || endIndex < startIndex) {
+                    throw new IndexOutOfBoundsException();
+                }
                 int newSize = recipeList.size() - ((endIndex - startIndex) + 1);
+                String rangeRecipes = "";
                 while (recipeList.size() != newSize) {
                     rangeRecipes += recipeList.deleteRecipe(startIndex).getName() + ", ";
                 }
@@ -333,7 +344,8 @@ public class Parser {
                         new StringBuilder(rangeRecipes.substring(0, rangeRecipes.length() - 2)));
                 return rangeRecipes;
             } else {
-                int recipeIndex = Integer.parseInt(input[1]);
+                int recipeIndex = Integer.parseInt(input[1]);;
+                recipeIndex = Integer.parseInt(input[1]);
                 // need to subtract 1 since list is 1-based
                 return recipeList.deleteRecipe(recipeIndex - 1).getName();
             }
@@ -341,6 +353,7 @@ public class Parser {
     }
 
     public String parseTagRecipe(String[] inputs, RecipeList recipeList) {
+        String returnMessage;
         String tag;
         boolean isOnlyTagWordInCommand = inputs.length == 1;
         boolean isAddTag;
@@ -362,15 +375,17 @@ public class Parser {
             throw new IllegalArgumentException("Please enter the command in the correct format.");
         } else if (isAddTag) {
             tag = parseAddRecipeTag(commandString.toString(), recipeList);
+            returnMessage = "add " + tag;
         } else if (isRemoveTag) {
             tag = parseRemoveRecipeTag(commandString.toString(), recipeList);
+            returnMessage = "remove " + tag;
         } else {
             throw new IllegalArgumentException("Invalid command.");
         }
-        return tag;
+        return returnMessage;
     }
 
-    public String parseAddRecipeTag(String command, RecipeList recipeList) {
+    public String parseAddRecipeTag(String command, RecipeList recipeList) throws IndexOutOfBoundsException {
         String tag;
         Recipe recipe;
         String[] recipesToTag;
@@ -400,7 +415,7 @@ public class Parser {
         return tag;
     }
 
-    public String parseRemoveRecipeTag(String command, RecipeList recipeList) {
+    public String parseRemoveRecipeTag(String command, RecipeList recipeList) throws IndexOutOfBoundsException {
         String tag;
         Recipe recipe;
         String[] recipesToRemove;
@@ -511,9 +526,9 @@ public class Parser {
         return recipes.get(recipeIndex - 1);
     }
 
-    public Recipe parseRandomRecipe(RecipeList recipes) {
+    public Recipe parseRandomRecipe(RecipeList recipes) throws NullPointerException {
         if (recipes.size() == 0) {
-            throw new NullPointerException("There is no recipe in the list to random");
+            throw new NullPointerException("There is no recipe in the list for random.");
         }
         return recipes.randomRecipe();
     }
