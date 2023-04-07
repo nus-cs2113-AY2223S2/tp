@@ -278,6 +278,8 @@ The data file is not to be edited manually.
 <br> e.g. `add expense /c meal /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50` will not be allowed since it has duplicate category fields.
 * ChChing allows for the fields' order to be changed.
 <br> e.g. `add expense /de breakfast @Technoedge /c meal /da 22-03-2023 /v 3.50` will add the expense successfully.
+* ChChing allows command and argument fields to be case-insensitive. However, the values of the fields would be stored according to the case of the input.
+<br> e.g. `EDIT INCOME /IN 1 /DE DINNER` would successfully edit the description of the first income recorded to `DINNER`.
 * ChChing will allow for duplicate entries to be added. No warning would be raised.
 * ChChing will not allow for the user to use '/', unless it is used to specify the field.
 <br> e.g. `add expense /c meal /de breakfast / lunch /da 22-03-2023 /v 3.50` will be allowed.

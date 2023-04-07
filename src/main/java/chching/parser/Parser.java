@@ -52,12 +52,13 @@ public class Parser {
     public static Command parse(String line, Ui ui) throws ChChingException {
         List<String> lineParts = splitLine(line);
         String instruction = lineParts.get(0);
+        String instructionLowerCase = instruction.toLowerCase();
         List<String> arguments = lineParts.subList(1, lineParts.size());
         HashMap<String, String> argumentsByField = sortArguments(arguments);
         Command command = new Command();
         int index;
         try {
-            switch (instruction) {
+            switch (instructionLowerCase) {
             case "add income":
                 Income income = Incomes.parseIncome(argumentsByField);
                 command = new AddIncomeCommand(income);
@@ -178,7 +179,7 @@ public class Parser {
             String field = null;
             String value = null;
             try {
-                field = fieldAndValue[0].trim();
+                field = fieldAndValue[0].trim().toLowerCase();
                 value = fieldAndValue[1].trim();
             } catch (Exception e) {
                 if (field == null) {
