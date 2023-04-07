@@ -7,13 +7,13 @@ import seedu.pettracker.data.TaskList;
 import seedu.pettracker.exceptions.IllegalArgException;
 
 public class RemoveTaskCommand extends Command{
-
+    final String NEGATIVE_ARG_MESSAGE = "Task number must be a positive integer";
     protected int taskNumber;
 
     public RemoveTaskCommand(int taskNumber) throws IllegalArgException{
         super();
         if (taskNumber <= 0) {
-            throw new IllegalArgException("Task number must be a positive integer");
+            throw new IllegalArgException(NEGATIVE_ARG_MESSAGE);
         }
         this.taskNumber = taskNumber;
     }
