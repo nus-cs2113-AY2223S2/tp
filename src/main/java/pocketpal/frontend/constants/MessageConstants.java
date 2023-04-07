@@ -69,8 +69,14 @@ public final class MessageConstants {
 
     // Exception Messages
     public static final String MESSAGE_EMPTY_INPUT = "Use /help for a list of supported commands!";
-    public static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!";
-    public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!";
+    public static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!" + NEWLINE + NEWLINE
+            + "Possible commands are:" + NEWLINE
+            + "/add, /delete, /view, /edit, /help, /bye";
+    public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!" + NEWLINE + NEWLINE
+            + "The available categories are:" + NEWLINE
+            + "CLOTHING, ENTERTAINMENT, FOOD," + NEWLINE
+            + "TRANSPORTATION, MEDICAL, PERSONAL, " + NEWLINE
+            + "INCOME, UTILITIES, OTHERS";
     public static final String MESSAGE_INVALID_DESCRIPTION = "Description can only contain letters and numbers!";
 
     public static final String MESSAGE_NON_EXISTENT_ID = "Item ID does not exist: ";
