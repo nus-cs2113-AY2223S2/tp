@@ -223,6 +223,7 @@ Use case:
 - VALUE ranges from negative to positive.
 - Target must be within the range of -9999999.99 to 9999999.99.
 - Target will be set to 2 decimal places.
+- Default target is 0.00
 
 Example of usage:
 <br> `set target /v 350`
