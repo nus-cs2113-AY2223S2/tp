@@ -79,7 +79,8 @@ public class EntryEndpoint extends Endpoint {
             int targetEntryId = getPositiveIntegerFromString(request.getBody());
             editEntry = entries.getEntry(targetEntryId);
             if (editEntry == null) {
-                throw new NumberFormatException(MessageConstants.MESSAGE_INVALID_ID);
+                throw new NumberFormatException(MessageConstants.MESSAGE_NON_EXISTENT_ID
+                        + targetEntryId + System.lineSeparator() + MessageConstants.MESSAGE_INVALID_ID);
             }
 
             if (request.hasParam(RequestParams.EDIT_CATEGORY)) {

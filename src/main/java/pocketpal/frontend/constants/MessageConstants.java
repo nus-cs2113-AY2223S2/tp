@@ -19,19 +19,42 @@ public final class MessageConstants {
     public static final String MESSAGE_EXPENDITURE_EDITED = "The following expenditure has been updated:" + NEWLINE;
     public static final String MESSAGE_NO_ENTRIES = "There are no entries available." + NEWLINE;
     public static final String MESSAGE_ADD_COMMAND = "Add - Adds an expense to your current expenditure." + NEWLINE
-            + "Usage: /add <-d | -description DESCRIPTION> [EXTRA_DESCRIPTION...] <-c | -category CATEGORY>" + " <-p " +
-            "| -price PRICE>" + NEWLINE + NEWLINE;
+            + "Usage: /add -d <description> -c <category> -p <price>" + NEWLINE
+            + "Options:" + NEWLINE
+            + "-d <description>" + NEWLINE
+            + "-c <category>" + NEWLINE
+            + "-p <price>" + NEWLINE
+            + "See below for examples" + NEWLINE
+            + "/add -d Apple Macbook Air -p 1300 -c Personal" + NEWLINE
+            + "/add -p 1300 -c Personal -d Apple Macbook Air" + NEWLINE + NEWLINE;
     public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified expense(s) from your expenditure."
             + NEWLINE
-            + "Usage: /delete <EXPENSE_ID> [ADDITIONAL_EXPENSE_ID...]" + NEWLINE + NEWLINE;
+            + "Usage: /delete <index> [additional_index...]" + NEWLINE
+            + "See below for examples" + NEWLINE
+            + "/delete 10 11 13 " + NEWLINE
+            + "/delete 1" + NEWLINE + NEWLINE;
     public static final String MESSAGE_EDIT_COMMAND = "Edit - Edits a specified expense in your current expenditure."
             + NEWLINE
-            + "Usage: /edit <EXPENSE_ID> [-c | -category NEW_CATEGORY] [-p | -price NEW_PRICE]" +
-            " [-d | -description NEW_DESC]" + NEWLINE + NEWLINE;
+            + "Usage: /edit <index> [options]" + NEWLINE
+            + "Options:" + NEWLINE
+            + "-d <description>" + NEWLINE
+            + "-c <category>" + NEWLINE
+            + "-p <price>" + NEWLINE
+            + "See below for examples" + NEWLINE
+            + "/edit 5 -d Grab to school -c Transportation -p 20.00" + NEWLINE + NEWLINE;
+
     public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current expenditure."
             + NEWLINE
-            + "Usage: /view [COUNT] [-c | -category CATEGORY] [-p | -price PRICE_MIN] [-p | -price PRICE_MAX]" +
-            " [<-sd | -startdate START_DATE -ed | -enddate END_DATE>]" + NEWLINE + NEWLINE;
+            + "Usage: /view [count] [filter_options]" + NEWLINE
+            + "Filter options:" + NEWLINE
+            + "-c <category>" + NEWLINE
+            + "-sp <startprice>" + NEWLINE
+            + "-ep <endprice>" + NEWLINE
+            + "-sd <startdate>, -ed <enddate>" + NEWLINE
+            + "See below for examples" + NEWLINE
+            + "/view 100 -c Transportation -sp 2.00 -ep 5.00" + NEWLINE
+            + "/view -sd 21/11/97 -ed 22/11/97 -c Transportation -sp 2.00" + NEWLINE
+            + "/view 10 -sd 21/11/97 -ed 22/12/97 -c Transportation -sp 2.00 -ep 6.00" + NEWLINE + NEWLINE;
     public static final String MESSAGE_HELP_COMMAND = "Help - Displays the help menu." + NEWLINE
             + "Usage: /help" + NEWLINE + NEWLINE;
     public static final String MESSAGE_BYE_COMMAND = "Exit - Terminates PocketPal." + NEWLINE
@@ -50,7 +73,8 @@ public final class MessageConstants {
     public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!";
     public static final String MESSAGE_INVALID_DESCRIPTION = "Description can only contain letters and numbers!";
 
-    public static final String MESSAGE_INVALID_ID = "Please enter an integer from 1 to 2147483647.";
+    public static final String MESSAGE_NON_EXISTENT_ID = "Item ID does not exist: ";
+    public static final String MESSAGE_INVALID_ID = "Please specify a valid integer from 1 to 2147483647!";
     public static final String MESSAGE_INVALID_AMOUNT = "Please enter a valid amount!" + NEWLINE
             + "Value should be between 0.01 and 999999999.99";
     public static final String MESSAGE_INVALID_AMOUNT_RANGE = "Please specify a valid range!" + NEWLINE
@@ -60,9 +84,9 @@ public final class MessageConstants {
     public static final String MESSAGE_MISSING_REQUIRED_OPTION = "Missing required options: ";
     public static final String MESSAGE_MISSING_OPTION_EDIT = "Please specify at least one option!";
     public static final String MESSAGE_MISSING_OPTION_ARG = "Missing argument for option: ";
-    public static final String MESSAGE_MISSING_ID_EDIT = "Please specify the ID of the expense you would like to " +
+    public static final String MESSAGE_MISSING_ID_EDIT = "Please specify the ID of the item you would like to " +
             "edit!";
-    public static final String MESSAGE_MISSING_ID_DELETE = "Please specify the ID of the expense you would like to " +
+    public static final String MESSAGE_MISSING_ID_DELETE = "Please specify the ID of the item you would like to " +
             "delete!";
     public static final String MESSAGE_INVALID_DATE = "Please specify date in dd/MM/yy format" +
             " and make sure the date exists!";
