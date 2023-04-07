@@ -196,6 +196,28 @@ class ParserTest {
     }
 
     @Test
+    public void parseUserInput_validDeleteCommand_deleteCommand() throws RainyDayException {
+        AddCommand addCommand = new AddCommand("Ipad", "out", 120.50, "Default",
+                LocalDate.now());
+        addCommand.setData(userData);
+        addCommand.execute();
+        assertEquals(DeleteCommand.class, new Parser().parseUserInput("delete 1").getClass());
+    }
+
+    @Test
+    public void parseUserInput_invalidDeleteCommand_exception() {
+        RainyDay.savedData = savedData;
+        savedData.getFinancialReport().clearReport();
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("delete"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("delete 2"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("delete 0"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("delete a"));
+        savedData.addStatement(new FinancialStatement("test", "in", 2, "category",
+                LocalDate.now()));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("delete -1"));
+    }
+
+    @Test
     public void parseGenerateReport() throws RainyDayException {
         assertEquals(ViewCommand.class, new Parser().parseUserInput("view").getClass());
         assertEquals(ViewCommand.class, new Parser().parseUserInput("view -sort").getClass());
