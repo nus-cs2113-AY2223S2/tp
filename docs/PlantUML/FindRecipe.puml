@@ -1,26 +1,27 @@
 @startuml Recipe Find
 box Find #White
 Actor User
-participant ":UI" as UI
-participant ":Duke" as Duke
-participant ":Parser" as Parser
-participant ":Command" as Command
-participant ":RecipeList" as RecipeList
+participant ":UI" as UI #Gray
+participant ":Duke" as Duke #Gold
+participant ":Parser" as Parser #Yellow
+participant ":Command" as Command #Beige
+participant ":RecipeList" as RecipeList #OrangeRed
 end box
-activate Duke
-Duke -> UI : "readCommand()"
-activate UI
+
+activate Duke #Gold
+Duke -> UI : readCommand()
+activate UI #Gray
 User -> UI : "Find MaLaXiangGuo"
 UI --> Duke
 deactivate UI
-Duke -> Parser : "parseCommand()"
-activate Parser
+Duke -> Parser : parseCommand()
+activate Parser #Yellow
 Parser --> Duke
 deactivate Parser
-Duke -> Command : "execute()"
-activate Command
-Command -> RecipeList : "searchRecipeList()"
-activate RecipeList
+Duke -> Command : execute()
+activate Command #Beige
+Command -> RecipeList : searchRecipeList()
+activate RecipeList #OrangeRed
 RecipeList -> UI : show recipe with index
 activate UI
 UI --> RecipeList

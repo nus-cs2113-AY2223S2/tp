@@ -177,7 +177,7 @@ Given below is an example usage scenario and how the recipe find mechanism behav
 In the command line, the user inputs `find MaLaXiangGuo` to find a recipe from the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `RecipeList#searchRecipeList()` to search the recipe list for the recipe.Eventually, the `UI` will be called to show the recipe list that contains the keyword with its index.
 
 > The following sequence diagram shows how the recipe find feature works:
-![Sequence Diagram for Recipe Find](./PlantUML/RecipeFind.png)
+![Sequence Diagram for Recipe Find](./PlantUML/FindRecipe.png)
 ### Recipe Steps Edit Feature
 #### Implementation
 The recipe steps edit feature is handled by the `command`, `recipe` and `stepList` classes.
