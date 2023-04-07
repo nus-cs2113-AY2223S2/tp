@@ -29,17 +29,6 @@ Some example commands you can try:
 
 # FitnessDuke's Features
 
-<div class="alert alert-info">
-<p> <strong>
-<img class="emoji" title=":information_source:" alt=":information_source:" src="https://github.githubassets.com/images/icons/emoji/unicode/2139.png" height="20" width="20">
-Notes about the command format:</strong></p>
-<ul>
-<li>Headers</li>
-<li>asdsad</li>
-<li>asdsad</li>
-</ul>
-</div>
-
 # *General*
 
 ## Viewing help: ```help```
@@ -391,7 +380,6 @@ ________________________________________
       <br> However, achievements are meant to motivate users to continue using FitnessDuke. Deleting one's counts from their 
       achievements and hence removing one's achievements would serve to demotivate users, being counter-intuitive 
       from the feature's purpose.
-      ** 
    </p>
 </div>
 

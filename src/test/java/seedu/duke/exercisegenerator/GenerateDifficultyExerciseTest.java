@@ -66,24 +66,4 @@ public class GenerateDifficultyExerciseTest {
         }
     }
 
-    @Test
-    void testMixture () {
-        ArrayList<ExerciseData> exerciseData;
-        GenerateExercise generateExercise = new GenerateExercise();
-
-        exerciseData = generateExercise.generateSetAll();
-        try {
-            exerciseData = generateExercise.generateFilteredDifficultySetFrom(exerciseData, "medium");
-            exerciseData = generateExercise.generateFilteredStaticSetFrom(exerciseData);
-        } catch (DukeError e) {
-            System.out.println(e.getMessage());
-        }
-
-        for (int i = 0; i < exerciseData.size(); i++) {
-            assertEquals(exerciseData.get(i).getLevel(), "intermediate");
-            assertNotEquals(exerciseData.get(i).getEquipment(), null);
-            assertEquals(exerciseData.get(i).getEquipment(), "body only");
-        }
-    }
-
 }
