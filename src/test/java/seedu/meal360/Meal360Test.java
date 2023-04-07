@@ -871,21 +871,24 @@ class Meal360Test {
     public void testListTagAndAddTag() {
         RecipeList recipeListToPrint;
         String[] inputs;
-        // add tag for testing
+        // check add tag (1)
         String[] addTagInputs = new String[]{"tag", "breakfast", "<<", "salad"};
         parser.parseTagRecipe(addTagInputs, recipes);
 
+        // check list tag (1)
         inputs = new String[]{"list", "/t", "breakfast"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(recipeListToPrint.size(), 1);
         assertEquals(recipeListToPrint.get(0).getName(), "salad");
 
-        // add tag for testing
+        // add tag (2)
         addTagInputs = new String[]{"tag", "breakfast", "<<", "pizza"};
         parser.parseTagRecipe(addTagInputs, recipes);
+
         addTagInputs = new String[]{"tag", "western", "<<", "burger"};
         parser.parseTagRecipe(addTagInputs, recipes);
 
+        // list tag (2)
         inputs = new String[]{"list", "/t", "breakfast"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(recipeListToPrint.size(), 2);
@@ -894,13 +897,35 @@ class Meal360Test {
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(recipeListToPrint.size(), 0);
 
-        // add tag for testing
+        // add tag (3)
         addTagInputs = new String[]{"tag", "western", "<<", "pizza"};
         parser.parseTagRecipe(addTagInputs, recipes);
+
+        // list tag (3)
         inputs = new String[]{"list", "/t", "breakfast", "&&", "western"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(recipeListToPrint.size(), 1);
         assertEquals(recipeListToPrint.get(0).getName(), "pizza");
+    }
+
+    @Test
+    public void testPrintAddTagMessage() {
+        String[] addTagInputs = new String[]{"tag", "breakfast", "<<", "salad"};
+        String addTagReturnMessage = parser.parseTagRecipe(addTagInputs, recipes);
+        ui.printTagMessage(addTagReturnMessage);
+        assertEquals(ui.formatMessage("You have successfully added the recipe(s) to \"breakfast\" tag."),
+                outContent.toString().trim());
+    }
+
+    @Test
+    public void testPrintRemoveTagMessage() {
+        String[] addTagInputs = new String[]{"tag", "breakfast", "<<", "salad"};
+        parser.parseTagRecipe(addTagInputs, recipes);
+        String[] removeTagInputs = new String[]{"tag", "breakfast", ">>", "salad"};
+        String removeTagReturnMessage = parser.parseTagRecipe(removeTagInputs, recipes);
+        ui.printTagMessage(removeTagReturnMessage);
+        assertEquals(ui.formatMessage("You have successfully removed the recipe(s) from \"breakfast\" tag."),
+                outContent.toString().trim());
     }
 
     @Test
