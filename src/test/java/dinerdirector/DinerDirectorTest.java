@@ -33,6 +33,10 @@ public class DinerDirectorTest {
     void runCommandLoopUntilExit_userInput_meetingCommand() {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("add_meeting n/a t/3pm");
+        listOfCommands.add("add_meeting n/meeting with boss   t/3pm");
+        listOfCommands.add("add_meeting n/ t/3pm");
+        listOfCommands.add("add_meeting n/b t/");
+        listOfCommands.add("add_meeting t/3pm n/name");
         listOfCommands.add("view_meetings");
         listOfCommands.add("delete_meeting 1");
         listOfCommands.add("view_meeting");
@@ -46,6 +50,14 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof ViewMeetingCommand);
             } else if (listOfCommand.equals("add_meeting n/a t/3pm")) {
                 assertTrue(command instanceof AddMeetingCommand);
+            } else if (listOfCommand.equals("add_meeting n/meeting with boss   t/3pm")) {
+                assertTrue(command instanceof AddMeetingCommand);
+            } else if (listOfCommand.equals("add_meeting n/ t/3pm")) {
+                assertTrue(command instanceof IncorrectCommand);
+            } else if (listOfCommand.equals("add_meeting n/b t/")) {
+                assertTrue(command instanceof IncorrectCommand);
+            } else if (listOfCommand.equals("add_meeting t/3pm n/name")) {
+                assertTrue(command instanceof IncorrectCommand);
             } else if (listOfCommand.equals("delete_meeting 1")) {
                 assertTrue(command instanceof DeleteMeetingCommand);
             } else if(listOfCommand.equals("find_meeting a")){
@@ -298,8 +310,8 @@ public class DinerDirectorTest {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("add_staff");
         listOfCommands.add("add_staff n/John Doe");
-        listOfCommands.add("add_staff p/123-456-7890 d/1990-01-01 w/Monday");
-        listOfCommands.add("add_staff n/John Doe p/123-456-7890 w/Monday d/1990-01-01");
+        listOfCommands.add("add_staff p/82813828 d/1990-01-01 w/Monday");
+        listOfCommands.add("add_staff n/John Doe p/2413131313 w/Monday d/1990-01-01");
         listOfCommands.add("view_staff");
         listOfCommands.add("find_staff John");
         listOfCommands.add("find_staff");
@@ -310,13 +322,13 @@ public class DinerDirectorTest {
             Command command = new Parser().parseCommand(listOfCommand);
             if (listOfCommand.equals("add_staff") ||
                     listOfCommand.equals("add_staff n/John Doe") ||
-                    listOfCommand.equals("add_staff p/123-456-7890 d/1990-01-01 w/Monday") ||
+                    listOfCommand.equals("add_staff p/8281231327127327312773273721713828 d/1990-01-01 w/Monday") ||
                     listOfCommand.equals("delete_staff 100") ||
                     listOfCommand.equals("find_staff")){
                 assertTrue(command instanceof IncorrectCommand);
             } else if (listOfCommand.equals("view_deadlines")) {
                 assertTrue(command instanceof ViewStaffCommand);
-            } else if (listOfCommand.equals("add_staff n/John Doe p/123-456-7890 w/Monday d/1990-01-01")) {
+            } else if (listOfCommand.equals("add_staff n/John Doe w/sunday d/2003-12-12 p/123113")) {
                 assertTrue(command instanceof AddStaffCommand);
             } else if (listOfCommand.equals("delete_deadline 1")) {
                 assertTrue(command instanceof DeleteStaffCommand);

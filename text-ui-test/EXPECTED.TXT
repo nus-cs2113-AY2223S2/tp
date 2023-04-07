@@ -1,18 +1,18 @@
 The following file was not found:
 deadline_list.txt
-A new file will be created when a new task is added.
+The application, if write permissions is correct, will try to create a new file for writing when a new task is added.
 
 The following file was not found:
 meeting_list.txt
-A new file will be created when a new task is added.
+The application, if write permissions is correct, will try to create a new file for writing when a new task is added.
 
 The following file was not found:
 dish_list.txt
-A new file will be created when a new task is added.
+The application, if write permissions is correct, will try to create a new file for writing when a new task is added.
 
 The following file was not found:
 staff_list.txt
-A new file will be created when a new task is added.
+The application, if write permissions is correct, will try to create a new file for writing when a new task is added.
 
 Loading done. Starting Dinerdirector...
 

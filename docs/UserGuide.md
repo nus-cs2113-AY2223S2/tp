@@ -109,10 +109,10 @@ Format: `add_deadline n/<name> t/<time>`
 
 Example: 
 ```
->view_deadline
+>view_deadlines
 1. fix water pipes by: 10 Apr
 >add_deadline n/need to buy more potatoes t/9 Apr 2PM
->view_deadline
+>view_deadlines
 1. fix water pipes by: 10 Apr
 2. need to buy more potatoes deal by: 9 Apr 2PM
 ```
@@ -120,20 +120,19 @@ Example:
 #### View all deadlines:
 View the deadline list.
 
-Format: `view_deadline`
+Format: `view_deadlines`
 
-Note: The price of dishes will be shown in dollars.
 
 #### Delete a deadline:
 Format: `delete_deadline <index>`
 
 Example:
 ```
->>view_deadline
+>>view_deadlines
 1. fix water pipes by: 10 Apr
 2. need to buy more potatoes deal by: 9 Apr 2PM
 >>delete_deadline 2
->>view_deadline
+>>view_deadlines
 1. fix water pipes by: 10 Apr
 ```
 
@@ -142,11 +141,11 @@ Format: `find_deadline <keyword>`
 
 Example: 
 ```
->>view_deadline
+>>view_deadlines
 1. fix water pipes by: 10 Apr
 2. need to buy more potatoes deal by: 9 Apr 2PM
 3. fix fridge by: 15 Apr
->>find_deadline fridge
+>>find_deadline fix
 1. fix water pipes by: 10 Apr
 2. fix fridge by: 15 Apr
 ```
@@ -159,8 +158,9 @@ Successfully adds Dish only if all the arguments are correct.
 Format: `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]`
 
 - Name of dish cannot be blank or start with spaces, it also cannot contain only spaces.
-- Price of dish must be an non negative integer value; i.e.: Price cannot be negative, in decimal, etc.
-- Ingredient list is encased betwen two square brackets and separated by a semi-colon. The ingredient list can contain any non negative number of items.
+- Price of dish must be a non-negative integer value and below 2,147,483,647 cents; i.e.: Price cannot be negative, in decimal, etc.
+- Ingredient list is encased between two square brackets and separated by a semicolon. The ingredient list can contain any non-negative number of items. 
+  - Note: Ingredients are read in as strings separated by ";", thus it can contain leading white spaces and numbers. However, it cannot be an empty string.
 
 Example 1: 
 ```
@@ -202,7 +202,7 @@ Supposed that we have the following list of dishes:
 1. Chicken Burger; $4.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
 2. McSpicy Burger; $8.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
 ```
-When the `delete_recipe 1` is entered as a command:
+When the `delete_dish 1` is entered as a command:
 
 Outcome:
 ```
@@ -211,16 +211,18 @@ Outcome:
 
 #### Find dishes containing a keyword from the list of dishes
 
-Finds a list of dishes containing a given keyword, if any at all.
+Finds a list of dishes containing a given keyword, if any exists.
 
 Format: `find_dish <keyword>`
 
 - The keyword cannot contain any spaces. 
 - Only 1 keyword can be entered per find_dish command.
+- The find dish command returns dishes that has words in its description matching the whole keyword, or has words that 
+that contains the keyword as a substring.
 
-Example:
+Example 1:
 
-Supposed we have the following list of dishes:
+Suppose we have the following list of dishes:
 
 ```
 1. McSpicy Burger; $8.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
@@ -228,10 +230,20 @@ Supposed we have the following list of dishes:
 ```
 When `find_dish Chicken` is entered in as a command:
 
-Outcome:
+Outcome 1:
 
 ```
 2. Chicken Burger; $10.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
+```
+
+Example 2:
+
+When `find_dish Spicy` is entered in as a command:
+
+Outcome 2:
+
+```
+1. McSpicy Burger; $8.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
 ```
 
 ### Staffs
@@ -357,19 +369,19 @@ John Doe~|~Sunday~|~2001-03-09~|~82802123
 
 ## Summary of Commands
 
-| Action          | Command                                                                                                        |
-|-----------------|----------------------------------------------------------------------------------------------------------------|
-| help            | `help`                                                                                                         |
-| add_meeting     | `add_meeting n/<name> t/<time>`                                                                                |
-| view_meetings   | `view_meetings`                                                                                                |
-| delete_meeting  | `delete_meeting n/<name>`                                                                                      |
-| find_meeting    | `find_meeting s/<string>`                                                                                      |
+| Action          | Command                                                                                                      |
+|-----------------|--------------------------------------------------------------------------------------------------------------|
+| help            | `help`                                                                                                       |
+| add_meeting     | `add_meeting n/<name> t/<time>`                                                                              |
+| view_meetings   | `view_meetings`                                                                                              |
+| delete_meeting  | `delete_meeting <index>`                                                                                         |
+| find_meeting    | `find_meeting <string>`                                                                                      |
 | add_dish        | `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<ingredient 2>;<ingredient 3> ... etc]` |
 | view_dish       | `view_dish`                                                                                                    |
 | delete_dish     | `delete_dish <index_number>`                                                                                   |
 | find_dish       | `find_dish <keyword>`                                                                                          |
 | add_deadline    | `add_deadline n/<name> t/<time>`                                                                               |
-| view_deadline   | `view_deadline`                                                                                                |
+| view_deadlines  | `view_deadlines`                                                                                               |
 | delete_deadline | `delete_deadline <index>`                                                                                      |
 | find_deadline   | `find_deadline <keyword>`                                                                                      |
 | add_staff       | `add_staff n/<name> w/<working day> d/<date of birth> p/phone`                                                 |
