@@ -21,7 +21,7 @@ Fig 1
 
 ### Ui 
 
-Ui class involves all the methods that display messages to the user when the user is interacting with the porgram.
+Ui class involves all the methods that display messages to the user when the user is interacting with the program.
 
 Types of methods:
 
@@ -29,7 +29,15 @@ Types of methods:
 2. Confirmation Messages: Messages shown to inform user that their desired action has been carried out
 3. Exception Messages: Messages shown to inform user of their invalid actions and its reasons
 
-![img_2.png](img_2.png)
+Figure 1 below shows the class diagram of the `Ui` class. There are no attributes for the `Ui` class.
+
+![img_3.png](img_3.png)
+
+Fig 1
+
+Figure 2 below shows the sequence diagram for when `showWelcome` is called by `Eventus` during the startup of the application.
+
+![img.png](img.png)!
 
 Fig 2
 
@@ -53,11 +61,17 @@ Parser involves dealing with parsing user input to understand what the user want
 
 ### [DONE] Duplication checker feature
 #### Implementation
-The proposed <code>duplicationChecker</code> is facilitated by <code>Parser</code>. It will check against the existing
-<code>CompanyList</code> to check if the company has already been added. If the same company already exists in the
-<code>CompanyList</code>, it will inform the user by displaying a message to the user. Otherwise, it will proceed to 
+The proposed <code>duplicationChecker</code> is facilitated by <code>CompanyList</code>. It will check against the existing
+<code>CompanyList</code> to check if the company has already been added. The check is done in 3 ways: `company name`,
+`contact number`, and `contact email`. If any one of the above-mentioned details are identical to the ones already present
+in the <code>CompanyList</code>, it will inform the user by displaying a message to the user. Otherwise, it will proceed to 
 format the data that was entered by the user so that the parameters that are passed into <code>addCommand</code> are
-standardized to remove any potential duplicated addition issues.
+standardized to remove any potential duplicated addition issues. Figure 3 below shows the sequence diagram for the 
+duplication checker feature.
+
+![img_4.png](img_4.png)
+
+Fig 3
 
 ### [DONE] Storing company list feature
 #### Implementation

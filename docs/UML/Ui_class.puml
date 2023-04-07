@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam classAttributeIconSize 0
+
+
+class Ui {
++showLine()
++showWelcome()
++showGuide()
++showExitMessage()
++showHelpText()
++showSuccessfulDeletionMessage()
++showSuccessfulAdditionMessage()
++showSuccessfulPurgingMessage()
++showSampleDataLoadedMessage()
++showSuccessfulConfirmedMessage()
++showSuccessfulUnconfirmedMessage()
++showExistingConfirmationMessage()
++showExistingUnconfirmationMessage()
++showSortedCompanyList()
++showCompanyFoundMessage()
++showCompanyNotFoundMessage()
++showVenueSelectionMessage()
++showEventNameSelectionMessage()
++emptyInputErrorMessage()
++invalidInputFormatErrorMessage()
++invalidInputFormatErrorMessage()
++multipleAdditionErrorMessage()
+}
+
+
+@enduml
