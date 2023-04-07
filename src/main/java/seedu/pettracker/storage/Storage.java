@@ -224,13 +224,17 @@ public class Storage {
                     TaskList.markTask(taskNumber, true);
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                parseTaskWithoutDeadline(line);
+                try {
+                    parseTaskWithoutDeadline(line);
+                } catch (EmptyArgException x) {
+                    System.out.println("A task in output file has empty description");
+                }
             }
         }
     }
 
     private void parseTaskWithoutDeadline(String line) throws EmptyTaskNameException,
-            InvalidMarkTaskSymbolException {
+            InvalidMarkTaskSymbolException, EmptyArgException {
         String taskName = getTaskName(line);
         String taskStatus = getTaskStatus(line);
 
