@@ -163,6 +163,10 @@ public class UserInterface {
         System.out.println("Successfully removed card " + cardUUID + " from deck " + deckName);
     }
 
+    public void printRemoveTagFromCard(TagUUID tagUUID, CardUUID cardUUID) {
+        System.out.println("Successfully removed tag " + tagUUID + " from card " + cardUUID);
+    }
+
     public void printRemoveTagFromDeckSuccess(TagUUID tagUUID, String deckName) {
         System.out.println("Successfully removed tag " + tagUUID + " from deck " + deckName);
     }
