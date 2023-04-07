@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
+skinparam maxMessageSize 150
 title DateCommand (Find tasks by date)
 
 actor User
@@ -17,20 +17,24 @@ activate Apollo
 Apollo -> Parser : getCommand()
 activate Parser
 Parser ->  Date** : DateCommand()
-Date++
-Date -> Date++ : setUpLogger()
-
+activate Date
+Date -> Date: setUpLogger()
+activate Date
+deactivate Date
 
 Date -> LocalDate: parse(2023-03-30)
 activate LocalDate
 LocalDate --> Date: date
 deactivate LocalDate
 destroy LocalDate
-return
-return
+Date --> Parser : DateCommand()
+deactivate Date
+
+Parser --> Apollo
+deactivate Parser
+destroy Parser
 
 Apollo -> Date : execute()
-Apollo --
 activate Date
 Date --> TaskList : getTasksOnDate()
 activate TaskList
@@ -56,8 +60,9 @@ activate Ui
 Ui --> Date
 deactivate Ui
 destroy Ui
+Date --> Apollo
 destroy Date
-
+deactivate Apollo
 
 
 

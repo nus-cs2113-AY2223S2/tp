@@ -1,11 +1,10 @@
 @startuml
 'https://plantuml.com/class-diagram
-scale 3.0
+scale 2.0
 
 interface LoggerInterface {
     + setUpLogger(): void
 }
-
 class Storage {
     - filePath: String
     - moduleDataFilePath: String
@@ -26,8 +25,7 @@ class Storage {
 }
 
 class TaskList {
-    - tasks: List<Task>
-
+    -tasks: Task[*]
     + TaskList()
     + addTask(Task): void
     + deleteTask(int): Task
@@ -48,18 +46,19 @@ class Task {
     + getType(): String
 }
 
-class Todo {
+class Todo extends Task {
 - description: String
 +getDescription(): String
 }
-class Deadline {
+
+class Deadline extends Task {
     - by: LocalDateTime
 
     + Deadline(String, LocalDateTime)
     + getBy(DateTimeFormatter): String
 }
 
-class Event {
+class Event extends Task {
     - from: LocalDateTime
     - to: LocalDateTime
 
@@ -72,9 +71,8 @@ class Ui {
     + showLine(): void
 }
 
-class ModuleList {
-    - modules: List<Module>
-
+class ModuleList extends Module {
+     -modules: Module[*]
     + ModuleList()
     + addModule(Module): void
     + deleteModule(int): Module

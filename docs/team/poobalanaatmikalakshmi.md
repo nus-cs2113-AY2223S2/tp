@@ -28,7 +28,7 @@
 #### Contributions to the DG
 - Delete Module 
 - UML diagrams for DateCommand, FindCommand
-- Class diagram for Storage 
+- Class diagram for Storage,DeleteHelpCommand 
 - Appendix E: Adding a ToDo/Event/Deadline,Deleting a Todo/Event/Deadline,Adding a Module,Adding a Lesson,Deleting a Module,Deleting a Lesson
 #### Contributions to team-based tasks
 - Helped maintain issue tracker 

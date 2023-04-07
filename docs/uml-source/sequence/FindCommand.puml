@@ -1,4 +1,5 @@
 @startuml
+skinparam maxMessageSize 150
 title FindCommand (Find tasks)
 
 actor User
@@ -15,15 +16,21 @@ activate Apollo
 Apollo -> Parser : getCommand()
 activate Parser
 Parser -> Find** : FindCommand()
-Find++
-Find -> Find++ : setUpLogger()
+activate Find
+Find -> Find : setUpLogger()
+activate Find
+deactivate Find
 
 
-return
-return
+Find --> Parser : FindCommand()
+deactivate Find
+
+
+Parser --> Apollo
+deactivate Parser
+destroy Parser
 
 Apollo -> Find : execute()
-Apollo --
 activate Find
 Find --> TaskList : findTasks("book")
 activate TaskList
@@ -36,6 +43,7 @@ TaskList -> Task : getdescription()
 activate Task
 Task --> TaskList
 deactivate Task
+destroy Task
 TaskList --> Find: filteredTasks
 deactivate TaskList
 Find -> Ui : printFoundList()
@@ -43,8 +51,10 @@ activate Ui
 Ui --> Find
 deactivate Ui
 destroy Ui
+Find --> Apollo
+deactivate Find
 destroy Find
-
+deactivate Apollo
 
 
 
