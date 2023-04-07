@@ -318,7 +318,6 @@ bring an application to keep you aware of your deadlines and not miss them.
 | v2.0    | user     | set a task to repeat                                                                                             | create 1 task to represent repeating tasks every week                     |
 | v2.0    | user     | set priority level and can sort the tasks based on the priority level                                            | identify high priority tasks                                              |
 | v2.0    | user     | see a progress bar                                                                                               | track my progress of unfinished tasks                                     |
-| v2.0    | user     | view up to 10 previously completed tasks tied with the completion date and time                                  | track my progress of finished tasks                                       |
 
 ### Non-Functional Requirements
 
