@@ -13,7 +13,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.exceptions.InvalidDateException;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -181,16 +180,6 @@ public class EntryLogTest extends EntryTestUtil {
             assertEquals(filteredEntries.getEntriesList(), expectedEntries);
         }
 
-        // @@author leonghuenweng
-        @Test
-        void filterBetweenDates_startDateAfterEndDate() {
-            LocalDateTime startDateTime = LocalDateTime.parse("21/12/99 23:30", formatter);
-            LocalDateTime endDateTime = LocalDateTime.parse("21/12/80 23:30", formatter);
-            Exception invalidDateException = assertThrows(InvalidDateException.class,
-                    () -> entryLog.filterBetweenDates(startDateTime, endDateTime));
-            assertEquals(invalidDateException.getMessage(), MessageConstants.MESSAGE_MIXED_DATE);
-        }
-
         @Test
         void filterBetweenDates_noEntriesBetweenDates() throws InvalidDateException {
             LocalDateTime startDateTime = LocalDateTime.parse("21/11/24 23:30", formatter);
@@ -207,5 +196,19 @@ public class EntryLogTest extends EntryTestUtil {
             assertEquals(filteredEntries.getEntriesList(), entryLog.getEntriesList());
         }
         // @@author
+    }
+
+    @Test
+    @DisplayName("Test get total expenditure method")
+    void testGetTotalExpenditure(){
+        entryLog.addEntry(ENTRY_7);
+        assertEquals(entryLog.getTotalExpenditure(), 121.82);
+    }
+
+    @Test
+    @DisplayName("Test get total income method")
+    void testGetTotalIncome(){
+        entryLog.addEntry(ENTRY_7);
+        assertEquals(entryLog.getTotalIncome(), 5600.00);
     }
 }

@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class EditCommandTest extends BackendTestUtil {
     private final EditCommand expectedEditCommand = new EditCommand("1", "Lunch", "Food", "5");
     private final Entry originalEntry = new Entry("Dinner", 7.50, Category.FOOD);
-    private final String[] proposedChanges = {"1", "Lunch", "", ""};
+    private final String[] proposedChanges = {"1", "Lunch", null, null};
 
     @BeforeEach
     void init() {
@@ -46,7 +46,7 @@ public class EditCommandTest extends BackendTestUtil {
                 , proposedChanges[3]);
         addEntry(originalEntry);
         assertDoesNotThrow(() -> editCommand.execute(TEST_UI, TEST_BACKEND),
-                MessageConstants.MESSAGE_MISSING_ARGS_EDIT);
+                MessageConstants.MESSAGE_MISSING_ID_EDIT);
         Entry changedEntry = getEntryById(1);
         assertEquals(changedEntry.getDescription(), "Lunch");
         assertEquals(changedEntry.getCategoryString(), "Food");
