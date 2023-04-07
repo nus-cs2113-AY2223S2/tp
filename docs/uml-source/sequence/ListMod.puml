@@ -21,11 +21,13 @@ ListMod -> ListMod : setUpLogger()
 activate ListMod
 deactivate ListMod
 ListMod -> Parser: ListModuleCommand()
+deactivate Parser
+destroy Parser
 deactivate ListMod
 
 
 
-Parser -> ListMod : execute()
+Apollo -> ListMod : execute()
 activate ListMod
 
 ListMod -> Ui : printModuleList()
@@ -38,7 +40,5 @@ ListMod --> Parser
 deactivate ListMod
 destroy ListMod
 Parser --> Apollo
-deactivate Parser
-destroy Parser
 deactivate Apollo
 @enduml

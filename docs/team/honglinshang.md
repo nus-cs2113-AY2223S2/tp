@@ -20,12 +20,15 @@
 - Original UG from Duke
   - Includes Duke's commands (help, list, add tasks, mark/unmark tasks, delete tasks, find with keyword/date)
 - Week Command
-- Reformat for readability
+- Reorganisation
 #### Contributions to the DG
 - Command Component
+- Parser Component (Class diagram only)
 - Add Task
 - View Week
+- Adding in links to completed diagrams
+- Reorganisation
 #### Contributions to team-based tasks
 - [PRs reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+reviewed-by%3Ahonglinshang+)
-- Most instances of helping team members were done offline during our weekly meetings. 
-
+- Created issues and assisted in maintaining issue tracker
+- Most instances of helping team members were done offline during our weekly meetings

@@ -6,7 +6,7 @@
 - [Breakdown of Code Contribution](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=wan-lin&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=zoom&zA=T-Wan-Lin&zR=AY2223S2-CS2113-T13-4%2Ftp%5Bmaster%5D&zACS=109.1875&zS=2023-02-17&zFS=wan-lin&zU=2023-04-03&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 ### Enhancements Implemented
 - Enhanced `list` command to sort tasklist by type and then date within each task subtype
-- Enhanced todo command to provide suggestion for users if their todo insinuates a deadline task
+- Enhanced `todo` command to provide suggestion for users if their todo insinuates a deadline task
 - Included week information display ability for lessons to `listmod` and `showmod` commands
 - Enhanced `addmod` command to sort module list according to EduRec standards
 - Revamped Help menu
@@ -41,7 +41,8 @@
 - System Architecture Component Diagram
 - Unmark Task Command Sequence Diagram
 - Unmark Task Command Activity Diagram
-- Modify Task Class Diagram
+- Delete Task Command Sequence Diagram
+- Mark Task Command Activity Diagram
 
 ### Contributions to team-based tasks
 - [PRs Reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+reviewed-by%3At-wan-lin)

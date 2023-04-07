@@ -1,7 +1,9 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-title AddModuleCommand (Add Module)
+skinparam maxMessageSize 150
+
+title AddModuleCommand
 
 actor User
 participant ":Apollo" as Apollo
@@ -31,8 +33,10 @@ destroy Module
 
 AddModuleCommand --> Parser: new AddModuleCommand
 deactivate AddModuleCommand
+deactivate Parser
+destroy Parser
 
-Parser -> AddModuleCommand : execute()
+Apollo -> AddModuleCommand : execute()
 activate AddModuleCommand
 alt args.length == 3
     AddModuleCommand -> AddModuleCommand : handleMultiCommand()
@@ -41,6 +45,7 @@ alt args.length == 3
     activate Ui
     Ui --> AddModuleCommand
     deactivate Ui
+    deactivate AddModuleCommand
 else
     AddModuleCommand -> ModuleList: add(module)
     activate ModuleList
@@ -51,6 +56,7 @@ else
     activate ModuleList
     ModuleList --> AddModuleCommand
     deactivate ModuleList
+    destroy ModuleList
 
     AddModuleCommand -> Ui : printModuleAddedMessage()
     activate Ui

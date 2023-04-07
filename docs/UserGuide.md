@@ -10,12 +10,34 @@ If you can type fast, Apollo can get your timetable management done faster than 
 ## Table of Contents
 
 1. [Quick Start](#quick-start)
-2. [Features](#features)
+2. [Command summary](#command-summary)
+3. [Features](#features)
     + [Task Commands](#task-commands)
+      + [`list` - Listing all saved tasks](#list---listing-all-saved-tasks)
+      + [`todo` - Adding a ToDo](#todo---adding-a-todo)
+      + [`todo` - Adding a ToDo that sounds like a Deadline](#todo---adding-a-todo-that-sounds-like-a-deadline)
+      + [`deadline` - Adding a Deadline](#deadline---adding-a-deadline)
+      + [`event` - Adding an Event](#event---adding-an-event)
+      + [`mark` - Marking done](#mark---marking-done)
+      + [`unmark` - Marking undone](#unmark---marking-not-done)
+      + [`delete` - Deleting a task](#delete---deleting-a-task)
+      + [`find` - Finding a task](#find---finding-a-task)
+      + [`date` - Listing tasks on a specific date](#date---find-tasks-on-date)
+      
     + [Module Commands](#module-commands)
+      + [`listmod` - Listing all modules](#listmod---listing-all-modules)
+      + [`listmod` - Listing all added lessons for a Module](#listmod-with-lessons---lists-all-the-lessons-user-is-taking-in-that-module)
+      + [`addmod` - Adding a module](#addmod---adding-a-module)
+      + [`addmod lessons` - Adding a lesson to a module](#addmod-lessons---adding-lessons-to-a-module) 
+      + [`delmod` - Deleting a module](#delmod---deleting-a-module)
+      + [`delmod lessons` - Deleting a lesson from a module](#delmod-lessons---deleting-a-lesson-from-a-module)
+      + [`show mod` - Showing a module](#showmod---show-information-of-a-module)
+      + [`show mod lessons` - Showing a lesson](#showmod-lessons---show-information-of-a-lesson-from-a-module)
     + [Utility Commands](#utility-commands)
+      + [`help` - Viewing help](#help---viewing-help)
+      + [`help` - For help with a specific command](#help---for-help-with-specific-commands)
+      + [`bye` - Exiting the program](#bye---exiting-the-program)
     + [Loading and saving of data](#loading-and-saving-of-data)
-3. [Command summary](#command-summary)
 4. [FAQ](#faq)
 
 ## Quick Start
@@ -303,7 +325,11 @@ Here are the lesson types for this module:
 Lecture (-lec)
 Tutorial (-tut)
 ```
-#### `addmod` flags
+### `addmod lessons` - Adding lessons to a module
+
+To add a lesson of a particular module, use the following format:
+`addmod <MODULE_CODE> -FLAG LESSON_NUMBER`
+
 There are many lesson options and types, the below is a list of all the flags and their respective lesson types.
 ```
 -lec        LECTURE
@@ -320,9 +346,6 @@ There are many lesson options and types, the below is a list of all the flags an
 -tt2        TUTORIAL TYPE 2
 ```
 
-To add a lesson, use the following format:
-`addmod MODULE_CODE -FLAG LESSON_NUMBER`
-
 Example:
 ```
 addmod CS1010 -st 1
@@ -331,8 +354,13 @@ This will add the first section teaching lesson of CS1010 to your module list.
 If this lesson clashes with any of your other lessons a warning message will be displayed. 
 However, the lesson will still be added to your timetable, similar to NUSMods.
 
+#### Behaviour of Command:
 
-Invalid Modules:
+Should the user not have the Module in their list, Apollo will add the module to the list and add the lesson to the module.
+If the module is already in the list, Apollo will only add the lesson to the module.
+
+
+#### Invalid Modules:
 
 If the module code is invalid or the module is not offered in the current semester, Apollo will display an error message.
 
@@ -369,11 +397,11 @@ Got it, removed DTK1234 from your Module list.
 Total modular credits you have in this semester: 8
 ```
 
-#### `delmod` flags
+### `delmod lessons` - Deleting a lesson from a module
 The lesson types and their corresponding guide are the same as `addmod` flags.
 
 To delete a lesson, use the following format:
-`delmod MODULE_CODE -FLAG LESSON NUMBER`
+`delmod <MODULE_CODE> -<FLAG> <LESSON NUMBER>`
 
 ```
 >> delmod CS1010 -st 1
@@ -393,11 +421,22 @@ Sectional Teaching (-st)
 Tutorial (-tut)
 Number of MC: 4
 ```
-#### `showmod` flags
+
+#### Invalid Module Code
+
+If the module code is invalid or the module is not offered in the current semester, Apollo will display an error message:
+
+```
+>>> showmod CG2028
+This module does not exist, or is not available this semester!
+Please refer to official NUS module list for more information.
+```
+
+### `showmod lessons` - Show information of a lesson from a module 
 The lesson types and their corresponding guide are the same as `addmod` flags.
 Shows the list of classes a module has and their lesson types, day, timing and frequency.
 To show the information on a lesson, use the following format:
-`showmod MODULE_CODE -FLAG`
+`showmod <MODULE_CODE> -<FLAG>`
 
 ```
 >> showmod CS1010 -st
@@ -412,6 +451,13 @@ The ordering of lessons in the list are sorted as follows:
 2. Lesson Number (lexicographically)
 3. Lesson Day and time
 
+If module does not have specified lesson type, Apollo will display an error message:
+
+```
+>> showmod CS1010 -lec
+This module does not have this lesson type
+```
+
 ## *Utility Commands*
 
 ### `help` - Viewing help
@@ -420,7 +466,7 @@ Shows a menu of commands available in Apollo and their usage, as well as their r
 
 Format: `help`
 
-#### `help` for specific commands
+### `help` - For help with specific commands
 
 To see a shorter help menu for a specific command instead of the longer help command or to find out more about a command, 
 you can do so by typing `help COMMAND`.
@@ -475,6 +521,15 @@ There are -FLAGS for the various lessons options per module:
 -smc			SEMINAR STYLE MODULE CLASS
 -mp 			MINI PROJECT
 -tt2			TUTORIAL TYPE 2
+```
+
+#### Invalid Help Command Message:
+
+If the command is invalid, Apollo will display an error message.
+
+```
+>> help me
+Sorry, but I don't know what that means :(
 ```
 
 ### `week` - Viewing weekly schedule
@@ -540,6 +595,26 @@ ____________________________________________________________
 
 ```
 
+If the date is currently outside the semester, Apollo will display the following message as the week field:
+```
+It is currently not AY22/23 Semester 2
+```
+
+If the date is during recess week, Apollo will display the following message as the week field:
+```
+Recess Week
+```
+
+If the date is during reading week, Apollo will display the following message as the week field:
+```
+Reading Week
+```
+
+If the date is during exam week, Apollo will display the following message as the week field:
+```
+Examination week
+```
+
 ### `bye` - Exiting the program
 
 Format: `bye`
@@ -549,7 +624,13 @@ Format: `bye`
 Bye. Hope to see you again soon!
 ```
 
+#### Invalid Bye Command:
+An invalid bye command (e.g `bye` followed by a word) will result in the following message:
 
+```
+>> bye bye
+Sorry, but I don't know what that means :(
+```
 ## *Loading and saving of data*
 
 - Apollo automatically loads up your todo and module lists on start-up.
@@ -581,6 +662,33 @@ Your personal task and timetable manager!
 Enter "help" to see a list of commands.
 ____________________________________________________________
 ```
+
+## FAQ
+
+**Q**: How do I transfer my data to another Computer?
+
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+the data of your previous Apollo home folder. 
+
+**Q**: Why does Apollo only have data for NUS Modules in Academic Year 2022/2023 Semester 2?
+
+**A**: Due to requirements constraints of Apollo, we are not able to store multiple years of data due to data size limits.
+Additionally, we are not able to store data in a database due to the lack of a database server. As a result, data 
+for Apollo will be needed to be updated manually by the developers for each semester.
+
+**Q**: Does Apollo have data for all modules available in NUS?
+
+**A**: No. Apollo only has data for modules that are available in the current semester. Additionally, modules which have 
+timetables which fall outside of the official NUS Semester 2 timetable will not be available in Apollo. These includes
+certain modules such as Special Term Modules and iBloc Modules (CS1010x).
+
+**Q**: Should I edit the save file manually?
+
+**A**: No. Apollo is not designed to be edited manually. If you edit the save file manually, you may corrupt the data 
+and cause weird behaviours in Apollo. If you want to edit the save file, you can do so at your own risk. Editing the file
+while Apollo is running will not affect the data in Apollo.
+
+
 
 
 
