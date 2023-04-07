@@ -4,6 +4,12 @@
 * [User Guide](#user-guide)
   * [Introduction](#introduction)
   * [Quick Start](#quick-start)
+  * [Account Instructions](#account-instructions)
+    * [Create Account: `signup`](#create-account-signup)
+    * [Note: Username and password rules:](#note-username-and-password-rules)
+    * [Log In To Your Account: `login`](#log-in-to-your-account-login)
+    * [Sign out and save your expense: `logout`](#sign-out-and-save-your-expense-logout)
+    * [Exiting the program (inside the account): `exit`](#exiting-the-program-inside-the-account-exit)
   * [Features](#features)
     * [Get helpful instruction: `help`](#get-helpful-instruction--help)
     * [Adding an expense: `add`](#adding-an-expense--add)
@@ -14,7 +20,7 @@
     * [Obtaining expenses: `category`](#obtaining-expenses--category)
     * [Finding expenses: `find`](#finding-expenses--find)
     * [Generating overview: `overview`](#generating-overview--overview)
-    * [Exiting the program: `exit`](#exiting-the-program--exit)
+    * [Exiting the program (outside the account): `exit`](#exiting-the-program-outside-the-account-exit)
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
 <!-- TOC -->
@@ -31,7 +37,12 @@ them keep track of their expense based on category, time, amount, and currency.
 3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run
    the application.
 4. Enter your name when prompted in the command box and press enter.
-5. Type the command in the command box and press Enter to execute it.
+5. Log in to your account by typing `login` if you have already got one. Else, typing `signup` to create your account,
+   and then press Enter to proceed. After signing up successfully, you should log in to experience the app. More instructions
+   about the account and password are stated in the "Account Instructions" part.
+6. Once you have logged in successfully, you will see a message `Login successful`, and you are ready to experience our
+   application! You will see a command box for command instructions.
+7. Type the command in the command box and press Enter to execute it.
 
    Some example commands you can try:
 
@@ -42,6 +53,140 @@ them keep track of their expense based on category, time, amount, and currency.
     * `sort D`: Sort the expenses by date.
     * `category food`: Find all expenses with food category.
     * `find 2.5`: Find all expenses with information of 2.5.
+   
+8. When you want to log out and save your expense list, type `logout`.
+9. If you have already logged in, and want to close the application, type `exit`. Your expense list will be saved
+   automatically.
+10. Else, if you haven't logged in, or have already logged out, and you want to close the application, typing `exit`
+    will end the application immediately.
+
+## Account instructions
+### Create Account: `signup`
+
+* When you sign up, you should type your username, press Enter, then type your password, and press Enter.
+* If your username is taken already, you should sign up again. Else, you could proceed to `login`.
+
+Format: <br>
+```
+signup
+username
+your_username     //Type your username after seeing `username`, then press 'Enter'
+password
+your_password   //Type your password after seeing `Password`, then press 'Enter'
+```
+
+Expected Output: <br>
+* This will be displayed when your username contains a special characters (ie `_` in `your_username`):
+```
+Username must contain only letters and numbers.
+_____________________________________________________________________________________
+> Type "login" to start manage your expense. 
+> Haven't got your account yet? Type "signup" to create your account. 
+> Type "exit" to instantly terminate the program.
+_____________________________________________________________________________________
+```
+
+* This will be displayed when your password is less than 8 characters:
+
+```
+Password must be at least 8 characters long.
+_____________________________________________________________________________________
+> Type "login" to start manage your expense. 
+> Haven't got your account yet? Type "signup" to create your account. 
+> Type "exit" to instantly terminate the program.
+_____________________________________________________________________________________
+
+```
+
+* This will be displayed if your username is taken already (not case-sensitive):
+```
+The username is taken, please use another username.
+_____________________________________________________________________________________
+> Type "login" to start manage your expense. 
+> Haven't got your account yet? Type "signup" to create your account. 
+> Type "exit" to instantly terminate the program.
+_____________________________________________________________________________________
+
+```
+* For all those cases, the user will need to change to `login` or `exit`, or continue to signup until they could create 
+a satisfied account. When the username is satisfied, this will be displayed:
+```
+User <your_username> has been created
+Signup successfully
+_____________________________________________________________________________________
+> Type "login" to start manage your expense. 
+> Haven't got your account yet? Type "signup" to create your account. 
+> Type "exit" to instantly terminate the program.
+_____________________________________________________________________________________
+```
+Then, you can log in to your new account.
+### Note: Username and password rules:
+
+* Username must just include alphabet characters (both uppercase and lowercase) or numbers.
+* Password must have at least 8 characters.
+* Username is not case-sensitive, (ie ABC and abc are considered 1 user), but password is case-sensitive.
+
+### Log In To Your Account: `login`
+
+* In order to log in to your account, you do similar steps as `signup`.
+* If you type the password wrongly, you will see the message `Invalid username or password.` and you have to log in again.
+
+Format <br>
+```
+login
+username
+your_username     //Type your username after seeing `username`, then press 'Enter'
+password
+your_password   //Type your password after seeing `Password`, then press 'Enter'
+```
+
+Expected Output:
+* If the password and username are matched, this will be displayed, follow by a command list box for expense tracking.
+```
+Login successfully
+```
+After that, you can start managed your expense in your account
+* Else, this will be displayed, meaning that you will have to type the password again:
+```
+Invalid username or password.
+_____________________________________________________________________________________
+> Type "login" to start manage your expense. 
+> Haven't got your account yet? Type "signup" to create your account. 
+> Type "exit" to instantly terminate the program.
+_____________________________________________________________________________________
+```
+
+### Sign out and save your expense: `logout`
+
+* When you log out, all of your expenses in the expense list are saved, and the data is just restricted to your account.
+* Once you log in again, the expense list could be loaded from your previous session. You can view the list through
+  command `list`.
+
+Format: `logout`
+
+Expected Output:
+```
+Saved successfully.
+You are logged out successfully!
+_____________________________________________________________________________________
+> Type "login" to start manage your expense. 
+> Haven't got your account yet? Type "signup" to create your account. 
+> Type "exit" to instantly terminate the program.
+_____________________________________________________________________________________
+```
+
+### Exiting the program (inside the account): `exit`
+* When you are inside the account (ie: after logging in and before logging out of your account), typing `exit` will
+automatically save your account expense list, and then terminate the application.
+
+Format `exit`
+
+Expected Output:
+```
+Saved successfully.
+Goodbye! Hope to see you again soon!
+```
+
 
 ## Features
 
@@ -72,8 +217,9 @@ Format: `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRE
       available, the currency will default to SGD and a warning will be shown.
 * The command parameters may be entered in any order. If multiple of the same parameter type is inputted, such as in
   `add amt/10 amt/100 t/11-11-2023` only the first parameter `amt/10` of its kind is used.
-    * A warning will be shown if an
-      invalid input type is specified.
+    * A warning will be shown if an invalid input type is specified.
+* After the expense is added, it is automatically saved to the user's expense list. If the program is accidentally shut 
+down, all the data in the account is still saved.
 
 Example of usage:
 
@@ -129,6 +275,8 @@ Format: `delete INDEX`
 
 * INDEX is entry number INDEX in the expense list displayed with `list` command, following base-1 indexing.
 * Will display `Invalid expense index. Please try again.` if INDEX is greater than number of items in the list.
+* After the expense is deleted, the change is automatically saved to the user's expense list. If the program is accidentally shut
+  down, all the data in the account is still saved.
 
 Example of usage:
 
@@ -203,7 +351,7 @@ Obtain all the expenses with specified category, also obtain the category set to
 Format: `category CATEGORY`
 
 * CATEGORY represents the category that user want.
-* If the category doesn't belong to the categories that user have entered before, it will tell the user to switch to
+* If the category doesn't belong to the categories that user has entered before, it will tell the user to switch to
   another one.
 * The method also will tell user how many categories they have, and also what are these categories, to better help
   them with future obtaining purpose
@@ -314,9 +462,9 @@ Yearly Overview for 2022
     ----------------------------
 ```
 
-### Exiting the program: `exit`
+### Exiting the program (outside the account): `exit`
 
-Exits the program with all expenses saved.
+Exits the program immediately.
 
 Format: `exit`
 
@@ -328,15 +476,24 @@ Example of usage:
 
 ## Command Summary
 
-| Action                      | Command                                                                       |
-|-----------------------------|-------------------------------------------------------------------------------|
-| Add an expense              | `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRENCY]` |
-| Delete an expense           | `delete INDEX`                                                                |
-| List all expenses           | `list`                                                                        |
-| Calculate total expenditure | `total`                                                                       |
-| Sort                        | sort by category: `sort C`<br/>sort by date: `sort D`                         |
-| View expenses by category   | `category CATEGORY`                                                           |
-| Overview                    | monthly overview: `overview MONTH YEAR`<br/>yearly overview: `overview YEAR`  |
-| Find expenses               | `find KEYWORD`                                                                |
-| Exit ET                     | `exit`                                                                        |
+### Account-related command 
+| Action                       | Command                                                                      |
+|------------------------------|------------------------------------------------------------------------------|
+| Log in your account          | `login`                                                                      |
+| Create a new account         | `signup`                                                                     |
+| Exit ET (inside the account) | `exit`                                                                       |
+| Log out of the account       | `logout`                                                                     |
+E
+### Expense management command
+| Action                        | Command                                                                       |
+|-------------------------------|-------------------------------------------------------------------------------|
+| Add an expense                | `add amt/EXPENSE_AMOUNT t/TIME [cat/EXPENSE_CATEGORY] [cur/EXPENSE_CURRENCY]` |
+| Delete an expense             | `delete INDEX`                                                                |
+| List all expenses             | `list`                                                                        |
+| Calculate total expenditure   | `total`                                                                       |
+| Sort                          | sort by category: `sort C`<br/>sort by date: `sort D`                         |
+| View expenses by category     | `category CATEGORY`                                                           |
+| Overview                      | monthly overview: `overview MONTH YEAR`<br/>yearly overview: `overview YEAR`  |
+| Find expenses                 | `find KEYWORD`                                                                |
+| Exit ET (outside the account) | `exit`                                                                        |
 

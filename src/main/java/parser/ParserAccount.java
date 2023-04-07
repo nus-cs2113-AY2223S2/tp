@@ -10,6 +10,7 @@ import static common.MessageList.LOGOUT_MESSAGE;
 import static common.MessageList.EXIT_MESSAGE;
 import static data.Account.saveLogOut;
 import static data.ExpenseList.showToUser;
+import static java.lang.System.exit;
 
 
 public class ParserAccount {
@@ -36,7 +37,7 @@ public class ParserAccount {
         System.out.println("username");
         Scanner scanner = new Scanner(System.in);
         String user = scanner.nextLine();
-        System.out.println("Password");
+        System.out.println("password");
         String password = scanner.nextLine();
         Account newAccount = new Account(user, password);
         newAccount.signup();
@@ -66,6 +67,8 @@ public class ParserAccount {
             } else if (input.equals("signup")) {
                 // get register details
                 caseSignUp();
+            } else if (input.equals("exit")) {
+                exit(0);
             } else {
                 // invalid input, tell them to try again
                 System.out.println("invalid option, chose login or signup!");

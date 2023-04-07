@@ -77,7 +77,7 @@ public class Account {
             return;
         } else {
             try {
-                storage.createFile("./src/main/java/storage/" + accountName + ".json");
+                storage.createFile("./data/userdata/" + accountName + ".json");
                 FileWriter pw = new FileWriter("./src/main/java/storage/userList.txt", true);
                 pw.write(accountName + "," + passwordHash + "\n");
                 pw.close();
@@ -86,7 +86,7 @@ public class Account {
                 return;
             }
             System.out.printf("User %s has been created\n", accountName);
-            System.out.println("Signup successful.");
+            System.out.println("Signup successfully.");
         }
     }
 
@@ -98,7 +98,7 @@ public class Account {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts[0].equals(accountName) && parts[1].equals(passwordHash)) {
+                if (parts[0].equalsIgnoreCase(accountName) && parts[1].equals(passwordHash)) {
                     found = true;
                     break;
                 }
@@ -106,18 +106,17 @@ public class Account {
             bufferedReader.close();
             reader.close();
             if (found) {
-                storage.loadExpenses("./src/main/java/storage/" + accountName + ".json");
-                return "Login successful.";
+                storage.loadExpenses("./data/userdata/" + accountName + ".json");
+                return "Login successfully.";
             } else {
                 return "Invalid username or password.";
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Sorry, there is no username found.");
+            return ("Sorry, there is no username found.");
         } catch (IOException e) {
-            System.out.println("An error occurred while logging in.");
             e.printStackTrace();
+            return ("An error occurred while logging in.");
         }
-        return "Login successfully.";
     }
 
     private boolean isUsernameTaken() {
@@ -151,14 +150,14 @@ public class Account {
     }
 
     public static void saveLogOut() {
-        storage.saveExpenses("./src/main/java/storage/" + accountName + ".json");
+        storage.saveExpenses("./data/userdata/" + accountName + ".json");
         account.clear();
         account = null;
         System.out.println("Saved successfully.");
     }
 
     public static void autoSave() {
-        storage.saveExpenses("./src/main/java/storage/" + accountName + ".json");
+        storage.saveExpenses("./data/userdata/" + accountName + ".json");
     }
 }
 
