@@ -2,6 +2,7 @@ package seedu.pettracker.data;
 
 import seedu.pettracker.exceptions.DuplicatePetException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
+import seedu.pettracker.exceptions.InvalidPetNameException;
 import seedu.pettracker.exceptions.InvalidStatException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
@@ -24,10 +25,16 @@ public class PetList {
      *
      * @param petName Name of pet to be added
      */
-    public static void addPet(String petName) throws EmptyPetNameException, DuplicatePetException {
+    public static void addPet(String petName) throws EmptyPetNameException, DuplicatePetException,
+            InvalidPetNameException {
         if (petName.trim().isEmpty()) {
             throw new EmptyPetNameException();
         }
+
+        if(petName.trim().contains("|")) {
+            throw new InvalidPetNameException();
+        }
+
         int index = PetList.find(petName);
         if (index != -1) {
             throw new DuplicatePetException();

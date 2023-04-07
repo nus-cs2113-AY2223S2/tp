@@ -54,7 +54,7 @@ public class CommandParser {
         assert keyword != null;
         final String arguments = matcher.group("arguments").trim();
 
-        switch (keyword) {
+        switch (keyword.toLowerCase()) {
         case KEYWORD_EXIT:
             return new ExitParser().parse(arguments);
         case KEYWORD_ADD_PET:

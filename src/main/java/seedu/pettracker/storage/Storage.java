@@ -6,9 +6,11 @@ import seedu.pettracker.data.Task;
 import seedu.pettracker.data.TaskList;
 import seedu.pettracker.exceptions.EmptyTaskNameException;
 import seedu.pettracker.exceptions.InvalidMarkTaskSymbolException;
+import seedu.pettracker.exceptions.InvalidPetNameException;
 import seedu.pettracker.exceptions.InvalidSeparatorException;
-import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.InvalidStatException;
+import seedu.pettracker.exceptions.InvalidTaskNameException;
+import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.exceptions.DuplicatePetException;
@@ -77,6 +79,8 @@ public class Storage {
             ui.printFileDuplicatePetMessage();
         } catch (InvalidSeparatorException e) {
             ui.printPetFileInvalidSeparatorMessage();
+        } catch (InvalidPetNameException e) {
+            ui.printFileInvalidPetNameMessage();
         }
     }
 
@@ -114,6 +118,8 @@ public class Storage {
             ui.printFileEmptyTaskNameMessage();
         } catch (InvalidMarkTaskSymbolException e) {
             ui.printFileInvalidMarkTaskSymbolMessage();
+        } catch (InvalidTaskNameException e) {
+            ui.printFileInvalidTaskNameMessage();
         }
     }
 
@@ -181,7 +187,7 @@ public class Storage {
 
     private void parsePetFile(ArrayList<String> data) throws NumberFormatException, NonPositiveIntegerException,
             InvalidStatException, PetNotFoundException, EmptyPetNameException, DuplicatePetException,
-            InvalidSeparatorException {
+            InvalidSeparatorException, InvalidPetNameException {
         for (String line : data) {
             validatePetDataSep(line);
             String petName = getPetName(line);
@@ -205,7 +211,8 @@ public class Storage {
     }
 
     private void parseTaskFile(ArrayList<String> data) throws InvalidSeparatorException,
-            DateTimeParseException, EmptyTaskNameException, InvalidMarkTaskSymbolException {
+            DateTimeParseException, EmptyTaskNameException, InvalidMarkTaskSymbolException,
+            InvalidTaskNameException {
         for (String line : data) {
             try {
                 validateTaskDataSep(line);
@@ -234,7 +241,7 @@ public class Storage {
     }
 
     private void parseTaskWithoutDeadline(String line) throws EmptyTaskNameException,
-            InvalidMarkTaskSymbolException, EmptyArgException {
+            InvalidMarkTaskSymbolException, InvalidTaskNameException, EmptyArgException {
         String taskName = getTaskName(line);
         String taskStatus = getTaskStatus(line);
 

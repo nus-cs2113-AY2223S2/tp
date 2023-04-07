@@ -27,7 +27,8 @@ public class UnMarkTaskCommand extends Command{
         try {
             TaskList.markTask(taskNumber, false);
             TaskList.saveTasksToStorage(storage, ui);
-            ui.unmarkTaskCommandMessage();
+            String unmarkTaskDescription = TaskList.getSpecificTaskDescription(taskNumber);
+            ui.unmarkTaskCommandMessage(unmarkTaskDescription);
         } catch (IndexOutOfBoundsException e) {
             ui.taskNumberOutOfBoundsMessage();
         }

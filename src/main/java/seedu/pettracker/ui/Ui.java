@@ -38,6 +38,13 @@ public class Ui {
             "loading aborted.";
     private static final String INVALID_MARK_TASK_SYMBOL_FILE_ERROR = "ERROR: Task save file has invalid mark task " +
             "symbol. File loading aborted.";
+    private static final String INVALID_PET_NAME_ERROR = "ERROR: Invalid pet name. Pet name cannot contain pipes.";
+    private static final String INVALID_PET_NAME_FILE_ERROR = "ERROR: Pet save file has invalid pet name. Pet name " +
+            "cannot contain pipes. File Loading aborted";
+    private static final String INVALID_TASK_NAME_ERROR = "ERROR: Invalid task name. Task name cannot contain pipes.";
+    private static final String INVALID_TASK_NAME_FILE_ERROR = "ERROR: Task save file has invalid task name. " +
+            "Task name cannot contain pipes. File Loading aborted";
+
 
     private Scanner in;
 
@@ -177,18 +184,18 @@ public class Ui {
     /**
      * Message that prints when a task is marked as done.
      */
-    public void markTaskCommandMessage() {
+    public void markTaskCommandMessage(String markTaskDescription) {
         System.out.println(DIVIDER);
-        System.out.println("Task marked as done");
+        System.out.println("Task marked as done: " + markTaskDescription);
         System.out.println(DIVIDER);
     }
 
     /**
      * Message that prints when a task is marked as not done.
      */
-    public void unmarkTaskCommandMessage() {
+    public void unmarkTaskCommandMessage(String unmarkTaskDescription) {
         System.out.println(DIVIDER);
-        System.out.println("Task marked as not done");
+        System.out.println("Task marked as not done: " + unmarkTaskDescription);
         System.out.println(DIVIDER);
     }
 
@@ -285,6 +292,22 @@ public class Ui {
 
     public void printFileInvalidMarkTaskSymbolMessage() {
         System.out.println(INVALID_MARK_TASK_SYMBOL_FILE_ERROR);
+    }
+
+    public void printInvalidPetNameMessage() {
+        System.out.println(INVALID_PET_NAME_ERROR);
+    }
+
+    public void printFileInvalidPetNameMessage() {
+        System.out.println(INVALID_PET_NAME_FILE_ERROR);
+    }
+
+    public void printInvalidTaskNameMessage() {
+        System.out.println(INVALID_TASK_NAME_ERROR);
+    }
+
+    public void printFileInvalidTaskNameMessage() {
+        System.out.println(INVALID_TASK_NAME_FILE_ERROR);
     }
 
     /**
