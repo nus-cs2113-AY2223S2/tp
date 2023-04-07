@@ -1,7 +1,10 @@
 package seedu.commands;
 
 import seedu.entities.User;
+import seedu.exceptions.ExtraArgumentsException;
+import seedu.exceptions.InvalidChoiceException;
 import seedu.exceptions.LifeTrackerException;
+import seedu.exceptions.MissingArgumentsException;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
@@ -9,6 +12,71 @@ import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
 
 public class UpdateUserCommand extends Command {
+    private int number;
+    private String command;
+    private String userInput;
+
+    public UpdateUserCommand(String command, String userInput){
+        this.command = command;
+        this.userInput = userInput;
+    }
+
+    public void parseCommand() throws LifeTrackerException{
+        String[] userInputSplit = userInput.split(" ");
+        if(command.length() == userInput.length() || userInputSplit.length < 2){
+            throw new MissingArgumentsException(command, "[number]");
+        } else if (userInputSplit.length > 2) {
+            throw new ExtraArgumentsException();
+        }
+        number = Integer.parseInt(userInputSplit[1]);
+    }
+
+    @Override
+    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
+                        ExerciseStorage exerciseStorage)
+            throws LifeTrackerException {
+        User user = userStorage.getUser();
+        this.parseCommand();
+        switch (number) {
+        case 1:
+            user.setName(updateName(ui));
+            break;
+        case 2:
+            user.setWeight(updateWeight(ui));
+            user.setCaloricLimit(
+                User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+            );
+            User.displayNewWeightDifference(user.getWeight(), user.getTargetWeight());
+            break;
+        case 3:
+            user.setHeight(updateHeight(ui));
+            user.setCaloricLimit(
+                User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+            );
+            break;
+        case 4:
+            user.setAge(updateAge(ui));
+            user.setCaloricLimit(
+                User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+            );
+            break;
+        case 5:
+            user.setGender(updateGender(ui));
+            user.setCaloricLimit(
+                User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+            );
+            break;
+        case 6:
+            user.setTargetWeight(updateTargetWeight(ui));
+            User.displayNewTargetWeightDifference(user.getWeight(), user.getTargetWeight());
+            break;
+        default:
+            throw new InvalidChoiceException();
+        }
+        
+        userStorage.updateUser(user);
+    }
+
     public String updateName(GeneralUi ui) {
         String nameString = null;
         while (true) {
@@ -29,89 +97,6 @@ public class UpdateUserCommand extends Command {
         }
         return nameString;
     }
-
-    @Override
-    public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
-                        ExerciseStorage exerciseStorage)
-            throws LifeTrackerException {
-        User user = userStorage.getUser();
-        int choice;
-        boolean toContinue = true;
-        while (toContinue) {
-            System.out.println("Update user settings");
-            System.out.println("1. Update Name");
-            System.out.println("2. Update Weight");
-            System.out.println("3. Update Height");
-            System.out.println("4. Update Age");
-            System.out.println("5. Update Gender");
-            System.out.println("6. Update Target Weight");
-            System.out.println("7. Exit");
-            System.out.println();
-
-            choice = ui.readInt();
-
-            switch (choice) {
-            case 1:
-                user.setName(updateName(ui));
-                break;
-            case 2:
-                user.setWeight(updateWeight(ui));
-                user.setCaloricLimit(
-                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
-                );
-                User.displayNewWeightDifference(user.getWeight(), user.getTargetWeight());
-                break;
-            case 3:
-                user.setHeight(updateHeight(ui));
-                user.setCaloricLimit(
-                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
-                );
-                break;
-            case 4:
-                user.setAge(updateAge(ui));
-                user.setCaloricLimit(
-                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
-                );
-                break;
-            case 5:
-                user.setGender(updateGender(ui));
-                user.setCaloricLimit(
-                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
-                );
-                break;
-            case 6:
-                user.setTargetWeight(updateTargetWeight(ui));
-                User.displayNewTargetWeightDifference(user.getWeight(), user.getTargetWeight());
-                break;
-            case 7:
-                break;
-            default:
-                System.out.println("Invalid Choice!");
-            }
-
-            System.out.println( System.lineSeparator() + "Continue updating?");
-            System.out.println("1. Yes");
-            System.out.println("2. No");
-            System.out.println();
-
-            choice = ui.readInt();
-
-            switch (choice) {
-            case 1:
-                toContinue = true;
-                break;
-            case 2:
-                toContinue = false;
-                break;
-            default:
-                toContinue = false;
-                System.out.println("Invalid Choice! Exiting...");
-            }
-        }
-        
-        userStorage.updateUser(user);
-    }
-
     public float updateWeight(GeneralUi ui) {
         String weightString = "dummy";
         while (true) {

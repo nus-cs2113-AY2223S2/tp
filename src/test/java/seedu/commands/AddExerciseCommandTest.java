@@ -30,8 +30,9 @@ public class AddExerciseCommandTest {
         InvalidDateException thrown = assertThrows(InvalidDateException.class, () -> {
             command.execute(ui, null, null, null, exerciseStorage);
         });
-        String expectedErrorMessage = "Oops! 3/13/2023 is not a valid date! Please format the date as: " + 
-                DateConstants.PARSE_FORMAT;
+        String expectedErrorMessage = "Oops! 3/13/2023 is not a valid date!" +
+                " Please format the date as: " + DateConstants.PARSE_FORMAT + "." +
+                    "\n" + "Also check whether the date you've entered exists!";
         assertEquals(expectedErrorMessage, thrown.getMessage());
     }
 

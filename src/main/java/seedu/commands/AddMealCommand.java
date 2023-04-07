@@ -3,6 +3,7 @@ package seedu.commands;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +93,7 @@ public class AddMealCommand extends Command {
         System.out.println("Enter date of meal (d/M/yyyy):");
         try {
             dateString = ui.readLine();
-            date = LocalDate.parse(dateString, dtf);
+            date = LocalDate.parse(dateString, dtf.withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(dateString);
         }
