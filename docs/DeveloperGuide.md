@@ -86,7 +86,7 @@ The `XYZStorage` class performs the following functions:
 
 ## Implementation
 ### Parsing Feature
-<img src="uml/images/ParserSequenceDiagram.png" width="500"/>  
+<img src="uml/images/ParserSequenceDiagram.png" width="520"/>  
 
 How the parsing works:
 1. The `Parser()` class will be called to create a new instance of `Parser`.
@@ -176,19 +176,19 @@ The Dish feature consists of three functions:
 
 ### Storage Feature 
 #### Create directory, Read and load from XYZ file
-<img src="uml/images/CreateDirectorySequenceDiagram.png" width="300"/>  
+<img src="uml/images/CreateDirectorySequenceDiagram.png" width="400"/>  
 
 1. The `Storage()` class will be called to create a new instance of `Storage`.
 2. The `createDirectory()` method in the `Storage()` class will be called next. A directory called `data` will be created in the same folder as the application if the folder does not exist.
 
 #### Read and load from XYZFile
-<img src="uml/images/ReadAndLoadFromXYZFileSequenceDiagram.png" width="300"/>
+<img src="uml/images/ReadAndLoadFromXYZFileSequenceDiagram.png" width="400"/>
 
 1. The `XYZStorage()` class will be called to create a new instance of `XYZStorage`.
 2. The `readAndLoadFromXYZFile()` method in the `XYZStorage()` class is called to read and load data if any application related text files exists.
 
 #### Write to XYZ file
-<img src="uml/images/WriteToXYZFileSequenceDiagram.png" width="300"/>
+<img src="uml/images/WriteToXYZFileSequenceDiagram.png" width="400"/>
 
 1. The `XYZStorage()` class will be called to create a new instance of `XYZStorage`.
 2. The `writeToXYZFile()` method in the `XYZStorage()` class is called to write the contents in the list into the respective file.
