@@ -10,7 +10,7 @@
 - Added the ability to show class information for a module
 - Added the ability to list the module list from timetable
 - Added the ability to list specific module and classes from module list
-- JUnit tests
+- JUnit tests for ListModuleWithLessonCommand and SemesterUtils
 - Patches, bug fixes
 
 #### Contributions to the UG
@@ -20,12 +20,18 @@
     - Showing a module information
     - Showing a module class information
 
+
 #### Contributions to the DG
 - Added/Elaborated on the following classes in the DG:
-  - ShowModuleCommand
-  - ListModuleWithLessonCommand
-  - FindCommand
+  - ShowModuleCommand 
+  - ListModuleWithLessonCommand 
   - ListCommand
+  - FindCommand
+- Added the following PlantUML diagrams:
+  -ShowModuleCommand Sequence Diagram
+  - ListModuleWithLessonCommand Sequence Diagram
+  - ListCommand Sequence Diagram
+  - DeleteModuleCommand Sequence Diagram
 
 #### Contributions to team-based tasks
 - Assisted in maintaining the issue tracker
