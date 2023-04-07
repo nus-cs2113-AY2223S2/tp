@@ -12,7 +12,6 @@ import seedu.todolist.model.Task;
 import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Predicate;
@@ -22,16 +21,13 @@ public class EditEmailCommand extends Command {
         Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.DESCRIPTION, Flags.EMAIL,
         Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
-    private HashSet<Integer> idHashSet;
     private String email;
+    private HashSet<Integer> idHashSet;
     private Predicate<Task> predicate;
 
     public EditEmailCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_EMAIL));
-        if (!Collections.disjoint(args.keySet(), Flags.FILTER_FLAGS)) {
-            // At least one filter flag is present
-            predicate = ParserUtil.parseFilter(args);
-        }
+        predicate = ParserUtil.parseFilter(args);
         if (idHashSet.isEmpty() == (predicate == null)) {
             throw new InvalidSelectException();
         }

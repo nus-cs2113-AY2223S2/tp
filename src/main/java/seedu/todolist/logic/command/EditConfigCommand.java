@@ -20,8 +20,8 @@ public class EditConfigCommand extends Command {
 
     public EditConfigCommand(HashMap<Flags, String> args) throws InvalidFrequencyException {
         // Use -1 to represent no value as the flag was not in the command
-        checkFrequency = ParserUtil.parseFrequency(args.get(Flags.CONFIG_CHECK_FREQ));
-        repeatFrequency = ParserUtil.parseFrequency(args.get(Flags.CONFIG_REPEAT_FREQ));
+        checkFrequency = ParserUtil.parseFrequency(args.get(Flags.CONFIG_CHECK_FREQ), 0);
+        repeatFrequency = ParserUtil.parseFrequency(args.get(Flags.CONFIG_REPEAT_FREQ), 1);
         shouldReset = args.containsKey(Flags.RESET);
     }
 

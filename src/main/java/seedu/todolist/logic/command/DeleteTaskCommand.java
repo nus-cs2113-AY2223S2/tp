@@ -11,7 +11,6 @@ import seedu.todolist.model.Task;
 import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Predicate;
@@ -26,10 +25,7 @@ public class DeleteTaskCommand extends Command {
 
     public DeleteTaskCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_DELETE));
-        if (!Collections.disjoint(args.keySet(), Flags.FILTER_FLAGS)) {
-            // At least one filter flag is present
-            predicate = ParserUtil.parseFilter(args);
-        }
+        predicate = ParserUtil.parseFilter(args);
         if (idHashSet.isEmpty() == (predicate == null)) {
             throw new InvalidSelectException();
         }

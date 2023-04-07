@@ -1,5 +1,6 @@
 package seedu.todolist.ui;
 
+import seedu.todolist.constants.Errors;
 import seedu.todolist.constants.HelpMessages;
 import seedu.todolist.constants.Messages;
 
@@ -150,5 +151,22 @@ public class Ui {
 
     public void printHelpList() {
         println(HelpMessages.HELP_COMMAND);
+    }
+
+    public void printCancelDeleteAllMessage() {
+        println(Messages.CANCEL);
+    }
+
+    public void printDeleteAllMessage(){
+        println((Messages.DELETE_ALL_TASKS));
+    }
+    public String printConfirmationMessage() {
+        println(Messages.CONFIRM);
+        String input = getUserInput();
+        while (!(input.equals("Yes") || input.equals("No"))){
+            println(Errors.INVALID_CONFIRM);
+            input = getUserInput();
+        }
+        return input;
     }
 }

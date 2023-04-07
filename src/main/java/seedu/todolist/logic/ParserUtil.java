@@ -2,8 +2,6 @@ package seedu.todolist.logic;
 
 import seedu.todolist.constants.Flags;
 import seedu.todolist.constants.Formats;
-import seedu.todolist.exception.ToDoListException;
-import seedu.todolist.model.Priority;
 import seedu.todolist.exception.InvalidBooleanException;
 import seedu.todolist.exception.InvalidDateException;
 import seedu.todolist.exception.InvalidDurationException;
@@ -13,6 +11,8 @@ import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.InvalidPriorityException;
 import seedu.todolist.exception.InvalidSortException;
 import seedu.todolist.exception.PassedDateException;
+import seedu.todolist.exception.ToDoListException;
+import seedu.todolist.model.Priority;
 import seedu.todolist.model.Task;
 
 import java.time.LocalDateTime;
@@ -20,14 +20,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
-
-import static java.util.function.Predicate.not;
 
 /**
  * Utility class for parsing arguments that are in the form of strings.
@@ -168,6 +167,20 @@ public class ParserUtil {
         return new TreeSet<>(Arrays.asList(tags.split(" ")));
     }
 
+    /**
+     * Counts the number of trues in an array of boolean values.
+     *
+     * @param bools The boolean array.
+     * @return The number of trues in the boolean array.
+     */
+    public static int countTrue(boolean... bools) {
+        int count = 0;
+        for (boolean b : bools) {
+            count += b ? 1 : 0;
+        }
+        return count;
+    }
+
     //@@author clement559
     /**
      * Parses the repeat duration of the task, which is in number of weeks.
@@ -200,20 +213,24 @@ public class ParserUtil {
     /**
      * Parses the frequency to be set in the config.
      *
-     * @param frequency The frequency, as a string.
+     * @param frequencyString The frequency, as a string.
      * @return The frequency, as an integer, if it was not null, null otherwise.
      * @throws InvalidFrequencyException If the priority cannot be parsed to an integer.
      */
-    public static int parseFrequency(String frequency) throws InvalidFrequencyException {
-        if (frequency == null) {
+    public static int parseFrequency(String frequencyString, int minAllowed) throws InvalidFrequencyException {
+        if (frequencyString == null) {
             return -1;
         }
 
         try {
-            assert Integer.parseInt(frequency) >= 0 : "Parser should catch any negative values";
-            return Integer.parseInt(frequency);
+            int frequency = Integer.parseInt(frequencyString);
+            assert frequency >= 0 : "Parser should catch any negative values";
+            if (frequency < minAllowed) {
+                throw new InvalidFrequencyException(frequencyString);
+            }
+            return frequency;
         } catch (NumberFormatException e) {
-            throw new InvalidFrequencyException(frequency);
+            throw new InvalidFrequencyException(frequencyString);
         }
     }
 
@@ -245,6 +262,31 @@ public class ParserUtil {
     }
 
     /**
+     * Parses the boolean filter options, which can either be true or false.
+     *
+     * @param args Hashmap containing filter flags and their arguments, if any.
+     * @return Null, if no filters are provided, otherwise, a predicate matching all the given filters.
+     * @throws ToDoListException If the argument for any filter is invalid.
+     */
+    private static Predicate<Task> parseBooleanFilters(HashMap<Flags, String> args) throws ToDoListException {
+        Predicate<Task> predicate = task -> true;
+        if (args.containsKey(Flags.FILTER_DONE)) {
+            predicate = predicate.and(parseBoolean(args.get(Flags.FILTER_DONE))
+                    ? Task.isDonePredicate() : Predicate.not((Task.isDonePredicate())));
+        }
+        if (args.containsKey(Flags.FILTER_OVERDUE)) {
+            predicate = predicate.and(parseBoolean(args.get(Flags.FILTER_OVERDUE))
+                    ? Task.isOverdue() : Predicate.not(Task.isOverdue()));
+        }
+        if (args.containsKey(Flags.REPEAT)) {
+            predicate = predicate.and(parseBoolean(args.get(Flags.REPEAT))
+                    ? Task.isRepeating() : Predicate.not(Task.isRepeating()));
+        }
+        return predicate;
+    }
+
+    //@@author KedrianLoh
+    /**
      * Parses the filter options.
      *
      * @param args Hashmap containing filter flags and their arguments, if any.
@@ -252,16 +294,13 @@ public class ParserUtil {
      * @throws ToDoListException If the argument for any filter is invalid.
      */
     public static Predicate<Task> parseFilter(HashMap<Flags, String> args) throws ToDoListException {
-        Predicate<Task> predicate = task -> true;
-        if (args.containsKey(Flags.FILTER_DONE)) {
-            predicate = predicate.and(parseBoolean(args.get(Flags.FILTER_DONE))
-                    ? Task.isDonePredicate() : not(Task.isDonePredicate()));
+        if (Collections.disjoint(args.keySet(), Flags.FILTER_FLAGS)) {
+            // No filter flags are present
+            return null;
         }
-        if (args.containsKey(Flags.FILTER_OVERDUE)) {
-            predicate = predicate.and(parseBoolean(args.get(Flags.FILTER_OVERDUE))
-                    ? Task.isOverdue() : not(Task.isOverdue()));
-        }
-        //@@author KedrianLoh
+
+        Predicate<Task> predicate = parseBooleanFilters(args);
+        // Parse the non-boolean filters, which take in arguments
         if (args.containsKey(Flags.DESCRIPTION)) {
             predicate = predicate.and(Task.matchesDescription(args.get(Flags.DESCRIPTION)));
         }
@@ -275,10 +314,6 @@ public class ParserUtil {
         if (args.containsKey(Flags.FILTER_AFTER)) {
             predicate = predicate.and(Task.afterDeadline(
                     parseDeadline(args.get(Flags.FILTER_AFTER), LocalDateTime.MIN)));
-        }
-        if (args.containsKey(Flags.REPEAT)) {
-            predicate = predicate.and(parseBoolean(args.get(Flags.REPEAT))
-                    ? Task.isRepeating() : not(Task.isRepeating()));
         }
         if (args.containsKey(Flags.TAG)) {
             predicate = predicate.and(Task.matchesTags(parseTags(args.get(Flags.TAG))));

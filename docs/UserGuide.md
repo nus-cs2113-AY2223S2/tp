@@ -448,8 +448,8 @@ See you again, bye!
 ## FAQ
 
 **How do I transfer my data to another computer?**
-- Your task list is saved in the generated `data.txt` file.
-- Copy the `save.txt` to the other computer and place it in the same location as the jar file for the program before running it. 
+- Your task list is saved in the generated `data.json` file, and configs are saved in the `config.json` file.
+- Copy these files to the other computer and place them in the same location as the jar file for the program before running it. 
 
 **Why was my recurring task details not updated with the original task?**
 - The recurring tasks that are automatically added by the system are not linked to the original task.

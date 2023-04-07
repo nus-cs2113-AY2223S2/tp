@@ -12,34 +12,29 @@ import seedu.todolist.model.Task;
 import seedu.todolist.model.TaskList;
 import seedu.todolist.ui.Ui;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public class EditTagsCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_TAGS, Flags.EDIT, Flags.EDIT_ADD,
         Flags.EDIT_DELETE, Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.DESCRIPTION, Flags.EMAIL,
         Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
+    private TreeSet<String> tags;
     private HashSet<Integer> idHashSet;
-    private TreeSet<String> tags = new TreeSet<>();
     private Predicate<Task> predicate;
     private Flags purpose;
 
     public EditTagsCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_TAGS));
-        if (!Collections.disjoint(args.keySet(), Flags.FILTER_FLAGS)) {
-            // At least one filter flag is present
-            predicate = ParserUtil.parseFilter(args);
-        }
+        predicate = ParserUtil.parseFilter(args);
         if (idHashSet.isEmpty() == (predicate == null)) {
             throw new InvalidSelectException();
         }
-        int count = (int) Stream.of(args.containsKey(Flags.EDIT), args.containsKey(Flags.EDIT_ADD),
-                args.containsKey(Flags.EDIT_DELETE)).filter(bool -> bool).count();
+        int count = ParserUtil.countTrue(args.containsKey(Flags.EDIT), args.containsKey(Flags.EDIT_ADD),
+                args.containsKey(Flags.EDIT_DELETE));
         if (count != 1) {
             // Can only have one of -add, -edit, -del
             throw new InvalidEditException(count);

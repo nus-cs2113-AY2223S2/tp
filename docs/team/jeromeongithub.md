@@ -21,7 +21,7 @@ can be saved and used again when the user needs to refer to the task list. By us
 list is saved as a human-readable file which can be easily modified by advanced users to quickly edit their task list.
     
 
-  **New Feature**: Created a `progress` command to allow users to check their progress on tasks that are due within the 
+-  **New Feature**: Created a `progress` command to allow users to check their progress on tasks that are due within the 
                    current week.
     - What it does: Allows the user to see their progress on all tasks in the To-Do list that are due within the current
 week. The user will see the percentage of tasks completed, a progress bar and a list of all the tasks that are due 

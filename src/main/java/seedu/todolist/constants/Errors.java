@@ -25,10 +25,12 @@ public final class Errors {
     public static final String INVALID_FREQUENCY = "Invalid frequency: ";
     public static final String INVALID_BOOLEAN = "Invalid boolean value: ";
     public static final String INVALID_SORT = "Invalid sort option: ";
+    public static final String INVALID_CONFIRM = "Invalid Response, please enter Yes or No.";
 
     //@@author clement559
-    public static final String FAILED_SAVE = "Error when saving; please check that you have write permissions for "
-            + Storage.DEFAULT_DATA_PATH + " and " + Storage.DEFAULT_CONFIG_PATH;
+    public static final String FAILED_SAVE = "Error when saving to "
+            + Storage.DEFAULT_DATA_PATH + " and " + Storage.DEFAULT_CONFIG_PATH + System.lineSeparator()
+            + "Check that these are not directories and that you have write permissions for them.";
     public static final String FAILED_LOAD_DATA = "Error when loading your data from "
             + Storage.DEFAULT_DATA_PATH + System.lineSeparator()
             + "A new task list will be created for you.";
