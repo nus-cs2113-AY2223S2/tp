@@ -172,8 +172,8 @@ public class Ui {
     /**
      * Message that prints when a task is marked as not done.
      */
-    public void unmarkTaskCommandMessage() {
-        System.out.println("Task marked as not done");
+    public void unmarkTaskCommandMessage(String unmarkTaskDescription) {
+        System.out.println("Task marked as not done: " + unmarkTaskDescription);
     }
 
     /**
