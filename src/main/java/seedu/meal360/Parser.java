@@ -409,9 +409,9 @@ public class Parser {
         return recipes.get(recipeIndex - 1);
     }
 
-    public Recipe parseRandomRecipe(RecipeList recipes) {
+    public Recipe parseRandomRecipe(RecipeList recipes) throws NullPointerException {
         if (recipes.size() == 0) {
-            throw new NullPointerException("There is no recipe in the list to random");
+            throw new NullPointerException("There is no recipe in the list for random.");
         }
         return recipes.randomRecipe();
     }
