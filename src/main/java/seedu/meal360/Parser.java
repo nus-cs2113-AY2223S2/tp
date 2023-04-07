@@ -236,6 +236,7 @@ public class Parser {
     }
 
     public String parseTagRecipe(String[] inputs, RecipeList recipeList) {
+        String returnMessage;
         String tag;
         boolean isOnlyTagWordInCommand = inputs.length == 1;
         boolean isAddTag;
@@ -257,15 +258,17 @@ public class Parser {
             throw new IllegalArgumentException("Please enter the command in the correct format.");
         } else if (isAddTag) {
             tag = parseAddRecipeTag(commandString.toString(), recipeList);
+            returnMessage = "add " + tag;
         } else if (isRemoveTag) {
             tag = parseRemoveRecipeTag(commandString.toString(), recipeList);
+            returnMessage = "remove " + tag;
         } else {
             throw new IllegalArgumentException("Invalid command.");
         }
-        return tag;
+        return returnMessage;
     }
 
-    public String parseAddRecipeTag(String command, RecipeList recipeList) {
+    public String parseAddRecipeTag(String command, RecipeList recipeList) throws IndexOutOfBoundsException {
         String tag;
         Recipe recipe;
         String[] recipesToTag;
@@ -295,7 +298,7 @@ public class Parser {
         return tag;
     }
 
-    public String parseRemoveRecipeTag(String command, RecipeList recipeList) {
+    public String parseRemoveRecipeTag(String command, RecipeList recipeList) throws IndexOutOfBoundsException {
         String tag;
         Recipe recipe;
         String[] recipesToRemove;
