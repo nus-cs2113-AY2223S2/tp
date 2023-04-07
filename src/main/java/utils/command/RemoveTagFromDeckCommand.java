@@ -46,7 +46,9 @@ public class RemoveTagFromDeckCommand extends Command {
         if (wasTagInDeck == false) {
             throw new TagNeverWasInDeck();
         }
+        deck.removeTaggedCardsMap(tagUUID, tagList);
         deck.setTags(deckTagList);
+
     }
 
     @Override

@@ -9,6 +9,7 @@ import model.DeckUUID;
 import model.TagList;
 import utils.UserInterface;
 import utils.exceptions.CardInDeckException;
+import utils.exceptions.CardInDeckUnderTagException;
 import utils.exceptions.InkaException;
 import utils.storage.IDataStorage;
 
@@ -23,18 +24,21 @@ public class AddCardToDeckCommand extends Command {
         this.cardSelector = cardSelector;
     }
 
-    private void addCardToDeck(DeckList deckList, Card cardToAdd, UserInterface ui) throws CardInDeckException {
-        //find the corresponding Deck and Card based on its deckName and card uuid
+    private void addCardToDeck(DeckList deckList, Card cardToAdd, UserInterface ui) throws InkaException {
+        assert cardToAdd!=null;
         Deck deckToAdd = deckList.findDeckFromName(deckName);
-
         if (deckToAdd == null) {
             ui.printDeckCreationSuccess();
             deckToAdd = new Deck(deckName, cardToAdd.getUuid());
+            deckToAdd.addCardToSet(cardToAdd.getUuid());
             deckList.addDeck(deckToAdd);
         } else if (deckToAdd.cardIsInDeck(cardToAdd.getUuid())) {
             throw new CardInDeckException();
-        } else {
-            deckToAdd.addCard(cardToAdd.getUuid());
+        } else if(deckToAdd.cardIsInMap(cardToAdd.getUuid())) {
+            throw new CardInDeckUnderTagException();
+        } else{
+            deckToAdd.addCard(cardToAdd.getUuid()); // add card to the array list
+            deckToAdd.addCardToSet(cardToAdd.getUuid()); // add card to the set
         }
 
         //add the tag uuid to the card

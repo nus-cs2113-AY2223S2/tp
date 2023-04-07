@@ -209,4 +209,16 @@ public class UserInterface {
                 "Deck " + deck.getDeckUUID() + "deck name has been changed from " + oldDeckName
                         + " to " + deck.getDeckName());
     }
+
+    public void printQuestion(String question) {
+        System.out.println("Q: " + question);
+    }
+
+    public void printAnswer(String answer) {
+        System.out.println("A: " + answer + "\n");
+    }
+
+    public void printExitingRunMode() {
+        System.out.println("Exiting run mode!\n");
+    }
 }

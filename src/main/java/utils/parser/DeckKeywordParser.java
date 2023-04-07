@@ -15,6 +15,7 @@ import utils.command.ListTagsUnderDeckCommand;
 import utils.command.PrintHelpCommand;
 import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromDeckCommand;
+import utils.command.RunCommand;
 import utils.exceptions.InkaException;
 import utils.exceptions.UnrecognizedCommandException;
 
@@ -25,6 +26,7 @@ public class DeckKeywordParser extends KeywordParser{
     public static final String EDIT_ACTION = "edit";
     public static final String HELP_ACTION = "help";
     public static final String LIST_ACTION = "list";
+    public static final String RUN_ACTION = "run";
     private DefaultParser parser;
     public DeckKeywordParser() {
         this.parser = new DefaultParser(false);
@@ -42,6 +44,8 @@ public class DeckKeywordParser extends KeywordParser{
             return handleHelp();
         case LIST_ACTION:
             return handleList(tokens);
+        case RUN_ACTION:
+            return handleRun(tokens);
         default:
             throw new UnrecognizedCommandException();
         }
@@ -96,5 +100,11 @@ public class DeckKeywordParser extends KeywordParser{
 
         String helpMessage = formatHelpMessage("deck", actionList, headerList, optionsList);
         return new PrintHelpCommand(helpMessage);
+    }
+
+    private Command handleRun(List<String> tokens) throws ParseException{
+        CommandLine cmd = parser.parse(buildRunOptions(), tokens.toArray(new String[0]));
+        String deckName = cmd.getOptionValue("d");
+        return new RunCommand(deckName);
     }
 }
