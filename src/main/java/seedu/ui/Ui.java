@@ -1,6 +1,11 @@
 package seedu.ui;
 
 
+import seedu.parser.DateFormatter;
+import seedu.workout.Exercise;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Ui {
@@ -43,6 +48,7 @@ public class Ui {
                     + "- [Delete calories record for one food: /wdelete]" + System.lineSeparator()
                     + "- [Exit app: /exit]" + System.lineSeparator() + LINE;
 
+
     public static void showGreeting() {
         System.out.println(WELCOME_MESSAGE);
     }
@@ -77,5 +83,36 @@ public class Ui {
 
     public static String getCaloriesHelpMessage() {
         return HELP_MESSAGE_CALORIES;
+    }
+
+    public static final String EMPTY_WORKOUT = "There are no workouts reported during this week !";
+
+    public static final String INFORMATION = "Information of exercises for the week of ";
+
+    //@@ author ZIZI-czh
+    public static String displayCountSetsReps(ArrayList<Exercise> distinctExercisesList, Date dayInSpecificWeekDate) {
+        StringBuilder output = new StringBuilder();
+        if(distinctExercisesList == null){
+            return null;
+        }
+        if (distinctExercisesList.isEmpty()) {
+            output.append(EMPTY_WORKOUT);
+            return output.toString();
+        }
+
+        output.append(INFORMATION)
+                .append(DateFormatter.dateToString(dayInSpecificWeekDate))
+                .append(System.lineSeparator());
+        //Ui.showSeparator();
+        for (Exercise exercise : distinctExercisesList) {
+            output.append("Name: ")
+                    .append(exercise.getName())
+                    .append(", sets: ")
+                    .append(exercise.getSetsCount())
+                    .append(", rps:")
+                    .append(exercise.getRepsCount())
+                    .append(System.lineSeparator());
+        }
+        return output + showSeparator();
     }
 }

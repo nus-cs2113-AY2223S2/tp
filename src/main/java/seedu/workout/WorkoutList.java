@@ -1,8 +1,5 @@
 package seedu.workout;
 
-
-import seedu.parser.DateFormatter;
-
 import seedu.ui.Ui;
 
 import java.util.ArrayList;
@@ -14,9 +11,6 @@ import java.util.HashMap;
 //@@ author ZIZI-czh
 public class WorkoutList {
 
-    public static final String EMPTY_WORKOUT = "There are no workouts reported during this week !";
-
-    public static final String INFORMATION = "Information of exercises for the week of ";
     public HashMap<String, Workout> workout;
     private HashMap<Date, Day> workouts;
     private Day day = new Day();
@@ -81,17 +75,21 @@ public class WorkoutList {
     public ArrayList<Exercise> countSetsRepsPreparation(Date dayInSpecificWeekDate) {
 
         HashMap<Date, Day> workoutsInSpecificWeek = getWorkoutsInSpecificWeek(dayInSpecificWeekDate);
-        Day workoutForDay = workoutsInSpecificWeek.get(dayInSpecificWeekDate);
         ArrayList<Exercise> distinctExercisesList = new ArrayList<>();
-        HashMap<String, Workout> workoutsForSpecificDay = workoutForDay.getWorkoutsByDate();
+        HashMap<String, Workout> workoutsDuringSpecificWeek = new HashMap<>();
 
-        for (Workout workout1 : workoutsForSpecificDay.values()) {
+        for (Date workoutDate : workoutsInSpecificWeek.keySet()) {
+            HashMap<String, Workout> workoutForDay = workoutsInSpecificWeek.get(workoutDate).getWorkoutsByDate();
+            workoutsDuringSpecificWeek.putAll(workoutForDay);
+        }
+
+        for (Workout workout1 : workoutsDuringSpecificWeek.values()) {
             for (Exercise exercise : workout1.getExercises()) {
                 boolean isExistingExercise = false;
 
                 for (Exercise distinctExercise : distinctExercisesList) {
                     if (exercise.getName().equals(distinctExercise.getName())) {
-                        distinctExercise.setRepsPerSet(exercise.getRepsPerSet());
+                        distinctExercise.setRepsPerSet(distinctExercise.getRepsPerSet()+" "+exercise.getRepsPerSet());
                         isExistingExercise = true;
                         break;
                     }
@@ -111,35 +109,9 @@ public class WorkoutList {
     //@@ author ZIZI-czh
     public String countSetsReps(Date dayInSpecificWeekDate) {
         ArrayList<Exercise> distinctExercisesList = countSetsRepsPreparation(dayInSpecificWeekDate);
-        return displayCountSetsReps(distinctExercisesList, dayInSpecificWeekDate);
+        return Ui.displayCountSetsReps(distinctExercisesList, dayInSpecificWeekDate);
     }
 
-    //@@ author ZIZI-czh
-    public static String displayCountSetsReps(ArrayList<Exercise> distinctExercisesList, Date dayInSpecificWeekDate) {
-        StringBuilder output = new StringBuilder();
-        if(distinctExercisesList == null){
-            return null;
-        }
-        if (distinctExercisesList.isEmpty()) {
-            output.append(EMPTY_WORKOUT);
-            return output.toString();
-        }
-
-        output.append(INFORMATION)
-                .append(DateFormatter.dateToString(dayInSpecificWeekDate))
-                .append(System.lineSeparator());
-        //Ui.showSeparator();
-        for (Exercise exercise : distinctExercisesList) {
-            output.append("Name: ")
-                    .append(exercise.getName())
-                    .append(", sets: ")
-                    .append(exercise.getSetsCount())
-                    .append(", rps:")
-                    .append(exercise.getRepsCount())
-                    .append(System.lineSeparator());
-        }
-        return output + Ui.showSeparator();
-    }
 
     //@@ author guillaume-grn
     //@@ author ZIZI-czh
