@@ -20,7 +20,7 @@ public class DeleteTaskCommandTest {
 
     private HashMap<Flags, String> generateInputArguments(String id) {
         HashMap<Flags, String> args = new HashMap<>();
-        args.put(Flags.COMMAND_ADD, id);
+        args.put(Flags.COMMAND_DELETE, id);
         return args;
     }
 
@@ -48,7 +48,7 @@ public class DeleteTaskCommandTest {
 
     @Test
     public void deleteTask_invalidId_throwsException() {
-        final String[] invalidId = {"1000", "-1", "52.1"};
+        final String[] invalidId = {"1000", "meh", "52.1"};
         for (String id : invalidId) {
             try {
                 Command testDelete = new DeleteTaskCommand(generateInputArguments(id));
