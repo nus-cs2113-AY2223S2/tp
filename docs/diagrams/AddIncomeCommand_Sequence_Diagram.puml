@@ -6,8 +6,9 @@ participant ":Ui" as Ui
 
 activate Parser
 create AddIncomeCommand
-activate AddIncomeCommand
 Parser -> AddIncomeCommand : AddIncomeCommand(income)
+
+activate AddIncomeCommand
 AddIncomeCommand -> AddIncomeCommand : execute(incomes, expenses, ui, storage, selector, converter, targetStorage)
 
 activate AddIncomeCommand
