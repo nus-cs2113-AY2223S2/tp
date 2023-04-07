@@ -158,4 +158,5 @@ public interface StringLib {
     String[] FORBIDDEN_CHARS = {"!","@","#","$","%","&","*","(",")","+",",",
                                 ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};
     String SAVE_SEPARATOR = "#######";
+    String END_OF_RECIPE_STEPS = "\nEnd of Recipe Steps!";
 }

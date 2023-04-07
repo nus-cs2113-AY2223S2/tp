@@ -58,7 +58,7 @@ Else, press enter to continue
 
 2. add water to maggi
 
-Recipe is complete!
+End of Recipe Steps!
 __________________________________________________________
 ```
 * Prevents information overload especially for complex recipes. Allows users
