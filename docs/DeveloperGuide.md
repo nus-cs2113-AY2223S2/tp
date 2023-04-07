@@ -5,6 +5,7 @@
 - [Developer Guide](#developer-guide)
   - [Acknowledgements](#acknowledgements)
   - [Design & implementation](#design-implementation)
+  - [Design](#design)
   - [Implementation](#implementation)
     - [Record and RecordList](#record-and-recordlist)
     - [DeleteIncomeCommand](#deleteincomecommand)
@@ -25,15 +26,17 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
-## Design & implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-
 ### ExchangeRateApi
 
 `LiveCurrencyApi` class makes an API call to obtain the latest exchange rates from the [ExchangeRateApi](https://www.exchangerate-api.com/). The API call is made using the `HttpUrlConnection` class. The API key is used directly in the API call URL, and stored in the URL itself and not as a variable. The values response of the API call is then parse as a string, by formatting the string to obtain the exchange rates of the currencies and ignoring the other text. The currency name is then used as a key to see if it exist in the `selector` hashmap. If it does the exchange rate is added to the `converter` hashmap. The `converter` hashmap is then used to convert the currency of interest to SGD. If the API call somehow fails, there are hardcoded values in the `converter` hashmap that are outdated, but it allows the program to continue to run. The live currency rates are updated every time the user starts the program, however the API itself only updates the rates every 24 hours.
+
+## Design & implementation
+
+The overall design and implementation of our product.
+
+## Design
+
+
 
 ## Implementation
 
@@ -164,11 +167,12 @@ The `execute()` method will then print out the selected expenses/incomes that ma
 
 ### Target user profile
 
-Target users are people who are keen on improving their financial accountability
+Target users are people who are keen on improving their financial accountability.
 
 ### Value proposition
 
-The value proposition of ChChing is its ability to track income and expenses on a daily basis.
+The value proposition of ChChing is its ability to track income and expenses on a daily basis
+in a simple and convenient manner through a command line interface.
 
 ## User Stories
 
@@ -253,7 +257,7 @@ Given below are instructions to test the app manually.
       3. Other incorrect add income commands to try:
       <br> no fields/missing fields - `add income` `add expense`.
       <br> incorrect date format/invalid date/future date - `add income /de ang pao /da 30-02-2022 /v 10` `add expense /c transport /de bus fare /da 31-04-2029 /v 5.30`.
-      <br> negative value/zero value/1000000000 and above value/non-float value - `add income /de salary /da 12-12-2022 /v -3.50` `add expense /c transport /de bus fare /da 10-10-2019 /v 0`.
+      <br> negative value/zero value/1000000000 and above value/non-float value/non 2 d.p. values - `add income /de salary /da 12-12-2022 /v -3.50` `add expense /c transport /de bus fare /da 10-10-2019 /v 0`.
       <br> Expected: Similar to previous.
 
 ### Editing an income/expense
@@ -271,7 +275,7 @@ Given below are instructions to test the app manually.
       <br> negative index/index over income/expense list size - `edit income /in -1 /de toto /da 12-12-2022 /v 100` `edit expense /in 100 /c drinks /de starbucks coffee /da 13-12-2022 /v 9.50`.
       <br> missing index field/no fields to edit - `edit income` `edit expense`.
       <br> incorrect date format/invalid date/future date - `edit income 1 /de ang pao /da 30-02-2022 /v 10` `edit expense 1 /c transport /de bus fare /da 31-04-2029 /v 5.30`.
-      <br> negative value/zero value/1000000000 and above value/non-float value - `edit income 1 /de salary /da 12-12-2022 /v -3.50` `edit expense 1 /c transport /de bus fare /da 10-10-2019 /v 0`.
+      <br> negative value/zero value/1000000000 and above value/non-float value/non 2 d.p. values - `edit income 1 /de salary /da 12-12-2022 /v -3.50` `edit expense 1 /c transport /de bus fare /da 10-10-2019 /v 0`.
       <br> Expected: Similar to previous.
 
 ### Deleting an income/expense
@@ -332,7 +336,8 @@ Given below are instructions to test the app manually.
       <br> For income: `find /t income /de bonus`
       <br> For expense: `find /t expense /c food /de sushi /da 03-03-2023 `
       <br> Expected: No income/expense will be listed. status message will indicate no matching record for these search terms.
-### Setting target & Unsetting target
+### Setting target & showing target
+1. Setting 
 
 
 ### Setting Currency & Unsetting Currency
