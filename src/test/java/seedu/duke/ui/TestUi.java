@@ -391,8 +391,8 @@ public class TestUi {
         userExerciseDataMap.put(exerciseDescription, 1);
 
         Ui ui = new Ui();
-        ui.printUserExerciseHistory(userExerciseDataMap, overallCount);
-        //ui.printUserExerciseHistory(userExerciseDataMap);
+        //ui.printUserExerciseHistory(userExerciseDataMap, overallCount);
+        ui.printUserExerciseHistory(userExerciseDataMap);
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 

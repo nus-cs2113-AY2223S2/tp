@@ -6,7 +6,7 @@ public class UserExerciseData {
 
     private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
-    private static int overallCount = 0;
+    private static int overallCount;
 
     /**
      * This class takes in data from all workout sessions finished by
@@ -17,6 +17,7 @@ public class UserExerciseData {
      * @param userCareerData Contains data on all the user sessions completed by the user.
      * @return HashMap containing unique exercises and their frequencies of completion.
      */
+
     public static HashMap<String, Integer> addUserExerciseHistory (UserCareerData userCareerData) {
         assert userCareerData != null : "User career data should not be null!";
         HashMap<String, Integer> userExerciseDataMap = new HashMap<>();
@@ -61,15 +62,5 @@ public class UserExerciseData {
         return userExerciseDataMap;
     }
 
-    /**
-     * Function to calculate the number of exercises the user has
-     * completed.
-     *
-     * @return returns the total number of exercises the user has completed.
-     */
-
-    public static int getOverallCount() {
-        return overallCount;
-    }
 
 }

@@ -11,7 +11,8 @@ public class PrintUserExerciseData {
      * completed by user as key and frequencies of those exercises as value.
      * @param userExerciseHistory HashMap with exercise name as key and frequency of exercise as value.
      */
-    public static void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory, int overallCount) {
+    //public static void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory) {
+    public static void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory) {
         assert userExerciseHistory != null : "user exercise history should not be null!";
         if (userExerciseHistory.isEmpty()) {
             System.out.println("You have not completed any exercises ☹");
@@ -26,7 +27,7 @@ public class PrintUserExerciseData {
                 System.out.println(key + System.lineSeparator() +
                         "Times Completed: " + value + System.lineSeparator());
             }
-            System.out.println("You have completed a total of " + overallCount + " exercise(s)! Keep it up!");
+            //System.out.println("You have completed a total of " + overallCount + " exercise(s)! Keep it up!");
         }
     }
 }
