@@ -64,33 +64,33 @@ Expected Outcome: A list of all the commands.
 Description of Outcome:
 ```
 Here are the list of commands:
-LIST PU                          : Provides the list of Partner Universities available
-LIST [PU ABBRV]                  : Provides the list of all modules available in the specified Partner University
-LIST [PU INDEX]                  : Provides the list of all modules available in the specified Partner University
-                                   by index of LIST PU
-LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters
-                                  [FILTER] Format 1: mc == [num of MCs]
-                                  [FILTER] Format 2: [description] in name
-LIST CURRENT                     : Provides the list of modules that the user has added to his/her list of interest
-LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list of
-                                   list of interest for the specified PU
-ADD [PU ABBRV]/[MODULE CODE]     : Adds the specified module into user's current list of modules
-REMOVE [PU ABBRV]/[INDEX]       : Removes the specified module by index from user's current list
-SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module
-/budget budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for his/her SEP trip
-/budget accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation cost
-                                   for his/her SEP trip
-/budget airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane
-                                   ticket cost for his/her SEP trip
-/budget food [AMOUNT]            : Allows the user to input/edit the total amount of food cost for his/her SEP trip
-/budget entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment
+/LIST PU                          : Provides the list of Partner Universities available
+/LIST [PU ABBRV]                  : Provides the list of all modules available in the specified Partner University
+/LIST [PU INDEX]                  : Provides the list of all modules available in the specified Partner University
+                                    by index of LIST PU
+/LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters
+                                    [FILTER] Format 1: mc == [num of MCs]
+                                    [FILTER] Format 2: [description] in name
+/LIST CURRENT                     : Provides the list of modules that the user has added to his/her list of interest
+/LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list
+                                    of list of interest for the specified PU
+/ADD [PU ABBRV]/[INDEX]           : Adds the specified module into user's current list of modules
+/REMOVE [PU ABBRV]/[INDEX]        : Removes the specified module by index from user's current list
+/SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module
+/budget /budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for his/her SEP trip
+/budget /accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation cost
+                                    for his/her SEP trip
+/budget /airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane
+                                    ticket cost for his/her SEP trip
+/budget /food [AMOUNT]            : Allows the user to input/edit the total amount of food cost for his/her SEP trip
+/budget /entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment
                                    cost for his/her SEP trip
-/budget view                     : Provides an overview of the user's planned budget
-/deadline/list                   : Provides the list of deadlines the user has added
+/budget /view                     : Provides an overview of the user's planned budget
+/deadline/list                    : Provides the list of deadlines the user has added
 /deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own personalized deadlines
                                     of the key dates for certain SEP requirements
 /deadline/remove [DEADLINE INDEX] : Allows the user to remove the specific deadline from the list
-EXIT                              : Exits the program
+/EXIT                             : Exits the program
 ```
 ---
 ### 3.2 Modules
