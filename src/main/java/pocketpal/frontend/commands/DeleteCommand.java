@@ -4,7 +4,6 @@ package pocketpal.frontend.commands;
 import pocketpal.backend.Backend;
 import pocketpal.data.entry.Entry;
 import pocketpal.data.parsing.EntryParser;
-import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.exceptions.InvalidEntryIdException;
 import pocketpal.communication.Request;
 import pocketpal.communication.RequestMethod;

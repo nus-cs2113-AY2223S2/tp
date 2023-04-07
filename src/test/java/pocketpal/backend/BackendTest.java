@@ -12,7 +12,10 @@ import pocketpal.data.entry.Entry;
 import pocketpal.data.entrylog.EntryLog;
 import pocketpal.data.parsing.EntryLogParser;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Test Backend")
 public class BackendTest extends EntryTestUtil {
