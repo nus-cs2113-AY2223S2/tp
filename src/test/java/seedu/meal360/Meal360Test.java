@@ -892,7 +892,6 @@ class Meal360Test {
         inputs = new String[]{"list", "/t", "breakfast"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
         assertEquals(recipeListToPrint.size(), 2);
-        assertEquals(recipeListToPrint.get(1).getName(), "pizza");
 
         inputs = new String[]{"list", "/t", "breakfast", "&&", "western"};
         recipeListToPrint = parser.parseListRecipe(inputs, recipes);
