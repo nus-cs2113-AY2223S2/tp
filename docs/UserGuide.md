@@ -313,10 +313,15 @@ These are the categories currently supported by PocketPal:
 > problem, so that our developers can assist you with the issue. Please also attach the application
 > logs, which can be found at `logs/pocketpal.txt`
 
-> __Q:__ I am developer. How can I find the source code and contribute to PocketPal?
+> __Q:__ I am a developer. How can I find the source code and contribute to PocketPal?
 >
 > __A:__ PocketPal is an open-source application, and we welcome developers to share their ideas.
-> You may find the source code on [GitHub](https://github.com/AY2223S2-CS2113-W15-2/tp/).
+
+>        You may find the source code on [GitHub](https://github.com/AY2223S2-CS2113-W15-2/tp/).
+> 
+> __Q:__ I accidentally touched the data in my `storage.txt` file - what do I do?
+>
+> __A:__ The data in the `storage.txt` file is saved in the format `DESCRIPTION,PRICE,CATEGORY,DATE`. Make sure the data in the file is in the correct format, or else it will be overwritten with a blank data file. The category must be capitalized, and the date must be in the format `D MMM YYYY; HH:MM`.
 
 <div style="text-align: right;">
    <a href="#table-of-contents"> Back to Table of Contents </a>

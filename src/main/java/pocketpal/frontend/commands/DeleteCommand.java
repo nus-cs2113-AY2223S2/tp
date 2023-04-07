@@ -36,6 +36,7 @@ public class DeleteCommand extends Command {
      *
      * @param ui UI to output action result
      * @param backend  Backend to process requests
+     * @throws InvalidEntryIdException If input ID not valid
      */
     @Override
     public void execute(UI ui, Backend backend) throws InvalidEntryIdException {

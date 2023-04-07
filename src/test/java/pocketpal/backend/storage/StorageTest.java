@@ -108,6 +108,7 @@ public class StorageTest {
         private static final String INVALID_AMOUNT_STRING = "ABC123";
         private static final String INVALID_CATEGORY_STRING = "ABC123";
         private static final String INVALID_DATE_STRING = "ABC123";
+        private static final String BLANK_INPUT = " ";
         FileWriter writer;
 
         @BeforeEach
@@ -138,7 +139,10 @@ public class StorageTest {
             assertDoesNotThrow(() -> writer.close());
 
             Storage storage = new Storage(PATH_STRING);
-            Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
+            Exception exception = assertThrows(
+                InvalidReadFileException.class, 
+                storage::readFromDatabase
+            );
             String expectedMessage = MiscellaneousConstants.GENERAL_STORAGE_ERROR_MESSAGE;
             String actualMessage = exception.getMessage();
 
@@ -159,7 +163,10 @@ public class StorageTest {
             assertDoesNotThrow(() -> writer.close());
 
             Storage storage = new Storage(PATH_STRING);
-            Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
+            Exception exception = assertThrows(
+                InvalidReadFileException.class, 
+                storage::readFromDatabase
+            );
             String expectedMessage = MiscellaneousConstants.INVALID_AMOUNT_ERROR_MESSAGE;
             String actualMessage = exception.getMessage();
 
@@ -180,7 +187,10 @@ public class StorageTest {
             assertDoesNotThrow(() -> writer.close());
 
             Storage storage = new Storage(PATH_STRING);
-            Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
+            Exception exception = assertThrows(
+                InvalidReadFileException.class, 
+                storage::readFromDatabase
+            );
             String expectedMessage = MiscellaneousConstants.INVALID_CATEGORY_ERROR_MESSAGE;
             String actualMessage = exception.getMessage();
 
@@ -201,7 +211,10 @@ public class StorageTest {
             assertDoesNotThrow(() -> writer.close());
 
             Storage storage = new Storage(PATH_STRING);
-            Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
+            Exception exception = assertThrows(
+                InvalidReadFileException.class, 
+                storage::readFromDatabase
+            );
             String expectedMessage = MiscellaneousConstants.INVALID_DATE_ERROR_MESSAGE;
             String actualMessage = exception.getMessage();
 
@@ -220,11 +233,31 @@ public class StorageTest {
             assertDoesNotThrow(() -> writer.close());
 
             Storage storage = new Storage(PATH_STRING);
-            Exception exception = assertThrows(InvalidReadFileException.class, storage::readFromDatabase);
+            Exception exception = assertThrows(
+                InvalidReadFileException.class, 
+                storage::readFromDatabase
+            );
             String expectedMessage = MiscellaneousConstants.GENERAL_STORAGE_ERROR_MESSAGE;
             String actualMessage = exception.getMessage();
 
             assertTrue(actualMessage.contains(expectedMessage));
+        }
+
+        @Test
+        public void testBlankInput() {
+            writer = assertDoesNotThrow(() -> new FileWriter(PATH_STRING));
+            assertDoesNotThrow(() -> writer.append(BLANK_INPUT));
+            assertDoesNotThrow(() -> writer.close());
+
+            Storage storage = new Storage(PATH_STRING);
+            AssertionError assertion = assertThrows(
+                AssertionError.class, 
+                storage::readFromDatabase
+            );
+            assertEquals(
+                MiscellaneousConstants.NO_BLANK_STRING_ALLOWED, 
+                assertion.getMessage()
+            );
         }
     }
 
