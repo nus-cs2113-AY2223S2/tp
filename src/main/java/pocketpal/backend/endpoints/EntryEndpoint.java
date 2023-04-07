@@ -39,7 +39,7 @@ public class EntryEndpoint extends Endpoint {
             return new Response(ResponseStatus.OK, deletedEntry.serialise());
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             logger.warning("/entry [DELETE]: received invalid entry ID");
-            return new Response(ResponseStatus.NOT_FOUND, "");
+            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class EntryEndpoint extends Endpoint {
             return new Response(ResponseStatus.OK, entry.serialise());
         } catch (NumberFormatException e) {
             logger.warning("/entry [GET]: received invalid entry ID " + request.getBody());
-            return new Response(ResponseStatus.NOT_FOUND, "");
+            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage());
 
         }
     }
@@ -79,7 +79,7 @@ public class EntryEndpoint extends Endpoint {
             int targetEntryId = getPositiveIntegerFromString(request.getBody());
             editEntry = entries.getEntry(targetEntryId);
             if (editEntry == null) {
-                throw new NumberFormatException(MessageConstants.MESSAGE_INVALID_ID);
+                throw new NumberFormatException();
             }
 
             if (request.hasParam(RequestParams.EDIT_CATEGORY)) {
@@ -102,10 +102,11 @@ public class EntryEndpoint extends Endpoint {
             return new Response(ResponseStatus.OK, editEntry.serialise());
         } catch (NumberFormatException e) {
             logger.warning("/entry [PATCH]: received invalid entry ID " + request.getBody());
-            return new Response(ResponseStatus.NOT_FOUND, MessageConstants.MESSAGE_INVALID_ID);
+            return new Response(ResponseStatus.NOT_FOUND, getInvalidIDMessage());
         } catch (InvalidCategoryException e) {
             logger.warning("/entry [PATCH]: received invalid category" + request.getBody());
-            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, "");
+            return new Response(ResponseStatus.UNPROCESSABLE_CONTENT,
+                    MessageConstants.MESSAGE_INVALID_CATEGORY);
         } catch (InvalidArgumentsException e) {
             logger.warning("/entry [PATCH]: received invalid arguments" + request.getBody());
             return new Response(ResponseStatus.UNPROCESSABLE_CONTENT, e.getMessage());
@@ -127,5 +128,13 @@ public class EntryEndpoint extends Endpoint {
         entries.addEntry(entry);
         logger.info("/entry [POST]: CREATED");
         return new Response(ResponseStatus.CREATED, "");
+    }
+
+    /**
+     * Utility method when user inputs invalid entry ID
+     * @return Invalid ID Message
+     */
+    private String getInvalidIDMessage() {
+        return MessageConstants.MESSAGE_ID_NOT_FOUND + entries.getSize() + ".";
     }
 }

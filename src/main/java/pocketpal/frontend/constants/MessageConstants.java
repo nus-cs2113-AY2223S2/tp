@@ -50,6 +50,7 @@ public final class MessageConstants {
     public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!";
     public static final String MESSAGE_INVALID_DESCRIPTION = "Description can only contain letters and numbers!";
     public static final String MESSAGE_INVALID_ID = "Please enter an integer from 1 to 2147483647.";
+    public static final String MESSAGE_ID_NOT_FOUND = "Entry not found. Please enter an ID from 1 to ";
     public static final String MESSAGE_INVALID_AMOUNT = "Please enter a valid amount!" + NEWLINE
             + "Value should be between 0.01 and 999999999.99";
     public static final String MESSAGE_INVALID_AMOUNT_RANGE = "Please specify a valid range!" + NEWLINE

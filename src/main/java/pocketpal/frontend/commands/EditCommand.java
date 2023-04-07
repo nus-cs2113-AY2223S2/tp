@@ -4,7 +4,6 @@ package pocketpal.frontend.commands;
 import pocketpal.backend.Backend;
 import pocketpal.data.entry.Entry;
 import pocketpal.data.parsing.EntryParser;
-import pocketpal.frontend.constants.MessageConstants;
 import pocketpal.frontend.exceptions.InvalidArgumentsException;
 import pocketpal.frontend.exceptions.InvalidCategoryException;
 import pocketpal.communication.Request;
@@ -52,11 +51,8 @@ public class EditCommand extends Command {
 
         Response response = backend.requestEndpointEntry(request);
         // throw errors if input values are erroneous
-        if (response.getResponseStatus() == ResponseStatus.NOT_FOUND) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
-        }
-        if (response.getResponseStatus() == ResponseStatus.UNPROCESSABLE_CONTENT) {
-            throw new InvalidCategoryException(MessageConstants.MESSAGE_INVALID_CATEGORY);
+        if (response.getResponseStatus() != ResponseStatus.OK) {
+            throw new InvalidArgumentsException(response.getData());
         }
 
         Entry newEntry = EntryParser.deserialise(response.getData());
