@@ -1,9 +1,14 @@
-adsf~|~1234~|~curry, rice, cumin, powder, sad s dsfs df
-ad sf~|~1234~|~curry, rice, cumin, powder, sad s dsfs df
-as sd~|~2234~|~curry,  rice,  abc,  123,  asdf,asdf
-as sd~|~2134~|~curry rice what ever this is
-ad sf~|~1234~|~curry, ruic, cuimin
-ad sf~|~1234~|~curry, ruic, cuimin
-ad sf~|~1234~|~curry| ruic| cuimin
-name~|~123~|~1,2,er32,32r,3r
-Chicken Burger~|~1099~|~tomatoes, chicken fillet, cheese, bread with sesame seeds
+Chicken Burger~|~1099~|~
+Chicken Burger~|~1099~|~tomatoes;chicken fillet;cheese;bread with sesame seeds
+HamBurger~|~2147~|~tomatoes;chicken fillet;cheese;bread with sesame seeds
+Chicken Burger~|~1099~|~
+Chicken Burger~|~1099~|~
+Chicken Burger~|~1099~|~
+Chicken Burger~|~1099~|~,,
+dishName~|~10~|~
+aa    ~|~1212~|~
+Chicken Burger~|~2~|~apples;ragene
+Chicken Burger~|~2~|~ apples;oragene
+Chicken Burger~|~2~|~   apples;   oragene
+Chicken Burger~|~2~|~ apples;oragene ; aaa ww
+Chicken Burger~|~2~|~ apples;oragene ;;; aaa ww;

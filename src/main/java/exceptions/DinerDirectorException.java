@@ -1,12 +1,8 @@
 package exceptions;
 
-/**
- * Handles Exceptions related to the Diner Director CLI Application.
- */
-
 public class DinerDirectorException extends Exception {
     /**
-     * Constructor that initiates the exception message.
+     * Initializes the exception message.
      *
      * @param message The exception message to print.
      */

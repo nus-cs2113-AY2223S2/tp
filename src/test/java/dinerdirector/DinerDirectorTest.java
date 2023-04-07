@@ -33,6 +33,10 @@ public class DinerDirectorTest {
     void runCommandLoopUntilExit_userInput_meetingCommand() {
         ArrayList<String> listOfCommands = new ArrayList<>();
         listOfCommands.add("add_meeting n/a t/3pm");
+        listOfCommands.add("add_meeting n/meeting with boss   t/3pm");
+        listOfCommands.add("add_meeting n/ t/3pm");
+        listOfCommands.add("add_meeting n/b t/");
+        listOfCommands.add("add_meeting t/3pm n/name");
         listOfCommands.add("view_meetings");
         listOfCommands.add("delete_meeting 1");
         listOfCommands.add("view_meeting");
@@ -46,6 +50,14 @@ public class DinerDirectorTest {
                 assertTrue(command instanceof ViewMeetingCommand);
             } else if (listOfCommand.equals("add_meeting n/a t/3pm")) {
                 assertTrue(command instanceof AddMeetingCommand);
+            } else if (listOfCommand.equals("add_meeting n/meeting with boss   t/3pm")) {
+                assertTrue(command instanceof AddMeetingCommand);
+            } else if (listOfCommand.equals("add_meeting n/ t/3pm")) {
+                assertTrue(command instanceof IncorrectCommand);
+            } else if (listOfCommand.equals("add_meeting n/b t/")) {
+                assertTrue(command instanceof IncorrectCommand);
+            } else if (listOfCommand.equals("add_meeting t/3pm n/name")) {
+                assertTrue(command instanceof IncorrectCommand);
             } else if (listOfCommand.equals("delete_meeting 1")) {
                 assertTrue(command instanceof DeleteMeetingCommand);
             } else if(listOfCommand.equals("find_meeting a")){

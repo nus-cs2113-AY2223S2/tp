@@ -42,7 +42,14 @@ public class Dish {
     }
 
     public String savableString() {
-        String ingredients = ingredientsList.toString().substring(1, ingredientsList.toString().length() - 1);
+        //String ingredients = ingredientsList.toString().substring(1, ingredientsList.toString().length() - 1);
+        String ingredients = "";
+        for (String ingredient : ingredientsList) {
+            ingredients += (ingredient + ";");
+        }
+        if (ingredients.endsWith(";")) {
+            ingredients = ingredients.substring(0, ingredients.length() - 1);
+        }
         return this.dishName + "~|~" + this.dishPrice + "~|~" + ingredients;
     }
 

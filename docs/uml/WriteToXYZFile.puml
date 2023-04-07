@@ -1,0 +1,27 @@
+@startuml
+!include Style.puml
+
+title Write to XYZFile Sequence Diagram
+
+box "XYZManager"
+participant ":XYZManager" as XYZManager MANAGER_COLOR
+endbox
+box "XYZStorage"
+participant ":XYZStorage" as XYZStorage STORAGE_COLOR
+endbox
+
+
+[-> XYZManager ++ : addXYZ()
+
+create XYZStorage
+XYZManager -> XYZStorage ++ : XYZStorage()
+return
+
+XYZManager -> XYZStorage ++ : writeToXYZFile()
+return
+destroy XYZStorage
+
+|||
+return
+
+@enduml

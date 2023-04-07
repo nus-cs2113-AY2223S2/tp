@@ -4,9 +4,6 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-/**
- * A Class to handle user related interactions. e.g.printMessage,printBanner,getUserInput
- */
 public class TextUi {
     private final Scanner in;
     private final PrintStream out;
@@ -16,14 +13,14 @@ public class TextUi {
     //Reused TextUi, shouldIgnoreEmpty, getUserInput methods with minor modifications.
 
     /**
-     * Constructor to call the other constructor.
+     * Calls the other constructor.
      */
     public TextUi() {
         this(System.in, System.out);
     }
 
     /**
-     * Set the scanner and printstream of TextUi
+     * Sets the scanner and printstream of TextUi.
      *
      * @param in  the Scanner of TextUi.
      * @param out the PrintStream of TextUi.
@@ -34,7 +31,7 @@ public class TextUi {
     }
 
     /**
-     * Checks what the user typed and ignore user inputs if they are empty, only spaces, or only line breaks.
+     * Returns true if the input is empty.
      *
      * @param fullUserInput What the user typed in as inputs.
      * @return true if inputs are empty, only spaces, or only line breaks.
@@ -44,7 +41,7 @@ public class TextUi {
     }
 
     /**
-     * Ask the user for an input.
+     * Asks the user for an input.
      * It ignores whitespaces and line breaks.
      *
      * @return the command with the input the user typed.
@@ -61,7 +58,7 @@ public class TextUi {
     //@@damithc
 
     /**
-     * Print the specified message to the user.
+     * Prints the specified message to the user.
      *
      * @param message The specified message to be shown to the user.
      */
@@ -69,14 +66,17 @@ public class TextUi {
         System.out.println(message);
     }
 
+    /**
+     * Prints the banner for the application.
+     */
     public static void printBanner() {
         String logo =
-                "  _____  _                 _____  _               _\n"+
-                " |  __ \\(_)               |  __ \\(_)             | |\n"+
-                " | |  | |_ _ __   ___ _ __| |  | |_ _ __ ___  ___| |_ ___  _ __\n"+
-                " | |  | | | '_ \\ / _ \\ '__| |  | | | '__/ _ \\/ __| __/ _ \\| '__|\n"+
-                " | |__| | | | | |  __/ |  | |__| | | | |  __/ (__| || (_) | |\n"+
-                " |_____/|_|_| |_|\\___|_|  |_____/|_|_|  \\___|\\___|\\__\\___/|_|\n";
+                "  _____  _                 _____  _               _\n" +
+                        " |  __ \\(_)               |  __ \\(_)             | |\n" +
+                        " | |  | |_ _ __   ___ _ __| |  | |_ _ __ ___  ___| |_ ___  _ __\n" +
+                        " | |  | | | '_ \\ / _ \\ '__| |  | | | '__/ _ \\/ __| __/ _ \\| '__|\n" +
+                        " | |__| | | | | |  __/ |  | |__| | | | |  __/ (__| || (_) | |\n" +
+                        " |_____/|_|_| |_|\\___|_|  |_____/|_|_|  \\___|\\___|\\__\\___/|_|\n";
         System.out.println("Hello from\n" + logo);
         System.out.println("Welcome to DinerDirector! Please type \"help\" for a list of valid commands.");
         System.out.println("What can I do for you?");
