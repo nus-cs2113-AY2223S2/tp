@@ -32,7 +32,10 @@ import java.util.Scanner;
 public class Parser {
     private static ArrayList<String> inputStringArray;
     private static String fullInput;
-
+    /**
+     * Sets the fullInput
+     * @param fullInput the fullInput to set
+     */
     public static void setFullInput(String fullInput) {
         Parser.fullInput = fullInput;
     }
@@ -43,7 +46,10 @@ public class Parser {
     public static ArrayList<String> getInputStringArray() {
         return inputStringArray;
     }
-
+    /**
+     * Sets the inputStringArray
+     * @param inputStringArray the inputStringArray to set
+     */
     public static void setInputStringArray(String[] inputStringArray) {
         Parser.inputStringArray = new ArrayList<>(Arrays.asList(inputStringArray));
     }
@@ -206,7 +212,10 @@ public class Parser {
         }
         return itemVariable;
     }
-
+    /**
+     * Gets the keyword required for {@link FindCommand} constructor
+     * @return keyword to search for in item name
+     */
     private static String getKeyword() throws InvalidVariablesException {
         String keyword;
         if (inputStringArray.size() <= 1) {
@@ -219,15 +228,6 @@ public class Parser {
             throw new InvalidVariablesException();
         }
         return keyword;
-    }
-
-    /**
-     * Returns the user item description
-     */
-    public static String getItemDescrip() {
-        //String[] itemArray = Arrays.copyOfRange(getInputStringArray(),1,getInputStringArray().length);
-        int indexItemName = getFullInput().indexOf("i/") + 2;
-        return getFullInput().substring(indexItemName).trim();
     }
 
 
@@ -261,7 +261,8 @@ public class Parser {
     /**
      * Returns the relevant components of an add command from the user input
      * @return String array of quantity and itemName
-     * @throws InvalidVariablesException not enough variables
+     * @throws InvalidVariablesException not enough variables or /of not found
+     * @throws StringIndexOutOfBoundsException not enough variables
      */
     public static String[] getAddVariables() throws InvalidVariablesException, StringIndexOutOfBoundsException {
         String[] inputVariables = new String[3];
@@ -298,19 +299,6 @@ public class Parser {
                                 PackingList.getItemList().size());
             }
         }
-    }
-
-    public static int[] getQuantityAndIndex() throws InvalidVariablesException, InvalidIndexException {
-        int[] itemQuantityAndIndex = new int[2];
-        try {
-            itemQuantityAndIndex[0] = Integer.parseInt(inputStringArray.get(1).trim());
-            itemQuantityAndIndex[1] = Integer.parseInt(inputStringArray.get(3).trim());
-        } catch (IndexOutOfBoundsException e) {
-            throw new InvalidVariablesException();
-        } catch (NumberFormatException e) {
-            throw new InvalidIndexException();
-        }
-        return itemQuantityAndIndex;
     }
 
     /**
@@ -396,6 +384,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the input variables to be used by {@link EditQuantityCommand} when constructed in createEditQuantityObj
+     * @return inputVariables in a String[] where the 0th index represents the new quantity and 1st index represents
+     *      the item index in the packing list
+     * @throws InvalidIndexException invalid number of variables
+     */
     public static String[] getEditQuantityVariables() throws InvalidIndexException {
         String[] inputStringList = fullInput.trim().split(" ", 2);
         String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
@@ -406,12 +400,12 @@ public class Parser {
     }
 
     /**
-     * Attempts to create PackCommand object to be executed where it is called from
+     * Parses the input variables to be used by {@link PackCommand} when constructed in createPackObj
      *
-     * @return PackCommand the command to be executed to Pack an item in the packing list, else an IncorrectCommand is
-     *         created to be executed
+     * @return inputVariables in a String[] where the 0th index represents the additional quantity to pack and
+     *      1st index represents the item index in the packing list
+     * @throws InvalidIndexException invalid item index given
      */
-
     public static String[] getPackVariables() throws InvalidIndexException {
         String[] inputStringList = fullInput.trim().split(" ", 2);
         String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
@@ -422,6 +416,11 @@ public class Parser {
         return inputVariables;
     }
 
+    /**
+     * Parses the input variables to be used by {@link PackAllCommand} when constructed in createPackAllObj
+     * @return itemIndex of the item to set as fully packed
+     * @throws InvalidIndexException if item index is not valid
+     */
     public static int getPackAllIndex() throws InvalidIndexException {
         String[] inputStringList = fullInput.trim().split("/", 2);
         inputStringList = inputStringList[1].split(" ", 2);
@@ -434,6 +433,11 @@ public class Parser {
         return itemIndex;
     }
 
+    /**
+     * Attempts to create a new PackAllCommand object will check if packing list is empty, or if item index is positive
+     * and within the range of number of items in packing list ELSE an IncorrectCommand is created to be executed
+     * @return PackAllCommand if valid PackAll user input is parsed in
+     */
     public static Command createPackAllObj() {
 
         try {
@@ -458,8 +462,8 @@ public class Parser {
     /**
      * Attempts to create UnpackCommand object to be executed where it is called from
      *
-     * @return UnpackCommand the command to be executed to unpack an item in the packing list, else an IncorrectCommand
-     *         is created to be executed
+     * @return UnpackCommand the command to be executed to unpack an item in the packing list, ELSE an IncorrectCommand
+     *      is created to be executed
      */
     public static Command createUnpackObj() {
         int quantityPacked = 0;
@@ -479,7 +483,7 @@ public class Parser {
                                 PackingList.getItemList().size());
             }
             quantityPacked = PackingList.get(itemIndex - 1).getPackedQuantity();
-            if (itemQuantity < 1 | itemQuantity > quantityPacked) {
+            if (itemQuantity > quantityPacked) {
                 throw new InvalidVariablesException();
             }
 
@@ -508,9 +512,14 @@ public class Parser {
                     "Try to input a positive quantity that does not exceed " + quantityPacked);
         }
     }
-
+    /**
+     * Attempts to create UnpackAllCommand object to be executed where it is called from
+     *
+     * @return UnpackAllCommand the command to be executed to unpack an item in the packing list, ELSE an
+     *      IncorrectCommand is created to be executed
+     */
     public static Command createUnpackAllObj() {
-        int quantityPacked = 0;
+        int quantityPacked;
         try {
             int itemIndex = getPackAllIndex();
             if (itemIndex > PackingList.getItemList().size()) {
@@ -538,20 +547,18 @@ public class Parser {
             return new IncorrectCommand("Invalid Input Variables",
                     UnpackAllCommand.HELP_MSG);
         } catch (InvalidVariablesException e) {
-            if (quantityPacked == 0) {
-                return new IncorrectCommand("Invalid Unpackall Usage",
-                        "This item is not even packed yet");
-            }
-            return new IncorrectCommand("Invalid Input Quantity",
-                    "Try to input a positive quantity that does not exceed " + quantityPacked);
+            return new IncorrectCommand("Invalid Unpackall Usage",
+                    "This item is not even packed yet");
         }
+
     }
 
 
     /**
-     * Attempts to create a FindCommand object with the given keyword.
+     * Attempts to create a FindCommand object with the given keyword, if keyword is black an IncorrectCommand is
+     * created to be executed
      *
-     * @return FindCommand
+     * @return FindCommand OR IncorrectCommand
      */
     public static Command createFindObj() {
         try {
@@ -561,23 +568,43 @@ public class Parser {
                     "Try to input a keyword to be searched in the list");
         }
     }
-
+    /**
+     * Create a ListCommand object
+     *
+     * @return ListCommand
+     */
     public static Command createListObj() {
         return new ListCommand();
     }
-
+    /**
+     * Create a ListUnpackedCommand object
+     *
+     * @return ListUnpackedCommand
+     */
     private static Command createListUnpackedObj() {
         return new ListUnpackedCommand();
     }
-
+    /**
+     * Create a DeleteListCommand object
+     *
+     * @return DeleteListCommand
+     */
     public static Command createDeleteListObj() {
         return new DeleteListCommand();
     }
-
+    /**
+     * Create a HelpCommand object
+     *
+     * @return HelpCommand
+     */
     private static Command createHelpObj() {
         return new HelpCommand();
     }
-
+    /**
+     * Create a ByeCommand object
+     *
+     * @return ByeCommand
+     */
     private static Command createByeObj() {
         return new ByeCommand();
     }

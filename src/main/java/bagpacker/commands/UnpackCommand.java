@@ -15,7 +15,7 @@ public class UnpackCommand extends Command {
             "\tExample: unpack 1 /of 2\n" +
             "\tMeaning: Unpacks 1 quantity of the second item in the packing list";
     private static int unpackQuantity;
-    /***
+    /**
      * Constructor for UnpackCommand
      * @param quantity amount to reduce from the current packed quantity of the given item
      * @param targetIndex item index in packing list of the item to unpack from

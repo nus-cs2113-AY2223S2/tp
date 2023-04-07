@@ -15,7 +15,7 @@ public class PackAllCommand extends Command {
             "\tExample: packall /of 3\n" +
             "\tMeaning: Set the third item in the packing list as fully packed";
 
-    /***
+    /**
      * Constructor for PackAllCommand
      * @param targetIndex item index in packing list of the item to set as fully packed
      */
