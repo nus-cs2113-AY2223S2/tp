@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes mark command;
+
+if () then ([validformat])
+  :Create new ModifyCommand Object;
+  :Execute ModifyCommand;
+  :Iterate to corresponding index in TaskList;
+  if(done == false?) then (true)
+    :Mark task as complete;
+    :Set done to true;
+    :Update TaskList;
+    :Update Storage;
+    :Print success message;
+  else (false)
+    :Print message that task has been marked as done previously;
+    endif
+
+else([invalidformat])
+    :Print error message;
+endif
+
+stop
+
+@enduml

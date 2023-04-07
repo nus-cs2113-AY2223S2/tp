@@ -605,6 +605,10 @@ public class Ui {
     public void printInvalidCommand() {
         System.out.println("Sorry, but I don't know what that means :(");
     }
+    public void printInvalidCommandForHelp(IllegalArgumentException exception) {
+        System.out.println("Sorry, but the command \"" + exception.getMessage() + "\" does not exist in Apollo!\n" +
+                "Input `help` to see all available commands.");
+    }
 
     /**
      * Prints error message if there is corrupted data in the save file when initially reading from it.
@@ -777,13 +781,6 @@ public class Ui {
     public void printModuleLessonDeleteMessage(String moduleCode, LessonType lessonType, String lessonNumber) {
         System.out.println("Deleting lessons for module: " + moduleCode.toUpperCase());
         System.out.println("Lessons Deleted: " + lessonType + " - " + lessonNumber);
-    }
-
-    /**
-     * Prints message when a module has no timetable information.
-     */
-    public void printNoTimetableMessage() {
-        System.out.println("This module has no timetable information");
     }
 
     /**

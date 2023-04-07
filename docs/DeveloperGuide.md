@@ -59,13 +59,18 @@ which would result in the latest data stored in DataStorage being saved into the
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Ui.png?raw=true)
 
 ### Parser Component
+**API:** `Parser.java`
+Here's a class diagram of the `Parser` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser.png?raw=true)
 
 ### Command Component
 **API:** `Command.java`    
-Here's a class diagram of the `Command` component   
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command.png?raw=true)
-> SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)   
+Here's two class diagrams of the `Command` component, 
+one for Task and Util related Commands, and one for Module related Commands   
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command-for_Task__Util_Commands.png.png?raw=true)
+> SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)    
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command2-for_Module_Commands.png?raw=true)
 
 How the `Command` component works:
 1. When a command is entered by the user, `Parser` will create the relevant subclass of `Command`. 
@@ -290,6 +295,7 @@ It takes in the necessary parameters, including the `TaskList`, `Ui`, `Storage`,
 The first step in the `execute()` method is to find out how to modify the
 TaskList. In this case, the task at a user-provided index is to be marked as done.
 
+<<<<<<< HEAD
 **Step 5: Find the task to mark as done:**
 
 Using the parameter `taskIndex`, the `execute()` method will iterate to that
@@ -300,12 +306,28 @@ calling the `printErrorForIdx()` method in the Ui class that takes in the size o
 **Step 6: Print the confirmation message:**
 
 A confirmation message is printed to the user indicating what task has been
+=======
+Step 5: Find the task to mark as done: The `execute()` method will perform a call to the method `markTask()`
+that takes in the `TaskList` and `Ui` as parameters. It will iterate to the user-given index, and it will first check
+the task completeness status. If it is not, call the `setAsDone()` method of the `Task` class, setting the boolean `isDone`
+to `true`, proceeding on to step 6a. If the task the user is trying to mark is done from previous iterations
+, it will proceed to step 6b.
+If the index is outside the bounds of the size of the `TaskList`, a `NumberFormatException` is thrown,
+calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
+
+Step 6a: Print the confirmation message: A confirmation message is printed to the user indicating what task has been
+>>>>>>> master
 successfully marked as done from the user-provided index of the `TaskList`. The message includes the task type,
-description (and date of the task deleted if the task is either an event or a deadline).
+description (and date of the task deleted if the task is either an event or a deadline).The execution will proceed to step 7.
+
+Step 6b: Apollo will print an message to the user to state that the task was marked as done previously. The execution of the mark
+command will stop here.
 
 **Step 7: Update the storage:**
 
 The storage is updated with the new TaskList with the task marked with a cross next to it.
+
+
 
 [*Return to TOC*](#table-of-contents)
 
@@ -337,19 +359,28 @@ It takes in the necessary parameters, including the `TaskList`, `Ui`, `Storage`,
 The first step in the `execute()` method is to find out how to modify the
 TaskList. In this case, the task at a user-provided index is to be unmarked.
 
+
 **Step 5: Find the task to unmark as not done:**
 
-Using the parameter `taskIndex`, the `execute()` method will iterate to
-that index in the `TaskList` and call the `setAsDone()` method of the `Task` class, setting the boolean `isDone`
-to `false`.
+The `execute()` method will perform a call to the method `unmarkTask()`
+that takes in the `TaskList` and `Ui` as parameters. It will iterate to the user-given index, and it will first check
+the task completeness status. If it is done, call the `setAsDone()` method of the `Task` class, setting the boolean `isDone`
+to `false`, proceeding on to step 6a. If the task the user is trying to unmark is not done from previous iterations
+, it will proceed to step 6b.
 If the index is outside the bounds of the size of the `TaskList`, a `NumberFormatException` is thrown,
 calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
 
-**Step 6: Print the confirmation message:**
+
+**Step 6a: Print the confirmation message:**
 
 A confirmation message is printed to the user indicating what task has been
 successfully unmarked from the user-provided index of the `TaskList`. The message includes the task type,
-description (and date of the task deleted if the task is either an event or a deadline).
+description (and date of the task deleted if the task is either an event or a deadline). The execution will move on to step 7.
+
+**Step 6b:**
+
+Apollo will print an message to the user to state that the task was never marked as done. The execution of the unmark
+command will stop here.
 
 **Step 7: Update the storage:**
 
@@ -906,10 +937,6 @@ Below is a sequence diagram of the `bye` command.
 
 [*Return to TOC*](#table-of-contents)
 
-## *Storage*
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)
-
-
 ## *Logging*
 - We are using `java.util.logging` package for logging. The `Logger` class is used to log messages for the different
   error levels
@@ -1068,159 +1095,89 @@ ____________________________________________________________
 
 Expected: Apollo should respond with an error message for invalid commands.
 ```
-____________________________________________________________
 Sorry, but I don't know what that means :(
-____________________________________________________________
 ```
 #### Help Command
 1. Make sure you are in the main interface.
-2. Sub-case 1: Type `help` and press enter.
-3. Sub-case 2: You may also type `help [COMMAND]` to get more information about a specific command. Example: `help addmod`
+2. Test case 1: Type `help` and press enter.
+3. Test case 2: You may also type `help [COMMAND]` to get more information about a specific command. Example: `help addmod`
 
-Expected of Sub-case 1: The help menu should appear with the list of all commands available on Apollo with `help`.
-```
-The help menu gives a summary of all the commands available in Apollo!
-Input `help` to see all available commands.Input "help [COMMAND]" for usage help and more information for a specific command.
+Expected of Test case 1: The help menu should appear with the list of all commands available on Apollo with `help`.
+Expected of Test case 2: The help menu for that command should appear.
 
-These are the available Task Commands and their corresponding commands (in brackets):
-
-1. `list` - Track and organises your tasklist!
-2. `todo [TASK]` - Adds a ToDo in your tasklist.
-3. `deadline [TASK] -[BY]` - Adds a Deadline in your tasklist.
-4. `event [TASK] -[FROM] -[TO]` - Adds an Event in your tasklist.
-5. `mark [IDX]` - Marks a task in your tasklist as done!
-6. `unmark [IDX]` - Unmarks a task in your tasklist as incomplete.
-7. `delete [IDX]` - Deletes a task from your list.
-8. `find [KEYWORD]` - Shows all tasks that contain a specified keyword.
-9. `date [DATE]` - Shows all tasks that occur on the specified date.
-
-____________________________________________________________
-These are the available Module Commands and their corresponding commands (in brackets):
-
-1. `listmod` - Track and organise your academic plan for this semester!
-2. `listmod [MODULE_CODE]` - See more information about the classes you've added for a module in your list.
-3. `listmod [MODULE_CODE] -[FLAG]` - See more information about a specific class type for a module in your list
-4. `showmod [MODULE_CODE]` - See more information about the specified module.
-5. `showmod [MODULE_CODE] -[FLAG]` - View timing of specific lesson type for a chosen module
-6. `addmod [MODULE_CODE]` - Adds a module to your module list.
-7. `addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]` - Adds a chosen lesson of a specified module to your timetable! 
-8. `Remove a module (delmod [MODULE_CODE or IDX]` - Removes a Module you previously added by code or index in module list.
-9. `delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]` - Removes a lesson of a specified module from your timetable. 
-
-NOTE: showmod, addmod, delmod, listmod are commands with flags included in them. 
-Whatever in [THE SQUARE BRACKETS] are provided by you.For more information on the flags, please input "help [COMMAND]" exclusive of the square brackets. 
-For example, if you want to know more about the addmod command and its flags, input "help addmod".
-
-____________________________________________________________
-These are the Utility Commands:
-
-1. `week` - Displays your schedule for the week.
-2. `bye` - Exit the program
-3. `help` - Get a summary of all the commands available on Apollo.
-View help for a specific command by inputting help [COMMAND] 
-____________________________________________________________
-```
-Expected of Sub-case 2: The help menu for that command should appear.
-```
-____________________________________________________________
-Shows the information of a module, including Modular Credits, lesson types, lesson numbers and times.
-Format: showmod MODULE_CODE
-
-If you would like to view timing information on a specific lesson type of a module, you can use flags.
-Format: showmod MODULE_CODE -FLAG
-Example: showmod CS1010 -st
-
-NOTE: Different modules have different lesson types.
-It is recomended to run `showmod MODULE_CODE` to see the lesson types available for that module.
-
-There are -FLAGS for the various lessons options per module:
--lec			LECTURE
--plec			PACKAGED LECTURE
--st 			SECTIONAL TEACHING
--dlec			DESIGN LECTURE
--tut			TUTORIAL
--ptut			PACKAGED TUTORIAL
--rcit			RECITATION
--lab			LABORATORY
--ws 			WORKSHOP
--smc			SEMINAR STYLE MODULE CLASS
--mp 			MINI PROJECT
--tt2			TUTORIAL TYPE 2
-____________________________________________________________
-```
 #### Adding a ToDo/Event/Deadline
 Prerequisite: Make sure you are in the main interface.
 #### Invalid Commands
-1. Test case for empty task description: ```todo ``` or ```deadline``` or ```event```
+1. Test case for empty task description: `todo ` or `deadline` or `event`
 Expected: Exception thrown. Error details shown in status message
 2. Test case for invalid formats
-   - Out of calendar range: ```deadline return book -by 40-11-2023-23:23``` or ```event wedding -from 40-11-2023-22:23 -to 41-11-2023-11:23```
-   - Invalid dateTime format ```deadline return book -by 2023-10-11-11:23``` or ```event wedding -from 2023-10-11-11:23 -to 2023-10-12-11:23```
-   - Missing parameters ``` deadline return book 15-11-2023-11:23``` or ```event wedding 16-11-2023-11:23 -to 20-11-2023-11:23```
-   - Extra parameters ```deadline return book -by 17-11-2023-11:23 blah blah```
+   - Out of calendar range: `deadline return book -by 40-11-2023-23:23` or `event wedding -from 40-11-2023-22:23 -to 41-11-2023-11:23`
+   - Invalid dateTime format `deadline return book -by 2023-10-11-11:23` or `event wedding -from 2023-10-11-11:23 -to 2023-10-12-11:23`
+   - Missing parameters `deadline return book 15-11-2023-11:23` or `event wedding 16-11-2023-11:23 -to 20-11-2023-11:23`
+   - Extra parameters `deadline return book -by 17-11-2023-11:23 blah blah`
    - Occurs before system dateTime `deadline return book 15-01-2023-11:23` or `event wedding 16-01-2023-11:23 -to 20-01-2023-11:23`
    
    For all these cases Expected: Exception thrown. Error details shown in status message. 
    For instance invalid dateTime format prints `Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
    eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM`
 ### Adding a ToDo
-1. Test case : ```todo Feed the fish```
+1. Test case : `todo Feed the fish`
 
 Expected: ToDo is added into TasksList. Details shown in status message.
-2. Test case : ```todo```
+2. Test case : `todo`
 
 Expected: Empty task description exception thrown. Error details shown in status message 
 ### Adding a Deadline
-1. Test case : ```deadline return book -by 17-11-2023-11:23```
+1. Test case : `deadline return book -by 17-11-2023-11:23`
 
 Expected: Deadline is added into TasksList. Details shown in status message.
 ### Adding a Event
-1. Test case : ``````event wedding -from 16-11-2023-11:23 -to 20-11-2023-11:23``````
+1. Test case : `event wedding -from 16-11-2023-11:23 -to 20-11-2023-11:23`
 
 Expected: Event is added into TasksList. Details shown in status message.
 
 ### Deleting a Todo/Event/Deadline
-Prerequisites: Use command ```list``` to obtains task's index ```[IDX]```
-1. Test case : ```del [IDX]```
+Prerequisites: Use command `list` to obtains task's index `[IDX]`
+1. Test case : `del [IDX]`
 
 Expected: Task is deleted from tasksList. Deletion confirmation message is shown. 
-2. Test case : ```del [IDX not inside list]```
+2. Test case : `del [IDX not inside list]`
 
 Expected: Exception thrown. Error details shown in status message
 
 #### Adding a Module
-1. Test case : ```addmod cs2113```
+1. Test case : `addmod cs2113`
 
 Expected: Module added into moduleList.Details shown in status message
-2. Test case : ```addmod cs1111```
+2. Test case : `addmod cs1111`
 
 Expected: Exception thrown as module does not exist currently. Error details shown in status message
 
-3. Test case : ```addmod```
+3. Test case : `addmod`
 
 Expected: Exception thrown due to empty description. Error details shown in status message
 
 #### Adding a Lesson
-Prerequisites: Obtain lessons timings and numbers using ```showmod CS1010 -st``` which shows all available lessons of type ```st``` of ```CS1010```
-or ```showmod CS1010``` which shows all the lesson types available for CS1010 
+Prerequisites: Obtain lessons timings and numbers using `showmod CS1010 -st` which shows all available lessons of type `st` of `CS1010`
+or `showmod CS1010` which shows all the lesson types available for CS1010 
 
-1.Test case : ```addmod CS1010 -st 1```
+1.Test case : `addmod CS1010 -st 1`
 
 Expected: first section teaching lesson of CS1010 to your module list. If this lesson clashes with any of your other lessons a warning message will be displayed,
 but you will still be able to add it.
 
-2.Test case ```addmod CS1010 -st 99``` or ```addmod CS1010 -oo 1```
+2.Test case `addmod CS1010 -st 99` or `addmod CS1010 -oo 1`
 
 Expected: Exception thrown as due to invalid arguments. Error details shown in status message
 #### Deleting a Module
-Prerequisites: Use command ```listmod``` to obtains module's index ```[IDX]``` for 1.
-1. Test case: ```delmod 1```
+Prerequisites: Use command `listmod` to obtains module's index `[IDX]` for 1.
+1. Test case: `delmod 1`
 
 Expected: Module under index 1 is deleted from moduleList. Confirmation message is shown
-2. Test case: ```delmod cs1010``` assuming cs1010 is inside moduleList
+2. Test case: `delmod cs1010` assuming cs1010 is inside moduleList
 
 Expected: CS1010 is removed from moduleList. Confirmation message is printed 
-3. Test case: ```delmod cs2040c``` assuming cs2040c is not in your moduleList 
+3. Test case: `delmod cs2040c` assuming cs2040c is not in your moduleList 
 
 Expected: Exception thrown, `Sorry, the module cs2040c does not exist in your Module list!
 Total modular credits you have in this semester:`[Number of MCs in your moduleList]
