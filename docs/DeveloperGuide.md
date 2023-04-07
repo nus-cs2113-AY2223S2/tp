@@ -281,7 +281,11 @@ Step 3. The `displayHistory` public method outputs a list of past commands enter
 the current programme run.
 
 ### Command class:
-Step 1. Define the `Command` class: The `Command` class takes in a command takes in a `command` and a `toDo` item and
+The `Command` class takes in inputs from users
+and executes relevant functions based on the inputs of the users. It consists of 
+public methods such as `isInvalidTodo` and `executeCommand`.
+
+Step 1. The `Command` class takes in a `command` and a `toDo` item and
 based on both of these inputs, the `Command` class then identifies the relevant functions
 to be executed.
 
