@@ -30,7 +30,7 @@ destroy Parser
 
 Apollo -> Command : execute()
 activate Command
-Command -> TaskList : modify
+Command -> TaskList : read/modify
 Command -> Storage : update
 Command -> Ui : print message to user
 

@@ -63,9 +63,12 @@ which would result in the latest data stored in DataStorage being saved into the
 
 ### Command Component
 **API:** `Command.java`    
-Here's a class diagram of the `Command` component   
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command.png?raw=true)
-> SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)   
+Here's two class diagrams of the `Command` component, 
+one for Task and Util related Commands, and one for Module related Commands   
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command-for_Task__Util_Commands.png.png?raw=true)
+> SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)    
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command2-for_Module_Commands.png?raw=true)
 
 How the `Command` component works:
 1. When a command is entered by the user, `Parser` will create the relevant subclass of `Command`. 
@@ -778,10 +781,6 @@ Below is a sequence diagram of the `bye` command.
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ExitCommand-ExitCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
-
-## *Storage*
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)
-
 
 ## *Logging*
 (TO BE ADDED SOON)
