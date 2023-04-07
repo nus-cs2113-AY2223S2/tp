@@ -261,6 +261,18 @@ Below shows the sequence diagram for the aforementioned logic:
     <i>Figure 7: Sequence Diagram for edit Command</i>
 </p>
 
+To instantiate the commands, the full commands for `lend` and `borrow` are the following:
+
+- To create a lend expenditure.
+``` 
+lend d/2023-04-07 n/Mr Bean a/400 b/2023-07-01 s/Flight ticket 
+```
+- To create a borrow expenditure.
+```
+borrow d/2023-04-07 n/Teddy a/400 b/2023-07-01 s/Flight ticket
+```
+
+The sequence diagram for lend and borrow has been previously shown as an example for the `Parser` class.
 
 ### 4.2. Edit Command
 
