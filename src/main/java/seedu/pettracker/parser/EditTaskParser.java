@@ -22,13 +22,13 @@ public class EditTaskParser implements ArgParser<EditTaskCommand>{
         }
         try {
             String[] split = commandArgs.split(" ", 2);
-            String[] timeSplit = split[1].split("/by");
+            String[] timeSplit = split[1].split("(?i) /by ");
             int taskNum;
             String description;
             LocalDate deadline = null;
             try {
                 taskNum = Integer.parseInt(split[0]);
-                description = split[1];
+                description = timeSplit[0];
                 if (timeSplit.length > 1) {
                     deadline = LocalDate.parse(timeSplit[1]);
                 }

@@ -59,7 +59,7 @@ public class CommandParser {
         final String keyword = matcher.group("keyword");
         final String arguments = matcher.group("arguments").trim();
 
-        switch (keyword) {
+        switch (keyword.toLowerCase()) {
         case KEYWORD_EXIT:
             return new ExitCommand();
         case KEYWORD_ADD_PET:
