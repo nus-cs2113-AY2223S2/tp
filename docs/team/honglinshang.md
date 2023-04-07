@@ -1,12 +1,13 @@
 # Lin Shang - Project Portfolio Page
 
 ## Overview
-Apollo is a Java-based scheduling app for managing your tasks, events, deadlines and modules optimized for use via
-a Command Line Interface (CLI). Its target users are NUS students. It is set apart from existing schedulers as it 
-integrates NUS module information from the NUSMods database.
+Apollo is a scheduling app for managing your tasks and lessons at the same time, 
+with integrated module information from the NUSMods database. 
+The target user, an average NUS student, interacts with Apollo using a CLI. 
+It is written in Java, and has about 5kLoC. 
 
 ### Summary of Contributions
-- [My code contributions](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=honglinshang&breakdown=true)    
+My code contributions: [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=honglinshang&breakdown=true)    
 #### Enhancements Implemented
 - Author of original code for `Duke` that `Apollo` was built off of
 - Make TaskList, ModuleList extend ArrayList for better OOP
