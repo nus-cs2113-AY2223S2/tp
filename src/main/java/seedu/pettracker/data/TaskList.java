@@ -1,5 +1,6 @@
 package seedu.pettracker.data;
 
+import seedu.pettracker.exceptions.InvalidTaskNameException;
 import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 
@@ -22,13 +23,21 @@ public class TaskList {
      * @param todoDescription Description of task to be added
      */
 
-    public static void addTask(String todoDescription, LocalDate time) {
+    public static void addTask(String todoDescription, LocalDate time) throws InvalidTaskNameException {
+        if (todoDescription.trim().contains("|")) {
+            throw new InvalidTaskNameException();
+        }
+
         Task newTask = new Task(todoDescription, time);
         taskList.add(newTask);
         numberOfTasks += 1;
     }
 
-    public static void addTask(String todoDescription) {
+    public static void addTask(String todoDescription) throws InvalidTaskNameException {
+        if (todoDescription.trim().contains("|")) {
+            throw new InvalidTaskNameException();
+        }
+
         Task newTask = new Task(todoDescription, null);
         taskList.add(newTask);
         numberOfTasks += 1;

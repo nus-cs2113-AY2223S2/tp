@@ -11,6 +11,7 @@ import seedu.pettracker.exceptions.InvalidMarkTaskSymbolException;
 import seedu.pettracker.exceptions.InvalidPetNameException;
 import seedu.pettracker.exceptions.InvalidSeparatorException;
 import seedu.pettracker.exceptions.InvalidStatException;
+import seedu.pettracker.exceptions.InvalidTaskNameException;
 import seedu.pettracker.exceptions.NonPositiveIntegerException;
 import seedu.pettracker.exceptions.PetNotFoundException;
 import seedu.pettracker.ui.Ui;
@@ -116,6 +117,8 @@ public class Storage {
             ui.printFileEmptyTaskNameMessage();
         } catch (InvalidMarkTaskSymbolException e) {
             ui.printFileInvalidMarkTaskSymbolMessage();
+        } catch (InvalidTaskNameException e) {
+            ui.printFileInvalidTaskNameMessage();
         }
     }
 
@@ -207,7 +210,8 @@ public class Storage {
     }
 
     private void parseTaskFile(ArrayList<String> data) throws InvalidSeparatorException,
-            DateTimeParseException, EmptyTaskNameException, InvalidMarkTaskSymbolException {
+            DateTimeParseException, EmptyTaskNameException, InvalidMarkTaskSymbolException,
+            InvalidTaskNameException {
         for (String line : data) {
             try {
                 validateTaskDataSep(line);
@@ -227,7 +231,7 @@ public class Storage {
     }
 
     private void parseTaskWithoutDeadline(String line) throws EmptyTaskNameException,
-            InvalidMarkTaskSymbolException {
+            InvalidMarkTaskSymbolException, InvalidTaskNameException {
         String taskName = getTaskName(line);
         String taskStatus = getTaskStatus(line);
 

@@ -40,6 +40,10 @@ public class Ui {
     private static final String INVALID_PET_NAME_ERROR = "ERROR: Invalid pet name. Pet name cannot contain pipes.";
     private static final String INVALID_PET_NAME_FILE_ERROR = "ERROR: Pet save file has invalid pet name. Pet name " +
             "cannot contain pipes. File Loading aborted";
+    private static final String INVALID_TASK_NAME_ERROR = "ERROR: Invalid task name. Task name cannot contain pipes.";
+    private static final String INVALID_TASK_NAME_FILE_ERROR = "ERROR: Task save file has invalid task name. " +
+            "Task name cannot contain pipes. File Loading aborted";
+
 
     private Scanner in;
 
@@ -253,6 +257,14 @@ public class Ui {
 
     public void printFileInvalidPetNameMessage() {
         System.out.println(INVALID_PET_NAME_FILE_ERROR);
+    }
+
+    public void printInvalidTaskNameMessage() {
+        System.out.println(INVALID_TASK_NAME_ERROR);
+    }
+
+    public void printFileInvalidTaskNameMessage() {
+        System.out.println(INVALID_TASK_NAME_FILE_ERROR);
     }
 
     /**
