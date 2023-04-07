@@ -8,7 +8,6 @@ import model.CardList;
 import model.DeckList;
 import model.TagList;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.AddCardCommand;
@@ -136,7 +135,7 @@ public class CardParserTest {
     @Test
     public void parse_card_deleteInvalidIndex() {
         String[] testInputs = {"card delete -i -1", "card delete -i 0", "card delete -i 0.1", "card delete -i -0.1",
-            "card delete -i STRING"};
+                "card delete -i STRING"};
         for (String testInput : testInputs) {
             assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testInput),
                     "Should be invalid index");
@@ -183,7 +182,6 @@ public class CardParserTest {
         assert tagList.findTagFromName("tagName") != null;
     }
 
-    @Disabled
     @Test
     public void parse_card_tagWhitespaceName() {
         InkaException ex = assertThrows(InvalidSyntaxException.class,

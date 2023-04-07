@@ -27,14 +27,6 @@ import utils.exceptions.UnrecognizedCommandException;
  * Abstract class for parsing keyword-specific commands
  */
 public abstract class KeywordParser {
-    protected static final String FLAG_TAG_UUID_NAME = "t";
-    protected static final String FLAG_LONG_TAG_UUID_NAME = "tag";
-    protected static final String FLAG_TAG_INDEX = "x";
-    protected static final String FLAG_LONG_TAG_INDEX = "tag index";
-    protected static final String FLAG_CARD_UUID = "c";
-    protected static final String FLAG_LONG_CARD_UUID = "card";
-    protected static final String FLAG_CARD_INDEX = "i";
-    protected static final String FLAG_LONG_CARD_INDEX = "card index";
     protected static final int FORMAT_HELP_WIDTH = 200;
     protected static final int FORMAT_HELP_LEFT_PAD = 0;
     protected static final int FORMAT_HELP_DESC_PAD = 10;
@@ -45,23 +37,29 @@ public abstract class KeywordParser {
         parser = DefaultParser.builder().setAllowPartialMatching(false).setStripLeadingAndTrailingQuotes(false).build();
     }
 
-    protected static CardSelector getSelectedCard(CommandLine cmd) throws InkaException {
-        if (cmd.hasOption(FLAG_CARD_UUID)) {
-            String cardUUID = cmd.getOptionValue(FLAG_CARD_UUID);
-            return new CardSelector(cardUUID);
-        } else if (cmd.hasOption(FLAG_CARD_INDEX)) {
-            String cardIndexStr = cmd.getOptionValue(FLAG_CARD_INDEX);
-            try {
-                int cardIndex = Integer.parseInt(cardIndexStr);
-                // Card list is 1-indexed, will definitely fail to find card
-                if (cardIndex <= 0) {
-                    throw InvalidSyntaxException.buildNotValidIndexMessage();
-                }
-
-                return new CardSelector(cardIndex);
-            } catch (NumberFormatException ex) {
+    private static int parseUserIndex(String indexStr) throws InvalidSyntaxException {
+        try {
+            int index = Integer.parseInt(indexStr);
+            // List displayed to user is 1-indexed, will definitely fail to find card
+            if (index <= 0) {
                 throw InvalidSyntaxException.buildNotValidIndexMessage();
             }
+
+            return index;
+        } catch (NumberFormatException ex) {
+            throw InvalidSyntaxException.buildNotValidIndexMessage();
+        }
+    }
+
+    protected static CardSelector getSelectedCard(CommandLine cmd) throws InkaException {
+        if (cmd.hasOption(OptionsBuilder.FLAG_CARD)) {
+            String cardUUID = cmd.getOptionValue(OptionsBuilder.FLAG_CARD);
+            return new CardSelector(cardUUID);
+        } else if (cmd.hasOption(OptionsBuilder.FLAG_CARD_INDEX)) {
+            String cardIndexStr = cmd.getOptionValue(OptionsBuilder.FLAG_CARD_INDEX);
+            int cardIndex = parseUserIndex(cardIndexStr);
+
+            return new CardSelector(cardIndex);
         }
 
         // Shouldn't be called
@@ -69,15 +67,18 @@ public abstract class KeywordParser {
         return null;
     }
 
-    protected static TagSelector getSelectedTag(CommandLine cmd)
-            throws ParseException {
-        if (cmd.hasOption(FLAG_TAG_UUID_NAME)) {
-            String tagString = cmd.getOptionValue(FLAG_TAG_UUID_NAME);
+    protected static TagSelector getSelectedTag(CommandLine cmd) throws InvalidSyntaxException {
+        if (cmd.hasOption(OptionsBuilder.FLAG_TAG)) {
+            String tagString = cmd.getOptionValue(OptionsBuilder.FLAG_TAG);
             return new TagSelector(tagString);
-        } else if (cmd.hasOption(FLAG_TAG_INDEX)) {
-            int index = Integer.parseInt(cmd.getOptionValue(FLAG_TAG_INDEX));
-            return new TagSelector(index);
+        } else if (cmd.hasOption(OptionsBuilder.FLAG_TAG_INDEX)) {
+            String tagIndexStr = cmd.getOptionValue(OptionsBuilder.FLAG_TAG_INDEX);
+            int tagIndex = parseUserIndex(tagIndexStr);
+
+            return new TagSelector(tagIndex);
         }
+
+        // May return a null TagSelector
         return null;
     }
 
