@@ -121,7 +121,7 @@ The following describes the class diagram for CardList Component :
 
 API: `TagList.java`
 
-Inka's `TagList` Component stores a list of `Tag` as tags. Each `Tag` contains its own uuid, which is auto generated in
+Inka's TagList Component stores a list of `Tag` as tags. Each `Tag` contains its own uuid, which is auto generated in
 the constructor of `Tag`, as well as the cards and decks that it
 is associated with in the form of `CardUUID` and `DeckUUID`. All `CardUUID`, `TagUUID`, and `DeckUUID` inherit
 from `InkaUUID` as they all
@@ -158,6 +158,7 @@ similar.
   a `ViewCardCommand`. The sequence diagram for this section has been
   shown [above](#parser-component).
 
+
 - This `ViewCardCommand` will first find the card that is to be viewed by calling
   the `CardList#findCard()` which will in turn call the `CardSelector#getIndex()`
   and `CardSelector#getUUID()`. `CardSelector` will then return the `cardToView` to `CardList` and then
@@ -181,6 +182,12 @@ similar.
 
 - The `tagsFound` and `decksFound` will then be passed to the `UserInterface#printTags()`
   and `UserInterface#printDecks()` to be printed.
+
+1. When the user enters `card add -q ... -a ...`, the input is passed to `Parser` class which
+   calls `Parser#parseCommand()`.
+2. The parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on the user inputs excluding the "
+   card" keyword.
+3. The `Parser#CardKeywordParser()` uses the Apache Commons CLI library to parse the remaining user input.
 
 The sequence diagram below shows how this feature works:
 
@@ -207,6 +214,17 @@ The implementation of the `card tag` feature is as follows :
   and `CardSelector#getUUID()`. `CardSelector` will then return the `cardToAdd` to `CardList` and then
   to `AddCardToTagCommand`.
 
+The implementation of the ***add a tag to a card*** feature is as follows :
+
+- When the user enters `card tag -c {cardUUID} -t {tagName}`, the input is passed to `CardKeywordParser` class which
+  calls `HandleTag()` method and returns a `addCardToTagCommand`. The sequence diagram for this section has been
+  shown [above](#parser-component).
+-
+- This `AddCardToTagCommand` will first find the card to which the tag should be added to by calling
+  the `CardList#findCard()` which will in turn call the `CardSelector#getIndex()`
+  and `CardSelector#getUUID()`. `CardSelector` will then return the `cardToAdd` to `CardList` and
+  to `AddCardToTagCommand`.
+-
 - After finding the card on which to add the tag, `AddCardToTagCommand` will check if the tag has already existed by
   calling `TagList#findTagFromName` which will return a `tagToAdd`. If the `tagToAdd` currently does not
   exist, `AddCardToTagCommand` will then create a new `Tag` and add it to `TagList` by
