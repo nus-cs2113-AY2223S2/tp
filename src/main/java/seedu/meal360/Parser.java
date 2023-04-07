@@ -129,7 +129,6 @@ public class Parser {
         recipeToEdit = recipeList.findByName(recipeName);
         System.out.println("Do you want to edit recipe fully or partially?");
         System.out.println("Press 1 for full edit | Press 2 for partial edit | Press 3 to add ingredients");
-
         int index;
         Scanner getNum = new Scanner(System.in);
         while(true){
@@ -148,7 +147,6 @@ public class Parser {
                 ui.printSeparator();
             }
         }
-
         if (index == 1) {
             System.out.println("Please Enter New Ingredients & Quantity: ");
             while (true) {

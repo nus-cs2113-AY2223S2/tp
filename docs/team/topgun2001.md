@@ -6,7 +6,6 @@ Meal360 is a desktop app for managing your recipes, optimized for use via a Comm
 having the benefits of a Graphical User Interface (GUI). If you can type fast, Meal360 can get your recipe management
 tasks done faster than traditional GUI apps.
 
-
 Given below are my contributions to the project:
 ### Summary of Contributions
 * __Code contributed__: [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=topgun2001&breakdown=true)
