@@ -13,7 +13,6 @@ After Diagnosis, Dr. Duke will prescribe relevant medication available over-the-
 to the user. The medication prescribed gives the user an idea of what medications
 can be used to treat their current ailment.
 
-
 ### Summary of Contributions
 * **Code contributed**: [RepoSense](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=tanyizhe&breakdown=true)
 * **Added features** :
@@ -51,7 +50,6 @@ can be used to treat their current ailment.
     *  **Justification**: Experienced users may want to delete multiple symptoms in one go,
         rather than deleting each symptom one by one.
   * Wrote additional Junit tests to increase test coverage [#172](https://github.com/AY2223S2-CS2113-W13-1/tp/pull/172)
-
 * **Documentation**:
     * User Guide:
         * Added documentation for features such as List Medicines and Find Medicine. Updated User guide accordingly
@@ -60,7 +58,6 @@ can be used to treat their current ailment.
     * Developer Guide:
         * Added sequence diagram for MedicineManager class. Wrote detailed explanation regarding
             how MedicineManager, Medicine, Parser, and IllnessMatch classes work and how they interact.
-
   * Community contributions:
     * Reported bugs for other teams:
       * [#1](https://github.com/tanyizhe/ped/issues/1)
