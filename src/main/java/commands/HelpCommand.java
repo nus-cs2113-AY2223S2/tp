@@ -6,6 +6,11 @@ import ui.TextUi;
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
+    /**
+     * Executes the command the user provided.
+     *
+     * @param ui The Ui instance. Use to display messages to users.
+     */
     @Override
     public void execute(TextUi ui) {
         String helpList = String.format(Messages.MESSAGE_VALID_COMMAND_LIST,
@@ -17,6 +22,12 @@ public class HelpCommand extends Command {
         ui.printMessage(helpList);
     }
 
+    /**
+     * Returns the exit value.
+     * If false, program continues to run.
+     *
+     * @return the exit value.
+     */
     @Override
     public boolean isExit() {
         return false;

@@ -19,7 +19,7 @@ public class DishStorage {
     private static final String FILEPATH_DISH_LIST = Storage.FILE_DIRECTORY + "/" + FILENAME_DISH;
 
     /**
-     * Read and Load data from a file if it exists.
+     * Reads and Loads data from a file if it exists.
      *
      * @throws FileNotFoundException If file is not found, throw an exception. But file will be created if not found.
      */
@@ -36,7 +36,7 @@ public class DishStorage {
             Pattern dishPattern = Pattern.compile(regex);
             Matcher parsedDishInput = dishPattern.matcher(text);
 
-            String name;
+            String name = null;
             Integer price;
             ArrayList<String> ingredients = new ArrayList<>();
             Dish dish = null;
@@ -49,10 +49,20 @@ public class DishStorage {
                     } catch (NumberFormatException e) {
                         throw new DinerDirectorException(Messages.ERROR_PRICE_EXCEED_INTEGER_BOUNDS);
                     }
+
                     String[] ingredientList = parsedDishInput.group(3).split(";");
                     for (String ingredient : ingredientList) {
-                        if (!ingredient.isBlank()) {
+                        String regexNumbers = "^[+-]?\\d+(?:\\.\\d+)?$";
+                        Pattern pattern = Pattern.compile(regexNumbers);
+                        Matcher parsedIngredient = pattern.matcher(ingredient);
+                        if (!ingredient.isBlank() && !parsedIngredient.matches()) {
                             ingredients.add(ingredient);
+                        }
+                    }
+
+                    for (Dish currentDish : listOfDishes) {
+                        if (currentDish.getDishName().equals(name)) {
+                            throw new DinerDirectorException(Messages.ERROR_DISH_STORAGE_DUPLICATE_DISH_NAME);
                         }
                     }
                     dish = new Dish(name, price, ingredients);
@@ -60,7 +70,7 @@ public class DishStorage {
                     throw new DinerDirectorException(Messages.ERROR_STORAGE_INVALID_READ_LINE);
                 }
             } catch (DinerDirectorException e) {
-                System.out.println(String.format(Messages.ERROR_STORAGE_INVALID_READ_LINE, text));
+                System.out.println(String.format(e.getMessage(), text));
             }
 
             if (dish != null) {
@@ -71,7 +81,7 @@ public class DishStorage {
     }
 
     /**
-     * Write the user tasks into a file.
+     * Writes the user tasks into a file.
      *
      * @param listOfDishes An arraylist storing the list of things the user created.
      * @throws IOException Some IO Exception has occured.

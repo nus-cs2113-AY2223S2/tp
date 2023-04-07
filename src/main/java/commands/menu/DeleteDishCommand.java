@@ -15,7 +15,7 @@ public class DeleteDishCommand extends Command {
 
     @Override
     public void execute(TextUi ui) {
-        DishManager.deleteDishCommand(this.index, ui);
+        DishManager.deleteDish(this.index, ui);
     }
 
     @Override

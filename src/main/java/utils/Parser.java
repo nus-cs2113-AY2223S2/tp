@@ -24,20 +24,25 @@ import commands.Command;
 import common.Messages;
 import exceptions.DinerDirectorException;
 import entity.Deadline;
+import manager.DishManager;
 import manager.StaffManager;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static manager.DishManager.getDishesSize;
 
-/**
- * Parser to tokenize the input
- */
 public class Parser {
 
-
+    /**
+     * Returns the Command object to execute.
+     * Prepares the command to ensure execution works.
+     *
+     * @param userInput The raw input of what the user typed.
+     * @return Command object in order for the program to know what command to execute.
+     */
     public Command parseCommand(String userInput) {
         assert userInput != null : "userInput should not be null";
         String[] userInputSplit = userInput.trim().split(" ");
@@ -95,8 +100,8 @@ public class Parser {
         String[] words = (description.trim()).split("t/");
         String[] testName = (description.trim()).split("n/");
         try {
-            if (((description.trim()).isEmpty()) || (!description.contains("n/"))||
-                    (!description.contains("t/")) || (words.length < 2)||(words[0].trim().length()<3)) {
+            if (((description.trim()).isEmpty()) || (!description.contains("n/")) ||
+                    (!description.contains("t/")) || (words.length < 2) || (words[0].trim().length() < 3)) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
             } else if ((testName.length > 2) || (words.length > 2)) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_ADD_PARAM);
@@ -132,14 +137,15 @@ public class Parser {
         } catch (DinerDirectorException e) {
             System.out.println(e);
             return new IncorrectCommand();
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println(Messages.ERROR_MEETING_MISSING_INDEX);
             return new IncorrectCommand();
         }
         assert index >= 0 : "Index of meeting should be 0 or greater.";
         return new DeleteMeetingCommand(index);
     }
-    private Command prepareFindMeetingCommand(String description){
+
+    private Command prepareFindMeetingCommand(String description) {
         try {
             if ((description.trim()).isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
@@ -153,6 +159,7 @@ public class Parser {
 
     /**
      * Parsing the input into properties of Staff class and checking for error.
+     *
      * @param userInputNoCommand Cleaned UserInput without the Command keyword.
      * @return AddStaffCommand object if input is valid, otherwise IncorrectCommand object.
      */
@@ -166,8 +173,10 @@ public class Parser {
             } else if (userInputNoCommandSplitBySlash.length > 5) {
                 throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PARAM);
             }
-            String pattern = "n/(?<name>[\\w\\s]+)\\sw/(?<workingDay>[\\w\\s]+)" +
-                    "\\sd/(?<dateOfBirth>[\\w\\s\\-]+)\\sp/(?<phoneNumber>[\\w\\s]+)";
+            String pattern = "n/(?<name>[\\w\\s]+)" +
+                    "\\sw/(?<workingDay>[\\w\\s]+)" +
+                    "\\sd/(?<dateOfBirth>(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))" +
+                    "\\sp/(?<phoneNumber>[\\d\\s]+)";
 
             Pattern regex = Pattern.compile(pattern);
             Matcher matcher = regex.matcher(userInputNoCommand);
@@ -177,9 +186,30 @@ public class Parser {
             String staffDateOfBirth = "";
             if (matcher.find()) {
                 staffName = matcher.group("name");
+                if (staffName.equals("")) {
+                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_NAME);
+                }
                 staffWorkingDay = matcher.group("workingDay");
+                if (staffWorkingDay.equals("")) {
+                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_WORKING_DAY);
+                }
                 staffPhoneNumber = matcher.group("phoneNumber");
+                if (staffPhoneNumber.equals("")) {
+                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_PHONE_NUMBER);
+                }
                 staffDateOfBirth = matcher.group("dateOfBirth");
+                if (staffDateOfBirth.equals("") || staffDateOfBirth.length() != 10) {
+                    throw new DinerDirectorException(Messages.INVALID_STAFF_ADD_DATE_OF_BIRTH);
+                }
+
+                LocalDate today = LocalDate.now();
+                LocalDate parsedStaffDateOfBirth = LocalDate.parse(staffDateOfBirth);
+                if (parsedStaffDateOfBirth.isAfter(today)) {
+                    throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_FUTURE_DOB);
+                }
+            }
+            if (staffPhoneNumber.length() > 15) {
+                throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER);
             }
 
             return new AddStaffCommand(staffName, staffWorkingDay, staffDateOfBirth, staffPhoneNumber);
@@ -191,6 +221,7 @@ public class Parser {
 
     /**
      * Check whether there is excess parameter.
+     *
      * @param userInputNoCommand Cleaned UserInput without the Command keyword.
      * @return ViewStaffCommand object if the input is valid, otherwise IncorrectCommand object.
      */
@@ -208,6 +239,7 @@ public class Parser {
 
     /**
      * Check whether user gives a number and that number is a valid staff index.
+     *
      * @param userInputNoCommand userInputNoCommand Cleaned UserInput without the Command keyword.
      * @return DeleteStaffCommand object if input is valid, otherwise IncorrectCommand object.
      */
@@ -230,10 +262,11 @@ public class Parser {
 
     /**
      * Check whether user gives a description or not.
+     *
      * @param description The substring that is contained in Staff name to be searched.
      * @return FindStaffCommand object if input is valid, otherwise IncorrectCommand object.
      */
-    private Command prepareFindStaffCommand(String description){
+    private Command prepareFindStaffCommand(String description) {
         try {
             if ((description.trim()).isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_STAFF_FIND_MISSING_PARAM);
@@ -245,6 +278,14 @@ public class Parser {
         return new FindStaffCommand(description.trim());
 
     }
+
+    /**
+     * Returns the Help Command object.
+     * If invalid Help command, returns IncorrectCommand object.
+     *
+     * @param userInputNoCommand userInput without the command portion.
+     * @return Command object.
+     */
     private Command prepareHelpCommand(String userInputNoCommand) {
         try {
             if (!userInputNoCommand.isEmpty()) {
@@ -257,6 +298,13 @@ public class Parser {
         return new HelpCommand();
     }
 
+    /**
+     * Returns the Exit Command object.
+     * If invalid Exit command, returns IncorrectCommand object.
+     *
+     * @param userInputNoCommand userInput without the command portion.
+     * @return Command object.
+     */
     private Command prepareExitCommand(String userInputNoCommand) {
         try {
             if (!userInputNoCommand.isEmpty()) {
@@ -291,7 +339,7 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_WRONG_ORDER);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         String name = (words[0].substring(2)).trim();
@@ -314,7 +362,7 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_EXCESS_LIST_PARAM);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         assert (userInput.trim()).isEmpty() : Messages.ERROR_DEADLINE_EXCESS_LIST_PARAM;
@@ -340,7 +388,7 @@ public class Parser {
             System.out.println(Messages.ERROR_DEADLINE_MISSING_INDEX);
             return new IncorrectCommand();
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         assert index >= 0 : "indexToRemove should be 0 or greater.";
@@ -360,14 +408,14 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_DEADLINE_MISSING_KEYWORD);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         return new FindDeadlineCommand((keyword.trim()));
     }
-    
+
     private Command prepareDeleteDishCommand(String userInputNoCommand) {
-    
+
         int indexToRemove = 0;
 
         try {
@@ -414,6 +462,9 @@ public class Parser {
         try {
             if (parsedDishInput.matches()) {
                 name = parsedDishInput.group(1);
+                if (DishManager.isInsideDishes(name)) {
+                    throw new DinerDirectorException(Messages.ERROR_DUPLICATE_DISH_NAME);
+                }
                 try {
                     price = Integer.parseInt(parsedDishInput.group(2));
                 } catch (NumberFormatException e) {
@@ -421,7 +472,10 @@ public class Parser {
                 }
                 String[] ingredientList = parsedDishInput.group(3).split(";");
                 for (String ingredient : ingredientList) {
-                    if (!ingredient.isBlank()) {
+                    String regexNumbers = "^[+-]?\\d+(?:\\.\\d+)?$";
+                    Pattern pattern = Pattern.compile(regexNumbers);
+                    Matcher parsedIngredient = pattern.matcher(ingredient);
+                    if (!ingredient.isBlank() && !parsedIngredient.matches()) {
                         ingredients.add(ingredient);
                     }
                 }
@@ -429,11 +483,12 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_COMMAND_INVALID);
             }
         } catch (DinerDirectorException e) {
-            if (e.getMessage() != Messages.ERROR_COMMAND_INVALID) {
+            if (!e.getMessage().equals(Messages.ERROR_COMMAND_INVALID)) {
                 System.out.println(e.getMessage());
             }
             return new IncorrectCommand();
         }
+
         return new AddDishCommand(name, price, ingredients);
     }
 

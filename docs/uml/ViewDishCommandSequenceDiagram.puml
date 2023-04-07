@@ -1,0 +1,21 @@
+@startuml
+hide footbox
+title View Dish Sequence Diagram
+
+box "ViewDishCommand"
+participant ":ViewDishCommand" as ViewDishCommand
+endbox
+
+box "DishManager"
+participant ":DishManager" as DishManager
+endbox
+
+-> ViewDishCommand ++ : ViewDishCommand()
+-> ViewDishCommand: execute()
+ViewDishCommand -> DishManager ++ : viewDish()
+
+ViewDishCommand <-- DishManager
+<-- ViewDishCommand: ui.printMessage()
+
+|||
+@enduml

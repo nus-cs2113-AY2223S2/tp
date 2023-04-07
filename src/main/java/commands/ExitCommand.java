@@ -34,6 +34,8 @@ public class ExitCommand extends Command {
 
     /**
      * Executes the command the user provided.
+     *
+     * @param ui The Ui instance. Use to display messages to users.
      */
     @Override
     public void execute(TextUi ui) {

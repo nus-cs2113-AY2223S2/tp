@@ -2,6 +2,7 @@ package manager;
 
 import common.Messages;
 import entity.Staff;
+import exceptions.DinerDirectorException;
 import ui.TextUi;
 import utils.StaffStorage;
 
@@ -20,12 +21,20 @@ public class StaffManager {
      * @param ui Ui object in if there is anything to be printed.
      */
     public static void addStaff(Staff staff, TextUi ui) {
-        staffs.add(staff);
         try {
+            for(Staff currStaff: staffs) {
+                if (currStaff.getName().equals(staff.getName())) {
+                    throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_ALREADY_EXISTS);
+                }
+            }
+            staffs.add(staff);
+            ui.printMessage(staff + " added!");
             StaffStorage staffStorage = new StaffStorage();
             staffStorage.writeToStaffFile(staffs);
         } catch (IOException e) {
-            ui.printMessage(Messages.ERROR_STORAGE_INVALID_WRITE_LINE);
+            ui.printMessage(String.format(Messages.ERROR_STORAGE_INVALID_WRITE_LINE, staff));
+        } catch (DinerDirectorException e) {
+            ui.printMessage(e.getMessage());
         }
     }
 
@@ -48,10 +57,10 @@ public class StaffManager {
      * @param ui Ui object in if there is anything to be printed.
      */
     public static void deleteStaff(int staffIndex, TextUi ui) {
-        if (staffIndex != -1) {
-            staffs.remove(staffIndex);
-        }
         try {
+            Staff deletedStaff = staffs.get(staffIndex);
+            staffs.remove(staffIndex);
+            ui.printMessage(deletedStaff + " removed!");
             StaffStorage staffStorage = new StaffStorage();
             staffStorage.writeToStaffFile(staffs);
         } catch (IOException e) {
@@ -64,10 +73,10 @@ public class StaffManager {
      * @param name The name of the staff to be found.
      * @param ui Ui object in if there is anything to be printed.
      */
-    public static void findStaff(String name,TextUi ui) {
+    public static void findStaff(String name, TextUi ui) {
         ArrayList<Staff> staffFound = new ArrayList<>();
         for(Staff m:staffs){
-            if( m.getName().contains(name)){
+            if(m.getName().contains(name)){
                 staffFound.add(m);
             }
         }

@@ -1,12 +1,6 @@
 package common;
 
-/**
- * A class containing the list of messages that will be shown to the user. "ERROR for error. MESSAGE for message"
- */
 public class Messages {
-    /**
-     * Messages for programs to print.
-     */
     public static final String MESSAGE_VALID_COMMAND_LIST = "List of valid commands:\n" +
             "GENERIC COMMANDS:\n%s\n" +
             "MEETING COMMANDS:\n%s\n" +
@@ -30,10 +24,11 @@ public class Messages {
             "find_dish <keyword>\n";
 
     public static final String MESSAGE_STAFF_COMMANDS =
-            "add_staff n/<name> w/<working day> d/<date of birth> p/phone\n" +
+            "add_staff n/<name> w/<working day> d/<date of birth> p/<phone_number>\n" +
             "delete_staff <staff index>\n" +
             "view_staff\n" +
-            "find_staff <keyword>\n";
+            "find_staff <keyword>\n" +
+            "Note that date of birth format: YYYY-MM-DD. Phone number only takes integers.\n";
     public static final String MESSAGE_COMMAND_EXIT = "Thank you for using DinerDirector!";
     public static final String MESSAGE_DEADLINE_ADDED = "Got it! This deadline has been successfully added.\n";
     public static final String MESSAGE_DEADLINE_EMPTY_LIST = "Your deadline list is empty!";
@@ -41,7 +36,7 @@ public class Messages {
     public static final String MESSAGE_DEADLINE_VIEW_LIST = "Here are the deadlines in your list:";
     public static final String MESSAGE_DEADLINE_VIEW_SEARCH_LIST = "Here are the matching deadlines in your list:";
     public static final String MESSAGE_DEADLINE_REMOVED = "Noted. I've removed this deadline:\n";
-    public static final String MESSAGE_NUMBER_OF_DEADLINES = "\nNow you have %d deadlines in the deadline list.";
+    public static final String MESSAGE_NUMBER_OF_DEADLINES = "\nNow you have %d deadlines in the deadline list.\n";
     public static final String MESSAGE_MEETING_ADDED = "Got it! You have successfully added a meeting:";
     public static final String MESSAGE_MEETING_VIEW_LIST = "Meeting list:";
     public static final String MESSAGE_MEETING_FOUND = "Here's the matching meeting list:";
@@ -49,7 +44,7 @@ public class Messages {
     public static final String MESSAGE_FINISHED_LOADING = "Loading done. Starting Dinerdirector...\n";
     public static final String MESSAGE_STAFF_FOUND = "Here's the matching staff:";
     public static final String MESSAGE_STAFF_NOT_FOUND  ="There's no such staff in the staff list!";
-    public static final String MESSAGES_THE_LIST_OF_DISHES_IS_EMPTY = "(The list of dishes is empty).";
+    public static final String MESSAGES_THE_LIST_OF_DISHES_IS_EMPTY = "The list of dishes is empty.";
     /**
      * Errors for programs to print.
      */
@@ -100,6 +95,17 @@ public class Messages {
 
     public static final String ERROR_STAFF_INVALID_INDEX = "Invalid staff index number";
     public static final String ERROR_STAFF_EXCESS_VIEW_PARAM = "Excessive parameter given to view staff command!";
+    public static final String ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER = "Phone number length is at most 15!";
+    public static final String ERROR_STAFF_ADD_FUTURE_DOB = "Date of birth must be earlier than current date!";
+    public static final String INVALID_STAFF_ADD_NAME = "Invalid name given for staff";
+    public static final String INVALID_STAFF_ADD_WORKING_DAY = "Invalid working day format";
+    public static final String INVALID_STAFF_ADD_PHONE_NUMBER = "Format of phone number must consist of only numbers";
+    public static final String INVALID_STAFF_ADD_DATE_OF_BIRTH = "Format of date of birth must be YYYY-MM-DD";
+    public static final String ERROR_STAFF_ADD_ALREADY_EXISTS = "Staff with that specific name already exists!";
     public static final String ERROR_PRICE_EXCEED_INTEGER_BOUNDS = "The maximum must not be greater than "
             + Integer.MAX_VALUE + " cents";
+    public static final String ERROR_DUPLICATE_DISH_NAME = "There is already a dish with the same name.";
+    public static final String ERROR_DISH_STORAGE_DUPLICATE_DISH_NAME = "There is already a dish with the same name." +
+            "\n%s\nSkipping line...\n";
+
 }

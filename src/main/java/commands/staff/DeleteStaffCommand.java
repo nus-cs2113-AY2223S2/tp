@@ -1,7 +1,6 @@
 package commands.staff;
 
 import commands.Command;
-import entity.Staff;
 import manager.StaffManager;
 import ui.TextUi;
 
@@ -23,10 +22,7 @@ public class DeleteStaffCommand extends Command {
      */
     @Override
     public void execute(TextUi ui) {
-        Staff deletedStaff = StaffManager.getStaffs().get(staffIndex);
         StaffManager.deleteStaff(this.staffIndex, ui);
-        ui.printMessage((staffIndex + 1) + " " + deletedStaff.toString() + " removed");
-
     }
     /**
      * Indicates whether the program should exit or not
