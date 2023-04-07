@@ -28,6 +28,17 @@
 
 ## Acknowledgements
 
+<<<<<<< HEAD
+=======
+{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+
+## Design & implementation
+
+Below are the design and implementations of key features of the ChChing program.
+<br> We used various diagrams such as UML class diagrams, sequence diagrams and activity diagrams
+to illustrate our methodology and approach.
+
+>>>>>>> master
 ### ExchangeRateApi
 
 `LiveCurrencyApi` class makes an API call to obtain the latest exchange rates from the [ExchangeRateApi](https://www.exchangerate-api.com/). The API call is made using the `HttpUrlConnection` class. The API key is used directly in the API call URL, and stored in the URL itself and not as a variable. The values response of the API call is then parse as a string, by formatting the string to obtain the exchange rates of the currencies and ignoring the other text. The currency name is then used as a key to see if it exist in the `selector` hashmap. If it does the exchange rate is added to the `converter` hashmap. The `converter` hashmap is then used to convert the currency of interest to SGD. If the API call somehow fails, there are hardcoded values in the `converter` hashmap that are outdated, but it allows the program to continue to run. The live currency rates are updated every time the user starts the program, however the API itself only updates the rates every 24 hours.
@@ -339,20 +350,13 @@ Given below are instructions to test the app manually.
       <br> For expense: `find /t expense /c food /de sushi /da 03-03-2023 `
       <br> Expected: No income/expense will be listed. status message will indicate no matching record for these search terms.
 
-### Setting target & showing target
-1. Setting target to display user's desired budget goal.
-   1. Prerequisites: Target will initially be set to 0 by default, accept a preset range of values.
-   2. Test case:
-      <br> `set target /v 500.50`
-      <br> Expected: target value added of 500.50 SGD
-   3. Test case: `set target /v 500.123`
-      <br> Expected: target value will not be added as value is not 2 d.p., error details shown in status message.
-   4. Test case: `set target /v 999999999`
-      <br> Expected: target value will not be added as value is out of range, error details shown in status message.
-2. Show target
-    1. Test case:
-    <br> `show target`
-    <br> Expected: Current target to be shown in status message.
+### Setting target & Clearing target
+1. Setting Target
+   1. Prerequisites: Target set has to be within -9999999.99 to 9999999.99.
+   2. Test case: `set target /v 350.50` <br> Expected: Program will indicate to user that target has been set. If the target is out of range, program will indicate to users that target setting is invalid.
+2. Clearing Target
+   1. Prerequisites: Target must have been set in the first place.
+   2. Test Case: `clear target` <br> Expected: Program will indicate to user that target has been cleared.
 
 ### Setting Currency & Unsetting Currency
 1. Setting program to display currency of interest and not display unwanted currencies

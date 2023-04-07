@@ -187,6 +187,9 @@ public class Ui {
 
         System.out.println("    Target added");
     }
+    public void clearTarget() {
+        System.out.println("    Target cleared");
+    }
 
     public void showListCleared() {
         System.out.println("    List(s) cleared");

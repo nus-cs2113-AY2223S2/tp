@@ -8,6 +8,7 @@ import chching.command.AddTargetCommand;
 import chching.command.ClearAllCommand;
 import chching.command.ClearExpenseCommand;
 import chching.command.ClearIncomeCommand;
+import chching.command.ClearTargetCommand;
 import chching.command.Command;
 import chching.command.InvalidCommand;
 import chching.command.ListIncomeCommand;
@@ -131,6 +132,10 @@ public class Parser {
                 break;
             case "show target":
                 command = new ShowTargetCommand();
+                break;
+            case "clear target":
+                command = new ClearTargetCommand();
+                ui.clearTarget();
                 break;
             default:
                 command = new InvalidCommand();
