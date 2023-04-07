@@ -265,14 +265,22 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________________
 
 Here are your tasks:
-1. [X] Feed Alice
+1. [X] Buy Food
 2. [ ] Buy Food
 3. [ ] Buy Food (Deadline: 2021-03-01)
 4. [ ] Feed Bob
-5. [ ] Feed Bob (Deadline: 2021-01-01)
-6. [ ] Feed Bob
-7. [ ] Feed Candi
-8. [ ] Feed Alice
+5. [ ] Feed Bob
+6. [ ] Feed Bob (Deadline: 2021-01-01)
+7. [ ] Feed Bob
+8. [ ] Feed Candi
+9. [ ] Feed Alice
+10. [ ] Buy Food
+11. [ ] Buy Food (Deadline: 2021-03-01)
+12. [ ] Feed Bob
+13. [ ] Feed Bob (Deadline: 2021-01-01)
+14. [ ] Feed Bob
+15. [ ] Feed Candi
+16. [ ] Feed Alice
 
 
 ________________________________________________________________________________________________________
@@ -298,10 +306,18 @@ Here are your tasks:
 2. [ ] Buy Food
 3. [ ] Buy Food (Deadline: 2021-03-01)
 4. [ ] Feed Bob
-5. [ ] Feed Bob (Deadline: 2021-01-01)
-6. [ ] Feed Bob
-7. [ ] Feed Candi
-8. [ ] Feed Alice
+5. [ ] Feed Bob
+6. [ ] Feed Bob (Deadline: 2021-01-01)
+7. [ ] Feed Bob
+8. [ ] Feed Candi
+9. [ ] Feed Alice
+10. [ ] Buy Food
+11. [ ] Buy Food (Deadline: 2021-03-01)
+12. [ ] Feed Bob
+13. [ ] Feed Bob (Deadline: 2021-01-01)
+14. [ ] Feed Bob
+15. [ ] Feed Candi
+16. [ ] Feed Alice
 
 Here is Pet Tracker's Help Page
 Words in uppercase is used to show the user's input
@@ -405,8 +421,10 @@ ________________________________________________________________________________
 Here is your schedule:
 1. [ ] Feed Bob (Deadline: 2021-01-01)
 2. [ ] Feed Bob (Deadline: 2021-01-01)
-3. [ ] Buy Food (Deadline: 2021-03-01)
+3. [ ] Feed Bob (Deadline: 2021-01-01)
 4. [ ] Buy Food (Deadline: 2021-03-01)
+5. [ ] Buy Food (Deadline: 2021-03-01)
+6. [ ] Buy Food (Deadline: 2021-03-01)
 
 
 ________________________________________________________________________________________________________
