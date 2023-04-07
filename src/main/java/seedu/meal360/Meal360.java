@@ -78,8 +78,7 @@ public class Meal360 {
             } catch (ArrayIndexOutOfBoundsException e) {
                 String errorMessage =
                         "Please enter a valid recipe number or name in the correct format. You did not enter a recipe" +
-                                " number "
-                                + "or " + "name. See 'help' for more details.";
+                                " number or name. See 'help' for more details.";
                 ui.printMessage(errorMessage);
             } catch (IndexOutOfBoundsException e) {
                 String errorMessage = String.format(
