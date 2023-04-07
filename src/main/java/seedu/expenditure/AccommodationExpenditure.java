@@ -7,12 +7,12 @@ public class AccommodationExpenditure extends Expenditure {
     public static String iconPaid = "[X]";
     public static String iconUnpaid = "[ ]";
     private boolean isPaid;
-    private LocalDate nextRepeatDate;
+    private LocalDate repeatDate;
 
-    public AccommodationExpenditure(String description, double value, LocalDate date) {
+    public AccommodationExpenditure(String description, double value, LocalDate date, LocalDate repeatDate) {
         super(description, value, date);
-        isPaid = false;
-        nextRepeatDate = date;
+        resetPaid();
+        setRepeatDate(repeatDate);
     }
 
     public void setPaid() {
@@ -27,44 +27,64 @@ public class AccommodationExpenditure extends Expenditure {
         isPaid = false;
     }
 
+    public void setRepeatDate(LocalDate repeatDate) {
+        this.repeatDate = repeatDate;
+    }
+
     public String getStatusIcon() {
         return (isPaid) ? iconPaid : iconUnpaid;
     }
 
     public void checkMark() {
         LocalDate currentDate = LocalDate.now();
-        if (currentDate.equals(nextRepeatDate) || currentDate.isAfter(nextRepeatDate)) {
-            isPaid = false;
-            nextRepeatDate = getNextRepeatDate();
+        checkNextRepeatDate();
+        handleNextRepeat(currentDate);
+    }
+
+    public void checkNextRepeatDate() {
+        LocalDate firstDate = getDate();
+        if (firstDate.equals(repeatDate)) {
+            repeatDate = getRepeatDate();
         }
     }
 
-    public LocalDate getNextRepeatDate() {
+    public void handleNextRepeat(LocalDate currentDate) {
+        if (currentDate.equals(repeatDate) || currentDate.isAfter(repeatDate)) {
+            System.out.println("entered if");
+            isPaid = false;
+            repeatDate = getRepeatDate();
+        }
+    }
+
+    public LocalDate getRepeatDate() {
         String stringNextYear = fetchNextYear();
-        String stringNextMonth = fetchNextMonth();
-        String stringNextDay = fetchNextDay();
+        String stringNextMonth = fetchMonth();
+        String stringNextDay = fetchDay();
         String newDate = String.format("%s-%s-%s", stringNextYear, stringNextMonth, stringNextDay);
         return LocalDate.parse(newDate);
     }
 
     public String fetchNextYear() {
         // Repeats annually
-        int nextYear = nextRepeatDate.getYear() + 1;
+        final int incrementYear = 1;
+        int nextYear = repeatDate.getYear() + incrementYear;
         return Integer.toString(nextYear);
     }
 
-    public String fetchNextMonth() {
-        int nextMonth = nextRepeatDate.getMonthValue();
-        if (nextMonth < 10) {
+    public String fetchMonth() {
+        int nextMonth = repeatDate.getMonthValue();
+        final int doubleDigitMonth = 10;
+        if (nextMonth < doubleDigitMonth) {
             return  "0" + nextMonth;
         } else {
             return Integer.toString(nextMonth);
         }
     }
 
-    public String fetchNextDay() {
-        int nextDay = nextRepeatDate.getDayOfMonth();
-        if (nextDay < 10) {
+    public String fetchDay() {
+        int nextDay = repeatDate.getDayOfMonth();
+        final int doubleDigitDay = 10;
+        if (nextDay < doubleDigitDay) {
             return "0" + nextDay;
         }
         return Integer.toString(nextDay);
@@ -93,6 +113,7 @@ public class AccommodationExpenditure extends Expenditure {
                 "t/" + getDate() +
                 "p/" + getStatusIcon() +
                 "n/" + "None" +
-                "o/" + "None" + "\n";
+                "o/" + "None" +
+                "r/" + repeatDate + "\n";
     }
 }

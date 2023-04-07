@@ -25,9 +25,11 @@ class UnmarkCommandTest {
         testExpenditures.addExpenditure(
                 new TransportExpenditure("circle line", 2.10, LocalDate.parse("2023-03-21")));
         testExpenditures.addExpenditure(
-                new TuitionExpenditure("school", 8100, LocalDate.parse("2023-01-27")));
+                new TuitionExpenditure("school", 8100, LocalDate.parse("2023-01-27"),
+                        LocalDate.parse("2023-01-27")));
         testExpenditures.addExpenditure(
-                new AccommodationExpenditure("rc", 3000, LocalDate.parse("2023-01-28")));
+                new AccommodationExpenditure("rc", 3000, LocalDate.parse("2023-01-28"),
+                        LocalDate.parse("2023-01-28")));
         testExpenditures.markExpenditure(3);
         testExpenditures.markExpenditure(4);
     }

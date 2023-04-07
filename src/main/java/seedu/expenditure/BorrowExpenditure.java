@@ -71,6 +71,7 @@ public class BorrowExpenditure extends Expenditure {
                 "t/" + getDate() +
                 "p/" + "None" +
                 "n/" + getBorrowerName() +
-                "o/" + getDeadline() + "\n";
+                "o/" + getDeadline() +
+                "r/" + "None" + "\n";
     }
 }

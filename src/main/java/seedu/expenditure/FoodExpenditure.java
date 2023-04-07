@@ -40,6 +40,7 @@ public class FoodExpenditure extends Expenditure {
                 "t/" + getDate() +
                 "p/" + "None" +
                 "n/" + "None" +
-                "o/" + "None" + "\n";
+                "o/" + "None" +
+                "r/" + "None" + "\n";
     }
 }

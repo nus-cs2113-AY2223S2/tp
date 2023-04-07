@@ -30,6 +30,7 @@ public abstract class TxtFileStatus {
     private static final int INDEX_IS_PAID = 4;
     private static final int INDEX_NAME = 5;
     private static final int INDEX_DEADLINE = 6;
+    private static final int INDEX_REPEAT_DATE = 7;
 
     public static void getSaveFile() throws IOException {
         File directory = new File(directoryPath);
@@ -81,7 +82,7 @@ public abstract class TxtFileStatus {
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         while (s.hasNext()) {
             String saveString = s.nextLine();
-            String[] saveData = saveString.split("d/|v/|t/|p/|n/|o/");
+            String[] saveData = saveString.split("d/|v/|t/|p/|n/|o/|r/");
             switch (saveData[INDEX_TYPE]) {
             case "Acad":
                 initializeAcademicExpenditure(saveData, expenditures);
@@ -129,7 +130,8 @@ public abstract class TxtFileStatus {
         AccommodationExpenditure accommodationExpenditure = new AccommodationExpenditure(
                 saveData[INDEX_DESCRIPTION],
                 Double.parseDouble(saveData[INDEX_VALUE]),
-                LocalDate.parse(saveData[INDEX_DATE]));
+                LocalDate.parse(saveData[INDEX_DATE]),
+                LocalDate.parse(saveData[INDEX_REPEAT_DATE]));
         if (saveData[INDEX_IS_PAID].equals(AccommodationExpenditure.iconPaid)) {
             accommodationExpenditure.setPaid();
         }
@@ -192,7 +194,8 @@ public abstract class TxtFileStatus {
         TuitionExpenditure tuitionExpenditure = new TuitionExpenditure(
                 saveData[INDEX_DESCRIPTION],
                 Double.parseDouble(saveData[INDEX_VALUE]),
-                LocalDate.parse(saveData[INDEX_DATE]));
+                LocalDate.parse(saveData[INDEX_DATE]),
+                LocalDate.parse(saveData[INDEX_REPEAT_DATE]));
         if (saveData[INDEX_IS_PAID].equals(TuitionExpenditure.iconPaid)) {
             tuitionExpenditure.setPaid();
         }
