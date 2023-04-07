@@ -4,12 +4,17 @@ import seedu.pettracker.storage.Storage;
 import seedu.pettracker.ui.Ui;
 import seedu.pettracker.data.TaskList;
 
+import seedu.pettracker.exceptions.IllegalArgException;
+
 public class RemoveTaskCommand extends Command{
 
     protected int taskNumber;
 
-    public RemoveTaskCommand(int taskNumber) {
+    public RemoveTaskCommand(int taskNumber) throws IllegalArgException{
         super();
+        if (taskNumber <= 0) {
+            throw new IllegalArgException("Task number must be a positive integer");
+        }
         this.taskNumber = taskNumber;
     }
 
@@ -21,10 +26,6 @@ public class RemoveTaskCommand extends Command{
      */
     @Override
     public void execute(Ui ui, Storage storage) {
-        if (taskNumber <= 0) {
-            ui.invalidTaskNumber();
-            return;
-        }
         try {
             TaskList.removeTask(taskNumber);
             TaskList.saveTasksToStorage(storage, ui);

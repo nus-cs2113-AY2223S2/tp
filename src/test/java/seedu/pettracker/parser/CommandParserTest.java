@@ -27,7 +27,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class CommandParserTest {
-
     // newCommand() zero arg keywords
     @Test
     void parseExit() {
@@ -63,7 +62,7 @@ class CommandParserTest {
     @Test
     void parseScheduleTasks() {
         CommandParser cp = new CommandParser();
-        assertAll(() -> assertTrue(cp.newCommand("schedule-tasks") instanceof ScheduleCommand));
+        assertAll(() -> assertTrue(cp.newCommand("schedule") instanceof ScheduleCommand));
     }
     @Test
     void parseScheduleTasksWithArgs() {
@@ -130,7 +129,7 @@ class CommandParserTest {
     @Test
     void parseRemoveStatNoStat() {
         CommandParser cp = new CommandParser();
-        assertThrows(EmptyStatException.class, () -> cp.newCommand("remove-stat name"));
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("remove-stat name"));
     }
 
     // newCommand() add-task
