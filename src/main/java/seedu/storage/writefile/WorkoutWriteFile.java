@@ -1,4 +1,4 @@
-package seedu.storage;
+package seedu.storage.writefile;
 
 
 import seedu.parser.DateFormatter;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 
-public class WriteFile extends Storage {
+public class WorkoutWriteFile {
     private static final String SPACE = "          ";
 
 

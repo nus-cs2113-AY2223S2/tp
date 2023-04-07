@@ -1,3 +1,4 @@
+/*
 package seedu.calorietracker;
 
 
@@ -7,14 +8,46 @@ import java.util.HashMap;
 import static seedu.commands.caloriecommands.AddCalorieCommand.CALORIES_NOT_GIVEN;
 
 public class CalorieTracker {
-    public static final int CALORIES_NOT_TRACKED = -1;
-    private final HashMap<Date, Integer> totalCaloriesConsumedInDay;
-    private final FoodList foodList;
+    */
+/*public static final int CALORIES_NOT_TRACKED = -1;
+    private HashMap<Date, Integer> totalCaloriesConsumedInDay;
+    private FoodList foodList = new FoodList();
 
     public CalorieTracker() {
         totalCaloriesConsumedInDay = new HashMap<>();
-        foodList = new FoodList();
     }
+<<<<<<< HEAD
+=======
+
+    public void setFoodList(FoodList foodList) {
+        this.foodList = foodList;
+    }
+
+    public HashMap<Date, Integer> getTotalCaloriesConsumedInDay() {
+        return totalCaloriesConsumedInDay;
+    }
+
+    public void updateTotalCalories(Date date, int calories){
+        totalCaloriesConsumedInDay.put(date, calories);
+        //setTotalCaloriesConsumedInDay(totalCaloriesConsumedInDay);
+    }
+    *//*
+*/
+/*public void setTotalCaloriesConsumedInDay(HashMap<Date, Integer> totalCaloriesConsumedInDay) {
+        this.totalCaloriesConsumedInDay = totalCaloriesConsumedInDay;
+    }*//*
+*/
+/*
+    *//*
+*/
+/* public CalorieTracker(FoodList foodlist) {
+        totalCaloriesConsumedInDay = new HashMap<>();
+        this.foodList = foodlist;
+    }*//*
+*/
+/*
+
+>>>>>>> a902eca67f6502fabb14fdaae2181d7fed1b0820
     public String addCalories(Date date, String food, int calories) {
         if (calories == CALORIES_NOT_GIVEN && !foodList.contains(food)) {
             return food + " has not been added previously. Please also indicate calorie count.";
@@ -22,7 +55,7 @@ public class CalorieTracker {
 
         int caloriesInFood;
         if (calories == CALORIES_NOT_GIVEN) {
-            caloriesInFood = foodList.getCalories(food);
+            caloriesInFood = foodList.getFoodCalories().get();
         } else if (isValidCalories(calories)){
             foodList.addFood(food, calories);
             caloriesInFood = calories;
@@ -46,5 +79,7 @@ public class CalorieTracker {
 
     private static boolean isValidCalories(int calories) {
         return calories >= 0;
-    }
+    }*//*
+
 }
+*/

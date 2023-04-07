@@ -1,24 +1,30 @@
 package seedu.duke;
 
 
-import seedu.calorietracker.CalorieTracker;
+import seedu.calorietracker.CaloriesRecorder;
+import seedu.calorietracker.FoodList;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.commands.IncorrectSyntaxCommand;
 import seedu.exceptions.InvalidSyntaxException;
 import seedu.parser.Parser;
-import seedu.storage.ReadFile;
-import seedu.storage.WriteFile;
+import seedu.storage.readfile.WorkoutReadFile;
+import seedu.storage.writefile.WorkoutWriteFile;
 import seedu.ui.Ui;
 import seedu.workout.Day;
 import seedu.workout.WorkoutList;
 
 
 public class Duke {
-    public static final String FILE_PATH = "data/workoutRecording.txt";
+    private static final String FILE_PATH_WORKOUT = "data/workoutRecording.txt";
+    private static final String FOOD_CALORIE = "data/foodCalories.txt";
+    private static final String TOTAL_CALORIE = "data/dailyCalories.txt";
     private WorkoutList workoutList = new WorkoutList();
     private Day day;
-    private CalorieTracker calorieTracker;
+    // private CalorieTracker calorieTracker = new CalorieTracker();
+    private CaloriesRecorder caloriesRecorder = new CaloriesRecorder();
+
+    private FoodList foodList;
 
 
     public Duke() {
@@ -32,8 +38,13 @@ public class Duke {
     private void run() {
         //  workoutList = ReadFile.readWorkoutFromFile(FILE_PATH);
         //day = new Day();
-        workoutList = ReadFile.readWorkoutFromFile(FILE_PATH);
-        calorieTracker = new CalorieTracker();
+        workoutList = WorkoutReadFile.readWorkoutFromFile(FILE_PATH_WORKOUT);
+        foodList = new FoodList();
+        //foodList = FoodCaloriesReadFile.readFoodCalorieToFile(FOOD_CALORIE);
+        //calorieTracker = DailyCaloriesReadFile.readDailyCalorieToFile(TOTAL_CALORIE);
+
+        /* caloriesRecorder = new CaloriesRecorder();
+        foodList = new FoodList();*/
         Ui.showWelcomeMessage();
         executeCommandUntilExit();
     }
@@ -48,10 +59,12 @@ public class Duke {
             } catch (InvalidSyntaxException ise) {
                 command = new IncorrectSyntaxCommand(ise.toString());
             }
-            command.setData(workoutList, calorieTracker);
+            command.setData(workoutList, caloriesRecorder, foodList);
             System.out.println(command.execute());
         } while (!ExitCommand.isExit(command));
-        WriteFile.writeWorkoutToFile(Duke.FILE_PATH, workoutList);
+        WorkoutWriteFile.writeWorkoutToFile(Duke.FILE_PATH_WORKOUT, workoutList);
+        // FoodCaloriesWriteFile.writeFoodCaloriesToFile(FOOD_CALORIE, foodList);
+        //DailyCaloriesWriteFile.writeDailyCaloriesToFile(TOTAL_CALORIE, rcalorieTracke);
     }
 }
 

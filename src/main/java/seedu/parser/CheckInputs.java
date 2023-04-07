@@ -25,7 +25,7 @@ public class CheckInputs {
         Date date = parseDate(arguments);
         // Command.setDay(date);
         return date != null && parseInput(arguments) ? new StartDayCommand(date) :
-                new IncorrectSyntaxCommand("/day command");
+                new IncorrectSyntaxCommand("/wday command");
     }
 
     static Command processAdd(String arguments) {
@@ -128,14 +128,14 @@ public class CheckInputs {
      * @return return null if the date format is invalid
      */
     //@@ author ZIZI-czh
-    private static Date parseDate(String arguments) {
+    static Date parseDate(String arguments) {
         try {
             Date enteredDate = DateFormatter.stringToDate(arguments);;
             Date currentDate = new Date();
 
 
             if (enteredDate.compareTo(currentDate) > 0) {
-                System.out.println("Date cannot be after the current date.");
+                //System.out.println("Date cannot be after the current date.");
                 return null;
             }
             return enteredDate;
@@ -153,7 +153,7 @@ public class CheckInputs {
      */
 
     //@@ author ZIZI-czh
-    private static boolean parseInput(String arguments) {
+    static boolean parseInput(String arguments) {
         //arguments.trim().contains("\\s+");
         if (arguments.trim().contains("\\s+")) {
             System.out.println("invalid input date, please use the format /start dd/MM/yy");

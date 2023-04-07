@@ -4,6 +4,7 @@ package seedu.parser;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.commands.InvalidCommand;
+import seedu.commands.caloriecommands.CaloriesCommand;
 import seedu.commands.workoutcommands.HelpWorkoutCommand;
 import seedu.exceptions.InvalidSyntaxException;
 
@@ -25,32 +26,38 @@ public class Parser {
         String commandName = matcher.group("commandName");
         String arguments = matcher.group("arguments");
 
-        switch (commandName) {
-        case "/day":
+        switch (commandName.toLowerCase()) {
+        case "/wday":
             Command.setIsDayEntered(true);
             Command.setIsWorkoutEntered(false);
             return CheckInputs.processDay(arguments);
-        case "/start":
+        case "/wstart":
             Command.setIsWorkoutEntered(true);
             return CheckInputs.processStart(arguments);
         case "/wadd":
             return CheckInputs.processAdd(arguments);
-        case "/delete":
+        case "/wdelete":
             return CheckInputs.processDelete(arguments);
-        case "/list":
+        case "/wlist":
             return CheckInputs.processList(arguments);
         case "/wview":
             return CheckInputs.processView(arguments);
-        case "/count":
+        case "/wcount":
             return CheckInputs.processSetsRepsCount(arguments);
+        case "/cday":
+            CaloriesCommand.setDateEntered(true);
+            return CheckCaloriesInput.processDayCalories(arguments);
+        case "/cadd":
+            return CheckCaloriesInput.processAddCalories(arguments);
+        case "/clist": //list the total daily calories consumption
+         //   return CheckCaloriesInput.processViewCalories(arguments);
+        case "/cview": // list all the food calories that been entered for a day
+            return CheckCaloriesInput.processViewCalories(arguments);
+        case "/cdelete": //delete calories for a specific day for one food follow /cdelete date food name
         case "/exit":
             return new ExitCommand();
         case "/help":
             return new HelpWorkoutCommand();
-        case "/cadd":
-            return CheckCaloriesInput.processAddCalories(arguments);
-        case "/cview":
-            return CheckCaloriesInput.processViewCalories(arguments);
         default:
             return new InvalidCommand(commandName);
         }
