@@ -16,7 +16,7 @@ loop sizeOfFinancialReport
         ViewCommand -> ViewCommand : sortByValue
     end
 
-    ViewCommand -> ViewResult : printReport(validIndexes : arrayList<Integer>)
+    ViewCommand -> ViewResult : printReport(validIndexes  :  arrayList<Integer>)
     activate ViewResult
 
 ViewResult ->] : Print Table Header to User
@@ -32,7 +32,7 @@ loop sizeOfArrayList
     ViewResult --> ViewCommand
     deactivate ViewResult
 
-ViewCommand -->[ : null
+ViewCommand -->[ : : CommandResult
 deactivate ViewCommand
 ViewCommand <-[hidden]- ViewCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
