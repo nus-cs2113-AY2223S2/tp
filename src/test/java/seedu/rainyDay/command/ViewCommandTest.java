@@ -41,21 +41,6 @@ public class ViewCommandTest {
         assertEquals(expectedReport, viewList.execute().output);
     }
 
-    class sortByValue implements Comparator<Integer> {
-        public int compare(Integer firstIndex, Integer secondIndex) {
-            FinancialStatement firstStatement = savedData.getStatement(firstIndex);
-            FinancialStatement secondStatement = savedData.getStatement(secondIndex);
-            if (firstStatement.getFlowSymbol().equals("+") && secondStatement.getFlowSymbol().equals("-")) {
-                return -1;
-            }
-            if (firstStatement.getFlowSymbol().equals("-") && secondStatement.getFlowSymbol().equals("+")) {
-                return 1;
-            }
-            return (int) ((firstStatement.getValue() * 100) - (secondStatement.getValue() * 100));
-        }
-    }
-
-
     @Test
     public void sortingComparatorTest() {
         financialReport.clearReport();
@@ -71,10 +56,11 @@ public class ViewCommandTest {
         ArrayList<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < financialReport.getStatementCount(); i++) {
             indexes.add(i);
-            System.out.println(financialReport.getFinancialStatement(i).getFullStatement());
         }
 
-        indexes.sort(new sortByValue()); //to fix this garbage
+        ViewCommand.sortByValue sortingClass = new ViewCommand.sortByValue();
+        sortingClass.setReport(savedData.getFinancialReport());
+        indexes.sort(sortingClass);
 
         for (int i = 0; i < financialReport.getStatementCount(); i++) {
             for (int j = 0; j < i; j++) {
