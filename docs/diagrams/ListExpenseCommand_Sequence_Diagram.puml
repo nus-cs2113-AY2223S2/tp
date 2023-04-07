@@ -3,12 +3,14 @@ participant ":Parser" as Parser
 participant ":ListExpenseCommand" as ListExpenseCommand
 participant "expenses:ExpenseList" as ExpenseList
 
+[-> Parser : parse()
 activate Parser
 
 create ListExpenseCommand
 
-activate ListExpenseCommand
 Parser -> ListExpenseCommand : ListExpenseCommand(args)
+
+activate ListExpenseCommand
 ListExpenseCommand -> ListExpenseCommand : execute(incomes, expenses, ui, storage, selector, converter, targetStorage)
 
 activate ListExpenseCommand

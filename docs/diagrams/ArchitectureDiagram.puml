@@ -1,0 +1,21 @@
+@startuml
+
+node "ChChing"{
+    [ChChing.run()]
+    [Storage]
+    [Parser]
+    [Ui]
+    [Command]
+}
+
+[User] <-> [Ui]
+[Ui] <--> [ChChing.run()]
+[ChChing.run()] <-> [Parser]
+[ChChing.run()] --> [Command]
+[Command] --> [Ui]
+[ChChing.run()] --> [Storage]
+[Command] --> [Storage]
+[Storage] <--> [Data]
+
+
+@enduml

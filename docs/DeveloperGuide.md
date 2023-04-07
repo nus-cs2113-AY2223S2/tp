@@ -5,15 +5,18 @@
 - [Developer Guide](#developer-guide)
   - [Acknowledgements](#acknowledgements)
   - [Design & implementation](#design-implementation)
+  - [Design](#design)
   - [Implementation](#implementation)
     - [Record and RecordList](#record-and-recordlist)
     - [DeleteIncomeCommand](#deleteincomecommand)
     - [Target and TargetStorage](#target-and-targetstorage)
-    - [[Proposed] EditIncomeCommand/EditExpenseCommand](#proposed-editincomecommandeditexpensecommand)
+    - [EditIncomeCommand/EditExpenseCommand](#editincomecommandeditexpensecommand)
     - [AddIncomeCommand](#addincomecommand)
     - [ListExpenseCommand](#listexpensecommand)
     - [SetTargetCommand](#settargetcommand)
     - [SetCurrencyCommand](#setcurrencycommand)
+    - [UnsetCurrencyCommand](#unsetcurrencycommand)
+    - [FindCommand](#findcommand)
   - [Product scope](#product-scope)
     - [Target user profile](#target-user-profile)
     - [Value proposition](#value-proposition)
@@ -25,13 +28,41 @@
 
 ## Acknowledgements
 
+
+The template of ChChing is from the [tp project](https://github.com/nus-cs2113-AY2223S2/tp) of the nus-cs2113-AY2223S2 organisation.
+<br>The format and coding style of ChChing is largely inspired by the [addressbook-level2](https://github.com/se-edu/addressbook-level2) & [addressbook-level3](https://github.com/se-edu/addressbook-level3) project.
+
 ### ExchangeRateApi
 
 The `LiveCurrencyApi` class uses the [ExchangeRateApi](https://www.exchangerate-api.com/) to retrieve the latest exchange rates.
 
+
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+Below are the design and implementations of key features of the ChChing program.
+<br> We used various diagrams such as UML class diagrams, sequence diagrams and activity diagrams
+to illustrate our methodology and approach.
+
+
+## Design
+The architecture diagram of ChChing below provides an overview of the design of our program.
+
+![Design](images/ArchitectureDiagram.png)
+
+The ChChing program first enters the `run()` state, where it will access the `Storage` class
+which reads the .json file from `Data` to populate the program's entries.
+
+Next, `User` inputs are read by `Ui`, which passes the inputs to `run()`. `run()` sends the
+inputs to `Parser` which is responsible for returning a recognized `Command`.
+
+Next, `run()` calls for the specific `Command` class to be executed.
+
+`Command` makes use of `Ui` to present the appropriate command output to the user.
+When the program is to exit, `Command` instructs `Storage` to write the entries to `Data`.
+
+`Storage` will read from `Data` when the program is launched and write and update to `Data`
+when the program exits.
+
 
 ## Implementation
 
@@ -59,7 +90,7 @@ The `Target` and `TargetStorage` class allows users to set a target for their id
 
 ![Target Class](images/Target_UML.png)
 
-### [Proposed] EditIncomeCommand/EditExpenseCommand
+### EditIncomeCommand/EditExpenseCommand
 
 The proposed edit income command is facilitated by `Parser`, `EditIncomeCommand`, `IncomeList`, while the proposed edit expense command is facilitated by `Parser`, `EditExpenseCommand` and `ExpenseList`.
 
@@ -74,12 +105,12 @@ Given below is how the edit income mechanism works at each step:
 The following sequence diagram shows how the edit income command works:
 <br> ![edit income sequence diagram](images/EditIncomeCommand_sequence_diagram.png)
 
-The edit expense command works in a similar way, with its sequence diagram as shown:
+The edit expense command works in a similar way, with an additional hasCategory check in its sequence diagram as shown:
 <br> ![edit expense sequence diagram](images/EditExpenseCommand_sequence_diagram.png)
 
 The following activity diagram summarises what happens when a user executes edit income command:
 <br> ![edit income activity diagram](images/EditIncomeCommand_activity_diagram.png)
-<br> Note that edit expense command produces the same activity diagram.
+<br> Note: edit expense command produces the same activity diagram.
 
 **Design Considerations**
 <br>The following are the design alternatives we considered for edit income/expense command:
@@ -102,6 +133,7 @@ The AddIncomeCommand is facilitated by `Parser`, `AddIncomeCommand`, `IncomeList
    to print the `Income` added.
 
 ![AddIncomeCommand](images/AddIncomeCommand_Sequence_Diagram.png)
+<br> Note: AddExpenseCommand works in a similar way.
 
 ### ListExpenseCommand
 
@@ -116,6 +148,8 @@ The listExpenseCommand is facilitated by `Parser`, `ListExpenseCommand` and `Exp
    expenses in `expenses`.
 
 ![ListExpenseCommand](images/ListExpenseCommand_Sequence_Diagram.png)
+<br> Note: ListIncomeCommand works in a similar way, but instead calls `printIncomeList`.
+<br> Note: ListCommand works in a similar way, but calls both `printIncomeList` and `printExpenseList`.
 
 ### SetTargetCommand
 
@@ -164,16 +198,17 @@ The `execute()` method will then print out the selected expenses/incomes that ma
 
 ### Target user profile
 
-Target users are people who are keen on improving their financial accountability
+Target users are people who are keen on improving their financial accountability.
 
 ### Value proposition
 
-The value proposition of ChChing is its ability to track income and expenses on a daily basis.
+The value proposition of ChChing is its ability to track income and expenses on a daily basis
+in a simple and convenient manner through a command line interface.
 
 ## User Stories
 
 | Version | As a ...  | I want to ...                           | So that I can ...                                                                       |
-| ------- | --------- | --------------------------------------- | --------------------------------------------------------------------------------------- |
+|---------|-----------|-----------------------------------------|-----------------------------------------------------------------------------------------|
 | v1.0    | new user  | see usage instructions                  | refer to them when I forget how to use the application                                  |
 | v1.0    | user      | add new expense to the records          | record all my expenses                                                                  |
 | v1.0    | user      | add new income to the records           | record all my incomes                                                                   |
@@ -194,6 +229,7 @@ The value proposition of ChChing is its ability to track income and expenses on 
   - ChChing should not crash under normal circumstances.
   - Dates should be in the format of dd/mm/yyyy, it should be a valid date, and it should not be a future date.
   - Amount should be a positive number.
+  - Value amount should only be up to 2 decimal places.
   - Only characters in the english keyboard should be used.
 
 - Constraints:
@@ -214,7 +250,7 @@ The value proposition of ChChing is its ability to track income and expenses on 
     <br> e.g. category field would be ignored for command: `add income /c income /de salary /da 12-12-2022 /v 3.50`
   - Should the arguments be in the wrong order, ChChing would still be able to parse the arguments correctly. <br>However, should the command not be written first, ChChing would not be able to parse the command.
     <br> e.g. `add income /de salary /c income /v 3.50 /da 12-12-2022` would successfully add an income entry.
-    <br> e.g. `/c income /de salary /da 12-12-2022 /v 3.50 add income` would return an error since command is not written first.
+    <br> e.g. `/c income /de salary /da 12-12-2022 /v 3.50 add income` would return an error since `add command` is not written first.
 
 ## Glossary
 
@@ -254,7 +290,7 @@ Given below are instructions to test the app manually.
       <br>Expected: No income is added. Error details shown in the status message. 3. Other incorrect add income commands to try:
       <br> no fields/missing fields - `add income` `add expense`.
       <br> incorrect date format/invalid date/future date - `add income /de ang pao /da 30-02-2022 /v 10` `add expense /c transport /de bus fare /da 31-04-2029 /v 5.30`.
-      <br> negative value/zero value/1000000000 and above value/non-float value - `add income /de salary /da 12-12-2022 /v -3.50` `add expense /c transport /de bus fare /da 10-10-2019 /v 0`.
+      <br> negative value/zero value/1000000000 and above value/non-float value/non 2 d.p. values - `add income /de salary /da 12-12-2022 /v -3.50` `add expense /c transport /de bus fare /da 10-10-2019 /v 0`.
       <br> Expected: Similar to previous.
 
 ### Editing an income/expense
@@ -273,7 +309,7 @@ Given below are instructions to test the app manually.
       <br> negative index/index over income/expense list size - `edit income /in -1 /de toto /da 12-12-2022 /v 100` `edit expense /in 100 /c drinks /de starbucks coffee /da 13-12-2022 /v 9.50`.
       <br> missing index field/no fields to edit - `edit income` `edit expense`.
       <br> incorrect date format/invalid date/future date - `edit income 1 /de ang pao /da 30-02-2022 /v 10` `edit expense 1 /c transport /de bus fare /da 31-04-2029 /v 5.30`.
-      <br> negative value/zero value/1000000000 and above value/non-float value - `edit income 1 /de salary /da 12-12-2022 /v -3.50` `edit expense 1 /c transport /de bus fare /da 10-10-2019 /v 0`.
+      <br> negative value/zero value/1000000000 and above value/non-float value/non 2 d.p. values - `edit income 1 /de salary /da 12-12-2022 /v -3.50` `edit expense 1 /c transport /de bus fare /da 10-10-2019 /v 0`.
       <br> Expected: Similar to previous.
 
 ### Deleting an income/expense
@@ -341,7 +377,14 @@ Given below are instructions to test the app manually.
       <br> For expense: `find /t expense /c food /de sushi /da 03-03-2023 `
       <br> Expected: No income/expense will be listed. status message will indicate no matching record for these search terms.
 
-### Setting target & Unsetting target
+
+### Setting target & Clearing target
+1. Setting Target
+   1. Prerequisites: Target set has to be within -9999999.99 to 9999999.99.
+   2. Test case: `set target /v 350.50` <br> Expected: Program will indicate to user that target has been set. If the target is out of range, program will indicate to users that target setting is invalid.
+2. Clearing Target
+   1. Prerequisites: Target must have been set in the first place.
+   2. Test Case: `clear target` <br> Expected: Program will indicate to user that target has been cleared.
 
 ### Setting Currency & Unsetting Currency
 

@@ -16,15 +16,16 @@ Given below are my contributions to the project.
 * Setting up of GitHub team organisation and repository
 
 #### Enhancements Implemented:
-* Added methods to parser to parse specific fields such as
+* Added methods to parser to parse fields for
 `income`, `expenses`, `category`, `keyword` and `date`.
 * Implemented `Record` class and added to `Income` and `Expense` classes.
 * Created list command to allow users to see their recorded entries.
 * Created list income command to allow users to see their recorded income entries.
 * Created list expense command to allow users to see their recorded expense entries.
 * Created invalid command to show users a default invalid message.
-* Contributed to add income command to allow users to edit their existing incomes.
-* Contributed to add expense command to allow users to edit their existing expenses.
+* Contributed to add income command.
+* Contributed to add expense command.
+* Contributed to add target command.
 * Contributed to JUnit tests for 
 `IncomeTest`, `ExpenseTest`, `ListCommandTest`, `ClearCommandTest`.
 

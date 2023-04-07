@@ -157,7 +157,7 @@ public class Ui {
         System.out.println("    unset currency /cr <currency>");
         System.out.println();
         System.out.println("    ADD TARGET:");
-        System.out.println("    add target /v <value>");
+        System.out.println("    set target /v <value>");
         System.out.println();
         System.out.println("    SHOW TARGET:");
         System.out.println("    show target");
@@ -186,6 +186,9 @@ public class Ui {
     public void showTargetAdded() {
 
         System.out.println("    Target added");
+    }
+    public void clearTarget() {
+        System.out.println("    Target cleared");
     }
 
     public void showListCleared() {

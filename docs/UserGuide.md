@@ -4,23 +4,25 @@
   * [Introduction](#introduction)
   * [Quick Start](#quick-start)
   * [Features](#features)
-    * [Adding an entry: ```add```](#adding-an-entry-add)
-    * [Listing all expenses and incomes: ```list```](#listing-all-expenses-and-incomes-list)
-    * [Updating an entry: ```edit```](#updating-an-entry-edit)
-    * [Setting currency to be converted: ```set currency```](#setting-currency-to-be-converted-set-currency)
-    * [Unset currency to be converted: ```unset currency```](#unset-currency-to-be-converted-unset-currency)
-    * [Finding an entry: ```find```](#finding-an-entry-find)
-    * [Deleting an entry: ```delete```](#deleting-an-entry-delete)
-    * [Clear entire income list: ```clear income```](#clear-entire-income-list-clear-income)
-    * [Clear entire expense list: ```clear income```](#clear-entire-expense-list-clear-income)
-    * [Clear entire both income and expense lists: ```clear all```](#clear-entire-both-income-and-expense-lists-clear-all)
-    * [Set a target for balance of finances: ```set target```](#set-a-target-for-balance-of-finances-set-target)
-    * [See target set: ```show target```](#see-target-set-show-target)
-    * [Finding balance of finances: ```balance```](#finding-balance-of-finances-balance)
-    * [View help: ```help```](#view-help-help)
-    * [Exit: ```exit```](#exit-exit)
+    * [Adding an entry: `add`](#adding-an-entry--add)
+    * [Listing all expenses and incomes: `list`](#listing-all-expenses-and-incomes--list)
+    * [Updating an entry: `edit`](#updating-an-entry--edit)
+    * [Setting currency to be converted: `set currency`](#setting-currency-to-be-converted--set-currency)
+    * [Unset currency to be converted: `unset currency`](#unset-currency-to-be-converted--unset-currency)
+    * [Finding an entry: `find`](#finding-an-entry--find)
+    * [Deleting an entry: `delete`](#deleting-an-entry--delete)
+    * [Clear entire income list: `clear income`](#clear-entire-income-list--clear-income)
+    * [Clear entire expense list: `clear income`](#clear-entire-expense-list--clear-income)
+    * [Clear entire both income and expense lists: `clear all`](#clear-entire-both-income-and-expense-lists--clear-all)
+    * [Set a target for balance of finances: `set target`](#set-a-target-for-balance-of-finances--set-target)
+    * [See target set: `show target`](#see-target-set--show-target)
+    * [Clear Target Set: `clear target`](#clear-target-set--clear-target)
+    * [Finding balance of finances: `balance`](#finding-balance-of-finances--balance)
+    * [View help: `help`](#view-help--help)
+    * [Exit: `exit`](#exit--exit)
     * [Saving and loading of data](#saving-and-loading-of-data)
-  * [Command Summary (Alphabetical Order)](#command-summary-alphabetical-order)
+    * [Other Notes](#other-notes)
+  * [Command Summary (Alphabetical Order)](#command-summary--alphabetical-order-)
 <!-- TOC -->
 
 ## Introduction
@@ -195,7 +197,7 @@ Clear the entire list of incomes.
 Format:
 <br> `clear income`
 
-### Clear entire expense list: `clear income`
+### Clear entire expense list: `clear expense`
 
 Clear the entire list of expenses.
 
@@ -217,8 +219,10 @@ Format:
 <br> `set target /v VALUE`
 
 Use case:
-
-- VALUE ranges from negative to positive
+- VALUE will be recorded as SGD, regardless of the currency set.
+- VALUE ranges from negative to positive.
+- Target must be within the range of -9999999.99 to 9999999.99.
+- Target will be set to 2 decimal places.
 
 Example of usage:
 <br> `set target /v 350`
@@ -229,6 +233,16 @@ Allows users to see the target they have set.
 
 Format:
 <br> `show target`
+
+### Clear Target Set: `clear target`
+
+Allow users to clear the target they have set.
+
+Format:
+<br> `clear target`
+
+Use case:
+- A target must have been set in the first place.
 
 ### Finding balance of finances: `balance`
 
@@ -264,6 +278,8 @@ The data file is not to be edited manually.
 <br> e.g. `add expense /c meal /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50` will not be allowed since it has duplicate category fields.
 * ChChing allows for the fields' order to be changed.
 <br> e.g. `add expense /de breakfast @Technoedge /c meal /da 22-03-2023 /v 3.50` will add the expense successfully.
+* ChChing allows command and argument fields to be case-insensitive. However, the values of the fields would be stored according to the case of the input.
+<br> e.g. `EDIT INCOME /IN 1 /DE DINNER` would successfully edit the description of the first income recorded to `DINNER`.
 * ChChing will allow for duplicate entries to be added. No warning would be raised.
 * ChChing will not allow for the user to use '/', unless it is used to specify the field.
 <br> e.g. `add expense /c meal /de breakfast / lunch /da 22-03-2023 /v 3.50` will be allowed.
@@ -279,6 +295,7 @@ The data file is not to be edited manually.
 | Clear All Lists    | `clear all`                                                                                                                                |
 | Clear Expense List | `clear expense`                                                                                                                            |
 | Clear Income List  | `clear income`                                                                                                                             |
+| Clear Target       | `clear target`                                                                                                                             |
 | Delete Expense     | `delete expense /in INDEX`<br>e.g. `delete expense /in 1`                                                                                  |
 | Delete Income      | `delete income /in INDEX`<br>e.g. `delete income /in 2`                                                                                    |
 | Edit Expense       | `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit expense /in 1 /de Lunch @Technoedge /v 5.20`  |

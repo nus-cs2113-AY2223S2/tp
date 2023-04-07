@@ -8,6 +8,7 @@ import chching.command.AddTargetCommand;
 import chching.command.ClearAllCommand;
 import chching.command.ClearExpenseCommand;
 import chching.command.ClearIncomeCommand;
+import chching.command.ClearTargetCommand;
 import chching.command.Command;
 import chching.command.InvalidCommand;
 import chching.command.ListIncomeCommand;
@@ -25,9 +26,7 @@ import chching.command.UnsetCurrencyCommand;
 import chching.command.FindCommand;
 import chching.command.EditIncomeCommand;
 import chching.record.Expense;
-import chching.record.ExpenseList;
 import chching.record.Income;
-import chching.record.IncomeList;
 import chching.record.Target;
 
 import java.time.LocalDate;
@@ -47,25 +46,19 @@ public class Parser {
      * Method that parses command to the relevant classes to execute
      *
      * @param line        User input
-     * @param incomeList  List of incomes
-     * @param expenseList List of expenses
      * @param ui          User interface
+     * @return Appropriate command to be executed
      */
-    
-    public static Command parse(
-            String line,
-            IncomeList incomeList,
-            ExpenseList expenseList,
-            Ui ui) throws ChChingException {
+    public static Command parse(String line, Ui ui) throws ChChingException {
         List<String> lineParts = splitLine(line);
         String instruction = lineParts.get(0);
+        String instructionLowerCase = instruction.toLowerCase();
         List<String> arguments = lineParts.subList(1, lineParts.size());
         HashMap<String, String> argumentsByField = sortArguments(arguments);
-        //Command command = new InvalidCommand();
         Command command = new Command();
         int index;
         try {
-            switch (instruction) {
+            switch (instructionLowerCase) {
             case "add income":
                 Income income = Incomes.parseIncome(argumentsByField);
                 command = new AddIncomeCommand(income);
@@ -141,6 +134,10 @@ public class Parser {
             case "show target":
                 command = new ShowTargetCommand();
                 break;
+            case "clear target":
+                command = new ClearTargetCommand();
+                ui.clearTarget();
+                break;
             default:
                 command = new InvalidCommand();
             }
@@ -182,7 +179,7 @@ public class Parser {
             String field = null;
             String value = null;
             try {
-                field = fieldAndValue[0].trim();
+                field = fieldAndValue[0].trim().toLowerCase();
                 value = fieldAndValue[1].trim();
             } catch (Exception e) {
                 if (field == null) {
