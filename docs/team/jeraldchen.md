@@ -39,7 +39,7 @@ Given below are my contributions to the project.
   * What it does: allows the user to view a patient's symptom history.
   * Justification: The user could have forgotten what symptoms he/she had keyed in previously. This feature allows the user to view
     the symptom history and add/remove any symptoms that he/she may have forgotten.  
-  * 
+
 
 * **New Feature**: Link the commands to the parser to display menu options and output diagnosis and medications for the overall user interface experience.
   * What it does: allows the user to interact with the program.
