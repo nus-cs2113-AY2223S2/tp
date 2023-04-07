@@ -27,10 +27,17 @@
   <!-- TOC -->
 
 ## Acknowledgements
-
-<<<<<<< HEAD
-=======
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+
+### ExchangeRateApi
+
+`LiveCurrencyApi` class makes an API call to obtain the latest exchange rates from the[ExchangeRateApi](https://www.exchangerate-api.com/). The API call is made using the `HttpUrlConnection` class.
+The API key is used directly in the API call URL, and stored in the URL itself and not as a variable. The values response of the API call is then parse as a string,
+by formatting the string to obtain the exchange rates of the currencies and ignoring the other text.
+The currency name is then used as a key to see if it exist in the `selector` hashmap. If it does the exchange rate is added to the `converter` hashmap.
+The `converter` hashmap is then used to convert the currency of interest to SGD.
+If the API call somehow fails, there are hardcoded values in the `converter` hashmap that are outdated, but it allows the program to continue to run.
+The live currency rates are updated every time the user starts the program, however the API itself only updates the rates every 24 hours.
 
 ## Design & implementation
 
@@ -38,18 +45,24 @@ Below are the design and implementations of key features of the ChChing program.
 <br> We used various diagrams such as UML class diagrams, sequence diagrams and activity diagrams
 to illustrate our methodology and approach.
 
->>>>>>> master
-### ExchangeRateApi
-
-`LiveCurrencyApi` class makes an API call to obtain the latest exchange rates from the [ExchangeRateApi](https://www.exchangerate-api.com/). The API call is made using the `HttpUrlConnection` class. The API key is used directly in the API call URL, and stored in the URL itself and not as a variable. The values response of the API call is then parse as a string, by formatting the string to obtain the exchange rates of the currencies and ignoring the other text. The currency name is then used as a key to see if it exist in the `selector` hashmap. If it does the exchange rate is added to the `converter` hashmap. The `converter` hashmap is then used to convert the currency of interest to SGD. If the API call somehow fails, there are hardcoded values in the `converter` hashmap that are outdated, but it allows the program to continue to run. The live currency rates are updated every time the user starts the program, however the API itself only updates the rates every 24 hours.
-
-## Design & implementation
-
-The overall design and implementation of our product.
-
 ## Design
+The architecture diagram of ChChing below provides an overview of the design of our program.
 
+![Design](images/ArchitectureDiagram.png)
 
+The ChChing program first enters the `run()` state, where it will access the `Storage` class
+which reads the .json file from `Data` to populate the program's entries.
+
+Next, `User` inputs are read by `Ui`, which passes the inputs to `run()`. `run()` sends the
+inputs to `Parser` which is responsible for returning a recognized `Command`.
+
+Next, `run()` calls for the specific `Command` class to be executed.
+
+`Command` makes use of `Ui` to present the appropriate command output to the user.
+When the program is to exit, `Command` instructs `Storage` to write the entries to `Data`.
+
+`Storage` will read from `Data` when the program is launched and write and update to `Data`
+when the program exits.
 
 ## Implementation
 
