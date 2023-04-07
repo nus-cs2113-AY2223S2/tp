@@ -152,8 +152,10 @@ public class Information {
      */
     public static void viewSymptomHistory(ArrayList<Symptom> symptoms) {
         if (symptoms.size() == 0) {
+            System.out.println("---------------------------------------------------");
             System.out.println("You have not entered any symptoms.");
         } else {
+            System.out.println("---------------------------------------------------");
             SymptomHandler.printSymptoms(symptoms);
         }
     }
