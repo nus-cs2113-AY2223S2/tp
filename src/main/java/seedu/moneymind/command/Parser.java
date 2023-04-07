@@ -1,6 +1,5 @@
 package seedu.moneymind.command;
 
-import java.lang.module.InvalidModuleDescriptorException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
