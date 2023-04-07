@@ -134,6 +134,11 @@ The `Parser` component:
   2.  prevent `Meal360` from crashing upon invalid input
 - interacts with the `RecipeList`, `WeeklyPlan`, and/or `Ingredient` components to execute the commands.
 
+The sequence diagram below shows how `Parser` filters user input dates and parses them
+as valid `LocalDate` objects.
+
+![](../docs/UML/Parser/parseDate.drawio.png)
+
 ### Recipe Component
 
 API: `Recipe.java`
