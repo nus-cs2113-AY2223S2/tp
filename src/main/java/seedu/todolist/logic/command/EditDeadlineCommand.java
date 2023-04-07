@@ -14,6 +14,7 @@ import seedu.todolist.ui.Ui;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.StringJoiner;
 
 public class EditDeadlineCommand extends Command  {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_DEADLINE, Flags.EDIT, Flags.EDIT_DELETE};
@@ -36,14 +37,19 @@ public class EditDeadlineCommand extends Command  {
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException {
+        StringJoiner stringJoiner = new StringJoiner(System.lineSeparator());
         for (int id : idHashSet) {
             String taskString = taskList.setDeadline(id, deadline);
+            stringJoiner.add(taskString);
             if (deadline == null) {
                 taskList.setRepeatDuration(id, 0);
-                ui.printEditDeleteTaskMessage("deadline", taskString);
-            } else {
-                ui.printEditTaskMessage("deadline", FormatterUtil.getDeadlineAsString(deadline), taskString);
             }
+        }
+        if (deadline == null) {
+            ui.printEditDeleteTaskMessage("deadline", stringJoiner.toString());
+        } else {
+            ui.printEditTaskMessage("deadline", FormatterUtil.getDeadlineAsString(deadline),
+                    stringJoiner.toString());
         }
     }
 }

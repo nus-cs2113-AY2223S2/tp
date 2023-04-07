@@ -12,6 +12,7 @@ import seedu.todolist.ui.Ui;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.StringJoiner;
 import java.util.TreeSet;
 
 public class EditTagsCommand extends Command {
@@ -36,19 +37,30 @@ public class EditTagsCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui) throws InvalidIdException, InvalidEditException {
+        StringJoiner stringJoiner = new StringJoiner(System.lineSeparator());
         for (int id : idHashSet) {
             switch (purpose) {
             case EDIT_DELETE:
                 String taskString = taskList.removeTags(id, tags);
-                ui.printDeleteTagsMessage(FormatterUtil.getTagsAsString(tags), taskString);
+                stringJoiner.add(taskString);
                 break;
             case EDIT:
                 taskString = taskList.setTags(id, tags);
-                ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), taskString);
+                stringJoiner.add(taskString);
                 break;
             default:
                 throw new InvalidEditException();
             }
+        }
+        switch (purpose) {
+        case EDIT_DELETE:
+            ui.printDeleteTagsMessage(FormatterUtil.getTagsAsString(tags), stringJoiner.toString());
+            break;
+        case EDIT:
+            ui.printEditTaskMessage("tags", FormatterUtil.getTagsAsString(tags), stringJoiner.toString());
+            break;
+        default:
+            throw new InvalidEditException();
         }
     }
 }

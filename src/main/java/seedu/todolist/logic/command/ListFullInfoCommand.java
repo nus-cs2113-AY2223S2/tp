@@ -3,6 +3,7 @@ package seedu.todolist.logic.command;
 //@@author RuiShengGit
 
 import seedu.todolist.constants.Flags;
+import seedu.todolist.exception.InvalidFlagException;
 import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.logic.ParserUtil;
 import seedu.todolist.task.TaskList;
@@ -16,7 +17,7 @@ public class ListFullInfoCommand extends Command{
 
     private HashSet<Integer> idHashSet;
 
-    public ListFullInfoCommand(HashMap<Flags, String> args) throws InvalidIdException {
+    public ListFullInfoCommand(HashMap<Flags, String> args) throws InvalidIdException, InvalidFlagException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_FULL_INFO));
         // assert id >= 0 : "Invalid id contained in variable";
     }
