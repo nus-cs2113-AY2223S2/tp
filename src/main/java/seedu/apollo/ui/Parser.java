@@ -94,8 +94,10 @@ public class Parser {
             ui.printEmptyDelMod();
         } catch (NumberFormatException e) {
             ui.printErrorForIdx(size);
-        } catch (IllegalCommandException | IllegalArgumentException e) {
+        } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
+        } catch (IllegalArgumentException e) {
+            ui.printInvalidCommandForHelp(e);
         } catch (InvalidDeadline e) {
             ui.printInvalidDeadline();
         } catch (InvalidEvent e) {
@@ -157,11 +159,7 @@ public class Parser {
             if (isOneWord(split)) {
                 return new HelpCommand();
             }
-            if (!isOneWordSecondClause(split[1])) {
-                throw new IllegalCommandException();
-            }
-            HelpCommand newHelpCommand = chooseHelpCommand(split[1]);
-            return newHelpCommand;
+            return chooseHelpCommand(split[1]);
 
         case COMMAND_LIST_WORD:
             if (!isOneWord(split)) {
@@ -225,12 +223,12 @@ public class Parser {
     /**
      * Method that selects which help command class to invoke
      *
-     * @param helpCommandName
+     * @param param The parameters entered after "help" by the user.
      * @return The appropriate HelpCommandClass child
      * @throws IllegalArgumentException If an unknown command is input by the user.
      */
-    public static HelpCommand chooseHelpCommand(String helpCommandName) throws IllegalArgumentException {
-        switch (helpCommandName) {
+    public static HelpCommand chooseHelpCommand(String param) throws IllegalArgumentException {
+        switch (param) {
         case "list":
             return new ListHelpCommand();
         case "todo":
@@ -264,8 +262,7 @@ public class Parser {
         case "addmod":
             return new AddModHelpCommand();
         default:
-            throw new IllegalArgumentException("Invalid command name: " + helpCommandName);
-
+            throw new IllegalArgumentException(param);
         }
     }
 
@@ -287,21 +284,6 @@ public class Parser {
      */
     private static Boolean isOneWord(String[] split) {
         return (split.length == 1);
-    }
-
-    /**
-     * Checks if user input a one word [command] when using the help [command] function
-     * @param myString Second clause of user input with the command user needs help for
-     * @return {@code true} if user input a one word command,{@code false} otherwise
-     */
-    private static Boolean isOneWordSecondClause(String myString) {
-        String[] words = myString.split("\\s+");
-        return (words.length == 1);
-    }
-
-
-    private static Boolean isTwoWord(String[] split) {
-        return (split.length == 2);
     }
 
     /**
