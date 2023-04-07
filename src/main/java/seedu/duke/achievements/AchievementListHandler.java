@@ -55,6 +55,8 @@ public class AchievementListHandler extends TextDataUtility {
     }
 
 
+
+
     private void pushDataToAchievementList(ArrayList<Achievement> achievementList,
                                            File achievementListData) throws DukeError {
         try {
@@ -188,6 +190,10 @@ public class AchievementListHandler extends TextDataUtility {
             return new AchievementLevel(name, requirement, completed, difficulty,
                     achievementType.toLowerCase(), currCount, totalCountToComplete);
         case "upper":
+            //upper has a different string than the raw command
+            String achievementName = "upper body";
+            return new AchievementBodyPart(name, requirement, completed, difficulty,
+                    achievementName, currCount, totalCountToComplete);
         case "core":
         case "legs":
             return new AchievementBodyPart(name, requirement, completed, difficulty,

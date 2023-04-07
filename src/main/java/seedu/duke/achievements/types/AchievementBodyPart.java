@@ -5,6 +5,8 @@ import seedu.duke.achievements.AchievementDifficulty;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 
 public class AchievementBodyPart extends Achievement {
+    private static final String OPEN_BRACE = "[";
+    private static final String CLOSE_BRACE = "]";
     private final String bodyPartType;
     public AchievementBodyPart (String name, String requirement, boolean completed,
                              AchievementDifficulty difficulty, String achievementBodyPart,
@@ -14,10 +16,14 @@ public class AchievementBodyPart extends Achievement {
     }
 
     public boolean updateIndex(ExerciseData exercise) {
-        if (exercise.getWorkoutType().equals(bodyPartType)) {
+        String workoutTypeRaw = exercise.getWorkoutType().toString();
+        int start = workoutTypeRaw.indexOf(OPEN_BRACE);
+        int end = workoutTypeRaw.indexOf(CLOSE_BRACE);
+        String workoutTypeFinal = workoutTypeRaw.substring(start + 1, end);
+        if (workoutTypeFinal.equals(bodyPartType)) {
             countCurrent += 1;
         }
-        if (!this.isCompleted() && countCurrent == countToComplete) {
+        if (!this.getCompleted() && countCurrent == countToComplete) {
             this.complete();
             return true;
         }

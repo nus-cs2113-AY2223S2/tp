@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 //@@author ChubbsBunns
-/** This class function is made to ensure that all generate permutations work, since each category fetches data from
+
+/**
+ * This class function is made to ensure that all generate permutations work, since each category fetches data from
  * the json data file slightly differently.
  * This ensures as much *PATH COVERAGE* as possible for *TEST COVERAGE*
  */
@@ -48,7 +50,7 @@ public class GenerateMixtureExerciseTest {
      */
 
     @Test
-    void testUES () {
+    void testUES() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -76,7 +78,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testUMS () {
+    void testUMS() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -103,7 +105,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testUHS () {
+    void testUHS() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -130,7 +132,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testUEG () {
+    void testUEG() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -158,7 +160,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testUMG () {
+    void testUMG() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -185,7 +187,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testUHG () {
+    void testUHG() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -210,7 +212,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testCEG () {
+    void testCEG() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -235,7 +237,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testCMG () {
+    void testCMG() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -260,7 +262,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testCHG () {
+    void testCHG() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -285,7 +287,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testCES () {
+    void testCES() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -310,7 +312,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testCMS () {
+    void testCMS() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -335,7 +337,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testCHS () {
+    void testCHS() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -360,7 +362,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testLEG () {
+    void testLEG() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -385,7 +387,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testLMG () {
+    void testLMG() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -410,7 +412,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testLHG () {
+    void testLHG() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -435,7 +437,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testLES () {
+    void testLES() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -460,7 +462,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testLMS () {
+    void testLMS() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -485,7 +487,7 @@ public class GenerateMixtureExerciseTest {
     }
 
     @Test
-    void testLHS () {
+    void testLHS() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -511,7 +513,7 @@ public class GenerateMixtureExerciseTest {
 
 
     @Test
-    void testMixture () {
+    void testMixture() {
         ArrayList<ExerciseData> exerciseData;
         GenerateExercise generateExercise = new GenerateExercise();
         exerciseData = generateExercise.generateSetAll();
@@ -528,7 +530,4 @@ public class GenerateMixtureExerciseTest {
             assertEquals(exerciseData.get(i).getEquipment(), "body only");
         }
     }
-
-
-
 }
