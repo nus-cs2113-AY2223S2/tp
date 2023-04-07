@@ -5,7 +5,8 @@ skinparam classAttributeIconSize 0
 title for Module Commands
 
 class Parser {
-+ getCommand(userCommand: String, ui: Ui, size: int, moduleData: ModuleList): Command
++ getCommand(userCommand: String, ui: Ui, size: int,
+moduleData: ModuleList): Command
 }
 Parser --> Command : creates >
 

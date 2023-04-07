@@ -151,9 +151,6 @@ public class Ui {
     }
 
 
-
-
-
     /**
      * For {@code list} command.
      * Prints all Tasks within the TaskList given.
@@ -431,7 +428,6 @@ public class Ui {
                     + timetable.getEndTime() + " " + timetable.compressedWeeks(timetable));
         }
     }
-
 
 
     /**
