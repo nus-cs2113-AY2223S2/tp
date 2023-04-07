@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.budget.BudgetPlanner;
 import seedu.duke.command.AddDeadlineCommand;
 import seedu.duke.command.AddModuleCommand;
+import seedu.duke.command.BudgetCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteDeadlineCommand;
 import seedu.duke.command.DeleteModuleCommand;
@@ -43,7 +44,7 @@ public class Parser {
         }
         return instance;
     }
-    
+
     public Command parseUserCommand(String userInput, ArrayList<University> universities, ArrayList<Module> modules,
                                     ArrayList<Module> puModules, Storage storage, DeadlineStorage deadlineStorage,
                                     BudgetPlanner budgetPlanner, ArrayList<Deadline> deadlines) {
@@ -230,18 +231,19 @@ public class Parser {
     // The add comment currently works in the format of PartnerAbb/Index
 
     /**
-     *  Handles User input for Add function. Splits the string into two parts and matches PU Abbreviation to a specific
-     *  PU and finds the Module corresponding to the Index relative to the module list of the PU selected.
-     * @param storage Storage Class that holds user added modules.
+     * Handles User input for Add function. Splits the string into two parts and matches PU Abbreviation to a specific
+     * PU and finds the Module corresponding to the Index relative to the module list of the PU selected.
+     *
+     * @param storage              Storage Class that holds user added modules.
      * @param abbreviationAndIndex String containing university abbreviation and Index of module to add relative
      *                             to the specific PU module list.
-     * @param allModules    ArrayList of Module that contains all the modules for all PUs.
-     * @param universities  ArrayList of University that contains all the PUs University object.
+     * @param allModules           ArrayList of Module that contains all the modules for all PUs.
+     * @param universities         ArrayList of University that contains all the PUs University object.
      * @return Returns AddModuleCommand(moduleToAdd, storage) to Duke to handle the addition of module into
-     *         user selected modules in storage.
+     * user selected modules in storage.
      * @throws InvalidCommandException Thrown when AbbreviationAndIndex does not split into two Strings.
-     * @throws InvalidPuException Thrown when Abbreviation given cannot be matched with any PUs.
-     * @throws InvalidModuleException Thrown when no Module can be found at the inputted Index.
+     * @throws InvalidPuException      Thrown when Abbreviation given cannot be matched with any PUs.
+     * @throws InvalidModuleException  Thrown when no Module can be found at the inputted Index.
      */
     private Command handleAddModuleCommand(Storage storage, String abbreviationAndIndex, ArrayList<Module> allModules,
                                            ArrayList<University> universities)
@@ -291,6 +293,7 @@ public class Parser {
 
     // Format of user input is: task /by dueDate
     // Format of dueDate is: dd-MM-yyyy
+    //@@author Darrenlsx
     private Command handleAddDeadlineCommand(DeadlineStorage deadlineStorage, ArrayList<String> userInputWords)
             throws InvalidCommandException {
         if (userInputWords.size() < 2) {
@@ -310,6 +313,13 @@ public class Parser {
         String dueDateDate = dueDateFormat[0];
         String dueDateMonth = dueDateFormat[1];
         String dueDateYear = dueDateFormat[2];
+        checkIsValidDate(dueDateDate, dueDateMonth, dueDateYear);
+        Deadline deadlineTypeToAdd = new Deadline(task, dueDate);
+        return new AddDeadlineCommand(deadlineTypeToAdd, deadlineStorage);
+    }
+
+    private void checkIsValidDate(String dueDateDate, String dueDateMonth, String dueDateYear) throws
+            InvalidCommandException {
         if (dueDateDate.length() != 2 || dueDateMonth.length() != 2 || dueDateYear.length() != 4) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
@@ -321,28 +331,38 @@ public class Parser {
         } catch (DateTimeException e) {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
-        Deadline deadlineTypeToAdd = new Deadline(task, dueDate);
-        return new AddDeadlineCommand(deadlineTypeToAdd, deadlineStorage);
     }
-
-    //2147483647
+    //@@author
     private Command prepareBudgetCommand(String userInput, BudgetPlanner budgetPlanner) throws InvalidCommandException {
         userInput = userInput.replaceFirst("/budget", "").trim();
-        String[] commandWords = userInput.split(("/"), 3);
-        trimStringArray(commandWords);
         if (userInput.trim().equalsIgnoreCase("/view")) {
             return new ViewBudgetCommand(budgetPlanner);
         }
-        if (commandWords.length != 3) {
+        if (!userInput.startsWith("/")) {
             throw new InvalidCommandException(ui.getInvalidBudgetMessage());
         }
-        String budgetCommand = commandWords[1].toLowerCase();
-        String stringAmount = commandWords[2];
+        userInput = userInput.replaceFirst("/", "");
+        String[] commandWords = userInput.split((" "), 2);
+        trimStringArray(commandWords);
+        if (commandWords.length != 2) {
+            throw new InvalidCommandException(ui.getInvalidBudgetMessage());
+        }
+        String budgetCommand = commandWords[0].toLowerCase();
+        String stringAmount = commandWords[1];
+        checkBudgetKeyword(budgetCommand);
+        checkBudgetValidAmount(stringAmount);
+        return budgetCommandType(budgetPlanner, budgetCommand, stringAmount);
+    }
+
+    private void checkBudgetKeyword(String budgetCommand) throws InvalidCommandException {
         if (!budgetCommand.equals("budget") && !budgetCommand.equals("accommodation") &&
                 !budgetCommand.equals("airplane") && !budgetCommand.equals("food") &&
                 !budgetCommand.equals("entertainment")) {
             throw new InvalidCommandException(ui.getInvalidBudgetMessage());
         }
+    }
+
+    private void checkBudgetValidAmount(String stringAmount) throws InvalidCommandException {
         if (stringAmount.startsWith("-") || stringAmount.length() > 10) {
             throw new InvalidCommandException(UI.INVALID_BUDGET_AMOUNT_MESSAGE);
         }
@@ -354,6 +374,10 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new InvalidCommandException(UI.INVALID_BUDGET_AMOUNT_MESSAGE);
         }
+    }
+
+    private BudgetCommand budgetCommandType(BudgetPlanner budgetPlanner, String budgetCommand, String stringAmount)
+            throws InvalidCommandException {
         int amount = stringToInt(stringAmount);
         switch (budgetCommand) {
         case "budget":
