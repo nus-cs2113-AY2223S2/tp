@@ -27,7 +27,8 @@ public class MarkTaskCommand extends Command{
         try {
             TaskList.markTask(taskNumber, true);
             TaskList.saveTasksToStorage(storage, ui);
-            ui.markTaskCommandMessage();
+            String markTaskDescription = TaskList.getSpecificTaskDescription(taskNumber);
+            ui.markTaskCommandMessage(markTaskDescription);
         } catch (IndexOutOfBoundsException e) {
             ui.taskNumberOutOfBoundsMessage();
         }

@@ -138,4 +138,8 @@ public class TaskList {
     public static int getNumberOfTasks() {
         return numberOfTasks;
     }
+
+    public static String getSpecificTaskDescription(int taskNumber) {
+        return taskList.get(taskNumber - 1).description;
+    }
 }

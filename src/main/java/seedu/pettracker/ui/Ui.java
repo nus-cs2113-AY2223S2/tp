@@ -165,8 +165,8 @@ public class Ui {
     /**
      * Message that prints when a task is marked as done.
      */
-    public void markTaskCommandMessage() {
-        System.out.println("Task marked as done");
+    public void markTaskCommandMessage(String markTaskDescription) {
+        System.out.println("Task marked as done: " + markTaskDescription);
     }
 
     /**
