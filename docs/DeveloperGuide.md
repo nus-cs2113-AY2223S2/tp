@@ -68,15 +68,17 @@ Here's a class diagram of the `Command` component
 > SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)   
 
 How the `Command` component works:
-1. When a command is entered by the user, `Parser` will create the relevant subclass of `Command` and send it back to 
-`Apollo`. 
+1. When a command is entered by the user, `Parser` will create the relevant subclass of `Command`. 
+A logger is set up during the initialisation of the `Command`, after which it is sent back to `Apollo`. 
 2. If the command entered was valid, `Apollo` then executes the `Command`. 
 3. `Command` can communicate with `TaskList`, `ModuleList` and `Calendar` when it is executed (eg. to modify Tasks, to 
-add Modules)
+add Modules).
 4. `Command` can also communicate with `Storage` to update the local save files if there are changes.
 5. The result of the command execution is sent to `Ui` to be printed out to the user.   
 
-Further elaboration on how the individual `Command` components work can be found under [Implementation](#implementation)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command_Seq-Command.png?raw=true)
+
+Further elaboration on how the individual `Command` subclasses work can be found under [Implementation](#implementation)
 
 ### Storage Component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)
@@ -84,6 +86,8 @@ Further elaboration on how the individual `Command` components work can be found
 ## Implementation
 
 ## *Task Commands*
+
+<!--@@author yixuann02 -->
 
 ### List Task
 
@@ -101,6 +105,8 @@ Step 2. Override the `execute()` method: The `execute()` method is overridden to
 functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
+<!--@@author T-Wan-Lin -->
+
 Step 3. Iterate through the list of tasks and perform sorting: The `execute()` method will iterate through `TaskList`
 and first calls the
 `sortTaskByDay()` method in the TaskList class that takes in the list of tasks, `TaskList` that the user has updated
@@ -112,6 +118,8 @@ user has updated, as a parameter and returns a list of tasks sorted by type. The
 in two LocalDateTime objects which correspond to the dates of two deadlines being compared, whereas
 the `deterministicSortForEvent()`takes in four LocalDateTime objects which correspond to the start and end dates of two
 events being compared.
+
+<!--@@author yixuann02 -->
 
 Step 4. Iterate through the list of sorted tasks and print it:The `execute()` method then calls the `printList()` method
 in the Ui class that takes in the list of tasks,`TaskList` that the user has updated, as a parameter.
@@ -126,6 +134,8 @@ description and date of all tasks if the tasks are either an event or a deadline
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListCommand-ListCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
+
+<!--@@author honglinshang -->
 
 ### Add Task
 
@@ -171,6 +181,8 @@ Step 9. `Storage#updateTask()` is called to update the local save file to reflec
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddCommand-AddCommand__for_Tasks_.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
+
+<!--@@author T-Wan-Lin -->
 
 ### Modify Task
 There are three ways to modify a task: delete, mark and unmark.
@@ -281,6 +293,8 @@ it.
 
 [*Return to TOC*](#table-of-contents)
 
+<!--@@author yixuann02 -->
+
 ### Find Task
 
 The FindTask functionality allows user to search for a task (todo, event and deadline) from the TaskList using a
@@ -311,9 +325,13 @@ Step 5. Print the confirmation message: A confirmation message is printed to the
 tasks in `TaskList` that matches the `KEYWORD` input by the user. The message includes the task type, description and
 date of the task containing `KEYWORD` if the matching task is either an event or a deadline task.
 
+<!--@@author PoobalanAatmikaLakshmi -->
+
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/FindCommand-FindCommand__Find_tasks_.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
+
+<!--@@author yixuann02 -->
 
 ### Find Task on Date
 
@@ -350,11 +368,14 @@ Step 6. Print the confirmation message: A confirmation message is printed to the
 `TaskList` that are occurring on the `date` input by the user. The message includes the task type, description, date
 and time of the task if the task is either an event or a deadline task.
 
+<!--@@author PoobalanAatmikaLakshmi -->
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DateCommand-DateCommand__Find_tasks_by_date_.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
 ## *Module Commands*
+
+<!--@@author irving11119 -->
 
 ### List Modules
 
@@ -386,9 +407,11 @@ UML Sequence Diagram for ListModuleCommand
 
 The following sequence diagram shows how the list module command works when the user inputs the command `listmod`:
 
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListMod-ListModuleCommand.png?raw=true)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleWithLessonCommand-ListModuleWithLessonCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
+
+<!--@@author yixuann02 -->
 
 ### List Module With Lesson
 
@@ -460,6 +483,8 @@ specific `LessonTypes` of that user has added, `Classnumber` of the `LessonType`
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleWithLessonCommand-ListModuleWithLessonCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
+
+<!--@@author irving11119 -->
 
 ### Add Module
 
@@ -540,6 +565,8 @@ the module list.:
 
 [*Return to TOC*](#table-of-contents)
 
+<!--@@author PoobalanAatmikaLakshmi -->
+
 ### Delete Module
 
 The DeleteModule functionality allows users to remove either a module from the ModuleList or a lesson associated with 
@@ -613,9 +640,11 @@ is printed by calling the `printModuleLessonDeleteMessage()` method of the `Ui` 
 the message is printed by calling the `printModuleNotFoundMessage()` method of the `Ui` class. If the 
 argument is invalid, the message is printed by calling the `printInvalidCommand()` method of the `Ui` class.
 
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteMod-DeleteModuleCommand.png?raw=true)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteModuleCommand-DeleteModuleCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
+
+<!--@@author yixuann02 -->
 
 ### Show Module
 
@@ -676,7 +705,9 @@ Step 6. Print the confirmation message: A confirmation message is printed to the
 of the module requested by the user. The message includes the `ModuleCode`, the specific `LessonType` of the module, 
 `Classnumber`of requested `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
 
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ShowMod-ShowModuleCommand.png?raw=true)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ShowModuleCommand-ShowModuleCommand.png?raw=true)
+
+<!--@@author -->
 
 [*Return to TOC*](#table-of-contents)
 
@@ -684,6 +715,8 @@ of the module requested by the user. The message includes the `ModuleCode`, the 
 
 ### Viewing Help
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/HelpCommand-HelpCommand.png?raw=true)
+
+<!--@@author honglinshang -->
 
 [*Return to TOC*](#table-of-contents)
 
@@ -717,6 +750,7 @@ Step 5. Starting from Monday, the lessons and tasks occurring on each day of the
 
 [*Return to TOC*](#table-of-contents)
 
+<!--@@author -->
 
 ### Exiting the Program
 
