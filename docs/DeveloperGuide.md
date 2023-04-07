@@ -61,11 +61,17 @@ Parser involves dealing with parsing user input to understand what the user want
 
 ### [DONE] Duplication checker feature
 #### Implementation
-The proposed <code>duplicationChecker</code> is facilitated by <code>Parser</code>. It will check against the existing
-<code>CompanyList</code> to check if the company has already been added. If the same company already exists in the
-<code>CompanyList</code>, it will inform the user by displaying a message to the user. Otherwise, it will proceed to 
+The proposed <code>duplicationChecker</code> is facilitated by <code>CompanyList</code>. It will check against the existing
+<code>CompanyList</code> to check if the company has already been added. The check is done in 3 ways: `company name`,
+`contact number`, and `contact email`. If any one of the above-mentioned details are identical to the ones already present
+in the <code>CompanyList</code>, it will inform the user by displaying a message to the user. Otherwise, it will proceed to 
 format the data that was entered by the user so that the parameters that are passed into <code>addCommand</code> are
-standardized to remove any potential duplicated addition issues.
+standardized to remove any potential duplicated addition issues. Figure 3 below shows the sequence diagram for the 
+duplication checker feature.
+
+![img_4.png](img_4.png)
+
+Fig 3
 
 ### [DONE] Storing company list feature
 #### Implementation
