@@ -16,7 +16,28 @@ public class Ui {
     private static final String EMPTY_PET_NAME_ERROR = "ERROR: Pet Name is empty";
     private static final String DUPLICATE_PET_ERROR = "ERROR: Pet already exists";
     private static final String EMPTY_TASK_ERROR = "ERROR: Task description is empty";
-
+    private static final String NON_INTEGER_FILE_ERROR = "ERROR: Pet save file has non-integer values for age" +
+            "/weight. File loading aborted.";
+    private static final String NON_POSITIVE_INTEGER_FILE_ERROR = "ERROR: Pet save file has non-positive " +
+            "values for age/weight. File loading aborted.";
+    private static final String INVALID_STAT_FILE_ERROR = "ERROR: Pet save file has invalid stats. File " +
+            "loading aborted.";
+    private static final String PET_NOT_FOUND_FILE_ERROR = "ERROR: Pet save file has stat that belongs to a " +
+            "pet that does not exist. File loading aborted.";
+    private static final String EMPTY_PET_NAME_FILE_ERROR = "ERROR: Pet save file has empty pet name. File loading " +
+            "aborted.";
+    private static final String DUPLICATE_PET_FILE_ERROR = "ERROR: Pet save file has duplicate pet names. File " +
+            "loading aborted.";
+    private static final String INVALID_SEPARATOR_PET_FILE_ERROR = "ERROR: Pet save file has invalid separator/" +
+            "invalid number of separator. File loading aborted.";
+    private static final String INVALID_SEPARATOR_TASK_FILE_ERROR = "ERROR: Task save file has invalid " +
+            "separator/invalid number of separator. File loading aborted.";
+    private static final String INVALID_DATE_FILE_ERROR = "ERROR: Task save file has invalid date format. " +
+            "File loading aborted.";
+    private static final String EMPTY_TASK_NAME_FILE_ERROR = "ERROR: Task save file has empty task name. File " +
+            "loading aborted.";
+    private static final String INVALID_MARK_TASK_SYMBOL_FILE_ERROR = "ERROR: Task save file has invalid mark task " +
+            "symbol. File loading aborted.";
 
     private Scanner in;
 
@@ -220,6 +241,50 @@ public class Ui {
         System.out.println(DIVIDER);
         System.out.println(EMPTY_TASK_ERROR);
         System.out.println(DIVIDER);
+    }
+
+    public void printFileNonIntegerMessage() {
+        System.out.println(NON_INTEGER_FILE_ERROR);
+    }
+
+    public void printFileIntegerNotPositiveMessage() {
+        System.out.println(NON_POSITIVE_INTEGER_FILE_ERROR);
+    }
+
+    public void printFileInvalidStatMessage() {
+        System.out.println(INVALID_STAT_FILE_ERROR);
+    }
+
+    public void printFilePetNotFoundMessage() {
+        System.out.println(PET_NOT_FOUND_FILE_ERROR);
+    }
+
+    public void printFilePetNameEmptyMessage() {
+        System.out.println(EMPTY_PET_NAME_FILE_ERROR);
+    }
+
+    public void printFileDuplicatePetMessage() {
+        System.out.println(DUPLICATE_PET_FILE_ERROR);
+    }
+
+    public void printPetFileInvalidSeparatorMessage() {
+        System.out.println(INVALID_SEPARATOR_PET_FILE_ERROR);
+    }
+
+    public void printTaskFileInvalidSeparatorMessage() {
+        System.out.println(INVALID_SEPARATOR_TASK_FILE_ERROR);
+    }
+
+    public void printFileInvalidDateMessage() {
+        System.out.println(INVALID_DATE_FILE_ERROR);
+    }
+
+    public void printFileEmptyTaskNameMessage() {
+        System.out.println(EMPTY_TASK_NAME_FILE_ERROR);
+    }
+
+    public void printFileInvalidMarkTaskSymbolMessage() {
+        System.out.println(INVALID_MARK_TASK_SYMBOL_FILE_ERROR);
     }
 
     /**
