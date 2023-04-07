@@ -39,9 +39,9 @@ Dr. Duke is a medical commandline interface (CLI) software designed for clinics 
 
   * Added detailed explanation of the diagnosis process [#80](https://github.com/AY2223S2-CS2113-W13-1/tp/pull/105).
 
-  * Added class diagram describing the various classes involved in the diagnosis process and how they interact with one another [#80](https://github.com/AY2223S2-CS2113-W13-1/tp/pull/80/files). <img src="../diagrams/DiagnosisClassDiagram.png" alt="Diagnosis Class Diagram">
+  * Added class diagram describing the various classes involved in the diagnosis process and how they interact with one another [#80](https://github.com/AY2223S2-CS2113-W13-1/tp/pull/80/files). <img src="https://raw.githubusercontent.com/AY2223S2-CS2113-W13-1/tp/master/docs/diagrams/DiagnosisClassDiagram.png" alt="Diagnosis Class Diagram">
 
-  * Added sequence diagram describing diagnosis algorithm and how it works with the objects involved in the diagnosis process [#107](https://github.com/AY2223S2-CS2113-W13-1/tp/pull/107). <img src="../diagrams/DiagnosisSequenceDiagram.png" alt="Diagnosis Sequence Diagram">
+  * Added sequence diagram describing diagnosis algorithm and how it works with the objects involved in the diagnosis process [#107](https://github.com/AY2223S2-CS2113-W13-1/tp/pull/107). <img src="https://raw.githubusercontent.com/AY2223S2-CS2113-W13-1/tp/master/docs/diagrams/DiagnosisSequenceDiagram.png" alt="Diagnosis Sequence Diagram">
 
 * **Team-based contributions**:
 
