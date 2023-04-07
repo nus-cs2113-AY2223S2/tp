@@ -2,14 +2,19 @@
 !include ../../Style.puml
 
 participant ":Parser" as Parser
+participant "parseCommand:ParseAddCommand" as ParseAddCommand
 participant "command:AddCommand" as AddCommand
 
--> Parser ++: parseUserInput("/add McDonalds -c Food -p 10.50")
-Parser -> Parser ++: parseAddCommand("McDonalds -c Food -p 10.50")
-Parser -> Parser ++: parseAddArguments("McDonalds -c Food -p 10.50")
-return arguments[]
-Parser -> AddCommand ** :
-AddCommand --> Parser : command
+-> Parser ++: parseUserInput("/add -d McDonalds -c Food -p 10.50")
+Parser -> Parser ++: commandParser("/add")
+create ParseAddCommand
+Parser -> ParseAddCommand
+ParseAddCommand --> Parser
+return parseCommand
+Parser -> ParseAddCommand ++ :  parseArguments(" -d McDonalds -c Food -p 10.50")
+create AddCommand
+ParseAddCommand -> AddCommand : new
+AddCommand --> ParseAddCommand
 return command
 return command
 
