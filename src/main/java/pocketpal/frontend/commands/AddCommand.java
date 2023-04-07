@@ -5,7 +5,6 @@ import pocketpal.backend.Backend;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
 import pocketpal.data.parsing.EntryParser;
-import pocketpal.frontend.exceptions.InvalidCategoryException;
 import pocketpal.communication.Request;
 import pocketpal.communication.RequestMethod;
 import pocketpal.communication.Response;
@@ -14,7 +13,6 @@ import pocketpal.frontend.ui.UI;
 
 import java.util.logging.Logger;
 
-import static pocketpal.frontend.util.CategoryUtil.convertStringToCategory;
 
 /**
  * Represents the add feature in PocketPal. Users may provide
@@ -30,13 +28,11 @@ public class AddCommand extends Command {
      * AddCommand constructor which initialises entryObj to be added
      *
      * @param description Description of the entry
-     * @param categoryStr    Category which entry belongs to
+     * @param category    Category which entry belongs to
      * @param amount      Price of entry
-     * @throws InvalidCategoryException If input category is invalid
      */
      
-    public AddCommand(String description, double amount, String categoryStr) throws InvalidCategoryException {
-        Category category = convertStringToCategory(StringUtil.toTitleCase(categoryStr));
+    public AddCommand(String description, double amount, Category category)  {
         this.entryObj = new Entry(description, amount, category);
         logger.info("New entry object instantiated");
     }
