@@ -17,12 +17,12 @@ note left of Parser::COMMAND_EXIT_WORD
     words have been omitted for brevity.
 end note
 
-Parser -> ModuleList : access moduleData
-ModuleList "1" *--> "*" Module : contains
+Parser -> ModuleList : access moduleData >
+ModuleList "1" *--> "*" Module : contains >
 
 abstract class "{abstract}\nCommand" as Command
-Parser --> Ui : calls for printing
-Parser --> Command: creates
+Parser --> Ui : receive commands, \ncalls for printing >
+Parser --> Command: creates >
 Command <|-- HelpCommand
 
 

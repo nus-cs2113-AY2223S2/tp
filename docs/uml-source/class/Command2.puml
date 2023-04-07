@@ -4,6 +4,11 @@ skinparam classAttributeIconSize 0
 
 title for Module Commands
 
+class Parser {
++ getCommand(userCommand: String, ui: Ui, size: int, moduleData: ModuleList): Command
+}
+Parser --> Command : creates >
+
 abstract class "{abstract}\nCommand" as Command {
 + isExit: Boolean
 # logger: Logger
@@ -21,7 +26,7 @@ setUpLogger(logger: Logger): void
 note right of Command::execute
     All Command subclasses overwrite the execute() method
 end note
-LoggerInterface <|.. Command : create logs
+LoggerInterface <|.. Command : sets up logger for >
 
 class AddModuleCommand {
 - module: ModuleList
@@ -75,11 +80,11 @@ class ShowModuleCommand {
 - sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
 }
 Command <|-- ShowModuleCommand
-Storage <-- Command : updates
-Ui <-- Command : "calls for printing            "
-ModuleList "2  " <-- Command : " reads and writes to both"
-Module "*" <--* "1" ModuleList : contains
-Calendar "1   " <-- Command
-"ArrayList<CalendarModule>" "*" <--* "1" Calendar : contains
+Storage <-- Command : updates <
+Ui <-- Command : calls for \nprinting <
+ModuleList "2  " <-- Command : reads and writes to <
+Module "*" <--* "1" ModuleList : contains <
+Calendar "1   " <-- Command : reads and writes to <
+"ArrayList<CalendarModule>" "*" <--* "1" Calendar : contains <
 
 @enduml
