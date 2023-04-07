@@ -7,6 +7,7 @@ skinparam componentStyle rectangle
 component User
 component "User Career Hard Drive"
 component "User Plans Hard Drive"
+component "Achievements Hard Drive"
 
 component FitnessDuke{
 component Ui UI_COLOUR
@@ -14,14 +15,19 @@ component CommandHandler LOGIC_COLOUR
 component UserCareerStorage STORAGE_COLOUR
 component UserPlansStorage STORAGE_COLOUR
 component Storage STORAGE_COLOUR
+component AchievementsListHandler STORAGE_COLOUR
 }
 
 [User] --> [Ui]
 [Ui] <--> [CommandHandler]
 [CommandHandler] --> [Storage]
+[CommandHandler] <--> [AchievementsListHandler]
+[AchievementsListHandler] <--> [Achievements Hard Drive]
 [Storage] --> [UserPlansStorage]
 [Storage] --> [UserCareerStorage]
 [UserCareerStorage] <--> [User Career Hard Drive]
 [UserPlansStorage] <--> [User Plans Hard Drive]
+[UserCareerStorage] --> [CommandHandler]
+[UserPlansStorage] --> [CommandHandler]
 
 @enduml

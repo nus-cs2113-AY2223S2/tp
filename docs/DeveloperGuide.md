@@ -30,6 +30,10 @@ Figure 1.1
 
 The architecture diagram as shown in Figure 1.1 shows us the high level design of Fitness Duke. 
 
+The program will first make use of the Achievements Hard Drive, User Career Hard Drive and User Plans Hard Drive to 
+populate its internal memory. 
+
+
 **Main Components**
 
 The architecture comprises five main components.
