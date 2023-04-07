@@ -85,7 +85,7 @@ The step was not added to the step list!
 __________________________________________________________
 OOPS!!!
 Looks like the description of the command is invalid!
-To add elements to the recipe, please follow the following layout:
+To add elements to the recipe, please follow the following format:
 
 deletefromrecipe -[step/ingredient] id/[index]
 __________________________________________________________
@@ -117,14 +117,14 @@ To add elements to the recipe, please follow the following layout:
 addtorecipe -[step/ingredient] id/[index] desc/[description of step/ingredient]
 __________________________________________________________
 
-Error in adding recipe!
+Error in adding element to recipe!
 Exception occurred: The range you have entered for the index is invalid!
 
 Valid Range: 1 to 1
 
 __________________________________________________________
 
-Error in adding recipe!
+Error in adding element to recipe!
 Exception occurred: The range you have entered for the index is invalid!
 
 Valid Range: 1 to 1
