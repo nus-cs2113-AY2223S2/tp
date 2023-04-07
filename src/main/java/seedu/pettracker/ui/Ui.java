@@ -200,6 +200,50 @@ public class Ui {
         System.out.println(DUPLICATE_PET_ERROR);
     }
 
+    public void printFileNonIntegerMessage() {
+        System.out.println(NON_INTEGER_FILE_ERROR);
+    }
+
+    public void printFileIntegerNotPositiveMessage() {
+        System.out.println(NON_POSITIVE_INTEGER_FILE_ERROR);
+    }
+
+    public void printFileInvalidStatMessage() {
+        System.out.println(INVALID_STAT_FILE_ERROR);
+    }
+
+    public void printFilePetNotFoundMessage() {
+        System.out.println(PET_NOT_FOUND_FILE_ERROR);
+    }
+
+    public void printFilePetNameEmptyMessage() {
+        System.out.println(EMPTY_PET_NAME_FILE_ERROR);
+    }
+
+    public void printFileDuplicatePetMessage() {
+        System.out.println(DUPLICATE_PET_FILE_ERROR);
+    }
+
+    public void printPetFileInvalidSeparatorMessage() {
+        System.out.println(INVALID_SEPARATOR_PET_FILE_ERROR);
+    }
+
+    public void printTaskFileInvalidSeparatorMessage() {
+        System.out.println(INVALID_SEPARATOR_TASK_FILE_ERROR);
+    }
+
+    public void printFileInvalidDateMessage() {
+        System.out.println(INVALID_DATE_FILE_ERROR);
+    }
+
+    public void printFileEmptyTaskNameMessage() {
+        System.out.println(EMPTY_TASK_NAME_FILE_ERROR);
+    }
+
+    public void printFileInvalidMarkTaskSymbolMessage() {
+        System.out.println(INVALID_MARK_TASK_SYMBOL_FILE_ERROR);
+    }
+
     /**
      * Print out help for all commands
      */
