@@ -47,21 +47,14 @@ public class Parser {
      * Method that parses command to the relevant classes to execute
      *
      * @param line        User input
-     * @param incomeList  List of incomes
-     * @param expenseList List of expenses
      * @param ui          User interface
+     * @return Appropriate command to be executed
      */
-    
-    public static Command parse(
-            String line,
-            IncomeList incomeList,
-            ExpenseList expenseList,
-            Ui ui) throws ChChingException {
+    public static Command parse(String line, Ui ui) throws ChChingException {
         List<String> lineParts = splitLine(line);
         String instruction = lineParts.get(0);
         List<String> arguments = lineParts.subList(1, lineParts.size());
         HashMap<String, String> argumentsByField = sortArguments(arguments);
-        //Command command = new InvalidCommand();
         Command command = new Command();
         int index;
         try {
