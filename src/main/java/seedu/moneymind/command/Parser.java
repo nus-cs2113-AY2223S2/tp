@@ -3,10 +3,12 @@ package seedu.moneymind.command;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.moneymind.exceptions.IntegerOverflowException;
 import seedu.moneymind.exceptions.InvalidCommandException;
+import seedu.moneymind.exceptions.InvalidTimeFormatException;
+import seedu.moneymind.exceptions.IntegerOverflowException;
 import seedu.moneymind.exceptions.NegativeNumberException;
 import seedu.moneymind.exceptions.NonPositiveNumberException;
+import static seedu.moneymind.UserDate.isValidDate;
 
 import static seedu.moneymind.string.Strings.EDIT;
 import static seedu.moneymind.string.Strings.NULL_INPUT_ASSERTION;
@@ -42,6 +44,7 @@ import static seedu.moneymind.string.Strings.EDIT_FORMAT;
 import static seedu.moneymind.string.Strings.BUDGET_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.INDEX_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.EXPENSE_LIMIT_MESSAGE;
+
 /**
  * A class to parse the user input.
  */
@@ -150,6 +153,7 @@ public class Parser {
                 if (matcher.group(3) == null) {
                     return new EventCommand(eventName, expenseNumber);
                 }
+                checkValidTimeFormat(time);
                 return new EventCommand(eventName, expenseNumber, time);
             } else {
                 throw new InvalidCommandException(EMPTY_STRING);
@@ -162,8 +166,16 @@ public class Parser {
             throw new InvalidCommandException(NON_NEGATIVE_INTEGER_FOR_EXPENSE);
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(EVENT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
+        } catch (InvalidTimeFormatException error) {
+            throw new InvalidCommandException("Please enter a valid date in the format of dd/mm/yyyy");
         } catch (Exception error) {
             throw new InvalidCommandException(SUBTLE_BUG_MESSAGE);
+        }
+    }
+
+    private void checkValidTimeFormat(String time) throws InvalidTimeFormatException {
+        if (!isValidDate(time)) {
+            throw new InvalidTimeFormatException();
         }
     }
 

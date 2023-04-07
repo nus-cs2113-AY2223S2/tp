@@ -134,4 +134,15 @@ public class EditCommandTest extends CommandTest {
         clear();
     }
 
+    @Test
+    void editEvent_spareSlash_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("edit c/food/ e/1").toString();
+        assertEquals("Please following the correct format: edit c/<category name> e/<event index>\n"
+                + "Remember do not leave any things inside the brackets empty!" +
+                System.lineSeparator(), terminalOutput);
+        assertEquals(100, food.events.get(0).getExpense());
+        clear();
+    }
+
 }

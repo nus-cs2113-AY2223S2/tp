@@ -81,4 +81,26 @@ public class CategoryCommandTest extends CommandTest {
         clear();
     }
 
+    @Test
+    void addCategory_emptyBudget_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("category travel b/").toString();
+        assertEquals("Please following the correct format: category <name> [(optional) b/<budget number>]\n" +
+                "Remember do not leave any things inside the brackets empty!"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, CategoryList.categories.size());
+        clear();
+    }
+
+    @Test
+    void addCategory_spareSlashSpecifier_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("category fsd / b/123").toString();
+        assertEquals("Please following the correct format: category <name> [(optional) b/<budget number>]\n" +
+                "Remember do not leave any things inside the brackets empty!"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, CategoryList.categories.size());
+        clear();
+    }
+
 }

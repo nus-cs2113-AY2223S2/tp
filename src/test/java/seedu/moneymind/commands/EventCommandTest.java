@@ -137,4 +137,15 @@ public class EventCommandTest extends CommandTest {
         clear();
     }
 
+    @Test
+    void addEvent_spareSlash_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("event banana/ e/20").toString();
+        assertEquals("Please following the correct format: event <name> e/<expense number> [(optional) t/<time>]\n"
+                + "Remember do not leave any things inside the brackets empty!"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
+        clear();
+    }
+
 }

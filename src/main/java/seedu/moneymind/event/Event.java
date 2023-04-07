@@ -1,14 +1,17 @@
 package seedu.moneymind.event;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static seedu.moneymind.UserDate.isValidDate;
 import static seedu.moneymind.UserDate.getSystemDate;
 
 public class Event {
-    private static final String INVALID_DATE_MESSAGE = "Invalid date format. Using system date instead.";
-    private static final int DEFAULT_EXPENSE = 0;
+    private static final String DATE_FORMAT = "dd/MM/yyyy HH:mm";
+    private boolean isOneTimeExpense;
     private String description;
     private String time;
-    private int expense = DEFAULT_EXPENSE;
+    private int expense;
 
 
     /**
@@ -17,21 +20,20 @@ public class Event {
     public Event(String description, int expense) {
         this.description = description;
         this.expense = expense;
+        LocalDateTime myDateObject = LocalDateTime.now();
+        DateTimeFormatter myFormatObject = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        this.time = myDateObject.format(myFormatObject);
+        this.isOneTimeExpense = true;
     }
 
     /**
-     * A constructor with all parameters. 
-     * If the time is not valid, the system date will be used.
+     * A constructor with all parameters.
      */
     public Event(String description, int expense, String time) {
         this.description = description;
         this.expense = expense;
-        if (isValidDate(time)) {
-            this.time = time;
-        } else {
-            System.out.println(INVALID_DATE_MESSAGE);
-            this.time = getSystemDate();
-        }
+        this.time = time;
+        this.isOneTimeExpense = false;
     }
 
     /**
@@ -92,9 +94,9 @@ public class Event {
      * @return a string representation of the event
      */
     public String toString() {
-        if (time == null) {
-            return description + " (expense: " + expense + ")";
+        if (isOneTimeExpense) {
+            return description + " (expense: " + expense + ") (time added: " + time + ")";
         }
-        return description + " (expense: " + expense + ") (time: " + time + ")";
+        return description + " (expense: " + expense + ") (start date: " + time + ")";
     }
 }

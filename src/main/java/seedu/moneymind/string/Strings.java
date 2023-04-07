@@ -58,7 +58,7 @@ public class Strings {
             "inside the brackets empty!";
     public static final String EMPTY_DELETION = "OOPS!!! The description of a delete cannot be empty.";
     public static final String SUBTLE_BUG_MESSAGE = "OOPS!!! Something went wrong, please report to the developer.";
-    public static final String EVENT_REGEX = "^(?<name>[^/]+)(?:\\s+e\\/(?<expense>[^/]+))(?:\\s+t\\/(?<time>[^/]+))?$";
+    public static final String EVENT_REGEX = "^(?<name>[^/]+)(?:\\s+e\\/(?<expense>[^/]+))(?:\\s+t\\/(?<time>.+))?$";
     public static final String CATEGORY_REGEX = "^(?<name>[^/]+?)(?:\\s+b\\/(?<budget>[^/]+))?$";
     public static final String EDIT_REGEX = "^c\\/(?=\\S)([^/]*?)(?:\\s+e\\/([^/]+))?\\s*$";
     public static final String DELETE_REGEX = "^c\\/(?=\\S)([^/]*?)(?:\\s+e\\/([^/]+))?\\s*$";
