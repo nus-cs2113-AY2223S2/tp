@@ -12,12 +12,9 @@ import utils.command.AddCardToDeckCommand;
 import utils.command.AddCardToTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
-import utils.command.DeleteDeckCommand;
 import utils.command.ListCardCommand;
 import utils.command.PrintHelpCommand;
-import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromCardCommand;
-import utils.command.RemoveTagFromDeckCommand;
 import utils.command.ViewCardCommand;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
@@ -89,9 +86,8 @@ public class CardKeywordParser extends KeywordParser {
         Options deckOptions = new OptionsBuilder(CARD_MODEL, DECK_ACTION).buildOptions();
         // Combine all action
         String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, VIEW_ACTION, DECK_ACTION};
-        String[] headerList = new String[]{
-                "Adding cards", "Deleting cards",
-                "List all cards", "Tagging cards", "View cards", "Adding cards to Deck"};
+        String[] headerList = new String[]{"Adding cards", "Deleting cards", "List all cards", "Tagging cards", "View"
+                + " cards", "Adding cards to Deck"};
         Options[] optionsList = {addOptions, deleteOptions, tagOptions, viewOptions, deckOptions};
         String helpMessage = formatHelpMessage("card", actionList, headerList, optionsList);
         return new PrintHelpCommand(helpMessage);
