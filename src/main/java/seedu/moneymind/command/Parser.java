@@ -3,6 +3,7 @@ package seedu.moneymind.command;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.moneymind.exceptions.IntegerOverflowException;
 import seedu.moneymind.exceptions.InvalidCommandException;
 import seedu.moneymind.exceptions.InvalidTimeFormatException;
 import seedu.moneymind.exceptions.IntegerOverflowException;
@@ -44,6 +45,7 @@ import static seedu.moneymind.string.Strings.EDIT_FORMAT;
 import static seedu.moneymind.string.Strings.BUDGET_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.INDEX_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.EXPENSE_LIMIT_MESSAGE;
+import static seedu.moneymind.string.Strings.NO_SEARCH_KEYWORD_MESSAGE;
 
 /**
  * A class to parse the user input.
@@ -201,7 +203,7 @@ public class Parser {
         } catch (IntegerOverflowException error) {
             throw new InvalidCommandException(INDEX_LIMIT_MESSAGE);
         } catch (NumberFormatException | NonPositiveNumberException error) {
-            throw new InvalidCommandException(POSITIVE_INTEGER_FOR_EVENT_INDEX);
+            throw new InvalidCommandException(POSITIVE_INTEGER_FOR_EVENT_INDEX); 
         } catch (InvalidCommandException error) {
             throw new InvalidCommandException(EDIT_FORMAT + "\n" + REMINDING_MESSAGE_ABOUT_NOT_LETTING_EMPTY);
         } catch (Exception error) {
@@ -256,7 +258,11 @@ public class Parser {
         }
     }
 
-    private Command createSearchCommand(String[] separatedKeywordAndDescription) {
+    private Command createSearchCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
+        if (separatedKeywordAndDescription.length < 2) {
+            throw new InvalidCommandException(NO_SEARCH_KEYWORD_MESSAGE);
+        }
+
         return new SearchCommand(separatedKeywordAndDescription[1]);
     }
 }
