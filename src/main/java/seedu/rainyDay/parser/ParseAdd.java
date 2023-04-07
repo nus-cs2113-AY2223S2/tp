@@ -13,15 +13,15 @@ import java.util.regex.Pattern;
 //CLAIM THIS CODE
 public class ParseAdd {
     public static final double MAX_AMOUNT = 21474836.47;
-    public static String direction;
-    public static String description;
-    public static String category = "miscellaneous";
-    public static double amount = -1.0;
-    public static LocalDate date = LocalDate.now();
-
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    public static Command addStatement(String userInput) throws RainyDayException {
+    public String direction;
+    public String description;
+    public String category = "miscellaneous";
+    public double amount = -1.0;
+    public LocalDate date = LocalDate.now();
+
+    public Command addStatement(String userInput) throws RainyDayException {
         try {
             String addInput = userInput.split("\\s+", 2)[1];
             String remainingInformation = returnRemainingInformation(addInput);
@@ -52,7 +52,7 @@ public class ParseAdd {
         }
     }
 
-    private static String returnRemainingInformation(String input) throws RainyDayException {
+    private String returnRemainingInformation(String input) throws RainyDayException {
         try {
             int flag = 0;
             Pattern pattern = Pattern.compile("-(in|out)\\s+(.+)\\$([\\d.]+)");
@@ -100,7 +100,7 @@ public class ParseAdd {
     }
 
     //@@author lil1n
-    private static String setCategory(String input) throws RainyDayException {
+    private String setCategory(String input) throws RainyDayException {
         int flag = 0;
         Pattern pattern = Pattern.compile("-c\\s+(.+)\\s+-date\\s+(.*)");
         Matcher matcher = pattern.matcher(input);
@@ -124,7 +124,7 @@ public class ParseAdd {
     }
 
     //@@author lil1n
-    private static void checkCategoryName(String category) throws RainyDayException {
+    private void checkCategoryName(String category) throws RainyDayException {
         if (category.trim().indexOf("-date") == 0) {
             logger.warning("empty category name");
             throw new RainyDayException(ErrorMessage.EMPTY_CATEGORY_NAME.toString());
