@@ -15,6 +15,8 @@
     - [ListExpenseCommand](#listexpensecommand)
     - [SetTargetCommand](#settargetcommand)
     - [SetCurrencyCommand](#setcurrencycommand)
+    - [UnsetCurrencyCommand](#unsetcurrencycommand)
+    - [FindCommand](#findcommand)
   - [Product scope](#product-scope)
     - [Target user profile](#target-user-profile)
     - [Value proposition](#value-proposition)
