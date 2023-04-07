@@ -15,11 +15,11 @@ import java.time.LocalTime;
  */
 public class Surgery extends Appointment {
 
-    public enum priorityLevel {
-        HIGH, MEDIUM, LOW
+    public enum PriorityLevel {
+        HIGH, MEDIUM, LOW, NA
     }
 
-    protected priorityLevel priority;
+    protected PriorityLevel priority;
     protected LocalDate startDate;
     protected LocalTime startTime;
     protected LocalDate endDate;
@@ -29,7 +29,7 @@ public class Surgery extends Appointment {
 
     public Surgery(String uid, Animal animal, Owner owner,
                    String priority, LocalDate startDate, LocalTime startTime,
-                   LocalDate endDate, LocalTime endTime) throws SniffException{
+                   LocalDate endDate, LocalTime endTime) throws SniffException {
         super(uid, animal, owner);
         this.uid = uid;
         this.animal = animal;
@@ -42,20 +42,40 @@ public class Surgery extends Appointment {
         this.endTime = endTime;
     }
 
-    public priorityLevel setPriority(String priority) throws SniffException{
+    public PriorityLevel setPriority(String priority) throws SniffException {
         if (priority.isBlank()) {
             throw new SniffException(" Priority cannot be empty!");
         }
         switch (priority) {
         case "H":
-            return priorityLevel.HIGH;
+            return PriorityLevel.HIGH;
         case "M":
-            return priorityLevel.MEDIUM;
+            return PriorityLevel.MEDIUM;
         case "L":
-            return priorityLevel.LOW;
+            return PriorityLevel.LOW;
         default:
             throw new SniffException(" Priority has to be H, M, L.");
         }
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public PriorityLevel getPriority() {
+        return priority;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
     }
 
     @Override
