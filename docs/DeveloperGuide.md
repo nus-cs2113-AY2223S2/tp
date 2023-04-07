@@ -38,7 +38,7 @@
 ## Setup & Prerequisites
 1. Ensure you have `Java 11` installed.
 2. Ensure your local repository is synced with the main repository at [AY2223S2-CS2113-F13-1/tp](https://github.com/AY2223S2-CS2113-F13-1/tp)
-3. Download the latest `tp.main.jar` from [here](https://github.com/AY2223S2-CS2113-F13-1/tp/releases/tag/v1.0).
+3. Download the latest `tp.main.jar` from [here](https://github.com/AY2223S2-CS2113-F13-1/tp/releases).
 4. Copy the file to the folder you want to use as home folder for the recipe manager.
 5. Use `Win+R` to open the command prompt and type `cmd` and press Enter.
 6. Then `cd` into the folder where you copied the jar file. e.g. `cd C:\Users\Lee\Desktop\MyRecipe`
@@ -67,8 +67,10 @@ The rest of the App consists of five components.
 * [**`RecipeList`**](#recipelist-component): Holds the recipe data in the recipe manager by an ArrayList. 
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-**How the architecture components interact with each other**
+**How the components interact with each other**
+
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
 ![image](./PlantUML/ArchitectureInteract.png)
 
 #### UI component
