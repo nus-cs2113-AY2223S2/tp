@@ -1,10 +1,27 @@
 package chching.api;
 
+import chching.ChChing;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ParameterStringBuilder {
+    /**
+     * Program Logging
+     */
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+
+    static {
+        Handler handler = new ConsoleHandler();
+        handler.setLevel(Level.ALL);
+        logger.addHandler(handler);
+        logger.setLevel(Level.ALL);
+    }
     public static String getParamsString(Map<String, String> params)
             throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();

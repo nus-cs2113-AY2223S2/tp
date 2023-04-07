@@ -4,11 +4,29 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import chching.ChChing;
 import chching.currency.Converter;
 import chching.currency.Selector;
 import chching.ChChingException;
 
 public class LiveCurrencyApi {
+    /**
+     * Program Logging
+     */
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+
+
+    static {
+        Handler handler = new ConsoleHandler();
+        handler.setLevel(Level.ALL);
+        logger.addHandler(handler);
+        logger.setLevel(Level.ALL);
+    }
 
     public LiveCurrencyApi(Selector selector, Converter converter) throws Exception {
         try {
