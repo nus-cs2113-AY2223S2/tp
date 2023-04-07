@@ -11,7 +11,6 @@ import pocketpal.communication.RequestMethod;
 import pocketpal.communication.Response;
 import pocketpal.communication.ResponseStatus;
 import pocketpal.frontend.ui.UI;
-import pocketpal.frontend.util.StringUtil;
 
 import java.util.logging.Logger;
 
@@ -35,6 +34,7 @@ public class AddCommand extends Command {
      * @param amount      Price of entry
      * @throws InvalidCategoryException If input category is invalid
      */
+     
     public AddCommand(String description, double amount, String categoryStr) throws InvalidCategoryException {
         Category category = convertStringToCategory(StringUtil.toTitleCase(categoryStr));
         this.entryObj = new Entry(description, amount, category);
@@ -53,8 +53,8 @@ public class AddCommand extends Command {
     /**
      * Adds Entry object to entry log
      *
-     * @param ui UI to output action result
-     * @param backend  Backend to process requests
+     * @param ui      UI to output action result
+     * @param backend Backend to process requests
      */
     @Override
     public void execute(UI ui, Backend backend) {

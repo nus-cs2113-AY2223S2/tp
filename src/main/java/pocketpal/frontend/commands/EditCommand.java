@@ -40,20 +40,21 @@ public class EditCommand extends Command {
     @Override
     public void execute(UI ui, Backend backend) throws InvalidArgumentsException, InvalidCategoryException {
         final Request request = new Request(RequestMethod.PATCH, String.valueOf(expenseId));
-        if (!newPrice.isEmpty()) {
+        if (newPrice != null) {
             request.addParam(RequestParams.EDIT_AMOUNT, newPrice);
         }
-        if (!newDescription.isEmpty()) {
+        if (newDescription != null) {
             request.addParam(RequestParams.EDIT_DESCRIPTION, newDescription);
         }
-        if (!newCategory.isEmpty()) {
+        if (newCategory != null) {
             request.addParam(RequestParams.EDIT_CATEGORY, StringUtil.toTitleCase(newCategory));
         }
 
         Response response = backend.requestEndpointEntry(request);
         // throw errors if input values are erroneous
         if (response.getResponseStatus() == ResponseStatus.NOT_FOUND) {
-            throw new InvalidArgumentsException(MessageConstants.MESSAGE_INVALID_ID);
+            throw new InvalidArgumentsException(MessageConstants.MESSAGE_NON_EXISTENT_ID
+                    + expenseId + System.lineSeparator() + MessageConstants.MESSAGE_INVALID_ID);
         }
         if (response.getResponseStatus() == ResponseStatus.UNPROCESSABLE_CONTENT) {
             throw new InvalidCategoryException(MessageConstants.MESSAGE_INVALID_CATEGORY);

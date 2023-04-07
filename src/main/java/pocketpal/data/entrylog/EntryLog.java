@@ -4,8 +4,6 @@ import pocketpal.communication.Serialisable;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
 import pocketpal.data.parsing.EntryLogParser;
-import pocketpal.frontend.constants.MessageConstants;
-import pocketpal.frontend.exceptions.InvalidDateException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -140,12 +138,8 @@ public class EntryLog implements Serialisable {
         return new EntryLog(filteredEntries);
     }
 
-    public EntryLog filterBetweenDates(LocalDateTime startDateTime, LocalDateTime endDateTime)
-            throws InvalidDateException {
+    public EntryLog filterBetweenDates(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         assert startDateTime != null && endDateTime != null;
-        if (startDateTime.isAfter(endDateTime)) {
-            throw new InvalidDateException(MessageConstants.MESSAGE_MIXED_DATE);
-        }
         List<Entry> filteredEntries = entries
                 .stream()
                 .filter((entry -> startDateTime.isBefore(entry.getDateTime()) &&

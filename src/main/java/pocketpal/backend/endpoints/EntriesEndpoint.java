@@ -145,7 +145,6 @@ public class EntriesEndpoint extends Endpoint {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm");
             LocalDateTime startDateTime = LocalDateTime.parse(startDateString, formatter);
             LocalDateTime endDateTime = LocalDateTime.parse(endDateString, formatter);
-
             logger.info(
                     "/entries [GET]: filter by date (start: " + startDateString + ", end: " + endDateString + ")");
             filteredEntries = filteredEntries.filterBetweenDates(startDateTime, endDateTime);

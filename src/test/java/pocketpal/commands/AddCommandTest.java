@@ -8,6 +8,7 @@ import pocketpal.backend.BackendTestUtil;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
 import pocketpal.frontend.commands.AddCommand;
+import pocketpal.frontend.util.CategoryUtil;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,7 +24,7 @@ public class AddCommandTest extends BackendTestUtil {
     @DisplayName("Test constructor for AddCommand")
     void testAddCommand() {
         try {
-            AddCommand addCommand = new AddCommand("Rice", 8.50, "Food");
+            AddCommand addCommand = new AddCommand("Rice", 8.50, CategoryUtil.convertStringToCategory("Food"));
             assertEquals(addCommand.getEntryObj().getDescription(), expectedEntry.getDescription());
             assertEquals(addCommand.getEntryObj().getAmount(), expectedEntry.getAmount());
             assertEquals(addCommand.getEntryObj().getCategory(), expectedEntry.getCategory());
