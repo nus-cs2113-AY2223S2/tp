@@ -2,7 +2,7 @@ package seedu.duke;
 
 import java.util.ArrayList;
 
-import seedu.duke.storage.EventListAdapter;
+// import seedu.duke.storage.EventListAdapter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -62,12 +62,6 @@ public class EventList {
     }
 
     /**
-     * For two addEvent funcs below: if user doesn't input endDay(which means there is also no endTime), you can just call
-     * .addEvent(description, startTime, startDay) I also make the specific time(hh:mm) optional, so if user doesn't input
-     * the specfic time, you can just pass an empty String to that param and it will handle the rest things
-     * e.g.addEvent(descrption, "", startDay, "", endDay) addEvent(descrption, "", startDay, endTime, endDay)
-     * addEvent(descrption, "", startDay) so only startDay is strictly required. and the same for reviseTimeInfo()
-     * 
      * @param time String representing Time to be converted to dateTime format in combinedTime. Format "HH:MM".
      * @param day String representing Date to be converted to dateTime format in combinedTime. Format "YYYY/MM/DD".
      * @return TimeAndFlag
@@ -94,53 +88,72 @@ public class EventList {
         }
     }
 
-    private boolean checkSingleOverlap(Event eventA, Event eventB) {
-        return ((eventA.getStartTime().isAfter(eventB.getStartTime()) && eventA.getStartTime().isBefore(eventB.getEndTime()))
-                ||(eventA.getEndTime().isAfter(eventB.getStartTime()) && eventA.getEndTime().isBefore(eventB.getEndTime())));
+    private boolean checkSingleOverlap(Schedule eventA, Schedule eventB) {
+        return ((eventA.getStartTime().compareTo(eventB.getStartTime()) >= 0
+                && eventA.getStartTime().compareTo(eventB.getEndTime()) <= 0)
+                || (eventA.getEndTime().compareTo(eventB.getStartTime()) >= 0
+                        && eventA.getEndTime().compareTo(eventB.getEndTime()) <= 0));
     }
 
     public boolean canAddNewEvent(Event newEvent) {
-        boolean isOverlap = false;
-        for (int i =0; i< listSize; i++) {
+        boolean isOverlap = true;
+        for (int i = 0; i < listSize; i++) {
             if (!taskList.get(i).isRecurring()) {
-                if(!(checkSingleOverlap(newEvent, taskList.get(i)) && checkSingleOverlap(taskList.get(i), newEvent))) {
-                    isOverlap = true;
+                if ((checkSingleOverlap(newEvent, taskList.get(i))
+                        || checkSingleOverlap(taskList.get(i), newEvent))) {
+                    isOverlap = false;
                     Ui.printOverlapInfo(taskList.get(i).toString());
                     break;
-                }    
-            } else {
-                Boolean swapFlag = false;
-                Event eventA = (taskList.get(i) instanceof Event) ? taskList.get(i) : null;
-                Event eventB = newEvent;
-                if(eventA.getStartTime().isAfter(newEvent.getStartTime())) {
-                    Event tmp = eventA;
-                    eventA = eventB;
-                    eventB = tmp;
-                    swapFlag = true;
                 }
+            } else {
+                Event eventA = (taskList.get(i) instanceof Event) ? (Event) taskList.get(i) : null;
+                Event eventB = newEvent;
+
                 LocalDate semStart = SEMESTER_START_DATES.get(getUser().getSemester());
                 LocalDate semEnd = SEMESTER_END_DATES.get(getUser().getSemester());
-                LocalDate eventADate = eventA.getStartTime().toLocalDate();    
+                LocalDate eventADate = eventA.getStartTime().toLocalDate();
                 LocalDate eventBDate = eventB.getStartTime().toLocalDate();
-                
-                int minKa = eventADate.isBefore(semStart) ? 0 : (eventADate.toEpochDay() - semStart.toEpochDay()) / eventA.getActualInterval();
-                int maxKa = eventADate.isAfter(semEnd) ? 0 : (semEnd.toEpochDay() - eventADate.toEpochDay()) / eventA.getActualInterval();
-                int minKb = eventBDate.isBefore(semStart) ? 0 : (eventBDate.toEpochDay() - semStart.toEpochDay()) / eventB.getActualInterval();
-                int maxKb = eventBDate.isAfter(semEnd) ? 0 : (semEnd.toEpochDay() - eventBDate.toEpochDay()) / eventB.getActualInterval();
-                
-                if(maxKa != 0 && minKb != 0) {
-                    for(int j = minKa; j<= maxKa; i++) {
-                        for (int k = minKb; k <= maxKb; k++) {
-                            Schedule curA = new Schedule(eventA.getStartTime().plusDays(eventA.getActualInterval()*j),
-                                    eventA.getEndTime().plusDays(eventA.getActualInterval()*j, true, true));
-                            Schedule curB = new Schedule(eventB.getStartTime().plusDays(eventB.getActualInterval()*k),
-                                    eventB.getEndTime().plusDays(eventB.getActualInterval()*k, true, true));
-                        
-                            if((checkSingleOverlap(curA, curB) && checkSingleOverlap(curB, curA))) {
-                                isOverlap = true;
-                                Ui.printOverlapInfo(curB.toString()); 
+
+                long minKa = eventADate.isAfter(semStart) ? 0
+                        : (semStart.toEpochDay() - eventADate.toEpochDay()) / eventA.getActualInterval();
+                Long maxKa = eventADate.isAfter(semEnd) ? 0
+                        : (semEnd.toEpochDay() - eventADate.toEpochDay()) / eventA.getActualInterval();
+
+                long minKb = -1;
+                long maxKb = -1;
+                if (eventB.isRecurring()) {
+                    minKb = eventBDate.isAfter(semStart) ? 0
+                            : (semStart.toEpochDay() - eventBDate.toEpochDay()) / eventB.getActualInterval();
+                    maxKb = eventBDate.isAfter(semEnd) ? 0
+                            : (semEnd.toEpochDay() - eventBDate.toEpochDay()) / eventB.getActualInterval();
+                }
+
+                boolean breakFlag = false;
+                if (maxKb != -1 && minKb != -1) {
+                    for (long j = minKa; j <= maxKa; j++) {
+                        for (long k = minKb; k <= maxKb; k++) {
+                            Schedule curA = new Schedule(
+                                    eventA.getStartTime().plusDays(eventA.getActualInterval() * j),
+                                    eventA.getEndTime().plusDays(eventA.getActualInterval() * j), true, true);
+
+                            Schedule curB =
+                                    new Schedule(eventB.getStartTime(), eventB.getEndTime(), true, true);
+                            if (minKb != -1 && maxKb != -1) {
+                                curB = new Schedule(
+                                        eventB.getStartTime().plusDays(eventB.getActualInterval() * k),
+                                        eventB.getEndTime().plusDays(eventB.getActualInterval() * k), true,
+                                        true);
+                            }
+
+                            if ((checkSingleOverlap(curA, curB) || checkSingleOverlap(curB, curA))) {
+                                isOverlap = false;
+                                Ui.printOverlapInfo(eventA.toString(), curA.getTime());
+                                breakFlag = true;
                                 break;
                             }
+                        }
+                        if(breakFlag) {
+                            break;
                         }
                     }
                 }
@@ -157,8 +170,11 @@ public class EventList {
         Event newEvent =
                 new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
 
-        if (!canAddNewEvent(newEvent)) {
-        throw new NPExceptions("Events/classes conflition!");
+        if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
+            throw new NPExceptions("Starting time is after ending time!");
+        }
+        if (canAddNewEvent(newEvent)) {
+            throw new NPExceptions("Events/classes conflition!");
         }
 
         taskList.add(newEvent);
@@ -190,6 +206,14 @@ public class EventList {
 
         Event newEvent = new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo,
                 endInfo.hasInfo, recurTime);
+
+        if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
+            throw new NPExceptions("Starting time is after ending time!");
+        }
+        if (canAddNewEvent(newEvent)) {
+            throw new NPExceptions("Events/classes conflition!");
+        }
+
         taskList.add(newEvent);
         listSize++;
     }

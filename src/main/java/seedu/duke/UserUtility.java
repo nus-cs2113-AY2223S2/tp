@@ -72,7 +72,7 @@ public class UserUtility {
                         && time.toLocalDate().isAfter(weekStartDate.minusDays(1))
                         && time.toLocalDate().isBefore(weekEndDate.plusDays(1))) {
                     System.out.print(String.format("%-15s|", event.getDescription().substring(0,
-                            Math.min(event.getDesccription().length(), 15))));
+                            Math.min(event.getDescription().length(), 15))));
                     found = true;
                     break;
                 }
@@ -84,7 +84,7 @@ public class UserUtility {
         }
     }
 
-    private     ValidInterval(LocalDateTime time, LocalDateTime startTime,
+    private static boolean isValidInterval(LocalDateTime time, LocalDateTime startTime,
             LocalDateTime endTime) {
         return time.equals(startTime) || (time.isAfter(startTime) && time.isBefore(endTime))
                 || time.equals(endTime);
