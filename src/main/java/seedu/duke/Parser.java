@@ -240,7 +240,7 @@ public class Parser {
      * @param allModules           ArrayList of Module that contains all the modules for all PUs.
      * @param universities         ArrayList of University that contains all the PUs University object.
      * @return Returns AddModuleCommand(moduleToAdd, storage) to Duke to handle the addition of module into
-     * user selected modules in storage.
+     *         user selected modules in storage.
      * @throws InvalidCommandException Thrown when AbbreviationAndIndex does not split into two Strings.
      * @throws InvalidPuException      Thrown when Abbreviation given cannot be matched with any PUs.
      * @throws InvalidModuleException  Thrown when no Module can be found at the inputted Index.
@@ -332,6 +332,7 @@ public class Parser {
             throw new InvalidCommandException(ui.getCommandInputError());
         }
     }
+
     //@@author
     private Command prepareBudgetCommand(String userInput, BudgetPlanner budgetPlanner) throws InvalidCommandException {
         userInput = userInput.replaceFirst("/budget", "").trim();

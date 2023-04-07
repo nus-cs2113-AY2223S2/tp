@@ -26,7 +26,7 @@ class UITest {
     private static final String READ_COMMAND_INPUT = "What can I do for you?";
     private static final String HELP_MESSAGE = "\nType /help if you need help getting started :)";
     private static final String INPUT_NOT_INT_MESSAGE = "The input for the given command is not an integer";
-    private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU name";
+    private static final String INVALID_PU_MESSAGE = "PU not found :( Please type in the correct PU Abbreviation";
     private static final String INVALID_MODULE_MESSAGE = "Module not found :( Please type in the correct MODULE name";
     private static final String CURRENT_LIST_EMPTY = "The current module list is empty";
     private static final String INVALID_SEARCH_MODULE_MESSAGE = "There is no matching module code found.\n"
@@ -583,17 +583,17 @@ class UITest {
                 + "ADD [PU ABBRV]/[INDEX]           : Adds the specified module into user's current list of modules\n"
                 + "REMOVE [PU ABBRV]/[INDEX]       : Removes the specified module by index from user's current list\n"
                 + "SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module\n"
-                + "/budget budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for "
+                + "/budget /budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for "
                 + "his/her SEP trip\n"
-                + "/budget accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation "
+                + "/budget /accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation "
                 + "cost\n                                   for his/her SEP trip\n"
-                + "/budget airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane\n"
+                + "/budget /airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane\n"
                 + "                                   ticket cost for his/her SEP trip\n"
-                + "/budget food [AMOUNT]            : Allows the user to input/edit the total amount of food "
+                + "/budget /food [AMOUNT]            : Allows the user to input/edit the total amount of food "
                 + "cost for his/her SEP trip\n"
-                + "/budget entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment\n"
-                + "                                   cost for his/her SEP trip\n"
-                + "/budget view                     : Provides an overview of the user's planned budget\n"
+                + "/budget /entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment"
+                + "\n                                   cost for his/her SEP trip\n"
+                + "/budget /view                     : Provides an overview of the user's planned budget\n"
                 + "/deadline/list                   : Provides the list of deadlines the user has added\n"
                 + "/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own "
                 + "personalized deadlines\n"
