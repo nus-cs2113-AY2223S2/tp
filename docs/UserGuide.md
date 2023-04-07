@@ -73,8 +73,8 @@ exit: quits program and saves
 
 ### Adding an account: `add-account`
 
-Initiates the process of adding a new account. The user is not required to input any parameters when calling the command.
-However, once the command starts, it will prompt the user for their name and initial balance.
+This command begins the process of creating a new account,
+and the user does not need to provide any input parameters while executing the command. However, once the command is initiated, the user will be prompted to enter their name and initial balance.
 
 Format: `add-account` <br />
 CLI prompts: "Whats your name?" <br />

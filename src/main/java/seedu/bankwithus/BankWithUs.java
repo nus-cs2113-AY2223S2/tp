@@ -15,12 +15,12 @@ public class BankWithUs {
     public static final String ACCOUNTS_FILE_PATH = "data/save.txt";
     public static final String TRANSACTIONS_FILE_PATH = "data/transaction.txt";
     public boolean isExitEntered = false;
-    private Storage storage;
-    private Ui ui;
+    private final Storage storage;
+    private final Ui ui;
     private AccountList accountList;
 
     private TransactionList transactionList;
-    private Parser parser;
+    private final Parser parser;
 
     /**
      * Creates a new instance of BankWithUs. Initialises storage, ui,
@@ -124,7 +124,6 @@ public class BankWithUs {
         try {
             new BankWithUs(ACCOUNTS_FILE_PATH, TRANSACTIONS_FILE_PATH).run();
         } catch (IOException e) {
-            return;
         }
     }
 }
