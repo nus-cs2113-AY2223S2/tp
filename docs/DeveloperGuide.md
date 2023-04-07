@@ -336,9 +336,17 @@ Given below are instructions to test the app manually.
       <br> For income: `find /t income /de bonus`
       <br> For expense: `find /t expense /c food /de sushi /da 03-03-2023 `
       <br> Expected: No income/expense will be listed. status message will indicate no matching record for these search terms.
-### Setting target & showing target
-1. Setting 
 
+### Setting target & showing target
+1. Setting target to display user's desired budget goal.
+   1. Prerequisites: Target will initially be set to 0 by default, accept a preset range of values.
+   2. Test case:
+      <br> `set target /v 500.50`
+      <br> Expected: target value added of 500.50 SGD
+   3. Test case: `set target /v 500.123`
+      <br> Expected: target value will not be added as value is not 2 d.p., error details shown in status message.
+   4. Test case: `set target /v 9999999`
+      <br> Expected: target value will not be added as value is out of range, error details shown in statu message.
 
 ### Setting Currency & Unsetting Currency
 1. Setting program to display currency of interest and not display unwanted currencies
