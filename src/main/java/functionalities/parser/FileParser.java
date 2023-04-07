@@ -40,6 +40,7 @@ public class FileParser {
         }
         SniffTasks.addAppointmentUID(uid);
         Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
+        newAppointment.setIsDone(false);
         SniffTasks.addAppointment(newAppointment);
     }
 
@@ -59,6 +60,7 @@ public class FileParser {
         }
         SniffTasks.addAppointmentUID(uid);
         Appointment newAppointment = new Surgery(uid, animal, owner, priority, startDate, startTime, endDate, endTime);
+        newAppointment.setIsDone(false);
         SniffTasks.addAppointment(newAppointment);
     }
 
@@ -76,6 +78,7 @@ public class FileParser {
         }
         SniffTasks.addAppointmentUID(uid);
         Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
+        newAppointment.setIsDone(false);
         SniffTasks.addAppointment(newAppointment);
     }
 }

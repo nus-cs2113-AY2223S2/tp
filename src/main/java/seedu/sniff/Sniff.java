@@ -1,5 +1,6 @@
 package seedu.sniff;
 
+import archive.Archive;
 import exception.SniffException;
 import functionalities.commands.Command;
 import functionalities.storage.Storage;
@@ -18,8 +19,10 @@ public class Sniff {
 
     public void run() throws SniffException {
         String absolutePath = getPath();
+        String archivePath = getArchivePath();
         try {
             Storage.openFile(absolutePath);
+            Archive.openArchiveFile(archivePath);
         } catch (SniffException file) {
             ui.showErrorMessage();
         }
@@ -36,6 +39,7 @@ public class Sniff {
                 ui.showErrorMessage();
             } finally {
                 Storage.saveAppointments(absolutePath);
+                Archive.saveArchivedAppointments(archivePath);
                 Ui.showLine();
             }
         }
@@ -45,6 +49,12 @@ public class Sniff {
         String home = System.getProperty("user.home");
         java.nio.file.Path path = java.nio.file.Paths.get(home, "SniffAppointments.txt");
         return path.toString();
+    }
+
+    private static String getArchivePath() {
+        String home = System.getProperty("user.home");
+        java.nio.file.Path filepath = java.nio.file.Paths.get(home, "SniffArchive.txt");
+        return filepath.toString();
     }
 
     /**
