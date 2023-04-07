@@ -403,7 +403,80 @@ Step 4. Print the confirmation message: A confirmation message is printed to the
 in `ModuleList` that the user updated. The message includes the module code and name, modular credits for each module
 and  total modular credits the user is taking this semester.
 
-UML Diagram for ListModuleCommand
+UML Sequence Diagram for ListModuleCommand
+
+The following sequence diagram shows how the list module command works when the user inputs the command `listmod`:
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleWithLessonCommand-ListModuleWithLessonCommand.png?raw=true)
+
+[*Return to TOC*](#table-of-contents)
+
+### List Module With Lesson
+
+The List Module with Lesson functionality allows users to list the lessons of a specific module in their timetable.
+The use of flags, for eg. `-lec`, `-st` etc., allows users to view specific LessonType information for the module
+that they have added into their timetable.
+
+It is facilitated by ListModuleWithLessonCommand class which is an extension of the Command class.
+
+Given below is an example usage scenario of how to view the information of a specific module in the timetable
+using the moduleCode and how the mechanism behaves at each step.
+
+#### For when user request to show the module (e.g. CS2113) in their timetable:
+
+Step 1. Define the Constructor: When user executes the command `listmod cs2113`, the Parser class calls the
+`ListModuleWithLessonCommand()` method of the ListModuleWithLessonCommand class. The constructor of the
+ListModuleWithLessonCommand class takes in a parameter of type `String`, which will be split into `moduleCode` and
+`-FLAG`. In this case, only `cs2113` is parsed in as the parameter. This is then used to find `cs2113` from the
+existing timetable. If a moduleCode does not exist in NUS modules, an `InvalidModule()` is thrown.
+
+Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
+class. It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the List Module with
+Lesson functionality. It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and
+Calendar.
+
+Step 4. Find the module from the timetable: The first step in the `execute()` method is to find the module from 
+timetable using the `Module` class with the module code parameter `cs2113` and using the `getModuleTimetable()` 
+function of the `Module` class. If the module `cs2113` has not been added to the timetable, `ModuleNotAddedException` 
+will be thrown.
+
+Step 5. Calls the `handleSingleCommand()` method: The `handleSingleCommand()` method is called to handle the command
+with only the `moduleCode` as the parameter.
+
+Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the module and lesson 
+information that the user has added into their module list. The message will include the `ModuleCode`, `LessonTypes`
+of that user has added, `Classnumber` of the `LessonType` that user has added and `Day` and `Time` of the lesson.
+
+#### For when user request to show a specific lesson of the module (e.g. CS2113 -tut) in their timetable:
+
+Step 1. Define the Constructor: When user executes the command `listmod cs2113`, the Parser class calls the
+`ListModuleWithLessonCommand()` method of the ListModuleWithLessonCommand class. The constructor of the
+ListModuleWithLessonCommand class takes in a parameter of type `String`, which will be split into `moduleCode`, 
+`cs2113` and `-FLAG`, `-tut`. In this case, `cs2113 -tut` is parsed in as the parameter. This is stored in the `args` 
+array field of the `ListModuleWithLessonCommand` class.
+
+Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
+class. It creates a ConsoleHandler and a FileHandler to handle logging.
+
+Step 3. Override the `execute()` method: The `execute()` method is overridden to execute the List Module with
+Lesson functionality. It takes in the necessary parameters, including the ModuleList, Ui, Storage, TaskList and
+Calendar. The lesson type is determined by calling the `getLessonType()` method of the `lessonType` class and 
+parsing in `args[1]` while the moduleCode is set by `args[0]`. If the lessonType is not valid, an 
+`InvalidCommandException` is thrown.
+
+Step 4. Find the module from the timetable: The first step in the `execute()` method is to find the module from
+timetable using the `Module` class with the module code parameter `cs2113` and using the `getModuleTimetable()`
+function of the `Module` class. If the module `cs2113` has not been added to the timetable, `ModuleNotAddedException`
+will be thrown.
+
+Step 5. Calls the `handleMultiCommand()` method: The `handleMultiCommand()` method is called to handle the command.
+
+Step 6. Print the confirmation message: A confirmation message is printed to the user indicating the module and lesson
+information that the user has added into their module list. The message will include the `ModuleCode`, the 
+specific `LessonTypes` of that user has added, `Classnumber` of the `LessonType` that user has added and 
+`Day` and `Time` of the lesson.
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleWithLessonCommand-ListModuleWithLessonCommand.png?raw=true)
 
@@ -479,7 +552,10 @@ Step 6:
 Print the confirmation message :
 A confirmation message is printed to the user indicating that the module lesson has been successfully added.
 
-UML Diagram for AddModCommand Class
+UML Sequence Diagram for AddModCommand Class
+
+The following sequence diagram shows how the AddModCommand class works for both adding modules and adding lessons to 
+the module list.:
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddModule-AddModuleCommand__Add_Module_.png?raw=true)
 
@@ -491,7 +567,7 @@ UML Diagram for AddModCommand Class
 
 The DeleteModule functionality allows users to remove either a module from the ModuleList or a lesson associated with 
 the module. It is facilitated by DeleteModuleCommand class which is an extension of the Command class.
-Given below is an example usage scenario and how the delete mechanism behaves at each step.
+Given below is an example usage scenario and how to delete mechanism behaves at each step.
 
 #### For when a user deletes only a module (e.g CS2113) from the module list:
 
@@ -598,12 +674,12 @@ Step 5. Print the confirmation message: A confirmation message is printed to the
 of the module requested by the user. The message includes the `ModuleCode`, `LessonTypes` of the module, `Classnumber` 
 of each `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
 
-#### For when a user request to show a specific lessonType of the module (e.g. CS2113 -st):
+#### For when a user request to show a specific lessonType of the module (e.g. CS2113 -tut):
 
 Step 1. Define the Constructor: When user executes the command `showmod cs2113`, the Parser class calls the
 `ShowModuleCommand()` method of the ShowModuleCommand class. The constructor of the ShowModuleCommand class takes
-in a parameter of type `String`, which will be split into `moduleCode`, `cs2113`, and `-FLAG`, `-st`. In this case, only `cs2113` is
-parsed in as the parameter. This is stored in the `args` array field of the `ShowModuleCommand` class.
+in a parameter of type `String`, which will be split into `moduleCode`, `cs2113`, and `-FLAG`, `-tut`. In this case, 
+`cs2113 -tut` is parsed in as the parameter. This is stored in the `args` array field of the `ShowModuleCommand` class.
 
 Step 2. Define the `setUpLogger()` method: The `setUpLogger()` method sets up the logger for the ShowModuleCommand
 class. It creates a ConsoleHandler and a FileHandler to handle logging.
@@ -614,7 +690,7 @@ type is determined by calling the `getLessonType()` method of the `lessonType` c
 the moduleCode is set by `args[0]`. If the lessonType is not valid, an `InvalidCommandException` is thrown.
 
 Step 4. Calls the `handleMultiCommand()` method: The `handleMultiCommand()` method is called to handle the command. 
-It takes ini `moduleList`, `lessonType` and `args` as parameters.
+It takes in `moduleList`, `lessonType` and `args` as parameters.
 
 Step 5. Find the module to display information: The first step in the `execute()` method is to find the module from
 `Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
@@ -673,12 +749,35 @@ Step 5. Starting from Monday, the lessons and tasks occurring on each day of the
 <!--@@author -->
 
 ### Exiting the Program
+
+The `bye` command allows the user to exit the program. It is facilitated by `ExitCommand` which is an extension of the `Command` class.
+The `ExitCommand` class overrides the `execute()` method from the `Command` class and is only excuted when the user inputs `bye`
+with no additional parameters (e.g `bye bye` would not exit the program).
+
+Given below is an example usage scenario and how the add task mechanism behaves at each step.
+
+Step 1. The user executes the command `bye` and handled by `Apollo` class. It is parsed by the `Parser` class which 
+then creates a new `ExitCommand`.
+
+Step 2. The `setUpLogger()` method of the `ExitCommand` class is called. It creates a `ConsoleHandler` and a `FileHandler`
+to handle logging.
+
+Step 3. The `execute()` method of `ExitCommand` is called from `Apollo` class. It takes in the necessary parameters.
+
+Step 4. Within the `execute()` method, the method `printExitMessage()` is called from `Ui` class to print the exit message.
+
+Step 5. The `setExit()` method of `ExitCommand` class is called to set the `isExit` boolean to true. Subsequently, the
+program exceeds the loop in the `run()` method of `Apollo` class and the program terminates.
+
+Below is a sequence diagram of the `bye` command.
+
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ExitCommand-ExitCommand.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
 ## *Storage*
-(TO BE ADDED SOON)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)
+
 
 ## *Logging*
 (TO BE ADDED SOON)
@@ -883,12 +982,15 @@ Prerequisite: Make sure you are in the main interface.
 1. Test case for empty task description: ```todo ``` or ```deadline``` or ```event```
 Expected: Exception thrown. Error details shown in status message
 2. Test case for invalid formats
-   - Out of calendar range: ```deadline return book -by 40-11-2023-11:23``` or ```event wedding -from 40-11-2023-11:23 -to 41-11-2023-11:23```
+   - Out of calendar range: ```deadline return book -by 40-11-2023-23:23``` or ```event wedding -from 40-11-2023-22:23 -to 41-11-2023-11:23```
    - Invalid dateTime format ```deadline return book -by 2023-10-11-11:23``` or ```event wedding -from 2023-10-11-11:23 -to 2023-10-12-11:23```
    - Missing parameters ``` deadline return book 15-11-2023-11:23``` or ```event wedding 16-11-2023-11:23 -to 20-11-2023-11:23```
    - Extra parameters ```deadline return book -by 17-11-2023-11:23 blah blah```
+   - Occurs before system dateTime `deadline return book 15-01-2023-11:23` or `event wedding 16-01-2023-11:23 -to 20-01-2023-11:23`
    
-   For all these cases Expected: Exception thrown. Error details shown in status message
+   For all these cases Expected: Exception thrown. Error details shown in status message. 
+   For instance invalid dateTime format prints `Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
+   eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM`
 ### Adding a ToDo
 1. Test case : ```todo Feed the fish```
 
@@ -948,12 +1050,14 @@ Expected: Module under index 1 is deleted from moduleList. Confirmation message 
 Expected: CS1010 is removed from moduleList. Confirmation message is printed 
 3. Test case: ```delmod cs2040c``` assuming cs2040c is not in your moduleList 
 
-Expected: Exception thrown,error message printed.
+Expected: Exception thrown, `Sorry, the module cs2040c does not exist in your Module list!
+Total modular credits you have in this semester:`[Number of MCs in your moduleList]
+
 #### Deleting a Lesson
-1. Test case: ```delmod CS1010 -st 1``` assuming cs1010 -st 1 is inside moduleList
+1. Test case: `delmod CS1010 -st 1` assuming cs1010 -st 1 is inside moduleList
 
 Expected: Deletes SECTIONAL TEACHING - 1 of CS1010.
-2.Test case: ```delmod CS1010 -st 5``` assuming cs1010 -st 5 not inside moduleList
+2.Test case: `delmod CS1010 -st 5` assuming cs1010 -st 5 not inside moduleList
 
 Expected: Exception thrown, error message printed 
 ### Saving Data

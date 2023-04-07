@@ -1,0 +1,91 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam maxMessageSize 150
+
+title ListModuleWithLessonCommand
+
+actor User
+
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":ListModuleCommandWithLessonCommand" as ListMod
+participant ":ModuleList" as ModuleList
+participant ":Module" as Module
+participant ":Ui" as Ui
+
+User -> Apollo : "listmod cs2113 -tut"
+
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+
+Parser -> ListMod** : ListModuleWithLessonCommand()
+activate ListMod
+
+ListMod -> ListMod : setUpLogger()
+activate ListMod
+deactivate ListMod
+
+ListMod -> Module** : Module()
+activate Module
+Module --> ListMod : module
+deactivate Module
+destroy Module
+
+ListMod --> Parser : ListModuleWithLessonCommand()
+deactivate ListMod
+
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+
+Apollo -> ListMod : execute()
+activate ListMod
+
+ListMod -> ModuleList : findModule(module)
+activate ModuleList
+ModuleList --> ListMod
+deactivate ModuleList
+destroy ModuleList
+
+
+alt args.length == 2
+ListMod -> ListMod : handleMultiCommand()
+activate ListMod
+ListMod -> Ui : printSpecificTimetable()
+
+activate Ui
+Ui --> ListMod
+deactivate Ui
+
+deactivate ListMod
+
+else
+ListMod -> ListMod : handleSingleCommand()
+activate ListMod
+ListMod -> Ui : printModuleListWithLesson()
+
+activate Ui
+Ui --> ListMod
+deactivate Ui
+
+deactivate ListMod
+
+end
+
+destroy Ui
+
+ListMod --> Apollo
+
+deactivate ListMod
+destroy ListMod
+
+
+deactivate Apollo
+
+
+
+
+
+@enduml
