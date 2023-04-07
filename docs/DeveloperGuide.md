@@ -141,8 +141,11 @@ update the item attributes instead.
 the data structures responsible for tracking of the item  and its attributes using the `handleTrie()`, `remove()` and
 `put()` methods.
 
-Included below is a UML Sequence Diagram for the `EditParser` and `EditCommand` respectively:
+Included below are UML Sequence Diagrams for `EditParser` and `EditCommand`. The second diagram shows a 
+more detailed reference frame for `Process User Edit Input` found in the first diagram.
 
+![EditParser.png](UML/Edit/EditParser.png)
+![EditCommand.png](UML/Edit/EditCommand.png)
 
 ### 2.4. Restock
 The `restock` command is mainly handled by the `RestockCommand` class, which extends the `Command` class. It is parsed 
@@ -174,7 +177,8 @@ reference from the `oldItem` and `updatedItem` objects. The `UI` class will be c
 to inform the user on the status of the program, based on whether quantity addition has been done successfully or
 if an `Exception` has been thrown.
 
-Included below is a sequence diagram for the `RestockParser` and `RestockCommand` respectively:
+Included below are UML Sequence Diagrams for the `RestockParser` and `RestockCommand`. The second diagram shows a more
+detailed version of what happens in the reference frame of `Increase Quantity of the Item`.
 
 ![RestockParser.png](UML/Restock/RestockParser.png)
 ![RestockCommand.png](UML/Restock/RestockCommand.png)
@@ -209,7 +213,8 @@ reference from the `oldItem` and `updatedItem` objects. The `UI` class will be c
 to inform the user on the status of the program, based on whether quantity deduction has been done successfully or
 if an `Exception` has been thrown.
 
-Included below is a sequence diagram for the `SellParser` and the `SellCommand` respectively:
+Included below are UML Sequence Diagrams for `SellParser` and `SellCommand`. The second diagram gives a detailed
+version of what happens in the reference frame 'Deduct Quantity of the Item'.
 
 ![SellParser.png](UML/Sell/SellParser.png)
 ![SellCommand.png](UML/Sell/SellCommand.png)
@@ -431,12 +436,21 @@ the category that user input is found. Otherwise, the method will inform user th
 
 ## Product scope
 ### Target user profile
-
-{Describe the target user profile}
+* Has a need to manage a wide variety of items, and track various information related to the item.
+* Is able to type fast which leads to usage of CLI applications being a more efficient method of managing inventories
+as compared to tradition inventory management systems.
+* Prefers a desktop application for inventory management and tracking rather than traditional pen and paper or
+smartphones.
+* Requires only a simplistic solution to the management of inventories, rather than a complex but costly one.
 
 ### Value proposition
-
-{Describe the value proposition: what problem does it solve?}
+* For users who can type fast, usage of MagusStock over conventional GUI applications for inventory management will be
+significantly faster.
+* MagusStock offers a wide variety of features that improves the user's experience in inventory management.
+* A low-cost solution for small companies whom do not require a costly and complex inventory management system for
+tracking of their stocks.
+* Simple command formats that are easy to learn and get used to, without complex functions and terms that may be 
+unsuitable for the less seasoned users of the application.
 
 ## User Stories
 
@@ -464,11 +478,15 @@ the category that user input is found. Otherwise, the method will inform user th
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. MagusStock should be able to hold up to 10,000 unique items, without a noticeable drop in its speed or performance.
+2. MagusStock should be able to work on both Windows and macOS with Java `11` installed.
 
 ## Glossary
 
-* *glossary item* - Definition
+* **MagusStock**: The name of the Inventory Management Program.
+* **UPC**:Universal Product Code, used to track, edit, or find a unique item found in MagusStock's inventory database.
+* **CLI**:Command Line Interface, a text-based user interface (UI) used to run programs, manage computer files and 
+interact with the computer.
 
 ## Instructions for manual testing
 

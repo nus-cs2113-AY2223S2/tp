@@ -2,31 +2,42 @@
 'https://plantuml.com/sequence-diagram
 actor User
 participant ":RestockParser"
+User -> ":RestockParser" **:RestockParser()
+activate ":RestockParser"
+":RestockParser" --> User
+deactivate ":RestockParser"
 User->":RestockParser":run()
 activate ":RestockParser"
+":RestockParser" -> ":RestockCommand" **:RestockCommand()
+activate ":RestockCommand"
+":RestockCommand" --> ":RestockParser"
+deactivate ":RestockCommand"
+
 
 alt Contains "upc/" and input length > 1
-":RestockParser"->":RestockCommand": RestockCommand()
-activate ":RestockCommand"
-ref over ":RestockCommand",UI: Increases quantity of the Item \n and print series of strings \n to inform of its success \n or failure to do so
-":RestockCommand"-->":RestockParser":
-deactivate ":RestockCommand"
-":RestockParser"-->User:
+    ":RestockParser"->":RestockCommand": run()
+    activate ":RestockCommand"
+    ref over ":RestockCommand","<<Class>>\nUI": Increases quantity of the Item
+    ":RestockCommand"-->":RestockParser":
+    deactivate ":RestockCommand"
+    ":RestockParser"-->User:
+    destroy ":RestockCommand"
 
-destroy ":RestockCommand"
+
 else No "upc/" or input length <= 1
-":RestockParser"->":RestockParser": EditErrorException()
-activate ":RestockParser"
-":RestockParser"->UI:printInvalidSellCommand()
-activate UI
-UI-->":RestockParser":
-deactivate UI
-destroy UI
-":RestockParser"-->":RestockParser":
-deactivate ":RestockParser"
-":RestockParser"-->User:
-deactivate ":RestockParser"
+    ":RestockParser"->":RestockParser": EditErrorException()
+    activate ":RestockParser" #Cyan
+    ":RestockParser"->"<<Class>>\nUI":printInvalidSellCommand()
+    activate "<<Class>>\nUI"
+    "<<Class>>\nUI"-->":RestockParser":
+    deactivate "<<Class>>\nUI"
+    ":RestockParser"-->":RestockParser":
+    deactivate ":RestockParser"
+    ":RestockParser"-->User:
+    deactivate ":RestockParser"
 end
+
+
 deactivate ":RestockParser"
 destroy ":RestockParser"
 @enduml

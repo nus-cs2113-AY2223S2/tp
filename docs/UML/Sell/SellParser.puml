@@ -2,31 +2,37 @@
 
 actor User
 participant ":SellParser"
+User -> ":SellParser"**:SellParser()
+activate ":SellParser"
+":SellParser" --> User
+deactivate ":SellParser"
+
 User->":SellParser":run()
 activate ":SellParser"
 
 alt Contains "upc/" and input length > 1
-":SellParser"->":SellCommand": SellCommand()
-activate ":SellCommand"
-ref over ":SellCommand",UI: Deduct quantity of the Item \nand print series of strings \nto inform of its success\nor failure to do so
-":SellCommand"-->":SellParser":
-deactivate ":SellCommand"
-":SellParser"-->User:
-
-destroy ":SellCommand"
+    ":SellParser"->":SellCommand"**: SellCommand()
+    activate ":SellCommand"
+    ":SellCommand" --> ":SellParser"
+    deactivate ":SellCommand"
+    ":SellParser" -> ":SellCommand":run()
+    activate ":SellCommand"
+    ref over ":SellCommand","<<Class>>\nUI": Deduct quantity of the Item
+    ":SellCommand"-->":SellParser":
+    deactivate ":SellCommand"
+    destroy ":SellCommand"
 else No "upc/" or input length <= 1
-":SellParser"->":SellParser": EditErrorException()
-activate ":SellParser"
-":SellParser"->UI:printInvalidSellCommand()
-activate UI
-UI-->":SellParser":
-deactivate UI
-destroy UI
-":SellParser"-->":SellParser":
-deactivate ":SellParser"
-":SellParser"-->User:
-deactivate ":SellParser"
+    ":SellParser"->":SellParser": EditErrorException()
+    activate ":SellParser" #Cyan
+    ":SellParser"->"<<Class>>\nUI":printInvalidSellCommand()
+    activate "<<Class>>\nUI"
+    ref over "<<Class>>\nUI":Print Error Message
+    "<<Class>>\nUI"-->":SellParser":
+    deactivate "<<Class>>\nUI"
+    ":SellParser"-->":SellParser":
+    deactivate ":SellParser"
 end
+":SellParser"-->User:
 deactivate ":SellParser"
 destroy ":SellParser"
 @enduml
