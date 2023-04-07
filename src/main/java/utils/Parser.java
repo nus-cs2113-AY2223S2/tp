@@ -96,6 +96,13 @@ public class Parser {
     }
 
     //Solution below adapted from https://github.com/Stella1585/ip/blob/master/src/main/java/duke/Parser.java
+    /**
+     * Parsing the input into properties of Meeting class and checking for error.
+     *
+     * @param description Cleaned UserInput without the Command keyword.
+     * @return AddMeetingCommand object based on the info in the description,
+     *     if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareAddMeetingCommand(String description) {
         String[] words = (description.trim()).split("t/");
         String[] testName = (description.trim()).split("n/");
@@ -107,26 +114,36 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_ADD_PARAM);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         String issue = (words[0].substring(2)).trim();
         String time = words[1].trim();
         return new AddMeetingCommand(time, issue);
     }
-
+    /**
+     * Checking for whether user input has excess command.
+     *
+     * @param userInput Cleaned UserInput without the Command keyword.
+     * @return ViewMeetingCommand object if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareViewMeetingCommand(String userInput) {
         try {
             if (!userInput.isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_EXCESS_VIEW_PARAM);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         return new ViewMeetingCommand();
     }
-
+    /**
+     * Checking whether user input has an number and the number format.
+     *
+     * @param description Cleaned UserInput without the Command keyword.
+     * @return DeleteMeetingCommand object if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareDeleteMeetingCommand(String description) {
         int index;
         try {
@@ -135,7 +152,7 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_INDEX);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         } catch (NumberFormatException e) {
             System.out.println(Messages.ERROR_MEETING_MISSING_INDEX);
@@ -144,14 +161,19 @@ public class Parser {
         assert index >= 0 : "Index of meeting should be 0 or greater.";
         return new DeleteMeetingCommand(index);
     }
-
+    /**
+     * Checking whether the user input is empty.
+     *
+     * @param description Cleaned UserInput without the Command keyword.
+     * @return FindMeetingCommand object if input is valid, otherwise IncorrectCommand object.
+     */
     private Command prepareFindMeetingCommand(String description) {
         try {
             if ((description.trim()).isEmpty()) {
                 throw new DinerDirectorException(Messages.ERROR_MEETING_MISSING_PARAM);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         return new FindMeetingCommand(description.trim());
