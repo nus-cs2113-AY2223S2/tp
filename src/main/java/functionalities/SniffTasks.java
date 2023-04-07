@@ -43,7 +43,7 @@ public class SniffTasks {
      *
      * @param archiveSavedFile The SniffArchive file
      * @throws SniffException if there are errors when storing appointment data
-     * */
+     */
     public static void archivedTasks(FileWriter archiveSavedFile) throws SniffException {
         int no = 1;
         try {
@@ -331,6 +331,19 @@ public class SniffTasks {
         }
         if (counter == 1) {
             Ui.showUserMessage(" There are no appointments of this type!");
+        }
+    }
+
+    public void findDate(String date) throws SniffException {
+        int counter = 1;
+        for (Appointment appointment : APPOINTMENTS) {
+            if (appointment.isDate(date)) {
+                Ui.formatPrintList(counter, appointment.toString());
+                counter++;
+            }
+        }
+        if (counter == 1) {
+            Ui.showUserMessage(" There are no appointments on this date!");
         }
     }
 

@@ -48,7 +48,7 @@ public class Parser {
                 parseHelpCommand();
             } else if (userCommand.equals("archive")) {
                 parseArchiveCommand();
-            }else if (userCommand.equals("bye")) {
+            } else if (userCommand.equals("bye")) {
                 parseByeCommand();
             } else {
                 throw new SniffException(" Not a recognized Sniff command!");
@@ -83,7 +83,7 @@ public class Parser {
         try {
             String[] firstSplit = input.split(splitter);
             String[] secondSplit = firstSplit[1].split("(at/|an/|on/|cn/|cd/|ct/|vd/|vt/" +
-                     "|v/|sd/|st/|ed/|et/|p/)", -1);
+                    "|v/|sd/|st/|ed/|et/|p/)", -1);
             return secondSplit[0].trim();
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new SniffException(" The " + splitter + " description is invalid!");
@@ -151,6 +151,7 @@ public class Parser {
             int animalIndex = task.indexOf("a/");
             int typeIndex = task.indexOf("t/");
             int aIDIndex = task.indexOf("aID/");
+            int dateIndex = task.indexOf("d/");
             if (animalIndex != -1) {
                 String details = task.substring(animalIndex + 2);
                 command = new FindCommand("animal", details);
@@ -160,6 +161,9 @@ public class Parser {
             } else if (aIDIndex != -1) {
                 String details = task.substring(aIDIndex + 4);
                 command = new FindCommand("appointment", details);
+            } else if (dateIndex != -1) {
+                String details = task.substring(dateIndex + 2);
+                command = new FindCommand("date", details);
             } else {
                 logger.warning(" NULL command returned to Sniff.run");
                 throw new SniffException(" Invalid details provided for find command. Unable to execute find command.");

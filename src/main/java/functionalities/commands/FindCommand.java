@@ -21,6 +21,8 @@ public class FindCommand extends Command {
             tasks.findAnimal(details);
         } else if (category.equals("type")) {
             tasks.findType(details);
+        } else if (category.equals("date")) {
+            tasks.findDate(details);
         } else {
             throw new SniffException("Unsupported find command!");
         }

@@ -1,10 +1,13 @@
 package functionalities.appointments;
 
+import exception.SniffException;
 import functionalities.Animal;
 import functionalities.Owner;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * The Consultation class represents a consultation type appointment for an animal with its owner.
@@ -41,6 +44,17 @@ public class Consultation extends Appointment {
                 + " Date: " + date + " | Time: " + time + '\n'
                 + " Animal Name: " + animal.toString() + '\n'
                 + " Owner Name: " + owner.toString();
+    }
+
+    @Override
+    public boolean isDate(String dateDetails) throws SniffException {
+        try {
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate userDate = LocalDate.parse(dateDetails, dateFormatter);
+            return userDate.equals(date);
+        } catch (DateTimeParseException d) {
+            throw new SniffException(" Invalid Date format for find command!");
+        }
     }
 
     public String retrieveStorageInfo() {
