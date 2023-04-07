@@ -1,7 +1,9 @@
 # Duke of Books
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+Duke of Books is a CLI library management system targetting NUS computer science (CS) students who wish to borrow and read CS related books. CS students are incredibly busy and hence having a command line interface (CLI) program without GUI makes finding the books they want quick and efficient. This software will also help them track loans and return dates.
 
-## Commands
-librarian -title test -topic python -author me -isbn 1567890 -action add
-librarian -title test -topic python -author me -isbn 1567890 -action delete
+
+Useful links:
+* [User Guide](UserGuide.md)
+* [Developer Guide](DeveloperGuide.md)
+* [About Us](AboutUs.md)
