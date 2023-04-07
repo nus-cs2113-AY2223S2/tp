@@ -1,37 +1,48 @@
 @startuml
 !include ../../Style.puml
 
+participant ":Frontend" as Frontend
 participant ":Parser" as Parser
 participant "command:AddCommand" as AddCommand
 participant "entryObj:Entry" as Entry
-participant "postReq:Request" as Request
 participant "backend:Backend" as Backend
 
-participant "reponse:Response" as Response
 participant "UI" as UI
 
+activate Frontend
+activate Parser
+activate UI
+activate Backend
+Frontend -> Parser : parseUserInput(userInput)
 Parser -> AddCommand ** : AddCommand(description, price, category)
 activate AddCommand
 AddCommand -> Entry ** :Entry(description, price, category)
 activate Entry
-return entryObj
-return command
+Entry --> AddCommand : entryObj
+deactivate Entry
+destroy Entry
+AddCommand --> Parser : command
+deactivate AddCommand
+Parser --> Frontend : command
 
--> AddCommand :execute()
+Frontend -> AddCommand :execute()
 activate AddCommand
-AddCommand -> Request **
-Request --> AddCommand : postReq
-AddCommand -> Backend : requestEndpointEntry (postReq)
-ref over Backend, Response
-add to EntryLog and get response
+AddCommand -> Backend : request
+ref over Backend
+Handle request and
+get response
 end ref
-Backend --> AddCommand : reponse
+
+Backend --> AddCommand : response
+
 alt response.getResponseStatus() == ResponseStatus.CREATED
     AddCommand -> UI : printExpenditureAdded(entryObj)
     UI --> AddCommand
 else else
     AddCommand --> Parser : exception
         deactivate AddCommand
+
+destroy AddCommand
 end
 
 

@@ -149,7 +149,7 @@ Format: `/view [COUNT] [-c | -category CATEGORY] [-p | -price PRICE_MIN] [-p | -
   `PRICE_MIN` price will be displayed. The first price entered must be less than that on the
   right. i.e. **MIN_PRICE should be entered before MAX_PRICE.**
 - `START_DATE`, `END_DATE` must be in `dd/MM/yy` format. **Both flags are required if user wishes to use this
-  filter feature.**
+  filter feature.** The START_DATE entered should be earlier than END_DATE.
 
 Example of usage:
 

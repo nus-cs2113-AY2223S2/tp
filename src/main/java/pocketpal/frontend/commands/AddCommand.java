@@ -38,6 +38,7 @@ public class AddCommand extends Command {
     public AddCommand(String description, double amount, String categoryStr) throws InvalidCategoryException {
         Category category = convertStringToCategory(StringUtil.toTitleCase(categoryStr));
         this.entryObj = new Entry(description, amount, category);
+        logger.info("New entry object instantiated");
     }
 
     /**

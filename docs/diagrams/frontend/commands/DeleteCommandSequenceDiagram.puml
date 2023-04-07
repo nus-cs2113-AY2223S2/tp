@@ -1,35 +1,43 @@
 @startuml
 !include ../../Style.puml
 
+participant ":Frontend" as Frontend
 participant ":Parser" as Parser
 participant "command:DeleteCommand" as DeleteCommand
 participant "requestGet:Request" as RequestGet
 participant "requestDelete:Request" as RequestDelete
 participant "backend:Backend" as Backend
-participant "responseGet:Response" as ResponseGet
-participant "responseDelete:Response" as ResponseDelete
 participant "UI" as UI
 
+activate Frontend
+activate Parser
+activate UI
 Parser -> DeleteCommand ** : DeleteCommand(entryId)
 activate DeleteCommand
 return command
 
--> DeleteCommand :execute()
+Frontend -> DeleteCommand :execute()
 activate DeleteCommand
 DeleteCommand -> RequestGet ** : Request(GET, entryId)
+activate RequestGet
 RequestGet --> DeleteCommand : requestGet
+Destroy RequestGet
 DeleteCommand -> Backend : requestEndpointEntry(requestGet)
-ref over Backend, ResponseGet
-get Entry and get responseGet
+ref over Backend
+get Entry and get
+responseGet
 end ref
 Backend --> DeleteCommand : responseGet
 
 DeleteCommand -> RequestDelete ** : Request(DELETE, entryId)
+activate RequestDelete
 RequestDelete --> DeleteCommand
+Destroy RequestDelete
 DeleteCommand -> Backend : requestEndpointEntry(requestDelete)
 
-ref over Backend, ResponseDelete
-delete from EntryLog and get responseDelete
+ref over Backend
+delete from EntryLog and
+get responseDelete
 end ref
 
 
@@ -40,5 +48,6 @@ else else
     DeleteCommand -> UI:printExpenditureDeleted(deletedEntry)
     UI --> DeleteCommand
     deactivate DeleteCommand
+    destroy DeleteCommand
 end
 @enduml

@@ -159,7 +159,6 @@ instance.
 The following sequence diagram shows how the add command work:
 
 ![AddCommandSequenceDiagram](static/frontend/commands/AddCommandSequenceDiagram.png)
-![AddCommandSequenceDiagramReference](static/frontend/commands/AddCommandSequenceDiagramReference.png)
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
@@ -196,8 +195,6 @@ Every instance of `DeleteCommand` is created with an Integer, which is the ID of
 The following sequence diagram shows how the delete command work:
 
 ![DeleteCommandSequenceDiagram](static/frontend/commands/DeleteCommandSequenceDiagram.png)
-![DeleteCommandSequenceDiagramGetResponse](static/frontend/commands/DeleteCommandSequenceDiagramDeleteResponse.png)
-![DeleteCommandSequenceDiagramDeleteResponse](static/frontend/commands/DeleteCommandSequenceDiagramDeleteResponse.png)
 
 Given below is an example usage scenario and how the delete mechanism behaves at each step.
 
