@@ -10,6 +10,12 @@ import chching.record.IncomeList;
 import chching.record.Target;
 import chching.record.TargetStorage;
 
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 public class ChChing {
     private Storage storage;
     private IncomeList incomes;
@@ -20,6 +26,18 @@ public class ChChing {
     private TargetStorage targetStorage;
     private Target target = new Target(0);
     private Ui ui;
+
+    /**
+     * Program Logging
+     */
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+
+    static {
+        Handler handler = new ConsoleHandler();
+        handler.setLevel(Level.ALL);
+        logger.addHandler(handler);
+        logger.setLevel(Level.ALL);
+    }
 
     /**
      * Loads memory of the program

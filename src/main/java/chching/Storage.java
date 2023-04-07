@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,6 +27,17 @@ import com.google.gson.JsonElement;
  * Models a class to handle storage for the program.
  */
 public class Storage {
+    private static final Logger logger = Logger.getLogger(ChChing.class.getName());
+
+    /**
+     * Program Logging
+     */
+    static {
+        Handler handler = new ConsoleHandler();
+        handler.setLevel(Level.ALL);
+        logger.addHandler(handler);
+        logger.setLevel(Level.ALL);
+    }
     private final File file;
 
     /**
