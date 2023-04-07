@@ -14,12 +14,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 
 public class SniffTasks {
 
     private static final ArrayList<Appointment> APPOINTMENTS = new ArrayList<>();
     private static final HashSet<String> UIDS = new HashSet<>();
-    private static int appointmentCount = 0;
 
     public static void addAppointmentUID(String uid) {
         UIDS.add(uid);
@@ -30,10 +30,53 @@ public class SniffTasks {
     }
 
     public static void retrieveTask(FileWriter savedFile) throws IOException {
-        for (int index = 0; index < SniffTasks.APPOINTMENTS.size(); index++) {
-            if (APPOINTMENTS.get(index).getStatus().equals(" ")) {
-                savedFile.write(APPOINTMENTS.get(index).retrieveStorageInfo());
+        for (Appointment appointment : SniffTasks.APPOINTMENTS) {
+            if (appointment.getStatus().equals(" ")) {
+                savedFile.write(appointment.retrieveStorageInfo());
                 savedFile.write(System.getProperty("line.separator"));
+            }
+        }
+    }
+
+    public static void archivedTasks(FileWriter archiveSavedFile) throws IOException {
+        for (Appointment appointment : APPOINTMENTS) {
+            if (appointment.isDone) {
+                archiveSavedFile.write(appointment.retrieveStorageInfo());
+                archiveSavedFile.write(System.getProperty("line.separator"));
+            }
+        }
+    }
+
+    public static void listArchivedAppointments() {
+        int counter = 1;
+        if (APPOINTMENTS.isEmpty()) {
+            assert false : "There are no appointments in the Archive task list";
+            Ui.showUserMessage(" No entries found!");
+        }
+        for (Appointment appointment : APPOINTMENTS) {
+            assert appointment != null : "Appointment is not empty";
+            if (appointment.isDone) {
+                Ui.formatPrintList(counter, appointment.toString());
+                counter++;
+            }
+        }
+    }
+
+    /**
+     * Sorts the ArrayList by date and time before listing out all the appointment currently in the appointment list.
+     */
+    public void listAppointments() {
+        APPOINTMENTS.sort(new DateTimeComparator());
+        int counter = 1;
+        if (APPOINTMENTS.isEmpty()) {
+            assert false : "There are no appointments in the task list";
+            Ui.showUserMessage(" No entries found!");
+        }
+        for (Appointment appointment : APPOINTMENTS) {
+            assert appointment != null : "Appointment is not empty";
+            if (appointment.getStatus().equals(" ")) {
+                Ui.formatPrintList(counter, appointment.toString());
+                counter++;
             }
         }
     }
@@ -48,10 +91,10 @@ public class SniffTasks {
             }
             UIDS.add(uid);
             Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
-            assert newAppointment.uid == uid : "consultation uid should be " + uid;
-            assert newAppointment.isDone == false : "consultation isDone should be false when initialized.";
-            assert newAppointment.animal.type == animal.type : "consultation animal type should be " + animal.type;
-            assert newAppointment.animal.name == animal.name : "consultation animal name should be " + animal.name;
+            assert Objects.equals(newAppointment.uid, uid) : "consultation uid should be " + uid;
+            assert !newAppointment.isDone : "consultation isDone should be false when initialized.";
+            assert Objects.equals(newAppointment.animal.type, animal.type) : "consultation animal type should be " + animal.type;
+            assert Objects.equals(newAppointment.animal.name, animal.name) : "consultation animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             Ui.showUserMessage(" Consultation added successfully!");
@@ -66,27 +109,27 @@ public class SniffTasks {
      * Checks if there is a duplicate consultation appointment in the ArrayList, throws an error if present.
      *
      * @param animal Animal object generated from input from user.
-     * @param owner Owner object generated from input from user.
-     * @param date LocalDate object generated from the date input from user.
-     * @param time LocalTime object generated from the time input from user.
-     *
+     * @param owner  Owner object generated from input from user.
+     * @param date   LocalDate object generated from the date input from user.
+     * @param time   LocalTime object generated from the time input from user.
      * @throws DuplicateAppointmentException thrown when the appointment details of another Consultation appointment
      *                                       currently in the ArrayList is same as the user input.
      */
     private void checkConsultationDuplicate(Animal animal, Owner owner,
-                                           LocalDate date, LocalTime time) throws DuplicateAppointmentException {
+                                            LocalDate date, LocalTime time) throws DuplicateAppointmentException {
         for (Appointment appointment : APPOINTMENTS) {
             if (appointment.uid.charAt(0) == 'C') {
                 assert appointment.uid.charAt(0) != 'S' : "Surgery appointments should not reach here";
                 assert appointment.uid.charAt(0) != 'V' : "Vaccination appointments should not reach here";
                 Consultation temp = (Consultation) appointment;
                 if (animal.equals(temp.animal) && owner.equals(temp.getOwner()) && date.equals(temp.getDate())
-                    && time.equals(temp.getTime())) { //duplicate check
+                        && time.equals(temp.getTime())) { //duplicate check
                     throw new DuplicateAppointmentException(" A similar appointment already exists.", temp);
                 }
             }
         }
     }
+
     public void addVaccination(Animal animal, Owner owner,
                                LocalDate date, LocalTime time, String vaccine) throws SniffException {
         try {
@@ -97,10 +140,10 @@ public class SniffTasks {
             }
             UIDS.add(uid);
             Appointment newAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
-            assert newAppointment.uid == uid : "vaccination uid should be " + uid;
-            assert newAppointment.isDone == false : "vaccination isDone should be false when initialized.";
-            assert newAppointment.animal.type == animal.type : "vaccination animal type should be " + animal.type;
-            assert newAppointment.animal.name == animal.name : "vaccination animal name should be " + animal.name;
+            assert Objects.equals(newAppointment.uid, uid) : "vaccination uid should be " + uid;
+            assert !newAppointment.isDone : "vaccination isDone should be false when initialized.";
+            assert Objects.equals(newAppointment.animal.type, animal.type) : "vaccination animal type should be " + animal.type;
+            assert Objects.equals(newAppointment.animal.name, animal.name) : "vaccination animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             Ui.showUserMessage(" Vaccination added successfully!");
@@ -114,12 +157,11 @@ public class SniffTasks {
     /**
      * Checks if there is a duplicate vaccination appointment in the ArrayList, throws an error if present.
      *
-     * @param animal Animal object generated from input from user.
-     * @param owner Owner object generated from input from user.
-     * @param date LocalDate object generated from the date input from user.
-     * @param time LocalTime object generated from the time input from user.
+     * @param animal  Animal object generated from input from user.
+     * @param owner   Owner object generated from input from user.
+     * @param date    LocalDate object generated from the date input from user.
+     * @param time    LocalTime object generated from the time input from user.
      * @param vaccine String representing the vaccine description from the user.
-     *
      * @throws DuplicateAppointmentException thrown when the appointment details of another Vaccination appointment
      *                                       currently in the ArrayList is same as the user input.
      */
@@ -131,12 +173,13 @@ public class SniffTasks {
                 assert appointment.uid.charAt(0) != 'C' : "Consultation appointments should not reach here";
                 Vaccination temp = (Vaccination) appointment;
                 if (animal.equals(temp.animal) && owner.equals(temp.getOwner()) && date.equals(temp.getDate())
-                    && time.equals(temp.getTime()) && vaccine.equals(temp.getVaccine())) { //duplicate check
+                        && time.equals(temp.getTime()) && vaccine.equals(temp.getVaccine())) { //duplicate check
                     throw new DuplicateAppointmentException(" A similar appointment already exists.", temp);
                 }
             }
         }
     }
+
     public void addSurgery(Animal animal, Owner owner,
                            String priority, LocalDate startDate, LocalTime startTime,
                            LocalDate endDate, LocalTime endTime) throws SniffException {
@@ -149,10 +192,10 @@ public class SniffTasks {
             UIDS.add(uid);
             Appointment newAppointment = new Surgery(uid, animal, owner, priority, startDate, startTime, endDate,
                     endTime);
-            assert newAppointment.uid == uid : "surgery uid should be " + uid;
-            assert newAppointment.isDone == false : "surgery isDone should be false when initialized.";
-            assert newAppointment.animal.type == animal.type : "surgery animal type should be " + animal.type;
-            assert newAppointment.animal.name == animal.name : "surgery animal name should be " + animal.name;
+            assert Objects.equals(newAppointment.uid, uid) : "surgery uid should be " + uid;
+            assert !newAppointment.isDone : "surgery isDone should be false when initialized.";
+            assert Objects.equals(newAppointment.animal.type, animal.type) : "surgery animal type should be " + animal.type;
+            assert Objects.equals(newAppointment.animal.name, animal.name) : "surgery animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
             Ui.printAppointmentAddedMessage(newAppointment);
             Ui.showUserMessage(" Surgery added successfully!");
@@ -166,12 +209,12 @@ public class SniffTasks {
     /**
      * Checks if there is a duplicate surgical appointment in the ArrayList, throws an error if present.
      *
-     * @param animal Animal object generated from input from user.
-     * @param owner Owner object generated from input from user.
+     * @param animal    Animal object generated from input from user.
+     * @param owner     Owner object generated from input from user.
      * @param startDate LocalDate object generated from the start date input from user.
      * @param startTime LocalTime object generated from the start time input from user.
-     * @param endDate LocalDate object generated from the end date input from user.
-     * @param endTime LocalTime object generated from the end time input from user.
+     * @param endDate   LocalDate object generated from the end date input from user.
+     * @param endTime   LocalTime object generated from the end time input from user.
      * @throws DuplicateAppointmentException thrown when the appointment details of another Surgery appointment
      *                                       currently in the ArrayList is same as the user input.
      */
@@ -183,8 +226,8 @@ public class SniffTasks {
                 assert appointment.uid.charAt(0) != 'V' : "Vaccination appointments should not reach here";
                 Surgery temp = (Surgery) appointment;
                 if (animal.equals(temp.animal) && owner.equals(temp.getOwner())
-                    && startDate.equals(temp.getStartDate()) && startTime.equals(temp.getStartTime())
-                    && endDate.equals(temp.getEndDate()) && endTime.equals(temp.getEndTime())) { //duplicate check
+                        && startDate.equals(temp.getStartDate()) && startTime.equals(temp.getStartTime())
+                        && endDate.equals(temp.getEndDate()) && endTime.equals(temp.getEndTime())) { //duplicate check
                     throw new DuplicateAppointmentException(" A similar appointment already exists.", temp);
                 }
             }
@@ -207,24 +250,8 @@ public class SniffTasks {
             APPOINTMENTS.remove(index);
             UIDS.remove(uid);
             Ui.printAppointmentRemovedMessage(temp);
-            assert appointmentCount >= 0 : "Appointment count cannot be less than 0";
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The remove command entry is invalid!");
-        }
-    }
-
-    /**
-     * Sorts the ArrayList by date and time before listing out all the appointment currently in the appointment list.
-     */
-    public void listAppointments() {
-        APPOINTMENTS.sort(new DateTimeComparator());
-        int counter = 1;
-        if (APPOINTMENTS.isEmpty()) {
-            Ui.showUserMessage("No entries found!");
-        }
-        for (Appointment appointment : APPOINTMENTS) {
-            Ui.formatPrintList(counter, appointment.toString());
-            counter++;
         }
     }
 
@@ -288,7 +315,6 @@ public class SniffTasks {
             }
             APPOINTMENTS.get(index).setIsDone(true);
             Ui.printAppointmentMarkMessage();
-            assert appointmentCount >= 0 : "Appointment count cannot be less than 0";
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The mark command entry is invalid!");
         }
@@ -309,7 +335,6 @@ public class SniffTasks {
             }
             APPOINTMENTS.get(index).setIsDone(false);
             Ui.printAppointmentUnMarkMessage();
-            assert appointmentCount >= 0 : "Appointment count cannot be less than 0";
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The unmark command entry is invalid!");
         }
