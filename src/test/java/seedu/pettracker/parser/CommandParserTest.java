@@ -14,6 +14,8 @@ import seedu.pettracker.commands.MarkTaskCommand;
 import seedu.pettracker.commands.UnMarkTaskCommand;
 import seedu.pettracker.commands.ScheduleCommand;
 import seedu.pettracker.commands.HelpCommand;
+import seedu.pettracker.commands.EditStatCommand;
+
 import seedu.pettracker.exceptions.EmptyArgException;
 import seedu.pettracker.exceptions.EmptyPetNameException;
 import seedu.pettracker.exceptions.IllegalArgException;
@@ -130,6 +132,23 @@ class CommandParserTest {
     void parseRemoveStatNoStat() {
         CommandParser cp = new CommandParser();
         assertThrows(EmptyArgException.class, () -> cp.newCommand("remove-stat name"));
+    }
+
+    // newCommand() edit-stat
+    @Test
+    void parseEditStat() {
+        CommandParser cp = new CommandParser();
+        assertAll(() -> assertTrue(cp.newCommand("edit-stat name stat 1") instanceof EditStatCommand));
+    }
+    @Test
+    void parseEditStatNoArgs() {
+        CommandParser cp = new CommandParser();
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("edit-stat"));
+    }
+    @Test
+    void parseEditStatNoStat() {
+        CommandParser cp = new CommandParser();
+        assertThrows(EmptyArgException.class, () -> cp.newCommand("edit-stat name"));
     }
 
     // newCommand() add-task
