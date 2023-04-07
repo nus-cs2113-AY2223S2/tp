@@ -145,8 +145,9 @@ public class Meal360 {
         } else if (command[0].equals("tag")) {
             try {
                 ui.printSeparator();
-                String tag = parser.parseTagRecipe(command, recipeList);
-                ui.printMessage("You have modified the recipe(s) in this \"" + tag + "\" tag.");
+                String returnMessage = parser.parseTagRecipe(command, recipeList);
+                ui.printTagMessage(returnMessage);
+                //ui.printMessage("You have modified the recipe(s) in this \"" + tag + "\" tag.");
             } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException e) {
                 ui.printMessage(e.getMessage());
             }

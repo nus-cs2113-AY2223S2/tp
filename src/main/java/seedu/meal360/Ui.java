@@ -83,7 +83,7 @@ public class Ui {
     }
 
     private void listRecipes(RecipeList recipeListToPrint, String emptyListMsg,
-            String listHeaderMsg) {
+                             String listHeaderMsg) {
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
         if (numberOfRecipes == 0) {
@@ -137,5 +137,24 @@ public class Ui {
                 System.out.println(formatMessage(outputMessage));
             });
         }
+    }
+
+    public void printTagMessage(String receivedMessage) {
+        String[] args = receivedMessage.split(" ", 2);
+        String command = args[0].trim();
+        String tag = args[1].trim();
+        if (command.equals("add")) {
+            printSuccessfullyAddTag(tag);
+        } else if (command.equals("remove")) {
+            printSuccessfullyRemoveTag(tag);
+        }
+    }
+
+    public void printSuccessfullyAddTag(String tag) {
+        printMessage("You have successfully added the recipe(s) to \"" + tag + "\" tag.");
+    }
+
+    public void printSuccessfullyRemoveTag(String tag) {
+        printMessage("You have successfully removed the recipe(s) from \"" + tag + "\" tag.");
     }
 }
