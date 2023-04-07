@@ -230,25 +230,25 @@ The `AcademicExpenditureCommand`, `AccommodationExpenditureCommand`, `Entertainm
 This is due to the fact that the 7 formerly stated commands all take in the same fields, and hence can be parsed in a similar fashion to instantiate the **Expenditure Command**, and later the **Expenditure** itself. In other words, the 7 stated commands are instantiated in the same way and will be explained altogether in this section.
 
 To instantiate the commands, the full commands are the following: 
-`AcademicExpenditureCommand`: `academic d/<date> a/<amount> s/<description>`
+`AcademicExpenditureCommand`: `academic d/<date> a/<amount> p/<description>`
 - To create an academic expenditure.
 
-`AccommodationExpenditureCommand`: `accommodation d/<date> a/<amount> s/<description>`
+`AccommodationExpenditureCommand`: `accommodation d/<date> a/<amount> p/<description>`
 - To create an accommodation expenditure.
 
-`EntertainmentExpenditureCommand`: `entertainment d/<date> a/<amount> s/<description>`
+`EntertainmentExpenditureCommand`: `entertainment d/<date> a/<amount> p/<description>`
 - To create an entertainment expenditure.
 
-`FoodExpenditureCommand`: `food d/<date> a/<amount> s/<description>`
+`FoodExpenditureCommand`: `food d/<date> a/<amount> p/<description>`
 - To create a food expenditure.
 
-`OtherExpenditureCommand`: `other d/<date> a/<amount> s/<description>`
+`OtherExpenditureCommand`: `other d/<date> a/<amount> p/<description>`
 - To create an expenditure with a category of "other".
 
-`TransportExpenditureCommand`: `transport d/<date> a/<amount> s/<description>`
+`TransportExpenditureCommand`: `transport d/<date> a/<amount> p/<description>`
 - To create a transport expenditure.
 
-`TuitionExpenditureCommand`: `tuition d/<date> a/<amount> s/<description>`
+`TuitionExpenditureCommand`: `tuition d/<date> a/<amount> p/<description>`
 - To create a tuition expenditure.
 
 When the user inputs one of the 7 expenditure commands into the application, the `MainInputParser.java` takes in the input and determines the command's operations via switch statements. Next, the `ParseIndividualValue.java` class contains the operation to split the valid input given by the user. This splits the inputs into fields to instantiate the **Expenditure Commands**. In this instance, the 7 stated commands will be referred to `ExpenditureCommand`. After splitting, `MainInputParser.java` calls operations from `ParseAdd.java`. `ParseAdd.java` prepares the split inputs for the `ExpenditureCommand` as fields, and instantiates one of its seven commands based on the user's specified expenditure category. 
@@ -280,9 +280,10 @@ The ```EditCommand``` edits an existing expenditure in the record.
 
 It cannot change the expenditure type of a record, only its fields
 
-For editing an expenditure, the full command is  ```edit INDEX d/DATE a/AMOUNT s/DESCRIPTION```
+For editing an expenditure, the full command is  ```edit INDEX d/DATE a/AMOUNT p/DESCRIPTION```
 
-For editing a borrow/lend record, the full command is  ```edit INDEX d/DATE n/(LEND/BORROW)_NAME a/AMOUNT b/DEADLINE s/DESCRIPTION```
+For editing a borrow/lend record, the full command is  ```edit INDEX d/DATE n/(LEND/BORROW)_NAME 
+a/AMOUNT b/DEADLINE p/DESCRIPTION```
        
 The sequence diagram below shows the interactions of a successful execution of the EditCommand
 
@@ -474,17 +475,17 @@ be deleted.
 expenditures cannot to edit lend/borrow expenditures
 
 
-- Test case : `edit 1 d/2023-02-12 a/8.00 s/Fast Food` 
+- Test case : `edit 1 d/2023-02-12 a/8.00 p/Fast Food` 
 - Expected : Assuming this test case is for a normal expenditure, all the previous parameters will be replaced with
 the new input parameters. An edit message will be shown as well.
 
 
-- Test case : `edit 2 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 s/fishing`
+- Test case : `edit 2 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 p/fishing`
 - Expected : Assuming this test case is for a lend/borrow expenditure, all the previous parameters will be 
 replaced with the new input parameters. An edit message will be shown as well.
 
 
-- Test case : `edit 2 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 s/fishing` on normal expenditures
+- Test case : `edit 2 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 p/fishing` on normal expenditures
 - Expected : As the input parameters are different, an invalid message will be returned. Expenditure
 will not be edited.
 
@@ -493,7 +494,7 @@ will not be edited.
 - Expected : Invalid message prompting missing inputs will be shown. Expenditures will not be edited. 
 
 
-- Other invalid `edit` commands: eg. `edit -1 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 s/fishing`
+- Other invalid `edit` commands: eg. `edit -1 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 p/fishing`
 - Expected : Invalid message similar to previous invalid cases will be provided.
 
 #### Duplicate an expenditure
