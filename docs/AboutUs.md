@@ -7,4 +7,4 @@
  ![](https://via.placeholder.com/100.png?text=Photo) |     EthanYidong      |  [Github](https://github.com/EthanYidong)   | [Portfolio](team/ethanyidong.md) 
  ![](https://via.placeholder.com/100.png?text=Photo) |     Lin Jing Ya      |    [Github](https://github.com/jingyaaa)    |   [Portfolio](team/johndoe.md)   
  ![](https://via.placeholder.com/100.png?text=Photo) | Zeng JingJie, Jackie |   [Github](https://github.com/Jjzeng123)    |   [Portfolio](team/jackie.md)    
- ![](https://via.placeholder.com/100.png?text=Photo) |     Tan Jian Wei     |    [Github](https://github.com/TJW0911)     |   [Portfolio](team/JianWei.md)   
+ ![](https://via.placeholder.com/100.png?text=Photo) |     Tan Jian Wei     |    [Github](https://github.com/TJW0911)     |   [Portfolio](team/tjw0911.md)   
