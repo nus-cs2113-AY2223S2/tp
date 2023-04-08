@@ -79,13 +79,6 @@ public class UI {
         System.out.println(LINE);
     }
 
-    /**
-     * Prints [NUS Modules] maps to --> [PU Modules]. A general message without specific PU name
-     */
-    public void printNUSModulesMapsToPUModulesGeneralMessage() {
-        System.out.println("[NUS Modules]" + PU_UNI_NAME_MAPS_TO_NUS_MESSAGE);
-    }
-
     public void printAddModMessage() {
         System.out.println(ADD_MOD_MESSAGE);
         System.out.println(LINE);

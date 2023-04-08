@@ -55,13 +55,12 @@ returns a Command object back to Duke.
 Parser class serves to process raw user input and map it to one of the various commands.
 Parser class will return an object of class "Command", which will be used by Duke to execute the user's commands.
 
-**3. UI**
+**3. UI** (**outdated**)
 
 UI class is in charge of the majority of the print functions present in the program.
 It is instantiated once in both Parser and Duke classes, where it's print functions are utilized
 to print outputs to the User.
 
-Future Improvements: UI to handle ALL of the printing functions present in the program.
 
 **4. Storage**
 
@@ -135,6 +134,24 @@ The help command provides a list of commands and the commands' respective input 
 The following sequence diagram shows the relationship between the classes involved when the delete command is called.
 
 ![HelpCommandSequenceDiagram.png](diagrams%2FHelpCommandSequenceDiagram.png)
+
+### UserInterface (UI)
+
+UI class main purpose is to be in charge of the majority of the print functions present in the program.
+It has the singleton design pattern so that only one instance of UI is instantiated.
+For some functions, the UI class filters out modules to print accordingly, therefore it does not exist 
+solely for the purpose of holding print functions, but has some logical components as well.
+
+**Class Diagram of UI Class**
+
+![UIClassDiagram.png](diagrams%2FUIClassDiagram.png)
+
+
+Future Improvements: UI to handle ALL of the printing functions present in the program.
+
+
+
+
 
 ### List Current Command
 
@@ -244,14 +261,17 @@ Sequence Diagram of Add Module Command.
 2. In the circumstance that the moduleToAdd is null, Storage would call the printAddModuleFailureMessage to tell the
    user that module adding has failed, and stop the operation of AddModuleCommand.
 3. Storage class would then add the module to its ArrayList of saved modules.
-4. Storage class would then initialise an instance of FileWriter to append the newly added module to the txt file.
-5. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to Duke
+4. Storage class would then call sortModulesAccordingToPrintingLength(modules), to ensure modules are sorted 
+according to the correct printing length. _Refer to Reference Block for SortModulesAccording for more info._
+[SortModulesAccordingToPrintingLength](#reference-block-for-sortmodulesaccording-to-printing-length-function)
+5. Storage class would then initialise an instance of FileWriter to append the newly added module to the txt file.
+6. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to Duke
    
 
 **Future Development**
 
-The UI class currently holds an instance all available PUs and their modules.
-This can and will be further refactored into other class to adhere to Single Responsbility Principle.
+The UI class currently holds an instance of all available PUs and their modules.
+This can and will be further refactored into other class to adhere to Single Responsibility Principle.
 Possible Solution: Store the PUs and modules in DataReader and use a getter function when needed.
 
 ### Delete Command
@@ -264,7 +284,7 @@ The following sequence diagram shows the relationship between the classes involv
 ![DeleteModuleCommandSequenceDiagram.png](diagrams%2FDeleteModuleCommandSequenceDiagram.png)
 
 
-**Reference Block for SortModulesAccording to Printing Length Function:** 
+#### Reference Block for SortModulesAccording to Printing Length Function
 
 ![SortModulesAccordingToPrintingLengthFunction.png](diagrams%2FSortModulesAccordingToPrintingLengthFunction.png)
 
