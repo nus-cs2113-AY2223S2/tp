@@ -117,7 +117,7 @@ public class ExerciseSessionCommandHandler implements CommandList {
                     ui.unknownCommand();
                 } else {
                     exerciseStateHandler.endWorkout(INCOMPLETE_EXERCISE, userCareerData, achievementListHandler);
-                    System.out.println("Back to main menu...");
+                    System.out.println("Back to main menu");
                     ui.splitLine();
                 }
                 return;
@@ -126,11 +126,9 @@ public class ExerciseSessionCommandHandler implements CommandList {
             case EXERCISE_DATA_COMMAND:
                 throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_DATA_COMMAND.toString());
             case ACHIEVEMENTS:
-                achievementListHandler.printAchievements();
-                break;
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_ACHIEVEMENT_COMMAND.toString());
             case CLEAR_ACHIEVEMENTS:
-                achievementListHandler.clearAchievementsData();
-                break;
+                throw new DukeError(ErrorMessages.ERROR_ONGOING_EXERCISE_CLEAR_ACHIEVEMENT_COMMAND.toString());
             default:
                 ui.unknownCommand();
                 break;
