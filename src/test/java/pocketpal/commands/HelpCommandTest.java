@@ -19,6 +19,11 @@ public class HelpCommandTest extends BackendTestUtil {
     private final HelpCommand testCommand1 = new HelpCommand();
     private final HelpCommand testCommand2 = new HelpCommand("Add");
     private final HelpCommand testCommand3 = new HelpCommand("Delete");
+    private final HelpCommand testCommand4 = new HelpCommand("Edit");
+    private final HelpCommand testCommand5 = new HelpCommand("View");
+    private final HelpCommand testCommand6 = new HelpCommand("Bye");
+    private final HelpCommand testCommand7 = new HelpCommand("Help");
+
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
@@ -26,6 +31,13 @@ public class HelpCommandTest extends BackendTestUtil {
             + UIConstants.LINE;
 
     private final String expectedOutput2 = MessageConstants.MESSAGE_ADD_COMMAND + UIConstants.LINE;
+
+    private final String expectedOutput3 = MessageConstants.MESSAGE_DELETE_COMMAND + UIConstants.LINE;
+    private final String expectedOutput4 = MessageConstants.MESSAGE_EDIT_COMMAND + UIConstants.LINE;
+    private final String expectedOutput5 = MessageConstants.MESSAGE_VIEW_COMMAND + UIConstants.LINE;
+    private final String expectedOutput6 = MessageConstants.MESSAGE_BYE_COMMAND + UIConstants.LINE;
+    private final String expectedOutput7 = MessageConstants.MESSAGE_HELP_COMMAND + UIConstants.LINE;
+
 
     @Test
     @DisplayName("Test constructor for HelpCommand")
@@ -48,9 +60,44 @@ public class HelpCommandTest extends BackendTestUtil {
     }
 
     @Test
-    void testHelpCommandExecute(){
+    void testHelpCommandAddExecute(){
         System.setOut(new PrintStream(outContent));
         testCommand2.execute(TEST_UI, TEST_BACKEND);
         assertEquals(expectedOutput2.toString(), outContent.toString());
+    }
+
+    @Test
+    void testHelpCommandDeleteExecute(){
+        System.setOut(new PrintStream(outContent));
+        testCommand3.execute(TEST_UI, TEST_BACKEND);
+        assertEquals(expectedOutput3.toString(), outContent.toString());
+    }
+
+    @Test
+    void testHelpCommandEditExecute(){
+        System.setOut(new PrintStream(outContent));
+        testCommand4.execute(TEST_UI, TEST_BACKEND);
+        assertEquals(expectedOutput4.toString(), outContent.toString());
+    }
+
+    @Test
+    void testHelpCommandViewExecute(){
+        System.setOut(new PrintStream(outContent));
+        testCommand5.execute(TEST_UI, TEST_BACKEND);
+        assertEquals(expectedOutput5.toString(), outContent.toString());
+    }
+
+    @Test
+    void testHelpCommandByeExecute(){
+        System.setOut(new PrintStream(outContent));
+        testCommand6.execute(TEST_UI, TEST_BACKEND);
+        assertEquals(expectedOutput6.toString(), outContent.toString());
+    }
+
+    @Test
+    void testHelpCommandHelpExecute(){
+        System.setOut(new PrintStream(outContent));
+        testCommand7.execute(TEST_UI, TEST_BACKEND);
+        assertEquals(expectedOutput7.toString(), outContent.toString());
     }
 }
