@@ -78,24 +78,21 @@ The details of the definition of `Category` and `Event` can be found
 in the [Glossary](#appendix-d--glossary) section.
 
 ### Commands component
+  
+<img src="images\CommadParser_ClassDiagram.png" width="500">
 
 **API**: `Command.java`
 
-{UML class diagram}
-
-The `Command` component,
-* can execute different commands, such as adding category, adding event, deleting category, deleting event, viewing category, viewing event
-* depends on `CategoryList.java`, `CategoryCommand.java`, `Event.java`, `Parser.java` to execute the commands.
-
-### Parser component
+The `Command` interface and classes,
+* every command type is represented by a class that implements the Command interface
+* can perform actions by executing different commands, such as adding category, adding event, deleting category, deleting event, viewing category, viewing event
+* also depends on `CategoryList.java`, `CategoryCommand.java`, `Event.java`, to execute the commands.
 
 **API**: `Parser.java`
 
-{UML class diagram}
-
-The `Parser` component,
-* can parse the user input and process it to the correct format
-* depends on `CategoryList.java`, `CategoryCommand.java`, `Event.java`, `Command.java` to execute the commands.
+The `Parser` class,
+* responsible for parsing user input and creating the appropriate command classes
+* also depends on `CategoryList.java`, `CategoryCommand.java`, `Event.java`, to execute the commands.
 
 ## Implementation
 
