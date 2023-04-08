@@ -136,23 +136,23 @@ public class Parser {
     }
 
     private Command handleListCommands(ArrayList<String> userInputWords, String userCommandSecondKeyword,
-                                       ArrayList<University> universities, ArrayList<Module> modules) throws InvalidCommandException {
+                                       ArrayList<University> universities, ArrayList<Module> modules) {
         String userCommandIgnoreCase = userCommandSecondKeyword.toLowerCase();
         try {
             switch (userCommandIgnoreCase) {
-                case "pu":
-                    if (userInputWords.size() >= 3) {
-                        throw new InvalidCommandException(ui.getCommandInputError());
-                    }
-                    return new ListPuCommand();
-                case "current":
-                    if (userInputWords.size() == 3) {
-                        String userCommandThirdKeyword = userInputWords.get(2);
-                        return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
-                    }
-                    return new ListCurrentCommand(modules);
-                default:
-                    return prepareListPuModulesCommand(userInputWords, userCommandSecondKeyword, universities);
+            case "pu":
+                if (userInputWords.size() >= 3) {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
+                return new ListPuCommand();
+            case "current":
+                if (userInputWords.size() == 3) {
+                    String userCommandThirdKeyword = userInputWords.get(2);
+                    return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+                }
+                return new ListCurrentCommand(modules);
+            default:
+                return prepareListPuModulesCommand(userInputWords, userCommandSecondKeyword, universities);
             }
         } catch (InvalidCommandException e) {
             return new ExceptionHandleCommand(e);
