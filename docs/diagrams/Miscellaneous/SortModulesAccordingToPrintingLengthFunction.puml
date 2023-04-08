@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+create ":Module"
+":Storage" -> ":Module"
+activate ":Module"
+":Storage" <-- ":Module"
+deactivate ":Module"
+
+":Storage" -> ":Module": getPrintingLength()
+activate ":Module"
+
+    ":Module" -> ":Module": getModuleCode()
+    activate ":Module"
+    ":Module" --> ":Module"
+    deactivate ":Module"
+
+    ":Module" -> ":Module": getModuleName()
+    activate ":Module"
+    ":Module" --> ":Module"
+    deactivate ":Module"
+
+    ":Module" -> ":Module": getModuleMCs()
+    activate ":Module"
+    ":Module" --> ":Module"
+    deactivate ":Module"
+
+":Storage" <-- ":Module": Return Total Length of Module Code, Name, MCs
+deactivate ":Module"
+
+
+
+
+
+":Storage" -> "modules: ArrayList<Module>": modules.sort(Comparator.comparing(Total Length)
+activate "modules: ArrayList<Module>"
+"modules: ArrayList<Module>" -> "modules: ArrayList<Module>": sorts according to Total Printing Length of Module Details
+activate "modules: ArrayList<Module>"
+"modules: ArrayList<Module>" --> "modules: ArrayList<Module>"
+deactivate "modules: ArrayList<Module>"
+
+":Storage" <-- "modules: ArrayList<Module>"
+deactivate "modules: ArrayList<Module>"
+
+@enduml

@@ -1,6 +1,7 @@
 # Developer Guide
 
-SEP Helper is a desktop application for Mechanical Engineering students, studying at the
+SEP Helper is a desktop application for Mechanical Engineering students, st
+udying at the
 National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
 ---
 
@@ -54,13 +55,12 @@ returns a Command object back to Duke.
 Parser class serves to process raw user input and map it to one of the various commands.
 Parser class will return an object of class "Command", which will be used by Duke to execute the user's commands.
 
-**3. UI**
+**3. UI** (**outdated**)
 
 UI class is in charge of the majority of the print functions present in the program.
 It is instantiated once in both Parser and Duke classes, where it's print functions are utilized
 to print outputs to the User.
 
-Future Improvements: UI to handle ALL of the printing functions present in the program.
 
 **4. Storage**
 
@@ -137,25 +137,35 @@ The following sequence diagram shows the relationship between the classes involv
 
 ![HelpCommandSequenceDiagram.png](diagrams%2FHelpCommandSequenceDiagram.png)
 
-### Delete Command
+### UserInterface (UI)
 
-The delete command removes a module from the user's saved list of modules that is specified by the user.  
-> Syntax: delete [_uniAbbreviation_]/[_index_]
+UI class main purpose is to be in charge of the majority of the print functions present in the program.
+It has the singleton design pattern so that only one instance of UI is instantiated.
+For some functions, the UI class filters out modules to print accordingly, therefore it does not exist 
+solely for the purpose of holding print functions, but has some logical components as well.
 
-The following sequence diagram shows the relationship between the classes involved when the delete command is called.
+**Class Diagram of UI Class**
 
-![DeleteModuleCommandSequenceDiagram.png](diagrams%2FDeleteModuleCommandSequenceDiagram.png)
+![UIClassDiagram.png](diagrams%2FUIClassDiagram.png)
+
+
+Future Improvements: UI to handle ALL of the printing functions present in the program.
+
+
+
+
 
 ### List Current Command
 
 Lists out all of current modules that user has added.
 
 
-> Syntax: list current
+> Syntax: /list current
 
 Sequence Diagram of List Current Command.
 
 ![ListCurrentCommandSequenceDiagram.png](diagrams%2FListCurrentCommandSequenceDiagram.png)
+
 
 **Explanation**
 
@@ -167,11 +177,38 @@ See ListCurrentPuCommand for further explanation:
 [ListCurrentPuCommand](#list-current-pu-command) 
 
 
+### List Current Pu Command
+
+Prints out modules selected by user specific to a Partner University.
+
+> Syntax: /list current [_uniAbbreviation_]
+
+**Sequence Diagram of List Current Pu Command**
+
+![ListCurrentPuCommandSequenceDiagram.png](diagrams%2FListCurrentPuCommandSequenceDiagram.png)
+
+**Explanation**
+
+1. ListCurrentPuCommand object is initialized with ArrayList<Modules> modules containing all user selected modules
+   and Integer univId which is the Partner University unique ID that user has inputted.
+2. ListCurrentPuCommand calls PrintCurrentPuModList() of UI Class passing these two objects as arguments.
+3. PrintCurrentPuModList first filters out modules of the specific Partner University using uniID from the
+   ArrayList<Module> modules.
+4. PrintCurrentPuModList loops through the class level object universities to retrieve the Partner university name
+   corresponding to the uniID.
+5. Loops through filtered modules retrieving module information and printing it out to User Console.
+   _See reference block below._
+
+Reference Diagram for Print Module Details:
+
+![ListCurrentPuCommandPrintModuleDetailsSequenceDiagram.png](diagrams%2FListCurrentPuCommandPrintModuleDetailsSequenceDiagram.png)
+
+
 ### List Pu Command
 
 Lists out all of Partner Universities.
 
-> Syntax: list pu
+> Syntax: /list pu
 
 Sequence Diagram of List Pu Command.
 
@@ -186,15 +223,17 @@ Sequence Diagram of List Pu Command.
 4. UI class loops through ArrayList<University> to receive the various university information and print out
    to UserConsole
 
+
 ### List Pu Modules Command
 
 Prints out list of modules available at a given Partner University
 
-> Syntax: list [_uniAbbreviation_]
+> Syntax: /list [_uniAbbreviation_]
 
 **Note: Partner Universities Abbreviations can be found using List Pu command**
 
 Sequence Diagram of List Pu Modules Command.
+
 ![ListPuModulesCommandSequenceDiagram.png](diagrams%2FListPuModulesCommandSequenceDiagram.png)
 
 **Explanation**
@@ -224,34 +263,52 @@ Sequence Diagram of Add Module Command.
 2. In the circumstance that the moduleToAdd is null, Storage would call the printAddModuleFailureMessage to tell the
    user that module adding has failed, and stop the operation of AddModuleCommand.
 3. Storage class would then add the module to its ArrayList of saved modules.
-4. Storage class would then initialise an instance of FileWriter to append the newly added module to the txt file.
-5. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to Duke
-   **Future Development**
+4. Storage class would then call sortModulesAccordingToPrintingLength(modules), to ensure modules are sorted 
+according to the correct printing length. _Refer to Reference Block for SortModulesAccording for more info._
+[SortModulesAccordingToPrintingLength](#reference-block-for-sortmodulesaccording-to-printing-length-function)
+5. Storage class would then initialise an instance of FileWriter to append the newly added module to the txt file.
+6. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to Duke
+   
 
-The UI class currently holds an instance all available PUs and their modules.
-This can and will be further refactored into other class to adhere to Single Responsbility Principle.
+**Future Development**
+
+The UI class currently holds an instance of all available PUs and their modules.
+This can and will be further refactored into other class to adhere to Single Responsibility Principle.
 Possible Solution: Store the PUs and modules in DataReader and use a getter function when needed.
 
+### Delete Command
 
-### List Current Pu Command
+The delete command removes a module from the user's saved list of modules that is specified by the user.
+> Syntax: /remove [_uniAbbreviation_]/[_index_]
 
-Prints out modules selected by user specific to a Partner University.
+The following sequence diagram shows the relationship between the classes involved when the delete command is called.
 
-> Syntax: list current [_uniAbbreviation_]
+![DeleteModuleCommandSequenceDiagram.png](diagrams%2FCommands%2FDeleteModuleCommandSequenceDiagram.png)
 
-Sequence Diagram of List Current Pu Command
-![ListCurrentPuCommandSequenceDiagram.png](diagrams%2FListCurrentPuCommandSequenceDiagram.png)
 
-**Explanation**
+#### Reference Block for SortModulesAccording to Printing Length Function
 
-1. ListCurrentPuCommand object is initialized with ArrayList<Modules> modules containing all user selected modules
-and Integer univId which is the Partner University unique ID that user has inputted.
-2. ListCurrentPuCommand calls PrintCurrentPuModList() of UI Class passing these two objects as arguments.
-3. PrintCurrentPuModList first filters out modules of the specific Partner University using uniID from the 
-ArrayList<Module> modules.
-4. PrintCurrentPuModList loops through the class level object universities to retrieve the Partner university name
-corresponding to the uniID.
-5. Loops through filtered modules retrieving module information and printing it out to User Console.
+![SortModulesAccordingToPrintingLengthFunction.png](diagrams%2FSortModulesAccordingToPrintingLengthFunction.png)
+
+**Explanation** 
+1. Storage calls Module's getPrintingLength() function.
+2. Module retrieves its own module code, name and MCs and calculate their total length known as "printing length"
+and returns it to Storage
+3. Storage calls ArrayList modules sort function passing the "printing length" into a comparator. 
+4. ArrayList Modules sorts the modules according to this "printing length"
+
+**Goal of this sorting function**
+
+The main objective of this sorting function is to increase readability of print functions for users.
+
+Previously, when printing out multiple lines, the lines that are printed out are messy and hard to read.
+
+![ExampleOfPrintFunctionsBeingHardToReadOneLine.png](diagrams%2FExampleOfPrintFunctionsBeingHardToReadOneLine.png)
+
+The sorting functions aids in helping it more readable, when the list of mappings are made to be in one line and sorted
+according to the length of string before the "maps to ---->" key words.
+
+![ExampleOfPrintFunctionsMoreReadable.jpg](diagrams%2FExampleOfPrintFunctionsMoreReadable.jpg)
 
 
 ### Budget Commands
@@ -263,6 +320,7 @@ Class Diagram of Budget Commands
 > Syntax: /budget /view
 
 Sequence Diagram of View Budget Command
+
 ![ViewBudgetCommand.png](diagrams%2Fbudget%2FViewBudgetCommand.png)
 
 **Explanation**
@@ -278,6 +336,7 @@ accordingly.
 Edits the total budget the user plans to use for his/her SEP trip.
 
 Sequence Diagram of Edit Budget Command
+
 ![EditBudgetCommand.png](diagrams%2Fbudget%2FEditBudgetCommand.png)
 
 **Explanation**
@@ -295,6 +354,7 @@ Sequence Diagram of Edit Budget Command
 Edits the total accommodation cost the user plans to spend for his/her SEP trip.
 
 Sequence Diagram of Edit Accommodation Command
+
 ![EditAccommodationCommand.png](diagrams%2Fbudget%2FEditAccommodationCommand.png)
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 
@@ -317,6 +377,7 @@ EditCostMessage and return.
 Edits the total airplane ticket cost the user plans to spend for his/her SEP trip.
 
 Sequence Diagram of Edit Airplane Ticket Command
+
 ![EditAirplaneTicketCommand.png](diagrams%2Fbudget%2FEditAirplaneTicketCommand.png)
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 
@@ -339,6 +400,7 @@ Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCom
 Edits the total food cost the user plans to spend for his/her SEP trip.
 
 Sequence Diagram of Edit Budget Command
+
 ![EditFoodCommand.png](diagrams%2Fbudget%2FEditFoodCommand.png)
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 
@@ -361,6 +423,7 @@ Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCom
 Edits the total entertainment cost the user plans to spend for his/her SEP trip.
 
 Sequence Diagram of Edit Entertainment Command
+
 ![EditEntertainmentCommand.png](diagrams%2Fbudget%2FEditEntertainmentCommand.png)
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 

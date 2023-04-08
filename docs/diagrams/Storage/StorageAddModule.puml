@@ -8,54 +8,59 @@ activate ":Storage"
 opt moduleToAdd == null
 ":Storage" -> "<<class>>\n:UI" : UI.printAddModuleFailureMessage()
 activate "<<class>>\n:UI"
-":Storage" <- "<<class>>\n:UI"
+":Storage" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":AddModuleCommand"<- ":Storage"
+":AddModuleCommand"<-- ":Storage"
 end
 
 ":Storage" -> ":ArrayList<Module>" : modules.add(moduleToAdd)
 activate ":ArrayList<Module>"
-":Storage" <- ":ArrayList<Module>"
+":Storage" <-- ":ArrayList<Module>"
 deactivate ":ArrayList<Module>"
+
+":Storage" -> ":Storage": sortModulesAccordingToPrintingLength(modules)
+activate ":Storage"
+":Storage" --> ":Storage":
+deactivate ":Storage"
 
 ":Storage" -> ":Module" : moduleToAdd.toString()
 activate ":Module"
-":Storage" <- ":Module" : tempString:String
+":Storage" <-- ":Module" : tempString:String
 deactivate ":Module"
 ":Storage" -> ":Storage" : saveModuleToStorage(tempString)
 activate ":Storage"
 create ":FileWriter"
 ":Storage" -> ":FileWriter" : FileWriter(SAVED_MODULES_FILE_PATH, true)
 activate ":FileWriter"
-":Storage" <- ":FileWriter"
+":Storage" <-- ":FileWriter"
 deactivate ":FileWriter"
 ":Storage" -> ":DatabaseInterface" : writeTaskPreparation(saveModuleString)
 activate ":DatabaseInterface"
-":Storage" <- ":DatabaseInterface" : tempString:String
+":Storage" <-- ":DatabaseInterface" : tempString:String
 deactivate ":DatabaseInterface"
 ":Storage" -> ":FileWriter" : fw.write(tempString)
 activate ":FileWriter"
-":Storage" <- ":FileWriter"
+":Storage" <-- ":FileWriter"
 deactivate ":FileWriter"
 ":Storage" -> ":FileWriter" : fw.close()
 activate ":FileWriter"
-":Storage" <- ":FileWriter"
+":Storage" <-- ":FileWriter"
 deactivate ":FileWriter"
 deactivate ":Storage"
-":AddModuleCommand" <- ":Storage"
+":AddModuleCommand" <-- ":Storage"
 ":AddModuleCommand" -> "<<class>>\n:UI" : UI.printAddModMessage()
 activate "<<class>>\n:UI"
 "<<class>>\n:UI" -> PrintStream :  println(ADD_MOD_MESSAGE)
 activate PrintStream
-"<<class>>\n:UI" <- PrintStream
+"<<class>>\n:UI" <-- PrintStream
 deactivate PrintStream
 "<<class>>\n:UI" -> PrintStream :  println(LINE)
 activate PrintStream
-"<<class>>\n:UI" <- PrintStream
+"<<class>>\n:UI" <-- PrintStream
 deactivate PrintStream
-":AddModuleCommand" <- "<<class>>\n:UI"
+":AddModuleCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
-":Duke" <- ":AddModuleCommand"
+":Duke" <-- ":AddModuleCommand"
 
 
 @enduml

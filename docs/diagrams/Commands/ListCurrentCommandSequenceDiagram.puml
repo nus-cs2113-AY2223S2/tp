@@ -4,7 +4,7 @@
 
 activate ":ListCurrentCommand"
 
-":ListCurrentCommand" -> "<<class>>\nui:UI" : printCurrentModList(modules)
+":ListCurrentCommand" -> "<<class>>\nui:UI" : printAllCurrentModList(modules)
 activate "<<class>>\nui:UI"
 
 loop for university in universities
@@ -24,7 +24,7 @@ loop for university in universities
 
     "<<class>>\nui:UI" -> "<<class>>\nui:UI": printCurrentPuModList(modules, currentUniversity ID)
     activate "<<class>>\nui:UI"
-    "<<class>>\nui:UI" <-- "<<class>>\nui:UI"
+    "<<class>>\nui:UI" --> "<<class>>\nui:UI": return control
     deactivate "<<class>>\nui:UI"
 end
 
