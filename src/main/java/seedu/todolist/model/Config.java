@@ -7,14 +7,10 @@ import java.time.LocalDateTime;
 
 public class Config {
 
-    /**
-     * Frequency that repeating tasks will recur.
-     */
+    // Repeating tasks will recur every this number of days
     private int repeatFrequency = 7;
 
-    /**
-     * Frequency that the program checks for repeating tasks.
-     */
+    // Program will check for repeating tasks every this number of minutes
     private int checkFrequency = 0;
     private LocalDateTime lastChecked = LocalDateTime.now();
 
