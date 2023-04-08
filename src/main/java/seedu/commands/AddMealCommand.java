@@ -93,7 +93,12 @@ public class AddMealCommand extends Command {
         System.out.println("Enter date of meal (d/M/yyyy):");
         try {
             dateString = ui.readLine();
-            date = LocalDate.parse(dateString, dtf.withResolverStyle(ResolverStyle.STRICT));
+            if (dateString.matches("\\d{1,2}/")) {
+                throw new InvalidDateException(dateString);
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/uuuu")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            date = LocalDate.parse(dateString, formatter);
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(dateString);
         }
@@ -174,7 +179,16 @@ public class AddMealCommand extends Command {
         mealTypeString = userInput.substring(mealTypeIndex+mealTypeIdentifier.length(), foodIndex-1).trim();
         foodString = userInput.substring(foodIndex+foodIdentifier.length());
 
-        date = DateParser.parse(dateString, dtf);
+        try {
+            if (dateString.matches("\\d{1,2}/")) {
+                throw new InvalidDateException(dateString);
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/uuuu")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            date = LocalDate.parse(dateString, formatter);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(dateString);
+        }
         mealType = MealTypes.fromString(mealTypeString);
         foodList = foodString.split(", ");
 
