@@ -14,7 +14,7 @@ import static seedu.duke.ui.StringLib.NO_MATCHES;
 import static seedu.duke.ui.StringLib.MATCHING_ITEMS;
 import static seedu.duke.ui.StringLib.NO_MATCHING_RECIPE_ERROR;
 import static seedu.duke.ui.StringLib.INVALID_NUMBER_ERROR;
-import static seedu.duke.ui.StringLib.OVERFLOW_NUMBER_ERROR
+import static seedu.duke.ui.StringLib.OVERFLOW_NUMBER_ERROR;
 
 public class RecipeList {
     protected static ArrayList<Recipe> recipeList;
