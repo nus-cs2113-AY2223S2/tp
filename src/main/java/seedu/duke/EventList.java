@@ -95,71 +95,59 @@ public class EventList {
                         && eventA.getEndTime().compareTo(eventB.getEndTime()) <= 0));
     }
 
-    public boolean canAddNewEvent(Event newEvent) {
+    public boolean canAddNewEvent(Event newEvent, int index) {
         boolean isOverlap = true;
         for (int i = 0; i < listSize; i++) {
-            if (!taskList.get(i).isRecurring()) {
-                if ((checkSingleOverlap(newEvent, taskList.get(i))
-                        || checkSingleOverlap(taskList.get(i), newEvent))) {
-                    isOverlap = false;
-                    Ui.printOverlapInfo(taskList.get(i).toString());
-                    break;
-                }
-            } else {
-                Event eventA = (taskList.get(i) instanceof Event) ? (Event) taskList.get(i) : null;
-                Event eventB = newEvent;
+            if (!taskList.get(i).hasEndInfo() || i == index) {
+                continue;
+            }
 
-                LocalDate semStart = SEMESTER_START_DATES.get(getUser().getSemester());
-                LocalDate semEnd = SEMESTER_END_DATES.get(getUser().getSemester());
-                LocalDate eventADate = eventA.getStartTime().toLocalDate();
-                LocalDate eventBDate = eventB.getStartTime().toLocalDate();
+            Event eventA = (taskList.get(i) instanceof Event) ? (Event) taskList.get(i) : null;
+            Event eventB = newEvent;
 
-                long minKa = eventADate.isAfter(semStart) ? 0
-                        : (semStart.toEpochDay() - eventADate.toEpochDay()) / eventA.getActualInterval();
-                Long maxKa = eventADate.isAfter(semEnd) ? 0
-                        : (semEnd.toEpochDay() - eventADate.toEpochDay()) / eventA.getActualInterval();
+            LocalDate semStart = SEMESTER_START_DATES.get(getUser().getSemester());
+            LocalDate semEnd = SEMESTER_END_DATES.get(getUser().getSemester());
+            LocalDate eventADate = eventA.getStartTime().toLocalDate();
+            LocalDate eventBDate = eventB.getStartTime().toLocalDate();
 
-                long minKb = -1;
-                long maxKb = -1;
-                if (eventB.isRecurring()) {
-                    minKb = eventBDate.isAfter(semStart) ? 0
-                            : (semStart.toEpochDay() - eventBDate.toEpochDay()) / eventB.getActualInterval();
-                    maxKb = eventBDate.isAfter(semEnd) ? 0
-                            : (semEnd.toEpochDay() - eventBDate.toEpochDay()) / eventB.getActualInterval();
-                }
+            long minKa = !eventA.isRecurring() || eventADate.isAfter(semStart) ? 0
+                    : (semStart.toEpochDay() - eventADate.toEpochDay()) / eventA.getActualInterval();
+            long maxKa = !eventA.isRecurring() || eventADate.isAfter(semEnd) ? 0
+                    : (semEnd.toEpochDay() - eventADate.toEpochDay()) / eventA.getActualInterval();
+            long minKb = !eventB.isRecurring() || eventBDate.isAfter(semStart) ? 0
+                    : (semStart.toEpochDay() - eventBDate.toEpochDay()) / eventB.getActualInterval();
+            long maxKb = !eventB.isRecurring() || eventBDate.isAfter(semEnd) ? 0
+                    : (semEnd.toEpochDay() - eventBDate.toEpochDay()) / eventB.getActualInterval();
+            boolean breakFlag = false;
 
-                boolean breakFlag = false;
-                if (maxKb != -1 && minKb != -1) {
-                    for (long j = minKa; j <= maxKa; j++) {
-                        for (long k = minKb; k <= maxKb; k++) {
-                            Schedule curA = new Schedule(
-                                    eventA.getStartTime().plusDays(eventA.getActualInterval() * j),
-                                    eventA.getEndTime().plusDays(eventA.getActualInterval() * j), true, true);
+            for (long j = minKa; j <= maxKa; j++) {
+                for (long k = minKb; k <= maxKb; k++) {
+                    Schedule curA = new Schedule(eventA.getStartTime(), eventA.getEndTime(), true, true);
+                    Schedule curB = new Schedule(eventB.getStartTime(), eventB.getEndTime(), true, true);
 
-                            Schedule curB =
-                                    new Schedule(eventB.getStartTime(), eventB.getEndTime(), true, true);
-                            if (minKb != -1 && maxKb != -1) {
-                                curB = new Schedule(
-                                        eventB.getStartTime().plusDays(eventB.getActualInterval() * k),
-                                        eventB.getEndTime().plusDays(eventB.getActualInterval() * k), true,
-                                        true);
-                            }
-
-                            if ((checkSingleOverlap(curA, curB) || checkSingleOverlap(curB, curA))) {
-                                isOverlap = false;
-                                Ui.printOverlapInfo(eventA.toString(), curA.getTime());
-                                breakFlag = true;
-                                break;
-                            }
-                        }
-                        if(breakFlag) {
-                            break;
-                        }
+                    if (maxKa != 0) {
+                        curA = new Schedule(eventA.getStartTime().plusDays(eventA.getActualInterval() * j),
+                                eventA.getEndTime().plusDays(eventA.getActualInterval() * j), true, true);
                     }
+                    if (maxKb != 0) {
+                        curB = new Schedule(eventB.getStartTime().plusDays(eventB.getActualInterval() * k),
+                                eventB.getEndTime().plusDays(eventB.getActualInterval() * k), true, true);
+                    }
+
+                    if ((checkSingleOverlap(curA, curB) || checkSingleOverlap(curB, curA))) {
+                        isOverlap = false;
+
+                        Ui.printOverlapInfo(eventA.toString(), curA.getTime());
+                        breakFlag = true;
+                        break;
+                    }
+                }
+                if (breakFlag) {
+                    break;
                 }
             }
         }
-        return !isOverlap;
+        return isOverlap;
     }
 
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay)
@@ -173,7 +161,7 @@ public class EventList {
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
             throw new NPExceptions("Starting time is after ending time!");
         }
-        if (canAddNewEvent(newEvent)) {
+        if (!canAddNewEvent(newEvent, -1)) {
             throw new NPExceptions("Events/classes conflition!");
         }
 
@@ -210,7 +198,7 @@ public class EventList {
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
             throw new NPExceptions("Starting time is after ending time!");
         }
-        if (canAddNewEvent(newEvent)) {
+        if (!canAddNewEvent(newEvent, -1)) {
             throw new NPExceptions("Events/classes conflition!");
         }
 
@@ -227,7 +215,14 @@ public class EventList {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
         TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
 
+        Event eventToCheck = new Event(taskList.get(index).getDescription(), startInfo.time, endInfo.time,
+                startInfo.hasInfo, endInfo.hasInfo);
+        if (!canAddNewEvent(eventToCheck, index)) {
+            throw new NPExceptions("Events/classes conflition!");
+        }
+
         taskList.get(index).changeTimeInfo(startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
+
     }
 
     public void reviseTimeInfo(int index, String startTime, String startDay) throws NPExceptions {
