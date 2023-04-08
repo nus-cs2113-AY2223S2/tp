@@ -10,7 +10,6 @@ import static seedu.moneymind.string.Strings.NO_CATEGORY_MESSAGE;
 import static seedu.moneymind.string.Strings.NULL_CATEGORY_LIST_ASSERTION;
 import static seedu.moneymind.string.Strings.NO_CATEGORIES_TO_VIEW;
 import static seedu.moneymind.string.Strings.DOT;
-import static seedu.moneymind.string.Strings.COUNT_ASSERTION;
 
 /**
  * ViewCommand class to view the categories and events.
@@ -60,16 +59,16 @@ public class ViewCommand implements Command {
             System.out.println(NO_CATEGORIES_TO_VIEW);
             return;
         }
-        int count = 1;
         for (Category category : CategoryList.categories) {
-            System.out.println(count + DOT + category.getName() + " (budget: " + category.getBudget() + ")");
-            count++;
+            System.out.println("Category: " + category.getName() + " (budget: " + category.getBudget() + ")");
+            int count = 1;
             // print all the events in the category
             for (Event event : category.getEvents()) {
-                System.out.println(event.toString());
+                System.out.println(count + DOT + event.toString());
+                count++;
             }
         }
-        assert count > 1 : COUNT_ASSERTION;
+
     }
 
     @Override

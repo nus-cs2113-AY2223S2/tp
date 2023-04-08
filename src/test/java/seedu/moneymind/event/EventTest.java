@@ -2,9 +2,13 @@ package seedu.moneymind.event;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EventTest {
+    private static final String DD_MM_YYYY = "dd/MM/yyyy HH:mm";
     Event salad = new Event("salad", 100);
     Event pizza = new Event("pizza", 200, "10/10/2010");
     Event harryPotter = new Event("Harry Potter", 70);
@@ -39,7 +43,10 @@ class EventTest {
 
     @Test
     void testToString() {
-        assertEquals("salad [expense]100", salad.toString());
-        assertEquals("pizza [expense]200 [time]10/10/2010", pizza.toString());
+        LocalDateTime myDateObject = LocalDateTime.now();
+        DateTimeFormatter myFormatObject = DateTimeFormatter.ofPattern(DD_MM_YYYY);
+        String time = myDateObject.format(myFormatObject);
+        assertEquals("salad (expense: 100)" + " (time added: " + time + ")", salad.toString());
+        assertEquals("pizza (expense: 200) (start time: 10/10/2010)", pizza.toString());
     }
 }

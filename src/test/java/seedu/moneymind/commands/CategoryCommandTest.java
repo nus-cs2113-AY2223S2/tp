@@ -35,7 +35,7 @@ public class CategoryCommandTest extends CommandTest {
     void addCategory_dummyBudget_expectGivingPositiveIntegerMessage() {
         setup();
         String terminalOutput = executeInput("category travel b/ad").toString();
-        assertEquals("Please give a positive integer for budget" + System.lineSeparator(), terminalOutput);
+        assertEquals("Please give a non-negative integer for budget" + System.lineSeparator(), terminalOutput);
         assertEquals(2, CategoryList.categories.size());
         assertEquals("food", CategoryList.categories.get(0).getName());
         clear();
@@ -45,7 +45,7 @@ public class CategoryCommandTest extends CommandTest {
     void addCategory_negativeBudget_expectGivingPositiveIntegerMessage() {
         setup();
         String terminalOutput = executeInput("category travel b/-12").toString();
-        assertEquals("Please give a positive integer for budget" + System.lineSeparator(), terminalOutput);
+        assertEquals("Please give a non-negative integer for budget" + System.lineSeparator(), terminalOutput);
         assertEquals(2, CategoryList.categories.size());
         clear();
     }
@@ -82,12 +82,24 @@ public class CategoryCommandTest extends CommandTest {
     }
 
     @Test
-    void addCategory_twoBudgetSpecifiers_expectMatchingTheLastSpecifier() {
+    void addCategory_emptyBudget_expectCorrectFormatMessage() {
         setup();
-        String terminalOutput = executeInput("category travel b/12 b/12").toString();
-        assertEquals(3, CategoryList.categories.size());
-        assertEquals("travel b/12", CategoryList.categories.get(2).getName());
-        assertEquals(12, CategoryList.categories.get(2).getBudget());
+        String terminalOutput = executeInput("category travel b/").toString();
+        assertEquals("Please following the correct format: category <name> [(optional) b/<budget number>]\n" +
+                "Remember do not leave any things inside the brackets empty!"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, CategoryList.categories.size());
+        clear();
+    }
+
+    @Test
+    void addCategory_spareSlashSpecifier_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("category fsd / b/123").toString();
+        assertEquals("Please following the correct format: category <name> [(optional) b/<budget number>]\n" +
+                "Remember do not leave any things inside the brackets empty!"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, CategoryList.categories.size());
         clear();
     }
 

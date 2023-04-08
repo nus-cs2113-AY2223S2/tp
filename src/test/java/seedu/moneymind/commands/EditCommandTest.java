@@ -74,7 +74,7 @@ public class EditCommandTest extends CommandTest {
     void editEvent_negativeEventIndex_expectCorrectFormatMessage() {
         setup();
         String terminalOutput = executeInput("edit c/food e/-1").toString();
-        assertEquals("Please give a positive integer for expense" + System.lineSeparator(), terminalOutput);
+        assertEquals("Please give a positive integer for event index" + System.lineSeparator(), terminalOutput);
         assertEquals(100, food.events.get(0).getExpense());
         clear();
     }
@@ -83,7 +83,7 @@ public class EditCommandTest extends CommandTest {
     void editEvent_dummyEventIndex_expectCorrectFormatMessage() {
         setup();
         String terminalOutput = executeInput("edit c/food e/abc").toString();
-        assertEquals("Please give a positive integer for expense" + System.lineSeparator(), terminalOutput);
+        assertEquals("Please give a positive integer for event index" + System.lineSeparator(), terminalOutput);
         assertEquals(100, food.events.get(0).getExpense());
         clear();
     }
@@ -114,7 +114,7 @@ public class EditCommandTest extends CommandTest {
         String terminalOutput = executeInput("edit c/food e/1").toString();
         assertEquals("The current event expense for salad is: 100" + System.lineSeparator() +
                 "Your new expense would be:" + System.lineSeparator() +
-                "Please enter a positive number or enter back to go back to the main program"
+                "Please enter a non-negative number or enter back to go back to the main program"
                 + System.lineSeparator(), terminalOutput);
         assertEquals(100, food.events.get(0).getExpense());
         clear();
@@ -128,8 +128,19 @@ public class EditCommandTest extends CommandTest {
         String terminalOutput = executeInput("edit c/food e/1").toString();
         assertEquals("The current event expense for salad is: 100" + System.lineSeparator() +
                 "Your new expense would be:" + System.lineSeparator() +
-                "Please enter a positive number or enter back to go back to the main program"
+                "Please enter a non-negative number or enter back to go back to the main program"
                 + System.lineSeparator(), terminalOutput);
+        assertEquals(100, food.events.get(0).getExpense());
+        clear();
+    }
+
+    @Test
+    void editEvent_spareSlash_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("edit c/food/ e/1").toString();
+        assertEquals("Please following the correct format: edit c/<category name> e/<event index>\n"
+                + "Remember do not leave any things inside the brackets empty!" +
+                System.lineSeparator(), terminalOutput);
         assertEquals(100, food.events.get(0).getExpense());
         clear();
     }

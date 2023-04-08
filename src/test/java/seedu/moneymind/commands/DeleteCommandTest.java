@@ -51,7 +51,7 @@ public class DeleteCommandTest extends CommandTest {
     @Test
     void deleteEvent_emptyCategory_expectCorrectFormatMessage() {
         setup();
-        String terminalOutput = executeInput("delete e/1").toString();
+        String terminalOutput = executeInput("delete c/ e/1").toString();
         assertEquals("Please following the correct format: delete c/<category name> [(optional) e/<event index>]\n"
                 + "Remember do not leave any things inside the brackets empty!"
                 + System.lineSeparator(), terminalOutput);
@@ -73,6 +73,37 @@ public class DeleteCommandTest extends CommandTest {
         setup();
         String terminalOutput = executeInput("delete c/food e/abc").toString();
         assertEquals("Please give a positive integer for event index" + System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
+        clear();
+    }
+
+    @Test
+    void deleteEvent_negativeEventIndex_expectPositiveIntegerForEventIndexMessage() {
+        setup();
+        String terminalOutput = executeInput("delete c/food e/-1").toString();
+        assertEquals("Please give a positive integer for event index" + System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
+        clear();
+    }
+
+    @Test
+    void deleteEvent_emptyEventIndex_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("delete c/food e/").toString();
+        assertEquals("Please following the correct format: delete c/<category name> [(optional) e/<event index>]\n"
+                + "Remember do not leave any things inside the brackets empty!"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
+        clear();
+    }
+
+    @Test
+    void deleteEvent_spareSlash_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("delete c/food/ e/1").toString();
+        assertEquals("Please following the correct format: delete c/<category name> [(optional) e/<event index>]\n"
+                + "Remember do not leave any things inside the brackets empty!"
+                + System.lineSeparator(), terminalOutput);
         assertEquals(2, food.events.size());
         clear();
     }

@@ -17,16 +17,6 @@ public class EventCommandTest extends CommandTest {
     }
 
     @Test
-    void addCategory_twoBudgetSpecifiers_expectMatchingTheLastSpecifier() {
-        setup();
-        String terminalOutput = executeInput("category travel b/12 b/12").toString();
-        assertEquals(3, CategoryList.categories.size());
-        assertEquals("travel b/12", CategoryList.categories.get(2).getName());
-        assertEquals(12, CategoryList.categories.get(2).getBudget());
-        clear();
-    }
-
-    @Test
     void addEvent_oneNonRecurringEvent_expectThreeEventsInFoodCategory() {
         setup();
         String categoryName = "food" + Strings.NEW_LINE; // replace with the correct input string
@@ -44,7 +34,7 @@ public class EventCommandTest extends CommandTest {
         setup();
         String categoryName = "food" + Strings.NEW_LINE; // replace with the correct input string
         Moneymind.in = new Scanner(categoryName);
-        executeInput("event banana e/20 t/123");
+        executeInput("event banana e/20 t/13/02/2024 12:00");
         assertEquals("banana", food.events.get(2).getDescription(),
                 "expected: banana, actual: " + food.events.get(2).getDescription());
         assertEquals(20, food.events.get(2).getExpense(),
@@ -99,7 +89,7 @@ public class EventCommandTest extends CommandTest {
     void addEvent_negativeExpense_expectGivingPositiveIntegerMessage() {
         setup();
         String terminalOutput = executeInput("event banana e/-20").toString();
-        assertEquals("Please give a positive integer for expense" + System.lineSeparator(), terminalOutput);
+        assertEquals("Please give a non-negative integer for expense" + System.lineSeparator(), terminalOutput);
         assertEquals(2, food.events.size());
         clear();
     }
@@ -108,7 +98,7 @@ public class EventCommandTest extends CommandTest {
     void addEvent_dummyExpense_expectGivingPositiveIntegerMessage() {
         setup();
         String terminalOutput = executeInput("event banana e/abc").toString();
-        assertEquals("Please give a positive integer for expense" + System.lineSeparator(), terminalOutput);
+        assertEquals("Please give a non-negative integer for expense" + System.lineSeparator(), terminalOutput);
         assertEquals(2, food.events.size());
         clear();
     }
@@ -144,6 +134,44 @@ public class EventCommandTest extends CommandTest {
                 "Please try again or enter back to go back to the main program" +
                 System.lineSeparator(), terminalOutput);
         assertEquals(0, travel.events.size());
+        clear();
+    }
+
+    @Test
+    void addEvent_spareSlash_expectCorrectFormatMessage() {
+        setup();
+        String terminalOutput = executeInput("event banana/ e/20").toString();
+        assertEquals("Please following the correct format: event <name> e/<expense number> [(optional) t/<time>]\n"
+                + "Remember do not leave any things inside the brackets empty!"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
+        clear();
+    }
+
+    @Test
+    void addEvent_oneEventWithCorrectTime_expectCorrectTime() {
+        setup();
+        String categoryName = "food" + Strings.NEW_LINE; // replace with the correct input string
+        Moneymind.in = new Scanner(categoryName);
+        executeInput("event banana e/20 t/13/02/2024 12:00");
+        assertEquals("banana", food.events.get(2).getDescription(),
+                "expected: banana, actual: " + food.events.get(2).getDescription());
+        assertEquals(20, food.events.get(2).getExpense(),
+                "expected: 20, actual: " + food.events.get(2).getExpense());
+        assertEquals("13/02/2024 12:00", food.events.get(2).getTime(),
+                "expected: 13/02/2024 12:00, actual: " + food.events.get(2).getTime());
+        clear();
+    }
+
+    @Test
+    void addEvent_oneEventWithIncorrectTime_expectTimeFormatMessage() {
+        setup();
+        String categoryName = "food" + Strings.NEW_LINE; // replace with the correct input string
+        Moneymind.in = new Scanner(categoryName);
+        String terminalOutput = executeInput("event banana e/20 t/13/02/2024 12:00:00").toString();
+        assertEquals("Please enter a valid time in the format of dd/mm/yyyy hh:mm"
+                + System.lineSeparator(), terminalOutput);
+        assertEquals(2, food.events.size());
         clear();
     }
 
