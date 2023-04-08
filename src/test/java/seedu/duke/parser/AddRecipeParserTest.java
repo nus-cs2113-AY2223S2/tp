@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.IncompleteInputException;
+import seedu.duke.exceptions.InvalidInputCharactersException;
 
 public class AddRecipeParserTest {
     private static final String RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP = "Recipe is missing the \"NAME\" "
@@ -14,6 +15,12 @@ public class AddRecipeParserTest {
     private static final String RECIPE_MISSING_INGREDIENTS = "Recipe is missing \"INGREDIENTS\"!\n";
     private static final String RECIPE_MISSING_TAG = "Recipe is missing \"TAG\"!\n";
     private static final String RECIPE_MISSING_STEP = "Recipe is missing \"SUM of the STEPs\"!\n";
+    private static final String INVALID_CHARACTERS_NAME_ERROR = "The NAME parameter contains invalid characters!\n";
+    private static final String INVALID_CHARACTERS_INGREDIENTS_ERROR = "The INGREDIENTS parameter contains invalid " +
+            "characters!\n";
+    private static final String INVALID_CHARACTERS_TAG_ERROR = "The TAG parameter contains invalid characters!\n";
+    private static final String INVALID_CHARACTERS_STEP_ERROR = "The SUM OF STEPS parameter contains " +
+            "invalid characters!\n";
     /**
      * Test for incomplete name.
      * @throws IncompleteInputException if input is incomplete.
@@ -214,7 +221,6 @@ public class AddRecipeParserTest {
      * Test for too many tag arguments.
      * @throws IncompleteInputException if input is incomplete.
      */
-
     @Test
     void parseRecipeExceptionTooManyTag() {
         try {
@@ -278,6 +284,117 @@ public class AddRecipeParserTest {
         } catch (Exception e) {
             assertTrue(e instanceof IncompleteInputException);
             Assertions.assertEquals(RECIPE_WRONG_LEADING_STRING, e.getMessage());
+        }
+    }
+
+    /**
+     * Test for invalid characters in name. (With special characters only)
+     * @throws InvalidInputCharactersException if input is incomplete.
+     */
+    @Test
+    void parseRecipeExceptionInvalidCharactersNameA() {
+        try {
+            Parser.parseRecipe("n/H$*tpot i/Beef, Potatoes, Carrots t/Chinese s/4");
+        } catch (Exception e) {
+            assertTrue(e instanceof InvalidInputCharactersException);
+            Assertions.assertEquals(INVALID_CHARACTERS_NAME_ERROR, e.getMessage());
+        }
+    }
+
+    /**
+     * Test for invalid characters in name. (With numerical characters only)
+     * @throws InvalidInputCharactersException if input is incomplete.
+     */
+    @Test
+    void parseRecipeExceptionInvalidCharactersNameB() {
+        try {
+            Parser.parseRecipe("n/123 i/Beef, Potatoes, Carrots t/Chinese s/4");
+        } catch (Exception e) {
+            assertTrue(e instanceof InvalidInputCharactersException);
+            Assertions.assertEquals(INVALID_CHARACTERS_NAME_ERROR, e.getMessage());
+        }
+    }
+
+    /**
+     * Test for invalid characters in ingredient. (With special characters only)
+     * @throws InvalidInputCharactersException if input is incomplete.
+     */
+    @Test
+    void parseRecipeExceptionInvalidCharactersIngredientA() {
+        try {
+            Parser.parseRecipe("n/Hotpot i//Beef, Potatoes%(#, Carrots t/Chinese s/4");
+        } catch (Exception e) {
+            assertTrue(e instanceof InvalidInputCharactersException);
+            Assertions.assertEquals(INVALID_CHARACTERS_INGREDIENTS_ERROR, e.getMessage());
+        }
+    }
+
+    /**
+     * Test for invalid characters in ingredient. (With numerical characters only)
+     * @throws InvalidInputCharactersException if input is incomplete.
+     */
+    @Test
+    void parseRecipeExceptionInvalidCharactersIngredientB() {
+        try {
+            Parser.parseRecipe("n/Hotpot i/348985, 343 t/Chinese s/4");
+        } catch (Exception e) {
+            assertTrue(e instanceof InvalidInputCharactersException);
+            Assertions.assertEquals(INVALID_CHARACTERS_INGREDIENTS_ERROR, e.getMessage());
+        }
+    }
+
+    /**
+     * Test for invalid characters in tag. (With special characters only)
+     * @throws InvalidInputCharactersException if input is incomplete.
+     */
+    @Test
+    void parseRecipeExceptionInvalidCharactersTagA() {
+        try {
+            Parser.parseRecipe("n/Hotpot i/Beef, Potatoes, Carrots t/$(*%Chinese s/4");
+        } catch (Exception e) {
+            assertTrue(e instanceof InvalidInputCharactersException);
+            Assertions.assertEquals(INVALID_CHARACTERS_TAG_ERROR, e.getMessage());
+        }
+    }
+
+    /**
+     * Test for invalid characters in tag. (With numerical characters only)
+     * @throws InvalidInputCharactersException if input is incomplete.
+     */
+    @Test
+    void parseRecipeExceptionInvalidCharactersTagB() {
+        try {
+            Parser.parseRecipe("n/Hotpot i/Beef, Potatoes, Carrots t/873487 s/4");
+        } catch (Exception e) {
+            assertTrue(e instanceof InvalidInputCharactersException);
+            Assertions.assertEquals(INVALID_CHARACTERS_TAG_ERROR, e.getMessage());
+        }
+    }
+
+    /**
+     * Test for invalid characters in sum of steps. (With alphabetical characters only)
+     * @throws InvalidInputCharactersException if input is incomplete.
+     */
+    @Test
+    void parseRecipeExceptionInvalidCharactersSumOfStepsA() {
+        try {
+            Parser.parseRecipe("n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/Asde");
+        } catch (Exception e) {
+            assertTrue(e instanceof InvalidInputCharactersException);
+            Assertions.assertEquals(INVALID_CHARACTERS_STEP_ERROR, e.getMessage());
+        }
+    }
+    /**
+     * Test for invalid characters in sum of steps. (With special characters only)
+     * @throws InvalidInputCharactersException if input is incomplete.
+     */
+    @Test
+    void parseRecipeExceptionInvalidCharactersSumOfStepsB() {
+        try {
+            Parser.parseRecipe("n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/@#");
+        } catch (Exception e) {
+            assertTrue(e instanceof InvalidInputCharactersException);
+            Assertions.assertEquals(INVALID_CHARACTERS_STEP_ERROR, e.getMessage());
         }
     }
 }

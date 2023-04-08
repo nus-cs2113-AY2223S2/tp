@@ -118,7 +118,7 @@ public class Command {
         case VIEW:
             try {
                 if (fullDescription.isEmpty()) {
-                    throw new IncompleteInputException("The "+ type +"command requires an input parameter, " +
+                    throw new IncompleteInputException("The "+ type +" command requires an input parameter, " +
                             "<Recipe NAME> / <Recipe INDEX>.\nIt cannot be empty!\n");
                 }
                 if (RecipeList.isEmpty()) {

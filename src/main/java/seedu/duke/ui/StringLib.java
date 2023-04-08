@@ -120,7 +120,7 @@ public interface StringLib {
     String IMPORT_END_RECIPE = "End";
     String RECIPE_SAVED = "\nRecipe list saved!";
     String RECIPE_LOADED = "\nSaved recipes loaded!";
-    String MISSING_NUM = "\nPlease enter a valid number for the sum of steps!\n";
+    String MISSING_NUM = "Please enter a valid number for the sum of steps!\n";
     String MISSING_FIND_KEYWORD = "\nFind is missing KEYWORDS!";
     String MATCHING_ITEMS = "\nHere are the matching items:";
     String NO_MATCHES = "\nNo dishes matches what you are looking for! :(";
@@ -158,4 +158,11 @@ public interface StringLib {
     String[] FORBIDDEN_CHARS = {"!","@","#","$","%","&","*","(",")","+",",",
                                 ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};
     String SAVE_SEPARATOR = "#######";
+    String INVALID_CHARACTERS_NAME_ERROR = "The NAME parameter contains invalid characters!\n";
+    String INVALID_CHARACTERS_INGREDIENTS_ERROR = "The INGREDIENTS parameter contains invalid characters!\n";
+    String INVALID_CHARACTERS_TAG_ERROR = "The TAG parameter contains invalid characters!\n";
+    String INVALID_CHARACTERS_STEP_ERROR = "The SUM OF STEPS parameter contains invalid characters!\n";
+
+
+
 }
