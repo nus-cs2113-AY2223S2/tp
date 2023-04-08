@@ -159,7 +159,7 @@ Given below is an example usage scenario and how the add task mechanism behaves 
 
 **Step 1.**
 
-The user enters the command `event concert -from 05-06-2023-20:00 -to 05-06-2023-22:00`.  
+The user enters the command "`event concert -from 05-06-2023-20:00 -to 05-06-2023-22:00`".  
 This is to add a `Task` with the description "concert" on Jun 5 2023 from 8-10pm to their TaskList.
 `Apollo` calls `Parser#getCommand()`, where the user command String is parsed and determined to be an `AddCommand`.
 
@@ -891,9 +891,13 @@ It is facilitated by `WeekCommand` which is an extension of the `Command` class.
 
 Given below is an example usage scenario and how the add task mechanism behaves at each step.
 
-Step 1. The user executes the command `week`. It is parsed by the `Parser` class which then creates a new `WeekCommand`.
+**Step 1.**
+The user executes the command "`week`".
+`Apollo` calls `Parser#getCommand()`, where the user command String is parsed and determined to be a `WeekCommand`.
+A new `WeekCommand` is created and sent back to `Apollo`.
 
-Step 2. The `execute()` method of `WeekCommand` is called. 
+**Step 2.**
+`Apollo` calls `Command#execute()`, which is overwritten by `WeekCommand#execute()`. 
 
 Step 3. The dates of Monday and Sunday of the current week (`startWeek`, `endWeek`) are determined using `LocalDate`.
 
