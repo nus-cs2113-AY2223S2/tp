@@ -357,6 +357,10 @@ This will add the first section teaching lesson of CS1010 to your module list.
 If this lesson clashes with any of your other lessons a warning message will be displayed. 
 However, the lesson will still be added to your timetable, similar to NUSMods.
 
+**NOTE: LESSON_NUMBER must strictly follow that of NUSMods. If it is Lecture 01 and Lecture 1,
+the corresponding flag inputs are -lec 01 and -lec 1 respectively.**
+
+
 #### Behaviour of Command:
 
 Should the user not have the Module in their list, Apollo will add the module to the list and add the lesson to the module.
@@ -411,6 +415,9 @@ To delete a lesson, use the following format:
 Deleting lessons for module: CS1010
 Lessons deleted: SECTIONAL TEACHING - 1
 ```
+
+**NOTE: LESSON_NUMBER must strictly follow that of NUSMods. If it is Lecture 01 and Lecture 1,
+the corresponding flag inputs are -lec 01 and -lec 1 respectively.**
 
 ### `showmod` - Show information of a module
 

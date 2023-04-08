@@ -561,6 +561,10 @@ The following sequence diagram shows how the list module command works when the 
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleWithLessonCommand-ListModuleWithLessonCommand.png?raw=true)
 
+The following activity diagram shows how the list module command works when the user inputs the command `listmod`:
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleCommandActivityDiagram.png?raw=true)
+
 [*Return to TOC*](#table-of-contents)
 
 <!--@@author yixuann02 -->
@@ -743,6 +747,11 @@ The following sequence diagram shows how the AddModCommand class works for both 
 the module list.:
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddModule-AddModuleCommand__Add_Module_.png?raw=true)
+
+The following activity diagram shows how the AddModCommand class works for both adding modules and adding lessons to
+the module list:
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddModuleActivityDiagram.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -997,6 +1006,10 @@ Below is a sequence diagram of the `bye` command.
 
 
 ### *The `LoggerInterface` Interface*
+
+API: `LoggerInterface.java`
+
+
 The `LoggerInterface` interface is used to implement the `setUpLogger()` method in the command classes. This design choice
 was made to reduce code duplication and to improve the maintainability of the code. It also allows for multi-level inheritance
 amongst different command classes. The implementation of the `setUpLogger()` method is shown below.
