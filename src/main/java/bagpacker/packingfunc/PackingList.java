@@ -8,10 +8,10 @@ public class PackingList {
     private static ArrayList<Item> itemList = new ArrayList<>();
 
     /**
-     * Checks if item of the same name as itemName is found in the current packing list
+     * Checks if item of the same name as itemName is found in the current packing list and returns that item
      *
-     * @param itemName
-     * @return true if item of same name as itemName is found else false
+     * @param itemName name of item to return
+     * @return the Item of same name as itemName if found, else null
      */
     public static boolean itemFinder(String itemName) {
         for (Item item : itemList) {
@@ -120,7 +120,19 @@ public class PackingList {
     public static Item get(int targetIndex) {
         return itemList.get(targetIndex);
     }
-
+    /**
+     * Returns the target item.
+     * @param itemName position of item in packingList
+     * @return item
+     */
+    public static Item getItemByName(String itemName) {
+        for (Item item : PackingList.getItemList()) {
+            if (itemName.equals(item.getItemName())) {
+                return item;
+            }
+        }
+        return null;
+    }
     /**
      * Returns size of packing list
      */
