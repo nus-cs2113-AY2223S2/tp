@@ -102,7 +102,7 @@ public class Parser {
      * Constructs a bye command object if the user input is valid.
      *
      * @param separatedKeywordAndDescription an array of two strings: the first string should be the "bye" keyword,
-     *                                       and the second string should be empty or null.
+     *     and the second string should be empty or null.
      * @return a bye command object.
      * @throws InvalidCommandException if the user input contains additional text beyond the "bye" keyword.
      */
@@ -121,7 +121,7 @@ public class Parser {
      * Constructs a help command object if the user input is valid.
      *
      * @param separatedKeywordAndDescription an array of two strings: the first string should be the "help" keyword,
-     *                                       and the second string should be empty or null.
+     *     and the second string should be empty or null.
      * @return a help command object.
      * @throws InvalidCommandException if the user input contains additional text beyond the "help" keyword.
      */
@@ -140,9 +140,9 @@ public class Parser {
      * Constructs a view command object if the user input is valid.
      *
      * @param separatedKeywordAndDescription an array of two strings: the first string should be the "view" keyword,
-     *                                       and the second string may contain additional text specifying a category name.
+     *     and the second string may contain additional text specifying a category name.
      * @return a view command object to view one category if the user input contains a category name, or a view command
-     * object to view all categories if the user input does not contain a category name.
+     *     object to view all categories if the user input does not contain a category name.
      */
     private Command prepareViewCommand(String[] separatedKeywordAndDescription) {
         if (separatedKeywordAndDescription.length == 1) {
@@ -156,13 +156,13 @@ public class Parser {
      * Constructs a delete command object if the user input is valid.
      *
      * @param separatedKeywordAndDescription an array of two strings: the first string should be the "delete" keyword,
-     *                                       and the second string should contain additional text specifying a category name
-     *                                       and an optional event index to delete.
-     * @return a delete command object to delete a whole category if the user input contains a category name but no event
-     * index, or a delete command object to delete an event in a category if the user input contains a category name and
-     * an event index.
+     *     and the second string should contain additional text specifying a category name
+     *     and an optional event index to delete.
+     * @return a delete command object to delete a whole category if the user input contains a category name
+     *     but no event index, or a delete command object to delete an event in a category if the user input contains a
+     *     category name and an event index.
      * @throws InvalidCommandException if the user input is not in the correct format,
-     *                                 or if there is a bug in the application.
+     *     or if there is a bug in the application.
      */
     private Command prepareDeleteCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         Pattern pattern = Pattern.compile(DELETE_REGEX);
@@ -197,12 +197,12 @@ public class Parser {
      * Constructs an event command object if the user input is valid.
      *
      * @param separatedKeywordAndDescription an array of two strings: the first string should be the "event" keyword,
-     *                                       and the second string should contain additional text specifying an event
-     *                                       description, expense, and optional time for recurring events.
+     *     and the second string should contain additional text specifying an event
+     *     description, expense, and optional time for recurring events.
      * @return a one time expense event command object if the user input does not contain a time, or a monthly
-     * recurring expense event command object if the user input contains a time.
+     *     recurring expense event command object if the user input contains a time.
      * @throws InvalidCommandException if the user input is not in the correct format,
-     *                                 or if there is a bug in the application.
+     *     or if there is a bug in the application.
      */
     private Command prepareEventCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         Pattern pattern = Pattern.compile(EVENT_REGEX);
@@ -240,13 +240,12 @@ public class Parser {
      * Constructs a category command object if the user input is valid.
      *
      * @param separatedKeywordAndDescription an array of two strings: the first string should be the "category" keyword,
-     *                                       and the second string should contain additional text specifying a category name
-     *                                       and an optional budget.
+     *     and the second string should contain additional text specifying a category name and an optional budget.
      * @return a category command object to add a category with default budget 0
-     * if the user input contains a category name but no budget, or a category command object to add a category
-     * with a budget if the user input contains a category name and a budget.
+     *     if the user input contains a category name but no budget, or a category command object to add a category
+     *     with a budget if the user input contains a category name and a budget.
      * @throws InvalidCommandException if the user input is not in the correct format,
-     *                                 or if there is a bug in the application.
+     *     or if there is a bug in the application.
      */
     private Command prepareCategoryCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         Pattern pattern = Pattern.compile(CATEGORY_REGEX);
@@ -280,10 +279,10 @@ public class Parser {
      * Constructs a search command object if the user input is valid.
      *
      * @param separatedKeywordAndDescription an array of two strings: the first string should be the "search" keyword,
-     *                                       and the second string should contain additional text specifying a keyword to search for.
+     *     and the second string should contain additional text specifying a keyword to search for.
      * @return a search command object to search for a keyword.
      * @throws InvalidCommandException if the user input is not in the correct format,
-     *                                 or if there is a bug in the application.
+     *     or if there is a bug in the application.
      */
     private Command prepareSearchCommand(String[] separatedKeywordAndDescription) throws InvalidCommandException {
         if (separatedKeywordAndDescription.length < 2) {
@@ -296,13 +295,13 @@ public class Parser {
      * Constructs an edit command object if the user input is valid.
      *
      * @param separatedKeywordAndDescription an array of two strings: the first string should be the "edit" keyword,
-     *                                       and the second string should contain additional text specifying a category name
-     *                                       and an optional event index to edit.
+     *     and the second string should contain additional text specifying a category name
+     *     and an optional event index to edit.
      * @return an edit command object to edit a budget of a category if the user input contains a category name
-     * but no event index, or an edit command object to edit an event expense in a category if the user input
-     * contains a category name and an event index.
+     *     but no event index, or an edit command object to edit an event expense in a category if the user input
+     *     contains a category name and an event index.
      * @throws InvalidCommandException if the user input is not in the correct format,
-     *                                 or if there is a bug in the application.
+     *     or if there is a bug in the application.
      */
     private Command prepareEditCommand(String[] separatedKeywordAndDescription) throws Exception {
         Pattern pattern = Pattern.compile(EDIT_REGEX);

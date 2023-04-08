@@ -5,7 +5,8 @@ public class Strings {
     public static final String EVENT_DELETION_MESSAGE = "Event deleted: ";
     public static final String CATEGORY_DELETION_MESSAGE = "Category deleted: ";
     public static final String NON_EXISTENT_EVENT = "Event does not exist";
-    public static final String ENTERING_VALID_TIME_FORMAT_MESSAGE = "Please enter a valid time in the format of dd/mm/yyyy hh:mm";
+    public static final String ENTERING_VALID_TIME_FORMAT_MESSAGE = "Please enter a valid time in the format of " +
+            "dd/mm/yyyy hh:mm";
     public static final String NEGATIVE_INTEGER_DETECTING_REGEX = "^-\\d+";
     public static final String ZERO_MATCHING_REGEX = "^0";
     public static final String INTEGER_DETECTING_REGEX = "\\d+";
@@ -93,7 +94,8 @@ public class Strings {
     public static final String EDIT_FORMAT = "Please following the correct format: " +
             "edit c/<category name> e/<event index>";
     public static final String EMPTY_DESCRIPTION_FOR_EVENT = "OOPS!!! The description of an event cannot be empty.";
-    public static final String EMPTY_DESCRIPTION_FOR_CATEGORY = "OOPS!!! The description of a category cannot be empty.";
+    public static final String EMPTY_DESCRIPTION_FOR_CATEGORY =
+            "OOPS!!! The description of a category cannot be empty.";
     public static final String NULL_INPUT_ASSERTION = "Input cannot be null";
     public static final String STORAGE_NEXT_VARIABLE = "&&next_detail&&";
     public static final String NEW_LINE = System.lineSeparator();
