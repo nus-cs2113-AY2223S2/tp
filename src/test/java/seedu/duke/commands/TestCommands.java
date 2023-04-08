@@ -13,7 +13,8 @@ import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * This class test the handling of commands and checks if commands throw appropriate errors.
