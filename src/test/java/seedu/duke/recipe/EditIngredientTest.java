@@ -18,17 +18,16 @@ import static seedu.duke.command.CommandType.EDITINGREDIENT;
 public class EditIngredientTest {
     ByteArrayOutputStream output;
     PrintStream console;
-    RecipeList recipeList;
     UI ui;
 
     @BeforeEach
     public void setup() throws Exception {
-        recipeList = new RecipeList();
+        RecipeList.createRecipeList();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(new Ingredient("maggi"));
         ingredients.add(new Ingredient("water"));
         IngredientList ingredientList = new IngredientList(ingredients);
-        recipeList.addNewRecipe(new
+        RecipeList.addNewRecipe(new
                 Recipe("TypicalRecipe", "Fast", ingredientList, new StepList()));
         output = new ByteArrayOutputStream();
         console = System.out;
@@ -39,6 +38,7 @@ public class EditIngredientTest {
     @AfterEach
     public void end() throws Exception {
         System.setOut(console);
+        RecipeList.clearRecipeList();
     }
 
     /**
@@ -51,7 +51,7 @@ public class EditIngredientTest {
     public void editBasicTestCase() throws Exception {
         String newDescription = "boiling water";
         int replaceIndex = 1;
-        Recipe recipeToEdit = recipeList.getRecipeFromList(1);
+        Recipe recipeToEdit = RecipeList.getRecipeFromList(1);
         IngredientList ingredientListToEdit = recipeToEdit.getIngredientList();
         ingredientListToEdit.editIngredient(replaceIndex,newDescription);
         Ingredient expectedResult = new Ingredient(newDescription);
@@ -71,7 +71,7 @@ public class EditIngredientTest {
      */
     @Test
     public void editMissingRecipeIndexTestCase() throws Exception {
-        new Command(EDITINGREDIENT,"").execute(recipeList,ui);
+        new Command(EDITINGREDIENT,"").execute(ui);
         assertEquals(StringLib.RECIPE_EDITING_DEFAULT_ERROR +
                         "The index of EDITINGREDIENT cannot be empty.\n",
                 '\n' + output.toString().trim() + '\n');
@@ -84,7 +84,7 @@ public class EditIngredientTest {
      */
     @Test
     public void editRecipeIndexZeroTestCase() throws Exception {
-        new Command(EDITINGREDIENT,"0").execute(recipeList,ui);
+        new Command(EDITINGREDIENT,"0").execute(ui);
         assertEquals(StringLib.POS_INT + System.lineSeparator() + "Valid range: " + 1 + " to " + 1,
                 '\n' + output.toString().trim());
     }
@@ -96,7 +96,7 @@ public class EditIngredientTest {
      */
     @Test
     public void editRecipeIndexExceededTestCase() throws Exception {
-        new Command(EDITINGREDIENT,"6").execute(recipeList,ui);
+        new Command(EDITINGREDIENT,"6").execute(ui);
         assertEquals(StringLib.POS_INT + System.lineSeparator() + "Valid range: " + 1 + " to " + 1,
                 '\n' + output.toString().trim());
     }
@@ -105,14 +105,14 @@ public class EditIngredientTest {
      * Test the result of ingredient index exceeds number of ingredients
      * in ingredientList
      *
-     * @throw Exception if there is an unexpected result
+     * @throws Exception if there is an unexpected result
      *
      */
     @Test
     public void editIngredientIndexExceededTestCase() throws Exception {
         String newDescription = "boiling water";
         int userInput = 3;
-        Recipe recipeToEdit = recipeList.getRecipeFromList(1);
+        Recipe recipeToEdit = RecipeList.getRecipeFromList(1);
         IngredientList ingredientListToEdit = recipeToEdit.getIngredientList();
 
         String exceptionOutput = "";
@@ -130,14 +130,14 @@ public class EditIngredientTest {
     /**
      * Test the result of ingredient index is 0 in non-empty ingredientList
      *
-     * @throw Exception if there is an unexpected result
+     * @throws Exception if there is an unexpected result
      *
      */
     @Test
     public void editIngredientIndexZeroTestCase() throws Exception {
         String newDescription = "boiling water";
         int userInput = 0;
-        Recipe recipeToEdit = recipeList.getRecipeFromList(1);
+        Recipe recipeToEdit = RecipeList.getRecipeFromList(1);
         IngredientList ingredientListToEdit = recipeToEdit.getIngredientList();
 
         String exceptionOutput = "";

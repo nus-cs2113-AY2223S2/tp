@@ -3,6 +3,7 @@ package seedu.duke.ui;
 import seedu.duke.command.CommandType;
 import seedu.duke.exceptions.FileParseReadingException;
 import seedu.duke.exceptions.IncompleteInputException;
+import seedu.duke.exceptions.InvalidInputCharactersException;
 import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.recipe.IngredientList;
@@ -94,6 +95,8 @@ public class UI {
             System.out.println(StringLib.MISSING_DESCRIPTION_ERROR + e.getMessage());
         } else if (e instanceof StringIndexOutOfBoundsException) {
             System.out.println(StringLib.PARSING_STRING_ERROR + e.getMessage());
+        } else if (e instanceof InvalidInputCharactersException) {
+            System.out.println(StringLib.RECIPE_ADDING_DEFAULT_ERROR + e.getMessage());
         } else {
             System.out.println(StringLib.RECIPE_ADDING_DEFAULT_ERROR + e.getMessage());
         }

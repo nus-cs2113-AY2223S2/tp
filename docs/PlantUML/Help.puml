@@ -1,31 +1,33 @@
 @startuml Help
-box Manager #White
+box Help #White
 Actor User
-
-participant ":UI" as UI
-participant ":Duke" as Duke
-participant ":Parser" as Parser
-participant ":Command" as Command1
+participant ":UI" as UI #Gray
+participant ":Duke" as Duke #Gold
+participant ":Parser" as Parser #Yellow
+participant ":Command" as Command #Beige
 end box
 
-activate Duke
-
-User -> Duke : "help"
-Duke -> Parser : "parseCommand()"
-activate Parser
+activate Duke #Gold
+Duke -> UI : readCommand()
+activate UI #Gray
+User -> UI : "help"
+UI --> Duke : "help"
+deactivate UI
+Duke -> Parser : parseCommand()
+activate Parser #Yellow
 Parser --> Duke
 deactivate Parser
-Duke -> Command1 : "execute()"
-activate Command1
-Command1 -> UI : "showHelp()"
-activate UI
-UI -> User : HELP message shown
-UI --> Command1
+Duke -> Command : execute()
+activate Command #Beige
+Command -> UI : showHelp()
+activate UI #Gray
+UI -> User : help message
+UI --> Command
 deactivate UI
-Command1 --> Duke
-deactivate Command1
-Duke -> Command1 : delete
-destroy Command1
+Command --> Duke
+Duke -> Command : delete
+deactivate Command
+destroy Command
 
 
 @enduml

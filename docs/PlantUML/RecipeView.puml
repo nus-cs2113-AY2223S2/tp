@@ -1,37 +1,47 @@
-@startuml Recipe View
-box Viewer #White
+@startuml RecipeView
+box View #White
 Actor User
-participant ":Duke" as Duke
-participant ":Parser" as Parser
-participant ":Command" as Command
-participant ":RecipeList" as RecipeList
-participant ":UI" as UI
-participant ":IngredientList" as IngredientList
-participant ":StepList" as StepList
-
+participant ":UI" as UI #Gray
+participant ":Duke" as Duke #Gold
+participant ":Parser" as Parser #Yellow
+participant ":Command" as Command #Beige
+participant ":RecipeList" as RecipeList #OrangeRed
+participant ":IngredientList" as IngredientList #LightBlue
+participant ":StepList" as StepList #LightGreen
 end box
-activate Duke
-User -> Duke : "view 1"
-Duke -> Parser : "parseCommand()"
-activate Parser
+
+activate Duke #Gold
+Duke -> UI : readCommand()
+activate UI #Gray
+User -> UI : "view 1"
+UI --> Duke : "view 1"
+deactivate UI
+Duke -> Parser : parseCommand()
+activate Parser #Yellow
 Parser --> Duke
 deactivate Parser
-Duke -> Command : "execute()"
-activate Command
-Command -> RecipeList : "getRecipeFromList()"
-activate RecipeList
+Duke -> Command : execute()
+activate Command #Beige
+Command -> RecipeList : viewRecipe()
+activate RecipeList #OrangeRed
 RecipeList --> Command
 deactivate RecipeList
-Command -> UI : "showRecipeViewed()"
-activate UI
-UI -> IngredientList : "getIngredientList()"
-activate IngredientList
+Command -> UI : showRecipeViewed()
+activate UI #Gray
+UI -> IngredientList : getIngredientList()
+activate IngredientList #LightBlue
+IngredientList --> UI
 deactivate IngredientList
-UI -> StepList : "getStepList()"
-activate StepList
+UI -> StepList : getStepList()
+activate StepList #LightGreen
+StepList --> UI
 deactivate StepList
+UI -> User : recipe view message
+UI --> Command
 deactivate UI
+Duke -> Command : delete
 deactivate Command
+destroy Command
 
 
 @enduml
