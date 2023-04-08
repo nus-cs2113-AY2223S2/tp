@@ -13,17 +13,15 @@ participant ":ShowModuleCommand" as Command
 participant ":Module" as Module
 participant ":Ui" as Ui
 
-User -> Apollo : "showmod cs2113"
+User -> Apollo : "showmod" + param
 activate Apollo
 Apollo -> Parser : getCommand()
 
 activate Parser
 Parser -> Parser : parseCommand()
 activate Parser
-Parser --> Parser : parseCommand()
-deactivate Parser
 
-opt "showmod"
+opt param is empty
 Parser -> Parser : isEmptyParam()
 activate Parser
 Parser -> Ui :printErrorMessage()
@@ -35,7 +33,7 @@ deactivate Ui
 destroy Ui
 
 
-else "showmod cs2113"
+else param is not empty
 
 
 Parser -> Command** : ShowModuleCommand()
@@ -57,8 +55,10 @@ destroy Command
 
 end
 
+deactivate Parser
 Parser --> Apollo
 deactivate Parser
+
 destroy Parser
 
 deactivate Apollo
