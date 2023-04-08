@@ -61,7 +61,8 @@ and added link back to the TOC at the end of every section.
 1. Set up the skeleton of DG with appropriate headers for everything.
 2. Set up the TOC to work properly such that it can link to the appropriate sections.
 3. Added the Acknowledgements section which acknowledges the external libraries we have used
-4. Added the entire [Architecture](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#architecture) section of the DG.
+4. Added the entire [Architecture](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#architecture)
+section of the DG to explain how the classes of our program interacts with each other.
 5. Added the entire [Ui](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#ui-component) section of the DG.
 6. Added the [Common class](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#common-class) section of the DG.
 7. Contributed to Target user profile  under `Appendix: Requirements` of DG.
