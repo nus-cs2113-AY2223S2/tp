@@ -59,7 +59,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleAdd(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        if (tokens.size() != 2) {
+        if (tokens.size() != 4) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
@@ -75,7 +75,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleDelete(List<String> tokens) throws ParseException, InkaException {
 
-        if (tokens.size() != 1) {
+        if (tokens.size() != 2) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
