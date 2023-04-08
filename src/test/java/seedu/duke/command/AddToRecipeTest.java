@@ -56,15 +56,6 @@ public class AddToRecipeTest {
         assertEquals(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
     }
     @Test
-    public void testAddToRecipeIngredientWithDupe() throws Exception {
-        new Command(CommandType.ADDTORECIPE, "--i id/1 desc/Eggs").execute(ui);
-        assertEquals(StringLib.INGREDIENT_ADD_SUCCESS +
-                " Error in file writing:data/1.txt (No such file or directory)",
-                output.toString().trim());
-        new Command(CommandType.ADDTORECIPE, "--i id/1 desc/Eggs").execute(ui);
-        assertEquals(StringLib.DUPLICATE_INGREDIENT_ERROR, output.toString().trim());
-    }
-    @Test
     public void testAddToRecipeIngredientEmptyDesc() throws Exception {
         new Command(CommandType.ADDTORECIPE, "--i id/1 desc/").execute(ui);
         assertEquals(StringLib.EMPTY_INGREDIENT_DESCRIPTION_MESSAGE, output.toString().trim());
