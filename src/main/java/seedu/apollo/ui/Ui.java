@@ -213,11 +213,11 @@ public class Ui {
             System.out.println(determineDay(i) + "\n");
 
             // lessons
-            ArrayList<CalendarModule> modulesOnDay = calendar.getModulesForDay(weekNumber, i);
-            if (modulesOnDay.size() == 0) {
+            ArrayList<CalendarModule> lessonsOnDay = calendar.getLessonsForDay(weekNumber, i);
+            if (lessonsOnDay.size() == 0) {
                 System.out.println("There are no lessons on this day.");
             } else {
-                printLessonsOnDay(modulesOnDay);
+                printLessonsOnDay(lessonsOnDay);
             }
             System.out.println();
 
@@ -245,10 +245,8 @@ public class Ui {
 
     private void printTasksOnDay(TaskList tasksOnDay) {
         System.out.println("Tasks:");
-        int count = 0;
         for (Task task : tasksOnDay) {
-            count++;
-            System.out.println(count + ". " + task);
+            System.out.println(" - " + task);
         }
     }
 

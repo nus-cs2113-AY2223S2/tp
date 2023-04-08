@@ -188,7 +188,7 @@ public class AddCommand extends Command {
         DayOfWeek day = by.getDayOfWeek();
         int dayNum = day.getValue() - 1;
         int week = getWeekNumber(by.toLocalDate());
-        ArrayList<CalendarModule> clashLessons = calendar.getModulesForDay(week, dayNum);
+        ArrayList<CalendarModule> clashLessons = calendar.getLessonsForDay(week, dayNum);
         clashTasks.sortTaskByDay();
         ui.printClashingDeadlineMessage(clashTasks, clashLessons);
     }

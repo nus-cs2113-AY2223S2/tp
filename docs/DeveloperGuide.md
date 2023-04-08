@@ -910,21 +910,29 @@ A new `WeekCommand` is created and sent back to `Apollo`.
 **Step 2.**
 `Apollo` calls `Command#execute()`, which is overwritten by `WeekCommand#execute()`. 
 
-Step 3. The dates of Monday and Sunday of the current week (`startWeek`, `endWeek`) are determined using `LocalDate`.
+**Step 3.** 
+`execute()` determines the dates of Monday and Sunday of the current week (`startWeek`, `endWeek`) using `LocalDate`.
 
-Step 4. The parameters `startWeek`, `endWeek`, `taskList` (all tasks), and `calendar` (all lessons) are passed into `Ui`
+**Step 4.** 
+`execute()` calls `Ui#printWeek()`, 
+which passes the parameters `startWeek`, `endWeek`, `taskList` (all tasks), and `calendar` (all lessons) into `Ui`
 
-Step 5. Starting from Monday, the lessons and tasks occurring on each day of the week are printed out. 
-- Step 5a. The day of week is printed using the `determineDay()` method in `DayTypeUtil`. 
-- Step 5b. All lessons on that day are stored in an `ArrayList<CalendarModule> lessonsOnDay` using `calender.get()`. 
-  If no lessons occur on that day, Step 5c is skipped.
-- Step 5c. `lessonsOnDay` is passed into the method `printLessonsOnDay()` in `Ui`. 
-  The schedule of each lesson is stored in a new `Timetable`, then printed out in the desired format. 
-- Step 5d. Similarly, All tasks on that day are stored in an `TaskList tasksOnDay` using `taskList.getTasksOnDay()`.
-  If no lessons occur on that day, Step 5e is skipped.
-- Step 5e. `tasksOnDay` is passed into the method `printTasksOnDay()` in `Ui`. Each task is printed out.
-- Step 5f. The current day is increased to the following day.
-- Step 5g. Go back to Step 5a, stop after all lessons and tasks on Sunday have been printed. 
+**Step 5.** 
+`printWeek()` calls `SemesterUtils#getWeekNumber()` and prints out a message indicating the current week. 
+
+**Step 6.**
+`printWeek()` calls `Ui#printEachDayInWeek()`, 
+which prints out the lessons and tasks occurring on each day of the current week, starting from Monday, as follows: 
+1. The day of week is printed using the `DayTypeUtil#determineDay()`. 
+2. All lessons on the day are stored in an `ArrayList<CalendarModule> lessonsOnDay` using `calender.getModulesForDay()`. 
+   If no lessons occur on that day, the next step is skipped. 
+3. `modulesOnDay` is passed into the method `Ui#printLessonsOnDay()`. 
+   The schedule of each lesson is stored in a new `Timetable`, then printed out in the desired format. 
+4. Similarly, All tasks on the day are stored in an `TaskList tasksOnDay` using `taskList.getTasksOnDate()`.
+   If no tasks occur on that day, the next step is skipped.
+5. `tasksOnDay` is passed into the method `Ui#printTasksOnDay()`. Each task is printed out. 
+6. The current day is increased to the following day. 
+7. Go back to the first step, stop after all lessons and tasks on Sunday have been printed. 
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Week-WeekCommand.png?raw=true)
 
