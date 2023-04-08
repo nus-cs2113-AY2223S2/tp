@@ -1,10 +1,12 @@
 package seedu.ui;
 
+import seedu.commands.Command;
+import seedu.exceptions.InvalidArgumentException;
+import seedu.exceptions.InvalidSyntaxException;
 
 import java.util.Scanner;
 
 public class Ui {
-
     private static final String LINE = "=======================================";
     private static final String LINE_SEPARATOR = "----------------------------------------";
 
@@ -42,7 +44,7 @@ public class Ui {
                     + "- [Display calories consumed on a specific date : /cview]" + System.lineSeparator()
                     + "- [Delete calories record for one food: /wdelete]" + System.lineSeparator()
                     + "- [Exit app: /exit]" + System.lineSeparator() + LINE;
-
+    private static final String READ_FILE_ERROR_MESSAGE = "Error reading file: ";
     public static void showGreeting() {
         System.out.println(WELCOME_MESSAGE);
     }
@@ -56,8 +58,8 @@ public class Ui {
     }
 
 
-    public static String showSeparator(){
-        return (LINE_SEPARATOR);
+    public static String line() {
+        return LINE;
     }
 
     public static String getUserInput() {
@@ -73,6 +75,47 @@ public class Ui {
 
     public static String getWorkoutHelpMessage() {
         return HELP_MESSAGE_WORKOUT;
+    }
+
+    public static void showErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
+    public static void showCommandResult(Command command)
+            throws InvalidArgumentException, InvalidSyntaxException {
+        System.out.println(command.execute());
+    }
+
+    public static void showReadFileErrorMessage(String fileName) {
+        System.out.println(READ_FILE_ERROR_MESSAGE + fileName);
+    }
+
+    public static void showNoSavedDataMessage(String fileName) {
+        System.out.println("No saved data found for " + fileName + '.');
+        System.out.println("Creating new file for " + fileName + ".......");
+    }
+
+    public static void showCreatedNewFileMessage(String fileName) {
+        System.out.println("New file for " + fileName + " created.");
+    }
+    public static void showNewFileNotCreatedMessage(String fileName) {
+        System.out.println("Error creating new file for " + fileName + ".");
+        System.out.println("User data may not be saved!");
+    }
+
+    public static void showCreateDirectoryMessage() {
+        System.out.println("Creating directories.....");
+    }
+
+    public static void showDirectoryNotCreatedMessage() {
+        System.out.println("Unable to create directories. User data may not be saved.");
+    }
+
+    public static void showSaveUserDataErrorMessage() {
+        System.out.println("Error saving user data.");
+    }
+    public static void showSuccessfulLoadDataMessage(String fileName) {
+        System.out.println("Successfully loaded " + fileName + " data.");
     }
 
     public static String getCaloriesHelpMessage() {

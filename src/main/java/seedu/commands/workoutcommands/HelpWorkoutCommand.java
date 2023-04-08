@@ -1,6 +1,5 @@
 package seedu.commands.workoutcommands;
 
-
 import seedu.commands.Command;
 import seedu.ui.Ui;
 //@@author Richardtok

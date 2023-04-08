@@ -1,13 +1,10 @@
 package seedu.commands.workoutcommands;
 
-
 import seedu.commands.Command;
 import seedu.parser.DateFormatter;
 import seedu.ui.Ui;
-import seedu.workout.Day;
-import seedu.workout.WorkoutList;
-import java.util.Date;
-import java.util.HashMap;
+import seedu.workout.Workout;
+
 
 /**
  * This is the class for executing the list command
@@ -15,36 +12,31 @@ import java.util.HashMap;
 //@@ author ZIZI-czh
 public class ListWorkoutCommand extends Command {
 
-    private static final String EMPTY_DAY_LIST_MESSAGE = "No days have been found in the list";
+    private static final String EMPTY_LIST_MESSAGE = "Workout list is empty";
     private static final String WORKOUT_LIST_HEADER =
-            "Here is the list of dates of your workouts:";
+            "Here is the list of dates of your workouts:" + System.lineSeparator();
 
     //@@ author ZIZI-czh
     public ListWorkoutCommand() {
-        super();
-    }
-    public ListWorkoutCommand(WorkoutList workoutListParameter){
-        workoutList = workoutListParameter;
     }
 
-    /**
-     * Show the list of date of the workout by calling the method in workoutList
-     */
-    //@@ author ZIZI-czh
+    //@@author calebcjl
     @Override
     public String execute() {
-        HashMap<Date, Day> workouts = workoutList.getWorkouts();
-        if (workouts != null && !workouts.isEmpty()) {
-            StringBuilder string = new StringBuilder();
-            string.append( WORKOUT_LIST_HEADER).append(System.lineSeparator());
-            for (Date date : workouts.keySet()) {
-                String formattedDate = DateFormatter.dateToString(date);
-                string.append(formattedDate).append(System.lineSeparator());
-            }
-            return string + Ui.showSeparator();
-        } else {
-            return EMPTY_DAY_LIST_MESSAGE;
+        if (workoutList.isEmptyList()) {
+            return EMPTY_LIST_MESSAGE;
         }
+
+        StringBuilder listOfWorkouts = new StringBuilder(WORKOUT_LIST_HEADER);
+        int counter = 1;
+        for (Workout workout : workoutList.getWorkouts()) {
+            String listNumber = counter + ". ";
+            String date = DateFormatter.dateToString(workout.getDate()) + ' ';
+            String workoutName = workout.getWorkoutName();
+            listOfWorkouts.append(listNumber).append(date).append(workoutName).append(System.lineSeparator());
+            counter += 1;
+        }
+        return listOfWorkouts.append(Ui.line()).toString();
     }
 }
 
