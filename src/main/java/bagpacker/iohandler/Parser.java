@@ -254,7 +254,7 @@ public class Parser {
                     AddCommand.HELP_MSG);
         } catch (NumberFormatException | InvalidIndexException e) {
             return new IncorrectCommand("Invalid Item Quantity",
-                    "For item quantity, try to input a positive integer number between 1 and 1000000");
+                    "For QUANTITY, try to input a positive integer number between 1 and 1,000,000.");
         }
     }
 
@@ -357,8 +357,9 @@ public class Parser {
     }
 
     /**
-     * Attempts to create EditQuantityCommand object to be executed where it is called from Will check whether QUANTITY
-     * and INDEX are positive integers Will check whether changing the total quantity will cause packed
+     * Attempts to create EditQuantityCommand object to be executed where it is called from
+     * Will check whether QUANTITY and INDEX are positive integers
+     * Will check whether changing the total quantity will cause packed
      *
      * @return EditQuantityCommand the command to be executed to edit the total quantity of an item in the packing list,
      *         else an IncorrectCommand objected is created to be executed
@@ -380,19 +381,19 @@ public class Parser {
             }
             return new EditQuantityCommand(newTotalQuantity, index);
         } catch (NumberFormatException e) {
-            return new IncorrectCommand("Invalid Integer detected",
-                    "BagPacker only supports the use of positive integers of at most 1000000");
+            return new IncorrectCommand("Invalid Character detected",
+                    "Please use positive integers between 0 and 1,000,000.");
         } catch (InvalidIndexException e) {
-            return new IncorrectCommand("Invalid item quantity or index",
+            return new IncorrectCommand("Invalid Item Quantity or Index",
                     "For QUANTITY, try to input a positive integer that is at least the quantity packed.\n"
                             + "For INDEX, try to input a positive integer that is at most "
                             + PackingList.getItemList().size());
         } catch (InvalidVariablesException e) {
             return new IncorrectCommand("Invalid Quantity detected",
-                    "editquantity only supports the use of positive integers of at most 1000000");
+                    "Please use positive integers between 0 and 1,000,000.");
         } catch (ArrayIndexOutOfBoundsException e) {
-            return new IncorrectCommand("Missing or additional inputs",
-                    "A valid quantity and index are required.");
+            return new IncorrectCommand("Missing or Additional inputs",
+                    "Please input only a valid quantity and index.");
         }
     }
 

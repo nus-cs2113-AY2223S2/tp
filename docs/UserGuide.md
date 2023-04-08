@@ -8,12 +8,14 @@
 * [Features](#span-stylecolor00a36c-features-span)
   * [Adding a new item](#span-stylecolor6495ed-adding-a-new-item--span-add)
   * [Deleting an item](#span-stylecolor6495ed-deleting-an-item--span-delete)
-  * [Packing some items](#span-stylecolor6495ed-packing-some-items--span-pack)
-  * [Packing all quantity of items](#span-stylecolor6495ed-marking-total-quantity-of-item-as-packed--span-packall)
-  * [Unpacking some items](#span-stylecolor6495ed-unpacking-some-items--span-unpack)
+  * [Packing an items](#span-stylecolor6495ed-packing-some-items--span-pack)
+  * [Fully pack an item](#span-stylecolor6495ed-marking-total-quantity-of-item-as-packed--span-packall)
+  * [Unpacking an item](#span-stylecolor6495ed-unpacking-some-items--span-unpack)
   * [Editing item quantity](#span-stylecolor6495ed-editing-item-quantity--span-editquantity)
   * [Listing all items](#span-stylecolor6495ed-listing-all-items--span-list)
+  * [Listing all unpacked items](#span-stylecolor6495ed-listing-all-unpacked-items--span-listunpacked)
   * [Deleting the entire list](#span-stylecolor6495ed-deleting-the-entire-list--span-deletelist)
+  * [Finding an item](#span-stylecolor6495ed-finding-an-item--span-find)
   * [Help message](#span-stylecolor6495ed-help-message--span-help)
   * [Exiting the application](#span-stylecolor6495ed-exiting-the-application--span-bye)
 * [Frequently Asked Questions (FAQ)](#span-stylecolor00a36c-frequently-asked-questions--faq--span)
@@ -40,13 +42,6 @@ is unpacked and travel with ease of mind.
    * For Windows users: search for Command Prompt, and launch it.
    * For macOS users: search for Terminal, and launch it.
 5. Execute the following command `java -jar Team_Project.jar`
-
----
-## <span style="color:#00A36C">Limitations</span>
-* BagPacker supports the tracking of integer values up to 1000000:
->   * for total number of items in a packing list
->   * for total / packed / unpacked quantity of any single item in a packing list
->   * any form of list tracking above 1000000 integer size is not supported and may result in undefined outputs
 
 ---
 
@@ -198,7 +193,7 @@ List Format explanation:
 
 ### <span style="color:#6495ED">Listing all unpacked items:</span> `listunpacked`
 Lists all the items in the packing list that are not fully packed yet.
-* Fully packed meaning an item's current quantity packed is the same as the total quantity to be packed
+* Fully packed meaning an item's current quantity packed is the same as the total quantity to be packed.
 * Includes the current packed quantity, the total quantity to be packed, and the name of the item.
 
 Format: `listunpacked`
@@ -230,6 +225,16 @@ Format: `deletelist`
 Example of usage:
 * `deletelist`
 
+### <span style="color:#6495ED">Finding an item:</span> `find`
+Searches for item names that contain any part of the input keywords.
+
+Format: `find KEYWORDS`
+* `KEYWORDS` should contain a phrase that can be found in the names of at least one list item.
+  * A `KEYWORD` that cannot be found in the names of at least one list item will result in an error message.
+
+Example of usage:
+* `find shirt`
+
 ### <span style="color:#6495ED">Help message:</span> `help`
 Displays a help message containing the command summary.
 
@@ -258,22 +263,22 @@ Examples of usage:
 
 **A**: Please check that there are no typos in the command. To check the correct spelling of the commands, please type `help` and hit enter.
 
-[⏫ Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span)
+[⏫ Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) |
 
 ---
 
 ## <span style="color:#00A36C">Command Summary</span>
 
-| Action description                       | Syntax                      | Remarks                                                                                                                          |
-|:-----------------------------------------|:----------------------------|:---------------------------------------------------------------------------------------------------------------------------------|
-| Add an item                              | `add QUANTITY /of NAME`     | `QUANTITY` must be between 0 and 1,000,000, not inclusive of 0 and 1,000,000                                                     |
-| Delete an item                           | `delete INDEX`              | `INDEX` must be a valid list index                                                                                               |
-| Pack some of an item                     | `pack QUANTITY /of INDEX`   | <li>Adding `QUANTITY` should not cause the quantity to exceed the total quantity</li><li>`INDEX` must be a valid list index</li> |
-| Marking total quantity of item as packed | `packall /of INDEX`         | `INDEX` must be a valid list index                                                                                               |
-| Unpack some item                         | `unpack QUANTITY /of INDEX` | <li>Subtracting `QUANTITY` should not cause the quantity to be less than 0</li><li>`INDEX` must be a valid list index</li>       |      
-| List all items                           | `list`                      | Additional parameters will be ignored                                                                                            |
-| Delete the whole list                    | `deletelist`                | Additional parameters will be ignored                                                                                            |
-| Help message                             | `help`                      | Additional parameters will be ignored                                                                                            |
-| Exit                                     | `bye`                       | Additional parameters will be ignored                                                                                            |
+| Action description                       | Syntax                      | Remarks                                                                                                              |
+|:-----------------------------------------|:----------------------------|:---------------------------------------------------------------------------------------------------------------------|
+| Add an item                              | `add QUANTITY /of NAME`     | `QUANTITY` must be between 0 and 1,000,000, not inclusive of 0 and 1,000,000                                         |
+| Delete an item                           | `delete INDEX`              | `INDEX` must be a valid list index                                                                                   |
+| Pack some of an item                     | `pack QUANTITY /of INDEX`   | Adding `QUANTITY` should not cause the quantity to exceed the total quantity<br/> `INDEX` must be a valid list index |
+| Marking total quantity of item as packed | `packall /of INDEX`         | `INDEX` must be a valid list index                                                                                   |
+| Unpack some item                         | `unpack QUANTITY /of INDEX` | Subtracting `QUANTITY` should not cause the quantity to be less than 0<br/> `INDEX` must be a valid list index       |      
+| List all items                           | `list`                      | Additional parameters will be ignored                                                                                |
+| Delete the whole list                    | `deletelist`                | Additional parameters will be ignored                                                                                |
+| Help message                             | `help`                      | Additional parameters will be ignored                                                                                |
+| Exit                                     | `bye`                       | Additional parameters will be ignored                                                                                |
 
 [⏫ Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) | [⏫ Go to Features](#span-stylecolor00a36c-table-of-contents-span)
