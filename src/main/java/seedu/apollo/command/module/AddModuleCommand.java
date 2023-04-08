@@ -69,17 +69,7 @@ public class AddModuleCommand extends Command {
                 handleMultiCommand(moduleList, allModules, args, ui, calendar);
                 ui.printClassAddedMessage(args[0].toUpperCase(), getCommand(args[1]), args[2]);
             } else {
-                if (isAdded(moduleList, module)) {
-                    throw new DuplicateModuleException();
-                }
-
-                if (module != null) {
-                    moduleList.add(module);
-                    moduleList.sortModules();
-                    Module referenceModule = allModules.findModule(module.getCode());
-                    ui.printAddModuleMessage(module, moduleList, getLessonTypes(referenceModule));
-
-                }
+                handleSingleCommand(moduleList, allModules, ui);
             }
 
             storage.updateModule(moduleList, calendar);
@@ -96,6 +86,28 @@ public class AddModuleCommand extends Command {
             ui.printLessonExists();
         } catch (InvalidSaveFile e) {
             ui.printErrorForIO();
+        }
+    }
+
+    /**
+     * Handles the case where the user wants to add a module.
+     *
+     * @param moduleList The list of modules.
+     * @param allModules Module backend data.
+     * @param ui The user interface.
+     * @throws DuplicateModuleException If the module already exists.
+     */
+    private void handleSingleCommand(ModuleList moduleList, ModuleList allModules, Ui ui)
+            throws DuplicateModuleException {
+        if (isAdded(moduleList, module)) {
+            throw new DuplicateModuleException();
+        }
+
+        if (module != null) {
+            moduleList.add(module);
+            moduleList.sortModules();
+            Module referenceModule = allModules.findModule(module.getCode());
+            ui.printAddModuleMessage(module, moduleList, getLessonTypes(referenceModule));
         }
     }
 

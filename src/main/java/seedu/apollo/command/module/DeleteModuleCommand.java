@@ -42,26 +42,7 @@ public class DeleteModuleCommand extends Command {
             if (args.length == 3) {
                 handleMultiCommand(moduleList, ui);
             } else {
-                // module code is the only argument
-                String listParam = args[0];
-                String moduleCode;
-                if (isInteger(listParam)) {
-                    int index = Integer.parseInt(listParam);
-                    if (index > moduleList.size() || index < 1) {
-                        throw new NumberFormatException();
-                    }
-                    moduleCode = moduleList.get(index - 1).getCode();
-                    moduleList.remove(index - 1);
-                } else {
-                    moduleCode = listParam;
-                    Module toDelete = moduleList.findModule(listParam);
-                    if (toDelete == null) {
-                        throw new ModuleNotFoundException();
-                    }
-                    moduleList.remove(toDelete);
-                }
-
-                ui.printModuleDeleteMessage(moduleCode, moduleList);
+                handleSingleCommand(moduleList, ui);
             }
 
             storage.updateModule(moduleList, calendar);
@@ -75,6 +56,37 @@ public class DeleteModuleCommand extends Command {
             ui.printErrorForModIdx(moduleList.size());
         }
     }
+
+
+    /**
+     * Handles the deletion of a module from the module list.
+     *
+     * @param moduleList ModuleList to be deleted from.
+     * @param ui Ui to print messages.
+     * @throws ModuleNotFoundException If the module is not found.
+     */
+    private void handleSingleCommand(ModuleList moduleList, Ui ui) throws ModuleNotFoundException,
+            NumberFormatException {
+        String listParam = args[0];
+        String moduleCode;
+        if (isInteger(listParam)) {
+            int index = Integer.parseInt(listParam);
+            if (index > moduleList.size() || index < 1) {
+                throw new NumberFormatException();
+            }
+            moduleCode = moduleList.get(index - 1).getCode();
+            moduleList.remove(index - 1);
+        } else {
+            moduleCode = listParam;
+            Module toDelete = moduleList.findModule(listParam);
+            if (toDelete == null) {
+                throw new ModuleNotFoundException();
+            }
+            moduleList.remove(toDelete);
+        }
+        ui.printModuleDeleteMessage(moduleCode, moduleList);
+    }
+
 
     /**
      * Handles the deletion of a lesson from a module.
