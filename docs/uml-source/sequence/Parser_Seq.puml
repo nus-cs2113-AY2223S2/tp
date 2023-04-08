@@ -55,5 +55,6 @@ Parser --> Apollo : parseCommand()
 deactivate Parser
 destroy Parser
 
+deactivate Apollo
 
 @enduml
