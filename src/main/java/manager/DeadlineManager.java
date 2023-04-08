@@ -51,7 +51,7 @@ public class DeadlineManager {
      *
      * @param ui manages user output.
      */
-    public static void printDeadlines(TextUi ui) {
+    public static void viewDeadlines(TextUi ui) {
         try {
             if (deadlines.isEmpty()) {
                 throw new DinerDirectorException(Messages.MESSAGE_DEADLINE_EMPTY_LIST);
