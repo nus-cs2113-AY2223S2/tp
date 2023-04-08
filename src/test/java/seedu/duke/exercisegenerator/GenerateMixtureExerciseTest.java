@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //@@author ChubbsBunns
-
 /**
  * This class function is made to ensure that all generate permutations work, since each category fetches data from
  * the json data file slightly differently.

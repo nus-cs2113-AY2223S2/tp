@@ -25,10 +25,21 @@ public class PrintExercises {
             getInstructionsFinal = getInstructions.substring(startInstructions + 1, endInstructions);
             System.out.println("Exercise ID: " + exercise.getId() + ". ");
             System.out.println("Name: " + exercise.getName());
-            System.out.println("Difficulty Level: " + exercise.getLevel());
+            System.out.println("Difficulty Level: " + difficultyLevel(exercise.getLevel()));
             System.out.println("Workout Type: " + getWorkoutTypeFinal);
             System.out.println(getInstructionsFinal.replace(",", "") + System.lineSeparator());
         }
+    }
+
+    private static String difficultyLevel(String difficulty) {
+        if (difficulty.equals("beginner")) {
+            return "easy";
+        }
+        else if (difficulty.equals("intermediate")) {
+            return "medium";
+        }
+        assert difficulty.equals("expert");
+        return "hard";
     }
 
 }

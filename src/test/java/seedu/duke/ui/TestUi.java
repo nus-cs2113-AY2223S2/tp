@@ -379,7 +379,7 @@ public class TestUi {
         int uniqueCount = 1;
 
         String exerciseDescription = "Exercise Name: 3/4 Sit-Up" + System.lineSeparator() +
-            "Difficulty Level: beginner" + System.lineSeparator() + "Workout type: core" +
+            "Difficulty Level: easy" + System.lineSeparator() + "Workout type: core" +
             System.lineSeparator() + "Lie down on the floor and secure your feet. Your legs should be bent" +
             " at the knees., " +
             "Place your hands behind or to the side of your head. You will begin " +
@@ -400,7 +400,7 @@ public class TestUi {
             expectedOutput = "Here is a list of all the exercises you have completed:\r\n" +
                 "\r\n" +
                 "Exercise Name: 3/4 Sit-Up\r\n" +
-                "Difficulty Level: beginner\r\n" +
+                "Difficulty Level: easy\r\n" +
                 "Workout type: core\r\n" +
                 "Lie down on the floor and secure your feet. Your legs should be bent" +
                 " at the knees., " +
@@ -418,7 +418,7 @@ public class TestUi {
             expectedOutput = "Here is a list of all the exercises you have completed:\n" +
                 "\n" +
                 "Exercise Name: 3/4 Sit-Up\n" +
-                "Difficulty Level: beginner\n" +
+                "Difficulty Level: easy\n" +
                 "Workout type: core\n" +
                 "Lie down on the floor and secure your feet. Your legs should be bent" +
                 " at the knees., " +
@@ -525,7 +525,7 @@ public class TestUi {
         if (os.contains("Windows")) {
             expectedOutput = "Exercise ID: 0. \r\n" +
                 "Name: 3/4 Sit-Up\r\n" +
-                "Difficulty Level: beginner\r\n" +
+                "Difficulty Level: easy\r\n" +
                 "Workout Type: core\r\n" +
                 "Lie down on the floor and secure your feet. Your legs should be bent" +
                 " at the knees. " +
@@ -539,7 +539,7 @@ public class TestUi {
         } else {
             expectedOutput = "Exercise ID: 0. \n" +
                 "Name: 3/4 Sit-Up\n" +
-                "Difficulty Level: beginner\n" +
+                "Difficulty Level: easy\n" +
                 "Workout Type: core\n" +
                 "Lie down on the floor and secure your feet. Your legs should be bent" +
                 " at the knees. " +
