@@ -21,6 +21,7 @@ Given below are my contributions to Pet Tracker:
       the correct command
     * Related PR:   [\#19](https://github.com/AY2223S2-CS2113-T11-3/tp/pull/19)
 
+<div style="page-break-after: always;"></div>
 
 * **New Feature**: Todo List
     * What it does: Allows user to add tasks to a todo list
@@ -40,6 +41,7 @@ Given below are my contributions to Pet Tracker:
     * Developer Guide:
         * Architecture Diagram
         * Overall Software Architecture
+        * CommandParser Implementation
 
 
 * **Contributions to team-based tasks / Project Management**:
