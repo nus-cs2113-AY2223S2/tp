@@ -22,7 +22,7 @@ Code contributed by myself on [RepoSense](https://nus-cs2113-ay2223s2.github.io/
 * Highlights: This feature filters and loads data containing the specified keyword from the resources folder, before
   returning an ArrayList of the filtered data output to the user.
 
-### Feature: ```IPPT calculator: ippt [AGE] [RUNTIME] [PUSHUP SCORE] [SITUP SCORE]```
+### Feature: ```IPPT calculator: ippt AGE RUNTIME PUSHUP SCORE SITUP SCORE```
 * What it does: Provides the user as a way to track his Individual Physical Proficiency Test(IPPT) progress,
 and being able to calculate the total points he obtains from the session.
 * Justification:By imbuing as a new exercise session, this reduces the hassle for the user to spend the extra time to search his IPPT 

@@ -367,3 +367,20 @@ Expected: The list of exercises will not be shown. Error details will be shown i
 3. Test case: ```quick home_legs_day 3```
 If plan ```home_legs_day``` is not in ```plans``` , error details will be shown in the terminal.
 Otherwise, list of 3 exercises will be shown related to the workout type.
+
+### ```ippt [AGE] [RUNTIME] [PUSHUPs] [SITUPs]``` command
+1. Takes in user's inputs of the user's age and the respective scores for the 3 exercises, and returns the total points the user obtains , as well as adding as a new exercise session.
+2. Test case: ```ippt```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+3. Test case: ```ippt 9 10:00 10 10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+4. Test case: ```ippt 20 -10:00 10 10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+5. Test case: ```ippt 20 10:00 -10 10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+6. Test case: ```ippt 20 10:00 10 -10```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+7. Test case: ```ippt a b c d```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
+8. Test case: ```ippt ! @ # $ ```
+Expected: The IPPT exercise session will not be added. Error details will be shown in the terminal.
