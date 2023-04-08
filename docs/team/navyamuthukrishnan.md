@@ -12,14 +12,11 @@ Given below are my contributions to the project.
 
 
 * **UnMark Command**: `
-    * UnMarks the appointment that have been completed based on uid 
-
-
-
+    * UnMarks the appointment that have been completed based on uid
 
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the user guide, mark and unmark command and add apointment (old version)
+        * Added documentation for the user guide, mark and unmark command and add appointment (old version)
     * Developer Guide:
         * Added implementation details for the mark and unmark features and old appointment add list

@@ -45,6 +45,11 @@ public class Ui {
     public void showWelcomeMessage() {
         showLine();
         System.out.println(" Hello! I'm Sniff, your personal appointment manager.");
+        System.out.println("........  ..    .   ..  ........  ........" + "\n" +
+                           ".         ..    .   ..  .         .       "+ "\n" +
+                           "........  . .   .   ..  ........  ........" + "\n" +
+                           "       .  .  .  .   ..  .         .       " + "\n" +
+                           "........  .    ..   ..  .         .       "+ "\n");
         System.out.println(" What can I do for you?");
         showLine();
     }
@@ -71,15 +76,15 @@ public class Ui {
         System.out.println("The appointment has been marked successfully");
     }
 
-    public static void printAppointmentAlreadyMarkedMessage() {
-        System.out.println("The appointment with this Uid has already been marked successfully");
+    public static void printAppointmentAlreadyMarkedMessage(String uid) {
+        System.out.println("The appointment with this Uid: "+ uid + " has already been marked successfully");
     }
 
     public static void printAppointmentUnMarkMessage() {
-        System.out.println("The appointment has been Unmarked successfully");
+        System.out.println("The appointment has been unMarked successfully");
     }
-    public static void printAppointmentAlreadyUnMarkedMessage() {
-        System.out.println("The appointment with this Uid has already been UnMarked successfully");
+    public static void printAppointmentAlreadyUnMarkedMessage(String uid) {
+        System.out.println("The appointment with this Uid: "+ uid + " has already been unMarked successfully");
     }
     public static void showHelpMessage() {
         System.out.println("These are the following Sniff commands available:\n"
@@ -99,9 +104,9 @@ public class Ui {
                 + " find a/ANIMAL_TYPE\n"
                 + " find t/APPOINTMENT_TYPE \n"
                 + " find uid/UID\n"
-                + "Mark or Unmark an appointment:\n"
+                + "Mark or UnMark an appointment:\n"
                 + " mark uid/UID\n"
-                + " unmark uid/UID\n"
+                + " unMark uid/UID\n"
                 + "Exiting the program:\n"
                 + " bye\n"
                 + "Additional notes:\n"
