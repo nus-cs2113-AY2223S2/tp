@@ -71,7 +71,7 @@ if the user inputs `view 1`, the `Parser` component will call the `RecipeList` c
 the recipe at index 0, following which the `Ui` component will then display it to the user. The
 sequence diagram below shows how the
 interaction described above:
-![](../docs/UML/Architecture/ArchitectureExampleUML.png)
+![](./UML/Architecture/ArchitectureExampleUML.png)
 
 Depending on whether the user input is to make changes to the recipes, ingredients, or weekly plan,
 the `Parser` component will call the `RecipeList`, `Ingredient`, and/or `WeeklyPlan` component
@@ -81,22 +81,22 @@ Additionally, methods irrelevant to the subsystem shown are also omitted for sim
 
 1. Recipe related
 
-![](../docs/UML/Architecture/RecipeRelated.png)
+![](./UML/Architecture/RecipeRelated.png)
 
 2. Ingredient related
 
-![](../docs/UML/Architecture/IngredientRelated.png)
+![](./UML/Architecture/IngredientRelated.png)
 
 3. WeeklyPlan related
 
-![](../docs/UML/Architecture/WeeklyPlanRelated.png)
+![](./UML/Architecture/WeeklyPlanRelated.png)
 
 ### Meal360 Component
 
 API: `Meal360.java`
 
 The (partial) class diagram below shows the structure of the `Meal360` component:
-![](../docs/UML/Meal360/Meal360ClassDiagram.png)
+![](./UML/Meal360/Meal360ClassDiagram.png)
 
 The `Meal360` component:
 
@@ -116,7 +116,7 @@ API: `Ui.java`
 
 The `Ui` component:
 
-![](../docs/UML/Ui/UiClassDiagram.drawio.png)
+![](./UML/Ui/UiClassDiagram.drawio.png)
 
 - displays the welcome message upon startup of the program.
 - formats all the output to be displayed to the user.
@@ -127,7 +127,7 @@ The `Ui` component:
 The sequence diagram below shows how the `Ui` component works together with `Parser`
 when the user inputs `list`.
 
-![](../docs/UML/Ui/commandList.drawio.png)
+![](./UML/Ui/commandList.drawio.png)
 
 ### Parser Component
 
@@ -146,13 +146,13 @@ The `Parser` component:
 The sequence diagram below shows how `Parser` filters user input dates and parses them
 as valid `LocalDate` objects.
 
-![](../docs/UML/Parser/parseDate.drawio.png)
+![](./UML/Parser/parseDate.drawio.png)
 
 ### RecipeList Component
 
 API: `RecipeList.java` and `Recipe.java`
 
-![](../docs/UML/RecipeList/RecipeListClassDiagram.png)
+![](./UML/RecipeList/RecipeListClassDiagram.png)
 
 `Recipe` is a class with the following characteristics:
 
@@ -175,7 +175,7 @@ The `RecipeList` component:
 
 API: `WeeklyPlan.java`
 
-![](../docs/UML/WeeklyPlan/WeeklyPlanClassDiagram.png)
+![](./UML/WeeklyPlan/WeeklyPlanClassDiagram.png)
 
 The `WeeklyPlan` component:
 
@@ -198,13 +198,13 @@ How the `WeeklyPlan` component works:
 
 The sequence diagram below shows how the `WeeklyPlan` component works when the user
 inputs `weekly /add burger 1`:
-![](../docs/UML/WeeklyPlan/AddWeeklyPlanUML.png)
+![](./UML/WeeklyPlan/AddWeeklyPlanUML.png)
 
 ### Database Component
 
 API: `Database.java`
 
-![](../docs/UML/Database/DatabaseClassDiagram.png)
+![](./UML/Database/DatabaseClassDiagram.png)
 
 The `Database` component:
 
@@ -229,13 +229,13 @@ How the `Database` component works at start up for the recipes:
   ingredient list and weekly plan are empty.
 
 The activity diagram below shows how the `Database` component works at start up:
-![](../docs/UML/Database/DatabaseStartupUML.png)
+![](./UML/Database/DatabaseStartupUML.png)
 
 ### IngredientList Component
 
 API: `IngredientList.java` and `Ingredient.java`
 
-![](../docs/UML/IngredientList/IngredientListClassDiagram.png)
+![](./UML/IngredientList/IngredientListClassDiagram.png)
 
 `Ingredient` is a class with the following characteristics:
 
@@ -296,7 +296,7 @@ It is implemented through the following step:
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/TagFunction/TagFunction.png)
+![](./UML/Implementation/TagFunction/TagFunction.png)
 
 ### List Recipes Feature
 
@@ -328,7 +328,7 @@ It is implemented through the following step:
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/ListFunction/ListFunction.png)
+![](./UML/Implementation/ListFunction/ListFunction.png)
 
 ### Delete Recipes Feature
 
@@ -349,7 +349,7 @@ It is implemented through the following step:
    a parameter,
    and return the `Recipe` object at that index/the one just deleted.
 
-![](../docs/UML/Implementation/DeleteFunction/DeleteFunction.jpg)
+![](./UML/Implementation/DeleteFunction/DeleteFunction.jpg)
 
 ### Add Recipes Feature
 
@@ -408,7 +408,7 @@ It is implemented through the following step:
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/RandomFunction/RandomFunction.png)
+![](./UML/Implementation/RandomFunction/RandomFunction.png)
 
 ### Add Ingredients Feature
 
@@ -433,7 +433,7 @@ It is implemented through the following steps:
 
 The simplified sequence diagram below shows how this feature works assuming all inputs are correct:
 
-![](../docs/UML/Implementation/AddIngredientFunction/AddIngredientFunction.png)
+![](./UML/Implementation/AddIngredientFunction/AddIngredientFunction.png)
 
 ### Delete Ingredients Feature
 
@@ -476,7 +476,7 @@ It is implemented through the following steps:
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/ViewIngredientFunction/ViewIngredientFunction.png)
+![](./UML/Implementation/ViewIngredientFunction/ViewIngredientFunction.png)
 
 ### Edit Weekly Meal Plan Feature
 
@@ -508,7 +508,7 @@ It is implemented through the following steps:
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/EditWeeklyPlan/EditWeeklyPlan.png)
+![](./UML/Implementation/EditWeeklyPlan/EditWeeklyPlan.png)
 
 ### List Weekly Plan Feature
 
@@ -527,7 +527,7 @@ It is implemented through the following steps:
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/ViewWeeklyPlan/ViewWeeklyPlan.png)
+![](./UML/Implementation/ViewWeeklyPlan/ViewWeeklyPlan.png)
 
 ### Mark Recipe as Done Feature
 
@@ -555,7 +555,7 @@ It is implemented through the following steps:
 The simplified sequence diagram below shows how this feature works assuming no counts of the recipe
 is left after the deletion:
 
-![](../docs/UML/Implementation/MarkDoneWeeklyPlan/MarkDoneWeeklyPlan.png)
+![](./UML/Implementation/MarkDoneWeeklyPlan/MarkDoneWeeklyPlan.png)
 
 ---
 
