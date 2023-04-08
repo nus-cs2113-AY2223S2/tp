@@ -13,9 +13,9 @@ class Ui {
 + showLine(): void
 + printHelpCommandHelpMessage(): void
 + printModuleList(moduleData: ModuleList): void
-+ printList(taskData: TaskList): void
++ printList(taskList: TaskList): void
 - printAllModulesInList((moduleData: ModuleList): ModuleList): void
-- printTasksOnDay(taskData: TaskList): void
+- printTasksOnDay(taskList: TaskList): void
 }
 
 note left of Ui::LONG_LINE_BREAK
@@ -33,7 +33,7 @@ Ui -> ModuleList : access \nmoduleData >
 ModuleList "1" *--> "*" Module : contains >
 
 abstract class "{abstract}\nTask" as Task
-Ui -> TaskList : access taskData >
+Ui -> TaskList : access taskList >
 TaskList "1" *--> "*" Task : contains >
 
 @enduml
