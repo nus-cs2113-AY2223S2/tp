@@ -42,6 +42,9 @@ public class ParseAddCommand extends ParseCommand {
         price = extractDetail(input, ParserConstants.PRICE_PATTERN);
         category = extractDetail(input, ParserConstants.CATEGORY_PATTERN);
         checkAddOptionsExistence(description, price, category);
+        assert description != null: "Description should not be null";
+        assert price != null: "Price should not be null";
+        assert category != null: "Category should not be null";
         if (!argumentsBeforeOption.isEmpty()) {
             throw new UnknownArgumentException(MessageConstants.MESSAGE_UNKNOWN_ARGUMENTS + argumentsBeforeOption);
         }

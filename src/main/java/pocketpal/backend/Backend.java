@@ -9,6 +9,7 @@ import pocketpal.communication.Response;
 import pocketpal.backend.exceptions.InvalidReadFileException;
 import pocketpal.data.entry.Entry;
 import pocketpal.data.entrylog.EntryLog;
+import pocketpal.frontend.constants.MessageConstants;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
 
 public class Backend {
     private static final Logger logger = Logger.getLogger(Backend.class.getName());
-    private static final Storage storage = new Storage();
+    private static Storage storage = new Storage();
     private final EntryLog entries;
     private final EntryEndpoint entryEndpoint;
     private final EntriesEndpoint entriesEndpoint;
@@ -28,7 +29,7 @@ public class Backend {
     }
 
     public Backend(boolean isTest) {
-        Storage storage = isTest
+        storage = isTest
                 ? new Storage(Config.TEST_PATH_STRING)
                 : new Storage();
 
@@ -37,8 +38,9 @@ public class Backend {
         try {
             savedEntries = storage.readFromDatabase();
         } catch (InvalidReadFileException e) {
-            logger.log(Level.INFO, "Save data is invalid.", e);
-            savedEntries = new ArrayList<Entry>();
+            logger.log(Level.WARNING, "Save data is invalid.", e);
+            savedEntries = new ArrayList<>();
+            System.out.println(MessageConstants.MESSAGE_INVALID_SAVE_DATA);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Unable to perform IO operation.", e);
             throw new RuntimeException(e);
