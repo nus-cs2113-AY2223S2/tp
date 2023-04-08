@@ -55,7 +55,6 @@ public class AddCardToTagCommand extends Command {
         tagToAdd.addCard(cardUUID);
 
         //add the tag uuid to the card
-
         TagUUID tagUUID = tagToAdd.getUUID();
 
         cardToAdd.addTag(tagUUID);
