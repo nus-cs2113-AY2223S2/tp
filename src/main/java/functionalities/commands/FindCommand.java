@@ -3,6 +3,11 @@ package functionalities.commands;
 import exception.SniffException;
 import functionalities.SniffTasks;
 
+/**
+ * Command to execute find feature
+ * Supports 4 types of find operations
+ * Find by appointment uID, animal type, type of appointment and date of appointment
+ */
 public class FindCommand extends Command {
 
     protected String category;
@@ -13,6 +18,12 @@ public class FindCommand extends Command {
         this.details = details;
     }
 
+    /**
+     * Checks type of find command entered and executes the respective find command located in SniffTasks class
+     *
+     * @param tasks The SniffTasks class
+     * @throws SniffException Throws exception if invalid find command type is entered
+     */
     @Override
     public void executeCommand(SniffTasks tasks) throws SniffException {
         if (category.equals("appointment")) {
