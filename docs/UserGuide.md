@@ -1,29 +1,10 @@
 # User Guide
-<!-- TOC -->
-* [User Guide](#user-guide)
-  * [Introduction](#introduction)
-  * [Quick Start](#quick-start)
-  * [Features](#features)
-    * [Adding an entry: `add`](#adding-an-entry--add)
-    * [Listing all expenses and incomes: `list`](#listing-all-expenses-and-incomes--list)
-    * [Updating an entry: `edit`](#updating-an-entry--edit)
-    * [Setting currency to be converted: `set currency`](#setting-currency-to-be-converted--set-currency)
-    * [Unset currency to be converted: `unset currency`](#unset-currency-to-be-converted--unset-currency)
-    * [Finding an entry: `find`](#finding-an-entry--find)
-    * [Deleting an entry: `delete`](#deleting-an-entry--delete)
-    * [Clear entire income list: `clear income`](#clear-entire-income-list--clear-income)
-    * [Clear entire expense list: `clear expense`](#clear-entire-expense-list--clear-expense)
-    * [Clear entire both income and expense lists: `clear all`](#clear-entire-both-income-and-expense-lists--clear-all)
-    * [Set a target for balance of finances: `set target`](#set-a-target-for-balance-of-finances--set-target)
-    * [See target set: `show target`](#see-target-set--show-target)
-    * [Clear Target Set: `clear target`](#clear-target-set--clear-target)
-    * [Finding balance of finances: `balance`](#finding-balance-of-finances--balance)
-    * [View help: `help`](#view-help--help)
-    * [Exit: `exit`](#exit--exit)
-    * [Saving and loading of data](#saving-and-loading-of-data)
-    * [Other Notes](#other-notes)
-  * [Command Summary (Alphabetical Order)](#command-summary--alphabetical-order-)
-<!-- TOC -->
+
+* Table of Contents
+{:toc}
+
+
+
 
 ## Introduction
 

@@ -57,6 +57,7 @@ public class Ui {
         System.out.println("    Hello! I'm ChChing.");
         System.out.println("    What can I do for you?");
         showLine();
+        logger.info("showWelcome UI works");
     }
 
     public void showGoodbye() {
@@ -70,6 +71,7 @@ public class Ui {
         assert (incomes.size() >= 0);
         System.out.println("    Now you have " + incomes.size() + " income records,");
         System.out.println("    and " + expenses.size() + " expense records in the list.");
+        logger.info("showAdded UI works");
     }
 
     public void showEdited(int index, Record record, boolean isExpense) {
@@ -79,6 +81,7 @@ public class Ui {
             System.out.println("    Got it. I've updated the income in index " + index + " to");
         }
         System.out.println("    " + record);
+        logger.info("showEdited UI works");
     }
 
     public void showDelete(IncomeList incomes, ExpenseList expenses, Record record) {
@@ -88,23 +91,28 @@ public class Ui {
         assert (expenses.size() >= 0);
         System.out.println("    Now you have " + incomes.size() + " income records,");
         System.out.println("    and " + expenses.size() + " expense records in the list.");
+        logger.info("showDelete UI works");
     }
 
     public void showAllRecords(IncomeList incomes, ExpenseList expenses, Selector selector, Converter converter) {
         if (incomes.size() == 0 && expenses.size() == 0) {
             System.out.println("    Both lists are empty. Start adding!");
+            logger.info("showAllRecords UI works");
         } else if (incomes.size() == 0) {
             System.out.println("    Income list is empty. Start adding!");
             System.out.println();
             showExpenseList(expenses, selector, converter);
+            logger.info("showAllRecords UI works");
         } else if (expenses.size() == 0) {
             showIncomeList(incomes, selector, converter);
             System.out.println();
             System.out.println("    Expense list is empty. Start adding!");
+            logger.info("showAllRecords UI works");
         } else {
             showIncomeList(incomes, selector, converter);
             System.out.println();
             showExpenseList(expenses, selector, converter);
+            logger.info("showAllRecords UI works");
         }
     }
 
@@ -115,6 +123,7 @@ public class Ui {
         System.out.println();
         System.out.println("    Current balance:");
         System.out.println("    SGD " + String.format("%.02f", balance) + convertedBalance);
+        logger.info("showBalance UI works");
     }
 
     public void showMatchedRecord(RecordList records) {
@@ -127,6 +136,8 @@ public class Ui {
         } else {
             System.out.println("    No matching records for those keyword");
         }
+
+        logger.info("showMatchedRecord UI works");
 
     }
 
@@ -141,6 +152,8 @@ public class Ui {
             System.out.println("    No matching records for those keyword");
         }
 
+        logger.info("showMatchedIncome UI works");
+
     }
 
     public void showMatchedExpense(ExpenseList expenses) {
@@ -153,6 +166,8 @@ public class Ui {
         } else {
             System.out.println("    No matching records for those search terms");
         }
+
+        logger.info("showMatchedExpense UI works");
 
     }
 
@@ -201,27 +216,33 @@ public class Ui {
         System.out.println();
         System.out.println("    EXIT THE PROGRAM:");
         System.out.println("    exit");
+        logger.info("showHelp UI works");
     }
 
     public void showError(String message) {
         System.out.println("    " + message);
+        logger.info("showError UI works");
     }
 
     public void showInvalidMessage() {
         System.out.println("    Command is invalid, use help for valid commands");
+        logger.info("showInvalidMessage UI works");
     }
 
     public void showTargetAdded() {
 
         System.out.println("    Target added");
+        logger.info("showTargetAdded UI works");
     }
 
     public void clearTarget() {
         System.out.println("    Target cleared");
+        logger.info("clearTarget UI works");
     }
 
     public void showListCleared() {
         System.out.println("    List(s) cleared");
+        logger.info("showListCleared UI works");
     }
 
     public void showExpenseList(ExpenseList expenses, Selector selector, Converter converter) {
@@ -231,6 +252,7 @@ public class Ui {
             System.out.println("    Here are the expenses in your list:");
             expenses.printExpenseList(selector, converter);
         }
+        logger.info("showExpenseList UI works");
     }
 
     public void showIncomeList(IncomeList income, Selector selector, Converter converter) {
@@ -240,9 +262,12 @@ public class Ui {
             System.out.println("    Here are the incomes in your list:");
             income.printIncomeList(selector, converter);
         }
+        logger.info("showIncomeList UI works");
     }
+
 
     public void showEmptyListMessage() {
         System.out.println("    The list is empty. Start adding!");
+        logger.info("showEmptyListMessage UI works");
     }
 }
