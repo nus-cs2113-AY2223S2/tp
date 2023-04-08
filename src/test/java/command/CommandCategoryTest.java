@@ -41,9 +41,9 @@ public class CommandCategoryTest {
                 + "Totally there are 2 categories.\n"
                 + MESSAGE_DIVIDER_CATEGORY + "\n"
                 + "Category: food\n"
-                + "1.SGD2.50 date:02/02/2012\n"
-                + "2.USD2.50 date:02/02/2012\n"
-                + "3.USD2.50 date:02/02/2013\n"
+                + "1.SGD2.50 date:02-02-2012\n"
+                + "2.USD2.50 date:02-02-2012\n"
+                + "3.USD2.50 date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
 
         new CommandCategory(expenseList.getExpenseList(), input).execute();
@@ -72,9 +72,9 @@ public class CommandCategoryTest {
                 + "Totally there are 2 categories.\n"
                 + MESSAGE_DIVIDER_CATEGORY + "\n"
                 + "Category: food\n"
-                + "1.SGD2.50 date:02/02/2012\n"
-                + "2.USD2.50 date:02/02/2012\n"
-                + "3.USD2.50 date:02/02/2013\n"
+                + "1.SGD2.50 date:02-02-2012\n"
+                + "2.USD2.50 date:02-02-2012\n"
+                + "3.USD2.50 date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
         new CommandCategory(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
@@ -93,7 +93,7 @@ public class CommandCategoryTest {
                 + "Totally there are 3 categories.\n"
                 + MESSAGE_DIVIDER_CATEGORY + "\n"
                 + "Category: uncategorized\n"
-                + "1.SGD2.50 date:02/02/2013\n"
+                + "1.SGD2.50 date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
         new CommandCategory(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
@@ -127,9 +127,9 @@ public class CommandCategoryTest {
                 + "Totally there are 2 categories.\n"
                 + MESSAGE_DIVIDER_CATEGORY + "\n"
                 + "Category: food\n"
-                + "1.SGD2.50 date:02/02/2012\n"
-                + "2.USD2.50 date:02/02/2012\n"
-                + "3.USD2.50 date:02/02/2013\n"
+                + "1.SGD2.50 date:02-02-2012\n"
+                + "2.USD2.50 date:02-02-2012\n"
+                + "3.USD2.50 date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
 
         new CommandCategory(expenseList.getExpenseList(), input).execute();

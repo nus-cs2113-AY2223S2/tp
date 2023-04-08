@@ -66,7 +66,7 @@ public class CommandAdd extends Command {
                     System.out.println("WARNING: Input currency does not exist and has defaulted to SGD.");
                 }
                 Expense addedExpense = new Expense(currency.roundInput((parsedInput[ParserAdd.AMOUNT_INDEX])),
-                        date, parsedInput[ParserAdd.CATEGORY_INDEX],
+                        date, parsedInput[ParserAdd.CATEGORY_INDEX].toLowerCase(),
                         curr, Currency.getExchangeRate(LocalDate.parse(exchangeRateDate),
                                 curr));
                 expenseList.add(addedExpense);
@@ -83,6 +83,7 @@ public class CommandAdd extends Command {
             System.out.println("Invalid date. Please input a date before today's date.\nToday's date is: " +
                     LocalDate.now());
         } catch (PastDateException e) {
+
             System.out.println("Dates beyond 1981 are not supported. Please try again.");
         } catch (InvalidDateException e) {
             System.out.println("Date does not exist, please try again.");

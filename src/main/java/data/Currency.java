@@ -26,10 +26,6 @@ public class Currency {
         getCurrencyAvailable(currencies);
     }
 
-    public static HashMap<String, String> getCurrencies() {
-        return currencies;
-    }
-
     /**
      * Converts the currency to SGD if the input currency is not found in the HashMap. Else it returns the input
      * currency.
@@ -66,7 +62,7 @@ public class Currency {
      */
     public static void getCurrencyAvailable(HashMap<String, String> currencies) {
         currencies.put("EUR", "eur_sgd");
-        currencies.put("GBP","gbp_sgd");
+        currencies.put("GBP", "gbp_sgd");
         currencies.put("USD", "usd_sgd");
         currencies.put("AUD", "aud_sgd");
         currencies.put("CAD", "cad_sgd");
@@ -139,7 +135,7 @@ public class Currency {
             return getOfflineRate(currencyKey);
         } catch (JSONException e) {
             //catches JSON exception when API is down
-            return  getOfflineRate(currencyKey);
+            return getOfflineRate(currencyKey);
         }
         assert false;
         return null;

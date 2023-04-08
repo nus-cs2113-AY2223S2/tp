@@ -10,7 +10,7 @@ import static common.MessageList.MESSAGE_DIVIDER_LIST;
 
 public class CommandList extends Command {
     public static final String COMMAND_NAME = "list";
-    public static final String SYNTAX = "Here's your task in the list: ";
+
     protected ArrayList<Expense> expenseList;
 
     public CommandList(ArrayList<Expense> expenseList) {
@@ -43,6 +43,7 @@ public class CommandList extends Command {
     /**
      * Execution of the list command
      * All the expenses are displayed in the order in which it was added.
+     *
      * @return printing the list of expenses
      */
     @Override

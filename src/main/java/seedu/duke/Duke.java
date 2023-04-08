@@ -36,8 +36,9 @@ public class Duke {
     protected Currency currency;
     protected Account currentUser;
 
-    //TODO: arbitrary filePath
-    //protected String filePath;
+
+    protected String filePath = "expenses.json";
+
 
     /**
      * Initialize Duke and instantiate parser and account objects.
@@ -53,6 +54,7 @@ public class Duke {
     }
 
     public void run() {
+        System.out.println("Hello from\n");
         WelcomeMessage.printWelcomeLogo();
         System.out.println("Hello! What is your name?");
         Scanner in = new Scanner(System.in);

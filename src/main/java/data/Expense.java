@@ -71,14 +71,6 @@ public class Expense {
         this.expenseAmount = expenseAmount;
     }
 
-    public void setExpenseTime(Time expenseTime) {
-        this.expenseTime = expenseTime;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

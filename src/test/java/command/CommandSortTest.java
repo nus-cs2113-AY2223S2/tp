@@ -35,10 +35,10 @@ public class CommandSortTest {
         String input = "C";
         String expected = MESSAGE_DIVIDER_SORTEDLIST + "\n"
                 + "Category: eat\n"
-                + "1.USD2.50 date:02/02/2013\n"
+                + "1.USD2.50 date:02-02-2013\n"
                 + "Category: food\n"
-                + "1.USD2.50 date:02/02/2012\n"
-                + "2.SGD2.50 date:02/02/2012\n"
+                + "1.USD2.50 date:02-02-2012\n"
+                + "2.SGD2.50 date:02-02-2012\n"
                 + MESSAGE_DIVIDER + "\n";
 
         new CommandSort(expenseList.getExpenseList(), input).execute();
@@ -50,10 +50,10 @@ public class CommandSortTest {
         System.setOut(new PrintStream(outContent));
         input = "D";
         expected = MESSAGE_DIVIDER_SORTEDLIST + "\n"
-                + "Date: 02/02/2012\n"
+                + "Date: 02-02-2012\n"
                 + "1.SGD2.50 cat:food\n"
                 + "2.USD2.50 cat:food\n"
-                + "Date: 02/02/2013\n"
+                + "Date: 02-02-2013\n"
                 + "1.USD2.50 cat:eat\n"
                 + MESSAGE_DIVIDER + "\n";
         new CommandSort(expenseList.getExpenseList(), input).execute();

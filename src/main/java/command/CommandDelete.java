@@ -39,7 +39,6 @@ public class CommandDelete extends Command {
         } catch (IndexOutOfBoundsException e) {
             System.out.println(MESSAGE_INVALID_INDEX_ERROR);
         }
-        assert false;
         return null;
     }
 

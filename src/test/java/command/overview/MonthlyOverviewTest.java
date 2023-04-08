@@ -64,7 +64,6 @@ class MonthlyOverviewTest {
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
     }
 
-
     @BeforeEach
     public void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));

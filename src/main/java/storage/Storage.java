@@ -29,10 +29,6 @@ import static common.MessageList.WHITESPACE;
 
 public class Storage {
 
-    private static final String READ_STORAGE_SUCCESSFUL = "All past expenses retrieved successfully!";
-    private static final String READ_EXPENSELIST_ERROR = "Error reading expense list.";
-    private static final String WRITE_TO_EXPENSELIST_ERROR = "Error writing to expense list.";
-    private static final String NEW_EXPENSE = "New expense list created.";
     private static final String WRITING_TO_FILE_ERROR = "Error writing to account file";
     private static final String INITIAL_WELCOME_MESSAGE = "Welcome to ET!";
     private static final String SUBSEQUENT_WELCOME_MESSAGE = "Welcome back!";
@@ -94,7 +90,6 @@ public class Storage {
         }
     }
 
-    //TODO: JSON
 
     /**
      * Loads expenses from json file and save as an ExpenseList
