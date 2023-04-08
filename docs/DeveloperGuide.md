@@ -31,7 +31,6 @@ with links to the original sources included.
 * [three-ten-extra](https://www.threeten.org/threeten-extra/)
 * [Requesting and Parsing of data from API into Java](https://www.youtube.com/watch?v=lDEfoSwyYFg)
 * [Gson Type Adaptor](https://www.youtube.com/watch?v=Gf-Hx-Q0rOs)
-* [Display ASCII art in Java](https://www.baeldung.com/ascii-art-in-java)
 
 ## Design & implementation
 
