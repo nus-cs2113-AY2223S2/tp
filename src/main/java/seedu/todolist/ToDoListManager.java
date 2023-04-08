@@ -15,6 +15,9 @@ import seedu.todolist.ui.Ui;
 import java.time.LocalDateTime;
 import java.io.FileNotFoundException;
 
+/**
+ * The main controller of the program.
+ */
 public class ToDoListManager {
     private boolean isRunning = true;
     private Parser parser = new Parser();
@@ -23,6 +26,10 @@ public class ToDoListManager {
     private Config config = new Config();
     private Ui ui = new Ui();
 
+    /**
+     * Constructs a ToDoListManager object, which involves loading the
+     * saved task list and config settings, if they exist.
+     */
     public ToDoListManager() {
         ui.printWelcomeMessage();
         loadConfig();
@@ -35,6 +42,10 @@ public class ToDoListManager {
     }
 
     //@@author clement559
+    /**
+     * Loads the saved config settings and displays different messages depending
+     * on whether there are saved config settings found and successfully loaded.
+     */
     private void loadConfig() {
         try {
             // Config file found, try loading it
@@ -43,12 +54,16 @@ public class ToDoListManager {
         } catch (FileNotFoundException e) {
             // No config file found, generate new configs
             ui.printNewConfigMessage();
-        } catch (FailedLoadConfigException e3) {
-            ui.printError(e3);
+        } catch (FailedLoadConfigException e2) {
+            ui.printError(e2);
         }
     }
 
     //@@author jeromeongithub
+    /**
+     * Loads the saved task list and displays different messages depending
+     * on whether there is a saved task list found and successfully loaded.
+     */
     private void loadTaskList() {
         try {
             // Save file found, try loading it
@@ -65,6 +80,10 @@ public class ToDoListManager {
     }
 
     //@@author
+    /**
+     * Starts the main controller, which will continuously read input from the user and execute the parsed command.
+     * Also saves the task list and config settings periodically.
+     */
     public void run() {
         while (isRunning) {
             String inputCommand = ui.getUserInput();

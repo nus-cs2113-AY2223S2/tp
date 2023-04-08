@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
 public final class Formats {
+    public static final int MAX_DESC_LEN_FOR_LIST = 32;
     public static final String TASK_STRING = "[ID:%05d][%s][%s][%-35s]";
     public static final String TASK_STRING_INDEXED = "[#%05d]%s";
     public static final String TIME_IN_1 = "[d-M-uuuu H:m]";

@@ -98,7 +98,6 @@ Example of usage and output:
 Okay, I have added this task:
 [ID:00001][ ][   ][todo                               ][Due by: 23 Sep 2023 23:59]
 ```
-
 `add do math homework -email abc@def.com -prio 2 -tags difficult later 3.14` creates a task with the description `do math homework`, email address `abc@def.com`, priority level `Medium`, and the tags `3.14`, `difficult` and `later`.
 ```
 Okay, I have added this task:
@@ -121,7 +120,6 @@ Okay, I have marked the following task(s) as complete:
 __________________________________________________________________________________________
 [#00001][ID:00001][X][   ][todo                               ][Due by: 23 Sep 2023 23:59]
 ```
-
 `mark -done 0` marks all incomplete tasks as done.
 ```
 Okay, I have marked the following task(s) as complete:

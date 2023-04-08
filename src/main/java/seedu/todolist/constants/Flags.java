@@ -90,10 +90,13 @@ public enum Flags {
         }
     }
 
+    /**
+     * Converts the given string into the corresponding Flags object.
+     *
+     * @param name The string to convert into a Flags object.
+     * @return A Flags object if there is a flag matching the given string, null otherwise.
+     */
     public static Flags fromString(String name) {
-        if (map.containsKey(name)) {
-            return map.get(name);
-        }
-        return null;
+        return map.get(name);
     }
 }

@@ -17,6 +17,9 @@ import java.util.HashSet;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 
+/**
+ * Command class that will add/edit/delete tags of Task objects of the given TaskList object.
+ */
 public class EditTagsCommand extends Command {
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_TAGS, Flags.EDIT, Flags.EDIT_ADD,
         Flags.EDIT_DELETE, Flags.DESCRIPTION, Flags.EMAIL, Flags.REPEAT, Flags.TAG, Flags.PRIORITY,
@@ -27,6 +30,13 @@ public class EditTagsCommand extends Command {
     private Predicate<Task> predicate;
     private Flags purpose;
 
+    /**
+     * Constructs a EditTagsCommand object by parsing the provided arguments.
+     * Can select tasks to edit by providing a list of ids, or one or more filters.
+     *
+     * @param args The provided arguments, parsed from the user's input.
+     * @throws ToDoListException If ids/filters are invalid, or if both ids and filters are provided.
+     */
     public EditTagsCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_TAGS));
         predicate = ParserUtil.parseFilter(args);
@@ -52,11 +62,18 @@ public class EditTagsCommand extends Command {
         assert args.size() > 1: "Fewer arguments than expected!";
     }
 
+    /**
+     * Adds/edits/deletes the tags of tasks specified in the constructor.
+     *
+     * @param taskList The task list to edit tasks from.
+     * @param ui The Ui object used to display the result of editing tags.
+     * @throws InvalidIdException If the given task list does not contain tasks with the specified ids.
+     */
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
         String taskString;
         if (purpose.equals(Flags.EDIT) || tags.isEmpty()) {
-            // Set tags to given list, or delete all tags if list is empty
+            // Set tags to given list of tags, or delete all tags if list is empty
             taskString = predicate == null
                     ? taskList.setTags(idHashSet, tags) : taskList.setTags(predicate, tags);
         } else if (purpose.equals(Flags.EDIT_ADD)) {

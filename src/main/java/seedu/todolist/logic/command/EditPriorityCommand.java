@@ -2,6 +2,7 @@
 package seedu.todolist.logic.command;
 
 import seedu.todolist.constants.Flags;
+import seedu.todolist.exception.InvalidIdException;
 import seedu.todolist.exception.InvalidSelectException;
 import seedu.todolist.model.Priority;
 import seedu.todolist.exception.InvalidEditException;
@@ -16,6 +17,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
+/**
+ * Command class that will edit/delete the priority level of Task objects of the given TaskList object.
+ */
 public class EditPriorityCommand extends Command{
     public static final Flags[] EXPECTED_FLAGS = {Flags.COMMAND_EDIT_PRIORITY, Flags.EDIT, Flags.EDIT_DELETE,
         Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.FILTER_ALL,
@@ -25,6 +29,14 @@ public class EditPriorityCommand extends Command{
     private HashSet<Integer> idHashSet;
     private Predicate<Task> predicate;
 
+    /**
+     * Constructs a EditPriorityCommand object by parsing the provided arguments.
+     * Can select tasks to edit by providing a list of ids, or one or more filters.
+     *
+     * @param args The provided arguments, parsed from the user's input.
+     * @throws ToDoListException If ids/filters are invalid, or if both ids and filters are provided,
+     *                           or if the given priority level is invalid.
+     */
     public EditPriorityCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_PRIORITY));
         predicate = ParserUtil.parseFilter(args);
@@ -39,6 +51,13 @@ public class EditPriorityCommand extends Command{
         assert args.size() > 1: "Fewer arguments than expected!";
     }
 
+    /**
+     * Edits/deletes the priority level of tasks specified in the constructor.
+     *
+     * @param taskList The task list to edit tasks from.
+     * @param ui The Ui object used to display the result of editing priority levels.
+     * @throws InvalidIdException If the given task list does not contain tasks with the specified ids.
+     */
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws ToDoListException {
         String taskString = predicate == null

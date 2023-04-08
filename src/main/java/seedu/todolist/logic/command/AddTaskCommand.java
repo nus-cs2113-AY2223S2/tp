@@ -43,6 +43,12 @@ public class AddTaskCommand extends Command {
         assert description != null && !description.isEmpty(): "Missing description uncaught by parser!";
     }
 
+    /**
+     * Adds a task with the attributes given in the constructor to the task list.
+     *
+     * @param taskList The task list to add the task to.
+     * @param ui The Ui object used to display the result of adding the task.
+     */
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) {
         String taskString = taskList.addTask(description, deadline, email, tags, repeatTimes, priority);
