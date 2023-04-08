@@ -49,9 +49,17 @@ class ParserTest {
 
     @Test
     void parseCommand_invalidDateForViewBudget_returnInvalidCommand() {
-        final String userSecondInput = "viewBudget t/ 203/02";
-        Command command = Parser.parseCommand(userSecondInput);
+        final String userFullInput = "viewBudget t/ 203/02";
+        Command command = Parser.parseCommand(userFullInput);
         command.execute();
+
+        assertTrue(command instanceof InvalidCommand);
+    }
+
+    @Test
+    void parseCommand_amountExceedLimit_returnInvalidCommand() {
+        final String userFullInput = "addExpense a/ 10000000000000000 d/ something t/ 2023 01 01 10 01 c/ FOOD";
+        Command command = Parser.parseCommand(userFullInput);
 
         assertTrue(command instanceof InvalidCommand);
     }

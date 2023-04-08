@@ -1,4 +1,4 @@
-package seedu.brokeMan.command;
+package seedu.brokeMan.exception;
 
 import seedu.brokeMan.exception.BrokeManException;
 

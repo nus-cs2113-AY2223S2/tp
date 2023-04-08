@@ -7,7 +7,7 @@ import seedu.brokeMan.command.DeleteExpenseCommand;
 import seedu.brokeMan.command.DeleteIncomeCommand;
 import seedu.brokeMan.command.EditExpenseCommand;
 import seedu.brokeMan.command.EditIncomeCommand;
-import seedu.brokeMan.command.ExceedMaximumLengthForAmountException;
+import seedu.brokeMan.exception.ExceedMaximumLengthForAmountException;
 import seedu.brokeMan.command.ExitCommand;
 import seedu.brokeMan.command.HelpCommand;
 import seedu.brokeMan.command.InvalidCommand;
