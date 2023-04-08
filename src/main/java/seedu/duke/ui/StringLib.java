@@ -162,4 +162,5 @@ public interface StringLib {
                                 ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};
     String SAVE_SEPARATOR = "#######";
     String OVERFLOW_NUMBER_ERROR = "you have entered a non-integer number!";
+    String END_OF_RECIPE_STEPS = "\nEnd of Recipe Steps!";
 }
