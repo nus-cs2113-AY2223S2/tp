@@ -33,7 +33,7 @@ public class DeleteCommandTest extends CommandTest {
     void deleteWholeCategory_nonExistedCategory_expectCategoryDoesNotExistMessage() {
         setup();
         String terminalOutput = executeInput("delete c/travel").toString();
-        assertEquals("Category does not exist" + System.lineSeparator(), terminalOutput);
+        assertEquals("Sorry, the category you are looking for does not exist" + System.lineSeparator(), terminalOutput);
         assertEquals(2, CategoryList.categories.size());
         clear();
     }
