@@ -9,6 +9,7 @@
    - [Contributions to UG](#contributions-to-ug)
    - [Contributions to DG](#contributions-to-dg)
    - [Contribution to team-based tasks](#contribution-to-team-based-tasks)
+   - [Contributions beyond the project team](#contributions-beyond-the-project-team)
 
 ## Overview
 
@@ -92,9 +93,13 @@ section of the DG to explain how the classes of our program interacts with each 
 
 [back to contents](#table-of-contents)
 
-### Contributions beyond the team project
+---
+
+### Contributions beyond the project team
 
 Helped solved bugs in the methods of IncomeLists, and ExpenseLists when I help to integrate the
 classes together for a working program. This happened at the early stage of our project when only the classes and methods for
 Expense and Income are implemented, without any main, Ui, Parser, or Command classes. I implemented the rest of the classes and
 made sure the features of expense and income are working as intended and that the program runs together with all the other classes.
+
+[back to contents](#table-of-contents)
