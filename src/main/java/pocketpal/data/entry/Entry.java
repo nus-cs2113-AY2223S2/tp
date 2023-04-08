@@ -2,42 +2,40 @@ package pocketpal.data.entry;
 
 import pocketpal.data.parsing.EntryParser;
 import pocketpal.communication.Serialisable;
-import pocketpal.frontend.constants.EntryConstants;
 import pocketpal.backend.constants.MiscellaneousConstants;
+import pocketpal.frontend.util.StringUtil;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
 /**
  * Represents an entry, from which various possible entry types
  * such as Food, Medical or Income are derived. User may specify
  * their desired entry type when adding to their entry log.
- * e.g., <code>/add lunch -p 15 -c food</code>
+ * e.g., <code>/add -d lunch -p 15 -c food</code>
  */
 public class Entry implements Serialisable {
+    private static final Logger logger = Logger.getLogger(Entry.class.getName());
     private Category category;
     private String description;
     private double amount;
     private final LocalDateTime dateTime;
 
     public Entry(String description, double amount, Category category) {
-        assert amount >= 0 : "Entry amount must be non-negative!";
-        assert category != null : "Entry category cannot be null";
-        assert !description.isEmpty() : "Entry description cannot be empty";
-        this.description = description;
-        this.amount = amount;
-        this.category = category;
-        this.dateTime = LocalDateTime.now();
+        this(description, amount, category, LocalDateTime.now());
     }
 
     public Entry(String description, double amount, Category category, LocalDateTime dateTime) {
         assert amount >= 0 : "Entry amount must be non-negative!";
         assert category != null : "Entry category cannot be null";
         assert !description.isEmpty() : "Entry description cannot be empty";
+        assert dateTime != null : "Entry DateTime cannot be null";
         this.description = description;
         this.amount = amount;
         this.category = category;
         this.dateTime = dateTime;
+        logger.info("Initialised new entry " + serialise());
     }
 
     /**
@@ -61,7 +59,7 @@ public class Entry implements Serialisable {
         boolean isSameAmount = amount == entry.getAmount();
         boolean isSameCategory = category == entry.getCategory();
         boolean isSameDescription = description.equals(entry.getDescription());
-        boolean isSameDateTime = dateTime.compareTo(entry.getDateTime()) == 0;
+        boolean isSameDateTime = dateTime.isEqual(entry.getDateTime());
         return isSameAmount && isSameCategory && isSameDescription && (!compareDate || isSameDateTime);
     }
 
@@ -71,6 +69,15 @@ public class Entry implements Serialisable {
 
     public Category getCategory() {
         return category;
+    }
+
+    /**
+     * Converts category into a string.
+     * @return category in Title Case
+     */
+    public String getCategoryString() {
+        assert category != null : "Unexpected null category";
+        return StringUtil.toTitleCase(String.valueOf(category));
     }
 
     public String getDateTimeString() {
@@ -83,31 +90,6 @@ public class Entry implements Serialisable {
 
     public LocalDateTime getDateTime() {
         return this.dateTime;
-    }
-
-    public String getCategoryString() {
-        switch (category) {
-        case CLOTHING:
-            return EntryConstants.CLOTHING;
-        case ENTERTAINMENT:
-            return EntryConstants.ENTERTAINMENT;
-        case FOOD:
-            return EntryConstants.FOOD;
-        case MEDICAL:
-            return EntryConstants.MEDICAL;
-        case OTHERS:
-            return EntryConstants.OTHERS;
-        case PERSONAL:
-            return EntryConstants.PERSONAL;
-        case UTILITIES:
-            return EntryConstants.UTILITIES;
-        case TRANSPORTATION:
-            return EntryConstants.TRANSPORTATION;
-        case INCOME:
-            return EntryConstants.INCOME;
-        default:
-            throw new IllegalArgumentException();
-        }
     }
 
     public String getDescription() {
