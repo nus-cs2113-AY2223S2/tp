@@ -1,0 +1,43 @@
+@startuml
+ alt "puModulesToPrint: ArrayList<Module>" size < 1
+         "<<class>>\nui:UI" -> UserConsole: Print Current List PU empty + universityName Message
+         "<<class>>\nui:UI" <-- UserConsole
+     else "puModulesToPrint: ArrayList<Module>" size >= 1
+         "<<class>>\nui:UI" -> UserConsole: Print Current List PU Massage + universityName Message
+         "<<class>>\nui:UI" <-- UserConsole
+         loop for module in "puModulesToPrint: ArrayList<Module>"
+            "<<class>>\nui:UI" -> "listIndex: Int": increment listIndex by 1
+            "<<class>>\nui:UI" -> "puModulesToPrint: ArrayList<Module>"
+             activate "puModulesToPrint: ArrayList<Module>"
+             create ":Module"
+             "puModulesToPrint: ArrayList<Module>" -> ":Module": retrieve Module from puModulesToPrint
+             activate ":Module"
+             "puModulesToPrint: ArrayList<Module>" <-- ":Module"
+             deactivate ":Module"
+             "<<class>>\nui:UI" <-- "puModulesToPrint: ArrayList<Module>"
+             deactivate "puModulesToPrint: ArrayList<Module>"
+
+            "<<class>>\nui:UI" -> ":Module" : "getModuleCode()"
+            "<<class>>\nui:UI" <-- ":Module" : moduleCode
+
+
+            "<<class>>\nui:UI" -> ":Module" : "getModuleName()"
+            "<<class>>\nui:UI" <-- ":Module" : moduleName
+
+            "<<class>>\nui:UI" -> ":Module" : "getModuleMCs()"
+            "<<class>>\nui:UI" <-- ":Module" : moduleMCs
+
+            "<<class>>\nui:UI" -> ":Module" : "getNusModuleCode()"
+            "<<class>>\nui:UI" <-- ":Module" : NusModuleCode
+
+            "<<class>>\nui:UI" -> ":Module" : "getNusModuleName()"
+            "<<class>>\nui:UI" <-- ":Module" : NusModuleName
+
+            "<<class>>\nui:UI" -> ":Module" : "getNusModuleMCs()"
+            "<<class>>\nui:UI" <-- ":Module" : NusModuleMCs
+
+            "<<class>>\nui:UI" -> UserConsole : Print out Modules details
+            "<<class>>\nui:UI" <-- UserConsole
+        end
+     end
+@enduml
