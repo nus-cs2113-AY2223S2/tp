@@ -728,17 +728,17 @@ Given below are instructions to test the app manually.
    with count `2` and `1` respectively. A success message should be displayed.
 
    Expected output:
-      ```
-      ----------------------------------------------------------------------------------------------------
-      | I've deleted the recipes from your weekly plan!                                                  |
-      ----------------------------------------------------------------------------------------------------
-      >>> weeklyplan
-      ----------------------------------------------------------------------------------------------------
-      | Here is your weekly plan:                                                                        |
-      | chicken rice x1                                                                                  |
-      | avocado toast x1                                                                                 |
-      ----------------------------------------------------------------------------------------------------
-      ```
+   ```
+   ----------------------------------------------------------------------------------------------------
+   | I've deleted the recipes from your weekly plan!                                                  |
+   ----------------------------------------------------------------------------------------------------
+   >>> weeklyplan
+   ----------------------------------------------------------------------------------------------------
+   | Here is your weekly plan:                                                                        |
+   | chicken rice x1                                                                                  |
+   | avocado toast x1                                                                                 |
+   ----------------------------------------------------------------------------------------------------
+   ```
 
 #### Tag/Categorize Recipes
 1. Remove recipe from an unknown tag.
@@ -830,15 +830,3 @@ Given below are instructions to test the app manually.
     * Test case 4: `list /t testtag1`
     * Expected output 4: An ordered list of recipes that are in `testtag1` are listed out, including `recipefortag`.
       The recipes' name that are added are listed out along with the number of ingredients needed.
-
-   ```
-   ----------------------------------------------------------------------------------------------------
-   | I've deleted the recipes from your weekly plan!                                                  |
-   ----------------------------------------------------------------------------------------------------
-   >>> weeklyplan
-   ----------------------------------------------------------------------------------------------------
-   | Here is your weekly plan:                                                                        |
-   | chicken rice x1                                                                                  |
-   | avocado toast x1                                                                                 |
-   ----------------------------------------------------------------------------------------------------
-   ```
