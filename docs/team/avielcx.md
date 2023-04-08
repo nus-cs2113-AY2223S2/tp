@@ -14,6 +14,7 @@ Given below are my contributions to the project.
 
 #### Project management:
 * Managed release of v2.0 on GitHub
+* Managed Product Website
 
 #### Enhancements Implemented:
 * Created a balance command to allow users to check their balance when total income deducts total expense and compare with their target.
@@ -25,6 +26,8 @@ Given below are my contributions to the project.
 * Created a ClearTarget feature which allow users to clear the target they have set to the default value.
 * Created tests for `AddIncomeCommand`, `AddExpenseCommand`, `DeleteExpenseCommand`, `DeleteIncomeCommand`, `BalanceCommand`, `ShowTargetCommand`, `AddTargetCommand`, 
 `IncomeTest`, `ExpenseTest`, `IncomeListTest`, `ExpenseListTest`, `ParserTest`, `ExitTest`. 
+* Created logging for `ChChing`, `ChChingException`, `UI`,`Parser`, `TargetParser`, `LiveCurrencyAPI`, `ParameterStringBuilder`.
+* Contributed to logging for `Storage`.
 
 #### Contributions to the UG:
 * Created `Table of Contents`
@@ -46,6 +49,7 @@ Given below are my contributions to the project.
 
 #### Contributions to team-based tasks:
 * Method documentations
+* Product Website
 * Assertions enabled
 * Ensured GitHub's Java CI checks pass
 * v1.0 wrap-up
