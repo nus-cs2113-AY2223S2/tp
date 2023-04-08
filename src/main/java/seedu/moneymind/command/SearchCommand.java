@@ -147,7 +147,7 @@ public class SearchCommand implements Command {
      * @param similarEvents Hash map containing events that are similar to the query string.
      * @param query The query string
      */
-    private void assignItemsBySimilarity(
+    protected void assignItemsBySimilarity(
             Set<Category> matchingCategories,
             Set<Event> matchingEvents,
             HashMap<Category, Integer> similarCategories,
@@ -194,7 +194,7 @@ public class SearchCommand implements Command {
      * @param valueString The value string.
      * @return The smallest Levenshtein distance between the 2 strings.
      */
-    private int calculateSimilarityDistance(String queryString, String valueString) {
+    protected int calculateSimilarityDistance(String queryString, String valueString) {
         if (queryString.length() >= valueString.length()) {
             // immediately calculate similarity and return
             return calculateLevenshteinDistance(valueString, queryString);
@@ -228,7 +228,7 @@ public class SearchCommand implements Command {
      * @param secondString The second string.
      * @return An integer representing the Levenshtein distance between the 2 strings.
      */
-    private int calculateLevenshteinDistance(String firstString, String secondString) {
+    protected int calculateLevenshteinDistance(String firstString, String secondString) {
         firstString = firstString.toLowerCase();
         secondString = secondString.toLowerCase();
 
@@ -260,7 +260,7 @@ public class SearchCommand implements Command {
      * @param input The list of categories
      * @param set The hash map of categories and their similarity distances
      */
-    private void sortCategoryBySimilarity(ArrayList<Category> input, HashMap<Category, Integer> set) {
+    protected void sortCategoryBySimilarity(ArrayList<Category> input, HashMap<Category, Integer> set) {
         Comparator<Category> comparator = (firstCategory, secondCategory) -> {
             int result = set.get(firstCategory) - set.get(secondCategory);
             if (result == 0) {
@@ -277,7 +277,7 @@ public class SearchCommand implements Command {
      * @param input The list of events
      * @param set The hash map of events and their similarity distances
      */
-    private void sortEventBySimilarity(ArrayList<Event> input, HashMap<Event, Integer> set) {
+    protected void sortEventBySimilarity(ArrayList<Event> input, HashMap<Event, Integer> set) {
         Comparator<Event> comparator = (firstEvent, secondEvent) -> {
             int result = set.get(firstEvent) - set.get(secondEvent);
             if (result == 0) {
@@ -293,7 +293,7 @@ public class SearchCommand implements Command {
      * @param event The event to find category for
      * @return Category of the event
      */
-    private Category getCategoryOfEvent(Event event) {
+    protected Category getCategoryOfEvent(Event event) {
         for (Category category : categories) {
             if (category.events.contains(event)) {
                 return category;

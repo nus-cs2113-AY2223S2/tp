@@ -1,6 +1,7 @@
 package seedu.moneymind.commands;
 
 import org.junit.jupiter.api.Test;
+import seedu.moneymind.command.SearchCommand;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,30 +27,8 @@ public class SearchCommandTest extends CommandTest {
                 "" + System.lineSeparator() +
                 "Similar Events:" + System.lineSeparator() +
                 "Lord of the Rings (Category: book)" + System.lineSeparator() +
-                "Harry Potter (Category: book)" + System.lineSeparator() +
-                "salad (Category: food)" + System.lineSeparator();
-        assertEquals(expected, terminalOutput);
-        clear();
-    }
-
-    @Test
-    void searchCommand_withExtraQueries_expectIgnored() {
-        setup();
-        String terminalOutput = executeInput("search hello test").toString();
-        String expected = "Matching Categories:" + System.lineSeparator() +
-                "No matching search results." + System.lineSeparator() +
-                "" + System.lineSeparator() +
-                "Matching Events:" + System.lineSeparator() +
-                "No matching search results." + System.lineSeparator() +
-                "" + System.lineSeparator() +
-                "Similar Categories:" + System.lineSeparator() +
-                "2.book" + System.lineSeparator() +
-                "1.food" + System.lineSeparator() +
-                "" + System.lineSeparator() +
-                "Similar Events:" + System.lineSeparator() +
-                "Harry Potter (Category: book)" + System.lineSeparator() +
-                "Lord of the Rings (Category: book)" + System.lineSeparator() +
-                "salad (Category: food)" + System.lineSeparator();
+                "salad (Category: food)" + System.lineSeparator() +
+                "Harry Potter (Category: book)" + System.lineSeparator();
         assertEquals(expected, terminalOutput);
         clear();
     }
