@@ -133,6 +133,7 @@ Example Command: ```generate easy 3```, ```generate hard upper 4```
    <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
    <p style="font-size: 18px; font-weight:Arial; font-weight:bold ;color:#993000"> The exercises that you generate might not be the same as the exercises in the example below! This is due to the 873 exercises that we have in our library! </p>
    <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> You can only generate a maximum of 873 exercises at a time! Any input higher than 873 and the program will not generate your exercises for you! </p>
+   <p style="font-size: 18px; font-family:Arial; font-weight:bold; color:#993000"> Do note that some exercises may not come with instructions due to their self-explanatory nature. </p>
 </div>
 
 
@@ -153,7 +154,6 @@ Workout Type: upper body
 Position a bar in a rack at upper body height., Standing, take a shoulder width grip on the bar and step a yard or two back, feet together and upper body extended so that you are leaning on the bar. This will be your starting position., Begin by flexing the elbow, lowering yourself towards the bar., Pause, and then reverse the motion by extending the elbows., Progress from bodyweight by adding chains over your upper body.
 ________________________________________
 ```
-
 
 ## Getting into a workout: ```start```
 Enters a workout session with the **previously (latest) generated** workout session.
@@ -280,8 +280,91 @@ Situps: 14
 ________________________________________
 ```
 
-## Within your workout session
-**Click **[here](UG_features/workout_session.md)** to learn more about using our workouts feature.
+# Within your workout session
+
+<div class="alert alert-info">
+
+## Feature : *Performing a workout*
+
+## About
+
+Our workouts feature is designed to help you complete a workout and log your progress.
+
+
+## Commands
+
+### Viewing your current workout exercises ```current```
+
+Displays a list of the user's current workout exercises.
+
+Format: ```current```
+
+For example, if the current workout session started with the following workouts:
+```
+Exercise ID: 0. 
+Name: 3/4 Sit-Up
+Difficulty Level: beginner
+Workout Type: core
+Lie down on the floor and secure your feet. Your legs should be bent at the knees., Place your hands behind or to the side of your head. You will begin with your back on the ground. This will be your starting position., Flex your hips and spine to raise your torso toward your knees., At the top of the contraction your torso should be perpendicular to the ground. Reverse the motion, going only Â¾ of the way down., Repeat for the recommended amount of repetitions.
+
+Exercise ID: 828. 
+Name: Tuck Crunch
+Difficulty Level: beginner
+Workout Type: core
+To begin, lie down on the floor or an exercise mat with your back pressed against the floor. Your upper body should be lying across your sides with the palms facing down., Your legs should be crossed by wrapping one ankle around the other. Slowly elevate your legs up in the air until your thighs are perpendicular to the floor with a slight bend at the knees. Note: Your knees and toes should be parallel to the floor as opposed to the thighs., Move your upper body from the floor and cross them so they are resting on your upper body. This is the starting position., While keeping your upper body pressed against the floor, slowly lift your torso. Remember to exhale while perform this part of the exercise., Slowly begin to lower your torso back down to the starting position while inhaling., Repeat for the recommended amount of repetitions.
+```
+
+Typing the input ```current``` would correspond to the following output, which just lists out the current workout's details:
+````agsl
+Exercise ID: 0. 
+Name: 3/4 Sit-Up
+Difficulty Level: beginner
+Workout Type: core
+Lie down on the floor and secure your feet. Your legs should be bent at the knees., Place your hands behind or to the side of your head. You will begin with your back on the ground. This will be your starting position., Flex your hips and spine to raise your torso toward your knees., At the top of the contraction your torso should be perpendicular to the ground. Reverse the motion, going only 75¾ of the way down., Repeat for the recommended amount of repetitions.
+
+Exercise ID: 828. 
+Name: Tuck Crunch
+Difficulty Level: beginner
+Workout Type: core
+To begin, lie down on the floor or an exercise mat with your back pressed against the floor. Your upper body should be lying across your sides with the palms facing down., Your legs should be crossed by wrapping one ankle around the other. Slowly elevate your legs up in the air until your thighs are perpendicular to the floor with a slight bend at the knees. Note: Your knees and toes should be parallel to the floor as opposed to the thighs., Move your upper body from the floor and cross them so they are resting on your upper body. This is the starting position., While keeping your upper body pressed against the floor, slowly lift your torso. Remember to exhale while perform this part of the exercise., Slowly begin to lower your torso back down to the starting position while inhaling., Repeat for the recommended amount of repetitions.
+
+````
+
+### Cancelling a workout and return to main menu ```cancel```
+
+Cancels the user's current workout session. The workout session is recognised as not completed.
+
+Format: ```cancel```
+
+Calling the ```cancel``` command here will give the following output:
+<br>
+<br>
+```Workout cancelled, you can complete it next time!```
+
+### Finishing a workout ```finish```
+
+Finishes the current workout session. The workout session is recognised as completed.
+
+Format: ```finish```
+
+For example, let the current workout include the exercises as used by the example above (i.e. 3/4 sit up + Tuck Crunch)
+
+Calling the ```finish``` command will provide the following outputs:
+1) Workout Completed Message: <br>```Workout completed! Congratulations on your hard work!```<br><br>
+2) (If any achievements are accomplished) <br> Prints out a congratulations message on completing 1 or more achievements
+   <br> ```Congradulations! You have achieved the following achievements:```<br><br>
+3) (If any achievements are accomplished) <br> Prints out the list of achievements achieved upon completion
+   of a specific exercise session
+   e.g: <br>
+```
+1)  Easy Lemon DESTROYEERRR: Complete 5 easy exercises!
+2) The Static Warrior: Complete 5 Static workouts!
+``` 
+
+4) (If any achievements are accomplished) <br> Prints out a motivating message to further motivate the user to continue
+   using Fitness Duke <br>
+   ```Keep on working out with Fitness Duke!```
+</div>
 
 ## Seeing your workout history: ```history```
 
@@ -323,6 +406,7 @@ Times Completed: 2
 
 You have completed a total of 3 non-unique exercise(s), of which 2 of them are unique! Keep it up!:)
 ```
+
 
 ## Deleting a workout session: ```delete [number]```
 
@@ -383,7 +467,7 @@ ________________________________________
       Justification: The data command is meant to store a user's completed exercise history, hence it should be updated. <br>
       <br> However, achievements are meant to motivate users to continue using FitnessDuke. Deleting one's counts from their 
       achievements and hence removing one's achievements would serve to demotivate users, being counter-intuitive 
-      from the feature's purpose.
+      from the feature's <purpose></purpose>
    </p>
 </div>
 
@@ -512,8 +596,14 @@ delete monday Home_Leg_Day
 ===>Planner Mode<===
 ```
 
-## Within your fitness planner
+# Within your fitness planner
+
+<div class="alert alert-info">
+
 **Click **[here](UG_features/planner.md)** to learn more about using our planner feature.
+
+</div>
+
 
 ## Viewing plans: ```plans```
 

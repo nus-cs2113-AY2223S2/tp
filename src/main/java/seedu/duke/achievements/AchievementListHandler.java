@@ -1,7 +1,5 @@
 package seedu.duke.achievements;
 
-//import org.w3c.dom.Text;
-//import seedu.duke.Duke;
 import seedu.duke.achievements.types.AchievementBodyPart;
 import seedu.duke.achievements.types.AchievementGymStatic;
 import seedu.duke.achievements.types.AchievementLevel;
@@ -35,6 +33,7 @@ public class AchievementListHandler extends TextDataUtility {
     private static final String BRACKET = ") ";
     private static final String BLANK = " ";
     private static final String EMPTY = "";
+    private static final boolean PRINT_LOAD_MESSAGE = false;
     private static ArrayList<Achievement> achievementList = new ArrayList<>();
 
     public void loadAchievementsFromFile() {
@@ -55,24 +54,26 @@ public class AchievementListHandler extends TextDataUtility {
     }
 
 
-
-
     private void pushDataToAchievementList(ArrayList<Achievement> achievementList,
                                            File achievementListData) throws DukeError {
         try {
             Scanner listDataScanner = new Scanner(achievementListData);
             String currentLine = "";
+            boolean errorFound = false;
             while (listDataScanner.hasNext()) {
                 try {
                     currentLine = listDataScanner.nextLine();
                     Achievement newAchievement = parseAchivement(currentLine);
                     achievementList.add(newAchievement);
-
                 } catch (DukeError e) {
                     System.out.println(e.getMessage());
+                    errorFound = true;
+                    break;
                 }
             }
-
+            if (errorFound) {
+                clearAchievementsData();
+            }
         } catch (FileNotFoundException e) {
             throw new DukeError(ErrorMessages.ERROR_FILE_READ.toString());
         } catch (NumberFormatException e) {
@@ -98,6 +99,7 @@ public class AchievementListHandler extends TextDataUtility {
      * @throws DukeError Whenever a specific achievment is not saved correctly,
      *         it is deemed corrupt and will not be loaded in correctly.
      */
+
     private Achievement parseAchivement(String achievementInput) throws DukeError, NumberFormatException {
         String name;
         String requirement;
@@ -125,7 +127,27 @@ public class AchievementListHandler extends TextDataUtility {
                 type,
                 countCurr,
                 countToComplete);
+        if (!checkAchievementDataValidity(
+                achievement.getCompleted(),
+                achievement.getCountCurrent(),
+                achievement.getCountRequirement())) {
+            throw new DukeError(ErrorMessages.ERROR_LOAD_INVALID_ACHIEVEMENT_DATA.toString());
+        }
         return achievement;
+    }
+
+    /**
+     * Checks whether an achievement's current count, count required and completed statuses make sense
+     * @param completed The achievement data's completed status
+     * @param countCurr The current number of exercises counted towards this achievement
+     * @param countRequired The number of exercises required to achieve this achievement
+     * @return True if it is valid, false if otherwise
+     */
+    private boolean checkAchievementDataValidity(boolean completed, int countCurr, int countRequired) {
+        if ((completed && (countCurr < countRequired)) || (!completed && (countCurr >= countRequired))) {
+            return false;
+        }
+        return true;
     }
 
 
@@ -189,7 +211,7 @@ public class AchievementListHandler extends TextDataUtility {
         case "hard":
             return new AchievementLevel(name, requirement, completed, difficulty,
                     achievementType.toLowerCase(), currCount, totalCountToComplete);
-        case "upper":
+        case "upper body":
             //upper has a different string than the raw command
             String achievementName = "upper body";
             return new AchievementBodyPart(name, requirement, completed, difficulty,
