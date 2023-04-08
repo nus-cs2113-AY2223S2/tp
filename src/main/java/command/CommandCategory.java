@@ -23,7 +23,7 @@ public class CommandCategory extends Command {
         super(COMMAND_NAME);
         this.expenseList = expenseList;
         for (Expense e : expenseList) {
-            String categoryOfe = e.getDescription();
+            String categoryOfe = e.getDescription().toLowerCase();
             if (!categorySet.contains(categoryOfe)) {
                 categorySet.add(categoryOfe);
             }
@@ -96,7 +96,7 @@ public class CommandCategory extends Command {
         }
 
         for (Expense e : expenseList) {
-            String category = e.getDescription();
+            String category = e.getDescription().toLowerCase();
             ArrayList<Expense> currExpenseList = categoryGroup.get(category);
             currExpenseList.add(e);
             categoryGroup.put(category, currExpenseList);
