@@ -17,7 +17,8 @@ public class PrintUserExerciseData {
      * @param uniqueCount The total number of unique exercises completed.
      */
 
-    public static void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory, int overallCount, int uniqueCount) {
+    public static void printUserExerciseHistory(HashMap<String, Integer> userExerciseHistory,
+                                                int overallCount, int uniqueCount) {
         assert userExerciseHistory != null : "user exercise history should not be null!";
         if (userExerciseHistory.isEmpty()) {
             System.out.println("You have not completed any exercises ☹");
