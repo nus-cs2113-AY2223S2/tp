@@ -31,8 +31,10 @@ Given below are my contributions to the project.
 * Contributed to the `Command Summary` section.
 
 #### Contributions to the DG:
-* Added implementation details for the edit income command.
-* Added implementation details for the edit expense command.
+* Added implementation details for the edit income command/edit expense command.
+* Added sequence diagram for the `EditIncomeCommand`.
+* Added sequence diagram for the `EditExpenseCommand`.
+* Added activity diagram for `EditIncomeCommand`.
 * Added Non-Functional Requirements section.
 
 #### Contributions to team-based tasks:
