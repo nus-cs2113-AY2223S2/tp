@@ -1,30 +1,7 @@
 # Developer Guide
 
-<!-- TOC -->
-
-- [Developer Guide](#developer-guide)
-  - [Acknowledgements](#acknowledgements)
-  - [Design & implementation](#design-implementation)
-  - [Design](#design)
-  - [Implementation](#implementation)
-    - [Record and RecordList](#record-and-recordlist)
-    - [DeleteIncomeCommand](#deleteincomecommand)
-    - [Target and TargetStorage](#target-and-targetstorage)
-    - [EditIncomeCommand/EditExpenseCommand](#editincomecommandeditexpensecommand)
-    - [AddIncomeCommand](#addincomecommand)
-    - [ListExpenseCommand](#listexpensecommand)
-    - [SetTargetCommand](#settargetcommand)
-    - [SetCurrencyCommand](#setcurrencycommand)
-    - [UnsetCurrencyCommand](#unsetcurrencycommand)
-    - [FindCommand](#findcommand)
-  - [Product scope](#product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
-  - [User Stories](#user-stories)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
-  <!-- TOC -->
+* Table of Contents
+  {:toc}
 
 ## Acknowledgements
 
