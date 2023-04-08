@@ -4,6 +4,7 @@ import seedu.duke.company.CompanyList;
 import seedu.duke.data.VenueListData;
 import seedu.duke.event.Event;
 import seedu.duke.exception.IntegerSizeExceededException;
+import seedu.duke.exception.RepeatedFieldsException;
 import seedu.duke.parser.Parser;
 import seedu.duke.storage.CompanyListDecoder;
 import seedu.duke.storage.EventDetailsStorage;
@@ -67,6 +68,11 @@ public class Eventus {
             } catch (IntegerSizeExceededException err) {
                 ui.showLine();
                 System.out.println("Integer value exceeds the maximum integer size. Please try a smaller number");
+                ui.showLine();
+            } catch (RepeatedFieldsException err) {
+                ui.showLine();
+                System.out.println("Only one company name(n/), industry(i/), contact number(c/)," +
+                        " and email address(e/) is allowed.");
                 ui.showLine();
             }
         }

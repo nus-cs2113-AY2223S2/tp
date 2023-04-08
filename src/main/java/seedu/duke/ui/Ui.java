@@ -176,18 +176,4 @@ public class Ui {
         showLine();
         System.out.println("Invalid " + invalidPart + ".\n" + expectedInput);
     }
-
-    public void multipleAdditionErrorMessage() {
-        showLine();
-        System.out.println("Multiple companies cannot be added at once.\n" +
-                "Please add companies separately with single corresponding information at each field!");
-    }
-
-    public void multipleInformationErrorMessage(){
-        showLine();
-        System.out.println("Only one industry(i/), contact number(c/), and email address(e/) are allowed.");
-    }
-
-
-
 }

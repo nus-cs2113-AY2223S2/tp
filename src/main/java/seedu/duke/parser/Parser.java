@@ -16,6 +16,7 @@ import seedu.duke.command.PurgeCommand;
 import seedu.duke.command.UpdateEventNameCommand;
 
 import seedu.duke.exception.IntegerSizeExceededException;
+import seedu.duke.exception.RepeatedFieldsException;
 import seedu.duke.ui.Ui;
 import seedu.duke.exception.WrongFormatException;
 
@@ -33,9 +34,10 @@ public interface Parser {
      * @throws NullPointerException         if error occurred due to null pointers
      * @throws IndexOutOfBoundsException    if error occurred due to an index being out of bounds
      * @throws IntegerSizeExceededException if error occurs due to number size exceeded supposed value
+     * @throws RepeatedFieldsException if error occurs due to user input having repeated fields
      */
     static Command parse(String input) throws WrongFormatException, NumberFormatException,
-            NullPointerException, IndexOutOfBoundsException, IntegerSizeExceededException {
+            NullPointerException, IndexOutOfBoundsException, IntegerSizeExceededException, RepeatedFieldsException {
         Ui ui = new Ui();
         String[] inputWords = input.split(" ");
         String command = inputWords[0];
@@ -70,13 +72,9 @@ public interface Parser {
             String contactNumberString = input.substring(indexOfContactNumber + 2, indexOfContactEmail).trim();
             String contactEmail = input.substring(indexOfContactEmail + 2).trim();
 
-            //Multiple additions are not allowed.
-            if (input.indexOf("n/") != input.lastIndexOf("n/")) {
-                ui.multipleAdditionErrorMessage();
-                throw new WrongFormatException();
-            } else if(isMultipleInfo(input)){
-                ui.multipleInformationErrorMessage();
-                throw new WrongFormatException();
+            //Repeated fields are not allowed.
+            if(isRepeatedField(input)){
+                throw new RepeatedFieldsException();
             }
             //Empty company name is not allowed.
             if (companyName.equals("")) {
@@ -104,7 +102,6 @@ public interface Parser {
                 ui.invalidInputFormatErrorMessage("email address");
                 throw new WrongFormatException();
             }
-
             AddCommand addCommand = new AddCommand(command, industry, companyName, contactNumber, contactEmail);
             return addCommand;
         case "delete":
@@ -236,9 +233,9 @@ public interface Parser {
         return false;
     }
 
-    private static boolean isMultipleInfo(String input){
+    private static boolean isRepeatedField(String input){
         if(input.indexOf("i/") != input.lastIndexOf("i/") || input.indexOf("c/") != input.lastIndexOf("c/")
-                || input.indexOf("e/") != input.lastIndexOf("e/")){
+                || input.indexOf("e/") != input.lastIndexOf("e/") || input.indexOf("n/") != input.lastIndexOf("n/")) {
             return true;
         }
         return false;

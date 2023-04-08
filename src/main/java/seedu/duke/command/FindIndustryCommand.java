@@ -6,7 +6,7 @@ public class FindIndustryCommand extends Command{
 
     protected String targetIndustry;
 
-    public FindIndustryCommand(String commandType, String targetIndustry){
+    public FindIndustryCommand(String commandType, String targetIndustry) {
         super(commandType);
         this.targetIndustry = targetIndustry;
     }
