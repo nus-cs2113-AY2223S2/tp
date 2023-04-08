@@ -44,6 +44,7 @@ java -jar tp.jar
 6. If successful, the following greetings should appear:
 <br> For first time users:
 ```
+Log Folder Created
 Unfortunately, income list file can't be found. I'll make a new one!
 Unfortunately, expense list can't be found. I'll make a new one!
     ____________________________________________________________
@@ -54,6 +55,7 @@ Unfortunately, expense list can't be found. I'll make a new one!
 <br> For current users:
 
 ```
+Log Folder Ready
     ____________________________________________________________
     Hello! I'm ChChing.
     What can I do for you?
