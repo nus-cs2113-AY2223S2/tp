@@ -21,7 +21,7 @@ Moneymind is a Command Line Interface (CLI) application that helps you manage yo
 
 3. Open the terminal and navigate to the directory where Moneymind is installed.
 
-4. Run the following command to start the Moneymind app.
+4. Run the following command to start the Moneymind app: `java -jar moneymind.jar`.
 
 5. Type the command in the command box and press Enter to execute.
 
@@ -43,7 +43,7 @@ Invalid patterns are replaced with the current System date.
 * Monthly recurring expenses will be require the user to update the expense number every month.
 * In the context of this application, the 'MM', 'yyyy', 'hh' and 'mm' in the data format of `<time>` is less important
 as the frequency is set as *monthly*. Hence, whatever valid month input that the user types
-in, the event will be always recorded as a monthly recurring event based on its date.
+in, the event will always be recorded as a monthly recurring event based on its date.
 To avoid confusion, the user is advised to type in the month and year of the first occurrence of the event
 which they want to record down.
 
