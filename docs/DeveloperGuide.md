@@ -24,7 +24,7 @@
     * [List Weekly Plan Feature](#list-weekly-plan-feature)
     * [Mark Recipe as Done Feature](#mark-recipe-as-done-feature)
 
-* [Appendix: Requirements](#appendix-requirements)
+* [Appendix: Requirements](#appendix--requirements)
     * [Product scope](#product-scope)
     * [Target user profile](#target-user-profile)
     * [Value proposition](#value-proposition)
@@ -77,6 +77,7 @@ plan. For the class diagrams, `Meal360` and the `Ui` component are not shown for
 Additionally, methods irrelevant to the subsystem shown are also omitted for simplicity.
 
 1. Recipe related
+
    ![](../docs/UML/Architecture/RecipeRelated.png)
 
 2. Ingredient related
@@ -224,8 +225,6 @@ The activity diagram below shows how the `Database` component works at start up:
 
 ### Categorise/Tag Recipes Feature
 
-The current implementation:
-
 * add single or multiples recipes into a tag
 * remove single or multiples recipes from a tag
 
@@ -257,8 +256,6 @@ The sequence diagram below shows how this feature works:
 ![](../docs/UML/Implementation/TagFunction/TagFunction.png)
 
 ### List Recipes Feature
-
-The current implementation:
 
 * list all recipes
 * list recipe with filters (name, ingredients, tags)
@@ -352,8 +349,6 @@ It is implemented through the following steps:
    to update the new recipe data.
 
 ### Random a Recipe Feature
-
-The current implementation:
 
 * randomly pick a recipe and display to the user
 
@@ -717,3 +712,94 @@ Given below are instructions to test the app manually.
       | avocado toast x1                                                                                 |
       ----------------------------------------------------------------------------------------------------
       ```
+
+#### Tag/Categorize Recipes
+1. Remove recipe from an unknown tag.
+   * Prerequisite: Make sure that `unknowntag` has never been created.
+   * Test case 1: `tag unknowntag >> recipe1`
+   * Expected: An error message is shown.
+   * Expected output 1:
+   ```
+    ----------------------------------------------------------------------------------------------------
+    | There is no "unknowntag" tag found. Please make sure you have entered the correct tag.           |
+    ----------------------------------------------------------------------------------------------------
+    ```
+2. Add tag command with an unknown recipe
+   * Prerequisite: Make sure that there is no recipe named `unknown` in the list, and 
+         a recipe named `recipe1` using the `add` command.
+   * Test case 2: `tag testtag << recipe1 && unknown`
+   * Expected: An error message is showed. `recipe1` is added to `testtag` but `unknown` is not added.
+   * Expected output 2:
+
+   ```
+   ----------------------------------------------------------------------------------------------------
+   | Unable to find the recipe: "unknown" in the tag.                                                 |
+   | All the recipe before "unknown" (if any) are successfully added from the tag.                    |
+   ----------------------------------------------------------------------------------------------------
+   ```
+
+3. Remove tag command with an unknown recipe
+    * Prerequisite: Complete test case 2
+    * Test case 3: `tag testtag >> recipe1 && unknown`
+    * Expected: An error message is showed. `recipe1` is removed `testtag` but `unknown` is not removed.
+    * Expected output 3:
+   ```
+    ----------------------------------------------------------------------------------------------------
+    | Unable to find the recipe: "unknown" in the tag.                                                 |
+    | All the recipe before "unknown" (if any) are successfully removed from the tag.                  |
+    ----------------------------------------------------------------------------------------------------
+    ```
+4. Successfully add a recipes into a tag
+    * Prerequisite: Add recipe named `recipe2` using the `add` command
+    * Test case 4: `tag testtag << recipe2`
+    * Expected: `recipe2` is added to `testtag`.
+    * Expected output 4:
+   ```
+    ----------------------------------------------------------------------------------------------------
+    | You have successfully added the recipe(s) to "testtag" tag.                                      |
+    ----------------------------------------------------------------------------------------------------
+    ```
+
+5. Successfully remove a recipe from a tag
+    * Prerequisite: Complete test case 4
+    * Test case 5: `tag testTag >> recipe2`
+    * Expected: `recipe2` is removed `testtag`.
+    * Expected output 5:
+   ```
+    ----------------------------------------------------------------------------------------------------
+    | You have successfully removed the recipe(s) from "testtag" tag.                                  |
+    ----------------------------------------------------------------------------------------------------
+    ```
+
+#### List Recipes
+1. Listing recipes when there is no recipe in the list.
+   * Prerequisite: Empty the list of recipes.
+   * Test case 1: `list`
+   * Expected output 1:
+    ```
+    ----------------------------------------------------------------------------------------------------
+    | There is nothing to list.                                                                        |
+    ----------------------------------------------------------------------------------------------------
+   ```
+2. List all recipes
+   * Prerequisite: Add one or more recipes using the `add` command.
+   * Test case 2: `list`
+   * Expected output 2: An ordered list of recipes is displayed.
+   The recipes' name that are added are listed out along with the number of ingredients needed.
+
+
+3. List specific recipes
+   * Test case 3: `list a`
+   * Expected output 3: 
+     * An ordered list of recipes that contain `a` in their name or ingredients is displayed.
+       The recipes' name that are added are listed out along with the number of ingredients needed. 
+     * If there is no recipe or ingredient that contain `a` the expected output is identical 
+       to expected output 1.
+
+
+4. List recipes from a tag
+    * Prerequisite: Create a recipe named `recipefortag` using `add` command, and add the recipe to
+      `testtag1` using `tag` command.
+    * Test case 4: `list /t testtag1`
+    * Expected output 4: An ordered list of recipes that are in `testtag1` are listed out, including `recipefortag`.
+      The recipes' name that are added are listed out along with the number of ingredients needed.
