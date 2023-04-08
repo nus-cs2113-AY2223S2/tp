@@ -78,20 +78,20 @@ public class Task {
 
     public String getFullInfo() {
         StringJoiner infoString = new StringJoiner(System.lineSeparator());
-        infoString.add("ID: " + id);
-        infoString.add("Description: " + description);
-        infoString.add("Completed: " + (isDone ? "Yes" : (isDue() ? "Overdue" : "No")));
+        infoString.add("ID:           " + id);
+        infoString.add("Description:  " + description);
+        infoString.add("Completed:    " + (isDone ? "Yes" : (isDue() ? "Overdue" : "No")));
         if (priority != Priority.NONE) {
-            infoString.add("Priority: " + priority.toString());
+            infoString.add("Priority:     " + priority.toString());
         }
         if (deadline != null) {
-            infoString.add("Due: " + FormatterUtil.getDeadlineAsString(deadline));
+            infoString.add("Due:          " + FormatterUtil.getDeadlineAsString(deadline));
         }
         if (email != null) {
-            infoString.add("Email: " + email);
+            infoString.add("Email:        " + email);
         }
         if (!tags.isEmpty()) {
-            infoString.add("Tags: " + FormatterUtil.getTagsAsString(tags));
+            infoString.add("Tags:         " + FormatterUtil.getTagsAsString(tags));
         }
         if (repeatDuration > 0) {
             infoString.add("Repeat times: " + repeatDuration);

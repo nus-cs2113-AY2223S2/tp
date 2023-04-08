@@ -8,8 +8,8 @@ import seedu.todolist.exception.InvalidIdException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 
 public class TaskList {
     private int count = 0;
-    private HashMap<Integer, Task> tasks = new HashMap<>();
+    private TreeMap<Integer, Task> tasks = new TreeMap<>();
 
     public void reset() {
         count = 0;

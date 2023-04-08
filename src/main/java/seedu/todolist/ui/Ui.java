@@ -154,8 +154,8 @@ public class Ui {
     }
 
     //@@author RuiShengGit
-    public void printHelpList() {
-        println(HelpMessages.HELP_COMMAND);
+    public void printHelpList(String helpMessage) {
+        println(helpMessage);
     }
 
     public void printResetMessage(boolean reset) {

@@ -2,63 +2,114 @@
 package seedu.todolist.constants;
 
 public class HelpMessages {
-    public static final String PRIORITY_HELP = "Please enter a number from 1-3 = 1:Low, 2:Medium, 3:High)";
-    public static final String HELP_COMMAND = "Here are the list of commands that you can use:\n" +
-            "+----------------------------------------------------------------------------------------+\n" +
-            "| Command                                | Description                                   |\n" +
-            "+----------------------------------------------------------------------------------------+\n" +
-            "| add DESCRIPTION [-due DEADLINE]        | Adds a new task to your To-Do list.           |\n" +
-            "|                 [-email EMAIL_ADDRESS] |                                               |\n" +
-            "|                 [-email EMAIL_ADDRESS] |                                               |\n" +
-            "|                 [-rep REPEAT_DURATION] |                                               |\n" +
-            "|                 [-prio PRIORITY_LEVEL] |                                               |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| mark ID                                | Marks a task with the given id by the user    |\n" +
-            "|                                        | as completed                                  |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| unmark ID                              | Unmarks a task with the given id by the user  |\n" +
-            "|                                        | as incomplete.                                |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| delete ID                              | Removes the task with the given id by the     |\n" +
-            "|                                        | user from the To-Do list.                     |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| desc ID -edit DESCRIPTION              | Edits the description of a task with the      |\n" +
-            "|                                        | given id in the ToDo List.                    |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| prio ID -edit PRIORITY_LEVEL           | Edits, or deletes the priority level of a     |\n" +
-            "|                                        | task with the given id in the ToDo List.      |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| due ID -edit DEADLINE                  | Edits or deletes the deadline of a task with  |\n" +
-            "|        -del                            | the given id in the To-Do List.               |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| email ID -edit EMAIL_ADDRESS           | Adds, edits, or deletes the email address of  |\n" +
-            "|          -del                          | a task with the given id in the To-Do List.   |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| tags ID -edit LIST_OF_TAGS             | Adds, edits, or deletes the tags of a task    |\n" +
-            "|         -del                           | with the given id in the To-Do List.          |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| rep ID -edit REPEAT_DURATION           | Edits or deletes the recurring count of a     |\n" +
-            "|                                        | task with the given id in the To-Do List.     |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| list                                   | Display all tasks stored in the To-Do List.   |\n" +
-            "|       -done                            | Display all completed tasks.                  |\n" +
-            "|       -undone                          | Display all uncompleted tasks.                |\n" +
-            "|       -overdue                         | Display all overdue tasks.                    |\n" +
-            "|       -priority                        | Display all tasks sorted by priority.         |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| info ID                                | Display all the attributes of the task with   |\n" +
-            "|                                        | the given id in the To-Do List.               |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| progress                               | Displays the progress of and lists tasks      |\n" +
-            "|                                        | that are due this week in To-Do list.         |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| config                                 | Displays current configuratino settings.      |\n" +
-            "|       -chkfreq CHECK_FREQUENCY         | Edits checking frequency for repeating tasks. |\n" +
-            "|       -repfreq REPEAT_FREQUENCY        | Edits repeating frequency of repeating tasks. |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| help                                   | Displays all possible commands of the program |\n" +
-            "|                                        | and their description                         |\n" +
-            "------------------------------------------------------------------------------------------\n" +
-            "| exit                                   | Exits the program.                            |\n" +
-            "------------------------------------------------------------------------------------------";
+    public static final String PRIORITY_HELP = "Please enter a number from 1 to 3 = 1:Low, 2:Medium, 3:High)";
+    public static final String HELP_COMMAND = "Here is the list of commands that you can use:\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| Command                                | Description                                   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| add DESCRIPTION [-due DEADLINE]        | Adds a new task with the given attributes to  |\n"
+            + "|                 [-email EMAIL_ADDRESS] | your To-Do list.                              |\n"
+            + "|                 [-tags TAGS]           |                                               |\n"
+            + "|                 [-rep REPEAT_TIMES]    |                                               |\n"
+            + "|                 [-prio PRIORITY_LEVEL] |                                               |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| mark IDS                               | Marks given tasks as completed.               |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| unmark IDS                             | Marks given tasks as incomplete.              |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| delete IDS                             | Removes given tasks from your To-Do list.     |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| desc IDS -edit DESCRIPTION             | Sets the descriptions of given tasks.         |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| prio IDS -edit PRIORITY_LEVEL          | Sets the priority levels of given tasks.      |\n"
+            + "| prio IDS -del                          | Removes the priority levels of given tasks.   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| due IDS -edit DEADLINE                 | Sets the deadlines of given tasks.            |\n"
+            + "| due IDS -del                           | Removes the deadlines of given tasks.         |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| email IDS -edit EMAIL_ADDRESS          | Sets the email addresses of given tasks.      |\n"
+            + "| email IDS -del                         | Removes the email addresses of given tasks.   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| tags IDS -edit LIST_OF_TAGS            | Sets the tags of given tasks.                 |\n"
+            + "| tags IDS -add LIST_OF_TAGS             | Adds given tags to given tasks.               |\n"
+            + "| tags IDS -del LIST_OF_TAGS             | Removes given tags from given tasks.          |\n"
+            + "| tags IDS -del                          | Removes all tags from given tasks.            |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| rep IDS -edit REPEAT_TIMES             | Sets the recurrence count of given tasks.     |\n"
+            + "| rep IDS -del                           | Makes given tasks no longer recur.            |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| list [FILTERS] [-sort SORT_OPTION]     | Display summary of all/filtered tasks that    |\n"
+            + "|                                        | is sorted if a sorting option is given.       |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| info IDS                               | Display all attributes of given tasks.        |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| progress                               | Displays the progress and summary of tasks    |\n"
+            + "|                                        | that are due this week.                       |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| taglist                                | Displays all tags found in your To-Do List.   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| config                                 | Displays current configuration settings.      |\n"
+            + "| config [-chkfreq CHECK_FREQUENCY]      | Sets checking frequency for recurring tasks.  |\n"
+            + "|        [-repfreq REPEAT_FREQUENCY]     | Sets repeating frequency of recurring tasks.  |\n"
+            + "| config -reset                          | Resets configuration settings to default.     |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| help                                   | Displays summary of all possible commands.    |\n"
+            + "| help filter                            | Displays summary of all filter options.       |\n"
+            + "| help sort                              | Displays summary of all sorting options.      |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| reset                                  | Deletes all tasks and reset IDs to 0.         |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| exit                                   | Exits the program.                            |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "IDS can also be replaced with FILTERS, use \"help filter\" for information on filters.";
+    //@@author KedrianLoh
+    public static final String HELP_FILTERS = "Here is the list of filters that you can use instead of ids:\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| Boolean Filter                         | Description                                   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| Replace \"1\" with \"0\" to invert a boolean filter.                                       |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -done 1                                | Filters completed tasks.                      |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -overdue 1                             | Filters overdue tasks.                        |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -rep 1                                 | Filters recurring tasks.                      |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| Non-boolean Filter                     | Description                                   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -all                                   | Selects all tasks. Overrides other filters.   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -desc STRING                           | Filters tasks with descriptions containing    |\n"
+            + "|                                        | the given string.                             |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -email EMAIL_ADDRESS                   | Filters tasks with the given email address.   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -before DEADLINE                       | Filters tasks with deadlines before the given |\n"
+            + "|                                        | deadline.                                     |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -after DEADLINE                        | Filters tasks with deadlines after the given  |\n"
+            + "|                                        | deadline.                                     |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -tags LIST_OF_TAGS                     | Filters tasks that have all the given tags.   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -prio PRIORITY_LEVEL                   | Filters tasks with the given priority level.  |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "Filters can also be combined, except for \"-all\".";
+    public static final String HELP_SORT = "Here is the list of sorts you can use with the \"list\" command:\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| Sort Option                            | Description                                   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -due                                   | Sorts tasks by deadline, with earlier         |\n"
+            + "|                                        | deadlines first and no-deadline tasks last.   |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -prio                                  | Sorts tasks by priority, with higher priority |\n"
+            + "|                                        | levels first and no-priority tasks last.      |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -desc                                  | Sorts tasks by their description in           |\n"
+            + "|                                        | lexicographic order.                          |\n"
+            + "+----------------------------------------------------------------------------------------+\n"
+            + "| -done                                  | Sorts tasks by completion status, with        |\n"
+            + "|                                        | overdue tasks first, then incomplete tasks,   |\n"
+            + "|                                        | and complete tasks last.                      |\n"
+            + "+----------------------------------------------------------------------------------------+";
 }
