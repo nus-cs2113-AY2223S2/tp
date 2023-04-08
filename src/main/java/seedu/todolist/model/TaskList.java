@@ -8,8 +8,8 @@ import seedu.todolist.exception.InvalidIdException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 
 public class TaskList {
     private int count = 0;
-    private HashMap<Integer, Task> tasks = new HashMap<>();
+    private TreeMap<Integer, Task> tasks = new TreeMap<>();
 
     public void reset() {
         count = 0;
@@ -50,8 +50,8 @@ public class TaskList {
     }
 
     public String addTask(String description, LocalDateTime deadline, String email, TreeSet<String> tags,
-                          int repeatDuration, Priority priority) {
-        Task task = new Task(++count, description, deadline, email, tags, repeatDuration, priority);
+                          int repeatTimes, Priority priority) {
+        Task task = new Task(++count, description, deadline, email, tags, repeatTimes, priority);
         tasks.put(count, task);
         return task.toString();
     }
@@ -110,9 +110,9 @@ public class TaskList {
     }
 
     /**
-     * Filters the task list using a predicate before converting it into its sorted string representation.
+     * Filters the task list using a predicate before converting it into its string representation.
      *
-     * @param p The predicate to sort the task list with.
+     * @param p The predicate to filter the task list with.
      * @return Filtered string representation of the task list.
      */
     public String toString(Predicate<Task> p) {
@@ -134,7 +134,7 @@ public class TaskList {
      * Filters the task list using a predicate and comparator before converting it
      * into its sorted string representation.
      *
-     * @param p The predicate to sort the task list with.
+     * @param p The predicate to filter the task list with.
      * @param c The comparator to sort the task list with.
      * @return Filtered string representation of the task list.
      */
@@ -142,21 +142,58 @@ public class TaskList {
         return joinStringStream(tasks.values().stream().filter(p).sorted(c).map(Task::toString));
     }
 
-    //@@author ERJUNZE
-    public TreeSet<String> getAllTags() {
-        TreeSet<String> tags = new TreeSet<>();
-        tasks.values().forEach(task -> tags.addAll(task.getTags()));
-        return tags;
+    /**
+     * Filters the task list using the given ids before converting it into its string representation.
+     *
+     * @param ids The ids to filter the task list with.
+     * @return Filtered string representation of the task list.
+     * @throws InvalidIdException If there is no task with any of the given ids.
+     */
+    public String toString(HashSet<Integer> ids) throws InvalidIdException {
+        return joinStringStream(getTasks(ids).map(Task::toString));
     }
 
+    /**
+     * Filters the task list using the given ids and comparator before converting it
+     * into its sorted string representation.
+     *
+     * @param ids The ids to filter the task list with.
+     * @param c The comparator to sort the task list with.
+     * @return Filtered string representation of the task list.
+     * @throws InvalidIdException If there is no task with any of the given ids.
+     */
+    public String toString(HashSet<Integer> ids, Comparator<Task> c) throws InvalidIdException {
+        return joinStringStream(getTasks(ids).sorted(c).map(Task::toString));
+    }
+
+    /**
+     * Gets the full information of all tasks with the given ids.
+     *
+     * @param ids The ids of the tasks to get the full information of.
+     * @return A combined string of the full information of all tasks with the given ids.
+     * @throws InvalidIdException If there is no task with any of the given ids.
+     */
     public String getFullInfo(HashSet<Integer> ids) throws InvalidIdException {
         return getTasks(ids).map(Task::getFullInfo)
                 .collect(Collectors.joining(System.lineSeparator() + Messages.LINE + System.lineSeparator()));
     }
 
+    /**
+     * Gets the full information of all tasks fulfilling the given predicate.
+     *
+     * @param p The predicate used to filter the task list.
+     * @return A combined string of the full information of all tasks fulfilling the given predicate.
+     */
     public String getFullInfo(Predicate<Task> p) {
         return tasks.values().stream().filter(p).map(Task::getFullInfo)
                 .collect(Collectors.joining(System.lineSeparator() + Messages.LINE + System.lineSeparator()));
+    }
+
+    //@@author ERJUNZE
+    public TreeSet<String> getAllTags() {
+        TreeSet<String> tags = new TreeSet<>();
+        tasks.values().forEach(task -> tags.addAll(task.getTags()));
+        return tags;
     }
 
     public String setDescription(HashSet<Integer> ids, String description) throws InvalidIdException {
@@ -221,36 +258,36 @@ public class TaskList {
      * Sets repeat duration for the task ids provided if the task contains a deadline.
      *
      * @param ids The ids of the tasks to set the repeat duration for.
-     * @param repeatDuration The repeat duration to be set for the tasks.
+     * @param repeatTimes The repeat duration to be set for the tasks.
      * @return A string of all the targeted tasks
      * @throws InvalidIdException If there is no task with any of the provided ids.
      * @throws InvalidDateException If the task with the provided ids does not have a deadline.
      */
-    public String setRepeatDuration(HashSet<Integer> ids, int repeatDuration)
+    public String setRepeatTimes(HashSet<Integer> ids, int repeatTimes)
             throws InvalidDateException, InvalidIdException {
         Task noDeadlineTask = getTasks(ids).filter(task -> task.getDeadline() == null).findFirst().orElse(null);
         if (noDeadlineTask != null) {
             throw new InvalidDateException("Task with ID " + noDeadlineTask.id + " has no deadline.");
         }
-        return joinStringStream(getTasks(ids).map(task -> task.setRepeatDuration(repeatDuration)));
+        return joinStringStream(getTasks(ids).map(task -> task.setRepeatTimes(repeatTimes)));
     }
 
     /**
      * Sets repeat duration for the task ids provided if the task contains a deadline.
      *
      * @param p The ids of the tasks to set the repeat duration for.
-     * @param repeatDuration The repeat duration to be set for the tasks.
+     * @param repeatTimes The repeat duration to be set for the tasks.
      * @return A string of all the targeted tasks
      * @throws InvalidIdException If there is no task with any of the provided ids.
      * @throws InvalidDateException If the task with the provided ids does not have a deadline.
      */
-    public String setRepeatDuration(Predicate<Task> p, int repeatDuration) throws InvalidDateException {
+    public String setRepeatTimes(Predicate<Task> p, int repeatTimes) throws InvalidDateException {
         Task noDeadlineTask = tasks.values().stream().filter(p).
                 filter(task -> task.getDeadline() == null).findFirst().orElse(null);
         if (noDeadlineTask != null) {
             throw new InvalidDateException("Task with ID " + noDeadlineTask.id + " has no deadline.");
         }
-        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setRepeatDuration(repeatDuration)));
+        return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setRepeatTimes(repeatTimes)));
     }
 
     //@@author jeromeongithub
@@ -280,24 +317,24 @@ public class TaskList {
     public void checkRepeatingTasks(Config config) {
         ArrayList<Task> tasksToBeAdded = new ArrayList<>();
         for (Task task : tasks.values()) {
-            int repeatDuration = task.getRepeatDuration();
+            int repeatTimes = task.getRepeatTimes();
             LocalDateTime deadline = task.getDeadline();
             // Check if this is a recurring task that is past its deadline
-            if (repeatDuration == 0 || !task.isDue()) {
+            if (repeatTimes == 0 || !task.isDue()) {
                 continue;
             }
 
             // Remove recur duration from this task to avoid duplicates on next check
-            task.setRepeatDuration(0);
-            while (repeatDuration > 0 && !deadline.isAfter(LocalDateTime.now())) {
+            task.setRepeatTimes(0);
+            while (repeatTimes > 0 && !deadline.isAfter(LocalDateTime.now())) {
                 // Calculate new deadline and recur duration
                 deadline = deadline.plusDays(config.getRepeatFrequency());
-                repeatDuration--;
+                repeatTimes--;
                 // Hold new task in temp array to avoid concurrent modification exception
                 tasksToBeAdded.add(new Task(++count, task.getDescription(), deadline,
                         task.getEmail(), task.getTags(), 0, task.getPriority()));
             }
-            tasksToBeAdded.get(tasksToBeAdded.size() - 1).setRepeatDuration(repeatDuration);
+            tasksToBeAdded.get(tasksToBeAdded.size() - 1).setRepeatTimes(repeatTimes);
         }
 
         for (Task task : tasksToBeAdded) {

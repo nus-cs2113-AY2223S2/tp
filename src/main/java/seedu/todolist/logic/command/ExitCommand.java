@@ -18,7 +18,7 @@ public class ExitCommand extends Command {
     /**
      * Returns whether this command should terminate the program.
      *
-     * @return <code>True</code>, since this is the exit command.
+     * @return True, since this is the exit command.
      */
     @Override
     public boolean shouldExit() {

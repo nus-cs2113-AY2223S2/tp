@@ -17,7 +17,7 @@ public abstract class Command {
     /**
      * Returns whether a command, by default, should terminate the program.
      *
-     * @return {@code False}, since most commands should not terminate the program.
+     * @return False, since most commands should not terminate the program.
      */
     public boolean shouldExit() {
         return false;
