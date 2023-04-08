@@ -5,14 +5,15 @@ import seedu.moneymind.command.CategoryCommand;
 import seedu.moneymind.event.Event;
 
 import static seedu.moneymind.command.SearchCommand.getCategoryOfEvent;
-import static seedu.moneymind.string.Strings.BYE_MESSAGE;
 import static seedu.moneymind.string.Strings.HORIZONTAL_LINE;
-import static seedu.moneymind.string.Strings.DOT;
-import static seedu.moneymind.string.Strings.NO_SEARCH_RESULTS;
+import static seedu.moneymind.string.Strings.GREETING;
+import static seedu.moneymind.string.Strings.OFFER_HELP_FOR_COMMAND;
+import static seedu.moneymind.string.Strings.BYE_MESSAGE;
 import static seedu.moneymind.string.Strings.ERROR_LOADING_FILE;
 import static seedu.moneymind.string.Strings.LOAD_ERROR_RISK_MESSAGE;
 import static seedu.moneymind.string.Strings.ERROR;
-import static seedu.moneymind.string.Strings.GREETING;
+import static seedu.moneymind.string.Strings.NO_SEARCH_RESULTS;
+import static seedu.moneymind.string.Strings.DOT;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -24,6 +25,7 @@ public class Ui {
 
     public void greet() {
         System.out.println(GREETING);
+        System.out.println(OFFER_HELP_FOR_COMMAND);
     }
 
     public void goodbye() {
