@@ -9,8 +9,8 @@ import static bagpacker.iohandler.Ui.printToUser;
 
 public class FindCommand extends Command {
     public static final String HELP_MSG =
-            "find: Displays all items in the packingList as a list that contains tha keyword used in the command.\n"
-                    + "Example: find jacket";
+            "find: Displays all items in the packingList as a list that contains the keyword used in the command.\n"
+                    + "\tExample: find jacket";
     private static final String MSG_FIND_HEADER = "There are %d items(s) in your list containing %s: ";
     private static final String MSG_NO_FOUND_ITEM =
             "An item containing the description %s does not exist. Please try again.";

@@ -6,12 +6,11 @@ import bagpacker.packingfunc.PackingList;
 
 public class PackAllCommand extends Command {
 
-    public static final String MSG_SUCCESS_PACK = "Item packed: %s";
+    public static final String MSG_SUCCESS_PACKALL = "Item packed: %s";
 
-    public static final String HELP_MSG = "packall : Marks all quantity of the specified item as packed in the " +
-            "packing list.\n" +
+    public static final String HELP_MSG = "packall: Fully pack an item of choice from the packing list.\n" +
             "\tExample: packall /of 3\n" +
-            "\tMeaning: packs all of the quantities of the third item in the packing list";
+            "\tMeaning: Set the third item in the packing list as fully packed";
 
     private static int packQuantity;
 
@@ -19,7 +18,7 @@ public class PackAllCommand extends Command {
         super(targetIndex);
 
         assert (targetIndex >= 1 & targetIndex <= PackingList.getItemList().size()) :
-                "PackAll Command Target index is out of bounds";
+                "Packall Command Target index is out of bounds";
     }
 
     @Override
@@ -28,7 +27,7 @@ public class PackAllCommand extends Command {
         final Item item = getTargetItem();
         packQuantity = item.getUnpackedQuantity();
         packingList.packItem(item, packQuantity);
-        Ui.printToUser(String.format(MSG_SUCCESS_PACK, item));
+        Ui.printToUser(String.format(MSG_SUCCESS_PACKALL, item));
     }
 
 }

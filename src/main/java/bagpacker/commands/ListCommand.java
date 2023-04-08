@@ -4,7 +4,7 @@ import bagpacker.iohandler.Ui;
 import bagpacker.packingfunc.PackingList;
 
 public class ListCommand extends Command {
-    public static final String HELP_MSG = "list : List all items and their total quantities packed in packing list.\n" +
+    public static final String HELP_MSG = "list: List all items and their total quantities packed in packing list.\n" +
             "\tExample: list";
 
     @Override
