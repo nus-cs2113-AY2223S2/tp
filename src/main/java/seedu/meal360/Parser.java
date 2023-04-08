@@ -20,8 +20,8 @@ public class Parser {
 
     Ui ui = new Ui();
 
-    String recipeErrorMessage = "Wrong Format or Invalid Quantity. Please enter ingredients properly!" +
-            "[eg:chicken=100]";
+    String recipeErrorMessage = "Wrong Format or Invalid Quantity. Please enter ingredients properly " +
+            "[eg:chicken=100] and \"done\" when finished entering ingredients!";
 
     public String combineWords(String[] input, int startIndex, int length) {
         StringBuilder word = new StringBuilder(input[startIndex].trim());
