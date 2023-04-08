@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import static seedu.moneymind.category.CategoryList.categories;
-import static seedu.moneymind.string.Strings.DOT;
-import static seedu.moneymind.string.Strings.NO_SEARCH_RESULTS;
+import static seedu.moneymind.ui.Ui.printMatchingCategories;
+import static seedu.moneymind.ui.Ui.printSimilarCategories;
+import static seedu.moneymind.ui.Ui.printMatchingEvents;
+import static seedu.moneymind.ui.Ui.printSimilarEvents;
 
 /**
  * Command for searching categories and events based on
@@ -52,92 +54,6 @@ public class SearchCommand implements Command {
     }
 
     /**
-     * Prints search results for categories that match the query string.
-     * @param matchingCategories Set containing categories that match the query string.
-     */
-    private void printMatchingCategories(Set<Category> matchingCategories) {
-        System.out.println("Matching Categories:");
-
-        if (matchingCategories.size() == 0) {
-            System.out.println(NO_SEARCH_RESULTS);
-        }
-
-        for (Category category : matchingCategories) {
-            int categoryIndex = CategoryCommand.categoryMap.get(category.getName());
-            System.out.println((categoryIndex + 1) + DOT + category.getName());
-        }
-    }
-
-    /**
-     * Prints search results for events that match the query string.
-     * @param matchingEvents Set containing events that match the query string.
-     */
-    private void printMatchingEvents(Set<Event> matchingEvents) {
-        System.out.println("\nMatching Events:");
-
-        if (matchingEvents.size() == 0) {
-            System.out.println(NO_SEARCH_RESULTS);
-        }
-
-        for (Event event : matchingEvents) {
-            Category categoryOfEvent = getCategoryOfEvent(event);
-            assert categoryOfEvent != null;
-            String categoryName = categoryOfEvent.getName();
-            System.out.println(event.getDescription() + " (Category: " + categoryName + ")");
-        }
-    }
-
-    /**
-     * Prints search results for categories that are similar to the query string.
-     * @param similarCategoriesList Array list containing the similar categories, sorted by similarity distance.
-     */
-    private void printSimilarCategories(ArrayList<Category> similarCategoriesList) {
-        System.out.println("\nSimilar Categories:");
-
-        int similarCategoryCount = 3;
-        if (similarCategoriesList.size() < 3) {
-            similarCategoryCount = similarCategoriesList.size();
-        }
-
-        if (similarCategoryCount == 0) {
-            System.out.println(NO_SEARCH_RESULTS);
-            return;
-        }
-
-        for (int i = 0; i < similarCategoryCount; i++) {
-            Category category = similarCategoriesList.get(i);
-            int categoryIndex = CategoryCommand.categoryMap.get(category.getName());
-            System.out.println((categoryIndex + 1) + DOT + category.getName());
-        }
-    }
-
-    /**
-     * Prints search results for events that are similar to the query string.
-     * @param similarEventsList Array list containing the similar events, sorted by similarity distance.
-     */
-    private void printSimilarEvents(ArrayList<Event> similarEventsList) {
-        System.out.println("\nSimilar Events:");
-
-        int similarEventsCount = 3;
-        if (similarEventsList.size() < 3) {
-            similarEventsCount = similarEventsList.size();
-        }
-
-        if (similarEventsCount == 0) {
-            System.out.println(NO_SEARCH_RESULTS);
-            return;
-        }
-
-        for (int i = 0; i < similarEventsCount; i++) {
-            Event event = similarEventsList.get(i);
-            Category categoryOfEvent = getCategoryOfEvent(event);
-            assert categoryOfEvent != null;
-            String categoryName = categoryOfEvent.getName();
-            System.out.println(event.getDescription() + " (Category: " + categoryName + ")");
-        }
-    }
-
-    /**
      * Assign categories and events to appropriate collections,
      * depending on whether they match the query string or are
      * just similar to it.
@@ -147,7 +63,7 @@ public class SearchCommand implements Command {
      * @param similarEvents Hash map containing events that are similar to the query string.
      * @param query The query string
      */
-    private void assignItemsBySimilarity(
+    public void assignItemsBySimilarity(
             Set<Category> matchingCategories,
             Set<Event> matchingEvents,
             HashMap<Category, Integer> similarCategories,
@@ -194,7 +110,7 @@ public class SearchCommand implements Command {
      * @param valueString The value string.
      * @return The smallest Levenshtein distance between the 2 strings.
      */
-    private int calculateSimilarityDistance(String queryString, String valueString) {
+    public int calculateSimilarityDistance(String queryString, String valueString) {
         if (queryString.length() >= valueString.length()) {
             // immediately calculate similarity and return
             return calculateLevenshteinDistance(valueString, queryString);
@@ -228,7 +144,7 @@ public class SearchCommand implements Command {
      * @param secondString The second string.
      * @return An integer representing the Levenshtein distance between the 2 strings.
      */
-    private int calculateLevenshteinDistance(String firstString, String secondString) {
+    public int calculateLevenshteinDistance(String firstString, String secondString) {
         firstString = firstString.toLowerCase();
         secondString = secondString.toLowerCase();
 
@@ -260,8 +176,15 @@ public class SearchCommand implements Command {
      * @param input The list of categories
      * @param set The hash map of categories and their similarity distances
      */
-    private void sortCategoryBySimilarity(ArrayList<Category> input, HashMap<Category, Integer> set) {
-        input.sort(Comparator.comparingInt(set::get));
+    public void sortCategoryBySimilarity(ArrayList<Category> input, HashMap<Category, Integer> set) {
+        Comparator<Category> comparator = (firstCategory, secondCategory) -> {
+            int result = set.get(firstCategory) - set.get(secondCategory);
+            if (result == 0) {
+                result = firstCategory.getName().hashCode() - secondCategory.getName().hashCode();
+            }
+            return result;
+        };
+        input.sort(comparator);
     }
 
     /**
@@ -270,7 +193,14 @@ public class SearchCommand implements Command {
      * @param input The list of events
      * @param set The hash map of events and their similarity distances
      */
-    private void sortEventBySimilarity(ArrayList<Event> input, HashMap<Event, Integer> set) {
+    public void sortEventBySimilarity(ArrayList<Event> input, HashMap<Event, Integer> set) {
+        Comparator<Event> comparator = (firstEvent, secondEvent) -> {
+            int result = set.get(firstEvent) - set.get(secondEvent);
+            if (result == 0) {
+                result = firstEvent.getDescription().hashCode() - secondEvent.getDescription().hashCode();
+            }
+            return result;
+        };
         input.sort(Comparator.comparingInt(set::get));
     }
 
@@ -279,7 +209,7 @@ public class SearchCommand implements Command {
      * @param event The event to find category for
      * @return Category of the event
      */
-    private Category getCategoryOfEvent(Event event) {
+    public static Category getCategoryOfEvent(Event event) {
         for (Category category : categories) {
             if (category.events.contains(event)) {
                 return category;
