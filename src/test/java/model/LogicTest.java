@@ -11,6 +11,10 @@ import utils.command.AddCardToDeckCommand;
 import utils.command.AddCardToTagCommand;
 import utils.command.AddTagToDeckCommand;
 import utils.command.Command;
+import utils.command.DeleteDeckCommand;
+import utils.command.DeleteTagCommand;
+import utils.command.EditDeckNameCommand;
+import utils.command.EditTagNameCommand;
 import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromCardCommand;
 import utils.command.RemoveTagFromDeckCommand;
@@ -208,5 +212,41 @@ public class LogicTest {
         parseAndExecute("card untag -t testTag -i 1", RemoveTagFromCardCommand.class);
         assert cardList.get(0).getTagsUUID().size() == 0;
         assert tagList.get(0).getCardsUUID().size() == 0;
+    }
+
+    @Test
+    public void logic_renameAndDeleteTag() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        // Create tag
+        parseAndExecute("card tag -t testTag -i 1", AddCardToTagCommand.class);
+        assert tagList.get(0).getTagName().equals("testTag");
+
+        // Rename tag
+        parseAndExecute("tag edit -o testTag -n newName", EditTagNameCommand.class);
+        assert tagList.get(0).getTagName().equals("newName");
+
+        // Delete tag
+        parseAndExecute("tag delete -t newName", DeleteTagCommand.class);
+        assert tagList.isEmpty();
+    }
+
+    @Test
+    public void logic_renameAndDeleteDeck() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        // Create deck
+        parseAndExecute("card deck -d testDeck -i 1", AddCardToDeckCommand.class);
+        assert deckList.get(0).getDeckName().equals("testDeck");
+
+        // Rename deck
+        parseAndExecute("deck edit -o testDeck -n newName", EditDeckNameCommand.class);
+        assert deckList.get(0).getDeckName().equals("newName");
+
+        // Delete deck
+        parseAndExecute("deck delete -d newName", DeleteDeckCommand.class);
+        assert deckList.isEmpty();
     }
 }
