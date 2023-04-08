@@ -18,8 +18,8 @@ class StorageManagerTest {
     @Test
     void saveToFile() throws NPExceptions {
         EventList testList = new EventList();
-        testList.addEvent("testing", "10:00", "2023/03/20", "10:00", "2023/03/21");
-        testList.addEvent("testing2","03:24", "2023/04/01", "08:50", "2023/03/23");
+        testList.addEvent("testing", "10:00", "2023/03/20", "10:00", "2023/03/20");
+        testList.addEvent("testing2","03:24", "2023/03/23", "08:50", "2023/03/23");
         storage.saveToFile(testList);
         assert(saveFile.exists());
         saveFile.delete();
@@ -29,14 +29,14 @@ class StorageManagerTest {
     void loadEvents() throws NPExceptions {
         EventList original = new EventList();
         original.addEvent("testing", "10:00", "2023/03/20",
-                "10:00", "2023/03/21");
-        original.addEvent("testing2","03:24", "2023/04/01",
+                "10:00", "2023/03/20");
+        original.addEvent("testing2","03:24", "2023/03/23",
                 "08:50", "2023/03/23");
         storage.saveToFile(original);
         EventList testListCheck = new EventList();
         testListCheck.addEvent("testing", "10:00", "2023/03/20",
-                "10:00", "2023/03/21");
-        testListCheck.addEvent("testing2","03:24", "2023/04/01",
+                "10:00", "2023/03/20");
+        testListCheck.addEvent("testing2","03:24", "2023/03/23",
                 "08:50", "2023/03/23");
         EventList testList = new EventList(storage.loadEvents());
         String a = testListCheck.getFullList().toString();
@@ -65,23 +65,19 @@ class StorageManagerTest {
     @Test
     void loadEventTypes() throws NPExceptions {
         EventList original = new EventList();
-        original.addEvent("testing", "10:00", "2023/03/20",
+        original.addEvent("testing", "10:00", "2023/03/21",
                 "10:00", "2023/03/21"); //Normal Start and EndTime
         original.addEvent("testing1", "10:00", "2023/03/20", "12:00",
-                "2023/03/21", "1 W"); //Normal with Recur Time
-        original.addEvent("testing2", "10:00", "2023/03/20", "12:00",
-                "2023/03/21", "1 W"); //Normal
+                "2023/03/20", "1 W"); //Normal with Recur Time
         original.addEvent("testing3", "10:00", "2023/03/20"); //Only Start Time
         original.addEvent("testing4", "10:00", "2023/03/20", "1 W"); //recurring
         //only start time.
         storage.saveToFile(original);
         EventList testListCheck = new EventList();
-        testListCheck.addEvent("testing", "10:00", "2023/03/20",
+        testListCheck.addEvent("testing", "10:00", "2023/03/21",
                 "10:00", "2023/03/21"); //Normal Start and EndTime
         testListCheck.addEvent("testing1", "10:00", "2023/03/20", "12:00",
-                "2023/03/21", "1 W"); //Normal with Recur Time
-        testListCheck.addEvent("testing2", "10:00", "2023/03/20", "12:00",
-                "2023/03/21", "1 W"); //Normal
+                "2023/03/20", "1 W"); //Normal with Recur Time
         testListCheck.addEvent("testing3", "10:00", "2023/03/20"); //Only Start Time
         testListCheck.addEvent("testing4", "10:00", "2023/03/20", "1 W"); //recurring
         EventList testList = new EventList(storage.loadEvents());

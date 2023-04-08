@@ -299,4 +299,17 @@ public class Ui {
         printDash();
         System.out.println("Hello there! What can we do for you today?");
     }
+
+    public static void printOverlapInfo(String info) {
+        printDash();
+        System.out.println("The current task clashes with this task: ");
+        System.out.println("    > "+info);
+    }
+
+    public static void printOverlapInfo(String info, String conflictionTime) {
+        printDash();
+        System.out.println("The current task clashes with this task: ");
+        System.out.println("    > "+info);
+        System.out.println("    > at : "+conflictionTime.substring(0,conflictionTime.length() -14));
+    }
 }
