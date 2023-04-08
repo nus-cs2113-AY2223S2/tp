@@ -1,0 +1,62 @@
+@startuml EditRecipeSteps
+box Edit Step #White
+Actor User
+participant ":UI" as UI #Gray
+participant ":Duke" as Duke #Gold
+participant ":Parser" as Parser #Yellow
+participant ":Command" as Command1 #Beige
+participant ":RecipeList" as RecipeList #OrangeRed
+participant ":StepList" as StepList #LightGreen
+end box
+
+activate Duke #Gold
+Duke -> UI : readCommand()
+activate UI #Gray
+User -> UI : "editstep 2"
+UI --> Duke : "editstep 2"
+deactivate UI
+Duke -> Parser : parseCommand()
+activate Parser #Yellow
+Parser --> Duke
+deactivate Parser
+Duke -> Command1 : execute()
+activate Command1 #Beige
+Command1 -> RecipeList : getRecipeFromList()
+activate RecipeList #OrangeRed
+RecipeList --> Command1
+deactivate RecipeList
+Command1 -> StepList: getStepList()
+activate StepList #LightGreen
+StepList --> Command1
+deactivate StepList
+Command1 -> StepList : showFullStepList()
+activate StepList #LightGreen
+StepList -> User : full steps list message
+StepList --> Command1
+deactivate StepList
+Command1 -> UI : showEditRecipeStepPrompt()
+activate UI #Gray
+UI -> User : edit step request message
+UI --> Command1
+deactivate UI
+Command1 -> UI : readCommand()
+activate UI #Gray
+User -> UI : "3"
+UI --> Command1 : "3"
+deactivate UI
+Command1 -> StepList : editStep()
+activate StepList #LightGreen
+StepList -> UI : readCommand()
+activate UI #Gray
+User -> UI : "Cook for 20 mins"
+UI --> StepList : "Cook for 20 mins"
+deactivate UI
+StepList -> User : edit successful message
+StepList --> Command1
+deactivate StepList
+Duke -> Command1 : delete
+deactivate Command1
+destroy Command1
+
+
+@enduml

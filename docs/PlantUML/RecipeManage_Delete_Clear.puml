@@ -1,0 +1,63 @@
+@startuml RecipeManage_Delete_Clear
+box Delete & Clear #White
+Actor User 
+participant ":UI" as UI #Gray
+participant ":Duke" as Duke #Gold
+participant ":Parser" as Parser #Yellow
+participant ":Command" as Command3 #Beige
+participant ":Command" as Command4 #Beige
+participant ":RecipeList" as RecipeList #OrangeRed
+end box
+
+activate Duke #Gold
+Duke -> UI : readCommand()
+activate UI #Gray
+User -> UI : "delete 1"
+UI --> Duke : "delete 1"
+deactivate UI
+Duke -> Parser : parseCommand()
+activate Parser #Yellow
+Parser --> Duke
+deactivate Parser
+Duke -> Command3 : execute()
+activate Command3 #Beige
+Command3 -> RecipeList : removeRecipe()
+activate RecipeList #OrangeRed
+RecipeList --> Command3
+deactivate RecipeList
+Command3 -> UI : showRecipeDeleted()
+activate UI #Gray
+UI -> User : delete successful message
+UI --> Command3
+deactivate UI
+Command3 --> Duke
+Duke -> Command3 : delete
+deactivate Command3
+destroy Command3
+Duke -> UI : readCommand()
+activate UI #Gray
+User -> UI : "clear"
+UI --> Duke : "clear"
+deactivate UI
+Duke -> Parser : parseCommand()
+activate Parser
+Parser --> Duke
+deactivate Parser
+Duke -> Command4 : execute()
+activate Command4 #Beige
+Command4 -> RecipeList : clearRecipeList()
+activate RecipeList #OrangeRed
+RecipeList --> Command4
+deactivate RecipeList
+Command4 -> UI : showRecipeListCleared()
+activate UI #Gray
+UI -> User : clear successful message
+UI --> Command4
+deactivate UI
+Command4 --> Duke
+Duke -> Command4 : delete
+deactivate Command4
+destroy Command4
+
+
+@enduml

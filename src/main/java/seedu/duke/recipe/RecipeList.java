@@ -29,6 +29,7 @@ public class RecipeList {
     private RecipeList() {
         recipeList = new ArrayList<>();
         currRecipeNumber = 0;
+        assert (recipeList.size() == 0);
     }
 
     public static void createRecipeList() {

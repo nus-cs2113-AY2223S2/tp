@@ -259,7 +259,8 @@ public class Command {
         case VIEW:
             try {
                 if (fullDescription.isEmpty()) {
-                    throw new IncompleteInputException("The KEYWORDS of " + type + " cannot be empty.\n");
+                    throw new IncompleteInputException("The "+ type +" command requires an input parameter, " +
+                            "<Recipe NAME> / <Recipe INDEX>.\nIt cannot be empty!\n");
                 }
                 if (RecipeList.isEmpty()) {
                     throw new RecipeListEmptyException();

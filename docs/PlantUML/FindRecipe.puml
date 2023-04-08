@@ -1,4 +1,4 @@
-@startuml Recipe Find
+@startuml FindRecipe
 box Find #White
 Actor User
 participant ":UI" as UI #Gray
@@ -12,7 +12,7 @@ activate Duke #Gold
 Duke -> UI : readCommand()
 activate UI #Gray
 User -> UI : "Find MaLaXiangGuo"
-UI --> Duke
+UI --> Duke : "Find MaLaXiangGuo"
 deactivate UI
 Duke -> Parser : parseCommand()
 activate Parser #Yellow
@@ -22,14 +22,13 @@ Duke -> Command : execute()
 activate Command #Beige
 Command -> RecipeList : searchRecipeList()
 activate RecipeList #OrangeRed
-RecipeList -> UI : show recipe with index
-activate UI
-UI --> RecipeList
-deactivate UI
+RecipeList -> User : show recipe with index
 RecipeList --> Command
 deactivate RecipeList
 Command --> Duke
+Duke -> Command : delete
 deactivate Command
+destroy Command
 
 
 @enduml
