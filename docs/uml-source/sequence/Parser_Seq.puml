@@ -16,6 +16,8 @@ activate Apollo
 Apollo -> Parser : getCommand()
 activate Parser
 
+alt Command
+
 opt !isEmptyParam()
 Parser -> Parser : isEmptyParam()
 activate Parser
@@ -48,6 +50,7 @@ deactivate Parser
 
 end
 
+end
 Parser --> Apollo : parseCommand()
 deactivate Parser
 destroy Parser
