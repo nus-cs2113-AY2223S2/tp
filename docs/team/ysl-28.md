@@ -16,6 +16,7 @@ Enhancements implemented:
 * Added `alert` feature
   * Allows the user to set alerts to be printed when the quantity of an item falls below a minimum or exceeds a maximum
   * Allows the user to remove previously-added alerts and view existing alerts in table form
+  * Created `Alert` and `AlertList` objects
   * Created `AddAlertCommand`, `RemoveAlertCommand` and `AlertParser` classes
 * Javadoc comments for classes and methods
 * JUnit tests for `ListCommand` and `AddAlertCommand`
@@ -23,6 +24,7 @@ Enhancements implemented:
 
 Contributions to the UG:
 * Added documentation for the `list` and `alert` commands
+* Updated sample output of all UG commands to match updated output of `list` command
 * Fixed typos and formatting errors in the UG
 
 
