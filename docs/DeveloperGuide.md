@@ -285,7 +285,7 @@ The implementation of the `tag list {-t {tagName} | -i {tagIndex}}`
 
 
 - After `foundTag`  is ready, `ListCardsUnderTagCommand` will
-  call `ListCardsUnderTagCommand#rfindCardsUnderTag(foundTag)` which will call the `Tag#getCardsUUID` and return the
+  call `ListCardsUnderTagCommand#findCardsUnderTag(foundTag)` which will call the `Tag#getCardsUUID` and return the
   UUIDs of the cards
   under the `Tag` in the form of `cardsUUID`. `ListCardsUnderTagCommand` will then loop through the entire cardList and
   the `cardsUUID`, if their uuid matches,
@@ -294,6 +294,9 @@ The implementation of the `tag list {-t {tagName} | -i {tagIndex}}`
 
 - Once `foundCardList` is returned, `ListCardsUdnerTagCommand` will call `UserInterface#printCardList(foundCardList)` to
   print the list of cards under the specified tag.
+
+The sequence diagram below shows how this feature works:
+![List Cards under Tag](img/ListCardsUnderTagSequence.png)
 
 ### Deck Feature
 
