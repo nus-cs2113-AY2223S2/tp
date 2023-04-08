@@ -82,6 +82,15 @@ public class Ui {
                 "These are the recipes you can cook");
     }
 
+    /**
+     * Print ordered list of recipes including recipes' name and ingredients
+     *
+     * @author notbingsu
+     * @author junenita
+     * @param recipeListToPrint list containing recipes to be printed
+     * @param emptyListMsg error message for empty list
+     * @param listHeaderMsg print list header message
+     */
     private void listRecipes(RecipeList recipeListToPrint, String emptyListMsg, String listHeaderMsg) {
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
@@ -141,6 +150,13 @@ public class Ui {
         }
     }
 
+    /**
+     * Extract message received whether users added or removed recipes from a tag.
+     * Then, proceed to print a successful message.
+     *
+     * @author junenita
+     * @param receivedMessage string containing 'add' or 'remove' tag and tag label
+     */
     public void printTagMessage(String receivedMessage) {
         String[] args = receivedMessage.split(" ", 2);
         String command = args[0].trim();
@@ -152,14 +168,31 @@ public class Ui {
         }
     }
 
+    /**
+     * Print successfully add recipes to the tag
+     *
+     * @author junenita
+     * @param tag tag label
+     */
     public void printSuccessfullyAddTag(String tag) {
         printMessage("You have successfully added the recipe(s) to \"" + tag + "\" tag.");
     }
 
+    /**
+     * Print successfully remove recipes from the tag
+     *
+     * @author junenita
+     * @param tag tag label
+     */
     public void printSuccessfullyRemoveTag(String tag) {
         printMessage("You have successfully removed the recipe(s) from \"" + tag + "\" tag.");
     }
 
+    /**
+     * Print random result header
+     *
+     * @author junenita
+     */
     public void printRandomMessage() {
         printMessage("Random Result.....");
     }

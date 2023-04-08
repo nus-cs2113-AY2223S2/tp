@@ -36,6 +36,13 @@ public class RecipeList extends ArrayList<Recipe> {
         return recipeToDelete;
     }
 
+    /**
+     * Add a recipe to a tag. If the tag has not been created, it will be created.
+     *
+     * @author junenita
+     * @param tag tag label that users want to modify
+     * @param recipe a recipe to be added to the tag
+     */
     public void addRecipeToTag(String tag, Recipe recipe) {
         boolean hasTag = tags.containsKey(tag);
         int tagDummy = 0;
@@ -50,6 +57,15 @@ public class RecipeList extends ArrayList<Recipe> {
         }
     }
 
+    /**
+     * Remove a recipe from a tag.
+     *
+     * @author junenita
+     * @param tag tag label that users want to modify
+     * @param recipe a recipe to be removed from the tag
+     * @throws RecipeNotFoundInTagException If the recipe to be removed is not already in
+     *                                      the tag
+     */
     public void removeRecipeFromTag(String tag, Recipe recipe) throws RecipeNotFoundInTagException {
         HashMap<Recipe, Integer> tagRecipeList = tags.get(tag);
         boolean isAbleToFindTheRecipe = tagRecipeList.containsKey(recipe);
@@ -62,6 +78,16 @@ public class RecipeList extends ArrayList<Recipe> {
         tagRecipeList.remove(recipe);
     }
 
+    /**
+     * Accumulate all recipes that pass the filters into a list of recipes.
+     *
+     * @author junenita
+     * @param filters array containing strings of filters
+     * @param isTag flag whether the filters are tags label
+     * @return RecipeList containing all recipes passing the filters
+     * @throws TagNotFoundException If the filter is a tag and the tag is invalid.
+     * @throws NoRecipeException If the filter is a tag and the tag contains no recipe
+     */
     public RecipeList listRecipes(String[] filters, boolean isTag) throws TagNotFoundException, NoRecipeException {
         RecipeList filteredRecipeList = new RecipeList();
         boolean isNoFilter = filters == null;
@@ -87,6 +113,15 @@ public class RecipeList extends ArrayList<Recipe> {
         return filteredRecipeList;
     }
 
+    /**
+     * Accumulate all recipes contains all tag from users' input into a list of recipes.
+     *
+     * @author junenita
+     * @param filters array containing strings of tag label
+     * @return RecipeList containing all recipes containing all tags
+     * @throws TagNotFoundException If the filter is a tag and the tag is invalid
+     * @throws NoRecipeException If the filter is a tag and the tag contains no recipe
+     */
     public RecipeList listTagRecipes(String[] filters) throws TagNotFoundException, NoRecipeException {
         RecipeList filteredRecipeList = new RecipeList();
         HashMap<Recipe, Integer> tagRecipes;
@@ -134,6 +169,12 @@ public class RecipeList extends ArrayList<Recipe> {
         return availableRecipeList;
     }
 
+    /**
+     * Returns a Recipe object that contain a recipe's name and ingredients.
+     *
+     * @author junenita
+     * @return a random recipe from this RecipeList.
+     */
     public Recipe randomRecipe() {
         Random random = new Random();
         Recipe randomRecipe = this.get(random.nextInt(this.size()));
