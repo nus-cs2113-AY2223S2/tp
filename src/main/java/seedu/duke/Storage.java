@@ -103,12 +103,12 @@ public class Storage implements DatabaseInterface {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Read Modules failure");
         }
     }
 
     public boolean addModuleToModuleList(Module moduleToAdd) {
-        assert (moduleToAdd != null) : "error line 89";
+        assert (moduleToAdd != null) : "error line 111";
         if (moduleToAdd == null) {
             UI.printAddModuleFailureMessage();
             return false;
@@ -167,7 +167,7 @@ public class Storage implements DatabaseInterface {
                     break;
                 }
                 counterUpToIndexToDelete++;
-                assert counterUpToIndexToDelete <= indexToDeletePuSpecificListToZeroBased: "counterUpToIndexToDelete " +
+                assert counterUpToIndexToDelete <= indexToDeletePuSpecificListToZeroBased : "counterUpToIndexToDelete " +
                         "should not be greater than indexToDeletePuSpecificListToZeroBased";
             }
         }
@@ -216,6 +216,7 @@ public class Storage implements DatabaseInterface {
 
     /**
      * Sorts modules according to printing length.
+     *
      * @param modules Module to be printed to User Console
      */
     public static void sortModulesAccordingToPrintingLength(ArrayList<Module> modules) {

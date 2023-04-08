@@ -1,11 +1,14 @@
 package seedu.duke;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -13,7 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class StorageTest {
 
     private static final String SAVED_MODULES_FILE_PATH = "data/saved_modules.txt";
-    File f = new File(SAVED_MODULES_FILE_PATH);
+    private static File f = new File(SAVED_MODULES_FILE_PATH);
+
+    @BeforeAll
+    private static void reset() {
+        f.delete();
+    }
 
     @Test
     @Order(2)
@@ -39,6 +47,40 @@ public class StorageTest {
     public void initialiseStorage_oneModuleSaved_success() {
         Storage storage = Storage.getInstance();
         assertEquals(1, storage.getModules().size());
+    }
+
+    @Test
+    @Order(4)
+    public void initialiseStorage_nonCorruptFiles_success() {
+        Storage storage = Storage.getInstance();
+        try {
+            storage.initialiseDatabase();
+        } catch (IOException e) {
+            System.out.println("Storage failed corrupt file");
+        }
+        System.out.println(storage.getModules().get(0).toString());
+        assertEquals(1, storage.getModules().size());
+        f.delete();
+    }
+
+    @Test
+    @Order(5)
+    public void initialiseStorage_corruptFiles_success() {
+        Storage storage = Storage.getInstance();
+        int initialSize = storage.getModules().size();
+        try {
+            FileWriter fw = new FileWriter(SAVED_MODULES_FILE_PATH, true);
+            fw.write("hello");
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Storage failed corrupt file");
+        }
+        try {
+            storage.initialiseDatabase();
+        } catch (IOException e) {
+            System.out.println("Storage failed corrupt file");
+        }
+        assertEquals(initialSize, storage.getModules().size());
         f.delete();
     }
 }
