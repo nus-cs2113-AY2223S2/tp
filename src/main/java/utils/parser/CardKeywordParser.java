@@ -123,7 +123,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleUntag(List<String> tokens) throws ParseException, InkaException {
 
-        Options tagOptions = new OptionsBuilder(Parser.CARD_KEYWORD, TAG_ACTION).buildOptions();
+        Options tagOptions = new OptionsBuilder(Parser.CARD_KEYWORD, UNTAG_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(tagOptions, tokens);
 
         CardSelector cardSelector = getSelectedCard(cmd);

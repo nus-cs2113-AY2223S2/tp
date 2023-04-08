@@ -12,6 +12,7 @@ import utils.command.AddCardToTagCommand;
 import utils.command.AddTagToDeckCommand;
 import utils.command.Command;
 import utils.command.RemoveCardFromDeckCommand;
+import utils.command.RemoveTagFromCardCommand;
 import utils.command.RemoveTagFromDeckCommand;
 import utils.exceptions.CardNotInDeck;
 import utils.exceptions.InkaException;
@@ -193,5 +194,21 @@ public class LogicTest {
 
         // Card should remain in Deck
         assert deckList.get(0).getCardsSet().size() == 1;
+    }
+
+    @Test
+    public void logic_tagAndUntag() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        // Create tag
+        parseAndExecute("card tag -t testTag -i 1", AddCardToTagCommand.class);
+        assert cardList.get(0).getTagsUUID().size() == 1;
+        assert tagList.get(0).getCardsUUID().size() == 1;
+
+        // Untag
+        parseAndExecute("card untag -t testTag -i 1", RemoveTagFromCardCommand.class);
+        assert cardList.get(0).getTagsUUID().size() == 0;
+        assert tagList.get(0).getCardsUUID().size() == 0;
     }
 }
