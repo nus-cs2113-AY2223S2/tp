@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//CLAIM THIS CODE
+//@@author azriellee
 public class ParseAdd {
     public static final double MAX_AMOUNT = 21474836.47;
     private static final Logger logger = Logger.getLogger(Parser.class.getName());

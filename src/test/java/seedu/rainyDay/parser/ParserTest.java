@@ -14,6 +14,7 @@ import seedu.rainyDay.command.ShortcutAddCommand;
 import seedu.rainyDay.command.ShortcutDeleteCommand;
 import seedu.rainyDay.command.ShortcutViewCommand;
 import seedu.rainyDay.command.ViewCommand;
+import seedu.rainyDay.command.IgnoreCommand;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.data.FinancialStatement;
 import seedu.rainyDay.data.MonthlyExpenditures;
@@ -40,27 +41,24 @@ class ParserTest {
     // todo add more test cases
     @Test
     public void parseAddInCommand() throws RainyDayException {
+        RainyDay.savedData = savedData;
         FinancialReport testReport = new FinancialReport(statements);
         testReport.addStatement(new FinancialStatement("noodles", "in", 5, "miscellaneous",
                 LocalDate.now()));
         new Parser().parseUserInput("add -in noodles $5");
-        assertEquals(financialReport.getFullStatement(0),
-                testReport.getFullStatement(0)); // todo, update after modified
-        testReport.addStatement(new FinancialStatement("rice", "in", 10, "food",
-                LocalDate.now()));
-        new Parser().parseUserInput("add -in rice $10 -c food");
-        assertEquals(financialReport.getFullStatement(1),
-                testReport.getFullStatement(1));
+        assertEquals(RainyDay.savedData.getFinancialReport().getFullStatement(0),
+                testReport.getFullStatement(0));
     }
 
     @Test
     public void parseAddOutCommand() throws RainyDayException {
+        RainyDay.savedData = savedData;
         FinancialReport testReport = new FinancialReport(statements);
         testReport.addStatement(new FinancialStatement("noodles", "out", 5,
                 "miscellaneous", LocalDate.now()));
         new Parser().parseUserInput("add -out noodles $5");
-        assertEquals(financialReport.getFullStatement(0),
-                testReport.getFullStatement(0)); // todo, update after modified
+        assertEquals(RainyDay.savedData.getFinancialReport().getFullStatement(0),
+                testReport.getFullStatement(0));
     }
 
     @Test
@@ -69,19 +67,19 @@ class ParserTest {
             new Parser().parseUserInput("add");
         } catch (Exception e) {
             assertEquals(ErrorMessage.WRONG_ADD_FORMAT.toString(),
-                    e.getMessage().toString());
+                    e.getMessage());
         }
         try {
             new Parser().parseUserInput("add -out rice $5");
         } catch (Exception e) {
             assertEquals(ErrorMessage.WRONG_ADD_FORMAT.toString(),
-                    e.getMessage().toString());
+                    e.getMessage());
         }
         try {
             new Parser().parseUserInput("add -out rice $5 -date aa/bb/cccc");
         } catch (Exception e) {
             assertEquals(ErrorMessage.INVALID_DAY + ErrorMessage.ADD_FORMAT.toString(),
-                    e.getMessage().toString());
+                    e.getMessage());
         }
     }
 
@@ -164,36 +162,23 @@ class ParserTest {
     }
 
     @Test
-    public void parseDeleteCommand() {
-        financialReport.clearReport();
-        financialReport.addStatement(new FinancialStatement("noodles", "in", 5, "miscellaneous",
-                LocalDate.now()));
-        financialReport.addStatement(new FinancialStatement("noodles2", "in", 5, "miscellaneous",
-                LocalDate.now()));
-        try {
-            new Parser().parseUserInput("delete 2");
-            assertEquals(1, financialReport.getStatementCount());
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Test
     public void parseWrongDeleteFormat() {
         try {
             new Parser().parseUserInput("delete");
         } catch (Exception e) {
-            assertEquals(e.getMessage().toString(), ErrorMessage.NO_DELETE_INDEX.toString());
+            assertEquals(e.getMessage(), ErrorMessage.NO_DELETE_INDEX.toString());
         }
     }
 
     @Test
     public void parseUserInput_validDeleteCommand_deleteCommand() throws RainyDayException {
+        RainyDay.savedData = savedData;
         AddCommand addCommand = new AddCommand("Ipad", "out", 120.50, "Default",
                 LocalDate.now());
         addCommand.setData(userData);
         addCommand.execute();
         assertEquals(DeleteCommand.class, new Parser().parseUserInput("delete 1").getClass());
+        assertEquals(1, RainyDay.savedData.getFinancialReport().getStatementCount());
     }
 
     @Test
@@ -324,7 +309,34 @@ class ParserTest {
     }
 
     @Test
-    public void parseInvalidCommand_exceptionThrown() throws RainyDayException {
+    public void parseInvalidCommand_exceptionThrown() {
         assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("hello_world").getClass());
+    }
+
+    @Test
+    public void parseValidIgnoreCommand() throws RainyDayException {
+        RainyDay.savedData = savedData;
+        AddCommand addCommand = new AddCommand("Ipad", "out", 120.50, "Default",
+                LocalDate.now());
+        addCommand.setData(userData);
+        addCommand.execute();
+        assertEquals(IgnoreCommand.class, new Parser().parseUserInput("ignore 1").getClass());
+        assertEquals(IgnoreCommand.class, new Parser().parseUserInput("unignore 1").getClass());
+    }
+
+    @Test
+    public void parseWrongIgnoreCommand() {
+        RainyDay.savedData = savedData;
+        AddCommand addCommand = new AddCommand("Ipad", "out", 120.50, "Default",
+                LocalDate.now());
+        addCommand.setData(userData);
+        addCommand.execute();
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("ignore"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("ignore -1"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("ignore abc"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("ignore 0"));
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("ignore 10000"));
+        savedData.getFinancialReport().clearReport();
+        assertThrows(RainyDayException.class, () -> new Parser().parseUserInput("ignore 1"));
     }
 }

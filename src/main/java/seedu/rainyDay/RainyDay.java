@@ -32,10 +32,9 @@ public class RainyDay {
 
     private static Logger logger = Logger.getLogger(RainyDay.class.getName());
 
-    private final Ui ui;
+    private static final Ui ui = new Ui();
 
     private RainyDay(String filePath) {
-        ui = new Ui();
         try {
             ui.printLogo();
             savedData = Storage.loadFromFile(filePath);
@@ -47,9 +46,9 @@ public class RainyDay {
             logger.log(Level.INFO, "File loaded successfully.");
         } catch (Exception e) {
             if (e instanceof RainyDayException) {
-                System.out.println(e.getMessage());
+                ui.printToUser(e.getMessage());
             } else if (e instanceof DateTimeParseException) {
-                System.out.println(ErrorMessage.INVALID_SAVED_DATE);
+                ui.printToUser(ErrorMessage.INVALID_SAVED_DATE.toString());
             }
             logger.log(Level.INFO, "No valid save file detected. Starting with empty financial data.");
             ui.noFileExist();
@@ -70,7 +69,7 @@ public class RainyDay {
     }
 
     private void setUpDate() {
-        System.out.println(savedData.checkUserBudgetLimit(LocalDate.now()));
+//        ui.printToUser(savedData.checkUserBudgetLimit(LocalDate.now()));
         Storage.writeToFile(savedData, filePath);
     }
 
@@ -85,7 +84,7 @@ public class RainyDay {
                 isExit = specificCommand.isExit();
             } catch (Exception e) {
                 logger.log(Level.WARNING, e.getMessage());
-                System.out.println(e.getMessage());
+                ui.printToUser(e.getMessage());
             }
         }
     }
@@ -94,7 +93,7 @@ public class RainyDay {
         command.setData(userData);
         CommandResult result = command.execute();
         if (result != null) {
-            System.out.println(result.output);
+            ui.printToUser(result.output);
         }
         Storage.writeToFile(savedData, filePath);
     }
@@ -103,7 +102,7 @@ public class RainyDay {
         try {
             Files.createDirectories(Paths.get("./logs"));
         } catch (IOException e) {
-            System.out.println(ErrorMessage.FAILED_FILE_OPERATION);
+            ui.printToUser(ErrorMessage.FAILED_FILE_OPERATION.toString());
         }
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
