@@ -18,7 +18,7 @@ Given below are my contributions to the project:
 3. [x] Bug Fixes for Parser: [#27](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/27) [#44](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/44)
 4. [x] **New Feature: `Archive`** for Sniff v.2.1 [#148](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/148) <br>
    * **`What it does:`** Save all Appointments that are marked as done into an Archive Save File (different from Appointments Save File). 
-   Load Archive Save File when Sniff starts and read in Archived Appointments. When user types **`archive`** on the CLI interface,
+   Load Archive Save File when Sniff starts and read in Archived Appointments. When user types **`archive`** on the CLI interface, it shows the list of archived appointments.
    * **`Justification:`** This feature improves the product significantly by providing users with a convenient way to view all completed appointments.
    * **`Highlights:`** This enhancement also allows users to also export their data to a different computer.
 
