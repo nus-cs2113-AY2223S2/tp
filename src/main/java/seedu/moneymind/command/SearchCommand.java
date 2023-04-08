@@ -261,7 +261,14 @@ public class SearchCommand implements Command {
      * @param set The hash map of categories and their similarity distances
      */
     private void sortCategoryBySimilarity(ArrayList<Category> input, HashMap<Category, Integer> set) {
-        input.sort(Comparator.comparingInt(set::get));
+        Comparator<Category> comparator = (firstCategory, secondCategory) -> {
+            int result = set.get(firstCategory) - set.get(secondCategory);
+            if (result == 0) {
+                result = firstCategory.getName().hashCode() - secondCategory.getName().hashCode();
+            }
+            return result;
+        };
+        input.sort(comparator);
     }
 
     /**
@@ -271,6 +278,13 @@ public class SearchCommand implements Command {
      * @param set The hash map of events and their similarity distances
      */
     private void sortEventBySimilarity(ArrayList<Event> input, HashMap<Event, Integer> set) {
+        Comparator<Event> comparator = (firstEvent, secondEvent) -> {
+            int result = set.get(firstEvent) - set.get(secondEvent);
+            if (result == 0) {
+                result = firstEvent.getDescription().hashCode() - secondEvent.getDescription().hashCode();
+            }
+            return result;
+        };
         input.sort(Comparator.comparingInt(set::get));
     }
 
