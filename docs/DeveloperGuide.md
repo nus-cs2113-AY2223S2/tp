@@ -13,7 +13,6 @@
     + [Task Commands](#task-commands)
     + [Module Commands](#module-commands)
     + [Utility Commands](#utility-commands)
-    + [Storage](#storage)
     + [Logging](#logging)
 4. [Appendix](#appendix)
    + [Appendix A: Product Scope](#appendix-a--product-scope)
