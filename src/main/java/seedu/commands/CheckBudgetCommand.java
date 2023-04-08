@@ -35,20 +35,20 @@ public class CheckBudgetCommand extends Command {
             String timePeriod = ParseIndividualValue.parseIndividualValue(userInput, BLANK, SLASH);
             double budget = expenditures.getBudgetSet();
             switch (timePeriod) {
-                case "d":
-                    checkDay(expenditures);
-                    return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
-                case "y":
-                    checkYear(expenditures);
-                    return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
-                case "c":
-                    checkAll(expenditures);
-                    return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
-                case "t":
-                    String category = ParseIndividualValue.parseIndividualValue(userInput, TSLASH, BLANK);
-                    return checkCategory(expenditures, category, budget);
-                default:
-                    return new CommandResult("Failed to check! Please check the format and try again!");
+            case "d":
+                checkDay(expenditures);
+                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+            case "y":
+                checkYear(expenditures);
+                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+            case "c":
+                checkAll(expenditures);
+                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+            case "t":
+                String category = ParseIndividualValue.parseIndividualValue(userInput, TSLASH, BLANK);
+                return checkCategory(expenditures, category, budget);
+            default:
+                return new CommandResult("Failed to check! Please check the format and try again!");
             }
         } catch (DateTimeParseException s) {
             return new CommandResult("Failed to check! Please check the format and try again!");
@@ -67,29 +67,29 @@ public class CheckBudgetCommand extends Command {
 
     private CommandResult checkCategory(ExpenditureList expenditures, String category, double budget) {
         switch (category) {
-            case "academic":
-                checkRespectiveExpenditureType(expenditures, "Acad");
-                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
-            case "accommodation":
-                checkRespectiveExpenditureType(expenditures, "Accom");
-                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
-            case "entertainment":
-                checkRespectiveExpenditureType(expenditures, "En");
-                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
-            case "food":
-                checkRespectiveExpenditureType(expenditures, "F");
-                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
-            case "other":
-                checkRespectiveExpenditureType(expenditures, "O");
-                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
-            case "transport":
-                checkRespectiveExpenditureType(expenditures, "Tr");
-                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
-            case "tuition":
-                checkRespectiveExpenditureType(expenditures, "Tu");
-                return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
-            default:
-                return new CommandResult("Category stated does not exist! Please check the format and try again!");
+        case "academic":
+            checkRespectiveExpenditureType(expenditures, "Acad");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "accommodation":
+            checkRespectiveExpenditureType(expenditures, "Accom");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "entertainment":
+            checkRespectiveExpenditureType(expenditures, "En");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "food":
+            checkRespectiveExpenditureType(expenditures, "F");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "other":
+            checkRespectiveExpenditureType(expenditures, "O");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "transport":
+            checkRespectiveExpenditureType(expenditures, "Tr");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        case "tuition":
+            checkRespectiveExpenditureType(expenditures, "Tu");
+            return getCheckCommandResult(budget, totalAmount, borrowedAmount, lentAmount);
+        default:
+            return new CommandResult("Category stated does not exist! Please check the format and try again!");
         }
     }
 
