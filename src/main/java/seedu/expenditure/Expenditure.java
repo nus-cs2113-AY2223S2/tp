@@ -2,7 +2,7 @@ package seedu.expenditure;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import static seedu.expenditure.CurrencyValue.sgDConversion;
+import static seedu.expenditure.CurrencyValue.sgdConversion;
 
 public abstract class Expenditure {
     private String description;
@@ -42,7 +42,7 @@ public abstract class Expenditure {
     }
 
     public double getConvertedValue (String currency) {
-        return sgDConversion(value, currency);
+        return sgdConversion(value, currency);
     }
 
     public LocalDate getDate() {

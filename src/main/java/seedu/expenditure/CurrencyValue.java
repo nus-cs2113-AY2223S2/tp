@@ -38,7 +38,7 @@ public abstract class CurrencyValue {
      *        sgDConversion is instantiated.
      * @return
      */
-    public static double sgDConversion (double amount, String currency) {
+    public static double sgdConversion(double amount, String currency) {
         switch (currency) {
         case "AUS":
             return amount * AUS_CONVERSION;
