@@ -167,6 +167,8 @@ public class Storage implements DatabaseInterface {
                     break;
                 }
                 counterUpToIndexToDelete++;
+                assert counterUpToIndexToDelete <= indexToDeletePuSpecificListToZeroBased: "counterUpToIndexToDelete " +
+                        "should not be greater than indexToDeletePuSpecificListToZeroBased";
             }
         }
 

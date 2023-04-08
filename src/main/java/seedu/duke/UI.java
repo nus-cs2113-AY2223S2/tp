@@ -415,6 +415,7 @@ public class UI {
         }
         int listIndex = 0;
         if (puModulesToPrint.size() < 1) {
+            assert puModulesToPrint.size() < 1: "size of puModulesToPrint array should be < 1";
             System.out.println(CURRENT_LIST_PU_EMPTY + universityName);
             System.out.println(LINE);
             System.out.println(LINE);
