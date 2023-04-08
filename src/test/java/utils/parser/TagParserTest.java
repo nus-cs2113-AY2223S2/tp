@@ -17,6 +17,7 @@ import utils.command.DeleteTagCommand;
 import utils.command.EditTagNameCommand;
 import utils.command.ListCardsUnderTagCommand;
 import utils.command.ListTagsCommand;
+import utils.command.PrintHelpCommand;
 import utils.exceptions.InkaException;
 import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.TagNotFoundException;
@@ -68,6 +69,17 @@ public class TagParserTest {
     public void parse_tag_listWithTagLongFlag() throws InkaException {
         Command cmd = parser.parseCommand("tag list --tag tagName");
         assert cmd instanceof ListCardsUnderTagCommand;
+    }
+
+    @Test
+    public void parse_tag_help() throws InkaException {
+        Command cmd = parser.parseCommand("tag help");
+        assert cmd instanceof PrintHelpCommand;
+    }
+
+    @Test
+    public void parse_tag_helpInvalidSyntax() {
+        assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand("tag help test"), "Extra tokens");
     }
 
     @Test

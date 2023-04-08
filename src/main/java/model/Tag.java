@@ -9,6 +9,11 @@ public class Tag {
     private ArrayList<CardUUID> cards = new ArrayList<>();
     private ArrayList<DeckUUID> decks = new ArrayList<>();
 
+    public Tag(String tagName) {
+        this.tagName = tagName;
+        this.uuid = new TagUUID(UUID.randomUUID());
+    }
+
     public Tag(String tagName, CardUUID cardUUID) {
         this.tagName = tagName;
         this.uuid = new TagUUID(UUID.randomUUID());

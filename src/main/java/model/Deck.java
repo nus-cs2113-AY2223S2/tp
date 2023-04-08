@@ -8,7 +8,11 @@ import java.util.UUID;
 public class Deck {
     private String deckName;
     private DeckUUID deckUUID;
+
+    // Contains CardUUIDs for cards that are added via CardUUID and/or Tag
     private HashSet<CardUUID> cardsSet = new HashSet<>();
+
+    // Contains only CardUUIDs that are added through Tag
     private HashMap<CardUUID, Integer>  cardUUIDIntegerHashMap= new HashMap<>();
     private ArrayList<CardUUID> cards = new ArrayList<>();
     private ArrayList<TagUUID> tags = new ArrayList<>();
@@ -81,6 +85,11 @@ public class Deck {
     public void editDeckName(String newDeckName) {
         this.deckName = newDeckName;
     }
+
+    /**
+     * Adds a single card through its CardUUID
+     * @param cardUUID
+     */
     public void addCard(CardUUID cardUUID) {
         cards.add(cardUUID);
     }
