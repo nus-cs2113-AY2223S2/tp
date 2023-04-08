@@ -41,9 +41,16 @@ else else
             end
         end
     end
+
    "<<class>>\nstorage:Storage" -> "modules: ArrayList<Module>" : remove(indexToDelete)
     activate "modules: ArrayList<Module>"
+    "<<class>>\nstorage:Storage" <-- "modules: ArrayList<Module>" : remove(indexToDelete)
     deactivate "modules: ArrayList<Module>"
+     "<<class>>\nstorage:Storage" -> "<<class>>\nstorage:Storage": sortModulesAccordingToPrintingLength(modules)
+    activate "<<class>>\nstorage:Storage"
+        "<<class>>\nstorage:Storage" --> "<<class>>\nstorage:Storage"
+        deactivate "<<class>>\nstorage:Storage"
+
     "<<class>>\nstorage:Storage" --> ":DeleteModuleCommand" : return true
 
 end
