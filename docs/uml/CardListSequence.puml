@@ -26,12 +26,13 @@ return
 ViewCardCommand -> ViewCardCommand : execute()
 ViewCardCommand -> CardList : findCard()
 
+alt index is specified
 CardList -> CardSelector : getIndex()
 return cardIndex
-
+else uuid is specified
 CardList -> CardSelector : getUUID()
 return cardUUID
-
+end
 return cardToView
 
 ViewCardCommand -> UserInterface : printCard(cardToView)
