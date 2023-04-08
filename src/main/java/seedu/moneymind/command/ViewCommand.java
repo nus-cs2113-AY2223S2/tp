@@ -63,7 +63,8 @@ public class ViewCommand implements Command {
         System.out.println(SHOW_CATEGORY_MESSAGE);
         int cat_count = 1;
         for (Category category : CategoryList.categories) {
-            System.out.println(cat_count + ") Category: " + category.getName() + " (budget: " + category.getBudget() + ")");
+            System.out.println(cat_count + ") Category: " + category.getName() +
+                    " (budget: " + category.getBudget() + ")");
             cat_count++;
             int count = 1;
             // print all the events in the category with index
