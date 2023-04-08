@@ -21,7 +21,7 @@ public class RecipeDetailCommand extends RecipeCommand {
      * @return true if string is number, false otherwise
      */
     private boolean isNum(String argument) {
-        return argument.matches("[0-9]+");  //match a number with optional '-' and decimal.
+        return argument.matches("-?[0-9]+");  //match a number with optional '-' and decimal.
     }
 
     /**
