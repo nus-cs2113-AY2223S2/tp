@@ -3,17 +3,23 @@ package utils.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.UUID;
 import model.Card;
 import model.CardList;
+import model.CardUUID;
+import model.Deck;
 import model.DeckList;
 import model.TagList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.AddCardCommand;
+import utils.command.AddCardToDeckCommand;
 import utils.command.AddCardToTagCommand;
 import utils.command.Command;
 import utils.command.DeleteCardCommand;
+import utils.command.ListCardCommand;
+import utils.command.PrintHelpCommand;
 import utils.command.ViewCardCommand;
 import utils.exceptions.CardNotFoundException;
 import utils.exceptions.InkaException;
@@ -40,6 +46,14 @@ public class CardParserTest {
         storage = new FakeStorage();
         parser = new Parser();
         deckList = new DeckList();
+    }
+
+    @Test
+    public void parse_cardSelector() {
+        String[] testCases = {"card delete -i test", "card delete -c", "card delete"};
+        for (String testCase : testCases) {
+            assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testCase), "Invalid syntax");
+        }
     }
 
     //region `card add` tests
@@ -93,6 +107,41 @@ public class CardParserTest {
                     "Should be invalid syntax");
         }
     }
+    //endregion
+
+    //region `card deck` tests
+
+    @Test
+    public void parse_card_deck() throws InkaException {
+
+        String[] testCases = {"card deck -c 00000000-0000-0000-0000-000000000000 -d testDeck",
+            "card deck -i 1 -d testDeck"};
+        for (String testCase : testCases) {
+            init();
+            Card testCard = Card.createCardWithUUID("QUESTION", "ANSWER", "00000000-0000-0000-0000-000000000000");
+            Deck testDeck = new Deck("testDeck");
+            cardList.addCard(testCard);
+            deckList.addDeck(testDeck);
+
+            assert testDeck.getCardsSet().size() == 0;
+
+            Command cmd = parser.parseCommand(testCase);
+            assert cmd instanceof AddCardToDeckCommand;
+            cmd.execute(cardList, tagList, deckList, ui, storage);
+
+            assert testDeck.cardIsInDeck(new CardUUID(UUID.fromString("00000000-0000-0000-0000-000000000000")));
+        }
+    }
+
+    @Test
+    public void parse_card_deckInvalidSyntax() {
+        String[] testCases = {"card deck -i 1", "card deck -c 00000000-0000-0000-0000-000000000000",
+            "card deck -d testDeck"};
+        for (String testCase : testCases) {
+            assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand(testCase), "Invalid syntax");
+        }
+    }
+
     //endregion
 
     //region `card delete` tests
@@ -190,6 +239,30 @@ public class CardParserTest {
     }
 
     //endregion
+
+    @Test
+    public void parse_card_list() throws InkaException {
+        Command cmd = parser.parseCommand("card list");
+        assert cmd instanceof ListCardCommand;
+    }
+
+    @Test
+    public void parse_card_listExtraTokens() {
+        assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand("card list test"),
+                "Does not expect trailing tokens");
+    }
+
+    @Test
+    public void parse_card_help() throws InkaException {
+        Command cmd = parser.parseCommand("card help");
+        assert cmd instanceof PrintHelpCommand;
+    }
+
+    @Test
+    public void parse_card_helpExtraTokens() {
+        assertThrows(InvalidSyntaxException.class, () -> parser.parseCommand("card help test"),
+                "Does not expect trailing tokens");
+    }
 
     //region `card view` tests
 
