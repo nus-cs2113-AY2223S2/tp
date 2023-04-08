@@ -41,7 +41,6 @@ public class WorkoutList {
     }
 
     //@@ author guillaume-grn
-    //@@ author ZIZI-czh
     public String countSetsReps(Date dateInSpecificWeek) {
         ArrayList<Workout> workoutsInSpecificWeek = getWorkoutsInSpecificWeek(dateInSpecificWeek);
         HashMap<String, ArrayList<Integer>> distinctExercises = new HashMap<>();
@@ -86,8 +85,7 @@ public class WorkoutList {
     }
 
     //@@ author guillaume-grn
-    //@@ author ZIZI-czh
-    private ArrayList<Workout> getWorkoutsInSpecificWeek(Date dayInSpecificWeekDate) {
+    ArrayList<Workout> getWorkoutsInSpecificWeek(Date dayInSpecificWeekDate) {
         ArrayList<Workout> workoutsInSpecificWeek = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dayInSpecificWeekDate);

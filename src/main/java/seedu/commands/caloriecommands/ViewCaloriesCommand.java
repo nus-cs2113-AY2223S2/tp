@@ -14,7 +14,6 @@ public class ViewCaloriesCommand extends Command {
     private final Date caloriesToViewDate;
 
     public ViewCaloriesCommand(Date caloriesToViewDate) {
-        //super();
         this.caloriesToViewDate = caloriesToViewDate;
     }
 
