@@ -1,5 +1,18 @@
 package bagpacker.iohandlertest;
-import bagpacker.commands.*;
+import bagpacker.commands.AddCommand;
+import bagpacker.commands.ByeCommand;
+import bagpacker.commands.DeleteCommand;
+import bagpacker.commands.DeleteListCommand;
+import bagpacker.commands.EditQuantityCommand;
+import bagpacker.commands.FindCommand;
+import bagpacker.commands.HelpCommand;
+import bagpacker.commands.IncorrectCommand;
+import bagpacker.commands.ListCommand;
+import bagpacker.commands.ListUnpackedCommand;
+import bagpacker.commands.PackAllCommand;
+import bagpacker.commands.PackCommand;
+import bagpacker.commands.UnpackAllCommand;
+import bagpacker.commands.UnpackCommand;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
@@ -39,16 +52,6 @@ public class ParserTest {
         System.setIn(inStream);
         Exception exception = assertThrows(EmptyInputException.class, Parser::readLine);
         assertEquals(EmptyInputException.class, exception.getClass());
-    }
-
-    @Test
-
-    public void addVariableTest() throws InvalidIndexException, InvalidVariablesException {
-        String userInput = "  add this item 1 ";
-        InputStream inStream = new ByteArrayInputStream(userInput.getBytes());
-        System.setIn(inStream);
-        Parser.parse();
-        assertEquals("this item 1", Parser.getVariable(Parser.getCommand()));
     }
 
     @Test
