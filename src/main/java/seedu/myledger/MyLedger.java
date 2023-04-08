@@ -28,8 +28,8 @@ public class MyLedger {
 
     public static void runMyLedger() {
         start();
-        initializeList();
         Ui.greetUser();
+        initializeList();
         readUserInputs();
     }
 
@@ -44,10 +44,10 @@ public class MyLedger {
 
     public static boolean hasProcessedAllInputs(String line, ExpenditureList expenditures) {
         // Parses the input
+        ExpenditureList.queryLumpSumDates();
         Command finalCommand = MainInputParser.parseInputs(line);
         CommandResult result = finalCommand.execute(expenditures);
         String textOutput = result.getCommandResult();
-        ExpenditureList.queryLumpSumDates();
         ExpenditureList.saveList();
         System.out.println(textOutput);
         return finalCommand.isExit();
@@ -59,11 +59,14 @@ public class MyLedger {
         } catch (FileNotFoundException e) {
             System.out.println("Error finding save file during initialization");
         } catch (DateTimeParseException s) {
-            System.out.println("Please try again");
+            System.out.println(
+                    "TxtFile has been corrupted, the corrupted entry and subsequent entries has been deleted");
         } catch (NumberFormatException h) {
-            System.out.println("Please try again");
+            System.out
+                    .println("TxtFile has been corrupted, the corrupted entry and subsequent entries has been deleted");
         } catch (ArrayIndexOutOfBoundsException a) {
-            System.out.println("Please try again");
+            System.out
+                    .println("TxtFile has been corrupted, the corrupted entry and subsequent entries has been deleted");
         }
     }
 }

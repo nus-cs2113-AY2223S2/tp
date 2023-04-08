@@ -65,84 +65,83 @@ public class MainInputParser {
             DateTimeParseException, WrongInputException, NotPositiveValueException, InvalidDateException {
         switch (command) {
 
-        // Commands that insert new inputs
-        case AcademicExpenditureCommand.COMMAND_WORD:
-        case AccommodationExpenditureCommand.COMMAND_WORD:
-        case EntertainmentExpenditureCommand.COMMAND_WORD:
-        case FoodExpenditureCommand.COMMAND_WORD:
-        case OtherExpenditureCommand.COMMAND_WORD:
-        case TransportExpenditureCommand.COMMAND_WORD:
-        case TuitionExpenditureCommand.COMMAND_WORD:
-            ParseAdd prepareAddExpenditure;
-            prepareAddExpenditure = new ParseAdd(splitValues[INDEX_USERSTRING]);
-            return prepareAddExpenditure.addItem(command);
-        case LendExpenditureCommand.COMMAND_WORD:
-        case BorrowExpenditureCommand.COMMAND_WORD:
-            ParseLendBorrow prepareLendBorrowExpenditure;
-            prepareLendBorrowExpenditure = new ParseLendBorrow(splitValues[INDEX_USERSTRING]);
-            return prepareLendBorrowExpenditure.addItem(command);
-        case DuplicateCommand.COMMAND_WORD:
-            ParseDuplicate prepareDuplicate = new ParseDuplicate(splitValues[INDEX_USERSTRING]);
-            return prepareDuplicate.duplicateItem();
+            // Commands that insert new inputs
+            case AcademicExpenditureCommand.COMMAND_WORD:
+            case AccommodationExpenditureCommand.COMMAND_WORD:
+            case EntertainmentExpenditureCommand.COMMAND_WORD:
+            case FoodExpenditureCommand.COMMAND_WORD:
+            case OtherExpenditureCommand.COMMAND_WORD:
+            case TransportExpenditureCommand.COMMAND_WORD:
+            case TuitionExpenditureCommand.COMMAND_WORD:
+                ParseAdd prepareAddExpenditure;
+                prepareAddExpenditure = new ParseAdd(splitValues[INDEX_USERSTRING]);
+                return prepareAddExpenditure.addItem(command);
+            case LendExpenditureCommand.COMMAND_WORD:
+            case BorrowExpenditureCommand.COMMAND_WORD:
+                ParseLendBorrow prepareLendBorrowExpenditure;
+                prepareLendBorrowExpenditure = new ParseLendBorrow(splitValues[INDEX_USERSTRING]);
+                return prepareLendBorrowExpenditure.addItem(command);
+            case DuplicateCommand.COMMAND_WORD:
+                ParseDuplicate prepareDuplicate = new ParseDuplicate(splitValues[INDEX_USERSTRING]);
+                return prepareDuplicate.duplicateItem();
 
-        // Commands that support basic functionalities of MyLedger
-        case ListExpenditureCommand.COMMAND_WORD:
-            return new ListExpenditureCommand(splitValues[INDEX_USERSTRING]);
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-        case ShowRatesCommand.COMMAND_WORD:
-            return new ShowRatesCommand();
+            // Commands that support basic functionalities of MyLedger
+            case ListExpenditureCommand.COMMAND_WORD:
+                return new ListExpenditureCommand(splitValues[INDEX_USERSTRING]);
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
+            case ShowRatesCommand.COMMAND_WORD:
+                return new ShowRatesCommand();
 
-        // Commands that mark and unmark inputs in list
-        case MarkCommand.COMMAND_WORD:
-            ParseMark prepareMark;
-            prepareMark = new ParseMark(splitValues[INDEX_USERSTRING]);
-            return prepareMark.markExpenditure();
-        case UnmarkCommand.COMMAND_WORD:
-            ParseMark prepareUnmark;
-            prepareUnmark = new ParseMark(splitValues[INDEX_USERSTRING]);
-            return prepareUnmark.unmarkExpenditure();
+            // Commands that mark and unmark inputs in list
+            case MarkCommand.COMMAND_WORD:
+                ParseMark prepareMark;
+                prepareMark = new ParseMark(splitValues[INDEX_USERSTRING]);
+                return prepareMark.markExpenditure();
+            case UnmarkCommand.COMMAND_WORD:
+                ParseMark prepareUnmark;
+                prepareUnmark = new ParseMark(splitValues[INDEX_USERSTRING]);
+                return prepareUnmark.unmarkExpenditure();
 
-        // Commands that changes existing inputs in list
-        case DeleteCommand.COMMAND_WORD:
-            ParseDelete prepareDelete;
-            prepareDelete = new ParseDelete(splitValues[INDEX_USERSTRING]);
-            return prepareDelete.deleteItem();
-        case EditCommand.COMMAND_WORD:
-            ParseEdit prepareEdit = new ParseEdit(splitValues[INDEX_USERSTRING]);
-            return prepareEdit.editItem();
+            // Commands that changes existing inputs in list
+            case DeleteCommand.COMMAND_WORD:
+                ParseDelete prepareDelete;
+                prepareDelete = new ParseDelete(splitValues[INDEX_USERSTRING]);
+                return prepareDelete.deleteItem();
+            case EditCommand.COMMAND_WORD:
+                ParseEdit prepareEdit = new ParseEdit(splitValues[INDEX_USERSTRING]);
+                return prepareEdit.editItem();
 
-        // Commands that allows users to view list and filtered list according to preference
-        case SortCommand.COMMAND_WORD:
-            ParseSort prepareSort;
-            prepareSort = new ParseSort(splitValues[INDEX_USERSTRING]);
-            return prepareSort.sortExpenditures();
-        case ViewDateExpenditureCommand.COMMAND_WORD:
-            return new ViewDateExpenditureCommand(splitValues[INDEX_USERSTRING]);
-        case ViewTypeExpenditureCommand.COMMAND_WORD:
-            return new ViewTypeExpenditureCommand(splitValues[INDEX_USERSTRING]);
-        case FindCommand.COMMAND_WORD:
-            ParseFind prepareFind;
-            prepareFind = new ParseFind(splitValues[INDEX_USERSTRING]);
-            return prepareFind.findExpenditure();
+            // Commands that allows users to view list and filtered list according to
+            // preference
+            case SortCommand.COMMAND_WORD:
+                ParseSort prepareSort;
+                prepareSort = new ParseSort(splitValues[INDEX_USERSTRING]);
+                return prepareSort.sortExpenditures();
+            case ViewDateExpenditureCommand.COMMAND_WORD:
+                return new ViewDateExpenditureCommand(splitValues[INDEX_USERSTRING]);
+            case ViewTypeExpenditureCommand.COMMAND_WORD:
+                return new ViewTypeExpenditureCommand(splitValues[INDEX_USERSTRING]);
+            case FindCommand.COMMAND_WORD:
+                ParseFind prepareFind;
+                prepareFind = new ParseFind(splitValues[INDEX_USERSTRING]);
+                return prepareFind.findExpenditure();
 
+            // Commands that allows users to compare budget with expenditures
+            case SetBudgetCommand.COMMAND_WORD:
+                ParseSetBudget prepareBudget = new ParseSetBudget(splitValues[INDEX_USERSTRING]);
+                return prepareBudget.setBudget();
+            case CheckBudgetCommand.COMMAND_WORD:
+                if (splitValues.length == 1 || splitValues[1].isEmpty() || splitValues[1].isBlank()) {
+                    return new CheckBudgetCommand("c/");
+                }
+                return new CheckBudgetCommand(splitValues[INDEX_USERSTRING]);
 
-        // Commands that allows users to compare budget with expenditures
-        case SetBudgetCommand.COMMAND_WORD:
-            ParseSetBudget prepareBudget = new ParseSetBudget(splitValues[INDEX_USERSTRING]);
-            return prepareBudget.setBudget();
-        case CheckBudgetCommand.COMMAND_WORD:
-            if (splitValues.length == 1 || splitValues[1].isEmpty() || splitValues[1].isBlank()) {
-                return new CheckBudgetCommand("c/");
-            }
-            return new CheckBudgetCommand(splitValues[INDEX_USERSTRING]);
-
-        // Commands that do not fulfill requirements above
-        default:
-            return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
+            // Commands that do not fulfill requirements above
+            default:
+                return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
         }
-
     }
 }
