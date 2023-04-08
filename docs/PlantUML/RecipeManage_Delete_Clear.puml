@@ -1,5 +1,5 @@
-@startuml RecipeManage 
-box Manager #White
+@startuml RecipeManage_Delete_Clear
+box Delete & Clear #White
 Actor User 
 participant ":UI" as UI #Gray
 participant ":Duke" as Duke #Gold
@@ -31,8 +31,8 @@ UI -> User : delete successful message
 UI --> Command3
 deactivate UI
 Command3 --> Duke
-deactivate Command3
 Duke -> Command3 : delete
+deactivate Command3
 destroy Command3
 Duke -> UI : readCommand()
 activate UI #Gray
@@ -55,7 +55,9 @@ UI -> User : clear successful message
 UI --> Command4
 deactivate UI
 Command4 --> Duke
-deactivate Command4
 Duke -> Command4 : delete
+deactivate Command4
 destroy Command4
+
+
 @enduml

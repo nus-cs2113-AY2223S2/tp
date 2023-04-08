@@ -1,5 +1,5 @@
-@startuml Recipe View
-box Viewer #White
+@startuml RecipeView
+box View #White
 Actor User
 participant ":UI" as UI #Gray
 participant ":Duke" as Duke #Gold
@@ -39,8 +39,9 @@ deactivate StepList
 UI -> User : recipe view message
 UI --> Command
 deactivate UI
-deactivate Command
 Duke -> Command : delete
+deactivate Command
 destroy Command
+
 
 @enduml

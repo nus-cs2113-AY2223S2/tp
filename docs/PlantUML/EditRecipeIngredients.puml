@@ -54,8 +54,8 @@ activate IngredientList #LightGreen
 IngredientList -> User : edit successful message
 IngredientList --> Command
 deactivate IngredientList
-deactivate Command
 Duke -> Command : delete
+deactivate Command
 destroy Command
 
 

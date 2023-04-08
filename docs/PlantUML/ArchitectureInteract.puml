@@ -41,8 +41,8 @@ end loop
 Storage --> Command
 deactivate Storage
 Command --> Duke
-deactivate Command
 Duke -> Command : delete
+deactivate Command
 destroy Command
 
 @enduml

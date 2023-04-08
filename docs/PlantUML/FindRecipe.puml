@@ -1,4 +1,4 @@
-@startuml Recipe Find
+@startuml FindRecipe
 box Find #White
 Actor User
 participant ":UI" as UI #Gray
@@ -26,8 +26,8 @@ RecipeList -> User : show recipe with index
 RecipeList --> Command
 deactivate RecipeList
 Command --> Duke
-deactivate Command
 Duke -> Command : delete
+deactivate Command
 destroy Command
 
 
