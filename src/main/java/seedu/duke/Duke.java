@@ -24,8 +24,7 @@ public class Duke {
     protected ExpenseList expenseList;
     protected Currency currency;
 
-    //TODO: arbitrary filePath
-    protected String filePath = "test.json";
+    protected String filePath = "expenses.json";
 
 
     /**
@@ -40,25 +39,16 @@ public class Duke {
     }
 
     public void run() {
-        String logo =
-                  " ____        _\n"
-                + "|  _ \\ _   _| | _____\n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n");
         WelcomeMessage.printWelcomeLogo();
-        System.out.println("What is your name?");
 
         Scanner in = new Scanner(System.in);
-        if (in.hasNextLine()) {
-            System.out.println("Hello " + in.nextLine());
-        }
+
         WelcomeMessage.welcomeHelper();
         String input = "";
         while (in.hasNextLine()) {
             input = in.nextLine();
-            if(input.equals("exit")) {
+            if (input.equals("exit")) {
                 break;
             }
             switch (parser.extractCommandKeyword(input)) {

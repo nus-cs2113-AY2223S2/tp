@@ -1,13 +1,9 @@
 package parser;
 
-import java.util.ArrayList;
-
 public class Parser {
 
     public static final String WHITESPACE = " ";
     private static final int EXTRACT_INDEX_LENGTH = 2;
-    private static final String NO_SPECIFIC_MONTH_ERROR =
-            "Please specify the month and year of the overview you intend to view.";
     protected ParserAdd parserAdd = new ParserAdd();
 
     public String extractCommandKeyword(String userInput) {
@@ -54,18 +50,6 @@ public class Parser {
         }
     }
 
-    public String extractCommandParameters(String parameterType, String userInput) {
-        int parameterTypeLength = parameterType.length();
-        String[] words = userInput.split(WHITESPACE);
-        ArrayList<String> results = new ArrayList<String>();
-        for (String word : words) {
-            if (word.startsWith(parameterType)) {
-                results.add(word.substring(parameterTypeLength));
-            }
-        }
-        return results.get(results.size() - 1);
-    }
-
     public String[] extractAddParameters(String userInput) {
         return parserAdd.parseInput(userInput);
     }
@@ -92,8 +76,8 @@ public class Parser {
         }
     }
 
-    public String extractYear(String userInput){
-        String[] input = userInput.split(WHITESPACE,3);
+    public String extractYear(String userInput) {
+        String[] input = userInput.split(WHITESPACE, 3);
         String year = "";
         if (isMonthlyOverview(userInput)) {
             year = input[2].toLowerCase().trim();
@@ -102,7 +86,6 @@ public class Parser {
         }
         return year;
     }
-
 
 
 }

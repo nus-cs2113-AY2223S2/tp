@@ -51,17 +51,4 @@ public class CommandRes {
                 TAB + "SGD" + total.toString() + '\n' + MESSAGE_DIVIDER);
     }
 
-    /**
-     * Prints the result for the user.
-     */
-    public String[] printTask() {
-        if (expense == null) {
-            return new String[]{};
-        } else if (messageTop.equals(MESSAGE_DIVIDER_LIST)) {
-            return IntStream.range(0, expense.size()).mapToObj(i ->
-                    (i + OFFSET + "." + expense.get(i))).toArray(String[]::new);
-        } else {
-            return expense.stream().map(Expense::toString).toArray(String[]::new);
-        }
-    }
 }

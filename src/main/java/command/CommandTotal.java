@@ -28,7 +28,7 @@ public class CommandTotal extends Command {
     /**
      * Calculates the total expenses in the expense list in SGD.
      */
-    // TODO: combine calculateTotal and getTotal
+
     public BigDecimal calculateTotal() {
         total = BigDecimal.valueOf(0);
         for (Expense i : expenseList) {
