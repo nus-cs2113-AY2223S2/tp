@@ -195,10 +195,38 @@ All items in your list are fully packed!
 ________________________________________________________________________________________________________________________
 
 ```
+---
+#### Pack Command
+`PackCommand` is used to increase the quantity packed of a certain item in the `packingList`.
+Mechanism: PackCommand.execute() calls packingList.packItem() with a certain `item` and `itemQuantity`, which then calls the `.setPacked()` method. This method will increase the `packedQuantity` of that specific item by `itemQuantity`.
+
+Example:
+```
+________________________________________________________________________________________________________________________
+add 3 /of jackets
+________________________________________________________________________________________________________________________
+New item added: [0/3] jackets
+________________________________________________________________________________________________________________________
+pack 2 /of 1
+________________________________________________________________________________________________________________________
+Item packed: [2/3] jackets
+________________________________________________________________________________________________________________________
+```
+
+In the case where the user tries to pack an item over its limit, i.e. have an item's `packedQuantity` > `totalQuantity`, there are checks put in place to prevent the command from going through.
+During `createPackObj`, `quantityNotPacked` is compared to `itemQuantity`. If `quantityNotPacked` < `itemQuantity`, an `IncorrectCommand` will be returned that prints an error message to the user about the invalid command.
+
+Example:
+```
+________________________________________________________________________________________________________________________
+pack 5 /of 1
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Error Invalid Item Quantity:
+Can only pack a positive quantity that is less than or equal to the unpacked quantity (Max integer supported is 1,000,000)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+```
 
 ---
-
-
 #### DeleteList Command
 `DeleteListCommand` is used to delete all items inside `packingList`.
 
@@ -241,7 +269,7 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 | v2.1    | user     | save my packing list                           | keep track of my packing list even after leaving the app                     |
 | v2.1    | user     | see the list of items I have yet to pack       | easily track what I am missing                                               |
 | v2.1    | user     | edit the number of items i need to pack        | change my mind whenever I want                                               |
-
+| v2.1    | user     | fully pack or unpack an item                   | don't have to refer to how many of that item I need                          |
 
 
 ## Non-Functional Requirements
