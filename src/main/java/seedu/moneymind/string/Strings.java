@@ -2,7 +2,6 @@ package seedu.moneymind.string;
 
 public class Strings {
 
-    public static final String WHITE_SPACE = " ";
     public static final String DATA_FILE = "EventList.txt";
     public static final String BUDGET_LIMIT_MESSAGE = "The budget limit is 999999999$, please give a smaller budget";
     public static final String INDEX_LIMIT_MESSAGE = "The limit for index is 999999999, please try again.";
@@ -12,7 +11,6 @@ public class Strings {
     public static final String DOT = ".";
     public static final String NO_CATEGORIES_TO_VIEW = "There are no categories to view";
     public static final String NO_SEARCH_RESULTS = "No matching search results.";
-    public static final String COUNT_ASSERTION = "Count should be greater than 1";
     public static final String NULL_CATEGORY_ASSERTION = "Category name should not be null";
     public static final String NULL_CATEGORY_LIST_ASSERTION = "Category list should not be null";
 
@@ -76,7 +74,6 @@ public class Strings {
     public static final String EVENT_EMPTY = "OOPS!!! The description of an event cannot be empty.";
     public static final String CATEGORY_EMPTY = "OOPS!!! The description of a category cannot be empty.";
     public static final String NULL_INPUT_ASSERTION = "Input cannot be null";
-    public static final String NULL_DESCRIPTION = "Separated keyword and description cannot be null";
     public static final String STORAGE_NEXT_VARIABLE = "&&next_detail&&";
     public static final String NEW_LINE = System.lineSeparator();
     public static final String STORAGE_CATEGORY_NAME = "&&new_category&&";

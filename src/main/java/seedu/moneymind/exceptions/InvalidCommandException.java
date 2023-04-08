@@ -1,5 +1,8 @@
 package seedu.moneymind.exceptions;
 
+/**
+ * Throws exception when the user input an invalid command.
+ */
 public class InvalidCommandException extends Exception {
     private String errorMessage;
 
@@ -10,4 +13,5 @@ public class InvalidCommandException extends Exception {
     public void showErrorMessage() {
         System.out.println(errorMessage);
     }
+
 }

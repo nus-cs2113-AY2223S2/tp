@@ -83,5 +83,5 @@ public class Moneymind {
     public static void main(String[] args) {
         new Moneymind().run();
     }
-    
+
 }
