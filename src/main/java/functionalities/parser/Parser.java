@@ -13,6 +13,7 @@ import functionalities.commands.RemoveCommand;
 import functionalities.commands.SurgeryCommand;
 import functionalities.commands.UnMarkCommand;
 import functionalities.commands.VaccinationCommand;
+import functionalities.commands.EditConsultationCommand;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -42,6 +43,8 @@ public class Parser {
                 parseMarkCommand(userCommand.trim());
             } else if (task[0].equals("unmark")) {
                 parseUnmarkCommand(userCommand.trim());
+            } else if (task[0].equals("edit")) {
+                parseEditCommand(task[1]);
             } else if (userCommand.equals("list")) {
                 parseListCommand(userCommand.trim());
             } else if (userCommand.equals("help")) {
@@ -219,6 +222,32 @@ public class Parser {
             command = new UnMarkCommand(unmarkTask);
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" The unmark description is invalid!");
+        }
+    }
+
+    private static void parseEditCommand(String task) throws SniffException{
+        int uidIndex = task.indexOf("uID/");
+        String uid = task.substring(uidIndex + 4, uidIndex + 15);
+        String type = task.substring(uidIndex + 5, uidIndex + 6);
+        if (type == "C"){
+            try {
+                String animalType = splitInputBy(task, "at/");
+                String animalName = splitInputBy(task, "an/");
+                String ownerName = splitInputBy(task, "on/");
+                String contactNumber = splitInputBy(task, "cn/");
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+                DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String date = splitInputBy(task, "cd/");
+                LocalDate parsedDate = LocalDate.parse(date, dateFormatter);
+                String time = splitInputBy(task, "ct/");
+                LocalTime parsedTime = LocalTime.parse(time, timeFormatter);
+                command = new EditConsultationCommand(uid, animalType, animalName, ownerName, contactNumber, parsedDate,
+                        parsedTime);
+            } catch (DateTimeParseException e) {
+                throw new SniffException("The date/time description is invalid.");
+            } catch (NullPointerException e) {
+                throw new SniffException("The consultation description is invalid!");
+            }
         }
     }
 

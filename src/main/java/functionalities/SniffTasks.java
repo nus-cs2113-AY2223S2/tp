@@ -447,4 +447,22 @@ public class SniffTasks {
             throw new SniffException(" The unMark command entry is invalid!");
         }
     }
+    public void editConsultation(String uid,Animal animal, Owner owner,
+                                LocalDate date, LocalTime time) throws SniffException {
+        try {
+            //checkConsultationDuplicate(animal, owner, date, time);
+            UIDS.add(uid);
+            Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
+            assert Objects.equals(newAppointment.uid, uid) : "consultation uid should be " + uid;
+            assert Objects.equals(newAppointment.animal.type, animal.type) :
+                    "consultation animal type should be " + animal.type;
+            assert Objects.equals(newAppointment.animal.name, animal.name) :
+                    "consultation animal name should be " + animal.name;
+            APPOINTMENTS.add(newAppointment);
+            Ui.printAppointmentAddedMessage(newAppointment);
+            Ui.showUserMessage(" Consultation added successfully!");
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new SniffException(" Invalid consultation description!");
+        }
+    }
 }
