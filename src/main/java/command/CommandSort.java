@@ -45,7 +45,7 @@ public class CommandSort extends Command {
             System.out.println("Sorry, there are no expenses tracked currently.");
             System.out.println(MESSAGE_DIVIDER);
         } else {
-            switch(sortBy) {
+            switch (sortBy) {
             case "C":
                 System.out.println(MESSAGE_DIVIDER_SORTEDLIST);
                 sortByCategory();
