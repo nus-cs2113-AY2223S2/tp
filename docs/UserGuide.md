@@ -614,7 +614,19 @@ Alright, I have added this task:
 You now have 1 class in your schedule.
 ```
 
+## **Printing a motivaional quote : `motivation`**
 
+Prints a random motivational quote.
+
+**Input:** `motivation`
+
+**Output:**
+
+
+```
+Success is not how high you have climbed, but how you make a positive difference to the world. -Roy T. Bennett
+____________________________________________________________
+```
 
 ## **Exiting the program : `bye`**
 

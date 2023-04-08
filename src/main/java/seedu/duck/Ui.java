@@ -40,6 +40,9 @@ public class Ui {
                 "      `-._________,--'");
     }
 
+    /**
+     * Prints a random motivational quote
+     */
     static void printMotivationalQuote() {
         String[] quotes = {
                 "Believe you can and you're halfway there. -Theodore Roosevelt",
@@ -47,7 +50,8 @@ public class Ui {
                 "You miss 100% of the shots you don't take. -Wayne Gretzky",
                 "Success is not final, failure is not fatal: it is the courage to continue that counts. -Winston Churchill",
                 "You are never too old to set another goal or to dream a new dream. -C.S. Lewis",
-                "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle. -Christian D. Larson",
+                "Believe in yourself and all that you are. Know that there is something \n\t " +
+                        "inside you that is greater than any obstacle. -Christian D. Larson",
                 "Success is not how high you have climbed, but how you make a positive difference to the world. -Roy T. Bennett",
                 "A journey of a thousand miles begins with a single step. -Lao Tzu",
                 "The only way to do great work is to love what you do. -Steve Jobs",
@@ -55,13 +59,15 @@ public class Ui {
                 "Believe you can and you're halfway there. -Theodore Roosevelt",
                 "You never know how strong you are until being strong is your only choice. -Bob Marley",
                 "Do not wait for opportunities, create them. -Roy T. Bennett",
-                "Believe in yourself, take on your challenges, dig deep within yourself to conquer fears. Never let anyone bring you down. You got this. -Chantal Sutherland",
+                "Believe in yourself, take on your challenges, dig deep within yourself to conquer fears. \n\t " +
+                        "Never let anyone bring you down. You got this. -Chantal Sutherland",
                 "The greatest glory in living lies not in never falling, but in rising every time we fall. -Nelson Mandela",
                 "Believe in your infinite potential. Your only limitations are those you set upon yourself. -Roy T. Bennett",
                 "What you get by achieving your goals is not as important as what you become by achieving your goals. -Zig Ziglar",
                 "Don't watch the clock; do what it does. Keep going. -Sam Levenson",
                 "Believe that you will succeed, and you will. -Dale Carnegie",
-                "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful. -Albert Schweitzer"
+                "Success is not the key to happiness. Happiness is the key to success.\n\t" +
+                        " If you love what you are doing, you will be successful. -Albert Schweitzer"
         };
         Random rand = new Random();
         int index = rand.nextInt(quotes.length);
@@ -725,6 +731,7 @@ public class Ui {
         System.out.println("\t - priority <task_number> <1/2/3>: I'll set the priority of a given task as");
         System.out.println("\t                                   1:Low, 2:Medium and 3:High.");
         System.out.println("\t                                   Default: Low priority.");
+        System.out.println("\t - motivation: I'll print a random motivational quack for you!");
         System.out.println("\t - bye: I will shut down my program.\n");
         System.out.println("\t Here are the following ways to input tasks/classes:");
         System.out.println("\t Deadlines: <description> /by <yyyy-MM-dd HHmm>");
@@ -928,6 +935,12 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the lists of notes under the specified tasks
+     *
+     * @param tasks The arraylist of tasks
+     * @param index The index of the task whose notes are to be printed
+     */
     static void printList(ArrayList<Task> tasks, int index) {
         ArrayList<String> toBePrinted = tasks.get(index).getAdditionalNotes();
         for (int j = 0; j < toBePrinted.size(); j++) {
