@@ -81,8 +81,8 @@ class CommandAddTest {
     public void addExpense_futureTime_returnsErrorMessage() {
         new CommandAdd(expenseList.getExpenseList(),
                 parser.extractAddParameters("add amt/20 t/02-02-2500 cat/food"), currency).execute();
-        assertEquals("Invalid date. Please input a date before today's date.\nToday's date is: " +
-                        LocalDate.now(),
+        assertEquals("Invalid date. Please input a date before or equal to today's date.\nToday's date is: " +
+                        LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
                 outputStreamCaptor.toString().trim());
     }
     @Test

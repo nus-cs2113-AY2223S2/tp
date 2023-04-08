@@ -37,9 +37,9 @@ public class CommandFindTest {
 
         String input = "fo";
         String expected = MESSAGE_DIVIDER_FIND + "\n"
-                + "1.SGD2.50 cat:food date:02/02/2012\n"
-                + "2.USD2.50 cat:food date:02/02/2012\n"
-                + "3.USD2.50 cat:food date:02/02/2013\n"
+                + "1.SGD2.50 cat:food date:02-02-2012\n"
+                + "2.USD2.50 cat:food date:02-02-2012\n"
+                + "3.USD2.50 cat:food date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
 
         new CommandFind(expenseList.getExpenseList(), input).execute();
@@ -77,10 +77,10 @@ public class CommandFindTest {
         // With the same expenseAmount
         String input = "2.5";
         String expected = MESSAGE_DIVIDER_FIND + "\n"
-                + "1.SGD2.50 cat:food date:02/02/2012\n"
-                + "2.USD2.50 cat:food date:02/02/2012\n"
-                + "3.USD2.50 cat:eat date:02/02/2013\n"
-                + "4.USD2.50 cat:food date:02/02/2013\n"
+                + "1.SGD2.50 cat:food date:02-02-2012\n"
+                + "2.USD2.50 cat:food date:02-02-2012\n"
+                + "3.USD2.50 cat:eat date:02-02-2013\n"
+                + "4.USD2.50 cat:food date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
 
         new CommandFind(expenseList.getExpenseList(), input).execute();
@@ -92,10 +92,10 @@ public class CommandFindTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         expected = MESSAGE_DIVIDER_FIND + "\n"
-                + "1.SGD2.50 cat:food date:02/02/2012\n"
-                + "2.USD2.50 cat:food date:02/02/2012\n"
-                + "3.USD2.50 cat:eat date:02/02/2013\n"
-                + "4.USD2.50 cat:food date:02/02/2013\n"
+                + "1.SGD2.50 cat:food date:02-02-2012\n"
+                + "2.USD2.50 cat:food date:02-02-2012\n"
+                + "3.USD2.50 cat:eat date:02-02-2013\n"
+                + "4.USD2.50 cat:food date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
         new CommandFind(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
@@ -105,8 +105,8 @@ public class CommandFindTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         expected = MESSAGE_DIVIDER_FIND + "\n"
-                + "1.USD2.50 cat:eat date:02/02/2013\n"
-                + "2.USD2.50 cat:food date:02/02/2013\n"
+                + "1.USD2.50 cat:eat date:02-02-2013\n"
+                + "2.USD2.50 cat:food date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
         new CommandFind(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
@@ -118,9 +118,9 @@ public class CommandFindTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         expected = MESSAGE_DIVIDER_FIND + "\n"
-                + "1.USD2.50 cat:food date:02/02/2012\n"
-                + "2.USD2.50 cat:eat date:02/02/2013\n"
-                + "3.USD2.50 cat:food date:02/02/2013\n"
+                + "1.USD2.50 cat:food date:02-02-2012\n"
+                + "2.USD2.50 cat:eat date:02-02-2013\n"
+                + "3.USD2.50 cat:food date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
         new CommandFind(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
@@ -133,9 +133,9 @@ public class CommandFindTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         expected = MESSAGE_DIVIDER_FIND + "\n"
-                + "1.USD2.50 cat:food date:02/02/2012\n"
-                + "2.USD2.50 cat:eat date:02/02/2013\n"
-                + "3.USD2.50 cat:food date:02/02/2013\n"
+                + "1.USD2.50 cat:food date:02-02-2012\n"
+                + "2.USD2.50 cat:eat date:02-02-2013\n"
+                + "3.USD2.50 cat:food date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
         new CommandFind(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");
@@ -145,9 +145,9 @@ public class CommandFindTest {
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         expected = MESSAGE_DIVIDER_FIND + "\n"
-                + "1.SGD2.50 cat:food date:02/02/2012\n"
-                + "2.USD2.50 cat:food date:02/02/2012\n"
-                + "3.USD2.50 cat:food date:02/02/2013\n"
+                + "1.SGD2.50 cat:food date:02-02-2012\n"
+                + "2.USD2.50 cat:food date:02-02-2012\n"
+                + "3.USD2.50 cat:food date:02-02-2013\n"
                 + MESSAGE_DIVIDER + "\n";
         new CommandFind(expenseList.getExpenseList(), input).execute();
         actual = outContent.toString().replaceAll(System.lineSeparator(), "\n");

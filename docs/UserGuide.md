@@ -326,6 +326,22 @@ Example of usage:
 
 ## FAQ
 
+### Do I require an internet connection to use ET?
+
+- No an internet connection is not required. It is preferred as we use an exchange rate API to obtain our currency
+exchange rates. However, a lack of internet connection will not hinder the use of our application.
+
+### Why is my primary currency not available for use?
+
+- Our selection of currencies is based on the currencies available in our exchange rate API, we apologise if
+your currency is not available for use.
+
+### I want to add a date beyond 1981, how do I do that?
+
+- Our API only contains exchange rate information starting from 1981. For ET to effectively track expenses in different
+currencies, we require a limit on how far back the date can be set.
+
+  
 ## Command Summary
 
 | Action                      | Command                                                                       |

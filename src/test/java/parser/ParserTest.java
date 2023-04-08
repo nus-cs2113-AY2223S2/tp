@@ -3,6 +3,10 @@ package parser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 
 class ParserTest {
 
@@ -20,12 +24,47 @@ class ParserTest {
     }
 
     @Test
+    void extractIndex_unsuccessful() {
+        int index = parser.extractIndex("testing string");
+        assertEquals(0, index);
+    }
+
+    @Test
     void extractSortBy_successful() {
         String sortBy = parser.extractSortBy("delete C");
         assertEquals("C", sortBy);
         sortBy = parser.extractSortBy("delete");
         assertEquals("", sortBy);
+    }
 
+    @Test
+    void isMonthlyOverview_true() {
+        boolean isMonthlyOverview = parser.isMonthlyOverview("overview March 2021");
+        assertTrue(isMonthlyOverview);
+    }
+
+    @Test
+    void isMonthlyOverview_false() {
+        boolean isMonthlyOverview = parser.isMonthlyOverview("overview 2021");
+        assertFalse(isMonthlyOverview);
+    }
+
+    @Test
+    void extractMonth_successful() {
+        String validMonth = parser.extractMonth("overview March 2021");
+        String invalidMonth = parser.extractMonth("overview 2021");
+        assertEquals("march", validMonth);
+        assertNull(invalidMonth);
+    }
+
+    @Test
+    void extractYear_successful() {
+        String monthlyOverviewYear = parser.extractYear("overview March 2021");
+        String yearlyOverviewYear = parser.extractYear("overview 2022");
+        String invalidYear = parser.extractYear("overview");
+        assertEquals("2021", monthlyOverviewYear);
+        assertEquals("2022", yearlyOverviewYear);
+        assertEquals("", invalidYear);
     }
 
 }

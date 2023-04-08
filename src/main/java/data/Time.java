@@ -46,7 +46,7 @@ public class Time implements Comparable<Time> {
 
     @Override
     public String toString() {
-        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     public static Time toTime(String timeString) {
