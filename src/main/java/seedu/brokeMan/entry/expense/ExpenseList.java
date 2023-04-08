@@ -14,7 +14,6 @@ import java.util.Optional;
 
 public class ExpenseList extends EntryList {
     public static final LinkedList<Entry> expenseList = new LinkedList<>();
-    //private final EntryList expenseList;
 
     /**
      * Adds new expense to the list

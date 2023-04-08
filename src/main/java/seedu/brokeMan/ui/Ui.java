@@ -25,16 +25,11 @@ public class Ui {
      * Gets user command from the terminal
      * @return command entered by the user
      */
-    public static String getUserCommand() {
+    public static String getUserCommand() throws NoSuchElementException {
         showToUser("");
         out.print(LINE_PREFIX + "Enter command: ");
-        String userInput = null;
-        try {
-            userInput = in.nextLine().trim();
-        } catch (NoSuchElementException e) {
-            showToUser("Invalid input...");
-            userInput = "exit";
-        }
+        String userInput;
+        userInput = in.nextLine().trim();
         return userInput;
     }
 

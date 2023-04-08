@@ -1,10 +1,10 @@
 package seedu.brokeMan.command;
 
+import seedu.brokeMan.entry.Category;
 import seedu.brokeMan.entry.expense.ExpenseList;
 import seedu.brokeMan.exception.CategoryNotCorrectException;
 import seedu.brokeMan.parser.StringToCategory;
 import seedu.brokeMan.parser.StringToTime;
-import seedu.brokeMan.entry.Category;
 
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
