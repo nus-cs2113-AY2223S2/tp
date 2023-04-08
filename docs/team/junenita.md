@@ -19,6 +19,10 @@ If you can type fast, Meal360 can get your recipe management tasks done faster t
   * Added `random` feature to random a recipe for users
   * Added exception handler for `list`, `tag`, and `random` features
   * Wrote tests for `list`, `tag` and `random` features
+  * Added custom exceptions class.
+    * `NoRecipeException`
+    * `RecipeNotFoundInTagException`
+    * `TagNotFoundException`
 * __Documentation__:
   * User Guide
     * Added documentation for `list` feature
