@@ -17,6 +17,7 @@ It is written in Java, and has about 5kLoC.
 - Added the ability to list specific module and classes from module list
 - JUnit tests for ListModuleWithLessonCommand and SemesterUtils
 - Patches, bug fixes
+- Enhancing methods using Single Level of Abstraction Principle
 
 #### Contributions to the UG
 
