@@ -41,7 +41,8 @@ public class Strings {
             "Format: category <name> [(optional) b/<budget number>]\n" + "Example: category food b/2000\n";
     public static final String EVENT_INSTRUCTION = "3. event - add an event to a category\n" +
             "Format: event <name> e/<expense number> [(optional) t/<time>]" +
-            "Example: event lunch e/10 t/August\n";
+            "Example: event lunch e/10 t/01/01/2020 12:00\n" +
+            "(time is optional and the format is dd/mm/yyyy hh:mm)\n";
     public static final String VIEW_INSTRUCTION =
             "4. view - view all the events in a category or all the categories\n" +
             "You can view all the categories by entering view without any category name\n" +
@@ -65,6 +66,7 @@ public class Strings {
     public static final String NULL_EVENT_ASSERTION = "Event name cannot be null";
     public static final String NON_NEGATIVE_EXPENSE_ASSERTION = "Expense cannot be negative";
     public static final String NO_EVENTS_IN_THIS_CATEGORY_MESSAGE = "Oops! You have no events in this category.";
+    public static final String SHOW_CATEGORY_MESSAGE = "Here are all the categories in your list:\n";
     public static final String BYE_MESSAGE = "Bye. Hope to see you again soon!";
     public static final String HORIZONTAL_LINE = "____________________________________________________________";
     public static final String WHITE_SPACE = " ";
