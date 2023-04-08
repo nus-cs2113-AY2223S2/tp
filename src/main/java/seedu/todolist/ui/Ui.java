@@ -1,6 +1,5 @@
 package seedu.todolist.ui;
 
-import seedu.todolist.constants.HelpMessages;
 import seedu.todolist.constants.Messages;
 
 import java.text.DecimalFormat;
