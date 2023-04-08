@@ -1,7 +1,6 @@
 @startuml Help
 box Help #White
 Actor User
-
 participant ":UI" as UI #Gray
 participant ":Duke" as Duke #Gold
 participant ":Parser" as Parser #Yellow
@@ -17,10 +16,10 @@ Duke -> Parser : parseCommand()
 activate Parser #Yellow
 Parser --> Duke
 deactivate Parser
-Duke -> Command1 : "execute()"
+Duke -> Command1 : execute()
 activate Command1 #Beige
-Command1 -> UI : "showHelp()"
-UI -> User : HELP message shown
+Command1 -> UI : showHelp()
+UI -> User : help message shown
 UI --> Command1
 deactivate UI
 Command1 --> Duke
