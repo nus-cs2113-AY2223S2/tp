@@ -48,7 +48,7 @@ ensuring the working of the product.
 
 1. Set up the  Table of Contents (TOC) to work properly such that it can link to the appropriate sections,
 and added link back to the TOC at the end of every section.
-2. Added the example outputs for all features of the product.
+2. Added the example outputs for **all** features of the product.
 3. Contributed to a majority of the **all** the feature instructions in the UG.
 
 [back to contents](#table-of-contents)
@@ -60,9 +60,9 @@ and added link back to the TOC at the end of every section.
 1. Set up the skeleton of DG with appropriate headers for everything.
 2. Set up the TOC to work properly such that it can link to the appropriate sections.
 3. Added the Acknowledgements section which acknowledges the external libraries we have used
-4. Added the entire `Architecture` section of the DG.
-5. Added the entire `Ui` section of the DG.
-6. Added the `Common class` section of the DG.
+4. Added the entire [Architecture](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#architecture) section of the DG.
+5. Added the entire [Ui](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#ui-component) section of the DG.
+6. Added the [Common class](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/DeveloperGuide.md#common-class) section of the DG.
 7. Contributed to Target user profile  under `Appendix: Requirements` of DG.
 8. Contributed to Value proposition  under `Appendix: Requirements` of DG.
 9. Contributed to User Stories under `Appendix: Requirements` of DG.
