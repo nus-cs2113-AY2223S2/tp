@@ -35,7 +35,7 @@ public class TaskList {
                 } catch (DateTimeParseException e) {
                     Ui.invalidDateTimeMessage();
                 }
-            }else {
+            } else {
                 try {
                     addDeadline(line, tasks);
                     Task.incrementCount();
@@ -60,7 +60,7 @@ public class TaskList {
             } catch (DateTimeException e) {
                 Ui.invalidDateTimeMessage();
             }
-        } else if (line.contains("/from") || line.contains("/to")) {
+        } else if (line.contains("/from") && line.contains("/to")) {
             // Adding an Event
             if (line.contains("/re")) {
                 try {
@@ -73,7 +73,7 @@ public class TaskList {
                 } catch (DateTimeParseException e) {
                     Ui.invalidDateTimeMessage();
                 }
-            } else{
+            } else {
                 try {
                     addEvent(line, tasks);
                     Task.incrementCount();
@@ -87,7 +87,7 @@ public class TaskList {
                     Ui.invalidDateTimeMessage();
                 }
             }
-        } else {
+        } else if (line.trim().split(" ")[0].equals("/todo")){
             // Adding a _Todo_
             try {
                 addTodo(line, tasks);
@@ -95,6 +95,8 @@ public class TaskList {
             } catch (IllegalTodoException e) {
                 Ui.todoErrorMessage();
             }
+        } else {
+            Ui.unknownCommandMessage();
         }
     }
 
@@ -105,10 +107,12 @@ public class TaskList {
      * @param tasks The array list of tasks
      */
     static void addTodo(String line, ArrayList<Task> tasks) throws IllegalTodoException {
-        if (line.isBlank()) {
+        line = line.trim();
+        String description = line.substring(5).trim();
+        if (description.isBlank()) {
             throw new IllegalTodoException();
         } else {
-            Todo currTodo = new Todo(line);
+            Todo currTodo = new Todo(description);
             tasks.add(currTodo);
             Ui.addedTaskMessage(currTodo);
         }

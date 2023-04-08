@@ -155,17 +155,19 @@ Got it, all tasks have been cleared.
 
  ```
 
-### SchoolClass Feature
+### SchoolClass `list_classes` feature
 
 **Implementation**
 
-The ```SchoolClass``` Class is implemented to facilitate the adding of students' classes to a separate schedule, which is a priority queue. It extends the ```Task``` Class with additional String attributes to store the class name, day of week, start time, and end time. It also overrides the ```toString()``` method to have its own specialised output when being printed, as well as overriding the ```toSaveString()``` method to correctly save its details to the save file. The ```SchoolClass``` Class will also facilitate the implementation of automatically recurring classes, which is a planned feature for milestone v2.0. ```SchoolClass``` Tasks will be added by default as recurring tasks to the task list, and will be automatically added back at their same set timing each week.
+The ```SchoolClass``` Class is implemented to facilitate the adding of students' classes to a separate schedule, which is a priority queue. It extends the ```Task``` Class with additional String attributes to store the class name, day of week, start time, and end time. It also overrides the ```toString()``` method to have its own specialised output when being printed, as well as overriding the ```toSaveString()``` method to correctly save its details to the save file. The ```SchoolClass``` Class will also facilitate the implementation of automatic time tracking of whether the class is over for the week, as well as sorting the SchoolClasses based on their day of week and start/end time. These two features are part of the ```list_classes``` feature, which lists out all the SchoolClasses stored in Duck.
 
 The following are the new operations implemented.
 
--   ```TaskList#addSchoolClass()``` - Adds a SchoolClass Task to the task list.
+-   ```TaskList#addSchoolClass()``` - Adds a SchoolClass to the schedule.
 
--   ```Ui#addedTaskMessage()``` - Outputs a message to show that the SchoolClass Task was successfully added to the task list
+-   ```TaskList#deleteClass()``` - Removes a SchoolClass from the schedule.
+
+-   ```Ui#listClasses()``` - Lists out all currently stored SchoolClasses according to day of week, start and end time in ascending order.
 
 -   ```Storage#loadSchoolClass()``` - Adds a SchoolClass to the task list without generating a successfully added message, to be used when loading from the save data.
 
@@ -173,17 +175,17 @@ The following are the new operations implemented.
 
 **Given below is an example usage scenario for  TaskList#addSchoolClass().**
 
-**Step 1.** The user inputs a command following the proper formatting for adding a ```SchoolClass```. The Duck class will call ```Parser#processCommand()```, instantiating a ```Parser``` class, which will then call ```TaskList#addTask()```, instantiating a ```TaskList``` Class. From there, ```TaskList#addSchoolClass()``` is called and a new ```SchoolClass``` Task is instantiated, which calls ```Ui#addedTaskMessage()``` and instantiating a ```Ui``` Class. This ```SchoolClass``` Task will thus be added to the ArrayList<Task> tasks that was instantiated in the ```Duck``` class.
+The user inputs a command following the proper formatting for adding a ```SchoolClass```. The sequence diagram for adding a SchoolClass is shown below
 
-![](https://lh4.googleusercontent.com/u4zVr8TYxFw3rMvnqdwCYlJmq0JxUgEtC_cFmOY7rPqCM9nvzcQL1t-GcTmgbedeVEHi2L6MG6xG3QaJ7XaOPs8nYvHz1Uf4wGK9bMsHDHwxZVNdS2zR79TtHL_Ub2Za0_jm6bUsnY_RQWX6QmFqCl4)
-
-![](https://lh3.googleusercontent.com/owAwOcAeTYadanERD7zj2eVD_SsbxhXUvohhaV962-DfYkgh-fV4wWVv8LnLjPpt9jl3yEkBrVUuiPg7jor-uWSpIhwdze4C3yKMWdRQEYrcR7I6tW4RMIGeyazNhEYUZzTd2BTBqUNpKL-6O2KRXug)
+![image](https://user-images.githubusercontent.com/88079008/230120692-d4771d07-b228-400e-9968-aed978a323e6.png)
   
 <br />
 
-**Given below is an example usage scenario for  Storage#loadSchoolClass.**
+**Given below is an example usage scenario for Ui#listClasses.**
 
-**Step 1.** The user launches the application. The task list will be initialised with the data from a given pre-existing datafile if it exists, and the ```SchoolClass``` items will be inserted into the task list if they exist using ```Storage#loadSchoolClass()```.
+The user inputs the command for ```list_classes```. The program then lists out all the SchoolClasses stored in Duck according to chronological order. The sequence diagram for Ui#listClasses is shown below.
+ 
+![image](https://user-images.githubusercontent.com/88079008/230112915-fd04ca83-4d30-47c0-a3a4-c7a3c82e0b17.png)
 
 <br />
 
