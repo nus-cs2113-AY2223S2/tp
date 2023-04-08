@@ -30,11 +30,13 @@ University](#3214-listing-modules-user-has-selected-for-specific-partner-univers
 
 ---
 ## 1 Introduction
+
 ### 1.1 What is SEP Helper
 
 
 SEP Helper is a desktop application for Mechanical Engineering students, studying at the
 National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
+
 ---
 ## 2 Quick Start
 
