@@ -6,6 +6,8 @@ import functionalities.Owner;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * The Surgery class represents a surgery type appointment for an animal with its owner.
@@ -16,7 +18,7 @@ import java.time.LocalTime;
 public class Surgery extends Appointment {
 
     public enum PriorityLevel {
-        HIGH, MEDIUM, LOW, NA
+        HIGH, MEDIUM, LOW
     }
 
     protected PriorityLevel priority;
@@ -66,10 +68,6 @@ public class Surgery extends Appointment {
         return startTime;
     }
 
-    public PriorityLevel getPriority() {
-        return priority;
-    }
-
     public LocalDate getEndDate() {
         return endDate;
     }
@@ -85,6 +83,18 @@ public class Surgery extends Appointment {
                 + " Owner Name: " + owner.toString() + '\n'
                 + " Start Date: " + startDate + " | Start Time: " + startTime + '\n'
                 + " End Date: " + endDate + " | End Time: " + endTime;
+    }
+
+    @Override
+    public boolean isDate(String dateDetails) throws SniffException {
+        try {
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate userDate = LocalDate.parse(dateDetails, dateFormatter);
+            return (userDate.equals(startDate) || userDate.equals(endDate) ||
+                    (userDate.isAfter(startDate) && userDate.isBefore(endDate)));
+        } catch (DateTimeParseException d) {
+            throw new SniffException(" Invalid Date format for find command!");
+        }
     }
 
     @Override

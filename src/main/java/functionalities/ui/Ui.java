@@ -16,25 +16,20 @@ public class Ui {
 
     public static void printFileCreated(boolean b) {
         showLine();
-        System.out.println("\tFile \"SniffAppointments.txt\" created!");
-        showLine();
-    }
-
-    public static void printEmptyFile() {
-        showLine();
-        System.out.println("No appointments saved!");
-        showLine();
-    }
-
-    public static void printFileContents(Scanner s) {
-        showLine();
-        System.out.println("\tLoading saved appointments:");
-        int index = 1;
-        while (s.hasNext()) {
-            System.out.println("\t" + index + ". " + s.nextLine());
-            index++;
+        if (b) {
+            System.out.println("\tFile \"SniffAppointments.txt\" created!");
+        } else {
+            System.out.println("\tFile \"SniffAppointments.txt\" is not created!");
         }
+    }
+
+    public static void printArchiveFileCreated(boolean b) {
         showLine();
+        if (b) {
+            System.out.println(" Archive File created!");
+        } else {
+            System.out.println(" Archive File not created!");
+        }
     }
 
     public String readUserCommand() {
@@ -46,7 +41,6 @@ public class Ui {
         System.out.println(" Sorry, an error was encountered! Here is the error description:");
         SniffException.showError();
     }
-
 
     public void showWelcomeMessage() {
         showLine();
@@ -60,7 +54,7 @@ public class Ui {
     }
 
     public static void formatPrintList(int count, String description) {
-        System.out.println(count + DOT_THEN_SPACE + description);
+        System.out.println(" " + count + DOT_THEN_SPACE + description);
     }
 
     public static void printAppointmentAddedMessage(Appointment appointment) {
@@ -88,7 +82,6 @@ public class Ui {
         System.out.println("The appointment with this Uid has already been Unmarked successfully");
     }
     public static void showHelpMessage() {
-        showLine();
         System.out.println("These are the following Sniff commands available:\n"
                 + "Add consultation appointment:\n"
                 + " consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME\n"
@@ -106,7 +99,7 @@ public class Ui {
                 + " find a/ANIMAL_TYPE\n"
                 + " find t/APPOINTMENT_TYPE \n"
                 + " find uid/UID\n"
-                + "Marking or Unmarking an appointment:\n"
+                + "Mark or Unmark an appointment:\n"
                 + " mark uid/UID\n"
                 + " unmark uid/UID\n"
                 + "Exiting the program:\n"
@@ -114,6 +107,5 @@ public class Ui {
                 + "Additional notes:\n"
                 + " 1. DATES and TIMES format are in (YYYY-MM-DD) and (HH:MM) respectively\n"
                 + " 2. PRIORITY_LEVEL format is in (L, M, H)");
-        showLine();
     }
 }

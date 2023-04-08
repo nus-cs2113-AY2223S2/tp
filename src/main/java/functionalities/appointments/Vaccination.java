@@ -6,6 +6,8 @@ import functionalities.Owner;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * The Vaccination class represents a vaccination type appointment for an animal with its owner
@@ -19,7 +21,7 @@ public class Vaccination extends Appointment {
     protected String description = "vaccination";
 
     public Vaccination(String uid, Animal animal, Owner owner, LocalDate date, LocalTime time,
-                       String vaccine) throws SniffException{
+                       String vaccine) throws SniffException {
         super(uid, animal, owner);
         this.uid = uid;
         this.animal = animal;
@@ -35,6 +37,17 @@ public class Vaccination extends Appointment {
                 + " Date: " + date + " | Time: " + time + '\n'
                 + " Animal Name: " + animal.toString() + '\n'
                 + " Owner Name: " + owner.toString();
+    }
+
+    @Override
+    public boolean isDate(String dateDetails) throws SniffException {
+        try {
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate userDate = LocalDate.parse(dateDetails, dateFormatter);
+            return userDate.equals(date);
+        } catch (DateTimeParseException d) {
+            throw new SniffException(" Invalid Date format for find command!");
+        }
     }
 
     public String getVaccine() {
@@ -60,7 +73,7 @@ public class Vaccination extends Appointment {
                 animal.getAnimalType() + " | " + owner.getName() + " | " + owner.getContactNumber();
     }
 
-    public String setVaccine(String vaccine) throws SniffException{
+    public String setVaccine(String vaccine) throws SniffException {
         if (vaccine.isBlank()) {
             throw new SniffException(" Vaccine cannot be empty!");
         }
