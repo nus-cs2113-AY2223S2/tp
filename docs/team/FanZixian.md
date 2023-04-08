@@ -25,10 +25,8 @@ expense list according to user's requirement
     - This method simply traverse all expenses and review their attributes to decide whether to display or not.
     - Case sensitivity doesn't matter in this method.
 
-- **Classes (Basic):** `Time`, `Expense`, `WelcomeMessage`
+- **Classes (Basic):** `Time`, `Expense`
     - They are basic classes to support functionality.
-    - Credit: `WelcomeMessage` comes from the idea provided by [Display ASCII art in Java](https://www.baeldung.com/ascii-art-in-java), 
-which uses awt class to set up logo
 
 - **Test Files**
     - Add test cases for `sort`, `list`, `find`, `category` features.
