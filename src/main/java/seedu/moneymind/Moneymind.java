@@ -10,8 +10,11 @@ import seedu.moneymind.storage.Storage;
 import seedu.moneymind.command.Parser;
 import seedu.moneymind.string.Strings;
 import seedu.moneymind.ui.Ui;
+import static seedu.moneymind.string.Strings.DATA_FILE;
+import static seedu.moneymind.string.Strings.WHITE_SPACE;
 
 public class Moneymind {
+
     public static Scanner in;
     private Parser parser;
     private Storage storage;
@@ -20,11 +23,14 @@ public class Moneymind {
 
     public Moneymind() {
         this.parser = new Parser();
-        this.storage = new Storage("EventList.txt");
+        this.storage = new Storage(DATA_FILE);
         this.ui = new Ui();
         this.in = new Scanner(System.in);
     }
 
+    /**
+     * Runs the program until termination.
+     */
     public void run() {
         ui.greet();
         boolean isExit = false;
@@ -43,8 +49,8 @@ public class Moneymind {
         while (!isExit) {
             try {
                 getInput();
-                String refinedUserInput = userInput.trim().replaceAll(Strings.EXTRA_SPACE_REGEX_FORMAT, " ");
-
+                // remove extra spaces
+                String refinedUserInput = userInput.trim().replaceAll(Strings.EXTRA_SPACE_REGEX_FORMAT, WHITE_SPACE);
                 Command command = parser.parseNextCommand(refinedUserInput);
                 if (command.isExit()) {
                     ui.goodbye();
@@ -62,6 +68,9 @@ public class Moneymind {
         }
     }
 
+    /**
+     * Gets the user input and allows the user to enter a new input if the input is empty.
+     */
     private void getInput() {
         System.out.println(Strings.HORIZONTAL_LINE);
         System.out.println();
@@ -74,4 +83,5 @@ public class Moneymind {
     public static void main(String[] args) {
         new Moneymind().run();
     }
+    
 }

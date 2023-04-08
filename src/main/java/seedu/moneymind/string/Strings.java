@@ -2,6 +2,8 @@ package seedu.moneymind.string;
 
 public class Strings {
 
+    public static final String WHITE_SPACE = " ";
+    public static final String DATA_FILE = "EventList.txt";
     public static final String BUDGET_LIMIT_MESSAGE = "The budget limit is 999999999$, please give a smaller budget";
     public static final String INDEX_LIMIT_MESSAGE = "The limit for index is 999999999, please try again.";
     public static final String EXPENSE_LIMIT_MESSAGE = "The expense limit is 999999999$, give a smaller expense";
