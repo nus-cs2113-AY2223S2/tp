@@ -65,12 +65,9 @@ public abstract class Command {
      * Executes the command and print the relevant output message
      */
     public abstract CommandResult execute() throws RainyDayException;
-
-    //@@author azriellee
     public boolean isExit() {
         return isExit;
     }
-
     public void setExit() {
         isExit = true;
     }
