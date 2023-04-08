@@ -225,7 +225,8 @@ public class Parser {
         }
     }
 
-    public static Object[] parseEditRecipeIndex(String description, OperationType type) throws IncompleteInputException {
+    public static Object[] parseEditRecipeIndex(String description, OperationType type)
+            throws IncompleteInputException {
         String[] parsedDescription = description.split(" ",2);
         String errorLog = type.equals(OperationType.INGREDIENT) ?
                 StringLib.EDIT_INGREDIENT_ERROR : StringLib.EDIT_STEP_ERROR;
