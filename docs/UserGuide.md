@@ -62,7 +62,7 @@ Format: `category NAME [(optional) b/<budget number>]`
 * `NAME` is the name of the category.
 * `<budget number>` is the total amount of budget 
 set to the category of events.
-* The `b/` parameter is optional.
+* The `b/` parameter is optional. If there is no b/, the default budget is set to 0
 
 Example of usage:
 
