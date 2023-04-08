@@ -4,12 +4,9 @@ import data.Expense;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.stream.IntStream;
 
 import static common.MessageList.MESSAGE_DIVIDER;
-import static common.MessageList.MESSAGE_DIVIDER_LIST;
 import static common.MessageList.TAB;
-import static common.MessageList.OFFSET;
 
 
 public class CommandRes {
