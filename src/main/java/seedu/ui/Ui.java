@@ -73,9 +73,6 @@ public class Ui {
         showGreeting();
     }
 
-    public static String getWorkoutHelpMessage() {
-        return HELP_MESSAGE_WORKOUT;
-    }
 
     public static void showErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
