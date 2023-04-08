@@ -6,8 +6,11 @@ import java.util.Objects;
 import java.util.Scanner;
 
 import seedu.meal360.exceptions.IngredientNotFoundException;
-import seedu.meal360.exceptions.InvalidValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
+import seedu.meal360.exceptions.InvalidValueException;
+import seedu.meal360.exceptions.NoRecipeException;
+import seedu.meal360.exceptions.RecipeNotFoundInTagException;
+import seedu.meal360.exceptions.TagNotFoundException;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -364,7 +367,21 @@ public class Parser {
         }
     }
 
-    public String parseTagRecipe(String[] inputs, RecipeList recipeList) {
+    /**
+     * Extract inputs from users whether it is adding recipes to a tag or removing recipe from a tag.
+     * Then, proceed to add or remove the recipes from the tag, and returns a string whether
+     * the recipes are successfully add to or remove from the tag.
+     *
+     * @author junenita
+     * @param inputs array containing string of inputs
+     * @param recipeList list containing all recipes data
+     * @return a string whether successfully added or remove recipes from the tag
+     * @throws NoRecipeException If users entered invalid recipe.
+     * @throws RecipeNotFoundInTagException If users try to remove a recipe that is not in the tag.
+     * @throws TagNotFoundException If users try to remove recipes from a tag that has not been created.
+     */
+    public String parseTagRecipe(String[] inputs, RecipeList recipeList) throws RecipeNotFoundInTagException,
+            TagNotFoundException, NoRecipeException {
         String returnMessage;
         String tag;
         boolean isOnlyTagWordInCommand = inputs.length == 1;
@@ -382,7 +399,6 @@ public class Parser {
 
         isAddTag = commandString.indexOf(">>") == -1 && commandString.indexOf("<<") != -1;
         isRemoveTag = commandString.indexOf("<<") == -1 && commandString.indexOf(">>") != -1;
-
         if (!(isAddTag || isRemoveTag)) {
             throw new IllegalArgumentException("Please enter the command in the correct format.");
         } else if (isAddTag) {
@@ -397,7 +413,17 @@ public class Parser {
         return returnMessage;
     }
 
-    public String parseAddRecipeTag(String command, RecipeList recipeList) throws IndexOutOfBoundsException {
+    /**
+     * Extract the tag label and recipes. Then, proceed to add the recipes to the tag,
+     * and returns the tag label that users modified
+     *
+     * @author junenita
+     * @param command string contain tag label and recipes that users want to add
+     * @param recipeList list containing all recipes data
+     * @return tag label that is modified
+     * @throws NoRecipeException If users entered invalid recipe.
+     */
+    public String parseAddRecipeTag(String command, RecipeList recipeList) throws NoRecipeException {
         String tag;
         Recipe recipe;
         String[] recipesToTag;
@@ -419,15 +445,27 @@ public class Parser {
                 String errorMessage1 = "Unable to find the recipe: \"" + recipeName + "\" in the" + " tag.";
                 String errorMessage2 = "All the recipe before \"" + recipeName + "\" (if any) are "
                         + "successfully added from the tag.";
-                throw new IndexOutOfBoundsException(
-                        String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+                throw new NoRecipeException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
             recipeList.addRecipeToTag(tag, recipe);
         }
         return tag;
     }
 
-    public String parseRemoveRecipeTag(String command, RecipeList recipeList) throws IndexOutOfBoundsException {
+    /**
+     * Extract the tag label and recipes. Then, proceed to remove the recipes from the tag,
+     * and returns the tag label that users modified
+     *
+     * @author junenita
+     * @param command string contain tag label and recipes that users want to remove
+     * @param recipeList list containing all recipes data
+     * @return tag label that is modified
+     * @throws NoRecipeException If users entered invalid recipe.
+     * @throws RecipeNotFoundInTagException If users try to remove a recipe that is not in the tag.
+     * @throws TagNotFoundException If users try to remove recipes from a tag that has not been created.
+     */
+    public String parseRemoveRecipeTag(String command, RecipeList recipeList) throws RecipeNotFoundInTagException,
+            TagNotFoundException, NoRecipeException {
         String tag;
         Recipe recipe;
         String[] recipesToRemove;
@@ -443,8 +481,7 @@ public class Parser {
         tag = args[0].trim();
         isUnableToFindTag = !recipeList.tags.containsKey(tag);
         if (isUnableToFindTag) {
-            throw new IndexOutOfBoundsException(
-                    "There is no \"" + tag + "\" tag found. Please make sure you have "
+            throw new TagNotFoundException("There is no \"" + tag + "\" tag found. Please make sure you have "
                             + "entered the correct tag.");
         }
 
@@ -457,24 +494,33 @@ public class Parser {
                 String errorMessage1 = "Unable to find the recipe: \"" + recipeName + "\" in the" + " tag.";
                 String errorMessage2 = "All the recipe before \"" + recipeName + "\" (if any) are "
                         + "successfully removed from the tag.";
-                throw new IndexOutOfBoundsException(
-                        String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+                throw new NoRecipeException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
 
             try {
                 recipeList.removeRecipeFromTag(tag, recipe);
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException | RecipeNotFoundInTagException e) {
                 String errorMessage1 = "Unable to find the recipe: \"" + recipeName + "\" in the" + " tag.";
                 String errorMessage2 = "All the recipe before \"" + recipeName + "\" (if any) are "
                         + "successfully removed from the tag.";
-                throw new IndexOutOfBoundsException(
-                        String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+                throw new RecipeNotFoundInTagException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
         }
         return tag;
     }
 
-    public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) {
+    /**
+     * Extract the filters from users' input. Then, proceed to extract the recipes by the filters.
+     *
+     * @author junenita
+     * @param inputs array containing string of inputs, including the filter
+     * @param recipeList list containing all recipes data
+     * @return list of recipes that are filtered by the input
+     * @throws NoRecipeException If users entered invalid recipe.
+     * @throws TagNotFoundException If users try to remove recipes from a tag that has not been created.
+     */
+    public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) throws TagNotFoundException,
+            NoRecipeException {
         String[] filters;
         RecipeList recipeListToPrint;
         boolean hasTagArgs = inputs.length > 2;
@@ -487,7 +533,7 @@ public class Parser {
         } else {
             isTag = inputs[1].equals("/t");
             if (isTag && !hasTagArgs) {
-                throw new IllegalArgumentException("Please include at least a tag.");
+                throw new TagNotFoundException("Please include at least a tag.");
             } else if (isTag) {
                 firstArgsIndex = 2;
             }
@@ -540,9 +586,17 @@ public class Parser {
         return recipes.get(recipeIndex - 1);
     }
 
-    public Recipe parseRandomRecipe(RecipeList recipes) throws NullPointerException {
+    /**
+     * Returns a Recipe object that contain a recipe's name and ingredients.
+     *
+     * @author junenita
+     * @param recipes an object containing all recipes data
+     * @return a random recipe from the input recipes.
+     * @throws NoRecipeException If recipes.size() == 0.
+     */
+    public Recipe parseRandomRecipe(RecipeList recipes) throws NoRecipeException {
         if (recipes.size() == 0) {
-            throw new NullPointerException("There is no recipe in the list for random.");
+            throw new NoRecipeException("There is no recipe in the list for random.");
         }
         return recipes.randomRecipe();
     }

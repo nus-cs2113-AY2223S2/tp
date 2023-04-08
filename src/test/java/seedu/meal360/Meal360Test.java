@@ -16,6 +16,9 @@ import org.junit.jupiter.api.Test;
 import seedu.meal360.exceptions.IngredientNotFoundException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
 import seedu.meal360.exceptions.InvalidValueException;
+import seedu.meal360.exceptions.NoRecipeException;
+import seedu.meal360.exceptions.RecipeNotFoundInTagException;
+import seedu.meal360.exceptions.TagNotFoundException;
 import seedu.meal360.storage.Database;
 
 class Meal360Test {
@@ -838,8 +841,7 @@ class Meal360Test {
         WeeklyPlan weeklyPlan = new WeeklyPlan();
         weeklyPlan.put("salad", 1);
         ui.printWeeklyPlan(weeklyPlan);
-        assertEquals(
-                ui.formatMessage("Here is your weekly plan:") + System.lineSeparator() + ui.formatMessage(
+        assertEquals(ui.formatMessage("Here is your weekly plan:") + System.lineSeparator() + ui.formatMessage(
                         "salad x1"), outContent.toString().trim());
     }
 
@@ -849,89 +851,106 @@ class Meal360Test {
         RecipeList recipeListToPrint;
         String[] inputs;
 
-        inputs = new String[]{"list"};
-        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
-        assertEquals(4, recipeListToPrint.size());
-        assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
-        assertEquals(4, recipeListToPrint.get(1).getNumOfIngredients());
-        assertEquals(3, recipeListToPrint.get(2).getNumOfIngredients());
+        try {
+            inputs = new String[]{"list"};
+            recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+            assertEquals(4, recipeListToPrint.size());
+            assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
+            assertEquals(4, recipeListToPrint.get(1).getNumOfIngredients());
+            assertEquals(3, recipeListToPrint.get(2).getNumOfIngredients());
 
-        inputs = new String[]{"list", "tomato", "sauce"};
-        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
-        assertEquals(1, recipeListToPrint.size());
-        assertEquals(4, recipeListToPrint.get(0).getNumOfIngredients());
-        assertEquals("pizza", recipeListToPrint.get(0).getName());
+            inputs = new String[]{"list", "tomato", "sauce"};
+            recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+            assertEquals(1, recipeListToPrint.size());
+            assertEquals(4, recipeListToPrint.get(0).getNumOfIngredients());
+            assertEquals("pizza", recipeListToPrint.get(0).getName());
 
-        inputs = new String[]{"list", "salad", "&&", "tomato"};
-        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
-        assertEquals(1, recipeListToPrint.size());
-        assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
-        assertEquals("salad", recipeListToPrint.get(0).getName());
+            inputs = new String[]{"list", "salad", "&&", "tomato"};
+            recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+            assertEquals(1, recipeListToPrint.size());
+            assertEquals(3, recipeListToPrint.get(0).getNumOfIngredients());
+            assertEquals("salad", recipeListToPrint.get(0).getName());
 
-        inputs = new String[]{"list", "salad", "&&", "pizza"};
-        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
-        assertEquals(0, recipeListToPrint.size());
+            inputs = new String[]{"list", "salad", "&&", "pizza"};
+            recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+            assertEquals(0, recipeListToPrint.size());
+        } catch (Exception e) {
+            assert false;
+        }
     }
 
     @Test
     public void testListTagAndAddTag() {
-        RecipeList recipeListToPrint;
-        String[] inputs;
-        // check add tag (1)
-        String[] addTagInputs = new String[]{"tag", "breakfast", "<<", "salad"};
-        parser.parseTagRecipe(addTagInputs, recipes);
+        try {
+            RecipeList recipeListToPrint;
+            String[] inputs;
+            // check add tag (1)
+            String[] addTagInputs = new String[]{"tag", "breakfast", "<<", "salad"};
+            parser.parseTagRecipe(addTagInputs, recipes);
 
-        // check list tag (1)
-        inputs = new String[]{"list", "/t", "breakfast"};
-        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
-        assertEquals(recipeListToPrint.size(), 1);
-        assertEquals(recipeListToPrint.get(0).getName(), "salad");
+            // check list tag (1)
+            inputs = new String[]{"list", "/t", "breakfast"};
+            recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+            assertEquals(recipeListToPrint.size(), 1);
+            assertEquals(recipeListToPrint.get(0).getName(), "salad");
 
-        // add tag (2)
-        addTagInputs = new String[]{"tag", "breakfast", "<<", "pizza"};
-        parser.parseTagRecipe(addTagInputs, recipes);
+            // add tag (2)
+            addTagInputs = new String[]{"tag", "breakfast", "<<", "pizza"};
+            parser.parseTagRecipe(addTagInputs, recipes);
 
-        addTagInputs = new String[]{"tag", "western", "<<", "burger"};
-        parser.parseTagRecipe(addTagInputs, recipes);
+            addTagInputs = new String[]{"tag", "western", "<<", "burger"};
+            parser.parseTagRecipe(addTagInputs, recipes);
 
-        // list tag (2)
-        inputs = new String[]{"list", "/t", "breakfast"};
-        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
-        assertEquals(recipeListToPrint.size(), 2);
+            // list tag (2)
+            inputs = new String[]{"list", "/t", "breakfast"};
+            recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+            assertEquals(recipeListToPrint.size(), 2);
 
-        inputs = new String[]{"list", "/t", "breakfast", "&&", "western"};
-        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
-        assertEquals(recipeListToPrint.size(), 0);
+            inputs = new String[]{"list", "/t", "breakfast", "&&", "western"};
+            recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+            assertEquals(recipeListToPrint.size(), 0);
 
-        // add tag (3)
-        addTagInputs = new String[]{"tag", "western", "<<", "pizza"};
-        parser.parseTagRecipe(addTagInputs, recipes);
+            // add tag (3)
+            addTagInputs = new String[]{"tag", "western", "<<", "pizza"};
+            parser.parseTagRecipe(addTagInputs, recipes);
 
-        // list tag (3)
-        inputs = new String[]{"list", "/t", "breakfast", "&&", "western"};
-        recipeListToPrint = parser.parseListRecipe(inputs, recipes);
-        assertEquals(recipeListToPrint.size(), 1);
-        assertEquals(recipeListToPrint.get(0).getName(), "pizza");
+            // list tag (3)
+            inputs = new String[]{"list", "/t", "breakfast", "&&", "western"};
+            recipeListToPrint = parser.parseListRecipe(inputs, recipes);
+            assertEquals(recipeListToPrint.size(), 1);
+            assertEquals(recipeListToPrint.get(0).getName(), "pizza");
+        } catch (Exception e) {
+            assert false;
+        }
     }
 
     @Test
     public void testPrintAddTagMessage() {
         String[] addTagInputs = new String[]{"tag", "breakfast", "<<", "salad"};
-        String addTagReturnMessage = parser.parseTagRecipe(addTagInputs, recipes);
-        ui.printTagMessage(addTagReturnMessage);
-        assertEquals(ui.formatMessage("You have successfully added the recipe(s) to \"breakfast\" tag."),
+        try {
+            String addTagReturnMessage = parser.parseTagRecipe(addTagInputs, recipes);
+            ui.printTagMessage(addTagReturnMessage);
+            assertEquals(ui.formatMessage("You have successfully added the recipe(s) to \"breakfast\" tag."),
                 outContent.toString().trim());
+        } catch (Exception e) {
+            assert false;
+        }
     }
 
     @Test
     public void testPrintRemoveTagMessage() {
         String[] addTagInputs = new String[]{"tag", "breakfast", "<<", "salad"};
-        parser.parseTagRecipe(addTagInputs, recipes);
-        String[] removeTagInputs = new String[]{"tag", "breakfast", ">>", "salad"};
-        String removeTagReturnMessage = parser.parseTagRecipe(removeTagInputs, recipes);
-        ui.printTagMessage(removeTagReturnMessage);
-        assertEquals(ui.formatMessage("You have successfully removed the recipe(s) from \"breakfast\" tag."),
-                outContent.toString().trim());
+        try {
+            parser.parseTagRecipe(addTagInputs, recipes);
+            String[] removeTagInputs = new String[]{"tag", "breakfast", ">>", "salad"};
+            String removeTagReturnMessage = parser.parseTagRecipe(removeTagInputs, recipes);
+            ui.printTagMessage(removeTagReturnMessage);
+            assertEquals(ui.formatMessage("You have successfully removed the recipe(s) from \"breakfast\" tag."),
+                    outContent.toString().trim());
+        } catch (Exception e) {
+            assert false;
+        }
+
     }
 
     @Test
@@ -940,26 +959,31 @@ class Meal360Test {
 
         //check exception
         String[] noArgInputs = new String[]{"list", "/t"};
-        assertThrows(IllegalArgumentException.class, () -> parser.parseListRecipe(noArgInputs, recipes));
+        assertThrows(TagNotFoundException.class, () -> parser.parseListRecipe(noArgInputs, recipes));
 
         String[] notFoundTagInputs1 = new String[]{"list", "/t", "/t"};
-        assertThrows(NullPointerException.class, () -> parser.parseListRecipe(notFoundTagInputs1, recipes));
+        assertThrows(TagNotFoundException.class, () -> parser.parseListRecipe(notFoundTagInputs1, recipes));
 
         String[] notFoundTagInputs2 = new String[]{"list", "/t", "phone", "&&", "computer"};
-        assertThrows(NullPointerException.class, () -> parser.parseListRecipe(notFoundTagInputs2, recipes));
+        assertThrows(TagNotFoundException.class, () -> parser.parseListRecipe(notFoundTagInputs2, recipes));
 
         String[] beforeAddTagInputs = new String[]{"list", "/t", "breakfast"};
-        assertThrows(NullPointerException.class, () -> parser.parseListRecipe(beforeAddTagInputs, recipes));
+        assertThrows(TagNotFoundException.class, () -> parser.parseListRecipe(beforeAddTagInputs, recipes));
 
         // add tag for testing
-        inputs = new String[]{"tag", "breakfast", "<<", "salad"};
-        parser.parseTagRecipe(inputs, recipes);
-        inputs = new String[]{"tag", "breakfast", ">>", "salad"};
-        parser.parseTagRecipe(inputs, recipes);
+        try {
+            inputs = new String[]{"tag", "breakfast", "<<", "salad"};
+            parser.parseTagRecipe(inputs, recipes);
+            inputs = new String[]{"tag", "breakfast", ">>", "salad"};
+            parser.parseTagRecipe(inputs, recipes);
 
-        String[] nothingInTagInputs = new String[]{"list", "/t", "breakfast"};
-        ui.listRecipe(parser.parseListRecipe(nothingInTagInputs, recipes));
-        assertEquals(ui.formatMessage("There is nothing to list."), outContent.toString().trim());
+            String[] nothingInTagInputs = new String[]{"list", "/t", "breakfast"};
+
+            ui.listRecipe(parser.parseListRecipe(nothingInTagInputs, recipes));
+            assertEquals(ui.formatMessage("There is nothing to list."), outContent.toString().trim());
+        } catch (Exception e) {
+            assert false;
+        }
     }
 
     @Test
@@ -967,36 +991,48 @@ class Meal360Test {
         String[] inputs;
         Recipe invalidRecipe = new Recipe("invalid Recipe", new HashMap<>(1, 1));
 
-        inputs = new String[]{"tag", "western", "<<", "burger"};
-        parser.parseTagRecipe(inputs, recipes);
-        inputs = new String[]{"tag", "western", "<<", "pizza"};
-        parser.parseTagRecipe(inputs, recipes);
+        try {
+            inputs = new String[]{"tag", "western", "<<", "burger"};
+            parser.parseTagRecipe(inputs, recipes);
+            inputs = new String[]{"tag", "western", "<<", "pizza"};
+            parser.parseTagRecipe(inputs, recipes);
+        } catch (Exception e) {
+            assert false;
+        }
 
         //exception
-        assertThrows(IndexOutOfBoundsException.class,
+        assertThrows(RecipeNotFoundInTagException.class,
                 () -> recipes.removeRecipeFromTag("western", invalidRecipe));
         String[] invalidTagInputs = new String[]{"tag", "random", "tag", ">>", "burger"};
-        assertThrows(IndexOutOfBoundsException.class, () -> parser.parseTagRecipe(invalidTagInputs, recipes));
+        assertThrows(TagNotFoundException.class, () -> parser.parseTagRecipe(invalidTagInputs, recipes));
 
-        String[] noRecipeInTagInputs = new String[]{"tag", "breakfast", ">>", "pizza"};
-        assertThrows(IndexOutOfBoundsException.class,
+        String[] noRecipeInTagInputs = new String[]{"tag", "western", ">>", "random"};
+        assertThrows(NoRecipeException.class,
                 () -> parser.parseTagRecipe(noRecipeInTagInputs, recipes));
 
-        inputs = new String[]{"tag", "western", ">>", "pizza"};
-        parser.parseTagRecipe(inputs, recipes);
-        assertEquals(recipes.tags.get("western").size(), 1);
+        try {
+            inputs = new String[]{"tag", "western", ">>", "pizza"};
+            parser.parseTagRecipe(inputs, recipes);
+            assertEquals(recipes.tags.get("western").size(), 1);
+        } catch (Exception e) {
+            assert false;
+        }
     }
 
     @Test
     public void testRandomRecipe() {
         // no recipe in the lists
         RecipeList blankRecipeList = new RecipeList();
-        assertThrows(NullPointerException.class, () -> parser.parseRandomRecipe(blankRecipeList));
+        assertThrows(NoRecipeException.class, () -> parser.parseRandomRecipe(blankRecipeList));
 
         // general case
-        Recipe randomRecipe1 = parser.parseRandomRecipe(recipes);
-        assertNotNull(randomRecipe1);
-        assertNotNull(recipes.randomRecipe());
+        try {
+            Recipe randomRecipe1 = parser.parseRandomRecipe(recipes);
+            assertNotNull(randomRecipe1);
+            assertNotNull(recipes.randomRecipe());
+        } catch (Exception e) {
+            assert false;
+        }
     }
 
     //@@author jaredoong
