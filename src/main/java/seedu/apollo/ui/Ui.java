@@ -189,8 +189,7 @@ public class Ui {
      * @param calendar Contains details about the user's lessons during the week.
      */
     public void printWeek(TaskList taskList, Calendar calendar, LocalDate startWeek, LocalDate endWeek) {
-        LocalDate curr = startWeek;
-        int weekNumber = getWeekNumber(curr);
+        int weekNumber = getWeekNumber(startWeek);
         System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
 
         if (weekNumber == 0) {
@@ -205,7 +204,7 @@ public class Ui {
             System.out.println("Week " + weekNumber);
         }
 
-        printEachDayInWeek(taskList, calendar, curr, weekNumber);
+        printEachDayInWeek(taskList, calendar, startWeek, weekNumber);
     }
 
     private void printEachDayInWeek(TaskList taskList, Calendar calendar, LocalDate curr, int weekNumber) {
@@ -214,11 +213,11 @@ public class Ui {
             System.out.println(determineDay(i) + "\n");
 
             // lessons
-            ArrayList<CalendarModule> modulesOnDay = calendar.getModulesForDay(weekNumber, i);
-            if (modulesOnDay.size() == 0) {
+            ArrayList<CalendarModule> lessonsOnDay = calendar.getLessonsForDay(weekNumber, i);
+            if (lessonsOnDay.size() == 0) {
                 System.out.println("There are no lessons on this day.");
             } else {
-                printLessonsOnDay(modulesOnDay);
+                printLessonsOnDay(lessonsOnDay);
             }
             System.out.println();
 
@@ -246,10 +245,8 @@ public class Ui {
 
     private void printTasksOnDay(TaskList tasksOnDay) {
         System.out.println("Tasks:");
-        int count = 0;
         for (Task task : tasksOnDay) {
-            count++;
-            System.out.println(count + ". " + task);
+            System.out.println(" - " + task);
         }
     }
 
@@ -266,8 +263,6 @@ public class Ui {
 
     /**
      * Prints the tasks that clashes with deadline.
-     *
-     * @param clashTasks
      */
     private static void printClashWithTasks(TaskList clashTasks) {
         if (clashTasks.size() != 0) {
@@ -280,7 +275,6 @@ public class Ui {
 
     /**
      * Prints the events that clashes with deadline.
-     * @param clashLessons
      */
     private static void printClashWithLessons(ArrayList<CalendarModule> clashLessons) {
         if (clashLessons.size() != 0) {
@@ -975,7 +969,7 @@ public class Ui {
 
     public void printListModuleWithoutFlagsHelpMessage(){
         System.out.println("Shows the list of modules you are taking for this semester, " +
-                "alongisde total Modular Credits (MC).\n"+
+                "alongside total Modular Credits (MC).\n"+
                 "The list will be automatically sorted in alphabetical order according to EduRec standards.\n" +
                 "Format: listmod\n");
     }
@@ -1084,7 +1078,7 @@ public class Ui {
                 "you can use flags.\n"
                 +  "Format: showmod MODULE_CODE -FLAG\n" + "Example: showmod CS1010 -st\n\n" +
                 "NOTE: Different modules have different lesson types.\n" +
-                "It is recomended to run `showmod MODULE_CODE` to see the lesson types available for that module.\n");
+                "It is recommended to run `showmod MODULE_CODE` to see the lesson types available for that module.\n");
     }
 
     public void printShowModuleHelpMessage(){

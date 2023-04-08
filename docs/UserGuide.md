@@ -33,11 +33,14 @@ If you can type fast, Apollo can get your timetable management done faster than 
       + [`delmod lessons` - Deleting a lesson from a module](#delmod-lessons---deleting-a-lesson-from-a-module)
       + [`show mod` - Showing a module](#showmod---show-information-of-a-module)
       + [`show mod lessons` - Showing a lesson](#showmod-lessons---show-information-of-a-lesson-from-a-module)
+
     + [Utility Commands](#utility-commands)
       + [`help` - Viewing help](#help---viewing-help)
       + [`help` - For help with a specific command](#help---for-help-with-specific-commands)
+      + [`week` -Viewing weekly schedule](#week---viewing-weekly-schedule)
       + [`bye` - Exiting the program](#bye---exiting-the-program)
     + [Loading and saving of data](#loading-and-saving-of-data)
+
 4. [FAQ](#faq)
 
 ## Quick Start
@@ -679,7 +682,7 @@ for Apollo will be needed to be updated manually by the developers for each seme
 **Q**: Does Apollo have data for all modules available in NUS?
 
 **A**: No. Apollo only has data for modules that are available in the current semester. Additionally, modules which have 
-timetables which fall outside of the official NUS Semester 2 timetable will not be available in Apollo. These includes
+timetables which fall outside of the official NUS Semester 2 timetable will not be available in Apollo. These include
 certain modules such as Special Term Modules and iBloc Modules (CS1010x).
 
 **Q**: Should I edit the save file manually?

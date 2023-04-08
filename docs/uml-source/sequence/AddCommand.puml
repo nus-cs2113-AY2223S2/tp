@@ -15,7 +15,7 @@ participant ":Calendar" as Calendar
 participant ":Ui" as Ui
 participant ":Storage" as Storage
 
-User -> Apollo : "event concert /from 2023-06-06T20:00 /to 2023-06-06T22:00"
+User -> Apollo : "event concert -from 05-06-2023-20:00 -to 05-06-2023-22:00"
 activate Apollo
 Apollo -> Parser : getCommand()
 activate Parser

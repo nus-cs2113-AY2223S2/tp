@@ -85,7 +85,10 @@ add Modules).
 Further elaboration on how the individual `Command` subclasses work can be found under [Implementation](#implementation)
 
 ### Storage Component
+**API:** `Storage.java`  
+Here is a class diagram of the 'Storage component'
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)
+
 
 ## Implementation
 
@@ -108,7 +111,7 @@ It creates a ConsoleHandler and a FileHandler to handle logging.
 
 **Step 2. Override the `execute()` method:**
 The `execute()` method is overridden to execute the list task
-functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+functionality. It takes the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
 <!--@@author T-Wan-Lin -->
@@ -158,14 +161,15 @@ Given below is an example usage scenario and how the add task mechanism behaves 
 
 **Step 1.**
 
-The user enters the command `event concert /from 2023-06-06T20:00 /to 2023-06-06T22:00`.  
-This is to add a `Task` with the description "concert" on Jun 6 2023 from 8-10pm to their TaskList.
-The String containing the command is parsed in `Parser` and determined to be an `AddCommand`.
+The user enters the command "`event concert -from 05-06-2023-20:00 -to 05-06-2023-22:00`".  
+This is to add a `Task` with the description "concert" on Jun 5 2023 from 8-10pm to their TaskList.
+`Apollo` calls `Parser#getCommand()`, where the user command String is parsed and determined to be an `AddCommand`.
 
 **Step 2.**
 
-Within `Parser`, an `AddCommand` is initialised with the String `command` "event".
-The remaining params of the command are further parsed into Strings: `desc` "concert" (description), `from`
+Within `Parser`, an `AddCommand` is initialised and a logger for the command is set up. 
+Variables within the `AddCommand` are then assigned. The String `command` is set to "event".
+The rest of the user's command are further parsed into Strings: `desc` "concert" (description), `from`
 "2023-06-06T20:00" (start date), and `to` "2023-06-06T22:00" (end date) based on the delimiters "/from" and "/to".
 - For `command` "deadline", remaining params are parsed into `desc` and `by` (due date) based on the delimiter "/by".
 - For `command` "todo", all remaining params are parsed into `desc`.
@@ -179,34 +183,40 @@ In the event of the following, an error message is printed and no more steps are
 
 **Step 4.**
 
-`Command#execute()` is called. This in turn calls `AddCommand#addTask()`.
-`addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into LocalDateTimes.
+`Apollo` calls `Command#execute()`, which is overwritten by `AddCommand#execute()`. 
+This in turn calls `AddCommand#addTask()`.
+
+**Step 5.**
+`addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into `LocalDateTime`s.
+- For `Deadline`, the String `by` will be parsed into a `LocalDateTime`.
+- For `Todo`, no dates need to be parsed.
 In the event of the following, an error message is printed and no more steps are executed.
 - String for date cannot be parsed into LocalDateTime (wrong format of input)
 - Task occurs entirely before the current date
 - (for `Event`) Start date occurs after end date
 
-**Step 5.**
-
-`addTask()` checks if the initialised `Event` clashes with any existing tasks. If so,
-`Ui#printClashingEventMessage()` is called to print a warning message.
-
 **Step 6.**
 
-Similarly, `addTask()` also checks if the initialised `Event` clashes with any existing lessons. If so,
-`Ui#printClashingEventModuleMessage()` is called to print a warning message.
+`addTask()` checks if the initialised `Task` clashes with any existing tasks. If so,
+`Ui#printClashingEventMessage()` is called to print a warning message.
 
 **Step 7.**
 
-The initialised `Event` is added to the `TaskList`. Return to `AddCommand#execute`.
+Similarly, `addTask()` also checks if the initialised `Task` clashes with any existing lessons. If so,
+`Ui#printClashingEventModuleMessage()` is called to print a warning message.
 
 **Step 8.**
 
-If the Task has been added successfully, `Ui#printAddMessage()` prints a success message.
+The initialised `Task` is added to the `TaskList`. Return to `execute()`.
 
 **Step 9.**
 
-`Storage#updateTask()` is called to update the local save file to reflect the changes.
+`execute()` ensures that the `Task` has been added successfully, 
+then calls `Ui#printAddMessage()` which prints a success message.
+
+**Step 10.**
+
+`execute()` calls `Storage#updateTask()` to update the local save file `save.txt` to reflect the changes.
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddCommand-AddCommand__for_Tasks_.png?raw=true)
 
@@ -294,19 +304,9 @@ It takes in the necessary parameters, including the `TaskList`, `Ui`, `Storage`,
 The first step in the `execute()` method is to find out how to modify the
 TaskList. In this case, the task at a user-provided index is to be marked as done.
 
-<<<<<<< HEAD
 **Step 5: Find the task to mark as done:**
 
-Using the parameter `taskIndex`, the `execute()` method will iterate to that
-index in the `TaskList` and call the `setAsDone()` method of the `Task` class, setting the boolean `isDone` to `true`.
-If the index is outside the bounds of the size of the `TaskList`, a `NumberFormatException` is thrown,
-calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
-
-**Step 6: Print the confirmation message:**
-
-A confirmation message is printed to the user indicating what task has been
-=======
-Step 5: Find the task to mark as done: The `execute()` method will perform a call to the method `markTask()`
+The `execute()` method will perform a call to the method `markTask()`
 that takes in the `TaskList` and `Ui` as parameters. It will iterate to the user-given index, and it will first check
 the task completeness status. If it is not, call the `setAsDone()` method of the `Task` class, setting the boolean `isDone`
 to `true`, proceeding on to step 6a. If the task the user is trying to mark is done from previous iterations
@@ -314,12 +314,13 @@ to `true`, proceeding on to step 6a. If the task the user is trying to mark is d
 If the index is outside the bounds of the size of the `TaskList`, a `NumberFormatException` is thrown,
 calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
 
-Step 6a: Print the confirmation message: A confirmation message is printed to the user indicating what task has been
->>>>>>> master
+**Step 6: Print the confirmation message:**
+
+Step 6a: A confirmation message is printed to the user indicating what task has been
 successfully marked as done from the user-provided index of the `TaskList`. The message includes the task type,
 description (and date of the task deleted if the task is either an event or a deadline).The execution will proceed to step 7.
 
-Step 6b: Apollo will print an message to the user to state that the task was marked as done previously. The execution of the mark
+Step 6b: Apollo will print a message to the user to state that the task was marked as done previously. The execution of the mark
 command will stop here.
 
 **Step 7: Update the storage:**
@@ -378,7 +379,7 @@ description (and date of the task deleted if the task is either an event or a de
 
 **Step 6b:**
 
-Apollo will print an message to the user to state that the task was never marked as done. The execution of the unmark
+Apollo will print a message to the user to state that the task was never marked as done. The execution of the unmark
 command will stop here.
 
 **Step 7: Update the storage:**
@@ -416,7 +417,7 @@ It creates a ConsoleHandler and a FileHandler to handle logging.
 **Step 3. Override the `execute()` method:**
 
 The `execute()` method is overridden to execute the find task
-functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+functionality. It takes the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
 **Step 4. Find the list of tasks containing the `KEYWORD`:**
@@ -471,7 +472,7 @@ It creates a ConsoleHandler and a FileHandler to handle logging.
 **Step 4. Override the `execute()` method:**
 
 The `execute()` method is overridden to execute the find task
-functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+functionality. It takes the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
 **Step 5.**
@@ -514,7 +515,7 @@ It creates a ConsoleHandler and a FileHandler to handle logging.
 **Step 2. Override the `execute()` method:**
 
 The `execute()` method is overridden to execute the list module
-functionality. It takes the necessary parameters, including the `Tasklist`, `Ui`, `Storage`, `ModuleList`,
+functionality. It takes the necessary parameters, including the `TaskList`, `Ui`, `Storage`, `ModuleList`,
 `allModule`, `calendar`.
 
 **Step 3. Iterate through the list of modules:**
@@ -588,7 +589,7 @@ with only the `moduleCode` as the parameter.
 
 A confirmation message is printed to the user indicating the module and lesson 
 information that the user has added into their module list. The message will include the `ModuleCode`, `LessonTypes`
-of that user has added, `Classnumber` of the `LessonType` that user has added and `Day` and `Time` of the lesson.
+of that user has added, `ClassNumber` of the `LessonType` that user has added and `Day` and `Time` of the lesson.
 
 #### For when user request to show a specific lesson of the module (e.g. CS2113 -tut) in their timetable:
 
@@ -832,8 +833,8 @@ Step 4. Find the module to display information: The first step in the `execute()
 `Module` class using the module code parameter `cs2113` by using the `findModule()` function of the `Module` class.
 
 Step 5. Print the confirmation message: A confirmation message is printed to the user indicating the information
-of the module requested by the user. The message includes the `ModuleCode`, `LessonTypes` of the module, `Classnumber` 
-of each `lessonTypes` and `Day` and `Time` of the existing `Classnumber`.
+of the module requested by the user. The message includes the `ModuleCode`, `LessonTypes` of the module, `ClassNumber` 
+of each `lessonTypes` and `Day` and `Time` of the existing `ClassNumber`.
 
 #### For when a user request to show a specific lessonType of the module (e.g. CS2113 -tut):
 
@@ -869,10 +870,19 @@ of the module requested by the user. The message includes the `ModuleCode`, the 
 [*Return to TOC*](#table-of-contents)
 
 ## *Utility Commands*
-
+<!--@@author PoobalanAatmikaLakshmi -->
 ### Viewing Help
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/HelpCommand-HelpCommand.png?raw=true)
+This is a sequence diagram of a specific help command: deleteHelpCommand 
+This command allows the user to see how to use the `delete` command 
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteHelpCommand-DeleteHelpCommand.png?raw=true)
+Given below is an example usage scenario and how the specific help mechanism behaves at each step.
 
+Step 1. The user executes the command `help delete`. It is parsed by Parser class which then creates a new `DeleteHelpCommand`.
+
+Step 2.The `execute()` method of `DeleteHelpCommand` is called.
+
+Step 3. The `printDeleteHelpMessage()` method of `Ui` class is called. 
+Instructions on how to use the `delete` command are printed out.
 <!--@@author honglinshang -->
 
 [*Return to TOC*](#table-of-contents)
@@ -883,25 +893,37 @@ It is facilitated by `WeekCommand` which is an extension of the `Command` class.
 
 Given below is an example usage scenario and how the add task mechanism behaves at each step.
 
-Step 1. The user executes the command `week`. It is parsed by the `Parser` class which then creates a new `WeekCommand`.
+**Step 1.**
+The user executes the command "`week`".
+`Apollo` calls `Parser#getCommand()`, where the user command String is parsed and determined to be a `WeekCommand`.
+A new `WeekCommand` is created and sent back to `Apollo`.
 
-Step 2. The `execute()` method of `WeekCommand` is called. 
+**Step 2.**
+`Apollo` calls `Command#execute()`, which is overwritten by `WeekCommand#execute()`. 
 
-Step 3. The dates of Monday and Sunday of the current week (`startWeek`, `endWeek`) are determined using `LocalDate`.
+**Step 3.** 
+`execute()` determines the dates of Monday and Sunday of the current week (`startWeek`, `endWeek`) using `LocalDate`.
 
-Step 4. The parameters `startWeek`, `endWeek`, `taskList` (all tasks), and `calendar` (all lessons) are passed into `Ui`
+**Step 4.** 
+`execute()` calls `Ui#printWeek()`, 
+which passes the parameters `startWeek`, `endWeek`, `taskList` (all tasks), and `calendar` (all lessons) into `Ui`
 
-Step 5. Starting from Monday, the lessons and tasks occurring on each day of the week are printed out. 
-- Step 5a. The day of week is printed using the `determineDay()` method in `DayTypeUtil`. 
-- Step 5b. All lessons on that day are stored in an `ArrayList<CalendarModule> lessonsOnDay` using `calender.get()`. 
-  If no lessons occur on that day, Step 5c is skipped.
-- Step 5c. `lessonsOnDay` is passed into the method `printLessonsOnDay()` in `Ui`. 
-  The schedule of each lesson is stored in a new `Timetable`, then printed out in the desired format. 
-- Step 5d. Similarly, All tasks on that day are stored in an `TaskList tasksOnDay` using `taskList.getTasksOnDay()`.
-  If no lessons occur on that day, Step 5e is skipped.
-- Step 5e. `tasksOnDay` is passed into the method `printTasksOnDay()` in `Ui`. Each task is printed out.
-- Step 5f. The current day is increased to the following day.
-- Step 5g. Go back to Step 5a, stop after all lessons and tasks on Sunday have been printed. 
+**Step 5.** 
+`printWeek()` calls `SemesterUtils#getWeekNumber()` and prints out a message indicating the current week. 
+
+**Step 6.**
+`printWeek()` calls `Ui#printEachDayInWeek()`, 
+which prints out the lessons and tasks occurring on each day of the current week, starting from Monday, as follows: 
+1. The day of week is printed using the `DayTypeUtil#determineDay()`. 
+2. All lessons on the day are stored in an `ArrayList<CalendarModule> lessonsOnDay` using `calender.getModulesForDay()`. 
+   If no lessons occur on that day, the next step is skipped. 
+3. `modulesOnDay` is passed into the method `Ui#printLessonsOnDay()`. 
+   The schedule of each lesson is stored in a new `Timetable`, then printed out in the desired format. 
+4. Similarly, All tasks on the day are stored in an `TaskList tasksOnDay` using `taskList.getTasksOnDate()`.
+   If no tasks occur on that day, the next step is skipped.
+5. `tasksOnDay` is passed into the method `Ui#printTasksOnDay()`. Each task is printed out. 
+6. The current day is increased to the following day. 
+7. Go back to the first step, stop after all lessons and tasks on Sunday have been printed. 
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Week-WeekCommand.png?raw=true)
 
@@ -912,7 +934,7 @@ Step 5. Starting from Monday, the lessons and tasks occurring on each day of the
 ### Exiting the Program
 
 The `bye` command allows the user to exit the program. It is facilitated by `ExitCommand` which is an extension of the `Command` class.
-The `ExitCommand` class overrides the `execute()` method from the `Command` class and is only excuted when the user inputs `bye`
+The `ExitCommand` class overrides the `execute()` method from the `Command` class and is only executed when the user inputs `bye`
 with no additional parameters (e.g `bye bye` would not exit the program).
 
 Given below is an example usage scenario and how the add task mechanism behaves at each step.

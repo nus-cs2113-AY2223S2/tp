@@ -93,6 +93,7 @@ HelpCommand <|-- SpecificHelpCommand
 Storage <-- Command : updates <
 Ui <-- Command : calls for printing <
 TaskList "1 " <-- Command : "reads and\n writes to" <
+abstract class "{abstract}\nTask" as Task
 Task "*" <--* "1" TaskList : contains <
 Calendar "1   " <-- Command : reads <
 "ArrayList<CalendarModule>" "*" <--* "1" Calendar : contains <

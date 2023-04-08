@@ -24,7 +24,7 @@ Parser -> ModuleList : access moduleData >
 ModuleList "1" *--> "*" Module : contains >
 
 abstract class "{abstract}\nCommand" as Command
-Parser --> Ui : receive commands, \ncalls for printing >
+Parser --> Ui : calls for printing >
 Parser --> Command: creates >
 Command <|-- HelpCommand
 
