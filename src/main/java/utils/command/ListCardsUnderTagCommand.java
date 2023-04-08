@@ -24,15 +24,11 @@ public class ListCardsUnderTagCommand extends Command {
      * Finds all the cards that have been tagged with tagName tag.
      *
      * @param cardList The cardList from which to search for the cards.
-     * @param tagList  The tagList that contains the specified tagName.
+     * @param foundTag The tag under which to return all the cards from.
      * @return The ArrayList containing all the cards that has the tagName tag.
      * @throws InkaException
      */
-    private CardList findCardsUnderTag(CardList cardList, TagList tagList) throws InkaException {
-        Tag foundTag = tagList.findTag(tagSelector);
-        if (foundTag == null) {
-            throw new TagNotFoundException();
-        }
+    private CardList findCardsUnderTag(CardList cardList, Tag foundTag) throws InkaException {
 
         ArrayList<CardUUID> cardsUUID = foundTag.getCardsUUID();
         CardList foundCardList = new CardList();
@@ -50,7 +46,12 @@ public class ListCardsUnderTagCommand extends Command {
     @Override
     public void execute(CardList cardList, TagList tagList, DeckList deckList, UserInterface ui, IDataStorage storage)
             throws InkaException {
-        CardList foundCardList = findCardsUnderTag(cardList, tagList);
+
+        Tag foundTag = tagList.findTag(tagSelector);
+        if (foundTag == null) {
+            throw new TagNotFoundException();
+        }
+        CardList foundCardList = findCardsUnderTag(cardList, foundTag);
         ui.printCardList(foundCardList);
     }
 }
