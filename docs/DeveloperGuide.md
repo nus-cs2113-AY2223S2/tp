@@ -33,15 +33,15 @@ goals.
     * [Filtering your data `filter`](#filtering-your-data-filter)
     * [Setting your monthly Budget Goal `setbudget`](#setting-your-monthly-budget-goal-setbudget)
     * [Adding a shortcut `shortcut`](#adding-a-shortcut-shortcut)
+    * [Using a shortcut](#using-a-shortcut)
+    * [Viewing shortcuts `shortcut_view`](#viewing-shortcuts-shortcutview)
     * [Deleting a shortcut `shortcut_delete`](#deleting-a-shortcut-shortcutdelete)
-    * [Viewing a shortcut `shortcut_view`](#viewing-a-shortcut-shortcutview)
     * [Saving Data](#saving-data)
-      * [How we should implement the feature of saving data](#how-we-should-implement-the-feature-of-saving-data)
+      * [Implementation of saving](#implementation-of-saving)
       * [Type of file to save data into](#type-of-file-to-save-data-into)
     * [Loading Data](#loading-data)
     * [Exporting to .csv](#exporting-to-csv)
-      * [Design considerations](#design-considerations-8)
-      * [How we should implement the feature of exporting to .csv](#how-we-should-implement-the-feature-of-exporting-to-csv)
+      * [Implementation of export to .csv](#implementation-of-export-to-csv)
   * [Product scope](#product-scope)
     * [Target user profile](#target-user-profile)
     * [Value proposition](#value-proposition)
@@ -49,13 +49,24 @@ goals.
   * [Non-Functional Requirements](#non-functional-requirements)
   * [Glossary](#glossary)
   * [Instructions for manual testing](#instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Adding a transaction](#adding-a-transaction)
+    * [Deleting a transaction](#deleting-a-transaction)
+    * [Viewing transactions](#viewing-transactions)
+    * [Adding a shortcut](#adding-a-shortcut)
+    * [Using a shortcut](#using-a-shortcut-1)
+    * [Viewing shortcuts](#viewing-shortcuts)
+    * [Deleting a shortcut](#deleting-a-shortcut)
+    * [Saving data](#saving-data-1)
+    * [Loading data](#loading-data-1)
+    * [Export to .csv](#export-to-csv)
 <!-- TOC -->
 
 ### Acknowledgements
 
-- [gson](https://github.com/google/gson) for saving of data into a .json file
+- [gson](https://github.com/google/gson) for saving and loading of data from a .json file
 - [Junit](https://junit.org/junit5/) for unit testing
-- [OpenCSV](https://opencsv.sourceforge.net/) for exporting of data into a .CSV file
+- [OpenCSV](https://opencsv.sourceforge.net/) for exporting of data into a .csv file
 - rainyDay's Developer Guide and User Guide references [AB3](https://github.com/se-edu/addressbook-level3)'s Developer
   Guide and User Guide
 
@@ -80,7 +91,7 @@ to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html).
 
 * Adding, deleting and editing transaction entries
 * Viewing your transactions and filtering by certain fields
-* Saving your data into a csv file
+* Saving your data into a .csv file
 * Setting budgeting goals
 
 ## Design
@@ -113,14 +124,20 @@ of interaction between the components, hence some details are omitted.
 
 ### Modules package
 
-{TODO}
-
-The modules package consists of classes `Parser`, `Storage`, and `Ui`.
-
-- `Storage`:
-- `Ui`:
+The modules package consists of classes `Storage`, and `Ui`.
 
 #### Storage
+
+`Storage` reads data from and writes data to the hard disk file.
+
+![StorageClassDiagram.png](images%2FDeveloperGuide%2FStorageClassDiagram.png)
+
+The methods in `Storage` perform the [save](#saving-data), [load](#loading-data),
+and [export to .csv](#exporting-to-csv) operations.
+
+- The data of the user is saved in a .json file
+- Loading is done from a .json file. `Storage` will also perform the necessary checks to ensure that the .json file
+  is not corrupted and contains valid data
 
 #### Ui
 
@@ -147,7 +164,15 @@ The data component consists of classes:
 
 #### Design considerations
 
-To prevent slow processing of the program when there are many entries, a Hash Table is used to keep track of the
+`SavedData` is a subset of `UserData` and not all user data will be saved.
+
+- The hash map containing the monthly expenditure of the user will not be saved.
+    - Advanced users may choose to edit the .json file to change the value of each transaction. Hence, to ensure that
+      the monthly expenditure remains accurate, we must recompute the monthly expenditure upon startup.
+    - Therefore, saving the monthly expenditure hashmap will be redundant as it has to be recomputed on startup to
+      ensure that it matches the user's actual expenditure.
+
+To prevent slow processing of the program when there are many entries, a hash map is used to keep track of the
 expenditures for the month.
 
 - We believe that the "Set Budget" feature will be commonly used as it is one of the key aspects of a Financial Tracker.
@@ -164,6 +189,11 @@ expenditures for the month.
    parameters stored as attributes in the command specific class
 2. rainyDay will then call the `Command` specific `execute` method to return a `CommandResult` object, which contains
    the output to be shown to user
+
+- The various command classes inherits from an abstract `Command` class which contains the abstract `execute` method
+  that each specific command class will implement
+- The shortcut commands further inherit from the abstract `ShortcutCommand` class which contains the hashmap that maps
+  all configured shortcuts to its actual command.
 
 ### Exceptions package
 
@@ -403,21 +433,15 @@ The sequence diagram for the implementation of adding a shortcut is as shown bel
 
 ![ShortcutAddCommand.png](images/DeveloperGuide/ShortcutAddCommand.png)
 
-### Deleting a shortcut `shortcut_delete`
+### Using a shortcut
 
-- When a command is given to delete a shortcut, the command is first parsed to check if it follows the format of a
-  delete shortcut command: `shortcut_delete [SHORTCUTNAME]`
-- Commands in the correct format will then be parsed to create a `ShortcutDeleteCommand` object with a constructor
-    - The given `[SHORTCUTNAME]` will be the key of the hashmap
-- `RainyDay` will then call the `Command` specific `execute` method
-    - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
-    - If the shortcut key exists in the `shortcutCommands` hashmap, it will be deleted from the hashmap
+- When an input is given by the user, it will first be processed by `Parser` to check if it is a valid actual command.
+- If the input is not a valid command, `Parser` will check if the input is a shortcut present in the "shortcutCommands"
+  hashmap.
+- If the shortcut is present, the input will be replaced with the command the shortcut maps to. The same `Parser`
+  check will then be repeated with the replacement command.
 
-The sequence diagram for the implementation of deleting a shortcut is as shown below:
-
-![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
-
-### Viewing a shortcut `shortcut_view`
+### Viewing shortcuts `shortcut_view`
 
 - The command `shortcut_view` is used to view all currently configured shortcuts
 - The command will create a `ShortcutViewCommand` object with a constructor
@@ -433,6 +457,20 @@ The sequence diagram for the implementation of viewing a shortcut is as shown be
 
 ![ShortcutViewCommand.png](images%2FDeveloperGuide%2FShortcutViewCommand.png)
 
+### Deleting a shortcut `shortcut_delete`
+
+- When a command is given to delete a shortcut, the command is first parsed to check if it follows the format of a
+  delete shortcut command: `shortcut_delete [SHORTCUTNAME]`
+- Commands in the correct format will then be parsed to create a `ShortcutDeleteCommand` object with a constructor
+    - The given `[SHORTCUTNAME]` will be the key of the hashmap
+- `RainyDay` will then call the `Command` specific `execute` method
+    - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
+    - If the shortcut key exists in the `shortcutCommands` hashmap, it will be deleted from the hashmap
+
+The sequence diagram for the implementation of deleting a shortcut is as shown below:
+
+![ShortcutDeleteCommand.png](images%2FDeveloperGuide%2FShortcutDeleteCommand.png)
+
 ### Saving Data
 
 - The `savedData` object will contain all the data of the user, such as the `FinancialReport`, the
@@ -444,7 +482,7 @@ The sequence diagram for the implementation of viewing a shortcut is as shown be
 
 #### Design considerations
 
-#### How we should implement the feature of saving data
+#### Implementation of saving
 
 - Alternative 1 (current choice): Save the `savedData` automatically whenever there is a change to its
   data.
@@ -514,7 +552,7 @@ The sequence diagram for the implementation of viewing a shortcut is as shown be
 
 #### Design considerations
 
-#### How we should implement the feature of exporting to .csv
+#### Implementation of export to .csv
 
 - Alternative 1 (current choice): Perform export only when user states explicitly, with `export` command.
     - Pros:
@@ -580,6 +618,7 @@ Help people who are just starting out working and troubled by financial issues s
 | Financial Report       | Represents a compilation of financial statements                                                                                                                 |
 | Flags                  | Has a "-" appended to the front of a symbol, example: "-d", "-date", "-c", etc                                                                                   |
 | Inflow                 | Signify an increment of money on your side, such as deposits into your wallet                                                                                    |
+| Json                   | Stands for JavaScript Object Notation. It is a file format that uses human-readable text to store data objects                                                   |
 | Outflow                | Signify a decrement of money on your side, such as payments from your wallet                                                                                     |
 | Transaction            | An activity relating to transferring of money                                                                                                                    |
 
@@ -605,19 +644,23 @@ Help people who are just starting out working and troubled by financial issues s
    4000, description of "income", category of "full-time pay" and date of 05/04/2023 will be added into rainyDay.
    An output reflecting the action done will be shown
 
-3. Test case: `add -out beef-noodles $12`<br>Expected: No new transaction added. Error message for "unsupported description
+3. Test case: `add -out beef-noodles $12`<br>Expected: No new transaction added. Error message for "unsupported
+   description
    name" will be shown
 
-4. Test case: `add -in jackpot $21,474,837`<br>Expected: No new transaction added. Error message for "invalid value" will be shown
+4. Test case: `add -in jackpot $21,474,837`<br>Expected: No new transaction added. Error message for "invalid value"
+   will be shown
 
 ### Deleting a transaction
 
 1. Prerequisites: There are multiple transactions in rainyDay
 
-2. Test case: `delete 1`<br>Expected: Transaction with index 1 shown in the `view -all` list before the delete command will be deleted.
+2. Test case: `delete 1`<br>Expected: Transaction with index 1 shown in the `view -all` list before the delete command
+   will be deleted.
    An output with the description of the transaction deleted will be shown
 
-3. Test case: `delete x`, where x is any character or a number < 1 or > the number of transactions inside rainyDay<br>Expected: No transaction deleted. Error message for "wrong delete index" will be shown
+3. Test case: `delete x`, where x is any character or a number < 1 or > the number of transactions inside rainyDay<br>
+   Expected: No transaction deleted. Error message for "wrong delete index" will be shown
 
 ### Viewing transactions
 
@@ -635,4 +678,73 @@ Help people who are just starting out working and troubled by financial issues s
 
 5. Test case: `view 32d`<br>Expected: No transaction will be shown. Error message for "wrong view format" will be
    shown
+
+### Adding a shortcut
+
+1. Prerequisites: None
+
+2. Test case: `shortcut a -maps add -out noodles $5`<br>Expected: A success message should be displayed
+   indicating that the shortcut has been successfully added
+
+3. Test case: `shortcut b -maps b`<br>Expected: An error message should be displayed
+   indicating that a shortcut cannot map to itself
+
+### Using a shortcut
+
+1. Prerequisites: You have added a shortcut which you will be using. For this section, we will require you to configure
+   the first shortcut in the [adding a shortcut](adding-a-shortcut) section
+
+2. Test case: `a` <br>  Expected: A message should indicate that a shortcut is being used. The `add -out noodles $5`
+   command should also be successfully performed
+
+### Viewing shortcuts
+
+1. Prerequisites: None
+
+2. Test case: `shortcut_view` <br> Expected: A table should be printed out which displays all the configured shortcut
+   commands. If no shortcuts have been configured, then a message should indicate that no shortcuts have been configured
+
+### Deleting a shortcut
+
+1. Prerequisites: You have added a shortcut which you will be deleting. For this section, we will require you to
+   configure only the first shortcut in the [adding a shortcut](adding-a-shortcut) section
+
+2. Test case: `shortcut_delete a` <br> Expected: A success message should be displayed indicating that the shortcut has
+   been successfully deleted
+
+3. Test case: `shortcut_delete doesnotexist`<br> Expected: An error message should be displayed indicating that the
+   shortcut does not exist
+
+### Saving data
+
+1. Prerequisites: Ensure that a change has been made to the `savedData`
+
+2. Test case: `add -out beef noodles $12` <br> Expected: The .json file found in the data folder should reflect the new
+   transaction
+
+3. Test case: `shortcut a -maps add -out noodles $5`<br> Expected: The .json file found in the data folder should
+   reflect
+   the new shortcut
+
+### Loading data
+
+1. Prerequisite: None
+
+2. Test case: Start rainyDay while the .json file is not present in the data folder. Expected: No valid saved file
+   will be detected and rainyDay will start up without loading any saved data
+
+3. Test case: Ensure that a valid .json file containing valid data named `rainyDay.json` is present in the data folder
+   and start rainyDay.  <br> Expected: rainyDay will welcome you based on your configured name and all previously saved
+   data will be loaded
+
+4. Test case: Start rainyDay with a corrupted `rainyDay.json`file, containing invalid fields like a negative transaction
+   amount or an invalid .json format.
+   <br>Expected: No valid saved file will be detected and rainyDay will start up without loading any saved data.
+
+### Export to .csv
+
+1. Prerequisites: There is at least one transaction in the financial report of rainyDay.
+
+2. Test case: `export` <br> Expected: A success message should be displayed indicating that the data has been
+   successfully saved in a .csv file.
 
