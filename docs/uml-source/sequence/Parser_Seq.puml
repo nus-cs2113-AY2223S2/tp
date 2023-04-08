@@ -1,0 +1,66 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam maxMessageSize 150
+
+title Parser
+
+actor User
+
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":ShowModuleCommand" as Command
+participant ":Module" as Module
+participant ":Ui" as Ui
+
+User -> Apollo : "showmod" + param
+activate Apollo
+Apollo -> Parser : getCommand()
+
+activate Parser
+Parser -> Parser : parseCommand()
+activate Parser
+
+opt param is empty
+Parser -> Parser : isEmptyParam()
+activate Parser
+Parser -> Ui :printErrorMessage()
+activate Ui
+deactivate Parser
+
+Ui --> Parser
+deactivate Ui
+destroy Ui
+
+
+else param is not empty
+
+
+Parser -> Command** : ShowModuleCommand()
+activate Command
+Command -> Command : setUpLogger()
+activate Command
+deactivate Command
+
+Command -> Module** : Module()
+activate Module
+Module --> Command : module
+deactivate Module
+destroy Module
+
+Command --> Parser : ShowModuleCommand()
+deactivate Command
+destroy Command
+
+
+end
+
+deactivate Parser
+Parser --> Apollo
+deactivate Parser
+
+destroy Parser
+
+deactivate Apollo
+
+@enduml
