@@ -1,10 +1,10 @@
 package seedu.brokeMan.exception;
 
-import static seedu.brokeMan.common.Messages.MESSAGE_NEGATIVE_AMOUNT;
+import static seedu.brokeMan.common.Messages.MESSAGE_AMOUNT_LESS_THAN_OR_EQUALS_ZERO;
 
 public class NegativeAmountException extends BrokeManException {
     @Override
     public String getMessage() {
-        return MESSAGE_NEGATIVE_AMOUNT;
+        return MESSAGE_AMOUNT_LESS_THAN_OR_EQUALS_ZERO;
     }
 }

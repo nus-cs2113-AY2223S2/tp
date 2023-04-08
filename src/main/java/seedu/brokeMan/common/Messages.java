@@ -26,7 +26,7 @@ public class Messages {
     public static final String MESSAGE_INDEX_NOT_INTEGER = "Index is not an integer.";
     public static final String MESSAGE_INDEX_NOT_SPECIFIED_EXCEPTION = "Index is not specified.";
     public static final String MESSAGE_INCORRECT_TYPE = "Type specified is incorrect.";
-    public static final String MESSAGE_NEGATIVE_AMOUNT = "Negative amount is not allowed.";
+    public static final String MESSAGE_AMOUNT_LESS_THAN_OR_EQUALS_ZERO = "Amount cannot be less than or equals to 0.";
     public static final String MESSAGE_ARGUMENTS_NOT_SPECIFIED = "Arguments not specified.";
     public static final String MESSAGE_INVALID_TIME = "Invalid time information. " +
             "Please present your time as 'YYYY MM DD HH mm'\n" +

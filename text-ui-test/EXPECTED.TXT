@@ -174,7 +174,7 @@
 |
 |  -----------------------------------------------------------------------
 |
-|  Enter command: |  Negative amount is not allowed.
+|  Enter command: |  Amount cannot be less than or equals to 0.
 |
 |  setBudget: sets your budget for current month.
 |  setBudget <amount> t/ <date in YYYY/MM>: sets your budget for specified month
@@ -224,7 +224,7 @@
 |
 |  Enter command: |  Invalid optional time flag format.
 |
-|  viewBudget: view your budget and how much of it is left remaining.
+|  viewBudget: view your budget for the current month and how much of it is left remaining.
 |  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
 |  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: viewBudget
@@ -235,7 +235,7 @@
 |  Enter command: |  Invalid time information. Please present your time as [YYYY/MM]
 |  Do not enter invalid dates, such as entering 14 for MM.
 |
-|  viewBudget: view your budget and how much of it is left remaining.
+|  viewBudget: view your budget for the current month and how much of it is left remaining.
 |  viewBudget t/ <date in YYYY/MM>: view your budget and how much of was left in the specified month
 |  Optional Parameter: t/ <date in YYYY/MM>
 |  Example: viewBudget
