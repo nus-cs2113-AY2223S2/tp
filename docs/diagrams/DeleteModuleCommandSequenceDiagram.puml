@@ -6,6 +6,12 @@ activate ":DeleteModuleCommand"
 ":DeleteModuleCommand" -> "<<class>>\nstorage:Storage" : deleteModule(indexToRemove, modules, storage, uniID)
 activate "<<class>>\nstorage:Storage"
 
+create "indexToDelete: Int"
+"<<class>>\nstorage:Storage" -> "indexToDelete: Int"
+activate "indexToDelete: Int"
+"<<class>>\nstorage:Storage" <-- "indexToDelete: Int"
+deactivate "indexToDelete: Int"
+
 alt indexToRemove == -1
 "<<class>>\nstorage:Storage" --> ":DeleteModuleCommand" : return false
 else else
@@ -27,6 +33,11 @@ else else
 
         alt univID == uniID
             alt counterUpToIndexToDelete == indexToDeletePuSpecificListToZeroBased
+                "<<class>>\nstorage:Storage" -> "indexToDelete: Int": set indexToDelete to current Module iteration index
+                activate "indexToDelete: Int"
+                "<<class>>\nstorage:Storage" <-- "indexToDelete: Int"
+                deactivate "indexToDelete: Int"
+
             end
         end
     end

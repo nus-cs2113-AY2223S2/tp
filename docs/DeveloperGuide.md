@@ -1,6 +1,7 @@
 # Developer Guide
 
-SEP Helper is a desktop application for Mechanical Engineering students, studying at the
+SEP Helper is a desktop application for Mechanical Engineering students, st
+udying at the
 National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
 ---
 
@@ -135,25 +136,17 @@ The following sequence diagram shows the relationship between the classes involv
 
 ![HelpCommandSequenceDiagram.png](diagrams%2FHelpCommandSequenceDiagram.png)
 
-### Delete Command
-
-The delete command removes a module from the user's saved list of modules that is specified by the user.  
-> Syntax: delete [_uniAbbreviation_]/[_index_]
-
-The following sequence diagram shows the relationship between the classes involved when the delete command is called.
-
-![DeleteModuleCommandSequenceDiagram.png](diagrams%2FDeleteModuleCommandSequenceDiagram.png)
-
 ### List Current Command
 
 Lists out all of current modules that user has added.
 
 
-> Syntax: list current
+> Syntax: /list current
 
 Sequence Diagram of List Current Command.
 
 ![ListCurrentCommandSequenceDiagram.png](diagrams%2FListCurrentCommandSequenceDiagram.png)
+
 
 **Explanation**
 
@@ -165,11 +158,38 @@ See ListCurrentPuCommand for further explanation:
 [ListCurrentPuCommand](#list-current-pu-command) 
 
 
+### List Current Pu Command
+
+Prints out modules selected by user specific to a Partner University.
+
+> Syntax: /list current [_uniAbbreviation_]
+
+**Sequence Diagram of List Current Pu Command**
+
+![ListCurrentPuCommandSequenceDiagram.png](diagrams%2FListCurrentPuCommandSequenceDiagram.png)
+
+**Explanation**
+
+1. ListCurrentPuCommand object is initialized with ArrayList<Modules> modules containing all user selected modules
+   and Integer univId which is the Partner University unique ID that user has inputted.
+2. ListCurrentPuCommand calls PrintCurrentPuModList() of UI Class passing these two objects as arguments.
+3. PrintCurrentPuModList first filters out modules of the specific Partner University using uniID from the
+   ArrayList<Module> modules.
+4. PrintCurrentPuModList loops through the class level object universities to retrieve the Partner university name
+   corresponding to the uniID.
+5. Loops through filtered modules retrieving module information and printing it out to User Console.
+   _See reference block below._
+
+Reference Diagram for Print Module Details:
+
+![ListCurrentPuCommandPrintModuleDetailsSequenceDiagram.png](diagrams%2FListCurrentPuCommandPrintModuleDetailsSequenceDiagram.png)
+
+
 ### List Pu Command
 
 Lists out all of Partner Universities.
 
-> Syntax: list pu
+> Syntax: /list pu
 
 Sequence Diagram of List Pu Command.
 
@@ -184,15 +204,17 @@ Sequence Diagram of List Pu Command.
 4. UI class loops through ArrayList<University> to receive the various university information and print out
    to UserConsole
 
+
 ### List Pu Modules Command
 
 Prints out list of modules available at a given Partner University
 
-> Syntax: list [_uniAbbreviation_]
+> Syntax: /list [_uniAbbreviation_]
 
 **Note: Partner Universities Abbreviations can be found using List Pu command**
 
 Sequence Diagram of List Pu Modules Command.
+
 ![ListPuModulesCommandSequenceDiagram.png](diagrams%2FListPuModulesCommandSequenceDiagram.png)
 
 **Explanation**
@@ -224,32 +246,22 @@ Sequence Diagram of Add Module Command.
 3. Storage class would then add the module to its ArrayList of saved modules.
 4. Storage class would then initialise an instance of FileWriter to append the newly added module to the txt file.
 5. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to Duke
-   **Future Development**
+   
+
+**Future Development**
 
 The UI class currently holds an instance all available PUs and their modules.
 This can and will be further refactored into other class to adhere to Single Responsbility Principle.
 Possible Solution: Store the PUs and modules in DataReader and use a getter function when needed.
 
+### Delete Command
 
-### List Current Pu Command
+The delete command removes a module from the user's saved list of modules that is specified by the user.
+> Syntax: /remove [_uniAbbreviation_]/[_index_]
 
-Prints out modules selected by user specific to a Partner University.
+The following sequence diagram shows the relationship between the classes involved when the delete command is called.
 
-> Syntax: list current [_uniAbbreviation_]
-
-Sequence Diagram of List Current Pu Command
-![ListCurrentPuCommandSequenceDiagram.png](diagrams%2FListCurrentPuCommandSequenceDiagram.png)
-
-**Explanation**
-
-1. ListCurrentPuCommand object is initialized with ArrayList<Modules> modules containing all user selected modules
-and Integer univId which is the Partner University unique ID that user has inputted.
-2. ListCurrentPuCommand calls PrintCurrentPuModList() of UI Class passing these two objects as arguments.
-3. PrintCurrentPuModList first filters out modules of the specific Partner University using uniID from the 
-ArrayList<Module> modules.
-4. PrintCurrentPuModList loops through the class level object universities to retrieve the Partner university name
-corresponding to the uniID.
-5. Loops through filtered modules retrieving module information and printing it out to User Console.
+![DeleteModuleCommandSequenceDiagram.png](diagrams%2FDeleteModuleCommandSequenceDiagram.png)
 
 
 ### Budget Commands
