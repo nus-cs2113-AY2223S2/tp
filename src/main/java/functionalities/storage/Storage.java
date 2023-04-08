@@ -11,8 +11,17 @@ import functionalities.SniffTasks;
 import functionalities.parser.FileParser;
 import functionalities.ui.Ui;
 
+/**
+ * This class deals with Storage (Loading and Saving unmarked appointments in the file)
+ */
 public class Storage {
 
+    /**
+     * Saves the unmarked appointments into the SniffAppointments File
+     *
+     * @param path The path of the SniffAppointments file
+     * @throws SniffException if SniffAppointments file is not found
+     */
     public static void saveAppointments(String path) throws SniffException {
         try {
             File fileName = new File(path);
@@ -25,6 +34,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Checks if SniffAppointments file already exists, and creates a new file if file does not exist originally
+     * Reads and adds the unmarked appointments into the Appointments task list using extractData(fileName) method
+     *
+     * @param absolutePath The path of the SniffAppointments file
+     * @throws SniffException if SniffAppointments file is not found
+     */
     public static void openFile(String absolutePath) throws SniffException {
         try {
             File fileName = new File(absolutePath);
@@ -40,6 +56,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Calls FileParser to parse SniffAppointments contents
+     *
+     * @param fileName the SniffAppointments file
+     * @throws SniffException        if errors are encountered while parsing
+     * @throws FileNotFoundException if SniffAppointments file is not found
+     */
     public static void extractData(File fileName) throws SniffException, FileNotFoundException {
         try {
             Scanner s = new Scanner(fileName);
