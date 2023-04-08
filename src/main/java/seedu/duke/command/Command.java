@@ -366,9 +366,9 @@ public class Command {
             break;
         case EDIT:
             try {
-                EditType editType = Parser.parseEditType(fullDescription);
-                boolean isEditIngredient = editType == EditType.INGREDIENT;
-                boolean isEditStep = editType == EditType.STEP;
+                OperationType editType = Parser.parseEditType(fullDescription);
+                boolean isEditIngredient = editType == OperationType.INGREDIENT;
+                boolean isEditStep = editType == OperationType.STEP;
                 Object[] parsed = Parser.parseEditRecipeIndex(fullDescription.substring(4),editType);
                 int recipeIndex = (int) parsed[0];
                 String editDescription = (String) parsed[1];

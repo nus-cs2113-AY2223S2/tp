@@ -2,7 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.CommandType;
-import seedu.duke.command.EditType;
+import seedu.duke.command.OperationType;
 import seedu.duke.exceptions.EditFormatException;
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.MissingIngredientInputException;
@@ -207,13 +207,13 @@ public class Parser {
         return new StepList(parsedStepList);
     }
 
-    public static EditType parseEditType(String description) throws IncompleteInputException {
+    public static OperationType parseEditType(String description) throws IncompleteInputException {
         boolean isIngredient = description.startsWith("--i ");
         boolean isStep = description.startsWith("--s ");
         if (isIngredient) {
-            return EditType.INGREDIENT;
+            return OperationType.INGREDIENT;
         } else if (isStep) {
-            return EditType.STEP;
+            return OperationType.STEP;
         } else {
             if(description.equals("--s")){
                 throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
@@ -225,9 +225,9 @@ public class Parser {
         }
     }
 
-    public static Object[] parseEditRecipeIndex(String description, EditType type) throws IncompleteInputException {
+    public static Object[] parseEditRecipeIndex(String description, OperationType type) throws IncompleteInputException {
         String[] parsedDescription = description.split(" ",2);
-        String errorLog = type.equals(EditType.INGREDIENT) ?
+        String errorLog = type.equals(OperationType.INGREDIENT) ?
                 StringLib.EDIT_INGREDIENT_ERROR : StringLib.EDIT_STEP_ERROR;
         if (parsedDescription.length < 2) {
             throw new IncompleteInputException(errorLog);
