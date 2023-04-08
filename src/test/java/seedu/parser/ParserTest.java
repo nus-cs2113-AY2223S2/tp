@@ -4,7 +4,7 @@ package seedu.parser;
 import org.junit.jupiter.api.Test;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
-import seedu.commands.IncorrectSyntaxCommand;
+import seedu.commands.errorcommands.IncorrectSyntaxCommand;
 import seedu.exceptions.InvalidSyntaxException;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

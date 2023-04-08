@@ -1,16 +1,35 @@
 package seedu.workout;
 
-
+//@@author calebcjl
+/**
+ * Represents an exercise. It stores the name, weight used and the number of sets and reps.
+ */
 public class Exercise {
-    private String name;
-    private String weight;
-    private String repsPerSet;
+    private final String name;
+    private final String weight;
+    private final String repsPerSet;
 
-    //@@ author ZIZI-czh
-    public Exercise(String name, String weight, String repsPerSet){
+    public Exercise(String name, String weight, String repsPerSet) {
         this.name = name;
         this.weight = weight;
         this.repsPerSet = repsPerSet;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public String getRepsPerSet() {
+        return repsPerSet;
+    }
+
+    @Override
+    public String toString() {
+        return name + ' ' + weight + ' ' + repsPerSet;
     }
 
     //@@ author guillaume-grn
@@ -36,24 +55,4 @@ public class Exercise {
         return totalReps;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getWeight() {
-        return weight;
-    }
-
-    public String getRepsPerSet() {
-        return repsPerSet;
-    }
-
-    public void setRepsPerSet(String repsPerSet) {
-        this.repsPerSet = repsPerSet;
-    }
-
-    @Override
-    public String toString() {
-        return name + ' ' + weight + ' ' + repsPerSet;
-    }
 }

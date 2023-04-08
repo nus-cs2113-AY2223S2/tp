@@ -1,15 +1,12 @@
 package seedu.ui;
 
+import seedu.commands.Command;
+import seedu.exceptions.InvalidArgumentException;
+import seedu.exceptions.InvalidSyntaxException;
 
-import seedu.parser.DateFormatter;
-import seedu.workout.Exercise;
-
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Ui {
-
     private static final String LINE = "=======================================";
     private static final String LINE_SEPARATOR = "----------------------------------------";
 
@@ -47,8 +44,7 @@ public class Ui {
                     + "- [Display calories consumed on a specific date : /cview]" + System.lineSeparator()
                     + "- [Delete calories record for one food: /wdelete]" + System.lineSeparator()
                     + "- [Exit app: /exit]" + System.lineSeparator() + LINE;
-
-
+    private static final String READ_FILE_ERROR_MESSAGE = "Error reading file: ";
     public static void showGreeting() {
         System.out.println(WELCOME_MESSAGE);
     }
@@ -62,8 +58,8 @@ public class Ui {
     }
 
 
-    public static String showSeparator(){
-        return (LINE_SEPARATOR);
+    public static String line() {
+        return LINE;
     }
 
     public static String getUserInput() {
@@ -81,38 +77,48 @@ public class Ui {
         return HELP_MESSAGE_WORKOUT;
     }
 
-    public static String getCaloriesHelpMessage() {
-        return HELP_MESSAGE_CALORIES;
+    public static void showErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 
-    public static final String EMPTY_WORKOUT = "There are no workouts reported during this week !";
+    public static void showCommandResult(Command command)
+            throws InvalidArgumentException, InvalidSyntaxException {
+        System.out.println(command.execute());
+    }
 
-    public static final String INFORMATION = "Information of exercises for the week of ";
+    public static void showReadFileErrorMessage(String fileName) {
+        System.out.println(READ_FILE_ERROR_MESSAGE + fileName);
+    }
 
-    //@@ author ZIZI-czh
-    public static String displayCountSetsReps(ArrayList<Exercise> distinctExercisesList, Date dayInSpecificWeekDate) {
-        StringBuilder output = new StringBuilder();
-        if(distinctExercisesList == null){
-            return null;
-        }
-        if (distinctExercisesList.isEmpty()) {
-            output.append(EMPTY_WORKOUT);
-            return output.toString();
-        }
+    public static void showNoSavedDataMessage(String fileName) {
+        System.out.println("No saved data found for " + fileName + '.');
+        System.out.println("Creating new file for " + fileName + ".......");
+    }
 
-        output.append(INFORMATION)
-                .append(DateFormatter.dateToString(dayInSpecificWeekDate))
-                .append(System.lineSeparator());
-        //Ui.showSeparator();
-        for (Exercise exercise : distinctExercisesList) {
-            output.append("Name: ")
-                    .append(exercise.getName())
-                    .append(", sets: ")
-                    .append(exercise.getSetsCount())
-                    .append(", rps:")
-                    .append(exercise.getRepsCount())
-                    .append(System.lineSeparator());
-        }
-        return output + showSeparator();
+    public static void showCreatedNewFileMessage(String fileName) {
+        System.out.println("New file for " + fileName + " created.");
+    }
+    public static void showNewFileNotCreatedMessage(String fileName) {
+        System.out.println("Error creating new file for " + fileName + ".");
+        System.out.println("User data may not be saved!");
+    }
+
+    public static void showCreateDirectoryMessage() {
+        System.out.println("Creating directories.....");
+    }
+
+    public static void showDirectoryNotCreatedMessage() {
+        System.out.println("Unable to create directories. User data may not be saved.");
+    }
+
+    public static void showSaveUserDataErrorMessage() {
+        System.out.println("Error saving user data.");
+    }
+    public static void showSuccessfulLoadDataMessage(String fileName) {
+        System.out.println("Successfully loaded " + fileName + " data.");
+    }
+
+    public static String getCaloriesHelpMessage() {
+        return HELP_MESSAGE_CALORIES;
     }
 }

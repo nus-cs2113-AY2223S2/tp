@@ -1,64 +1,38 @@
 package seedu.commands;
 
-
-import seedu.calorietracker.CaloriesRecorder;
-import seedu.calorietracker.FoodList;
-import seedu.workout.Day;
-import seedu.workout.Workout;
+import seedu.calorietracker.CalorieTracker;
+import seedu.calorietracker.FoodDictionary;
+import seedu.exceptions.InvalidArgumentException;
+import seedu.exceptions.InvalidSyntaxException;
 import seedu.workout.WorkoutList;
 
-import java.util.Date;
-import java.util.HashMap;
-
+//@@author calebcjl
+/**
+ * Represents a command entered by user.
+ */
 public class Command {
 
-    protected static boolean isDayEntered;
-    protected static boolean isCaloriesDayEntered;
-    protected static boolean isWorkoutEntered;
-    protected WorkoutList workoutList = new WorkoutList();
-    protected CaloriesRecorder caloriesRecorder = new CaloriesRecorder();
-    protected FoodList foodList;
-    protected HashMap<Date, Day> workouts;
-    protected Workout workoutForOneDay = new Workout();
-    protected Day day;
+    protected WorkoutList workoutList;
+    protected CalorieTracker calorieTracker;
+    protected FoodDictionary foodDictionary;
 
-
-    //@@ author ZIZI-czh
     public Command() {
-        workouts = new HashMap<>();
-        day = workoutList.getSingleWorkout();
     }
 
-    //@@ author ZIZI-czh
-    public static void setIsDayEntered(boolean isDayEnter) {
-        isDayEntered = isDayEnter;
-    }
-    public static void setDateEntered(boolean isCaloriesDayEnter) {
-        isCaloriesDayEntered = isCaloriesDayEnter;
-    }
-
-    //@@ author ZIZI-czh
-    public static void setIsWorkoutEntered(boolean isWorkoutEnter) {
-        isWorkoutEntered = isWorkoutEnter;
-    }
-
-    public WorkoutList getWorkoutList() {
-        return workoutList;
-    }
-
-    public void setData(WorkoutList workoutList, CaloriesRecorder caloriesRecorder, FoodList foodList)
-            throws IllegalArgumentException {
-        if (workoutList == null || caloriesRecorder == null) {
-            throw new IllegalArgumentException("WorkoutList cannot be null.");
-        }
+    /**
+     * Sets data for commands to execute on.
+     *
+     * @param workoutList Workout list.
+     * @param calorieTracker Calorie tracker.
+     * @param foodDictionary Food list.
+     */
+    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker, FoodDictionary foodDictionary) {
         this.workoutList = workoutList;
-        //  this.calorieTracker = calorieTracker;
-        this.caloriesRecorder = caloriesRecorder;
-        this.foodList = foodList;
+        this.calorieTracker = calorieTracker;
+        this.foodDictionary = foodDictionary;
     }
 
-
-    public String execute() {
+    public String execute() throws InvalidArgumentException, InvalidSyntaxException {
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
 }
