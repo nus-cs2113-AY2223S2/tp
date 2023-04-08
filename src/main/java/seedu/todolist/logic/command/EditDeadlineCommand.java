@@ -32,7 +32,7 @@ public class EditDeadlineCommand extends Command  {
      *
      * @param args The provided arguments, parsed from the user's input.
      * @throws InvalidSelectException If no task ids are provided.
-     * @throws InvalidEditException If both edit and delete keywords are provided.
+     * @throws InvalidEditException If neither/both edit and delete keywords are provided.
      */
     public EditDeadlineCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_DEADLINE));
