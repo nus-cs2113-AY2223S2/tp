@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 //@@author BenjaminPoh
 public class Ui {
+    public static final String WELCOME_NEW_USER = "Welcome new user! What is your name?\n";
     private static final String WELCOME_MESSAGE = "" +
             "Hello from rainyDay!\n" +
             "        __.|.__\n" +
@@ -20,6 +21,9 @@ public class Ui {
             "           |\n" +
             "         `='";
     private static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
+    public static final String EMPTY_USERNAME_ERROR_MESSAGE = "Very funny, you should not have an empty name!\nWhat is your name?\n";
+    public static final String WELCOME_NEW_USER_AFTER_USERNAME = "Get started by providing the command \"help\" to learn the functions offered by rainyDay!";
+    public static final String INPUT_CARET = "> ";
     private static Logger UILogger = Logger.getLogger("UILogger.log");
 
     private final Scanner in;
@@ -52,22 +56,22 @@ public class Ui {
     }
 
     public String readUserName() {
-        System.out.print("Welcome new user! What is your name?\n");
-        System.out.print("> ");
+        System.out.print(WELCOME_NEW_USER);
+        System.out.print(INPUT_CARET);
         String username;
         username = in.nextLine().trim();
         while (username.isEmpty()) {
-            System.out.print("Very funny, you should not have an empty name!\nWhat is your name?\n");
-            System.out.print("> ");
+            System.out.print(EMPTY_USERNAME_ERROR_MESSAGE);
+            System.out.print(INPUT_CARET);
             username = in.nextLine().trim();
         }
         greetUser(username);
-        System.out.println("Get started by providing the command \"help\" to learn the functions offered by rainyDay!");
+        System.out.println(WELCOME_NEW_USER_AFTER_USERNAME);
         return username;
     }
 
     public String readUserCommand() {
-        System.out.print("> ");
+        System.out.print(INPUT_CARET);
         String userInput = in.nextLine();
         UILogger.log(Level.INFO, userInput);
         return userInput.trim();

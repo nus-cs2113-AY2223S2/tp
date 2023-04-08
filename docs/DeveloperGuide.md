@@ -141,7 +141,14 @@ and [export to .csv](#exporting-to-csv) operations.
 - Loading is done from a .json file. `Storage` will also perform the necessary checks to ensure that the .json file
   is not corrupted and contains valid data
 
-#### Ui
+#### UI
+
+The UI class is used mainly for user-related functions, including the reading of user input.
+
+It is used to print to the user welcome and goodbye messages. On first startup, it is also used to get the name of
+the user.
+
+The UI class is also used when a shortcut-command is being executed by the user.
 
 ### Data package
 
@@ -390,9 +397,9 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 
 ### Viewing your data `view`
 
-- The command `view` is used to view all statements, and a ViewCommand object will be created
+- When a command is given to view all statements, the command is first parsed to check if it follows the format as shown
+  below. A ViewCommand object will be created at the end.
     - The format for the command is `view TIMESPAN -sort`
-- When a command for view is given, the command is first parsed to check if it follows the format as shown above
 - The relevant details will then be extracted out and passed as a ViewCommand object. Details include the start date,
   the end date, if sorting is required, and if `-all` is passed in the `TIMESPAN` field
     - If `-all` is passed, a boolean value will be set to true to indicate this. The start date and end date will be
