@@ -294,6 +294,8 @@ Example Command: ```history```
 ## Seeing your workout summary: ```data```
 
 Displays the list of exercises which you have completed, along with the number of times of completion for each exercise.
+Apart from providing the list of exercises you have completed, this function also outputs the total number of 
+unique as well as non-unique exercises which you have completed at the end of the list.
 
 Example Command: ```data```
 
@@ -318,6 +320,8 @@ Difficulty Level: beginner
 Workout type: core
 Secure your legs at the end of the decline bench and slowly lay down on the bench., Raise your upper body off the bench until your torso is about 35-45 degrees if measured from the floor., Put one hand beside your head and the other on your thigh. This will be your starting position., Raise your upper body slowly from the starting position while turning your torso to the left. Continue crunching up as you exhale until your right elbow touches your left knee. Hold this contracted position for a second. Tip: Focus on keeping your abs tight and keeping the movement slow and controlled., Lower your body back down slowly to the starting position as you inhale., After completing one set on the right for the recommended amount of repetitions, switch to your left side. Tip: Focus on really twisting your torso and feeling the contraction when you are in the up position.
 Times Completed: 2
+
+You have completed a total of 3 non-unique exercise(s), of which 2 of them are unique! Keep it up!:)
 ```
 
 ## Deleting a workout session: ```delete [number]```
@@ -430,6 +434,64 @@ Here are the exercises matching your keyword:
 5.legs-SMR
 6.Wide Stance Stiff Legs
 ________________________________________
+```
+
+## Searching for a workout the user has completed: ```quickfind [keyword]```
+
+Finds exercises from the user's list of completed exercises whose names contain the input keyword. 
+
+Example Command: ```quickfind [keyword]```
+
+Workout Data Example:
+```
+Here is a list of all the exercises you have completed:
+
+Exercise Name: Kettlebell Pass Between The Legs
+Difficulty Level: intermediate
+Workout type: core
+Place one kettlebell between your legs and take a comfortable stance. Bend over by pushing your butt out and keeping your back flat., Pick up a kettlebell and pass it to your other hand between your legs, in the fashion of a "W". Go back and forth for several repetitions.
+Times Completed: 1
+
+Exercise Name: Anterior Tibialis-SMR
+Difficulty Level: intermediate
+Workout type: legs
+Begin seated on the ground with your legs bent and your feet on the floor., Using a Muscle Roller or a rolling pin, apply pressure to the muscles on the outside of your shins. Work from just below the knee to above the ankle, pausing at points of tension for 10-30 seconds. Repeat on the other leg.
+Times Completed: 1
+
+Exercise Name: Bicycling
+Difficulty Level: beginner
+Workout type: legs
+To begin, seat yourself on the bike and adjust the seat to your height.
+Times Completed: 1
+
+You have completed a total of 3 non-unique exercise(s), of which 3 of them are unique! Keep it up!:)
+```
+
+Examples: ```quickfind legs```, ```quickfind ant```
+
+All exercise names within the user's completed list of exercises containing "legs" will appear.
+
+```
+Here are the exercises you have completed which match the keyword that you have provided!
+
+1. Kettlebell Pass Between The Legs
+Exercise ID: 376
+Difficulty Level: intermediate
+Workout type: core
+Place one kettlebell between your legs and take a comfortable stance. Bend over by pushing your butt out and keeping your back flat., Pick up a kettlebell and pass it to your other hand between your legs, in the fashion of a "W". Go back and forth for several repetitions.
+
+```
+
+All exercise names within the user's completed list of exercises containing "ant" will appear.
+```
+Here are the exercises you have completed which match the keyword that you have provided!
+
+1. Anterior Tibialis-SMR
+Exercise ID: 22
+Difficulty Level: intermediate
+Workout type: legs
+Begin seated on the ground with your legs bent and your feet on the floor., Using a Muscle Roller or a rolling pin, apply pressure to the muscles on the outside of your shins. Work from just below the knee to above the ankle, pausing at points of tension for 10-30 seconds. Repeat on the other leg.
+
 ```
 
 # Workout Plans

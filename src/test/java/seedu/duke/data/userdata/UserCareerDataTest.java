@@ -37,7 +37,7 @@ class UserCareerDataTest {
     }
 
     /**
-     * Test to check if a workout session is added correctly.
+     * Checks if a workout session is added correctly.
      */
 
     @Test
@@ -53,7 +53,7 @@ class UserCareerDataTest {
     }
 
     /**
-     * Test to check if a workout session is deleted correctly.
+     * Checks if a workout session is deleted correctly.
      */
 
     @Test
@@ -67,5 +67,23 @@ class UserCareerDataTest {
         userCareerData.addWorkoutSession(session);
         userCareerData.deleteWorkoutSession(1);
         assertEquals(userCareerData.getTotalUserCareerSessions().size(), 0);
+    }
+
+    /**
+     * Checks that getTotalUserCareerSessions() function gets the correct number of completed workout
+     * sessions by the user.
+     *
+     */
+    @Test
+    void testGetTotalUserCareerSessions() {
+        UserCareerData userCareerData = new UserCareerData();
+        assertEquals(0, userCareerData.getTotalUserCareerSessions().size());
+        ArrayList<ExerciseData> exerciseList = new ArrayList<>();
+        GenerateExercise generateExercise = new GenerateExercise();
+        ArrayList<ExerciseData> exerciseData = generateExercise.generateSetAll();
+        exerciseList.add(exerciseData.get(773));
+        Session session = new Session(exerciseList);
+        userCareerData.addWorkoutSession(session);
+        assertEquals(1,userCareerData.getTotalUserCareerSessions().size());
     }
 }
