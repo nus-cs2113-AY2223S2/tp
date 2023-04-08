@@ -329,9 +329,7 @@ The command class creates a new instance of `TrigoGraph` and pass in `toDo` as a
 then executes `trigoGraph.startGraphAnalysis()`based on `command` using switch-case statements.
 
 #### TrigoGraph class:
-
-![img_1.png](img_1.png)
-
+![img_8.png](img_8.png)
 **"--->", empty headed arrow represents constructor call**
 
 Step 2. Constructor for the TrigoGraph class takes in `2*sin(2*x+5)-1` and assigns it to `trigoEqn` of type String. When `startGraphAnalysis()`
