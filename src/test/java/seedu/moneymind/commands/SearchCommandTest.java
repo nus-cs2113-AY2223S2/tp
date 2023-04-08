@@ -1,7 +1,6 @@
 package seedu.moneymind.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.moneymind.command.SearchCommand;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,11 +30,6 @@ public class SearchCommandTest extends CommandTest {
                 "salad (Category: food)" + System.lineSeparator();
         assertEquals(expected, terminalOutput);
         clear();
-    }
-
-    void test() {
-        String terminalOutput = executeInput("search hello").toString();
-        System.out.println(terminalOutput);
     }
 
     @Test
