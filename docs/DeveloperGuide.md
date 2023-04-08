@@ -304,19 +304,9 @@ It takes in the necessary parameters, including the `TaskList`, `Ui`, `Storage`,
 The first step in the `execute()` method is to find out how to modify the
 TaskList. In this case, the task at a user-provided index is to be marked as done.
 
-<<<<<<< HEAD
 **Step 5: Find the task to mark as done:**
 
-Using the parameter `taskIndex`, the `execute()` method will iterate to that
-index in the `TaskList` and call the `setAsDone()` method of the `Task` class, setting the boolean `isDone` to `true`.
-If the index is outside the bounds of the size of the `TaskList`, a `NumberFormatException` is thrown,
-calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
-
-**Step 6: Print the confirmation message:**
-
-A confirmation message is printed to the user indicating what task has been
-=======
-Step 5: Find the task to mark as done: The `execute()` method will perform a call to the method `markTask()`
+The `execute()` method will perform a call to the method `markTask()`
 that takes in the `TaskList` and `Ui` as parameters. It will iterate to the user-given index, and it will first check
 the task completeness status. If it is not, call the `setAsDone()` method of the `Task` class, setting the boolean `isDone`
 to `true`, proceeding on to step 6a. If the task the user is trying to mark is done from previous iterations
@@ -324,8 +314,9 @@ to `true`, proceeding on to step 6a. If the task the user is trying to mark is d
 If the index is outside the bounds of the size of the `TaskList`, a `NumberFormatException` is thrown,
 calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
 
-Step 6a: Print the confirmation message: A confirmation message is printed to the user indicating what task has been
->>>>>>> master
+**Step 6: Print the confirmation message:**
+
+Step 6a: A confirmation message is printed to the user indicating what task has been
 successfully marked as done from the user-provided index of the `TaskList`. The message includes the task type,
 description (and date of the task deleted if the task is either an event or a deadline).The execution will proceed to step 7.
 
