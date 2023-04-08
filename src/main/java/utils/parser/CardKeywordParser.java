@@ -89,8 +89,7 @@ public class CardKeywordParser extends KeywordParser {
         Options deckOptions = new OptionsBuilder(CARD_MODEL, DECK_ACTION).buildOptions();
         // Combine all action
         String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, VIEW_ACTION, DECK_ACTION};
-        String[] headerList = new String[]{
-                "Adding cards", "Deleting cards",
+        String[] headerList = new String[]{"Adding cards", "Deleting cards",
                 "List all cards", "Tagging cards", "View cards", "Adding cards to Deck"};
         Options[] optionsList = {addOptions, deleteOptions, new Options(), tagOptions, viewOptions, deckOptions};
         String helpMessage = formatHelpMessage("card", actionList, headerList, optionsList);
@@ -107,6 +106,11 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     private Command handleTag(List<String> tokens) throws ParseException, InkaException {
+
+        if (tokens.size() != 0) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options tagOptions = new OptionsBuilder(CARD_MODEL, TAG_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(tagOptions, tokens);
 
