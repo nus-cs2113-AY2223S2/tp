@@ -10,15 +10,30 @@ class Ui {
 - in: Scanner
 - LONG_LINE_BREAK: String
 + readCommand(): String
-+ showLine() : void
++ showLine(): void
++ printHelpCommandHelpMessage(): void
 + printModuleList(moduleData: ModuleList): void
-
++ printList(taskData: TaskList): void
+- printAllModulesInList((moduleData: ModuleList): ModuleList): void
+- printTasksOnDay(taskData: TaskList): void
 }
 
 note left of Ui::LONG_LINE_BREAK
     Other static variables for Ui
     words have been omitted for brevity.
 end note
+
+note left of Ui::showLine
+    Other printing methods
+    have been omitted for brevity.
+end note
+
+note left of Ui::printModuleList
+    These are some printing
+    methods that accesses
+    TaskList and ModuleList.
+end note
+
 
 Ui -> ModuleList : access \nmoduleData >
 ModuleList "1" *--> "*" Module : contains >
