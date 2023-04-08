@@ -7,5 +7,14 @@
     "description": "uncategorized",
     "currencyType": "SGD",
     "rate": 1
+  },
+  {
+    "expenseAmount": 10.00,
+    "expenseTime": {
+      "date": "2021-02-02"
+    },
+    "description": "uncategorized",
+    "currencyType": "SGD",
+    "rate": 1
   }
 ]

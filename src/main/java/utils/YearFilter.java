@@ -15,7 +15,7 @@ public class YearFilter {
     }
 
     private String getYearFromExpenseTime(String expenseTime) {
-        String[] date = expenseTime.split("/");
+        String[] date = expenseTime.split("-");
         return date[2];
     }
 
