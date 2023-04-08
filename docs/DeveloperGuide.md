@@ -180,8 +180,10 @@ to show the recipe list.
 The `Command` object will then be executed by calling the `Command#execute()` method, which will call the 
 `RecipeList#clearRecipeList()` to clear all the recipes from the recipe list.
 
-> The following sequence diagram shows how the recipe manage feature works:
-![Sequence Diagram for Recipe Manage](./PlantUML/RecipeManage.png)
+> The following sequence diagrams shows how the recipe manage feature works:
+![Sequence Diagram for Recipe Manage ADD and LIST](./PlantUML/RecipeManage_Add_List.png)
+![Sequence Diagram for Recipe Manage CLEAR and DELETE](./PlantUML/RecipeManage_Delete_Clear.png)
+
 
 ### Recipe Find Feature
 #### Implementation
@@ -254,7 +256,7 @@ for the recipe. The method then follows a similar approach for the steps in the 
 and then `StepList#showStepList()`.
 
 > The following sequence diagram shows how the recipe view feature works:
-![Sequence Diagram for Recipe View](./PlantUML/Recipe_View.png)
+![Sequence Diagram for Recipe View](./PlantUML/RecipeView.png)
 
 ### Help Feature
 #### Implementation

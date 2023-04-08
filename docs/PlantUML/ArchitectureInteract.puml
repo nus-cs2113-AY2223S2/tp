@@ -12,26 +12,29 @@ end box
 activate Duke #Gold
 Duke -> UI : readCommand()
 activate UI #Gray
-User -> UI : delete 1
-UI --> Duke : delete 1
-Duke -> Parser : parseCommand(delete 1)
+User -> UI : "delete 1"
+UI --> Duke : "delete 1"
+Duke -> Parser : parseCommand()
 activate Parser #Yellow
 Parser --> Duke
 deactivate Parser
-Duke -> Command : execute(delete,1)
+Duke -> Command : execute()
 activate Command #Beige
-Command -> RecipeList : delete(1)
+Command -> RecipeList : removeRecipe()
 activate RecipeList #OrangeRed
-RecipeList -> Storage
-activate Storage #DimGray
-Storage -> Storage : save()
-activate Storage
-Storage --> Storage
-deactivate Storage
-Storage --> RecipeList
-deactivate Storage
 RecipeList --> Command
 deactivate RecipeList
+Command -> UI : showRecipeDeleted()
+Command -> Storage : writeSavedFile()
+activate Storage #DimGray
+loop number of recipes times
+Storage -> Storage : write()
+activate Storage #DimGray
+Storage --> Storage
+deactivate Storage
+end loop
+Storage --> Command
+deactivate Storage
 Command --> Duke
 deactivate Command
 @enduml

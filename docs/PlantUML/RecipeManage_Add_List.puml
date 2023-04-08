@@ -1,0 +1,81 @@
+@startuml RecipeManage 
+box Manager #White
+Actor User 
+participant ":UI" as UI #Gray
+participant ":Duke" as Duke #Gold
+participant ":Parser" as Parser #Yellow
+participant ":Command" as Command1 #Beige
+participant ":Command" as Command2 #Beige
+participant ":RecipeList" as RecipeList #OrangeRed
+end box 
+
+activate Duke #Gold
+Duke -> UI : readCommand()
+activate UI #Gray
+User -> UI : "add n/MaLaXiangGuo\n i/Beef, Mutton, Mushrooms t/Chinese s/1"
+UI --> Duke : "add n/MaLaXiangGuo\n i/Beef, Mutton, Mushrooms t/Chinese s/1"
+deactivate UI
+Duke -> Parser : parseCommand()
+activate Parser #Yellow
+Parser --> Duke 
+deactivate Parser
+Duke -> Command1 : execute()
+activate Command1 #Beige
+Command1 -> Parser : parseRecipe()
+activate Parser #Yellow
+Parser --> Command1
+deactivate Parser
+Command1 -> Parser : parseIngredient()
+activate Parser #Yellow
+Parser --> Command1
+deactivate Parser
+Command1 -> Parser : parseSteps()
+activate Parser #Yellow
+loop sum of steps times  
+Parser -> UI : readCommand()
+activate UI #Gray
+UI --> Parser
+deactivate UI
+Parser --> Command1
+end loop
+deactivate Parser
+Command1 -> RecipeList : addNewRecipe()
+activate RecipeList #OrangeRed
+RecipeList --> Command1
+deactivate RecipeList
+Command1 -> UI : showRecipeAdded()
+activate UI #Gray
+UI -> User : successful message
+UI --> Command1
+deactivate UI
+Command1 --> Duke
+deactivate Command1 #Beige
+Duke -> Command1 : delete
+destroy Command1
+Duke -> UI : readCommand()
+activate UI #Gray
+User -> UI : "list"
+UI --> Duke : "list"
+deactivate UI
+Duke -> Parser : parseCommand()
+activate Parser #Yellow
+Parser --> Duke
+deactivate Parser
+Duke -> Command2 : execute()
+activate Command2 #Beige
+Command2 -> RecipeList : getRecipeList()
+activate RecipeList #OrangeRed
+RecipeList --> Command2
+deactivate RecipeList
+Command2 -> UI : showRecipeList()
+activate UI #Gray
+UI -> User : the list of recipes
+UI --> Command2
+deactivate UI
+Command2 --> Duke
+deactivate Command2
+Duke -> Command2 : delete
+destroy Command2
+
+
+@enduml
