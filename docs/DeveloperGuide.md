@@ -69,15 +69,14 @@ How the `Ui` component works:
 Here's a class diagram of the `Parser` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser.png?raw=true)
 
-Here's a sequence diagram of the `Parser` component
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser_Seq-Parser.png?raw=true)
-
 How the `Parser` component works:
 1. When a command is entered by the user, `Parser` split the inputs from user accordingly and create the relevant
 subclass of `Command`.
 2. `Parser` will check for the number of arguments after splitting the inputs from user. 
 3. If the parameter is empty, `Parser` will throw `Exceptions` according to the input commands. 
 4. Otherwise, `Parser` will then create the subclass of `Command` according to the user input.
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser_Seq-Parser.png?raw=true)
 
 ### Command Component
 **API:** `Command.java`    
