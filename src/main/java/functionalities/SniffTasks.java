@@ -398,18 +398,18 @@ public class SniffTasks {
                     break;
                 }
             }
-                if (APPOINTMENTS.get(index).getStatus().equals("X")) {
-                    Ui.printAppointmentAlreadyMarkedMessage(uid);
-                } else {
-                    APPOINTMENTS.get(index).setIsDone(true);
-                    Ui.formatPrintList(counter, APPOINTMENTS.get(index).toString());
-                    System.out.println("\n");
-                    Ui.printAppointmentMarkMessage();
-                }
-            } catch(IndexOutOfBoundsException e){
-                throw new SniffException(" The mark command entry is invalid!");
+            if (APPOINTMENTS.get(index).getStatus().equals("X")) {
+                Ui.printAppointmentAlreadyMarkedMessage(uid);
+            } else {
+                APPOINTMENTS.get(index).setIsDone(true);
+                Ui.formatPrintList(counter, APPOINTMENTS.get(index).toString());
+                System.out.println("\n");
+                Ui.printAppointmentMarkMessage();
             }
+        } catch(IndexOutOfBoundsException e){
+            throw new SniffException(" The mark command entry is invalid!");
         }
+    }
 
     /**
      * Gets the ID input by the user and UnMarks the corresponding appointment and generates a success message.
