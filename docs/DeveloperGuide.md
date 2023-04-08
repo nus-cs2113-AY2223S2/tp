@@ -220,6 +220,8 @@ parse the user input, which returns a `Command` object of type `EDITSTEP`. Under
 If there is at least one step in the recipe, a further user input `1` is parsed to an `int` to specify
 the step number in the list. It is further converted to the 0-based indexing in the `stepList` by subtracting 1.
 
+> The following sequence diagram shows how the recipe steps edit feature works:
+![Sequence Diagram for Recipe Edit Step](./PlantUML/EditStep.png)
 
 ### Recipe Ingredients Edit Feature
 
