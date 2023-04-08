@@ -39,12 +39,11 @@ public class Duke {
     }
 
     public void run() {
-        System.out.println("Hello from\n");
-        WelcomeMessage.printWelcomeLogo();
 
         Scanner in = new Scanner(System.in);
 
         WelcomeMessage.welcomeHelper();
+
         String input = "";
         while (in.hasNextLine()) {
             input = in.nextLine();

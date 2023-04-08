@@ -1,4 +1,5 @@
 package common;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Font;
@@ -14,6 +15,7 @@ public class WelcomeMessage {
     private static final String WORD = "E T";
     private static final int WIDTH = 60;
     private static final int HEIGHT = 30;
+
     public static void printString(String toPrint) {
         BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         Graphics g = image.getGraphics();
@@ -48,6 +50,22 @@ public class WelcomeMessage {
      */
     public static void welcomeHelper() {
         System.out.println("You can type (help) and press enter button to get the helper!");
+    }
+
+    public static void printLogo() {
+        System.out.println();
+        System.out.println("" +
+                "        *******     **********" + System.lineSeparator() +
+                "        *******     **********" + System.lineSeparator() +
+                "        ***            ***" + System.lineSeparator() +
+                "        ******         ***" + System.lineSeparator() +
+                "        ******         ***" + System.lineSeparator() +
+                "        ******         ***" + System.lineSeparator() +
+                "        ***            ***" + System.lineSeparator() +
+                "        ***            ***" + System.lineSeparator() +
+                "        *******        ***" + System.lineSeparator() +
+                "        *******        ***");
+        System.out.println();
     }
 
 }
