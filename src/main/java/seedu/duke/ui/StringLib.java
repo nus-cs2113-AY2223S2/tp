@@ -147,9 +147,12 @@ public interface StringLib {
     String EDIT_TYPE_ERROR = "\nPlease enter a edit type (--s/--i) !\n";
     String EDIT_INGREDIENT_ERROR = "\nPlease keep format as edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT\n";
     String INVALID_RECIPE_INDEX = "\nPlease enter a valid recipe index!";
+    String EMPTY_RECIPE_LIST = "\nThere are no recipes in the list!";
     String INVALID_INGREDIENT_INDEX = "\nPlease enter a valid ingredient index!";
+    String EMPTY_INGREDIENT_LIST = "There are no ingredients in the list!";
     String EDIT_STEP_ERROR = "\nPlease keep format as edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP\n";
     String INVALID_STEP_INDEX = "\nPlease enter a valid step index!";
+    String EMPTY_STEP_LIST = "There are no steps in the list!";
     String POS_INT = "\nPlease enter a valid index!";
 
     String INVALID_INPUT_VALID_RANGE_PREFIX = "Invalid Input! Valid Range: ";
@@ -158,4 +161,5 @@ public interface StringLib {
     String[] FORBIDDEN_CHARS = {"!","@","#","$","%","&","*","(",")","+",",",
                                 ".","/",":",";","<","=",">","?","[","]","^","_","`","{","|","}"};
     String SAVE_SEPARATOR = "#######";
+    String OVERFLOW_NUMBER_ERROR = "you have entered a non-integer number!";
 }
