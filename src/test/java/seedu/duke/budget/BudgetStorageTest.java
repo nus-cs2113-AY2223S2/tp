@@ -45,6 +45,7 @@ class BudgetStorageTest {
     @Test
     @Order(2)
     void initialiseDatabase_txtFileDoesNotExist_creationSuccess() {
+        f.delete();
         BudgetStorage budgetStorage = BudgetStorage.getInstance();
         try {
             budgetStorage.initialiseDatabase();
@@ -100,6 +101,25 @@ class BudgetStorageTest {
         f.delete();
     }
 
+    @Test
+    @Order(15)
+    void initialiseDatabase_corruptFileReset_readSuccess() {
+        f.delete();
+        try {
+            FileWriter fw = new FileWriter(BUDGET_PATH);
+            fw.write("");
+            fw.close();
+        } catch (IOException e) {
+            fail("Filewriter creation failed");
+        }
+        BudgetStorage budgetStorage = BudgetStorage.getInstance();
+        assertEquals(0, budgetStorage.getBudget());
+        assertEquals(0, budgetStorage.getEntertainmentCost());
+        assertEquals(0, budgetStorage.getFoodCost());
+        assertEquals(0, budgetStorage.getAccommodationCost());
+        assertEquals(0, budgetStorage.getAirplaneTicketCost());
+        f.delete();
+    }
     @Test
     @Order(3)
     void getAccommodationCost_initialiseZero_success() {
