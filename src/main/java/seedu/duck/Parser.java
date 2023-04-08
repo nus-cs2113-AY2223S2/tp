@@ -193,6 +193,10 @@ public class Parser {
                         Ui.unknownCommandMessage();
                     }
                     break;
+                case "motivation":
+                    Ui.printMotivationalQuote();
+                    Ui.borderLine();
+                    break;
                 case "clear":
                     if (Ui.doubleCheck()) {
                         // Find tasks that contain a keyword
