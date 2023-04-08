@@ -61,6 +61,10 @@ Shows a message explaining how to access the help page.<br>
 Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
 **Format**: `add n/NAME i/INGREDIENTS t/TAG s/NUMBEROFSTEPS`<br>
 **Hint**: Number of steps is the number of steps in the recipe, then you will be prompted to enter the steps.<br>
+**Constraints**:
+* NAME, INGREDIENTS, TAG: These recipe parameters must only be ***alphanumeric*** in nature and should **not contain only numeric characters** or
+any other **special characters**.
+
 **Examples**:<br>
 ```
 __________________________________________________________
@@ -219,7 +223,9 @@ __________________________________________________________
 
 Find recipes whose tag contain any of the given keywords. The results will be displayed in a list, telling you the index of the recipe in the recipe list. Only the tag of the recipe will be searched.<br>
 **Format**: `findtag KEYWORD`<br>
-**Constraints**: `KEYWORD` cannot be empty.<br>
+**Constraints**: 
+* `KEYWORD` cannot be empty.<br>
+
 **Examples**:<br>
 ```
 __________________________________________________________
@@ -237,7 +243,7 @@ __________________________________________________________
 **Constraints**: 
 * INDEX: The index must be a positive integer within the range: `[1, total number of recipes in the list]`
 (Provided the list is not empty).
-* NAME: The **exact** full name of the recipe must be given as input, partial names will not be processed .
+* NAME: The **exact** full name of the recipe must be given as input, partial names will not be processed.
 
 **Examples**:
 <br>
