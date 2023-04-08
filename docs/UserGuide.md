@@ -33,11 +33,14 @@ If you can type fast, Apollo can get your timetable management done faster than 
       + [`delmod lessons` - Deleting a lesson from a module](#delmod-lessons---deleting-a-lesson-from-a-module)
       + [`show mod` - Showing a module](#showmod---show-information-of-a-module)
       + [`show mod lessons` - Showing a lesson](#showmod-lessons---show-information-of-a-lesson-from-a-module)
+
     + [Utility Commands](#utility-commands)
       + [`help` - Viewing help](#help---viewing-help)
       + [`help` - For help with a specific command](#help---for-help-with-specific-commands)
+      + [`week` -Viewing weekly schedule](#week---viewing-weekly-schedule)
       + [`bye` - Exiting the program](#bye---exiting-the-program)
     + [Loading and saving of data](#loading-and-saving-of-data)
+
 4. [FAQ](#faq)
 
 ## Quick Start
