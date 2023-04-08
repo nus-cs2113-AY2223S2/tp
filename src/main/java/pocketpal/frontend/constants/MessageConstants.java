@@ -24,6 +24,10 @@ public final class MessageConstants {
             + "-d <description>" + NEWLINE
             + "-c <category>" + NEWLINE
             + "-p <price>" + NEWLINE
+            + "Available categories are:" + NEWLINE
+            + "CLOTHING, ENTERTAINMENT, FOOD," + NEWLINE
+            + "TRANSPORTATION, MEDICAL, PERSONAL," + NEWLINE
+            + "INCOME, UTILITIES, OTHERS" + NEWLINE + NEWLINE
             + "See below for examples" + NEWLINE
             + "/add -d Apple Macbook Air -p 1300 -c Personal" + NEWLINE
             + "/add -p 1300 -c Personal -d Apple Macbook Air" + NEWLINE + NEWLINE;
@@ -68,10 +72,12 @@ public final class MessageConstants {
             + "Listed below are the various commands that are currently supported." + NEWLINE + NEWLINE;
 
     // Exception Messages
-    public static final String MESSAGE_EMPTY_INPUT = "Use /help for a list of supported commands!";
+    public static final String MESSAGE_EMPTY_INPUT = "Input cannot be empty." + NEWLINE
+            + "Use /help for a list of supported commands!";
     public static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!" + NEWLINE + NEWLINE
             + "Possible commands are:" + NEWLINE
-            + "/add, /delete, /view, /edit, /help, /bye";
+            + "/add, /delete, /view, /edit, /help, /bye" + NEWLINE
+            + "Use /help for more information.";
     public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!" + NEWLINE + NEWLINE
             + "The available categories are:" + NEWLINE
             + "CLOTHING, ENTERTAINMENT, FOOD," + NEWLINE
