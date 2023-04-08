@@ -75,7 +75,42 @@ public class UITest {
             assertEquals(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_HELP_MENU + UIConstants.LINE,
                     outContent.toString());
         }
-        
+
+        @Test
+        void testPrintHelpAdd() {
+            ui.printHelpAdd();
+            assertEquals(MessageConstants.MESSAGE_ADD_COMMAND + UIConstants.LINE, outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpDelete() {
+            ui.printHelpDelete();
+            assertEquals(MessageConstants.MESSAGE_DELETE_COMMAND + UIConstants.LINE, outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpView(){
+            ui.printHelpView();
+            assertEquals(MessageConstants.MESSAGE_VIEW_COMMAND + UIConstants.LINE, outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpEdit(){
+            ui.printHelpEdit();
+            assertEquals(MessageConstants.MESSAGE_EDIT_COMMAND + UIConstants.LINE, outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpBye(){
+            ui.printHelpBye();
+            assertEquals(MessageConstants.MESSAGE_BYE_COMMAND + UIConstants.LINE, outContent.toString());
+        }
+
+        @Test
+        void testPrintHelpHelp(){
+            ui.printHelpHelp();
+            assertEquals(MessageConstants.MESSAGE_HELP_COMMAND + UIConstants.LINE, outContent.toString());
+        }
 
         @Test
         void testPrintWelcome() {
