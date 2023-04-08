@@ -14,6 +14,8 @@ public class OptionsBuilder {
     public static final String ADD_ACTION = "add";
     public static final String DELETE_ACTION = "delete";
     public static final String TAG_ACTION = "tag";
+
+    public static final String UNTAG_ACTION = "untag";
     public static final String VIEW_ACTION = "view";
     public static final String DECK_ACTION = "deck";
     public static final String EDIT_ACTION = "edit";
@@ -51,6 +53,8 @@ public class OptionsBuilder {
                 return buildAddOptions();
             case TAG_ACTION:
                 return buildTagOptions();
+            case UNTAG_ACTION:
+                return buildUntagOptions();
             case VIEW_ACTION:
                 return buildViewOptions();
             case DELETE_ACTION:
@@ -103,6 +107,13 @@ public class OptionsBuilder {
     }
 
     public static Options buildTagOptions() {
+        Options options = new Options();
+        options.addOptionGroup(buildCardSelectOption());
+        options.addOptionGroup(buildTagSelectOption());
+        return options;
+    }
+
+    public static Options buildUntagOptions() {
         Options options = new Options();
         options.addOptionGroup(buildCardSelectOption());
         options.addOptionGroup(buildTagSelectOption());
@@ -242,5 +253,4 @@ public class OptionsBuilder {
 
         return opt;
     }
-
 }

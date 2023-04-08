@@ -58,6 +58,11 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     private Command handleAdd(List<String> tokens) throws ParseException, InvalidSyntaxException {
+
+        if (tokens.size() != 2) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options addOptions = new OptionsBuilder(CARD_MODEL, ADD_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(addOptions, tokens);
 
@@ -69,6 +74,11 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     private Command handleDelete(List<String> tokens) throws ParseException, InkaException {
+
+        if (tokens.size() != 1) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options deleteOptions = new OptionsBuilder(CARD_MODEL, DELETE_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(deleteOptions, tokens);
 
@@ -78,6 +88,7 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     private Command handleHelp(List<String> tokens) throws InvalidSyntaxException {
+
         if (tokens.size() != 0) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
@@ -85,19 +96,25 @@ public class CardKeywordParser extends KeywordParser {
         Options addOptions = new OptionsBuilder(CARD_MODEL, ADD_ACTION).buildOptions();
         Options deleteOptions = new OptionsBuilder(CARD_MODEL, DELETE_ACTION).buildOptions();
         Options tagOptions = new OptionsBuilder(CARD_MODEL, TAG_ACTION).buildOptions();
+        Options untagOptions = new OptionsBuilder(CARD_MODEL, UNTAG_ACTION).buildOptions();
         Options viewOptions = new OptionsBuilder(CARD_MODEL, VIEW_ACTION).buildOptions();
         Options deckOptions = new OptionsBuilder(CARD_MODEL, DECK_ACTION).buildOptions();
         // Combine all action
-        String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, VIEW_ACTION, DECK_ACTION};
-        String[] headerList = new String[]{"Adding cards", "Deleting cards",
-                "List all cards", "Tagging cards", "View cards", "Adding cards to Deck"};
-        Options[] optionsList = {addOptions, deleteOptions, new Options(), tagOptions, viewOptions, deckOptions};
+        String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, UNTAG_ACTION, VIEW_ACTION,
+                DECK_ACTION};
+        String[] headerList = new String[]{"Adding cards", "Deleting cards", "List all cards", "Tagging cards",
+                "Untagging cards",
+                "View"
+                        + " cards", "Adding cards to Deck"};
+        Options[] optionsList = {addOptions, deleteOptions, new Options(), tagOptions, untagOptions, viewOptions,
+                deckOptions};
         String helpMessage = formatHelpMessage("card", actionList, headerList, optionsList);
 
         return new PrintHelpCommand(helpMessage);
     }
 
     private Command handleList(List<String> tokens) throws InvalidSyntaxException {
+
         if (tokens.size() != 0) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
@@ -107,7 +124,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleTag(List<String> tokens) throws ParseException, InkaException {
 
-        if (tokens.size() != 0) {
+        if (tokens.size() != 2) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
@@ -120,6 +137,11 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     private Command handleUntag(List<String> tokens) throws ParseException, InkaException {
+
+        if (tokens.size() != 2) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options tagOptions = new OptionsBuilder(CARD_MODEL, TAG_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(tagOptions, tokens);
 
@@ -129,6 +151,11 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
+
+        if (tokens.size() != 2) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options deckOptions = new OptionsBuilder(CARD_MODEL, DECK_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(deckOptions, tokens);
 
@@ -138,6 +165,11 @@ public class CardKeywordParser extends KeywordParser {
     }
 
     private Command handleView(List<String> tokens) throws ParseException, InkaException {
+
+        if (tokens.size() != 1) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options viewOptions = new OptionsBuilder(CARD_MODEL, VIEW_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(viewOptions, tokens);
 

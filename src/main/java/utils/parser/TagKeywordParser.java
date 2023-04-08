@@ -36,7 +36,7 @@ public class TagKeywordParser extends KeywordParser {
         case EDIT_ACTION:
             return handleEdit(tokens);
         case HELP_ACTION:
-            return handleHelp();
+            return handleHelp(tokens);
         case LIST_ACTION:
             return handleList(tokens);
         default:
@@ -45,6 +45,11 @@ public class TagKeywordParser extends KeywordParser {
     }
 
     private Command handleDelete(List<String> tokens) throws ParseException, InvalidSyntaxException {
+
+        if (tokens.size() != 1) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options deleteOption = new OptionsBuilder(TAG_MODEL, DELETE_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(deleteOption, tokens);
 
@@ -53,6 +58,11 @@ public class TagKeywordParser extends KeywordParser {
     }
 
     private Command handleEdit(List<String> tokens) throws ParseException, InvalidSyntaxException {
+
+        if (tokens.size() != 2) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options editOption = new OptionsBuilder(TAG_MODEL, EDIT_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(editOption, tokens);
 
@@ -61,7 +71,12 @@ public class TagKeywordParser extends KeywordParser {
         return new EditTagNameCommand(oldTagName, newTagName);
     }
 
-    private Command handleHelp() {
+    private Command handleHelp(List<String> tokens) throws InvalidSyntaxException {
+
+        if (tokens.size() != 0) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options deleteOption = new OptionsBuilder(TAG_MODEL, DELETE_ACTION).buildOptions();
         Options editOption = new OptionsBuilder(TAG_MODEL, EDIT_ACTION).buildOptions();
         Options listOption = new OptionsBuilder(TAG_MODEL, LIST_ACTION).buildOptions();
@@ -79,6 +94,11 @@ public class TagKeywordParser extends KeywordParser {
     }
 
     private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {
+
+        if (tokens.size() != 0 && tokens.size() != 1) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options listOption = new OptionsBuilder(TAG_MODEL, LIST_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(listOption, tokens);
 
@@ -91,6 +111,11 @@ public class TagKeywordParser extends KeywordParser {
     }
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
+
+        if (tokens.size() != 2) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options deckOption = new OptionsBuilder(TAG_MODEL, DECK_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(deckOption, tokens);
 

@@ -37,7 +37,7 @@ public class DeckKeywordParser extends KeywordParser {
         case EDIT_ACTION:
             return handleEdit(tokens);
         case HELP_ACTION:
-            return handleHelp();
+            return handleHelp(tokens);
         case LIST_ACTION:
             return handleList(tokens);
         case RUN_ACTION:
@@ -48,7 +48,12 @@ public class DeckKeywordParser extends KeywordParser {
     }
 
     private Command handleDelete(List<String> tokens) throws ParseException, InkaException {
-        Options deleteOptions =  new OptionsBuilder(DECK_MODEL, DELETE_ACTION).buildOptions();
+
+        if (tokens.size() != 1 && tokens.size() != 2 && tokens.size() != 3) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
+        Options deleteOptions = new OptionsBuilder(DECK_MODEL, DELETE_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(deleteOptions, tokens);
 
         TagSelector tagSelector = getSelectedTag(cmd);
@@ -63,7 +68,12 @@ public class DeckKeywordParser extends KeywordParser {
     }
 
     private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {
-        Options listOptions =  new OptionsBuilder(DECK_MODEL, LIST_ACTION).buildOptions();
+
+        if (tokens.size() != 0 && tokens.size() != 1 && tokens.size() != 2) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
+        Options listOptions = new OptionsBuilder(DECK_MODEL, LIST_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(listOptions, tokens);
 
         if (cmd.hasOption("c")) {
@@ -76,8 +86,14 @@ public class DeckKeywordParser extends KeywordParser {
             return new ListDecksCommand();
         }
     }
+
     private Command handleEdit(List<String> tokens) throws ParseException, InvalidSyntaxException {
-        Options editOptions =  new OptionsBuilder(DECK_MODEL, EDIT_ACTION).buildOptions();
+
+        if (tokens.size() != 2) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
+        Options editOptions = new OptionsBuilder(DECK_MODEL, EDIT_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(editOptions, tokens);
 
         String oldDeckName = cmd.getOptionValue("o");
@@ -85,10 +101,15 @@ public class DeckKeywordParser extends KeywordParser {
         return new EditDeckNameCommand(oldDeckName, newDeckName);
     }
 
-    private Command handleHelp() {
-        Options editOptions =  new OptionsBuilder(DECK_MODEL, EDIT_ACTION).buildOptions();
-        Options deleteOptions =  new OptionsBuilder(DECK_MODEL, DELETE_ACTION).buildOptions();
-        Options listOptions =  new OptionsBuilder(DECK_MODEL, LIST_ACTION).buildOptions();
+    private Command handleHelp(List<String> tokens) throws InvalidSyntaxException {
+
+        if (tokens.size() != 0) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
+        Options editOptions = new OptionsBuilder(DECK_MODEL, EDIT_ACTION).buildOptions();
+        Options deleteOptions = new OptionsBuilder(DECK_MODEL, DELETE_ACTION).buildOptions();
+        Options listOptions = new OptionsBuilder(DECK_MODEL, LIST_ACTION).buildOptions();
         // Combine all actions
         String[] actionList = {EDIT_ACTION, DELETE_ACTION, LIST_ACTION};
         String[] headerList = {"Edit existing decks", "Delete decks", "List decks"};
@@ -99,6 +120,11 @@ public class DeckKeywordParser extends KeywordParser {
     }
 
     private Command handleRun(List<String> tokens) throws ParseException, InvalidSyntaxException {
+
+        if (tokens.size() != 1) {
+            throw InvalidSyntaxException.buildTooManyTokensMessage();
+        }
+
         Options runOptions = new OptionsBuilder(DECK_MODEL, RUN_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(runOptions, tokens);
 
