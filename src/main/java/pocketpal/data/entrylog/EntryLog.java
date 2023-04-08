@@ -7,6 +7,7 @@ import pocketpal.data.parsing.EntryLogParser;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,12 +20,13 @@ public class EntryLog implements Serialisable {
     private final List<Entry> entries;
 
     public EntryLog() {
-        this.entries = new ArrayList<>();
+        this(new ArrayList<>());
     }
 
     public EntryLog(List<Entry> entries) {
         assert entries != null : "List cannot be null when instantiating EntryLog";
         this.entries = entries;
+        sort();
     }
 
     /**
@@ -162,6 +164,13 @@ public class EntryLog implements Serialisable {
         }
     }
 
+
+    /**
+     * Get the raw List object containing entries entered by the user.
+     * There should not be a need to use this method apart from saving and testing data.
+     *
+     * @return List containing all entries in the EntryLog
+     */
     public List<Entry> getEntriesList() {
         return entries;
     }
@@ -211,10 +220,16 @@ public class EntryLog implements Serialisable {
         return totalIncome;
     }
 
-
     @Override
     public String serialise() {
         return EntryLogParser.serialise(this);
     }
 
+    /**
+     * Sorts all entries in ascending date order.
+     */
+    private void sort() {
+        logger.info("Sorting entries by ascending date");
+        entries.sort(Comparator.comparing(Entry::getDateTime));
+    }
 }
