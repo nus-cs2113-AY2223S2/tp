@@ -60,7 +60,7 @@ public class Strings {
     public static final String CATEGORY_INSTRUCTION = "3. category - add a category to your list\n" +
             "Format: category <name> [(optional) b/<budget number>]\n" + "Example: category food b/2000\n";
     public static final String EVENT_INSTRUCTION = "4. event - add an event to a category\n" +
-            "Format: event <name> e/<expense number> [(optional) t/<time>]" +
+            "Format: event <name> e/<expense number> [(optional) t/<time>]\n" +
             "Example: event lunch e/10 t/01/01/2020 12:00\n" +
             "(time is optional and the format is dd/mm/yyyy hh:mm)\n";
     public static final String VIEW_INSTRUCTION =
