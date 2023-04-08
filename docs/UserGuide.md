@@ -56,7 +56,7 @@ Given below is list of task attributes and their restrictions.
 Some commands can act on multiple tasks at once, which can be selected by providing a list of ids, OR one or more filters.
 
 - `IDS` consists of one or more ids, separated by a space.
-  - **IMPORTANT**: Ids (indicated with `ID:`) are different from the ordering number of a task (indicated with `#`). Each task has a unique, fixed id number used to select that specific task. Hence, ids do not reset without using the `reset` command.
+  - **IMPORTANT**: Ids (indicated with `ID:`) are different from the ordering number of a task (indicated with `#`). Each task has a unique, fixed id number used to select that specific task. Hence, ids do not reset without using the [`reset`](#reset-to-do-list-reset) command.
   - A command will not be executed if any of the provided ids are invalid (not in the task list).
   - Commands will be executed as if the list of ids is provided in increasing order.
   - Examples: `1 3 5`, `99`
@@ -453,13 +453,17 @@ Checking for repeating task every: 5 minutes
 
 ### View help List `help`
 
-Displays all possible commands of the NUS To-Do List program.
+Displays all possible commands/filters/sorts that can be used.
 
-Format: `help`
+Format: `help [HELP_TYPE]`
+
+- If `HELP_TYPE` is `filter`, the help message regarding filter options is displayed.
+- If `HELP_TYPE` is `sort`, the help message regarding sorting options is displayed.
+- If `HELP_TYPE` is anything else or not provided, the command help message is displayed.
 
 Example of usage and output:
 
-`help`
+`help` will display the command help message.
 ```
 Here is the list of commands that you can use:
 +----------------------------------------------------------------------------------------+
