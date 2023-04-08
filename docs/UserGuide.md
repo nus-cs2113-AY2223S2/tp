@@ -212,7 +212,7 @@ Format: `editExpense i/ <index> t/ <type> n/ <newEntry>`
 * Edits the expense at the specified `index`. 
 The index refers to the index number shown in the displayed expense list.
 The index must be a positive integer 1, 2, 3, …​
-* The `type` can be: amount, description, time, or category.
+* The `type` can be: amount, info, time, or category.
   * amount (of type **double** up to **2dp**. Digits beyond 2dp will be ignored.): edits the expense
   * info (of type **String**): edits the description of expense
   * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense.
@@ -470,7 +470,7 @@ If you add this optional parameter, the budget will only take expenses within th
 If the optional time parameter is not given, it will set the budget for the current month.
 
 Example of usage:
-`setBudget 2000 t/ 2023/04` sets the budget of 2023/04 at 2000.
+`setBudget 2000 t/ 2023/05` sets the budget of 2023/05 at 2000.
 `setBudget 2000` sets the budget for the current month.
 
 Example output with optional time flag:
