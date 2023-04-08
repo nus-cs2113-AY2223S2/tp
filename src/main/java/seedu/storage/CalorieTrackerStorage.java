@@ -67,7 +67,7 @@ public class CalorieTrackerStorage {
         }
     }
 
-    public void saveUserData(HashMap<Date, FoodList> dailyFoodConsumption) throws IOException {
+    void saveUserData(HashMap<Date, FoodList> dailyFoodConsumption) throws IOException {
         FileWriter fileWriter = new FileWriter(calorieTrackerFile);
         for (Date date : dailyFoodConsumption.keySet()) {
             fileWriter.write(DateFormatter.dateToString(date) + ',');

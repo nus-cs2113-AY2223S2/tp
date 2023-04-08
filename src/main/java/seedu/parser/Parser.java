@@ -50,12 +50,11 @@ public class Parser {
         case "/cadd":
             return CalorieParser.parseAddCalorieCommand(arguments);
         case "/clist":
-            //list the total daily calories consumption
-            break;
+            return CalorieParser.parseListCalorieCommand(arguments);
         case "/cview":
-            return CalorieParser.parseViewCalories(arguments);
+            return CalorieParser.parseViewCaloriesCommand(arguments);
         case "/cdelete":
-            //delete calories for a specific day for one food follow /cdelete date food name
+            return CalorieParser.parseDeleteCalorieCommand(arguments);
         case "/chelp":
             return new HelpCaloriesCommand();
         case "/exit":
@@ -63,7 +62,6 @@ public class Parser {
         default:
             return new InvalidCommand(commandName);
         }
-        return new InvalidCommand(commandName);
     }
 
     /**
