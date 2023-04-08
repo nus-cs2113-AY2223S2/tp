@@ -46,7 +46,7 @@ public class TagKeywordParser extends KeywordParser {
 
     private Command handleDelete(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        if (tokens.size() != 1) {
+        if (tokens.size() != 2) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
@@ -59,7 +59,7 @@ public class TagKeywordParser extends KeywordParser {
 
     private Command handleEdit(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        if (tokens.size() != 2) {
+        if (tokens.size() != 4) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
@@ -95,7 +95,7 @@ public class TagKeywordParser extends KeywordParser {
 
     private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        if (tokens.size() != 0 && tokens.size() != 1) {
+        if (tokens.size() != 0 && tokens.size() != 2) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
@@ -112,7 +112,7 @@ public class TagKeywordParser extends KeywordParser {
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
 
-        if (tokens.size() != 2) {
+        if (tokens.size() != 4) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 

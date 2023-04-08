@@ -49,7 +49,7 @@ public class DeckKeywordParser extends KeywordParser {
 
     private Command handleDelete(List<String> tokens) throws ParseException, InkaException {
 
-        if (tokens.size() != 1 && tokens.size() != 2 && tokens.size() != 3) {
+        if (tokens.size() != 2 && tokens.size() != 4 && tokens.size() != 6) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
@@ -69,7 +69,7 @@ public class DeckKeywordParser extends KeywordParser {
 
     private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        if (tokens.size() != 0 && tokens.size() != 1 && tokens.size() != 2) {
+        if (tokens.size() != 0 && tokens.size() != 2 && tokens.size() != 4) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
@@ -89,7 +89,7 @@ public class DeckKeywordParser extends KeywordParser {
 
     private Command handleEdit(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        if (tokens.size() != 2) {
+        if (tokens.size() != 4) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
@@ -121,7 +121,7 @@ public class DeckKeywordParser extends KeywordParser {
 
     private Command handleRun(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        if (tokens.size() != 1) {
+        if (tokens.size() != 2) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 

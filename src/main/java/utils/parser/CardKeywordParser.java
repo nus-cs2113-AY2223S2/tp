@@ -123,9 +123,10 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleTag(List<String> tokens) throws ParseException, InkaException {
 
-        if (tokens.size() != 2) {
+        if (tokens.size() != 4) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
+        System.out.println(tokens.size());
 
         Options tagOptions = new OptionsBuilder(CARD_MODEL, TAG_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(tagOptions, tokens);
@@ -137,7 +138,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleUntag(List<String> tokens) throws ParseException, InkaException {
 
-        if (tokens.size() != 2) {
+        if (tokens.size() != 4) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
@@ -151,7 +152,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
 
-        if (tokens.size() != 2) {
+        if (tokens.size() != 4) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
@@ -165,7 +166,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleView(List<String> tokens) throws ParseException, InkaException {
 
-        if (tokens.size() != 1) {
+        if (tokens.size() != 2) {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
