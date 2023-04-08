@@ -17,10 +17,6 @@ public class AddToRecipeTest {
     ByteArrayOutputStream output;
     PrintStream console;
     UI ui;
-    private static final String INVALID_ADD_TO_RECIPE_DESCRIPTION = "OOPS!!!\n" +
-            "Looks like the description of the command is invalid!\n" +
-            "To add elements to the recipe, please follow the following layout:\n" +
-            "\naddtorecipe --[s/i] id/[index] desc/[description of step/ingredient]";
     private static final String INGREDIENT_ADD_SUCCESS =
             "The ingredient has been successfully added to the ingredient list!";
     private static final String DUPLICATE_INGREDIENT_ERROR =
@@ -29,6 +25,10 @@ public class AddToRecipeTest {
             "Description of ingredient cannot be empty!";
     private static final String EMPTY_STEP_DESCRIPTION_MESSAGE =
             "Description of step cannot be empty!";
+    private static final String INVALID_ADD_TO_RECIPE_DESCRIPTION = "OOPS!!!\n" +
+            "Looks like the description of the command is invalid!\n" +
+            "To add elements to the recipe, please follow the following layout:\n" +
+            "\naddtorecipe --[s/i] id/[index] desc/[description of step/ingredient]";
     @BeforeEach
     public void setup() throws Exception {
         RecipeList.createRecipeList();
