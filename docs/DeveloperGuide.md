@@ -34,7 +34,7 @@ The above diagram provides a high-level overview of the program's design, which 
 - [`ToDoListManager`](#manager-component): Initializes the other components and connects them together
 - [`UI`](#ui-component): Handles all input and output between the user and the program
 - [`Logic`](#logic-component): Parses user input to commands and executes them
-- [`TaskList`](#tasklist-component): Holds the program's data in memory
+- [`TaskList`](#model-component): Holds the program's data in memory
 - [`Storage`](#storage-component): Saves data to the hard disk and loads it during the program's startup
 
 ### Manager Component
@@ -43,18 +43,26 @@ The code for this component is found in [`ToDoListManager.java`](https://github.
 
 ![ManagerClassDiagram](images/ManagerClassDiagram.png)
 
-The `ToDoListManager` component contains the `Ui`, `Logic`, `TaskList`, and `Storage` components, and depends
+The `ToDoListManager` component contains the `Ui`, `Logic`, `Model`, and `Storage` components, and depends
 on the `Command` class, which is returned by the `Parser` class and executed by the `ToDoListManager`.
 
 The `ToDoListManager` component,
-- initializes all the other components that it operates on (`Ui`, `Parser`, `TaskList`, `Storage`).
+- initializes all the other components that it operates on (`Ui`, `Parser`, `Model`, `Storage`).
 - passes user input from the `Ui` component to the `Logic` component, which returns a `Command` object.
-- executes the returned `Command` object on the `TaskList` component, using the `Logic` component.
-- calls on the `Storage` component to save the data of the `TaskList` component to the hard disk.
+- executes the returned `Command` object on the `Model` component, using the `Logic` component.
+- calls on the `Storage` component to save the data of the `Model` component locally.
 
 ### Ui component
 
 The code for this component is found in [`Ui.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/ui/Ui.java).
+
+![UiClassDiagram](images/UiClassDiagram.png)
+
+The `Ui` component consists of just the `Ui` class.
+
+The `getUserInput()` method is used by the `ToDoListManager` to get the user's input, which is used to create a
+`Command` object. Output from executing a `Command` is displayed using `println()`. When the program terminates, the
+`ToDoListManager` will call `close()` to close the `Scanner`.
 
 ### Logic component
 
@@ -67,12 +75,20 @@ extensions of the `Command` class like the `AddTaskCommand`, `ListTagsCommand`, 
 
 When the `ToDoListManager` component passes user input to the `Parser`, a `Command` object (such as an
 `AddTaskCommand`) is created and returned to the `ToDoListManager`. The `ToDoListManager` executes the returned
-`Command` object, which will act on the `TaskList` if needed and output the result of the command through the `Ui`
-component.
+`Command` object, which will act on the `TaskList` and `Config` if needed and output the result of the command
+through the `Ui` component.
 
-### TaskList component
+### Model component
 
 The code for this component is found in [`TaskList.java`](https://github.com/AY2223S2-CS2113-T11-4/tp/blob/master/src/main/java/seedu/todolist/task/TaskList.java).
+
+![ModelClassDiagram](images/ModelClassDiagram.png)
+
+The `Model` component contains the `Config`, `TaskList`, and `Task` classes, and the `Priority` enum.
+
+The `Config` stores the attributes related to recurring tasks. The `TaskList` stores all `Task` objects in a `TreeMap`,
+which it can operate on. The `Task` class consists of several attributes such as a description as well as a priority
+level, which is represented as an enumeration `Priority`.
 
 ### Storage component
 

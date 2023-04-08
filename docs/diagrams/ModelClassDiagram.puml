@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+hide methods
+
+package Model <<Rectangle>>{
+    class Task COLOR_TASK_LIST {
+        -id: int
+        -description: String
+        -email: String = null
+        -deadline: LocalDateTime = null
+        -repeatTimes: int
+        -tags: TreeSet<String>
+        -priority: Priority
+    }
+    class "<<enumeration>>\nPriority" as Priority COLOR_TASK_LIST {
+        HIGH
+        MEDIUM
+        LOW
+        NONE
+    }
+    class TaskList COLOR_TASK_LIST {
+        -allocatedIds: int
+        -tasks:TreeMap<Integer, Task>
+    }
+    class Config COLOR_TASK_LIST {
+        -repeatFrequency: int
+        -checkFrequency: int
+        -lastChecked: LocalDateTime
+    }
+}
+
+TaskList ..> Priority
+TaskList -[hidden]-> Task
+@enduml

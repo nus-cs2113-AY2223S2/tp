@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+hide empty members
+
+package "\t\t\t\t\t\tUi" as UiPackage <<Rectangle>> {
+    class Ui COLOR_UI {
+        +close()
+        +getUserInput()
+        +println()
+    }
+    class Scanner COLOR_UI
+}
+class ToDoListManager COLOR_MAIN
+class ABCCommand COLOR_LOGIC
+
+note right of ABCCommand: AddTaskCommand,\nListTagsCommand,\nEditEmailCommand etc
+
+Ui -> "1" Scanner
+ToDoListManager -> "\t\t\t\t1" Ui
+ToDoListManager .r.> ABCCommand
+ABCCommand ..> Ui
+@enduml

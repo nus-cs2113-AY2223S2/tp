@@ -358,7 +358,6 @@ public class TaskList {
      * @param p The ids of the tasks to set the repeat duration for.
      * @param repeatTimes The repeat duration to be set for the tasks.
      * @return A string of all the targeted tasks
-     * @throws InvalidIdException If there is no task with any of the provided ids.
      * @throws InvalidDateException If the task with the provided ids does not have a deadline.
      */
     public String setRepeatTimes(Predicate<Task> p, int repeatTimes) throws InvalidDateException {

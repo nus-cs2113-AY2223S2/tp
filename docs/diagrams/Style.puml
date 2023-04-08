@@ -23,3 +23,4 @@ skinparam Shadowing false
 
 hide footbox
 hide circle
+skinparam classAttributeIconSize 0
