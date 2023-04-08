@@ -23,6 +23,7 @@ public class CompletedExerciseSearchCommand extends Command{
      * @param userCareerData Data which contains the user's completed workout sessions.
      * @throws DukeError if user does not enter keyword or if there are no exercises that match keyword provided.
      */
+
     public CompletedExerciseSearchCommand (String[] userCommands, UserCareerData userCareerData) throws DukeError {
         assert userCommands != null : "User Commands should not be null!";
         assert userCareerData != null : "User Career Data should not be null!";

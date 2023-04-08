@@ -5,6 +5,7 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.userdata.Session;
 import seedu.duke.data.userdata.UserCareerData;
+import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.logic.commands.CompletedExerciseSearchCommand;
 import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
@@ -12,10 +13,11 @@ import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.ui.Ui;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * This class test the handling of commands and checks if commands throw appropriate errors.
@@ -109,7 +111,6 @@ public class TestCommands {
     //@@author L-K-Chng
     @Test
     public void testFindCompletedExerciseCommand() {
-        String[] invalidCmd = {"Please key in a keyword for Fitness Duke to search!"};
         String[] testInputs1 = {"quickfind"};
         String[] testInputs2 = {"quickfind", "3/4"};
 
