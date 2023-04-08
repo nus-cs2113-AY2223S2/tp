@@ -41,7 +41,7 @@ public final class ParserConstants {
     public static final String COMMAND_DELETE = "/delete";
     public static final String COMMAND_HELP = "/help";
     public static final String COMMAND_BYE = "/bye";
-    public static final Pattern DESCRIPTION_PATTERN = Pattern.compile("\\s+(-description|-d)([^-]*?)(\\s+-|$)");
+    public static final Pattern DESCRIPTION_PATTERN = Pattern.compile("\\s+(-description|-d)(.*?)(\\s+-|$)");
     public static final Pattern CATEGORY_PATTERN = Pattern.compile("\\s+(-category|-c)(.*?)(\\s+-|$)");
     public static final Pattern PRICE_PATTERN = Pattern.compile("\\s+(-price|-p)(.*?)(\\s+-|$)");
     public static final Pattern ID_PATTERN = Pattern.compile("(.*?)(\\s*-|$)");
