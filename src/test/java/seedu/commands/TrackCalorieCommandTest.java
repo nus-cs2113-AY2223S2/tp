@@ -24,7 +24,7 @@ class TrackCalorieCommandTest {
     public void trackCalories_validOneLineInput_shouldNotThrowException() {
         GeneralUi ui = new GeneralUi();
         String commandWord = "track";
-        String userInput = "track /from 01/01/2022 /to 10/01/2022";
+        String userInput = "track /start 01/01/2022 /end 10/01/2022";
         trackCalorieCommand = new TrackCalorieCommand(commandWord, userInput);
         assertDoesNotThrow(() -> {
             trackCalorieCommand.execute(ui, foodStorage, mealStorage, userStorage, exerciseStorage);
@@ -45,11 +45,11 @@ class TrackCalorieCommandTest {
     @Test
     public void trackCalories_missingArguments_expectMissingArgumentsException() {
         GeneralUi ui = new GeneralUi();
-        TrackCalorieCommand command = new TrackCalorieCommand("track", "track /from 10/01/2022");
+        TrackCalorieCommand command = new TrackCalorieCommand("track", "track /start 10/01/2022");
         MissingArgumentsException thrown = assertThrows(MissingArgumentsException.class, () -> {
             command.execute(ui, foodStorage, mealStorage, userStorage, exerciseStorage);
         });
-        String expectedErrorMessage = "Oops! Missing argument /to for command track";
+        String expectedErrorMessage = "Oops! Missing argument /end for command track";
         assertEquals(expectedErrorMessage, thrown.getMessage());
     }
 
@@ -57,7 +57,7 @@ class TrackCalorieCommandTest {
     public void trackCalories_invalidDate_expectInvalidDateException() {
         GeneralUi ui = new GeneralUi();
         TrackCalorieCommand command = new TrackCalorieCommand("track",
-                "track /from 10/01/2022 /to 10/13/2022");
+                "track /start 10/01/2022 /end 10/13/2022");
         InvalidDateException thrown = assertThrows(InvalidDateException.class, () -> {
             command.execute(ui, foodStorage, mealStorage, userStorage, exerciseStorage);
         });
