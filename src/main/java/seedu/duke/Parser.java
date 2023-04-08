@@ -61,23 +61,44 @@ public class Parser {
             case "/list":
                 return prepareListCommands(userInputWords, universities, modules);
             case "/search":
+                if (userInputWords.size() >= 3) {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
                 assert userInputWords.size() > 1 : "No Nus Module Code Read";
                 return prepareSearchByNusModCode(userCommandSecondKeyword, puModules, universities);
             case "/exit":
+                if (userInputWords.size() >= 2) {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
                 return new ExitCommand();
             case "/add":
+                if (userInputWords.size() >= 3) {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
                 return prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities);
             case "/remove":
+                if (userInputWords.size() >= 3) {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
                 return prepareRemoveModuleCommand(storage, userCommandSecondKeyword, universities);
             case "/help":
+                if (userInputWords.size() >= 2) {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
                 return new HelpCommand();
             case "/budget":
                 return prepareBudgetCommand(userInput, budgetPlanner);
             case "/deadline/list":
+                if (userInputWords.size() >= 2) {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
                 return new ListDeadlinesCommand(deadlines);
             case "/deadline/add":
                 return prepareAddDeadlineCommand(deadlineStorage, userInputWords);
             case "/deadline/remove":
+                if (userInputWords.size() >= 3) {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
                 int indexDeadlineToRemove = stringToInt(userCommandSecondKeyword);
                 return new DeleteDeadlineCommand(deadlineStorage, indexDeadlineToRemove, deadlines);
             default:
@@ -92,7 +113,6 @@ public class Parser {
         ArrayList<String> commandWords = new ArrayList<String>();
         String commandInput = userInput.replaceAll("\\s+", " ");
         String[] input = commandInput.split(" ", 3);
-
         for (String s : input) {
             if (!s.matches("\\s+")) {
                 commandWords.add(s);
@@ -118,17 +138,24 @@ public class Parser {
     private Command handleListCommands(ArrayList<String> userInputWords, String userCommandSecondKeyword,
                                        ArrayList<University> universities, ArrayList<Module> modules) {
         String userCommandIgnoreCase = userCommandSecondKeyword.toLowerCase();
-        switch (userCommandIgnoreCase) {
-        case "pu":
-            return new ListPuCommand();
-        case "current":
-            if (userInputWords.size() == 3) {
-                String userCommandThirdKeyword = userInputWords.get(2);
-                return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+        try {
+            switch (userCommandIgnoreCase) {
+            case "pu":
+                if (userInputWords.size() >= 3) {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
+                return new ListPuCommand();
+            case "current":
+                if (userInputWords.size() == 3) {
+                    String userCommandThirdKeyword = userInputWords.get(2);
+                    return prepareListCurrentPUModulesCommand(userCommandThirdKeyword, universities, modules);
+                }
+                return new ListCurrentCommand(modules);
+            default:
+                return prepareListPuModulesCommand(userInputWords, userCommandSecondKeyword, universities);
             }
-            return new ListCurrentCommand(modules);
-        default:
-            return prepareListPuModulesCommand(userInputWords, userCommandSecondKeyword, universities);
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
         }
     }
 
@@ -163,11 +190,18 @@ public class Parser {
     private Command prepareListPuModulesCommand(ArrayList<String> userInputWords, String univAbbNameOrIndex,
                                                 ArrayList<University> universities) {
         String filter = "";
-        if (userInputWords.size() == 3) {
-            String userCommandThirdKeyword = userInputWords.get(2);
-            if (userCommandThirdKeyword.startsWith("/filter") && userCommandThirdKeyword.length() > 8) {
-                filter = userCommandThirdKeyword.substring(8);
+        try {
+            if (userInputWords.size() == 3) {
+                String userCommandThirdKeyword = userInputWords.get(2);
+                String[] filterWords = userCommandThirdKeyword.split(" ");
+                if (userCommandThirdKeyword.startsWith("/filter") && filterWords.length == 4) {
+                    filter = userCommandThirdKeyword.substring(8);
+                } else {
+                    throw new InvalidCommandException(ui.getCommandInputError());
+                }
             }
+        } catch (InvalidCommandException e) {
+            return new ExceptionHandleCommand(e);
         }
         String universityAbbName = "";
         int univIndex = 0;
