@@ -26,19 +26,15 @@ public abstract class TextDataUtility{
             "Leg Legend:Complete your first Leg exercises!:0:E:legs:0:1\n" +
             "The Leg Luminator:Complete 3 leg exercises!:0:M:legs:0:3\n" +
             "The Leg Lord:Complete 5 leg exercises!:0:H:legs:0:5\n" +
-            "Upper Body Unicorn:Complete your first Upper body workout!:0:E:upper:0:1\n" +
-            "The Upper Body Warrior:Complete 3 upper body workouts!:0:M:upper:0:3\n" +
-            "The Upper Body God/Goddess:Complete 5 upper body workouts!:0:H:upper:0:5\n" +
+            "Upper Body Unicorn:Complete your first Upper body workout!:0:E:upper body:0:1\n" +
+            "The Upper Body Warrior:Complete 3 upper body workouts!:0:M:upper body:0:3\n" +
+            "The Upper Body God/Goddess:Complete 5 upper body workouts!:0:H:upper body:0:5\n" +
             "The Gym Novice:Complete your first Gym workout!:0:E:gym:0:1\n" +
             "The Gym Enthusiast:Complete 3 Gym workouts!:0:M:gym:0:3\n" +
             "The Gym Maestro:Complete 5 Gym workouts!:0:H:gym:0:5\n" +
             "Static Starter:Complete your first Static workout!:0:E:static:0:1\n" +
             "The Static Warrior:Complete 3 Static workouts!:0:M:static:0:3\n" +
             "The Static Champion:Complete 5 Static workouts!:0:H:static:0:5";
-
-    public String getAchievementListText () {
-        return achievementListText;
-    }
 
 
     public void checkForListData(File listData) {
@@ -72,9 +68,19 @@ public abstract class TextDataUtility{
         }
     }
 
-
-
-
+    public void clearAchievementListData(File listData, boolean printOrNot) {
+        if (listData.exists()) {
+            try {
+                new FileWriter(listData).close();
+                appendToFile(achievementListText, ACHIEVEMENT_LIST_FILE_LOCATION);
+                logger.log(Level.INFO, "Achievement data cleared");
+            } catch (IOException e) {
+                System.out.println("We can't create a file for some reason :< Please dont use this file thanks");
+            }
+        } else {
+            checkForListData(listData);
+        }
+    }
 
     private void appendToFile(String textToAppend, String fileLocation) throws IOException {
         FileWriter fw = new FileWriter(fileLocation, true);
