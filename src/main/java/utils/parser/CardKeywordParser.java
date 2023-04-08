@@ -21,8 +21,6 @@ import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.UnrecognizedCommandException;
 
 public class CardKeywordParser extends KeywordParser {
-
-    public static final String CARD_MODEL = "card";
     public static final String ADD_ACTION = "add";
     public static final String DELETE_ACTION = "delete";
     public static final String HELP_ACTION = "help";
@@ -59,7 +57,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleAdd(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        Options addOptions = new OptionsBuilder(CARD_MODEL, ADD_ACTION).buildOptions();
+        Options addOptions = new OptionsBuilder(Parser.CARD_KEYWORD, ADD_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(addOptions, tokens);
 
         String question = String.join(" ", cmd.getOptionValues("q"));
@@ -71,7 +69,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleDelete(List<String> tokens) throws ParseException, InkaException {
 
-        Options deleteOptions = new OptionsBuilder(CARD_MODEL, DELETE_ACTION).buildOptions();
+        Options deleteOptions = new OptionsBuilder(Parser.CARD_KEYWORD, DELETE_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(deleteOptions, tokens);
 
         CardSelector cardSelector = getSelectedCard(cmd);
@@ -85,12 +83,12 @@ public class CardKeywordParser extends KeywordParser {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
-        Options addOptions = new OptionsBuilder(CARD_MODEL, ADD_ACTION).buildOptions();
-        Options deleteOptions = new OptionsBuilder(CARD_MODEL, DELETE_ACTION).buildOptions();
-        Options tagOptions = new OptionsBuilder(CARD_MODEL, TAG_ACTION).buildOptions();
-        Options untagOptions = new OptionsBuilder(CARD_MODEL, UNTAG_ACTION).buildOptions();
-        Options viewOptions = new OptionsBuilder(CARD_MODEL, VIEW_ACTION).buildOptions();
-        Options deckOptions = new OptionsBuilder(CARD_MODEL, DECK_ACTION).buildOptions();
+        Options addOptions = new OptionsBuilder(Parser.CARD_KEYWORD, ADD_ACTION).buildOptions();
+        Options deleteOptions = new OptionsBuilder(Parser.CARD_KEYWORD, DELETE_ACTION).buildOptions();
+        Options tagOptions = new OptionsBuilder(Parser.CARD_KEYWORD, TAG_ACTION).buildOptions();
+        Options untagOptions = new OptionsBuilder(Parser.CARD_KEYWORD, UNTAG_ACTION).buildOptions();
+        Options viewOptions = new OptionsBuilder(Parser.CARD_KEYWORD, VIEW_ACTION).buildOptions();
+        Options deckOptions = new OptionsBuilder(Parser.CARD_KEYWORD, DECK_ACTION).buildOptions();
         // Combine all action
         String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, UNTAG_ACTION, VIEW_ACTION,
                                DECK_ACTION};
@@ -115,7 +113,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleTag(List<String> tokens) throws ParseException, InkaException {
 
-        Options tagOptions = new OptionsBuilder(CARD_MODEL, TAG_ACTION).buildOptions();
+        Options tagOptions = new OptionsBuilder(Parser.CARD_KEYWORD, TAG_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(tagOptions, tokens);
 
         CardSelector cardSelector = getSelectedCard(cmd);
@@ -125,7 +123,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleUntag(List<String> tokens) throws ParseException, InkaException {
 
-        Options tagOptions = new OptionsBuilder(CARD_MODEL, TAG_ACTION).buildOptions();
+        Options tagOptions = new OptionsBuilder(Parser.CARD_KEYWORD, TAG_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(tagOptions, tokens);
 
         CardSelector cardSelector = getSelectedCard(cmd);
@@ -135,7 +133,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
 
-        Options deckOptions = new OptionsBuilder(CARD_MODEL, DECK_ACTION).buildOptions();
+        Options deckOptions = new OptionsBuilder(Parser.CARD_KEYWORD, DECK_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(deckOptions, tokens);
 
         CardSelector cardSelector = getSelectedCard(cmd);
@@ -145,7 +143,7 @@ public class CardKeywordParser extends KeywordParser {
 
     private Command handleView(List<String> tokens) throws ParseException, InkaException {
 
-        Options viewOptions = new OptionsBuilder(CARD_MODEL, VIEW_ACTION).buildOptions();
+        Options viewOptions = new OptionsBuilder(Parser.CARD_KEYWORD, VIEW_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(viewOptions, tokens);
 
         CardSelector cardSelector = getSelectedCard(cmd);

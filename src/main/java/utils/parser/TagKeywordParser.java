@@ -17,8 +17,6 @@ import utils.exceptions.InvalidSyntaxException;
 import utils.exceptions.UnrecognizedCommandException;
 
 public class TagKeywordParser extends KeywordParser {
-
-    public static final String TAG_MODEL = "tag";
     public static final String DELETE_ACTION = "delete";
     public static final String EDIT_ACTION = "edit";
     public static final String HELP_ACTION = "help";
@@ -46,7 +44,7 @@ public class TagKeywordParser extends KeywordParser {
 
     private Command handleDelete(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        Options deleteOption = new OptionsBuilder(TAG_MODEL, DELETE_ACTION).buildOptions();
+        Options deleteOption = new OptionsBuilder(Parser.TAG_KEYWORD, DELETE_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(deleteOption, tokens);
 
         TagSelector tagSelector = getSelectedTag(cmd);
@@ -55,7 +53,7 @@ public class TagKeywordParser extends KeywordParser {
 
     private Command handleEdit(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        Options editOption = new OptionsBuilder(TAG_MODEL, EDIT_ACTION).buildOptions();
+        Options editOption = new OptionsBuilder(Parser.TAG_KEYWORD, EDIT_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(editOption, tokens);
 
         String oldTagName = cmd.getOptionValue("o");
@@ -69,12 +67,12 @@ public class TagKeywordParser extends KeywordParser {
             throw InvalidSyntaxException.buildTooManyTokensMessage();
         }
 
-        Options deleteOption = new OptionsBuilder(TAG_MODEL, DELETE_ACTION).buildOptions();
-        Options editOption = new OptionsBuilder(TAG_MODEL, EDIT_ACTION).buildOptions();
-        Options listOption = new OptionsBuilder(TAG_MODEL, LIST_ACTION).buildOptions();
+        Options deleteOption = new OptionsBuilder(Parser.TAG_KEYWORD, DELETE_ACTION).buildOptions();
+        Options editOption = new OptionsBuilder(Parser.TAG_KEYWORD, EDIT_ACTION).buildOptions();
+        Options listOption = new OptionsBuilder(Parser.TAG_KEYWORD, LIST_ACTION).buildOptions();
 
         // For adding the deck help message for tag later
-        Options deckOption = new OptionsBuilder(TAG_MODEL, DECK_ACTION).buildOptions();
+        Options deckOption = new OptionsBuilder(Parser.TAG_KEYWORD, DECK_ACTION).buildOptions();
 
         // Combine all actions
         String[] actionList = {EDIT_ACTION, DELETE_ACTION, LIST_ACTION};
@@ -87,7 +85,7 @@ public class TagKeywordParser extends KeywordParser {
 
     private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        Options listOption = new OptionsBuilder(TAG_MODEL, LIST_ACTION).buildOptions();
+        Options listOption = new OptionsBuilder(Parser.TAG_KEYWORD, LIST_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(listOption, tokens);
 
         TagSelector tagSelector = getSelectedTag(cmd);
@@ -100,7 +98,7 @@ public class TagKeywordParser extends KeywordParser {
 
     private Command handleDeck(List<String> tokens) throws ParseException, InkaException {
 
-        Options deckOption = new OptionsBuilder(TAG_MODEL, DECK_ACTION).buildOptions();
+        Options deckOption = new OptionsBuilder(Parser.TAG_KEYWORD, DECK_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(deckOption, tokens);
 
         String deckName = cmd.getOptionValue("d");
