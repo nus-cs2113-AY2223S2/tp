@@ -1,6 +1,7 @@
 # Yi Xuan - Project Portfolio Page
 
 ## Overview
+
 Apollo is a scheduling app for managing your tasks and lessons at the same time,
 with integrated module information from the NUSMods database.
 The target user, an average NUS student, interacts with Apollo using a CLI.
@@ -44,6 +45,7 @@ It is written in Java, and has about 5kLoC.
   - ListCommand Sequence Diagram
   - DeleteModuleCommand Sequence Diagram
   - DeleteCommand Activity Diagram
+  - Ui Class Diagram
 
 #### Contributions to team-based tasks
 
