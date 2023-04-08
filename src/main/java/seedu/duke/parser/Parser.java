@@ -5,6 +5,7 @@ import seedu.duke.command.CommandType;
 import seedu.duke.command.EditType;
 import seedu.duke.exceptions.EditFormatException;
 import seedu.duke.exceptions.IncompleteInputException;
+import seedu.duke.exceptions.InvalidInputCharactersException;
 import seedu.duke.exceptions.MissingIngredientInputException;
 import seedu.duke.recipe.Ingredient;
 import seedu.duke.recipe.IngredientList;
@@ -15,14 +16,25 @@ import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static seedu.duke.ui.IntLib.RECIPE_NAME_INDEX;
 import static seedu.duke.ui.IntLib.RECIPE_INGREDIENTS_INDEX;
 import static seedu.duke.ui.IntLib.RECIPE_TAG_INDEX;
 import static seedu.duke.ui.IntLib.RECIPE_SUM_OF_STEPS_INDEX;
+import static seedu.duke.ui.StringLib.INVALID_CHARACTERS_INGREDIENTS_ERROR;
+import static seedu.duke.ui.StringLib.INVALID_CHARACTERS_NAME_ERROR;
+import static seedu.duke.ui.StringLib.INVALID_CHARACTERS_STEP_ERROR;
+import static seedu.duke.ui.StringLib.INVALID_CHARACTERS_TAG_ERROR;
 
 public class Parser {
 
+    private static final Pattern specialCharacters = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+    private static final Pattern specialCharactersIngredients =
+            Pattern.compile("[^a-z0-9, ]", Pattern.CASE_INSENSITIVE);
+    private static final Pattern numericCharacters = Pattern.compile("^[0-9 ]*$");
+    private static final Pattern nonNumericCharacters = Pattern.compile("[^0-9 ]");
     private static final String RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP = "Recipe is missing the \"NAME\" "
             + "or \"INGREDIENTS\" or \"TAG\" or \"SUM of the STEPs" +
             "\n or there is more than one \"NAME\" or \"INGREDIENTS\" or \"TAG\" or \"SUM of the STEPs\"!\n";
@@ -31,6 +43,7 @@ public class Parser {
     private static final String RECIPE_MISSING_INGREDIENTS = "Recipe is missing \"INGREDIENTS\"!\n";
     private static final String RECIPE_MISSING_TAG = "Recipe is missing \"TAG\"!\n";
     private static final String RECIPE_MISSING_STEP = "Recipe is missing \"SUM of the STEPs\"!\n";
+
     /**
      * Returns a <code>Command</code> type which contains the command to be
      * executed and its full description to support its execution. It takes
@@ -97,13 +110,14 @@ public class Parser {
     private static boolean matchString(String input, String regex) {
         String matcher = input;
         int count = 0;
-        while (matcher.contains(regex)){
-            matcher=matcher.substring(matcher.indexOf(regex)+1);
+        while (matcher.contains(regex)) {
+            matcher = matcher.substring(matcher.indexOf(regex) + 1);
             ++count;
         }
         boolean isMatch = (count == 1);
         return isMatch;
     }
+
     /**
      * Returns an Array of Strings containing the parsed full description
      * of a <code>Recipe</code> into its name, ingredients and tag.
@@ -112,13 +126,14 @@ public class Parser {
      * @return parsed ArrayList of Strings containing the recipe's name, ingredients list and tag.
      * @throws IncompleteInputException if full description input is missing the description or due date or both.
      */
-    public static ArrayList<String> parseRecipe(String description) throws IncompleteInputException {
+    public static ArrayList<String> parseRecipe(String description) throws IncompleteInputException,
+            InvalidInputCharactersException {
         ArrayList<String> parsed = new ArrayList<>();
-        if(!matchString(description,"n/") || !matchString(description,"i/")
-                || !matchString(description,"t/") || !matchString(description,"s/")){
+        if (!matchString(description, "n/") || !matchString(description, "i/")
+                || !matchString(description, "t/") || !matchString(description, "s/")) {
             throw new IncompleteInputException(RECIPE_WRONG_NAME_INGREDIENTS_TAG_STEP);
         }
-        if(!description.substring(0,2).equals("n/")){
+        if (!description.substring(0, 2).equals("n/")) {
             throw new IncompleteInputException(RECIPE_WRONG_LEADING_STRING);
         }
         String[] parsedName = description.split(" i/");
@@ -129,7 +144,7 @@ public class Parser {
         parsed.add(parsedTagStep[0].trim());
         try {
             parsed.add(parsedTagStep[1].trim());
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new IncompleteInputException(RECIPE_MISSING_STEP);
         }
 
@@ -148,9 +163,10 @@ public class Parser {
         if (parsed.get(RECIPE_SUM_OF_STEPS_INDEX).isEmpty()) {
             throw new IncompleteInputException(RECIPE_MISSING_STEP);
         }
+        checkValidAddParameters(parsed);
         try {
             Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX));
-            if(Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX))<0){
+            if (Integer.parseInt(parsed.get(RECIPE_SUM_OF_STEPS_INDEX)) < 0) {
                 throw new IncompleteInputException(StringLib.MISSING_NUM);
             }
             return parsed;
@@ -159,7 +175,34 @@ public class Parser {
         }
     }
 
-    public static IngredientList parseIngredients(String inputIngredients) throws MissingIngredientInputException{
+    public static void checkValidAddParameters(ArrayList<String> parsedAddRecipe)
+            throws InvalidInputCharactersException {
+        String NAME = parsedAddRecipe.get(RECIPE_NAME_INDEX);
+        String INGREDIENT = parsedAddRecipe.get(RECIPE_INGREDIENTS_INDEX);
+        String TAG = parsedAddRecipe.get(RECIPE_TAG_INDEX);
+        String STEP = parsedAddRecipe.get(RECIPE_SUM_OF_STEPS_INDEX);
+        Matcher matchSpecialCharactersNAME = specialCharacters.matcher(NAME);
+        Matcher matcherNumericCharactersOnlyNAME = numericCharacters.matcher(NAME);
+        Matcher matchSpecialCharactersINGREDIENT = specialCharactersIngredients.matcher(INGREDIENT);
+        Matcher matcherNumericCharactersOnlyINGREDIENT = numericCharacters.matcher(INGREDIENT);
+        Matcher matchSpecialCharactersTAG = specialCharacters.matcher(TAG);
+        Matcher matcherNumericCharactersOnlyTAG = numericCharacters.matcher(TAG);
+        Matcher matchNonNumericCharactersSTEP = nonNumericCharacters.matcher(STEP);
+        if (matchSpecialCharactersNAME.find() || matcherNumericCharactersOnlyNAME.find()) {
+            throw new InvalidInputCharactersException(INVALID_CHARACTERS_NAME_ERROR);
+        }
+        if (matchSpecialCharactersINGREDIENT.find() || matcherNumericCharactersOnlyINGREDIENT.find()) {
+            throw new InvalidInputCharactersException(INVALID_CHARACTERS_INGREDIENTS_ERROR);
+        }
+        if (matchSpecialCharactersTAG.find() || matcherNumericCharactersOnlyTAG.find()) {
+            throw new InvalidInputCharactersException(INVALID_CHARACTERS_TAG_ERROR);
+        }
+        if (matchNonNumericCharactersSTEP.find()) {
+            throw new InvalidInputCharactersException(INVALID_CHARACTERS_STEP_ERROR);
+        }
+    }
+
+    public static IngredientList parseIngredients(String inputIngredients) throws MissingIngredientInputException {
         ArrayList<Ingredient> parsed = new ArrayList<>();
         String[] parsedIngredients = inputIngredients.split(",");
         if (parsedIngredients.length == 0) {
@@ -204,7 +247,7 @@ public class Parser {
     }
 
     public static Object[] parseEditRecipeIndex(String description, EditType type) throws IncompleteInputException {
-        String[] parsedDescription = description.split(" ",2);
+        String[] parsedDescription = description.split(" ", 2);
         String errorLog = type.equals(EditType.INGREDIENT) ?
                 StringLib.EDIT_INGREDIENT_ERROR : StringLib.EDIT_STEP_ERROR;
         if (parsedDescription.length < 2) {
@@ -223,10 +266,10 @@ public class Parser {
         if (parsedDescription.length < 2) {
             throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
         }
-        if (!matchString(description,"i/")) {
+        if (!matchString(description, "i/")) {
             throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
         }
-        try{
+        try {
             int ingredientIndex = Integer.parseInt(parsedDescription[0].trim());
             String newIngredient = parsedDescription[1].trim();
             if (newIngredient.isEmpty()) {
@@ -245,10 +288,10 @@ public class Parser {
         if (parsedDescription.length < 2) {
             throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
         }
-        if (!matchString(description,"s/")) {
+        if (!matchString(description, "s/")) {
             throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
         }
-        try{
+        try {
             int stepIndex = Integer.parseInt(parsedDescription[0].trim());
             String newStep = parsedDescription[1].trim();
             if (newStep.isEmpty()) {
@@ -261,6 +304,7 @@ public class Parser {
             throw new Exception("error in edit step:\n" + e.getMessage());
         }
     }
+
     public static String removeForbiddenChars(String ingredient) {
         for (String chara : StringLib.FORBIDDEN_CHARS) {
             ingredient.replaceAll(chara, "");
