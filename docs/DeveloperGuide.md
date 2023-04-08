@@ -7,6 +7,7 @@ Command Line Interface (CLI). rainyDay provides a simple solution to track your 
 goals.
 
 <!-- TOC -->
+
 * [Developer Guide](#developer-guide)
   * [Introduction](#introduction)
     * [Acknowledgements](#acknowledgements)
@@ -62,6 +63,7 @@ goals.
     * [Saving data](#saving-data-1)
     * [Loading data](#loading-data-1)
     * [Export to .csv](#export-to-csv)
+
 <!-- TOC -->
 
 ### Acknowledgements
@@ -145,24 +147,69 @@ and [export to .csv](#exporting-to-csv) operations.
 
 ### Data package
 
+The data package consists of
+classes `FinancialReport`, `FinancialStatement`, `FlowDirection`, `MonthlyExpenditures`, `SavedData` and `UserData`.
+
 The class diagram representing the data component is as shown below.
 
 ![DataClassDiagram.png](images\DeveloperGuide\DataClassDiagram.png)
 
-The data component consists of classes:
+#### FinancialReport
 
-- `FinancialReport`: consists of attributes "reportOwner" of object String and "financialReport" of
-  ArrayList<FinancialStatement>. "financialReport" represents a list of `FinancialStatement`
-- `FinancialStatement`: consists of attributes "description" of object String, "value" of type double, "category" of
-  object String, "date" of object LocalDate, and "isIgnored" of type boolean. Represents the details of a real world
-  transaction
-- `FlowDirection`: an enum class consisting of INFLOW and OUTFLOW
-- `MonthlyExpenditures`: consists of an attribute named monthlyExpenditures of object HashMap<integer, double>.
-  Maps the year and month to the expenditures
-- `SavedData`: consists of the attributes "shorcutCommands" of object HashMap<String, String>, "budgetGoals" of type
-  double, and "financialReport" of object FinancialReport. Represents the data saved to the computer by rainyDay
-- `UserData`: consists of the attributes "savedData" of object SavedData and "monthlyExpenditures" of object
-  HashMap<integer, double>. Represents the data required during runtime of rainyDay
+Consists of attributes:
+
+- "reportOwner" of object String
+- "financialReport" of ArrayList<FinancialStatement>
+
+Represents a list of `FinancialStatement`
+
+#### FinancialStatement
+
+Consists of attributes:
+
+- "description" of object String
+- "value" of type double
+- "category" of object String
+- "date" of object LocalDate
+- "isIgnored" of type boolean
+
+Represents the details of a real world transaction
+
+#### FlowDirection
+
+An enum class consisting of:
+
+- INFLOW, representing a transaction direction towards the user, such as a deposit
+- OUTFLOW, representing a transaction direction away from the user, such as a purchase
+
+Represents the flow direction of a transaction
+
+#### MonthlyExpenditures
+
+Consists of the attribute:
+
+- monthlyExpenditures of object HashMap<integer, double>
+
+Maps the year and month to the expenditures
+
+#### SavedData
+
+Consists of the attributes:
+
+- "shorcutCommands" of object HashMap<String, String>
+- "budgetGoals" of type double
+- "financialReport" of object FinancialReport
+
+Represents the data saved to the computer by rainyDay
+
+#### UserData
+
+Consists of the attributes:
+
+- "savedData" of object SavedData
+- "monthlyExpenditures" of object HashMap<integer, double>
+
+Represents the data required during runtime of rainyDay
 
 #### Design considerations
 
@@ -721,14 +768,14 @@ Help people who are just starting out working and troubled by financial issues s
 1. Prerequisites: You have added a shortcut which you will be using. For this section, we will require you to configure
    the first shortcut in the [adding a shortcut](adding-a-shortcut) section
 
-2. Test case: `a` <br>  Expected: A message should indicate that a shortcut is being used. The `add -out noodles $5`
+2. Test case: `a` <br>Expected: A message should indicate that a shortcut is being used. The `add -out noodles $5`
    command should also be successfully performed
 
 ### Viewing shortcuts
 
 1. Prerequisites: None
 
-2. Test case: `shortcut_view` <br> Expected: A table should be printed out which displays all the configured shortcut
+2. Test case: `shortcut_view` <br>Expected: A table should be printed out which displays all the configured shortcut
    commands. If no shortcuts have been configured, then a message should indicate that no shortcuts have been configured
 
 ### Deleting a shortcut
@@ -736,20 +783,20 @@ Help people who are just starting out working and troubled by financial issues s
 1. Prerequisites: You have added a shortcut which you will be deleting. For this section, we will require you to
    configure only the first shortcut in the [adding a shortcut](adding-a-shortcut) section
 
-2. Test case: `shortcut_delete a` <br> Expected: A success message should be displayed indicating that the shortcut has
+2. Test case: `shortcut_delete a` <br>Expected: A success message should be displayed indicating that the shortcut has
    been successfully deleted
 
-3. Test case: `shortcut_delete doesnotexist`<br> Expected: An error message should be displayed indicating that the
+3. Test case: `shortcut_delete doesnotexist`<br>Expected: An error message should be displayed indicating that the
    shortcut does not exist
 
 ### Saving data
 
 1. Prerequisites: Ensure that a change has been made to the `savedData`
 
-2. Test case: `add -out beef noodles $12` <br> Expected: The .json file found in the data folder should reflect the new
+2. Test case: `add -out beef noodles $12` <br>Expected: The .json file found in the data folder should reflect the new
    transaction
 
-3. Test case: `shortcut a -maps add -out noodles $5`<br> Expected: The .json file found in the data folder should
+3. Test case: `shortcut a -maps add -out noodles $5`<br>Expected: The .json file found in the data folder should
    reflect
    the new shortcut
 
@@ -757,11 +804,11 @@ Help people who are just starting out working and troubled by financial issues s
 
 1. Prerequisite: None
 
-2. Test case: Start rainyDay while the .json file is not present in the data folder. Expected: No valid saved file
+2. Test case: Start rainyDay while the .json file is not present in the data folder.<br>Expected: No valid saved file
    will be detected and rainyDay will start up without loading any saved data
 
 3. Test case: Ensure that a valid .json file containing valid data named `rainyDay.json` is present in the data folder
-   and start rainyDay.  <br> Expected: rainyDay will welcome you based on your configured name and all previously saved
+   and start rainyDay.  <br>Expected: rainyDay will welcome you based on your configured name and all previously saved
    data will be loaded
 
 4. Test case: Start rainyDay with a corrupted `rainyDay.json`file, containing invalid fields like a negative transaction
@@ -772,6 +819,6 @@ Help people who are just starting out working and troubled by financial issues s
 
 1. Prerequisites: There is at least one transaction in the financial report of rainyDay.
 
-2. Test case: `export` <br> Expected: A success message should be displayed indicating that the data has been
+2. Test case: `export` <br>Expected: A success message should be displayed indicating that the data has been
    successfully saved in a .csv file.
 
