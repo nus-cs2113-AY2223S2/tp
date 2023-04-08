@@ -348,18 +348,30 @@ ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-#### Mark/Unmark appointments
+#### Mark/UnMark appointments
 
 1. Prerequisites: The UID of the appointment you want to remove. Use `list` or `find` to help you get the specific UID.
 2. Test case: `mark V12400172X`<br>
-   Expected output: The appointment with the specified UID is marked as done, details shown in the status message.
+   Expected output: If the appointment UID entered is valid and not already marked the corresponding appointment is marked on the list. 
+   A corresponding successful mark message is displayed. 
    Example:
 ```
-
+______________________________________________________________________
+mark uID/C26135173W
+______________________________________________________________________
+The appointment has been marked successfully
+ Task marked successfully!
+______________________________________________________________________
 ```
 3. Test case: `unmark V12400172X`<br>
-   Expected output: The appointment with the specified UID is unmarked as done, details shown in the status message.
+   Expected output: If the appointment UID entered is valid and not already unmarked the corresponding appointment is Unmarked on the list.
+   A corresponding successful Unmark message is displayed.
    Example:
 ```
-
+______________________________________________________________________
+unmark uID/C26135173W
+______________________________________________________________________
+The appointment has been unmarked successfully
+ Task marked successfully!
+______________________________________________________________________
 ```

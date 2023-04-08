@@ -12,7 +12,7 @@ public class UnMarkCommand extends Command {
     }
     public void executeCommand(SniffTasks tasks) throws SniffException {
         tasks.unmarkAppointment(uid);
-        Ui.showUserMessage(" Task marked successfully!");
+        Ui.showUserMessage(" Task unmarked successfully!");
     }
 
 }
