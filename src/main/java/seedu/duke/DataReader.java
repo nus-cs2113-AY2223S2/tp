@@ -10,14 +10,24 @@ import java.util.Comparator;
 public class DataReader {
     private static final String MODULES_FILE_PATH = "modules.txt";
     private static final String UNIVERSITIES_FILE_PATH = "universities.txt";
+
+    /**
+     * DataReader has a Singleton Design Pattern
+     */
+    private static DataReader dataReaderOneInstance = null;
     private ArrayList<University> universities;
     private ArrayList<Module> puModules;
-
-    public DataReader() {
+    private DataReader() {
         this.universities = new ArrayList<>();
         this.puModules = new ArrayList<>();
         readUnivData();
         readModData(MODULES_FILE_PATH, puModules);
+    }
+    public static DataReader getDataReaderOneInstance() {
+        if (dataReaderOneInstance == null) {
+            dataReaderOneInstance = new DataReader();
+        }
+        return dataReaderOneInstance;
     }
 
     private void readUnivData() {

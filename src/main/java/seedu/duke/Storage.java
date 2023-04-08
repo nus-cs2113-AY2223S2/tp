@@ -52,7 +52,7 @@ public class Storage implements DatabaseInterface {
 
     @Override
     public boolean checkDatabaseCorrupted() {
-        ArrayList<Module> allModules = new DataReader().getModules();
+        ArrayList<Module> allModules = DataReader.getDataReaderOneInstance().getModules();
         boolean isCorrupted = false;
         ArrayList<Module> copyArrayList = new ArrayList<>();
         for (Module module : modules) {

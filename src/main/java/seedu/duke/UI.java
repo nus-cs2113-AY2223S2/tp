@@ -48,10 +48,21 @@ public class UI {
             + "this NUS module code: ";
     private static final String MODULE_ALREADY_EXIST_MESSAGE = "This module already exists in your list";
     private static final String PU_UNI_NAME_MAPS_TO_NUS_MESSAGE = " Module] maps to ----> [NUS Module]";
-    private static ArrayList<Module> puModules = new DataReader().getModules();
-    private static ArrayList<University> universities = new DataReader().getUniversities();
+    private static ArrayList<Module> puModules = DataReader.getDataReaderOneInstance().getModules();
+    private static ArrayList<University> universities = DataReader.getDataReaderOneInstance().getUniversities();
 
-    public UI() {
+    /**
+     * UI has a Singleton Design Pattern
+     */
+    private static UI uiOneInstance = null;
+    private UI() {
+    }
+
+    public static UI getUiOneInstance() {
+        if (uiOneInstance == null) {
+            uiOneInstance = new UI();
+        }
+        return uiOneInstance;
     }
 
     public static void printLine() {
