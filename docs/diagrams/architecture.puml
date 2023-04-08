@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/component-diagram
+skinparam componentStyle rectangle
+
+actor user
+user --> [DukeOfBooks]: Enter Input
+[DukeOfBooks] --> [ReadWriteData]: Load Data
+[ReadWriteData] --> [DukeOfBooks]: Data
+[DukeOfBooks] --> [UI]: Display UI
+[DukeOfBooks] --> [Parser]: Parse Input
+[Parser] --> [DukeOfBooks]: Command
+[Parser] --> [AccessCommand]: User Login
+[Parser] --> [UserCommand]: User Input
+[AccessCommand] --> [Parser]: Command
+[UserCommand] --> [Parser]: Command
+
+file data
+
+[ReadWriteData]..> data: Reads and Write Data
+
+@enduml

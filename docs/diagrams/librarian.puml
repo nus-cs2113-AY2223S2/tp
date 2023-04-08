@@ -1,5 +1,5 @@
-@startuml librarian diagram
-abstract class Command{
+@startuml inventory class diagram
+abstract class UserCommand{
     + {abstract} CommandResult execute()
     + {static} void setData()
 }
@@ -28,5 +28,8 @@ InventoryController --> Inventory
 InventoryController --> BorrowableItem
 InventoryController ..> Book
 Book --|> BorrowableItem
-Command <|-- InventoryCommand
+UserCommand <|-- InventoryCommand
 InventoryCommand ..> InventoryController
+InventoryCommand ..> CommandResult
+InventoryCommand o-- BorrowableItem
+@enduml

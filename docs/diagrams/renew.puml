@@ -1,0 +1,35 @@
+@startuml renew class diagram
+abstract class UserCommand{
+    + {abstract} CommandResult execute()
+    + void setData()
+}
+class LoanController{
+    + {static} String checkBorrowingStatus(BorrowableItem item)
+    + {static} String checkItemAvailability(BorrowableItem item)
+    + {static} void borrowItem(LoanRecords loanRecords, Person borrower, BorrowableItem toBorrow, LocalDateTime borrowTime)
+    + {static} void returnItem(Loan nRecords loanRecords, Person borrower, BorrowableItem toReturn)
+    + {static} void renewItem(LoanRecords loanRecords, Person person, BorrowableItem toRenew)
+    + {static} void renewItem(LoanRecords loanRecords, Person person, BorrowableItem toRenew, LocalDateTime newDue)
+}
+class RenewCommand{
+    + RenewCommand(LoanRecords loanRecords, Person person, BorrowableItem item)
+    - String processBooks(ArrayList<Book> listedBooks)
+    + CommandResult execute()
+}
+abstract class LoanCommand {
+    # LoanRecords loanRecords
+    + LoanCommand(LoanRecords loanRecords)
+    + CommandResult execute()
+}
+class BorrowableItem{}
+class Person{}
+class LoanRecords{}
+
+LoanController ..>LoanRecords
+LoanController ..> Person
+LoanController -..> BorrowableItem
+LoanCommand <|-- RenewCommand
+UserCommand <|-- LoanCommand
+RenewCommand ..> CommandResult
+RenewCommand ..> LoanController
+@enduml

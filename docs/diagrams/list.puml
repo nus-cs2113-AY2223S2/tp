@@ -1,0 +1,26 @@
+@startuml list class diagram
+abstract class UserCommand{
+    + {abstract} CommandResult execute()
+    + void setData()
+}
+class ListController{
+    + {static} static <T> void setData(T dataPoint)
+    + {static} static ArrayList<Book> listBooks()
+}
+class ListCommand{
+    - String processBooks(ArrayList<Book> listedBooks)
+    + CommandResult execute()
+}
+
+class Book{}
+class Inventory{}
+class InventoryDetails{}
+
+ListController ..> InventoryDetails
+ListController ..> Inventory
+ListController ..> Book
+UserCommand <|-- ListCommand
+ListCommand ..> ListController
+ListCommand ..> Book
+ListCommand ..> CommandResult
+@enduml
