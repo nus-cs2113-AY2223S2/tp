@@ -372,6 +372,7 @@ The following are instructions for testers to manual test:
 - Open the command terminal on your device.
 - Navigate to the folder in command terminal and run the command `java -jar [filename].jar`
 - Alternatively, double click on the JAR file to run the app.
+
 #### Adding a record
 1. Adding an expenditure
 
@@ -447,6 +448,73 @@ Return date must be after today's date! Today's date is 2023-04-07```
 ```
 Today's date in the expected output will correspond to the day that the user is using MyLedger.
 In our example case, the day in which the user was attempting to add the `borrow` command was on 2023-04-07.
+
+#### Displaying the list of inputs and conversion rates
+1. Displaying list of conversion rates
+
+Test Case:
+```
+showrates
+```
+Expected:
+```
+Currency rates per SGD:
+AUS: 1.11
+CAD: 1.01
+CNY: 5.07
+DKK: 5.15
+EUR: 0.69
+GBP: 0.61
+ILS: 2.7
+JPY: 99.96
+KRW: 989.05
+NOK: 7.78
+NZD: 1.2
+SEK: 7.8
+TWD: 22.98
+USD: 0.75
+```
+Currency rates used are aimed to provide an estimate on their spending in SGD, and does not provide real-time conversion rates.
+
+2. Displaying the list based on currency preferred.
+- Prerequisite: The currency must be 1 of the 14 currencies supported. User can view the available currencies using 
+`showrates`. Additionally, there must be at least one expenditure in the list to view in different currencies.
+Test Cases below will assume that the following expenditure has been added prior to calling `list`
+
+```
+food d/2023-02-12 a/8.00 p/Fast Food
+```
+
+Test Case 1 (Display in SGD):
+```
+list SGD
+```
+Expected:
+```
+Here is your list of expenditures in SGD:
+1. [Food] || [ ] || Date: 12 Feb 2023 || Value: 8.00 || Description: Fast Food
+```
+
+Test Case 2 (Display in USD):
+```
+list USD
+```
+Expected:
+```
+Here is your list of expenditures in USD: 
+1. [Food] || [ ] || Date: 12 Feb 2023 || Value: 6.00 || Description: Fast Food
+```
+
+Test Case 3 (No currency):
+```
+list
+```
+Expected:
+```
+Input command does not have required parameters! Please try again
+```
+The command `list` is missing currency, thus no list will be displayed.
+
 #### Deleting an expenditure
 1. Deleting an expenditure from the list of inputs.
 - Prerequisite: There should be at least one expenditure in the list for `delete` to work. The list can be checked
