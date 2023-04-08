@@ -15,7 +15,7 @@ public final class Errors {
     public static final String OLD_DATE = "Deadline must be after the current date & time: ";
     public static final String INVALID_EMAIL = "Invalid email address: ";
     public static final String INVALID_PRIORITY = "Invalid priority: ";
-    public static final String INVALID_DURATION = "Invalid repeat duration: ";
+    public static final String INVALID_DURATION = "Invalid repeat times: ";
     public static final String INVALID_EDIT = "Task edit commands must have either "
             + Flags.EDIT.getName() + " or " + Flags.EDIT_DELETE.getName() + ", not both or neither.";
     public static final String INVALID_TAG_EDIT = "Tag edit commands must have exactly one of "

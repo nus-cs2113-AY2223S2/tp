@@ -78,17 +78,17 @@ class ParserUtilTest {
     }
 
     @Test
-    void parseRepeatDurationTest() {
+    void parseRepeatTimesTest() {
         // Invalid repeat durations should throw an exception
         final String[] invalidDurations = {"$^8g", "1.36", "vb 2s"};
         for (String invalidDuration : invalidDurations) {
             assertThrows(InvalidDurationException.class,
-                    () -> ParserUtil.parseRepeatDuration(invalidDuration, LocalDateTime.now()));
+                    () -> ParserUtil.parseRepeatTimes(invalidDuration, LocalDateTime.now()));
         }
 
         // If repeat duration is not provided, it should default to 0
         try {
-            assertEquals(ParserUtil.parseRepeatDuration(null, LocalDateTime.now()), 0);
+            assertEquals(ParserUtil.parseRepeatTimes(null, LocalDateTime.now()), 0);
         } catch (InvalidDateException | InvalidDurationException e) {
             fail("Missing repeat duration was not automatically parsed as 0.");
         }
@@ -97,7 +97,7 @@ class ParserUtilTest {
         final int[] validDurations = {3, 17, 84725};
         try {
             for (int validDuration : validDurations) {
-                assertEquals(ParserUtil.parseRepeatDuration(Integer.toString(validDuration),
+                assertEquals(ParserUtil.parseRepeatTimes(Integer.toString(validDuration),
                         LocalDateTime.now()), validDuration);
             }
         } catch (InvalidDateException | InvalidDurationException e) {
@@ -107,7 +107,7 @@ class ParserUtilTest {
         // Missing deadline should throw an exception
         for (int validDuration : validDurations) {
             assertThrows(InvalidDateException.class,
-                    () -> ParserUtil.parseRepeatDuration(Integer.toString(validDuration), null));
+                    () -> ParserUtil.parseRepeatTimes(Integer.toString(validDuration), null));
         }
     }
 }

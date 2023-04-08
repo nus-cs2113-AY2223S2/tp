@@ -1,6 +1,5 @@
 package seedu.todolist.ui;
 
-import seedu.todolist.constants.HelpMessages;
 import seedu.todolist.constants.Messages;
 
 import java.text.DecimalFormat;
@@ -84,7 +83,7 @@ public class Ui {
     }
 
     public void printDeleteTaskMessage(String taskString) {
-        println(Messages.DELETE_TASK, taskString);
+        println(Messages.DELETE_TASK, Messages.LINE, taskString);
     }
 
     public void printEditTaskMessage(String parameterType, String newValue, String taskString) {
@@ -150,12 +149,12 @@ public class Ui {
         String progressPercentage = twoDecimalPlaces.format(100 * progress);
         println("You have completed " + progressPercentage + "% of the " + generateTaskCountString(tasksThisWeek)
                 + " due this week!", "Progress: |" + "=".repeat(completedSections)
-                + "-".repeat(incompleteSections) + "|", taskListString);
+                + "-".repeat(incompleteSections) + "|", Messages.LINE, taskListString);
     }
 
     //@@author RuiShengGit
-    public void printHelpList() {
-        println(HelpMessages.HELP_COMMAND);
+    public void printHelpList(String helpMessage) {
+        println(helpMessage);
     }
 
     public void printResetMessage(boolean reset) {

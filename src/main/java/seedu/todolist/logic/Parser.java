@@ -112,8 +112,6 @@ public class Parser {
             return new ListTagsCommand();
         case COMMAND_PROGRESS:
             return new ProgressBarCommand();
-        case COMMAND_HELP:
-            return new HelpCommand();
         case COMMAND_RESET:
             return new ResetCommand();
         case COMMAND_LIST:
@@ -142,6 +140,8 @@ public class Parser {
             return new ListFullInfoCommand(getArguments(splitInput, ListFullInfoCommand.EXPECTED_FLAGS));
         case COMMAND_CONFIG:
             return new EditConfigCommand(getArguments(splitInput, EditConfigCommand.EXPECTED_FLAGS));
+        case COMMAND_HELP:
+            return new HelpCommand(getArguments(splitInput, HelpCommand.EXPECTED_FLAGS));
         default:
             throw new InvalidCommandException();
         }

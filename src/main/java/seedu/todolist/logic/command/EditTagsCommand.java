@@ -56,12 +56,15 @@ public class EditTagsCommand extends Command {
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
         String taskString;
         if (purpose.equals(Flags.EDIT) || tags.isEmpty()) {
+            // Set tags to given list, or delete all tags if list is empty
             taskString = predicate == null
                     ? taskList.setTags(idHashSet, tags) : taskList.setTags(predicate, tags);
         } else if (purpose.equals(Flags.EDIT_ADD)) {
+            // Add all given tags
             taskString = predicate == null
                     ? taskList.addTags(idHashSet, tags) : taskList.addTags(predicate, tags);
         } else {
+            // Delete all given tags
             taskString = predicate == null
                     ? taskList.removeTags(idHashSet, tags) : taskList.removeTags(predicate, tags);
         }

@@ -187,15 +187,15 @@ public class ParserUtil {
      * A repeat duration can be specified only if deadline is not null.
      * If the repeat duration is null because it is not provided, it will default to 0.
      *
-     * @param repeatDuration The repeat duration string.
+     * @param repeatTimes The repeat duration string.
      * @param deadline The deadline of the task.
      * @return The repeat duration of the task as an integer, if the deadline has been provided.
      * @throws InvalidDateException If the deadline is null.
      * @throws InvalidDurationException If the repeat duration cannot be parsed to an integer.
      */
-    public static int parseRepeatDuration(String repeatDuration, LocalDateTime deadline)
+    public static int parseRepeatTimes(String repeatTimes, LocalDateTime deadline)
             throws InvalidDateException, InvalidDurationException {
-        if (repeatDuration == null) {
+        if (repeatTimes == null) {
             return 0;
         }
 
@@ -204,9 +204,9 @@ public class ParserUtil {
         }
 
         try {
-            return Integer.parseInt(repeatDuration);
+            return Integer.parseInt(repeatTimes);
         } catch (NumberFormatException e) {
-            throw new InvalidDurationException(repeatDuration);
+            throw new InvalidDurationException(repeatTimes);
         }
     }
 

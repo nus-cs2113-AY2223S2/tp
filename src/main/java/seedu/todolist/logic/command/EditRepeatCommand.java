@@ -21,7 +21,7 @@ public class EditRepeatCommand extends Command {
         Flags.FILTER_DONE, Flags.FILTER_OVERDUE, Flags.FILTER_BEFORE, Flags.FILTER_AFTER, Flags.FILTER_ALL,
         Flags.DESCRIPTION, Flags.EMAIL, Flags.REPEAT, Flags.TAG, Flags.PRIORITY};
 
-    private String repeatDurationString;
+    private String repeatTimesString;
     private HashSet<Integer> idHashSet;
     private Predicate<Task> predicate;
 
@@ -34,24 +34,24 @@ public class EditRepeatCommand extends Command {
         if (args.containsKey(Flags.EDIT) == args.containsKey(Flags.EDIT_DELETE)) {
             throw new InvalidEditException();
         } else if (args.containsKey(Flags.EDIT)) {
-            repeatDurationString = args.get(Flags.EDIT);
+            repeatTimesString = args.get(Flags.EDIT);
         }
         assert args.size() > 1: "Fewer arguments than expected!";
     }
 
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws ToDoListException {
-        int repeatDuration = ParserUtil.parseRepeatDuration(repeatDurationString, LocalDateTime.MIN);
+        int repeatTimes = ParserUtil.parseRepeatTimes(repeatTimesString, LocalDateTime.MIN);
         String taskString = predicate == null
-                ? taskList.setRepeatDuration(idHashSet, repeatDuration)
-                : taskList.setRepeatDuration(predicate, repeatDuration);
+                ? taskList.setRepeatTimes(idHashSet, repeatTimes)
+                : taskList.setRepeatTimes(predicate, repeatTimes);
 
         if (taskString.isEmpty()) {
             ui.printFilteredNoTasksFoundMessage();
-        } else if (repeatDuration == 0) {
+        } else if (repeatTimes == 0) {
             ui.printEditDeleteTaskMessage("repeat times", taskString);
         } else {
-            ui.printEditTaskMessage("repeat times", repeatDurationString, taskString);
+            ui.printEditTaskMessage("repeat times", repeatTimesString, taskString);
         }
     }
 }

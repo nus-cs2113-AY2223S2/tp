@@ -155,7 +155,7 @@ The following sequence diagram shows how the edit operations works:
 
 The repeating tasks function extends NUS To-Do List allowing tasks to be listed as repeating for a certain number of
 occurrences.
-It is facilitated by the TaskList, Storage and Command classes. It implements the `TaskList#setRepeatDuration()` 
+It is facilitated by the TaskList, Storage and Command classes. It implements the `TaskList#setRepeatTimes()` 
 which sets the number of times the task is to repeat, and `TaskList#checkRepeatingTasks()` to check for tasks stored
 in the TaskList for repeat settings.
 
