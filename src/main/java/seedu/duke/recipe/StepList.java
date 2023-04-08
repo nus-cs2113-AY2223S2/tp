@@ -95,6 +95,10 @@ public class StepList {
         String input;
         for (int i = 0; i < currStepNumber; i++) {
             System.out.println((i + 1) + ". " + stepList.get(i).getStepDescription());
+            if (i == currStepNumber - 1) {
+                System.out.println(StringLib.END_OF_RECIPE_STEPS);
+                return;
+            }
             if (ui.readCommand().equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
                 return;
             }
