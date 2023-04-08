@@ -1,12 +1,5 @@
 package bagpacker.iohandlertest;
-import bagpacker.commands.AddCommand;
-import bagpacker.commands.ByeCommand;
-import bagpacker.commands.DeleteCommand;
-import bagpacker.commands.HelpCommand;
-import bagpacker.commands.IncorrectCommand;
-import bagpacker.commands.ListCommand;
-import bagpacker.commands.PackCommand;
-import bagpacker.commands.UnpackCommand;
+import bagpacker.commands.*;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
@@ -32,7 +25,7 @@ public class ParserTest {
     }
 
     @Test
-    public void addCommandTest() {
+    public void createAddObjTest() {
         String userInput = "  add 500 /of this item  ";
         InputStream inStream = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(inStream);
@@ -49,7 +42,17 @@ public class ParserTest {
     }
 
     @Test
-    public void deleteCommandTest() {
+
+    public void addVariableTest() throws InvalidIndexException, InvalidVariablesException {
+        String userInput = "  add this item 1 ";
+        InputStream inStream = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(inStream);
+        Parser.parse();
+        assertEquals("this item 1", Parser.getVariable(Parser.getCommand()));
+    }
+
+    @Test
+    public void createDeleteObjTest() {
         String userInput1 = "  add 3 /of this item  ";
         String userInput2 = "  delete 1 ";
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
@@ -62,7 +65,7 @@ public class ParserTest {
     }
 
     @Test
-    public void packCommandTest() {
+    public void createPackObjTest() {
         String userInput1 = "  add 3 /of this item  ";
         String userInput2 = "  pack 1 /of 1";
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
@@ -75,7 +78,7 @@ public class ParserTest {
     }
 
     @Test
-    public void unpackCommandTest() {
+    public void createUnpackObjTest() {
         String userInput1 = "  add 3 /of this item  ";
         String userInput2 = "  pack 2 /of 1";
         String userInput3 = "  Unpack 1 /of 1";
@@ -95,7 +98,49 @@ public class ParserTest {
     }
 
     @Test
-    public void listCommandTest() {
+    public void createPackAllObjTest() {
+        String userInput1 = "  add 1357 /of this item  ";
+        String userInput2 = "  packall /of 1  ";
+        InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
+        System.setIn(inStream);
+        PackingList dummyPackingList = new PackingList();
+        Parser.parse().execute(dummyPackingList);
+        inStream = new ByteArrayInputStream(userInput2.getBytes());
+        System.setIn(inStream);
+        assertEquals(PackAllCommand.class, Parser.parse().getClass());
+
+        PackAllCommand packallList = new PackAllCommand(1);
+        packallList.execute(dummyPackingList);
+    }
+
+    @Test
+    public void createUnpackAllObjTest() {
+        String userInput1 = "  add 2468 /of this item  ";
+        String userInput2 = "  unpackall /of 1  ";
+        InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
+        System.setIn(inStream);
+        PackingList dummyPackingList = new PackingList();
+        Parser.parse().execute(dummyPackingList);
+        inStream = new ByteArrayInputStream(userInput2.getBytes());
+        System.setIn(inStream);
+        assertEquals(UnpackAllCommand.class, Parser.parse().getClass());
+    }
+
+    @Test
+    public void createEditQuantityObjTest() {
+        String userInput1 = "  add 12345 /of this item  ";
+        String userInput2 = "  editquantity 67890 /of 1  ";
+        InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
+        System.setIn(inStream);
+        PackingList dummyPackingList = new PackingList();
+        Parser.parse().execute(dummyPackingList);
+        inStream = new ByteArrayInputStream(userInput2.getBytes());
+        System.setIn(inStream);
+        assertEquals(EditQuantityCommand.class, Parser.parse().getClass());
+    }
+
+    @Test
+    public void createListObjTest() {
         String userInput1 = "  add 1 /of this item  ";
         String userInput2 = "  lIST ";
         PackingList dummyPackingList = new PackingList();
@@ -111,7 +156,47 @@ public class ParserTest {
     }
 
     @Test
-    public void helpCommandTest() {
+    public void createListUnpackedObjTest() {
+        String userInput1 = "  add 3 /of this item  ";
+        String userInput2 = "  listunpacked  ";
+        PackingList dummyPackingList = new PackingList();
+        InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
+        System.setIn(inStream);
+        Parser.parse().execute(dummyPackingList);
+        inStream = new ByteArrayInputStream(userInput2.getBytes());
+        System.setIn(inStream);
+        assertEquals(ListUnpackedCommand.class, Parser.parse().getClass());
+    }
+
+    @Test
+    public void createFindObjTest() {
+        String userInput1 = "  add 123 /of this item  ";
+        String userInput2 = "  find item  ";
+        PackingList dummyPackingList = new PackingList();
+        InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
+        System.setIn(inStream);
+        Parser.parse().execute(dummyPackingList);
+        inStream = new ByteArrayInputStream(userInput2.getBytes());
+        System.setIn(inStream);
+        assertEquals(FindCommand.class, Parser.parse().getClass());
+    }
+
+    @Test
+    public void createDeleteListObjTest() {
+        String userInput1 = "  add 123 /of this item  ";
+        String userInput2 = "  deletelist  ";
+        PackingList dummyPackingList = new PackingList();
+        InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
+        System.setIn(inStream);
+        Parser.parse().execute(dummyPackingList);
+        inStream = new ByteArrayInputStream(userInput2.getBytes());
+        System.setIn(inStream);
+        assertEquals(DeleteListCommand.class, Parser.parse().getClass());
+
+    }
+
+    @Test
+    public void createHelpObjTest() {
         String userInput1 = "  HelP  ";
 
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
@@ -121,7 +206,7 @@ public class ParserTest {
     }
 
     @Test
-    public void byeCommandTest() {
+    public void createByeObjTest() {
         String userInput1 = "  byE  ";
 
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());
@@ -131,7 +216,7 @@ public class ParserTest {
     }
 
     @Test
-    public void invalidCommandTest() {
+    public void createIncorrectCommandTest() {
         String userInput1 = " thisIsNOTaVALID command  ";
 
         InputStream inStream = new ByteArrayInputStream(userInput1.getBytes());

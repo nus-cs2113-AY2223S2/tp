@@ -316,8 +316,9 @@ public class Parser {
     }
 
     /**
-     * Attempts to create EditQuantityCommand object to be executed where it is called from Will check whether QUANTITY
-     * and INDEX are positive integers Will check whether changing the total quantity will cause packed
+     * Attempts to create EditQuantityCommand object to be executed where it is called from
+     * Will check whether QUANTITY and INDEX are positive integers
+     * Will check whether changing the total quantity will cause packed
      *
      * @return EditQuantityCommand the command to be executed to edit the total quantity of an item in the packing list,
      *         else an IncorrectCommand objected is created to be executed
