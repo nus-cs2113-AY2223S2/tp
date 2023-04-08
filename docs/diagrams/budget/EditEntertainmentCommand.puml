@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+activate ":Duke"
+":Duke" -> ":EditEntertainmentCommand" : command.execute()
+activate ":EditEntertainmentCommand"
+":EditEntertainmentCommand" -> ":BudgetPlanner" : budgetPlanner.getEntertainmentTotalCost()
+activate ":BudgetPlanner"
+":EditEntertainmentCommand" <-- ":BudgetPlanner" : initialCost:int
+deactivate ":BudgetPlanner"
+":EditEntertainmentCommand" -> ":BudgetPlanner" : budgetPlanner.setEntertainmentTotalCost(cost)
+activate ":BudgetPlanner"
+":EditEntertainmentCommand" <-- ":BudgetPlanner"
+deactivate ":BudgetPlanner"
+":EditEntertainmentCommand" -> ":BudgetPlanner" : budgetPlanner.getEntertainmentTotalCost()
+activate ":BudgetPlanner"
+":EditEntertainmentCommand" <-- ":BudgetPlanner" : newCost:int
+deactivate ":BudgetPlanner"
+opt initialCost == newCost
+":EditEntertainmentCommand" -> "<<class>>\n:UI" : UI.printCostNoChangeMessage();
+activate "<<class>>\n:UI"
+":EditEntertainmentCommand" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":EditEntertainmentCommand" --> ":Duke"
+end
+create ":Entertainment"
+":EditEntertainmentCommand" -> ":Entertainment" : new Entertainment(cost)
+activate ":Entertainment"
+":EditEntertainmentCommand" <-- ":Entertainment" : entertainment
+deactivate ":Entertainment"
+":EditEntertainmentCommand" -> "<<class>>\n:UI" : UI.printEditCostMessage(cost, entertainment)
+activate "<<class>>\n:UI"
+":EditEntertainmentCommand" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":EditEntertainmentCommand" --> ":Duke"
+deactivate ":EditEntertainmentCommand"
+@enduml

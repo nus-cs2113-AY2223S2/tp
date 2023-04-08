@@ -23,7 +23,10 @@ public class AddModuleCommand extends Command {
 
     @Override
     public void execute() {
-        storage.addModuleToModuleList(moduleToAdd);
+        boolean isAddSuccessful = storage.addModuleToModuleList(moduleToAdd);
+        if (!isAddSuccessful) {
+            return;
+        }
         ui.printAddModMessage();
     }
 }

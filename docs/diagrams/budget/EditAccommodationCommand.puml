@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+activate ":Duke"
+":Duke" -> ":EditAccommodationCommand" : command.execute()
+activate ":EditAccommodationCommand"
+":EditAccommodationCommand" -> ":BudgetPlanner" : budgetPlanner.getAccommodationTotalCost()
+activate ":BudgetPlanner"
+":EditAccommodationCommand" <-- ":BudgetPlanner" : initialCost:int
+deactivate ":BudgetPlanner"
+":EditAccommodationCommand" -> ":BudgetPlanner" : budgetPlanner.setAccommodationTotalCost(cost)
+activate ":BudgetPlanner"
+":EditAccommodationCommand" <-- ":BudgetPlanner"
+deactivate ":BudgetPlanner"
+":EditAccommodationCommand" -> ":BudgetPlanner" : budgetPlanner.getAccommodationTotalCost()
+activate ":BudgetPlanner"
+":EditAccommodationCommand" <-- ":BudgetPlanner" : newCost:int
+deactivate ":BudgetPlanner"
+opt initialCost == newCost
+":EditAccommodationCommand" -> "<<class>>\n:UI" : UI.printCostNoChangeMessage();
+activate "<<class>>\n:UI"
+":EditAccommodationCommand" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":EditAccommodationCommand" --> ":Duke"
+end
+create ":Accommodation"
+":EditAccommodationCommand" -> ":Accommodation" : new Accommodation(cost)
+activate ":Accommodation"
+":EditAccommodationCommand" <-- ":Accommodation" : accommodation
+deactivate ":Accommodation"
+":EditAccommodationCommand" -> "<<class>>\n:UI" : UI.printEditCostMessage(cost, accommodation)
+activate "<<class>>\n:UI"
+":EditAccommodationCommand" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":EditAccommodationCommand" --> ":Duke"
+deactivate ":EditAccommodationCommand"
+@enduml

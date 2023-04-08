@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddModuleCommandTest {
 
-    Storage storage = new Storage();
+    Storage storage = Storage.getInstance();
     Module module = new Module(1, "AE320", "Aerodynamics II", 3,
             "ME4231", "Aerodynamics", 4);
 

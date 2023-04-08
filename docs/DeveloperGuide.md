@@ -89,9 +89,21 @@ How module data is stored in text file:
 Module information is stored in one single line separated by commas
 `univID`,`moduleCode`,`moduleName`,`moduleMCs`,`nusModuleCode`,`nusModuleName`,`nusModuleMcs`
 
+Class Diagram of Storage:
+![StorageClassDiagram.png](diagrams%2FStorage%2FStorageClassDiagram.png)
+
+The Storage class follows the Singleton pattern, where there is only one instance of Storage class. During the
+fist initialisation of the Storage class, Storage also tries to handle the case where the txt have been tampered.
+How the Storage handles this is through the checkDatabaseCorrupted function which the Storage class implements from
+the Database Interface. The Storage class would save module mappings which contains all the information. To double-check
+that such module mappings are not corrupted, it is cross-referenced with the main Module database from the
+DataReader class, and also checked for duplication. Tampered data will be removed or the module database would reset if
+too many modules are affected.
+
 Sequence Diagram of Storage initialisation:
 
 ![Storage.png](diagrams%2FStorage%2FStorage.png)
+![readModData.png](diagrams%2FStorage%2FreadModData.png)
 
 The Storage class also handles the adding of new modules and the deleting of past modules. When any of this occurs, the
 txt file will be updated immediately after the successful adding/deletion of saved modules in the Storage.
@@ -99,6 +111,7 @@ txt file will be updated immediately after the successful adding/deletion of sav
 - For adding of newly saved modules, they are added through appending to the saved_modules.txt file
 - For deleting of past saved modules, they are deleted, and the txt file is updated by rewriting every module from the
   ArrayList of saved modules
+
 
 ### Parser
 
@@ -196,7 +209,7 @@ Sequence Diagram of List Pu Modules Command.
 
 Adds the Module the user has wants to save to the saved modules database.
 
-> Syntax: list [_uniAbbreviation/moduleCode_]
+> Syntax: /add [_uniAbbreviation/index_]
 
 Sequence Diagram of Add Module Command.
 
@@ -238,6 +251,128 @@ ArrayList<Module> modules.
 corresponding to the uniID.
 5. Loops through filtered modules retrieving module information and printing it out to User Console.
 
+
+### Budget Commands
+Class Diagram of Budget Commands
+![budgetClassDiagram.png](diagrams%2Fbudget%2FbudgetClassDiagram.png)
+
+#### View Budget Command (View)
+
+> Syntax: /budget /view
+
+Sequence Diagram of View Budget Command
+![ViewBudgetCommand.png](diagrams%2Fbudget%2FViewBudgetCommand.png)
+
+**Explanation**
+1. ViewBudgetCommand calls the UI class to print all the budget details
+2. One by one, UI class would call ViewBudgetCommand to get the budget, accommodation cost, airplane cost, food cost, 
+entertainment cost, and lastly the surplus. After calling each of those functions, it will print out the output
+accordingly.
+
+#### Edit Budget Command (Budget)
+
+> Syntax: /budget /budget [_amount_]
+
+Edits the total budget the user plans to use for his/her SEP trip.
+
+Sequence Diagram of Edit Budget Command
+![EditBudgetCommand.png](diagrams%2Fbudget%2FEditBudgetCommand.png)
+
+**Explanation**
+
+1. EditBudgetCommand calls BudgetPlanner get command to get the initial budget that the user had.
+2. EditBudgetCommand then calls BudgetPlanner's set command to change the budget to the latest amount the user inputted.
+3. EditBudgetCommand calls BudgetPlanner get command again to check if the current budget is the same as initial budget.
+4. If budget value has not changed, EditBudgetCommand would call UI class to print a BudgetNoChangeMessage and return.
+5. If budget has changed, EditBudgetCommand would call UI class to print a EditBudgetMessage and return.
+
+#### Edit Accommodation Command (Cost)
+
+> Syntax: /budget /accommodation [_amount_]
+
+Edits the total accommodation cost the user plans to spend for his/her SEP trip.
+
+Sequence Diagram of Edit Accommodation Command
+![EditAccommodationCommand.png](diagrams%2Fbudget%2FEditAccommodationCommand.png)
+Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
+
+**Explanation**
+
+1. EditAccommodationCommand calls BudgetPlanner get command to get the initial accommodation cost that the user had.
+2. EditAccommodationCommand then calls BudgetPlanner's set command to change the accommodation cost to the latest 
+amount the user inputted.
+3. EditAccommodationCommand calls BudgetPlanner get command again to check if the current accommodation cost is the
+same as initial budget.
+4. If accommodation cost value has not changed, EditAccommodationCommand would call UI class to print a 
+CostNoChangeMessage and return.
+5. If accommodation cost has changed, EditAccommodationCommand would call UI class to print a 
+EditCostMessage and return.
+
+#### Edit Airplane Ticket Command (Cost)
+
+> Syntax: /budget /airplane [_amount_]
+
+Edits the total airplane ticket cost the user plans to spend for his/her SEP trip.
+
+Sequence Diagram of Edit Airplane Ticket Command
+![EditAirplaneTicketCommand.png](diagrams%2Fbudget%2FEditAirplaneTicketCommand.png)
+Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
+
+**Explanation**
+
+1. EditAirplaneTicketCommand calls BudgetPlanner get command to get the initial airplane ticket cost that the user had.
+2. EditAirplaneTicketCommand then calls BudgetPlanner's set command to change the airplane ticket cost to the latest
+   amount the user inputted.
+3. EditAirplaneTicketCommand calls BudgetPlanner get command again to check if the current airplane ticket cost is the
+   same as initial budget.
+4. If airplane ticket cost value has not changed, EditAirplaneTicketCommand would call UI class to print a
+   CostNoChangeMessage and return.
+5. If airplane ticket cost has changed, EditAirplaneTicketCommand would call UI class to print a
+   EditCostMessage and return.
+
+#### Edit Food Command (Cost)
+
+> Syntax: /budget /food [_amount_]
+
+Edits the total food cost the user plans to spend for his/her SEP trip.
+
+Sequence Diagram of Edit Budget Command
+![EditFoodCommand.png](diagrams%2Fbudget%2FEditFoodCommand.png)
+Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
+
+**Explanation**
+
+1. EditFoodCommand calls BudgetPlanner get command to get the initial food cost that the user had.
+2. EditFoodCommand then calls BudgetPlanner's set command to change the food cost to the latest
+   amount the user inputted.
+3. EditFoodCommand calls BudgetPlanner get command again to check if the current food cost is the
+   same as initial budget.
+4. If food cost value has not changed, EditFoodCommand would call UI class to print a
+   CostNoChangeMessage and return.
+5. If food cost has changed, EditFoodCommand would call UI class to print a
+   EditCostMessage and return.
+
+#### Edit Entertainment Command (Cost)
+
+> Syntax: /budget /entertainment [_amount_]
+
+Edits the total entertainment cost the user plans to spend for his/her SEP trip.
+
+Sequence Diagram of Edit Entertainment Command
+![EditEntertainmentCommand.png](diagrams%2Fbudget%2FEditEntertainmentCommand.png)
+Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
+
+**Explanation**
+
+1. EditEntertainmentCommand calls BudgetPlanner get command to get the initial entertainment cost that the user had.
+2. EditEntertainmentCommand then calls BudgetPlanner's set command to change the entertainment cost to the latest
+   amount the user inputted.
+3. EditEntertainmentCommand calls BudgetPlanner get command again to check if the current entertainment cost is the
+   same as initial budget.
+4. If entertainment cost value has not changed, EditEntertainmentCommand would call UI class to print a
+   CostNoChangeMessage and return.
+5. If entertainment cost has changed, EditEntertainmentCommand would call UI class to print a
+   EditCostMessage and return.
 
 
 ## Product scope

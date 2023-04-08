@@ -12,12 +12,13 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     private static DataReader dataReader = new DataReader();
-    private static Storage storage = new Storage();
+    private static DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
+    private static Storage storage = Storage.getInstance();
 
-    private static BudgetPlanner budgetPlanner = new BudgetPlanner();
+    private static BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
     private static UI ui = new UI();
 
-    private static Parser parser = new Parser();
+    private static Parser parser = null;
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -26,13 +27,14 @@ public class Duke {
         ArrayList<University> universities = dataReader.getUniversities();
         ArrayList<Module> allModules = dataReader.getModules();
         ArrayList<Module> modules = storage.getModules();
-        ArrayList<Deadline> deadlines = storage.getDeadlines();
+        ArrayList<Deadline> deadlines = deadlineStorage.getDeadlines();
         ui.printGreetingMessage();
-        storage.compareDeadlines(deadlines);
+        deadlineStorage.compareDeadlines(deadlines);
+        parser = Parser.getInstance();
         while (isContinue) {
             userInput = in.nextLine();
             Command command = parser.parseUserCommand(userInput, universities, modules, allModules, storage,
-                    budgetPlanner, deadlines);
+                    deadlineStorage, budgetPlanner, deadlines);
             command.execute();
             isContinue = !command.getIsExit();
         }

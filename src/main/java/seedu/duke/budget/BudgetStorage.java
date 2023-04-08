@@ -1,6 +1,7 @@
 package seedu.duke.budget;
 
 import seedu.duke.DatabaseInterface;
+import seedu.duke.UI;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 public class BudgetStorage implements DatabaseInterface {
 
     private static final String SAVED_BUDGET_FILE_PATH = "data/budget.txt";
+    private static BudgetStorage instance = null;
     private Accommodation accommodation;
     private AirplaneTicket airplaneTicket;
     private Food food;
@@ -19,12 +21,19 @@ public class BudgetStorage implements DatabaseInterface {
 
     private int budget;
 
-    public BudgetStorage() {
+    private BudgetStorage() {
         try {
             initialiseDatabase();
         } catch (IOException e) {
             System.out.println("Initialise Budget Failure");
         }
+    }
+
+    public static BudgetStorage getInstance() {
+        if (instance == null) {
+            instance = new BudgetStorage();
+        }
+        return instance;
     }
 
     @Override
@@ -34,15 +43,39 @@ public class BudgetStorage implements DatabaseInterface {
             File directory = new File("data");
             directory.mkdirs();
             savedModulesFile.createNewFile();
-            budget = 0;
-            accommodation = new Accommodation(0);
-            airplaneTicket = new AirplaneTicket(0);
-            food = new Food(0);
-            entertainment = new Entertainment(0);
+            setBaseBudget();
             updateBudgetStorage();
             return;
         }
         readBudgetData();
+    }
+
+    private void setBaseBudget() {
+        budget = 0;
+        accommodation = new Accommodation(0);
+        airplaneTicket = new AirplaneTicket(0);
+        food = new Food(0);
+        entertainment = new Entertainment(0);
+    }
+
+    @Override
+    public boolean checkDatabaseCorrupted() {
+        if (budget < 0 || budget > BudgetPlanner.MAX_BUDGET) {
+            return true;
+        }
+        if (accommodation.getPrice() < 0 || accommodation.getPrice() > BudgetPlanner.MAX_BUDGET) {
+            return true;
+        }
+        if (airplaneTicket.getPrice() < 0 || airplaneTicket.getPrice() > BudgetPlanner.MAX_BUDGET) {
+            return true;
+        }
+        if (entertainment.getPrice() < 0 || entertainment.getPrice() > BudgetPlanner.MAX_BUDGET) {
+            return true;
+        }
+        if (food.getPrice() < 0 || food.getPrice() > BudgetPlanner.MAX_BUDGET) {
+            return true;
+        }
+        return false;
     }
 
     private void readBudgetData() {
@@ -52,14 +85,32 @@ public class BudgetStorage implements DatabaseInterface {
             while ((line = br.readLine()) != null) {
                 costs.add(line);
             }
-            budget = Integer.parseInt(costs.get(0));
-            accommodation = new Accommodation(Integer.parseInt(costs.get(1)));
-            airplaneTicket = new AirplaneTicket(Integer.parseInt(costs.get(2)));
-            food = new Food(Integer.parseInt(costs.get(3)));
-            entertainment = new Entertainment(Integer.parseInt(costs.get(4)));
+            if (costs.size() != 5) {
+                corruptBudgetFixProcedure();
+                return;
+            }
+            try {
+                budget = Integer.parseInt(costs.get(0));
+                accommodation = new Accommodation(Integer.parseInt(costs.get(1)));
+                airplaneTicket = new AirplaneTicket(Integer.parseInt(costs.get(2)));
+                food = new Food(Integer.parseInt(costs.get(3)));
+                entertainment = new Entertainment(Integer.parseInt(costs.get(4)));
+            } catch (NumberFormatException e) {
+                corruptBudgetFixProcedure();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        boolean isBudgetDataCorrupted = checkDatabaseCorrupted();
+        if (isBudgetDataCorrupted) {
+            corruptBudgetFixProcedure();
+        }
+    }
+
+    private void corruptBudgetFixProcedure() {
+        UI.printBudgetStorageCorruptedMessage();
+        setBaseBudget();
+        updateBudgetStorage();
     }
 
     private void updateBudgetStorage() {

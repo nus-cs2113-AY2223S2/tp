@@ -10,4 +10,5 @@ public interface DatabaseInterface {
         return saveString + System.lineSeparator();
     }
 
+    boolean checkDatabaseCorrupted();
 }

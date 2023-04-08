@@ -18,6 +18,6 @@ public class EditFoodCommand extends EditCostCommand {
             UI.printCostNoChangeMessage();
             return;
         }
-        UI.printEditCostMessage(budgetPlanner.getFoodTotalCost(), new Food(cost));
+        UI.printEditCostMessage(cost, new Food(cost));
     }
 }

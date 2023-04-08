@@ -5,31 +5,29 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import java.util.Comparator;
 
 public class Storage implements DatabaseInterface {
 
+    private static Storage instance = null;
     private static final String SAVED_MODULES_FILE_PATH = "data/saved_modules.txt";
-    private static final String SAVED_DEADLINES_FILE_PATH = "data/deadlines.txt";
     private ArrayList<Module> modules;
-    private ArrayList<Deadline> deadlines;
 
-    public Storage() {
+    private Storage() {
         this.modules = new ArrayList<>();
-        this.deadlines = new ArrayList<>();
         try {
             initialiseDatabase();
         } catch (IOException e) {
             System.out.println("Initialise Saved Modules Failure");
         }
-        try {
-            initialiseDeadlinesDatabase();
-        } catch (IOException e) {
-            System.out.println("Initialise Deadlines Failure");
+    }
+
+    public static Storage getInstance() {
+        if (instance == null) {
+            instance = new Storage();
         }
+        return instance;
     }
 
     public void initialiseDatabase() throws IOException {
@@ -41,62 +39,102 @@ public class Storage implements DatabaseInterface {
             return;
         }
         readModData(SAVED_MODULES_FILE_PATH, modules);
-    }
-
-    public void initialiseDeadlinesDatabase() throws IOException {
-        File savedDeadlinesFile = new File(SAVED_DEADLINES_FILE_PATH);
-        if (!savedDeadlinesFile.exists()) {
-            File directory = new File("data");
-            directory.mkdirs();
-            savedDeadlinesFile.createNewFile();
-            return;
+        boolean isStorageCorrupted = checkDatabaseCorrupted();
+        if (isStorageCorrupted) {
+            UI.printStorageCorruptedMessage();
         }
-        readDeadlineData(SAVED_DEADLINES_FILE_PATH, deadlines);
+        try {
+            writeModListToFile(modules);
+        } catch (IOException e) {
+            UI.printWriteToDatabaseFailureMessage();
+        }
     }
 
+    @Override
+    public boolean checkDatabaseCorrupted() {
+        ArrayList<Module> allModules = new DataReader().getModules();
+        boolean isCorrupted = false;
+        ArrayList<Module> copyArrayList = new ArrayList<>();
+        for (Module module : modules) {
+            if (!checkIsValidModule(module, allModules)) {
+                isCorrupted = true;
+            } else {
+                copyArrayList.add(module);
+            }
+        }
+        modules.clear();
+        for (Module toCopyModule : copyArrayList) {
+            modules.add(toCopyModule);
+        }
+        return isCorrupted;
+    }
+
+    private boolean checkIsValidModule(Module moduleToCheck, ArrayList<Module> allModules) {
+        for (Module module : allModules) {
+            if (module.toString().equals(moduleToCheck.toString())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void readModData(String modulesFilePath, ArrayList<Module> modules) {
         try (BufferedReader br = new BufferedReader(new FileReader(modulesFilePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
+                if (row.length != 7) {
+                    UI.printModuleCorruptDeleteMessage();
+                    continue;
+                }
                 if (row[3].equals("N/A")) {
                     row[3] = "0";
                 }
-                Module module = new Module(Integer.parseInt(row[0]), row[1], row[2],
-                        Integer.parseInt(row[3]), row[4], row[5], Integer.parseInt(row[6]));
-                modules.add(module);
+                try {
+                    Module module = new Module(Integer.parseInt(row[0]), row[1], row[2],
+                            Integer.parseInt(row[3]), row[4], row[5], Integer.parseInt(row[6]));
+                    boolean isDuplicate = doesModuleExist(module);
+                    if (isDuplicate) {
+                        continue;
+                    }
+                    modules.add(module);
+                } catch (NumberFormatException e) {
+                    UI.printModuleCorruptDeleteMessage();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void readDeadlineData(String modulesDeadlinePath, ArrayList<Deadline> deadlines) {
-        try (BufferedReader br = new BufferedReader(new FileReader(modulesDeadlinePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] row = line.split("//");
-                Deadline deadline = new Deadline(row[0], row[1]);
-                deadlines.add(deadline);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addModuleToModuleList(Module moduleToAdd) {
+    public boolean addModuleToModuleList(Module moduleToAdd) {
         assert (moduleToAdd != null) : "error line 89";
         if (moduleToAdd == null) {
             UI.printAddModuleFailureMessage();
-            return;
+            return false;
+        }
+        if (doesModuleExist(moduleToAdd)) {
+            UI.printModAlreadyExistMessage();
+            return false;
         }
         modules.add(moduleToAdd);
+        sortModulesAccordingToPrintingLength(modules);
         try {
             saveModuleToStorage(moduleToAdd.toString());
         } catch (IOException e) {
             UI.printAddModuleFailureMessage();
         }
+        return true;
+    }
+
+    public boolean doesModuleExist(Module moduleToAdd) {
+        for (Module module : modules) {
+            if ((moduleToAdd.getUnivId() == module.getUnivId()) &&
+                    moduleToAdd.toString().equalsIgnoreCase(module.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void saveModuleToStorage(String saveModuleString) throws IOException {
@@ -107,7 +145,8 @@ public class Storage implements DatabaseInterface {
 
     /**
      * Deletes the module corresponding to the uni specified by user. Module will the removed from user's
-     * saved list of modules. Uses Index relative to specific PU list.
+     * saved list of modules. Uses Index relative to specific PU list. Sorts ArrayList modules after deleting
+     * module to ensure that modules are still sorted according to printing length
      *
      * @param indexToDeletePuSpecificList Index of that module that is given in user input, relative to PU list.
      * @param modules                     The ArrayList of all modules user saved.
@@ -139,6 +178,7 @@ public class Storage implements DatabaseInterface {
             UI.printDeleteNumError();
             return false;
         }
+        sortModulesAccordingToPrintingLength(modules);
         try {
             database.writeModListToFile(modules);
         } catch (IOException e) {
@@ -148,32 +188,6 @@ public class Storage implements DatabaseInterface {
         return true;
     }
 
-    /**
-     * Deletes the deadline specified by user. Deadline will the removed from user's
-     * list of deadlines.
-     *
-     * @param indexToDelete Index of that deadline that is given in user input.
-     * @param deadlines     The ArrayList of deadlines.
-     * @param database      Database of the user's list of deadlines.
-     * @return True if successfully deleted the module, false if unsuccessful.
-     */
-    public static boolean deleteDeadline(int indexToDelete, ArrayList<Deadline> deadlines,
-                                         Storage database) {
-        int indexToZeroBased = indexToDelete - 1;
-        try {
-            deadlines.remove(indexToZeroBased);
-        } catch (IndexOutOfBoundsException e) {
-            UI.printDeleteNumError();
-            return false;
-        }
-        try {
-            database.writeDeadlinesToFile(deadlines);
-        } catch (IOException e) {
-            UI.printWriteToDatabaseFailureMessage();
-            return false;
-        }
-        return true;
-    }
 
     /**
      * Adds and overwrites ArrayList of user's saved modules list in database.
@@ -192,22 +206,6 @@ public class Storage implements DatabaseInterface {
     }
 
     /**
-     * Adds and overwrites ArrayList of user's deadlines in database.
-     *
-     * @param deadlines ArrayList of deadlines to be written into database.
-     * @throws IOException If input/output operations fail or are interrupted.
-     */
-    public void writeDeadlinesToFile(ArrayList<Deadline> deadlines) throws IOException {
-        FileWriter fw = new FileWriter(SAVED_DEADLINES_FILE_PATH);
-        String stringToAdd = "";
-        for (Deadline deadline : deadlines) {
-            stringToAdd += writeTaskPreparation(deadline.toString());
-        }
-        fw.write(stringToAdd);
-        fw.close();
-    }
-
-    /**
      * Returns list of modules in ArrayList type.
      *
      * @return ArrayList of modules.
@@ -216,47 +214,11 @@ public class Storage implements DatabaseInterface {
         return modules;
     }
 
-    public ArrayList<Deadline> getDeadlines() {
-        return deadlines;
-    }
-
-    public void addDeadlineToDeadlines(Deadline deadlineToAdd) {
-        if (deadlineToAdd == null) {
-            UI.printAddDeadlineFailureMessage();
-            return;
-        }
-        deadlines.add(deadlineToAdd);
-        try {
-            saveDeadlineToStorage(deadlineToAdd.toString());
-        } catch (IOException e) {
-            UI.printAddDeadlineFailureMessage();
-        }
-    }
-
-    private void saveDeadlineToStorage(String saveDeadlineString) throws IOException {
-        FileWriter fw = new FileWriter(SAVED_DEADLINES_FILE_PATH, true);
-        fw.write(writeTaskPreparation(saveDeadlineString));
-        fw.close();
-    }
-
-    public void compareDeadlines(ArrayList<Deadline> deadlines) {
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String todayDate = formatter.format(date);
-        int counter = 1;
-        try {
-            for (Deadline deadline : deadlines) {
-                Date today = formatter.parse(todayDate);
-                Date deadlineDue = formatter.parse(deadline.getDueDate());
-                long timeDiff = Math.abs(deadlineDue.getTime() - today.getTime());
-                long daysDiff = TimeUnit.DAYS.convert(timeDiff, TimeUnit.MILLISECONDS);
-                if (daysDiff <= 7) {
-                    UI.printReminderMessage(deadline, counter);
-                    counter++;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    /**
+     * Sorts modules according to printing length.
+     * @param modules Module to be printed to User Console
+     */
+    public static void sortModulesAccordingToPrintingLength(ArrayList<Module> modules) {
+        modules.sort(Comparator.comparing(Module::getPrintingLength));
     }
 }
