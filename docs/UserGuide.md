@@ -1,12 +1,15 @@
 # User Guide
 
+
 ## Introduction
 
 Meal360 is a desktop app for managing your recipes and weekly meal plans, optimized for use via a
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If
 you can type fast, Meal360 can get your recipe management tasks done faster than traditional GUI
 apps.
-
+* [Quick Start](#quick-start)
+* [Features](#features)
+* [Command Summary](#command-summary)
 ___
 
 ## Quick Start
@@ -43,6 +46,8 @@ Format: `ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quan
   `meat=200 salt and spices=400`
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
 
+<br>
+
 ### Adding recipes: `add`
 
 Add new recipes to your list.
@@ -56,6 +61,8 @@ Example of usage:
 
 `add /r chicken rice`
 `add /r noodles`
+
+<br>
 
 ### Editing recipes: `edit`
 
@@ -72,6 +79,8 @@ Example of usage:
 
 `edit /r chicken rice`
 `edit /r noodles`
+
+<br>
 
 ### Listing recipes: `list`
 
@@ -96,6 +105,8 @@ Example of usage:
 * `list /t western && chinese` lists recipes that is under __both__ 'western' and
   'chinese' tag.
 
+<br>
+
 ### Viewing recipes: `view`
 
 Views the list of ingredients and their quantities for a recipe.
@@ -109,6 +120,8 @@ Format: `view INDEX`
 Example of usage:
 
 `view 1`
+
+<br>
 
 ### Deleting recipes: `delete`
 
@@ -127,11 +140,13 @@ Example of usage:
 `delete /r pizza`
 `delete /r all`
 
+<br>
+
 ### Tagging/Categorising recipes: `tag`
 
 __Categorize recipes into a specific tag__
 
-Adding one or more recipes into a tag.
+Adding one or more recipes into a tag, so that users can organize the recipes into categories
 
 Format: `tag LABEL << [RECIPE_NAME && RECIPE_NAME && ...]`
 
@@ -165,6 +180,8 @@ Example of usage:
 * `tag breakfast >> milk && boilded egg && bread` removes milk, boiled egg, and bread
   from 'breakfast' tag.
 
+<br>
+
 ### Adding single recipe this week's plan: `weekly /add`
 
 Adds an existing recipe to this week's plan.
@@ -181,6 +198,8 @@ Example of usage:
 
 * `weekly /add pizza 2` adds pizza to this week's plan twice.
 * `weekly /add burger 1` adds burger to this week's plan once.
+
+<br>
 
 ### Adding multiple recipes to this week's plan: `weekly /multiadd`
 
@@ -202,6 +221,8 @@ Example of usage:
 * `weekly /multiadd /r pizza /q 2 /r burger /q 9` adds pizza twice and burger once to this week's
   plan.
 
+<br>
+
 ### Deleting from this week's plan: `weekly /delete`
 
 Deletes an existing recipe from this week's plan.
@@ -218,6 +239,8 @@ Format: `weekly /delete RECIPE_NAME QUANTITY`
 Example of usage:
 
 * `weekly /delete pizza 1` removes pizza from this week's plan once.
+
+<br>
 
 ### Deleting multiple recipes from this week's plan: `weekly /multidelete`
 
@@ -242,11 +265,15 @@ Example of usage:
   week's
   plan.
 
+<br>
+
 ### Clearing this week's plan: `weekly /clear`
 
 Clears this week's plan by removing all recipes listed in weekly plan.
 
 Format: `weekly /clear`
+
+<br>
 
 ### Mark recipe in this week's plan as done: `weekly /done`
 
@@ -264,17 +291,23 @@ Example of usage:
 * `weekly /done pizza` will mark pizza as done in the weekly plan, assuming the user has `pizza` in
   the weekly plan and there are sufficient ingredients.
 
+<br>
+
 ### View this week's plan: `weeklyplan`
 
 View this week's plan.
 
 Format: `weeklyplan`
 
+<br>
+
 ### View this week's ingredients: `weeklyingredients`
 
 View this week's ingredients.
 
 Format: `weeklyingredients`
+
+<br>
 
 ### Random a recipe: `random`
 
@@ -283,11 +316,15 @@ ingredients and their quantities for a recipe.
 
 Format: `random`
 
+<br>
+
 ### Exit the program: `bye`
 
 Exits the program.
 
 Format: `bye`
+
+<br>
 
 ### Add user ingredient: `add_i`
 
@@ -304,6 +341,8 @@ Example of usage:
 
 * `add_i /n chicken /c 1 /d 01/01/2020` adds chicken with quantity 1 and expiry date 01/01/2020
 
+<br>
+
 ### Delete user ingredient: `del_i`
 
 Delete user's ingredients from the ingredient list.
@@ -319,10 +358,14 @@ Example of usage:
 
 * `del_i /n chicken /c 1` deletes chicken with quantity 1
 
+<br>
+
 ### View user ingredients: `view_ingredients`
 
 View user's ingredients from the ingredient list.
 Format : `view_ingredients`
+
+---
 
 ## Command Summary
 
@@ -334,6 +377,7 @@ Format : `view_ingredients`
 | View recipe                        | `view INDEX`<br/>e.g `view 1`                                                                               |
 | Add tag/Categorise to recipes      | `tag LABEL << RECIPE_NAME`<br/>e.g `tag western << pizza`                                                   |
 | Remove tag/Categorise from recipes | `tag LABEL >> RECIPE_NAME`<br/>e.g `tag western >> pizza`                                                   |
+| Random a recipe                    | `random`                                                                                                    |
 | Add to weekly plan                 | `weekly /add RECIPE_NAME QUANTITY`<br/>e.g `weekly /add pizza 2`                                            |
 | Add multiple to weekly plan        | `weekly /multiadd [/r RECIPE_NAME /q QUANTITY]` <br/>e.g `weekly /multiadd /r pizza /q 1 /r burger /q 3`    |
 | Delete from weekly plan            | `weekly /delete RECIPE_NAME`<br/>e.g `weekly /delete pizza`                                                 |
