@@ -4,7 +4,9 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import static seedu.brokeMan.common.Messages.*;
+import static seedu.brokeMan.common.Messages.MESSAGE_GOODBYE;
+import static seedu.brokeMan.common.Messages.MESSAGE_LOGO;
+import static seedu.brokeMan.common.Messages.MESSAGE_WELCOME;
 
 /*
 Some parts of the code are copied and adapted from TextUI.java of addressbook-level2

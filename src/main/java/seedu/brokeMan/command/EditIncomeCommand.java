@@ -6,7 +6,6 @@ import seedu.brokeMan.exception.CategoryNotCorrectException;
 import seedu.brokeMan.parser.StringToCategory;
 import seedu.brokeMan.parser.StringToTime;
 
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 public class EditIncomeCommand extends Command {
