@@ -19,7 +19,7 @@ Parser -> DeleteHelp ** : chooseHelpCommand("delete")
 activate DeleteHelp
 return
 
-destroy HelpCommand
+
 
 Parser --> Apollo
 deactivate Parser

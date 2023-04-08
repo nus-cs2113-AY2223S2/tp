@@ -29,6 +29,16 @@ public class Ui {
 
     // Scanner to read user inputs on CLI
     private static final Scanner in = new Scanner(System.in);
+    private static final String LONG_LINE_BREAK = "____________________________________________________________";
+    private static final String SHORT_LINE_BREAK = "_____________________________";
+    private static final String APOLLO_LOGO = " ____    ____    _____  __      __       _____\n" +
+            "|  _  | |  _ \\  | ___ | | |     | |     | ___ |\n" +
+            "| |_| | | |_| | | | | | | |     | |     | | | |\n" +
+            "| | | | |  __/  | |_| | | |___  | |___  | |_| |\n" +
+            "|_| |_| |_|     \\_____/ |_____| |_____| \\_____/\n";
+    private static final String HELLO_MESSAGE = "Hello from\n" + APOLLO_LOGO + "\n" +
+            "Your personal task and timetable manager!\n" +
+            "Enter \"help\" to see a list of commands.";
 
     /**
      * Get user input from CLI.
@@ -43,22 +53,21 @@ public class Ui {
      * Prints out a line divider.
      */
     public void showLine() {
-        System.out.println("____________________________________________________________");
-    }
-    public void showSmallLine() {
-        System.out.println("_____________________________");
+        System.out.println(LONG_LINE_BREAK);
     }
 
+    /**
+     * Prints out a shorter line divider.
+     */
+    public void showSmallLine() {
+        System.out.println(SHORT_LINE_BREAK);
+    }
+
+    /**
+     * Prints out the Welcome Message without line dividers.
+     */
     private void printApolloLogo() {
-        System.out.println("Hello from\n" +
-                " ____    ____    _____  __      __       _____\n" +
-                "|  _  | |  _ \\  | ___ | | |     | |     | ___ |\n" +
-                "| |_| | | |_| | | | | | | |     | |     | | | |\n" +
-                "| | | | |  __/  | |_| | | |___  | |___  | |_| |\n" +
-                "|_| |_| |_|     \\_____/ |_____| |_____| \\_____/\n" +
-                "\n" +
-                "Your personal task and timetable manager!\n" +
-                "Enter \"help\" to see a list of commands.");
+        System.out.println(HELLO_MESSAGE);
     }
 
     /**
@@ -150,7 +159,6 @@ public class Ui {
                 "\"help addmod\".\n");
     }
 
-
     /**
      * For {@code list} command.
      * Prints all Tasks within the TaskList given.
@@ -181,8 +189,7 @@ public class Ui {
      * @param calendar Contains details about the user's lessons during the week.
      */
     public void printWeek(TaskList taskList, Calendar calendar, LocalDate startWeek, LocalDate endWeek) {
-        LocalDate curr = startWeek;
-        int weekNumber = getWeekNumber(curr);
+        int weekNumber = getWeekNumber(startWeek);
         System.out.println("Here's your week from " + startWeek + " to " + endWeek + ":");
 
         if (weekNumber == 0) {
@@ -197,7 +204,10 @@ public class Ui {
             System.out.println("Week " + weekNumber);
         }
 
+        printEachDayInWeek(taskList, calendar, startWeek, weekNumber);
+    }
 
+    private void printEachDayInWeek(TaskList taskList, Calendar calendar, LocalDate curr, int weekNumber) {
         for (int i = 0; i < 7; i++) {
             showSmallLine();
             System.out.println(determineDay(i) + "\n");
@@ -248,7 +258,27 @@ public class Ui {
         }
         System.out.println("Heads up, your deadline occurs on the same day as these!");
         showSmallLine();
+        printClashWithLessons(clashLessons);
+        printClashWithTasks(clashTasks);
+        showSmallLine();
+    }
 
+    /**
+     * Prints the tasks that clashes with deadline.
+     */
+    private static void printClashWithTasks(TaskList clashTasks) {
+        if (clashTasks.size() != 0) {
+            System.out.println("Tasks:");
+            for (Task task : clashTasks) {
+                System.out.println(" - " + task);
+            }
+        }
+    }
+
+    /**
+     * Prints the events that clashes with deadline.
+     */
+    private static void printClashWithLessons(ArrayList<CalendarModule> clashLessons) {
         if (clashLessons.size() != 0) {
             System.out.println("Lessons:");
             for (CalendarModule module : clashLessons) {
@@ -256,15 +286,6 @@ public class Ui {
             }
             System.out.println();
         }
-
-        if (clashTasks.size() != 0) {
-            System.out.println("Tasks:");
-            for (Task task : clashTasks) {
-                System.out.println(" - " + task);
-            }
-        }
-        showSmallLine();
-
     }
 
     /**
@@ -278,6 +299,15 @@ public class Ui {
             System.out.println("There are no modules in your module list!");
             return;
         }
+        printAllModulesInList(allModules);
+    }
+
+    /**
+     * Prints out module information of a module in the module list.
+     *
+     * @param allModules ArrayList of Modules
+     */
+    private void printAllModulesInList(ModuleList allModules) {
         System.out.println("You are taking " + allModules.size() + " module(s) this semester:");
         for (int i = 0; i < allModules.size(); i++) {
             System.out.printf("%d.%s (%s MCs)%n", i + 1, allModules.get(i).toString(),
@@ -294,12 +324,20 @@ public class Ui {
     public void printModuleListWithLesson(Module newModule, ArrayList<Timetable> timetableList) {
         System.out.println("These are your classes for Module " + newModule.getCode() + ": \n");
         for (Timetable timetable : timetableList) {
-
-            System.out.println(timetable.getLessonType() + " " + timetable.getClassNumber() + '\n' +
-                    "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
-                    timetable.getEndTime() + " " + timetable.compressedWeeks(timetable));
+            printTimetableInformation(timetable);
         }
 
+    }
+
+    /**
+     * Gets and prints a timetable information.
+     *
+     * @param timetable Timetable of a module to be printed.
+     */
+    private static void printTimetableInformation(Timetable timetable) {
+        System.out.println(timetable.getLessonType() + " " + timetable.getClassNumber() + '\n' +
+                "   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
+                timetable.getEndTime() + " " + timetable.compressedWeeks(timetable));
     }
 
     /**
@@ -355,6 +393,15 @@ public class Ui {
         System.out.println("Here is your lesson of type: " + lessonType.toString() + " for "
                 + module.getCode() + ":");
 
+        printSpecificLessonInformation(copyList);
+    }
+
+    /**
+     * Gets and prints the lesson information of a specific lesson type.
+     *
+     * @param copyList Arraylist of timetable of the lesson.
+     */
+    private static void printSpecificLessonInformation(ArrayList<Timetable> copyList) {
         for (Timetable timetable : copyList) {
             System.out.println("Class Number: " + timetable.getClassNumber());
             System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
@@ -422,13 +469,9 @@ public class Ui {
         printLessonTypeMessage(lessonTypes);
         System.out.println();
         for (Timetable timetable : timetableList) {
-
-            System.out.println(timetable.getLessonType() + " " + timetable.getClassNumber() + '\n' +
-                    "   " + timetable.getDay() + " " + timetable.getStartTime() + " - "
-                    + timetable.getEndTime() + " " + timetable.compressedWeeks(timetable));
+            printTimetableInformation(timetable);
         }
     }
-
 
     /**
      * For {@code addmod, delmod, listmod} commands.
@@ -440,7 +483,6 @@ public class Ui {
         int moduleCredits = allModules.getTotalModuleCredits();
         System.out.println("Total modular credits you have in this semester: " + moduleCredits);
     }
-
 
     /**
      * For {@code mark} command.
@@ -797,11 +839,7 @@ public class Ui {
         System.out.println("Here are all available lessons of type: " + lessonType.toString() + " for "
                 + module.getCode() + ":");
 
-        for (Timetable timetable : copyList) {
-            System.out.println("Class Number: " + timetable.getClassNumber());
-            System.out.println("   " + timetable.getDay() + " " + timetable.getStartTime() + " - " +
-                    timetable.getEndTime() + " " + timetable.compressedWeeks(timetable));
-        }
+        printSpecificLessonInformation(copyList);
     }
 
     /**
@@ -811,10 +849,16 @@ public class Ui {
         System.out.println("This lesson clashes with another lesson in your timetable!");
     }
 
+    /**
+     * Prints message when the user tries to add an event that clashes with another event.
+     */
     public void printClashingEventMessage() {
         System.out.println("This event clashes with another event in your timetable!");
     }
 
+    /**
+     * Prints message when the user tries to add an event that clases with a lesson in the timetable.
+     */
     public void printClashingEventModuleMessage() {
         System.out.println("This event clashes with a lesson in your timetable!");
     }
@@ -833,6 +877,9 @@ public class Ui {
         System.out.println("This task was never marked as done!");
     }
 
+    /**
+     * Prints a message to suggest user to use a deadline task instead of todo task.
+     */
     public void deadlineSuggestion(){
         System.out.println("This todo seems to suggest that this is a deadline type task.\n" +"You could consider " +
                 "using the deadline command instead.\n");
@@ -840,7 +887,7 @@ public class Ui {
 
 
     /**
-     * Prints a help message for date command
+     * Prints a help message for date command.
      */
     public void printDateHelpMessage() {
         System.out.println("Shows all tasks in Apollo that occur on the specified date.\n" +
@@ -850,7 +897,7 @@ public class Ui {
                 "Note: `DATE` should be entered in the format `dd-MM-yyyy`.");
     }
     /**
-     * Prints a help message for find command
+     * Prints a help message for find command.
      */
     public void printFindHelpMessage() {
         System.out.println("Shows all tasks in Apollo that contain the specified keyword.\n" +
@@ -858,7 +905,7 @@ public class Ui {
                 "Format: find KEYWORD");
     }
     /**
-     * Prints a help message for delete command
+     * Prints a help message for delete command.
      */
     public void printDeleteHelpMessage() {
         System.out.println("Deletes the specified task from Apollo.\n" +
@@ -868,7 +915,7 @@ public class Ui {
                 "Note: `IDX` can be obtained by using `list` to find the task's index.\n");
     }
     /**
-     * Prints a help message for unmark command
+     * Prints a help message for unmark command.
      */
     public void printUnmarkHelpMessage() {
         System.out.println("Marks the specified task as not completed. \n" +
@@ -878,7 +925,7 @@ public class Ui {
                 "Note: `IDX` can be obtained by using `list` to find the task's index.");
     }
     /**
-     * Prints a help message for mark command
+     * Prints a help message for mark command.
      */
     public void printMarkHelpMessage() {
         System.out.println("Marks the specified task as completed.\n" +
@@ -888,7 +935,7 @@ public class Ui {
                 "Note: `IDX` can be obtained by using `list` to find the task's index.");
     }
     /**
-     * Prints a help message for event command
+     * Prints a help message for event command.
      */
     public void printEventHelpMessage() {
         System.out.println("Adds a task with a start and end date to Apollo.\n" +
@@ -899,7 +946,7 @@ public class Ui {
                 "Note: DATE must be entered in the format dd-MM-yyyy-hh:mm.");
     }
     /**
-     * Prints a help message for list command
+     * Prints a help message for list command.
      */
     public void printListHelpCommand() {
         System.out.println("Shows a numbered list of all tasks (Todos, Events, Deadlines) in Apollo. " +
@@ -907,13 +954,13 @@ public class Ui {
                 "then date within each type." + "Format: list");
     }
     /**
-     * Prints a help message for todo command
+     * Prints a help message for todo command.
      */
     public void printTodoHelpMessage() {
         System.out.println("Adds a normal task to Apollo.\nFormat: todo TASK");
     }
     /**
-     * Prints a help message for deadline command
+     * Prints a help message for deadline command.
      */
     public void printDeadlineHelpMessage() {
         System.out.println("Adds a task with a due date to Apollo \n" + "Format: deadline TASK -by DATE\n" +
@@ -924,7 +971,7 @@ public class Ui {
 
     public void printListModuleWithoutFlagsHelpMessage(){
         System.out.println("Shows the list of modules you are taking for this semester, " +
-                "alongisde total Modular Credits (MC).\n"+
+                "alongside total Modular Credits (MC).\n"+
                 "The list will be automatically sorted in alphabetical order according to EduRec standards.\n" +
                 "Format: listmod\n");
     }
@@ -1033,7 +1080,7 @@ public class Ui {
                 "you can use flags.\n"
                 +  "Format: showmod MODULE_CODE -FLAG\n" + "Example: showmod CS1010 -st\n\n" +
                 "NOTE: Different modules have different lesson types.\n" +
-                "It is recomended to run `showmod MODULE_CODE` to see the lesson types available for that module.\n");
+                "It is recommended to run `showmod MODULE_CODE` to see the lesson types available for that module.\n");
     }
 
     public void printShowModuleHelpMessage(){
