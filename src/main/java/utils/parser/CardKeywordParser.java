@@ -101,13 +101,12 @@ public class CardKeywordParser extends KeywordParser {
         Options deckOptions = new OptionsBuilder(CARD_MODEL, DECK_ACTION).buildOptions();
         // Combine all action
         String[] actionList = {ADD_ACTION, DELETE_ACTION, LIST_ACTION, TAG_ACTION, UNTAG_ACTION, VIEW_ACTION,
-                DECK_ACTION};
+                               DECK_ACTION};
         String[] headerList = new String[]{"Adding cards", "Deleting cards", "List all cards", "Tagging cards",
-                "Untagging cards",
-                "View"
-                        + " cards", "Adding cards to Deck"};
+                                           "Untagging cards",
+                                           "View" + " cards", "Adding cards to Deck"};
         Options[] optionsList = {addOptions, deleteOptions, new Options(), tagOptions, untagOptions, viewOptions,
-                deckOptions};
+                                 deckOptions};
         String helpMessage = formatHelpMessage("card", actionList, headerList, optionsList);
 
         return new PrintHelpCommand(helpMessage);
