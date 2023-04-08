@@ -4,15 +4,17 @@ import seedu.moneymind.category.Category;
 import seedu.moneymind.category.CategoryList;
 import seedu.moneymind.ui.Ui;
 
+import static seedu.moneymind.string.Strings.NULL_CATEGORY_ASSERTION;
+import static seedu.moneymind.string.Strings.NO_CATEGORY_MESSAGE;
+import static seedu.moneymind.string.Strings.NON_EXISTENT_EVENT;
+import static seedu.moneymind.string.Strings.EVENT_DELETION_MESSAGE;
+import static seedu.moneymind.string.Strings.CATEGORY_DELETION_MESSAGE;
+
 /**
  * Represents the command to delete an event or a category.
  */
 public class DeleteCommand implements Command {
-    public static final String NO_CATEGORY_MESSAGE = "Category does not exist";
-    public static final String EVENT_DELETION_MESSAGE = "Event deleted: ";
-    public static final String CATEGORY_DELETION_MESSAGE = "Category deleted: ";
-    public static final String NON_EXISTENT_EVENT = "Event does not exist";
-    public static final String NULL_CATEGORY_ASSERTION = "Category name should not be null";
+
     private final String categoryName;
     private int eventIndex;
     private final boolean isEvent;
@@ -93,4 +95,5 @@ public class DeleteCommand implements Command {
     public boolean isExit() {
         return false;
     }
+
 }

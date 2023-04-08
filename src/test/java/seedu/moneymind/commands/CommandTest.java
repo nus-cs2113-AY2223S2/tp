@@ -3,7 +3,7 @@ package seedu.moneymind.commands;
 import seedu.moneymind.category.Category;
 import seedu.moneymind.category.CategoryList;
 import seedu.moneymind.command.CategoryCommand;
-import seedu.moneymind.command.Parser;
+import seedu.moneymind.parser.Parser;
 import seedu.moneymind.event.Event;
 import seedu.moneymind.exceptions.InvalidCommandException;
 import seedu.moneymind.ui.Ui;

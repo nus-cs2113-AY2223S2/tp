@@ -7,9 +7,10 @@ import seedu.moneymind.command.CategoryCommand;
 import seedu.moneymind.command.Command;
 import seedu.moneymind.exceptions.InvalidCommandException;
 import seedu.moneymind.storage.Storage;
-import seedu.moneymind.command.Parser;
+import seedu.moneymind.parser.Parser;
 import seedu.moneymind.string.Strings;
 import seedu.moneymind.ui.Ui;
+
 import static seedu.moneymind.string.Strings.DATA_FILE;
 import static seedu.moneymind.string.Strings.WHITE_SPACE;
 

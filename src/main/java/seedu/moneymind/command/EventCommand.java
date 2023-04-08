@@ -13,9 +13,10 @@ import static seedu.moneymind.string.Strings.SELECTING_CATEGORY_MESSAGE;
 import static seedu.moneymind.string.Strings.GO_BACK_MESSAGE;
 import static seedu.moneymind.string.Strings.BACK;
 import static seedu.moneymind.string.Strings.CATEGORY_DOES_NOT_EXIST_MESSAGE;
+import static seedu.moneymind.string.Strings.EMPTY_STRING;
 
 /**
- * A class to add an event
+ * Adds a one time expense event or monthly recurring event to a category.
  */
 public class EventCommand implements Command {
 
@@ -25,7 +26,7 @@ public class EventCommand implements Command {
     private int expense;
 
     /**
-     * Constructor for EventCommand.
+     * Constructs a new EventCommand object for adding monthly recurring event.
      *
      * @param eventName The name of the event.
      * @param expense The expense of the event.
@@ -40,7 +41,7 @@ public class EventCommand implements Command {
     }
 
     /**
-     * Constructor for EventCommand.
+     * Constructs a new EventCommand object for adding one time expense event.
      *
      * @param eventName The name of the event.
      * @param expense The expense of the event.
@@ -48,7 +49,7 @@ public class EventCommand implements Command {
     public EventCommand(String eventName, int expense) {
         this.eventName = eventName;
         this.expense = expense;
-        this.time = "";
+        this.time = EMPTY_STRING;
         assert eventName != null : NULL_EVENT_ASSERTION;
         assert expense >= 0 : NON_NEGATIVE_EXPENSE_ASSERTION;
     }
@@ -64,14 +65,14 @@ public class EventCommand implements Command {
     }
 
     /**
-     * Check if the user input is valid.
+     * Checks if the user correctly chooses an existing category.
      *
      * @param userInput The user input.
      * @return True if the user input is valid.
      */
     private boolean isAddEventSuccessful(String userInput) {
         try {
-            if (time == "") {
+            if (time == EMPTY_STRING) {
                 addEventToCategory(userInput, new Event(eventName, expense));
             } else {
                 addEventToCategory(userInput, new Event(eventName, expense, time));
@@ -101,11 +102,12 @@ public class EventCommand implements Command {
     private void getUserInputUntilNonEmpty() {
         do {
             userInput = Moneymind.in.nextLine();
-        } while (userInput.equals(""));
+        } while (userInput.equals(EMPTY_STRING));
     }
 
     @Override
     public boolean isExit() {
         return false;
     }
+
 }

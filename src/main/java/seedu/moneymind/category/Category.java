@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import static seedu.moneymind.string.Strings.NO_EVENTS_IN_THIS_CATEGORY_MESSAGE;
 import static seedu.moneymind.string.Strings.DOT;
 
+/**
+ * Represents a category.
+ */
 public class Category {
+
     public ArrayList<Event> events = new ArrayList<>();
-
     private String name;
-
     private int budget;
 
     /**
@@ -49,13 +51,6 @@ public class Category {
     }
 
     /**
-     * Delete the event from the list.
-     */
-    public void deleteEvent(int index) {
-        events.remove(index);
-    }
-
-    /**
      * Gets the list of events.
      */
     public void viewEventList() {
@@ -88,6 +83,5 @@ public class Category {
         }
         return totalExpense;
     }
-
 
 }

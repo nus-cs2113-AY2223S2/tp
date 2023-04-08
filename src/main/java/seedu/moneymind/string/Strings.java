@@ -2,6 +2,27 @@ package seedu.moneymind.string;
 
 public class Strings {
 
+    public static final String EVENT_DELETION_MESSAGE = "Event deleted: ";
+    public static final String CATEGORY_DELETION_MESSAGE = "Category deleted: ";
+    public static final String NON_EXISTENT_EVENT = "Event does not exist";
+    public static final String ENTERING_VALID_TIME_FORMAT_MESSAGE = "Please enter a valid time in the format of dd/mm/yyyy hh:mm";
+    public static final String NEGATIVE_INTEGER_DETECTING_REGEX = "^-\\d+";
+    public static final String ZERO_MATCHING_REGEX = "^0";
+    public static final String INTEGER_DETECTING_REGEX = "\\d+";
+    public static final String LOAD_ERROR_RISK_MESSAGE =
+            "Please correct the save file and restart the program, or risk data loss.";
+    public static final String ERROR_LOADING_FILE = "Error loading file. ";
+    public static final String LOGO = "  __  __                        __  __ _           _ \n" +
+            " |  \\/  |                      |  \\/  (_)         | |\n" +
+            " | \\  / | ___  _ __   ___ _   _| \\  / |_ _ __   __| |\n" +
+            " | |\\/| |/ _ \\| '_ \\ / _ \\ | | | |\\/| | | '_ \\ / _` |\n" +
+            " | |  | | (_) | | | |  __/ |_| | |  | | | | | | (_| |\n" +
+            " |_|  |_|\\___/|_| |_|\\___|\\__, |_|  |_|_|_| |_|\\__,_|\n" +
+            "                           __/ |                     \n" +
+            "                          |___/                      \n";
+    public static final String GREETING = "Welcome to Moneymind\n" + LOGO + "How may I help you?";
+    public static final String ERROR = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    public static final String DATE_FORMAT = "dd/MM/yyyy HH:mm";
     public static final String DATA_FILE = "EventList.txt";
     public static final String BUDGET_LIMIT_MESSAGE = "The budget limit is 999999999$, please give a smaller budget";
     public static final String INDEX_LIMIT_MESSAGE = "The limit for index is 999999999, please try again.";
@@ -71,8 +92,8 @@ public class Strings {
             "category <name> [(optional) b/<budget number>]";
     public static final String EDIT_FORMAT = "Please following the correct format: " +
             "edit c/<category name> e/<event index>";
-    public static final String EVENT_EMPTY = "OOPS!!! The description of an event cannot be empty.";
-    public static final String CATEGORY_EMPTY = "OOPS!!! The description of a category cannot be empty.";
+    public static final String EMPTY_DESCRIPTION_FOR_EVENT = "OOPS!!! The description of an event cannot be empty.";
+    public static final String EMPTY_DESCRIPTION_FOR_CATEGORY = "OOPS!!! The description of a category cannot be empty.";
     public static final String NULL_INPUT_ASSERTION = "Input cannot be null";
     public static final String STORAGE_NEXT_VARIABLE = "&&next_detail&&";
     public static final String NEW_LINE = System.lineSeparator();

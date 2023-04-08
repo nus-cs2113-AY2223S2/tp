@@ -12,15 +12,15 @@ import static seedu.moneymind.string.Strings.NO_CATEGORIES_TO_VIEW;
 import static seedu.moneymind.string.Strings.DOT;
 
 /**
- * ViewCommand class to view the categories and events.
+ * Views the categories and events.
  */
 public class ViewCommand implements Command {
-    private String categoryName;
 
+    private String categoryName;
     private final boolean isCategorySpecified;
 
     /**
-     * Constructs a new ViewCommand object and views the category.
+     * Constructs a new ViewCommand object and views a single category.
      *
      * @param categoryName the name of the category
      */
@@ -39,7 +39,7 @@ public class ViewCommand implements Command {
     }
 
     /**
-     * Views a single category.
+     * Views all events in a single category.
      */
     private void viewOne() {
         if (CategoryCommand.categoryMap.get(categoryName) == null) {
@@ -62,13 +62,12 @@ public class ViewCommand implements Command {
         for (Category category : CategoryList.categories) {
             System.out.println("Category: " + category.getName() + " (budget: " + category.getBudget() + ")");
             int count = 1;
-            // print all the events in the category
+            // print all the events in the category with index
             for (Event event : category.getEvents()) {
                 System.out.println(count + DOT + event.toString());
                 count++;
             }
         }
-
     }
 
     @Override
@@ -84,4 +83,5 @@ public class ViewCommand implements Command {
     public boolean isExit() {
         return false;
     }
+
 }
