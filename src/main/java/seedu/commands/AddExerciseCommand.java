@@ -1,12 +1,9 @@
 package seedu.commands;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
-import java.time.temporal.ChronoField;
-import java.time.temporal.TemporalAccessor;
 
 import seedu.constants.DateConstants;
 import seedu.entities.Exercise;

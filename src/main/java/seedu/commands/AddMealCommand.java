@@ -7,7 +7,6 @@ import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.constants.DateConstants;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
@@ -18,7 +17,6 @@ import seedu.exceptions.InvalidMealException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.MissingArgumentsException;
 import seedu.logger.LogFileHandler;
-import seedu.parser.DateParser;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
@@ -38,7 +36,6 @@ public class AddMealCommand extends Command {
     private int choice;
     private Meal meal;
     private ArrayList<Food> foods;
-    private DateTimeFormatter dtf;
 
     public AddMealCommand(String commandWord, String userInput) {
         this.commandWord = commandWord;
@@ -63,7 +60,6 @@ public class AddMealCommand extends Command {
                         ExerciseStorage exerciseStorage)
                 throws LifeTrackerException {
         foods = new ArrayList<Food>();
-        dtf = DateConstants.PARSE_DTF;
         dateString = "";
         mealTypeString = "";
         mealType = null;
