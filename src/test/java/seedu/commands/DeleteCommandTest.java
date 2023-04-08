@@ -15,8 +15,11 @@ import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
 
 import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class DeleteCommandTest {
     private DeleteCommand deleteCommand;
