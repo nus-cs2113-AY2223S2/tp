@@ -58,13 +58,13 @@ class StorageTest {
                 "travel", "SGD", new BigDecimal(1)));
         expenseList.setExpenseList(expenses);
         storage.saveExpenses("src/test/junit.json");
-        ArrayList<Expense> testExpenses = storage.loadExpenses("src/test/junit.json");
+        ExpenseList testExpenses = storage.loadExpenses("src/test/junit.json");
         assertEquals(expenses, testExpenses);
     }
 
     @Test
     public void moreDPWarning() throws IOException {
-        ArrayList<Expense> testExpenses = storage.loadExpenses("src/test/moreDPRoundingWarning.json");
+        ExpenseList testExpenses = storage.loadExpenses("src/test/moreDPRoundingWarning.json");
         String expectedOutput = "Welcome back!" + System.lineSeparator() +
                 "More than 2 decimal places detected for Expense 1. " + ROUND_UP_WARNING;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
@@ -87,7 +87,7 @@ class StorageTest {
 
     @Test
     public void lessDPWarning() throws IOException {
-        ArrayList<Expense> testExpenses = storage.loadExpenses("src/test/lessDPRoundingWarning.json");
+        ExpenseList testExpenses = storage.loadExpenses("src/test/lessDPRoundingWarning.json");
         String expectedOutput = "Welcome back!" + System.lineSeparator() +
                 "Less than 2 decimal places detected for Expense 1. " + ROUND_UP_WARNING;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
