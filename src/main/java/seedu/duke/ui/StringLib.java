@@ -184,5 +184,5 @@ public interface StringLib {
     String STEP_DELETE_SUCCESS = "The step has been successfully deleted from the step list!";
     String EMPTY_STEP_ID_MESSAGE = "Index of step cannot be empty!";
     String EMPTY_INGREDIENT_ID_MESSAGE = "Index of ingredient cannot be empty!";
-
+    String END_OF_RECIPE_STEPS = "\nEnd of Recipe Steps!";
 }
