@@ -20,6 +20,7 @@ import seedu.duke.command.ListDeadlinesCommand;
 import seedu.duke.command.ListPuCommand;
 import seedu.duke.command.ListPuModulesCommand;
 import seedu.duke.command.ListFoundNusModsCommand;
+import seedu.duke.command.ListMappableNusModsCommand;
 import seedu.duke.command.ViewBudgetCommand;
 import seedu.duke.exceptions.InvalidCommandException;
 import seedu.duke.exceptions.InvalidPuException;
@@ -173,19 +174,24 @@ public class Parser {
     private Command handleSearchByNusModCode(ArrayList<Module> foundModulesToPrint, String searchModCode,
                                              ArrayList<Module> allModules, ArrayList<University> universities)
             throws InvalidModuleException {
-        for (Module module : allModules) {
-            String nusModuleCode = module.getNusModuleCode();
-            if (nusModuleCode.equalsIgnoreCase(searchModCode)) {
-                foundModulesToPrint.add(module);
+        if (searchModCode.equalsIgnoreCase("/mods")) {
+            return new ListMappableNusModsCommand(allModules);
+        } else {
+            for (Module module : allModules) {
+                String nusModuleCode = module.getNusModuleCode();
+                if (nusModuleCode.equalsIgnoreCase(searchModCode)) {
+                    foundModulesToPrint.add(module);
+                }
+            }
+            int numOfFoundModules = foundModulesToPrint.size();
+            if (numOfFoundModules == 0) {
+                throw new InvalidModuleException(ui.getInvalidSearchModuleMessage());
+            } else {
+                return new ListFoundNusModsCommand(searchModCode, foundModulesToPrint, universities);
             }
         }
-        int numOfFoundModules = foundModulesToPrint.size();
-        if (numOfFoundModules == 0) {
-            throw new InvalidModuleException(ui.getInvalidSearchModuleMessage());
-        } else {
-            return new ListFoundNusModsCommand(searchModCode, foundModulesToPrint, universities);
-        }
     }
+
 
     private Command prepareListPuModulesCommand(ArrayList<String> userInputWords, String univAbbNameOrIndex,
                                                 ArrayList<University> universities) {
