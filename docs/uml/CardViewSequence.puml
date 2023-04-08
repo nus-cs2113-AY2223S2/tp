@@ -1,0 +1,92 @@
+@startuml CardListSequence
+
+autoactivate on
+
+participant ":ViewCardCommand" as ViewCardCommand
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Tag" as Tag
+participant ":Card" as Card
+participant ":Deck" as Deck
+participant ":TagUUID" as TagUUID
+participant ":DeckUUID" as DeckUUID
+participant ":UserInterface" as UserInterface
+
+
+Create ViewCardCommand
+CardKeywordParser -> ViewCardCommand : ViewCardCommand()
+activate ViewCardCommand
+
+Create CardSelector
+ViewCardCommand -> CardSelector : CardSelector()
+return
+
+ViewCardCommand -> ViewCardCommand : execute()
+ViewCardCommand -> CardList : findCard()
+
+alt index is specified
+CardList -> CardSelector : getIndex()
+return cardIndex
+else uuid is specified
+CardList -> CardSelector : getUUID()
+return cardUUID
+end
+return cardToView
+
+ViewCardCommand -> UserInterface : printCard(cardToView)
+return
+
+
+ViewCardCommand -> Card : getTagsUUID()
+return tagsUUID
+ViewCardCommand -> Card : getDecksUUID()
+return decksUUID
+
+ViewCardCommand -> ViewCardCommand : findTagsFromTagUUID(tagsUUID)
+
+loop current uuid of tagsUUID != null
+
+  ViewCardCommand -> TagList : TagList()
+  return tagsFound
+  ViewCardCommand -> TagList : getTags()
+  return allTags
+  loop current uuid of allTags != null
+      ViewCardCommand -> TagUUID : equals()
+      return isUUIDEqual
+      alt isUUIDEqual
+       ViewCardCommand -> TagList : addTag()
+       return
+      end
+  end loop
+end loop
+return tagsFound
+
+ViewCardCommand -> UserInterface : printTags(tagsFound)
+return
+
+
+ViewCardCommand -> ViewCardCommand : findDecksFromDeckUUID(decksUUID)
+
+loop current uuid of tagsUUID != null
+
+  ViewCardCommand -> DeckList : DeckList()
+  return decksFound
+  ViewCardCommand -> DeckList : getDecks()
+  return allDecks
+  loop current uuid of allDecks != null
+      ViewCardCommand -> DeckUUID : equals()
+      return isUUIDEqual
+      alt isUUIDEqual
+       ViewCardCommand -> DeckList : addDeck()
+       return
+      end
+  end loop
+end loop
+return decksFound
+
+ViewCardCommand -> UserInterface : printDecks(decksFound)
+return
+
+@enduml

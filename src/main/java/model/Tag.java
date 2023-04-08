@@ -57,6 +57,10 @@ public class Tag {
         cards.add(cardUUID);
     }
 
+    public void removeCard(CardUUID cardUUID) {
+        cards.remove(cardUUID);
+    }
+
     public void removeDecks(DeckUUID deckUUID) {
         decks.remove(deckUUID);
     }

@@ -1,0 +1,48 @@
+@startuml
+autoactivate on
+
+participant ":ListCardsUnderTagCommand" as ListCardsUnderTagCommand
+participant ":TagList" as TagList
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagSelector" as TagSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Tag" as Tag
+
+participant ":UserInterface" as UserInterface
+
+
+Create ListCardsUnderTagCommand
+TagKeywordParser -> ListCardsUnderTagCommand : ListCardsUnderTagCommand()
+activate ListCardsUnderTagCommand
+
+Create TagSelector
+ListCardsUnderTagCommand -> TagSelector : TagSelector()
+return
+
+
+ListCardsUnderTagCommand -> ListCardsUnderTagCommand: execute()
+ListCardsUnderTagCommand -> TagList : findTag(TagSelector)
+return foundTag
+
+ListCardsUnderTagCommand -> ListCardsUnderTagCommand : findCardsUnderTag(foundTag)
+ListCardsUnderTagCommand -> Tag : getCardsUUID()
+return cardsUUID
+
+loop curr UUID of all Cards != null
+    loop curr UUID of cardsUUID != null
+      alt curr UUID of all Cards == curr UUID of cardsUUID
+        ListCardsUnderTagCommand -> CardList : addCard()
+         return
+       end
+      end loop
+
+end loop
+
+return foundCardList
+
+ListCardsUnderTagCommand -> UserInterface : printCardList(foundCardList)
+return
+
+@enduml
