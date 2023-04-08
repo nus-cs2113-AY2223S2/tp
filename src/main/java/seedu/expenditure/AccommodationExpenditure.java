@@ -31,6 +31,10 @@ public class AccommodationExpenditure extends Expenditure {
         this.repeatDate = repeatDate;
     }
 
+    public LocalDate getRepeatDate() {
+        return repeatDate;
+    }
+
     public String getStatusIcon() {
         return (isPaid) ? iconPaid : iconUnpaid;
     }
@@ -44,18 +48,18 @@ public class AccommodationExpenditure extends Expenditure {
     public void checkNextRepeatDate() {
         LocalDate firstDate = getDate();
         if (firstDate.equals(repeatDate)) {
-            repeatDate = getRepeatDate();
+            repeatDate = setNextRepeatDate();
         }
     }
 
     public void handleNextRepeat(LocalDate currentDate) {
         if (currentDate.equals(repeatDate) || currentDate.isAfter(repeatDate)) {
             isPaid = false;
-            repeatDate = getRepeatDate();
+            repeatDate = setNextRepeatDate();
         }
     }
 
-    public LocalDate getRepeatDate() {
+    public LocalDate setNextRepeatDate() {
         String stringNextYear = fetchNextYear();
         String stringNextMonth = fetchMonth();
         String stringNextDay = fetchDay();
