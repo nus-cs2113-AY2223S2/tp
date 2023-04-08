@@ -26,7 +26,7 @@ public class AchievementLevel extends Achievement {
             countCurrent += 1;
         }
 
-        if (!this.isCompleted() && countCurrent == countToComplete) {
+        if (!this.getCompleted() && countCurrent == countToComplete) {
             this.complete();
             return true;
         }

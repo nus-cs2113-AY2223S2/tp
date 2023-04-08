@@ -55,6 +55,8 @@ public class AchievementListHandler extends TextDataUtility {
     }
 
 
+
+
     private void pushDataToAchievementList(ArrayList<Achievement> achievementList,
                                            File achievementListData) throws DukeError {
         try {
@@ -85,19 +87,6 @@ public class AchievementListHandler extends TextDataUtility {
             System.out.println(achievementList.get(i).toString());
         }
     }
-
-    public void printCompletedAchievements () {
-        System.out.println("Here are all the completed achievements");
-        int count = 1;
-        for (int i = 0; i < achievementList.size(); i++) {
-            if (achievementList.get(i).isCompleted()) {
-                System.out.print(count + BRACKET + BLANK);
-                System.out.println(achievementList.get(i).toString());
-                count += 1;
-            }
-        }
-    }
-
 
     /**
      * This parses data from the text file and ensures that it is loaded correctly
@@ -139,6 +128,14 @@ public class AchievementListHandler extends TextDataUtility {
         return achievement;
     }
 
+
+    /**
+     * Takes in a String value from the save file and evaluates whether it is valid (only 0 or 1 accepted)
+     * If it is valid, then check whether the specific achievement is completed or not.
+     * @param input Input from the save file that corresponds to whether an achievement is complete
+     * @return Returns a boolean value indicating whether the achievement is complete or not
+     * @throws DukeError Throws an error if the format is incorrect
+     */
     private boolean getCompleteValue (String input) throws DukeError {
         boolean completed;
         if (input.equals(NOT_COMPLETED) || input.equals(COMPLETED)) {
@@ -170,6 +167,17 @@ public class AchievementListHandler extends TextDataUtility {
         return achievementDifficulty;
     }
 
+    /**
+     * @param name Name of the achievement
+     * @param requirement Requirements on how to achieve this achievement
+     * @param completed Whether this achievement is completed or not
+     * @param difficulty The difficulty level of the achievement, represented by stars
+     * @param achievementType Type of achievement (by exercise category)
+     * @param currCount Number of exercises from this exercise category this achievement is assigned to
+     * @param totalCountToComplete Total number of exercises required to complete this achievement
+     * @return Returns an achievement object for use by the main application
+     * @throws DukeError
+     */
     private Achievement createAchievement(String name, String requirement,
                                           boolean completed,
                                           AchievementDifficulty difficulty ,
@@ -182,6 +190,10 @@ public class AchievementListHandler extends TextDataUtility {
             return new AchievementLevel(name, requirement, completed, difficulty,
                     achievementType.toLowerCase(), currCount, totalCountToComplete);
         case "upper":
+            //upper has a different string than the raw command
+            String achievementName = "upper body";
+            return new AchievementBodyPart(name, requirement, completed, difficulty,
+                    achievementName, currCount, totalCountToComplete);
         case "core":
         case "legs":
             return new AchievementBodyPart(name, requirement, completed, difficulty,
@@ -216,6 +228,11 @@ public class AchievementListHandler extends TextDataUtility {
         }
     }
 
+
+    /**
+     * Deletes all data, used for clearing achievement data.
+     * @throws IOException
+     */
     private static void clearFile() throws IOException {
         FileWriter fw = new FileWriter(ACHIEVEMENT_LIST_FILE_LOCATION);
         fw.write(EMPTY);
