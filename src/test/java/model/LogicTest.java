@@ -99,7 +99,6 @@ public class LogicTest {
         assert deckList.get(0).getCardsSet().size() == 0;
     }
 
-    @Disabled
     @Test
     public void logic_noDoubleDelete_deleteByTagFirst() throws InkaException {
         // Copy state
@@ -116,7 +115,6 @@ public class LogicTest {
         parseAndExecute("deck delete -d testDeck -c " + cardUUID.toString(), RemoveCardFromDeckCommand.class);
 
         // Card no longer added by CardUUID or Tag
-        // TODO: Failing!
         assert deckList.get(0).getCardsSet().size() == 0;
     }
 
