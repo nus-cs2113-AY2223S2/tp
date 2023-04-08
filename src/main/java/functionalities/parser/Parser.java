@@ -84,7 +84,10 @@ public class Parser {
 
     private static String splitInputBy(String input, String splitter) throws SniffException {
         try {
-            String[] firstSplit = input.split(splitter);
+            String[] firstSplit = input.split(splitter, 2);
+            if (firstSplit[1].contains(splitter)) {
+                throw new SniffException(" The command cannot contain repeated descriptions!");
+            }
             String[] secondSplit = firstSplit[1].split("(at/|an/|on/|cn/|cd/|ct/|vd/|vt/" +
                     "|v/|sd/|st/|ed/|et/|p/)", -1);
             return secondSplit[0].trim();
