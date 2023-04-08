@@ -13,11 +13,10 @@ import java.util.HashMap;
 public class Command {
 
     protected static boolean isDayEntered;
-    //protected static Date date;
+    protected static boolean isCaloriesDayEntered;
     protected static boolean isWorkoutEntered;
     protected WorkoutList workoutList = new WorkoutList();
-    //protected CalorieTracker calorieTracker;
-    protected CaloriesRecorder caloriesRecorder;
+    protected CaloriesRecorder caloriesRecorder = new CaloriesRecorder();
     protected FoodList foodList;
     protected HashMap<Date, Day> workouts;
     protected Workout workoutForOneDay = new Workout();
@@ -33,6 +32,9 @@ public class Command {
     //@@ author ZIZI-czh
     public static void setIsDayEntered(boolean isDayEnter) {
         isDayEntered = isDayEnter;
+    }
+    public static void setDateEntered(boolean isCaloriesDayEnter) {
+        isCaloriesDayEntered = isCaloriesDayEnter;
     }
 
     //@@ author ZIZI-czh
@@ -53,7 +55,6 @@ public class Command {
         //  this.calorieTracker = calorieTracker;
         this.caloriesRecorder = caloriesRecorder;
         this.foodList = foodList;
-
     }
 
 

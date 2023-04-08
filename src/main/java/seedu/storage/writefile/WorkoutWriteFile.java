@@ -15,12 +15,8 @@ import java.util.HashMap;
 
 public class WorkoutWriteFile {
     private static final String SPACE = "          ";
-
-
     private static HashMap<Date, Day> workouts;
-
     private static HashMap<String, Workout> dailyWorkout;
-
 
     public static void writeWorkoutToFile(String filePath, WorkoutList workoutList) {
 
@@ -38,13 +34,12 @@ public class WorkoutWriteFile {
                     writeFile.write("Workout : " + workoutName + System.lineSeparator());
                     int index = 1;
                     writeFile.write("Exercise: " + System.lineSeparator());
-                    //  if(dailyWorkout.get(workoutName)) {
                     for (Exercise exercises : dailyWorkout.get(workoutName).getExercises()) {
                         String exerciseStr = String.format("%s. Name: %s, Weight: %s, Reps: %s", index,
                                 exercises.getName(), exercises.getWeight(), exercises.getRepsPerSet());
                         writeFile.write(SPACE + exerciseStr + System.lineSeparator());
                         index++;
-                        //  }
+
                     }
                 }
             }

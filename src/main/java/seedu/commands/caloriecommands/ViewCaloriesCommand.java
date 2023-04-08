@@ -1,27 +1,22 @@
 package seedu.commands.caloriecommands;
 
 import seedu.calorietracker.Calories;
-import seedu.calorietracker.FoodList;
+import seedu.commands.Command;
 import seedu.parser.DateFormatter;
 import seedu.ui.Ui;
 
 import java.util.Date;
 import java.util.HashMap;
-
-public class ViewCaloriesCommand extends CaloriesCommand {
+//@@author Richardtok
+public class ViewCaloriesCommand extends Command {
     private static final String FAIL_TO_FIND_DATE = " does not exit in the list";
-    private final Date caloriesToViewDate;
-
+    private Date caloriesToViewDate;
 
     public ViewCaloriesCommand(Date caloriesToViewDate) {
-        super();
+        //super();
         this.caloriesToViewDate = caloriesToViewDate;
     }
 
-    public ViewCaloriesCommand(Date caloriesToViewDate, FoodList foodList) {
-        this.caloriesToViewDate = caloriesToViewDate;
-        this.foodList = foodList;
-    }
 
     @Override
     public String execute() {
@@ -38,19 +33,24 @@ public class ViewCaloriesCommand extends CaloriesCommand {
                 return "No calories found on " + formattedDate + System.lineSeparator() + Ui.showSeparator();
             }
             string.append("Calories on ").append(formattedDate).append(":").append(System.lineSeparator());
-//            for (String DietName : singleCalorie.keySet()) {
-//                string.append("Diet Name: ").append(DietName).append(System.lineSeparator());
-////                string.append("Exercise Info: ").append(System.lineSeparator());
-                int index = 1;
-                for (String foodName : singleCalorie.keySet()) {
-                    string.append(index).append(". ").append("Food: ")
-                            .append(foodName)
-                            .append(", calories: ")
-                            .append(singleCalorie.get(foodName));
-                    index++;
-                }
-                string.append(Ui.showSeparator()).append(System.lineSeparator());
-//            }
+            int index = 1;
+            int totalCalories = 0;
+            for (String foodName : singleCalorie.keySet()) {
+                totalCalories = totalCalories + singleCalorie.get(foodName);
+                string.append(index).append(". ").append("Food: ")
+                        .append(foodName)
+                        .append(",  Calories: ")
+                        .append(singleCalorie.get(foodName))
+                        .append(" kcal")
+                        .append(System.lineSeparator());
+                index++;
+            }
+            string.append("Total Calories = ")
+                    .append(totalCalories)
+                    .append(" kcal")
+                    .append(System.lineSeparator())
+                    .append(Ui.showSeparator())
+                    .append(System.lineSeparator());
             return string.toString();
         }
         // if the Day object doesn't exist, return an error message

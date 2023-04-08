@@ -4,7 +4,7 @@ package seedu.parser;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.commands.InvalidCommand;
-import seedu.commands.caloriecommands.CaloriesCommand;
+import seedu.commands.caloriecommands.HelpCaloriesCommand;
 import seedu.commands.workoutcommands.HelpWorkoutCommand;
 import seedu.exceptions.InvalidSyntaxException;
 
@@ -27,40 +27,39 @@ public class Parser {
         String arguments = matcher.group("arguments");
 
         switch (commandName.toLowerCase()) {
-        case "/wday":
-            Command.setIsDayEntered(true);
-            Command.setIsWorkoutEntered(false);
-            return CheckInputs.processDay(arguments);
-        case "/wstart":
-            Command.setIsWorkoutEntered(true);
-            return CheckInputs.processStart(arguments);
-        case "/wadd":
-            return CheckInputs.processAdd(arguments);
-        case "/wdelete":
-            return CheckInputs.processDelete(arguments);
-        case "/wlist":
-            return CheckInputs.processList(arguments);
-        case "/wview":
-            return CheckInputs.processView(arguments);
-        case "/wcount":
-            return CheckInputs.processSetsRepsCount(arguments);
-        case "/cday":
-            CaloriesCommand.setDateEntered(true);
-            return CheckCaloriesInput.processDayCalories(arguments);
-        case "/cadd":
-            return CheckCaloriesInput.processAddCalories(arguments);
-        case "/clist": //list the total daily calories consumption
-         //   return CheckCaloriesInput.processViewCalories(arguments);
-        case "/cview": // list all the food calories that been entered for a day
-            return CheckCaloriesInput.processViewCalories(arguments);
-        case "/cdelete": //delete calories for a specific day for one food follow /cdelete date food name
-        case "/exit":
-            return new ExitCommand();
-        case "/help":
-            return new HelpWorkoutCommand();
-        default:
-            return new InvalidCommand(commandName);
+            case "/wday":
+                return CheckInputs.processDay(arguments);
+            case "/wstart":
+                return CheckInputs.processStart(arguments);
+            case "/wadd":
+                return CheckInputs.processAdd(arguments);
+            case "/wdelete":
+                return CheckInputs.processDelete(arguments);
+            case "/wlist":
+                return CheckInputs.processList(arguments);
+            case "/wview":
+                return CheckInputs.processView(arguments);
+            case "/wcount":
+                return CheckInputs.processSetsRepsCount(arguments);
+            case "/whelp":
+                return new HelpWorkoutCommand();
+            case "/cday":
+                Command.setDateEntered(true);
+                return CheckCaloriesInput.processDayCalories(arguments);
+            case "/cadd":
+                return CheckCaloriesInput.processAddCalories(arguments);
+            case "/clist":
+                return  CheckCaloriesInput.processListCalories(arguments);
+            case "/cview":
+                return CheckCaloriesInput.processViewCalories(arguments);
+            case "/cdelete":
+                //delete calories for a specific day for one food follow /cdelete date food name
+            case "/chelp":
+                return new HelpCaloriesCommand();
+            case "/exit":
+                return new ExitCommand();
+            default:
+                return new InvalidCommand(commandName);
         }
     }
 }
-

@@ -17,6 +17,7 @@ public class CheckCaloriesInput {
     private static final int FOOD_INDEX = 0;
     private static final int CALORIES_INDEX = 1;
 
+    private static final String CLIST_COMMAND = "/Clist command";
 
     static Command processDayCalories(String arguments) {
         Date date = CheckInputs.parseDate(arguments);
@@ -25,7 +26,6 @@ public class CheckCaloriesInput {
     }
 
     public static Command processAddCalories(String arguments) {
-        Date date;
         String food;
         int calories;
 
@@ -55,20 +55,21 @@ public class CheckCaloriesInput {
 
         return new AddCalorieCommand(food, calories);
     }
-    public static Command processListCalories(String arguments) {
-        return arguments == null || arguments.trim().isEmpty() ? new ListCaloriesCommand():
-                new IncorrectSyntaxCommand("/clist command");
-    }
 
     public static Command processViewCalories(String arguments) {
         Date date;
 
         try {
             date = DateFormatter.stringToDate(arguments.trim());
-            return new ViewCaloriesCommand(date);
         } catch (ParseException e) {
-            return new IncorrectSyntaxCommand("/cday command");
+            return new IncorrectSyntaxCommand("cday");
         }
-     }
+
+        return new ViewCaloriesCommand(date);
+    }
+    static Command processListCalories(String arguments) {
+        return arguments == null || arguments.trim().isEmpty() ? new ListCaloriesCommand() :
+                new IncorrectSyntaxCommand(CLIST_COMMAND);
+    }
 
 }

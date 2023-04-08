@@ -96,7 +96,7 @@ Step 2: The user input of /list will be taken in for the parser and an object of
 Step 3: The execute method in the ListWorkoutCommand class that is overrides will be called and print out all the dates that while iterating the workoutList.
 ###### [Back to table of contents](#table-of-contents)
 
-### View component
+### Workout view component
 The View component is facilitated by `Parser`,`Ui`,`WorkoutList`,`Command` and `ViewCommand`, where the user will 
 enter a specific workout date and the number of exercises on that date will be displayed
 
@@ -123,6 +123,7 @@ Step 1: Assume that the user has already added a workout on 21/03/23 into the Wo
 Step 2: The user input of /delete 21/03/23 will be taken in for the parser and an object of class DeleteCommand will be returned.
 
 Step 3: The execute method in the DeleteCommand class that is overrides will be called with parameter date and will iterate through workoutList looking for a workout that matches. It will then remove the workout from the workoutList.
+### Calories view component
 ###### [Back to table of contents](#table-of-contents)
 
 ### Exit component

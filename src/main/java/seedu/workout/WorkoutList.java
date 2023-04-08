@@ -75,11 +75,6 @@ public class WorkoutList {
         this.workouts = workouts;
     }
 
-    /*public void addExerciseToWorkout(Date currentDate, String currentWorkoutName, Exercise exercise) {
-        dailyWorkout.addExercise(exercise);
-        day.addWorkout(currentWorkoutName, dailyWorkout);
-        addWorkoutToList(currentDate, day);
-    }*/
 
     //@@ author guillaume-grn
     //@@ author ZIZI-czh
