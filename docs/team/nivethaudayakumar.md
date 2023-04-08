@@ -24,7 +24,7 @@ Given below are my contributions to the project:
 
 #### 3) Contributions to User Guide (UG): <br>
 1. [x] User Guide for List Feature: [#68](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/68)
-2. [x] User Guide for Archive Feature: [#160](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/160)
+2. [x] User Guide for Archive Feature: [#161](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/161)
 
 #### 4) Contributions to Developer Guide (DG): <br>
 1. [x] Worked on Design and Implementation portion for User Interface (UI): [#54](https://github.com/AY2223S2-CS2113-W12-1/tp/pull/54) 
