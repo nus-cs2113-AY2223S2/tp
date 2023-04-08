@@ -14,6 +14,7 @@ Duke -> UI : readCommand()
 activate UI #Gray
 User -> UI : "editstep 2"
 UI --> Duke : "editstep 2"
+deactivate UI
 Duke -> Parser : parseCommand()
 activate Parser #Yellow
 Parser --> Duke
@@ -30,25 +31,32 @@ StepList --> Command1
 deactivate StepList
 Command1 -> StepList : showFullStepList()
 activate StepList #LightGreen
-
-StepList --> User : full list of steps
+StepList -> User : full steps list message
+StepList --> Command1
 deactivate StepList
-UI -> User : showEditRecipeStepPrompt
+Command1 -> UI : showEditRecipeStepPrompt()
+activate UI #Gray
+UI -> User : edit step request message
+UI --> Command1
+deactivate UI
 Command1 -> UI : readCommand()
+activate UI #Gray
 User -> UI : "3"
 UI --> Command1 : "3"
+deactivate UI
 Command1 -> StepList : editStep()
 activate StepList #LightGreen
 StepList -> UI : readCommand()
+activate UI #Gray
 User -> UI : "Cook for 20 mins"
 UI --> StepList : "Cook for 20 mins"
-StepList --> User : edit successful message
+deactivate UI
+StepList -> User : edit successful message
 StepList --> Command1
 deactivate StepList
 deactivate Command1
-Duke --> Command1
+Duke -> Command1 : delete
 destroy Command1
-deactivate UI
 
 
 @enduml

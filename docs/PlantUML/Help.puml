@@ -4,7 +4,7 @@ Actor User
 participant ":UI" as UI #Gray
 participant ":Duke" as Duke #Gold
 participant ":Parser" as Parser #Yellow
-participant ":Command" as Command1 #Beige
+participant ":Command" as Command #Beige
 end box
 
 activate Duke #Gold
@@ -12,20 +12,22 @@ Duke -> UI : readCommand()
 activate UI #Gray
 User -> UI : "help"
 UI --> Duke : "help"
+deactivate UI
 Duke -> Parser : parseCommand()
 activate Parser #Yellow
 Parser --> Duke
 deactivate Parser
-Duke -> Command1 : execute()
-activate Command1 #Beige
-Command1 -> UI : showHelp()
-UI -> User : help message shown
-UI --> Command1
+Duke -> Command : execute()
+activate Command #Beige
+Command -> UI : showHelp()
+activate UI #Gray
+UI -> User : help message
+UI --> Command
 deactivate UI
-Command1 --> Duke
-deactivate Command1
-Duke -> Command1 : delete
-destroy Command1
+Command --> Duke
+deactivate Command
+Duke -> Command : delete
+destroy Command
 
 
 @enduml

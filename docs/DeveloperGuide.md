@@ -221,12 +221,17 @@ If there is at least one step in the recipe, a further user input `1` is parsed 
 the step number in the list. It is further converted to the 0-based indexing in the `stepList` by subtracting 1.
 
 > The following sequence diagram shows how the recipe steps edit feature works:
-![Sequence Diagram for Recipe Edit Step](./PlantUML/EditStep.png)
+![Sequence Diagram for Recipe Edit Step](./PlantUML/EditRecipeSteps.png)
 
 ### Recipe Ingredients Edit Feature
 
 ### Recipe View Feature
 #### Implementation
+
+#### Example Usage
+
+> The following sequence diagram shows how the recipe ingredients edit feature works:
+![Sequence Diagram for Recipe Ingredients Step](./PlantUML/EditRecipeIngredients.png)
 
 Viewing recipes is handled by the `command`, `recipe` and `ui` classes
 The following operations are implemented:
@@ -281,13 +286,13 @@ which will call the `UI#showHelp()` method to show all possible commands of the 
 > The following sequence diagram shows how the help feature works:
 ![Sequence Diagram for Help](./PlantUML/Help.png)
 
-## Appendix A - Product scope
-### Target user profile
+## Appendix A - Product Scope
+### Target User Profile
 
 Product is geared towards users who are familiar with CLI (e.g. Computing professionals, university students).
 The user is ideally someone who is conscious about their health and would like to learn/improve their cooking
 
-### Value proposition
+### Value Proposition
 
 The user will be able to keep a database of recipes for home cooking, and be able to view both the recipes as well as 
 attributes such as calorie count and required ingredients.<br>
@@ -296,40 +301,40 @@ The user will be able to keep close tabs on their nutrition based on the recipes
 
 ## Appendix B - User Stories
 
-| Version |     As a ...    |                                      I want to be able to ...                                     |                                  So that I can...                                 |
+| Version |    As a ...     |                                     I want to be able to ...                                      |                                 So that I can...                                  |
 |:-------:|:---------------:|:-------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------:|
-|   v1.0  | potential user  | read the User Guide easily                                                                        | I get to know the feature of the app and get started quickly                      |
-|   v1.0  | potential user  | add ingredients list to a particular recipes                                                      | refer to it when I go shopping for ingredients                                    |
-|   v1.0  | new user        | initially see the estimated cooking time for recipes                                              | choose the faster ones when in a rush                                             |
-|   v1.0  | new user        | see basic instructions for the first time I use the app                                           | avoid having to keep referring back to the user guide.                            |
-|   v1.0  | new user        | ask the app to provide a format guide for me when I type the wrong format for an instruction      | get started quickly.                                                              |
-|   v1.0  | new user        | see a full list of recipes currently available                                                    | get an overview of what is already available                                      |
-|   v1.0  | new user        | add recipes                                                                                       | add the ones i like                                                               |
-|   v1.0  | new user        | delete recipes                                                                                    | remove the ones i don't like                                                      |
-|   v1.0  | new user        | edit the recipe                                                                                   | correct spelling mistakes when typing the recipe                                  |
-|   v1.0  | new user        | go through the recipe line by line                                                                | follow the recipe in real time while i cook                                       |
-|   v1.0  | long-term user  | mark the steps I have done for the recipe                                                         | be aware of my next steps as I am cooking.                                        |
-|   v2.0  | proficient user | trigger certain recipes to be displayed once the app launches                                     | get quick access to my regular cooking recipes                                    |
-|   v2.0  | proficient user | customize the shortcut commands                                                                   | customize the keystrokes to my own preferences                                    |
-|   v2.0  | potential user  | see the app with sample data and can easily manage to delete it after the exploration of the app. |  Iunderstand the function of the app easily.                                      |
-|   v2.0  | potential user  | craft meal plans for different days                                                               | plan my meals ahead for the week                                                  |
-|   v2.0  | new user        | register my dietary requirements / restrictions                                                   | avoid eating food I cannot eat.                                                   |
-|   v2.0  | new user        | start an automatic timer when required                                                            | avoid forgetting to set a timer when the recipe calls for it                      |
-|   v2.0  | new user        | see that the app can provide fuzzy search                                                         | access recipes even if I type the name wrongly                                    |
-|   v2.0  | new user        | learn more about the shortcut commands                                                            | easily navigate through the app interface quicker                                 |
-|   v2.0  | long-time user  | press any key if prompted to continue to the next step                                            | use my elbow instead of my oily hands on the keyboard                             |
-|   v2.0  | long-time user  | get warnings if my fat/sugar intake based on recent dishes is too high                            | better regulate my diet                                                           |
-|   v2.0  | long-term user  | sort through stored recipes based on the dishes' nutritional value.                               | better regulate my diet.                                                          |
-|   v2.0  | long-term user  | sort by cuisines.                                                                                 | select a particular cuisine                                                       |
-|   v2.0  | long-term user  | add my own notes when I’m done cooking                                                            | comment about and adjust the recipe to my liking (e.g. less sweet, less salty)    |
-|   v2.0  | long-term user  | hide dishes that I am tired of or tried and do not like                                           | spend less time filtering through dishes                                          |
-|   v2.0  | long-term user  | “favorite” dishes that I enjoy                                                                    | quickly select them                                                               |
-|   v2.0  | expert user     | get the app to randomly suggest one of my favorite snacks                                         | have help in making decisions on what snacks to eat when I hesitate to choose one |
-|   v2.0  | expert user     | rate and comment on the recipe                                                                    | choose my favorite recipe by using the ratings                                    |
-|   v3.0  | new user        | the option to mark recipes as drinks/cocktail                                                     | also use the app to find and refer to drinks recipes quickly                      |
-|   v3.0  | long-term user  | get encouragement to avoid unhealthy food                                                         | better control my diet                                                            |
-|   v3.0  | long-term user  | sort by portion size                                                                              | prep dishes catered to groups when I have friends over                            |
-|   v3.0 | long-term user  | have the app to warn me if my laptop battery life is not enough to finish the recipe              | avoid scrambling for a charger while cooking                                      |
+|  v1.0   | potential user  |                                    read the User Guide easily                                     |           I get to know the feature of the app and get started quickly            |
+|  v1.0   | potential user  |                           add ingredients list to a particular recipes                            |                  refer to it when I go shopping for ingredients                   |
+|  v1.0   |    new user     |                       initially see the estimated cooking time for recipes                        |                       choose the faster ones when in a rush                       |
+|  v1.0   |    new user     |                      see basic instructions for the first time I use the app                      |              avoid having to keep referring back to the user guide.               |
+|  v1.0   |    new user     |   ask the app to provide a format guide for me when I type the wrong format for an instruction    |                               get started quickly.                                |
+|  v1.0   |    new user     |                          see a full list of recipes currently available                           |                   get an overview of what is already available                    |
+|  v1.0   |    new user     |                                            add recipes                                            |                                add the ones i like                                |
+|  v1.0   |    new user     |                                          delete recipes                                           |                           remove the ones i don't like                            |
+|  v1.0   |    new user     |                                          edit the recipe                                          |                 correct spelling mistakes when typing the recipe                  |
+|  v1.0   |    new user     |                                go through the recipe line by line                                 |                    follow the recipe in real time while i cook                    |
+|  v1.0   | long-term user  |                             mark the steps I have done for the recipe                             |                    be aware of my next steps as I am cooking.                     |
+|  v2.0   | proficient user |                   trigger certain recipes to be displayed once the app launches                   |                  get quick access to my regular cooking recipes                   |
+|  v2.0   | proficient user |                                  customize the shortcut commands                                  |                  customize the keystrokes to my own preferences                   |
+|  v2.0   | potential user  | see the app with sample data and can easily manage to delete it after the exploration of the app. |                    Iunderstand the function of the app easily.                    |
+|  v2.0   | potential user  |                                craft meal plans for different days                                |                         plan my meals ahead for the week                          |
+|  v2.0   |    new user     |                          register my dietary requirements / restrictions                          |                          avoid eating food I cannot eat.                          |
+|  v2.0   |    new user     |                              start an automatic timer when required                               |           avoid forgetting to set a timer when the recipe calls for it            |
+|  v2.0   |    new user     |                             see that the app can provide fuzzy search                             |                  access recipes even if I type the name wrongly                   |
+|  v2.0   |    new user     |                              learn more about the shortcut commands                               |                 easily navigate through the app interface quicker                 |
+|  v2.0   | long-time user  |                      press any key if prompted to continue to the next step                       |               use my elbow instead of my oily hands on the keyboard               |
+|  v2.0   | long-time user  |              get warnings if my fat/sugar intake based on recent dishes is too high               |                              better regulate my diet                              |
+|  v2.0   | long-term user  |                sort through stored recipes based on the dishes' nutritional value.                |                             better regulate my diet.                              |
+|  v2.0   | long-term user  |                                         sort by cuisines.                                         |                            select a particular cuisine                            |
+|  v2.0   | long-term user  |                              add my own notes when I’m done cooking                               |  comment about and adjust the recipe to my liking (e.g. less sweet, less salty)   |
+|  v2.0   | long-term user  |                      hide dishes that I am tired of or tried and do not like                      |                     spend less time filtering through dishes                      |
+|  v2.0   | long-term user  |                                  “favorite” dishes that I enjoy                                   |                                quickly select them                                |
+|  v2.0   |   expert user   |                     get the app to randomly suggest one of my favorite snacks                     | have help in making decisions on what snacks to eat when I hesitate to choose one |
+|  v2.0   |   expert user   |                                  rate and comment on the recipe                                   |                  choose my favorite recipe by using the ratings                   |
+|  v3.0   |    new user     |                           the option to mark recipes as drinks/cocktail                           |           also use the app to find and refer to drinks recipes quickly            |
+|  v3.0   | long-term user  |                             get encouragement to avoid unhealthy food                             |                              better control my diet                               |
+|  v3.0   | long-term user  |                                       sort by portion size                                        |              prep dishes catered to groups when I have friends over               |
+|  v3.0   | long-term user  |       have the app to warn me if my laptop battery life is not enough to finish the recipe        |                   avoid scrambling for a charger while cooking                    |
 
 ## Appendix C - Non-Functional Requirements
 
@@ -342,7 +347,7 @@ The user will be able to keep close tabs on their nutrition based on the recipes
 ingredients required and steps to make the dish
 * *Cuisine* - A category of food originating from a given country or religion
 
-## Appendix E - Instructions for manual testing
+## Appendix E - Instructions for Manual Testing
 
 Sample inputs should be placed into the input.txt file, and an expected output in the EXPECTED.txt file.
 Run `./runtest.bat` to automatically get a result of whether the actual output follows the expected.
@@ -350,45 +355,52 @@ The resultant output can be found under ACTUAL.txt
 
 ### Appendix E.1 - Adding a recipe
 Adding a person by using the `add` command and the recipe to be added.
-1. test case: 
-`add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/4`
-`chop beef`
-`add potatoes`
-`add carrots`
-`cook 5 minutes`
-Expected: Recipe is added to the list and the message is shown in the result display.
-```
-Got it. I've added this recipe:
-  [Chinese] Hotpot
-Now you have 1 recipes in the list.
-```
-2. test case: 
-`add i/Beef, Potatoes, Carrots t/Chinese s/0`
-Expected: No recipe is added. Error details shown in the result display.
-```
-Error in description of inputs!
-Exception occurred: Recipe is missing the "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs
- or there is more than one "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs"!
-```
+1. Test case:
+   `add n/Hotpot i/Beef, Potatoes, Carrots t/Chinese s/4`
+   `chop beef`
+   `add potatoes`
+   `add carrots`
+   `cook 5 minutes`
+    
+    Expected: Recipe is added to the list and the message is shown in the result display.
+    ```
+    Got it. I've added this recipe:
+      [Chinese] Hotpot
+    Now you have 1 recipes in the list.
+    ```
+2. Test case: 
+   `add i/Beef, Potatoes, Carrots t/Chinese s/0`
+   
+   Expected: No recipe is added. Error details shown in the result display.
+   ```
+   Error in description of inputs!
+   Exception occurred: Recipe is missing the "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs
+   or there is more than one "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs"!
+   ```
+   
 3. Other incorrect add commands to try: `add`, `add x` (where x does not follow the correct format), `add n/` (where name is empty).
-Expected: Similar to previous.
+   Expected: Similar to previous.
 
 ### Appendix E.2 - Deleting a recipe
 Deleting a person by using the `delete` command and the index of the recipe to be deleted.
-1. test case: `delete 1`
-Expected: First contact is deleted from the list and the message is shown in the result display.
-```
-Noted. I've removed this recipe:
-[TAG] NAME 
-you have XX recipes in the list.
-```
-2. test case: `delete 0`
-Expected: No recipe is deleted. Error details shown in the result display.
-```
-Error in finding index!
-Exception occurred: Your list is either EMPTY or does not contain recipes up to the index you inputted yet,
-so you cannot use the DELETE command yet! Try filling up the list first!
-```
-3. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete x` (where x is a negative integer or zero), `delete XX`(where XX is not a number).
-Expected: Similar to previous.
+1. Test case: `delete 1`
+
+    Expected: First contact is deleted from the list and the message is shown in the result display.
+    ```
+    Noted. I've removed this recipe:
+    [TAG] NAME 
+    you have XX recipes in the list.
+    ```
+2. Test case: `delete 0`
+    
+    Expected: No recipe is deleted. Error details shown in the result display.
+    ```
+    Error in finding index!
+    Exception occurred: Your list is either EMPTY or does not contain recipes up to the index you inputted yet,
+    so you cannot use the DELETE command yet! Try filling up the list first!
+    ```
+3. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete x` 
+   (where x is a negative integer or zero), `delete XX` (where XX is not a number).
+   
+    Expected: Similar to previous.
 

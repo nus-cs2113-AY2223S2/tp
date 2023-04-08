@@ -1,0 +1,62 @@
+@startuml EditRecipeIngredients
+box Edit Ingredient #White
+Actor User
+participant ":UI" as UI #Gray
+participant ":Duke" as Duke #Gold
+participant ":Parser" as Parser #Yellow
+participant ":Command" as Command #Beige
+participant ":RecipeList" as RecipeList #OrangeRed
+participant ":StepList" as IngredientList #LightGreen
+end box
+
+activate Duke #Gold
+Duke -> UI : readCommand()
+activate UI #Gray
+User -> UI : "editingredient 2"
+UI --> Duke : "editingredient 2"
+deactivate UI
+Duke -> Parser : parseCommand()
+activate Parser #Yellow
+Parser --> Duke
+deactivate Parser
+Duke -> Command : execute()
+activate Command #Beige
+Command -> RecipeList : getRecipeFromList()
+activate RecipeList #OrangeRed
+RecipeList --> Command
+deactivate RecipeList
+Command -> IngredientList: getIngredientList()
+activate IngredientList #LightGreen
+IngredientList --> Command
+deactivate IngredientList
+Command -> IngredientList : showList()
+activate IngredientList #LightGreen
+IngredientList -> User : ingredient list message
+IngredientList --> Command
+deactivate IngredientList
+Command -> UI : showEditRecipeIngredientPrompt()
+activate UI #Gray
+UI -> User : edit ingredient request message
+UI --> Command
+deactivate UI
+Command -> UI : readCommand()
+activate UI #Gray
+User -> UI : "3"
+UI --> Command : "3"
+deactivate UI
+Command -> UI : readCommand()
+activate UI #Gray
+User -> UI : "Pineapples"
+UI --> Command : "Pineapples"
+deactivate UI
+Command -> IngredientList : editIngredient()
+activate IngredientList #LightGreen
+IngredientList -> User : edit successful message
+IngredientList --> Command
+deactivate IngredientList
+deactivate Command
+Duke -> Command : delete
+destroy Command
+
+
+@enduml

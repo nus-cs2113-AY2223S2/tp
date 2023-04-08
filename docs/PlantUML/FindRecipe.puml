@@ -27,6 +27,8 @@ RecipeList --> Command
 deactivate RecipeList
 Command --> Duke
 deactivate Command
+Duke -> Command : delete
+destroy Command
 
 
 @enduml

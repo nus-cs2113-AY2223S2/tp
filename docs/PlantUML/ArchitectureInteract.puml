@@ -14,6 +14,7 @@ Duke -> UI : readCommand()
 activate UI #Gray
 User -> UI : "delete 1"
 UI --> Duke : "delete 1"
+deactivate UI
 Duke -> Parser : parseCommand()
 activate Parser #Yellow
 Parser --> Duke
@@ -25,6 +26,10 @@ activate RecipeList #OrangeRed
 RecipeList --> Command
 deactivate RecipeList
 Command -> UI : showRecipeDeleted()
+activate UI #Gray
+UI -> User : delete successful message
+UI --> Command
+deactivate UI
 Command -> Storage : writeSavedFile()
 activate Storage #DimGray
 loop number of recipes times
@@ -37,4 +42,7 @@ Storage --> Command
 deactivate Storage
 Command --> Duke
 deactivate Command
+Duke -> Command : delete
+destroy Command
+
 @enduml

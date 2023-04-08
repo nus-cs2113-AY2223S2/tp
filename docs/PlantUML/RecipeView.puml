@@ -15,6 +15,7 @@ Duke -> UI : readCommand()
 activate UI #Gray
 User -> UI : "view 1"
 UI --> Duke : "view 1"
+deactivate UI
 Duke -> Parser : parseCommand()
 activate Parser #Yellow
 Parser --> Duke
@@ -26,6 +27,7 @@ activate RecipeList #OrangeRed
 RecipeList --> Command
 deactivate RecipeList
 Command -> UI : showRecipeViewed()
+activate UI #Gray
 UI -> IngredientList : getIngredientList()
 activate IngredientList #LightBlue
 IngredientList --> UI
@@ -34,8 +36,11 @@ UI -> StepList : getStepList()
 activate StepList #LightGreen
 StepList --> UI
 deactivate StepList
+UI -> User : recipe view message
+UI --> Command
 deactivate UI
 deactivate Command
-
+Duke -> Command : delete
+destroy Command
 
 @enduml

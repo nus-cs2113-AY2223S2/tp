@@ -14,6 +14,7 @@ Duke -> UI : readCommand()
 activate UI #Gray
 User -> UI : "delete 1"
 UI --> Duke : "delete 1"
+deactivate UI
 Duke -> Parser : parseCommand()
 activate Parser #Yellow
 Parser --> Duke
@@ -25,15 +26,19 @@ activate RecipeList #OrangeRed
 RecipeList --> Command3
 deactivate RecipeList
 Command3 -> UI : showRecipeDeleted()
-UI -> User : successful message
+activate UI #Gray
+UI -> User : delete successful message
 UI --> Command3
+deactivate UI
 Command3 --> Duke
 deactivate Command3
 Duke -> Command3 : delete
 destroy Command3
 Duke -> UI : readCommand()
+activate UI #Gray
 User -> UI : "clear"
 UI --> Duke : "clear"
+deactivate UI
 Duke -> Parser : parseCommand()
 activate Parser
 Parser --> Duke
@@ -45,7 +50,8 @@ activate RecipeList #OrangeRed
 RecipeList --> Command4
 deactivate RecipeList
 Command4 -> UI : showRecipeListCleared()
-UI -> User : successful message
+activate UI #Gray
+UI -> User : clear successful message
 UI --> Command4
 deactivate UI
 Command4 --> Duke
