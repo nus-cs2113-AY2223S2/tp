@@ -94,6 +94,12 @@ public class Storage {
     }
 
     //@@author clement559
+    /**
+     * Loads the configuration settings from the local config file.
+     *
+     * @throws FileNotFoundException If the config file cannot be found.
+     * @throws FailedLoadConfigException If the config filed cannot be loaded.
+     */
     public Config loadConfig() throws FileNotFoundException, FailedLoadConfigException {
         try {
             JsonReader reader = new JsonReader(new FileReader(configFile));

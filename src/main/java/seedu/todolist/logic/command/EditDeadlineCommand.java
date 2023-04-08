@@ -27,6 +27,13 @@ public class EditDeadlineCommand extends Command  {
     private HashSet<Integer> idHashSet;
     private Predicate<Task> predicate;
 
+    /**
+     * Constructs a EditDeadlineCommand object by parsing the provided arguments.
+     *
+     * @param args The provided arguments, parsed from the user's input.
+     * @throws InvalidSelectException If no task ids are provided.
+     * @throws InvalidEditException If both edit and delete keywords are provided.
+     */
     public EditDeadlineCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_DEADLINE));
         predicate = ParserUtil.parseFilter(args);
@@ -41,6 +48,9 @@ public class EditDeadlineCommand extends Command  {
         assert args.size() > 1: "Fewer arguments than expected!";
     }
 
+    /**
+     * Edits the deadline for the tasks provided in the constructor.
+     */
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws InvalidIdException {
         String taskString = predicate == null
