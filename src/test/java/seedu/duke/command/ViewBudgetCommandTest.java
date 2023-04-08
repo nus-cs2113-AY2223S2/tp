@@ -23,6 +23,7 @@ class ViewBudgetCommandTest {
         System.setOut(new PrintStream(outContent));
     }
 
+    //@@author
     @Test
     void viewBudget_execute_success() {
 
