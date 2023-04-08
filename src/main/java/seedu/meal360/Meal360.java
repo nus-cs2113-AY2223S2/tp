@@ -188,7 +188,9 @@ public class Meal360 {
                     ui.printMessage("I've cleared your entire weekly plan!");
                     break;
                 case "/done":
-                    parser.parseMarkDone(command, userIngredients, weeklyPlan, recipeList);
+                    String recipeName = parser.parseMarkDone(command, userIngredients, weeklyPlan,
+                            recipeList);
+                    weeklyPlan.markDone(recipeName, recipeList, userIngredients);
                     ui.printMessage("I've recorded that you've done this recipe!");
                     ui.printMessage("Ingredients list has been updated accordingly!");
                     break;
@@ -218,7 +220,8 @@ public class Meal360 {
         } else if (command[0].equals("add_i")) {
             ui.printSeparator();
             try {
-                parser.parseAddUserIngredients(command, userIngredients);
+                Ingredient ingredientToAdd = parser.parseAddUserIngredients(command);
+                userIngredients.addIngredient(ingredientToAdd);
                 ui.printMessage("Ingredient successfully added!");
             } catch (IllegalArgumentException | IndexOutOfBoundsException | InvalidValueException e) {
                 ui.printMessage(e.getMessage());
@@ -227,7 +230,8 @@ public class Meal360 {
         } else if (command[0].equals("del_i")) {
             ui.printSeparator();
             try {
-                parser.parseDeleteUserIngredients(command, userIngredients);
+                Ingredient ingredientToDelete = parser.parseDeleteUserIngredients(command);
+                userIngredients.deleteIngredient(ingredientToDelete);
                 ui.printMessage("Ingredients successfully deleted!");
             } catch (IllegalArgumentException | IndexOutOfBoundsException | IngredientNotFoundException |
                      InvalidValueException e) {

@@ -24,6 +24,13 @@ public class IngredientList extends HashMap<String, Ingredient> {
         throw new IngredientNotFoundException("Ingredient not found");
     }
 
+    /**
+     * Adds an ingredient to the ingredient list. If the ingredient already exists, the count of the
+     * ingredient is updated, and the expiry date is also updated.
+     *
+     * @author jaredoong
+     * @param ingredient Ingredient to be added.
+     */
     public void addIngredient(Ingredient ingredient) {
         if (this.containsKey(ingredient.ingredientName)) {
             int currentCount = this.get(ingredient.ingredientName).ingredientCount;
@@ -46,15 +53,27 @@ public class IngredientList extends HashMap<String, Ingredient> {
         throw new IngredientNotFoundException("Ingredient not found");
     }
 
-    public void deleteIngredient(String ingredient, Integer ingredientCount)
-            throws IngredientNotFoundException {
-        if (this.containsKey(ingredient)) {
-            int currentCount = this.get(ingredient).ingredientCount;
+    /**
+     * Deletes an ingredient from the ingredient list. If the ingredient count is greater than the count to be
+     * deleted, the count of the ingredient is updated. If the ingredient count is equal or less than to the
+     * count to be deleted, the ingredient is removed from the list.
+     *
+     * @author jaredoong
+     * @param ingredient Ingredient to be deleted.
+     * @throws IngredientNotFoundException If the ingredient is not found in the list.
+     */
+    public void deleteIngredient(Ingredient ingredient) throws IngredientNotFoundException {
+        String ingredientName = ingredient.ingredientName;
+        int ingredientCount = ingredient.ingredientCount;
+
+        if (this.containsKey(ingredientName)) {
+            int currentCount = this.get(ingredientName).ingredientCount;
             int newCount = currentCount - ingredientCount;
             if (newCount > 0) {
-                this.put(ingredient, new Ingredient(ingredient, newCount, this.get(ingredient).expiryDate));
+                this.put(ingredientName,
+                        new Ingredient(ingredientName, newCount, this.get(ingredientName).expiryDate));
             } else {
-                this.remove(ingredient);
+                this.remove(ingredientName);
             }
         } else {
             throw new IngredientNotFoundException("Ingredient not found");
