@@ -1,12 +1,9 @@
 package seedu.duke.recipe;
 
-import seedu.duke.exceptions.DuplicateRecipeNameException;
-import seedu.duke.exceptions.NoMatchingRecipeFound;
-import seedu.duke.exceptions.OutOfIndexException;
-import seedu.duke.exceptions.EditFormatException;
-import seedu.duke.exceptions.RecipeListEmptyException;
+import seedu.duke.exceptions.*;
 import seedu.duke.ui.StringLib;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 import static seedu.duke.ui.StringLib.DUPLICATE_RECIPE_NAMES_ERROR;
@@ -197,5 +194,25 @@ public class RecipeList {
             }
         }
         return recipeToBeViewed;
+    }
+    public static Recipe getRecipe(String term)
+            throws Exception {
+        Recipe targetRecipe;
+        try{
+            Integer.parseInt(term);
+        } catch (NumberFormatException e) {
+            try {
+                new BigInteger(term);
+            } catch (Exception e1) {
+                throw new IncompleteInputException(StringLib.INVALID_NUMBER_ERROR);
+            }
+            throw new IncompleteInputException(StringLib.OVERFLOW_NUMBER_ERROR);
+        }
+        int recipeListIndex = Integer.parseInt(term);
+        if (recipeListIndex <= 0 || recipeListIndex > getCurrRecipeNumber()) {
+            throw new OutOfIndexException(INVALID_RANGE + "1 to " + getCurrRecipeNumber() + '\n');
+        }
+        targetRecipe = recipeList.get(recipeListIndex - 1);
+        return targetRecipe;
     }
 }

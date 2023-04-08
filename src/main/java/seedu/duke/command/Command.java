@@ -122,7 +122,7 @@ public class Command {
                     ui.showEmptyIngredientID();
                     break;
                 }
-                Recipe recipeToAddTo = RecipeList.viewRecipe(id);
+                Recipe recipeToAddTo = RecipeList.getRecipe(id);
                 int index;
                 switch (elementType) {
                 case "s":
@@ -208,7 +208,7 @@ public class Command {
                     ui.showEmptyIngredientID();
                     break;
                 }
-                Recipe recipeToDeleteFrom = RecipeList.viewRecipe(id);
+                Recipe recipeToDeleteFrom = RecipeList.getRecipe(id);
                 int index;
                 switch (elementType) {
                 case "s":

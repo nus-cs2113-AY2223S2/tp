@@ -299,58 +299,55 @@ public class Parser {
             throw new Exception("error in edit step:\n" + e.getMessage());
         }
     }
-    public static String[] parseAddToRecipeDescription(String description) {
-        String[] out = new String[3];
-        String[] subDescriptions = description.split("/", 3);
-        for (int i = 0; i < subDescriptions.length; i++) {
-            if (subDescriptions[i].toLowerCase().contains("--i")) {
-                out[0] = "i";
-            }
-            if (subDescriptions[i].toLowerCase().contains("--s")) {
-                out[0] = "s";
-            }
-            if (subDescriptions[i].toLowerCase().contains("id")) {
-                out[1] = subDescriptions[i+1];
-            }
-            if (subDescriptions[i].toLowerCase().contains("desc")) {
-                out[2] = subDescriptions[i+1];
-            }
+
+    public static OperationType parseAddToRecipeIndex(String description) throws IncompleteInputException {
+        boolean isIngredient = description.startsWith("--i ");
+        boolean isStep = description.startsWith("--s ");
+        if (isIngredient) {
+            return OperationType.INGREDIENT;
+        } else if (isStep) {
+            return OperationType.STEP;
+        } else {
+            throw new IncompleteInputException(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION);
         }
-        out[1] = out[1]
-                .toLowerCase()
-                .replaceAll("desc","")
-                .replaceAll("--s","")
-                .replaceAll("--i","")
-                .trim();
-        out[2] = out[2]
-                .replaceAll("id","")
-                .replaceAll("iD","")
-                .replaceAll("Id","")
-                .replaceAll("ID","")
-                .replaceAll("--s","")
-                .replaceAll("--i","")
-                .trim();
+    }
+
+    public static String[] parseAddToRecipeDescription(String description) throws IncompleteInputException{
+        OperationType parsedDescription = parseAddToRecipeIndex(description);
+        String[] out = new String[3];
+        out[0] = parsedDescription.equals(OperationType.INGREDIENT) ? "i" : "s";
+        String subDescription = description.substring(4).trim();
+        if (!subDescription.startsWith("id/")) {
+            throw new IncompleteInputException(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION);
+        }
+        String[] subDescriptions = subDescription.substring(3).split("desc/",2);
+        if (subDescriptions.length < 2) {
+            throw new IncompleteInputException(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION);
+        }
+        out[1] = subDescriptions[0].trim();
+        out[2] = subDescriptions[1].trim();
         return out;
     }
-    public static String[] parseDeleteFromRecipeDescription(String description) {
-        String[] subDescriptions = description.split("/", 2);
-        String[] out = new String[2];
-        for (int i = 0; i < subDescriptions.length; i++) {
-            if (subDescriptions[i].toLowerCase().contains("--i")) {
-                out[0] = "i";
-            }
-            if (subDescriptions[i].toLowerCase().contains("--s")) {
-                out[0] = "s";
-            }
-            if (subDescriptions[i].toLowerCase().contains("id")) {
-                out[1] = subDescriptions[i+1];
-            }
+    public static OperationType parseDeleteFromRecipeIndex(String description) throws IncompleteInputException {
+        boolean isIngredient = description.startsWith("--i ");
+        boolean isStep = description.startsWith("--s ");
+        if (isIngredient) {
+            return OperationType.INGREDIENT;
+        } else if (isStep) {
+            return OperationType.STEP;
+        } else {
+            throw new IncompleteInputException(StringLib.INVALID_DELETE_FROM_RECIPE_DESCRIPTION);
         }
-        out[1] = out[1]
-                .toLowerCase()
-                .replaceAll("--s","")
-                .replaceAll("--i","")
-                .trim();
+    }
+    public static String[] parseDeleteFromRecipeDescription(String description) throws IncompleteInputException{
+        OperationType parsedDescription = parseDeleteFromRecipeIndex(description);
+        String[] out = new String[2];
+        out[0] = parsedDescription.equals(OperationType.INGREDIENT) ? "i" : "s";
+        String subDescription = description.substring(4).trim();
+        if (!subDescription.startsWith("id/")) {
+            throw new IncompleteInputException(StringLib.INVALID_DELETE_FROM_RECIPE_DESCRIPTION);
+        }
+        out[1] = subDescription.substring(3).trim();
         return out;
     }
 
