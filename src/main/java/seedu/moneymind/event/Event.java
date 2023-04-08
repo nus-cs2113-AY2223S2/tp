@@ -5,14 +5,14 @@ import java.time.format.DateTimeFormatter;
 
 import static seedu.moneymind.UserDate.isValidDate;
 import static seedu.moneymind.UserDate.getSystemDate;
+import static seedu.moneymind.string.Strings.DATE_FORMAT;
 
 public class Event {
-    private static final String DATE_FORMAT = "dd/MM/yyyy HH:mm";
+
     private boolean isOneTimeExpense;
     private String description;
     private String time;
     private int expense;
-
 
     /**
      * A constructor with both description and budget.
@@ -108,5 +108,6 @@ public class Event {
         }
         return description + " (expense: " + expense + ") (start time: " + time + ")";
     }
+
 }
 

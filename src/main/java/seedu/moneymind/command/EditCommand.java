@@ -7,14 +7,20 @@ import seedu.moneymind.exceptions.IntegerOverflowException;
 import seedu.moneymind.exceptions.NegativeNumberException;
 import seedu.moneymind.ui.Ui;
 
-import static seedu.moneymind.command.DeleteCommand.NON_EXISTENT_EVENT;
-import static seedu.moneymind.command.DeleteCommand.NO_CATEGORY_MESSAGE;
 import static seedu.moneymind.string.Strings.EDIT_EXPENSE_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.EDIT_BUDGET_LIMIT_MESSAGE;
 import static seedu.moneymind.string.Strings.SUBTLE_BUG_MESSAGE;
 import static seedu.moneymind.string.Strings.BACK;
 import static seedu.moneymind.string.Strings.ENTERING_NON_NEGATIVE_NUMBER_MESSAGE;
+import static seedu.moneymind.string.Strings.NEGATIVE_INTEGER_DETECTING_REGEX;
+import static seedu.moneymind.string.Strings.INTEGER_DETECTING_REGEX;
+import static seedu.moneymind.string.Strings.NON_EXISTENT_EVENT;
+import static seedu.moneymind.string.Strings.NO_CATEGORY_MESSAGE;
+import static seedu.moneymind.string.Strings.EMPTY_STRING;
 
+/**
+ * Edits the budget of a category or expense of an event.
+ */
 public class EditCommand implements Command {
     private boolean isEvent;
     private String categoryName;
@@ -23,17 +29,31 @@ public class EditCommand implements Command {
     private boolean isReady = true;
     private int categoryIndex;
 
+    /**
+     * Constructs a new EditCommand object for editing an event.
+     *
+     * @param categoryName The name of the category.
+     * @param eventIndex The index of the event.
+     */
     public EditCommand (String categoryName, int eventIndex) {
         this.isEvent = true;
         this.categoryName = categoryName;
         this.eventIndex = eventIndex;
     }
 
+    /**
+     * Constructs a new EditCommand object for editing a category.
+     *
+     * @param categoryName The name of the category.
+     */
     public EditCommand (String categoryName) {
         this.isEvent = false;
         this.categoryName = categoryName;
     }
 
+    /**
+     * Checks whether the category and event to be edited exist.
+     */
     private void prepareEditEvent() {
         if (CategoryCommand.categoryMap.get(categoryName) == null) {
             System.out.println(NO_CATEGORY_MESSAGE);
@@ -55,6 +75,9 @@ public class EditCommand implements Command {
         }
     }
 
+    /**
+     * Checks whether the category to be edited exists.
+     */
     private void prepareEditCategory() {
         if (CategoryCommand.categoryMap.get(categoryName) == null) {
             System.out.println(NO_CATEGORY_MESSAGE);
@@ -70,27 +93,11 @@ public class EditCommand implements Command {
         }
     }
 
-    private void checkNumber(String newAmount) throws NumberFormatException {
-        Integer.parseInt(newAmount);
-    }
-
-    private void checkNegative(String newAmount) throws NegativeNumberException {
-        if (newAmount.matches("^-\\d+")) {
-            throw new NegativeNumberException();
-        }
-    }
-
-    private void checkAmountUnderLimit(String newAmount) throws IntegerOverflowException {
-        if (newAmount.matches("\\d+") && newAmount.length() > 9) {
-            throw new IntegerOverflowException();
-        }
-    }
-
     /**
-     * Check if the user input is valid.
+     * Check if the user input is valid for editing an expense or a budget.
      *
      * @param userInput The user input.
-     * @return True if the user input is valid.
+     * @return True if the user input is valid, false otherwise.
      */
     private boolean isEditSuccessful(String userInput) {
         try {
@@ -110,6 +117,22 @@ public class EditCommand implements Command {
             System.out.println(SUBTLE_BUG_MESSAGE);
         }
         return false;
+    }
+
+    private void checkNumber(String newAmount) throws NumberFormatException {
+        Integer.parseInt(newAmount);
+    }
+
+    private void checkNegative(String newAmount) throws NegativeNumberException {
+        if (newAmount.matches(NEGATIVE_INTEGER_DETECTING_REGEX)) {
+            throw new NegativeNumberException();
+        }
+    }
+
+    private void checkAmountUnderLimit(String newAmount) throws IntegerOverflowException {
+        if (newAmount.matches(INTEGER_DETECTING_REGEX) && newAmount.length() > 9) {
+            throw new IntegerOverflowException();
+        }
     }
 
     @Override
@@ -145,7 +168,7 @@ public class EditCommand implements Command {
     private void getUserInputUntilNonEmpty() {
         do {
             userInput = Moneymind.in.nextLine();
-        } while (userInput.equals(""));
+        } while (userInput.equals(EMPTY_STRING));
     }
 
     @Override

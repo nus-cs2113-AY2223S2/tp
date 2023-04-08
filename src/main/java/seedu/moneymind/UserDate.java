@@ -1,6 +1,7 @@
 package seedu.moneymind;
 
 import static java.time.temporal.ChronoUnit.DAYS;
+import static seedu.moneymind.string.Strings.DATE_FORMAT;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,18 +12,13 @@ import java.time.format.DateTimeFormatter;
 public class UserDate {
 
     /**
-     *
-     */
-    private static final String DD_MM_YYYY = "dd/MM/yyyy HH:mm";
-
-    /**
      * Returns the current system date.
      *
      * @return The current system date.
      */
     public static String getSystemDate() {
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DD_MM_YYYY);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         String formattedDate = now.format(formatter);
         return formattedDate;
     }
@@ -34,7 +30,7 @@ public class UserDate {
      * @return True if the date is valid.
      */
     public static Boolean isValidDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DD_MM_YYYY);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         try {
             LocalDateTime.parse(date, formatter);
             return true;
@@ -60,7 +56,7 @@ public class UserDate {
      * @return The number of days away from the current date.
      */
     public static Integer numberDaysAway(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DD_MM_YYYY);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime inputDate = LocalDateTime.parse(date, formatter);
         return (int) now.until(inputDate, DAYS);
@@ -73,7 +69,7 @@ public class UserDate {
      * @return The date after updating.
      */
     public static String updateDate(String oldDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DD_MM_YYYY);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         LocalDateTime inputDate = LocalDateTime.parse(oldDate, formatter);
         while (inputDate.isBefore(LocalDateTime.now())) {
             inputDate = inputDate.plusMonths(1);

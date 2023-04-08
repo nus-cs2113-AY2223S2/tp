@@ -8,10 +8,6 @@ import seedu.moneymind.ui.Ui;
  */
 public class ByeCommand implements Command {
 
-    /**
-     * Exits the program.
-     */
-
     @Override
     public void execute(Ui ui) {
         ui.goodbye();
@@ -21,4 +17,5 @@ public class ByeCommand implements Command {
     public boolean isExit() {
         return true;
     }
+
 }

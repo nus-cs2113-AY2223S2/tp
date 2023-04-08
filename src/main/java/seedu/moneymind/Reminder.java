@@ -7,6 +7,7 @@ import seedu.moneymind.event.Event;
 
 import static seedu.moneymind.string.Strings.NEW_LINE;
 import static seedu.moneymind.string.Strings.HORIZONTAL_LINE;
+import static seedu.moneymind.string.Strings.EMPTY_STRING;
 import static seedu.moneymind.UserDate.isApproaching;
 import static seedu.moneymind.UserDate.numberDaysAway;
 
@@ -14,7 +15,7 @@ import static seedu.moneymind.UserDate.numberDaysAway;
  * A class to remind the user of nearing expenses.
  */
 public class Reminder {
-    
+
     /**
      * Checks if there are any nearing expenses.
      *
@@ -22,19 +23,19 @@ public class Reminder {
      * @return A string containing the nearing expenses.
      */
     public static String checkCategoryReminder(ArrayList<Category> categories) {
-        String reminder = "";
+        String reminder = EMPTY_STRING;
         for (Category category : categories) {
             reminder += checkEventReminder(category);
         }
         if (reminder.isBlank()) {
-            return "";
+            return EMPTY_STRING;
         } else {
             return HORIZONTAL_LINE + NEW_LINE + "Approaching expenses:" + NEW_LINE + reminder;
         }
     }
 
     private static String checkEventReminder(Category category) {
-        String reminder = "";
+        String reminder = EMPTY_STRING;
         for (Event event : category.getEvents()) {
             if (event.isOneTimeExpense() == false && isApproaching(event.getTime())) {
                 reminder += category.getName() + " has an event: " + event.getDescription() 
