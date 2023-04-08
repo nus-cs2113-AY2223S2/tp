@@ -24,7 +24,7 @@ public class ParseLendBorrow {
     public static final String BLANK = "";
     public static final String DSLASH = "d/";
     public static final String ASLASH = "a/";
-    public static final String SSLASH = "s/";
+    public static final String PSLASH = "p/";
     public static final String BSLASH = "b/";
     public static final String NSLASH = "n/";
     private final String userInput;
@@ -74,7 +74,7 @@ public class ParseLendBorrow {
 
     public String fetchDescription() throws EmptyStringException, StringIndexOutOfBoundsException {
         // Extracts the fields from user input
-        return ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
+        return ParseIndividualValue.parseIndividualValue(userInput, PSLASH, BLANK);
     }
 
     public String fetchName() throws EmptyStringException, StringIndexOutOfBoundsException {
@@ -102,7 +102,7 @@ public class ParseLendBorrow {
     public LocalDate fetchDeadline() throws EmptyStringException, StringIndexOutOfBoundsException,
             DateTimeParseException {
         // Converts from string to date to fit Command class
-        String dateVal = ParseIndividualValue.parseIndividualValue(userInput, BSLASH, SSLASH);
+        String dateVal = ParseIndividualValue.parseIndividualValue(userInput, BSLASH, PSLASH);
         return LocalDate.parse(dateVal);
     }
 }

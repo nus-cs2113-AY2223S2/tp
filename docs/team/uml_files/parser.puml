@@ -18,70 +18,12 @@ return
 deactivate ExitCommand
 destroy ExitCommand
 
-else Command is "help"
-participant ":HelpCommand" as HelpCommand
-MainInputParser->HelpCommand** : <<create>>
-activate HelpCommand
-return
-deactivate HelpCommand
-destroy HelpCommand
-
-else Command is "delete"
-participant ":ParseDelete" as ParseDelete
-MainInputParser->ParseDelete** : ParseDelete(splitValues[INDEX_USERSTRING])
-activate ParseDelete
-
-participant ":ParseIndividualValue" as ParseIndividualValue
-ParseDelete->ParseIndividualValue : parseIndividualValue(userInput,BLANK,BLANK)
-activate ParseIndividualValue
-return details:String
-ParseDelete-->MainInputParser
-destroy ParseDelete
-deactivate ParseDelete
-deactivate ParseIndividualValue
-else Command is one of the add expenditure keywords
-participant ":ParseAdd" as ParseAdd
-MainInputParser->ParseAdd** :parseIndividualValue(splitValues[INDEX_USERSTRING])
-activate ParseAdd
-loop three times to extract user fields
-ParseAdd->ParseIndividualValue : parseIndividualValue
-activate ParseIndividualValue
-return :String
-deactivate ParseIndividualValue
-end
-alt Command is "Academic"
-participant ":AcademicExpenditureCommand" as AcademicExpenditureCommand
-ParseAdd->AcademicExpenditureCommand** : AcademicExpenditureCommand(descriptionVal, amount, date)
-activate AcademicExpenditureCommand
-return
-deactivate AcademicExpenditureCommand
-destroy AcademicExpenditureCommand
-else Command is "Food"
-participant ":FoodExpenditureCommand" as FoodExpenditureCommand
-ParseAdd-> FoodExpenditureCommand** : FoodExpenditureCommand(descriptionVal, amount, date)
-activate FoodExpenditureCommand
-return
-deactivate FoodExpenditureCommand
-destroy FoodExpenditureCommand
-end
-
-ParseAdd --> MainInputParser
-destroy ParseAdd
-deactivate ParseAdd
-
-else Command is "list"
-participant ":ListCommand" as ListCommand
-MainInputParser->ListCommand** : <<create>>
-activate ListCommand
-return
-deactivate ListCommand
-destroy ListCommand
-
 else Command is "lend" or "borrow"
 participant ":ParseLendBorrow" as ParseLendBorrow
 MainInputParser->ParseLendBorrow** : ParseLendBorrow(splitValues[INDEX_USERSTRING])
 activate ParseLendBorrow
 loop five times to extract user fields
+participant ":ParseIndividualValue" as ParseIndividualValue
 ParseLendBorrow->ParseIndividualValue : parseIndividualValue
 activate ParseIndividualValue
 return :String

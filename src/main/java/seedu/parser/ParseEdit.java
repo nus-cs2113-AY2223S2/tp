@@ -14,10 +14,6 @@ import static seedu.ui.ErrorMessages.ERROR_EMPTY_STRING_MESSAGE;
 public class ParseEdit {
     public static final String BLANK = "";
     public static final String DSLASH = "d/";
-    public static final String ASLASH = "a/";
-    public static final String SSLASH = "s/";
-    public static final String BSLASH = "b/";
-    public static final String NSLASH = "n/";
     private final String userInput;
 
     public ParseEdit(String userInput) {

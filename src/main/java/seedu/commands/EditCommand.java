@@ -19,7 +19,7 @@ public class EditCommand extends Command {
     public static final String BLANK = "";
     public static final String DSLASH = "d/";
     public static final String ASLASH = "a/";
-    public static final String SSLASH = "s/";
+    public static final String PSLASH = "p/";
     public static final String BSLASH = "b/";
     public static final String NSLASH = "n/";
     public final int index;
@@ -75,13 +75,13 @@ public class EditCommand extends Command {
     public double fetchAmount(boolean isLendOrBorrowExpenditure)
             throws StringIndexOutOfBoundsException, EmptyStringException {
         String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH,
-                isLendOrBorrowExpenditure ? BSLASH : SSLASH);
+                isLendOrBorrowExpenditure ? BSLASH : PSLASH);
         return Double.parseDouble(amountVal);
     }
 
     public String fetchDescription()
             throws EmptyStringException, StringIndexOutOfBoundsException {
-        return ParseIndividualValue.parseIndividualValue(userInput, SSLASH, BLANK);
+        return ParseIndividualValue.parseIndividualValue(userInput, PSLASH, BLANK);
     }
 
     public String fetchName()
@@ -92,7 +92,7 @@ public class EditCommand extends Command {
     public LocalDate fetchDeadline()
             throws EmptyStringException, StringIndexOutOfBoundsException,
             DateTimeParseException {
-        String deadline = ParseIndividualValue.parseIndividualValue(userInput, BSLASH, SSLASH);
+        String deadline = ParseIndividualValue.parseIndividualValue(userInput, BSLASH, PSLASH);
         return LocalDate.parse(deadline);
     }
 
