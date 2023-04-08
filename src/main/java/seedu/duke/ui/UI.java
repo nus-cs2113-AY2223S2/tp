@@ -228,6 +228,9 @@ public class UI {
     public int getIndexToDelete(int maxSteps) {
         System.out.println(StringLib.INDEX_REQUEST);
         String userInput = in.nextLine();
+        if (userInput.trim().toLowerCase().equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
+            return IntLib.ADD_STEP_INDEX_BREAKOUT;
+        }
         while (!isValidIntegerInputToDelete(userInput, maxSteps)) {
             showInvalidIndexMessage();
             System.out.println("Valid range: " + 1 + " to " + maxSteps);
@@ -268,5 +271,11 @@ public class UI {
     }
     public void showStepDeleted() {
         System.out.println(StringLib.STEP_DELETE_SUCCESS);
+    }
+    public void showEmptyStepID() {
+        System.out.println(StringLib.EMPTY_STEP_ID_MESSAGE);
+    }
+    public void showEmptyIngredientID() {
+        System.out.println(StringLib.EMPTY_INGREDIENT_ID_MESSAGE);
     }
 }
