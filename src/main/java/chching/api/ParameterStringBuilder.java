@@ -20,22 +20,14 @@ public class ParameterStringBuilder {
     private static final Logger logger = Logger.getLogger(ChChing.class.getName());
 
     static {
-        String folderPath = "/data";
-        String folderName = "LogFiles";
-        File folder = new File(folderPath, folderName);
-        if (!folder.exists()) {
-            if (folder.mkdir()) {
-                System.out.println("Folder created successfully.");
-            }
-        }
         LogManager.getLogManager().reset();
         ConsoleHandler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.SEVERE);
         logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
-            new File("data/LogFiles/ParameterStringBuilderLog.log").createNewFile();
-            FileHandler fileHandler = new FileHandler("data/LogFiles/ParameterStringBuilderLog.log");
+            new File("data/ParameterStringBuilderLog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/ParameterStringBuilderLog.log");
             fileHandler.setLevel(Level.FINE);
             logger.addHandler(fileHandler);
         } catch (IOException e) {

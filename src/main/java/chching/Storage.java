@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
 import java.util.logging.LogManager;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -39,18 +40,8 @@ public class Storage {
         logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
-            String folderPath = "/data";
-            String folderName = "LogFiles";
-            File folder = new File(folderPath, folderName);
-            if (!folder.exists()) {
-                if (folder.mkdir()) {
-                    System.out.println("Log Folder Created");
-                } else {
-                    System.out.println("Log Folder Ready");
-                }
-            }
-            new File("data/LogFiles/StorageLog.log").createNewFile();
-            FileHandler fileHandler = new FileHandler("data/LogFiles/StorageLog.log");
+            new File("data/StorageLog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/StorageLog.log");
             fileHandler.setLevel(Level.FINE);
             logger.addHandler(fileHandler);
         } catch (IOException e) {
