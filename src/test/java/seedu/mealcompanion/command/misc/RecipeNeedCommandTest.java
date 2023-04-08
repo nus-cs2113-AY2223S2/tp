@@ -48,10 +48,7 @@ class RecipeNeedCommandTest {
         addCommand.execute(mealCompanionSession);
         newOutStream.reset();
         command.execute(mealCompanionSession);
-        expectedOutput = "These are the ingredient(s) you are missing:"
-                + System.lineSeparator()
-                + "You have all the ingredients to make this recipe!"
-                + System.lineSeparator();
+        expectedOutput = "You have all the ingredients to make this recipe!" + System.lineSeparator();
         assertEquals(expectedOutput, newOutStream.toString());
 
     }
