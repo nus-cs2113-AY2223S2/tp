@@ -297,6 +297,9 @@ It also includes the updated size of the `TaskList`, obtained with the `size()` 
 
 The storage is updated with the new TaskList without the deleted task.
 
+The below diagram shows the sequence diagram for the DeleteTask functionality.
+<insert latest seq diagram here>
+
 [*Return to TOC*](#table-of-contents)
 
 #### Mark Task As Done
@@ -350,6 +353,8 @@ command will stop here.
 
 The storage is updated with the new TaskList with the task marked with a cross next to it.
 
+The sequence diagram for marking of tasks is similar to that of the unmark task command. The only difference is that the
+Ui message formats. The activity diagram for marking of tasks is shown below.
 
 
 [*Return to TOC*](#table-of-contents)
@@ -410,6 +415,7 @@ command will stop here.
 The storage is updated with the new TaskList with the task marked without a cross next to
 it.
 
+The below sequence and activity diagram summarises the above steps for the unmark task command.
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ModifyCommand-ModifyCommand__Unmark_Tasks_.png?raw=true)
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/UnmarkCommandActivityDiagram.png?raw=true)
 
@@ -1026,7 +1032,7 @@ Subsequently, the only logging will be through the ConsoleHandler.
 
 
 # Appendix
-
+<!--@@T-Wan-Lin -->
 ## Appendix A: Product Scope
 
 #### Target user profile
@@ -1049,6 +1055,7 @@ Priority Legend:
 `***` - Highest priority (Must-haves) 
 `**` - Medium priority  (Should-haves)
 `*` - Lowest priority (Could-haves)
+
 
 ## Appendix B: User Stories
 
@@ -1098,7 +1105,8 @@ Priority Legend:
 * The user interface should be intuitive enough for users who are new to the application.
 * Apollo should respond to any user interaction within 3 seconds.
 * Module data for Apollo is limited to what is available on NUSMods, i.e. Apollo has module data for all modules offered
-  by NUS in AY22/23 Semester 1 and 2.
+  by NUS in AY22/23 Semester 2.
+* 
 
 ## Appendix D: Glossary
 
@@ -1149,6 +1157,7 @@ Sorry, but I don't know what that means :(
 Expected of Test case 1: The help menu should appear with the list of all commands available on Apollo with `help`.
 Expected of Test case 2: The help menu for that command should appear.
 
+<!--@@author PoobalanAatmikaLakshmi -->
 #### Adding a ToDo/Event/Deadline
 Prerequisite: Make sure you are in the main interface.
 #### Invalid Commands
@@ -1233,6 +1242,8 @@ Expected: Deletes SECTIONAL TEACHING - 1 of CS1010.
 2.Test case: `delmod CS1010 -st 5` assuming cs1010 -st 5 not inside moduleList
 
 Expected: Exception thrown, error message printed 
+
+<!--@@T-Wan-Lin -->
 ### Saving Data
 
 1. Dealing with save files with erroneous data.
