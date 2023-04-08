@@ -2,30 +2,32 @@
 
 Welcome to rainyDay's user guide! Thank you so much for choosing rainyDay. We sincerely hope that rainyDay can
 successfully take you one step closer to reaching your financial goals!
-Should you have any feedback or enquiries, please do not hesitate to drop us at 
+Should you have any feedback or enquiries, please do not hesitate to drop us at
 [rainydayfinancialtracker@gmail.com](mailto:rainydayfinancialtracker@gmail.com).
 
 ## Introduction
 
 ### Motivation of creating rainyDay
 
-In addition to rising costs of living, young adults like yourself just entering the workforce will be exposed to new 
-sources of expenses and income. Thus, rainyDay was created to aid you in keeping track and managing your finances well. 
-rainyDay accomplishes this by providing an easy-to-use and convenient platform to track your [inflows and outflows](#glossary), 
-to help you achieve your financial goals. 
+In addition to rising costs of living, young adults like yourself just entering the workforce will be exposed to new
+sources of expenses and income. Thus, rainyDay was created to aid you in keeping track and managing your finances well.
+rainyDay accomplishes this by providing an easy-to-use and convenient platform to track
+your [inflows and outflows](#glossary),
+to help you achieve your financial goals.
 
-Despite the availability of other financial trackers, only a handful of them have integrated a 
+Despite the availability of other financial trackers, only a handful of them have integrated a
 [Command Line Interface (CLI)](#glossary) into their systems. However, the utilisation of a CLI can significantly
-improve the speed and accuracy of user-provided information. Do not fret if you have not used a CLI before as we 
+improve the speed and accuracy of user-provided information. Do not fret if you have not used a CLI before as we
 will guide you through the [process](#understanding-cli).
 
-With this user guide, you will be guided through every step of the way from installation to the usage of advanced features 
+With this user guide, you will be guided through every step of the way from installation to the usage of advanced
+features
 so that you can be an expert at rainyDay.
 
 ### What rainyDay can do for you
 
-rainyDay supports a variety of features for you to view your [transactions](#glossary). A basic overview is provided as 
-follows: 
+rainyDay supports a variety of features for you to view your [transactions](#glossary). A basic overview is provided as
+follows:
 
 **Transaction related** - adding, deleting and editing transaction entries <br>
 **Viewing related** - View, filter or sort transactions based on criteria  <br>
@@ -73,7 +75,7 @@ Please note the following about the format of commands given under each [feature
 
 ## Quick Start
 
-Now that you have learnt how to use this user guide, you are ready to begin! Next, we will show you how to 
+Now that you have learnt how to use this user guide, you are ready to begin! Next, we will show you how to
 install rainyDay on your device and start using it. Please refer to the steps below:
 
 1. Ensure that you have Java 11 installed on your computer
@@ -98,7 +100,7 @@ install rainyDay on your device and start using it. Please refer to the steps be
        path in the address bar as shown <br>
        ![cmd.png](images/UserGuide/cmd.png)
     3. Press Enter. Your Command Line should now be open in the folder containing "rainyDay.jar" as shown below. The
-       location you saved rainyDay should be shown, in this example we saved it in the path 
+       location you saved rainyDay should be shown, in this example we saved it in the path
        "\Users\Qi Rong\Downloads\rainyDay Folder"
        ![cmd prompt open.png](images/UserGuide/cmdPromptOpen.png)
 5. Type `java -jar rainyDay.jar` in the terminal and press Enter on your keyboard to start the application. You should
@@ -147,8 +149,8 @@ install rainyDay on your device and start using it. Please refer to the steps be
 
 ### Viewing help
 
-Welcome to the help section of rainyDay! Now that you have started rainyDay by following [Quick Start](#quick-start), 
-you will need to know the format of inputs to send to rainyDay. Whenever you find yourself stuck trying to perform a 
+Welcome to the help section of rainyDay! Now that you have started rainyDay by following [Quick Start](#quick-start),
+you will need to know the format of inputs to send to rainyDay. Whenever you find yourself stuck trying to perform a
 certain task, don't worry! The help command is here to help you every step of the way!
 
 To get an overview of possible commands and their respective formats, you can use the `help` command as seen
@@ -208,7 +210,7 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
     * When this field is omitted, the default date will be set to the day when the transaction is added to rainyDay
 
 > ⚠️ Amount provided must be positive and cannot be more than $21,474,836.47!
-> 
+>
 > ⚠️ `DESCRIPTION` and `CATEGORY` cannot contain dash `-`.
 
 > 💡 The flags `-c` and `-date` can be used exclusively. The following are also valid formats:
@@ -336,7 +338,7 @@ Format : `edit [INDEX] [FLAG] {NEWFIELD}`
 
 Example of usage:
 
-Suppose you realised you forgot to add the "Category" for entry 1, and you would like to place it under 
+Suppose you realised you forgot to add the "Category" for entry 1, and you would like to place it under
 "Food and Drinks". You can use the following command:
 
 ![editCategory.png](images/UserGuide/editCategory.png)
@@ -350,23 +352,20 @@ You can use the following command:
 
 ![editValue.png](images/UserGuide/editValue.png)
 
-
 ![editValueView.png](images/UserGuide/editValueView.png)
-
 
 What happens if you realised you made multiple mistakes in entry 3. Don't worry! You can edit multiple fields at the
 same time using multiple flags. However, do take note of the flag order as listed below.
-> ⚠️  Multiple flags may be used at once but must be in this order:
+> ⚠️ Multiple flags may be used at once but must be in this order:
 >
 > `-in` or `out` -> `-d` -> `-v` -> `-c` -> `-date`
 
-So instead of deleting and adding an entirely new entry, you can use the following command to update the required fields:
+So instead of deleting and adding an entirely new entry, you can use the following command to update the required
+fields:
 
 ![editMultipleEntries.png](images/UserGuide/editMultipleEntries.png)
 
-
 ![editMultipleEntriesView.png](images/UserGuide/editMultipleEntriesView.png)
-
 
 [Jump back to features overview](#features-overview)
 
@@ -386,7 +385,7 @@ Format : `filter [FLAG] {FIELD}`
 * No `FIELD` is required when `-in` or `-out` flag is used
 * date `FIELD` must be in the form DD/MM/YYYY
 * For the `-date` flag, if one date `FIELD` is specified then it is for a specific date. If two date `FIELD` is present
-    then it filters by a range. An example is provided below.
+  then it filters by a range. An example is provided below.
 
 Example of usage:
 
@@ -394,7 +393,7 @@ Let's say you added a couple more entries. And using `view -all` provides you wi
 
 ![filterViewAll.png](images/UserGuide/filterViewAll.png)
 
-> 💡 Note the use of `view -all` instead of `view` as `view` only provides entries in the current month. 
+> 💡 Note the use of `view -all` instead of `view` as `view` only provides entries in the current month.
 
 Suppose you want to find out transactions labelled "Food and Drinks", you can use the following command:
 
@@ -407,11 +406,11 @@ But do take note of the order as listed below:
 >
 > `-in` or `out` -> `-d` -> `-c` -> `-date`
 
-Suppose you want to find out what "Food and Drinks" you had from 30th March 2023 to 7th April 2023, you 
+Suppose you want to find out what "Food and Drinks" you had from 30th March 2023 to 7th April 2023, you
 can use the following command:
 
-> 💡 Note that the first date(e.g. 30/3/2023) provided must be before the second date(e.g. 7/4/2023) when you are 
->  indicating a date range.
+> 💡 Note that the first date(e.g. 30/3/2023) provided must be before the second date(e.g. 7/4/2023) when you are
+> indicating a date range.
 
 ![filterMultipleFlags.png](images/UserGuide/filterMultipleFlags.png)
 
@@ -430,8 +429,8 @@ Format: `ignore [INDEX]` or `unignore [INDEX]`
 
 Example of Usage:
 
-You have received a one-time payment from government GST refunds. You would like to keep track of it, however you do 
-not want to include it in your budget calculations. 
+You have received a one-time payment from government GST refunds. You would like to keep track of it, however you do
+not want to include it in your budget calculations.
 
 ![ignoreView.png](images/UserGuide/ignoreView.png)
 
@@ -461,14 +460,13 @@ If at any point of time you would like to remove this feature, simply set the go
 
 ![unsetBudgetGoal.png](images%2FUserGuide%2FunsetBudgetGoal.png)
 
-
 [Jump back to features overview](#features-overview)
 
 ### Shortcuts
 
 After using rainyDay for a period of time, you realise that there are some commands that you seem to repeat more
-often. rainyDay's "shortcut" feature can be utilised to save time! In this section, we'll show you how to create and 
-use shortcuts effectively. Whether you need to add a new shortcut, view an existing one, or delete an old one, we'll 
+often. rainyDay's "shortcut" feature can be utilised to save time! In this section, we'll show you how to create and
+use shortcuts effectively. Whether you need to add a new shortcut, view an existing one, or delete an old one, we'll
 cover them all. So, if you're ready to start working smarter, not harder, let's dive into the world of shortcuts!
 
 * [Adding a shortcut](#adding-a-shortcut)
@@ -542,8 +540,9 @@ command below:
 ### Data Management
 
 Saving and loading your data is something you don't have to worry about as we got it covered! In this section,
-we'll show you where to locate your saved files and how to export your data to a [CSV](#glossary) file, which is a 
-widely-used file format that can be opened in a variety of software applications. We'll also show you how to export and view 
+we'll show you where to locate your saved files and how to export your data to a [CSV](#glossary) file, which is a
+widely-used file format that can be opened in a variety of software applications. We'll also show you how to export and
+view
 the CSV file using [Microsoft Excel](https://www.microsoft.com/en-us/microsoft-365/excel),
 which is a popular spreadsheet program used by many people around the world. Let's get started!
 
@@ -569,6 +568,9 @@ been configured in step 3 of the [Quick Start section](#quick-start).
 The data file is named "rainyDay.json".
 
 ![rainyDayjson.png](images/UserGuide/rainyDayJson.png)
+
+> ⚠️ Do not make any direct changes to the "rainyDay.json" file unless you are familiar with [json](#glossary). Making
+> invalid changes may result in the saved file being lost permanently!
 
 ### Loading saved data
 
@@ -599,7 +601,7 @@ been configured in step 3 of the [Quick Start section](#quick-start). The CSV fi
 3. Navigate to the CSV file as directed in
    the [where to locate exported CSV file section](#where-to-locate-exported-csv-file).
 4. Double-click on the CSV file and click the *load* button.
-![img.png](images/UserGuide/csv.png)
+   ![img.png](images/UserGuide/csv.png)
 5. With steps 1-4, your financial statements should be viewable in a nicely formatted table as shown
    below.
 
@@ -634,10 +636,11 @@ this, it is recommended keep an extra copy of the data somewhere else before you
 
 **Q**: I used rainyDay and a folder named "logs" appeared. What is the "logs" file and what is the content inside it?
 
-**A**: The "logs" folder contains files that record the process and status of rainyDay. The files are non-malicious and 
+**A**: The "logs" folder contains files that record the process and status of rainyDay. The files are non-malicious and
 their content does not affect rainyDay's function. The "logs" folder and its content can be ignored or deleted.
 
 ## Command Summary
+
 | Action                                          | Format <br> Example input                                                                                                                                                                                                                                    |
 |-------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [Help](#viewing-help)                           | `help {COMMAND}`                                                                                                                                                                                                                                             |
@@ -671,6 +674,7 @@ their content does not affect rainyDay's function. The "logs" folder and its con
 | Financial Report       | Represents a compilation of financial statements                                                                                                                 |
 | Flags                  | Has a "-" appended to the front of a symbol, example: "-d", "-date", "-c", etc                                                                                   |
 | Inflow                 | Signify an increment of money on your side, such as deposits into your wallet                                                                                    |
+| Json                   | Stands for JavaScript Object Notation. It is a file format that uses human-readable text to store data                                                           |
 | Outflow                | Signify a decrement of money on your side, such as payments from your wallet                                                                                     |
 | Transaction            | An activity relating to transferring of money                                                                                                                    |
 
