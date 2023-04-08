@@ -149,25 +149,6 @@ public class Parser {
         return getInputStringArray().get(0).toLowerCase();
     }
 
-    /**
-     * Returns a string which represents the name of the item from the user input
-     *
-     * @return inputVariables which is the name of the item
-     * @throws InvalidVariablesException when the item name cannot be found
-     */
-    public static String getItemName() throws InvalidVariablesException {
-        String itemName;
-        if (inputStringArray.size() <= 1) {
-            throw new InvalidVariablesException();
-        }
-        try {
-            int itemIndStart = fullInput.indexOf(" ") + 1;
-            itemName = fullInput.substring(itemIndStart).trim();
-        } catch (IndexOutOfBoundsException e) {
-            throw new InvalidVariablesException();
-        }
-        return itemName;
-    }
 
     /**
      * Returns a string which represents the index of the item from the user input
@@ -292,39 +273,38 @@ public class Parser {
      *         created to be executed
      */
     public static Command createPackObj() {
-        int quantityNotPacked = 0;
+        int quantityNotPacked;
+        if (PackingList.getItemList().size() == 0) {
+            return new IncorrectCommand("Empty Packing List",
+                    "Your packing list is empty, there is nothing to pack");
+        }
         try {
             String[] quantityAndIndex = getPackVariables();
             int itemQuantity = Integer.parseInt(quantityAndIndex[0]);
             int itemIndex = Integer.parseInt(quantityAndIndex[1]);
             quantityNotPacked = PackingList.get(itemIndex - 1).getUnpackedQuantity();
-            if (itemQuantity < 1 | itemQuantity > quantityNotPacked) {
-                throw new InvalidVariablesException();
+            if (quantityNotPacked == 0) {
+                return new IncorrectCommand("Item Fully Packed",
+                        "You are done packing this item");
+            }
+            if (itemQuantity < 1 | itemQuantity > quantityNotPacked | itemQuantity > 1000000) {
+                throw new InvalidQuantityException();
+            }
+            if (itemIndex < 1 | itemIndex > PackingList.getItemList().size()) {
+                throw new InvalidIndexException();
             }
             return new PackCommand(itemQuantity, itemIndex);
-        } catch (NumberFormatException e) {
-            return new IncorrectCommand("Invalid Integer detected",
-                    "Pack only supports the use of positive integers of at most 1000000");
+        } catch (NumberFormatException| ArrayIndexOutOfBoundsException | InvalidVariablesException e) {
+            return new IncorrectCommand("Invalid Pack Command Input",
+                    "How to use pack command:\n" + PackCommand.HELP_MSG);
         } catch (InvalidIndexException e) {
-            if (PackingList.getItemList().size() == 0) {
-                return new IncorrectCommand("Invalid Item Index",
-                        "Your packing list is empty, there is nothing to pack");
-            } else {
                 return new IncorrectCommand("Invalid Item Index",
                         "Try to input a positive integer number that is at most " +
-                                PackingList.getItemList().size());
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return new IncorrectCommand("Invalid Pack Command Input",
-                    "How to use pack command:\n" +PackCommand.HELP_MSG);
-        } catch (InvalidVariablesException e) {
-            if (quantityNotPacked == 0) {
-                return new IncorrectCommand("Invalid Pack Usage",
-                        "This item is fully packed");
-            }
-            return new IncorrectCommand("Invalid Pack Quantity",
-                    "Try to input a positive quantity that is at most "
-                            + quantityNotPacked + " to be packed");
+                                PackingList.getItemList().size() + " (Max integer supported is 1,000,000)");
+        }catch (InvalidQuantityException e){
+            return new IncorrectCommand("Invalid Item Quantity",
+                    "Can only pack a positive quantity that is less than or equal to the unpacked quantity" +
+                            " (Max integer supported is 1,000,000)");
         }
     }
 
@@ -336,26 +316,27 @@ public class Parser {
      *         else an IncorrectCommand objected is created to be executed
      */
     public static Command createEditQuantityObj() {
-        int index = 1;
+        if (PackingList.getItemList().size() == 0) {
+            return new IncorrectCommand("Empty Packing List",
+                    "Your packing list is empty, there is nothing to edit");
+        }
+        int itemIndex;
         try {
             String[] quantityAndIndex = getEditQuantityVariables();
             int newTotalQuantity = Integer.parseInt(quantityAndIndex[0]);
-            if (newTotalQuantity < 1 | newTotalQuantity > 1000000) {
+            itemIndex = Integer.parseInt(quantityAndIndex[1]);
+            int packedQuantity = PackingList.get(itemIndex - 1).getPackedQuantity();
+            if (newTotalQuantity < 1 | newTotalQuantity > 1000000 | newTotalQuantity < packedQuantity) {
                 throw new InvalidQuantityException();
             }
-            index = Integer.parseInt(quantityAndIndex[1]);
-            if (index < 1 | index > PackingList.getItemList().size()) {
+            if (itemIndex < 1 | itemIndex > PackingList.getItemList().size()) {
                 throw new InvalidIndexException();
             }
-            int packedQuantity = PackingList.get(index - 1).getPackedQuantity();
-            if (newTotalQuantity < packedQuantity) {
-                throw new InvalidQuantityException();
-            }
-            return new EditQuantityCommand(newTotalQuantity, index);
-        } catch (NumberFormatException e) {
+            return new EditQuantityCommand(newTotalQuantity, itemIndex);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException | InvalidVariablesException e) {
             return new IncorrectCommand("Invalid Editquantity Command Input",
                     "How to use editquantity command:\n" + EditQuantityCommand.HELP_MSG);
-        } catch (InvalidIndexException e) {
+        } catch (InvalidIndexException | IndexOutOfBoundsException e) {
             return new IncorrectCommand("Invalid Item Index",
                     "Try to input a positive integer that is at most "
                             + PackingList.getItemList().size());
@@ -363,19 +344,17 @@ public class Parser {
             return new IncorrectCommand("Invalid Item Quantity",
                     "Can only change the quantity to something greater than what is currently packed and " +
                             "less than 1,000,000");
-        } catch (ArrayIndexOutOfBoundsException | InvalidVariablesException e) {
-            return new IncorrectCommand("Invalid Editquantity Command Input",
-                    "How to use editquantity command:\n" + EditQuantityCommand.HELP_MSG);
         }
     }
+
     /**
      * Parses the input variables to be used by {@link EditQuantityCommand} when constructed in createEditQuantityObj
      *
      * @return inputVariables in a String[] where the 0th index represents the new quantity and 1st index represents the
      *         item index in the packing list
-     * @throws InvalidIndexException invalid number of variables
+     * @throws InvalidVariablesException invalid number of variables
      */
-    public static String[] getEditQuantityVariables() throws InvalidVariablesException {
+    public static String[] getEditQuantityVariables() throws InvalidVariablesException, IndexOutOfBoundsException {
         String[] inputStringList = fullInput.trim().split(" ", 2);
         String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
         if (inputVariables.length != 2) {
@@ -390,13 +369,17 @@ public class Parser {
      * @return inputVariables in a String[] where the 0th index represents the additional quantity to pack and 1st index
      *         represents the item index in the packing list
      * @throws InvalidIndexException invalid item index given
+     * @throws InvalidVariablesException invalid number of variables
      */
-    public static String[] getPackVariables() throws InvalidIndexException {
+    public static String[] getPackVariables() throws InvalidIndexException, InvalidVariablesException {
         String[] inputStringList = fullInput.trim().split(" ", 2);
         String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
         if (Integer.parseInt(inputVariables[1]) < 1 | Integer.parseInt(inputVariables[1])
                 > PackingList.getItemList().size()) {
             throw new InvalidIndexException();
+        }
+        if(inputVariables.length != 2) {
+        throw new InvalidVariablesException();
         }
         return inputVariables;
     }
@@ -454,48 +437,38 @@ public class Parser {
      */
     public static Command createUnpackObj() {
         int quantityPacked = 0;
+        if (PackingList.getItemList().size() == 0) {
+            return new IncorrectCommand("Empty Packing List",
+                    "Your packing list is empty, there is nothing to pack");
+        }
         try {
             String[] quantityAndIndex = getPackVariables();
             int itemQuantity = Integer.parseInt(quantityAndIndex[0]);
-            if (itemQuantity <= 0) {
-                return new IncorrectCommand("Invalid Unpack Quantity", "Your item quantity should " +
-                        "be greater than 0");
-            }
             int itemIndex = Integer.parseInt(quantityAndIndex[1]);
-
-            if (itemIndex > PackingList.getItemList().size()) {
-                return new IncorrectCommand("Invalid Item Index",
-                        "Try to input a positive integer number that does not exceed " +
-                                PackingList.getItemList().size());
-            }
             quantityPacked = PackingList.get(itemIndex - 1).getPackedQuantity();
-            if (itemQuantity > quantityPacked) {
-                throw new InvalidVariablesException();
+            if (quantityPacked == 0) {
+                return new IncorrectCommand("Item Not Packed",
+                        "You have not packed this item at all");
+            }
+            if (itemQuantity < 1 | itemQuantity > quantityPacked | itemQuantity > 1000000) {
+                throw new InvalidQuantityException();
+            }
+            if (itemIndex > PackingList.getItemList().size() | itemIndex < 1) {
+                throw new InvalidIndexException();
             }
             return new UnpackCommand(itemQuantity, itemIndex);
-        } catch (NumberFormatException e) {
-            return new IncorrectCommand("Invalid Integer detected",
-                    "Unpack only supports the use of positive integers of at most 1000000");
+        } catch (NumberFormatException| ArrayIndexOutOfBoundsException | InvalidVariablesException e) {
+            return new IncorrectCommand("Invalid Unpack Command Input",
+                    "How to use unpack command:\n" + UnpackCommand.HELP_MSG);
         } catch (InvalidIndexException e) {
-            if (PackingList.getItemList().size() == 0) {
-                return new IncorrectCommand("Invalid Item Index",
-                        "Your packing list is empty, there is nothing to unpack");
-            } else {
-                return new IncorrectCommand("Invalid Item Index",
-                        "Try to input a positive item index number that is at most " +
-                                PackingList.getItemList().size());
+            return new IncorrectCommand("Invalid Item Index",
+                    "Try to input a positive integer number that is at most " +
+                            PackingList.getItemList().size() + " (Max integer supported is 1,000,000)");
+        } catch (InvalidQuantityException e) {
+            return new IncorrectCommand("Invalid Item Quantity",
+                    "Can only unpack a positive quantity that is less than or equal to the packed quantity" +
+                            " (Max integer supported is 1,000,000)");
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return new IncorrectCommand("Invalid Input Variables",
-                    UnpackCommand.HELP_MSG);
-        } catch (InvalidVariablesException e) {
-            if (quantityPacked == 0) {
-                return new IncorrectCommand("Invalid Unpack Usage",
-                        "This item is not even packed yet");
-            }
-            return new IncorrectCommand("Invalid Unpack Quantity",
-                    "Try to input a positive quantity that does not exceed " + quantityPacked);
-        }
     }
 
     /**
