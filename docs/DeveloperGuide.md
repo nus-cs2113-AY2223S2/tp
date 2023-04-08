@@ -247,7 +247,7 @@ in a simple and convenient manner through a command line interface.
 
 - Others:
   - Should user input additional arguments that are not within the scope of the command's input, ChChing would ignore them.
-    <br> e.g. category field would be ignored for command: `add income /c income /de salary /da 12-12-2022 /v 3.50`
+    <br> e.g. category field would be ignored for command: `add income /c income /de salary /da 12-12-2022 /v 3.50`, and `exit /de hello` would still successfully exit ChChing.
   - Should the arguments be in the wrong order, ChChing would still be able to parse the arguments correctly. <br>However, should the command not be written first, ChChing would not be able to parse the command.
     <br> e.g. `add income /de salary /c income /v 3.50 /da 12-12-2022` would successfully add an income entry.
     <br> e.g. `/c income /de salary /da 12-12-2022 /v 3.50 add income` would return an error since `add command` is not written first.

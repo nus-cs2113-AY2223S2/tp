@@ -277,7 +277,7 @@ The data file is not to be edited manually.
 
 ### Other Notes
 * Should additional fields that is not required be added to the input, the program will ignore it.
-<br> e.g. field "a" with value "1" will be ignored for `add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50 /a 1`.
+<br> e.g. field "a" with value "1" will be ignored for `add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50 /a 1`, and `exit /de 1` will still successfully exit the program.
 * ChChing will not allow duplicate fields within the same input.
 <br> e.g. `add expense /c meal /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50` will not be allowed since it has duplicate category fields.
 * ChChing allows for the fields' order to be changed.
