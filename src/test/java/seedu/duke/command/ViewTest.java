@@ -30,7 +30,8 @@ public class ViewTest {
     private static final String RECIPE_VIEWING_DEFAULT_ERROR = "Error in viewing recipe!"
             + "\nException occurred: ";
     private static final String MISSING_DESCRIPTION_ERROR = "Error in description of inputs!"
-            + "\nException occurred: The KEYWORDS of VIEW cannot be empty.";
+            + "\nException occurred: The VIEW command requires an input parameter, <Recipe NAME> / <Recipe INDEX>." +
+            "\nIt cannot be empty!";
     private static final String PREFIX_EMPTY_LIMIT_LIST_ERROR = "Error in finding index!"
             + "\nException occurred: Your list is either EMPTY or does not contain "
             + "recipes up to the index you inputted yet,\n"
