@@ -25,13 +25,10 @@ public class AddToRecipeTest {
             "The ingredient has been successfully added to the ingredient list!";
     private static final String DUPLICATE_INGREDIENT_ERROR =
             "The ingredient you wish to add is already on the ingredient list and hence cannot be added.";
-    private static final String DUPLICATE_STEP_ERROR =
-            "The step you wish to add is already on the step list and hence cannot be added.";
-    private static final String STEP_ADD_SUCCESS =
-            "The step has been successfully added to the step list!";
-    private static final String EMPTY_STEP_DESCRIPTION_MESSAGE = "Description of step cannot be empty!";
-    private static final String EMPTY_INGREDIENT_DESCRIPTION_MESSAGE = "Description of ingredient cannot be empty!";
-    private static final String STEP_QUIT_MESSAGE = "The step was not added to the step list!";
+    private static final String EMPTY_INGREDIENT_DESCRIPTION_MESSAGE =
+            "Description of ingredient cannot be empty!";
+    private static final String EMPTY_STEP_DESCRIPTION_MESSAGE =
+            "Description of step cannot be empty!";
     @BeforeEach
     public void setup() throws Exception {
         RecipeList.createRecipeList();
