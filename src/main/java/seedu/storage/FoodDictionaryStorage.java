@@ -55,7 +55,7 @@ public class FoodDictionaryStorage {
         }
     }
 
-    public void saveUserData(HashMap<String, Integer> foodCalories) throws IOException {
+    void saveUserData(HashMap<String, Integer> foodCalories) throws IOException {
         FileWriter fileWriter = new FileWriter(foodDictionaryFile);
         for (String foodName : foodCalories.keySet()) {
             fileWriter.write(foodName + ':' + foodCalories.get(foodName) + System.lineSeparator());

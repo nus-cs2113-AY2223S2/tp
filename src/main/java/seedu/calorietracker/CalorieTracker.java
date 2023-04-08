@@ -15,13 +15,8 @@ import static seedu.commands.caloriecommands.AddCalorieCommand.CALORIES_NOT_GIVE
  * Represents a calorie tracker.
  */
 public class CalorieTracker {
-    private HashMap<Date, FoodList> dailyFoodConsumption;
-    private FoodDictionary foodDictionary;
-
-    public CalorieTracker() {
-        dailyFoodConsumption = new HashMap<>();
-        foodDictionary = new FoodDictionary();
-    }
+    private final HashMap<Date, FoodList> dailyFoodConsumption;
+    private final FoodDictionary foodDictionary;
 
     public CalorieTracker(Storage storage, FoodDictionary foodDictionary) {
         dailyFoodConsumption = storage.readCalorieTrackerFile();
@@ -40,6 +35,15 @@ public class CalorieTracker {
         return dailyFoodConsumption;
     }
 
+    /**
+     * Add calorie consumption to CalorieTracker.
+     *
+     * @param date Date of consumption.
+     * @param foodName Name of food.
+     * @param foodCalories Calories of food.
+     * @return Output string.
+     * @throws InvalidSyntaxException If invalid syntax.
+     */
     public String addCalories(Date date, String foodName, int foodCalories) throws InvalidSyntaxException {
         FoodList foodList = getFoodList(date);
         Food foodToAdd;

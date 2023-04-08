@@ -2,6 +2,7 @@ package seedu.parser;
 
 import seedu.commands.Command;
 import seedu.commands.caloriecommands.AddCalorieCommand;
+import seedu.commands.caloriecommands.ListCaloriesCommand;
 import seedu.commands.caloriecommands.ViewCaloriesCommand;
 import seedu.exceptions.InvalidArgumentException;
 import seedu.exceptions.InvalidSyntaxException;
@@ -11,6 +12,7 @@ import java.util.regex.Pattern;
 
 import static seedu.parser.Parser.parseDate;
 
+//@@author calebcjl
 /**
  * Represents the parser for calorie commands.
  */
@@ -84,10 +86,26 @@ public class CalorieParser {
         return true;
     }
 
-    public static Command parseViewCalories(String arguments)
+    //@@author Richardtok
+    public static Command parseViewCaloriesCommand(String arguments)
             throws InvalidArgumentException, InvalidSyntaxException {
         Date date;
         date = parseDate(arguments.trim());
         return new ViewCaloriesCommand(date);
+    }
+
+    //@@author calebcjl
+    /**
+     * Parse arguments for ListCaloriesCommand.
+     *
+     * @param arguments Argument for command
+     * @return ListCaloriesCommand
+     * @throws InvalidSyntaxException If invalid syntax.
+     */
+    public static Command parseListCalorieCommand(String arguments) throws InvalidSyntaxException {
+        if (!arguments.isBlank()) {
+            throw new InvalidSyntaxException("/clist command");
+        }
+        return new ListCaloriesCommand();
     }
 }
