@@ -100,7 +100,6 @@ public class Parser {
         return new Command(type, fullDescription);
     }
 
-
     private static boolean matchString(String input, String regex) {
         String matcher = input;
         int count = 0;
@@ -110,6 +109,16 @@ public class Parser {
         }
         boolean isMatch = (count == 1);
         return isMatch;
+    }
+
+    public static int matchCount(String input, String regex) {
+        String matcher = input;
+        int count = 0;
+        while (matcher.contains(regex)){
+            matcher=matcher.substring(matcher.indexOf(regex)+1);
+            ++count;
+        }
+        return count;
     }
     /**
      * Returns an Array of Strings containing the parsed full description
@@ -343,14 +352,7 @@ public class Parser {
                 .trim();
         return out;
     }
-    public static int matchCount(String mainString, String check) {
-        int count = 0;
-        while (mainString.contains(check)) {
-            count++;
-            mainString = mainString.replace(check, "");
-        }
-        return count;
-    }
+
     public static boolean isValidAddToRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
         if ((descLowerCase.contains("--s") && descLowerCase.contains("--i"))){
@@ -371,11 +373,7 @@ public class Parser {
         if (matchCount(descLowerCase, "--s") > 1) {
             return false;
         }
-        if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
-            return false;
-        } else {
-            return true;
-        }
+        return true;
     }
     public static boolean isValidDeleteFromRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
@@ -394,12 +392,7 @@ public class Parser {
         if (matchCount(descLowerCase, "--s") > 1) {
             return false;
         }
-        if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return true;
     }
     public static boolean isDuplicateIngredient(IngredientList ingredientList, String newIngredient) {
         for (Ingredient ingredient : ingredientList.getList()) {
