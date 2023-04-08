@@ -203,8 +203,24 @@ Note that to `exit` the whole program from the edit window, you have to `quit` f
 For expert users, you can edit a recipe with one line command.<br>
 For editing ingredients, you can use `edit --i` to edit ingredients.<br>
 **Format**: `edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT`<br>
+**Examples**:<br>
+```
+__________________________________________________________
+edit --i 1 2 i/pork
+Ingredient has been edited:
+2. pork
+__________________________________________________________
+```
 For editing steps, you can use `edit --s` to edit steps.<br>
 **Format**: `edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP`<br>
+**Examples**:<br>
+```
+__________________________________________________________
+edit --s 1 1 s/wash beef
+Step has been edited:
+1. wash beef
+__________________________________________________________
+```
 
 <h2 id="deleting-a-recipe-delete"> Deleting a recipe: <code class="language-plaintext highlighter-rouge">delete</code></h2>
 
