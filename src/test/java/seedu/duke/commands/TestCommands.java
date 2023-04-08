@@ -5,16 +5,12 @@ import seedu.duke.commons.exceptions.DukeError;
 import seedu.duke.data.exercisegenerator.exersisedata.ExerciseData;
 import seedu.duke.data.userdata.Session;
 import seedu.duke.data.userdata.UserCareerData;
-import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.logic.commands.CompletedExerciseSearchCommand;
 import seedu.duke.logic.commands.GenerateFilterCommand;
 import seedu.duke.logic.commands.ExerciseSearchCommand;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.ui.Ui;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
