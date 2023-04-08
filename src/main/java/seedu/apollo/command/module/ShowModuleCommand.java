@@ -113,6 +113,36 @@ public class ShowModuleCommand extends Command {
         if (timetableList == null) {
             throw new IllegalCommandException();
         }
+        copyLessonTypeIntoTimetable(lessonType, copyList, timetableList);
+        printModuleInformationWithLesson(ui, lessonType, copyList);
+
+    }
+
+    /**
+     * Calls the Ui to print the specific module information.
+     *
+     * @param ui The Ui object to print the module information.
+     * @param lessonType Specific lesson type information to print.
+     * @param copyList The module information to print.
+     */
+    private void printModuleInformationWithLesson(Ui ui, LessonType lessonType, ArrayList<Timetable> copyList) {
+        if (copyList.size() == 0) {
+            ui.printNoLessonType();
+        } else {
+            sortTimetable(copyList);
+            ui.printModuleLessonTimetable(module, lessonType, copyList);
+        }
+    }
+
+    /**
+     * Add a copy of the specific lesson type information into the timetable.
+     *
+     * @param lessonType Specific lesson type to add.
+     * @param copyList The ArrayList of module information with lesson types.
+     * @param timetableList The ArrayList of the module timetable.
+     */
+    private static void copyLessonTypeIntoTimetable(LessonType lessonType, ArrayList<Timetable> copyList,
+                                                    ArrayList<Timetable> timetableList) {
         for (Timetable timetable : timetableList) {
             LessonType checkType = determineLessonType(timetable.getLessonType());
             assert (checkType != null) : "ShowModuleCommand: Lesson type should not be null!";
@@ -121,15 +151,6 @@ public class ShowModuleCommand extends Command {
                 copyList.add(timetable);
             }
         }
-
-        if (copyList.size() == 0) {
-            ui.printNoLessonType();
-        } else {
-            sortTimetable(copyList);
-            ui.printModuleLessonTimetable(module, lessonType, copyList);
-        }
-
-
     }
 
     /**
