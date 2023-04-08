@@ -8,7 +8,9 @@ import static seedu.moneymind.command.SearchCommand.getCategoryOfEvent;
 import java.util.ArrayList;
 import java.util.Set;
 
-import static seedu.moneymind.string.Strings.*;
+import static seedu.moneymind.string.Strings.BYE_MESSAGE;
+import static seedu.moneymind.string.Strings.HORIZONTAL_LINE;
+import static seedu.moneymind.string.Strings.DOT;
 import static seedu.moneymind.string.Strings.NO_SEARCH_RESULTS;
 
 public class Ui {
