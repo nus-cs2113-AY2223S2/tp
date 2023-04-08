@@ -10,7 +10,7 @@ import static seedu.workout.WorkoutList.NO_CURRENT_WORKOUT;
 
 //@@author calebcjl
 /**
- * Represents command to start a new workout.
+ * Represents command to start a new workout on the current date.
  */
 public class StartWorkoutCommand extends Command {
     private static final String ONGOING_WORKOUT_MESSAGE = "There is already an ongoing workout!";

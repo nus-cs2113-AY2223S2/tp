@@ -13,6 +13,7 @@ import seedu.exceptions.InvalidSyntaxException;
 import seedu.workout.Exercise;
 
 import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -168,21 +169,14 @@ public class WorkoutParser {
     //@@author ZIZI-czh
     /**
      * This method is used to check the "/start" command
-     * If the date input has incorrect format, it will notify the users
      * Otherwise, StartCommand will be executed
      *
      * @param arguments Date input
      * @return Incorrect command if the input date is incorrect, otherwise, initialize the StartCommand
      */
-    static Command parseStartWorkoutCommand(String arguments) throws InvalidSyntaxException,
-            InvalidArgumentException {
-        String[] startDetails = arguments.trim().split("\\s+", START_WORKOUT_ARGUMENT_COUNT);
-        if (startDetails.length != START_WORKOUT_ARGUMENT_COUNT) {
-            throw new InvalidSyntaxException("/wstart command");
-        }
-        Date date = parseDate(startDetails[DATE_INDEX]);
-        String workoutName = parseWorkoutName(startDetails[WORKOUT_NAME_INDEX]);
-
+    static Command parseStartWorkoutCommand(String arguments) throws InvalidArgumentException {
+        Date date = new Date();
+        String workoutName = parseWorkoutName(arguments);
         return new StartWorkoutCommand(date, workoutName);
     }
 
