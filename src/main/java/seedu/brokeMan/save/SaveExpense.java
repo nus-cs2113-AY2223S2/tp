@@ -26,7 +26,7 @@ public class SaveExpense {
         try {
             FileWriter myWriter = new FileWriter("./data/ExpenseData.txt");
             myWriter.flush();
-            String message;
+            String message = "";
             for (Entry expense : expenses) {
                 message = "a/ " + expense.getAmount() +
                         " d/ " + expense.getInfo() +
@@ -77,7 +77,6 @@ public class SaveExpense {
             }
         }
     }
-
 
 }
 

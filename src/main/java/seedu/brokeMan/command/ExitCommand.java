@@ -14,10 +14,10 @@ public class ExitCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": exits the program\n" +
             "|  Example: " + COMMAND_WORD;
     public void execute() {
-        Ui.showToUserWithLineBreak("Exiting program...", "");
         SaveExpense.writeFile(expenseList);
         SaveIncome.writeFile(incomeList);
         SaveBudget.writeFile(budgetEachMonth);
+        Ui.showToUserWithLineBreak("Exiting program...", "");
     }
     public static boolean isExit(Command command) {
         return command instanceof ExitCommand;
