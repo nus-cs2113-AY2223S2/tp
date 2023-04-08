@@ -13,6 +13,8 @@ import static seedu.duke.ui.StringLib.EMPTY_LIST_MESSAGE;
 import static seedu.duke.ui.StringLib.NO_MATCHES;
 import static seedu.duke.ui.StringLib.MATCHING_ITEMS;
 import static seedu.duke.ui.StringLib.NO_MATCHING_RECIPE_ERROR;
+import static seedu.duke.ui.StringLib.INVALID_NUMBER_ERROR;
+import static seedu.duke.ui.StringLib.OVERFLOW_NUMBER_ERROR
 
 public class RecipeList {
     protected static ArrayList<Recipe> recipeList;
@@ -204,9 +206,9 @@ public class RecipeList {
             try {
                 new BigInteger(term);
             } catch (Exception e1) {
-                throw new IncompleteInputException(StringLib.INVALID_NUMBER_ERROR);
+                throw new IncompleteInputException(INVALID_NUMBER_ERROR);
             }
-            throw new IncompleteInputException(StringLib.OVERFLOW_NUMBER_ERROR);
+            throw new IncompleteInputException(OVERFLOW_NUMBER_ERROR);
         }
         int recipeListIndex = Integer.parseInt(term);
         if (recipeListIndex <= 0 || recipeListIndex > getCurrRecipeNumber()) {

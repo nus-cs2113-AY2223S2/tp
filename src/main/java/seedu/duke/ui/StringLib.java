@@ -187,6 +187,7 @@ public interface StringLib {
             "To add elements to the recipe, please follow the following format:\n" +
             "\ndeletefromrecipe --[s/i] id/[index]";
     String INGREDIENT_DELETE_SUCCESS = "The ingredient has been successfully deleted from the ingredient list!";
+    String INVALID_NUMBER_ERROR = "Index must be a number!";
     String STEP_DELETE_SUCCESS = "The step has been successfully deleted from the step list!";
     String EMPTY_STEP_ID_MESSAGE = "Index of step cannot be empty!";
     String EMPTY_INGREDIENT_ID_MESSAGE = "Index of ingredient cannot be empty!";
