@@ -17,7 +17,7 @@ abstract class "{abstract}\nCommand" as Command {
 + execute(taskList: TaskList, ui: Ui, storage: Storage, moduleList: ModuleList,
 allModules: ModuleList, calendar Calendar): void
 # setExit(): void
-# getCommand(arg: String): LessonType
+# getLessonType(arg: String): LessonType
 }
 
 note right of Command::execute
@@ -54,8 +54,8 @@ lessonStart: LocalDateTime, lessonEnd: LocalDateTime): boolean
 AddCommand -|> Command
 
 class DateCommand {
-date: LocalDate
-datePattern: DateTimeFormatter
+# date: LocalDate
+# datePattern: DateTimeFormatter
 + DateCommand(dateString: String)
 }
 Command <|-- DateCommand
