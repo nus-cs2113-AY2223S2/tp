@@ -1,4 +1,4 @@
-# Dennis - Project Portfolio Page
+# Vignesh - Project Portfolio Page
 
 ## Project Overview : Sniff
 
