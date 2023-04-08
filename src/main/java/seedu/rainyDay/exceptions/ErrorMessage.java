@@ -16,7 +16,7 @@ public enum ErrorMessage {
             "Please refer to 'help' for more information!"),
     NO_DELETE_INDEX("Sorry, your delete command is invalid. Please include a delete index! \n" +
             "Delete format is as follows :\n" + "delete [INDEX]"),
-    WRONG_ADD_FORMAT("Sorry, your add command is invalid.\n\n"),
+    WRONG_ADD_FORMAT("Sorry, your add command is invalid."),
     WRONG_FILTER_FORMAT("Sorry, your filter command is invalid. Filter format is as follows: \n" +
             "filter {-in/-out} {-d DESCRIPTION} {-c CATEGORY} {-date DD/MM/YYYY} \n" +
             "At least one of these flags must be present and in the order above.\n" +
@@ -59,7 +59,7 @@ public enum ErrorMessage {
     EMPTY_CATEGORY_NAME("Category name cannot be empty\n\n"),
     INVALID_DATE("Date provided does not exist, please ensure that you have keyed the correct date\n\n"),
     NO_DATE_PROVIDED("Please provide a date after the \"-date\" flag\n\n"),
-    INVALID_JSON("Your saved file in rainyDay.json is corrupted or of an invalid format!"),
+    FAILED_FILE_OPERATION("File operation failed"),
     INVALID_SAVED_FINANCIAL_REPORT("Your saved data for financialReport is invalid"),
     INVALID_SAVED_SHORTCUT_COMMANDS("Your saved data for shortcutCommands is invalid"),
     INVALID_SAVED_BUDGET_GOAL("Your saved data for budgetGoal is invalid"),
@@ -72,7 +72,8 @@ public enum ErrorMessage {
     INVALID_SAVED_DATE("Your saved data for financialStatements has an invalid date"),
     INVALID_SAVED_IS_IGNORED("Your saved data for financialStatements has an invalid isIgnored field"),
     CSV_EXPORT_ERROR("Error exporting to CSV, please close the CSV file if you currently have it open."),
-    CSV_EMPTY_STATEMENT("Your financial statements are empty, export to CSV will not be performed.");
+    CSV_EMPTY_STATEMENT("Your financial statements are empty, export to CSV will not be performed."),
+    INVALID_VALUE("Unsupported amount provided, note that amount has to be a number > 0 and < 21,474,836.47\n\n");
     private final String error;
 
     ErrorMessage(String error) {

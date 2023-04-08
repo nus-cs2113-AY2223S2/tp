@@ -12,6 +12,9 @@ import seedu.rainyDay.command.Command;
 import seedu.rainyDay.data.FinancialReport;
 import seedu.rainyDay.parser.Parser;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -20,7 +23,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
-
 
 public class RainyDay {
     public static String filePath = "./data/rainyDay.json";
@@ -98,10 +100,15 @@ public class RainyDay {
     }
 
     private static void setupLogger() {
+        try {
+            Files.createDirectories(Paths.get("./logs"));
+        } catch (IOException e) {
+            System.out.println(ErrorMessage.FAILED_FILE_OPERATION);
+        }
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("RainyDay.log");
+            FileHandler fileHandler = new FileHandler("./logs/RainyDay.log");
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "File logger not working.", e);

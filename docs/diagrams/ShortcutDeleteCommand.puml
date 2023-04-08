@@ -24,6 +24,8 @@ deactivate shortcutCommands
 end
 [<--ShortcutDeleteCommand
 deactivate ShortcutDeleteCommand
-
+ShortcutDeleteCommand <-[hidden]- ShortcutDeleteCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy ShortcutDeleteCommand
 
 @enduml

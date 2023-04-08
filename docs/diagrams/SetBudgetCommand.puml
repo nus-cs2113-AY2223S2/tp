@@ -1,29 +1,18 @@
 @startuml
-participant ":Parser" as Parser
 participant ":SetBudgetCommand" as SetBudgetCommand
 participant ":UserData" as UserData
 
-[-> Parser : parseUserInput(userInput:String)
-activate Parser
-Parser -> Parser : setUserBudgetGoal(userInput:String)
-activate Parser
-create SetBudgetCommand
-Parser -> SetBudgetCommand
-activate SetBudgetCommand
-SetBudgetCommand --> Parser : :SetBudgetCommand
-deactivate SetBudgetCommand
-Parser --> Parser : :SetBudgetCommand
-deactivate Parser
-Parser -->[ : :SetBudgetCommand
-
-deactivate Parser
 [-> SetBudgetCommand : execute()
+
 activate SetBudgetCommand
-activate UserData
+
 SetBudgetCommand -> UserData : setBudgetGoal(goal:Double)
+activate UserData
 UserData --> SetBudgetCommand
 deactivate UserData
 SetBudgetCommand -->[ : :CommandResult
 deactivate SetBudgetCommand
-
+SetBudgetCommand <-[hidden]- SetBudgetCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy SetBudgetCommand
 @enduml

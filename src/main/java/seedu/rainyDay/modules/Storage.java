@@ -44,6 +44,7 @@ import seedu.rainyDay.exceptions.RainyDayException;
 
 //@@author KN-CY
 public class Storage {
+    public static final double MAX_VALUE = 21474836.47;
     private static Logger logger = Logger.getLogger(Storage.class.getName());
     private static Gson gson =
             new GsonBuilder().setPrettyPrinting().registerTypeAdapter(LocalDate.class, new LocalDateAdapter()).create();
@@ -102,16 +103,20 @@ public class Storage {
         if (!savedData.has("shortcutCommands")) {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_SHORTCUT_COMMANDS.toString());
         }
-        if (!savedData.has("budgetGoal") || savedData.get("budgetGoal").getAsDouble() < 0) {
+        if (!savedData.has("budgetGoal")) {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_BUDGET_GOAL.toString());
         }
+        double budgetGoal = savedData.get("budgetGoal").getAsDouble();
+        if (budgetGoal < 0 || budgetGoal > MAX_VALUE) {
+            throw new RainyDayException(ErrorMessage.INVALID_SAVED_BUDGET_GOAL.toString());
+        }
+
         JsonObject financialReport = savedData.getAsJsonObject("financialReport");
         checkValidFinancialReport(financialReport);
 
         JsonObject shortcutCommands = savedData.getAsJsonObject("shortcutCommands");
         checkValidShortcutCommands(shortcutCommands);
     }
-
 
     /**
      * Checks if the financialReport in the UserData is valid.
@@ -123,7 +128,7 @@ public class Storage {
         if (!financialReport.has("financialStatements")) {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_FINANCIAL_STATEMENTS.toString());
         }
-        
+
         if (!financialReport.has("reportOwner")) {
             throw new RainyDayException(ErrorMessage.INVALID_SAVED_REPORT_OWNER.toString());
         }
@@ -167,7 +172,7 @@ public class Storage {
                 throw new RainyDayException(ErrorMessage.INVALID_SAVED_VALUE.toString());
             }
             double value = financialStatement.get("value").getAsDouble();
-            if (value <= 0) {
+            if (value <= 0 || value > 21474836.47) {
                 throw new RainyDayException(ErrorMessage.INVALID_SAVED_VALUE.toString());
             }
 
@@ -233,7 +238,7 @@ public class Storage {
 
         } catch (IOException e) {
             logger.log(Level.SEVERE, "writeToFile failed");
-            e.printStackTrace();
+            System.out.println(ErrorMessage.FAILED_FILE_OPERATION);
         }
 
     }
@@ -293,7 +298,7 @@ public class Storage {
         LogManager.getLogManager().reset();
         logger.setLevel(Level.INFO);
         try {
-            FileHandler fileHandler = new FileHandler("Storage.log", true);
+            FileHandler fileHandler = new FileHandler("./logs/Storage.log", true);
             logger.addHandler(fileHandler);
         } catch (Exception e) {
             logger.log(Level.SEVERE, "File logger not working.", e);

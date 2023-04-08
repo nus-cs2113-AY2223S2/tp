@@ -10,7 +10,6 @@ import seedu.rainyDay.data.UserData;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,23 +40,8 @@ public class ViewCommandTest {
         assertEquals(expectedReport, viewList.execute().output);
     }
 
-    class sortByValue implements Comparator<Integer> {
-        public int compare(Integer firstIndex, Integer secondIndex) {
-            FinancialStatement firstStatement = savedData.getStatement(firstIndex);
-            FinancialStatement secondStatement = savedData.getStatement(secondIndex);
-            if (firstStatement.getFlowSymbol().equals("+") && secondStatement.getFlowSymbol().equals("-")) {
-                return -1;
-            }
-            if (firstStatement.getFlowSymbol().equals("-") && secondStatement.getFlowSymbol().equals("+")) {
-                return 1;
-            }
-            return (int) ((firstStatement.getValue() * 100) - (secondStatement.getValue() * 100));
-        }
-    }
-
-
     @Test
-    public void sortingComparatorTest() {
+    public void sortingByValueTest() {
         financialReport.clearReport();
         financialReport.addStatement(new FinancialStatement(
                 "Big Outflow (3)", "out", 100, "test", LocalDate.now()));
@@ -71,19 +55,54 @@ public class ViewCommandTest {
         ArrayList<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < financialReport.getStatementCount(); i++) {
             indexes.add(i);
-            System.out.println(financialReport.getFinancialStatement(i).getFullStatement());
         }
 
-        indexes.sort(new sortByValue()); //to fix this garbage
+        ViewCommand.sortByValue sortingClass = new ViewCommand.sortByValue();
+        sortingClass.setReport(savedData.getFinancialReport());
+        indexes.sort(sortingClass);
 
         for (int i = 0; i < financialReport.getStatementCount(); i++) {
             for (int j = 0; j < i; j++) {
-                FinancialStatement smaller = financialReport.getFinancialStatement(i);
-                FinancialStatement bigger = financialReport.getFinancialStatement(j);
+                FinancialStatement smaller = financialReport.getFinancialStatement(indexes.get(j));
+                FinancialStatement bigger = financialReport.getFinancialStatement(indexes.get(i));
                 Assertions.assertTrue(smaller.getValue() < bigger.getValue() ||
                         (smaller.getFlowSymbol().equals("+")) && (bigger.getFlowSymbol().equals("-")));
             }
         }
     }
 
+    @Test
+    public void sortingByDateTest() {
+        financialReport.clearReport();
+        LocalDate currentDay = LocalDate.now();
+        financialReport.addStatement(new FinancialStatement(
+                "Future (5)", "in", 1, "test", currentDay.plusDays(1)));
+        financialReport.addStatement(new FinancialStatement(
+                "Past (1)", "in", 1, "test", currentDay.minusDays(1)));
+        financialReport.addStatement(new FinancialStatement(
+                "Present (3)", "in", 1, "test", currentDay));
+        financialReport.addStatement(new FinancialStatement(
+                "Present (4)", "in", 1, "test", currentDay));
+        financialReport.addStatement(new FinancialStatement(
+                "Past (2)", "in", 1, "test", currentDay.minusDays(1)));
+        financialReport.addStatement(new FinancialStatement(
+                "Future (6)", "in", 1, "test", currentDay.plusDays(1)));
+
+        ArrayList<Integer> indexes = new ArrayList<>();
+        for (int i = 0; i < financialReport.getStatementCount(); i++) {
+            indexes.add(i);
+        }
+
+        ViewCommand.sortByDate sortingClass = new ViewCommand.sortByDate();
+        sortingClass.setReport(savedData.getFinancialReport());
+        indexes.sort(sortingClass);
+
+        for (int i = 0; i < financialReport.getStatementCount(); i++) {
+            for (int j = 0; j < i; j++) {
+                FinancialStatement smaller = financialReport.getFinancialStatement(indexes.get(j));
+                FinancialStatement bigger = financialReport.getFinancialStatement(indexes.get(i));
+                Assertions.assertFalse(smaller.getDate().isAfter(bigger.getDate()));
+            }
+        }
+    }
 }

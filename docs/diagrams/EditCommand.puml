@@ -46,6 +46,8 @@ deactivate UserData
 
 [<--EditCommand : : CommandResult
 deactivate EditCommand
-
+EditCommand <-[hidden]- EditCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+destroy EditCommand
 
 @enduml

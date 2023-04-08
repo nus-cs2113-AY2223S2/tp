@@ -13,6 +13,9 @@ import seedu.rainyDay.modules.Ui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,48 +25,49 @@ public class Parser {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
     public Command parseUserInput(String userInput) throws RainyDayException {
+        setupLogger();
         try {
             assert userInput != null : "Failed to read user input!";
             String[] action = userInput.split("\\s+", 2);
             if (action[0].equalsIgnoreCase(Command.COMMAND_ADD)) {
                 logger.info("add command executing");
-                return ParseAdd.addStatement(userInput);
+                return new ParseAdd().addStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE)) {
                 logger.info("delete command executing");
-                return ParseDelete.parseDeleteStatement(userInput);
+                return new ParseDelete().parseDeleteStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW)) {
                 logger.info("view command executing");
-                return ParseView.generateReport(userInput);
+                return new ParseView().generateReport(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_HELP)) {
                 logger.info("help command executing");
-                return ParseHelp.displayHelp(userInput.trim());
+                return new ParseHelp().displayHelp(userInput.trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_FILTER)) {
                 logger.info("filter command executing");
-                return ParseFilter.filterStatement(userInput);
+                return new ParseFilter().filterStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EDIT)) {
                 logger.info("edit command executing");
-                return ParseEdit.editStatement(userInput);
+                return new ParseEdit().editStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EXPORT)) {
                 logger.info("export command executing");
                 return new ExportCommand();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT)) {
                 logger.info("shortcut command executing");
-                return ParseShortcut.generateShortcut(action[1].trim());
+                return new ParseShortcut().generateShortcut(action[1].trim());
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_SET_BUDGET)) {
                 logger.info("set budget command executing");
-                return ParseSetBudget.setUserBudgetGoal(action[1].trim());
-            } else if (action[0].equalsIgnoreCase(Command.COMMAND_DELETE_SHORTCUT)) {
+                return new ParseSetBudget().setUserBudgetGoal(action[1].trim());
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT_DELETE)) {
                 logger.info("delete_shortcut command executing");
                 return new ShortcutDeleteCommand(action[1].trim());
-            } else if (action[0].equalsIgnoreCase(Command.COMMAND_VIEW_SHORTCUT)) {
+            } else if (action[0].equalsIgnoreCase(Command.COMMAND_SHORTCUT_VIEW)) {
                 logger.info("view_shortcut command executing");
                 return new ShortcutViewCommand();
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_IGNORE)) {
                 logger.info("ignore command executing");
-                return ParseIgnore.ignoreStatement(userInput);
+                return new ParseIgnore().ignoreStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_UNIGNORE)) {
                 logger.info("ignore command executing");
-                return ParseIgnore.ignoreStatement(userInput);
+                return new ParseIgnore().ignoreStatement(userInput);
             } else if (action[0].equalsIgnoreCase(Command.COMMAND_EXIT)) {
                 logger.info("exit command executing");
                 return new ExitCommand();
@@ -81,6 +85,7 @@ public class Parser {
         }
     }
 
+    //@@author lil1n
     public static LocalDate setDate(String input) throws RainyDayException {
         Pattern pattern = Pattern.compile("-date\\s+(.*)");
         Matcher matcher = pattern.matcher(input);
@@ -177,9 +182,25 @@ public class Parser {
         }
     }
 
+    //@@author KN-CY
     private String processShortcutUsage(HashMap<String, String> shortcutCommands, String shortcut) {
         String actualCommand = shortcutCommands.get(shortcut);
         Ui.printShortCutConfirmation(shortcut, actualCommand);
         return shortcutCommands.get(shortcut);
+    }
+
+    /**
+     * Sets up logger for logging
+     */
+    protected void setupLogger() {
+        LogManager.getLogManager().reset();
+        logger.setLevel(Level.INFO);
+        try {
+            FileHandler fileHandler = new FileHandler("./logs/Parser.log", true);
+            logger.addHandler(fileHandler);
+        } catch (Exception e) {
+            System.out.println("unable to log Parser class");
+            logger.log(Level.SEVERE, "File logger not working.", e);
+        }
     }
 }

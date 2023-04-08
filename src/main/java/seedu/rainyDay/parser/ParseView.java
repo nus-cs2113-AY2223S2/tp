@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public class ParseView {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    public static Command generateReport(String input) throws RainyDayException {
+    public Command generateReport(String input) throws RainyDayException {
         input = input.substring(4).trim();
         LocalDate startDate = LocalDate.now();
         LocalDate endDate = LocalDate.now();

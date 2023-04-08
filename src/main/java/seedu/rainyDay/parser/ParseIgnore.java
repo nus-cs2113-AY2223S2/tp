@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class ParseIgnore {
     private static final Logger logger = Logger.getLogger(Parser.class.getName());
 
-    public static Command ignoreStatement(String userInput) throws RainyDayException {
+    public Command ignoreStatement(String userInput) throws RainyDayException {
         String[] tokens = userInput.split("\\s+", 2);
         if (tokens.length < 2) {
             logger.warning("no ignore index from user");
