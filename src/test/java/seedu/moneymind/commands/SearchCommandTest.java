@@ -1,7 +1,6 @@
 package seedu.moneymind.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.moneymind.command.SearchCommand;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
