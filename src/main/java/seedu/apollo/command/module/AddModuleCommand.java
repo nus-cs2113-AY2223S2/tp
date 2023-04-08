@@ -121,6 +121,7 @@ public class AddModuleCommand extends Command {
                 break;
             }
         }
+        assert searchModule != null : "AddModuleCommand: Module not found";
 
         if (this.isAdded(moduleList, module)) {
             int index = 0;
@@ -155,12 +156,12 @@ public class AddModuleCommand extends Command {
      */
     private void addTimetable(Module searchModule, LessonType lessonType, String args, Ui ui, Calendar calendar)
             throws ClassNotFoundException {
-        Boolean isFound = false;
+        boolean isFound = false;
         ArrayList<Timetable> listCopy = new ArrayList<>(searchModule.getModuleTimetable());
         for (Timetable timetable: listCopy){
             LessonType searchLessonType = determineLessonType(timetable.getLessonType());
+            assert searchLessonType != null : "AddModuleCommand: Invalid lesson type";
             if (searchLessonType.equals(lessonType) && timetable.getClassNumber().equals(args)){
-
                 if (module.getModuleTimetable() == null){
                     module.createNewTimeTable();
                 }
