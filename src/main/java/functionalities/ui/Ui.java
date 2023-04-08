@@ -71,10 +71,16 @@ public class Ui {
         System.out.println("The appointment has been marked successfully");
     }
 
-    public static void printAppointmentUnMarkMessage() {
-        System.out.println("The appointment has been unmarked successfully");
+    public static void printAppointmentAlreadyMarkedMessage() {
+        System.out.println("The appointment with this Uid has already been marked successfully");
     }
 
+    public static void printAppointmentUnMarkMessage() {
+        System.out.println("The appointment has been Unmarked successfully");
+    }
+    public static void printAppointmentAlreadyUnMarkedMessage() {
+        System.out.println("The appointment with this Uid has already been Unmarked successfully");
+    }
     public static void showHelpMessage() {
         System.out.println("These are the following Sniff commands available:\n"
                 + "Add consultation appointment:\n"

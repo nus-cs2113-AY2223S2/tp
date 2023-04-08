@@ -360,6 +360,13 @@ public class SniffTasks {
                     break;
                 }
             }
+            if (APPOINTMENTS.get(index).getStatus() == "X"){
+                Ui.printAppointmentAlreadyMarkedMessage();
+            }
+            else{
+                APPOINTMENTS.get(index).setIsDone(true);
+                Ui.printAppointmentMarkMessage();
+            }
             APPOINTMENTS.get(index).setIsDone(true);
             Ui.printAppointmentMarkMessage();
         } catch (IndexOutOfBoundsException e) {
@@ -368,7 +375,7 @@ public class SniffTasks {
 
     }
 
-    public void unmarkAppointment(String uid) throws SniffException {
+    public void unMarkAppointment(String uid) throws SniffException {
         try {
             if (!UIDS.contains(uid)) {
                 throw new SniffException(" There are no appointments with this ID.");
@@ -380,10 +387,17 @@ public class SniffTasks {
                     break;
                 }
             }
+            if (APPOINTMENTS.get(index).getStatus() == ""){
+                Ui.printAppointmentAlreadyUnMarkedMessage();
+            }
+            else{
+                APPOINTMENTS.get(index).setIsDone(true);
+                Ui.printAppointmentUnMarkMessage();
+            }
             APPOINTMENTS.get(index).setIsDone(false);
             Ui.printAppointmentUnMarkMessage();
         } catch (IndexOutOfBoundsException e) {
-            throw new SniffException(" The unmark command entry is invalid!");
+            throw new SniffException(" The unMark command entry is invalid!");
         }
     }
 }
