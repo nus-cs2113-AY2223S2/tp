@@ -46,4 +46,7 @@ public class Messages {
 
     public static final String MESSAGE_NEW_DESCRIPTION_CONTAIN_FLAGS = "Edited description cannot contain any flags" +
             " such as 'a/', 'd/', and 'c/'.";
+
+    public static final String MESSAGE_EXCEED_MAXIMUM_LENGTH_FOR_AMOUNT = "The maximum amount that can be" +
+            " entered is $9999999999.99";
 }

@@ -6,9 +6,11 @@ import seedu.brokeMan.exception.CategoryNotCorrectException;
 import seedu.brokeMan.parser.StringToCategory;
 import seedu.brokeMan.parser.StringToTime;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 
 public class EditIncomeCommand extends Command {
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     public static final String COMMAND_WORD = "editIncome";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": edits the income from the list.\n" +
@@ -27,7 +29,7 @@ public class EditIncomeCommand extends Command {
 
     public void execute() {
         if (type.equals("amount")) {
-            double newIncome = Double.parseDouble(newEntry);
+            double newIncome = Double.parseDouble(df.format(newEntry));
             IncomeList.editIncome(index, newIncome);
         } else if (type.equals("info")) {
             IncomeList.editIncome(index, newEntry);

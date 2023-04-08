@@ -78,8 +78,11 @@ Format: `addExpense a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new expense to the list of expenses.
 
 * The `amount` should be double up to **2 decimal places** (dp). Digits beyond 2dp will be ignored.
-* The `description` can be in a natural language format.
-* The `time` should follow `YYYY MM DD HH mm` format.  (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
+* The `description` should be a String.
+* The `time` should follow `YYYY MM DD HH mm` format.
+  * (Note: entering 3 instead of 03 still works for March. 
+  Users can remove preceding 0s, where apt, for simplicity sake)
+  * The oldest date that can be entered is 2000 01 01 00 00.
 * The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
@@ -111,8 +114,11 @@ Format: `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new income to the list of incomes.
 
 * The `amount` should be double up to **2dp**. Digits beyond 2dp will be ignored.
-* The `description` can be in a natural language format.
-* The `time` should follow `YYYY MM DD HH mm` format. (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
+* The `description` should be a String.
+* The `time` should follow `YYYY MM DD HH mm` format.
+  * (Note: entering 3 instead of 03 still works for March.
+  Users can remove preceding 0s, where apt, for simplicity sake)
+  * The oldest date that can be entered is 2000 01 01 00 00.
 * The `category` should be one of the categories in the category list.
 
 **Category list**: FOOD, SHOPPING, GROCERIES, TRANSPORTATION, ENTERTAINMENT, TRAVEL, SALARY, INVESTMENT, and OTHERS
@@ -205,7 +211,9 @@ The index must be a positive integer 1, 2, 3, …​
 * The `type` can be: amount, description, time, or category.
   * amount (of type **double** up to **2dp**. Digits beyond 2dp will be ignored.): edits the expense
   * info (of type **String**): edits the description of expense
-  * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense. (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
+  * time (in the format **YYYY MM DD HH mm**): edits the time at which user spent that expense.
+    * (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
+    * The oldest date that can be entered is 2000 01 01 00 00.
   * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that expense
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
@@ -240,7 +248,9 @@ Format: `editIncome i/ <index> t/ <type> n/ <newEntry>`
 * The `type` can be: amount, info, time, or category.
   * amount (of type **double** up to **2dp**. Digits beyond 2dp will be ignored.): edits the income
   * info (of type **String**): edits the description of income
-  * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned. (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
+  * time (in the format **YYYY MM DD HH mm**): edits the time at which income is earned. 
+    * (Note: entering 3 instead of 03 still works for March, Users can remove preceding 0s, where apt, for simplicity sake)
+    * The oldest date that can be entered is 2000 01 01 00 00.
   * category (should be in the category list mentioned in [`addExpense`](#adding-an-expense-addexpense) feature): edits the category of that income
 * You can only edit one type at a time.
 * Existing values will be updated to the input values.
@@ -287,6 +297,10 @@ Example output:
 |  Enter command:
 ```
 
+**Note**: As long as the input `sortExpenseByAmount` is correct,
+any trailing characters after it will still call the function.
+I.e.,`sortExpenseByAmount random characters` will still work.
+
 [back to Contents](#table-of-contents)
 
 ---
@@ -313,6 +327,10 @@ Example output:
 |  Enter command:
 ```
 
+**Note**: As long as the input `sortIncomeByAmount` is correct,
+any trailing characters after it will still call the function.
+I.e.,`sortIncomeByAmount random characters` will still work.
+
 [back to Contents](#table-of-contents)
 
 ---
@@ -320,6 +338,8 @@ Example output:
 ### Sorting an expense by date: `sortExpenseByDate`
 Format: `sortExpenseByDate`
 Shows a list of all expenses in a chronological order.
+
+
 
 Example of usage: `sortExpenseByDate`
 
@@ -338,6 +358,10 @@ Example output:
 |
 |  Enter command:
 ```
+
+**Note**: As long as the input `sortExpenseByDate` is correct,
+any trailing characters after it will still call the function.
+I.e.,`sortExpenseByDate random characters` will still work.
 
 [back to Contents](#table-of-contents)
 
@@ -364,6 +388,10 @@ Example output:
 |
 |  Enter command:
 ```
+
+**Note**: As long as the input `sortIncomeByDate` is correct,
+any trailing characters after it will still call the function.
+I.e.,`sortIncomeByDate random characters` will still work.
 
 [back to Contents](#table-of-contents)
 
@@ -399,7 +427,7 @@ Example output:
 
 ### Deleting an income: `deleteIncome`
 Format: `deleteIncome <index>`
-* Deletes the expense at the specified `index`.
+* Deletes the income at the specified `index`.
 * The index refers to the index number shown in the displayed income list.
 * The index must be a positive integer 1, 2, 3, ...
 
@@ -610,7 +638,7 @@ Example output:
 ---
 
 ### Exiting the program: `exit`
-Format: `exit` Exits the program.
+Format: `exit` Exits the program, and save the data.
 
 Example of usage: `exit`
 
@@ -641,9 +669,9 @@ Example output:
 ---
 
 ### Saving the data
-BrokeMan data are saved in text files ExpenseData, IncomeData and BudgetData automatically upon exiting the program.
+BrokeMan data are saved in text files ExpenseData, IncomeData and BudgetData upon exiting the program.
 
-**DO NOT MAKE CHANGES TO THE .txt FILE GENERATED BY THE PROGRAM!**
+**TRY NOT MAKE CHANGES TO THE .txt FILE GENERATED BY THE PROGRAM!**
 
 **INCORRECT ROW FORMAT OF .txt FILE WILL BE IGNORED DURING THE POPULATION OF DATA AT THE START OF THE PROGRAM!**
 

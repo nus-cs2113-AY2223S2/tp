@@ -7,6 +7,7 @@ import seedu.brokeMan.command.DeleteExpenseCommand;
 import seedu.brokeMan.command.DeleteIncomeCommand;
 import seedu.brokeMan.command.EditExpenseCommand;
 import seedu.brokeMan.command.EditIncomeCommand;
+import seedu.brokeMan.command.ExceedMaximumLengthForAmountException;
 import seedu.brokeMan.command.ExitCommand;
 import seedu.brokeMan.command.HelpCommand;
 import seedu.brokeMan.command.InvalidCommand;
@@ -37,6 +38,7 @@ import seedu.brokeMan.exception.NewDescriptionContainFlagsException;
 import seedu.brokeMan.exception.WrongFlagOrderException;
 import seedu.brokeMan.exception.hasNotSetBudgetException;
 
+import java.text.DecimalFormat;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -53,6 +55,9 @@ https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/p
  */
 
 public class Parser {
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
+
 
     /**
      * parse the inputs entered by user into command for execution
@@ -164,7 +169,12 @@ public class Parser {
         String budgetInString = descriptionByWord[0];
 
         try {
+            if (budgetInString.length() > 10) {
+                String errorMessage = new ExceedMaximumLengthForAmountException().getMessage();
+                return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
+            }
             budget = Double.parseDouble(budgetInString);
+            budget = Double.parseDouble(df.format(budget));
             if (budget < 0) {
                 String errorMessage = new NegativeAmountException().getMessage();
                 return new InvalidCommand(errorMessage, SetBudgetCommand.MESSAGE_USAGE);
@@ -355,9 +365,19 @@ public class Parser {
 
         checkEmptyAddFlag(splitDescriptions);
         checkDoubleException(splitDescriptions[0]);
+        splitDescriptions[0] = checkExceedMaxCharForAmount(splitDescriptions[0]);
         checkTimeException(splitDescriptions[2]);
         convertStringToCategory(splitDescriptions[3]);
         return splitDescriptions;
+    }
+
+    private static String checkExceedMaxCharForAmount(String description) throws ExceedMaximumLengthForAmountException {
+        double amount = Double.parseDouble(description);
+        double maxAmountAllowed = 9999999999.99D;
+        if (amount > maxAmountAllowed) {
+            throw new ExceedMaximumLengthForAmountException();
+        }
+        return df.format(amount);
     }
 
     private static Command prepareListExpenseCommand(String description) {
