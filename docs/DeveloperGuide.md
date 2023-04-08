@@ -145,7 +145,85 @@ The current functionalities:
 - delete card from the cardlist
 - show all cards the cardlist contains
 - view the card by its uuid
-- add tag to a card
+
+#### Card Add
+
+User input format for adding a card
+
+```
+card delete -q QN -a ANS
+```
+
+For adding a card, a sample user input like `card add -q QN -a ANS` would be broken down as:
+
+- Keyword: `card`
+- Action: `add`
+- Flags
+    - `-q`: Question text
+    - `-a`: Answer text
+
+The implementation of `card add -q QN -a ANS` will be shown below :
+
+1. When the user enters `card add -q QN -a ANS`, the input is passed to `Parser` class which calls `Parser#parseCommand()`. The parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on the user inputs excluding the "card" keyword. 
+2. The `Parser#CardKeywordParser()` further extracts the action keyword "add" from the user input, and calls the `CardKeywordParser#handleAdd()` method.
+3. The method uses the Apache Commons CLI library to parse the remaining user input to create a `Card` object with the arguements of the flags "-q" and "-a" in the input as its question and answer, and returns an `AddCardCommand` with the created `Card` object.
+4. This `AddCardCommand` will call the `CardList#addCard()` function and add the created `Card` object to the `CardList`. 
+5. Lastly, `UserInterface` will print a success message and the current number of `Card` objects in the `CardList` with the corresponding functions.
+
+The sequence diagram below shows how this feature works:
+![Card Add feature]
+
+
+#### Card Delete
+
+User input format for deleting a card
+
+```
+card delete [-i CARDINDEX | -c CARDUUID]
+```
+
+A sample user input, like `card delete -i 3` would be broken down as:
+
+- Keyword: `card`
+- Action: `delete`
+- Flag
+    - `-i`: Index of card to be deleted
+
+The implementation of `card delete -i 3` will be shown below :
+
+1. When the user enters `card delete -i 3`, the `Parser` class will parse the user input in the same way as shown in step 1 here [above](#card-add).
+2. The `Parser#CardKeywordParser()` further extracts the action keyword "delete" from the user input and call `CardKeywordParser#handleDelete()` method.
+3. The method uses the Apache Commons CLI library to parse the remaining user input, and returns a `DeleteCardCommand` with a `CardSelector` argument. The `CardSelector` object has two optional fields, an int field or an uuid field, used in identifying the `Card` object, in this case to be deleted.
+5. This `DeleteCardCommand` will first find the `Card` object to delete, then find all the `Tag` and `Deck` objects it is associated to by their uuids stored in the `Card` object, and delete the `Card` object's uuid from them. 
+6. Then the `Card` object is deleted from the `CardList`.
+7. Lastly, `UserInterface` will print a success message and the current number of `Card` objects in the `CardList` with the corresponding functions.
+
+The sequence diagram below shows how this feature works:
+![Card Add feature]
+
+
+#### Card List
+
+User input format for listing all card
+
+```
+card list
+```
+
+A sample user input, like `card list` would be broken down as :
+
+- Keyword: `card`
+- Action: `list`
+
+The implementation of `card list` will be shown below :
+
+1. When the user enters `card list`, the `Parser` class will parse the user input in the same way as shown in step 1 here [above](#card-add).
+2. The `Parser#CardKeywordParser()` further extracts the action keyword "list" from the user input and call `CardKeywordParser#handleList()` method.
+3. If there are no more user input after `card list`, a `ListCardCommand()` is returned.
+4. The command will call `UserInterface#printCardList()` method to print all `Card` objects in the `CardList`.
+
+The sequence diagram below shows how this feature works:
+![Card Add feature]
 
 #### Card View
 
@@ -172,7 +250,7 @@ The implementation of `card view {-c {cardUUID} | -i {cardIndex}}` will be shown
   return `tagsUUID` and `Card#getDecksUUID()` which will return `decksUUID`.
 
 
-- Once the `tagsUUID`  is ready, `ViewCardCommand` will then call  `ViewCardCommand#findTagFromTagUUID` which will loop
+- Once the `tagsUUID` is ready, `ViewCardCommand` will then call  `ViewCardCommand#findTagFromTagUUID` which will loop
   through each element `Tag` of `TagList`, call `Tag#getUUID()` and match it with every element of the `tagsUUID`
   previously.
   If the `Tag` element's uuid matches the uuid in `tagsUUID`, then the `Tag` will be added to a `tagsFound` and returned
