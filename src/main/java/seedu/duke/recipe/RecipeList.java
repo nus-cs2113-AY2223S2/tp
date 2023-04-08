@@ -105,24 +105,44 @@ public class RecipeList {
     public static void editIngredient(int recipeIndex, int ingredientIndex, String newIngredient)
             throws EditFormatException {
         if (recipeIndex > getCurrRecipeNumber() || recipeIndex < 1) {
-            throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX);
+            if(getCurrRecipeNumber() > 0) {
+                String range = "\nValid range: " + 1 + " to " + getCurrRecipeNumber();
+                throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX + range);
+            } else {
+                throw new EditFormatException(StringLib.EMPTY_RECIPE_LIST);
+            }
         }
         Recipe recipe = getRecipeFromList(recipeIndex);
         IngredientList ingredientList = recipe.getIngredientList();
         if (ingredientIndex > ingredientList.getCurrIngredientNumber() || ingredientIndex < 1) {
-            throw new EditFormatException(StringLib.INVALID_INGREDIENT_INDEX);
+            if (ingredientList.getCurrIngredientNumber() > 0) {
+                String range = "\nValid range: " + 1 + " to " + ingredientList.getCurrIngredientNumber();
+                throw new EditFormatException(StringLib.INVALID_INGREDIENT_INDEX + range);
+            } else {
+                throw new EditFormatException(StringLib.EMPTY_INGREDIENT_LIST);
+            }
         }
         ingredientList.editIngredient(newIngredient, ingredientIndex - 1);
     }
 
     public static void editStep(Integer recipeIndex, int stepIndex, String newStep) throws EditFormatException {
         if (recipeIndex > getCurrRecipeNumber() || recipeIndex < 1) {
-            throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX);
+            if (getCurrRecipeNumber() > 0) {
+                String range = "\nValid range: " + 1 + " to " + getCurrRecipeNumber();
+                throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX + range);
+            } else {
+                throw new EditFormatException(StringLib.EMPTY_RECIPE_LIST);
+            }
         }
         Recipe recipe = getRecipeFromList(recipeIndex);
         StepList stepList = recipe.getStepList();
         if (stepIndex > stepList.getCurrStepNumber() || stepIndex < 1) {
-            throw new EditFormatException(StringLib.INVALID_STEP_INDEX);
+            if (stepList.getCurrStepNumber() > 0) {
+                String range = "\nValid range: " + 1 + " to " + stepList.getCurrStepNumber();
+                throw new EditFormatException(StringLib.INVALID_STEP_INDEX + range);
+            } else {
+                throw new EditFormatException(StringLib.EMPTY_STEP_LIST);
+            }
         }
         stepList.editStep(stepIndex - 1, newStep);
     }

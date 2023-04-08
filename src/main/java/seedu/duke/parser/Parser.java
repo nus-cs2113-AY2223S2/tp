@@ -14,6 +14,7 @@ import seedu.duke.recipe.RecipeList;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 import static seedu.duke.ui.IntLib.RECIPE_NAME_INDEX;
@@ -199,6 +200,12 @@ public class Parser {
         } else if (isStep) {
             return EditType.STEP;
         } else {
+            if(description.equals("--s")){
+                throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+            }
+            if(description.equals("--i")){
+                throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+            }
             throw new IncompleteInputException(StringLib.EDIT_TYPE_ERROR);
         }
     }
@@ -214,7 +221,12 @@ public class Parser {
             int recipeIndex = Integer.parseInt(parsedDescription[0]);
             return new Object[]{recipeIndex, parsedDescription[1].trim()};
         } catch (NumberFormatException e) {
-            throw new IncompleteInputException(errorLog);
+            try {
+                new BigInteger(parsedDescription[0]);
+            } catch (Exception e1) {
+                throw new IncompleteInputException(errorLog);
+            }
+            throw new IncompleteInputException(StringLib.OVERFLOW_NUMBER_ERROR);
         }
     }
 
@@ -234,7 +246,12 @@ public class Parser {
             }
             RecipeList.editIngredient(recipeIndex, ingredientIndex, newIngredient);
         } catch (NumberFormatException e) {
-            throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+            try {
+                new BigInteger(parsedDescription[0].trim());
+            } catch (Exception e1) {
+                throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+            }
+            throw new IncompleteInputException(StringLib.OVERFLOW_NUMBER_ERROR);
         } catch (EditFormatException e) {
             throw new Exception("error in edit ingredient:\n" + e.getMessage());
         }
@@ -256,7 +273,12 @@ public class Parser {
             }
             RecipeList.editStep(recipeIndex, stepIndex, newStep);
         } catch (NumberFormatException e) {
-            throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+            try {
+                new BigInteger(parsedDescription[0].trim());
+            } catch (Exception e1) {
+                throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+            }
+            throw new IncompleteInputException(StringLib.OVERFLOW_NUMBER_ERROR);
         } catch (EditFormatException e) {
             throw new Exception("error in edit step:\n" + e.getMessage());
         }
