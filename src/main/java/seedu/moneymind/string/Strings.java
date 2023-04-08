@@ -61,13 +61,14 @@ public class Strings {
             "(time is optional and the format is dd/mm/yyyy hh:mm)\n";
     public static final String VIEW_INSTRUCTION =
             "5. view - view all the events in a category or all the categories\n" +
-            "You can view all the categories by entering view without any category name\n" +
-            "Format: view <category name>\n" + "Example: view food\n";
+            "You can view all the events in a category by specifying the category name\n" +
+            "Format: view <category name>\n" + "Example: view food\n" +
+            "(category name is optional and if you do not enter a category name, all the categories will be shown)\n";
     public static final String EDIT_INSTRUCTION = "6. edit - edit the expense for an event\n" +
-            "edit c/<category name> e/<event index>\n" +
+            "Format: edit c/<category name> e/<event index>\n" +
             "Example: edit c/food e/1\n";
     public static final String DELETE_INSTRUCTION = "7. delete - delete an event or a category\n" +
-            "delete c/<category name> [(optional) e/<event index>]\n" +
+            "Format: delete c/<category name> [(optional) e/<event index>]\n" +
             "Example: delete c/food e/1\n" + "Example: delete c/food\n";
     public static final String SEARCH_INSTRUCTION = "8. search - search for matching events and categories\n" +
             "Format: search <keyword>\n" +
