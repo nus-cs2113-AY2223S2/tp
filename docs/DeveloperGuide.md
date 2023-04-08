@@ -321,24 +321,31 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 
 - The command `view` is used to view all statements, and a ViewCommand object will be created
     - The format for the command is `view TIMESPAN -sort`
-    - Any other characters after any valid view command are automatically ignored
-- Information is presented in a table format to help improve clarity for users
-    - The table includes information in the summary such as whether it is sorted and the amount of history shown
-    - This was deliberate as presenting this information at the bottom makes it easier for users to spot,
-      as placing them at the top may cause users to miss it if they have a large table
+- When a command for view is given, the command is first parsed to check if it follows the format as shown above
+- The relevant details will then be extracted out and passed as a ViewCommand object. Details include the start date,
+  the end date, if sorting is required, and if `-all` is passed in the `TIMESPAN` field
+    - If `-all` is passed, a boolean value will be set to true to indicate this. The start date and end date will be
+      set to the earliest and latest possible date of Java's LocalDate
+    - The boolean value is only used during formatting of the Summary Table
 
 ![ViewCommandSequenceDiagram.png](images\DeveloperGuide\ViewCommand.png)
 
 ### Design considerations
 
-- The limit for the timespans are deliberately set to cover common timespans
+- Information is presented in a table format to help improve clarity for users
+    - The table includes information in the summary such as whether it is sorted and the timespan of transactions shown
+    - Sorting features also show the latest information at the bottom, as compared to a normal GUI-based application.
+      This is because in a CLI, users will always redirected to the bottom after the output. Hence, by placing critical
+      information at the bottom, it will make it easier for users to spot in case of a large table.
+- The limit for the timespans are deliberately set to cover commonly used timespans
     - One can view up to 31 days / 4 weeks, as they each make up a month
     - Similarly, one can view up to 12 months, as they make up a year
-    - In line with the average user of the target audience, the limit for 10 years was set as a soft limit
+    - The limit for 10 years was set as a soft limit as the target user is not expected to need to view more than
+      10 years of history at any time.
 - The setting of hiding the value of transactions that are ignored is deliberate, as it is the most prominent and
-  direct way for users to see this
-    - In line with the purpose of the Ignore Command, -all flag will also not show this. Instead, users can view the
-      value via the export command, as elaborated below
+  direct way for users to see this.
+    - Users can view the value via the export command, as elaborated below
+
 
 ### Setting your monthly Budget Goal `setbudget`
 
@@ -536,7 +543,7 @@ The sequence diagram for the implementation of viewing a shortcut is as shown be
 
 ### Target user profile
 
-- Tech-savy
+- Tech-savvy
 - Working adults who are inexperienced in managing their finances
 - Prefers typing
 - Can type fast
@@ -568,13 +575,17 @@ Help people who are just starting out working and troubled by financial issues s
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. rainyDay works on common operating systems (Windows, Mac OS, Linux, etc.), with Java 11 or above installed
+2. The target users should be able to execute all commands with reasonable descriptions in under 10 seconds. 
+3. Data of rainyDay can be moved and read in any other computers with rainyDay with no implications
+4. rainyDay should be responsive, with no noticeable delay for report sizes under 10,000.
+5. Commands should be straightforward, such that the name makes its function obvious to the user.
 
 ## Glossary
 
 | Term                   | Explanation                                                                                                                                                      |
 |------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Cmd                    | acronym for Command, which is the command-line interpreter of Windows Operating Systems                                                                          |
+| Cmd                    | Acronym for Command, which is the command-line interpreter of Windows Operating Systems                                                                          |
 | Command Line Interface | An interface that uses text as the mode of interaction between the user and the program                                                                          |
 | Corrupted saved data   | When data saved is not understandable by rainyDay. May occur due to editing of saved file to a condition that violates the saving format                         |
 | CSV                    | Stands for Comma Separated Value, a type of file format that can be imported to other statistical software such as Microsoft Excel, R Commander or Google Sheets |
