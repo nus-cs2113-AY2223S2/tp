@@ -4,25 +4,25 @@
   * [Introduction](#introduction)
   * [Quick Start](#quick-start)
   * [Features](#features)
-    * [Adding an entry: `add`](#adding-an-entry-add)
-    * [Listing all expenses and incomes: `list`](#listing-all-expenses-and-incomes-list)
-    * [Updating an entry: `edit`](#updating-an-entry-edit)
-    * [Setting currency to be converted: `set currency`](#setting-currency-to-be-converted-set-currency)
-    * [Unset currency to be converted: `unset currency`](#unset-currency-to-be-converted-unset-currency)
-    * [Finding an entry: `find`](#finding-an-entry-find)
-    * [Deleting an entry: `delete`](#deleting-an-entry-delete)
-    * [Clear entire income list: `clear income`](#clear-entire-income-list-clear-income)
-    * [Clear entire expense list: `clear income`](#clear-entire-expense-list-clear-income)
-    * [Clear entire both income and expense lists: `clear all`](#clear-entire-both-income-and-expense-lists-clear-all)
-    * [Set a target for balance of finances: `set target`](#set-a-target-for-balance-of-finances-set-target)
-    * [See target set: `show target`](#see-target-set-show-target)
-    * [Clear Target Set: `clear target`](#clear-target-set-clear-target)
-    * [Finding balance of finances: `balance`](#finding-balance-of-finances-balance)
-    * [View help: `help`](#view-help-help)
-    * [Exit: `exit`](#exit-exit)
+    * [Adding an entry: `add`](#adding-an-entry--add)
+    * [Listing all expenses and incomes: `list`](#listing-all-expenses-and-incomes--list)
+    * [Updating an entry: `edit`](#updating-an-entry--edit)
+    * [Setting currency to be converted: `set currency`](#setting-currency-to-be-converted--set-currency)
+    * [Unset currency to be converted: `unset currency`](#unset-currency-to-be-converted--unset-currency)
+    * [Finding an entry: `find`](#finding-an-entry--find)
+    * [Deleting an entry: `delete`](#deleting-an-entry--delete)
+    * [Clear entire income list: `clear income`](#clear-entire-income-list--clear-income)
+    * [Clear entire expense list: `clear expense`](#clear-entire-expense-list--clear-expense)
+    * [Clear entire both income and expense lists: `clear all`](#clear-entire-both-income-and-expense-lists--clear-all)
+    * [Set a target for balance of finances: `set target`](#set-a-target-for-balance-of-finances--set-target)
+    * [See target set: `show target`](#see-target-set--show-target)
+    * [Clear Target Set: `clear target`](#clear-target-set--clear-target)
+    * [Finding balance of finances: `balance`](#finding-balance-of-finances--balance)
+    * [View help: `help`](#view-help--help)
+    * [Exit: `exit`](#exit--exit)
     * [Saving and loading of data](#saving-and-loading-of-data)
     * [Other Notes](#other-notes)
-  * [Command Summary (Alphabetical Order)](#command-summary-alphabetical-order)
+  * [Command Summary (Alphabetical Order)](#command-summary--alphabetical-order-)
 <!-- TOC -->
 
 ## Introduction
@@ -44,7 +44,6 @@ java -jar tp.jar
 6. If successful, the following greetings should appear:
 <br> For first time users:
 ```
-Log Folder Created
 Unfortunately, income list file can't be found. I'll make a new one!
 Unfortunately, expense list can't be found. I'll make a new one!
     ____________________________________________________________
@@ -55,7 +54,6 @@ Unfortunately, expense list can't be found. I'll make a new one!
 <br> For current users:
 
 ```
-Log Folder Ready
     ____________________________________________________________
     Hello! I'm ChChing.
     What can I do for you?
@@ -85,7 +83,7 @@ Use case:
 - VALUE will not accept doubles with more than 2 decimal places.
 - VALUE will be recorded as SGD, regardless of the currency set.
 - Format for DATE will be DD-MM-YYYY.
-- DATE needs to be an existing date, and it cannot be a date in the future.
+- DATE needs to be a valid date, and it cannot be a date in the future.
 
 Example of usage:
 <br>`add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50`
@@ -106,9 +104,9 @@ Format:
 Edit an existing expense/income that is currently in the list.
 
 Format:
-<br> `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
-<br> `edit income /in INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`
-<br> where [ ] indicates optional fields.
+<br> `edit expense /in INDEX [c/ CATEGORY] [de/ DESCRIPTION] [da/ DATE] [v/ VALUE]`
+<br> `edit income /in INDEX [de/DESCRIPTION] [da/DATE] [v/VALUE]`
+<br> where [] indicates optional fields.
 
 Use case:
 
@@ -165,12 +163,11 @@ Find an existing expense/income that is currently in the list.
 
 Format:
 <br> `find /t TYPE [/c CATEGORY] [/de DESCRIPTION] [/da DATE]`
-<br> where [ ] indicates optional fields.
+<br> fields with [] are optional fields, but at least 1 must be not empty for search to work
 
 Use case:
 
 - Shows user the entry that they are looking for.
-- At least one of the optional fields must be provided. 
 
 Example of usage:
 <br> `find /t expense /c food /de beef `
@@ -305,7 +302,7 @@ The data file is not to be edited manually.
 | Edit Expense       | `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit expense /in 1 /de Lunch @Technoedge /v 5.20`  |
 | Edit Income        | `edit income /in INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit income /in 2 /da 12-12-2022 /v 100`                          |
 | Exit               | `exit`                                                                                                                                     |
-| Find               | `find /t TYPE [/c CATEGORY] [/k KEYWORD]`<br>e.g. `find /t expense /c food /de beef`<br>e.g. `find /t income /de salary /da 03-03-2023`    |
+| Find               | `find /c CATEGORY /k KEYWORD`<br>e.g. `find /c expense /k beef`<br>e.g. `find /c income /k salary`                                         |
 | Help               | `help`                                                                                                                                     |
 | List All Lists     | `list`                                                                                                                                     |
 | List Expense List  | `list expense`                                                                                                                             |
