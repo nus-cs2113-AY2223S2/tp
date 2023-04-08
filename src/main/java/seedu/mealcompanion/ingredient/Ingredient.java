@@ -11,10 +11,10 @@ public class Ingredient {
     public Ingredient(String name, int quantity) throws MealCompanionException {
         IngredientDatabase db = IngredientDatabase.getDbInstance();
 
-        if (!db.getKnownIngredients().containsKey(name)) {
+        if (!db.getKnownIngredients().containsKey(name.toLowerCase())) {
             throw new MealCompanionException("Ingredient with name: " + name + " does not exist");
         }
-        this.metadata = db.getKnownIngredients().get(name);
+        this.metadata = db.getKnownIngredients().get(name.toLowerCase());
         this.quantity = quantity;
     }
     @Override

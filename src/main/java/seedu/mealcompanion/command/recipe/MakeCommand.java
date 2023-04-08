@@ -28,18 +28,19 @@ public class MakeCommand extends RecipeCommand {
      */
 
     private void removeIngredient(MealCompanionSession mealCompanionSession, int quantity, String name) {
-        int indexOfExistingIngredient = mealCompanionSession.getIngredients().findIndex(name);
-        int fridgeQuantity = mealCompanionSession.getIngredients().get(indexOfExistingIngredient).getQuantity();
+        IngredientList ingredients = mealCompanionSession.getIngredients();
+        int indexOfExistingIngredient = ingredients.findIndex(name);
+        int fridgeQuantity = ingredients.get(indexOfExistingIngredient).getQuantity();
         assert fridgeQuantity >= quantity : "fridgeQuantity should be more than quantity to be removed";
         int newQuantity = fridgeQuantity - quantity;
-        mealCompanionSession.getIngredients().get(indexOfExistingIngredient).setQuantity(newQuantity);
+        ingredients.get(indexOfExistingIngredient).setQuantity(newQuantity);
         mealCompanionSession.getUi().printMessage(
                 String.format("%s has been consumed. New quantity of %s is %d", name, name, newQuantity));
         if (newQuantity == 0) {
-            mealCompanionSession.getIngredients().remove(indexOfExistingIngredient);
+            ingredients.remove(indexOfExistingIngredient);
             mealCompanionSession.getUi().printMessage(String.format("All %s has been removed", name));
         }
-        mealCompanionSession.getIngredientStorage().writeIngredientsToFile(mealCompanionSession.getIngredients());
+        mealCompanionSession.getIngredientStorage().writeIngredientsToFile(ingredients);
     }
 
     /**
@@ -77,7 +78,7 @@ public class MakeCommand extends RecipeCommand {
                     && !hasAllergen(recipe, mealCompanionSession.getAllergens())) {
                 makeRecipe(mealCompanionSession, recipe);
             } else {
-                throw new MealCompanionException("Ingredients in inventory is insufficient");
+                throw new MealCompanionException("Current ingredients is insufficient or recipe contains allergens");
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             mealCompanionSession.getUi().printMessage("Oops, please input a valid recipe number!");

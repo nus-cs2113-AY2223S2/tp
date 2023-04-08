@@ -2,6 +2,7 @@ package seedu.mealcompanion.command.ingredients;
 
 import seedu.mealcompanion.MealCompanionSession;
 import seedu.mealcompanion.command.ExecutableCommand;
+import seedu.mealcompanion.ingredient.IngredientList;
 
 //@@author TJW0911
 /**
@@ -9,8 +10,9 @@ import seedu.mealcompanion.command.ExecutableCommand;
  */
 public class ClearCommand extends ExecutableCommand {
     public void execute(MealCompanionSession mealCompanionSession) {
-        mealCompanionSession.getIngredients().clear();
+        IngredientList ingredients = mealCompanionSession.getIngredients();
+        ingredients.clear();
         mealCompanionSession.getUi().printMessage("All the ingredients in inventory has been cleared");
-        mealCompanionSession.getIngredientStorage().writeIngredientsToFile(mealCompanionSession.getIngredients());
+        mealCompanionSession.getIngredientStorage().writeIngredientsToFile(ingredients);
     }
 }

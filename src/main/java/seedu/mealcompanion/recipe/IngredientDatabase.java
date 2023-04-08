@@ -28,7 +28,7 @@ public class IngredientDatabase {
 
             for (IngredientMetadata ingredient : ingredientMetadataList) {
                 assert !knownIngredients.containsKey(ingredient.getName()): "duplicate ingredient";
-                knownIngredients.put(ingredient.getName(), ingredient);
+                knownIngredients.put(ingredient.getName().toLowerCase(), ingredient);
             }
 
         } catch (Exception e) {
@@ -56,7 +56,7 @@ public class IngredientDatabase {
     }
 
     public IngredientMetadata getKnownIngredient(String name) throws MealCompanionException {
-        if (!this.knownIngredients.containsKey(name)) {
+        if (!this.knownIngredients.containsKey(name.toLowerCase())) {
             throw new MealCompanionException("Unknown ingredient named: " + name);
         }
         return knownIngredients.get(name);
