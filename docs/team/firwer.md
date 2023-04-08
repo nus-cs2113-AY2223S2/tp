@@ -20,7 +20,7 @@ own class, `Command` and its subclasses.
 * Implemented dashboard for inventory overview
 * Standardisation of Error messages
 * Javadocs Implementation for classes and methods
-  * Implemented JUnit tests for the `Add`, `Storage` and `AddParser`
+* Implemented JUnit tests for the `Add`, `Storage` and `AddParser`
 
 Contributions to the UG:
 * Wrote the documentation for the `add`, `autosave`, `db` command.
@@ -38,6 +38,7 @@ Contributions to the DG:
 * Designed the Sequence Diagram overview of Magus Stock ![img_2.png](img_2.png)
 * Designed Sequence Diagram and UML Diagram of `Add` Command (Including its parser)
 * Wrote the explaination and steps of the `Add` Command
+* Created the class diagrams for `Parser` and `Command` components
 
 Contributions to team-based tasks:
 * Created the organisation and repository for the team
@@ -49,3 +50,4 @@ Contributions to team-based tasks:
 * Incorporated the use of Docsify to our project
 * Designed a professional looking logo for our project
 * Consistent checkstyle and code quality checks using Checkstyle, SpotBugs and SonarLint
+* Reviewed team members' PRs and provided suggestions and feedbacks

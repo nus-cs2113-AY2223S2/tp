@@ -51,7 +51,44 @@ Overall, the architecture diagram shows how the different components of the Magu
 ![Sequence Diagram](SequenceDiagram.png)
 
 ## 2. Implementation
-### 2.1. List
+
+To better understand the implementation of the application, we will be looking at the relationship between the 
+`ParserHandler`, `Parser` and `Command` classes.
+
+![Command_ParserFlowClassDiagram.png](Command_ParserFlowClassDiagram.png)
+
+1. On startup, the `MagusStock` class will create a new `ParserHandler` object on `run()` method.
+2. The `ParserHandler` object will take in user input from the terminal and delegate the parsing of the input to the 
+   corresponding `Parser` object.
+3. The respective `Parser` object will parse the input and create the corresponding `Command` object that was abstracted 
+from the `Command` class.
+
+!> In the example above, the user is executing the `add` command. The `ParserHandler` will create a new `AddParser` 
+object which will parse the user input and create a new `AddCommand` object which is responsible for
+the execution of the `add` command by performing the necessary operations
+
+### 2.1. Parser Component
+The class diagram below illustrates the abstract relationship between the different parser for each command. 
+The `ParserHandler` class is responsible for handling the user input and determining which parser to execute 
+based on the user input. Each unique parser is abstracted from the `Parser` class as shown in the diagram below.
+
+!> Attributes are omitted intentionally for clarity due to large number of it in the actual code.
+
+![ParserClassDiagram.png](ParserClassDiagram.png)
+
+### 2.2. Command Component
+
+The class diagram below illustrates the abstract relationship between the different command classes and `Command`.
+The corresponding parser from 2.1 is responsible for the creation and execution of the the respective command object
+that is abstracted from the `Command` class as shown in the diagram below.
+
+!> Attributes are omitted intentionally for clarity due to large number of it in the actual code.
+
+![CommandClassDiagram.png](CommandClassDiagram.png)
+
+---
+
+### 2.3. List
 The list command is mainly handled by the `ListCommand` class, which extends the `Command` class.
 
 ![ListCommand.png](UML%2FList%2FListCommand.png)
@@ -77,38 +114,50 @@ The list command is mainly handled by the `ListCommand` class, which extends the
 
 
 
-### 2.2. Add
-The add command is mainly handled by the `AddCommand` and `AddParser` classes, which extends the `Command` and `Parser` 
-class respectively.
-#### 2.2.1. AddParser Class
-The `AddParser` class is a parser class that extends the `Parser` abstract class. It handles the "add" command by parsing 
-the user's input into separate input parameters using regular expressions. It then creates a new `Item` object with the 
-parsed parameters and creates a new `AddCommand` object with the `Inventory` object and `Item` object as parameters.
+### 2.4. Add
+The add feature is mainly handled by `AddParser` and `AddCommand`. 
+The `AddParser` class extends the `Parser` abstract class and the `AddCommand` class extends the `Command` abstract 
+class.
 
-The `AddParser` class has a constructor that takes in a `String` object representing the raw input from the user and an 
-`Inventory` object representing the inventory. It passes these parameters to the constructor of the `Parser` abstract class.
-
-The class contains an overridden `run()` method that first checks if the raw input is null or not. If it is null, it 
-throws a `MissingParametersException`. Otherwise, it uses a regular expression matcher to match the raw input to a 
-specific pattern. If the input doesn't match the pattern, it prints an error message and returns. If the input matches 
-the pattern, it creates a new `Item` object using the parsed parameters and creates a new `AddCommand` object using the 
-`Inventory` object and `Item` object. It then calls the `run()` method of the `AddCommand` object to execute the add command.
+#### 2.4.1. AddParser Class
 ![AddParser.png](UML%2FAdd%2FAddParser.png)
 
-#### 2.2.2. AddCommand Class
-The `AddCommand` class is a command class that extends the `Command` abstract class. It represents the command to add an 
-item to the inventory. It contains a constructor that takes in an `Inventory` object and an `Item` object as parameters. 
-The constructor sets the `Inventory` object to be the inventory of the `Command` class, and the `Item` object to be the item 
-to be added to the inventory. The class also contains a private method called `addItem()` that adds the `Item` object to 
+**Step 1.** User executes the `add` command in the following format: `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] 
+c/[category]`
+
+**Step 2.** The input is handled by the `ParserHandler` class which creates a new `AddParser` and invokes its `run()` method.
+
+**Step 3.** If the rawInput is null, it throws a `MissingParametersException`. Otherwise, it uses a regular expression matcher to 
+match the rawInput to a specific pattern.
+
+**Step 4.** If the input doesn't match the pattern, it prints an error message using `Ui` and returns.
+
+**Step 5.** If the input matches the pattern, it creates a new `Item` object using the parsed parameters and creates a new
+`AddCommand` object using the `Inventory` object and `Item` object.
+
+**Step 6.** It then calls the `run()` method of the `AddCommand` object to execute the add command to 
+perform the necessary operations to add the item to the inventory.
+
+**Step 7.** Once the `AddCommand` object has finished executing, `Command` and `AddCommand` is destroyed
+and the `AddParser` object is returned to the `ParserHandler` object with itself being destroyed as well.
+
+#### 2.4.2. AddCommand Class
+![AddCommand.png](UML%2FAdd%2FAddCommand.png)
+
+The `AddCommand` class represents the command to add an item to the inventory. It takes in an `Inventory` object and 
+an `Item` object as parameters. The constructor sets the `Inventory` object to be the inventory of the `Command` class, 
+and the `Item` object to be the item to be added to the inventory. 
+
+The class also contains a private method called `addItem()` that adds the `Item` object to 
 the inventory. The `addItem()` method checks if the item already exists in the inventory using its unique UPC 
 (Universal Product Code) code. If the item already exists, it prints a message stating that the item is a duplicate. 
 Otherwise, it adds the item to the inventory, updates the item name hash, and adds the item to the UPC code history. 
-If the `SessionManager`'s `autoSave` flag is enabled, it writes the current inventory to a file using the `SessionManager`.
+If the `SessionManager`'s `autoSave` flag is enabled, it writes the current inventory to a file using the 
+`SessionManager`.
 
 The `run()` method of the `AddCommand` class calls the `addItem()` method to execute the add command.
-![AddCommand.png](UML%2FAdd%2FAddCommand.png)
 
-### 2.3. Edit
+### 2.5. Edit
 The "edit" command is mainly handled by the `EditCommand` class, which extends the `Command` class. It is parsed
 by the `EditParser` class, which extends the `Parser` class.
 
@@ -143,7 +192,7 @@ the data structures responsible for tracking of the item  and its attributes usi
 Included below is a UML Sequence Diagram for the `EditParser` and `EditCommand` respectively:
 
 
-### 2.4. Restock
+### 2.6. Restock
 The `restock` command is mainly handled by the `RestockCommand` class, which extends the `Command` class. It is parsed 
 by the `RestockParser` class, which extends the `Parser` class. Included below is a sequence diagram for the `restock`
 command:
@@ -179,7 +228,7 @@ Included below is a sequence diagram for the `RestockParser` and `RestockCommand
 ![RestockCommand.png](UML/Restock/RestockCommand.png)
 
 
-### 2.5. Sell
+### 2.7. Sell
 The "sell" command is mainly handled by the `SellCommand` class, which extends the `Command` class. It is parsed
 by the `SellParser` class, which extends the `Parser` class. 
 
@@ -214,7 +263,7 @@ Included below is a sequence diagram for the `SellParser` and the `SellCommand` 
 ![SellCommand.png](UML/Sell/SellCommand.png)
 
 
-### 2.6. Remove
+### 2.8. Remove
 
 The remove command is mainly handled by the `RemoveCommand` class, which extends the `Command` class. It is parsed by the 
 `RemoveParser` class, which extends the `Parser` class.
@@ -246,7 +295,7 @@ from the `Ui` object will be called. If user confirmation is `N`, `printNotRemov
 will halt. If user confirmation is not valid, `printInvalidReply` from the `Ui` object will be called and method will halt. 
 
 
-### 2.7. Search
+### 2.9. Search
 The search command is mainly handled by the `SearchCommand` class, which extends the `Command` class. It is parsed by 
 the `SearchParser` class, which extends the `Parser` class.
 
@@ -286,7 +335,7 @@ will inform the user that no search results were found. Otherwise, the `printSea
 prints out a table showing the name, UPC, quantity and price of all search results. Otherwise, the `printSearchUPCItems`
 method takes in an `Item item` and prints it out in a table showing the name, UPC, quantity and price of the item.
 
-### 2.8. Filter
+### 2.10. Filter
 The filter command is mainly handled by the `FilterCommand` class, which extends the `Command` class. It is parsed by
 the `FilterParser` class, which extends the `Parser` class.
 
@@ -328,7 +377,7 @@ called.
 **Step 6**. If the `printSearchItems` method is called, it takes in an `ArrayList<Item> items` as a parameter and
 prints out a table showing the name, UPC, quantity and price of all search results. 
 
-### 2.9. History
+### 2.11. History
 The history command is mainly handled by the `HistoryCommand` class, which extends the `Command` class. It is parsed by
 the `HistoryParser` class, which extends the `Parser` class.
 
@@ -364,7 +413,7 @@ print the differences, if any. If there is more than 1 item in the list provided
 the details of the last and most current instant of the item.
 
 
-### 2.10 Alert
+### 2.12 Alert
 The alert command is mainly handled by the `AddAlertCommand` class and `RemoveAlertCommand` class, both of which extend the `Command` class. It is parsed by the `AlertParser` class, which extends the `Parser` class.
 
 ![AlertParser.png](UML%2FAlert%2FAlertParser.png)
@@ -403,7 +452,7 @@ If the `SessionManager`'s `autosave` flag is enabled, it writes the current aler
 
 
 
-### 2.11 Category
+### 2.13 Category
 The category command is mainly handled by the `CategoryCommand` class, which extends the `Command` class. It is parsed by
 the `CategoryParser` class, which extends the `Parser` class.
 
