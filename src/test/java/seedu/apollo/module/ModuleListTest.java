@@ -18,6 +18,7 @@ class ModuleListTest {
         ModuleList modules = new ModuleList();
         modules.add(allModules.findModule(invalidModuleCode));
         assertNull(allModules.findModule(invalidModuleCode));
+        assertEquals(1, modules.size());
     }
 
     @Test

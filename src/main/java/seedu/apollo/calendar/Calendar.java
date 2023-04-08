@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static seedu.apollo.utils.DayTypeUtil.determineDay;
+
 /**
  * Calendar class that stores the modules user is taking in a 2D ArrayList.
  */
@@ -40,7 +42,7 @@ public class Calendar extends ArrayList<ArrayList<CalendarModule>> {
                         module.getTitle(), module.getModuleCredits());
 
                 calendarModule.setSchedule(timetable);
-                int index = calendarModule.getDayIndex();
+                int index = determineDay(calendarModule.getDay());
                 if (index == -1) {
                     throw new InvalidSaveFile();
                 }
@@ -54,6 +56,28 @@ public class Calendar extends ArrayList<ArrayList<CalendarModule>> {
         }
 
     }
+
+    /**
+     * Returns a list of lessons for the day based on the week of the semester.
+     *
+     * @param week The current week of the semester.
+     * @param day The day of the week.
+     * @return An array list of modules for the day.
+     */
+    public ArrayList<CalendarModule> getLessonsForDay(int week, int day) {
+
+        ArrayList<CalendarModule> calendarModules = this.get(day);
+        ArrayList<CalendarModule> modulesForDay = new ArrayList<>(calendarModules);
+
+        for (CalendarModule lesson : modulesForDay) {
+            if (!lesson.isCurrentWeek(week)) {
+                calendarModules.remove(lesson);
+            }
+        }
+
+        return calendarModules;
+    }
+
 
     /**
      * Creates an empty calendar

@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam maxMessageSize 150
+
+title AddCommand (for Tasks)
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":AddCommand" as add
+participant ":Event" as Event
+participant ":TaskList" as TaskList
+participant ":Calendar" as Calendar
+participant ":Ui" as Ui
+participant ":Storage" as Storage
+
+User -> Apollo : "event concert -from 05-06-2023-20:00 -to 05-06-2023-22:00"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+Parser -> add** : AddCommand()
+add++
+add -> add ++ : setUpLogger()
+add--
+return
+return
+destroy Parser
+
+Apollo -> add : execute()
+activate add
+add -> add++ : addTask()
+add -> Event** : new Event()
+Event++
+return
+add -> add++ : isClashingEvent()
+TaskList --> add
+add--
+opt Event clashes with Task
+add -> Ui : printClashingEventMessage()
+end
+add -> add++ : warnEventModuleClash()
+Calendar --> add
+opt Event clashes with Lesson
+add -> Ui : printClashingEventModuleMessage()
+end
+add--
+add -> TaskList++ : add()
+Event -> TaskList
+Event++
+destroy Event
+add--
+add <-- TaskList--
+
+
+add -> Ui++ : printAddMessage()
+TaskList -> Ui
+TaskList++
+destroy TaskList
+destroy Ui
+add -> Storage ++ : updateTask()
+return
+destroy Storage
+add --> Apollo
+destroy add
+Apollo--
+@enduml

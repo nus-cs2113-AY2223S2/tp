@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam maxMessageSize 150
+
+title ExitCommand
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":ExitCommand" as exit
+participant ":Ui" as Ui
+
+User -> Apollo : "bye"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+Parser -> exit** : ExitCommand()
+exit++
+exit -> exit ++ : setUpLogger()
+exit--
+return
+return
+destroy Parser
+
+Apollo -> exit : execute()
+activate exit
+
+exit -> Ui : printExitMessage()
+
+activate Ui
+Ui --> exit
+deactivate Ui
+destroy Ui
+
+exit -> exit : setExit()
+activate exit
+deactivate exit
+
+exit --> Apollo
+
+deactivate exit
+destroy exit
+Apollo--
+@enduml

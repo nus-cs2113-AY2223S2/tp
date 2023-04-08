@@ -35,7 +35,7 @@ class DeleteModuleCommandTest {
 
     @Test
     void testDeleteModuleCommand_validParams_expectsNoException() throws
-            FileNotFoundException, IllegalCommandException, InvalidModule {
+            IllegalCommandException, InvalidModule {
         AddModuleCommand newCommand  = new AddModuleCommand("CS2113", allModules);
         newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar);
         assertDoesNotThrow(() -> new DeleteModuleCommand("CS2113"));
@@ -43,7 +43,7 @@ class DeleteModuleCommandTest {
 
     @Test
     void testDeleteModuleCommand_invalidLessonType_expectsNoException()
-            throws IllegalCommandException, FileNotFoundException, InvalidModule {
+            throws IllegalCommandException, InvalidModule {
 
         new AddModuleCommand("CS2113 -lec 1", allModules).
                 execute(taskList, ui, storage, moduleList, allModules, calendar);
@@ -51,6 +51,26 @@ class DeleteModuleCommandTest {
         assertDoesNotThrow(() -> newCommand.execute(new TaskList(), new Ui(),
                 new Storage("test.txt", "testModuleData.txt"), new ModuleList(),
                 new ModuleList(), new Calendar()));
+    }
+
+    @Test
+    void testDeleteModuleCommand_classNotInList_expectsNoException() throws IllegalCommandException, InvalidModule {
+        new AddModuleCommand("CS2113 -tut 05", allModules).
+                execute(taskList, ui, storage, moduleList, allModules, calendar);
+        DeleteModuleCommand newCommand = new DeleteModuleCommand("CS2113 -tut 04");
+        assertDoesNotThrow(() -> newCommand.execute(new TaskList(), new Ui(),
+                new Storage("test.txt", "testModuleData.txt"), moduleList,
+                allModules, calendar));
+    }
+
+    @Test
+    void testDeleteModuleCommand_invalidModuleCode_expectsNoException() throws IllegalCommandException, InvalidModule {
+        new AddModuleCommand("CS2113 -tut 05", allModules).
+                execute(taskList, ui, storage, moduleList, allModules, calendar);
+        DeleteModuleCommand newCommand = new DeleteModuleCommand("CS2114 -tut 04");
+        assertDoesNotThrow(() -> newCommand.execute(new TaskList(), new Ui(),
+                new Storage("test.txt", "testModuleData.txt"), moduleList,
+                allModules, calendar));
     }
 
 }

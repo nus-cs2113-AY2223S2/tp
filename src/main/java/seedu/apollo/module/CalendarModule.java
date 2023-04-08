@@ -1,41 +1,59 @@
 package seedu.apollo.module;
 
+import java.util.ArrayList;
+
 public class CalendarModule extends Module {
 
     private Timetable schedule;
+
+    /**
+     * Constructor for CalendarModule.
+     *
+     * @param moduleCode The module code of the module.
+     * @param moduleName The module name of the module.
+     * @param moduleCredits The module credits of the module.
+     */
     public CalendarModule(String moduleCode, String moduleName, String moduleCredits) {
         super(moduleCode, moduleName, moduleCredits);
     }
 
+    /**
+     * Sets the schedule of the module.
+     *
+     * @param schedule The schedule of the module.
+     */
     public void setSchedule(Timetable schedule) {
         this.schedule = schedule;
     }
 
+    /**
+     * Gets the schedule of the module.
+     *
+     * @return The schedule of the module.
+     */
     public Timetable getSchedule() {
         return schedule;
     }
 
-    public int getDayIndex() {
-        String day = schedule.getDay();
-        switch (day) {
+    /**
+     * Gets the day of the module lesson.
+     *
+     * @return The day of the module lesson.
+     */
+    public String getDay() {
+        return schedule.getDay();
+    }
 
-        case "Monday":
-            return 0;
-        case "Tuesday":
-            return 1;
-        case "Wednesday":
-            return 2;
-        case "Thursday":
-            return 3;
-        case "Friday":
-            return 4;
-        case "Saturday":
-            return 5;
-        case "Sunday":
-            return 6;
-        default:
-            return -1;
-        }
+
+    /**
+     * Checks if the module is scheduled for the current week.
+     *
+     * @param week The current week.
+     * @return True if the module is scheduled for the current week.
+     */
+    public boolean isCurrentWeek(int week) {
+        ArrayList<Integer> weeks = schedule.getWeeks();
+        return weeks.contains(week);
     }
 
 }

@@ -15,26 +15,19 @@ import seedu.apollo.ui.Ui;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.module.InvalidModule;
 import seedu.apollo.task.TaskList;
-import seedu.apollo.utils.LoggerInterface;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import static seedu.apollo.utils.DayTypeUtil.determineDay;
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
 
-public class AddModuleCommand extends Command implements LoggerInterface {
-    private static Logger logger = Logger.getLogger("AddModuleCommand");
+public class AddModuleCommand extends Command {
     private Module module;
     private String[] args;
 
@@ -46,8 +39,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
      * @throws InvalidModule If the module code is invalid.
      */
     public AddModuleCommand(String param, ModuleList allModules) throws InvalidModule, IllegalCommandException {
-
-        setUpLogger();
+        super("AddModuleCommand");
         assert (param != null) : "AddModuleCommand: Params should not be null!";
         assert (allModules != null) : "AddModuleCommand: Module list should not be null!";
 
@@ -67,50 +59,6 @@ public class AddModuleCommand extends Command implements LoggerInterface {
 
         module = new Module(toAdd.getCode(), toAdd.getTitle(), toAdd.getModuleCredits());
 
-    }
-
-    /**
-     * Sets up logger for AddModuleCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-    }
-
-    /**
-     * Checks if the module is already in the module list.
-     *
-     * @param moduleList The list of modules.
-     * @param module The module to be checked.
-     * @return True if the module is already in the list of modules.
-     */
-    public boolean isAdded(ModuleList moduleList, Module module) {
-        for (Module mod: moduleList) {
-            if (mod.getCode().equals(module.getCode())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override
@@ -167,12 +115,13 @@ public class AddModuleCommand extends Command implements LoggerInterface {
 
         LessonType lessonType = this.getCommand(args[1]);
         Module searchModule = null;
-        for (Module module1: allModules){
-            if (module1.getCode().equalsIgnoreCase(this.module.getCode())){
-                searchModule = module1;
+        for (Module module: allModules){
+            if (module.getCode().equalsIgnoreCase(this.module.getCode())){
+                searchModule = module;
                 break;
             }
         }
+        assert searchModule != null : "AddModuleCommand: Module not found";
 
         if (this.isAdded(moduleList, module)) {
             int index = 0;
@@ -197,14 +146,22 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         }
     }
 
+    /**
+     * Adds the timetable to the module.
+     *
+     * @param searchModule The module to be searched.
+     * @param lessonType The lesson type to be added.
+     * @param args The arguments of the command.
+     * @throws ClassNotFoundException If the lesson type is invalid.
+     */
     private void addTimetable(Module searchModule, LessonType lessonType, String args, Ui ui, Calendar calendar)
             throws ClassNotFoundException {
-        Boolean isFound = false;
-        ArrayList<Timetable> copyList = new ArrayList<>(searchModule.getModuleTimetable());
-        for (Timetable timetable: copyList){
+        boolean isFound = false;
+        ArrayList<Timetable> listCopy = new ArrayList<>(searchModule.getModuleTimetable());
+        for (Timetable timetable: listCopy){
             LessonType searchLessonType = determineLessonType(timetable.getLessonType());
-            if (searchLessonType.equals(lessonType) && timetable.getClassnumber().equals(args)){
-
+            assert searchLessonType != null : "AddModuleCommand: Invalid lesson type";
+            if (searchLessonType.equals(lessonType) && timetable.getClassNumber().equals(args)){
                 if (module.getModuleTimetable() == null){
                     module.createNewTimeTable();
                 }
@@ -251,13 +208,15 @@ public class AddModuleCommand extends Command implements LoggerInterface {
             return;
         }
 
-        if (calendar.get(index).size() == 0) {
+        ArrayList<CalendarModule> calendarModules = calendar.get(index);
+
+        if (calendarModules.size() == 0) {
             return;
         }
 
-        for (CalendarModule lessonModule: calendar.get(index)) {
+        for (CalendarModule lessonModule: calendarModules) {
             Timetable schedule = lessonModule.getSchedule();
-            if (isClashing(schedule, timetable)) {
+            if (isLessonClashing(schedule, timetable) && isSameWeek(schedule, timetable)) {
                 ui.printClashingLesson();
                 break;
             }
@@ -271,7 +230,7 @@ public class AddModuleCommand extends Command implements LoggerInterface {
      * @param timetable The lesson to be checked against.
      * @return True if the timetable clashes with another timetable.
      */
-    private boolean isClashing(Timetable schedule, Timetable timetable) {
+    private boolean isLessonClashing(Timetable schedule, Timetable timetable) {
 
         SimpleDateFormat format = new SimpleDateFormat("HHmm");
         try {
@@ -298,5 +257,42 @@ public class AddModuleCommand extends Command implements LoggerInterface {
         return false;
     }
 
+    /**
+     * Checks if the two lessons occur in the same week.
+     *
+     * @param timetable1 The timetable to be checked.
+     * @param timetable2 The timetable to be checked against.
+     * @return True if the timetable is in the same week.
+     */
+    private boolean isSameWeek(Timetable timetable1, Timetable timetable2) {
+
+        ArrayList<Integer> week1 = timetable1.getWeeks();
+        ArrayList<Integer> week2 = timetable2.getWeeks();
+
+        for (int weeks: week1) {
+            if (week2.contains(weeks)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    //@@author irving11119
+    /**
+     * Checks if the module is already in the module list.
+     *
+     * @param moduleList The list of modules.
+     * @param module The module to be checked.
+     * @return True if the module is already in the list of modules.
+     */
+    public boolean isAdded(ModuleList moduleList, Module module) {
+        for (Module mod: moduleList) {
+            if (mod.getCode().equals(module.getCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

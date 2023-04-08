@@ -37,8 +37,8 @@ public class Event extends Task {
     public Event(String description, String fromString, String toString)
             throws DateTimeParseException, DateOrderException, DateOverException {
         super(description);
-        this.from = LocalDateTime.parse(fromString);
-        this.to = LocalDateTime.parse(toString);
+        this.from = LocalDateTime.parse(fromString,storePattern);
+        this.to = LocalDateTime.parse(toString,storePattern);
 
         if (from.isAfter(to)) {
             throw new DateOrderException();

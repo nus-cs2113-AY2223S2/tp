@@ -1,0 +1,66 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title WeekCommand
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":WeekCommand" as week
+participant ":Ui" as Ui
+participant ":SemesterUtils" as SemUtils
+participant ":DayTypeUtil" as DayTypeUtil
+participant ":Calendar" as Calendar
+participant ":TaskList" as TaskList
+
+User -> Apollo : "week"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+Parser -> week** : WeekCommand()
+week++
+return
+return
+
+Apollo -> week : execute()
+activate week
+
+
+week -> Ui : printWeek()
+activate Ui
+Ui -> SemUtils++ : getWeekNumber()
+return
+destroy SemUtils
+Ui -> Ui++ : printEachDayInWeek()
+
+loop 7 times
+    Ui -> DayTypeUtil : determineDay()
+    activate DayTypeUtil
+    return
+    destroy DayTypeUtil
+
+    Ui -> Calendar : getModulesForDay()
+    activate Calendar
+    Calendar --> Ui : lessonsOnDay
+    destroy Calendar
+    opt lessonsOnDay.size() > 0
+    Ui -> Ui++ : printLessonsOnDay()
+    deactivate Ui
+    end
+
+    Ui -> TaskList : getTasksOnDate()
+    activate TaskList
+    TaskList --> Ui : tasksOnDay
+    destroy TaskList
+    opt tasksOnDay.size() > 0
+    Ui -> Ui++ : printTasksOnDay()
+    deactivate Ui
+    end
+end
+Ui--
+destroy Ui
+week --> Apollo
+destroy week
+Apollo--
+
+@enduml

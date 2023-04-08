@@ -11,6 +11,7 @@ import seedu.apollo.exception.task.DateOrderException;
 import seedu.apollo.exception.task.InvalidDeadline;
 import seedu.apollo.exception.task.InvalidEvent;
 import seedu.apollo.exception.utils.InvalidSaveFile;
+import seedu.apollo.exception.utils.DuplicateModuleInTextFileException;
 import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.Deadline;
@@ -27,12 +28,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
@@ -62,37 +61,9 @@ public class Storage implements LoggerInterface {
      * @param filePath Location of the local save file.
      */
     public Storage(String filePath, String moduleDataFilePath) {
+        setUpLogger(logger);
         Storage.filePath = filePath;
         Storage.moduleDataFilePath = moduleDataFilePath;
-        setUpLogger();
-    }
-
-    /**
-     * Sets up logger for Storage class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-
     }
 
     /**
@@ -144,7 +115,7 @@ public class Storage implements LoggerInterface {
             newTaskList = readFileContents(save, ui);
             return newTaskList;
         } catch (FileNotFoundException e) {
-            save.createNewFile();
+            assert (save.createNewFile()) : "Save file creation failed.";
             logger.log(Level.INFO, "File not found, creating new file.");
             return newTaskList;
         }
@@ -170,15 +141,12 @@ public class Storage implements LoggerInterface {
 
     /**
      * Reads all lines in the moduleData file, initialises them as an ModuleList of Modules.
-     * @param overwrite
-     * @param module
-     * @throws IOException
      */
     private void writeModules(FileWriter overwrite, Module module) throws IOException {
         ArrayList<Timetable> timetableList = module.getModuleTimetable();
         if (timetableList != null) {
             for (Timetable timetable : timetableList) {
-                overwrite.write(timetable.getLessonType() + ":" + timetable.getClassnumber() + "|");
+                overwrite.write(timetable.getLessonType() + ":" + timetable.getClassNumber() + "|");
             }
         }
         overwrite.write("\n");
@@ -200,7 +168,7 @@ public class Storage implements LoggerInterface {
             return newModuleList;
         } catch (FileNotFoundException e) {
             logger.log(Level.INFO, "File for ModuleList not found, creating new file.");
-            save.createNewFile();
+            assert (save.createNewFile()) : "Save file creation failed.";
             return newModuleList;
         }
     }
@@ -242,8 +210,8 @@ public class Storage implements LoggerInterface {
         int counter = 0;
         while (s.hasNext()) {
             try {
-                newTaskList.add(newTask(s.nextLine()));
                 counter++;
+                newTaskList.add(newTask(s.nextLine()));
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
                 logger.log(Level.INFO, "Error in reading data from file");
@@ -272,19 +240,39 @@ public class Storage implements LoggerInterface {
                 if (newModule == null) {
                     throw new InvalidSaveFile();
                 }
+
                 Module module = new Module(newModule.getCode(), newModule.getTitle(), newModule.getModuleCredits());
+                if (isAdded(newModuleList, module)) {
+                    throw new DuplicateModuleInTextFileException();
+                }
                 addLessons(module, newModule, moduleInfoArgs);
                 calendar.addModule(module);
                 newModuleList.add(module);
                 counter++;
             } catch (InvalidSaveFile e) {
                 ui.printInvalidSaveFile(counter, filePath);
+            } catch (DuplicateModuleInTextFileException e) {
+                ui.printDuplicateModuleInTextFile(counter);
             }
         }
         return newModuleList;
     }
 
-
+    /**
+     * Checks if the module is already in the module file.
+     *
+     * @param moduleList The list of modules.
+     * @param module The module to be checked.
+     * @return True if the module is already in the module file.
+     */
+    public static boolean isAdded(ModuleList moduleList, Module module) {
+        for (Module mod: moduleList) {
+            if (mod.getCode().equals(module.getCode())) {
+                return true;
+            }
+        }
+        return false;
+    }
     private static void addLessons(Module module, Module searchModule, String[] moduleInfo) {
         module.createNewTimeTable();
 
@@ -293,7 +281,7 @@ public class Storage implements LoggerInterface {
 
             for (Timetable timetable: searchModule.getModuleTimetable()) {
                 if (timetable.getLessonType().equals(lessonInfo[0])
-                        && timetable.getClassnumber().equals(lessonInfo[1])) {
+                        && timetable.getClassNumber().equals(lessonInfo[1])) {
 
                     if (!module.getModuleTimetable().contains(timetable)) {
                         module.getModuleTimetable().add(timetable);
@@ -314,9 +302,16 @@ public class Storage implements LoggerInterface {
      * @throws InvalidSaveFile If any line in the input data is not of the right format.
      */
     private static Task newTask(String text) throws InvalidSaveFile, DateOverException {
-        char type = getType(text);
-        Boolean isDone = isStatusDone(text);
-        String param = getParam(text);
+        char type;
+        Boolean isDone;
+        String param;
+        try {
+            type = getType(text);
+            isDone = isStatusDone(text);
+            param = getParam(text);
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new InvalidSaveFile();
+        }
         switch (type) {
         case TXT_TODO_WORD:
             return newToDo(isDone, param);
@@ -329,12 +324,23 @@ public class Storage implements LoggerInterface {
         }
     }
 
-    private static char getType(String text) {
-        return text.charAt(TYPE_POS);
+    private static char getType(String text) throws InvalidSaveFile {
+        char type = text.charAt(TYPE_POS);
+        if (type != TXT_TODO_WORD & type != TXT_DEADLINE_WORD & type != TXT_EVENT_WORD) {
+            throw new InvalidSaveFile();
+        }
+        return type;
     }
 
-    private static Boolean isStatusDone(String text) {
-        return text.charAt(STATUS_POS) == 'X';
+    private static Boolean isStatusDone(String text) throws InvalidSaveFile {
+        char status = text.charAt(STATUS_POS);
+        if (status == 'X') {
+            return true;
+        } else if (status == ' ') {
+            return false;
+        } else {
+            throw new InvalidSaveFile();
+        }
     }
 
     private static String getParam(String text) {
@@ -354,9 +360,13 @@ public class Storage implements LoggerInterface {
         } catch (InvalidDeadline e) {
             throw new InvalidSaveFile();
         }
-        Deadline newDeadline = new Deadline(paramAndBy[0], paramAndBy[1]);
-        newDeadline.setDone(isDone);
-        return newDeadline;
+        try {
+            Deadline newDeadline = new Deadline(paramAndBy[0], paramAndBy[1]);
+            newDeadline.setDone(isDone);
+            return newDeadline;
+        } catch (DateTimeParseException e) {
+            throw new InvalidSaveFile();
+        }
     }
 
     private static Event newEvent(Boolean isDone, String param) throws InvalidSaveFile, DateOverException {
@@ -370,7 +380,7 @@ public class Storage implements LoggerInterface {
             Event newEvent = new Event(paramAndFromTo[0], paramAndFromTo[1], paramAndFromTo[2]);
             newEvent.setDone(isDone);
             return newEvent;
-        } catch (DateOrderException e) {
+        } catch (DateTimeParseException | DateOrderException e) {
             throw new InvalidSaveFile();
         }
     }

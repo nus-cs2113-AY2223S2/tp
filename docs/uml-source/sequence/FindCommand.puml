@@ -1,0 +1,70 @@
+@startuml
+skinparam maxMessageSize 150
+title FindCommand (Find tasks)
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":FindCommand" as Find
+participant ":TaskList" as TaskList
+participant ":Task" as Task
+participant ":Ui" as Ui
+participant ":String" as String
+
+User -> Apollo : "find book"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+Parser -> Find** : FindCommand()
+activate Find
+Find -> Find : setUpLogger()
+activate Find
+deactivate Find
+
+
+Find --> Parser : FindCommand()
+deactivate Find
+
+
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+
+Apollo -> Find : execute()
+activate Find
+Find --> TaskList : findTasks("book")
+activate TaskList
+TaskList -> String : toLowerCase()
+activate String
+String --> TaskList : "book"
+deactivate String
+destroy String
+TaskList -> Task : getdescription()
+activate Task
+Task --> TaskList
+deactivate Task
+destroy Task
+TaskList --> Find: filteredTasks
+deactivate TaskList
+Find -> Ui : printFoundList()
+activate Ui
+Ui --> Find
+deactivate Ui
+destroy Ui
+Find --> Apollo
+deactivate Find
+destroy Find
+deactivate Apollo
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml

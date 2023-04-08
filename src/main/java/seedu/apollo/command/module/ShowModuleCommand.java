@@ -11,23 +11,14 @@ import seedu.apollo.module.Timetable;
 import seedu.apollo.storage.Storage;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
-import seedu.apollo.utils.LoggerInterface;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
-public class ShowModuleCommand extends Command implements LoggerInterface {
-    private static Logger logger = Logger.getLogger("ShowModuleCommand");
+public class ShowModuleCommand extends Command {
     private String[] args;
     private Module module;
 
@@ -40,8 +31,7 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
      */
 
     public ShowModuleCommand(String params, ModuleList allModules) throws InvalidModule, IllegalCommandException {
-
-        setUpLogger();
+        super("ShowModuleCommand");
         assert (params != null) : "ShowModuleCommand: ModuleCode should not be null!";
         assert (allModules != null) : "ShowModuleCommand: Module list should not be null!";
 
@@ -61,47 +51,15 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
 
     }
 
-    /**
-     * Sets up logger for ShowModuleCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-
-    }
-
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar)  {
-
         assert (module != null) : "ShowModuleCommand: Module should not be null!";
         try {
             if (args.length == 2) {
                 handleMultiCommand(ui);
             } else {
-                Module referenceModule = allModules.findModule(module.getCode());
-                ArrayList<Timetable> copyList = new ArrayList<>(referenceModule.getModuleTimetable());
-                ArrayList<Timetable> parseList = sortTimetable(copyList);
-                ui.printShowModuleMessage(module, getLessonTypes(referenceModule), parseList);
+                handleSingleCommand(ui, allModules);
             }
         } catch (IllegalCommandException e) {
             ui.printInvalidCommand();
@@ -110,12 +68,24 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
     }
 
     /**
+     * Handles the command when user wants to see a module information.
+     *
+     * @param ui The Ui object to print the Timetable.
+     */
+    private void handleSingleCommand(Ui ui, ModuleList allModules) {
+        Module referenceModule = allModules.findModule(module.getCode());
+        ArrayList<Timetable> copyList = new ArrayList<>(referenceModule.getModuleTimetable());
+        ArrayList<Timetable> parseList = sortTimetable(copyList);
+        ui.printShowModuleMessage(module, getLessonTypes(referenceModule), parseList);
+    }
+
+    /**
      * Returns the available lesson type of the module.
      *
      * @param module The module being checked.
      * @return The lesson types available for this module.
      */
-    public ArrayList<LessonType> getLessonTypes(Module module) {
+    private ArrayList<LessonType> getLessonTypes(Module module) {
         ArrayList<LessonType> lessonTypes = new ArrayList<>();
         for (Timetable timetable : module.getModuleTimetable()) {
             LessonType lessonType = determineLessonType(timetable.getLessonType());
@@ -143,6 +113,36 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
         if (timetableList == null) {
             throw new IllegalCommandException();
         }
+        copyLessonTypeIntoTimetable(lessonType, copyList, timetableList);
+        printModuleInformationWithLesson(ui, lessonType, copyList);
+
+    }
+
+    /**
+     * Calls the Ui to print the specific module information.
+     *
+     * @param ui The Ui object to print the module information.
+     * @param lessonType Specific lesson type information to print.
+     * @param copyList The module information to print.
+     */
+    private void printModuleInformationWithLesson(Ui ui, LessonType lessonType, ArrayList<Timetable> copyList) {
+        if (copyList.size() == 0) {
+            ui.printNoLessonType();
+        } else {
+            sortTimetable(copyList);
+            ui.printModuleLessonTimetable(module, lessonType, copyList);
+        }
+    }
+
+    /**
+     * Add a copy of the specific lesson type information into the timetable.
+     *
+     * @param lessonType Specific lesson type to add.
+     * @param copyList The ArrayList of module information with lesson types.
+     * @param timetableList The ArrayList of the module timetable.
+     */
+    private static void copyLessonTypeIntoTimetable(LessonType lessonType, ArrayList<Timetable> copyList,
+                                                    ArrayList<Timetable> timetableList) {
         for (Timetable timetable : timetableList) {
             LessonType checkType = determineLessonType(timetable.getLessonType());
             assert (checkType != null) : "ShowModuleCommand: Lesson type should not be null!";
@@ -151,13 +151,6 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
                 copyList.add(timetable);
             }
         }
-
-        if (copyList.size() == 0) {
-            ui.printNoLessonType();
-        }
-        sortTimetable(copyList);
-        ui.printModuleLessonTimetable(module, lessonType, copyList);
-
     }
 
     /**
@@ -168,7 +161,7 @@ public class ShowModuleCommand extends Command implements LoggerInterface {
      */
     private ArrayList<Timetable> sortTimetable(ArrayList<Timetable> copyList) {
         Comparator<Timetable> compareByLessonType = Comparator.comparing(Timetable::getLessonType);
-        Comparator<Timetable> compareByClassNumber = Comparator.comparing(Timetable::getClassnumber);
+        Comparator<Timetable> compareByClassNumber = Comparator.comparing(Timetable::getClassNumber);
         Comparator<Timetable> compareAll = compareByLessonType.thenComparing(compareByClassNumber);
         ArrayList<Timetable> parseList =
                 copyList.stream().sorted(compareAll).collect(Collectors.toCollection(ArrayList::new));
