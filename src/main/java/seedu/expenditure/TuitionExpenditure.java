@@ -37,19 +37,21 @@ public class TuitionExpenditure extends Expenditure {
     }
 
     public void checkMark() {
-        LocalDate currentDate = LocalDate.now();
         checkNextRepeatDate();
-        handleNextRepeat(currentDate);
+        handleNextRepeat();
     }
 
     public void checkNextRepeatDate() {
         LocalDate firstDate = getDate();
-        if (firstDate.equals(repeatDate)) {
+        LocalDate currentDate = LocalDate.now();
+        while (repeatDate.isBefore(currentDate) || repeatDate.equals(firstDate)) {
             repeatDate = setNextRepeatDate();
         }
+        System.out.println(repeatDate);
     }
 
-    public void handleNextRepeat(LocalDate currentDate) {
+    public void handleNextRepeat() {
+        LocalDate currentDate = LocalDate.now();
         if (currentDate.equals(repeatDate) || currentDate.isAfter(repeatDate)) {
             isPaid = false;
             repeatDate = setNextRepeatDate();

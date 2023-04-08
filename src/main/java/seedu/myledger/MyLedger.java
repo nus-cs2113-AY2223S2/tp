@@ -56,6 +56,7 @@ public class MyLedger {
     public static void initializeList() {
         try {
             TxtFileStatus.initializeExpenditureList(expenditures);
+            ExpenditureList.queryLumpSumDates();
         } catch (FileNotFoundException e) {
             System.out.println("Error finding save file during initialization");
         } catch (DateTimeParseException s) {
