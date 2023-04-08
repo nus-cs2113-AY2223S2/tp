@@ -12,6 +12,7 @@ various features for note-taking.
 
 ### Enhancements implemented
 
+- Created the Ui class to print outputs to the user
 - Added a feature that analyses basic trigonometry signals
 - Enhance the stated feature by visualising it using JFrame
 - Make the code more OOP and bug free

@@ -69,7 +69,7 @@ to the user.
 <summary>Sequence Diagram for solving Quadratic Equations</summary>
 <div markdown="1">
 
-![img_3.png](img_3.png)
+![img_3.png](SequenceDiagrams/img_3.png)
 
 </div>
 </details>
@@ -348,7 +348,7 @@ of the notes stored in the Notes List by users.
 <summary>Sequence Diagram for Notes</summary>
 <div markdown="1">
 
-![img_2.png](img_2.png)
+![img_2.png](SequenceDiagrams/img_2.png)
 
 </div>
 </details>
@@ -402,12 +402,19 @@ then executes `trigoGraph.startGraphAnalysis()`based on `command` using switch-c
 <summary>Sequence Diagram for TrigoGraph class</summary>
 <div markdown="1">
 
-![img_1.png](img_1.png)
+![img_8.png](SequenceDiagrams/Graph_Sequence.png)
+</div>
+</details>
+
+<details>
+<summary>Class Diagram for TrigoGraph class</summary>
+<div markdown="1">
+
+![img_1.png](ClassDiagrams/graph_class_diagram.png)
 
 </div>
 </details>
 
-**"--->", empty headed arrow represents constructor call**
 
 Step 2. Constructor for the TrigoGraph class takes in `2*sin(2*x+5)-1` and assigns it to `trigoEqn` of type String. When `startGraphAnalysis()`
 is called from the command class, a new instance of `TrigoGraphAnalyser` called `analyser` is created in TrigoGraph, which accepts `trigoEqn`
@@ -494,7 +501,7 @@ If you want to see the overall flow of the Matrix part, click the toggle button 
 <summary>See the Sequence Diagram</summary>
 <div markdown="1">
 
-![img.png](MatrixDG.png)
+![img.png](SequenceDiagrams/MatrixDG.png)
 
 </div>
 </details>
