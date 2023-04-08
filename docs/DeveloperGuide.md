@@ -12,7 +12,7 @@
     * [[Added] Add Pet Stat Feature](#added-add-pet-stat-feature)
       * [Implementation](#implementation)
     * [Remove Pet Stat Command](#remove-pet-stat-command)
-* [Appendix: Requirements](#appendix--requirements)
+* [Appendix: Requirements](#appendix-requirements)
   * [Product scope](#product-scope)
     * [Target user profile](#target-user-profile)
     * [Value proposition](#value-proposition)
@@ -70,7 +70,7 @@ displaying of the relevant information including error messages for the program.
 The `Main` class will call `getUserInput()` to read in user input. Commands may then
 call the methods to print relevant outputs.
 
-<p align="center">
+<p style="text-align:center">
     <img src="images/UiClassDiagram.png">
     <br />
     <i>Figure 2: Class Diagram for Ui</i>
@@ -110,7 +110,7 @@ the command via `ui.getUserInput()` and parses it through `commandParser.parseCo
 
 11. The program will now exit.
 
-<p align="center">
+<p style="text-align:center">
     <img src="images/ExitCommandSequenceDiagram.png">
     <br />
     <i>Figure 3: Sequence Diagram for Bye Command</i>
@@ -138,7 +138,7 @@ This is how the ListPetCommand works:
 
 7. The program is now ready to receive another command.
 
-<p align="center">
+<p style="text-align:center">
     <img src="images/ListPetCommand.png">
     <br />
     <i>Figure 4: Sequence Diagram for List Pet Command</i>
@@ -157,7 +157,7 @@ The add pet stat mechanism is facilitated by the `Pet` class. It is stored inter
 
 These operations are exposed in the `PetList` class as `PetList#addStat()` and `AddStatCommand` class as `AddStatCommand#execute()`.
 
-<p align="center">
+<p style="text-align:center">
     <img src="images/AddPetStatFeatureClassDiagram.png">
     <br />
     <i>Figure 5: Class Diagram for Add Pet Stat Feature</i>
@@ -167,7 +167,7 @@ Given below is an example usage scenario and how the add pet stat mechanism beha
 
 Step 1. After the user launches the application and added a pet named "Bob", a `Pet` object will be initialised and saved in the `petList`.
 
-<p align="center">
+<p style="text-align:center">
     <img src="images/AddPetStatFeatureObjectDiagram (1).png">
     <br />
     <i>Figure 6: Object Diagram for Add Pet Stat Feature After Step 1</i>
@@ -175,7 +175,7 @@ Step 1. After the user launches the application and added a pet named "Bob", a `
 
 Step 2. The user executes `add-stat Bob weight 5` command to add a weight stat of 5kg in the `Pet` object. The `add-stat` command calls `AddStatCommand#execute()` then `PetList#addStat()`, causing the `Pet` object's `weight` variable to be modified and saved.
 
-<p align="center">
+<p style="text-align:center">
     <img src="images/AddPetStatFeatureObjectDiagram (2).png">
     <br />
     <i>Figure 7: Object Diagram for Add Pet Stat Feature After Step 2</i>
@@ -205,7 +205,7 @@ It works like this:
 
 This feature was implemented like this in order to maximize use of the OOP paradigm. 
 
-<p align="center">
+<p style="text-align:center">
     <img src="images/RemoveStatCommand.png">
     <br />
     <i>Figure 8: Sequence Diagram for Remove Pet Stat Command</i>
