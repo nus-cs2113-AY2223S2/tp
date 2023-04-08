@@ -2,7 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.CommandType;
-import seedu.duke.command.EditType;
+import seedu.duke.command.OperationType;
 import seedu.duke.exceptions.EditFormatException;
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.MissingIngredientInputException;
@@ -100,7 +100,6 @@ public class Parser {
         return new Command(type, fullDescription);
     }
 
-
     private static boolean matchString(String input, String regex) {
         String matcher = input;
         int count = 0;
@@ -110,6 +109,16 @@ public class Parser {
         }
         boolean isMatch = (count == 1);
         return isMatch;
+    }
+
+    public static int matchCount(String input, String regex) {
+        String matcher = input;
+        int count = 0;
+        while (matcher.contains(regex)){
+            matcher=matcher.substring(matcher.indexOf(regex)+1);
+            ++count;
+        }
+        return count;
     }
     /**
      * Returns an Array of Strings containing the parsed full description
@@ -198,13 +207,13 @@ public class Parser {
         return new StepList(parsedStepList);
     }
 
-    public static EditType parseEditType(String description) throws IncompleteInputException {
+    public static OperationType parseEditType(String description) throws IncompleteInputException {
         boolean isIngredient = description.startsWith("--i ");
         boolean isStep = description.startsWith("--s ");
         if (isIngredient) {
-            return EditType.INGREDIENT;
+            return OperationType.INGREDIENT;
         } else if (isStep) {
-            return EditType.STEP;
+            return OperationType.STEP;
         } else {
             if(description.equals("--s")){
                 throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
@@ -216,9 +225,10 @@ public class Parser {
         }
     }
 
-    public static Object[] parseEditRecipeIndex(String description, EditType type) throws IncompleteInputException {
+    public static Object[] parseEditRecipeIndex(String description, OperationType type)
+            throws IncompleteInputException {
         String[] parsedDescription = description.split(" ",2);
-        String errorLog = type.equals(EditType.INGREDIENT) ?
+        String errorLog = type.equals(OperationType.INGREDIENT) ?
                 StringLib.EDIT_INGREDIENT_ERROR : StringLib.EDIT_STEP_ERROR;
         if (parsedDescription.length < 2) {
             throw new IncompleteInputException(errorLog);
@@ -289,68 +299,58 @@ public class Parser {
             throw new Exception("error in edit step:\n" + e.getMessage());
         }
     }
-    public static String[] parseAddToRecipeDescription(String description) {
+
+    public static OperationType parseAddToRecipeIndex(String description) throws IncompleteInputException {
+        boolean isIngredient = description.startsWith("--i ");
+        boolean isStep = description.startsWith("--s ");
+        if (isIngredient) {
+            return OperationType.INGREDIENT;
+        } else if (isStep) {
+            return OperationType.STEP;
+        } else {
+            throw new IncompleteInputException(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION);
+        }
+    }
+
+    public static String[] parseAddToRecipeDescription(String description) throws IncompleteInputException{
+        OperationType parsedDescription = parseAddToRecipeIndex(description);
         String[] out = new String[3];
-        String[] subDescriptions = description.split("/", 3);
-        for (int i = 0; i < subDescriptions.length; i++) {
-            if (subDescriptions[i].toLowerCase().contains("--i")) {
-                out[0] = "i";
-            }
-            if (subDescriptions[i].toLowerCase().contains("--s")) {
-                out[0] = "s";
-            }
-            if (subDescriptions[i].toLowerCase().contains("id")) {
-                out[1] = subDescriptions[i+1];
-            }
-            if (subDescriptions[i].toLowerCase().contains("desc")) {
-                out[2] = subDescriptions[i+1];
-            }
+        out[0] = parsedDescription.equals(OperationType.INGREDIENT) ? "i" : "s";
+        String subDescription = description.substring(4).trim();
+        if (!subDescription.startsWith("id/")) {
+            throw new IncompleteInputException(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION);
         }
-        out[1] = out[1]
-                .toLowerCase()
-                .replaceAll("desc","")
-                .replaceAll("--s","")
-                .replaceAll("--i","")
-                .trim();
-        out[2] = out[2]
-                .replaceAll("id","")
-                .replaceAll("iD","")
-                .replaceAll("Id","")
-                .replaceAll("ID","")
-                .replaceAll("--s","")
-                .replaceAll("--i","")
-                .trim();
+        String[] subDescriptions = subDescription.substring(3).split("desc/",2);
+        if (subDescriptions.length < 2) {
+            throw new IncompleteInputException(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION);
+        }
+        out[1] = subDescriptions[0].trim();
+        out[2] = subDescriptions[1].trim();
         return out;
     }
-    public static String[] parseDeleteFromRecipeDescription(String description) {
-        String[] subDescriptions = description.split("/", 2);
+    public static OperationType parseDeleteFromRecipeIndex(String description) throws IncompleteInputException {
+        boolean isIngredient = description.startsWith("--i ");
+        boolean isStep = description.startsWith("--s ");
+        if (isIngredient) {
+            return OperationType.INGREDIENT;
+        } else if (isStep) {
+            return OperationType.STEP;
+        } else {
+            throw new IncompleteInputException(StringLib.INVALID_DELETE_FROM_RECIPE_DESCRIPTION);
+        }
+    }
+    public static String[] parseDeleteFromRecipeDescription(String description) throws IncompleteInputException{
+        OperationType parsedDescription = parseDeleteFromRecipeIndex(description);
         String[] out = new String[2];
-        for (int i = 0; i < subDescriptions.length; i++) {
-            if (subDescriptions[i].toLowerCase().contains("--i")) {
-                out[0] = "i";
-            }
-            if (subDescriptions[i].toLowerCase().contains("--s")) {
-                out[0] = "s";
-            }
-            if (subDescriptions[i].toLowerCase().contains("id")) {
-                out[1] = subDescriptions[i+1];
-            }
+        out[0] = parsedDescription.equals(OperationType.INGREDIENT) ? "i" : "s";
+        String subDescription = description.substring(4).trim();
+        if (!subDescription.startsWith("id/")) {
+            throw new IncompleteInputException(StringLib.INVALID_DELETE_FROM_RECIPE_DESCRIPTION);
         }
-        out[1] = out[1]
-                .toLowerCase()
-                .replaceAll("--s","")
-                .replaceAll("--i","")
-                .trim();
+        out[1] = subDescription.substring(3).trim();
         return out;
     }
-    public static int matchCount(String mainString, String check) {
-        int count = 0;
-        while (mainString.contains(check)) {
-            count++;
-            mainString = mainString.replace(check, "");
-        }
-        return count;
-    }
+
     public static boolean isValidAddToRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
         if ((descLowerCase.contains("--s") && descLowerCase.contains("--i"))){
@@ -371,11 +371,7 @@ public class Parser {
         if (matchCount(descLowerCase, "--s") > 1) {
             return false;
         }
-        if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
-            return false;
-        } else {
-            return true;
-        }
+        return true;
     }
     public static boolean isValidDeleteFromRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
@@ -394,12 +390,7 @@ public class Parser {
         if (matchCount(descLowerCase, "--s") > 1) {
             return false;
         }
-        if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
-            return false;
-        }
-        else {
-            return true;
-        }
+        return true;
     }
     public static boolean isDuplicateIngredient(IngredientList ingredientList, String newIngredient) {
         for (Ingredient ingredient : ingredientList.getList()) {
