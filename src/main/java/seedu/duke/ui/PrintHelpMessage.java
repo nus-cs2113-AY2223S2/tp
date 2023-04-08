@@ -77,6 +77,7 @@ public class PrintHelpMessage {
         System.out.println("\tExit workout plan editor");
     }
 
+    //@@author L-K-Chng
     public static void showAvailableExerciseSessionCommands () {
         System.out.println("These are some commands available: ");
         System.out.println("[current]");

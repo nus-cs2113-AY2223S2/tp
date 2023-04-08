@@ -375,6 +375,8 @@ public class TestUi {
         System.setOut(new PrintStream(actualOutput));
 
         HashMap<String, Integer> userExerciseDataMap = new HashMap<>();
+        int overallCount = 1;
+        int uniqueCount = 1;
 
         String exerciseDescription = "Exercise Name: 3/4 Sit-Up" + System.lineSeparator() +
             "Difficulty Level: beginner" + System.lineSeparator() + "Workout type: core" +
@@ -390,7 +392,7 @@ public class TestUi {
         userExerciseDataMap.put(exerciseDescription, 1);
 
         Ui ui = new Ui();
-        ui.printUserExerciseHistory(userExerciseDataMap);
+        ui.printUserExerciseHistory(userExerciseDataMap,overallCount,uniqueCount);
         String os = System.getProperty("os.name");
         String expectedOutput = "";
 
@@ -409,7 +411,9 @@ public class TestUi {
                 "the ground. Reverse the motion, going only Â¾ of the way down., " +
                 "Repeat for the recommended amount of repetitions.\r\n" +
                 "Times Completed: 1\r\n" +
-                "\r\n";
+                "\r\n" +
+                "You have completed a total of 1 non-unique exercise(s), " +
+                    "of which 1 of them are unique! Keep it up!:)\r\n";
         } else {
             expectedOutput = "Here is a list of all the exercises you have completed:\n" +
                 "\n" +
@@ -425,7 +429,9 @@ public class TestUi {
                 "the ground. Reverse the motion, going only Â¾ of the way down., " +
                 "Repeat for the recommended amount of repetitions.\n" +
                 "Times Completed: 1\n" +
-                "\n";
+                "\n" +
+                "You have completed a total of 1 non-unique exercise(s), " +
+                    "of which 1 of them are unique! Keep it up!:)\n";
         }
         assertEquals(expectedOutput, actualOutput.toString());
     }

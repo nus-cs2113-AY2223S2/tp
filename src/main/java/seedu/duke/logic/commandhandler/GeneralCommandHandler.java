@@ -159,9 +159,11 @@ public class GeneralCommandHandler implements CommandList {
                     ui.unknownCommand();
                     errorExists = true;
                 } else {
-                    HashMap<String, Integer> userExerciseDataMap = UserExerciseData
-                            .addUserExerciseHistory(userCareerData);
-                    ui.printUserExerciseHistory(userExerciseDataMap);
+                    HashMap<String, Integer> userExerciseDataMap = UserExerciseData.
+                            addUserExerciseHistory(userCareerData);
+                    int overallCount = UserExerciseData.totalExerciseSessionSize(userCareerData);
+                    int uniqueCount = UserExerciseData.totalUniqueSessionSize(userExerciseDataMap);
+                    ui.printUserExerciseHistory(userExerciseDataMap, overallCount, uniqueCount);
                 }
                 break;
             case ACHIEVEMENTS:

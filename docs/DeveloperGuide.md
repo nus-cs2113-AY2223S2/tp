@@ -28,7 +28,15 @@ Figure 1.1
 </p>
 </div>
 
-The architecture diagram as shown in Figure 1.1 shows us the high level design of Fitness Duke.
+The architecture diagram as shown in Figure 1.1 shows us the high level design of Fitness Duke. 
+
+The program will first call upon the Storage class. As the storage class extends the UserCareerStorage and 
+UserPlansStorage interfaces, it will point towards both UserCareerStorage and UserPlansStorage. In addition, the program
+calls upon the AchievementsListHandler class. The respective storages then make use of the User Career Hard Drive, 
+User Plans Hard Drive as well as Achievements Hard Drive to populate its internal memory. When the user then interacts
+ with the program's UI, the program logic will take over and update new information into the respective storages. The storages
+then update the hard drives accordingly. The process will continue until the user makes no further inputs and exits the program.
+
 
 **Main Components**
 
