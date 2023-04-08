@@ -26,8 +26,8 @@ public class ParameterStringBuilder {
         logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
-            new File("data/LogFiles/ParameterStringBuilderLog.log").createNewFile();
-            FileHandler fileHandler = new FileHandler("data/LogFiles/ParameterStringBuilderLog.log");
+            new File("data/ParameterStringBuilderLog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/ParameterStringBuilderLog.log");
             fileHandler.setLevel(Level.FINE);
             logger.addHandler(fileHandler);
         } catch (IOException e) {

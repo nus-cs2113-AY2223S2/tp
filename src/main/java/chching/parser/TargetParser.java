@@ -26,8 +26,8 @@ public class TargetParser {
         logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
-            new File("data/LogFiles/TargetParserLog.log").createNewFile();
-            FileHandler fileHandler = new FileHandler("data/LogFiles/TargetParserLog.log");
+            new File("data/TargetParserLog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/TargetParserLog.log");
             fileHandler.setLevel(Level.FINE);
             logger.addHandler(fileHandler);
         } catch (IOException e) {

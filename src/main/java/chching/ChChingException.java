@@ -24,8 +24,8 @@ public class ChChingException extends Exception {
         logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
-            new File("data/LogFiles/ExceptionLog.log").createNewFile();
-            FileHandler fileHandler = new FileHandler("data/LogFiles/ExceptionLog.log");
+            new File("data/ExceptionLog.log").createNewFile();
+            FileHandler fileHandler = new FileHandler("data/ExceptionLog.log");
             fileHandler.setLevel(Level.FINE);
             logger.addHandler(fileHandler);
         } catch (IOException e) {

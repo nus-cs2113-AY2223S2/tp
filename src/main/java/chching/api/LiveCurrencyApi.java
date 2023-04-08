@@ -31,7 +31,7 @@ public class LiveCurrencyApi {
         logger.setLevel(Level.ALL);
         try {
             new File("data/LiveCurrencyAPILog.log").createNewFile();
-            FileHandler fileHandler = new FileHandler("data/LogFiles/LiveCurrencyAPILog.log");
+            FileHandler fileHandler = new FileHandler("data/LiveCurrencyAPILog.log");
             fileHandler.setLevel(Level.FINE);
             logger.addHandler(fileHandler);
         } catch (IOException e) {
