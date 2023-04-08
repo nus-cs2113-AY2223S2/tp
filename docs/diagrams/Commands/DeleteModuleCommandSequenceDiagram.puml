@@ -12,6 +12,12 @@ activate "indexToDelete: Int"
 "<<class>>\nstorage:Storage" <-- "indexToDelete: Int"
 deactivate "indexToDelete: Int"
 
+create "counterUpToIndexToDelete: Int"
+"<<class>>\nstorage:Storage" -> "counterUpToIndexToDelete: Int": Initialize counterUpToIndexToDelete
+activate "counterUpToIndexToDelete: Int"
+"<<class>>\nstorage:Storage" <-- "counterUpToIndexToDelete: Int"
+deactivate "counterUpToIndexToDelete: Int"
+
 alt indexToRemove == -1
 "<<class>>\nstorage:Storage" --> ":DeleteModuleCommand" : return false
 else else
@@ -47,6 +53,11 @@ else else
     "<<class>>\nstorage:Storage" <-- "modules: ArrayList<Module>" : remove(indexToDelete)
     deactivate "modules: ArrayList<Module>"
      "<<class>>\nstorage:Storage" -> "<<class>>\nstorage:Storage": sortModulesAccordingToPrintingLength(modules)
+    activate "<<class>>\nstorage:Storage"
+        "<<class>>\nstorage:Storage" --> "<<class>>\nstorage:Storage"
+        deactivate "<<class>>\nstorage:Storage"
+
+     "<<class>>\nstorage:Storage" -> "<<class>>\nstorage:Storage": writeModListToFile(modules)
     activate "<<class>>\nstorage:Storage"
         "<<class>>\nstorage:Storage" --> "<<class>>\nstorage:Storage"
         deactivate "<<class>>\nstorage:Storage"

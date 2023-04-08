@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+activate ":DeleteDeadlineCommand"
+
+":DeleteDeadlineCommand" -> "<<class>>\ndeadlineStorage:DeadlineStorage" : deleteDeadline(indexToRemove, deadlines, deadlineStorage)
+activate "<<class>>\ndeadlineStorage:DeadlineStorage"
+
+"<<class>>\ndeadlineStorage:DeadlineStorage" -> "deadlines: ArrayList<Deadline>" : remove(indexToDelete)
+activate "deadlines: ArrayList<Deadline>"
+"<<class>>\ndeadlineStorage:DeadlineStorage" <-- "deadlines: ArrayList<Deadline>" : remove(indexToDelete)
+deactivate "deadlines: ArrayList<Deadline>"
+
+ "<<class>>\ndeadlineStorage:DeadlineStorage" -> "<<class>>\ndeadlineStorage:DeadlineStorage": writeDeadlinesToFile(deadlines)
+activate "<<class>>\ndeadlineStorage:DeadlineStorage"
+    "<<class>>\ndeadlineStorage:DeadlineStorage" --> "<<class>>\ndeadlineStorage:DeadlineStorage"
+    deactivate "<<class>>\ndeadlineStorage:DeadlineStorage"
+
+"<<class>>\ndeadlineStorage:DeadlineStorage" --> ":DeleteDeadlineCommand" : return true
+
+":DeleteDeadlineCommand" -> "<<class>>\nui:UI" : printDeleteDeadlineMessage()
+activate "<<class>>\nui:UI"
+
+"<<class>>\nui:UI" -> UserConsole : Print Delete Deadline Message
+"<<class>>\nui:UI" <-- UserConsole
+@enduml
+
+
