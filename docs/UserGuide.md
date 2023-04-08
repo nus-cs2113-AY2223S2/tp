@@ -212,6 +212,7 @@ Format: `/view [count] [filter_options]`
 
 Note:
 
+
 - If `max_price` and `min_price` are both specified, all expenses between and **inclusive** of `min_price` and
   `max_price` will
   be listed.
