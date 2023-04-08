@@ -16,7 +16,7 @@ It is written in Java, and has about 5kLoC.
 - Added the ability to show class information for a module
 - Added the ability to list the module list from timetable
 - Added the ability to list specific module and classes from module list
-- JUnit tests for ListModuleWithLessonCommand and SemesterUtils
+- JUnit tests with full branch coverage for ListModuleWithLessonCommand and SemesterUtils
 - Patches, bug fixes
 - Enhancing methods using Single Level of Abstraction Principle
 
@@ -37,13 +37,16 @@ It is written in Java, and has about 5kLoC.
   - FindCommand
     - Find Task
     - Find Task on Date
-
+  - Ui Component
+  - Parser Component
+  - Storage Component
 
 - Added the following PlantUML diagrams:
   - ShowModuleCommand Sequence Diagram
   - ListModuleWithLessonCommand Sequence Diagram
   - ListCommand Sequence Diagram
   - DeleteModuleCommand Sequence Diagram
+  - Parser Sequence Diagram
   - DeleteCommand Activity Diagram
   - Ui Class Diagram
 
