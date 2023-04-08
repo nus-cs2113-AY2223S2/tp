@@ -86,7 +86,10 @@ add Modules).
 Further elaboration on how the individual `Command` subclasses work can be found under [Implementation](#implementation)
 
 ### Storage Component
+**API:** `Storage.java`  
+Here is a class diagram of the 'Storage component'
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)
+
 
 ## Implementation
 
@@ -870,10 +873,19 @@ of the module requested by the user. The message includes the `ModuleCode`, the 
 [*Return to TOC*](#table-of-contents)
 
 ## *Utility Commands*
-
+<!--@@author PoobalanAatmikaLakshmi -->
 ### Viewing Help
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/HelpCommand-HelpCommand.png?raw=true)
+This is a sequence diagram of a specific help command: deleteHelpCommand 
+This command allows the user to see how to use the `delete` command 
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/DeleteHelpCommand-DeleteHelpCommand.png?raw=true)
+Given below is an example usage scenario and how the specific help mechanism behaves at each step.
 
+Step 1. The user executes the command `help delete`. It is parsed by Parser class which then creates a new `DeleteHelpCommand`.
+
+Step 2.The `execute()` method of `DeleteHelpCommand` is called.
+
+Step 3. The `printDeleteHelpMessage()` method of `Ui` class is called. 
+Instructions on how to use the `delete` command are printed out.
 <!--@@author honglinshang -->
 
 [*Return to TOC*](#table-of-contents)
