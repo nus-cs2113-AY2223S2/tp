@@ -27,6 +27,11 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
 original source as well}
 
+1. Using ByteArrayOutputStream to test System.out.print functions
+   Author: dfa. Link: https://stackoverflow.com/questions/1119385/junit-test-for-system-out-println
+
+
+
 ## Design & implementation
 
 # Architecture
