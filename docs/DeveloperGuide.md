@@ -59,6 +59,11 @@ which would result in the latest data stored in DataStorage being saved into the
 Here's a class diagram of the `Ui` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Ui.png?raw=true)
 
+How the `Ui` component works:
+1. When a command is entered by the user, `Parser` will create the relevant subclass of `Command`
+2. If the command is invalid, `Ui` will be called to print an error message.
+3. On the other hand, `Ui` will print a confirmation/success message after the execution of a task.
+
 ### Parser Component
 **API:** `Parser.java`
 Here's a class diagram of the `Parser` component
@@ -66,6 +71,13 @@ Here's a class diagram of the `Parser` component
 
 Here's a sequence diagram of the `Parser` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser_Seq-Parser.png?raw=true)
+
+How the `Parser` component works:
+1. When a command is entered by the user, `Parser` split the inputs from user accordingly and create the relevant
+subclass of `Command`.
+2. `Parser` will check for the number of arguments after splitting the inputs from user. 
+3. If the parameter is empty, `Parser` will throw `Exceptions` according to the input commands. 
+4. Otherwise, `Parser` will then create the subclass of `Command` according to the user input.
 
 ### Command Component
 **API:** `Command.java`    
@@ -97,9 +109,9 @@ Here is a class diagram of the 'Storage component'
 How the `Storage` component works:
 1. When the user first launches `Apollo`, the `Storage` will look for the storage text files (`save.txt` and
 `moduleData.txt`). 
-2. If these text files do not exist, `Storage` will create new text files; if these text files exist,
-`Storage` will read from the text files and write into `Apollo` for the user to use.
-3. When a command is entered by the user, the `Command` class will communicate with `Storage` to update the local save
+2. If these text files do not exist, `Storage` will create new text files.
+3. If these text files exist, `Storage` will read from the text files and write into `Apollo` for the user to use.
+4. When a command is entered by the user, the `Command` class will communicate with `Storage` to update the local save
 files if there are changes.
 
 ## Implementation
