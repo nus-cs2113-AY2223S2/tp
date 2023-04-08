@@ -131,7 +131,6 @@ public class Parser {
                 }
             } catch (IllegalArgumentException e) {
                 ui.printSeparator();
-                System.out.println("here");
                 ui.printMessage(recipeErrorMessage);
                 ui.printSeparator();
             }
