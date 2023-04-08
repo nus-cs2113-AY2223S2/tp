@@ -71,7 +71,7 @@ public class AccommodationExpenditureTest {
     }
 
     @Test
-    public void testAccommodationExpenditure_inPast() {
+    public void testAccommodationExpenditure_inPast_onRepeatDay() {
         AccommodationExpenditure pastRepeatingAccommodationExpenditure = new AccommodationExpenditure(
                 "This has been marked in 2010",
                 1000,

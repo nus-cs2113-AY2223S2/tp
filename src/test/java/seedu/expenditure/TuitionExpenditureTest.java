@@ -71,7 +71,7 @@ public class TuitionExpenditureTest {
     }
 
     @Test
-    public void testTuitionExpenditure_inPast() {
+    public void testTuitionExpenditure_inPast_onRepeatDay() {
         TuitionExpenditure pastRepeatingTuitionExpenditure = new TuitionExpenditure(
                 "This has been marked in 2010",
                 1000,
