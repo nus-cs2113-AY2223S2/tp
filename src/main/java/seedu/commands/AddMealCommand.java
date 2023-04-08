@@ -7,7 +7,6 @@ import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.constants.DateConstants;
 import seedu.definitions.MealTypes;
 import seedu.entities.Food;
 import seedu.entities.Meal;
@@ -18,7 +17,6 @@ import seedu.exceptions.InvalidMealException;
 import seedu.exceptions.LifeTrackerException;
 import seedu.exceptions.MissingArgumentsException;
 import seedu.logger.LogFileHandler;
-import seedu.parser.DateParser;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
@@ -38,7 +36,6 @@ public class AddMealCommand extends Command {
     private int choice;
     private Meal meal;
     private ArrayList<Food> foods;
-    private DateTimeFormatter dtf;
 
     public AddMealCommand(String commandWord, String userInput) {
         this.commandWord = commandWord;
@@ -63,7 +60,6 @@ public class AddMealCommand extends Command {
                         ExerciseStorage exerciseStorage)
                 throws LifeTrackerException {
         foods = new ArrayList<Food>();
-        dtf = DateConstants.PARSE_DTF;
         dateString = "";
         mealTypeString = "";
         mealType = null;
@@ -93,7 +89,12 @@ public class AddMealCommand extends Command {
         System.out.println("Enter date of meal (d/M/yyyy):");
         try {
             dateString = ui.readLine();
-            date = LocalDate.parse(dateString, dtf.withResolverStyle(ResolverStyle.STRICT));
+            if (dateString.matches("\\d{1,2}/")) {
+                throw new InvalidDateException(dateString);
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/uuuu")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            date = LocalDate.parse(dateString, formatter);
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(dateString);
         }
@@ -174,7 +175,16 @@ public class AddMealCommand extends Command {
         mealTypeString = userInput.substring(mealTypeIndex+mealTypeIdentifier.length(), foodIndex-1).trim();
         foodString = userInput.substring(foodIndex+foodIdentifier.length());
 
-        date = DateParser.parse(dateString, dtf);
+        try {
+            if (dateString.matches("\\d{1,2}/")) {
+                throw new InvalidDateException(dateString);
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/uuuu")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            date = LocalDate.parse(dateString, formatter);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException(dateString);
+        }
         mealType = MealTypes.fromString(mealTypeString);
         foodList = foodString.split(", ");
 
