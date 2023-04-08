@@ -93,7 +93,7 @@ Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [-tags LIST_OF_T
 
 Example of usage and output: 
 
-`add todo -due 23/09/2023 23:59 -rep 10` creates a task with the description `todo`, the deadline `23 Sep 3000 23:59`, which will produce a copy of itself after `30 Sep 3000 23:59`.
+`add todo -due 23/09/2023 23:59 -rep 10` creates a task with the description `todo`, the deadline `23 Sep 2023 23:59`, which will produce a copy of itself after `30 Sep 2023 23:59`.
 ```
 Okay, I have added this task:
 [ID:00001][ ][   ][todo                               ][Due by: 23 Sep 2023 23:59]
@@ -315,7 +315,7 @@ ________________________________________________________________________________
 
 Display a summary of all tasks, or tasks matching the given filters.
 
-Format: `list [FILTERS] [-sort SORT_OPTION]`
+Format: `list [IDS] [-sort SORT_OPTION]` OR `list [FILTERS] [-sort SORT_OPTION]`
 
 - Reading the task summary:
   - `[#number]` indicates the ordering of the displayed task.
@@ -325,9 +325,8 @@ Format: `list [FILTERS] [-sort SORT_OPTION]`
   - The description is shown after the priority, and is truncated with `...` if it is too long.
   - The deadline is shown after the description, if it exists.
   - Other attributes can be seen with the [`info`](#view-detailed-information-of-a-task-info) command.
-- Refer to the [Selecting tasks](#selecting-tasks) section for more information about filtering tasks.
-  - You cannot list tasks by id.
-  - If no filter is provided, all tasks will be shown by default.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about about selecting targeted tasks.
+  - If no ids or filters are provided, all tasks will be displayed by default.
 - `SORT_OPTION` can be one of the following:
   - `due` sorts tasks by their deadline, with earlier deadlines first and no-deadline tasks last.
   - `prio` sorts tasks by their priority, with higher priority levels first and no-priority tasks last.

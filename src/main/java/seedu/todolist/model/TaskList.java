@@ -110,7 +110,7 @@ public class TaskList {
     }
 
     /**
-     * Filters the task list using a predicate before converting it into its sorted string representation.
+     * Filters the task list using a predicate before converting it into its string representation.
      *
      * @param p The predicate to filter the task list with.
      * @return Filtered string representation of the task list.
@@ -140,6 +140,30 @@ public class TaskList {
      */
     public String toString(Predicate<Task> p, Comparator<Task> c) {
         return joinStringStream(tasks.values().stream().filter(p).sorted(c).map(Task::toString));
+    }
+
+    /**
+     * Filters the task list using the given ids before converting it into its string representation.
+     *
+     * @param ids The ids to filter the task list with.
+     * @return Filtered string representation of the task list.
+     * @throws InvalidIdException If there is no task with any of the given ids.
+     */
+    public String toString(HashSet<Integer> ids) throws InvalidIdException {
+        return joinStringStream(getTasks(ids).map(Task::toString));
+    }
+
+    /**
+     * Filters the task list using the given ids and comparator before converting it
+     * into its sorted string representation.
+     *
+     * @param ids The ids to filter the task list with.
+     * @param c The comparator to sort the task list with.
+     * @return Filtered string representation of the task list.
+     * @throws InvalidIdException If there is no task with any of the given ids.
+     */
+    public String toString(HashSet<Integer> ids, Comparator<Task> c) throws InvalidIdException {
+        return joinStringStream(getTasks(ids).sorted(c).map(Task::toString));
     }
 
     /**
