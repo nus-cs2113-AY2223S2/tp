@@ -9,49 +9,55 @@ actor User
 
 participant ":Apollo" as Apollo
 participant ":Parser" as Parser
-participant ":Command" as Command
+participant ":ShowModuleCommand" as Command
+participant ":Module" as Module
+participant ":Ui" as Ui
 
-User -> Apollo : Command
+User -> Apollo : "showmod cs2113"
 activate Apollo
 Apollo -> Parser : getCommand()
+
 activate Parser
+Parser -> Parser : parseCommand()
+activate Parser
+Parser --> Parser : parseCommand()
+deactivate Parser
 
-alt Command
-
-opt !isEmptyParam()
+opt "showmod"
 Parser -> Parser : isEmptyParam()
 activate Parser
-Parser -> Command** : Command()
+Parser -> Ui :printErrorMessage()
+activate Ui
+deactivate Parser
+
+Ui --> Parser
+deactivate Ui
+destroy Ui
+
+
+else "showmod cs2113"
+
+
+Parser -> Command** : ShowModuleCommand()
 activate Command
 Command -> Command : setUpLogger()
 activate Command
 deactivate Command
 
-Command --> Parser
+Command -> Module** : Module()
+activate Module
+Module --> Command : module
+deactivate Module
+destroy Module
+
+Command --> Parser : ShowModuleCommand()
 deactivate Command
 destroy Command
 
-deactivate Parser
-
-else
-
-Parser -> Parser : isOneWord()
-activate Parser
-Parser -> Command** : Command()
-activate Command
-Command -> Command : setUpLogger()
-activate Command
-deactivate Command
-Command --> Parser
-deactivate Command
-destroy Command
-
-deactivate Parser
 
 end
 
-end
-Parser --> Apollo : parseCommand()
+Parser --> Apollo
 deactivate Parser
 destroy Parser
 
