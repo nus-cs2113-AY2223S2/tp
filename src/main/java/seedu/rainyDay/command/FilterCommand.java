@@ -68,8 +68,8 @@ public class FilterCommand extends Command {
         if (filterFlagAndField.contains("-date")) {
             int sizeOfFilterFlagAndField = filterFlagAndField.size();
             String possibleDate1 = filterFlagAndField.get(sizeOfFilterFlagAndField - 2);
-            String possibleDate2 = "";
-            if (hasInOutFlag == true) {
+            String possibleDate2;
+            if (hasInOutFlag) {
                 possibleDate2 = filterFlagAndField.get(sizeOfFilterFlagAndField - 3);
             } else {
                 possibleDate2 = filterFlagAndField.get(sizeOfFilterFlagAndField - 1);
@@ -101,7 +101,7 @@ public class FilterCommand extends Command {
                     filterByCategory(filteredList, statementIndex, listToFilter, listToFilterStatementIndex, i);
                 }
             } else if (filterFlagAndField.get(i).equalsIgnoreCase("-date")) {
-                if (hastwoDates == false) {
+                if (!hastwoDates) {
                     if (isFirstFlag) {
                         isFirstFlag = false;
                         filterByDateFirstFlag(filteredList, statementIndex, i);
