@@ -17,8 +17,7 @@ public interface LoggerInterface {
         logger.addHandler(logConsole);
         try {
             if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-                assert (new File("apollo.log").exists()) : "Error creating logger";
+                assert (new File("apollo.log").createNewFile()) : "Error creating logger.";
             }
 
             FileHandler logFile = new FileHandler("apollo.log", true);

@@ -25,7 +25,7 @@ public class ListCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar) {
-        taskList.sortTaskByDay(taskList);
+        taskList.sortTaskByDay();
         ui.printList(taskList);
     }
 

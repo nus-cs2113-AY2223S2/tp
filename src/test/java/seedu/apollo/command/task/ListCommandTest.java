@@ -26,13 +26,13 @@ class ListCommandTest {
     }
 
     @Test
-    void testListCommandExecute_emptyTaskList_expectsNoException() throws FileNotFoundException {
+    void testListCommandExecute_emptyTaskList_expectsNoException() {
         ListCommand newCommand = new ListCommand();
         assertDoesNotThrow(() -> newCommand.execute(taskList, ui, storage, moduleList, allModules, calendar));
     }
 
     @Test
-    void testListCommandExecute_normalList_expectsNoException() throws FileNotFoundException {
+    void testListCommandExecute_normalList_expectsNoException() {
 
         ListCommand newCommand = new ListCommand();
         taskList.add(new ToDo("Test Junit"));

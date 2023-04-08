@@ -5,7 +5,8 @@ skinparam classAttributeIconSize 0
 title for Module Commands
 
 class Parser {
-+ getCommand(userCommand: String, ui: Ui, size: int, moduleData: ModuleList): Command
++ getCommand(userCommand: String, ui: Ui, size: int,
+moduleData: ModuleList): Command
 }
 Parser --> Command : creates >
 
@@ -82,9 +83,18 @@ class ShowModuleCommand {
 Command <|-- ShowModuleCommand
 Storage <-- Command : updates <
 Ui <-- Command : calls for \nprinting <
-ModuleList "2  " <-- Command : reads and writes to <
-Module "*" <--* "1" ModuleList : contains <
+
 Calendar "1   " <-- Command : reads and writes to <
-"ArrayList<CalendarModule>" "*" <--* "1" Calendar : contains <
+class "ArrayList\n<CalendarModule>" as ALModules
+ALModules "         *" <--* "1 " Calendar : contains <
+ALModules "1" *-> "*" CalendarModule : contains >
+
+ModuleList "2" <-- Command : reads and writes to <
+Module "     *" <--* "1 " ModuleList : contains <
+
+enum "<<enum>>\nLessonType" as LessonType
+CalendarModule -|> Module
+CalendarModule --> "1 " Timetable
+Timetable -> "1 " LessonType
 
 @enduml
