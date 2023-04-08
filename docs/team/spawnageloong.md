@@ -41,6 +41,7 @@ Given below are my contributions to Pet Tracker:
     * Developer Guide:
         * Architecture Diagram
         * Overall Software Architecture
+        * CommandParser Implementation
 
 
 * **Contributions to team-based tasks / Project Management**:
