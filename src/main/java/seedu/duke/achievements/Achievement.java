@@ -45,7 +45,7 @@ public abstract class Achievement {
     @Override
     public String toString() {
         String completed;
-        if (this.isCompleted()) {
+        if (this.getCompleted()) {
             completed = COMPLETED;
         } else {
             completed = UNCOMPLETED;
@@ -67,7 +67,7 @@ public abstract class Achievement {
         return this.requirement;
     }
 
-    public boolean isCompleted() {
+    public boolean getCompleted() {
         return this.completed;
     }
 

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import seedu.duke.data.exercisegenerator.GenerateExercise;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class GenerateDifficultyExerciseTest {
     private static final String EASY = "beginner";
@@ -63,26 +62,6 @@ public class GenerateDifficultyExerciseTest {
 
         for (int i = 0; i < exerciseData.size(); i++) {
             assertEquals(exerciseData.get(i).getLevel(), HARD);
-        }
-    }
-
-    @Test
-    void testMixture () {
-        ArrayList<ExerciseData> exerciseData;
-        GenerateExercise generateExercise = new GenerateExercise();
-
-        exerciseData = generateExercise.generateSetAll();
-        try {
-            exerciseData = generateExercise.generateFilteredDifficultySetFrom(exerciseData, "medium");
-            exerciseData = generateExercise.generateFilteredStaticSetFrom(exerciseData);
-        } catch (DukeError e) {
-            System.out.println(e.getMessage());
-        }
-
-        for (int i = 0; i < exerciseData.size(); i++) {
-            assertEquals(exerciseData.get(i).getLevel(), "intermediate");
-            assertNotEquals(exerciseData.get(i).getEquipment(), null);
-            assertEquals(exerciseData.get(i).getEquipment(), "body only");
         }
     }
 

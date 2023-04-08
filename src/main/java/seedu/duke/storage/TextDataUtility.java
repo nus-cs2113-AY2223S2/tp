@@ -36,6 +36,11 @@ public abstract class TextDataUtility{
             "The Static Warrior:Complete 3 Static workouts!:0:M:static:0:3\n" +
             "The Static Champion:Complete 5 Static workouts!:0:H:static:0:5";
 
+    public String getAchievementListText () {
+        return achievementListText;
+    }
+
+
     public void checkForListData(File listData) {
         if (!listData.exists()) {
             System.out.println("Data file does not exist, creating a new one");
@@ -66,6 +71,8 @@ public abstract class TextDataUtility{
             checkForListData(listData);
         }
     }
+
+
 
 
 

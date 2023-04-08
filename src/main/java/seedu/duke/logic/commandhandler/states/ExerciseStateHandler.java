@@ -118,7 +118,7 @@ public class ExerciseStateHandler {
     }
 
     // @@author ChubbsBunns
-    private void updateWorkoutAchievements(Session session, AchievementListHandler achievementListHandler) {
+    public void updateWorkoutAchievements(Session session, AchievementListHandler achievementListHandler) {
         ArrayList<Achievement> completedAchievements = new ArrayList<>();
         ArrayList<Achievement> loggedAchievements = achievementListHandler.getAchievementList();
         ArrayList<ExerciseData> exercises = session.getSessionExercises();
