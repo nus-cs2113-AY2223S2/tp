@@ -125,11 +125,13 @@ Example of usage:
 
 ### Search for a Category or Event: `search`
 
-Finds and displays all categories and events that contain a specified keyword.
+Searches through all categories and and events to find items that contains the provided keyword along with the top 3 categories and events that are similar to the keyword. The results will contain 4 sections:
+1. Matching categories: All categories that contain the provided keyword in their names
+2. Matching events: All events that contain the provided keyword in their names, along with the categories they belong to
+3. Similar categories: Top 3 categories with names that are most similar to the provided keyword
+4. Similar events: Top 3 categories with names that are most similar to the provided keyword, along with the categories they belong to
 
-Format: `search KEYWORD`
-
-* Categories and events that contains `KEYWORD` will be displayed.
+Format: `search <keyword>`
 
 Example of usage:
 
@@ -164,6 +166,8 @@ Example of usage:
 
 `bye`
 
+---
+
 ## FAQ
 
 **Q**: Am I able to keep my data after I exit the program?
@@ -178,5 +182,5 @@ Example of usage:
 * `edit` - Edit an event in Moneymind
 * `view` - View all events in a category or view all categories in Moneymind
 * `help` - Show the help message
-* `search` - Search for a Category or Event
+* `search` - Search categories and events given a specific keyword
 * `bye` - Exit the program
