@@ -55,12 +55,17 @@ and eventually update the UI which is displayed back to the user. This would con
 which would result in the latest data stored in DataStorage being saved into the plaintext files.
 
 ### UI Component
+**API** `Ui.java`
+Here's a class diagram of the `Ui` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Ui.png?raw=true)
 
 ### Parser Component
 **API:** `Parser.java`
 Here's a class diagram of the `Parser` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser.png?raw=true)
+
+Here's a sequence diagram of the `Parser` component
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser_Seq-Parser.png?raw=true)
 
 ### Command Component
 **API:** `Command.java`    
@@ -89,6 +94,13 @@ Further elaboration on how the individual `Command` subclasses work can be found
 Here is a class diagram of the 'Storage component'
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)
 
+How the `Storage` component works:
+1. When the user first launches `Apollo`, the `Storage` will look for the storage text files (`save.txt` and
+`moduleData.txt`). 
+2. If these text files do not exist, `Storage` will create new text files; if these text files exist,
+`Storage` will read from the text files and write into `Apollo` for the user to use.
+3. When a command is entered by the user, the `Command` class will communicate with `Storage` to update the local save
+files if there are changes.
 
 ## Implementation
 
