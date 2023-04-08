@@ -151,7 +151,7 @@ Expected outcome:
 
 ```
 ____________________________________________________________
-Company has been successfully uncomfirmed!
+Company has been successfully unconfirmed!
 ____________________________________________________________
 
 ```
