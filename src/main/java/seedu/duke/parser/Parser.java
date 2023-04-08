@@ -6,11 +6,11 @@ import seedu.duke.command.EditType;
 import seedu.duke.exceptions.EditFormatException;
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.MissingIngredientInputException;
-import seedu.duke.recipe.Ingredient;
-import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Step;
 import seedu.duke.recipe.StepList;
 import seedu.duke.recipe.RecipeList;
+import seedu.duke.recipe.IngredientList;
+import seedu.duke.recipe.Ingredient;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
@@ -58,6 +58,9 @@ public class Parser {
         case "add":
             type = CommandType.ADD;
             break;
+        case "addtorecipe":
+            type = CommandType.ADDTORECIPE;
+            break;
         case "view":
             type = CommandType.VIEW;
             break;
@@ -78,6 +81,9 @@ public class Parser {
             break;
         case "delete":
             type = CommandType.DELETE;
+            break;
+        case "deletefromrecipe":
+            type = CommandType.DELETEFROMRECIPE;
             break;
         case "help":
             type = CommandType.HELP;
@@ -283,10 +289,132 @@ public class Parser {
             throw new Exception("error in edit step:\n" + e.getMessage());
         }
     }
-    public static String removeForbiddenChars(String ingredient) {
-        for (String chara : StringLib.FORBIDDEN_CHARS) {
-            ingredient.replaceAll(chara, "");
+    public static String[] parseAddToRecipeDescription(String description) {
+        String[] out = new String[3];
+        String[] subDescriptions = description.split("/", 3);
+        for (int i = 0; i < subDescriptions.length; i++) {
+            if (subDescriptions[i].toLowerCase().contains("--i")) {
+                out[0] = "i";
+            }
+            if (subDescriptions[i].toLowerCase().contains("--s")) {
+                out[0] = "s";
+            }
+            if (subDescriptions[i].toLowerCase().contains("id")) {
+                out[1] = subDescriptions[i+1];
+            }
+            if (subDescriptions[i].toLowerCase().contains("desc")) {
+                out[2] = subDescriptions[i+1];
+            }
         }
-        return ingredient;
+        out[1] = out[1]
+                .toLowerCase()
+                .replaceAll("desc","")
+                .replaceAll("--s","")
+                .replaceAll("--i","")
+                .trim();
+        out[2] = out[2]
+                .replaceAll("id","")
+                .replaceAll("iD","")
+                .replaceAll("Id","")
+                .replaceAll("ID","")
+                .replaceAll("--s","")
+                .replaceAll("--i","")
+                .trim();
+        return out;
+    }
+    public static String[] parseDeleteFromRecipeDescription(String description) {
+        String[] subDescriptions = description.split("/", 2);
+        String[] out = new String[2];
+        for (int i = 0; i < subDescriptions.length; i++) {
+            if (subDescriptions[i].toLowerCase().contains("--i")) {
+                out[0] = "i";
+            }
+            if (subDescriptions[i].toLowerCase().contains("--s")) {
+                out[0] = "s";
+            }
+            if (subDescriptions[i].toLowerCase().contains("id")) {
+                out[1] = subDescriptions[i+1];
+            }
+        }
+        out[1] = out[1]
+                .toLowerCase()
+                .replaceAll("--s","")
+                .replaceAll("--i","")
+                .trim();
+        return out;
+    }
+    public static int matchCount(String mainString, String check) {
+        int count = 0;
+        while (mainString.contains(check)) {
+            count++;
+            mainString = mainString.replace(check, "");
+        }
+        return count;
+    }
+    public static boolean isValidAddToRecipe(String description) {
+        String descLowerCase = description.toLowerCase().trim();
+        if ((descLowerCase.contains("--s") && descLowerCase.contains("--i"))){
+            return false;
+        }
+        if (matchCount(descLowerCase,"id/") != 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase,"desc/") != 1){
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") == 0 && matchCount(descLowerCase, "--s") == 0) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") > 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--s") > 1) {
+            return false;
+        }
+        if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public static boolean isValidDeleteFromRecipe(String description) {
+        String descLowerCase = description.toLowerCase().trim();
+        if ((descLowerCase.contains("--s") && descLowerCase.contains("--i"))){
+            return false;
+        }
+        if (matchCount(descLowerCase,"id/") != 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") == 0 && matchCount(descLowerCase, "--s") == 0) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") > 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--s") > 1) {
+            return false;
+        }
+        if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public static boolean isDuplicateIngredient(IngredientList ingredientList, String newIngredient) {
+        for (Ingredient ingredient : ingredientList.getList()) {
+            if (ingredient.getName().toLowerCase().equals(newIngredient)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static boolean isDuplicateStep(StepList stepList, String newStep) {
+        for (Step step : stepList.getList()) {
+            if (step.getStepDescription().toLowerCase().equals(newStep)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
