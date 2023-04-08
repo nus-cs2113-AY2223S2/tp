@@ -2,7 +2,7 @@
 'https://plantuml.com/sequence-diagram
 
 skinparam maxMessageSize 150
-title ModifyCommand (Unmark Tasks)
+title ModifyCommand (Delete Tasks)
 
 actor User
 participant ":Apollo" as Apollo
@@ -13,7 +13,7 @@ participant ":TaskList" as TaskList
 participant ":Ui" as Ui
 participant ":Storage" as Storage
 
-User -> Apollo : "unmark 1"
+User -> Apollo : "delete 1"
 activate Apollo
 Apollo -> Parser : getCommand()
 activate Parser
@@ -22,48 +22,39 @@ activate modify
 modify --> Parser: new ModifyCommand
 deactivate modify
 
-
-
 Parser -> modify : execute()
 
 activate modify
-modify -> modify++ : unmarkTask()
+
+
+modify -> TaskList: get()
+activate TaskList
 TaskList --> modify
-modify --
-alt Task marked as complete previously
-modify -> TaskList++: get()
-TaskList -> TaskList ++ :setDone()
-return
-modify <-- TaskList--
-destroy TaskList
-modify -> Ui : ui.printMarkNotDone()
+deactivate TaskList
+modify -> Ui:ui.printDeleted()
 activate Ui
 Ui --> modify
 deactivate Ui
+destroy Ui
+modify -> TaskList
+activate TaskList
+
+TaskList -> TaskList ++ :remove()
+return
+return
+destroy TaskList
 
 modify -> Storage: updateTask()
 activate Storage
 Storage --> modify
 destroy Storage
 
-
-
-
-
-
-else Task marked as incomplete previously
-
-modify -> Ui : ui.printTaskHasBeenMarkedPreviously()
-activate Ui
-Ui --> modify
-deactivate Ui
-destroy Ui
-end
 modify --> Parser
+deactivate modify
 destroy modify
+
 Parser --> Apollo
 destroy Parser
-
 deactivate Apollo
 
 @enduml
