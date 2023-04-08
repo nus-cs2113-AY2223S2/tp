@@ -8,6 +8,7 @@
    - [Enhancements to BrokeMan](#enhancements-to-brokeman)
    - [Contributions to UG](#contributions-to-ug)
    - [Contributions to DG](#contributions-to-dg)
+   - [Team Contributions](#team-contributions)
 
 ## Overview
 
@@ -68,5 +69,15 @@ and added link back to the TOC at the end of every section.
 9. Contributed to User Stories under `Appendix: Requirements` of DG.
 10. Contributed to User Stories under `Appendix: Requirements` of DG.
 11. Contributed to Glossary under `Appendix: Requirements` of DG.
+
+[back to contents](#table-of-contents)
+
+---
+
+### Team contributions
+
+- Contributes to team based tasks:
+  - Maintaining issue tracker
+  - Release Management (v2.0)
 
 [back to contents](#table-of-contents)
