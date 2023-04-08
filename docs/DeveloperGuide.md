@@ -3,35 +3,34 @@
 - [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
-  - [Architecture](#architecture)
-  - [UI Component](#ui-component)
-  - [Parser Component](#parser-component)
-  - [Recipe Component](#recipe-component)
-  - [RecipeList Component](#recipelist-component)
-  - [WeeklyPlan Component](#weeklyplan-component)
-  - [Database Component](#database-component)
-  - [Ingredient Component](#ingredient-component)
+    - [Architecture](#architecture)
+    - [Meal360 Component](#meal360-component)
+    - [UI Component](#ui-component)
+    - [Parser Component](#parser-component)
+    - [RecipeList Component](#recipelist-component)
+    - [WeeklyPlan Component](#weeklyplan-component)
+    - [Database Component](#database-component)
+    - [IngredientList Component](#ingredientlist-component)
 - [Implementation](#implementation)
-  - [Add Recipes Feature](#add-recipes-feature)
-  - [Edit Recipes Feature](#edit-recipes-feature)
-  - [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
-  - [List Recipes Feature](#list-recipes-feature)
-  - [Delete Recipes Feature](#delete-recipes-feature)
-  - [Add Ingredients Feature](#add-ingredients-feature)
-  - [Delete Ingredients Feature](#delete-ingredients-feature)
-  - [List Ingredients Feature](#list-ingredients-feature)
-  - [Edit Weekly Meal Plan Feature](#edit-weekly-meal-plan-feature)
-  - [List Weekly Plan Feature](#list-weekly-plan-feature)
-  - [Mark Recipe as Done Feature](#mark-recipe-as-done-feature)
-
+    - [Add Recipes Feature](#add-recipes-feature)
+    - [Edit Recipes Feature](#edit-recipes-feature)
+    - [Categorise/Tag Recipes Feature](#categorisetag-recipes-feature)
+    - [List Recipes Feature](#list-recipes-feature)
+    - [Delete Recipes Feature](#delete-recipes-feature)
+    - [Add Ingredients Feature](#add-ingredients-feature)
+    - [Delete Ingredients Feature](#delete-ingredients-feature)
+    - [List Ingredients Feature](#list-ingredients-feature)
+    - [Edit Weekly Meal Plan Feature](#edit-weekly-meal-plan-feature)
+    - [List Weekly Plan Feature](#list-weekly-plan-feature)
+    - [Mark Recipe as Done Feature](#mark-recipe-as-done-feature)
 - [Appendix: Requirements](#appendix-requirements)
-  - [Product scope](#product-scope)
-  - [Target user profile](#target-user-profile)
-  - [Value proposition](#value-proposition)
-  - [User Stories](#user-stories)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-  - [Instructions for manual testing](#instructions-for-manual-testing)
+    - [Product scope](#product-scope)
+    - [Target user profile](#target-user-profile)
+    - [Value proposition](#value-proposition)
+    - [User Stories](#user-stories)
+    - [Non-Functional Requirements](#non-functional-requirements)
+    - [Glossary](#glossary)
+    - [Instructions for manual testing](#instructions-for-manual-testing)
 
 ---
 
@@ -44,22 +43,26 @@
 
 ## Setting up, getting started
 
+- Refer to the
+  instructions [here](https://github.com/AY2223S2-CS2113-F10-3/tp/blob/master/README.md).
+
 ---
 
 ## Design
 
 - [Architecture](#architecture)
+- [Meal360 Component](#meal360-component)
 - [UI Component](#ui-component)
 - [Parser Component](#parser-component)
-- [Recipe Component](#recipe-component)
 - [RecipeList Component](#recipelist-component)
 - [WeeklyPlan Component](#weeklyplan-component)
 - [Database Component](#database-component)
+- [IngredientList Component](#ingredientlist-component)
 
 ### Architecture
 
 The Architecture Diagram below shows a high-level design of the Meal360 application:
-![](../docs/UML/Architecture/ArchitectureUML.png)
+![](./UML/Architecture/ArchitectureUML.png)
 
 **How the architecture components interact with each other:**
 
@@ -68,7 +71,7 @@ if the user inputs `view 1`, the `Parser` component will call the `RecipeList` c
 the recipe at index 0, following which the `Ui` component will then display it to the user. The
 sequence diagram below shows how the
 interaction described above:
-![](../docs/UML/Architecture/ArchitectureExampleUML.png)
+![](./UML/Architecture/ArchitectureExampleUML.png)
 
 Depending on whether the user input is to make changes to the recipes, ingredients, or weekly plan,
 the `Parser` component will call the `RecipeList`, `Ingredient`, and/or `WeeklyPlan` component
@@ -78,17 +81,22 @@ Additionally, methods irrelevant to the subsystem shown are also omitted for sim
 
 1. Recipe related
 
-   ![](../docs/UML/Architecture/RecipeRelated.png)
+![](./UML/Architecture/RecipeRelated.png)
 
 2. Ingredient related
-   ![](../docs/UML/Architecture/IngredientRelated.png)
+
+![](./UML/Architecture/IngredientRelated.png)
 
 3. WeeklyPlan related
-   ![](../docs/UML/Architecture/WeeklyPlanRelated.png)
+
+![](./UML/Architecture/WeeklyPlanRelated.png)
 
 ### Meal360 Component
 
 API: `Meal360.java`
+
+The (partial) class diagram below shows the structure of the `Meal360` component:
+![](./UML/Meal360/Meal360ClassDiagram.png)
 
 The `Meal360` component:
 
@@ -108,7 +116,7 @@ API: `Ui.java`
 
 The `Ui` component:
 
-![](../docs/UML/Ui/UiClassDiagram.drawio.png)
+![](./UML/Ui/UiClassDiagram.drawio.png)
 
 - displays the welcome message upon startup of the program.
 - formats all the output to be displayed to the user.
@@ -119,7 +127,7 @@ The `Ui` component:
 The sequence diagram below shows how the `Ui` component works together with `Parser`
 when the user inputs `list`.
 
-![](../docs/UML/Ui/commandList.drawio.png)
+![](./UML/Ui/commandList.drawio.png)
 
 ### Parser Component
 
@@ -130,27 +138,26 @@ The `Parser` component:
 - receives the user input from the `Meal360` component
 - checks and filters input string
 - catches `exceptions` and throws error messages via `UI` to
-  1.  prompts user to enter valid input
-  2.  prevent `Meal360` from crashing upon invalid input
-- interacts with the `RecipeList`, `WeeklyPlan`, and/or `Ingredient` components to execute the commands.
+    1. prompts user to enter valid input
+    2. prevent `Meal360` from crashing upon invalid input
+- interacts with the `RecipeList`, `WeeklyPlan`, and/or `Ingredient` components to execute the
+  commands.
 
 The sequence diagram below shows how `Parser` filters user input dates and parses them
 as valid `LocalDate` objects.
 
-![](../docs/UML/Parser/parseDate.drawio.png)
-
-### Recipe Component
-
-API: `Recipe.java`
-
-The `Recipe` component:
-
-- contains `name` and `ingredients` attribute
-- store the ingredients details the user has added in `ingredients`
+![](./UML/Parser/parseDate.drawio.png)
 
 ### RecipeList Component
 
-API: `RecipeList.java`
+API: `RecipeList.java` and `Recipe.java`
+
+![](./UML/RecipeList/RecipeListClassDiagram.png)
+
+`Recipe` is a class with the following characteristics:
+
+- contains `name` and `ingredients` attribute
+- store the ingredients details the user has added in `ingredients`
 
 The `RecipeList` component:
 
@@ -167,6 +174,8 @@ The `RecipeList` component:
 ### WeeklyPlan Component
 
 API: `WeeklyPlan.java`
+
+![](./UML/WeeklyPlan/WeeklyPlanClassDiagram.png)
 
 The `WeeklyPlan` component:
 
@@ -190,11 +199,13 @@ How the `WeeklyPlan` component works:
 
 The sequence diagram below shows how the `WeeklyPlan` component works when the user
 inputs `weekly /add burger 1`:
-![](../docs/UML/WeeklyPlan/AddWeeklyPlanUML.png)
+![](./UML/WeeklyPlan/AddWeeklyPlanUML.png)
 
 ### Database Component
 
 API: `Database.java`
+
+![](./UML/Database/DatabaseClassDiagram.png)
 
 The `Database` component:
 
@@ -219,9 +230,26 @@ How the `Database` component works at start up for the recipes:
   ingredient list and weekly plan are empty.
 
 The activity diagram below shows how the `Database` component works at start up:
-![](../docs/UML/Database/DatabaseStartupUML.png)
+![](./UML/Database/DatabaseStartupUML.png)
 
-### Ingredient Component
+### IngredientList Component
+
+API: `IngredientList.java` and `Ingredient.java`
+
+![](./UML/IngredientList/IngredientListClassDiagram.png)
+
+`Ingredient` is a class with the following characteristics:
+
+- contains `name`, `quantity`, and `expiryDate` attribute.
+- store the ingredients details the user has added in per ingredient.
+
+The `IngredientList` component:
+
+- extends from `HashMap<String, Ingredient>`
+- stores the ingredients the user has added as `Ingredient` objects
+- allows users to add their own ingredients
+- allows users to delete the existing ingredients
+- allows users to view the entire list of ingredients that they have
 
 ---
 
@@ -250,26 +278,26 @@ It is implemented through the following step:
    the `Parser` component.
 2. In `Parser`, `parseTagRecipe()` is executed to identify whether user want to add recipes
    to a tag (`<<`), or remove recipes from a tag(`>>`). Then,
-   - If `isAddTag`, user want to add recipes to a tag, `parseAddRecipeTag()` will be executed to
-     extract
-     the all the recipes to be added, separated by `&&`, and pass those recipes and tag label
-     to `RecipeList`
-     component.
-   - If `isRemoveTag`, user want to remove recipes from a tag, `parseRemoveRecipeTag()` will be
-     executed to
-     extract the all the recipes to be removed, separated by `&&`, and pass those recipes and tag
-     label to
-     `RecipeList` component.
-   - If user enter invalid command, an error message will be thrown.
+    - If `isAddTag`, user want to add recipes to a tag, `parseAddRecipeTag()` will be executed to
+      extract
+      the all the recipes to be added, separated by `&&`, and pass those recipes and tag label
+      to `RecipeList`
+      component.
+    - If `isRemoveTag`, user want to remove recipes from a tag, `parseRemoveRecipeTag()` will be
+      executed to
+      extract the all the recipes to be removed, separated by `&&`, and pass those recipes and tag
+      label to
+      `RecipeList` component.
+    - If user enter invalid command, an error message will be thrown.
 3. In `RecipeList`,
-   - If user want to add recipes to a tag, `addRecipeToTag()` is executed to add recipes in
-     to the tag.
-   - If user want to remove recipes to a tag, `removeRecipeFromTag()` is executed to remove recipes
-     from the tag.
+    - If user want to add recipes to a tag, `addRecipeToTag()` is executed to add recipes in
+      to the tag.
+    - If user want to remove recipes to a tag, `removeRecipeFromTag()` is executed to remove recipes
+      from the tag.
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/TagFunction/TagFunction.png)
+![](./UML/Implementation/TagFunction/TagFunction.png)
 
 ### List Recipes Feature
 
@@ -283,25 +311,25 @@ It is implemented through the following step:
 2. In `Parser`, `parseListRecipe()` is executed to first identify whether user want to filter
    by tag (`/t`).
 
-   - If user filters the recipes by tag (`/t`), `isTag` is set to `true`.
-   - Otherwise, `isTag` is set to `false`.
+    - If user filters the recipes by tag (`/t`), `isTag` is set to `true`.
+    - Otherwise, `isTag` is set to `false`.
 
    Then, it will extract all the filters separated by `&&`, if any. All the filters are
    extracted out and passed to `RecipeList`component.
 
 3. In `RecipeList`, `listRecipes()` is executed to first identify whether user want to
    filter by tag.
-   - If `isTag` is true, `listTagRecipes()` is called to filter all recipes that meet
-     all the filters by tag, and return the `recipeList` containing all relevant recipes
-     to `listRecipes()`
-     and `ParserRecipe()`, respectively.
-   - If user `isTag` is false, it filters all recipes that meet all the filters by name
-     and ingredients, and return `recipeList` containing all relevant recipes to
-     `ParselistRecipe()`.
+    - If `isTag` is true, `listTagRecipes()` is called to filter all recipes that meet
+      all the filters by tag, and return the `recipeList` containing all relevant recipes
+      to `listRecipes()`
+      and `ParserRecipe()`, respectively.
+    - If user `isTag` is false, it filters all recipes that meet all the filters by name
+      and ingredients, and return `recipeList` containing all relevant recipes to
+      `ParselistRecipe()`.
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/ListFunction/ListFunction.png)
+![](./UML/Implementation/ListFunction/ListFunction.png)
 
 ### Delete Recipes Feature
 
@@ -322,7 +350,7 @@ It is implemented through the following step:
    a parameter,
    and return the `Recipe` object at that index/the one just deleted.
 
-![](../docs/UML/Implementation/DeleteFunction/DeleteFunction.jpg)
+![](./UML/Implementation/DeleteFunction/DeleteFunction.jpg)
 
 ### Add Recipes Feature
 
@@ -350,9 +378,9 @@ It is implemented through the following steps:
 The current implementation:
 
 - There are 3 ways to edit:
-  - Edit all ingredients.
-  - Edit 1 particular ingredient.
-  - Add new ingredient.
+    - Edit all ingredients.
+    - Edit 1 particular ingredient.
+    - Add new ingredient.
 
 It is implemented through the following steps:
 
@@ -381,7 +409,7 @@ It is implemented through the following step:
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/RandomFunction/RandomFunction.png)
+![](./UML/Implementation/RandomFunction/RandomFunction.png)
 
 ### Add Ingredients Feature
 
@@ -406,7 +434,7 @@ It is implemented through the following steps:
 
 The simplified sequence diagram below shows how this feature works assuming all inputs are correct:
 
-![](../docs/UML/Implementation/AddIngredientFunction/AddIngredientFunction.png)
+![](./UML/Implementation/AddIngredientFunction/AddIngredientFunction.png)
 
 ### Delete Ingredients Feature
 
@@ -449,7 +477,7 @@ It is implemented through the following steps:
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/ViewIngredientFunction/ViewIngredientFunction.png)
+![](./UML/Implementation/ViewIngredientFunction/ViewIngredientFunction.png)
 
 ### Edit Weekly Meal Plan Feature
 
@@ -481,7 +509,7 @@ It is implemented through the following steps:
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/EditWeeklyPlan/EditWeeklyPlan.png)
+![](./UML/Implementation/EditWeeklyPlan/EditWeeklyPlan.png)
 
 ### List Weekly Plan Feature
 
@@ -500,7 +528,7 @@ It is implemented through the following steps:
 
 The sequence diagram below shows how this feature works:
 
-![](../docs/UML/Implementation/ViewWeeklyPlan/ViewWeeklyPlan.png)
+![](./UML/Implementation/ViewWeeklyPlan/ViewWeeklyPlan.png)
 
 ### Mark Recipe as Done Feature
 
@@ -528,7 +556,7 @@ It is implemented through the following steps:
 The simplified sequence diagram below shows how this feature works assuming no counts of the recipe
 is left after the deletion:
 
-![](../docs/UML/Implementation/MarkDoneWeeklyPlan/MarkDoneWeeklyPlan.png)
+![](./UML/Implementation/MarkDoneWeeklyPlan/MarkDoneWeeklyPlan.png)
 
 ---
 
@@ -553,7 +581,7 @@ driven app.
 ### User Stories
 
 | Version | As a ... | I want to ...                                     | So that I can ...                                                 |
-| ------- | -------- | ------------------------------------------------- | ----------------------------------------------------------------- |
+|---------|----------|---------------------------------------------------|-------------------------------------------------------------------|
 | v1.0    | user     | add my own recipes to the list                    | refer to them when next time                                      |
 | v1.0    | user     | edit the existing recipe                          |                                                                   |
 | v1.0    | user     | delete a recipe from the list                     | clear the unused recipes                                          |
@@ -593,10 +621,10 @@ Given below are instructions to test the app manually.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
-   2. Run the jar file using the command `java -jar meal360.jar`. The GUI similar to the below
-      should appear in a few seconds. The app comes with a smaall sample data of 10 recipes to
-      allow for easy testing.
+    1. Download the jar file and copy into an empty folder
+    2. Run the jar file using the command `java -jar meal360.jar`. The GUI similar to the below
+       should appear in a few seconds. The app comes with a smaall sample data of 10 recipes to
+       allow for easy testing.
 
    Expected output:
 
@@ -620,8 +648,8 @@ Given below are instructions to test the app manually.
 
 2. Shutdown
 
-   1. A user input of `bye` allows the user to exit the app. The app will then save the data for
-      recipes, ingredients and weekly meal plan automatically before exiting.
+    1. A user input of `bye` allows the user to exit the app. The app will then save the data for
+       recipes, ingredients and weekly meal plan automatically before exiting.
 
    Expected output:
 
@@ -742,22 +770,24 @@ Given below are instructions to test the app manually.
    ```
 
 #### Tag/Categorize Recipes
+
 1. Remove recipe from an unknown tag.
-   * Prerequisite: Make sure that `unknowntag` has never been created.
-   * Test case 1: `tag unknowntag >> recipe1`
-   * Expected: An error message is shown.
-   * Expected output 1:
+    * Prerequisite: Make sure that `unknowntag` has never been created.
+    * Test case 1: `tag unknowntag >> recipe1`
+    * Expected: An error message is shown.
+    * Expected output 1:
    ```
     ----------------------------------------------------------------------------------------------------
     | There is no "unknowntag" tag found. Please make sure you have entered the correct tag.           |
     ----------------------------------------------------------------------------------------------------
     ```
 2. Add tag command with an unknown recipe
-   * Prerequisite: Make sure that there is no recipe named `unknown` in the list, and 
-         a recipe named `recipe1` using the `add` command.
-   * Test case 2: `tag testtag << recipe1 && unknown`
-   * Expected: An error message is showed. `recipe1` is added to `testtag` but `unknown` is not added.
-   * Expected output 2:
+    * Prerequisite: Make sure that there is no recipe named `unknown` in the list, and
+      a recipe named `recipe1` using the `add` command.
+    * Test case 2: `tag testtag << recipe1 && unknown`
+    * Expected: An error message is showed. `recipe1` is added to `testtag` but `unknown` is not
+      added.
+    * Expected output 2:
 
    ```
    ----------------------------------------------------------------------------------------------------
@@ -769,7 +799,8 @@ Given below are instructions to test the app manually.
 3. Remove tag command with an unknown recipe
     * Prerequisite: Complete test case 2
     * Test case 3: `tag testtag >> recipe1 && unknown`
-    * Expected: An error message is showed. `recipe1` is removed `testtag` but `unknown` is not removed.
+    * Expected: An error message is showed. `recipe1` is removed `testtag` but `unknown` is not
+      removed.
     * Expected output 3:
    ```
     ----------------------------------------------------------------------------------------------------
@@ -800,34 +831,35 @@ Given below are instructions to test the app manually.
     ```
 
 #### List Recipes
+
 1. Listing recipes when there is no recipe in the list.
-   * Prerequisite: Empty the list of recipes.
-   * Test case 1: `list`
-   * Expected output 1:
+    * Prerequisite: Empty the list of recipes.
+    * Test case 1: `list`
+    * Expected output 1:
     ```
     ----------------------------------------------------------------------------------------------------
     | There is nothing to list.                                                                        |
     ----------------------------------------------------------------------------------------------------
    ```
 2. List all recipes
-   * Prerequisite: Add one or more recipes using the `add` command.
-   * Test case 2: `list`
-   * Expected output 2: An ordered list of recipes is displayed.
-   The recipes' name that are added are listed out along with the number of ingredients needed.
-
+    * Prerequisite: Add one or more recipes using the `add` command.
+    * Test case 2: `list`
+    * Expected output 2: An ordered list of recipes is displayed.
+      The recipes' name that are added are listed out along with the number of ingredients needed.
 
 3. List specific recipes
-   * Test case 3: `list a`
-   * Expected output 3: 
-     * An ordered list of recipes that contain `a` in their name or ingredients is displayed.
-       The recipes' name that are added are listed out along with the number of ingredients needed. 
-     * If there is no recipe or ingredient that contain `a` the expected output is identical 
-       to expected output 1.
-
+    * Test case 3: `list a`
+    * Expected output 3:
+        * An ordered list of recipes that contain `a` in their name or ingredients is displayed.
+          The recipes' name that are added are listed out along with the number of ingredients
+          needed.
+        * If there is no recipe or ingredient that contain `a` the expected output is identical
+          to expected output 1.
 
 4. List recipes from a tag
     * Prerequisite: Create a recipe named `recipefortag` using `add` command, and add the recipe to
       `testtag1` using `tag` command.
     * Test case 4: `list /t testtag1`
-    * Expected output 4: An ordered list of recipes that are in `testtag1` are listed out, including `recipefortag`.
+    * Expected output 4: An ordered list of recipes that are in `testtag1` are listed out,
+      including `recipefortag`.
       The recipes' name that are added are listed out along with the number of ingredients needed.
