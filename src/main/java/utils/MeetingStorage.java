@@ -17,7 +17,7 @@ public class MeetingStorage {
     private static final String FILEPATH_MEETING_LIST = Storage.FILE_DIRECTORY + "/" + FILENAME_MEETING;
 
     /**
-     * Read and Load data from a file if it exists.
+     * Reads and Loads data from a file if it exists.
      *
      * @throws FileNotFoundException If file is not found, throw an exception. But file will be created if not found.
      */
@@ -46,7 +46,7 @@ public class MeetingStorage {
     }
 
     /**
-     * Write the user tasks into a file.
+     * Writes the user tasks into a file.
      *
      * @param listOfMeetings An arraylist storing the list of things the user created.
      * @throws IOException Some IO Exception has occured.

@@ -14,7 +14,7 @@ public class FindDishCommand extends Command {
 
     @Override
     public void execute(TextUi ui) {
-        ui.printMessage(DishManager.findDishCommand(this.stringToFind));
+        ui.printMessage(DishManager.findDish(this.stringToFind));
     }
 
     @Override
