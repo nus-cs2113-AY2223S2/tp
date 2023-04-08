@@ -74,6 +74,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the task list from the local save file.
+     *
+     * @return The loaded task list.
+     * @throws FileNotFoundException If no saved task list was found.
+     * @throws FailedLoadDataException If the task list could not be loaded because the save file is invalid.
+     */
     public TaskList loadData() throws FileNotFoundException, FailedLoadDataException {
         try {
             JsonReader reader = new JsonReader(new FileReader(dataFile));
@@ -81,6 +88,9 @@ public class Storage {
             TaskList taskList = gson.fromJson(reader, TaskList.class);
             if (taskList == null) {
                 return new TaskList();
+            }
+            if (!taskList.isValid()) {
+                throw new JsonParseException("Save file has been modified to an invalid state!");
             }
             return taskList;
         } catch (JsonParseException | DateTimeParseException e1) {
@@ -106,6 +116,9 @@ public class Storage {
             Config config = gson.fromJson(reader, Config.class);
             if (config == null) {
                 return new Config();
+            }
+            if (!config.isValid()) {
+                throw new JsonParseException("Config file has been modified to an invalid state!");
             }
             return config;
         } catch (JsonParseException | DateTimeParseException e1) {
