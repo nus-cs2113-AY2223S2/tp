@@ -168,7 +168,9 @@ public class Parser {
         } catch (ChChingException e) {
             ui.showError(e.getMessage());
         }
+        logger.info("Parser works");
         return command;
+
     }
 
     /**
@@ -225,6 +227,7 @@ public class Parser {
                 argumentsByField.put(field, value);
             }
         }
+
         return argumentsByField;
     }
 

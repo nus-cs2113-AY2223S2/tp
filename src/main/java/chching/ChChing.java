@@ -92,6 +92,7 @@ public class ChChing {
                 ui.showLine();
             }
         }
+        logger.info("Program running right");
     }
 
     public static void main(String[] args) {
