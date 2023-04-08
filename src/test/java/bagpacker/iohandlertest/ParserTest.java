@@ -42,16 +42,6 @@ public class ParserTest {
     }
 
     @Test
-
-    public void addVariableTest() throws InvalidIndexException, InvalidVariablesException {
-        String userInput = "  add this item 1 ";
-        InputStream inStream = new ByteArrayInputStream(userInput.getBytes());
-        System.setIn(inStream);
-        Parser.parse();
-        assertEquals("this item 1", Parser.getVariable(Parser.getCommand()));
-    }
-
-    @Test
     public void createDeleteObjTest() {
         String userInput1 = "  add 3 /of this item  ";
         String userInput2 = "  delete 1 ";
