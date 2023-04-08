@@ -78,7 +78,18 @@ successful. Else, it will return a String to denote that the log in status is no
 it in the type of ExpenseList.
 - `Storage#checkValidExpenseList(expenses, filePath)` -- Checking if the expenseList read from the json file is valid,
 which helps to detect any data changes in the file or file corruption.
-Given below is an example usage of the feature. //TODO: img
+Given below is an example usage of the feature. 
+![](diagrams/LoginFeature.png)
+
+Step 1. The user executes `login` command to log in to his / her account. `Duke` then calls `ParserAccount#initialize()`
+to detect the command, and calls `PaserAccount#caseLogIn()`.
+
+Step 2. `PaserAccount#caseLogIn()` instantiates a new `Account`, receiving the `username` and `password` from the user.
+which then calls to `Account#login()`, and check if the username and password are matched.
+
+Step 3. If the username and password are matched, `Account#login()` will call to `storage#loadExpenses(filePath)`, which 
+then call a new ExpenseList() to store and load all the user expense list from the json file, and then display the
+successful login message to the user and finish the login process.
 
 ### 'Signup' Feature
 
@@ -106,7 +117,18 @@ account list file. If it is taken already, the function return true, and return 
 
 - `Storage#createFile(filePath)` -- Create a new file with a given file path.
 
-  Given below is an example usage of the feature. //TODO: img
+  Given below is an example usage of the feature. 
+
+![](diagrams/SignUpFeature.png)
+
+Step 1. The user executes `signup` command to sign up for a new account. `Duke` then calls `ParserAccount#initialize()` 
+to detect the command, and calls `PaserAccount#caseSignUp()`.
+
+Step 2. `PaserAccount#caseSignUp` instantiates a new `Account`, receiving the `username` and `password` from the user.
+which then calls to `Account#signup()`, and check if the username is taken via `Account#isUsernameTaken`.
+
+Step 3. If the username is valid, `Account#signup()` will call to `storage#createFile(filePath)` to create a file to 
+store the user account expense list in a json file, and finish the signup process.
 
 ### 'Logout' Feature
 
@@ -130,7 +152,17 @@ list that store the account data inside the 'account process'.
 
 - `Storage#saveExpenses(filePath)` -- Save the expense list to the json file with given file path.
 
-  Given below is an example usage of the feature. //TODO: img
+  Given below is an example usage of the feature.
+
+![](diagrams/LogoutFeature.png)
+
+Step 1. The user executes `logout` command to log out of his / her account. `Duke` then calls `ParserAccount#initialize()` to 
+detect the command, and calls `PaserAccount#caseLogOut()`.
+
+Step 2. `PaserAccount#caseLogOut` will call to `Account#saveLogOut`, which then calls to `storage.saveExpenses(filePath)`, 
+`expenseList.showToUser(String)` to save the account's expenses list to a file and display the logout message to the user.
+
+Step 3. `ParserAccount#initialize()` is called to let the user to the "outside account" mode and continue using the app.
 
 ### 'Exit' Feature (Outside the Account)
 
@@ -155,7 +187,16 @@ print all the expenses in the user expense list when the command `list` is calle
 - `CommandList#run()` -- A boolean functions return false and print a 'no-expense' message if there are no expenses in 
 the expense list, or return true and print all the expenses if the expense list has at least 1 of them.
 
-Given below is an example usage of the feature. //TODO: img
+Given below is an example usage of the feature. 
+
+![](diagrams/ListFeature.png)
+
+Step 1. The user executes `list` command to list all expenses in the account. 
+
+Step 2. `Duke` instantiates a new `CommandList` and calls `CommandList#run()`, which then calls
+`expenseList.size()`, `expenseList.get(i).toString()` and `ExpenseList.getAllMessage(expenseList)`.
+
+Step 3. `CommandList#run()` list all the expenses existing in the account for the user.
 
 ### 'Add' Feature
 

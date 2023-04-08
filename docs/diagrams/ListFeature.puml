@@ -1,0 +1,22 @@
+@startuml
+box "List"
+participant ":Duke" as Duke
+participant CommandList
+participant "expenseList:ExpenseList" as ExpenseList
+Duke -> CommandList: CommandList()
+Activate CommandList
+CommandList --> Duke
+Duke -> CommandList: run()
+CommandList -> ExpenseList: size()
+Activate ExpenseList
+ExpenseList --> CommandList: int
+CommandList -> ExpenseList: get(i: int)
+ExpenseList -> ExpenseList: toString()
+ExpenseList --> CommandList: ExpenseList
+CommandList -> ExpenseList: getAllMessage(expenseList)
+ExpenseList --> CommandList
+Deactivate ExpenseList
+CommandList --> Duke: boolean
+Deactivate CommandList
+
+@enduml

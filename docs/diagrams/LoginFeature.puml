@@ -1,0 +1,30 @@
+@startuml
+box "Login"
+participant ":Duke" as Duke
+participant ":ParserAccount" as ParserAccount
+participant "existingAccount:Account" as Account
+participant "storage:Storage" as Storage
+participant "expenseList:ExpenseList" as ExpenseList
+
+Duke -> ParserAccount: initialize()
+Activate ParserAccount
+ParserAccount -> ParserAccount: "caseLogIn()
+ParserAccount -> Account: Account(username, password)
+Activate Account
+Account --> ParserAccount: Account
+ParserAccount -> Account: login()
+Account --> ParserAccount: String
+Account -> Storage: loadExpenses(filePath)
+Activate Storage
+Storage -> ExpenseList: ExpenseList()
+Activate ExpenseList
+ExpenseList --> Storage: expenseList
+Storage --> Account: expenseList
+Deactivate Storage
+Deactivate Account
+ParserAccount -> ExpenseList: showToUser(String)
+ExpenseList --> ParserAccount
+Deactivate ExpenseList
+ParserAccount --> Duke
+Deactivate ParserAccount
+@enduml

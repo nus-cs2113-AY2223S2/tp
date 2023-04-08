@@ -163,14 +163,6 @@ public class Storage {
     }
 
 
-    public void clearContent() {
-        try {
-            FileOutputStream fos = new FileOutputStream("expenselist.dat");
-            fos.close();
-        } catch (IOException e) {
-            System.out.println(WRITE_TO_EXPENSELIST_ERROR);
-        }
-    }
 }
 
 

@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+box "Signup"
+participant ":Duke" as Duke
+participant ":ParserAccount" as ParserAccount
+participant "newAccount:Account" as Account
+participant "storage:Storage" as Storage
+
+Duke -> ParserAccount: initialize()
+Activate ParserAccount
+ParserAccount -> ParserAccount: "caseSignUp()
+
+ParserAccount -> Account: Account(username, password)
+Activate Account
+Account --> ParserAccount: account
+ParserAccount -> Account: signup()
+Account -> Account: isUsernameTaken()
+Account -> Storage: createFile(filePath)
+Activate Storage
+Storage --> Account
+Deactivate Storage
+Account --> ParserAccount
+Deactivate Account
+ParserAccount --> Duke
+Deactivate ParserAccount
+@enduml
