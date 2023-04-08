@@ -13,8 +13,6 @@ Moneymind is a Command Line Interface (CLI) application that helps you manage yo
 * Table of Contents
 {:toc}
 
-<div align="left">
-
 ## Acknowledgements
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -292,5 +290,3 @@ Expected:
 ```
 Bye. Hope to see you again soon!
 ```
-
-</div>
