@@ -209,7 +209,7 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
     * `YEAR` needs to be a four-digit number
     * When this field is omitted, the default date will be set to the day when the transaction is added to rainyDay
 
-> ⚠️ Amount provided must be positive and cannot be more than $21,474,836.47!
+> ⚠️ Amount provided must be a positive value and cannot be more than $21,474,836.47!
 >
 > ⚠️ `DESCRIPTION` and `CATEGORY` cannot contain dash `-`.
 
@@ -221,32 +221,19 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
 Example of usage:
 
 You had dinner at Haidilao for $500. To add it to rainyDay, you can use the following command:
-
-```
-> add -out Haidilao $500
-Done! Added: out for Haidilao, -$500.00, in category miscellaneous on 30/03/2023
-```
+![add1Haidilao](images\UserGuide\add1Haidilao.png)
 
 You received an allowance of $20 on 01/03/2023. To add it to rainyDay, you can use the following command:
 
-```
-> add -in Allowance $20 -c Allowance -date 01/03/2023
-Done! Added: in for Allowance, +$20.00, in category Allowance on 01/03/2023
-```
+![add2allowance](images\UserGuide\add2Allowance.png)
 
 You had beef noodles for $12. To add it to rainyDay, you can use the following command:
 
-```
-> add -out beef noodles $12 -c Food and Drinks
-Done! Added: out for beef noodles, -$12.00, in category Food and Drinks on 30/03/2023
-```
+![add3beefnoodles](images\UserGuide\add3beefnoodles.png)
 
 You received your pay of $50000 on 26/03/2023. To add it to rainyDay, you can use the following command:
 
-```
-> add -in Pay $50000 -date 26/03/2023
-Done! Added: in for Pay, +$50000.00, in category miscellaneous on 26/03/2023
-```
+![add4pay](images\UserGuide\add4Pay.png)
 
 [Jump back to features overview](#features-overview)
 
@@ -300,24 +287,7 @@ To delete the transaction with the description "beef noodles", you can use the c
 The transaction with the description "beef noodles" will be deleted, and the transactions shown to you
 subsequently after requesting to view the transactions will be as such: <br>
 
-```
-> delete 3
-Done, deleted "beef noodles" from the financial report
-> view
-+====================================================================================================+
-|Here is your financial report!                                                                      |
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Index |Description                                  |Amount        |Category             |Date      |
-|000001|Haidilao                                     | -$500.00     |miscellaneous        |30/03/2023|
-|000002|Allowance                                    | +$20.00      |Allowance            |01/03/2023|
-|000003|Pay                                          | +$50000.00   |miscellaneous        |26/03/2023|
-+------+---------------------------------------------+--------------+---------------------+----------+
-|Viewing all entries from 2023-02-28 till today                                                      |
-|Total Inflow: $50020.00                                                                             |
-|Total Outflow: $500.00                                                                              |
-|Remaining value: $49520.00                                                                          |
-+====================================================================================================+
-```
+![delete](images\UserGuide\delete.png)
 
 [Jump back to features overview](#features-overview)
 
