@@ -67,7 +67,7 @@ public class AddModuleCommand extends Command {
         try {
             if (args.length == 3) {
                 handleMultiCommand(moduleList, allModules, args, ui, calendar);
-                ui.printClassAddedMessage(args[0].toUpperCase(), getCommand(args[1]), args[2]);
+                ui.printClassAddedMessage(args[0].toUpperCase(), getLessonType(args[1]), args[2]);
             } else {
                 handleSingleCommand(moduleList, allModules, ui);
             }
@@ -125,7 +125,7 @@ public class AddModuleCommand extends Command {
                                     Calendar calendar) throws IllegalCommandException, ClassNotFoundException,
             LessonAddedException {
 
-        LessonType lessonType = this.getCommand(args[1]);
+        LessonType lessonType = this.getLessonType(args[1]);
         Module searchModule = null;
         for (Module module: allModules){
             if (module.getCode().equalsIgnoreCase(this.module.getCode())){

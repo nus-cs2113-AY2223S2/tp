@@ -107,7 +107,7 @@ public class ListModuleWithLessonCommand extends Command {
 
         String type = args[1];
 
-        LessonType lessonType = getCommand(type);
+        LessonType lessonType = getLessonType(type);
         if (lessonType == null) {
             throw new IllegalCommandException();
         }
