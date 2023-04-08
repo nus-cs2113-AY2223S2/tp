@@ -1,16 +1,17 @@
 ---
 layout: page
-title: User Guide
+title: user Guide
 ---
 
-# Moneymind: User Guide
+<div align="center">
+<h2> MoneyMind User Guide</h2>
+<h3> "Mind your Money" </h3>
+</div>
 
 Moneymind is a Command Line Interface (CLI) application that helps you manage your personal finances. With Moneymind, you can keep track of your budgets, expenses, and categorize them for better organization.
 
 * Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
 
