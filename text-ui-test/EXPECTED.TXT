@@ -9,6 +9,8 @@ Welcome to Moneymind
                            __/ |                     
                           |___/                      
 How may I help you?
+Type 'summary' to see the summary of all the commands you can use.
+Type 'help' to see the details of all the commands.
 
 ____________________________________________________________
 

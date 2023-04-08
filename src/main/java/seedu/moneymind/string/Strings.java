@@ -23,14 +23,18 @@ public class Strings {
             "                          |___/                      \n";
     public static final String GREETING = "Welcome to Moneymind\n" + LOGO + "How may I help you?";
     public static final String OFFER_HELP = "Type 'help' to see the details of all the commands.";
-    public static final String OFFER_HELP_FOR_COMMAND = "Type 'summary' to see the summary of all the commands you can use.\n" +
+    public static final String OFFER_HELP_FOR_COMMAND =
+            "Type 'summary' to see the summary of all the commands you can use.\n" +
             "Type 'help' to see the details of all the commands.";
     public static final String ERROR = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     public static final String DATE_FORMAT = "dd/MM/yyyy HH:mm";
     public static final String DATA_FILE = "EventList.txt";
-    public static final String BUDGET_LIMIT_MESSAGE = "The budget limit is 999999999$, please try to give a smaller budget";
-    public static final String INDEX_LIMIT_MESSAGE = "The limit for index is 999999999, please try to give a smaller index";
-    public static final String EXPENSE_LIMIT_MESSAGE = "The expense limit is 999999999$, please try to give a smaller expense";
+    public static final String BUDGET_LIMIT_MESSAGE =
+            "The budget limit is 999999999$, please try to give a smaller budget";
+    public static final String INDEX_LIMIT_MESSAGE =
+            "The limit for index is 999999999, please try to give a smaller index";
+    public static final String EXPENSE_LIMIT_MESSAGE =
+            "The expense limit is 999999999$, please try to give a smaller expense";
     public static final String NO_CATEGORY_MESSAGE = "Sorry, the category you are looking for does not exist";
     public static final String DOT = ".";
     public static final String NO_CATEGORIES_TO_VIEW = "There are no categories to view";
