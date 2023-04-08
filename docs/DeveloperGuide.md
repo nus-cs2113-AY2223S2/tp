@@ -31,7 +31,7 @@ original source as well}
 
 ![Architecture Diagram](images/ArchitectureDiagram.png)
 
-The ***architecture diagram*** given above is explains the high level design of the program.
+The ***architecture diagram*** given above explains the high level design of the program.
 
 Given below is a quick overview of the main components and how they interact with each other.
 
@@ -53,7 +53,7 @@ The rest of the program consists of mainly 5 main components.
 **How the architecture components interact with each other**
 
 The sequence diagram shows how the components interact with each other for the scenarios where the user issues
-the commands `delete 1` and `exit`.
+the commands `deleteExpense 1` and `exit`.
 
 ![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
@@ -70,11 +70,36 @@ Here is the UML diagram of Ui class:
 
 ### Parser component
 
+How the `Parser` component works:
+1. When `Parser` is called to execute a command, it uses the `Parser` class to parse the user command. 
+2. The `Parser` class uses `UserInput` class to split the user input.
+2. This results in a `Command` object(more precisely, an object of one of its subclasses eg., `AddExpenseCommand`) which is executed by the `runCommandUntilExitCommand` method in BrokeMan class.
+3. The command can communicate with the `EntryList` component when it is executed(eg. to add an expense in the expense list)
+4. The result of the command execution is returned back from `Parser`.
+
+The Sequence Diagram below illustrates the interactions within the Logic component for the execute("deleteExpense 1") API call.
+
+{To be added}
+
+How the parsing works:
+
+- When called upon to parse a user command, the `Parser` class creates an `prepareXYZCommand` (XYZ is a placeholder for the specific command name e.g., `prepareViewBudgetCommand`) which uses the other classes shown above to parse the user command and create a XYZCommand object (e.g., `ViewBudgetCommand`) which the `Parser` returns back as a `Command` object.
+- All `prepareXYZCommand` methods (e.g., `prepareViewBudgetCommand`, `prepareSetBudgetCommand`, …) can be treated similarly where possible e.g, during testing.
+
 ### Command component
 
 ### Storage component
 
 ### EntryList component
+
+The `EntryList` component,
+- stores the entry list data i.e., all `Entry` objects (which can inherit the behavior of `Expense` class or `Income` class)
+- stores the `EntryAmountComparator` and `EntryDateComparator` to filter the list. The UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- does not depend on any of the other three components (as the `EntryList` represents data entities of the domain, they should make sense on their own without depending on other components).
+
+Here is the (partial) UML diagram of the `EntryList` component:
+{to be added}
+
 
 ### Common class
 
@@ -142,7 +167,7 @@ getTotalAmount(), sortEntriesByAmount(), sortEntriesByDate(), findEntriesByCateg
    
 ### ExpenseList, IncomeList
 
-Classes ExpenseList and IncomeList is responsible for keeping track of the corresponding entry instances added to the program by the user. 
+Classes ExpenseList and IncomeList are responsible for keeping track of the corresponding entry instances added to the program by the user. 
 At a class level, it keeps a **LinkedList** of corresponding entries. 
 They both extend EntryList, the abstract class that represents a collection of Entry instances. 
 It provides static functionalities of managing and viewing entry instances at a class level. 
