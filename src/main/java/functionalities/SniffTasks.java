@@ -360,15 +360,13 @@ public class SniffTasks {
                     break;
                 }
             }
-            if (APPOINTMENTS.get(index).getStatus() == "X"){
+            if (APPOINTMENTS.get(index).getStatus().equals("X")){
                 Ui.printAppointmentAlreadyMarkedMessage();
             }
             else{
                 APPOINTMENTS.get(index).setIsDone(true);
                 Ui.printAppointmentMarkMessage();
             }
-            APPOINTMENTS.get(index).setIsDone(true);
-            Ui.printAppointmentMarkMessage();
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The mark command entry is invalid!");
         }
@@ -387,15 +385,13 @@ public class SniffTasks {
                     break;
                 }
             }
-            if (APPOINTMENTS.get(index).getStatus() == ""){
+            if (APPOINTMENTS.get(index).getStatus().equals(" ")){
                 Ui.printAppointmentAlreadyUnMarkedMessage();
             }
             else{
                 APPOINTMENTS.get(index).setIsDone(true);
                 Ui.printAppointmentUnMarkMessage();
             }
-            APPOINTMENTS.get(index).setIsDone(false);
-            Ui.printAppointmentUnMarkMessage();
         } catch (IndexOutOfBoundsException e) {
             throw new SniffException(" The unMark command entry is invalid!");
         }
