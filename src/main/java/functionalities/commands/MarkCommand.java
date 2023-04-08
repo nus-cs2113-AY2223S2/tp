@@ -12,7 +12,7 @@ public class MarkCommand extends Command {
     }
     public void executeCommand(SniffTasks tasks) throws SniffException {
         tasks.markAppointment(uid);
-        Ui.showUserMessage(" Task marked successfully!");
+        //Ui.showUserMessage(" Task marked successfully!");
     }
 
 }

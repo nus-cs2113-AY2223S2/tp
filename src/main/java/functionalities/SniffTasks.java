@@ -43,7 +43,7 @@ public class SniffTasks {
      *
      * @param archiveSavedFile The SniffArchive file
      * @throws SniffException if there are errors when storing appointment data
-     * */
+     */
     public static void archivedTasks(FileWriter archiveSavedFile) throws SniffException {
         int no = 1;
         try {
@@ -334,6 +334,19 @@ public class SniffTasks {
         }
     }
 
+    public void findDate(String date) throws SniffException {
+        int counter = 1;
+        for (Appointment appointment : APPOINTMENTS) {
+            if (appointment.isDate(date)) {
+                Ui.formatPrintList(counter, appointment.toString());
+                counter++;
+            }
+        }
+        if (counter == 1) {
+            Ui.showUserMessage(" There are no appointments on this date!");
+        }
+    }
+
     //@@author 11-Navya
     public void markAppointment(String uid) throws SniffException {
         try {
@@ -347,6 +360,13 @@ public class SniffTasks {
                     break;
                 }
             }
+            if (APPOINTMENTS.get(index).getStatus() == "X"){
+                Ui.printAppointmentAlreadyMarkedMessage();
+            }
+            else{
+                APPOINTMENTS.get(index).setIsDone(true);
+                Ui.printAppointmentMarkMessage();
+            }
             APPOINTMENTS.get(index).setIsDone(true);
             Ui.printAppointmentMarkMessage();
         } catch (IndexOutOfBoundsException e) {
@@ -355,7 +375,7 @@ public class SniffTasks {
 
     }
 
-    public void unmarkAppointment(String uid) throws SniffException {
+    public void unMarkAppointment(String uid) throws SniffException {
         try {
             if (!UIDS.contains(uid)) {
                 throw new SniffException(" There are no appointments with this ID.");
@@ -367,10 +387,17 @@ public class SniffTasks {
                     break;
                 }
             }
+            if (APPOINTMENTS.get(index).getStatus() == ""){
+                Ui.printAppointmentAlreadyUnMarkedMessage();
+            }
+            else{
+                APPOINTMENTS.get(index).setIsDone(true);
+                Ui.printAppointmentUnMarkMessage();
+            }
             APPOINTMENTS.get(index).setIsDone(false);
             Ui.printAppointmentUnMarkMessage();
         } catch (IndexOutOfBoundsException e) {
-            throw new SniffException(" The unmark command entry is invalid!");
+            throw new SniffException(" The unMark command entry is invalid!");
         }
     }
 }

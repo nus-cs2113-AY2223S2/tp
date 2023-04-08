@@ -1,5 +1,6 @@
 package functionalities.appointments;
 
+import exception.SniffException;
 import functionalities.Animal;
 import functionalities.Owner;
 
@@ -32,6 +33,8 @@ public abstract class Appointment {
     }
 
     public abstract String toString();
+
+    public abstract boolean isDate(String date) throws SniffException;
 
     public abstract String getDescription();
 
