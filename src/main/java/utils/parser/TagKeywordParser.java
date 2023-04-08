@@ -87,10 +87,6 @@ public class TagKeywordParser extends KeywordParser {
 
     private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        if (tokens.size() != 0) {
-            throw InvalidSyntaxException.buildTooManyTokensMessage();
-        }
-
         Options listOption = new OptionsBuilder(TAG_MODEL, LIST_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(listOption, tokens);
 

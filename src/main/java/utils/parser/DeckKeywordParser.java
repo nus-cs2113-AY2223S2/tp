@@ -65,10 +65,6 @@ public class DeckKeywordParser extends KeywordParser {
 
     private Command handleList(List<String> tokens) throws ParseException, InvalidSyntaxException {
 
-        if (tokens.size() != 0) {
-            throw InvalidSyntaxException.buildTooManyTokensMessage();
-        }
-
         Options listOptions = new OptionsBuilder(DECK_MODEL, LIST_ACTION).buildOptions();
         CommandLine cmd = parseUsingOptions(listOptions, tokens);
 
