@@ -53,7 +53,7 @@ destroy ModuleList
 alt args.length == 2
 ListMod -> ListMod : handleMultiCommand()
 activate ListMod
-ListMod -> Ui : printSpecificTimetable()
+ListMod -> Ui : printTimetableLessonInformation()
 
 activate Ui
 Ui --> ListMod

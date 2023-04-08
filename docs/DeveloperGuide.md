@@ -55,12 +55,28 @@ and eventually update the UI which is displayed back to the user. This would con
 which would result in the latest data stored in DataStorage being saved into the plaintext files.
 
 ### UI Component
+**API** `Ui.java`
+Here's a class diagram of the `Ui` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Ui.png?raw=true)
+
+How the `Ui` component works:
+1. When a command is entered by the user, `Parser` will create the relevant subclass of `Command`
+2. If the command is invalid, `Ui` will be called to print an error message.
+3. On the other hand, `Ui` will print a confirmation/success message after the execution of a task.
 
 ### Parser Component
 **API:** `Parser.java`
 Here's a class diagram of the `Parser` component
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser.png?raw=true)
+
+How the `Parser` component works:
+1. When a command is entered by the user, `Parser` split the inputs from user accordingly and create the relevant
+subclass of `Command`.
+2. `Parser` will check for the number of arguments after splitting the inputs from user. 
+3. If the parameter is empty, `Parser` will throw `Exceptions` according to the input commands. 
+4. Otherwise, `Parser` will then create the subclass of `Command` according to the user input.
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Parser_Seq-Parser.png?raw=true)
 
 ### Command Component
 **API:** `Command.java`    
@@ -89,6 +105,13 @@ Further elaboration on how the individual `Command` subclasses work can be found
 Here is a class diagram of the 'Storage component'
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Storage.png?raw=true)
 
+How the `Storage` component works:
+1. When the user first launches `Apollo`, the `Storage` will look for the storage text files (`save.txt` and
+`moduleData.txt`). 
+2. If these text files do not exist, `Storage` will create new text files.
+3. If these text files exist, `Storage` will read from the text files and write into `Apollo` for the user to use.
+4. When a command is entered by the user, the `Command` class will communicate with `Storage` to update the local save
+files if there are changes.
 
 ## Implementation
 
@@ -304,19 +327,9 @@ It takes in the necessary parameters, including the `TaskList`, `Ui`, `Storage`,
 The first step in the `execute()` method is to find out how to modify the
 TaskList. In this case, the task at a user-provided index is to be marked as done.
 
-<<<<<<< HEAD
 **Step 5: Find the task to mark as done:**
 
-Using the parameter `taskIndex`, the `execute()` method will iterate to that
-index in the `TaskList` and call the `setAsDone()` method of the `Task` class, setting the boolean `isDone` to `true`.
-If the index is outside the bounds of the size of the `TaskList`, a `NumberFormatException` is thrown,
-calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
-
-**Step 6: Print the confirmation message:**
-
-A confirmation message is printed to the user indicating what task has been
-=======
-Step 5: Find the task to mark as done: The `execute()` method will perform a call to the method `markTask()`
+The `execute()` method will perform a call to the method `markTask()`
 that takes in the `TaskList` and `Ui` as parameters. It will iterate to the user-given index, and it will first check
 the task completeness status. If it is not, call the `setAsDone()` method of the `Task` class, setting the boolean `isDone`
 to `true`, proceeding on to step 6a. If the task the user is trying to mark is done from previous iterations
@@ -324,8 +337,9 @@ to `true`, proceeding on to step 6a. If the task the user is trying to mark is d
 If the index is outside the bounds of the size of the `TaskList`, a `NumberFormatException` is thrown,
 calling the `printErrorForIdx()` method in the Ui class that takes in the size of the `TaskList` as a parameter.
 
-Step 6a: Print the confirmation message: A confirmation message is printed to the user indicating what task has been
->>>>>>> master
+**Step 6: Print the confirmation message:**
+
+Step 6a: A confirmation message is printed to the user indicating what task has been
 successfully marked as done from the user-provided index of the `TaskList`. The message includes the task type,
 description (and date of the task deleted if the task is either an event or a deadline).The execution will proceed to step 7.
 
@@ -547,6 +561,10 @@ The following sequence diagram shows how the list module command works when the 
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleWithLessonCommand-ListModuleWithLessonCommand.png?raw=true)
 
+The following activity diagram shows how the list module command works when the user inputs the command `listmod`:
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/ListModuleCommandActivityDiagram.png?raw=true)
+
 [*Return to TOC*](#table-of-contents)
 
 <!--@@author yixuann02 -->
@@ -729,6 +747,11 @@ The following sequence diagram shows how the AddModCommand class works for both 
 the module list.:
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddModule-AddModuleCommand__Add_Module_.png?raw=true)
+
+The following activity diagram shows how the AddModCommand class works for both adding modules and adding lessons to
+the module list:
+
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddModuleActivityDiagram.png?raw=true)
 
 [*Return to TOC*](#table-of-contents)
 
@@ -983,6 +1006,10 @@ Below is a sequence diagram of the `bye` command.
 
 
 ### *The `LoggerInterface` Interface*
+
+API: `LoggerInterface.java`
+
+
 The `LoggerInterface` interface is used to implement the `setUpLogger()` method in the command classes. This design choice
 was made to reduce code duplication and to improve the maintainability of the code. It also allows for multi-level inheritance
 amongst different command classes. The implementation of the `setUpLogger()` method is shown below.

@@ -116,25 +116,8 @@ public class ListModuleWithLessonCommand extends Command {
             throw new LessonTypeNotInModuleException();
         }
 
-        ArrayList<Timetable> timetableList = new ArrayList<>(module.getModuleTimetable());
-
-        ArrayList<Timetable> timetableInModuleList = new ArrayList<>();
-
-        for (Timetable timetable : timetableList) {
-            LessonType checkType = determineLessonType(timetable.getLessonType());
-            assert (checkType != null) : "ListModuleWithLessonCommand: Lesson type should not be null!";
-
-            if (checkType.equals(lessonType)) {
-                timetableInModuleList.add(timetable);
-            }
-        }
-
-        if (timetableInModuleList.size() == 0) {
-            ui.printLessonTypeNotAdded(module.getCode(), lessonType);
-        } else {
-            sortTimetable(timetableInModuleList);
-            ui.printSpecificTimetable(module, lessonType, timetableInModuleList);
-        }
+        ArrayList<Timetable> timetableInModuleList = copyLessonTypeIntoTimetable(lessonType);
+        printTimetableLessonInformation(ui, lessonType, timetableInModuleList);
 
     }
 
@@ -168,6 +151,28 @@ public class ListModuleWithLessonCommand extends Command {
     }
 
     /**
+     * Add a copy of the specific lesson type information into the timetable.
+     *
+     * @param lessonType Specific lesson type to add.
+     * @return The ArrayList of timetable with lesson types in the module list.
+     */
+    private ArrayList<Timetable> copyLessonTypeIntoTimetable(LessonType lessonType) {
+        ArrayList<Timetable> timetableList = new ArrayList<>(module.getModuleTimetable());
+        ArrayList<Timetable> timetableInModuleList = new ArrayList<>();
+
+        for (Timetable timetable : timetableList) {
+            LessonType checkType = determineLessonType(timetable.getLessonType());
+            assert (checkType != null) : "ListModuleWithLessonCommand: Lesson type should not be null!";
+
+            if (checkType.equals(lessonType)) {
+                timetableInModuleList.add(timetable);
+            }
+
+        }
+        return timetableInModuleList;
+    }
+
+    /**
      * Returns the available lesson type of the module.
      *
      * @param module The module being checked.
@@ -197,6 +202,23 @@ public class ListModuleWithLessonCommand extends Command {
         ArrayList<Timetable> parseList =
                 copyList.stream().sorted(compareAll).collect(Collectors.toCollection(ArrayList::new));
         return parseList;
+    }
+
+    /**
+     * Calls the Ui to print the required timetable information.
+     *
+     * @param ui The Ui object to print the timetable.
+     * @param lessonType Specific lesson type information to print.
+     * @param timetableInModuleList Timetable in the module list.
+     */
+    private void printTimetableLessonInformation(Ui ui, LessonType lessonType,
+                                                 ArrayList<Timetable> timetableInModuleList) {
+        if (timetableInModuleList.size() == 0) {
+            ui.printLessonTypeNotAdded(module.getCode(), lessonType);
+        } else {
+            sortTimetable(timetableInModuleList);
+            ui.printSpecificTimetable(module, lessonType, timetableInModuleList);
+        }
     }
 
     /**

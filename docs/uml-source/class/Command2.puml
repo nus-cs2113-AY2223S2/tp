@@ -65,8 +65,11 @@ class ListModuleWithLessonCommand {
 - handleSingleCommand(ui: Ui): void
 - handleMultiCommand(moduleList: ModuleList, ui: Ui): void
 - copyModuleListData(moduleList: ModuleList): void
+- copyLessonTypeIntoTimetable(lessonType: LessonType): ArrayList<Timetable>
 - getLessonTypes(module: Module): ArrayList<LessonType>
 - sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
+- printTimetableLessonInformation(ui: Ui, lessonType: LessonType,
+timetableInModuleList: ArrayList<Timetable>): void
 - isInModuleList(moduleList: ModuleList, module: Module): boolean
 - isExistLessonType(allModules: ModuleList, lessonType: LessonType): boolean
 }
@@ -79,6 +82,10 @@ class ShowModuleCommand {
 - getLessonTypes(module: Module): ArrayList<LessonType>
 - handleMultiCommand(ui: Ui): void
 - sortTimetable(copyList: ArrayList<Timetable>): ArrayList<Timetable>
+- printModuleInformationWithLesson(ui: Ui, lessonType: LessonType,
+copyList: ArrayList<Timetable>): void
+- copyLessonTypeIntoTimetable(lessonType: LessonType,
+copyList: ArrayList<Timetable>, timetableList: ArrayList<Timetable>): void
 }
 Command <|-- ShowModuleCommand
 Storage <-- Command : updates <
