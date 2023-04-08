@@ -9,7 +9,6 @@ import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.storage.Storage;
-import seedu.duke.storage.StorageManager;
 
 import java.util.ArrayList;
 
