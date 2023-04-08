@@ -23,7 +23,7 @@ public class AddTaskCommand extends Command {
     private String email;
     private LocalDateTime deadline;
     private TreeSet<String> tags;
-    private int repeatDuration;
+    private int repeatTimes;
     private Priority priority;
 
     /**
@@ -38,14 +38,14 @@ public class AddTaskCommand extends Command {
         deadline = ParserUtil.parseDeadline(args.get(Flags.DEADLINE));
         email = ParserUtil.parseEmail(args.get(Flags.EMAIL));
         tags = ParserUtil.parseTags(args.get(Flags.TAG));
-        repeatDuration = ParserUtil.parseRepeatDuration(args.get(Flags.REPEAT), deadline);
+        repeatTimes = ParserUtil.parseRepeatTimes(args.get(Flags.REPEAT), deadline);
         priority = ParserUtil.parsePriority(args.get(Flags.PRIORITY));
         assert description != null && !description.isEmpty(): "Missing description uncaught by parser!";
     }
 
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) {
-        String taskString = taskList.addTask(description, deadline, email, tags, repeatDuration, priority);
+        String taskString = taskList.addTask(description, deadline, email, tags, repeatTimes, priority);
         ui.printAddTaskMessage(taskString);
     }
 }

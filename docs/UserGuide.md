@@ -14,298 +14,396 @@ bring an application to keep you aware of your deadlines and not miss them.
 2. Download the latest version of `NUS To-Do List` from [here](https://github.com/AY2223S2-CS2113-T11-4/tp/releases/tag/v2.0).
 3. Double-click the downloaded jar file or run `java -jar todolist.jar` in a terminal to start the program.
 
-## Features 
+## Command Format
 
-#### Notes about the command format
+### Flags
 
-- **Flags**
-  - Words with a dash in front such as `-due` or `-email`, are flags. Hence, parameters like the description or tags cannot start with a dash.
-  - Each command has its own flags that need to be provided when running the command.
-  - You **cannot** repeat the same flag (`-edit abc -edit def`) for a command.
-  - Flags in square brackets `[]` are optional. (Do not include the brackets in the command)
-- **Parameters**
-  - Words in `UPPER_CASE` are parameters to be supplied by the user.
-  - Parameters cannot start with a dash `-`. For example, `add -random_name` is an invalid command.
-  - Some parameters have additional restrictions on them; refer to the explanation for each command for more information.
-  - Flags and their parameters can be provided in any order after the command name and its parameter. For example, instead of `add DESCRIPTION -due DATE -email ADDRESS` you can also use `add DESCRIPTION -email ADDRESS -due DATE`.
-  - Unnecessary parameters for commands/flags that do not need them are ignored. For example, `exit 123` is equivalent to `exit`.
-- **Dates**
-  - The date-time format is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`. An example of a valid date-time is `14/03/2025 16:40`.
-- **Others**
-  - Trailing, leading or consecutive spaces will be removed from commands.
+- Words with a dash in front such as `-due` or `-email`, are considered as flags. Hence, [parameters](#parameters) like the description or tags cannot start with a dash.
+- Each command has its own flags that need to be provided when running the command, some of which are mutually exclusive.
+- A typo in a flag may cause it to be recognised as a parameter instead of a flag.
+- You **cannot** repeat the same flag (`-edit abc -edit def`) for a command.
+- Flags in square brackets `[]` are optional. (Do not include the brackets in the command)
+
+### Parameters
+
+- Words in `UPPER_CASE` are parameters to be supplied by the user.
+- Parameters cannot start with a dash `-`. For example, `add -random_name` is an invalid command.
+- Flags and their parameters can be provided in any order after the command name and its parameter. For example, instead of `add DESCRIPTION -due DATE -email ADDRESS` you can also use `add DESCRIPTION -email ADDRESS -due DATE`.
+- Unnecessary parameters for commands/flags that do not need them are ignored. For example, `exit 123` is equivalent to `exit`.
+
+#### Restrictions
+
+Given below is list of task attributes and their restrictions.
+
+- `DESCRIPTION` The description of a task has no additional restrictions.
+  - Examples: `Hello yah`, `pi is roughly 3`
+- `DEADLINE` The date-time format is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`.
+  - When adding a task or editing a deadline, the `DEADLINE` cannot be in the past.
+  - Examples: `14/03/2025 16:40`, `29/02/2024 06:39`
+- `EMAIL_ADDRESS` must be of a valid email address format. (We do not check if the mailbox actually exists.)
+  - Examples: `abc@def.com`, `this-is-valid-@too.com`
+- `LIST_OF_TAGS` consists of one or more tags, separated by a space. A task cannot have multiple of the same tag.
+  - Tags will be sorted in lexicographic order.
+  - Examples: `difficult later 3.14`, `ALSO_A_TAG`
+- `REPEAT_TIMES` must be an integer from 0 to 2147483647, and can only be used if the task also has a `DEADLINE`.
+  - A copy of the task (with a new id) will be added every `REPEAT_FREQUENCY` days (defaults to 7) starting from the `DEADLINE` for `REPEAT_TIMES` times.
+  - Examples: `37`, `0` (the default if not specified, equivalent to no recurrence)
+- `PRIORITY_LEVEL` can be either 1, 2, or 3 (1: `Low`, 2: `Medium`, 3: `High`).
+  - A priority of `0` (the default if not specified) can also be used to indicate no priority.
+
+### Selecting tasks
+
+Some commands can act on multiple tasks at once, which can be selected by providing a list of ids, OR one or more filters.
+
+- `IDS` consists of one or more ids, separated by a space.
+  - **IMPORTANT**: Ids (indicated with `ID:`) are different from the ordering number of a task (indicated with `#`). Each task has a unique, fixed id number used to select that specific task. Hence, ids do not reset without using the `reset` command.
+  - A command will not be executed if any of the provided ids are invalid (not in the task list).
+  - Commands will be executed as if the list of ids is provided in increasing order.
+  - Examples: `1 3 5`, `99`
+- `FILTERS` can be one or more of the following:
+  - Boolean filters
+    - Replace `1` with `0` to invert the filter. 
+    - `-done 1` filters completed tasks.
+    - `-overdue 1` filters overdue (incomplete and past deadline) tasks.
+    - `-rep 1` filters recurring (`REPEAT_TIMES` > 0) tasks.
+  - Non-boolean filters
+    - `-all` selects all tasks (this overrides all other filters).
+    - `-desc STRING` filters tasks with descriptions containing the given string.
+    - `-email EMAIL_ADDRESS` filters tasks with the given email address.
+    - `-before DEADLINE` filters tasks with deadlines before the given deadline.
+    - `-after DEADLINE` filters tasks with deadlines after the given deadline.
+    - `-tags LIST_OF_TAGS` filters tasks that have all the given tags.
+    - `-prio PRIORITY_LEVEL` filters tasks with the given priority level.
+  - Example: `-done 0 -desc next` selects all incomplete tasks with `next` in their description. 
+
+### Others
+
+- Trailing, leading or consecutive spaces will be removed from commands.
+- Certain commands that have no effect, such as deleting a non-existent attribute from a task or marking an already complete task, can still be executed anyway.
+
+## Features
 
 ### Adding a task `add`
 
-Adds a new task to your To-Do list.
+Adds a new task with the given attributes to your To-Do list.
 
-Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [-tags LIST_OF_TAGS] [-rep REPEAT_DURATION] [-prio PRIORITY_LEVEL]`
+Format: `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [-tags LIST_OF_TAGS] [-rep REPEAT_TIMES] [-prio PRIORITY_LEVEL]`
 
-- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`, and cannot be in the past.
-- `EMAIL_ADDRESS` must be of a valid email address format.
-- `LIST_OF_TAGS` can consist of multiple tags, separated by a space. A task cannot have multiple of the same tag. Tags will be sorted in lexicographic order.
-- `REPEAT_DURATION` must be an integer from 0 to 2147483647, and can only be used if a `DEADLINE` is also provided. A new task will be added every week starting from the `DEADLINE` for `REPEAT_DURATION` times.
-- `PRIORITY_LEVEL` must be either 1, 2, or 3 (1: `Low`, 2: `Medium`, 3: `High`).
+- Refer to the [Restrictions](#restrictions) section for more information about the parameters.
 
 Example of usage and output: 
 
-`add todo -due 23/09/3000 23:59` creates a task with the description `todo`, and the deadline `23 Sep 3000 23:59`.
+`add todo -due 23/09/2023 23:59 -rep 10` creates a task with the description `todo`, the deadline `23 Sep 3000 23:59`, which will produce a copy of itself after `30 Sep 3000 23:59`.
 ```
 Okay, I have added this task:
-[ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+[ID:00001][ ][   ][todo                               ][Due by: 23 Sep 2023 23:59]
 ```
 
-`add do math homework -email abc@def.com -tags difficult later` creates a task with the description `do math homework`, email address `abc@def.com`, and the tags `difficult` and `later`.
+`add do math homework -email abc@def.com -prio 2 -tags difficult later 3.14` creates a task with the description `do math homework`, email address `abc@def.com`, priority level `Medium`, and the tags `3.14`, `difficult` and `later`.
 ```
 Okay, I have added this task:
-[ID:2]	[ ][do math homework]
+[ID:00002][ ][II ][do math homework                   ]
 ```
 
 ### Mark a task (as complete) `mark`
 
-Marks a task with the given id by the user as completed. 
+Marks tasks with the given ids or matching the given filters as completed.
 
-Format: `mark ID`
+Format: `mark ID` OR `mark FILTERS`
 
-- The `ID` has to be an id of a task that can be found in the To-Do list.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
 
 Example of usage and output:
 
 `mark 1` marks the task with id 1 in the To-Do list as done.
 ```
-Okay, I have marked this task as complete:
-[ID:1]	[X][todo][Due: 23 Sep 3000 23:59]
+Okay, I have marked the following task(s) as complete:
+__________________________________________________________________________________________
+[#00001][ID:00001][X][   ][todo                               ][Due by: 23 Sep 2023 23:59]
+```
+
+`mark -done 0` marks all incomplete tasks as done.
+```
+Okay, I have marked the following task(s) as complete:
+__________________________________________________________________________________________
+[#00001][ID:00002][X][II ][do math homework                   ]
 ```
 
 ### Unmark a task (as incomplete) `unmark`
 
-Unmarks a task with the given id by the user as incomplete. 
+Unmarks tasks with the given ids or matching the given filters as incomplete.
 
-Format: `unmark ID`
+Format: `unmark ID` OR `unmark FILTERS`
 
-- The `ID` has to be an id of a task that can be found in the To-Do list.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
 
 Example of usage and output:
 
 `unmark 1` unmarks the task with id 1 in the To-Do list, so it is considered not done yet.
 ```
-Okay, I have marked this task as incomplete:
-[ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+Okay, I have marked the following task(s) as incomplete:
+__________________________________________________________________________________________
+[#00001][ID:00001][ ][   ][todo                               ][Due by: 23 Sep 2023 23:59]
+```
+`unmark -prio 2` unmarks all tasks with priority level 2 (`Medium`), so they are considered not done yet.
+```
+Okay, I have marked the following task(s) as incomplete:
+__________________________________________________________________________________________
+[#00001][ID:00002][ ][II ][do math homework                   ]
 ```
 
 ### Delete a task `delete`
 
-Removes the task with the given id by the user from the To-Do list.
+Deletes all tasks with the given ids or matching the given filters from the To-Do List.
 
-Format: `delete ID`
+Format: `delete ID` OR `delete FILTERS`
 
-- The `ID` has to be an id of a task that can be found in the To-Do list.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
 
-Example of usage:
+Example of usage and output:
 
-`delete 1` deletes the task of id 1 from the To-Do list.
+`delete 2` deletes the task with id 2 from the To-Do list.
 ```
-Okay, I have removed this task:
-[ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+Okay, I have removed the following task(s):
+__________________________________________________________________________________________
+[#00001][ID:00002][ ][II ][do math homework                   ]
+```
+`delete -before 12/12/2024 12:12` deletes all tasks with deadlines before 12 Dec 2024 12:12.
+```
+Okay, I have removed the following task(s):
+__________________________________________________________________________________________
+[#00001][ID:00001][ ][   ][todo                               ][Due by: 23 Sep 2023 23:59]
 ```
 
 ###  Edit description of a task `desc`
 
-Edits the description of a task with the given id in the ToDo List.
+Edits the description of tasks with the given ids or matching the given filters.
 
-Format: `desc ID -edit DESCRIPTION`
+Format: `desc IDS -edit DESCRIPTION` OR `desc FILTERS -edit DESCRIPTION`
 
-- The `ID` has to be an id of a task that can be found in the To-Do list.
+- Refer to the [Restrictions](#restrictions) section for more information about the parameters.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
 
-Example of usage:
+Example of usage and output:
 
-`desc 1 -edit abc def` sets the description of the task to `abc def`.
+`desc 1 -edit abc def` sets the description of the task with id 1 to `abc def`.
 ```
-Okay, I have edited the priority level of this task to [Medium]:
-[ID:1]	[ ][abc def][Due: 15 Mar 2025 18:24]
-```
-
-###  Edit priority level of a task `prio`
-
-Edits, or deletes the priority level of a task with the given id in the ToDo List.
-
-Format: `prio ID -edit PRIORITY_LEVEL`
-
-- The `ID` has to be an id of a task that can be found in the To-Do list.
-- The `PRIORITY_LEVEL` must be either 1, 2, or 3 (1: `Low`, 2: `Medium`, 3: `High`).
-
-Example of usage:
-
-`prio 1 -edit 2` sets the priority level of the task of id 1 to 2 (Medium).
-```
-Okay, I have edited the priority level of this task to [Medium]:
-[ID:1]	[ ][abc][Due: 15 Mar 2025 18:24]
+Okay, I have edited the description of the following task(s) to [abc def]:
+__________________________________________________________________________________________
+[#00001][ID:00001][ ][   ][abc def                            ][Due by: 23 Sep 2023 23:59]
 ```
 
 ### Edit/delete deadline `due`
 
-Edits or deletes the deadline of a task with the given id in the To-Do List.
+Edits or deletes the deadline of tasks with the given ids or matching the given filters.
 
-Format: `due ID -edit DEADLINE` or `due ID -del`
-- The `ID` has to be an id of a task that can be found in the To-Do list.
-- Use `-edit` to replace the deadline of the task with the newly specified deadline, or `-del` to delete it instead.
-- If both flags are provided, `-edit` takes priority.
-- At least one of the two flags must be provided.
-- The format for `DEADLINE` is `dd/mm/yyyy hh:mm` or `dd-mm-yyyy hh:mm`, and cannot be in the past.
+Format: `due IDS -edit DEADLINE` OR `due FILTERS -edit DEADLINE`
 
-Example of usage:
+- Refer to the [Restrictions](#restrictions) section for more information about the parameters.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
+- `-edit DEADLINE` can be replaced with `-del` to delete the deadline from a task instead.
+  - Deleting the deadline from a recurring task will set its repeat times to 0, making it no longer recurring.
 
-`due 1 -edit 30-03-2023 18:00` changes the deadline of the task of id 1 in the To-Do list to `30-03-2023 18:00`.
+Example of usage and output:
+
+`due 1 -edit 30-03-2024 18:00` sets the deadline of the task with id 1 to `30-03-2024 18:00`.
 ```
-Okay, I have edited the deadline of this task to [30 Mar 2023 18:00]:
-[ID:1]	[ ][todo][Due: 30 Mar 2023 18:00]
-```
-
-`due 1 -del` deletes the deadline of the task of id 1 in the To-Do list.
-```
-Okay, I have deleted the deadline of this task:
-[ID:1]	[ ][todo][Due: 30 Mar 2023 18:00]
+Okay, I have edited the deadline of the following task(s) to [30 Mar 2024 18:00]:
+__________________________________________________________________________________________
+[#00001][ID:00001][ ][   ][abc def                            ][Due by: 30 Mar 2024 18:00]
 ```
 
-Example of usage:
-```
-Okay, I have edited the priority level of this task to [Medium]:
-[ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
-```
+### Edit/Delete email address `email`
 
-### Add/Edit/Delete an email `email`
+Edits or deletes the email address of tasks with the given ids or matching the given filters.
 
-Adds, edits, or deletes the email address of a task with the given id in the To-Do List. 
+Format: `email IDS -edit EMAIL_ADDRESS` OR `email FILTERS -edit EMAIL_ADDRESS`
 
-Format: `email ID -edit EMAIL_ADDRESS` or `email ID -del`
+- Refer to the [Restrictions](#restrictions) section for more information about the parameters.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
+- `-edit EMAIL_ADDRESS` can be replaced with `-del` to delete the email address from a task instead.
 
-- The `ID` has to be an id of a task that can be found in the To-Do list.
-- Use `-edit` to edit the email address of the task, or `-del` to delete it instead.
-- If both flags are provided, `-edit` takes priority.
-- At least one of the two flags must be provided.
-- `EMAIL_ADDRESS` must be of a valid email address format.
-
-Example of usage:
+Example of usage and output:
 
 `email 1 -edit rui@gmail.com` adds the email address `rui@gmail.com` to the task of id 1 in the To-Do list.
 ```
-Okay, I have edited the email address of this task to [rui@gmail.com]:
-[ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+Okay, I have edited the email of the following task(s) to [rui@gmail.com]:
+__________________________________________________________________________________________
+[#00001][ID:00001][ ][   ][abc def                            ][Due by: 30 Mar 2024 18:00]
 ```
 
 ### Add/Edit/Delete tags `tags`
 
-Adds, edits, or deletes the tags of a task with the given id in the To-Do List.
+Adds, edits, or deletes the tags of tasks with the given ids or matching the given filters.
 
-Format: `tags ID -edit LIST_OF_TAGS` or `tags ID -del`
+Format: `tags IDS -edit LIST_OF_TAGS` OR `tags FILTERS -edit LIST_OF_TAGS`
 
-- The `ID` has to be an id of a task that can be found in the To-Do list.
-- Use `-edit` to replace the tags of the task with the newly specified tags, or `-del` to delete them instead.
-- If both flags are provided, `-edit` takes priority.
-- At least one of the two flags must be provided.
-- `LIST_OF_TAGS` can consist of multiple tags, separated by a space. A task cannot have multiple of the same tag. Tags will be sorted in lexicographic order.
+- Refer to the [Restrictions](#restrictions) section for more information about the parameters.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
+- `-edit LIST_OF_TAGS` can be replaced with `-add LIST_OF_TAGS` to add all given tags to a task instead.
+- `-edit LIST_OF_TAGS` can be replaced with `-del LIST_OF_TAGS` to delete all given tags from a task instead.
+- `-edit LIST_OF_TAGS` can be replaced with `-del` to delete all tags from a task instead.
 
-Example of usage:
+Example of usage and output:
 
-`tags 1 -edit difficult later` adds the tags `difficult` and `later` to the task of id 1 in the To-Do list.
+`tags 1 -edit difficult later` sets the tags of the task with id 1 to `difficult` and `later`.
 ```
-Okay, I have edited the tags of this task to [difficult, later]:
-[ID:1]	[ ][todo][Due: 23 Sep 3000 23:59]
+Okay, I have edited the tags of the following task(s) to [difficult, later]:
+__________________________________________________________________________________________
+[#00001][ID:00001][ ][   ][abc def                            ][Due by: 30 Mar 2024 18:00]
 ```
-
-### Edit/delete recurring count `rep`
-
-Edits or deletes the recurring count of a task with the given id in the To-Do List.
-
-Format: `rep ID -edit REPEAT_DURATION` or `rep ID -del`
-- The `ID` has to be an id of a task that can be found in the To-Do list.
-- Use `-edit` to replace the recurring count of the task with the newly specified count, or `-del` to delete it instead.
-- If both flags are provided, `-edit` takes priority.
-- At least one of the two flags must be provided.
-- `REPEAT_DURATION` must be an integer from 0 to 2147483647.
-
-Example of usage:
-
-`rep 1 -edit 3` changes the recurring count of the task of id 1 in the To-Do list to `3`.
+`tags -tags later -del later` deletes the tag `later` from all tasks with the tag `later`.
 ```
-Okay, I have edited the repeat duration of this task to [3]:
-[ID:1]	[ ][todo][Due: 30 Mar 2023 18:00]
+Okay, I have removed the tags [later] from the following task(s):
+[#00001][ID:00001][ ][   ][abc def                            ][Due by: 30 Mar 2024 18:00]
+[#00002][ID:00002][ ][   ][do math homework                   ]
 ```
 
-`rep 1 -del` deletes the recurring count of the task of id 1 in the To-Do list.
+### Edit/delete repeat times `rep`
+
+Edits or deletes the recurrence count of tasks with the given ids or matching the given filters.
+
+Format: `rep IDS -edit REPEAT_TIMES` OR `rep FILTERS -edit REPEAT_TIMES`
+
+- Refer to the [Restrictions](#restrictions) section for more information about the parameters.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
+- `-edit REPEAT_TIMES` can be replaced with `-del` to delete the recurrence count from a task instead.
+- You cannot set or delete the recurrence count of tasks without a deadline.
+
+Example of usage and output:
+
+`rep 1 -edit 3` sets the recurrence count of the task with id 1 to `3`.
 ```
-Okay, I have deleted the repeat duration of this task:
-[ID:1]	[ ][todo][Due: 30 Mar 2023 18:00]
+Okay, I have edited the repeat times of the following task(s) to [3]:
+__________________________________________________________________________________________
+[#00001][ID:00001][ ][   ][abc def                            ][Due by: 30 Mar 2024 18:00]
+```
+`rep -rep 1 -del` deletes the recurrence count of all recurring tasks.
+```
+Okay, I have deleted the repeat times of the following task(s):
+__________________________________________________________________________________________
+[#00001][ID:00001][ ][   ][abc def                            ][Due by: 30 Mar 2024 18:00]
+```
+
+###  Edit/Delete priority level `prio`
+
+Edits or deletes the priority level of tasks with the given ids or matching the given filters.
+
+Format: `prio IDS -edit PRIORITY_LEVEL` OR `prio FILTERS -edit PRIORITY_LEVEL`
+
+- Refer to the [Restrictions](#restrictions) section for more information about the parameters.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
+- `-edit PRIORITY_LEVEL` can be replaced with `-del` to delete the priority level from a task instead.
+  - `-edit 0` is equivalent to `del`.
+
+Example of usage and output:
+
+`prio 1 -edit 3` sets the priority level of the task with id 1 to 2 (High).
+```
+Okay, I have edited the priority level of the following task(s) to [High]:
+__________________________________________________________________________________________
+[#00001][ID:00001][ ][III][abc def                            ][Due by: 23 Sep 2023 23:59]
+```
+`prio -prio 2 -del` deletes the priority level of all tasks with priority level 0.
+```
+Okay, I have deleted the priority level of the following task(s):
+__________________________________________________________________________________________
+[#00001][ID:00002][ ][   ][do math homework                   ]
 ```
 
 ### View all/selected tasks in To-Do list `list`
 
-Display all/selected tasks stored in the To-Do List.
+Display a summary of all tasks, or tasks matching the given filters.
 
-Format: `list` or `list -done` or `list -undone` or `list -overdue` or `list -priority`
-- Tasks found will be displayed in ascending order, sorted by deadline.
-- Tasks without deadline will be placed at the bottom.
-- Use of `-done` filter will display the list of completed tasks.
-- Use of `-undone` filter will display the list of uncompleted tasks.
-- Use of `-overdue` filter will display the list of uncompleted tasks with deadlines that are already 
-past the current date.
-- Use of `-priority` sorting will display the list sorted by priority.
-- Tasks with the highest priority will be displayed at the top.
+Format: `list [FILTERS] [-sort SORT_OPTION]`
 
-Example of usage:
+- Reading the task summary:
+  - `[#number]` indicates the ordering of the displayed task.
+  - `[ID:number]` indicates the id of the displayed task.
+  - `[!]` indicates an overdue task, `[ ]` indicates an incomplete task, `[X]` indicates a completed task.
+  - `[   ]` indicates no priority, `[I  ]` indicates `Low` priority, `[II ]` indicates `Medium` priority, `[III]` indicates `High` priority.
+  - The description is shown after the priority, and is truncated with `...` if it is too long.
+  - The deadline is shown after the description, if it exists.
+  - Other attributes can be seen with the [`info`](#view-detailed-information-of-a-task-info) command.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about filtering tasks.
+  - You cannot list tasks by id.
+  - If no filter is provided, all tasks will be shown by default.
+- `SORT_OPTION` can be one of the following:
+  - `due` sorts tasks by their deadline, with earlier deadlines first and no-deadline tasks last.
+  - `prio` sorts tasks by their priority, with higher priority levels first and no-priority tasks last.
+  - `desc` sorts tasks by their description in lexicographic order.
+  - `done` sorts tasks by their completion status, with overdue tasks first, then incomplete tasks, and complete tasks last.
 
-`list`
+Example of usage and output:
+
+`list -sort done` will display a summary of all tasks, sorted by completion status. 
 ```
-Okay, here is your task list, with 3 tasks
-[#000001][ID:000005][!][baba                                  ][Due by: 05 Apr 2023 23:34]
-[#000002][ID:000006][X][baba                                  ][Due by: 07 Apr 2023 23:34]
-[#000003][ID:000001][X][baba                                  ]
-[#000004][ID:000002][ ][bubu                                  ]
+Okay, here is your task list, with 6 tasks
+__________________________________________________________________________________________
+[#00001][ID:00005][!][II ][object Object                      ][Due by: 03 Mar 2023 03:03]
+[#00002][ID:00006][ ][III][Test                               ][Due by: 08 Apr 2023 20:00]
+[#00003][ID:00003][ ][I  ][baba                               ][Due by: 20 Apr 2023 13:37]
+[#00004][ID:00001][ ][III][abc def                            ][Due by: 30 Mar 2024 18:00]
+[#00005][ID:00002][X][   ][do math homework                   ]
+[#00006][ID:00004][X][   ][bubu                               ]
 ```
-`list -done`
+`list -done 0 -sort prio` will display a summary of all incomplete tasks, sorted by priority.
 ```
-Okay, here is your task list, with 2 tasks
-[#000001][ID:000006][X][baba                                  ][Due by: 07 Apr 2023 23:34]
-[#000002][ID:000001][X][baba                                  ]
-```
-`list -undone`
-```
-Okay, here is your task list, with 2 tasks
-[#000001][ID:000005][!][baba                                  ][Due by: 05 Apr 2023 23:34]
-[#000002][ID:000002][ ][bubu                                  ]
-```
-`list -overdue`
-```
-Okay, here is your task list, with 1 tasks
-[#000001][ID:000005][!][baba                                  ][Due by: 05 Apr 2023 23:34]
+Okay, here is your task list, with 4 tasks
+__________________________________________________________________________________________
+[#00001][ID:00001][ ][III][abc def                            ][Due by: 30 Mar 2024 18:00]
+[#00002][ID:00006][ ][III][Test                               ][Due by: 08 Apr 2023 20:00]
+[#00003][ID:00005][!][II ][object Object                      ][Due by: 03 Mar 2023 03:03]
+[#00004][ID:00003][ ][I  ][baba                               ][Due by: 20 Apr 2023 13:37]
 ```
 
 ### View detailed information of a task `info`
 
-Display all the attributes (description, deadline, email, tags, repeat duration, priority level) of the task with
-the given id in the To-Do List.
+Display all the attributes (description, deadline, email, tags, repeat times, priority level) of tasks with the given ids or matching the given filters.
 
-Format: `info ID`
+Format: `info IDS` OR `info FILTERS`
 
-- The `ID` has to be an id of a task that can be found in the To-Do list.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
 
-Example of usage:
+Example of usage and output:
 
-`info 1` displays the details of the task with id 1 in the To-Do list.
+`info 2 6` displays the details of the tasks with ids 2 and 6.
 ```
-Okay, here is the detailed information of this task:
-ID: 1
-Description: todo
-Priority: Low
-Due: 23 Sep 3000 23:59
-Tags: difficult, later
-Repeat duration: 6
+Okay, here is the detailed information of the following task(s):
+__________________________________________________________________________________________
+ID:           2
+Description:  do math homework
+Completed:    Yes
+Email:        abc@def.com
+Tags:         3.14, can, difficult, okay, yeah
+__________________________________________________________________________________________
+ID:           6
+Description:  Test
+Completed:    No
+Priority:     High
+Due:          08 Apr 2023 20:00
+Repeat times: 12
+```
+
+### View all tags in task list `taglist`
+
+Displays all tags found in your To-Do List.
+
+Format: `taglist`
+
+Example of usage and output:
+
+`taglist` displays any tags your tasks have.
+```
+Okay, here are the tags associated with your task list:
+3.14, can, difficult, haha, okay, yeah
 ```
 
 ### Show progress of tasks that are due this week `progress`
 
 Displays the progress of and lists tasks that are due this week in To-Do list. Progress is shown in the form of a 
 percentage (up to 2 decimal places) and a progress bar (where `=` denotes the proportion of tasks completed and `-` 
-denotes the proportion of tasks that are left undone. Called automatically on startup.
+denotes the proportion of tasks that are left undone). Called automatically on startup.
 
 - "this week" starts from Monday to Sunday of the current week.
 - For example, if `progress` is used at any time on 06/04/2023 (Thursday), "this week" would include any time within 
@@ -315,120 +413,113 @@ Format: `progress`
 
 Example of usage:
 
-`progress` displays the progress of and lists tasks that are due this week
+`progress`
 ```
 You have completed 33.33% of the 3 tasks due this week!
 Progress: |================----------------------------------|
-[ID:1]	[X][task1][Due: 30 Mar 2023 18:00]
-[ID:2]	[ ][task2][Due: 30 Mar 2023 19:00]
-[ID:3]	[ ][task3][Due: 31 Mar 2023 20:00]
+__________________________________________________________________________________________
+[#00001][ID:00001][X][III][task1                              ][Due by: 30 Mar 2023 18:00]
+[#00002][ID:00002][ ][III][task2                              ][Due by: 30 Mar 2023 19:00]
+[#00003][ID:00003][ ][III][task3                              ][Due by: 31 Mar 2023 20:00]
 ```
 
 ### View/Edit configurable settings `config`
 
 Displays/edits the current configuration for repeating tasks.
 
-Format: `config` or `config -repfreq REPEAT_FREQUENCY` or `config -chkfreq CHECK_FREQUENCY`
-- Users may set a global frequency for repeating tasks to occur and the frequency of which the program checks
-for if any new repeating tasks need to be created.
-- `REPEAT_FREQUENCY` is in days whilst `CHECK_FREQUENCY` is in minutes.
-- `CHECK_FREQUENCY` must be an integer from 0 to 2147483647.
-- `REPEAT_FREQUENCY` must be an integer from 1 to 2147483647.
-- A `CHECK_FREQUENCY` of 0 will mean that the program will check every time a command is executed.
-- Both frequencies can be edited in the same command by appending either flag after the other. 
-Please refer to example below.
+Format: `config` OR `config [-repfreq REPEAT_FREQUENCY] [-chkfreq CHECK_FREQUENCY]` OR `config -reset`
 
-Example of usage:
-`config`
+- `REPEAT_FREQUENCY` is in days and must be an integer from 1 to 2147483647.
+  - Tasks will recur, creating a copy of themselves (with a new id) if it has been at least `REPEAT_FREQUENCY` since their deadline.
+- `CHECK_FREQUENCY` is in minutes and must be an integer from 0 to 2147483647.
+  - The program will check for recurring tasks on startup and when a command is executed if it has been at least `CHECK_FREQUENCY` minutes since the last check.
+  - A `CHECK_FREQUENCY` of 0 will mean that the program will check for recurring tasks every time a command is executed.
+- `config -reset` will cause configuration settings to be reset to the default (equivalent to `config -repfreq 7 -chkfreq 0`).
+  - `-reset` will override `-repfreq` and `-chkfreq` if provided together.
+
+Example of usage and output:
+`config` displays the current configuration settings.
 ```
 Here are the configuration settings for your system:
 Repeating tasks every 7 days
 Checking for repeating task every: 0 minutes
-Last checked at: 06 Apr 2023 14:22
 ```
-`config -chkfreq 5` or `config -repfreq 7`
+`config -chkfreq 5 -repfreq 3` sets tasks to repeat every 3 days and the check for recurring task to every 5 minutes.
 ```
 Okay, I have changed the configuration to as follows:
-Repeating tasks every 7 days
+Repeating tasks every 3 days
 Checking for repeating task every: 5 minutes
-Last checked at: 06 Apr 2023 14:35
-```
-`config -chkfreq 6 -repfreq 1`
-```
-Okay, I have changed the configuration to as follows:
-Repeating tasks every 1 days
-Checking for repeating task every: 6 minutes
-Last checked at: 06 Apr 2023 14:35
 ```
 
-### Help List `help`
+### View help List `help`
 
 Displays all possible commands of the NUS To-Do List program.
 
 Format: `help`
 
-Example of usage:
+Example of usage and output:
 
 `help`
 ```
-Here are the list of commands that you can use:
+Here is the list of commands that you can use:
 +----------------------------------------------------------------------------------------+
 | Command                                | Description                                   |
 +----------------------------------------------------------------------------------------+
-| add DESCRIPTION [-due DEADLINE]        | Adds a new task to your To-Do list.           |
-|                 [-email EMAIL_ADDRESS] |                                               |
-|                 [-email EMAIL_ADDRESS] |                                               |
-|                 [-rep REPEAT_DURATION] |                                               |
+| add DESCRIPTION [-due DEADLINE]        | Adds a new task with the given attributes to  |
+|                 [-email EMAIL_ADDRESS] | your To-Do list.                              |
+|                 [-tags TAGS]           |                                               |
+|                 [-rep REPEAT_TIMES]    |                                               |
 |                 [-prio PRIORITY_LEVEL] |                                               |
-------------------------------------------------------------------------------------------
-| mark ID                                | Marks a task with the given id by the user    |
-|                                        | as completed                                  |
-------------------------------------------------------------------------------------------
-| unmark ID                              | Unmarks a task with the given id by the user  |
-|                                        | as incomplete.                                |
-------------------------------------------------------------------------------------------
-| delete ID                              | Removes the task with the given id by the     |
-|                                        | user from the To-Do list.                     |
-------------------------------------------------------------------------------------------
-| desc ID -edit DESCRIPTION              | Edits the description of a task with the      |
-|                                        | given id in the ToDo List.                    |
-------------------------------------------------------------------------------------------
-| prio ID -edit PRIORITY_LEVEL           | Edits, or deletes the priority level of a     |
-|                                        | task with the given id in the ToDo List.      |
-------------------------------------------------------------------------------------------
-| due ID -edit DEADLINE                  | Edits or deletes the deadline of a task with  |
-|        -del                            | the given id in the To-Do List.               |
-------------------------------------------------------------------------------------------
-| email ID -edit EMAIL_ADDRESS           | Adds, edits, or deletes the email address of  |
-|          -del                          | a task with the given id in the To-Do List.   |
-------------------------------------------------------------------------------------------
-| tags ID -edit LIST_OF_TAGS             | Adds, edits, or deletes the tags of a task    |
-|         -del                           | with the given id in the To-Do List.          |
-------------------------------------------------------------------------------------------
-| rep ID -edit REPEAT_DURATION           | Edits or deletes the recurring count of a     |
-|                                        | task with the given id in the To-Do List.     |
-------------------------------------------------------------------------------------------
-| list                                   | Display all tasks stored in the To-Do List.   |
-|       -done                            | Display all completed tasks.                  |
-|       -undone                          | Display all uncompleted tasks.                |
-|       -overdue                         | Display all overdue tasks.                    |
-|       -priority                        | Display all tasks sorted by priority.         |
-------------------------------------------------------------------------------------------
-| info ID                                | Display all the attributes of the task with   |
-|                                        | the given id in the To-Do List.               |
-------------------------------------------------------------------------------------------
-| progress                               | Displays the progress of and lists tasks      |
-|                                        | that are due this week in To-Do list.         |
-------------------------------------------------------------------------------------------
-| config                                 | Displays current configuratino settings.      |
-|       -chkfreq CHECK_FREQUENCY         | Edits checking frequency for repeating tasks. |
-|       -repfreq REPEAT_FREQUENCY        | Edits repeating frequency of repeating tasks. |
-------------------------------------------------------------------------------------------
-| help                                   | Displays all possible commands of the program |
-|                                        | and their description                         |
-------------------------------------------------------------------------------------------
++----------------------------------------------------------------------------------------+
+| mark IDS                               | Marks given tasks as completed.               |
++----------------------------------------------------------------------------------------+
+| unmark IDS                             | Marks given tasks as incomplete.              |
++----------------------------------------------------------------------------------------+
+| delete IDS                             | Deletes given tasks from your To-Do list.     |
++----------------------------------------------------------------------------------------+
+| desc IDS -edit DESCRIPTION             | Sets the descriptions of given tasks.         |
++----------------------------------------------------------------------------------------+
+| prio IDS -edit PRIORITY_LEVEL          | Sets the priority levels of given tasks.      |
+| prio IDS -del                          | Deletes the priority levels of given tasks.   |
++----------------------------------------------------------------------------------------+
+| due IDS -edit DEADLINE                 | Sets the deadlines of given tasks.            |
+| due IDS -del                           | Deletes the deadlines of given tasks.         |
++----------------------------------------------------------------------------------------+
+| email IDS -edit EMAIL_ADDRESS          | Sets the email addresses of given tasks.      |
+| email IDS -del                         | Deletes the email addresses of given tasks.   |
++----------------------------------------------------------------------------------------+
+| tags IDS -edit LIST_OF_TAGS            | Sets the tags of given tasks.                 |
+| tags IDS -add LIST_OF_TAGS             | Adds given tags to given tasks.               |
+| tags IDS -del LIST_OF_TAGS             | Deletes given tags from given tasks.          |
+| tags IDS -del                          | Deletes all tags from given tasks.            |
++----------------------------------------------------------------------------------------+
+| rep IDS -edit REPEAT_TIMES             | Sets the recurrence count of given tasks.     |
+| rep IDS -del                           | Makes given tasks no longer recur.            |
++----------------------------------------------------------------------------------------+
+| list [FILTERS] [-sort SORT_OPTION]     | Display summary of all/filtered tasks that    |
+|                                        | is sorted if a sorting option is given.       |
++----------------------------------------------------------------------------------------+
+| info IDS                               | Display all attributes of given tasks.        |
++----------------------------------------------------------------------------------------+
+| progress                               | Displays the progress and summary of tasks    |
+|                                        | that are due this week.                       |
++----------------------------------------------------------------------------------------+
+| taglist                                | Displays all tags found in your To-Do List.   |
++----------------------------------------------------------------------------------------+
+| config                                 | Displays current configuration settings.      |
+| config [-chkfreq CHECK_FREQUENCY]      | Sets checking frequency for recurring tasks.  |
+|        [-repfreq REPEAT_FREQUENCY]     | Sets repeating frequency of recurring tasks.  |
+| config -reset                          | Resets configuration settings to default.     |
++----------------------------------------------------------------------------------------+
+| help                                   | Displays summary of all possible commands.    |
+| help filter                            | Displays summary of all filter options.       |
+| help sort                              | Displays summary of all sorting options.      |
++----------------------------------------------------------------------------------------+
+| reset                                  | Deletes all tasks and reset IDs to 0.         |
++----------------------------------------------------------------------------------------+
 | exit                                   | Exits the program.                            |
-------------------------------------------------------------------------------------------
++----------------------------------------------------------------------------------------+
+IDS can also be replaced with FILTERS, use "help filter" for information on filters.
 ```
 
 ### Exit program `exit`
@@ -437,19 +528,45 @@ Exits the program.
 
 Format: `exit`
 
-Example of usage:
+Example of usage and output:
 
 `exit`
 ```
 See you again, bye!
 ```
 
+### Reset To-Do List `reset`
+
+Resets your To-Do List, deleting all tasks and resetting the allocated id numbers.
+
+Exits the program.
+
+Format: `reset`
+
+- Must be confirmed by entering `YES` (case sensitive).
+- **Warning!** This is irreversible.
+
+Example of usage and output:
+
+`reset`
+```
+Are you sure you want to reset your To-Do List?
+This cannot be undone. Enter "YES" to confirm, or anything else to cancel: 
+```
+`YES` will reset your To-Do List if entered after the above confirmation prompt.
+```
+Okay, your To-Do List has been reset.
+```
 
 ## FAQ
 
 **How do I transfer my data to another computer?**
 - Your task list is saved in the generated `data.json` file, and configs are saved in the `config.json` file.
-- Copy these files to the other computer and place them in the same location as the jar file for the program before running it. 
+- Copy these files to the other computer and place them in the same location as the jar file for the program before running it.
+
+**Can I edit my save/config file using a text editor?**
+- Yes, but this is not recommended unless you know what you are doing.
+- If your save/config file is invalidated and cannot be loaded, it will be copied to `invalid_data.json` and `invalid_config.json`, while your task list/config settings will be reset.
 
 **Why was my recurring task details not updated with the original task?**
 - The recurring tasks that are automatically added by the system are not linked to the original task.
@@ -457,31 +574,26 @@ See you again, bye!
 
 ## Command Summary
 
-| Action                               | Command                                                                                                                     |
-|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Add a task                           | `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [-tags LIST_OF_TAGS] [-rep REPEAT_DURATION] [-prio PRIORITY_LEVEL]` |
-| Mark task complete                   | `mark ID`                                                                                                                   |
-| Mark task incomplete                 | `unmark ID`                                                                                                                 |
-| Delete a task                        | `delete ID`                                                                                                                 |
-| Change description of task           | `desc ID -edit DESCRIPTION`                                                                                                 |
-| Change priority level of task        | `prio ID -edit PRIORITY_LEVEL`                                                                                              |
-| Add/edit deadline to a task          | `due ID -edit DEADLINE`                                                                                                     |
-| Delete deadline from a task          | `due ID -del`                                                                                                               |
-| Add/edit email to a task             | `email ID -edit EMAIL_ADDRESS`                                                                                              |
-| Delete email from a task             | `email ID -del`                                                                                                             |
-| Add/edit tags to a task              | `tags ID -edit LIST_OF_TAGS`                                                                                                |
-| Delete all tags from a task          | `tags ID -del`                                                                                                              |
-| Add/edit repeat duration to a task   | `rep ID -edit REPEAT_DURATION`                                                                                              |
-| Delete repeat duration from a task   | `rep ID -del`                                                                                                               |
-| List all tasks                       | `list`                                                                                                                      |
-| List completed tasks                 | `list -done`                                                                                                                |
-| List uncompleted tasks               | `list -undone`                                                                                                              |
-| List overdue tasks                   | `list -overdue`                                                                                                             |
-| List all tasks sorted by priority    | `list -priority`                                                                                                            |
-| Check all details of a task          | `info`                                                                                                                      |
-| Check progress of current week tasks | `progress`                                                                                                                  |
-| Show current configuration settings  | `config`                                                                                                                    |
-| Edit check frequency                 | `config -chkfreq CHECK_FREQUENCY`                                                                                           |
-| Edit repeat frequency                | `config -repfreq REPEAT_FREQUENCY`                                                                                          |
-| Check all commands of the program    | `help`                                                                                                                      |
-| Exit program                         | `exit`                                                                                                                      |
+- Refer to the [Restrictions](#restrictions) section for more information about the parameters.
+- Refer to the [Selecting tasks](#selecting-tasks) section for more information about selecting targeted tasks.
+
+| Action                                 | Command                                                                                                                  |
+|----------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Add a task                             | `add DESCRIPTION [-due DEADLINE] [-email EMAIL_ADDRESS] [-tags LIST_OF_TAGS] [-rep REPEAT_TIMES] [-prio PRIORITY_LEVEL]` |
+| Mark tasks complete                    | `mark IDS`                                                                                                               |
+| Mark tasks incomplete                  | `unmark IDS`                                                                                                             |
+| Delete tasks                           | `delete IDS`                                                                                                             |
+| Edit description of tasks              | `desc IDS -edit DESCRIPTION`                                                                                             |
+| Edit deadline to tasks                 | `due IDS -edit DEADLINE`                                                                                                 |
+| Edit email to tasks                    | `email IDS -edit EMAIL_ADDRESS`                                                                                          |
+| Edit tags to tasks                     | `tags IDS -edit LIST_OF_TAGS`                                                                                            |
+| Edit repeat times of tasks             | `rep IDS -edit REPEAT_TIMES`                                                                                             |
+| Edit priority level of tasks           | `prio IDS -edit PRIORITY_LEVEL`                                                                                          |
+| Display summary of tasks               | `list [FILTERS] [-sort SORT_OPTION]`                                                                                     |
+| Check all details of a task            | `info`                                                                                                                   |
+| Check all tags in task list            | `taglist`                                                                                                                |
+| Check progress of current week's tasks | `progress`                                                                                                               |
+| Show/edit configuration settings       | `config [-repfreq REPEAT_FREQUENCY] [-chkfreq CHECK_FREQUENCY]`                                                          |
+| Check all commands of the program      | `help`                                                                                                                   |
+| Exit program                           | `exit`                                                                                                                   |
+| Reset task list                        | `reset`                                                                                                                  |

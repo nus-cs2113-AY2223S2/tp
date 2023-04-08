@@ -50,21 +50,27 @@ public class Task {
     private String description;
     private String email;
     private LocalDateTime deadline;
-    private int repeatDuration;
+    private int repeatTimes;
     private TreeSet<String> tags;
     private Priority priority;
 
     public Task(int id, String description, LocalDateTime deadline, String email, TreeSet<String> tags,
-                int repeatDuration, Priority priority) {
+                int repeatTimes, Priority priority) {
         this.id = id;
         this.description = description;
         this.email = email;
         this.deadline = deadline;
         this.tags = tags;
-        this.repeatDuration = repeatDuration;
+        this.repeatTimes = repeatTimes;
         this.priority = priority;
     }
 
+    //@@author KedrianLoh
+    /**
+     * Converts this task into its summarised string representation, with only some attributes listed.
+     *
+     * @return The summarised string representation of this task.
+     */
     public String toString() {
         String descriptionString = description.length() > 32 ? description.substring(0, 32) + "..." : description;
         String isDoneString = isDone ? "X" : (isDue() ? "!" : " ");
@@ -76,6 +82,11 @@ public class Task {
         return taskString;
     }
 
+    /**
+     * Converts this task into its full string representation, with all attributes that exist listed.
+     *
+     * @return The full string representation of this task.
+     */
     public String getFullInfo() {
         StringJoiner infoString = new StringJoiner(System.lineSeparator());
         infoString.add("ID:           " + id);
@@ -93,12 +104,13 @@ public class Task {
         if (!tags.isEmpty()) {
             infoString.add("Tags:         " + FormatterUtil.getTagsAsString(tags));
         }
-        if (repeatDuration > 0) {
-            infoString.add("Repeat times: " + repeatDuration);
+        if (repeatTimes > 0) {
+            infoString.add("Repeat times: " + repeatTimes);
         }
         return infoString.toString();
     }
 
+    //@@author
     public int getId() {
         return id;
     }
@@ -123,8 +135,8 @@ public class Task {
         return tags;
     }
 
-    public int getRepeatDuration() {
-        return this.repeatDuration;
+    public int getRepeatTimes() {
+        return this.repeatTimes;
     }
 
     public Priority getPriority() {
@@ -149,13 +161,13 @@ public class Task {
     public String setDeadline(LocalDateTime deadline) {
         this.deadline = deadline;
         if (deadline == null) {
-            repeatDuration = 0;
+            repeatTimes = 0;
         }
         return toString();
     }
 
-    public String setRepeatDuration(int newRepeatDuration) {
-        this.repeatDuration = newRepeatDuration;
+    public String setRepeatTimes(int newRepeatTimes) {
+        this.repeatTimes = newRepeatTimes;
         return toString();
     }
 
@@ -218,7 +230,7 @@ public class Task {
     }
 
     public static Predicate<Task> isRepeating() {
-        return task -> task.repeatDuration > 0;
+        return task -> task.repeatTimes > 0;
     }
 
     public static Predicate<Task> matchesTags(TreeSet<String> tags) {

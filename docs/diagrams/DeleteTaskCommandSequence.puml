@@ -46,4 +46,5 @@ DeleteTaskCommand --> ToDoListManager : result
 deactivate DeleteTaskCommand
 destroy DeleteTaskCommand
 ToDoListManager --> User : Notify user task has been deleted
+deactivate ToDoListManager
 @enduml
