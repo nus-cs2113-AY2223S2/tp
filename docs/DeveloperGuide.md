@@ -103,6 +103,8 @@ too many modules are affected.
 Sequence Diagram of Storage initialisation:
 
 ![Storage.png](diagrams%2FStorage%2FStorage.png)
+
+Reference readModData Diagram:
 ![readModData.png](diagrams%2FStorage%2FreadModData.png)
 
 The Storage class also handles the adding of new modules and the deleting of past modules. When any of this occurs, the
