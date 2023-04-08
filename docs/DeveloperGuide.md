@@ -32,9 +32,8 @@ This project is based on the AddressBook-Level3 project created by the SE-EDU in
    - Storage
    - Ui
 4. packingfunc
-   - Parser
-   - Storage
-   - Ui
+   - Item
+   - PackingList
 
 The class diagram below shows the overall structure of BagPacker application, many methods, variables and associations are omitted for improved clarity
 
@@ -60,7 +59,7 @@ It then updates the ```quantity``` variable according to the quantity inputted b
 
 ##### Preventing duplicate items
 
-When using the `add` function, we have decided to implement a method to check whether the item with the same name already exists in the packingList.
+When using the `add` function, we have decided to implement a method to check whether an item with the same name already exists in the packingList.
 
 This is done through the `itemFinder()` method in class `PackingList()`, which is called during `AddCommand.execute()`.
 
@@ -90,7 +89,7 @@ Mechanism: ```DeleteCommand.execute()``` calls the ```PackingList.deleteItem()``
 ---
 
 #### Help Command
-Help command is used to exit the BagPacker application.
+Help command is used to display all the possible commands in the BagPacker application for the user.
 
 Execute: ```HelpCommand.execute()``` prints the following help message.
 
@@ -128,8 +127,6 @@ All Commands:
 12. bye: Stops the BagPacker Application
 	Example: bye
 ____________________________________________________________
-
-
 ```
 
 ---
@@ -138,7 +135,7 @@ ____________________________________________________________
 
 List command is used to list out all items in the packing list.
 
-Mechanism: ```ListCommand.execute()``` prints the full list of items in `PackingList` to the CLI.
+Mechanism: `ListCommand.execute()` prints the full list of items in `packingList` to the CLI.
 
 List format: `ITEM_INDEX. [CURRENTLY_PACKED_QUANTITY/TOTAL_QUANTITY] ITEM_NAME`
 
@@ -161,7 +158,7 @@ ____________________________________________________________
 
 `listunpacked` command is used to list out all items in the packing list that are not fully packed.
 
-Mechanism: ```ListUnpackedCommand.execute()``` calls `getUnpackedList()`, which iterates through every item in `PackingList` to check if it is fully packed.
+Mechanism: `ListUnpackedCommand.execute()` calls `getUnpackedList()`, which iterates through every item in `packingList` to check if it is fully packed. 'Fully packed' here refers to an item that has its current `packedQuantity` to be less than its `totalQuantity`.
 In each iteration, `Item.checkFullyPacked()` is called which checks `packedQuantity == totalQuantity` for a particular item and returns its packed status (true if fully packed, else false).
 Each item that is not fully packed is added to an ArrayList of unpacked items.
 Finally, `ListUnpackedCommand.execute()` prints the full list of unpacked items in `unpackedlist` to the CLI.
@@ -176,15 +173,36 @@ Here are the unpacked items in your list
 2. [2/3] shirts
 3. [0/2] phones
 ____________________________________________________________
+``` 
+
+In the case where there are no items in the list, or all items are fully packed, the respective messages are shown on the CLI.
+
+_**No items:**_
+```
+________________________________________________________________________________________________________________________
+listunpacked
+________________________________________________________________________________________________________________________
+There are no items in your list. What would you like to add?
+________________________________________________________________________________________________________________________
+```
+
+**_All items fully packed:_**
+```
+________________________________________________________________________________________________________________________
+listunpacked
+________________________________________________________________________________________________________________________
+All items in your list are fully packed!
+________________________________________________________________________________________________________________________
+
 ```
 
 ---
 
 
 #### DeleteList Command
-```DeleteListCommand``` is used to delete a whole packing list in the BagPacker application.
+`DeleteListCommand` is used to delete all items inside `packingList`.
 
-Mechanism: ```DeleteListCommand.execute()``` reassigns the existing ```packingList``` to a new empty ArrayList of Items, thus deleting the ```packingList```.
+Mechanism: `DeleteListCommand.execute()` reassigns the existing `packingList` to a new empty ArrayList of Items, thus deleting any items in `packingList`.
 
 
 ---
@@ -222,17 +240,18 @@ BagPacker aims to help busy students simplify their packing process by allowing 
 | v2.1    | user     | find an item by name                           | find the pack status of an item without having to go through the entire list |
 | v2.1    | user     | save my packing list                           | keep track of my packing list even after leaving the app                     |
 | v2.1    | user     | see the list of items I have yet to pack       | easily track what I am missing                                               |
+| v2.1    | user     | edit the number of items i need to pack        | change my mind whenever I want                                               |
+
 
 
 ## Non-Functional Requirements
 
 - be able to retrieve the user's packing list quickly and accurately
 - the quantity of each item to be packed should not be unreasonably large
-- the total number of items to be packed should not be unreasonably large
 
 ## Glossary
 
-* *glossary item* - Definition
+* *CLI* - Command Line Interface
 
 ## Instructions for manual testing
 
