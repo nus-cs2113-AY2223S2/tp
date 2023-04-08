@@ -289,6 +289,13 @@ public class SniffTasks {
         }
     }
 
+    /**
+     * Searches through APPOINTMENTS arraylist and checks if appointment with matching uID is stored
+     * Prints out appointment details if found
+     *
+     * @param uId the appointment ID to find in stored appointments
+     * @throws SniffException if no appointment ID is given by user
+     */
     public void findAppointment(String uId) throws SniffException {
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
@@ -306,6 +313,12 @@ public class SniffTasks {
         }
     }
 
+    /**
+     * Searches through APPOINTMENTS arraylist and checks if appointment with matching uID is stored
+     * Prints out all appointment details for matching animal if found
+     *
+     * @param animal the animal type to find in stored appointments
+     */
     public void findAnimal(String animal) {
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
@@ -320,6 +333,12 @@ public class SniffTasks {
         }
     }
 
+    /**
+     * Searches through APPOINTMENTS arraylist and checks for given appointment type (surgery, consultation etc.)
+     * Prints out all appointment details for matching appointment types if found
+     *
+     * @param type the appointment type to find
+     */
     public void findType(String type) {
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
@@ -334,6 +353,13 @@ public class SniffTasks {
         }
     }
 
+    /**
+     * Searches through APPOINTMENTS arraylist and checks for appointments on given date
+     * Prints out all appointment details for given date if found
+     *
+     * @param date the date to check for existing appointments
+     * @throws SniffException if invalid format is given for date
+     */
     public void findDate(String date) throws SniffException {
         int counter = 1;
         for (Appointment appointment : APPOINTMENTS) {
@@ -372,20 +398,18 @@ public class SniffTasks {
                     break;
                 }
             }
-            if (APPOINTMENTS.get(index).getStatus().equals("X")){
-                Ui.printAppointmentAlreadyMarkedMessage(uid);
+                if (APPOINTMENTS.get(index).getStatus().equals("X")) {
+                    Ui.printAppointmentAlreadyMarkedMessage(uid);
+                } else {
+                    APPOINTMENTS.get(index).setIsDone(true);
+                    Ui.formatPrintList(counter, APPOINTMENTS.get(index).toString());
+                    System.out.println("\n");
+                    Ui.printAppointmentMarkMessage();
+                }
+            } catch(IndexOutOfBoundsException e){
+                throw new SniffException(" The mark command entry is invalid!");
             }
-            else{
-                APPOINTMENTS.get(index).setIsDone(true);
-                Ui.formatPrintList(counter, APPOINTMENTS.get(index).toString());
-                System.out.println("\n");
-                Ui.printAppointmentMarkMessage();
-            }
-        } catch (IndexOutOfBoundsException e) {
-            throw new SniffException(" The mark command entry is invalid!");
         }
-
-    }
 
     /**
      * Gets the ID input by the user and UnMarks the corresponding appointment and generates a success message.
@@ -411,10 +435,9 @@ public class SniffTasks {
                     break;
                 }
             }
-            if (APPOINTMENTS.get(index).getStatus().equals(" ")){
+            if (APPOINTMENTS.get(index).getStatus().equals(" ")) {
                 Ui.printAppointmentAlreadyUnMarkedMessage(uid);
-            }
-            else{
+            } else {
                 APPOINTMENTS.get(index).setIsDone(false);
                 Ui.formatPrintList(counter, APPOINTMENTS.get(index).toString());
                 System.out.println("\n");
