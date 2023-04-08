@@ -7,78 +7,68 @@ Command Line Interface (CLI). rainyDay provides a simple solution to track your 
 goals.
 
 <!-- TOC -->
-
 * [Developer Guide](#developer-guide)
-    * [Introduction](#introduction)
+  * [Introduction](#introduction)
     * [Acknowledgements](#acknowledgements)
-        * [Purpose and target reader](#purpose-and-target-reader)
-        * [How to use this guide](#how-to-use-this-guide)
-        * [Main functions:](#main-functions-)
-    * [Design](#design)
-        * [Architecture](#architecture)
-            * [Components of the architecture](#components-of-the-architecture)
-        * [Modules component](#modules-component)
-        * [Data component](#data-component)
-            * [Design considerations](#design-considerations)
-        * [Command component](#command-component)
-        * [Exceptions component](#exceptions-component)
-    * [Implementation](#implementation)
-        * [Maintaining of Financial Report](#maintaining-of-financial-report)
-        * [Adding an entry `add`](#adding-an-entry-add)
-            * [Design considerations](#design-considerations-1)
-        * [Deleting an entry `delete`](#deleting-an-entry-delete)
-            * [Design considerations](#design-considerations-2)
-        * [Implementation of regex and parser](#implementation-of-regex-and-parser)
-            * [addStatement(String userInput)](#addstatement--string-userinput-)
-            * [Alternatives considered](#alternatives-considered)
-        * [Viewing your data `view`](#viewing-your-data-view)
-        * [Design considerations](#design-considerations-3)
-        * [Setting your monthly Budget Goal `setbudget`](#setting-your-monthly-budget-goal-setbudget)
-        * [Editing an entry `edit`](#editing-an-entry-edit)
-        * [Design considerations](#design-considerations-4)
-        * [Filtering your data `filter`](#filtering-your-data-filter)
-        * [Design considerations](#design-considerations-5)
-        * [Adding a shortcut `shortcut`](#adding-a-shortcut-shortcut)
-        * [Deleting a shortcut `shortcut_delete`](#deleting-a-shortcut-shortcutdelete)
-        * [Viewing a shortcut `shortcut_view`](#viewing-a-shortcut-shortcutview)
-        * [Saving Data](#saving-data)
-            * [Design considerations](#design-considerations-6)
-            * [How we should implement the feature of saving data](#how-we-should-implement-the-feature-of-saving-data)
-            * [Type of file to save data into](#type-of-file-to-save-data-into)
-        * [Loading Data](#loading-data)
-            * [Design Considerations](#design-considerations-7)
-            * [Type of file to load data into](#type-of-file-to-load-data-into)
-        * [Exporting to .csv](#exporting-to-csv)
-            * [Design considerations](#design-considerations-8)
-            * [How we should implement the feature of exporting to .csv](#how-we-should-implement-the-feature-of-exporting-to-csv)
-    * [Product scope](#product-scope)
-        * [Target user profile](#target-user-profile)
-        * [Value proposition](#value-proposition)
-    * [User Stories](#user-stories)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-    * [Instructions for manual testing](#instructions-for-manual-testing)
-
+    * [Purpose and target reader](#purpose-and-target-reader)
+    * [How to use this guide](#how-to-use-this-guide)
+    * [Main functions](#main-functions)
+  * [Design](#design)
+    * [Architecture](#architecture)
+      * [Components of the architecture](#components-of-the-architecture)
+    * [Modules package](#modules-package)
+      * [Storage](#storage)
+      * [Ui](#ui)
+    * [Data package](#data-package)
+    * [Command package](#command-package)
+    * [Exceptions package](#exceptions-package)
+  * [Implementation](#implementation)
+    * [Maintaining of Financial Report](#maintaining-of-financial-report)
+    * [Adding an entry `add`](#adding-an-entry-add)
+    * [Deleting an entry `delete`](#deleting-an-entry-delete)
+    * [Implementation of regex and parser](#implementation-of-regex-and-parser)
+      * [Alternatives considered](#alternatives-considered)
+    * [Viewing your data `view`](#viewing-your-data-view)
+    * [Editing an entry `edit`](#editing-an-entry-edit)
+    * [Filtering your data `filter`](#filtering-your-data-filter)
+    * [Setting your monthly Budget Goal `setbudget`](#setting-your-monthly-budget-goal-setbudget)
+    * [Adding a shortcut `shortcut`](#adding-a-shortcut-shortcut)
+    * [Deleting a shortcut `shortcut_delete`](#deleting-a-shortcut-shortcutdelete)
+    * [Viewing a shortcut `shortcut_view`](#viewing-a-shortcut-shortcutview)
+    * [Saving Data](#saving-data)
+      * [How we should implement the feature of saving data](#how-we-should-implement-the-feature-of-saving-data)
+      * [Type of file to save data into](#type-of-file-to-save-data-into)
+    * [Loading Data](#loading-data)
+    * [Exporting to .csv](#exporting-to-csv)
+      * [Design considerations](#design-considerations-8)
+      * [How we should implement the feature of exporting to .csv](#how-we-should-implement-the-feature-of-exporting-to-csv)
+  * [Product scope](#product-scope)
+    * [Target user profile](#target-user-profile)
+    * [Value proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+  * [Instructions for manual testing](#instructions-for-manual-testing)
 <!-- TOC -->
 
-## Acknowledgements
+### Acknowledgements
 
 - [gson](https://github.com/google/gson) for saving of data into a .json file
 - [Junit](https://junit.org/junit5/) for unit testing
 - [OpenCSV](https://opencsv.sourceforge.net/) for exporting of data into a .CSV file
 - rainyDay's Developer Guide and User Guide references [AB3](https://github.com/se-edu/addressbook-level3)'s Developer
-  Guide and User Guide formatting of content
+  Guide and User Guide
 
-#### Purpose and target reader
+### Purpose and target reader
 
-This guide is designed for potential engineers and professors who may want to understand how rainyDay is implemented. 
+This guide is designed for potential engineers and professors who may want to understand how rainyDay is implemented.
 We assume that you already have a certain level of technical knowledge as we will be going into detail of
 the technical aspects of rainyDay. <br> If you are a user looking for instructions on how to use rainyDay, please refer
 to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html).
 
-#### How to use this guide
+### How to use this guide
 
-* `inline code` format are related to commands and classes in rainyDay
+* `inline code` format are related to commands, classes and methods in rainyDay
 * "double quotes" format are related to names
 * 💡 indicates helpful tips
 * ℹ️ indicates information to take note of
@@ -86,7 +76,7 @@ to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html).
 > ℹ️ The lifeline for sequence diagrams should end at the destroy marker (X) but due to a limitation of PlantUML, the
 > lifeline reaches the end of the diagram.
 
-#### Main functions:
+### Main functions
 
 * Adding, deleting and editing transaction entries
 * Viewing your transactions and filtering by certain fields
@@ -97,7 +87,6 @@ to our [UserGuide](https://ay2223s2-cs2113t-t09-1.github.io/tp/UserGuide.html).
 
 > 💡 The .puml files used to create diagrams in this document can be
 > found [here](https://github.com/AY2223S2-CS2113T-T09-1/tp/tree/master/docs/diagrams).
-> Refer to the PlantUML Tutorial at se-edu/guides to learn how to create and edit diagrams.
 
 ### Architecture
 
@@ -108,7 +97,7 @@ The following are the components of the architecture that are required for rainy
 - `RainyDay`: initializes the components in the correct sequence, and connects them up with each other
 - `Parser`: breaks down inputs passed from user
 - `Command`: executes the appropriate commands
-- `UserData`: data input by the user
+- `UserData`: the data of the user
 - `Ui`: reads user input and output texts to user
 - `Storage`: reads data from and writes data to the hard disk file
 
@@ -122,17 +111,20 @@ of interaction between the components, hence some details are omitted.
 
 ![ArchitectureSequence.png](images\DeveloperGuide\ArchitectureSequence.png)
 
-### Modules component
+### Modules package
 
 {TODO}
 
-The modules component consists of classes `Parser`, `Storage`, and `Ui`.
+The modules package consists of classes `Parser`, `Storage`, and `Ui`.
 
-- `Parser`:
 - `Storage`:
 - `Ui`:
 
-### Data component
+#### Storage
+
+#### Ui
+
+### Data package
 
 The class diagram representing the data component is as shown below.
 
@@ -164,16 +156,16 @@ expenditures for the month.
 - The Key used is the number of months from the Year 0000, or more precisely calculated by (Year * 12 + Month).
   This is to allow for fast processing and collision-free information collection
 
-### Command component
+### Command package
 
 ![CommandClassDiagram.png](images\DeveloperGuide\CommandClassDiagram.png)
 
 1. When a command is parsed, a command object specific to the command given will be created, with the necessary
    parameters stored as attributes in the command specific class
-2. rainyDay will then call method execute() in the command class to return a `CommandResult` object, which contains
+2. rainyDay will then call the `Command` specific `execute` method to return a `CommandResult` object, which contains
    the output to be shown to user
 
-### Exceptions component
+### Exceptions package
 
 {TODO}
 
@@ -204,7 +196,8 @@ financial report containing a list of financial statements.
     - Details on implementation for parsing and command fields are documented below
 - Commands in the correct format will then be parsed to extract the relevant information, and an `AddCommand` object
   will be created with the relevant attributes
-- `RainyDay` will then call `execute` method in `Command`, where the transaction will be added into the financial report
+- `RainyDay` will then call the `Command` specific `execute` method, where the transaction will be added into the
+  financial report
 
 The sequence diagram for the implementation of add is as shown below.
 
@@ -230,7 +223,8 @@ Format of add command
     - `INDEX`: the index number of the statement in the financial report, stored as an int
 - Commands in the correct format will then be parsed to extract index, and a `DeleteCommand` object will
   be created with the relevant attribute information
-- `RainyDay` will then call `execute` method in `Command`, where the indicated transaction will be deleted from the
+- `RainyDay` will then call the `Command` specific `execute` method, where the indicated transaction will be deleted
+  from the
   financial report
 
 The sequence diagram for the implementation of delete is as shown below.
@@ -329,7 +323,7 @@ to use regular expressions, which is a more tidy and logical way to parse the in
 
 ![ViewCommandSequenceDiagram.png](images\DeveloperGuide\ViewCommand.png)
 
-### Design considerations
+#### Design considerations
 
 - The limit for the timespans are deliberately set to cover common timespans
     - One can view up to 31 days / 4 weeks, as they each make up a month
@@ -340,24 +334,14 @@ to use regular expressions, which is a more tidy and logical way to parse the in
     - In line with the purpose of the Ignore Command, -all flag will also not show this. Instead, users can view the
       value via the export command, as elaborated below
 
-### Setting your monthly Budget Goal `setbudget`
-
-- The command `setbudget` is used to set the user's monthly budget goal
-    - Format: `setbudget VALUE`
-    - Users can also turn off the feature at any time by setting `VALUE` to 0
-- Once a goal is present, user's will be reminded of how close they are to sticking to their budget, or how
-  much they have exceeded it by
-- This can be seen at start-up and when the user makes any changes to their expenses for the month
-
-![SetBudgetCommandSequenceDiagram.png](images\DeveloperGuide\SetBudgetCommand.png)
-
 ### Editing an entry `edit`
 
 - When a command is given to edit a statement, the command is first parsed by the parser
 - The parser checks whether the command follows the format of an edit command: `edit INDEX FLAG NEWFIELD`
   or `edit INDEX FLAG` with the use of regex. The regex pattern also checks whether the flags are in the correct order
 - Commands in the correct format will then be used to create an `EditCommand` object
-- `RainyDay` will then call the `Command.execute()`, where the fields in the indicated financial statement
+- `RainyDay` will then call the `Command` specific `execute` method, where the fields in the indicated financial
+  statement
   will be edited
 
 The sequence diagram for the implementation of edit is as shown below:
@@ -366,7 +350,7 @@ The sequence diagram for the implementation of edit is as shown below:
 
 ![EditCommandRefFrame.png](images\DeveloperGuide\EditCommandRefFrame.png)
 
-### Design considerations
+#### Design considerations
 
 - The flags accepted are currently fixed by this order -in/-out -> -d DESCRIPTION -> -v $VALUE -> -c CATEGORY ->
   -date DATE. While accepting any order of flags would increase convenience for the user, since add command currently
@@ -379,7 +363,8 @@ The sequence diagram for the implementation of edit is as shown below:
   whether it follows the format of a filter command with the use of regex. The regex pattern also checks whether the
   flags are in the correct order
 - Commands in the correct format will then be parsed to create a `FilterCommand` object
-- RainyDay will then call `Command.execute()`, where every entry in the financial report with the matching
+- RainyDay will then call `the `Command` specific `execute` method, where every entry in the financial report with the
+  matching
   conditions will be printed
 - Information will be presented in a table format to help improve clarity for users
 
@@ -387,9 +372,20 @@ The sequence diagram for the implementation of filter is as shown below:
 
 ![FilterCommand.png](images\DeveloperGuide\FilterCommand.png)
 
-### Design considerations
+#### Design considerations
 
 - Flags being accepted in a fixed order has the same considerations as the edit command above.
+
+### Setting your monthly Budget Goal `setbudget`
+
+- The command `setbudget` is used to set the user's monthly budget goal
+    - Format: `setbudget VALUE`
+    - Users can also turn off the feature at any time by setting `VALUE` to 0
+- Once a goal is present, user's will be reminded of how close they are to sticking to their budget, or how
+  much they have exceeded it by
+- This can be seen at start-up and when the user makes any changes to their expenses for the month
+
+![SetBudgetCommandSequenceDiagram.png](images\DeveloperGuide\SetBudgetCommand.png)
 
 ### Adding a shortcut `shortcut`
 
@@ -398,7 +394,7 @@ The sequence diagram for the implementation of filter is as shown below:
     - Furthermore, the `[SHORTCUTNAME]` should be given without spaces
 - Commands in the correct format will then be parsed to create a `ShortcutAddCommand` object with a constructor
     - The given `[SHORTCUTNAME]` and `[ACTUALCOMMAND]` will be the key value pair of the hashmap.
-- `RainyDay` will then call the `execute` method in `ShortcutAddCommand`
+- `RainyDay` will then call the `Command` specific `execute` method
     - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
     - A self-call will be made to the `checkShortcutValidity` method to ensure that the shortcut to be added is valid
     - If the shortcut is valid, the new shortcut mapping will be added into the hashmap
@@ -413,7 +409,7 @@ The sequence diagram for the implementation of adding a shortcut is as shown bel
   delete shortcut command: `shortcut_delete [SHORTCUTNAME]`
 - Commands in the correct format will then be parsed to create a `ShortcutDeleteCommand` object with a constructor
     - The given `[SHORTCUTNAME]` will be the key of the hashmap
-- `RainyDay` will then call the `execute` method in `ShortcutDeleteCommand`.
+- `RainyDay` will then call the `Command` specific `execute` method
     - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
     - If the shortcut key exists in the `shortcutCommands` hashmap, it will be deleted from the hashmap
 
@@ -425,7 +421,7 @@ The sequence diagram for the implementation of deleting a shortcut is as shown b
 
 - The command `shortcut_view` is used to view all currently configured shortcuts
 - The command will create a `ShortcutViewCommand` object with a constructor
-- `RainyDay` will then call the `execute` method in `ShortcutViewCommand`
+- `RainyDay` will then call the `Command` specific `execute` method
     - A call will be made to the `savedData` object which returns a reference to the `shortcutCommands` hashmap
     - For each shortcut in the hashmap, the corresponding actual command will be obtained from the
       `shortcutCommands` hashmap with the `get` method
@@ -437,15 +433,14 @@ The sequence diagram for the implementation of viewing a shortcut is as shown be
 
 ![ShortcutViewCommand.png](images%2FDeveloperGuide%2FShortcutViewCommand.png)
 
-{TODO: Mention file path after implementing issue #137}
-
 ### Saving Data
 
-- The `savedData` object will contain all the data of the user, such as the `FinancialReport` and the
+- The `savedData` object will contain all the data of the user, such as the `FinancialReport`, the
   configured `ShortcutCommands` and `budgetGoal`
 - Whenever a change is made in the `savedData` the updated `savedData` will automatically be saved to
   reflect the changes
 - Saving is done by serializing the `savedData` into json format and writing it into a file
+- The saved file will be named "rainyDay.json" and will be located in the "data" folder
 
 #### Design considerations
 
@@ -492,7 +487,7 @@ The sequence diagram for the implementation of viewing a shortcut is as shown be
               detected
 - Alternative 2: Make use of plaintext to save the relevant data in the `savedData` object.
     - Pros:
-        - Data will be more readable and user can get information about the FinancialReport by viewing the .txt file
+        - Data will be more readable and user can get information about the FinancialReport by viewing the text file
     - Cons:
         - Difficult to implement and parse, changes in implementation will be necessary when new attributes are added
           to `savedData` as we develop the app incrementally
@@ -514,6 +509,8 @@ The sequence diagram for the implementation of viewing a shortcut is as shown be
 ### Exporting to .csv
 
 - When the `export` command is given, the `FinancialStatement` data will be written to a .csv file
+- Relevant fields in the `FinancialStatement` will be saved, including the "ID", "description", "amount", "category"
+  and "date" of each transaction
 
 #### Design considerations
 
@@ -588,4 +585,54 @@ Help people who are just starting out working and troubled by financial issues s
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### Launch and shutdown
+
+1. Initial launch
+    1. Download the jar file and copy it into an empty folder
+    2. Open the terminal and `cd` into the file directory where you placed "rainyDay.jar"
+    3. Type the command `java -jar rainyDay.jar` and press Enter <br>Expected: rainyDay startup appears, prompting for
+       your name
+
+2. Shutdown
+    1. Type the command `bye` and press Enter<br>Expected: rainyDay should output a goodbye message and shutdown
+       accordingly
+
+### Adding a transaction
+
+1. Prerequisites: None
+
+2. Test case: `add -in income $4000 -c full time pay -date 5/4/2023`<br>Expected: An inflow transaction with amount of
+   4000, description of "income", category of "full-time pay" and date of 05/04/2023 will be added into rainyDay.
+   An output reflecting the action done will be shown
+
+3. Test case: `add -out beef-noodles $12`<br>Expected: No new transaction added. Error message for "unsupported description
+   name" will be shown
+
+4. Test case: `add -in jackpot $21,474,837`<br>Expected: No new transaction added. Error message for "invalid value" will be shown
+
+### Deleting a transaction
+
+1. Prerequisites: There are multiple transactions in rainyDay
+
+2. Test case: `delete 1`<br>Expected: Transaction with index 1 shown in the `view -all` list before the delete command will be deleted.
+   An output with the description of the transaction deleted will be shown
+
+3. Test case: `delete x`, where x is any character or a number < 1 or > the number of transactions inside rainyDay<br>Expected: No transaction deleted. Error message for "wrong delete index" will be shown
+
+### Viewing transactions
+
+1. Prerequisites: There are multiple transactions with different amount and dates in rainyDay
+
+2. Test case: `view`<br>Expected: Transactions that falls between the current month will be shown, sorted by the order
+   of ascending date
+
+3. Test case: `view 3m -sort`<br>Expected: Transactions that falls between the current month and the last 3 months will
+   be shown, sorted by the order of ascending date and increasing amount of inflow type of transaction, followed by
+   decreasing amount of outflow type of transaction
+
+4. Test case: `view -all`<br>Expected: All transactions stored in rainyDay will be shown to user, ordered in ascending
+   date
+
+5. Test case: `view 32d`<br>Expected: No transaction will be shown. Error message for "wrong view format" will be
+   shown
+
