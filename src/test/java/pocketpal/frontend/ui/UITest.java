@@ -72,11 +72,10 @@ public class UITest {
         @Test
         void testPrintHelpMenu() {
             ui.printHelpMenu();
-            assertEquals(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_ADD_COMMAND
-                    + MessageConstants.MESSAGE_DELETE_COMMAND + MessageConstants.MESSAGE_EDIT_COMMAND
-                    + MessageConstants.MESSAGE_VIEW_COMMAND + MessageConstants.MESSAGE_HELP_COMMAND
-                    + MessageConstants.MESSAGE_BYE_COMMAND + UIConstants.LINE, outContent.toString());
+            assertEquals(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_HELP_MENU + UIConstants.LINE,
+                    outContent.toString());
         }
+        
 
         @Test
         void testPrintWelcome() {

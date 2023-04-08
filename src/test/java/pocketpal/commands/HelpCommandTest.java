@@ -17,10 +17,9 @@ public class HelpCommandTest extends BackendTestUtil {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-    private final String expectedOutput = MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_ADD_COMMAND
-            + MessageConstants.MESSAGE_DELETE_COMMAND + MessageConstants.MESSAGE_EDIT_COMMAND
-            + MessageConstants.MESSAGE_VIEW_COMMAND + MessageConstants.MESSAGE_HELP_COMMAND
-            + MessageConstants.MESSAGE_BYE_COMMAND + UIConstants.LINE;
+    private final String expectedOutput = MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_HELP_MENU
+            + UIConstants.LINE;
+
     @Test
     @DisplayName("Test execute method in HelpCommand")
     void testHelpCommandExecute(){
