@@ -6,18 +6,32 @@ import seedu.todolist.constants.Formats;
 import java.time.LocalDateTime;
 
 public class Config {
+
+    // Repeating tasks will recur every this number of days
     private int repeatFrequency = 7;
+
+    // Program will check for repeating tasks every this number of minutes
     private int checkFrequency = 0;
     private LocalDateTime lastChecked = LocalDateTime.now();
 
+    /**
+     * Returns the configuration settings in a specified string format.
+     *
+     * @return String containing configuration settings
+     */
     public String toString() {
         return String.format(Formats.CONFIG_STRING, repeatFrequency, checkFrequency);
     }
 
+    /**
+     * Reset configuration settings to default.
+     *
+     */
     public void reset() {
         repeatFrequency = 7;
         checkFrequency = 0;
     }
+
 
     public void setCheckFrequency(int checkFrequency) {
         this.checkFrequency = checkFrequency;

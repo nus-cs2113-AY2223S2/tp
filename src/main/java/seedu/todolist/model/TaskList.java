@@ -238,6 +238,14 @@ public class TaskList {
     }
 
     //@@author clement559
+    /**
+     * Sets deadline for the task ids provided.
+     *
+     * @param ids The ids of the tasks to set the deadline for.
+     * @param deadline The deadline to be set for the tasks.
+     * @return A stream of tasks with the given ids.
+     * @throws InvalidIdException If there is no task with any of the provided ids.
+     */
     public String setDeadline(HashSet<Integer> ids, LocalDateTime deadline) throws InvalidIdException {
         return joinStringStream(getTasks(ids).map(task -> task.setDeadline(deadline)));
     }
@@ -246,9 +254,17 @@ public class TaskList {
         return joinStringStream(tasks.values().stream().filter(p).map(task -> task.setDeadline(deadline)));
     }
 
+    /**
+     * Sets repeat duration for the task ids provided if the task contains a deadline.
+     *
+     * @param ids The ids of the tasks to set the repeat duration for.
+     * @param repeatTimes The repeat duration to be set for the tasks.
+     * @return A string of all the targeted tasks
+     * @throws InvalidIdException If there is no task with any of the provided ids.
+     * @throws InvalidDateException If the task with the provided ids does not have a deadline.
+     */
     public String setRepeatTimes(HashSet<Integer> ids, int repeatTimes)
             throws InvalidDateException, InvalidIdException {
-        // Cannot set the repeat duration of a task if it does not have a deadline
         Task noDeadlineTask = getTasks(ids).filter(task -> task.getDeadline() == null).findFirst().orElse(null);
         if (noDeadlineTask != null) {
             throw new InvalidDateException("Task with ID " + noDeadlineTask.id + " has no deadline.");
@@ -256,8 +272,16 @@ public class TaskList {
         return joinStringStream(getTasks(ids).map(task -> task.setRepeatTimes(repeatTimes)));
     }
 
+    /**
+     * Sets repeat duration for the task ids provided if the task contains a deadline.
+     *
+     * @param p The ids of the tasks to set the repeat duration for.
+     * @param repeatTimes The repeat duration to be set for the tasks.
+     * @return A string of all the targeted tasks
+     * @throws InvalidIdException If there is no task with any of the provided ids.
+     * @throws InvalidDateException If the task with the provided ids does not have a deadline.
+     */
     public String setRepeatTimes(Predicate<Task> p, int repeatTimes) throws InvalidDateException {
-        // Cannot set the repeat duration of a task if it does not have a deadline
         Task noDeadlineTask = tasks.values().stream().filter(p).
                 filter(task -> task.getDeadline() == null).findFirst().orElse(null);
         if (noDeadlineTask != null) {
@@ -284,6 +308,12 @@ public class TaskList {
     }
 
     //@@author clement559
+    /**
+     * Checks through the list of tasks if there are any new repeating tasks to be created.
+     * Creates the new tasks if the original deadline of the task has passed.
+     *
+     * @param config Configuration file containing repeat frequency specified by the user.
+     */
     public void checkRepeatingTasks(Config config) {
         ArrayList<Task> tasksToBeAdded = new ArrayList<>();
         for (Task task : tasks.values()) {

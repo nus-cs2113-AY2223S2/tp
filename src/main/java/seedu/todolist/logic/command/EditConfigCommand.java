@@ -18,6 +18,13 @@ public class EditConfigCommand extends Command {
     private int repeatFrequency;
     private boolean shouldReset;
 
+    /**
+     * Constructs a EditConfigCommand object by parsing the provided arguments. checkFrequency determines the frequency
+     * that the program checks for repeating tasks. repeatFrequency determines that frequency that tasks will repeat.
+     *
+     * @param args The provided arguments, parsed from the user's input.
+     * @throws InvalidFrequencyException If any of the provided frequency values are invalid. (i.e. less than 0)
+     */
     public EditConfigCommand(HashMap<Flags, String> args) throws InvalidFrequencyException {
         // Use -1 to represent no value as the flag was not in the command
         checkFrequency = ParserUtil.parseFrequency(args.get(Flags.CONFIG_CHECK_FREQ), 0);
@@ -25,6 +32,9 @@ public class EditConfigCommand extends Command {
         shouldReset = args.containsKey(Flags.RESET);
     }
 
+    /**
+     * Edits the configuration for the settings to be changed provided in the constructor.
+     */
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) {
         if (shouldReset) {

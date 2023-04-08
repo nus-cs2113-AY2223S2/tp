@@ -25,6 +25,13 @@ public class EditRepeatCommand extends Command {
     private HashSet<Integer> idHashSet;
     private Predicate<Task> predicate;
 
+    /**
+     * Constructs a EditRepeatCommand object by parsing the provided arguments.
+     *
+     * @param args The provided arguments, parsed from the user's input.
+     * @throws InvalidSelectException If no task ids are provided.
+     * @throws InvalidEditException If neither/both edit and delete keywords are provided.
+     */
     public EditRepeatCommand(HashMap<Flags, String> args) throws ToDoListException {
         idHashSet = ParserUtil.parseId(args.get(Flags.COMMAND_EDIT_REPEAT));
         predicate = ParserUtil.parseFilter(args);
@@ -39,6 +46,9 @@ public class EditRepeatCommand extends Command {
         assert args.size() > 1: "Fewer arguments than expected!";
     }
 
+    /**
+     * Edits the repeat count for the tasks provided in the constructor.
+     */
     @Override
     public void execute(TaskList taskList, Config config, Ui ui) throws ToDoListException {
         int repeatTimes = ParserUtil.parseRepeatTimes(repeatTimesString, LocalDateTime.MIN);
