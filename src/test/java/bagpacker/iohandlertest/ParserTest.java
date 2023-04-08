@@ -8,8 +8,6 @@ import bagpacker.commands.ListCommand;
 import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackCommand;
 import bagpacker.exception.EmptyInputException;
-import bagpacker.exception.InvalidIndexException;
-import bagpacker.exception.InvalidVariablesException;
 import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
 import org.junit.jupiter.api.Test;

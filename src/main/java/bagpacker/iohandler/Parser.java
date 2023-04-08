@@ -294,14 +294,14 @@ public class Parser {
                 throw new InvalidIndexException();
             }
             return new PackCommand(itemQuantity, itemIndex);
-        } catch (NumberFormatException| ArrayIndexOutOfBoundsException | InvalidVariablesException e) {
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException | InvalidVariablesException e) {
             return new IncorrectCommand("Invalid Pack Command Input",
                     "How to use pack command:\n" + PackCommand.HELP_MSG);
         } catch (InvalidIndexException e) {
-                return new IncorrectCommand("Invalid Item Index",
-                        "Try to input a positive integer number that is at most " +
-                                PackingList.getItemList().size() + " (Max integer supported is 1,000,000)");
-        }catch (InvalidQuantityException e){
+            return new IncorrectCommand("Invalid Item Index",
+                    "Try to input a positive integer number that is at most " +
+                            PackingList.getItemList().size() + " (Max integer supported is 1,000,000)");
+        } catch (InvalidQuantityException e) {
             return new IncorrectCommand("Invalid Item Quantity",
                     "Can only pack a positive quantity that is less than or equal to the unpacked quantity" +
                             " (Max integer supported is 1,000,000)");
@@ -340,7 +340,7 @@ public class Parser {
             return new IncorrectCommand("Invalid Item Index",
                     "Try to input a positive integer that is at most "
                             + PackingList.getItemList().size());
-        }catch (InvalidQuantityException e){
+        } catch (InvalidQuantityException e) {
             return new IncorrectCommand("Invalid Item Quantity",
                     "Can only change the quantity to something greater than what is currently packed and " +
                             "less than 1,000,000");
@@ -368,7 +368,7 @@ public class Parser {
      *
      * @return inputVariables in a String[] where the 0th index represents the additional quantity to pack and 1st index
      *         represents the item index in the packing list
-     * @throws InvalidIndexException invalid item index given
+     * @throws InvalidIndexException     invalid item index given
      * @throws InvalidVariablesException invalid number of variables
      */
     public static String[] getPackVariables() throws InvalidIndexException, InvalidVariablesException {
@@ -378,8 +378,8 @@ public class Parser {
                 > PackingList.getItemList().size()) {
             throw new InvalidIndexException();
         }
-        if(inputVariables.length != 2) {
-        throw new InvalidVariablesException();
+        if (inputVariables.length != 2) {
+            throw new InvalidVariablesException();
         }
         return inputVariables;
     }
@@ -457,7 +457,7 @@ public class Parser {
                 throw new InvalidIndexException();
             }
             return new UnpackCommand(itemQuantity, itemIndex);
-        } catch (NumberFormatException| ArrayIndexOutOfBoundsException | InvalidVariablesException e) {
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException | InvalidVariablesException e) {
             return new IncorrectCommand("Invalid Unpack Command Input",
                     "How to use unpack command:\n" + UnpackCommand.HELP_MSG);
         } catch (InvalidIndexException e) {
@@ -468,7 +468,7 @@ public class Parser {
             return new IncorrectCommand("Invalid Item Quantity",
                     "Can only unpack a positive quantity that is less than or equal to the packed quantity" +
                             " (Max integer supported is 1,000,000)");
-            }
+        }
     }
 
     /**
