@@ -46,7 +46,11 @@ class ModuleListTest {
         ModuleList allModules = storage.loadModuleData();
         ModuleList modules = new ModuleList();
         modules.add(allModules.findModule("CS2113"));
-        assertEquals(4, modules.getTotalModuleCredits());
+        modules.add(allModules.findModule("CG2023"));
+        modules.add(allModules.findModule("EE2211"));
+        modules.add(allModules.findModule("EE2026"));
+        modules.add(allModules.findModule("CDE2000"));
+        assertEquals(20, modules.getTotalModuleCredits());
     }
 
 }
