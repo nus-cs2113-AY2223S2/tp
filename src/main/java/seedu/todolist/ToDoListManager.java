@@ -51,7 +51,7 @@ public class ToDoListManager {
             // Config file found, try loading it
             config = storage.loadConfig();
             ui.printLoadConfigMessage();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e1) {
             // No config file found, generate new configs
             ui.printNewConfigMessage();
         } catch (FailedLoadConfigException e2) {
@@ -71,11 +71,11 @@ public class ToDoListManager {
             taskList.checkRepeatingTasks(config);
             ui.printLoadSaveMessage(taskList.size());
             new ProgressBarCommand().execute(taskList, config, ui);
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e1) {
             // No save file found, generate new task list
             ui.printNewSaveMessage();
-        } catch (FailedLoadDataException e3) {
-            ui.printError(e3);
+        } catch (FailedLoadDataException e2) {
+            ui.printError(e2);
         }
     }
 

@@ -24,10 +24,10 @@ end box
 
 User -> ToDoListManager: input("due <id> -edit <deadline>")
 ToDoListManager -> Parser: parseCommand(inputCommand)
-Parser -> EditDeadlineCommand: new EditDeadlineCommand(getArguments(splitInput, EditDeadlineCommand.FLAGS))
+Parser -> EditDeadlineCommand:
 ToDoListManager -> EditDeadlineCommand: execute(taskList, ui)
 EditDeadlineCommand -> TaskList: setDeadline(id, deadline)
-TaskList -> TaskList: getTask(id)
+TaskList -> TaskList: getTasks(id)
 TaskList -> Task: setDeadline(deadline)
 Task --> TaskList: taskString
 TaskList -> Ui: printEditTaskMessage(taskString)

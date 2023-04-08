@@ -34,7 +34,7 @@ Parser --> ToDoListManager : command
 deactivate Parser
 ToDoListManager -> DeleteTaskCommand : execute(taskList, ui)
 activate DeleteTaskCommand
-DeleteTaskCommand -> TaskList: deleteTask(<id>)
+DeleteTaskCommand -> TaskList: deleteTask(id)
 activate TaskList
 TaskList --> DeleteTaskCommand : taskString
 deactivate TaskList
@@ -42,9 +42,9 @@ DeleteTaskCommand -> Ui : printDeleteTaskMessage(taskString)
 activate Ui
 Ui --> DeleteTaskCommand
 deactivate Ui
-DeleteTaskCommand --> ToDoListManager : result
+DeleteTaskCommand --> ToDoListManager
 deactivate DeleteTaskCommand
 destroy DeleteTaskCommand
-ToDoListManager --> User : Notify user task has been deleted
+ToDoListManager --> User
 deactivate ToDoListManager
 @enduml

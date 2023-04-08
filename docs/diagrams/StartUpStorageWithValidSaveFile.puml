@@ -1,3 +1,4 @@
+//@@author jeromeongithub
 @startuml
 !include Style.puml
 
@@ -23,20 +24,15 @@ participant ":Ui" as Ui COLOR_UI
 User -> Main: start program
 Main -> ToDoListManager
 activate ToDoListManager
-ToDoListManager -> Storage: isNewSave()
-activate Storage
-Storage --> ToDoListManager: false
-deactivate Storage
-
 ToDoListManager -> Storage: loadData()
 activate Storage
 Storage --> ToDoListManager: taskList
 deactivate Storage
 ToDoListManager -> TaskList: size()
 activate TaskList
-TaskList --> ToDoListManager
+TaskList --> ToDoListManager : size
 deactivate TaskList
-ToDoListManager -> Ui:printLoadSaveMessage(taskList.size())
+ToDoListManager -> Ui:printLoadSaveMessage(size)
 activate Ui
 Ui --> ToDoListManager
 deactivate Ui
