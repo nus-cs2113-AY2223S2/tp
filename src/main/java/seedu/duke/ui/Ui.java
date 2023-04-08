@@ -55,8 +55,10 @@ public class Ui {
     }
 
     //public void printUserExerciseHistory (HashMap<String, Integer> userExerciseHistory) {
-    public void printUserExerciseHistory (HashMap<String, Integer> userExerciseHistory) {
-        PrintUserExerciseData.printUserExerciseHistory(userExerciseHistory);
+    public void printUserExerciseHistory (HashMap<String, Integer> userExerciseHistory,
+                                          int overallCount, int uniqueCount) {
+        PrintUserExerciseData.printUserExerciseHistory(userExerciseHistory,
+                overallCount,uniqueCount);
     }
 
     public void printPlannerGreeting () {

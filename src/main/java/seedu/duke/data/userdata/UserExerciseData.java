@@ -6,7 +6,6 @@ public class UserExerciseData {
 
     private static final String OPEN_BRACE = "[";
     private static final String CLOSE_BRACE = "]";
-    private static int overallCount;
 
     /**
      * This class takes in data from all workout sessions finished by
@@ -52,15 +51,43 @@ public class UserExerciseData {
                 if (userExerciseDataMap.containsKey(exerciseDescription)) {
                     int count = userExerciseDataMap.get(exerciseDescription);
                     userExerciseDataMap.put(exerciseDescription, count + 1);
-                    overallCount++;
                 } else {
                     userExerciseDataMap.put(exerciseDescription, 1);
-                    overallCount++;
                 }
             }
         }
         return userExerciseDataMap;
     }
 
+    /**
+     * Function to get the total number of non-unique exercises completed by the user.
+     *
+     * @param userCareerData Contains data on all the user sessions completed by the user.
+     * @return returns the total number of non-unique exercises
+     */
+
+    public static int totalExerciseSessionSize(UserCareerData userCareerData) {
+        int sessionSize = 0;
+        int totalSessionsArraySize = userCareerData.getTotalUserCareerSessions().size();
+        for (int i = 0; i < totalSessionsArraySize; i++) {
+            int indivSessionsArraySize = userCareerData.getTotalUserCareerSessions().
+                    get(i).getSessionExercises().size();
+            for (int j = 0; j < indivSessionsArraySize; j++) {
+                sessionSize++;
+            }
+        }
+        return sessionSize;
+    }
+
+    /**
+     * Function to get the total number of unique exercises completed by the user.
+     *
+     * @param addUserExerciseHistory HashMap containing unique exercises and their frequencies of completion.
+     * @return returns the total number of unique exercises.
+     */
+
+    public static int totalUniqueSessionSize(HashMap<String, Integer> addUserExerciseHistory) {
+        return addUserExerciseHistory.size();
+    }
 
 }
