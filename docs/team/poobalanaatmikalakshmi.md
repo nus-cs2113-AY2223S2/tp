@@ -1,7 +1,10 @@
 # PoobalanAatmikaLakshmi - Project Portfolio Page
 
 ## Overview
-
+Apollo is a scheduling app for managing your tasks and lessons at the same time,
+with integrated module information from the NUSMods database.
+The target user, an average NUS student, interacts with Apollo using a CLI.
+It is written in Java, and has about 5kLoC.
 
 ### Summary of Contributions
 - ### Summary of Contributions
@@ -27,8 +30,8 @@
 
 #### Contributions to the DG
 - Delete Module 
-- UML diagrams for DateCommand, FindCommand
-- Class diagram for Storage,DeleteHelpCommand 
+- Sequence diagrams for DateCommand, FindCommand,DeleteHelpCommand
+- Class diagram for Storage
 - Appendix E: Adding a ToDo/Event/Deadline,Deleting a Todo/Event/Deadline,Adding a Module,Adding a Lesson,Deleting a Module,Deleting a Lesson
 #### Contributions to team-based tasks
 - Helped maintain issue tracker 
