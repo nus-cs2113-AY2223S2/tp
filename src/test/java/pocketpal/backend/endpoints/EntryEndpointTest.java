@@ -161,6 +161,22 @@ public class EntryEndpointTest extends EntryTestUtil {
             assertEquals(response.getResponseStatus(), ResponseStatus.CREATED);
         }
 
-        // TODO: test for failed POST request
+        @Test
+        void entryEndpointPOST_invalidAmount_requestFailure() {
+            Entry entry = new Entry("test", 1000000000, Category.OTHERS);
+            Request request = new Request(RequestMethod.POST, entry.serialise());
+            Response response = TEST_BACKEND.requestEndpointEntry(request);
+            assertEquals(ResponseStatus.UNPROCESSABLE_CONTENT, response.getResponseStatus());
+            assertEquals(MessageConstants.MESSAGE_INVALID_AMOUNT, response.getData());
+        }
+
+        @Test
+        void entryEndpointPOST_invalidDescription_requestFailure() {
+            Entry entry = new Entry("      ", 123, Category.OTHERS);
+            Request request = new Request(RequestMethod.POST, entry.serialise());
+            Response response = TEST_BACKEND.requestEndpointEntry(request);
+            assertEquals(ResponseStatus.UNPROCESSABLE_CONTENT, response.getResponseStatus());
+            assertEquals(MessageConstants.MESSAGE_INVALID_DESCRIPTION, response.getData());
+        }
     }
 }

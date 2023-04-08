@@ -102,7 +102,7 @@ public final class MessageConstants {
             + "TRANSPORTATION, MEDICAL, PERSONAL, " + NEWLINE
             + "INCOME, UTILITIES, OTHERS";
     public static final String MESSAGE_INVALID_DESCRIPTION = "Description can only contain letters and numbers!";
-
+    public static final String MESSAGE_ID_NOT_FOUND = "Entry not found. Please enter an ID from 1 to ";
     public static final String MESSAGE_NON_EXISTENT_ID = "Item ID does not exist: ";
     public static final String MESSAGE_INVALID_ID = "Please specify a valid integer from 1 to 2147483647!";
     public static final String MESSAGE_INVALID_AMOUNT = "Please enter a valid amount!" + NEWLINE
@@ -123,6 +123,8 @@ public final class MessageConstants {
     public static final String MESSAGE_MIXED_DATE = "Start date should not be after end date!";
     public static final String MESSAGE_MISSING_DATE = "Please enter BOTH the start and end date!";
     public static final String MESSAGE_INVALID_DATE_READ = "Date format not recognised.";
+    public static final String MESSAGE_INVALID_SAVE_DATA = NEWLINE + "Warning: Save file contains invalid data. "
+            + "The next operation will discard all saved entries." + NEWLINE;
 
     public static final String MESSAGE_INVALID_HELP_COMMAND = "Please specify a valid command to view guide!"
             + NEWLINE + NEWLINE

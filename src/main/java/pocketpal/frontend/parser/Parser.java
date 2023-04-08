@@ -56,6 +56,7 @@ public class Parser {
         logger.log(Level.INFO, "User input command: " + command);
         logger.log(Level.INFO, "User input arguments: " + arguments);
         ParseCommand parser = commandParser(command);
+        logger.exiting(Parser.class.getName(), "parseUserInput()");
         return parser.parseArguments(arguments);
     }
 

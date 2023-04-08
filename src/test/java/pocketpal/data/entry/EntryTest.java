@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pocketpal.frontend.constants.EntryConstants;
+import pocketpal.frontend.util.StringUtil;
+
+import java.util.Arrays;
 
 @DisplayName("Test Entry class")
 public class EntryTest {
@@ -28,22 +30,11 @@ public class EntryTest {
 
     @Test
     void testGetCategoryString() {
-        entry.setCategory(Category.CLOTHING);
-        assertEquals(entry.getCategoryString(), EntryConstants.CLOTHING);
-        entry.setCategory(Category.ENTERTAINMENT);
-        assertEquals(entry.getCategoryString(), EntryConstants.ENTERTAINMENT);
-        entry.setCategory(Category.FOOD);
-        assertEquals(entry.getCategoryString(), EntryConstants.FOOD);
-        entry.setCategory(Category.MEDICAL);
-        assertEquals(entry.getCategoryString(), EntryConstants.MEDICAL);
-        entry.setCategory(Category.OTHERS);
-        assertEquals(entry.getCategoryString(), EntryConstants.OTHERS);
-        entry.setCategory(Category.PERSONAL);
-        assertEquals(entry.getCategoryString(), EntryConstants.PERSONAL);
-        entry.setCategory(Category.TRANSPORTATION);
-        assertEquals(entry.getCategoryString(), EntryConstants.TRANSPORTATION);
-        entry.setCategory(Category.UTILITIES);
-        assertEquals(entry.getCategoryString(), EntryConstants.UTILITIES);
+        Arrays.stream(Category.values()).forEach((categoryEnum) -> {
+            final String expectedString = StringUtil.toTitleCase(String.valueOf(categoryEnum));
+            entry.setCategory(categoryEnum);
+            assertEquals(expectedString, entry.getCategoryString());
+        });
     }
 
     @Test

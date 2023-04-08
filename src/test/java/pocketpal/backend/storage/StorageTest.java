@@ -11,7 +11,6 @@ import pocketpal.backend.constants.Config;
 import pocketpal.data.entrylog.EntryLog;
 import pocketpal.data.entry.Category;
 import pocketpal.data.entry.Entry;
-import pocketpal.frontend.constants.EntryConstants;
 import pocketpal.backend.constants.MiscellaneousConstants;
 import pocketpal.backend.exceptions.InvalidReadFileException;
 
@@ -102,7 +101,7 @@ public class StorageTest {
         private static final String TEST_DELIMITER = Config.DELIMITER;
         private static final String TEST_DESCRIPTION = "Mango Juice";
         private static final String TEST_AMOUNT_STRING = "4";
-        private static final String TEST_CATEGORY_STRING = EntryConstants.FOOD;
+        private static final String TEST_CATEGORY_STRING = "Food";
         private static final String TEST_DATE_STRING = "29 Mar 2023; 18:36";
         private static final String INVALID_DELIMITER = ";";
         private static final String INVALID_AMOUNT_STRING = "ABC123";

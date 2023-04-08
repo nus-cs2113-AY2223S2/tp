@@ -21,8 +21,12 @@ Given below are my contributions to the project.
   - Managed releases `v1.0` - `v2.1` (3 releases) on GitHub
   
 - **Enhancements to existing features**:
-  1. Wrote test cases to achieve 100% test coverage for `Parser`. (Pull requests #117, #149)
-  2. Fixed functionality/feature bugs where negative and scientific notation for prices were accepted when creating or editing an entry. (Pull requests #119, #126)
+  1. Wrote test cases to achieve 100% test coverage for `Parser`. (PRs #117, #149, #226)
+  2. Fixed functionality/feature bugs where negative and scientific notation for prices were accepted when creating or editing an entry. (PRs #119, #126)
+  3. Refactored `Parser` entirely by creating an abstract `ParseCommand` class to be implemented by the respective commands, hence increasing clarity of the implementation. (PR #217)
+  4. Fixed multiple feature/functionality and documentations bugs raised from dry run testing by:
+     1. completely re-documenting User Guide, Developer Guide with widely used command-line syntax convention. (PRs #206, #221, #225)
+     2. Revising `Parser` logic with efficient encapsulation and abstraction. (PR #217) 
 - **Documentation**
   - **User Guide**:
     + Authored documentation for over 90% of the supported features, providing comprehensive usage instructions and illustrative examples of expected and actual outputs.
