@@ -115,7 +115,7 @@ class ParserTest {
     }
 
     @Test
-    void parseCommand_randomInput_ReturnHelpCommand() {
+    void parseCommand_randomInput_returnHelpCommand() {
         final String userFullInput = "random inputs";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -124,7 +124,7 @@ class ParserTest {
     }
 
     @Test
-    void parseCommand_emptyFlagDescription_ReturnInvalidCommand() {
+    void parseCommand_emptyFlagDescription_returnInvalidCommand() {
         final String userFullInput = "addIncome a/ d/ t/ c/";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
