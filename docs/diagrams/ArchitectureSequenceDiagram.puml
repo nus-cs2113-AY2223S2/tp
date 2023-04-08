@@ -1,0 +1,55 @@
+@startuml
+hide footbox
+
+Actor User
+activate ":Duke"
+":Duke" -> ":Ui" : showWelcomeMessage()
+activate ":Ui"
+":Ui" --> ":Duke"
+deactivate ":Ui"
+":Duke" -> ":Storage" : new
+activate ":Storage"
+return
+deactivate ":Storage"
+
+
+
+loop until isExit()
+    ":Duke" -> ":Duke": Parser()
+    activate ":Duke"
+    ":Duke" -> ":Ui": getUserInput()
+    activate ":Ui"
+    User -> ":Ui":input
+    return
+    ":Duke" -> ":Parser" : processCommand()
+    activate ":Parser"
+    ":Parser" -> ":Matcher"** : group()
+    activate ":Matcher"
+    return
+    ":Parser" --> ":Parser"
+    deactivate ":Parser"
+
+
+    alt command is valid
+         ":Duke" -> ":Ui" : showCommandResult()
+        activate ":Ui"
+        return
+        deactivate ":Duke"
+
+    else command is invalid
+        ":Duke" -> ":Ui" : showErrorMessage()
+        activate ":Ui"
+        ":Ui" -> ":Exception" : toString()
+        activate ":Exception"
+        return
+        destroy ":Exception"
+        return
+        destroy ":Ui"
+        ":Duke" -> ":Command"**: new
+        activate ":Command"
+        return
+    end
+end
+deactivate ":Duke"
+
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide footbox
+hide members
+hide circle
+
+Package " "<<Rectangle>>{
+    class Ui
+    class Storage
+    class Parser
+    class Exception
+    class Command
+    class Duke
+}
+
+User ..> Ui
+
+
+Duke -left-> Storage
+Duke --> Parser
+Duke -up-> Ui
+Duke -up-> Exception
+
+Parser --> Command
+
+Command --> Ui
+Exception -up> Ui
+Storage --> Ui
+
+Storage ..> File
+
+@enduml
