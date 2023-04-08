@@ -152,7 +152,7 @@ Shows a list of all expenses in the list of expense.
 - The `time` should follow `YYYY/MM` format.
 - The time parameter is **optional**. If you add this optional parameter,
 it will show a list of all the expenses incurred in the month specified. If the optional time parameter is not given,
-  it will show a list of all income across the entire time period.
+  it will show a list of all expenses across the entire time period.
 
 Example of usage: `listExpense t/ 2023/03` Shows a list of all expenses incurred in the month 2023 March
 
