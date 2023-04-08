@@ -281,7 +281,7 @@ The delete command removes a module from the user's saved list of modules that i
 
 The following sequence diagram shows the relationship between the classes involved when the delete command is called.
 
-![DeleteModuleCommandSequenceDiagram.png](diagrams%2FDeleteModuleCommandSequenceDiagram.png)
+![DeleteModuleCommandSequenceDiagram.png](diagrams%2FCommands%2FDeleteModuleCommandSequenceDiagram.png)
 
 
 #### Reference Block for SortModulesAccording to Printing Length Function
