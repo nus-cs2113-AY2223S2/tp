@@ -79,7 +79,7 @@ public class Ui {
         System.out.println("The appointment has been Unmarked successfully");
     }
     public static void printAppointmentAlreadyUnMarkedMessage() {
-        System.out.println("The appointment with this Uid has already been Unmarked successfully");
+        System.out.println("The appointment with this Uid has already been UnMarked successfully");
     }
     public static void showHelpMessage() {
         System.out.println("These are the following Sniff commands available:\n"
