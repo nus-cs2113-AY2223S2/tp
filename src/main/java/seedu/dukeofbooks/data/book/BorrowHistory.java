@@ -28,8 +28,9 @@ public class BorrowHistory {
                     // logger.log(Level.WARNING, "Error with borrowed item.");
                 }
                 output = output + count + ". " + borrowedItem.toString();
-                output = output + " Status: " +
+                output = output + "\nStatus: " +
                         (borrowedItem.isBorrowed ? "borrowed" : "returned");
+                output = output + "\nDue: " + loan.getLoanEnd().toLocalDate();
                 if (count != previousLoans.size()) {
                     output += '\n';
                 }
