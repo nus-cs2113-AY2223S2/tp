@@ -31,7 +31,8 @@ public class HelpCommandTest extends CommandTest {
                 "You can view all the events in a category by specifying the category name\n" +
                 "Format: view <category name>\n" +
                 "Example: view food\n" +
-                "(category name is optional and if you do not enter a category name, all the categories will be shown)\n"
+                "(category name is optional and if you do not enter a category name, " +
+                "all the categories will be shown)\n"
                 + System.lineSeparator()
                 + "6. edit - edit the expense for an event\n" +
                 "Format: edit c/<category name> e/<event index>\n" +
