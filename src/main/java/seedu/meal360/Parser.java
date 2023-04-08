@@ -367,6 +367,19 @@ public class Parser {
         }
     }
 
+    /**
+     * Extract inputs from users whether it is adding recipes to a tag or removing recipe from a tag.
+     * Then, proceed to add or remove the recipes from the tag, and returns a string whether
+     * the recipes are successfully add to or remove from the tag.
+     *
+     * @author junenita
+     * @param inputs array containing string of inputs
+     * @param recipeList list containing all recipes data
+     * @return a string whether successfully added or remove recipes from the tag
+     * @throws NoRecipeException If users entered invalid recipe.
+     * @throws RecipeNotFoundInTagException If users try to remove a recipe that is not in the tag.
+     * @throws TagNotFoundException If users try to remove recipes from a tag that has not been created.
+     */
     public String parseTagRecipe(String[] inputs, RecipeList recipeList) throws RecipeNotFoundInTagException,
             TagNotFoundException, NoRecipeException {
         String returnMessage;
@@ -400,6 +413,16 @@ public class Parser {
         return returnMessage;
     }
 
+    /**
+     * Extract the tag label and recipes. Then, proceed to add the recipes to the tag,
+     * and returns the tag label that users modified
+     *
+     * @author junenita
+     * @param command string contain tag label and recipes that users want to add
+     * @param recipeList list containing all recipes data
+     * @return tag label that is modified
+     * @throws NoRecipeException If users entered invalid recipe.
+     */
     public String parseAddRecipeTag(String command, RecipeList recipeList) throws NoRecipeException {
         String tag;
         Recipe recipe;
@@ -429,6 +452,18 @@ public class Parser {
         return tag;
     }
 
+    /**
+     * Extract the tag label and recipes. Then, proceed to remove the recipes from the tag,
+     * and returns the tag label that users modified
+     *
+     * @author junenita
+     * @param command string contain tag label and recipes that users want to remove
+     * @param recipeList list containing all recipes data
+     * @return tag label that is modified
+     * @throws NoRecipeException If users entered invalid recipe.
+     * @throws RecipeNotFoundInTagException If users try to remove a recipe that is not in the tag.
+     * @throws TagNotFoundException If users try to remove recipes from a tag that has not been created.
+     */
     public String parseRemoveRecipeTag(String command, RecipeList recipeList) throws RecipeNotFoundInTagException,
             TagNotFoundException, NoRecipeException {
         String tag;
@@ -474,6 +509,16 @@ public class Parser {
         return tag;
     }
 
+    /**
+     * Extract the filters from users' input. Then, proceed to extract the recipes by the filters.
+     *
+     * @author junenita
+     * @param inputs array containing string of inputs, including the filter
+     * @param recipeList list containing all recipes data
+     * @return list of recipes that are filtered by the input
+     * @throws NoRecipeException If users entered invalid recipe.
+     * @throws TagNotFoundException If users try to remove recipes from a tag that has not been created.
+     */
     public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) throws TagNotFoundException,
             NoRecipeException {
         String[] filters;
@@ -541,6 +586,14 @@ public class Parser {
         return recipes.get(recipeIndex - 1);
     }
 
+    /**
+     * Returns a Recipe object that contain a recipe's name and ingredients.
+     *
+     * @author junenita
+     * @param recipes an object containing all recipes data
+     * @return a random recipe from the input recipes.
+     * @throws NoRecipeException If recipes.size() == 0.
+     */
     public Recipe parseRandomRecipe(RecipeList recipes) throws NoRecipeException {
         if (recipes.size() == 0) {
             throw new NoRecipeException("There is no recipe in the list for random.");
