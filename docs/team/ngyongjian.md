@@ -38,4 +38,5 @@ Given below are my contributions to the project:
   - Release management: [v2.0](https://github.com/AY2223S2-CS2113-F10-4/tp/releases)
 
 - **Beyond the project team**
-  - Bug reporting for other team: [Food Supply Tracker](https://github.com/ngyongjian/ped/issues)
+  - PR review: [MoneyMoover](https://github.com/nus-cs2113-AY2223S2/tp/pull/26)
+  - Bug reporting: [Food Supply Tracker](https://github.com/ngyongjian/ped/issues)
