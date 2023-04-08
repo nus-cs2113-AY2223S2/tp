@@ -24,7 +24,16 @@ public class FoodList {
         return foods;
     }
 
+    public Food getFood(int index) {
+        return foods.get(index);
+    }
+
     public int getTotalCalories() {
         return totalCalories;
+    }
+
+    public void deleteFood(int index) {
+        totalCalories -= foods.get(index).getCalories();
+        foods.remove(index);
     }
 }

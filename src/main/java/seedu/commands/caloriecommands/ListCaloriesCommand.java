@@ -13,6 +13,7 @@ import java.util.TreeMap;
  * Represents list calories command.
  */
 public class ListCaloriesCommand extends Command {
+    private static final String EMPTY_LIST_MESSAGE = "Calorie consumption list is empty!";
     private static final String HEADER =
             "Here is your list of daily calorie consumption: " + System.lineSeparator();
     public ListCaloriesCommand() {
@@ -20,8 +21,11 @@ public class ListCaloriesCommand extends Command {
 
     @Override
     public String execute() {
-        TreeMap<Date, FoodList> sortedMap = new TreeMap<>(calorieTracker.getDailyFoodConsumption());
+        if (calorieTracker.getDailyFoodConsumption().isEmpty()) {
+            return EMPTY_LIST_MESSAGE;
+        }
 
+        TreeMap<Date, FoodList> sortedMap = new TreeMap<>(calorieTracker.getDailyFoodConsumption());
         StringBuilder stringBuilder = new StringBuilder(HEADER);
         int counter = 1;
         for (Date date: sortedMap.keySet()) {

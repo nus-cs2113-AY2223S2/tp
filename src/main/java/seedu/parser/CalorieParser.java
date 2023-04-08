@@ -2,6 +2,7 @@ package seedu.parser;
 
 import seedu.commands.Command;
 import seedu.commands.caloriecommands.AddCalorieCommand;
+import seedu.commands.caloriecommands.DeleteCalorieCommand;
 import seedu.commands.caloriecommands.ListCaloriesCommand;
 import seedu.commands.caloriecommands.ViewCaloriesCommand;
 import seedu.exceptions.InvalidArgumentException;
@@ -96,10 +97,10 @@ public class CalorieParser {
 
     //@@author calebcjl
     /**
-     * Parse arguments for ListCaloriesCommand.
+     * Parses arguments for ListCaloriesCommand.
      *
-     * @param arguments Argument for command
-     * @return ListCaloriesCommand
+     * @param arguments Argument for command.
+     * @return ListCaloriesCommand.
      * @throws InvalidSyntaxException If invalid syntax.
      */
     public static Command parseListCalorieCommand(String arguments) throws InvalidSyntaxException {
@@ -107,5 +108,35 @@ public class CalorieParser {
             throw new InvalidSyntaxException("/clist command");
         }
         return new ListCaloriesCommand();
+    }
+
+    //@@author calebcjl
+
+    /**
+     * Parses arguments for DeleteCalorieCommand.
+     *
+     * @param arguments Argument for command.
+     * @return DeleteCalorieCommand.
+     * @throws InvalidArgumentException If invalid argument.
+     * @throws InvalidSyntaxException If invalid syntax.
+     */
+    public static Command parseDeleteCalorieCommand(String arguments)
+            throws InvalidArgumentException, InvalidSyntaxException {
+        arguments = arguments.trim();
+        String[] deleteDetails = arguments.split("\\s+");
+        Date date = parseDate(deleteDetails[0]);
+        if (deleteDetails.length == 1) {
+            return new DeleteCalorieCommand(date);
+        } else if (deleteDetails.length > 2) {
+            throw new InvalidSyntaxException("/cdelete command");
+        }
+
+        int index;
+        try {
+            index = Integer.parseUnsignedInt(deleteDetails[1]) - 1;
+        } catch (NumberFormatException e) {
+            throw new InvalidArgumentException("index");
+        }
+        return new DeleteCalorieCommand(date, index);
     }
 }

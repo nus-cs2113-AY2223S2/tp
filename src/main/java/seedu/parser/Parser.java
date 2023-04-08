@@ -54,8 +54,7 @@ public class Parser {
         case "/cview":
             return CalorieParser.parseViewCaloriesCommand(arguments);
         case "/cdelete":
-            //delete calories for a specific day for one food follow /cdelete date food name
-            break;
+            return CalorieParser.parseDeleteCalorieCommand(arguments);
         case "/chelp":
             return new HelpCaloriesCommand();
         case "/exit":
@@ -63,7 +62,6 @@ public class Parser {
         default:
             return new InvalidCommand(commandName);
         }
-        return new InvalidCommand(commandName);
     }
 
     /**

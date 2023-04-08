@@ -59,7 +59,7 @@ public class CalorieTracker {
         }
         foodList.addFood(foodToAdd);
 
-        return "Added " + foodName + " (" + foodToAdd.getCalories() + "kcal) to "
+        return "Added " + foodName + "(" + foodToAdd.getCalories() + " kcal) to "
                 + DateFormatter.dateToString(date) + "." + System.lineSeparator() + Ui.line();
     }
 }
