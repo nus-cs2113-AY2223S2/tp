@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
+
 import seedu.meal360.exceptions.IngredientNotFoundException;
-import seedu.meal360.exceptions.InvalidValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
+import seedu.meal360.exceptions.InvalidValueException;
+import seedu.meal360.exceptions.NoRecipeException;
+import seedu.meal360.exceptions.RecipeNotFoundInTagException;
+import seedu.meal360.exceptions.TagNotFoundException;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -350,7 +354,8 @@ public class Parser {
         }
     }
 
-    public String parseTagRecipe(String[] inputs, RecipeList recipeList) {
+    public String parseTagRecipe(String[] inputs, RecipeList recipeList) throws RecipeNotFoundInTagException,
+            TagNotFoundException, NoRecipeException {
         String returnMessage;
         String tag;
         boolean isOnlyTagWordInCommand = inputs.length == 1;
@@ -368,7 +373,6 @@ public class Parser {
 
         isAddTag = commandString.indexOf(">>") == -1 && commandString.indexOf("<<") != -1;
         isRemoveTag = commandString.indexOf("<<") == -1 && commandString.indexOf(">>") != -1;
-
         if (!(isAddTag || isRemoveTag)) {
             throw new IllegalArgumentException("Please enter the command in the correct format.");
         } else if (isAddTag) {
@@ -383,7 +387,7 @@ public class Parser {
         return returnMessage;
     }
 
-    public String parseAddRecipeTag(String command, RecipeList recipeList) throws IndexOutOfBoundsException {
+    public String parseAddRecipeTag(String command, RecipeList recipeList) throws NoRecipeException {
         String tag;
         Recipe recipe;
         String[] recipesToTag;
@@ -405,15 +409,15 @@ public class Parser {
                 String errorMessage1 = "Unable to find the recipe: \"" + recipeName + "\" in the" + " tag.";
                 String errorMessage2 = "All the recipe before \"" + recipeName + "\" (if any) are "
                         + "successfully added from the tag.";
-                throw new IndexOutOfBoundsException(
-                        String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+                throw new NoRecipeException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
             recipeList.addRecipeToTag(tag, recipe);
         }
         return tag;
     }
 
-    public String parseRemoveRecipeTag(String command, RecipeList recipeList) throws IndexOutOfBoundsException {
+    public String parseRemoveRecipeTag(String command, RecipeList recipeList) throws RecipeNotFoundInTagException,
+            TagNotFoundException, NoRecipeException {
         String tag;
         Recipe recipe;
         String[] recipesToRemove;
@@ -429,8 +433,7 @@ public class Parser {
         tag = args[0].trim();
         isUnableToFindTag = !recipeList.tags.containsKey(tag);
         if (isUnableToFindTag) {
-            throw new IndexOutOfBoundsException(
-                    "There is no \"" + tag + "\" tag found. Please make sure you have "
+            throw new TagNotFoundException("There is no \"" + tag + "\" tag found. Please make sure you have "
                             + "entered the correct tag.");
         }
 
@@ -443,24 +446,23 @@ public class Parser {
                 String errorMessage1 = "Unable to find the recipe: \"" + recipeName + "\" in the" + " tag.";
                 String errorMessage2 = "All the recipe before \"" + recipeName + "\" (if any) are "
                         + "successfully removed from the tag.";
-                throw new IndexOutOfBoundsException(
-                        String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+                throw new NoRecipeException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
 
             try {
                 recipeList.removeRecipeFromTag(tag, recipe);
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException | RecipeNotFoundInTagException e) {
                 String errorMessage1 = "Unable to find the recipe: \"" + recipeName + "\" in the" + " tag.";
                 String errorMessage2 = "All the recipe before \"" + recipeName + "\" (if any) are "
                         + "successfully removed from the tag.";
-                throw new IndexOutOfBoundsException(
-                        String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
+                throw new RecipeNotFoundInTagException(String.format("%-97s|\n| %-97s", errorMessage1, errorMessage2));
             }
         }
         return tag;
     }
 
-    public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) {
+    public RecipeList parseListRecipe(String[] inputs, RecipeList recipeList) throws TagNotFoundException,
+            NoRecipeException {
         String[] filters;
         RecipeList recipeListToPrint;
         boolean hasTagArgs = inputs.length > 2;
@@ -473,7 +475,7 @@ public class Parser {
         } else {
             isTag = inputs[1].equals("/t");
             if (isTag && !hasTagArgs) {
-                throw new IllegalArgumentException("Please include at least a tag.");
+                throw new TagNotFoundException("Please include at least a tag.");
             } else if (isTag) {
                 firstArgsIndex = 2;
             }
@@ -526,9 +528,9 @@ public class Parser {
         return recipes.get(recipeIndex - 1);
     }
 
-    public Recipe parseRandomRecipe(RecipeList recipes) throws NullPointerException {
+    public Recipe parseRandomRecipe(RecipeList recipes) throws NoRecipeException {
         if (recipes.size() == 0) {
-            throw new NullPointerException("There is no recipe in the list for random.");
+            throw new NoRecipeException("There is no recipe in the list for random.");
         }
         return recipes.randomRecipe();
     }

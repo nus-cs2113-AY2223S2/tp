@@ -82,8 +82,7 @@ public class Ui {
                 "These are the recipes you can cook");
     }
 
-    private void listRecipes(RecipeList recipeListToPrint, String emptyListMsg,
-                             String listHeaderMsg) {
+    private void listRecipes(RecipeList recipeListToPrint, String emptyListMsg, String listHeaderMsg) {
         int numberOfRecipes = recipeListToPrint.size();
         int order = 0;
         if (numberOfRecipes == 0) {
@@ -159,5 +158,9 @@ public class Ui {
 
     public void printSuccessfullyRemoveTag(String tag) {
         printMessage("You have successfully removed the recipe(s) from \"" + tag + "\" tag.");
+    }
+
+    public void printRandomMessage() {
+        printMessage("Random Result.....");
     }
 }
