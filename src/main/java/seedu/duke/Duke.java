@@ -11,13 +11,12 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    private static DataReader dataReader = new DataReader();
+    private static DataReader dataReader = DataReader.getDataReaderOneInstance();
     private static DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
     private static Storage storage = Storage.getInstance();
 
     private static BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
-    private static UI ui = new UI();
-
+    private static UI ui = UI.getUiOneInstance();
     private static Parser parser = null;
 
     public static void main(String[] args) {

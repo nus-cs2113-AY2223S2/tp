@@ -6,6 +6,7 @@ import seedu.duke.budget.BudgetPlanner;
 import seedu.duke.budget.Entertainment;
 import seedu.duke.budget.Food;
 import seedu.duke.budget.GoodsAndServices;
+
 import java.util.ArrayList;
 
 public class UI {
@@ -47,10 +48,21 @@ public class UI {
             + "this NUS module code: ";
     private static final String MODULE_ALREADY_EXIST_MESSAGE = "This module already exists in your list";
     private static final String PU_UNI_NAME_MAPS_TO_NUS_MESSAGE = " Module] maps to ----> [NUS Module]";
-    private static ArrayList<Module> puModules = new DataReader().getModules();
-    private static ArrayList<University> universities = new DataReader().getUniversities();
+    private static ArrayList<Module> puModules = DataReader.getDataReaderOneInstance().getModules();
+    private static ArrayList<University> universities = DataReader.getDataReaderOneInstance().getUniversities();
 
-    public UI() {
+    /**
+     * UI has a Singleton Design Pattern
+     */
+    private static UI uiOneInstance = null;
+    private UI() {
+    }
+
+    public static UI getUiOneInstance() {
+        if (uiOneInstance == null) {
+            uiOneInstance = new UI();
+        }
+        return uiOneInstance;
     }
 
     public static void printLine() {
@@ -202,7 +214,7 @@ public class UI {
             System.out.print(uniIDAndName);
             int uniIDAndNameLength = uniIDAndName.length();
             int counter = LIST_PU_LENGTH_FOR_PU_ABB - uniIDAndNameLength;
-            while(counter >= 0) {
+            while (counter >= 0) {
                 System.out.print(" ");
                 counter--;
             }
@@ -291,39 +303,39 @@ public class UI {
 
     public static void printHelpCommandMessage() {
         System.out.println("Here are the list of commands:\n"
-                + "LIST PU                          : Provides the list of Partner Universities available\n"
-                + "LIST [PU ABBRV]                  : Provides the list of all modules available "
+                + "/LIST PU                          : Provides the list of Partner Universities available\n"
+                + "/LIST [PU ABBRV]                  : Provides the list of all modules available "
                 + "in the specified Partner University\n"
-                + "LIST [PU INDEX]                  : Provides the list of all modules available "
+                + "/LIST [PU INDEX]                  : Provides the list of all modules available "
                 + "in the specified Partner University\n"
-                + "                                   by index of LIST PU\n"
-                + "LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters\n"
-                + "                                  [FILTER] Format 1: mc == [num of MCs]\n"
-                + "                                  [FILTER] Format 2: [description] in name\n"
-                + "LIST CURRENT                     : Provides the list of modules that the user has added to his/her "
+                + "                                    by index of LIST PU\n"
+                + "/LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters\n"
+                + "                                    [FILTER] Format 1: mc == [num of MCs]\n"
+                + "                                    [FILTER] Format 2: [description] in name\n"
+                + "/LIST CURRENT                     : Provides the list of modules that the user has added to his/her "
                 + "list of interest\n"
-                + "LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list of\n"
-                + "                                   list of interest for the specified PU\n"
-                + "ADD [PU ABBRV]/[INDEX]           : Adds the specified module into user's current list of modules\n"
-                + "REMOVE [PU ABBRV]/[INDEX]       : Removes the specified module by index from user's current list\n"
-                + "SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module\n"
+                + "/LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list\n"
+                + "                                    of list of interest for the specified PU\n"
+                + "/ADD [PU ABBRV]/[INDEX]           : Adds the specified module into user's current list of modules\n"
+                + "/REMOVE [PU ABBRV]/[INDEX]        : Removes the specified module by index from user's current list\n"
+                + "/SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module\n"
                 + "/budget /budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for "
                 + "his/her SEP trip\n"
                 + "/budget /accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation "
-                + "cost\n                                   for his/her SEP trip\n"
+                + "cost\n                                    for his/her SEP trip\n"
                 + "/budget /airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane\n"
-                + "                                   ticket cost for his/her SEP trip\n"
+                + "                                    ticket cost for his/her SEP trip\n"
                 + "/budget /food [AMOUNT]            : Allows the user to input/edit the total amount of food "
                 + "cost for his/her SEP trip\n"
                 + "/budget /entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment"
                 + "\n                                   cost for his/her SEP trip\n"
                 + "/budget /view                     : Provides an overview of the user's planned budget\n"
-                + "/deadline/list                   : Provides the list of deadlines the user has added\n"
+                + "/deadline/list                    : Provides the list of deadlines the user has added\n"
                 + "/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own "
                 + "personalized deadlines\n"
                 + "                                    of the key dates for certain SEP requirements\n"
                 + "/deadline/remove [DEADLINE INDEX] : Allows the user to remove the specific deadline from the list\n"
-                + "EXIT                              : Exits the program\n\n");
+                + "/EXIT                             : Exits the program\n\n");
         System.out.println(READ_COMMAND_INPUT);
         System.out.println(LINE);
     }
@@ -414,6 +426,7 @@ public class UI {
         }
         int listIndex = 0;
         if (puModulesToPrint.size() < 1) {
+            assert puModulesToPrint.size() < 1: "size of puModulesToPrint array should be < 1";
             System.out.println(CURRENT_LIST_PU_EMPTY + universityName);
             System.out.println(LINE);
             System.out.println(LINE);

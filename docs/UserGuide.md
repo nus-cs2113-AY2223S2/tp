@@ -2,7 +2,6 @@
 
 * **[1 Introduction](#1-introduction)**
    * [1.1 What is SEP Helper](#11-what-is-sep-helper)
-   * [1.2 How to use this User Guide](#12-how-to-use-this-user-guide)
 * **[2 Quick Start](#2-quick-start)**
 * **[3 Features Overview](#3-features-overview)**
 * [3.1 Help Command](#31-help-command-help)
@@ -27,17 +26,15 @@ University](#3214-listing-modules-user-has-selected-for-specific-partner-univers
      * [3.4.4 Edit the Food Cost](#344-edits-the-food-cost---food)
      * [3.4.5 Edit the Entertainment Cost](#345-edits-the-entertainment-cost---entertainment)
      * [3.4.6 View the Budget Plan](#346-views-the-entire-budget-plan---view)
-* **[4 FAQ](#4-faq)**
-* **[5 Command Summary](#5-command-summary)**
+* **[4 Command Summary](#4-command-summary)**
 
 ---
 ## 1 Introduction
 ### 1.1 What is SEP Helper
+
+
 SEP Helper is a desktop application for Mechanical Engineering students, studying at the
 National University of Singapore (NUS), intending to go to Korea for a Student Exchange Programme (SEP).
----
-### 1.2 How to Use this User Guide
-
 ---
 ## 2 Quick Start
 
@@ -45,7 +42,8 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
    https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html
 2. Download the latest version of `SEPHelper.jar` from [here](http://link.to/duke).
 3. Using command prompt type `"java -jar [FILE PATH OF JAR]"` to start app.
-4. Type the command in the terminal and press enter to execute it. E.g. entering `/help` will show the help page
+4. Type the command in the terminal and press enter to execute it. E.g. entering `/help` will show the help page.
+5. Enlarge to fullscreen mode.
 
 ---
 ## 3 Features Overview
@@ -66,33 +64,33 @@ Expected Outcome: A list of all the commands.
 Description of Outcome:
 ```
 Here are the list of commands:
-LIST PU                          : Provides the list of Partner Universities available
-LIST [PU ABBRV]                  : Provides the list of all modules available in the specified Partner University
-LIST [PU INDEX]                  : Provides the list of all modules available in the specified Partner University
-                                   by index of LIST PU
-LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters
-                                  [FILTER] Format 1: mc == [num of MCs]
-                                  [FILTER] Format 2: [description] in name
-LIST CURRENT                     : Provides the list of modules that the user has added to his/her list of interest
-LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list of
-                                   list of interest for the specified PU
-ADD [PU ABBRV]/[MODULE CODE]     : Adds the specified module into user's current list of modules
-REMOVE [PU ABBRV]/ [INDEX]       : Removes the specified module by index from user's current list
-SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module
-/budget budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for his/her SEP trip
-/budget accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation cost
-                                   for his/her SEP trip
-/budget airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane
-                                   ticket cost for his/her SEP trip
-/budget food [AMOUNT]            : Allows the user to input/edit the total amount of food cost for his/her SEP trip
-/budget entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment
+/LIST PU                          : Provides the list of Partner Universities available
+/LIST [PU ABBRV]                  : Provides the list of all modules available in the specified Partner University
+/LIST [PU INDEX]                  : Provides the list of all modules available in the specified Partner University
+                                    by index of LIST PU
+/LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters
+                                    [FILTER] Format 1: mc == [num of MCs]
+                                    [FILTER] Format 2: [description] in name
+/LIST CURRENT                     : Provides the list of modules that the user has added to his/her list of interest
+/LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list
+                                    of list of interest for the specified PU
+/ADD [PU ABBRV]/[INDEX]           : Adds the specified module into user's current list of modules
+/REMOVE [PU ABBRV]/[INDEX]        : Removes the specified module by index from user's current list
+/SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module
+/budget /budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for his/her SEP trip
+/budget /accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation cost
+                                    for his/her SEP trip
+/budget /airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane
+                                    ticket cost for his/her SEP trip
+/budget /food [AMOUNT]            : Allows the user to input/edit the total amount of food cost for his/her SEP trip
+/budget /entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment
                                    cost for his/her SEP trip
-/budget view                     : Provides an overview of the user's planned budget
-/deadline/list                   : Provides the list of deadlines the user has added
+/budget /view                     : Provides an overview of the user's planned budget
+/deadline/list                    : Provides the list of deadlines the user has added
 /deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own personalized deadlines
                                     of the key dates for certain SEP requirements
 /deadline/remove [DEADLINE INDEX] : Allows the user to remove the specific deadline from the list
-EXIT                              : Exits the program
+/EXIT                             : Exits the program
 ```
 ---
 ### 3.2 Modules
@@ -147,7 +145,7 @@ ____________________________________________________________
 ****
 ##### 3.2.1.2 Listing out PU Module List: `List [PU Abbreviation/PU INDEX]`
 
-**PU Module List** - Get a list of all the modules provided by the specific PU </span>
+**PU Module List** - Get a list of all the modules provided by the specific PU
 
 Format: `list [PU Abbreviation Name]` or `list [PU Index]`
 
@@ -173,6 +171,40 @@ ____________________________________________________________
    maps to ----> [ME4661][Exchange Elective][4]
 ____________________________________________________________
 ```
+
+****
+#### 3.2.1.2.a Listing out PU Module List with filters: `list [PU Abbreviation/PU INDEX] /filter [FILTER]`
+
+Example of usage: `list ku /filter mc == 3` 
+
+Expected outcome:
+
+```
+KOREA UNIVERSITY Modules
+____________________________________________________________
+1. [AMSE216][Introduction to biomaterials][3]
+   maps to ----> [ME4253][Biomaterials Engineering][4]
+2. [IWC311][Heat Transfer][3]
+   maps to ----> [ME3122][Heat Transfer][4]
+3. [AE320][Aerodynamics II][3]
+   maps to ----> [ME4231][Aerodynamics][4]
+4. [IWC109][Engineering Design][3]
+   maps to ----> [ME4661][Exchange Elective][4]
+____________________________________________________________
+```
+
+Example of usage: `list ku /filter bio in name`
+
+Expected outcome:
+
+```
+KOREA UNIVERSITY Modules
+____________________________________________________________
+1. [AMSE216][Introduction to biomaterials][3]
+   maps to ----> [ME4253][Biomaterials Engineering][4]
+____________________________________________________________
+```
+
 ****
 ##### 3.2.1.3 Listing out all Partner Universities: `list pu`
 
@@ -567,6 +599,27 @@ ____________________________________________________________
 ---
 ## 4 Command Summary
 
-{Give a 'cheat sheet' of commands here}
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Action                                                                                                                                                                           |                        Format                         | Example                                                              |
+|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------:|----------------------------------------------------------------------|
+| List out Partner Universities                                                                                                                                                    |                       /list pu                        | /list pu                                                             |
+| List out modules available in <br/>specificed Partner University                                                                                                                 |                   /list [PU ABBRV]                    | /list ku                                                             |
+| List out modules available in <br/>specified Partner University                                                                                                                  |                   /list [PU INDEX]                    | /list 1                                                              |
+| List out modules available in <br/>specified Partner University<br/> according to filter<br/> [FILTER] Format 1: mc == [num of MCs]<br/>[FILTER] Format 2: [description] in name |           /LIST [PU ABBRV] /filter [FILTER]           | /list ku /filter mc == 3 <br/>OR<br/> /list SNU /filter wind in name |
+| List out user added modules                                                                                                                                                      |                     /list current                     | /list current                                                        |
+| List out user added modules in <br/>specificed Partner University                                                                                                                |               /list current [PU ABBRV]                | /list current yu                                                     |
+| Add module into user's current list of modules                                                                                                                                   |                /add [PU ABBRV]/[INDEX]                | /add KU/3                                                            |
+| Remove module from user's current list of modules                                                                                                                                |              /remove [PU ABBRV]/[INDEX]               | /remove KU/3                                                         |
+| Search Partner University Modules that maps to<br/>specified NUS Module                                                                                                          |                /search [NUS MOD CODE]                 | /search ME3122                                                       |
+| Input/Edit the total amount of budget for user's SEP trip                                                                                                                        |               /budget /budget [AMOUNT]                | /budget /budget 20000                                                |
+| Input/Edit the total amount of accommodation cost for user's SEP trip                                                                                                            |            /budget /accommodation [AMOUNT]            | /budget /accommodation 3000                                          |
+| Input/Edit the total amount of airplane ticket cost for user's SEP trip                                                                                                          |              /budget /airplane [AMOUNT]               | /budget /airplane 2000                                               |
+| Input/Edit the total amount of food cost for user's SEP trip                                                                                                                     |                /budget /food [AMOUNT]                 | /budget /food 5000                                                   |
+| Input/Edit the total amount of entertainment cost for his/her SEP trip                                                                                                           |            /budget /entertainment [AMOUNT]            | /budget /entertainment 2500                                          |
+| Overview of the user's planned budget                                                                                                                                            |                     /budget /view                     | /budget /view                                                        |
+| List out deadlines the user has added                                                                                                                                            |                    /deadline/list                     | /deadline/list                                                       |
+| Add deadlines for SEP requirements                                                                                                                                               | /deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] | /deadline/add Submit Official Transcript /by 10-05-2023              |
+| Remove deadline added to user's list of deadlines                                                                                                                                |           /deadline/remove [DEADLINE INDEX]           | /deadline/remove 2                                                   |
+| Exit the program                                                                                                                                                                 |                         /EXIT                         | /exit                                                                |
+| Help Guide to functions and syntax                                                                                                                                               |                         /HELP                         | /help                                                                |
+

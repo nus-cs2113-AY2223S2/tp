@@ -32,7 +32,7 @@ import java.util.ArrayList;
 
 
 public class Parser {
-    private static UI ui = new UI();
+    private static UI ui = UI.getUiOneInstance();
     private static Parser instance = null;
 
     private Parser() {

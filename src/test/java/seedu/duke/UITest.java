@@ -61,7 +61,7 @@ class UITest {
      */
     @Test
     void printPUListMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         ui.printPUListMessage();
         assertEquals(LIST_PU_MESSAGE,
                     outContent.toString().stripTrailing());
@@ -70,7 +70,7 @@ class UITest {
 
     @Test
     void printPUModListMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         String univName = "Korea University";
         ui.printPUModListMessage(univName);
         assertEquals("Korea University Modules" + System.lineSeparator() +
@@ -82,7 +82,7 @@ class UITest {
 
     @Test
     void printAddModMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         ui.printAddModMessage();
         assertEquals(ADD_MOD_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
                 , outContent.toString().stripTrailing());
@@ -91,7 +91,7 @@ class UITest {
 
     @Test
     void printDeleteModMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         ui.printDeleteModMessage();
         assertEquals( DELETE_MOD_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
                 , outContent.toString().stripTrailing());
@@ -100,7 +100,7 @@ class UITest {
 
     @Test
     void printInputNotNumMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         ui.printInputNotNumMessage();
         assertEquals(INPUT_NOT_INT_MESSAGE + System.lineSeparator() + LINE.stripTrailing()
                 , outContent.toString().stripTrailing());
@@ -109,7 +109,7 @@ class UITest {
 
     @Test
     void getInvalidPuMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         String invalidPuMessage = ui.getInvalidPuMessage();
         assertEquals(INVALID_PU_MESSAGE, invalidPuMessage.stripTrailing());
         outContent.reset();
@@ -117,7 +117,7 @@ class UITest {
 
     @Test
     void getInvalidModuleMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         String invalidModuleMessage = ui.getInvalidModuleMessage();
         assertEquals(INVALID_MODULE_INDEX_MESSAGE, invalidModuleMessage.stripTrailing());
         outContent.reset();
@@ -125,7 +125,7 @@ class UITest {
 
     @Test
     void getInvalidSearchModuleMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         String invalidSearchModule = ui.getInvalidSearchModuleMessage();
         assertEquals(INVALID_SEARCH_MODULE_MESSAGE, invalidSearchModule.stripTrailing());
         outContent.reset();
@@ -133,7 +133,7 @@ class UITest {
 
     @Test
     void printGreetingMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         ui.printGreetingMessage();
         assertEquals("\n" +
                         "  ____  _____ ____    _   _      _                 \n" +
@@ -150,7 +150,7 @@ class UITest {
 
     @Test
     void printPUModules_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         ui.printPUModules(1, null);
         assertEquals("1. [IWC311][Heat Transfer][3]   maps to ----> [ME3122][Heat Transfer][4]"
                         + System.lineSeparator() +
@@ -491,7 +491,7 @@ class UITest {
 
     @Test
     void printPUList_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         ui.printPUList();
         assertEquals("____________________________________________________________" + System.lineSeparator() +
                         "   Partner University Name                           PU Abb    " + System.lineSeparator() +
@@ -507,7 +507,7 @@ class UITest {
 
     @Test
     void printCurrentModList_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         ArrayList<Module> modules = new ArrayList<>();
         Module module1 = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
@@ -550,7 +550,7 @@ class UITest {
 
     @Test
     void printInvalidInputMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         ui.printInvalidInputMessage();
         assertEquals("Invalid Input", outContent.toString().stripTrailing());
         outContent.reset();
@@ -567,39 +567,39 @@ class UITest {
     void printHelpCommandMessage_correctLines_success() {
         UI.printHelpCommandMessage();
         assertEquals("Here are the list of commands:\n"
-                + "LIST PU                          : Provides the list of Partner Universities available\n"
-                + "LIST [PU ABBRV]                  : Provides the list of all modules available "
+                + "/LIST PU                          : Provides the list of Partner Universities available\n"
+                + "/LIST [PU ABBRV]                  : Provides the list of all modules available "
                 + "in the specified Partner University\n"
-                + "LIST [PU INDEX]                  : Provides the list of all modules available "
+                + "/LIST [PU INDEX]                  : Provides the list of all modules available "
                 + "in the specified Partner University\n"
-                + "                                   by index of LIST PU\n"
-                + "LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters\n"
-                + "                                  [FILTER] Format 1: mc == [num of MCs]\n"
-                + "                                  [FILTER] Format 2: [description] in name\n"
-                + "LIST CURRENT                     : Provides the list of modules that the user has added to his/her "
+                + "                                    by index of LIST PU\n"
+                + "/LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters\n"
+                + "                                    [FILTER] Format 1: mc == [num of MCs]\n"
+                + "                                    [FILTER] Format 2: [description] in name\n"
+                + "/LIST CURRENT                     : Provides the list of modules that the user has added to his/her "
                 + "list of interest\n"
-                + "LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list of\n"
-                + "                                   list of interest for the specified PU\n"
-                + "ADD [PU ABBRV]/[INDEX]           : Adds the specified module into user's current list of modules\n"
-                + "REMOVE [PU ABBRV]/[INDEX]       : Removes the specified module by index from user's current list\n"
-                + "SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module\n"
+                + "/LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list\n"
+                + "                                    of list of interest for the specified PU\n"
+                + "/ADD [PU ABBRV]/[INDEX]           : Adds the specified module into user's current list of modules\n"
+                + "/REMOVE [PU ABBRV]/[INDEX]        : Removes the specified module by index from user's current list\n"
+                + "/SEARCH [NUS MOD CODE]            : Search for PU modules that can map the user's targeted module\n"
                 + "/budget /budget [AMOUNT]          : Allows the user to input/edit the total amount of budget for "
                 + "his/her SEP trip\n"
                 + "/budget /accommodation [AMOUNT]   : Allows the user to input/edit the total amount of accommodation "
-                + "cost\n                                   for his/her SEP trip\n"
+                + "cost\n                                    for his/her SEP trip\n"
                 + "/budget /airplane [AMOUNT]        : Allows the user to input/edit the total amount of airplane\n"
-                + "                                   ticket cost for his/her SEP trip\n"
+                + "                                    ticket cost for his/her SEP trip\n"
                 + "/budget /food [AMOUNT]            : Allows the user to input/edit the total amount of food "
                 + "cost for his/her SEP trip\n"
                 + "/budget /entertainment [AMOUNT]   : Allows the user to input/edit the total amount of entertainment"
                 + "\n                                   cost for his/her SEP trip\n"
                 + "/budget /view                     : Provides an overview of the user's planned budget\n"
-                + "/deadline/list                   : Provides the list of deadlines the user has added\n"
+                + "/deadline/list                    : Provides the list of deadlines the user has added\n"
                 + "/deadline/add [DEADLINE DESCRIPTION] /by [DD-MM-YYYY] : Allows the user to add in his/her own "
                 + "personalized deadlines\n"
                 + "                                    of the key dates for certain SEP requirements\n"
                 + "/deadline/remove [DEADLINE INDEX] : Allows the user to remove the specific deadline from the list\n"
-                + "EXIT                              : Exits the program\n\n"
+                + "/EXIT                             : Exits the program\n\n"
                 + System.lineSeparator()
                 + READ_COMMAND_INPUT + System.lineSeparator()
                 + LINE.stripTrailing(), outContent.toString().stripTrailing());
@@ -626,7 +626,7 @@ class UITest {
 
     @Test
     void printExitMessage_correctLines_success() {
-        UI ui = new UI();
+        UI ui = UI.getUiOneInstance();
         ui.printExitMessage();
         assertEquals("Exiting program now", outContent.toString().stripTrailing());
         outContent.reset();
