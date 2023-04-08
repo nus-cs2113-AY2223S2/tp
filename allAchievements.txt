@@ -1,9 +1,9 @@
-Easy Peasy:Complete your first Easy exercises!:1:H:easy:503:1:
-Easy Peasy Lemon Squeezy:Complete 3 easy exercises!:1:H:easy:503:3:
-Easy Lemon DESTROYEERRR:Complete 5 easy exercises!:1:H:easy:503:5:
-Medium Madness:Complete your first Medium exercises!:1:H:medium:259:1:
-The Medium Maverick:Complete 3 medium exercises!:1:H:medium:259:3:
-The Medium Mastermind:Complete 5 medium exercises!:1:H:medium:259:5:
+Easy Peasy:Complete your first Easy exercises!:1:H:easy:504:1:
+Easy Peasy Lemon Squeezy:Complete 3 easy exercises!:1:H:easy:504:3:
+Easy Lemon DESTROYEERRR:Complete 5 easy exercises!:1:H:easy:504:5:
+Medium Madness:Complete your first Medium exercises!:1:H:medium:260:1:
+The Medium Maverick:Complete 3 medium exercises!:1:H:medium:260:3:
+The Medium Mastermind:Complete 5 medium exercises!:1:H:medium:260:5:
 Hard Hitter:Complete your first Hard exercises!:1:H:hard:57:1:
 The Hard Hawk:Complete 3 hard exercises!:1:H:hard:57:3:
 The Hard Hammer:Complete 5 hard exercises!:1:H:hard:57:5:
@@ -13,9 +13,9 @@ The Core Conqueror:Complete 5 core exercises!:1:H:core:31:5:
 Leg Legend:Complete your first Leg exercises!:1:H:legs:79:1:
 The Leg Luminator:Complete 3 leg exercises!:1:H:legs:79:3:
 The Leg Lord:Complete 5 leg exercises!:1:H:legs:79:5:
-The Gym Novice:Complete your first Gym workout!:1:H:gym:630:1:
-The Gym Enthusiast:Complete 3 Gym workouts!:1:H:gym:630:3:
-The Gym Maestro:Complete 5 Gym workouts!:1:H:gym:630:5:
+The Gym Novice:Complete your first Gym workout!:1:H:gym:632:1:
+The Gym Enthusiast:Complete 3 Gym workouts!:1:H:gym:632:3:
+The Gym Maestro:Complete 5 Gym workouts!:1:H:gym:632:5:
 Static Starter:Complete your first Static workout!:1:H:static:105:1:
 The Static Warrior:Complete 3 Static workouts!:1:H:static:105:3:
 The Static Champion:Complete 5 Static workouts!:1:H:static:105:5:
