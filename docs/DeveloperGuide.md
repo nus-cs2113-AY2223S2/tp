@@ -603,7 +603,10 @@ Help people who are just starting out working and troubled by financial issues s
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+Interface constraint: Command-line interface
+Compatability: Java 11
+Performance: System should respond within 2 seconds
+
 
 ## Glossary
 
@@ -678,6 +681,28 @@ Help people who are just starting out working and troubled by financial issues s
 
 5. Test case: `view 32d`<br>Expected: No transaction will be shown. Error message for "wrong view format" will be
    shown
+
+### Editing a transaction
+
+1. Prerequisites: There must be at least one entry to edit
+2. Test case: `edit 1 -d Chicken rice` <br> Expected: The description of transaction with index 1 shown in `view -all`
+   list will be changed to "Chicken Rice"
+3. Test case: `edit 1 -v $5 -c Food and Drinks -date 4/8/2023` <br> Expected: The value, category and date of transaction
+   with index 1 will be changed to "$5", "Food and Drinks" and "04/08/2023" respectively
+4. Test case: `edit 1 -date 4/8/23 -d Noodles` <br> Expected: No transaction edited. Error message for "wrong edit 
+   format" will be shown as flag is in incorrect order.
+
+### Filtering transactions
+
+1. Prerequisites: There are multiple transactions in rainyDay.
+2. Test case: `filter -d rice` <br> Expected: Transactions that contain "rice" in the description field will be listed 
+   out.
+3. Test case: `filter -c Shopping -date 2/4/2023` <br> Expected: Transactions that contain "Shopping" in the category
+   field and dated "02/04/2023" will be listed out. 
+4. Test case: `filter -c Shopping -date 2/4/2023 8/4/2023` <br> Expected: Transactions that contain "Shopping" in the category
+   field and dated between "02/04/2023" and "08/04/2023" will be listed out.
+5. Test case: `filter -c Food -d rice` <br> Expected: No transaction edited. Error message for "wrong filter
+   format" will be shown as flag is in incorrect order.
 
 ### Adding a shortcut
 
