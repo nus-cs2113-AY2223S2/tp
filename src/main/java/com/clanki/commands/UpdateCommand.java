@@ -11,6 +11,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * The UpdateCommand class represents a command that updates an existing flashcard
+ * in the flashcard list.
+ * The command allows users to change the question, answer or date of the flashcard.
+ */
 public class UpdateCommand extends Command {
     private static final String INVALID_IDENTIFIER_ERROR = "You can only enter /q, /a or /d";
     private static final String EMPTY_CONTENT_ERROR = "Please enter the changes to be modified.";
@@ -27,6 +32,12 @@ public class UpdateCommand extends Command {
         this.query = query;
     }
 
+    /**
+     * Searches for flashcards that match the query and adds them to the matchingFlashcards list.
+     *
+     * @param flashcards the list of flashcards to search through
+     * @param query the search query for finding matching flashcards
+     */
     public void findFlashcard(ArrayList<Flashcard> flashcards, String query) {
         for (int i = 0; i < flashcards.size(); i++) {
             Flashcard currentFlashcard = flashcards.get(i);
@@ -42,6 +53,15 @@ public class UpdateCommand extends Command {
         }
     }
 
+    /**
+     * Updates the content of a flashcard based on the specified identifier and updated content.
+     *
+     * @param flashcards the list of flashcards to update
+     * @param indexInMatchList the index of the flashcard in the matchingFlashcards list
+     * @param identifier the identifier for the field to update (/q for question, /a for answer, /d for due date)
+     * @param updatedContent the updated content for the field
+     * @return the index of the updated flashcard in the flashcards list
+     */
     public int implementUpdate(ArrayList<Flashcard> flashcards, int indexInMatchList, String identifier,
                                String updatedContent) {
         Flashcard flashcardToChange = matchingFlashcards.get(indexInMatchList);
@@ -61,6 +81,12 @@ public class UpdateCommand extends Command {
         return index;
     }
 
+    /**
+     * Prompts the user for input and updates the specified flashcard based on the user's input.
+     *
+     * @param flashcards the list of flashcards to update
+     * @param display the Ui object for displaying messages to the user
+     */
     private void updateFlashcard(ArrayList<Flashcard> flashcards, Ui display) {
         int checker = 0;
         while (checker == 0) {
@@ -70,8 +96,7 @@ public class UpdateCommand extends Command {
                 String identifier = Parser.getIdentifierForUpdateCommand(userText);
                 String updatedContent = Parser.parseInputForUpdateCommand(userText);
                 int index = implementUpdate(flashcards, indexInMatchList, identifier, updatedContent);
-                System.out.println("Understood. The card has been updated to");
-                display.printFlashCard(flashcards.get(index));
+                display.printSuccessfulUpdateMessage(flashcards.get(index));
                 checker = 1;
             } catch (InvalidIdentifierException e) {
                 System.out.println(INVALID_IDENTIFIER_ERROR);

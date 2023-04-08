@@ -13,6 +13,7 @@ import com.clanki.commands.UpdateCommand;
 import com.clanki.commands.VoidCommand;
 import com.clanki.exceptions.EmptyFlashcardAnswerException;
 import com.clanki.exceptions.EmptyFlashcardQuestionException;
+import com.clanki.exceptions.InputIsEmptyException;
 import com.clanki.exceptions.InvalidAddFlashcardInputException;
 import com.clanki.exceptions.NoQueryInInputException;
 import com.clanki.exceptions.UpdatedContentIsEmptyException;
@@ -36,13 +37,15 @@ public class Parser {
             System.out.println("The answer for this flashcard is empty, please enter one.");
         } catch (NoQueryInInputException e) {
             System.out.println("Please enter a query to be searched in the list of flashcards.");
+        } catch (InputIsEmptyException e) {
+            System.out.println("Please enter the command in the format shown in the user guide");
         }
         return new VoidCommand();
     }
 
     public static Command parseCommandStrict(String userInput)
             throws InvalidAddFlashcardInputException, EmptyFlashcardQuestionException,
-            EmptyFlashcardAnswerException, NoQueryInInputException {
+            EmptyFlashcardAnswerException, NoQueryInInputException, InputIsEmptyException {
         ParsedInput parsedInput = new ParsedInput(userInput);
         String command = parsedInput.getCommand();
         assert !command.isEmpty() : "The command string must not be empty";
@@ -60,7 +63,7 @@ public class Parser {
         case "help":
             return new HelpCommand();
         case "list":
-            return new ListCommand();
+            return getListCommand(parsedInput);
         case "clear":
             return new ClearCommand();
         default:
@@ -117,6 +120,14 @@ public class Parser {
 
     public static DeleteCommand getDeleteCommand(ParsedInput parsedInput) {
         return new DeleteCommand(parsedInput.getBody());
+    }
+
+    public static ListCommand getListCommand(ParsedInput parsedInput) throws InputIsEmptyException {
+        String date = parsedInput.getBody();
+        if (date.isEmpty()) {
+            throw new InputIsEmptyException();
+        }
+        return new ListCommand(parsedInput.getBody());
     }
 
     public static ByeCommand getByeCommand(ParsedInput parsedInput) {

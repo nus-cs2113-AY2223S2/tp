@@ -44,7 +44,7 @@ add /q QUESTION /a ANSWER
 - `QUESTION` will be displayed when reviewing. For how the reviewing process
   works, see "Review flashcards" section below.
 
-- Since a slash character (`/`) can be intepreted as a command option, both
+- Since a slash character (`/`) can be interpreted as a command option, both
   `QUESTION` and `ANSWER` must not start with `/` or includes ` /` (the slash
   with a space before it).
 
@@ -117,34 +117,38 @@ You have finished reviewing for today. Congratulations.
 ### Update flashcards
 
 ```
-update /q QUERY
+update QUERY
 ```
 
 - `QUERY` can be the card's date or be part of the card's question or answer.
 
-- A list of cards that contain this query will be listed, with an index assigned
-  to each.
+    - A list of cards that contain this query will be listed, with an index assigned
+      to each.
 
-- The user can then type the index of the card they wish to update with the
-  following syntax
+        - The user can then type the index of the card they wish to update with the
+          following syntax
 
   ```
   INDEX /q NEW_QUESTION
   ```
 
-    - This updates the question of the flashcard to `NEW_QUESTION`
 
+- This updates the question of the flashcard to `NEW_QUESTION`
 
-- To update the answer of the flashcard, use `/a`
-- To update the due date of the flashcard, use `/d`
-  ```
-    INDEX /a NEW_ANSWER
-    INDEX /d NEW_DUE_DATE
-  ```
-    - The user can only update either one of the question, answer or due date at a time
-    - Since a slash character (`/`) can be interpreted as a command option,
-      `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
-      ` /` (the slash with a space before it).
+    - To update the answer of the flashcard, use `/a`
+      ```
+      INDEX /a NEW_ANSWER
+      ```
+
+    - To update the due date of the flashcard, use `/d`
+
+          INDEX /d NEW_DUE_DATE
+
+        - `NEW_DUE_DATE` has to be in the format `yyyy-mm-dd`
+        - The user can only update either one of the question, answer or due date at a time
+        - Since a slash character (`/`) can be interpreted as a command option,
+          `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
+          ` /` (the slash with a space before it).
 
 #### Example
 
@@ -154,16 +158,13 @@ Found 2 cards with the query "fruit":
 [1]
 Q: What is the worst fruit?
 A: Durian
-D: 2023-02-29
 [2]
 Q: What is the Japanese word for "fruit"?
 A: 果物
-D: 2023-02-29
 Which flashcard do you want to update? 1 /q What is the best fruit?
 Understood. The card has been updated to
 Q: What is the best fruit?
 A: Durian
-D: 2023-02-29
 ```
 
 ### Delete a flashcard
@@ -213,19 +214,46 @@ Your list of flashcards is now empty.
 Your list of flashcards is empty.
 ```
 
-### List all flashcards
+### List flashcards
+
+1. list all flashcards
 
 ```
-list
+list all
 ```
 
-Display the list of flashcards that have been added by the user, regardless of the date.
+Display the questions and answers for all the flashcards in the list that have been added by the user,
+regardless of the date.
 
 #### Example
 
 ```
-> list
+> list all
 Here is your list of flashcards:
+[1]
+Q: What is the biggest animal in the world
+A: Antartic blue whale
+[2]
+Q: What are the best food for health
+A: Lemons
+[3]
+Q: What colour is the sun
+A: Red
+```
+
+2. List flashcards with specific due date
+
+```
+list DUE_DATE
+```
+
+Display the questions and answers for all the flashcards in the list that has the due date specified by the user
+
+- `DUE_DATE` has to be in the format `yyyy-mm-dd`
+
+```
+> list 2023-04-05
+Here is your list of flashcards with the specified due date:
 [1]
 Q: What is the biggest animal in the world
 A: Antartic blue whale
@@ -247,7 +275,27 @@ Display the list of possible commands the user can input.
 
 #### Example
 
-![helpMenuDisplay.png](userGuideImages%2FhelpMenuDisplay.png)
+```
+> help
+The following are the commands you can use:
+add:     Adds a flashcard to the current list of flashcards.
+         Parameters: add /q QUESTION /a ANSWER
+         Example: add /q What is the worst fruit? /a Durian
+update:  Changes the content of flashcard's question, answer or date.
+         Parameters: update /q QUERY
+         Example: update fruit 
+                  Which flashcard do you want to update? 1 /q What is the best fruit?
+delete:  Removes a flashcard with specified string.
+         Parameters: delete /q QUERY
+         Example: delete fruit 
+review:  Go through all flashcards that are due today.
+list:    lists out the questions and answers in the list of flashcards.
+         Parameters: list all (lists all flashcards)
+         Parameters: list DUE_DATE (list all flashcards with that specified due date)
+         Example: list 2023-05-04
+clear:   Deletes all the flashcards in the list.
+bye:     Exit the program.
+```
 
 ### Exit program
 
