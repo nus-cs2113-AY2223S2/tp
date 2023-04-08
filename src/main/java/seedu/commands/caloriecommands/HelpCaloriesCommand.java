@@ -10,5 +10,4 @@ public class HelpCaloriesCommand extends Command {
         return Ui.getCaloriesHelpMessage();
     }
 
-
 }
