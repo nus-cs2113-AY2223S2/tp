@@ -1059,38 +1059,40 @@ Priority Legend:
 
 ## Appendix B: User Stories
 
-| Priority | Version |           As a/an ...           | I want to ...                                              | So that I can ...                                                             |
-|:--------:|:-------:|:-------------------------------:|:-----------------------------------------------------------|-------------------------------------------------------------------------------|
-|   ***    |  v1.0   |           expert user           | be able to quickly interface with the program using a CLI  | issue commands to the bot.                                                    |
-|   ***    |  v1.0   |            new user             | see usage instructions                                     | refer to them when I forget how to use the application.                       |
-|   ***    |  v1.0   |              user               | find a to-do item by name                                  | locate a to-do without having to go through the entire list.                  |
-|   ***    |  v1.0   |              user               | delete a to-do item                                        | remove items that I no longer need to keep track of.                          |
-|   ***    |  v1.0   |              user               | add a to-do item                                           | keep track of things that I need to do.                                       |
-|   ***    |  v1.0   |              user               | add an event item                                          | keep track of events that I need to attend.                                   |
-|   ***    |  v1.0   |          busy student           | add a deadline item                                        | keep track of deadlines that I need to meet.                                  |
-|   ***    |  v1.0   |              user               | list all items                                             | view all items that I have added.                                             |
-|   ***    |  v1.0   |              user               | mark a to-do item as done                                  | keep track of which to-do items I have completed.                             |
-|   ***    |  v1.0   |              user               | unmark a to-do item as not done                            | keep track of which to-do items I have not completed yet.                     |
-|   ***    |  v1.0   |              user               | view task count                                            | see how much I have to do.                                                    |
-|   ***    |  v1.0   |          undergraduate          | add modules                                                | keep track of the modules I am taking for the semester.                       |
-|   ***    |  v1.0   |          undergraduate          | list all modules                                           | see all the modules I am taking for the semester.                             |
-|    **    |  v1.0   |          undergraduate          | view module count                                          | keep how many modules I have for the semester.                                |
-|   ***    |  v1.0   |          undergraduate          | delete modules                                             | remove modules that I am no longer taking.                                    |
-|    **    |  v2.0   |          undergraduate          | keep track of the total modular credits                    | plan my academic year.                                                        |
-|   ***    |  v2.0   |             student             | add specific lesson types lessons for each module          | go to the correct classes at the right time.                                  |
-|   ***    |  v2.0   |             student             | delete specific lesson types for each module               | avoid going to a class I never signed up for.                                 |
-|   ***    |  v2.0   |             student             | see my lesson timetable                                    | see the timings of my lessons for the week.                                   |
-|    **    |  v2.0   |     over-committed student      | be alerted to clashes between events and module lessons    | rearrange conflicting events.                                                 |
-|    **    |  v2.0   |          busy student           | be alerted to clashes between deadlines and events         | avoid missing out on important deadlines.                                     |
-|    **    |  v2.0   |          busy student           | be alerted to clashes between deadlines and module lessons | avoid missing out on important deadlines during lessons.                      |
-|    **    |  v2.0   |        organised student        | be able to organise my tasklist according to type          | be able to read the tasklist more easily.                                     |
-|    **    |  v2.0   |        organised student        | be able to organise my tasklist according to date          | prioritise deadlines and events correctly.                                    |
-|    **    |  v2.0   |             student             | see my overall timetable                                   | see all lessons, events and module lessons at the same time.                  |
-|    **    |  v2.0   |         curious student         | view module information                                    | see what a module is about without adding it to my module list.               |
-|    **    |  v2.0   | prospective student of a module | view module lesson information                             | see which lessons I am able to fit into my timetable.                         |
-|    **    |  v2.0   |             student             | list all lessons I have for a module                       | see if I registered for the right lessons.                                    |
-|    **    |  v2.1   |        forgetful student        | view which weeks my lessons occur                          | turn up for lesson on the correct weeks.                                      |
-|    **    |  v2.1   |         forgetful user          | view help menu for specific commands                       | get formatting options for each command without viewing the entire help menu. |
+| Priority | Version |           As a/an ...            | I want to ...                                                | So that I can ...                                                             |
+|:--------:|:-------:|:--------------------------------:|:-------------------------------------------------------------|-------------------------------------------------------------------------------|
+|   ***    |  v1.0   |           expert user            | be able to quickly interface with the program using a CLI    | issue commands to the bot.                                                    |
+|   ***    |  v1.0   |             new user             | see usage instructions                                       | refer to them when I forget how to use the application.                       |
+|   ***    |  v1.0   |               user               | find a to-do item by name                                    | locate a to-do without having to go through the entire list.                  |
+|   ***    |  v1.0   |               user               | delete a to-do item                                          | remove items that I no longer need to keep track of.                          |
+|   ***    |  v1.0   |               user               | add a to-do item                                             | keep track of things that I need to do.                                       |
+|   ***    |  v1.0   |               user               | add an event item                                            | keep track of events that I need to attend.                                   |
+|   ***    |  v1.0   |           busy student           | add a deadline item                                          | keep track of deadlines that I need to meet.                                  |
+|   ***    |  v1.0   |               user               | list all items                                               | view all items that I have added.                                             |
+|   ***    |  v1.0   |               user               | mark a to-do item as done                                    | keep track of which to-do items I have completed.                             |
+|   ***    |  v1.0   |               user               | unmark a to-do item as not done                              | keep track of which to-do items I have not completed yet.                     |
+|   ***    |  v1.0   |               user               | view task count                                              | see how much I have to do.                                                    |
+|   ***    |  v1.0   |          undergraduate           | add modules                                                  | keep track of the modules I am taking for the semester.                       |
+|   ***    |  v1.0   |          undergraduate           | list all modules                                             | see all the modules I am taking for the semester.                             |
+|    **    |  v1.0   |          undergraduate           | view module count                                            | keep how many modules I have for the semester.                                |
+|   ***    |  v1.0   |          undergraduate           | delete modules                                               | remove modules that I am no longer taking.                                    |
+|    **    |  v2.0   |          undergraduate           | keep track of the total modular credits                      | plan my academic year.                                                        |
+|   ***    |  v2.0   |             student              | add specific lesson types lessons for each module            | go to the correct classes at the right time.                                  |
+|   ***    |  v2.0   |             student              | delete specific lesson types for each module                 | avoid going to a class I never signed up for.                                 |
+|   ***    |  v2.0   |             student              | see my lesson timetable                                      | see the timings of my lessons for the week.                                   |
+|    **    |  v2.0   |      over-committed student      | be alerted to clashes between events and module lessons      | rearrange conflicting events.                                                 |
+|    **    |  v2.0   |           busy student           | be alerted to clashes between deadlines and events           | avoid missing out on important deadlines.                                     |
+|    **    |  v2.0   |           busy student           | be alerted to clashes between deadlines and module lessons   | avoid missing out on important deadlines during lessons.                      |
+|    **    |  v2.0   | student planning their timetable | be alerted to clashes between module lessons                 | avoid registering for the wrong lessons.                                      |
+|    **    |  v2.0   |        organised student         | be able to organise my tasklist according to type            | be able to read the tasklist more easily.                                     |
+|    **    |  v2.0   |        organised student         | be able to organise my tasklist according to date            | prioritise deadlines and events correctly.                                    |
+|    **    |  v2.0   |             student              | see my overall timetable                                     | see all lessons, events and module lessons at the same time.                  |
+|    **    |  v2.0   |         curious student          | view module information                                      | see what a module is about without adding it to my module list.               |
+|    **    |  v2.0   | prospective student of a module  | view module lesson information                               | see which lessons I am able to fit into my timetable.                         |
+|    **    |  v2.0   |             student              | list all lessons I have for a module                         | see if I registered for the right lessons.                                    |
+|    **    |  v2.1   |        forgetful student         | view which weeks my lessons occur                            | turn up for lesson on the correct weeks.                                      |
+|    **    |  v2.1   |          forgetful user          | view help menu for specific commands                         | get formatting options for each command without viewing the entire help menu. |
+|    *     |  v2.1   |             new user             | be guided to the more appropriate way of recording deadlines | better organise my deadlines.                                                 |
 
 
 ## Appendix C: Non-Functional Requirements
