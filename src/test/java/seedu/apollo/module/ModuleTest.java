@@ -6,47 +6,35 @@ import seedu.apollo.storage.Storage;
 import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
-
-class ModuleListTest {
+public class ModuleTest {
 
     @Test
-    void addModule_invalidModuleCode_expectNull() {
-        ModuleList allModules = new ModuleList();
-        String invalidModuleCode = "cg2113";
-        ModuleList modules = new ModuleList();
-        modules.add(allModules.findModule(invalidModuleCode));
-        assertNull(allModules.findModule(invalidModuleCode));
-        assertEquals(1, modules.size());
-    }
-
-    @Test
-    void findModule_invalidModuleCode_expectNull() throws FileNotFoundException {
+    void getCode_validModuleCode_returnModuleCode() throws FileNotFoundException {
         Storage storage = new Storage("test.txt", "testModuleData.txt" );
         ModuleList allModules = storage.loadModuleData();
         ModuleList modules = new ModuleList();
         modules.add(allModules.findModule("CS2113"));
-        assertNull(modules.findModule("CS2040C"));
+        assertEquals("CS2113", modules.findModule("CS2113").getCode());
     }
 
     @Test
-    void findModule_validModuleCode_returnsModule() throws FileNotFoundException {
+    void getTitle_validModuleCode_returnTitle() throws FileNotFoundException {
         Storage storage = new Storage("test.txt", "testModuleData.txt" );
         ModuleList allModules = storage.loadModuleData();
         ModuleList modules = new ModuleList();
         modules.add(allModules.findModule("CS2113"));
-        Module validModule = allModules.findModule("CS2113");
-        assertEquals(validModule, modules.findModule("CS2113"));
+        assertEquals("Software Engineering & Object-Oriented Programming",
+                modules.findModule("CS2113").getTitle());
     }
 
     @Test
-    void getTotalModuleCredits_validModuleCode_returnsMC() throws FileNotFoundException {
+    void getModuleCredits_validModuleCode_returnModuleCredits() throws FileNotFoundException {
         Storage storage = new Storage("test.txt", "testModuleData.txt" );
         ModuleList allModules = storage.loadModuleData();
         ModuleList modules = new ModuleList();
         modules.add(allModules.findModule("CS2113"));
-        assertEquals(4, modules.getTotalModuleCredits());
+        assertEquals("4", modules.findModule("CS2113").getModuleCredits());
     }
 
 }
