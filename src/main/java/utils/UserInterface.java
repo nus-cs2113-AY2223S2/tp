@@ -211,14 +211,19 @@ public class UserInterface {
     }
 
     public void printQuestion(String question) {
-        System.out.println("Q: " + question);
+        System.out.println("\tQ: " + question);
     }
 
     public void printAnswer(String answer) {
-        System.out.println("A: " + answer + "\n");
+        System.out.println("\tA: " + answer + "\n");
     }
 
     public void printExitingRunMode() {
         System.out.println("Exiting run mode!\n");
+    }
+
+    public void printWarning() {
+        System.out.println("There is no need to input any characters!\n"
+                + "Just hitting enter is sufficient to show the answer! Anyway, here is the answer!\n");
     }
 }

@@ -42,6 +42,9 @@ public class RunCommand extends Command {
                 } else if (input.equals("exit")) {
                     ui.printExitingRunMode();
                     break;
+                } else {
+                    ui.printWarning();
+                    ui.printAnswer(card.getAnswer());
                 }
             }
             isExit = true;
