@@ -176,6 +176,7 @@ public class EventList {
 
         taskList.add(newEvent);
         listSize++;
+        assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
     public void addEvent(String description, String startTime, String startDay) throws NPExceptions {
@@ -184,6 +185,7 @@ public class EventList {
         Event newEvent = new Event(description, startInfo.time, startInfo.hasInfo);
         taskList.add(newEvent);
         listSize++;
+        assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
     public void addEvent(String description, String startTime, String startDay, String recurTime)
@@ -193,6 +195,7 @@ public class EventList {
         Event newEvent = new Event(description, startInfo.time, startInfo.hasInfo, recurTime);
         taskList.add(newEvent);
         listSize++;
+        assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay,
@@ -213,6 +216,7 @@ public class EventList {
 
         taskList.add(newEvent);
         listSize++;
+        assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
     public void addEvent(ArrayList<Schedule> allClasses, ArrayList<String> allVenues) throws NPExceptions{
@@ -228,6 +232,7 @@ public class EventList {
             reviseLocation(taskList.size()-1, allVenues.get(i));
         }
         listSize = taskList.size();
+        assert taskList.size() == listSize : "size of taskList is different from listSize attribute";
     }
 
     public void reviseLocation(int index, String location) {

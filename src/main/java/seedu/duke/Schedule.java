@@ -138,10 +138,6 @@ public class Schedule {
                 break;
             case ("W"):
                 interval = "Week(s)";
-                break;
-            case ("M"):
-                interval = "Month(s)";
-                break;
             default:
                 break;
             }
