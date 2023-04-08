@@ -80,13 +80,15 @@ public class HelpCommand extends Command {
             "| TIME       | Optional       | Used to set the timeframe, going back from the current date; With    |\n" +
             "|            |                | timeframes not more than 31 days, 4 weeks, 12 months or 10 years.    |\n" +
             "|            |                | -all can also be used to view all entries                            |\n" +
-            "| -sort      | Optional       | Sort entries by their value, and show them in non-decreasing order.  |\n" +
-            "|            |                | Inflows are shown before Outflows, and statements will be displayed  |\n" +
-            "|            |                | in entry order if omitted.                                           |\n" +
+            "| -sort      | Optional       | Sort entries by their value, and display them in non-decreasing      |\n" +
+            "|            |                | order. Inflows will be shown before Outflows.                        |\n" +
+            "|            |                | Statements will be sorted by date instead if omitted.                |\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
             "+-----------------------------+----------------------------------------------------------------------+\n" +
             "| view -all                   | View all entries                                                     |\n" +
+            "| view                        | View entries in the current month                                    |\n" +
+            "| view -sort                  | View entries in the current month, in sorted order                   |\n" +
             "| view 1d                     | View entries starting from yesterday, including today                |\n" +
             "| view 18d                    | View entries starting from the past 18 days                          |\n" +
             "| view 18d -sort              | View entries starting from the past 18 days in sorted order          |\n" +
@@ -94,7 +96,6 @@ public class HelpCommand extends Command {
             "| view 6m                     | View entries starting from the past 6 months                         |\n" +
             "| view 12m                    | View entries starting from the past 12 months / 1 year               |\n" +
             "| view 3y                     | View entries starting from the past 3 years                          |\n" +
-            "| view -sort                  | View entries starting from the past 1 month in sorted order          |\n" +
             "+====================================================================================================+";
     private static final String HELP_FILTER_COMMAND = "" +
             "+====================================================================================================+\n" +
@@ -107,8 +108,9 @@ public class HelpCommand extends Command {
             "| -c <CATEGORY> | Optional    | Used to filter for categories with a matching substring              |\n" +
             "| -date <DATE>  | Optional    | Used to filter for entries with the specific date                    |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
-            "| Note: Multiple flags are allowed but must be in the following order:                               |\n" +
-            "|        `-in` or `out` -> `-d` -> `-c` -> `-date`                                                   |\n" +
+            "| Note: At least 1 of the details must be given.                                                     |\n" +
+            "|       Multiple details are allowed, but they must be in the following order:                       |\n" +
+            "|       `-in` or `out` -> `-d` -> `-c` -> `-date`                                                    |\n" +
             "+---------------+-------------+----------------------------------------------------------------------+\n" +
             "+====================================================================================================+\n" +
             "| Example Usage               | Description                                                          |\n" +
