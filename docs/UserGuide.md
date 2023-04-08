@@ -319,9 +319,13 @@ Marks an existing lend or borrow expenditure in the expenditure list as complete
 
 ### 4.12. List out and display the expenditure list
 
-Displays all expenditures in the expenditure list.
+Displays all expenditures in the expenditure list. Expenditure value shown can be set to desired currency value.
 
-**Format:** `list`     |
+**Format:** `list CURRENCY`     |
+
+| Parameter     | Description                                                                                            |
+|---------------|--------------------------------------------------------------------------------------------------------|
+| `CURRENCY`   | The desired [currency](#417-currency-rates) for the expenditure value to be in. Default: SGD.                    |
 
 **Important Information:**
 
@@ -362,11 +366,12 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 
 Sorts the expenditure list by ascending or descending amount, or from earliest to latest date added. It will then display the sorted expenditure list.
 
-**Format:** `viewtype CATEGORY`
+**Format:** `viewtype CATEGORY CURRENCY`
 
 | Parameter     | Description                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
 | `CATEGORY`       | The expenditure categories are of the regular [expenditure](#41-adding-an-expenditure) types and of lend and borrow [expenditure](#42-adding-a-lendborrow-record) types.      |
+| `CURRENCY`   | The desired [currency](#417-currency-rates) for the expenditure value to be in. Default: SGD.                    |
 
 **Important Information:**
 
@@ -377,11 +382,12 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 
 Sorts the expenditure list by ascending or descending amount, or from earliest to latest date added. It will then display the sorted expenditure list.
 
-**Format:** `viewdate DATE`
+**Format:** `viewdate DATE CURRENCY`
 
 | Parameter     | Description                                                                                            |
 |---------------|--------------------------------------------------------------------------------------------------------|
 | `DATE`       | The date when the transaction took place on to be queried. It must be in yyyy-MM-dd format, e.g. 2023-02-02      |
+| `CURRENCY`   | The desired [currency](#417-currency-rates) for the expenditure value to be in. Default: SGD.                    |
 
 **Important Information:**
 
@@ -389,15 +395,19 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The use of viewdate must follow with a valid date or the command would not be valid.
 - The date must be input in yyyy-MM-dd format.
 
+### 4.17. Currency rates
+
+Displays list of the other currency available in MyLedger and their value against SGD.
+**Format:** `showrates`     |
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: MyLedger is able to transfer data using only it's text file. Simply copy the text from myLedger_data and paste it into the other device.
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
 
 * Help: `help`
 
@@ -431,7 +441,7 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 
 * Find by keyword in expenditure descriptions: `find KEYWORD`
 
-* List all expenditures: `list`
+* List all expenditures: `list CURRENCY`
 
 * Mark a specific expenditure to be complete (Tuition or Accommodation): `mark INDEX`
 
@@ -443,6 +453,8 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 
 * Sort expenditure list by latest/earliest date added: `sort LATEST/EARLIEST`
 
-* View expenditure list by date added: `viewdate DATE`
+* View expenditure list by date added: `viewdate DATE CURRENCY`
 
-* View expenditure list by type of expenditure: `viewtype CATEGORY`
+* View expenditure list by type of expenditure: `viewtype CATEGORY CURRENCY`
+
+* Show all currencies: `showrates`
