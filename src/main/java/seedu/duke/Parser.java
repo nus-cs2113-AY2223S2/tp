@@ -5,11 +5,14 @@ import seedu.duke.storage.JsonNusModuleLoader;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
+
+import static seedu.duke.EventList.getInEventType;
 
 public class Parser {
     public static final Map<Integer, LocalDate> SEMESTER_START_DATES = Map.of(1, LocalDate.of(2022, 8, 8), 2,
@@ -18,7 +21,7 @@ public class Parser {
     public static final Map<Integer, LocalDate> SEMESTER_END_DATES = Map.of(1, LocalDate.of(2022, 12, 3), 2,
             LocalDate.of(2023, 5, 6), 3, LocalDate.of(2023, 6, 17), 4, LocalDate.of(2023, 7, 29));
 
-    
+
     private static final int OFFSET = 1;
     private static final JsonNusModuleLoader converter = new JsonNusModuleLoader();
     private final Ui ui;
@@ -201,7 +204,7 @@ public class Parser {
         String[] information = new String[7];
         Arrays.fill(information, "");
 
-        isModuleFlag =  extractFields(duplicity, information, details, isModuleFlag);
+        isModuleFlag = extractFields(duplicity, information, details, isModuleFlag);
 
         addFormatChecker(information);
 
@@ -236,11 +239,13 @@ public class Parser {
             }
 
             // Create event for each day of module
-            try{
+            try {
+                ArrayList<Schedule> classes = new ArrayList<>();
+                ArrayList<String> venues = new ArrayList<>();
                 for (Lesson lesson : lessons) {
                     String venue = lesson.getVenue();
                     for (Integer week : lesson.getWeeks()) {
-                    
+
                         // Method to get date on the lesson's day in a given week number.
                         if (week >= 7) {
                             week++;
@@ -255,13 +260,16 @@ public class Parser {
                         sb = new StringBuilder(lesson.getEndTime());
                         String endTime = sb.insert(2, ':').toString();
 
-                        int size = eventList.getSize();
-                        eventList.addEvent(nusModule.getModuleCode(), startTime, startDate, endTime,
-                                startDate);
-                        eventList.reviseLocation(size++, venue);
+                        Event curClass = getInEventType(nusModule.getModuleCode(), startTime, startDate,
+                                endTime, startDate);
+                        classes.add(curClass);
+                        venues.add(venue);
+
                         count++;
                     }
                 }
+                eventList.addEvent(classes, venues);
+
                 Duke.LOGGER.log(Level.INFO, "User added module to event list.");
                 Ui.addSuccessMsg("Added " + count + " classes of Module: " + moduleCode);
             } catch (NPExceptions e) {
@@ -414,7 +422,7 @@ public class Parser {
         if (!information[4].equals("")) {
             eventList.reviseTimeInfo(information[0], information[1], information[2], information[3],
                     information[4]);
-            
+
         } else {
             eventList.reviseTimeInfo(information[0], information[1], information[2]);
         }
