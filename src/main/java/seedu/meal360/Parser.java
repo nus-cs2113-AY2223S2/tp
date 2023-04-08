@@ -107,16 +107,23 @@ public class Parser {
                 if (line.equals("done")) {
                     ui.printSeparator();
                     if (addedIngredient == 0 || ingredients.size() == 0) {
-                        ui.printMessage("Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
+                        ui.printMessage(
+                                "Add at least 1 ingredient before entering 'done'! [eg: chicken=100]");
                         ui.printSeparator();
                     } else {
                         break;
                     }
                 } else {
                     addedIngredient = 1;
-                    String[] command = line.trim().split(" ");
+                    String[] command = line.trim().split(" and ");
                     ingredients = parseIngredientName(command);
-                    if (ingredients.size() == 0) {
+                    boolean ingredientsInCorrectFormat = true;
+                    for (int i = 0; i < command.length; i++) {
+                        if (!command[i].contains("=")) {
+                            ingredientsInCorrectFormat = false;
+                        }
+                    }
+                    if (ingredients.size() == 0 || !ingredientsInCorrectFormat) {
                         ui.printSeparator();
                         ui.printMessage(recipeErrorMessage);
                         ui.printSeparator();
@@ -124,7 +131,8 @@ public class Parser {
                 }
             } catch (IllegalArgumentException e) {
                 ui.printSeparator();
-                ui.printMessage(e.getMessage());
+                System.out.println("here");
+                ui.printMessage(recipeErrorMessage);
                 ui.printSeparator();
             }
         }

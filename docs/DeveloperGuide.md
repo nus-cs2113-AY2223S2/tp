@@ -175,6 +175,7 @@ The `WeeklyPlan` component:
 - stores the number of times the user plans to prepare each recipe as `Integer`
 - allows users to add single or multiple recipes from the weekly plan
 - allows users to delete single, multiple, or all recipes from the weekly plan
+- allows users to see all ingredients for the week
 
 How the `WeeklyPlan` component works:
 

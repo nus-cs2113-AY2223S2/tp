@@ -25,5 +25,9 @@ apps.
 * __Review/Mentoring contributions__:
     * PRs reviewed: [#4](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/4),
       [#15](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/15),
-      [#39](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/39),
+      [#39](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/39), 
+      [#125](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/125),
+      [#127](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/127),
+      [#135](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/135)
+  
    
