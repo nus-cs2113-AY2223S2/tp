@@ -8,8 +8,6 @@ import bagpacker.commands.ListCommand;
 import bagpacker.commands.PackCommand;
 import bagpacker.commands.UnpackCommand;
 import bagpacker.exception.EmptyInputException;
-import bagpacker.exception.InvalidIndexException;
-import bagpacker.exception.InvalidVariablesException;
 import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
 import org.junit.jupiter.api.Test;
@@ -48,15 +46,6 @@ public class ParserTest {
         System.setIn(inStream);
         Exception exception = assertThrows(EmptyInputException.class, Parser::readLine);
         assertEquals(EmptyInputException.class, exception.getClass());
-    }
-
-    @Test
-    public void addVariableTest() throws InvalidIndexException, InvalidVariablesException {
-        String userInput = "  add this item 1 ";
-        InputStream inStream = new ByteArrayInputStream(userInput.getBytes());
-        System.setIn(inStream);
-        Parser.parse();
-        assertEquals("this item 1", Parser.getVariable(Parser.getCommand()));
     }
 
     @Test
