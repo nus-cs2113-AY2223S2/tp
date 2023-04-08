@@ -6,6 +6,8 @@
  import java.io.File;
  import java.util.HashMap;
 
+ import static seedu.duke.UserUtility.getUser;
+
 
  class StorageManagerTest {
      private static final String fileLocation = System.getProperty("user.dir") + "/save.json";
@@ -63,7 +65,8 @@
      @Test
      void loadEventTypes() throws NPExceptions {
          EventList original = new EventList();
-
+         User user = getUser();
+         user.setSemester(2);
          original.addEvent("testing", "10:00", "2023/03/21",
                  "10:00", "2023/03/21"); //Normal Start and EndTime
          original.addEvent("testing1", "10:00", "2023/03/20", "12:00",
@@ -72,10 +75,7 @@
          original.addEvent("testing4", "10:00", "2023/03/20", "1 W"); //recurring
          //only start time.
          storage.saveToFile(original);
-
          EventList testListCheck = new EventList();
-         User user = new User();
-         user.setSemester(2);
          testListCheck.addEvent("testing", "10:00", "2023/03/21",
                  "10:00", "2023/03/21"); //Normal Start and EndTime
          testListCheck.addEvent("testing1", "10:00", "2023/03/20", "12:00",
