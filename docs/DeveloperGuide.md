@@ -53,6 +53,8 @@ goals.
     * [Adding a transaction](#adding-a-transaction)
     * [Deleting a transaction](#deleting-a-transaction)
     * [Viewing transactions](#viewing-transactions)
+    * [Editing a transaction](#editing-a-transaction)
+    * [Filtering transactions](#filtering-transactions)
     * [Adding a shortcut](#adding-a-shortcut)
     * [Using a shortcut](#using-a-shortcut-1)
     * [Viewing shortcuts](#viewing-shortcuts)
@@ -603,9 +605,9 @@ Help people who are just starting out working and troubled by financial issues s
 
 ## Non-Functional Requirements
 
-Interface constraint: Command-line interface
-Compatability: Java 11
-Performance: System should respond within 2 seconds
+- Interface constraint: Command-line interface 
+- Compatability: Java 11 
+- Performance: System should respond within 2 seconds
 
 
 ## Glossary
