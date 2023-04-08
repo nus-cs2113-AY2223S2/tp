@@ -264,6 +264,31 @@ The following sequence diagram shows the relationship between the classes involv
 ![DeleteModuleCommandSequenceDiagram.png](diagrams%2FDeleteModuleCommandSequenceDiagram.png)
 
 
+**Reference Block for SortModulesAccording to Printing Length Function:** 
+
+![SortModulesAccordingToPrintingLengthFunction.png](diagrams%2FSortModulesAccordingToPrintingLengthFunction.png)
+
+**Explanation** 
+1. Storage calls Module's getPrintingLength() function.
+2. Module retrieves its own module code, name and MCs and calculate their total length known as "printing length"
+and returns it to Storage
+3. Storage calls ArrayList modules sort function passing the "printing length" into a comparator. 
+4. ArrayList Modules sorts the modules according to this "printing length"
+
+**Goal of this sorting function**
+
+The main objective of this sorting function is to increase readability of print functions for users.
+
+Previously, when printing out multiple lines, the lines that are printed out are messy and hard to read.
+
+![ExampleOfPrintFunctionsBeingHardToReadOneLine.png](diagrams%2FExampleOfPrintFunctionsBeingHardToReadOneLine.png)
+
+The sorting functions aids in helping it more readable, when the list of mappings are made to be in one line and sorted
+according to the length of string before the "maps to ---->" key words.
+
+![ExampleOfPrintFunctionsMoreReadable.jpg](diagrams%2FExampleOfPrintFunctionsMoreReadable.jpg)
+
+
 ### Budget Commands
 Class Diagram of Budget Commands
 ![budgetClassDiagram.png](diagrams%2Fbudget%2FbudgetClassDiagram.png)
@@ -273,6 +298,7 @@ Class Diagram of Budget Commands
 > Syntax: /budget /view
 
 Sequence Diagram of View Budget Command
+
 ![ViewBudgetCommand.png](diagrams%2Fbudget%2FViewBudgetCommand.png)
 
 **Explanation**
@@ -288,6 +314,7 @@ accordingly.
 Edits the total budget the user plans to use for his/her SEP trip.
 
 Sequence Diagram of Edit Budget Command
+
 ![EditBudgetCommand.png](diagrams%2Fbudget%2FEditBudgetCommand.png)
 
 **Explanation**
@@ -305,6 +332,7 @@ Sequence Diagram of Edit Budget Command
 Edits the total accommodation cost the user plans to spend for his/her SEP trip.
 
 Sequence Diagram of Edit Accommodation Command
+
 ![EditAccommodationCommand.png](diagrams%2Fbudget%2FEditAccommodationCommand.png)
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 
@@ -327,6 +355,7 @@ EditCostMessage and return.
 Edits the total airplane ticket cost the user plans to spend for his/her SEP trip.
 
 Sequence Diagram of Edit Airplane Ticket Command
+
 ![EditAirplaneTicketCommand.png](diagrams%2Fbudget%2FEditAirplaneTicketCommand.png)
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 
@@ -349,6 +378,7 @@ Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCom
 Edits the total food cost the user plans to spend for his/her SEP trip.
 
 Sequence Diagram of Edit Budget Command
+
 ![EditFoodCommand.png](diagrams%2Fbudget%2FEditFoodCommand.png)
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 
@@ -371,6 +401,7 @@ Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCom
 Edits the total entertainment cost the user plans to spend for his/her SEP trip.
 
 Sequence Diagram of Edit Entertainment Command
+
 ![EditEntertainmentCommand.png](diagrams%2Fbudget%2FEditEntertainmentCommand.png)
 Note: All Cost Command Sequence Diagrams are similar to the EditAccommodationCommand, except change in variables
 

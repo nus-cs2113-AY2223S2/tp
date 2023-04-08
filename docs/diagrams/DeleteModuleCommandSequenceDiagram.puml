@@ -7,7 +7,7 @@ activate ":DeleteModuleCommand"
 activate "<<class>>\nstorage:Storage"
 
 create "indexToDelete: Int"
-"<<class>>\nstorage:Storage" -> "indexToDelete: Int"
+"<<class>>\nstorage:Storage" -> "indexToDelete: Int": Initialize indexToDelete
 activate "indexToDelete: Int"
 "<<class>>\nstorage:Storage" <-- "indexToDelete: Int"
 deactivate "indexToDelete: Int"
@@ -53,3 +53,5 @@ activate "<<class>>\nui:UI"
 "<<class>>\nui:UI" -> UserConsole : Print Delete Mod Message
 "<<class>>\nui:UI" <-- UserConsole
 @enduml
+
+
