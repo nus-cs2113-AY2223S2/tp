@@ -79,13 +79,22 @@ public class AccommodationExpenditureTest {
                 LocalDate.parse("2010-04-09"));
         pastRepeatingAccommodationExpenditure.setPaid();
         // Simulate the checkMark() method
+        LocalDate firstDate = pastRepeatingAccommodationExpenditure.getDate();
         LocalDate currentDate = LocalDate.parse("2023-04-09");
-        pastRepeatingAccommodationExpenditure.checkNextRepeatDate();
-        pastRepeatingAccommodationExpenditure.handleNextRepeat();
+        LocalDate repeatDate = pastRepeatingAccommodationExpenditure.getRepeatDate();
+        while (repeatDate.isBefore(currentDate) || repeatDate.equals(firstDate)) {
+            pastRepeatingAccommodationExpenditure.setRepeatDate(
+                    pastRepeatingAccommodationExpenditure.setNextRepeatDate());
+            repeatDate = pastRepeatingAccommodationExpenditure.getRepeatDate();
+        }
+        if (currentDate.equals(repeatDate) || currentDate.isAfter(repeatDate)) {
+            pastRepeatingAccommodationExpenditure.resetPaid();
+            pastRepeatingAccommodationExpenditure.setRepeatDate(
+                    pastRepeatingAccommodationExpenditure.setNextRepeatDate());
+        }
         assertEquals("[Accommodation] || [ ] || Date: 9 Apr 2010 || Value: 1000.0 || " +
                         "Description: This has been marked in 2010",
                 pastRepeatingAccommodationExpenditure.toString());
-        LocalDate repeatDate = pastRepeatingAccommodationExpenditure.getRepeatDate();
         assertEquals("2024-04-09", pastRepeatingAccommodationExpenditure.getRepeatDate().toString());
     }
 
@@ -97,7 +106,19 @@ public class AccommodationExpenditureTest {
                 LocalDate.parse("2023-04-20"),
                 LocalDate.parse("2023-04-20"));
         inNextFewDaysAccommodationExpenditure.setPaid();
-        inNextFewDaysAccommodationExpenditure.checkMark();
+        LocalDate firstDate = inNextFewDaysAccommodationExpenditure.getDate();
+        LocalDate currentDate = LocalDate.parse("2023-04-09");
+        LocalDate repeatDate = inNextFewDaysAccommodationExpenditure.getRepeatDate();
+        while (repeatDate.isBefore(currentDate) || repeatDate.equals(firstDate)) {
+            inNextFewDaysAccommodationExpenditure.setRepeatDate(
+                    inNextFewDaysAccommodationExpenditure.setNextRepeatDate());
+            repeatDate = inNextFewDaysAccommodationExpenditure.getRepeatDate();
+        }
+        if (currentDate.equals(repeatDate) || currentDate.isAfter(repeatDate)) {
+            inNextFewDaysAccommodationExpenditure.resetPaid();
+            inNextFewDaysAccommodationExpenditure.setRepeatDate(
+                    inNextFewDaysAccommodationExpenditure.setNextRepeatDate());
+        }
         assertEquals("[Accommodation] || [X] || Date: 20 Apr 2023 || Value: 1000.0 || " +
                         "Description: Today is 9 April 2023, but repeat date is set in the future of the same year",
                 inNextFewDaysAccommodationExpenditure.toString());

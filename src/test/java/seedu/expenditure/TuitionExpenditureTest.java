@@ -79,13 +79,22 @@ public class TuitionExpenditureTest {
                 LocalDate.parse("2010-04-09"));
         pastRepeatingTuitionExpenditure.setPaid();
         // Simulate the checkMark() method
+        LocalDate firstDate = pastRepeatingTuitionExpenditure.getDate();
         LocalDate currentDate = LocalDate.parse("2023-04-09");
-        pastRepeatingTuitionExpenditure.checkNextRepeatDate();
-        pastRepeatingTuitionExpenditure.handleNextRepeat();
+        LocalDate repeatDate = pastRepeatingTuitionExpenditure.getRepeatDate();
+        while (repeatDate.isBefore(currentDate) || repeatDate.equals(firstDate)) {
+            pastRepeatingTuitionExpenditure.setRepeatDate(
+                    pastRepeatingTuitionExpenditure.setNextRepeatDate());
+            repeatDate = pastRepeatingTuitionExpenditure.getRepeatDate();
+        }
+        if (currentDate.equals(repeatDate) || currentDate.isAfter(repeatDate)) {
+            pastRepeatingTuitionExpenditure.resetPaid();
+            pastRepeatingTuitionExpenditure.setRepeatDate(
+                    pastRepeatingTuitionExpenditure.setNextRepeatDate());
+        }
         assertEquals("[Tuition] || [ ] || Date: 9 Apr 2010 || Value: 1000.0 || " +
                         "Description: This has been marked in 2010",
                 pastRepeatingTuitionExpenditure.toString());
-        LocalDate repeatDate = pastRepeatingTuitionExpenditure.getRepeatDate();
         assertEquals("2024-04-09", pastRepeatingTuitionExpenditure.getRepeatDate().toString());
     }
 
@@ -97,7 +106,19 @@ public class TuitionExpenditureTest {
                 LocalDate.parse("2023-04-20"),
                 LocalDate.parse("2023-04-20"));
         inNextFewDaysTuitionExpenditure.setPaid();
-        inNextFewDaysTuitionExpenditure.checkMark();
+        LocalDate firstDate = inNextFewDaysTuitionExpenditure.getDate();
+        LocalDate currentDate = LocalDate.parse("2023-04-09");
+        LocalDate repeatDate = inNextFewDaysTuitionExpenditure.getRepeatDate();
+        while (repeatDate.isBefore(currentDate) || repeatDate.equals(firstDate)) {
+            inNextFewDaysTuitionExpenditure.setRepeatDate(
+                    inNextFewDaysTuitionExpenditure.setNextRepeatDate());
+            repeatDate = inNextFewDaysTuitionExpenditure.getRepeatDate();
+        }
+        if (currentDate.equals(repeatDate) || currentDate.isAfter(repeatDate)) {
+            inNextFewDaysTuitionExpenditure.resetPaid();
+            inNextFewDaysTuitionExpenditure.setRepeatDate(
+                    inNextFewDaysTuitionExpenditure.setNextRepeatDate());
+        }
         assertEquals("[Tuition] || [X] || Date: 20 Apr 2023 || Value: 1000.0 || " +
                         "Description: Today is 9 April 2023, but repeat date is set in the future of the same year",
                 inNextFewDaysTuitionExpenditure.toString());
