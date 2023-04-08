@@ -3,7 +3,6 @@ package model;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
 import utils.command.AddCardCommand;
@@ -19,7 +18,6 @@ import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromCardCommand;
 import utils.command.RemoveTagFromDeckCommand;
 import utils.exceptions.CardInSetNotInList;
-import utils.exceptions.CardNotInDeck;
 import utils.exceptions.InkaException;
 import utils.exceptions.TagNeverWasInDeck;
 import utils.parser.Parser;
