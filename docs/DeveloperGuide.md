@@ -84,6 +84,11 @@ coupling in the program as the `AddCommand` will not have access to the inner st
 
 ### Delete Flashcard Feature
 
+The figure below shows a simple class diagram for the Delete
+Command.
+
+![DeleteFlashcardClassDiagram](umlDiagrams%2FDeleteFlashcardClassDiagram.png)
+
 #### Current implementation
 
 The current delete flashcard allows the user to remove a flashcard from the list of flashcards,

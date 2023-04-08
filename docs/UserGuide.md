@@ -131,16 +131,16 @@ update /q QUERY
   ```
   INDEX /q NEW_QUESTION
   ```
-  
-  - This updates the question of the flashcard to `NEW_QUESTION`
+
+    - This updates the question of the flashcard to `NEW_QUESTION`
 
 
-  - To update the answer of the flashcard, use `/a` 
-  - To update the due date of the flashcard, use `/d`
-    ```
-      INDEX /a NEW_ANSWER
-      INDEX /d NEW_DUE_DATE
-    ```
+- To update the answer of the flashcard, use `/a`
+- To update the due date of the flashcard, use `/d`
+  ```
+    INDEX /a NEW_ANSWER
+    INDEX /d NEW_DUE_DATE
+  ```
     - The user can only update either one of the question, answer or due date at a time
     - Since a slash character (`/`) can be interpreted as a command option,
       `QUESTION`, `ANSWER` and `NEW_DUE_DATE` must not start with `/` or includes
@@ -189,8 +189,9 @@ Found 2 cards with the query "fruit":
     A: Durian
 [2] Q: What is the Japanese word for "fruit"?
     A: 果物
-Which one do you want to delete? 2
-Understood. The card has been deleted.
+Which one do you want to delete?
+> 2
+Got it. Deleted the flashcard at index 2
 ```
 
 ### Delete all flashcards in the list

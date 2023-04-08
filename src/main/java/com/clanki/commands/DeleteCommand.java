@@ -6,6 +6,10 @@ import com.clanki.ui.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * A command that removes an element from the ArrayList of
+ * flashcards.
+ */
 public class DeleteCommand extends Command {
 
     ArrayList<Flashcard> matchingFlashcards = new ArrayList<>();
