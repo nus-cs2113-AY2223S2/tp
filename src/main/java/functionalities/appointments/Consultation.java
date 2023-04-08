@@ -21,11 +21,16 @@ public class Consultation extends Appointment {
 
     protected String description = "consultation";
 
+    /**
+     * Constructs a new Consultation object with the specified parameters.
+     * @param uid The unique identifier for the consultation appointment.
+     * @param animal The animal being treated in the consultation appointment.
+     * @param owner The owner of the animal being treated.
+     * @param date The date of the consultation appointment.
+     * @param time The time of the consultation appointment.
+     */
     public Consultation(String uid, Animal animal, Owner owner, LocalDate date, LocalTime time) {
         super(uid, animal, owner);
-        this.uid = uid;
-        this.animal = animal;
-        this.owner = owner;
         this.date = date;
         this.time = time;
     }
