@@ -77,7 +77,7 @@ This is the freq (Hz): 954.7705036082801
 This is the phase: 2665.0
 This is the vertical shift: -8678.0
 ```
-![img_4.png](img_4.png)
+![img_4.png](ImagesForUserGuide/Graph_eg_output_1.png)
 
 Example input 2:
 ```
@@ -90,7 +90,7 @@ This is the freq (Hz): 2.5
 This is the phase: -2.0
 This is the vertical shift: 5.6
 ```
-![img_5.png](img_5.png)
+![img_5.png](ImagesForUserGuide/Graph_eg_output_2.png)
 
 Example input 3: 
 ```
@@ -103,7 +103,7 @@ This is the freq (Hz): 0.7957747154594768
 This is the phase: 0.0
 This is the vertical shift: 0.0
 ```
-![img_6.png](img_6.png)
+![img_6.png](ImagesForUserGuide/Graph_eg_output_3.png)
 
 ### 2) Matrix Calculation: `Matrix`
 This feature accepts matrix equation and outputs calculation result.

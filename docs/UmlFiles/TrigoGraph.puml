@@ -4,7 +4,7 @@
 [->TrigoGraph: startGraphAnalysis()
 activate TrigoGraph
 
-TrigoGraph-->>TrigoGraphAnalyser: TrigoGraphAnalyser(trigoEqn)
+TrigoGraph-> TrigoGraphAnalyser**:TrigoGraphAnalyser(trigoEqn)
 
 activate TrigoGraphAnalyser
 TrigoGraphAnalyser --> TrigoGraph
@@ -58,12 +58,14 @@ deactivate Ui
 TrigoGraph -> TrigoGraph
 deactivate TrigoGraph
 
-TrigoGraph -->> TrigoGraphVisualiser: TrigoGraphVisualiser(amplitude,phase,frequency,verticalShift,trig)
+TrigoGraph -> TrigoGraphVisualiser**: TrigoGraphVisualiser(amplitude,phase,frequency,verticalShift,trig)
 activate TrigoGraphVisualiser
+TrigoGraphVisualiser -->> TrigoGraph
 deactivate TrigoGraphVisualiser
 
 TrigoGraph -> TrigoGraphVisualiser: startVisualiser()
 activate TrigoGraphVisualiser
+
 deactivate TrigoGraphVisualiser
 end opt
 
