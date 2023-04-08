@@ -10,7 +10,7 @@ public class ByeCommand extends Command {
     public static final String HELP_MSG = "bye: Stops the BagPacker Application\n" +
             "\tExample: bye";
     /**
-     * Stops the BagPacker app from running by setting the isBagPackerRunning boolean to false
+     * Stops the BagPacker app from running when the isBagPackerRunning boolean to false
      *
      * @param packingList list of all items in packing list
      */
