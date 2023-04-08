@@ -4,11 +4,14 @@ import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.RecipeListEmptyException;
 import seedu.duke.parser.Parser;
-import seedu.duke.recipe.IngredientList;
-import seedu.duke.recipe.Recipe;
-import seedu.duke.recipe.RecipeList;
+import seedu.duke.recipe.Step;
 import seedu.duke.recipe.StepList;
+import seedu.duke.recipe.RecipeList;
+import seedu.duke.recipe.Recipe;
+import seedu.duke.recipe.IngredientList;
+import seedu.duke.recipe.Ingredient;
 import seedu.duke.storage.Storage;
+import seedu.duke.ui.IntLib;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
@@ -86,6 +89,77 @@ public class Command {
                 ui.showAddingRecipeErrorMessage(e);
             }
             break;
+        case ADDTORECIPE:
+            try {
+                if (fullDescription.isEmpty()) {
+                    throw new IncompleteInputException("The description of " + type + " cannot be empty.\n");
+                }
+                if (!Parser.isValidAddToRecipe(fullDescription)) {
+                    ui.showInvalidAddToRecipeDescription();
+                    break;
+                }
+                String[] parsed = Parser.parseAddToRecipeDescription(fullDescription);
+                if (parsed.length != 3) {
+                    ui.showInvalidAddToRecipeDescription();
+                    break;
+                }
+                String elementType = parsed[0];
+                String id = parsed[1];
+                String description = parsed[2];
+                if (description.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("s")) {
+                    ui.showEmptyStepDescription();
+                    break;
+                }
+                if (description.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("i")) {
+                    ui.showEmptyIngredientDescription();
+                    break;
+                }
+                if (id.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("s")) {
+                    ui.showEmptyStepID();
+                    break;
+                }
+                if (id.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("i")) {
+                    ui.showEmptyIngredientID();
+                    break;
+                }
+                Recipe recipeToAddTo = RecipeList.getRecipe(id);
+                int index;
+                switch (elementType) {
+                case "s":
+                    StepList stepListToAddTo = recipeToAddTo.getStepList();
+                    if (Parser.isDuplicateStep(stepListToAddTo, description)) {
+                        ui.showDuplicateStep();
+                        break;
+                    }
+                    stepListToAddTo.showFullStepList();
+                    int maxStep = stepListToAddTo.getCurrStepNumber();
+                    index = ui.getIndexToAdd(maxStep);
+                    if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
+                        ui.showStepQuitMessage();
+                        break;
+                    }
+                    stepListToAddTo.addStep(new Step(description), index);
+                    ui.showStepAdded();
+                    Storage.writeSavedFile();
+                    break;
+                case "i":
+                    IngredientList ingredientListToAddTo = recipeToAddTo.getIngredientList();
+                    if (Parser.isDuplicateIngredient(ingredientListToAddTo, description)){
+                        ui.showDuplicateIngredient();
+                        break;
+                    } else {
+                        int maxNum = ingredientListToAddTo.getCurrIngredientNumber();
+                        ingredientListToAddTo.addIngredient(new Ingredient(description), maxNum);
+                        ui.showIngredientAdded();
+                        Storage.writeSavedFile();
+                    }
+                    break;
+                default:
+                }
+            } catch (Exception e) {
+                ui.showAddingRecipeElementErrorMessage(e);
+            }
+            break;
         case DELETE:
             try {
                 if (fullDescription.isEmpty()) {
@@ -108,6 +182,73 @@ public class Command {
                 Storage.writeSavedFile();
             } catch (Exception e) {
                 ui.showDeletingTaskErrorMessage(e, type);
+            }
+            break;
+        case DELETEFROMRECIPE:
+            try {
+                if (fullDescription.isEmpty()) {
+                    throw new IncompleteInputException("The description of " + type + " cannot be empty.\n");
+                }
+                if (!Parser.isValidDeleteFromRecipe(fullDescription)) {
+                    ui.showInvalidDeleteFromRecipeDescription();
+                    break;
+                }
+                String[] parsed = Parser.parseDeleteFromRecipeDescription(fullDescription);
+                if (parsed.length != 2) {
+                    ui.showInvalidDeleteFromRecipeDescription();
+                    break;
+                }
+                String elementType = parsed[0];
+                String id = parsed[1];
+                if (id.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("s")) {
+                    ui.showEmptyStepID();
+                    break;
+                }
+                if (id.trim().equals(StringLib.EMPTY_STRING) && elementType.equals("i")) {
+                    ui.showEmptyIngredientID();
+                    break;
+                }
+                Recipe recipeToDeleteFrom = RecipeList.getRecipe(id);
+                int index;
+                switch (elementType) {
+                case "s":
+                    StepList stepListToDeleteFrom = recipeToDeleteFrom.getStepList();
+                    if (stepListToDeleteFrom.isEmpty()) {
+                        ui.showEmptyStepList();
+                        break;
+                    }
+                    stepListToDeleteFrom.showFullStepList();
+                    int maxStep = stepListToDeleteFrom.getCurrStepNumber();
+                    index = ui.getIndexToDelete(maxStep);
+                    if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
+                        ui.showStepQuitMessage();
+                        break;
+                    }
+                    stepListToDeleteFrom.removeStep(index);
+                    ui.showStepDeleted();
+                    Storage.writeSavedFile();
+                    break;
+                case "i":
+                    IngredientList ingredientListToDeleteFrom = recipeToDeleteFrom.getIngredientList();
+                    if (ingredientListToDeleteFrom.isEmpty()) {
+                        ui.showEmptyIngredientList();
+                        break;
+                    }
+                    ingredientListToDeleteFrom.showList();
+                    int maxCount = ingredientListToDeleteFrom.getCurrIngredientNumber();
+                    index = ui.getIndexToDelete(maxCount);
+                    if (index == IntLib.ADD_STEP_INDEX_BREAKOUT) {
+                        ui.showIngredientQuitMessage();
+                        break;
+                    }
+                    ingredientListToDeleteFrom.removeIngredient(index);
+                    ui.showIngredientDeleted();
+                    Storage.writeSavedFile();
+                    break;
+                default:
+                }
+            } catch (Exception e) {
+                ui.showDeletingRecipeElementErrorMessage(e);
             }
             break;
         case CLEAR:
@@ -226,9 +367,9 @@ public class Command {
             break;
         case EDIT:
             try {
-                EditType editType = Parser.parseEditType(fullDescription);
-                boolean isEditIngredient = editType == EditType.INGREDIENT;
-                boolean isEditStep = editType == EditType.STEP;
+                OperationType editType = Parser.parseEditType(fullDescription);
+                boolean isEditIngredient = editType == OperationType.INGREDIENT;
+                boolean isEditStep = editType == OperationType.STEP;
                 Object[] parsed = Parser.parseEditRecipeIndex(fullDescription.substring(4),editType);
                 int recipeIndex = (int) parsed[0];
                 String editDescription = (String) parsed[1];

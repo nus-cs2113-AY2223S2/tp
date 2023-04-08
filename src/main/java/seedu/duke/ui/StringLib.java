@@ -147,9 +147,12 @@ public interface StringLib {
     String EDIT_TYPE_ERROR = "\nPlease enter a edit type (--s/--i) !\n";
     String EDIT_INGREDIENT_ERROR = "\nPlease keep format as edit --i INDEXOFRECIPE INDEXOFINGREDIENT i/NEWINGREDIENT\n";
     String INVALID_RECIPE_INDEX = "\nPlease enter a valid recipe index!";
+    String EMPTY_RECIPE_LIST = "\nThere are no recipes in the list!";
     String INVALID_INGREDIENT_INDEX = "\nPlease enter a valid ingredient index!";
+    String EMPTY_INGREDIENT_LIST = "There are no ingredients in the list!";
     String EDIT_STEP_ERROR = "\nPlease keep format as edit --s INDEXOFRECIPE INDEXOFSTEP s/NEWSTEP\n";
     String INVALID_STEP_INDEX = "\nPlease enter a valid step index!";
+    String EMPTY_STEP_LIST = "There are no steps in the list!";
     String POS_INT = "\nPlease enter a valid index!";
 
     String INVALID_INPUT_VALID_RANGE_PREFIX = "Invalid Input! Valid Range: ";
@@ -162,7 +165,34 @@ public interface StringLib {
     String INVALID_CHARACTERS_INGREDIENTS_ERROR = "The INGREDIENTS parameter contains invalid characters!\n";
     String INVALID_CHARACTERS_TAG_ERROR = "The TAG parameter contains invalid characters!\n";
     String INVALID_CHARACTERS_STEP_ERROR = "The SUM OF STEPS parameter contains invalid characters!\n";
-
-
-
+    String OVERFLOW_NUMBER_ERROR = "you have entered a non-integer number!";
+    String END_OF_RECIPE_STEPS = "\nEnd of Recipe Steps!";
+    String RECIPE_ADDING_TO_DEFAULT_ERROR = "\nError in adding element to recipe!"
+            + "\nException occurred: ";
+    String RECIPE_DELETING_FROM_DEFAULT_ERROR = "\nError in deleting element from recipe!"
+            + "\nException occurred: ";
+    String INVALID_ADD_TO_RECIPE_DESCRIPTION = "OOPS!!!\n" +
+            "Looks like the description of the command is invalid!\n" +
+            "To add elements to the recipe, please follow the following layout:\n" +
+            "\naddtorecipe --[s/i] id/[index] desc/[description of step/ingredient]";
+    String INDEX_REQUEST = "Enter \"quit\" to cancel." +
+            "\nEnter step index below:";
+    String DUPLICATE_INGREDIENT_ERROR = "The ingredient you wish to add is already on " +
+            "the ingredient list and hence cannot be added.";
+    String DUPLICATE_STEP_ERROR = "The step you wish to add is already on " +
+            "the step list and hence cannot be added.";
+    String STEP_ADD_SUCCESS = "The step has been successfully added to the step list!";
+    String INGREDIENT_ADD_SUCCESS = "The ingredient has been successfully added to the ingredient list!";
+    String EMPTY_STEP_DESCRIPTION_MESSAGE = "Description of step cannot be empty!";
+    String EMPTY_INGREDIENT_DESCRIPTION_MESSAGE = "Description of ingredient cannot be empty!";
+    String STEP_QUIT_MESSAGE = "The step was not added to the step list!";
+    String INVALID_DELETE_FROM_RECIPE_DESCRIPTION = "OOPS!!!\n" +
+            "Looks like the description of the command is invalid!\n" +
+            "To add elements to the recipe, please follow the following format:\n" +
+            "\ndeletefromrecipe --[s/i] id/[index]";
+    String INGREDIENT_DELETE_SUCCESS = "The ingredient has been successfully deleted from the ingredient list!";
+    String INVALID_NUMBER_ERROR = "Index must be a number!";
+    String STEP_DELETE_SUCCESS = "The step has been successfully deleted from the step list!";
+    String EMPTY_STEP_ID_MESSAGE = "Index of step cannot be empty!";
+    String EMPTY_INGREDIENT_ID_MESSAGE = "Index of ingredient cannot be empty!";
 }

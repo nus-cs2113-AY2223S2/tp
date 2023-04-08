@@ -60,7 +60,7 @@ public class IngredientList {
      * @param ingredientIndex - position to be added. Current Ingredient at this position is
      *              shifted towards the back.
      */
-    private void addIngredient(Ingredient item, int ingredientIndex) {
+    public void addIngredient(Ingredient item, int ingredientIndex) {
         list.add(ingredientIndex, item);
         currIngredientNumber++;
         assert (currIngredientNumber == list.size());
@@ -71,7 +71,7 @@ public class IngredientList {
      *
      * @param ingredientIndex - the index of the ingredient to be removed from the list.
      */
-    private void removeIngredient(int ingredientIndex) {
+    public void removeIngredient(int ingredientIndex) {
         list.remove(ingredientIndex-1);
         currIngredientNumber--;
         assert (currIngredientNumber == list.size());
@@ -111,5 +111,8 @@ public class IngredientList {
         System.out.println(StringLib.INGREDIENT_EDIT_SUCCESS);
         System.out.print((ingredientIndex + 1) + ". ");
         System.out.println(list.get(ingredientIndex).getName());
+    }
+    public boolean isEmpty() {
+        return (getCurrIngredientNumber() == 0);
     }
 }

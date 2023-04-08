@@ -1,7 +1,5 @@
 package seedu.duke.command;
 
-public enum EditType {
-    ingredient,
-    step,
+public enum OperationType {
     INGREDIENT, STEP, OTHER
 }

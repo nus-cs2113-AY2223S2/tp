@@ -2,19 +2,20 @@ package seedu.duke.parser;
 
 import seedu.duke.command.Command;
 import seedu.duke.command.CommandType;
-import seedu.duke.command.EditType;
+import seedu.duke.command.OperationType;
 import seedu.duke.exceptions.EditFormatException;
 import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.exceptions.InvalidInputCharactersException;
 import seedu.duke.exceptions.MissingIngredientInputException;
-import seedu.duke.recipe.Ingredient;
-import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Step;
 import seedu.duke.recipe.StepList;
 import seedu.duke.recipe.RecipeList;
+import seedu.duke.recipe.IngredientList;
+import seedu.duke.recipe.Ingredient;
 import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -70,6 +71,9 @@ public class Parser {
         case "add":
             type = CommandType.ADD;
             break;
+        case "addtorecipe":
+            type = CommandType.ADDTORECIPE;
+            break;
         case "view":
             type = CommandType.VIEW;
             break;
@@ -91,6 +95,9 @@ public class Parser {
         case "delete":
             type = CommandType.DELETE;
             break;
+        case "deletefromrecipe":
+            type = CommandType.DELETEFROMRECIPE;
+            break;
         case "help":
             type = CommandType.HELP;
             break;
@@ -106,7 +113,6 @@ public class Parser {
         return new Command(type, fullDescription);
     }
 
-
     private static boolean matchString(String input, String regex) {
         String matcher = input;
         int count = 0;
@@ -116,6 +122,16 @@ public class Parser {
         }
         boolean isMatch = (count == 1);
         return isMatch;
+    }
+
+    public static int matchCount(String input, String regex) {
+        String matcher = input;
+        int count = 0;
+        while (matcher.contains(regex)){
+            matcher=matcher.substring(matcher.indexOf(regex)+1);
+            ++count;
+        }
+        return count;
     }
 
     /**
@@ -234,21 +250,29 @@ public class Parser {
         return new StepList(parsedStepList);
     }
 
-    public static EditType parseEditType(String description) throws IncompleteInputException {
+    public static OperationType parseEditType(String description) throws IncompleteInputException {
         boolean isIngredient = description.startsWith("--i ");
         boolean isStep = description.startsWith("--s ");
         if (isIngredient) {
-            return EditType.INGREDIENT;
+            return OperationType.INGREDIENT;
         } else if (isStep) {
-            return EditType.STEP;
+            return OperationType.STEP;
         } else {
+            if(description.equals("--s")){
+                throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+            }
+            if(description.equals("--i")){
+                throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+            }
             throw new IncompleteInputException(StringLib.EDIT_TYPE_ERROR);
         }
     }
 
-    public static Object[] parseEditRecipeIndex(String description, EditType type) throws IncompleteInputException {
-        String[] parsedDescription = description.split(" ", 2);
-        String errorLog = type.equals(EditType.INGREDIENT) ?
+
+    public static Object[] parseEditRecipeIndex(String description, OperationType type)
+            throws IncompleteInputException {
+        String[] parsedDescription = description.split(" ",2);
+        String errorLog = type.equals(OperationType.INGREDIENT) ?
                 StringLib.EDIT_INGREDIENT_ERROR : StringLib.EDIT_STEP_ERROR;
         if (parsedDescription.length < 2) {
             throw new IncompleteInputException(errorLog);
@@ -257,7 +281,12 @@ public class Parser {
             int recipeIndex = Integer.parseInt(parsedDescription[0]);
             return new Object[]{recipeIndex, parsedDescription[1].trim()};
         } catch (NumberFormatException e) {
-            throw new IncompleteInputException(errorLog);
+            try {
+                new BigInteger(parsedDescription[0]);
+            } catch (Exception e1) {
+                throw new IncompleteInputException(errorLog);
+            }
+            throw new IncompleteInputException(StringLib.OVERFLOW_NUMBER_ERROR);
         }
     }
 
@@ -277,7 +306,12 @@ public class Parser {
             }
             RecipeList.editIngredient(recipeIndex, ingredientIndex, newIngredient);
         } catch (NumberFormatException e) {
-            throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+            try {
+                new BigInteger(parsedDescription[0].trim());
+            } catch (Exception e1) {
+                throw new IncompleteInputException(StringLib.EDIT_INGREDIENT_ERROR);
+            }
+            throw new IncompleteInputException(StringLib.OVERFLOW_NUMBER_ERROR);
         } catch (EditFormatException e) {
             throw new Exception("error in edit ingredient:\n" + e.getMessage());
         }
@@ -299,7 +333,12 @@ public class Parser {
             }
             RecipeList.editStep(recipeIndex, stepIndex, newStep);
         } catch (NumberFormatException e) {
-            throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+            try {
+                new BigInteger(parsedDescription[0].trim());
+            } catch (Exception e1) {
+                throw new IncompleteInputException(StringLib.EDIT_STEP_ERROR);
+            }
+            throw new IncompleteInputException(StringLib.OVERFLOW_NUMBER_ERROR);
         } catch (EditFormatException e) {
             throw new Exception("error in edit step:\n" + e.getMessage());
         }
@@ -310,5 +349,114 @@ public class Parser {
             ingredient.replaceAll(chara, "");
         }
         return ingredient;
+    }
+
+    public static OperationType parseAddToRecipeIndex(String description) throws IncompleteInputException {
+        boolean isIngredient = description.startsWith("--i ");
+        boolean isStep = description.startsWith("--s ");
+        if (isIngredient) {
+            return OperationType.INGREDIENT;
+        } else if (isStep) {
+            return OperationType.STEP;
+        } else {
+            throw new IncompleteInputException(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION);
+        }
+    }
+
+    public static String[] parseAddToRecipeDescription(String description) throws IncompleteInputException{
+        OperationType parsedDescription = parseAddToRecipeIndex(description);
+        String[] out = new String[3];
+        out[0] = parsedDescription.equals(OperationType.INGREDIENT) ? "i" : "s";
+        String subDescription = description.substring(4).trim();
+        if (!subDescription.startsWith("id/")) {
+            throw new IncompleteInputException(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION);
+        }
+        String[] subDescriptions = subDescription.substring(3).split("desc/",2);
+        if (subDescriptions.length < 2) {
+            throw new IncompleteInputException(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION);
+        }
+        out[1] = subDescriptions[0].trim();
+        out[2] = subDescriptions[1].trim();
+        return out;
+    }
+    public static OperationType parseDeleteFromRecipeIndex(String description) throws IncompleteInputException {
+        boolean isIngredient = description.startsWith("--i ");
+        boolean isStep = description.startsWith("--s ");
+        if (isIngredient) {
+            return OperationType.INGREDIENT;
+        } else if (isStep) {
+            return OperationType.STEP;
+        } else {
+            throw new IncompleteInputException(StringLib.INVALID_DELETE_FROM_RECIPE_DESCRIPTION);
+        }
+    }
+    public static String[] parseDeleteFromRecipeDescription(String description) throws IncompleteInputException{
+        OperationType parsedDescription = parseDeleteFromRecipeIndex(description);
+        String[] out = new String[2];
+        out[0] = parsedDescription.equals(OperationType.INGREDIENT) ? "i" : "s";
+        String subDescription = description.substring(4).trim();
+        if (!subDescription.startsWith("id/")) {
+            throw new IncompleteInputException(StringLib.INVALID_DELETE_FROM_RECIPE_DESCRIPTION);
+        }
+        out[1] = subDescription.substring(3).trim();
+        return out;
+    }
+
+    public static boolean isValidAddToRecipe(String description) {
+        String descLowerCase = description.toLowerCase().trim();
+        if ((descLowerCase.contains("--s") && descLowerCase.contains("--i"))){
+            return false;
+        }
+        if (matchCount(descLowerCase,"id/") != 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase,"desc/") != 1){
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") == 0 && matchCount(descLowerCase, "--s") == 0) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") > 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--s") > 1) {
+            return false;
+        }
+        return true;
+    }
+    public static boolean isValidDeleteFromRecipe(String description) {
+        String descLowerCase = description.toLowerCase().trim();
+        if ((descLowerCase.contains("--s") && descLowerCase.contains("--i"))){
+            return false;
+        }
+        if (matchCount(descLowerCase,"id/") != 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") == 0 && matchCount(descLowerCase, "--s") == 0) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") > 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--s") > 1) {
+            return false;
+        }
+        return true;
+    }
+    public static boolean isDuplicateIngredient(IngredientList ingredientList, String newIngredient) {
+        for (Ingredient ingredient : ingredientList.getList()) {
+            if (ingredient.getName().toLowerCase().equals(newIngredient)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static boolean isDuplicateStep(StepList stepList, String newStep) {
+        for (Step step : stepList.getList()) {
+            if (step.getStepDescription().toLowerCase().equals(newStep)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

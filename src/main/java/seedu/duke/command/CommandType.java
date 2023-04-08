@@ -5,8 +5,10 @@ package seedu.duke.command;
  *  <p></p>
  *  {@link #LIST}
  *  {@link #ADD}
+ *  {@link #ADDTORECIPE}
  *  {@link #VIEW}
  *  {@link #DELETE}
+ *  {@link #DELETEFROMRECIPE}
  *  {@link #HELP}
  *  {@link #CLEAR}
  *  {@link #EDITSTEP}
@@ -27,6 +29,10 @@ public enum CommandType {
      */
     ADD,
     /**
+     * Adds an element (step or ingredient) to a recipe.
+     */
+    ADDTORECIPE,
+    /**
      * Displays a particular recipe in the recipe list.
      */
     VIEW,
@@ -34,6 +40,10 @@ public enum CommandType {
      * Removes a particular recipe from the recipe list.
      */
     DELETE,
+    /**
+     * Deletes an element (step or ingredient) from a recipe.
+     */
+    DELETEFROMRECIPE,
     /**
      * Shows the full list of commands.
      */

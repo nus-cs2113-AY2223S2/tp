@@ -5,8 +5,10 @@ import seedu.duke.exceptions.NoMatchingRecipeFound;
 import seedu.duke.exceptions.OutOfIndexException;
 import seedu.duke.exceptions.EditFormatException;
 import seedu.duke.exceptions.RecipeListEmptyException;
+import seedu.duke.exceptions.IncompleteInputException;
 import seedu.duke.ui.StringLib;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 import static seedu.duke.ui.StringLib.DUPLICATE_RECIPE_NAMES_ERROR;
@@ -16,6 +18,8 @@ import static seedu.duke.ui.StringLib.EMPTY_LIST_MESSAGE;
 import static seedu.duke.ui.StringLib.NO_MATCHES;
 import static seedu.duke.ui.StringLib.MATCHING_ITEMS;
 import static seedu.duke.ui.StringLib.NO_MATCHING_RECIPE_ERROR;
+import static seedu.duke.ui.StringLib.INVALID_NUMBER_ERROR;
+import static seedu.duke.ui.StringLib.OVERFLOW_NUMBER_ERROR;
 
 public class RecipeList {
     protected static ArrayList<Recipe> recipeList;
@@ -106,24 +110,44 @@ public class RecipeList {
     public static void editIngredient(int recipeIndex, int ingredientIndex, String newIngredient)
             throws EditFormatException {
         if (recipeIndex > getCurrRecipeNumber() || recipeIndex < 1) {
-            throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX);
+            if(getCurrRecipeNumber() > 0) {
+                String range = "\nValid range: " + 1 + " to " + getCurrRecipeNumber();
+                throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX + range);
+            } else {
+                throw new EditFormatException(StringLib.EMPTY_RECIPE_LIST);
+            }
         }
         Recipe recipe = getRecipeFromList(recipeIndex);
         IngredientList ingredientList = recipe.getIngredientList();
         if (ingredientIndex > ingredientList.getCurrIngredientNumber() || ingredientIndex < 1) {
-            throw new EditFormatException(StringLib.INVALID_INGREDIENT_INDEX);
+            if (ingredientList.getCurrIngredientNumber() > 0) {
+                String range = "\nValid range: " + 1 + " to " + ingredientList.getCurrIngredientNumber();
+                throw new EditFormatException(StringLib.INVALID_INGREDIENT_INDEX + range);
+            } else {
+                throw new EditFormatException(StringLib.EMPTY_INGREDIENT_LIST);
+            }
         }
         ingredientList.editIngredient(newIngredient, ingredientIndex - 1);
     }
 
     public static void editStep(Integer recipeIndex, int stepIndex, String newStep) throws EditFormatException {
         if (recipeIndex > getCurrRecipeNumber() || recipeIndex < 1) {
-            throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX);
+            if (getCurrRecipeNumber() > 0) {
+                String range = "\nValid range: " + 1 + " to " + getCurrRecipeNumber();
+                throw new EditFormatException(StringLib.INVALID_RECIPE_INDEX + range);
+            } else {
+                throw new EditFormatException(StringLib.EMPTY_RECIPE_LIST);
+            }
         }
         Recipe recipe = getRecipeFromList(recipeIndex);
         StepList stepList = recipe.getStepList();
         if (stepIndex > stepList.getCurrStepNumber() || stepIndex < 1) {
-            throw new EditFormatException(StringLib.INVALID_STEP_INDEX);
+            if (stepList.getCurrStepNumber() > 0) {
+                String range = "\nValid range: " + 1 + " to " + stepList.getCurrStepNumber();
+                throw new EditFormatException(StringLib.INVALID_STEP_INDEX + range);
+            } else {
+                throw new EditFormatException(StringLib.EMPTY_STEP_LIST);
+            }
         }
         stepList.editStep(stepIndex - 1, newStep);
     }
@@ -178,5 +202,25 @@ public class RecipeList {
             }
         }
         return recipeToBeViewed;
+    }
+    public static Recipe getRecipe(String term)
+            throws Exception {
+        Recipe targetRecipe;
+        try{
+            Integer.parseInt(term);
+        } catch (NumberFormatException e) {
+            try {
+                new BigInteger(term);
+            } catch (Exception e1) {
+                throw new IncompleteInputException(INVALID_NUMBER_ERROR);
+            }
+            throw new IncompleteInputException(OVERFLOW_NUMBER_ERROR);
+        }
+        int recipeListIndex = Integer.parseInt(term);
+        if (recipeListIndex <= 0 || recipeListIndex > getCurrRecipeNumber()) {
+            throw new OutOfIndexException(INVALID_RANGE + "1 to " + getCurrRecipeNumber() + '\n');
+        }
+        targetRecipe = recipeList.get(recipeListIndex - 1);
+        return targetRecipe;
     }
 }
