@@ -19,7 +19,6 @@ public class Workout {
         exercises = new ArrayList<>();
     }
 
-
     public Workout(Date date, String workoutName) {
         this.date = date;
         this.workoutName = workoutName;

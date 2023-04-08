@@ -2,7 +2,6 @@ package seedu.workout;
 
 import seedu.exceptions.InvalidArgumentException;
 import seedu.parser.DateFormatter;
-
 import seedu.storage.Storage;
 import seedu.ui.Ui;
 
@@ -62,6 +61,7 @@ public class WorkoutList {
         }
         return displayCountSetsReps(distinctExercises, dateInSpecificWeek);
     }
+
     //@@ author ZIZI-czh
     public static String displayCountSetsReps(HashMap<String, ArrayList<Integer>> distinctExercises,
                                               Date dateInSpecificWeek) {

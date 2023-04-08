@@ -1,7 +1,7 @@
 package seedu.commands.caloriecommands;
 
 import seedu.commands.Command;
-import seedu.parser.DateFormatter;
+import seedu.exceptions.InvalidSyntaxException;
 
 import java.util.Date;
 
@@ -28,7 +28,7 @@ public class AddCalorieCommand extends Command {
     }
 
     @Override
-    public String execute() {
+    public String execute() throws InvalidSyntaxException {
         return calorieTracker.addCalories(date, foodName, foodCalories);
     }
 }

@@ -1,28 +1,22 @@
 package seedu.calorietracker;
 
-import seedu.storage.Storage;
+import java.util.ArrayList;
 
-import java.util.HashMap;
-
+/**
+ * Represents a list of food eaten in a single day.
+ */
 public class FoodList {
-    private final HashMap<String, Integer> foodCalories;
+    ArrayList<Food> foods;
 
     public FoodList() {
-        foodCalories = new HashMap<>();
+        foods = new ArrayList<>();
     }
 
-    public FoodList(Storage storage) {
-        this.foodCalories = storage.readFoodListFile();
-    }
-    public void addFood(String name, int calories) {
-        foodCalories.put(name, calories);
+    public void addFood(Food food) {
+        foods.add(food);
     }
 
-    public boolean contains(String food) {
-        return foodCalories.containsKey(food);
-    }
-
-    public HashMap<String, Integer> getFoodCalories() {
-        return foodCalories;
+    public ArrayList<Food> getFoods() {
+        return foods;
     }
 }

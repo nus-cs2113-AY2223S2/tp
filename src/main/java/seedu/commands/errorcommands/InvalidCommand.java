@@ -2,6 +2,7 @@ package seedu.commands.errorcommands;
 
 
 import seedu.commands.Command;
+import seedu.ui.Ui;
 
 public class InvalidCommand extends Command {
     private static final String INVALID_COMMAND_MESSAGE = " is not a valid command!";
@@ -12,6 +13,7 @@ public class InvalidCommand extends Command {
 
     @Override
     public String execute() {
-        return command + INVALID_COMMAND_MESSAGE;
+        return command + INVALID_COMMAND_MESSAGE + System.lineSeparator() + Ui.line();
     }
 }
+

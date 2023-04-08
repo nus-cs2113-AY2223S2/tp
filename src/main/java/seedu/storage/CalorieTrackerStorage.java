@@ -1,5 +1,7 @@
 package seedu.storage;
 
+import seedu.calorietracker.Food;
+import seedu.calorietracker.FoodList;
 import seedu.parser.DateFormatter;
 import seedu.ui.Ui;
 
@@ -12,6 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
+//@@author calebcjl
 /**
  * Represents a storage for CalorieTracker.
  */
@@ -22,8 +25,8 @@ public class CalorieTrackerStorage {
         calorieTrackerFile = defaultCalorieTrackerFile;
     }
 
-    public HashMap<Date, Integer> getUserData() {
-        HashMap<Date, Integer> savedCalorieTracker = new HashMap<>();
+    public HashMap<Date, FoodList> getUserData() {
+        HashMap<Date, FoodList> savedCalorieTracker = new HashMap<>();
         if (calorieTrackerFile.exists()) {
             try {
                 Scanner scanner = new Scanner(calorieTrackerFile);
@@ -42,10 +45,16 @@ public class CalorieTrackerStorage {
         return savedCalorieTracker;
     }
 
-    private void readCalorieTrackerFile(String line, HashMap<Date, Integer> totalCaloriesConsumedInDay)
+    private void readCalorieTrackerFile(String line, HashMap<Date, FoodList> dailyFoodConsumption)
             throws ParseException {
-        String[] data = line.split(":");
-        totalCaloriesConsumedInDay.put(DateFormatter.stringToDate(data[0]), Integer.valueOf(data[1]));
+        String[] data = line.split(",");
+        Date date = DateFormatter.stringToDate(data[0]);
+        FoodList foodList = new FoodList();
+        for (int i = 1; i < data.length; i += 2) {
+            Food food = new Food(data[i], Integer.parseInt(data[i + 1]));
+            foodList.addFood(food);
+        }
+        dailyFoodConsumption.put(date, foodList);
     }
 
     private void createCalorieTrackerFile() {
@@ -58,11 +67,14 @@ public class CalorieTrackerStorage {
         }
     }
 
-    public void saveUserData(HashMap<Date, Integer> totalCaloriesConsumedInDay) throws IOException {
+    public void saveUserData(HashMap<Date, FoodList> dailyFoodConsumption) throws IOException {
         FileWriter fileWriter = new FileWriter(calorieTrackerFile);
-        for (Date date : totalCaloriesConsumedInDay.keySet()) {
-            fileWriter.write(DateFormatter.dateToString(date) + ':'
-                    + totalCaloriesConsumedInDay.get(date) + System.lineSeparator());
+        for (Date date : dailyFoodConsumption.keySet()) {
+            fileWriter.write(DateFormatter.dateToString(date) + ',');
+            for (Food food : dailyFoodConsumption.get(date).getFoods()) {
+                fileWriter.write(food.getFoodName() + ',' + food.getCalories() + ',');
+            }
+            fileWriter.write(System.lineSeparator());
         }
         fileWriter.close();
     }

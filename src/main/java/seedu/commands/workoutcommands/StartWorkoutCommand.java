@@ -13,7 +13,7 @@ import static seedu.workout.WorkoutList.NO_CURRENT_WORKOUT;
  * Represents command to start a new workout.
  */
 public class StartWorkoutCommand extends Command {
-    private final String ONGOING_WORKOUT_MESSAGE = "There is already an ongoing workout!";
+    private static final String ONGOING_WORKOUT_MESSAGE = "There is already an ongoing workout!";
     private final String workoutName;
     private final Date date;
 
@@ -29,7 +29,7 @@ public class StartWorkoutCommand extends Command {
      *
      * @return Workout start message if workout is started. Returns ongoing workout message.
      * @throws InvalidArgumentException If name and date of workout to be added is the same as a workout that
-     * is already in the workout list.
+     *     is already in the workout list.
      */
     @Override
     public String execute() throws InvalidArgumentException {

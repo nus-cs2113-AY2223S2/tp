@@ -12,14 +12,13 @@ import seedu.exceptions.InvalidArgumentException;
 import seedu.exceptions.InvalidSyntaxException;
 import seedu.workout.Exercise;
 
-import java.math.BigDecimal;
 import java.text.ParseException;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static java.lang.Math.max;
+import static seedu.parser.Parser.parseDate;
 
 /**
  * Represents the parser for workout commands.
@@ -152,6 +151,7 @@ public class WorkoutParser {
         return true;
     }
 
+    //@@author calebcjl
     /**
      * Parses reps per set argument.
      *
@@ -240,27 +240,7 @@ public class WorkoutParser {
     }
 
 
-    /**
-     * This method is used to check the input date format
-     *
-     * @param arguments inputs date
-     * @return return null if the date format is invalid
-     */
-    //@@ author ZIZI-czh
-    static Date parseDate(String arguments) throws InvalidSyntaxException, InvalidArgumentException {
-        arguments = arguments.trim();
-        Date enteredDate;
-        try {
-            enteredDate = DateFormatter.stringToDate(arguments);
-        } catch (ParseException e) {
-            throw new InvalidSyntaxException("date");
-        }
-        Date currentDate = new Date();
-        if (enteredDate.compareTo(currentDate) > 0) {
-            throw new InvalidArgumentException("date");
-        }
-        return enteredDate;
-    }
+
 
     //@@author calebcjl
     /**

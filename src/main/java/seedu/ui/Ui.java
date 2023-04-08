@@ -1,34 +1,48 @@
 package seedu.ui;
 
-
 import seedu.commands.Command;
 import seedu.exceptions.InvalidArgumentException;
+import seedu.exceptions.InvalidSyntaxException;
 
 import java.util.Scanner;
 
 public class Ui {
-    private static final String WELCOME_MESSAGE = "Let's get moving!\n" + "\"/wstart DD/MM/YY\" to start " +
-            "your workout!";
+    private static final String LINE = "=======================================";
+    private static final String LINE_SEPARATOR = "----------------------------------------";
+
+    private static final String WELCOME_MESSAGE = "Welcome to FITZ! Time to record your " +
+            "daily workouts and calories consumption!\n"
+            + "Enter \"/whelp\" "
+            + "if you need the list of commands for workouts record.\n"
+            + "Enter \"/chelp\" "
+            + "if you need the list of commands for calories record.\n"
+            + LINE_SEPARATOR;
     private static final String LOGO_MESSAGE = " _______  __  .___________.________  \n" +
             "|   ____||  | |           |       /  \n" +
             "|  |__   |  | `---|  |----`---/  /   \n" +
             "|   __|  |  |     |  |       /  /    \n" +
             "|  |     |  |     |  |      /  /----.\n" +
             "|__|     |__|     |__|     /________|";
-    private static final String LINE = "=======================================";
-    private static final String LINE_SEPARATOR = "----------------------------------";
     private static final Scanner in = new Scanner(System.in);
-    private static final String HELP_MESSAGE =
-            "Here are the list of commands that you can use:" +System.lineSeparator() + LINE + System.lineSeparator()
-                    + "- [Start a Workout: /start])" + System.lineSeparator()
+    private static final String HELP_MESSAGE_WORKOUT =
+            "Here are the list of commands that you can use for workout record:"
+                    +System.lineSeparator() + LINE + System.lineSeparator()
+                    + "- [Start a new day: /wday])" + System.lineSeparator()
+                    + "- [Start a workout: /wstart])" + System.lineSeparator()
                     + "- [Add exercise: /wadd]" + System.lineSeparator()
-                    + "- [Add calories: /cadd]" + System.lineSeparator()
-                    + "- [End current workout: /end]" + System.lineSeparator()
-                    + "- [Display workout list: /list]" + System.lineSeparator()
-                    + "- [Display a workout on a specific date : /wview]" + System.lineSeparator()
+                    + "- [Display all the days: /wlist]" + System.lineSeparator()
+                    + "- [Display workouts information for a specific day: /wview]" + System.lineSeparator()
+                    + "- [Display total amount of reps and set for one week /wcount]" + System.lineSeparator()
+                    + "- [Delete workouts: /wdelete]" + System.lineSeparator()
+                    + "- [Exit app: /exit]" + System.lineSeparator() + LINE;
+    private static final String HELP_MESSAGE_CALORIES =
+            "Here are the list of commands that you can use for calories record:"
+                    +System.lineSeparator() + LINE + System.lineSeparator()
+                    + "- [Start a new day: /cday])" + System.lineSeparator()
+                    + "- [Add food and calories: /cadd]" + System.lineSeparator()
+                    + "- [Display total calories consumption: /wlist]" + System.lineSeparator()
                     + "- [Display calories consumed on a specific date : /cview]" + System.lineSeparator()
-                    + "- [Display the amount of reps and set on a specific exercise /count]" + System.lineSeparator()
-                    + "- [Delete a workout: /delete]" + System.lineSeparator()
+                    + "- [Delete calories record for one food: /wdelete]" + System.lineSeparator()
                     + "- [Exit app: /exit]" + System.lineSeparator() + LINE;
     private static final String READ_FILE_ERROR_MESSAGE = "Error reading file: ";
     public static void showGreeting() {
@@ -39,9 +53,6 @@ public class Ui {
         System.out.println(LOGO_MESSAGE);
     }
 
-    public static String showLine(){
-        return LINE;
-    }
     public static void showOneLine(){
         System.out.println(LINE);
     }
@@ -62,15 +73,16 @@ public class Ui {
         showGreeting();
     }
 
-    public static String getHelpMessage() {
-        return HELP_MESSAGE;
+    public static String getWorkoutHelpMessage() {
+        return HELP_MESSAGE_WORKOUT;
     }
 
     public static void showErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
     }
 
-    public static void showCommandResult(Command command) throws InvalidArgumentException {
+    public static void showCommandResult(Command command)
+            throws InvalidArgumentException, InvalidSyntaxException {
         System.out.println(command.execute());
     }
 
@@ -104,5 +116,9 @@ public class Ui {
     }
     public static void showSuccessfulLoadDataMessage(String fileName) {
         System.out.println("Successfully loaded " + fileName + " data.");
+    }
+
+    public static String getCaloriesHelpMessage() {
+        return HELP_MESSAGE_CALORIES;
     }
 }

@@ -1,6 +1,7 @@
 package seedu.storage;
 
 import seedu.calorietracker.CalorieTracker;
+import seedu.calorietracker.FoodDictionary;
 import seedu.calorietracker.FoodList;
 import seedu.ui.Ui;
 import seedu.workout.Workout;
@@ -17,12 +18,12 @@ import java.util.HashMap;
  */
 public class Storage {
     private final WorkoutListStorage workoutListStorage;
-    private final FoodListStorage foodListStorage;
+    private final FoodDictionaryStorage foodDictionaryStorage;
     private final CalorieTrackerStorage calorieTrackerStorage;
 
     public Storage() {
         workoutListStorage = new WorkoutListStorage();
-        foodListStorage = new FoodListStorage();
+        foodDictionaryStorage = new FoodDictionaryStorage();
         calorieTrackerStorage = new CalorieTrackerStorage();
     }
 
@@ -40,8 +41,8 @@ public class Storage {
      *
      * @return Food list.
      */
-    public HashMap<String, Integer> readFoodListFile() {
-        return foodListStorage.getUserData();
+    public HashMap<String, Integer> readFoodDictionaryFile() {
+        return foodDictionaryStorage.getUserData();
     }
 
     /**
@@ -49,14 +50,14 @@ public class Storage {
      *
      * @return Calorie tracker.
      */
-    public HashMap<Date,Integer> readCalorieTrackerFile() {
+    public HashMap<Date, FoodList> readCalorieTrackerFile() {
         return calorieTrackerStorage.getUserData();
     }
-    public void saveUserData(WorkoutList workoutList, FoodList foodList, CalorieTracker calorieTracker) {
+    public void saveUserData(WorkoutList workoutList, FoodDictionary foodDictionary, CalorieTracker calorieTracker) {
         try {
             workoutListStorage.saveUserData(workoutList.getWorkouts());
-            foodListStorage.saveUserData(foodList.getFoodCalories());
-            calorieTrackerStorage.saveUserData(calorieTracker.getTotalCaloriesConsumedInDay());
+            foodDictionaryStorage.saveUserData(foodDictionary.getFoodCalories());
+            calorieTrackerStorage.saveUserData(calorieTracker.getDailyFoodConsumption());
         } catch (IOException e) {
             Ui.showSaveUserDataErrorMessage();
         }

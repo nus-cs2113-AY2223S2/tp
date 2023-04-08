@@ -19,7 +19,7 @@ public class EndWorkoutCommand extends Command {
      * If there is no current workout ongoing, no workout will be ended.
      *
      * @return Returns workout completed message if current workout is ended. Returns no current workout
-     * message otherwise.
+     *     message otherwise.
      */
     @Override
     public String execute() {

@@ -34,6 +34,7 @@ public class ListWorkoutCommand extends Command {
             String date = DateFormatter.dateToString(workout.getDate()) + ' ';
             String workoutName = workout.getWorkoutName();
             listOfWorkouts.append(listNumber).append(date).append(workoutName).append(System.lineSeparator());
+            counter += 1;
         }
         return listOfWorkouts.append(Ui.line()).toString();
     }

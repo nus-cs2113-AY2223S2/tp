@@ -1,7 +1,7 @@
 package seedu;
 
 import seedu.calorietracker.CalorieTracker;
-import seedu.calorietracker.FoodList;
+import seedu.calorietracker.FoodDictionary;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.exceptions.InvalidArgumentException;
@@ -18,7 +18,7 @@ import seedu.workout.WorkoutList;
 public class Duke {
     private WorkoutList workoutList;
     private CalorieTracker calorieTracker;
-    private FoodList foodList;
+    private FoodDictionary foodDictionary;
     private Storage storage;
 
 
@@ -35,8 +35,8 @@ public class Duke {
     private void run() {
         storage = new Storage();
         workoutList = new WorkoutList(storage);
-        foodList = new FoodList(storage);
-        calorieTracker = new CalorieTracker(storage, foodList);
+        foodDictionary = new FoodDictionary(storage);
+        calorieTracker = new CalorieTracker(storage, foodDictionary);
         Ui.showWelcomeMessage();
         executeCommandUntilExit();
     }
@@ -52,13 +52,13 @@ public class Duke {
             String userInput = Ui.getUserInput();
             try {
                 command = Parser.processCommand(userInput);
-                command.setData(workoutList, calorieTracker, foodList);
+                command.setData(workoutList, calorieTracker, foodDictionary);
                 Ui.showCommandResult(command);
             } catch (InvalidSyntaxException | InvalidArgumentException e) {
                 Ui.showErrorMessage(e.toString());
                 command = new Command();
             }
-            storage.saveUserData(workoutList, foodList, calorieTracker);
+            storage.saveUserData(workoutList, foodDictionary, calorieTracker);
         } while (!ExitCommand.isExit(command));
     }
 }

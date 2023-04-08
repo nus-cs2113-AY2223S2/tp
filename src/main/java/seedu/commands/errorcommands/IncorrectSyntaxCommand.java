@@ -3,6 +3,7 @@ package seedu.commands.errorcommands;
 //@@author calebcjl
 
 import seedu.commands.Command;
+import seedu.ui.Ui;
 
 /**
  * Represents a command entered with incorrect syntax.
@@ -17,6 +18,7 @@ public class IncorrectSyntaxCommand extends Command {
 
     @Override
     public String execute() {
-        return ERROR_MESSAGE + syntaxError;
+        return ERROR_MESSAGE + syntaxError + System.lineSeparator() + Ui.line();
     }
 }
+

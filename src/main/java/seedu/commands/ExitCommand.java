@@ -1,6 +1,9 @@
 package seedu.commands;
 
 //@@author calebcjl
+
+import seedu.ui.Ui;
+
 /**
  * Represents command to exit the program.
  */
@@ -19,6 +22,6 @@ public class ExitCommand extends Command {
 
     @Override
     public String execute() {
-        return EXIT_MESSAGE;
+        return EXIT_MESSAGE + System.lineSeparator() + Ui.line();
     }
 }

@@ -1,9 +1,10 @@
 package seedu.commands;
 
 import seedu.calorietracker.CalorieTracker;
-import seedu.calorietracker.FoodList;
+import seedu.calorietracker.FoodDictionary;
 import seedu.exceptions.InvalidArgumentException;
 
+import seedu.exceptions.InvalidSyntaxException;
 import seedu.workout.WorkoutList;
 
 //@@author calebcjl
@@ -11,9 +12,10 @@ import seedu.workout.WorkoutList;
  * Represents a command entered by user.
  */
 public class Command {
+
     protected WorkoutList workoutList;
     protected CalorieTracker calorieTracker;
-    protected FoodList foodList;
+    protected FoodDictionary foodDictionary;
 
     public Command() {
     }
@@ -23,15 +25,15 @@ public class Command {
      *
      * @param workoutList Workout list.
      * @param calorieTracker Calorie tracker.
-     * @param foodList Food list.
+     * @param foodDictionary Food list.
      */
-    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker, FoodList foodList) {
+    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker, FoodDictionary foodDictionary) {
         this.workoutList = workoutList;
         this.calorieTracker = calorieTracker;
-        this.foodList = foodList;
+        this.foodDictionary = foodDictionary;
     }
 
-    public String execute() throws InvalidArgumentException {
+    public String execute() throws InvalidArgumentException, InvalidSyntaxException {
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
 }

@@ -2,12 +2,15 @@ package seedu.parser;
 
 import seedu.commands.Command;
 import seedu.commands.caloriecommands.AddCalorieCommand;
+import seedu.commands.caloriecommands.ViewCaloriesCommand;
 import seedu.exceptions.InvalidArgumentException;
 import seedu.exceptions.InvalidSyntaxException;
 
 import java.text.ParseException;
 import java.util.Date;
 import java.util.regex.Pattern;
+
+import static seedu.parser.Parser.parseDate;
 
 /**
  * Represents the parser for calorie commands.
@@ -32,7 +35,7 @@ public class CalorieParser {
         String foodName;
         int foodCalories;
         try {
-            date = DateFormatter.stringToDate(arguments.substring(0,DATE_LENGTH));
+            date = parseDate(arguments.substring(0,DATE_LENGTH));
             if (Pattern.compile("\\D+")
                     .matcher(arguments.substring(arguments.length() - 1)).matches()) {
                 return new AddCalorieCommand(date, arguments.substring(DATE_LENGTH).trim());
@@ -40,11 +43,9 @@ public class CalorieParser {
             foodName = parseFoodName(arguments);
             foodCalories =
                     Integer.parseUnsignedInt(arguments.substring(arguments.lastIndexOf(" ")).trim());
-        } catch (ParseException e) {
-            throw new InvalidArgumentException("date");
         } catch (NumberFormatException e) {
             throw new InvalidArgumentException("calories");
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new InvalidSyntaxException("/cadd command");
         }
         return new AddCalorieCommand(date, foodName, foodCalories);
@@ -82,5 +83,12 @@ public class CalorieParser {
             return false;
         }
         return true;
+    }
+
+    public static Command parseViewCalories(String arguments)
+            throws InvalidArgumentException, InvalidSyntaxException {
+        Date date;
+        date = parseDate(arguments.trim());
+        return new ViewCaloriesCommand(date);
     }
 }

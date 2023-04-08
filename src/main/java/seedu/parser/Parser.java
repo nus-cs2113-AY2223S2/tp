@@ -3,10 +3,13 @@ package seedu.parser;
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
 import seedu.commands.errorcommands.InvalidCommand;
-import seedu.commands.HelpCommand;
 import seedu.exceptions.InvalidArgumentException;
+import seedu.commands.caloriecommands.HelpCaloriesCommand;
+import seedu.commands.workoutcommands.HelpWorkoutCommand;
 import seedu.exceptions.InvalidSyntaxException;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,26 +45,47 @@ public class Parser {
             return WorkoutParser.parseSetsRepsCountCommand(arguments);
         case "/wend":
             return WorkoutParser.parseEndWorkoutCommand(arguments);
+        case "/whelp":
+            return new HelpWorkoutCommand();
         case "/cadd":
             return CalorieParser.parseAddCalorieCommand(arguments);
         case "/clist":
             //list the total daily calories consumption
             break;
         case "/cview":
-            // list all the food calories that been entered for a day
-            break;
+            return CalorieParser.parseViewCalories(arguments);
         case "/cdelete":
             //delete calories for a specific day for one food follow /cdelete date food name
-            break;
+        case "/chelp":
+            return new HelpCaloriesCommand();
         case "/exit":
             return new ExitCommand();
-        case "/help":
-            return new HelpCommand();
         default:
             return new InvalidCommand(commandName);
         }
         return new InvalidCommand(commandName);
     }
 
+    /**
+     * This method is used to check the input date format
+     *
+     * @param arguments inputs date
+     * @return return null if the date format is invalid
+     */
+    //@@ author ZIZI-czh
+    static Date parseDate(String arguments) throws InvalidSyntaxException, InvalidArgumentException {
+        arguments = arguments.trim();
+        Date enteredDate;
+        try {
+            enteredDate = DateFormatter.stringToDate(arguments);
+        } catch (ParseException e) {
+            throw new InvalidSyntaxException("date");
+        }
+        Date currentDate = new Date();
+        if (enteredDate.compareTo(currentDate) > 0) {
+            throw new InvalidArgumentException("date");
+        }
+        return enteredDate;
+    }
 }
 

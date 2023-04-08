@@ -39,7 +39,7 @@ public class ListWorkoutCommandTest {
         String expectedOutput = "Here is the list of dates of your workouts:" + System.lineSeparator()
                 + DateFormatter.dateToString(date1) + System.lineSeparator()
                 //+ DateFormatter.dateToString(date2) + System.lineSeparator()
-                + "----------------------------------";
+                + "----------------------------------------";
         String actualOutput = listWorkoutCommand.execute();
         assertEquals(expectedOutput, actualOutput);
     }

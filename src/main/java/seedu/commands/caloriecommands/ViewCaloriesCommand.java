@@ -1,32 +1,38 @@
 package seedu.commands.caloriecommands;
 
-
-/*
+import seedu.calorietracker.Food;
 import seedu.commands.Command;
 import seedu.parser.DateFormatter;
+import seedu.ui.Ui;
 
 import java.util.Date;
 
-//import static seedu.calorietracker.CalorieTracker.CALORIES_NOT_TRACKED;
-
+//@@author Richardtok
 public class ViewCaloriesCommand extends Command {
+    private static final String HEADER = "Here are the foods consumed on ";
+    private static final String FAIL_TO_FIND_DATE = " does not exit in the list";
+    private final Date caloriesToViewDate;
 
-*/
-/*    private final Date dateToView;
-    public ViewCaloriesCommand(Date dateToView) {
-        this.dateToView = dateToView;
+    public ViewCaloriesCommand(Date caloriesToViewDate) {
+        //super();
+        this.caloriesToViewDate = caloriesToViewDate;
     }
+
 
     @Override
     public String execute() {
-        String formattedDate = DateFormatter.dateToString(dateToView);
-        if (caloriesRecorder.getCalories(dateToView) == CALORIES_NOT_TRACKED) {
-            return "Calories not tracked on " + formattedDate;
-        } else {
-            return "Calories consumed on " + formattedDate + ": " + calorieTracker.getCalories(dateToView)
-                    + "kcal.";
+        if (!calorieTracker.getDailyFoodConsumption().containsKey(caloriesToViewDate)) {
+            return DateFormatter.dateToString(caloriesToViewDate) + FAIL_TO_FIND_DATE;
         }
-    }*//*
 
+        StringBuilder stringBuilder = new StringBuilder(HEADER + DateFormatter.dateToString(caloriesToViewDate)
+                + ':' + System.lineSeparator());
+        int counter = 1;
+        for (Food food :calorieTracker.getDailyFoodConsumption().get(caloriesToViewDate).getFoods()) {
+            stringBuilder.append(counter).append(". ").append(food.getFoodName()).append(" - ")
+                    .append(food.getCalories()).append("kcal").append(System.lineSeparator());
+            counter += 1;
+        }
+        return stringBuilder.append(Ui.line()).toString();
+    }
 }
-*/
