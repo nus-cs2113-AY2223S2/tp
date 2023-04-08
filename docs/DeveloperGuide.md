@@ -193,7 +193,11 @@ It implements the following operations:
 #### Example Usage
 Given below is an example usage scenario and how the recipe find mechanism behaves at each step.
 
-In the command line, the user inputs `find MaLaXiangGuo` to find a recipe from the recipe list. `Duke` calls the `parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. The `Command` object will then be executed by calling the `Command#execute()` method, which will call the `RecipeList#searchRecipeList()` to search the recipe list for the recipe.Eventually, the `UI` will be called to show the recipe list that contains the keyword with its index.
+In the command line, the user inputs `find MaLaXiangGuo` to find a recipe from the recipe list. `Duke` calls the 
+`parseCommands()` method in the `Parser` class to parse the user input, which will return a `Command` object. 
+The `Command` object will then be executed by calling the `Command#execute()` method, which will call 
+the `RecipeList#searchRecipeList()` to search the recipe list for the recipe. Eventually, the `UI` will be called to 
+show the recipe list that contains the keyword with its index.
 
 > The following sequence diagram shows how the recipe find feature works:
 ![Sequence Diagram for Recipe Find](./PlantUML/FindRecipe.png)
@@ -290,7 +294,7 @@ which will call the `UI#showHelp()` method to show all possible commands of the 
 ### Target User Profile
 
 Product is geared towards users who are familiar with CLI (e.g. Computing professionals, university students).
-The user is ideally someone who is conscious about their health and would like to learn/improve their cooking
+The user is ideally someone who is conscious about their health and would like to learn/improve their cooking.
 
 ### Value Proposition
 
@@ -331,16 +335,14 @@ The user will be able to keep close tabs on their nutrition based on the recipes
 |  v2.0   | long-term user  |                                  “favorite” dishes that I enjoy                                   |                                quickly select them                                |
 |  v2.0   |   expert user   |                     get the app to randomly suggest one of my favorite snacks                     | have help in making decisions on what snacks to eat when I hesitate to choose one |
 |  v2.0   |   expert user   |                                  rate and comment on the recipe                                   |                  choose my favorite recipe by using the ratings                   |
-|  v3.0   |    new user     |                           the option to mark recipes as drinks/cocktail                           |           also use the app to find and refer to drinks recipes quickly            |
-|  v3.0   | long-term user  |                             get encouragement to avoid unhealthy food                             |                              better control my diet                               |
-|  v3.0   | long-term user  |                                       sort by portion size                                        |              prep dishes catered to groups when I have friends over               |
-|  v3.0   | long-term user  |       have the app to warn me if my laptop battery life is not enough to finish the recipe        |                   avoid scrambling for a charger while cooking                    |
+
 
 ## Appendix C - Non-Functional Requirements
 
 * Users should be able to run on **any common operating system (Windows, Mac, Linux).**
 * Users should not need to manipulate any files in the directory **manually**.
 * Users should be able to run all functions of the program **on the CLI only (i.e. keyboard inputs only)**.
+
 ## Appendix D - Glossary
 
 * *Recipe* - A set of instructions for preparing a food item. In our implementation it should contain the dish's name,
@@ -349,9 +351,39 @@ ingredients required and steps to make the dish
 
 ## Appendix E - Instructions for Manual Testing
 
-Sample inputs should be placed into the input.txt file, and an expected output in the EXPECTED.txt file.
-Run `./runtest.bat` to automatically get a result of whether the actual output follows the expected.
-The resultant output can be found under ACTUAL.txt
+### Initialization 
+1. Download the `.jar` file and place it in an empty folder.
+2. Open the folder location in a command-line interface. (E.g. Terminal for Windows)
+3. Type in `java -jar .\<JAR_FILE_NAME>.jar` where `JAR_FILE_NAME` is the name of the `.jar` file downloaded.
+4. A successful launch should show a `data` folder being created and a welcome message as such:
+    
+    ```
+   Directory for file saving created.
+    
+    __________________________________________________________
+    
+    Saved recipes loaded!
+    
+    HELLO there! I am
+     _____         _         _____  __  ___  ___                _         _______ ________  ____
+    |_   _|       | |       |  _  |/ _| |  \/  |               ( )       / /_   _|  _  |  \/  \ \
+      | | __ _ ___| |_ ___  | | | | |_  | .  . | ___  _ __ ___ |/ ___   | |  | | | | | | .  . || |
+      | |/ _` / __| __/ _ \ | | | |  _| | |\/| |/ _ \| '_ ` _ \  / __|  | |  | | | | | | |\/| || |
+      | | (_| \__ \ ||  __/ \ \_/ / |   | |  | | (_) | | | | | | \__ \  | |  | | \ \_/ / |  | || |
+      \_/\__,_|___/\__\___|  \___/|_|   \_|  |_/\___/|_| |_| |_| |___/  | |  \_/  \___/\_|  |_/| |
+                                                                         \_\                  /_/
+    
+    Your personal recipes assistant!
+    What can I do for you today?
+    
+    You can start by adding recipes to a recipe list that I can generate, simply follow the format below:
+    
+    Add recipe : "add n/<insert recipe name> i/<insert ingredients with ", " separation> t/<insert cuisine> s/<insert number of steps>"
+    
+    If you wish to view the full list of commands, simply type "help"!
+    
+    __________________________________________________________
+    ```
 
 ### Appendix E.1 - Adding a recipe
 Adding a person by using the `add` command and the recipe to be added.
@@ -378,14 +410,18 @@ Adding a person by using the `add` command and the recipe to be added.
    or there is more than one "NAME" or "INGREDIENTS" or "TAG" or "SUM of the STEPs"!
    ```
    
-3. Other incorrect add commands to try: `add`, `add x` (where x does not follow the correct format), `add n/` (where name is empty).
+3. Other incorrect add commands to try: 
+   1. `add`, 
+   2. `add x` (where x does not follow the correct format), 
+   3. `add n/` (where name is empty).
+
    Expected: Similar to previous.
 
 ### Appendix E.2 - Deleting a recipe
 Deleting a person by using the `delete` command and the index of the recipe to be deleted.
 1. Test case: `delete 1`
 
-    Expected: First contact is deleted from the list and the message is shown in the result display.
+    Expected: First recipe is deleted from the list and the message is shown in the result display.
     ```
     Noted. I've removed this recipe:
     [TAG] NAME 
@@ -399,8 +435,11 @@ Deleting a person by using the `delete` command and the index of the recipe to b
     Exception occurred: Your list is either EMPTY or does not contain recipes up to the index you inputted yet,
     so you cannot use the DELETE command yet! Try filling up the list first!
     ```
-3. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size), `delete x` 
-   (where x is a negative integer or zero), `delete XX` (where XX is not a number).
+3. Other incorrect delete commands to try: 
+   1. `delete`, 
+   2. `delete x` (where x is larger than the list size), 
+   3. `delete x` (where x is a negative integer or zero), 
+   4. `delete XX` (where XX is not a number).
    
-    Expected: Similar to previous.
+   Expected: Similar to previous.
 
