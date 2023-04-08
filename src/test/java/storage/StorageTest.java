@@ -1,7 +1,5 @@
 package storage;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import data.Currency;
 import data.Expense;
 import data.ExpenseList;
@@ -9,7 +7,6 @@ import data.Time;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.GsonLocalDateAdaptor;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
