@@ -322,7 +322,9 @@ public class Parser {
      * @throws BrokeManException the custom exception for specific exception case
      */
     public static String[] checkAddCommandException(String description) throws BrokeManException {
-        boolean containsAllFlags = description.contains("a/ ") &&
+        description = " " + description + " ";
+
+        boolean containsAllFlags = description.contains(" a/ ") &&
                 description.contains(" d/ ") && description.contains(" t/ ")
                 && description.contains(" c/");
 
@@ -337,7 +339,6 @@ public class Parser {
             throw new WrongFlagOrderException();
         }
 
-        description = " " + description;
         boolean hasDuplicatedFlags = (description.indexOf(" a/ ") != description.lastIndexOf(" a/ ")) ||
                 (description.indexOf(" d/ ") != description.lastIndexOf(" d/ ")) ||
                 (description.indexOf(" t/ ") != description.lastIndexOf(" t/ ")) ||
@@ -525,7 +526,9 @@ public class Parser {
      * @throws BrokeManException the custom exception that indicate the specific exception cases
      */
     private static String[] checkEditCommandException(String description) throws BrokeManException {
-        boolean containsAllFlags = description.contains("i/ ") &&
+        description = " " + description + " ";
+
+        boolean containsAllFlags = description.contains(" i/ ") &&
                 description.contains(" t/ ") && description.contains(" n/");
         if (!containsAllFlags) {
             throw new InvalidEditCommandException();
@@ -536,7 +539,6 @@ public class Parser {
             throw new WrongFlagOrderException();
         }
 
-        description = " " + description + " ";
         boolean hasDuplicatedFlags = (description.indexOf(" i/ ") != description.lastIndexOf(" i/ ")) ||
                 (description.indexOf(" t/ ") != description.lastIndexOf(" t/ ")) ||
                 (description.indexOf(" n/ ") != description.lastIndexOf(" n/ "));
