@@ -69,7 +69,7 @@ public class RainyDay {
     }
 
     private void setUpDate() {
-//        ui.printToUser(savedData.checkUserBudgetLimit(LocalDate.now()));
+        ui.printToUser(savedData.checkUserBudgetLimit(LocalDate.now()));
         Storage.writeToFile(savedData, filePath);
     }
 
