@@ -517,23 +517,36 @@ The command `list` is missing currency, thus no list will be displayed.
 
 #### Deleting an expenditure
 1. Deleting an expenditure from the list of inputs.
-- Prerequisite: There should be at least one expenditure in the list for `delete` to work. The list can be checked
-using the `list` command
+- Prerequisite: There should be at least one expenditure in the list for `delete` to work. The list can be checked in 
+SGD using the `list SGD` command
 
+Test Case 1:
+```
+delete 1
+```
+Expected:
+```
+Entry has been deleted
+Here is your updated list: 
+```
 
-- Test case : `delete 1`
-- Expected : Message showing that input has been removed will be displayed. First expenditure will be removed from
-the list.
+Test Case 2:
+```
+delete -1
+```
+Expected:
+```
+Index is out of bounds or negative
+```
 
-
-- Test case : `delete -1`
-- Expected : Message showing that input index is out of bounds or negative will be displayed. No expenditure will
-be deleted.
-
-
-- Test case : `delete 1.1`
-- Expected : Error message will be shown, and no expenditure will be removed from the list.
-
+Test Case 3:
+```
+delete 1.1
+```
+Expected:
+```
+Index must be an integer and within bounds! Please try again
+```
 #### Editing an expenditure
 1. Editing a current expenditure within the list of inputs.
 - Prerequisite : Similar to delete, an existing expenditure is required. 
@@ -542,28 +555,63 @@ be deleted.
 - Assumption : Test cases provided are for expenditures with the corresponding parameters. Parameters for normal 
 expenditures cannot to edit lend/borrow expenditures
 
+Test Case 1 (Editing `food` expenditure):
+```
+edit 1 d/2023-02-12 a/8.00 p/Western
+```
+Expected:
 
-- Test case : `edit 1 d/2023-02-12 a/8.00 p/Fast Food` 
-- Expected : Assuming this test case is for a normal expenditure, all the previous parameters will be replaced with
+Assuming this test case is for a normal expenditure, all the previous parameters will be replaced with
 the new input parameters. An edit message will be shown as well.
 
+```
+Edited! Here is the updated list:
+1. [Food] || [ ] || Date: 12 Feb 2023 || Value: 8.0 || Description: Western
+```
 
-- Test case : `edit 2 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 p/fishing`
-- Expected : Assuming this test case is for a lend/borrow expenditure, all the previous parameters will be 
+Test Case 2 (Editing `lend` expenditure):
+```
+edit 2 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 p/fishing
+```
+Expected:
+
+Assuming this test case is for a lend/borrow expenditure, all the previous parameters will be
 replaced with the new input parameters. An edit message will be shown as well.
 
+```
+Edited! Here is the updated list:
+1. [Food] || [ ] || Date: 12 Feb 2023 || Value: 8.0 || Description: Western
+2. [Lend] || Lent to: Carl || Date: 2 Feb 2020 || Value: 22.2 || Description: fishing || by: 3 Mar 2020
+```
 
-- Test case : `edit 2 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 p/fishing` on normal expenditures
-- Expected : As the input parameters are different, an invalid message will be returned. Expenditure
+Test Case 3 (Editing expenditure with `lend` parameters):
+```
+edit 1 d/2020-02-02 n/Carlos a/22.2 b/2020-03-03 p/fishing
+```
+Expected:
+
+As the input parameters are different, an invalid message will be returned. Expenditure
 will not be edited.
+```
+Failed to edit! Please check the format and try again!
+```
 
+Test Case 4:
+```
+edit 1
+```
+Expected:
+```
+Index must be an integer and within bounds! Please try again
+```
 
-- Test case : `edit 2` 
-- Expected : Invalid message prompting missing inputs will be shown. Expenditures will not be edited. 
+Other invalid `edit` commands: 
 
-
-- Other invalid `edit` commands: eg. `edit -1 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 p/fishing`
-- Expected : Invalid message similar to previous invalid cases will be provided.
+eg. 
+```
+edit -1 d/2020-02-02 n/Carl a/22.2 b/2020-03-03 p/fishing
+```
+Expected : Invalid message similar to previous invalid cases will be provided.
 
 #### Duplicate an expenditure
 1. Duplicating an expenditure from the list of inputs.
