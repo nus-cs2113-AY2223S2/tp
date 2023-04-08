@@ -365,6 +365,12 @@ public class Parser {
         if (matchCount(descLowerCase, "--i") == 0 && matchCount(descLowerCase, "--s") == 0) {
             return false;
         }
+        if (matchCount(descLowerCase, "--i") > 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--s") > 1) {
+            return false;
+        }
         if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
             return false;
         } else {
@@ -380,6 +386,12 @@ public class Parser {
             return false;
         }
         if (matchCount(descLowerCase, "--i") == 0 && matchCount(descLowerCase, "--s") == 0) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") > 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--s") > 1) {
             return false;
         }
         if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
