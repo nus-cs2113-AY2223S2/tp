@@ -166,9 +166,11 @@ The implementation of `card view {-c {cardUUID} | -i {cardIndex}}` will be shown
   return the `cardToView` to `CardList` and then
   to `ViewCardCommand`.
 
+
 - If the `cardToView` is not null, it will be passed to `UserInterface#printCard()` to be printed. `ViewCardCommand`
   will proceed to call `Card#getTagsUUID()` which will
   return `tagsUUID` and `Card#getDecksUUID()` which will return `decksUUID`.
+
 
 - Once the `tagsUUID`  is ready, `ViewCardCommand` will then call  `ViewCardCommand#findTagFromTagUUID` which will loop
   through each element `Tag` of `TagList`, call `Tag#getUUID()` and match it with every element of the `tagsUUID`
@@ -176,20 +178,12 @@ The implementation of `card view {-c {cardUUID} | -i {cardIndex}}` will be shown
   If the `Tag` element's uuid matches the uuid in `tagsUUID`, then the `Tag` will be added to a `tagsFound` and returned
   to `ViewCardCommand`.
 
+
 - Similarly, once the `decksUUID` is ready, `ViewCardCommand` will then call  `ViewCardCommand#findDeckFromDeckUUID`
   which will loop through each element `Deck` of `DeckList`, call `Deck#getUUID()` and match it with every element of
   the `decksUUID` previously.
   If the `Deck` element's uuid matches the uuid in `decksUUID`, then the `Deck` will be added to a `decksFound` and
   returned to `ViewCardCommand`.
-
-- The `tagsFound` and `decksFound` will then be passed to the `UserInterface#printTags()`
-  and `UserInterface#printDecks()` to be printed.
-
-1. When the user enters `card add -q ... -a ...`, the input is passed to `Parser` class which
-   calls `Parser#parseCommand()`.
-2. The parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on the user inputs excluding the "
-   card" keyword.
-3. The `Parser#CardKeywordParser()` uses the Apache Commons CLI library to parse the remaining user input.
 
 The sequence diagram below shows how this feature works:
 ![Card View feature](img/CardViewSequence.png)
@@ -244,21 +238,25 @@ The implementation of the `card untag` feature is as follows :
   sequence diagram for this section has been
   shown [above](#parser-component).
 
+
 - This `RemoveTagFromCardCommand` will first find the card to remove the tag from by calling
   the `CardList#findCard()` which will in turn call the `CardSelector#getIndex()`
   and `CardSelector#getUUID()` depending on the flags and parameter specified by the user. `CardSelector` will then
   return the `cardAffected` to `CardList` and then back
   to `RemoveTagFromCardCommand`.
 
+
 - `RemoveTagFromCardCommand` will then find the tag to delete from the card by calling `TagList#findCard()` which will
   in turn call the
   `TagSelector#getIndex()` and `TagSelector#getTagName()`  depending on the flags and parameter specified by the
   user. `TagSelector` will return the `tagToRemove` to `TagList` and then back to `RemoveTagFromCardCommand`.
 
+
 - After `cardAffected` and `tagToRemove` is ready, `RemoveCardFromTagCommand` will
   call `RemoveTagFromCardCommand#removeTagFromCard(cardAffected, tagToRemove)` which will in turn remove the reference
   to the tag from the card and remove the reference to the card from the tag
   by calling `Card#getUUID()`, `Tag#removeCard()`, `Tag#getUUID()`,`Card#RemoveTag()`.
+
 
 - Finally, `RemoveTagFromCardCommand` will then call `UserInterface#printRemoveTagFromCard()` to print successful
   removal of `tagToRemove` from `cardAffected`.
@@ -274,11 +272,13 @@ The implementation of the `tag list {-t {tagName} | -i {tagIndex}}`
   sequence diagram for this section has been
   shown [above](#parser-component).
 
+
 - This `ListCardsUnderTagCommand` will find the tag under which to display the cards from by calling
   the `TagList#findTag()` which will in turn call the `TagSelector#getIndex()`
   and `TagSelector#getTagName()` depending on the flags and parameter specified by the user. `TagSelector` will then
   return the `foundTag` to `TagList` and then back
   to `ListCardsUnderTagCommand`.
+
 
 - After `foundTag`  is ready, `ListCardsUnderTagCommand` will
   call `ListCardsUnderTagCommand#rfindCardsUnderTag(foundTag)` which will call the `Tag#getCardsUUID` and return the
@@ -286,6 +286,7 @@ The implementation of the `tag list {-t {tagName} | -i {tagIndex}}`
   under the `Tag` in the form of `cardsUUID`. `ListCardsUnderTagCommand` will then loop through the entire cardList and
   the `cardsUUID`, if their uuid matches,
   that `Card` will be added to `foundCardList` and returned to `ListCardsUnderTagCommand`.
+
 
 - Once `foundCardList` is returned, `ListCardsUdnerTagCommand` will call `UserInterface#printCardList(foundCardList)` to
   print the list of cards under the specified tag.
