@@ -213,33 +213,38 @@ maps to ----> [ME4231][Aerodynamics][4]
 maps to ----> [ME3122][Heat Transfer][4]
 ____________________________________________________________
 ```
+
 ****
+
 #### 3.2.2 Add user selected modules to list: `add`
 
-Format: `add [PU ABBREVIATION]/[INDEX]`
+Format: `/add [PU ABBREVIATION]/[INDEX]`
 
 * The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
 * The  `MODULE CODE` is the Partner University's module code provided by ` list current`
   or ` list current [PU Abbreviation]` command.
 
-Example of usage: `add KU/1`
+Example of usage: `/add KU/1`
 
 Expected outcome: Adds the module IWC311 from Korea University to the list of user selected modules.
 
 Description of outcome:
+
 ```
 This module has been added to the current module list!
 ____________________________________________________________
 ```
 
-**Before Command** `add KU/1`
+**Before Command** `/add KU/1`
+
 ```
 The current module list is empty for: KOREA UNIVERSITY
 ____________________________________________________________
 ____________________________________________________________
 ```
 
-**After Command** `add KU/1`
+**After Command** `/add KU/1`
+
 ```
 List of Added Modules for: KOREA UNIVERSITY
 [KOREA UNIVERSITY Module] maps to ----> [NUS Module]
@@ -375,15 +380,19 @@ Example of Usage: `/deadline/remove 1`
 Expected Outcome: Deletes the first index from the list of saved deadlines
 
 Description of Outcome:
+
 ```
 This module has been deleted from the current module list!
 ____________________________________________________________
 ```
+
 ---
 
 ### 3.4 Budget Planner: `/budget`
 
 All Budget Planner commands start with /budget.
+
+Budget `AMOUNT` should be an integer between the range of 0 to 20000000.
 
 ****
 
