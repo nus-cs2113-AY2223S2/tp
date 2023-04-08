@@ -31,6 +31,8 @@
 
 
 ## Design & Implementation
+<img src="images/architecture.png"/>
+
 **Access commands** (those related to accounts) will be fetched by the `getUserCommand()` method in the *TextUi* class.
 These commands will be parsed using `parseAccessCommand()` method in the *AccessCommandParser* class and parse to 
 the respective command classes. The command classes will be responsible for executing the relevant features.
@@ -48,7 +50,8 @@ as well as username and hash code of the password. Passwords are not explicit st
 The user can only execute user commands such as history, borrow after successfully logged in to the system, and they 
 need to log out before exiting the application.
 
-### Log in 
+### Log in
+<img src="images/login_sequence.png"/>  
 Description: Log in to the account using saved username and password
 
 Format: `login -username USERNAME -password PASSWORD`  
@@ -105,6 +108,7 @@ Note: Partial string matching will not be considered in this application. Exact 
 
 
 ### Search book by topic
+<img src="images/search class diagram.png"/> 
 Description: Searches for a book by its topic  
 Format: `search -topic TOPIC`  
 Example:
@@ -132,6 +136,7 @@ For successful borrowing, the program will output a string showing that the acti
 
 
 ### Renew borrow period of book
+<img src="images/renew class diagram.png"/>  
 Description: Renew borrowing of books for a fixed duration  
 Format: `renew -title TITLE`  
 Example:
@@ -141,6 +146,7 @@ For successful renewal of books, the program will output a string showing that t
 
 
 ### Check borrowing status
+<img src="images/check class diagram.png"/> 
 Description: Check status of borrowed book  
 Format: `status -title TITLE`  
 Example:
@@ -159,7 +165,7 @@ For successful returns of books, the program will output a string showing that t
 
 
 ### Add book  
-<img src="images/Inventory%20class%20diagram.png" width="50%" height="50%" />  
+<img src="images/inventory class diagram.png"/>  
 
 Description: Add new books into the system  
 Format: `librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action add`  
@@ -179,6 +185,7 @@ This feature is only applicable for admin. For successful deletion of book, the 
 
 
 ### List book
+<img src="images/list class diagram.png"/> 
 Description: List all the books in the library  
 Format: `list`  
 Example:
