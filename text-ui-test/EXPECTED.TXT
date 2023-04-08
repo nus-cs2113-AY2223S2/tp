@@ -42,6 +42,116 @@ Got it. I've added this recipe:
 Now you have 1 recipes in the list.
 
 __________________________________________________________
+The ingredient has been successfully added to the ingredient list!
+__________________________________________________________
+There are 4 ingredients in the list:
+1. Beef
+2. Potatoes
+3. Carrots
+4. deez nuts
+Valid range: 1 to 4
+Enter "quit" to cancel.
+Enter step index below:
+The ingredient has been successfully deleted from the ingredient list!
+__________________________________________________________
+Description of ingredient cannot be empty!
+__________________________________________________________
+OOPS!!!
+Looks like the description of the command is invalid!
+To add elements to the recipe, please follow the following layout:
+
+addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]
+__________________________________________________________
+There are 4 steps in the list
+1. chop beef
+2. add potatoes
+3. add carrots
+4. cook 5 minutes
+Valid range: 1 to 4
+Enter "quit" to cancel.
+Enter step index below:
+The step has been successfully deleted from the step list!
+__________________________________________________________
+There are 3 steps in the list
+1. chop beef
+2. add carrots
+3. cook 5 minutes
+Valid range: 1 to 4
+Enter "quit" to cancel.
+Enter step index below:
+
+Please enter a valid step index!
+Valid range: 1 to 4
+Enter "quit" to cancel.
+Enter step index below:
+The step was not added to the step list!
+__________________________________________________________
+There are 3 steps in the list
+1. chop beef
+2. add carrots
+3. cook 5 minutes
+Valid range: 1 to 3
+Enter "quit" to cancel.
+Enter step index below:
+
+Please enter a valid step index!
+Valid range: 1 to 3
+Enter "quit" to cancel.
+Enter step index below:
+The step was not added to the step list!
+__________________________________________________________
+OOPS!!!
+Looks like the description of the command is invalid!
+To add elements to the recipe, please follow the following format:
+
+deletefromrecipe --[s/i] id/[index]
+__________________________________________________________
+There are 3 steps in the list
+1. chop beef
+2. add carrots
+3. cook 5 minutes
+Valid range: 1 to 4
+Enter "quit" to cancel.
+Enter step index below:
+The step has been successfully added to the step list!
+__________________________________________________________
+There are 4 steps in the list
+1. chop beef
+2. user left your channel
+3. add carrots
+4. cook 5 minutes
+Valid range: 1 to 5
+Enter "quit" to cancel.
+Enter step index below:
+
+Please enter a valid step index!
+Valid range: 1 to 5
+Enter "quit" to cancel.
+Enter step index below:
+The step was not added to the step list!
+__________________________________________________________
+Description of step cannot be empty!
+__________________________________________________________
+OOPS!!!
+Looks like the description of the command is invalid!
+To add elements to the recipe, please follow the following layout:
+
+addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]
+__________________________________________________________
+
+Error in adding element to recipe!
+Exception occurred: The range you have entered for the index is invalid!
+
+Valid Range: 1 to 1
+
+__________________________________________________________
+
+Error in adding element to recipe!
+Exception occurred: The range you have entered for the index is invalid!
+
+Valid Range: 1 to 1
+
+__________________________________________________________
 
 Please enter the description of step 1:
 

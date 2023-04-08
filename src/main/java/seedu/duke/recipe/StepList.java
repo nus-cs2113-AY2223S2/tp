@@ -39,7 +39,7 @@ public class StepList {
      * @param index - position to be added. Current step object at this position is
      *              shifted towards the back.
      */
-    private void addStep(Step step, int index) {
+    public void addStep(Step step, int index) {
         stepList.add(index, step);
         currStepNumber++;
         assert (currStepNumber == stepList.size());
@@ -49,7 +49,7 @@ public class StepList {
      *
      * @param stepIndex - the index of the step to be removed from the list.
      */
-    private void removeStep(int stepIndex) {
+    public void removeStep(int stepIndex) {
         stepList.remove(stepIndex - 1);
         currStepNumber--;
         assert (currStepNumber == stepList.size());
@@ -128,5 +128,7 @@ public class StepList {
     public ArrayList<Step> getList() {
         return stepList;
     }
-
+    public boolean isEmpty() {
+        return (getCurrStepNumber() == 0);
+    }
 }

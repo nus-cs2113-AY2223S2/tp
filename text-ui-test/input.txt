@@ -4,6 +4,29 @@ chop beef
 add potatoes
 add carrots
 cook 5 minutes
+addtorecipe --i id/1 desc/deez nuts
+deletefromrecipe --i id/1
+2
+addtorecipe --i id/1 desc/
+addtorecipe --i id/1
+deletefromrecipe --s id/1
+2
+addtorecipe --s id/1 desc/suggon deez
+200
+quit
+deletefromrecipe --s id/1
+0
+quit
+deletefromrecipe --s
+addtorecipe --s id/1 desc/user left your channel
+2
+addtorecipe --s id/1 desc/and I'm out too
+-4
+quit
+addtorecipe --s id/1 desc/
+addtorecipe --s id/1
+addtorecipe --s id/69 desc/iii
+addtorecipe --i id/69 desc/1i1i1i1
 add n/MaLaXiangGuo i/Beef, Mutton, Mushrooms t/Chinese s/1
 chop beef
 list
