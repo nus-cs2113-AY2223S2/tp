@@ -41,7 +41,7 @@ public abstract class Expenditure {
         return value;
     }
 
-    public double getConvertedValue (String currency) {
+    public double getConvertedValue(String currency) {
         return sgdConversion(value, currency);
     }
 
@@ -59,8 +59,10 @@ public abstract class Expenditure {
     }
 
     /**
-     * Returns string in the same format as toString, but accounts for currency conversion.
+     * Returns string in the same format as toString, but accounts for currency
+     * conversion.
      * If currency is irrelevent input field should be "SGD".
+     * 
      * @param currency
      * @return
      */
@@ -79,6 +81,7 @@ public abstract class Expenditure {
     /**
      * Outputs a formatted String containing information of the task saved in a text
      * file.
+     * 
      * @return String containing information of the expenditure.
      */
     public abstract String saveInfo();

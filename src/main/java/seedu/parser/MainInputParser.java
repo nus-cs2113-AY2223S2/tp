@@ -114,7 +114,8 @@ public class MainInputParser {
             ParseEdit prepareEdit = new ParseEdit(splitValues[INDEX_USERSTRING]);
             return prepareEdit.editItem();
 
-        // Commands that allows users to view list and filtered list according to preference
+        // Commands that allows users to view list and filtered list according to
+        // preference
         case SortCommand.COMMAND_WORD:
             ParseSort prepareSort;
             prepareSort = new ParseSort(splitValues[INDEX_USERSTRING]);
@@ -127,7 +128,6 @@ public class MainInputParser {
             ParseFind prepareFind;
             prepareFind = new ParseFind(splitValues[INDEX_USERSTRING]);
             return prepareFind.findExpenditure();
-
 
         // Commands that allows users to compare budget with expenditures
         case SetBudgetCommand.COMMAND_WORD:
@@ -143,6 +143,5 @@ public class MainInputParser {
         default:
             return new InvalidCommand(ERROR_COMMAND_NOT_RECOGNISED_MESSAGE.toString());
         }
-
     }
 }
