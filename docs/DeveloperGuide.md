@@ -1,63 +1,63 @@
 # Developer Guide
 
-- [Acknowledgements](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#acknowledgements)
-- [Design](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design)
-  - [Architecture](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#architecture)
-  - [UI Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#ui-component)
-  - [Command Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#command-component)
-  - [Storage Component](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#storage-component)
-  - [Interfaces](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#interfaces)
-- [Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#implementation)
-  - [[Proposed] Add meal feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-add-meal-feature)
-    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation)
-    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-1)
-  - [[Proposed] Delete meal feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-delete-meal-feature)
-    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-2)
-    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-2)
-  - [[Proposed] View feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-view-feature)
-    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-3)
-    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-3)
-  - [[Proposed] Update feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-update-feature)
-    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-4)
-    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-4)
-  - [[Proposed] Nutrition feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-nutrition-feature)
-    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-5)
-    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-5)
-  - [[Proposed] Filter feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-filter-feature)
-    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-6)
-    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-6)
-  - [[Proposed] Exercise feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-exercise-feature)
-    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-7)
-    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-7)
-  - [[Proposed] Track feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-track-feature)
-    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-8)
-    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-8)
-  - [[Proposed] Examples feature](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-examples-feature)
-    - [Proposed Implementation](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#proposed-implementation-9)
-    - [Design considerations:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#design-considerations-9)
-- [Appendix: Requirements](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#appendix-requirements)
-  - [Product Scope](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#product-scope)
-    - [Target user profile:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#target-user-profile)
-    - [Value proposition:](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#value-proposition)
-    - [User Stories](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#user-stories)
-  - [Non-Functional Requirements](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#non-functional-requirements)
-  - [Glossary](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#glossary)
-  - [Instructions for manual testing](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#instructions-for-manual-testing)
-    - [Launch and Shutdown](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#launch-and-shutdown)
-    - [View user profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#view-user-profile)
-    - [Update user profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#update-user-profile)
-    - [Adding a meal](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#adding-a-meal)
-    - [List meals or foods in database meals added](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#list-or-foods-in-database-meals-added)
-    - [Deleting a meal](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#deleting-a-meal)
-    - [Filtering foods based on calories](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#filter-foods-based-on-calories)
-    - [Find nutrition of a food](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#find-nutrition-of-a-food)
-    - [Add a exercise](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#add-a-exericse)
-    - [Track calorie intake](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#track-calorie-intake)
-    - [See examples of meal or exercise](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#see-examples-of-meal-or-exercise)
-    - [See list of available commands](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#see-list-of-available-commands)
-    - [Exiting the application](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#exiting-the-program)
-    - [Saving data](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#saving-data)
-    - [Dealing with missing/corrupted data files](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/DeveloperGuide.md#dealing-with-missingcorrupted-data-files)
+- [Acknowledgements](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#acknowledgements)
+- [Design](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design)
+  - [Architecture](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#architecture)
+  - [UI Component](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#ui-component)
+  - [Command Component](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#command-component)
+  - [Storage Component](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#storage-component)
+  - [Interfaces](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#interfaces)
+- [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation)
+  - [ Add meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#add-meal-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-1)
+  - [ Delete meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#delete-meal-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-2)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-2)
+  - [View feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#view-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-3)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-3)
+  - [Update feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#update-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-4)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-4)
+  - [Nutrition feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#nutrition-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-5)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-5)
+  - [Filter feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#filter-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-6)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-6)
+  - [Exercise feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#exercise-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-7)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-7)
+  - [Track feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#track-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-8)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-8)
+  - [Examples feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#examples-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-9)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-9)
+- [Appendix: Requirements](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#appendix-requirements)
+  - [Product Scope](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#product-scope)
+    - [Target user profile:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#target-user-profile)
+    - [Value proposition:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#value-proposition)
+    - [User Stories](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#user-stories)
+  - [Non-Functional Requirements](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#non-functional-requirements)
+  - [Glossary](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#glossary)
+  - [Instructions for manual testing](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#instructions-for-manual-testing)
+    - [Launch and Shutdown](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#launch-and-shutdown)
+    - [View user profile](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#view-user-profile)
+    - [Update user profile](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#update-user-profile)
+    - [Adding a meal](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#adding-a-meal)
+    - [List meals or foods in database meals added](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#list-or-foods-in-database-meals-added)
+    - [Deleting a meal](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#deleting-a-meal)
+    - [Filtering foods based on calories](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#filter-foods-based-on-calories)
+    - [Find nutrition of a food](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#find-nutrition-of-a-food)
+    - [Add a exercise](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#add-a-exericse)
+    - [Track calorie intake](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#track-calorie-intake)
+    - [See examples of meal or exercise](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#see-examples-of-meal-or-exercise)
+    - [See list of available commands](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#see-list-of-available-commands)
+    - [Exiting the application](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#exiting-the-program)
+    - [Saving data](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#saving-data)
+    - [Dealing with missing/corrupted data files](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#dealing-with-missingcorrupted-data-files)
 
 ---
 ### Acknowledgements
@@ -118,7 +118,7 @@ How the `Command` component works:
 
 API: storage.java
 
-![storage-class-diagram](./uml/storage-class-diagram.PNG)
+<img src="uml/storage-class-diagram.PNG" alt="Sequence Diagram" width="1000">
 
 The `Storage` is the base class which all `Storage` components inherit from. There are currently four storages:
 
@@ -139,9 +139,9 @@ For example, `FoodStorage` is not meant to be edited by user, hence it does not 
 # Implementation
 This section describes some noteworthy details on how certain features are implemented.  
 
-## [Proposed] Add meal feature
+## Add meal feature
 
-### Proposed Implementation
+### Implementation
 
 The proposed mechanism for adding a meal is facilitated by `AddMealCommand`. It extends `Command` and overrides the
 `execute` method in the `Command` class.
@@ -172,11 +172,11 @@ Step 3. `mealStorage` saves the meal to the database and then `ui` prints out th
   - Pros: Usage would be easier for new users.
   - Cons: Slower to input for experienced users.
 
-Therefor our group chose to implement both ways. 
+Therefore, our group chose to implement both ways. 
 
-## [Proposed] List feature
+## List feature
 
-### Proposed Implementation
+### Implementation
 
 The proposed mechanism for listing stored foods, meals and exercises is facilitated by `ListCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
@@ -184,9 +184,9 @@ Step 1: The user will input either `list foods`, `list meals`, `list exercises` 
 
 Step 2: Based the input, `ListCommand` will call either `printAllFoods`, `printAllMeals`, or `printAllExercises` method of the `ui` object.
 
-Step 3: The `ui` will retreive the relevant information from the storage and print out their details.
+Step 3: The `ui` will retrieve the relevant information from the storage and print out their details.
 
-![list-command](./uml/ListCommand.PNG)
+<img src="uml/ListCommand.PNG" alt="Sequence Diagram" width="500">
 
 ### Design Considerations
 
@@ -199,12 +199,12 @@ Step 3: The `ui` will retreive the relevant information from the storage and pri
   - Pros: Slightly faster to input command.
   - Cons: Lots of unnecessary information would be displayed. 
 
-## [Proposed] Delete meal feature
+## Delete feature
 
-### Proposed Implementation
+### Implementation
 
-In order to delete a meal from their meal history, a user has to type `delete [MEAL_INDEX]` into the CLI. Users can see 
-which meal they want to delete by viewing the mealData.csv file.
+In order to delete a meal or exercise from their meal history, a user has to type either `delete /meal [MEAL_INDEX]` or `delete /exercise [EXERCISE_INDEX]`into the CLI. Users can see 
+which meal or exercise they want to delete by viewing the respective csv files or using the list command.
 
 <img src="uml/DeleteMealCommand1.png" alt="Sequence Diagram" width="500">
 
@@ -216,15 +216,15 @@ delete it via the method from mealStorage() and prints out the deleted meal to t
 #### Aspect: How to delete meals
 
 - Alternative 1 (current choice): Delete items from list based on index.
-  - Pros: Does not neededlessly delete wanted items. 
+  - Pros: Does not needlessly delete wanted items. 
   - Cons: Need to get the index from `list` command first.
 - Alternative 2: Clears all data.
   - Pros: Faster input, no need for `list` command to retrive index.
   - Cons: Deletes data that user might want to keep.
 
-## [Proposed] View feature
+## View feature
 
-### Proposed Implementation
+### Implementation
 
 The proposed view mechanism is facilitated by `ViewUserCommand`. It extends `Command` and overrides the 
 `execute` method in the `Command` class. 
@@ -317,9 +317,9 @@ Step 5. The user then executes the command `view` to view his updated weight and
   - Pros: 
   - Cons: 
 
-## [Proposed] Update feature
+## Update feature
 
-### Proposed Implementation
+### Implementation
 
 The proposed update mechanism is facilitated by `UpdateUserCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
@@ -334,9 +334,9 @@ The proposed update mechanism is facilitated by `UpdateUserCommand`. It extends 
   - Pros:
   - Cons:
 
-## [Proposed] Nutrition feature
+## Nutrition feature
 
-### Proposed Implementation
+### Implementation
 
 The proposed update mechanism is facilitated by `NutritionCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
@@ -350,7 +350,7 @@ Step 4: The list will then be displayed to the user, who can pick which food by 
 
 Step 5: The nutritional information for that food will then be displayed.
 
-![nutrition-command](./uml/NutritionCommand.png)
+<img src="uml/NutritionCommand.png" alt="Sequence Diagram" width="500">
 
 ### Design considerations:
 
@@ -363,9 +363,9 @@ Step 5: The nutritional information for that food will then be displayed.
   - Pros: Faster input.
   - Cons: User might input food that's not in the database and therefore there is no nutritional information available. 
 
-## [Proposed] Filter feature
+## Filter feature
 
-### Proposed Implementation
+### Implementation
 
 This proposed mechanism for allowing the user to search for meals with a filter, facilitated by `FilterCaloriesCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
@@ -377,7 +377,7 @@ Step 3. `FilterCaloriesCommand` will then retrieve the meals that fit within tha
 
 Step 4. `FilterCaloiresCommand` will then print out the meals that has been filtered based on the lower and upper bound.
 
-![filter-calories-command](./uml/FilterCaloriesCommand.png)
+<img src="uml/FilterCaloriesCommand.png" alt="Sequence Diagram" width="500">
 
 ### Design considerations:
 
@@ -390,9 +390,9 @@ Step 4. `FilterCaloiresCommand` will then print out the meals that has been filt
   - Pros:
   - Cons:
 
-## [Proposed] Exercise feature
+## Exercise feature
 
-### Proposed Implementation
+### Implementation
 
 The proposed update mechanism is facilitated by `AddExerciseCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
@@ -407,19 +407,19 @@ The proposed update mechanism is facilitated by `AddExerciseCommand`. It extends
   - Pros: Usage would be easier for new users.
   - Cons: Slower to input for experienced users.
 
-## [Proposed] Track feature
+## Track feature
 
-### Proposed Implementation
+### Implementation
 
-The proposed mechanism for tracking net calorie intake is facilitated by `TrackCalorieCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
+The mechanism for tracking net calorie intake is facilitated by `TrackCalorieCommand`. It extends `Command` and overrides the `execute` method in the `Command` class.
 
-Step 1: The user will input `track` and optional arguments `/start` and `/end` to filter the results based on date
+Step 1: The user will either input `track all` to view all history or  `track /start [DATE] /end [DATE]` to filter the results based on dates
 Step 2a: Based the input, `TrackCalorieCommand` will either parse the start date from user input or set the start date to the earliest meal or exercise added by calling `getStartingDate`.
 Step 2b: Based the input, `TrackCalorieCommand` will either parse the end date from user input or set the end date to the latest meal or exercise added by calling `getEndingDate`.
 Step 3: `TrackCalorieCommand` will retrieve the meals and exercises filtered from the starting date by calling `getMealByDate` and `getExerciseByDate` respectively.
 Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exercises day by day and print out the net calorie intake for each day.
 
-![track-calories-command](./uml/TrackCaloriesCommand.PNG)
+<img src="uml/TrackCaloriesCommand.PNG" alt="Sequence Diagram" width="500">
 
 ### Design considerations:
 
@@ -432,9 +432,9 @@ Step 4: `TrackCalorieCommand` will iterate through the filtered meals and exerci
   - Pros: Usage would be easier for new users.
   - Cons: Slower to input for experienced users.
 
-## [Proposed] Examples feature
+## Examples feature
 
-### Proposed Implementation
+### Implementation
 
 The proposed mechanism for displaying examples of exercises and meals is facilitated by `ExamplesCommand`. It extends `Command` and overrides 
 the `execute` method in the `Command` class.
@@ -447,7 +447,7 @@ Step 3. `ExamplesCommand` will retrieve either the examples of `meal` or example
 
 Step 4. The examples of `meal` or `exercise` will then be printed out and displayed for the user.
 
-![examples-command](./uml/ExamplesCommand.png)
+<img src="uml/ExamplesCommand.png" alt="Sequence Diagram" width="500">
 
 ### Design considerations: How to list examples of exercises and meals
 
@@ -608,7 +608,7 @@ Expected: No exercise is added, error message will be displayed.
 
 Test case: `track /start 5/5/2023 /end 6/5/2023`
 
-Expected: Calories consumed, cloaries burnt and net calories for 5/5/2023 and 6/5/2023 would be displayed in the status message.
+Expected: Calories consumed, calories burnt and net calories for 5/5/2023 and 6/5/2023 would be displayed in the status message.
 
 Test case: `track /start dummy /end dummy`
 
