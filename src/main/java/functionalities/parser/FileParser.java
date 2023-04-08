@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ * FileParser class to parse appointments from saved file
+ */
 public class FileParser {
 
     static String uid;
@@ -27,6 +30,12 @@ public class FileParser {
     static String priority;
     static String vaccine;
 
+    /**
+     * Parser to add Consultation
+     *
+     * @param currentLine the current line containing details of a Consultation appointment
+     * @throws SniffException if date and time is stored in incorrect format
+     */
     public static void addConsultation(String currentLine) throws SniffException {
         try {
             String[] split = currentLine.split(" \\| ");
@@ -44,6 +53,12 @@ public class FileParser {
         SniffTasks.addAppointment(newAppointment);
     }
 
+    /**
+     * Parser to add Surgery
+     *
+     * @param currentLine the current line containing details of a Surgery appointment
+     * @throws SniffException if date and time is stored in incorrect format
+     */
     public static void addSurgery(String currentLine) throws SniffException {
         try {
             String[] split = currentLine.split(" \\| ");
@@ -64,6 +79,12 @@ public class FileParser {
         SniffTasks.addAppointment(newAppointment);
     }
 
+    /**
+     * Parser to add Vaccination
+     *
+     * @param currentLine the current line containing details of a Vaccination appointment
+     * @throws SniffException if date and time is stored in incorrect format
+     */
     public static void addVaccination(String currentLine) throws SniffException {
         try {
             String[] split = currentLine.split(" \\| ");
