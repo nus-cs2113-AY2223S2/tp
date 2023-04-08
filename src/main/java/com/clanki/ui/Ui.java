@@ -51,6 +51,11 @@ public class Ui {
                 "You can view our user guide or type help to see the correct formats for commands.\n");
     }
 
+    /**
+     * Prints out a message to indicate a successful deletion of a flashcard
+     *
+     * @param index the index of the flashcard at the point of deletion
+     */
     public void printSuccessfulDelete(int index) {
         System.out.println("Got it. Deleted the flashcard at index " + index);
     }
