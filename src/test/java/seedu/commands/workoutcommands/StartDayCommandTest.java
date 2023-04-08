@@ -1,15 +1,15 @@
 package seedu.commands.workoutcommands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import java.text.ParseException;
-import java.util.Date;
-import java.util.HashMap;
-
 import org.junit.jupiter.api.Test;
 import seedu.parser.DateFormatter;
 import seedu.workout.Day;
 import seedu.workout.WorkoutList;
+
+import java.text.ParseException;
+import java.util.Date;
+import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class StartDayCommandTest {

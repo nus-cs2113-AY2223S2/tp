@@ -1,8 +1,8 @@
 package seedu.parser;
 
 import seedu.commands.Command;
-import seedu.commands.workoutcommands.CountSetsRepsCommand;
 import seedu.commands.workoutcommands.AddExerciseCommand;
+import seedu.commands.workoutcommands.CountSetsRepsCommand;
 import seedu.commands.workoutcommands.DeleteWorkoutCommand;
 import seedu.commands.workoutcommands.EndWorkoutCommand;
 import seedu.commands.workoutcommands.ListWorkoutCommand;
@@ -12,7 +12,6 @@ import seedu.exceptions.InvalidArgumentException;
 import seedu.exceptions.InvalidSyntaxException;
 import seedu.workout.Exercise;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

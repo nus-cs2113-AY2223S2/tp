@@ -6,7 +6,6 @@ import seedu.commands.caloriecommands.ViewCaloriesCommand;
 import seedu.exceptions.InvalidArgumentException;
 import seedu.exceptions.InvalidSyntaxException;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.regex.Pattern;
 

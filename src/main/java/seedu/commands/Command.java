@@ -3,7 +3,6 @@ package seedu.commands;
 import seedu.calorietracker.CalorieTracker;
 import seedu.calorietracker.FoodDictionary;
 import seedu.exceptions.InvalidArgumentException;
-
 import seedu.exceptions.InvalidSyntaxException;
 import seedu.workout.WorkoutList;
 

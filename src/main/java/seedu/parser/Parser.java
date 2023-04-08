@@ -2,10 +2,10 @@ package seedu.parser;
 
 import seedu.commands.Command;
 import seedu.commands.ExitCommand;
-import seedu.commands.errorcommands.InvalidCommand;
-import seedu.exceptions.InvalidArgumentException;
 import seedu.commands.caloriecommands.HelpCaloriesCommand;
+import seedu.commands.errorcommands.InvalidCommand;
 import seedu.commands.workoutcommands.HelpWorkoutCommand;
+import seedu.exceptions.InvalidArgumentException;
 import seedu.exceptions.InvalidSyntaxException;
 
 import java.text.ParseException;
