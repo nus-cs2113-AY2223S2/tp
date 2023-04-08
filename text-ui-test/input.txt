@@ -1,1 +1,14 @@
+help
+add 4 /of jackets
+add 3 /of cats
+add 1 /of bag
+list
+editquantity 2 /of 3
+pack 2 /of 2
+list
+pack 4 /of 1
+unpack 1 /of 2
+list
+find cats
+hi
 bye
