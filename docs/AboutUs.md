@@ -1,9 +1,9 @@
 # About us
 
-| Display                                             |       Name       | Github Profile | Portfolio |
-|-----------------------------------------------------|:----------------:|:--------------:|:---------:|
-| ![](https://via.placeholder.com/100.png?text=Photo) |  Leong Yat Pang  | [Github](https://github.com/YatPang) | [Portfolio](team/leongyatpang.md)|
-| ![](https://via.placeholder.com/100.png?text=Photo) |   Lim Hong Yao   | [Github](http://github.com/LimHongYao) | [Portfolio](team/limhongyao.md)|
-| <img src="team/picture/phone.jpg" width="100" height="120">                     | Aung Phone Naing | [Github](https://github.com/Aung-Phone-Naing) | [Portfolio](team/aungphonenaing.md)|
-| <img src="team/picture/liu.jpg" width="100" height="120">                         |    Liu Ziyang    | [Github](https://github.com/liuziyang020319) | [Portfolio](team/liuziyang.md)|
+| Display                                                       |       Name       | Github Profile | Portfolio |
+|---------------------------------------------------------------|:----------------:|:--------------:|:---------:|
+| ![](https://via.placeholder.com/100.png?text=Photo)           |  Leong Yat Pang  | [Github](https://github.com/YatPang) | [Portfolio](team/leongyatpang.md)|
+| <img height="120" src="team/picture/hongyao.jpg" width="100"/> |   Lim Hong Yao   | [Github](http://github.com/LimHongYao) | [Portfolio](team/limhongyao.md)|
+| <img src="team/picture/phone.jpg" width="100" height="120">   | Aung Phone Naing | [Github](https://github.com/Aung-Phone-Naing) | [Portfolio](team/aungphonenaing.md)|
+| <img src="team/picture/liu.jpg" width="100" height="120">     |    Liu Ziyang    | [Github](https://github.com/liuziyang020319) | [Portfolio](team/liuziyang.md)|
 
