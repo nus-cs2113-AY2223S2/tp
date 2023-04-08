@@ -507,7 +507,7 @@ public class Parser {
 
         try {
             amount = Double.parseDouble(cost);
-            if (amount < 0) {
+            if (amount <= 0) {
                 throw new NegativeAmountException();
             }
         } catch (NumberFormatException nfe) {
@@ -536,7 +536,7 @@ public class Parser {
             throw new WrongFlagOrderException();
         }
 
-        description = " " + description;
+        description = " " + description + " ";
         boolean hasDuplicatedFlags = (description.indexOf(" i/ ") != description.lastIndexOf(" i/ ")) ||
                 (description.indexOf(" t/ ") != description.lastIndexOf(" t/ ")) ||
                 (description.indexOf(" n/ ") != description.lastIndexOf(" n/ "));
@@ -563,6 +563,7 @@ public class Parser {
             convertStringToCategory(splitDescriptions[2]);
         } else if (splitDescriptions[1].equals("amount")) {
             checkDoubleException(splitDescriptions[2]);
+            splitDescriptions[2] = checkExceedMaxCharForAmount(splitDescriptions[2]);
         } else if (splitDescriptions[1].equals("time")) {
             checkTimeException((splitDescriptions[2]));
         } else if (splitDescriptions[1].equals("info")) {

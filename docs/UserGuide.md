@@ -42,9 +42,9 @@ If you can type fast, BrokeMan can get your expenses and income management tasks
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `BrokeMan` from [here](https://github.com/AY2223S2-CS2113-F13-2/tp/releases/tag/v2.0).
 3. Copy the file to the folder you want to use as the home folder for your BrokeMan.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar F13-2_v2.0.jar` command to run the application.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar [CS2113-F13-2][BrokeMan].jar` command to run the application.
 
-    A welcoming message as shown below should appear.
+    A welcome message as shown below should appear.
 
     ```
     |  -----------------------------------------------------------------------
@@ -77,7 +77,7 @@ If you can type fast, BrokeMan can get your expenses and income management tasks
 Format: `addExpense a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new expense to the list of expenses.
 
-* The `amount` should be double up to **2 decimal places** (dp). Digits beyond 2dp will be ignored.
+* The `amount` should be a double up to **2 decimal places** (dp). Digits beyond 2dp will be ignored.
 * The `description` should be a String.
 * The `time` should follow `YYYY MM DD HH mm` format.
   * (Note: entering 3 instead of 03 still works for March. 
@@ -113,7 +113,7 @@ Example output:
 Format: `addIncome a/ <amount> d/ <description> t/ <time> c/ <category>`
 Adds a new income to the list of incomes.
 
-* The `amount` should be double up to **2dp**. Digits beyond 2dp will be ignored.
+* The `amount` should be a double up to **2dp**. Digits beyond 2dp will be ignored.
 * The `description` should be a String.
 * The `time` should follow `YYYY MM DD HH mm` format.
   * (Note: entering 3 instead of 03 still works for March.
@@ -151,7 +151,8 @@ Shows a list of all expenses in the list of expense.
 
 - The `time` should follow `YYYY/MM` format.
 - The time parameter is **optional**. If you add this optional parameter,
-it will show a list of all the expenses incurred in the month specified.
+it will show a list of all the expenses incurred in the month specified. If the optional time parameter is not given,
+  it will show a list of all income across the entire time period.
 
 Example of usage: `listExpense t/ 2023/03` Shows a list of all expenses incurred in the month 2023 March
 
@@ -180,7 +181,8 @@ Shows a list of all income in the list of income.
 
 - The `time` should follow `YYYY/MM` format.
 - The time parameter is **optional**. If you add this optional parameter,
-it will show a list of all income made in the specified month.
+it will show a list of all income made in the specified month. If the optional time parameter is not given,
+it will show a list of all income across the entire time period.
 
 Example of usage: `listIncome` Shows a list of all income made across the entire time period.
 
@@ -191,8 +193,10 @@ Example output:
 |
 |  Enter command: listIncome
 |  Here are the income you have made.
-|  1. $400.00 earned on salary - 2023-03-12 @ 15:01 [SALARY]
-|  Total income: $400.00
+|  1. $3000.00 earned on salary - 2023-03-10 @ 10:10 [SALARY]
+|  2. $3000.00 earned on salary - 2023-02-10 @ 10:10 [SALARY]
+|  3. $3000.00 earned on salary - 2023-01-10 @ 10:10 [SALARY]
+|  Total income: $9000.00
 |
 |  -----------------------------------------------------------------------
 |
@@ -298,7 +302,8 @@ Example output:
 ```
 
 **Note**: As long as the input `sortExpenseByAmount` is correct,
-any trailing characters after it will still call the function.
+any trailing characters with a space after it will still call the function.
+
 I.e.,`sortExpenseByAmount random characters` will still work.
 
 [back to Contents](#table-of-contents)
@@ -328,7 +333,8 @@ Example output:
 ```
 
 **Note**: As long as the input `sortIncomeByAmount` is correct,
-any trailing characters after it will still call the function.
+any trailing characters with a space after it will still call the function.
+
 I.e.,`sortIncomeByAmount random characters` will still work.
 
 [back to Contents](#table-of-contents)
@@ -360,7 +366,8 @@ Example output:
 ```
 
 **Note**: As long as the input `sortExpenseByDate` is correct,
-any trailing characters after it will still call the function.
+any trailing characters with a space after it will still call the function.
+
 I.e.,`sortExpenseByDate random characters` will still work.
 
 [back to Contents](#table-of-contents)
@@ -390,7 +397,8 @@ Example output:
 ```
 
 **Note**: As long as the input `sortIncomeByDate` is correct,
-any trailing characters after it will still call the function.
+any trailing characters with a space after it will still call the function.
+
 I.e.,`sortIncomeByDate random characters` will still work.
 
 [back to Contents](#table-of-contents)
@@ -457,7 +465,7 @@ Example output:
 Format:  `setBudget <amount> [t/ time]`
 * The `amount` should be double up to **2dp**. Digits beyond 2dp will be ignored.
 * The `time` should follow `YYYY/MM` format.
-* The time parameter is optional. 
+* The time parameter is **optional**. 
 If you add this optional parameter, the budget will only take expenses within the indicated month into consideration.
 If the optional time parameter is not given, it will set the budget for the current month.
 
@@ -470,8 +478,8 @@ Example output with optional time flag:
 ```
 |  -----------------------------------------------------------------------
 |
-|  Enter command: setBudget 2000 t/ 2023/04
-|  You have successfully set $2000.00 as your budget for 2023/APRIL.
+|  Enter command: setBudget 2000 t/ 2023/05
+|  You have successfully set $2000.00 as your budget for 2023/MAY.
 |
 |  -----------------------------------------------------------------------
 |
@@ -484,7 +492,7 @@ Example output without optional time flag:
 |  -----------------------------------------------------------------------
 |
 |  Enter command: setBudget 2000
-|  You have successfully set $2000.00 as your budget for 2023/MARCH.
+|  You have successfully set $2000.00 as your budget for 2023/APRIL.
 |
 |  -----------------------------------------------------------------------
 |
@@ -500,12 +508,12 @@ Example output without optional time flag:
 ### View budget: `viewBudget`
 Format: `viewBudget [t/ time]`
 * The `time` should follow `YYYY/MM` format.
-* The time parameter is optional.
+* The time parameter is **optional**.
 If you add this optional parameter, it shows the budget of the indicated month.
 If the optional time parameter is not given, it will show the budget for the current month.
 
 Example of usage:
-`viewBudget t/ 2023/04` shows the budget in 2023/02.
+`viewBudget t/ 2023/05` shows the budget in 2023/05.
 `viewBudget` shows the budget in the current month.
 
 Example output with optional time flag:
@@ -513,8 +521,8 @@ Example output with optional time flag:
 ```
 |  -----------------------------------------------------------------------
 |
-|  Enter command: viewBudget t/ 2023/04
-|  You have set your budget as $2000.00 for 2023/APRIL.
+|  Enter command: viewBudget t/ 2023/05
+|  You have set your budget as $2000.00 for 2023/MAY.
 |  The amount of budget left is $2000.00
 |
 |  -----------------------------------------------------------------------
@@ -528,7 +536,7 @@ Example output without optional time flag:
 |  -----------------------------------------------------------------------
 |
 |  Enter command: viewBudget
-|  You have set your budget as $2000.00 for 2023/MARCH.
+|  You have set your budget as $2000.00 for 2023/APRIL.
 |  The amount of budget left is $2000.00
 |
 |  -----------------------------------------------------------------------
@@ -671,7 +679,7 @@ Example output:
 ### Saving the data
 BrokeMan data are saved in text files ExpenseData, IncomeData and BudgetData upon exiting the program.
 
-**TRY NOT MAKE CHANGES TO THE .txt FILE GENERATED BY THE PROGRAM!**
+**TRY NOT TO MAKE CHANGES TO THE .txt FILE GENERATED BY THE PROGRAM!**
 
 **INCORRECT ROW FORMAT OF .txt FILE WILL BE IGNORED DURING THE POPULATION OF DATA AT THE START OF THE PROGRAM!**
 
