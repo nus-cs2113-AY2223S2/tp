@@ -75,6 +75,14 @@ public abstract class Achievement {
         return this.difficulty.toString();
     }
 
+    public Integer getCountCurrent() {
+        return this.countCurrent;
+    }
+
+    public Integer getCountRequirement() {
+        return this.countToComplete;
+    }
+
     public void complete() {
         this.completed = true;
     }

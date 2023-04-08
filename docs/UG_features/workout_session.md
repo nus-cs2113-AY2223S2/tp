@@ -64,14 +64,17 @@ Format: ```finish```
 For example, let the current workout include the exercises as used by the example above (i.e. 3/4 sit up + Tuck Crunch)
 
 Calling the ```finish``` command will provide the following outputs:
-1) Workout Completed Message: <br>```Workout completed! Congratulations on your hard work!```
+1) Workout Completed Message: <br>```Workout completed! Congratulations on your hard work!```<br><br>
 2) (If any achievements are accomplished) <br> Prints out a congratulations message on completing 1 or more achievements 
-<br> ```Congradulations! You have achieved the following achievements:```
+<br> ```Congradulations! You have achieved the following achievements:```<br><br>
 3) (If any achievements are accomplished) <br> Prints out the list of achievements achieved upon completion 
 of a specific exercise session
 e.g: <br>
-```1) Easy Lemon DESTROYEERRR: Complete 5 easy exercises! ```  <br>
-```2) The Static Warrior: Complete 5 Static workouts!```
+```
+1)  Easy Lemon DESTROYEERRR: Complete 5 easy exercises!
+2) The Static Warrior: Complete 5 Static workouts!
+``` 
+
 4) (If any achievements are accomplished) <br> Prints out a motivating message to further motivate the user to continue
 using Fitness Duke <br>
 ```Keep on working out with Fitness Duke!```
