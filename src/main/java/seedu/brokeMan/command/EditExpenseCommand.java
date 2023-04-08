@@ -1,17 +1,15 @@
 package seedu.brokeMan.command;
 
+import seedu.brokeMan.entry.Category;
 import seedu.brokeMan.entry.expense.ExpenseList;
 import seedu.brokeMan.exception.CategoryNotCorrectException;
 import seedu.brokeMan.parser.StringToCategory;
 import seedu.brokeMan.parser.StringToTime;
-import seedu.brokeMan.entry.Category;
 
-import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 public class EditExpenseCommand extends Command {
-    private static final DecimalFormat df = new DecimalFormat("0.00");
     public static final String COMMAND_WORD = "editExpense";
     private static final Logger logger = Logger.getLogger("EditExpenseCommandLogger");
 
@@ -31,7 +29,7 @@ public class EditExpenseCommand extends Command {
 
     public void execute() {
         if (type.equals("amount")) {
-            double newCost = Double.parseDouble(df.format(newEntry));
+            double newCost = Double.parseDouble(newEntry);
             ExpenseList.editExpense(index, newCost);
         } else if (type.equals("info")) {
             ExpenseList.editExpense(index, newEntry);
