@@ -18,6 +18,14 @@ public class ChChingException extends Exception {
     private static final Logger logger = Logger.getLogger(ChChing.class.getName());
 
     static {
+        String folderPath = "/data";
+        String folderName = "LogFiles";
+        File folder = new File(folderPath, folderName);
+        if (!folder.exists()) {
+            if (folder.mkdir()) {
+                System.out.println("Folder created successfully.");
+            }
+        }
         LogManager.getLogManager().reset();
         ConsoleHandler consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Level.SEVERE);

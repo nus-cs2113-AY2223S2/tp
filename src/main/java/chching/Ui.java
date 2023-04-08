@@ -34,6 +34,14 @@ public class Ui {
         logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
+            String folderPath = "/data";
+            String folderName = "LogFiles";
+            File folder = new File(folderPath, folderName);
+            if (!folder.exists()) {
+                if (folder.mkdir()) {
+                    System.out.println("Folder created successfully.");
+                }
+            }
             new File("data/LogFiles/UILog.log").createNewFile();
             FileHandler fileHandler = new FileHandler("data/LogFiles/UILog.log");
             fileHandler.setLevel(Level.FINE);
