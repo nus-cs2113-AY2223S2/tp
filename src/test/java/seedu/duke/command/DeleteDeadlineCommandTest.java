@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class DeleteDeadlineCommandTest {
     DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
     Storage storage = Storage.getInstance();
-    DataReader dataReader = new DataReader();
+    DataReader dataReader = DataReader.getDataReaderOneInstance();
 
     @Test
     void userInput_removeDeadline_correctVariableTypeSuccess() {

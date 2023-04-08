@@ -9,7 +9,7 @@ public abstract class Command {
 
     public Command() {
         isExit = false;
-        ui = new UI();
+        ui = UI.getUiOneInstance();
     }
 
     public boolean getIsExit() {
