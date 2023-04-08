@@ -1,30 +1,28 @@
 # User Guide
 
 <!-- TOC -->
-
-- [User Guide](#user-guide)
-    - [Introduction](#introduction)
-        - [Target user profile](#target-user-profile)
-        - [Problem addressed](#problem-addressed) 
-    - [Access Management](#access-management)
-        - [Login an account](#login)
-        - [Signup an account](#signup)
-        - [Change password](#password)
-        - [Help in login/signup](#help)
-        - [Logout from an account](#logout)
-        - [Exit the application](#exit)
-    - [Features](#features)
-        - [Search book](#search)
-        - [Check book availability](#check)
-        - [Borrow book](#borrow)
-        - [Renew borrow period of book](#renew)
-        - [Check borrowing status](#status)
-        - [Return book](#return)
-        - [Add/delete book](#librarian)
-        - [List book](#list)
-        - [View history](#history)
-    - [FAQ](#faq)
-    - [Command Summary](#command-summary)
+- [Introduction](#introduction)
+    - [Target user profile](#target-user-profile)
+    - [Problem addressed](#problem-addressed) 
+- [Access Management](#access-management)
+    - [Login an account](#login)
+    - [Signup an account](#signup)
+    - [Change password](#password)
+    - [Help in login/signup](#help)
+    - [Logout from an account](#logout)
+    - [Exit the application](#exit)
+- [Features](#features)
+    - [Search book](#search)
+    - [Check book availability](#check)
+    - [Borrow book](#borrow)
+    - [Renew borrow period of book](#renew)
+    - [Check borrowing status](#status)
+    - [Return book](#return)
+    - [Add/delete book](#librarian)
+    - [List book](#list)
+    - [View history](#history)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
   <!-- TOC -->
 
 ## Introduction
@@ -40,7 +38,7 @@ CS students are incredibly busy and hence having a command line interface (CLI) 
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed.
-2. Down the latest version of `DukeOfBooks` from [here](https://github.com/AY2223S2-CS2113-F10-4/tp/releases).
+2. Download the latest version of `DukeOfBooks` from [here](https://github.com/AY2223S2-CS2113-F10-4/tp/releases).
 
 ## Access Management
 The application requires user to login before performing other actions.
@@ -130,7 +128,7 @@ Examples:
 ## Features
 
 ### <a name="search"> Search book: `search` </a>
-Search for a book with matching title and/or topic. Only strings with exact match will be returned.
+Search for a book with title and/or topic. The string entered will be matched with a subset of the title/topic of the target book, and matches will be returned. Note that multiple books can be returned during searching.
 
 Format:
 * search -title TITLE
@@ -234,7 +232,7 @@ Examples:
 ```
 
 ### <a name="librarian"> Add/Delete book: `librarian` </a>
-Adds/deletes a book to/from the library for users. This is a superuser method and should only be used by the librarian.
+Adds/deletes book to/from the library for users. This is a superuser method and should only be used by the librarian.
 
 Format:
 * librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action add
@@ -284,41 +282,6 @@ Examples:
 || Author: Abraham Silberschatz
 || Topic: Operating Systems
 || ===================================================
-|| No.5
-|| ISBN: 978-1492051299
-|| Title: Head First Python A Learner Guide to the Fundamentals of Python Programming
-|| Author: Paul Barry
-|| Topic: Computer Programming
-|| ===================================================
-|| No.6
-|| ISBN: 978-0201835953
-|| Title: The Mythical Man Month Essays on Software Engineering
-|| Author: Frederick P Brooks
-|| Topic: Software Engineering
-|| ===================================================
-|| No.7
-|| ISBN: 978-0357433836
-|| Title: Guide to Operating Systems
-|| Author: Greg Tomsho
-|| Topic: Operating Systems
-|| ===================================================
-|| No.8
-|| ISBN: 978-0135957059
-|| Title: The Pragmatic Programmer Your journey to mastery
-|| Author: David Thomas
-|| Topic: Software Engineering
-|| ===================================================
-|| No.9
-|| ISBN: 978-0262033848
-|| Title: Introduction to Algorithms
-|| Author: Thomas H Cormen
-|| Topic: Data Structures and Algorithms
-|| ===================================================
-|| No.10
-|| ISBN: 978-8131773383
-|| Title: Clean Code A Handbook of Agile Software Craftsmanship
-|| Author: Robert C Martin
-|| Topic: Software Engineering
 ```
 
 ### <a name="history"> View history: `history` </a>
