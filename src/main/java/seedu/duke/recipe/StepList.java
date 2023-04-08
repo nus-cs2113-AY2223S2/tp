@@ -128,5 +128,7 @@ public class StepList {
     public ArrayList<Step> getList() {
         return stepList;
     }
-
+    public boolean isEmpty() {
+        return (getCurrStepNumber() == 0);
+    }
 }

@@ -112,4 +112,7 @@ public class IngredientList {
         System.out.print((ingredientIndex + 1) + ". ");
         System.out.println(list.get(ingredientIndex).getName());
     }
+    public boolean isEmpty() {
+        return (getCurrIngredientNumber() == 0);
+    }
 }

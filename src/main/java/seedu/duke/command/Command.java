@@ -213,6 +213,10 @@ public class Command {
                 switch (elementType) {
                 case "s":
                     StepList stepListToDeleteFrom = recipeToDeleteFrom.getStepList();
+                    if (stepListToDeleteFrom.isEmpty()) {
+                        ui.showEmptyStepList();
+                        break;
+                    }
                     stepListToDeleteFrom.showFullStepList();
                     int maxStep = stepListToDeleteFrom.getCurrStepNumber();
                     index = ui.getIndexToDelete(maxStep);
@@ -226,6 +230,10 @@ public class Command {
                     break;
                 case "i":
                     IngredientList ingredientListToDeleteFrom = recipeToDeleteFrom.getIngredientList();
+                    if (ingredientListToDeleteFrom.isEmpty()) {
+                        ui.showEmptyIngredientList();
+                        break;
+                    }
                     ingredientListToDeleteFrom.showList();
                     int maxCount = ingredientListToDeleteFrom.getCurrIngredientNumber();
                     index = ui.getIndexToDelete(maxCount);

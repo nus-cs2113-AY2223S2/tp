@@ -290,30 +290,76 @@ public class Parser {
         }
     }
     public static String[] parseAddToRecipeDescription(String description) {
+        String[] out = new String[3];
         String[] subDescriptions = description.split("/", 3);
-        String element0 = subDescriptions[0].toLowerCase().split("id")[0].trim();
-        element0 = element0.replaceAll(" ","");
-        subDescriptions[0] = element0.replaceAll("-","");
-        String element1 = subDescriptions[1].toLowerCase().split("desc")[0].trim();
-        subDescriptions[1] = element1;
-        return subDescriptions;
+        for (int i = 0; i < subDescriptions.length; i++) {
+            if (subDescriptions[i].toLowerCase().contains("--i")) {
+                out[0] = "i";
+            }
+            if (subDescriptions[i].toLowerCase().contains("--s")) {
+                out[0] = "s";
+            }
+            if (subDescriptions[i].toLowerCase().contains("id")) {
+                out[1] = subDescriptions[i+1];
+            }
+            if (subDescriptions[i].toLowerCase().contains("desc")) {
+                out[2] = subDescriptions[i+1];
+            }
+        }
+        out[1] = out[1]
+                .toLowerCase()
+                .replaceAll("desc","")
+                .replaceAll("--s","")
+                .replaceAll("--i","")
+                .trim();
+        out[2] = out[2]
+                .replaceAll("id","")
+                .replaceAll("iD","")
+                .replaceAll("Id","")
+                .replaceAll("ID","")
+                .replaceAll("--s","")
+                .replaceAll("--i","")
+                .trim();
+        return out;
     }
     public static String[] parseDeleteFromRecipeDescription(String description) {
         String[] subDescriptions = description.split("/", 2);
-        String element0 = subDescriptions[0].toLowerCase().split("id")[0].trim();
-        element0 = element0.replaceAll(" ","");
-        subDescriptions[0] = element0.replaceAll("-","");
-        subDescriptions[1] = subDescriptions[1].replaceAll(" ", "");
-        return subDescriptions;
+        String[] out = new String[2];
+        for (int i = 0; i < subDescriptions.length; i++) {
+            if (subDescriptions[i].toLowerCase().contains("--i")) {
+                out[0] = "i";
+            }
+            if (subDescriptions[i].toLowerCase().contains("--s")) {
+                out[0] = "s";
+            }
+            if (subDescriptions[i].toLowerCase().contains("id")) {
+                out[1] = subDescriptions[i+1];
+            }
+        }
+        out[1] = out[1]
+                .toLowerCase()
+                .replaceAll("--s","")
+                .replaceAll("--i","")
+                .trim();
+        return out;
+    }
+    public static int matchCount(String mainString, String check) {
+        int count = 0;
+        while (mainString.contains(check)) {
+            count++;
+            mainString = mainString.replace(check, "");
+        }
+        return count;
     }
     public static boolean isValidAddToRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
-        if ((descLowerCase.contains("--s") ||
-                descLowerCase.contains("--i")) &&
-                descLowerCase.contains("id/") &&
-                descLowerCase.contains("desc/") &&
-                !(descLowerCase.contains("--s") &&
-                        descLowerCase.contains("--i"))) {
+        if (!(descLowerCase.contains("--s") && descLowerCase.contains("--i")) &&
+                matchCount(descLowerCase,"id/") == 1 &&
+                matchCount(descLowerCase,"desc/") == 1 &&
+                (matchCount(descLowerCase, "--i") == 1 ||
+                        matchCount(descLowerCase, "--s") == 1) &&
+                !(descLowerCase.contains("--is") ||
+                        descLowerCase.contains("--si"))) {
             return true;
         } else {
             return false;
@@ -321,11 +367,12 @@ public class Parser {
     }
     public static boolean isValidDeleteFromRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
-        if ((descLowerCase.contains("--s") ||
-                descLowerCase.contains("--i")) &&
-                descLowerCase.contains("id/") &&
-                !(descLowerCase.contains("--s") &&
-                        descLowerCase.contains("--i"))) {
+        if (!(descLowerCase.contains("--s") && descLowerCase.contains("--i")) &&
+                matchCount(descLowerCase,"id/") == 1 &&
+                (matchCount(descLowerCase, "--i") == 1 ||
+                        matchCount(descLowerCase, "--s") == 1) &&
+                !(descLowerCase.contains("--is") ||
+                    descLowerCase.contains("--si"))) {
             return true;
         } else {
             return false;

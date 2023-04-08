@@ -90,6 +90,7 @@ __________________________________________________________
 
 Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
 **Format**: `addtorecipe --[s/i] id/[index] desc/[description of step/ingredient]`<br>
+**Hint**: Order of `--[s/i] id/[index] desc/[description of step/ingredient]` is flexible<br>
 **Examples**:<br>
 ```
 __________________________________________________________
@@ -105,6 +106,8 @@ There are 4 steps in the list
 2. add potatoes
 3. add carrots
 4. cook 5 minutes
+Valid range: 1 to 5
+Enter "quit" to cancel.
 Enter step index below:
 4
 The step has been successfully added to the step list!
@@ -245,6 +248,7 @@ __________________________________________________________
 
 Adds a recipe to the recipe manager. App will prompt you to start entering the steps to the recipe will automatically count the steps and add the recipe to the recipe list.<br>
 **Format**: `deletefromrecipe --[s/i] id/[index]`<br>
+**Hint**: Order of `--[s/i] id/[index] desc/[description of step/ingredient]` is flexible<br>
 **Examples**:<br>
 ```
 __________________________________________________________
@@ -268,6 +272,8 @@ There are 5 steps in the list
 3. add carrots
 4. Add mala sauce when water has reached a rolling boil.
 5. cook 5 minutes
+Valid range: 1 to 5
+Enter "quit" to cancel.
 Enter step index below:
 4
 The step has been successfully deleted from the step list!

@@ -212,6 +212,7 @@ public class UI {
         System.out.println(StringLib.INDEX_REQUEST);
     }
     public int getIndexToAdd(int maxSteps) {
+        System.out.println("Valid range: " + 1 + " to " + (maxSteps + 1));
         System.out.println(StringLib.INDEX_REQUEST);
         String userInput = in.nextLine();
         while (!isValidIntegerInputToAdd(userInput, maxSteps)) {
@@ -226,6 +227,7 @@ public class UI {
         return Integer.parseInt(userInput.trim()) - 1;
     }
     public int getIndexToDelete(int maxSteps) {
+        System.out.println("Valid range: " + 1 + " to " + maxSteps);
         System.out.println(StringLib.INDEX_REQUEST);
         String userInput = in.nextLine();
         if (userInput.trim().toLowerCase().equals(StringLib.STEP_VIEW_QUIT_KEYWORD)) {
@@ -277,5 +279,11 @@ public class UI {
     }
     public void showEmptyIngredientID() {
         System.out.println(StringLib.EMPTY_INGREDIENT_ID_MESSAGE);
+    }
+    public void showEmptyStepList() {
+        System.out.println(StringLib.EMPTY_STEP_LIST);
+    }
+    public void showEmptyIngredientList() {
+        System.out.println(StringLib.EMPTY_INGREDIENT_LIST);
     }
 }
