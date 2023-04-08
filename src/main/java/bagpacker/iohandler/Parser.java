@@ -208,16 +208,24 @@ public class Parser {
             if (itemName == null) {
                 throw new InvalidVariablesException();
             }
-            if (itemQuantity < 1) {
-                throw new InvalidIndexException();
+            if (PackingList.itemFinder(itemName)) {
+                assert (PackingList.getItemByName(itemName) != null);
+                if (1000000 - PackingList.getItemByName(itemName).getTotalQuantity() < itemQuantity) {
+                    throw new InvalidQuantityException();
+                }
+            } else {
+                if (itemQuantity < 1 | itemQuantity > 1000000) {
+                    throw new InvalidQuantityException();
+                }
             }
             return new AddCommand(new Item(itemQuantity, itemName));
-        } catch (InvalidVariablesException | ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
+        } catch (NumberFormatException | InvalidVariablesException | ArrayIndexOutOfBoundsException |
+                 StringIndexOutOfBoundsException e) {
             return new IncorrectCommand("Invalid Add Command Input",
-                    "How to use add command:\n" + AddCommand.HELP_MSG);
-        } catch (NumberFormatException | InvalidIndexException e) {
+                    "How to use add command:\n" + PackCommand.HELP_MSG);
+        } catch (InvalidQuantityException e) {
             return new IncorrectCommand("Invalid Item Quantity",
-                    "For item quantity, try to input a positive integer number between 1 and 1000000");
+                    "Can only add a positive quantity, where the total quantity of an item is at most 1,000,000");
         }
     }
 
@@ -255,9 +263,8 @@ public class Parser {
                 String itemIndex = getItemIndex();
                 return new DeleteCommand(Integer.parseInt(itemIndex));
             } catch (InvalidVariablesException e) {
-                return new IncorrectCommand("Invalid Item Index",
-                        "Try to input an item index (positive integer number that is at most " +
-                                PackingList.getItemList().size() + ")");
+                return new IncorrectCommand("Invalid Delete Command Input",
+                        "How to use delete command:\n" + DeleteCommand.HELP_MSG);
             } catch (InvalidIndexException e) {
                 return new IncorrectCommand("Invalid Item Index",
                         "Try to input a positive integer number that is at most " +
@@ -391,15 +398,19 @@ public class Parser {
      * @throws InvalidIndexException if item index is not valid
      */
     public static int getPackAllIndex() throws InvalidIndexException, InvalidVariablesException {
-        //String[] inputStringList = fullInput.trim().split(" ", 2);
-        String[] inputStringList = fullInput.trim().split("\\s+/of\\s+", 2);
         try {
-            int itemIndex = Integer.parseInt(inputStringList[1]);
+            String inputString = fullInput.substring(fullInput.indexOf("packall") + 7).trim();
+            int ofIndex = inputString.trim().indexOf("/of");
+            String packAllIndex = inputString.substring(ofIndex + 3).trim();
+            int itemIndex = Integer.parseInt(packAllIndex);
             if (itemIndex < 1 | itemIndex > PackingList.getItemList().size()) {
                 throw new InvalidIndexException();
             }
+            if (ofIndex != 0) {
+                throw new InvalidVariablesException();
+            }
             return itemIndex;
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | StringIndexOutOfBoundsException e) {
             throw new InvalidVariablesException();
         }
     }
@@ -436,7 +447,7 @@ public class Parser {
      *         is created to be executed
      */
     public static Command createUnpackObj() {
-        int quantityPacked = 0;
+        int quantityPacked;
         if (PackingList.getItemList().size() == 0) {
             return new IncorrectCommand("Empty Packing List",
                     "Your packing list is empty, there is nothing to pack");
