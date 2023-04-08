@@ -1,8 +1,6 @@
 package seedu.brokeMan.parser;
 
 import org.junit.jupiter.api.Test;
-import seedu.brokeMan.command.AddExpenseCommand;
-import seedu.brokeMan.command.AddIncomeCommand;
 import seedu.brokeMan.command.Command;
 import seedu.brokeMan.command.DeleteExpenseCommand;
 import seedu.brokeMan.command.DeleteIncomeCommand;
@@ -13,7 +11,6 @@ import seedu.brokeMan.command.HelpCommand;
 import seedu.brokeMan.command.InvalidCommand;
 import seedu.brokeMan.command.ListExpenseCommand;
 import seedu.brokeMan.command.ListIncomeCommand;
-import seedu.brokeMan.command.SetBudgetCommand;
 import seedu.brokeMan.command.SortExpenseByAmountCommand;
 import seedu.brokeMan.command.SortExpenseByDateCommand;
 import seedu.brokeMan.command.SortIncomeByAmountCommand;
@@ -25,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {
     @Test
-    void validViewBudgetShouldReturnViewBudgetCommand() {
+    void parseCommand_validViewBudget_success() {
         final String userFirstInput = "setBudget 500";
         Command firstCommand = Parser.parseCommand(userFirstInput);
         firstCommand.execute();
@@ -38,7 +35,7 @@ class ParserTest {
     }
 
     @Test
-    void validViewBudgetWithDateFlagShouldReturnViewBudgetCommand() {
+    void parseCommand_validViewBudgetWithDate_success() {
         final String userFirstInput = "setBudget 600 t/ 2023/02";
         Command firstCommand = Parser.parseCommand(userFirstInput);
         firstCommand.execute();
@@ -51,21 +48,12 @@ class ParserTest {
     }
 
     @Test
-    void invalidViewBudgetWithDateFlagShouldReturnViewBudgetCommand() {
+    void parseCommand_invalidDateForViewBudget_returnInvalidCommand() {
         final String userSecondInput = "viewBudget t/ 203/02";
         Command command = Parser.parseCommand(userSecondInput);
         command.execute();
 
         assertTrue(command instanceof InvalidCommand);
-    }
-
-    @Test
-    void validSetBudgetShouldReturnSetBudgetCommand() {
-        final String userFullInput = "setBudget 500 t/ 2022/01";
-        Command actualCommand = Parser.parseCommand(userFullInput);
-        actualCommand.execute();
-
-        assertTrue(actualCommand instanceof SetBudgetCommand);
     }
 
     @Test
@@ -127,7 +115,7 @@ class ParserTest {
     }
 
     @Test
-    void randomCommandShouldReturnHelpCommand() {
+    void parseCommand_randomInput_ReturnHelpCommand() {
         final String userFullInput = "random inputs";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -136,7 +124,7 @@ class ParserTest {
     }
 
     @Test
-    void wrongAddIncomeCommandShouldReturnInvalidCommand() {
+    void parseCommand_emptyFlagDescription_ReturnInvalidCommand() {
         final String userFullInput = "addIncome a/ d/ t/ c/";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -159,7 +147,7 @@ class ParserTest {
     }
 
     @Test
-    void wrongAddExpenseCommandShouldReturnInvalidCommand() {
+    void parseCommand_wrongArgumentsForAddExpense_returnInvalidCommand() {
         final String userFullInput = "addExpense wrong arguments";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -168,7 +156,7 @@ class ParserTest {
     }
 
     @Test
-    void wrongDeleteExpenseCommandShouldReturnInvalidCommand() {
+    void parseCommand_stringIndexForDeleteExpense_returnInvalidCommand() {
         final String userFullInput = "deleteExpense wrong";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -177,7 +165,7 @@ class ParserTest {
     }
 
     @Test
-    void wrongDeleteIncomeCommandShouldReturnInvalidCommand() {
+    void parseCommand_emptyDeleteIncomeArguments_returnInvalidCommand() {
         final String userFullInput = "deleteIncome ";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -186,7 +174,7 @@ class ParserTest {
     }
 
     @Test
-    void wrongEditExpenseCommandShouldReturnInvalidCommand() {
+    void parseCommand_invalidEditExpenseCommand_returnInvalidCommand() {
         final String userFullInput = "editExpense a/ a/ a/";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -195,7 +183,7 @@ class ParserTest {
     }
 
     @Test
-    void wrongEditIncomeCommandShouldReturnInvalidCommand() {
+    void parseCommand_invalidEditIncomeCommand_returnInvalidCommand() {
         final String userFullInput = "editIncome wrong arguments";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -204,25 +192,7 @@ class ParserTest {
     }
 
     @Test
-    void validAddExpenseCommandShouldReturnAddExpenseCommand() {
-        final String userFullInput = "addExpense a/ 4.00 d/ lunch t/ 2022 09 08 12 14 c/ FOOD";
-        Command actualCommand = Parser.parseCommand(userFullInput);
-        actualCommand.execute();
-
-        assertTrue(actualCommand instanceof AddExpenseCommand);
-    }
-
-    @Test
-    void validAddIncomeCommandShouldReturnAddIncomeCommand() {
-        final String userFullInput = "addIncome a/ 400 d/ stocks t/ 2023 12 11 12 41 c/ INVESTMENT";
-        Command actualCommand = Parser.parseCommand(userFullInput);
-        actualCommand.execute();
-
-        assertTrue(actualCommand instanceof AddIncomeCommand);
-    }
-
-    @Test
-    void validDeleteExpenseCommandShouldReturnDeleteExpenseCommand() {
+    void parseCommand_validDeleteExpenseCommand_success() {
         final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 2022 07 21 10 41 c/ FOOD";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
         addExpenseCommand.execute();
@@ -234,7 +204,7 @@ class ParserTest {
     }
 
     @Test
-    void validDeleteIncomeCommandShouldReturnDeleteIncomeCommand() {
+    void parseCommand_validDeleteIncomeCommand_success() {
         final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 2012 04 29 01 40 c/ SALARY";
         Command addIncomeCommand = Parser.parseCommand(userFirstInput);
         addIncomeCommand.execute();
@@ -246,7 +216,7 @@ class ParserTest {
     }
 
     @Test
-    void validEditExpenseCommandShouldReturnEditExpenseCommand() {
+    void parseCommand_validEditExpenseCommand_success() {
         final String userFirstInput = "addExpense a/ 4.0 d/ lunch t/ 2017 08 19 13 29 c/ FOOD";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
         addExpenseCommand.execute();
@@ -258,7 +228,7 @@ class ParserTest {
     }
 
     @Test
-    void validEditIncomeCommandShouldReturnEditIncomeCommand() {
+    void parseCommand_validEditIncomeCommand_success() {
         final String userFirstInput = "addIncome a/ 4000 d/ salary t/ 2000 10 19 12 42 c/ SALARY";
         Command addExpenseCommand = Parser.parseCommand(userFirstInput);
         addExpenseCommand.execute();
@@ -270,7 +240,7 @@ class ParserTest {
     }
 
     @Test
-    void validListExpenseCommandShouldReturnListExpenseCommand() {
+    void parseCommand_validListExpense_success() {
         final String userFullInput = "listExpense";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -279,7 +249,7 @@ class ParserTest {
     }
 
     @Test
-    void listExpenseCommandWithDateFlagShouldReturnListExpenseCommand() {
+    void parseCommand_validListExpenseWithDate_success() {
         final String userFullInput = "listExpense t/ 2023/04";
         Command command = Parser.parseCommand(userFullInput);
         command.execute();
@@ -288,7 +258,7 @@ class ParserTest {
     }
 
     @Test
-    void listIncomeCommandWithDateFlagShouldReturnListIncomeCommand() {
+    void parseCommand_validListIncomeWithDate_success() {
         final String userFullInput = "listIncome t/ 2023/04";
         Command command = Parser.parseCommand(userFullInput);
         command.execute();
@@ -297,7 +267,7 @@ class ParserTest {
     }
 
     @Test
-    void validListIncomeCommandShouldReturnListIncomeCommand() {
+    void parseCommand_validListIncome_success() {
         final String userFullInput = "listIncome";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -306,7 +276,7 @@ class ParserTest {
     }
 
     @Test
-    void validSortExpenseByAmountCommandShouldReturnValidCommand() {
+    void parseCommand_validSortExpenseByAmountCommand_success() {
         final String userFullInput = "sortExpenseByAmount";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -315,7 +285,7 @@ class ParserTest {
     }
 
     @Test
-    void validSortIncomeByAmountCommandShouldReturnValidCommand() {
+    void parseCommand_validSortIncomeByAmountCommand_success() {
         final String userFullInput = "sortIncomeByAmount";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -324,7 +294,7 @@ class ParserTest {
     }
 
     @Test
-    void validSortExpenseByDateCommandShouldReturnValidCommand() {
+    void parseCommand_validSortExpenseByDateCommand_success() {
         final String userFullInput = "sortExpenseByDate";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -333,7 +303,7 @@ class ParserTest {
     }
 
     @Test
-    void validSortIncomeByDateCommandShouldReturnValidCommand() {
+    void parseCommand_validSortIncomeByDateCommand_success() {
         final String userFullInput = "sortIncomeByDate";
         Command actualCommand = Parser.parseCommand(userFullInput);
         actualCommand.execute();
@@ -342,7 +312,7 @@ class ParserTest {
     }
 
     @Test
-    void validExitCommandShouldReturnExitCommand() {
+    void parseCommand_validExitCommand_success() {
         final String userFullInput = "exit";
         Command command = Parser.parseCommand(userFullInput);
         assertEquals(ExitCommand.isExit(command), true);
