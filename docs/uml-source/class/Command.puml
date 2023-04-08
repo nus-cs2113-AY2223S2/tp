@@ -1,0 +1,102 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+title for Task, Util Commands
+
+class Parser {
++ getCommand(userCommand: String, ui: Ui, size: int,
+moduleData: ModuleList): Command
+}
+Parser --> Command : creates >
+
+abstract class "{abstract}\nCommand" as Command {
++ isExit: Boolean
+# logger: Logger
++ Command(commandName: String)
++ execute(taskList: TaskList, ui: Ui, storage: Storage, moduleList: ModuleList,
+allModules: ModuleList, calendar Calendar): void
+# setExit(): void
+# getCommand(arg: String): LessonType
+}
+
+note right of Command::execute
+    All Command subclasses overwrite the execute() method
+end note
+
+interface LoggerInterface {
+setUpLogger(logger: Logger): void
+}
+LoggerInterface <|.. Command : sets up logger for >
+
+class AddCommand {
+# command: String
+# desc: String
+# by: String
+# from: String
+# to: String
+__
++ AddCommand(command: String, param: String)
+- addTask(taskList: TaskList, calendar: Calendar, ui: Ui): void
+- warnDeadlineClash(ui: Ui, taskList: TaskList,
+calendar: Calendar, by: LocalDateTime): void
+- isClashingEvent(taskList: TaskList,
+from: LocalDateTime, to: LocalDateTime): boolean
+- warnEventModuleClash(ui: Ui, calendar: Calendar,
+event Event): void
+- isClashingEventModule(calendarModule: ArrayList<CalendarModule>,
+eventStart: LocalDateTime, eventEnd: LocalDateTime, currentDate: String): boolean
+- isDuringSemester(eventStart: LocalDateTime,
+eventEnd: LocalDateTime): boolean
+- isEventLessonClashing(eventStart: LocalDateTime, eventEnd: LocalDateTime,
+lessonStart: LocalDateTime, lessonEnd: LocalDateTime): boolean
+}
+AddCommand -|> Command
+
+class DateCommand {
+date: LocalDate
+datePattern: DateTimeFormatter
++ DateCommand(dateString: String)
+}
+Command <|-- DateCommand
+
+class FindCommand{
+# keyword: String
++ FindCommand(keyword: String)
+}
+Command <|-- FindCommand
+
+class ListCommand
+Command <|-- ListCommand
+
+class ModifyCommand{
+# command: String
+# idx: int
++ModifyCommand(command: String, param: String, size: int)
+-markTask(taskList: TaskList, ui: Ui): void
+-unmarkTask(taskList: TaskList, ui: Ui): void
+}
+Command <|-- ModifyCommand
+
+class WeekCommand
+Command <|-- WeekCommand
+
+class ExitCommand
+Command <|-- ExitCommand
+
+class HelpCommand
+Command <|-- HelpCommand
+
+class SpecificHelpCommand
+HelpCommand <|-- SpecificHelpCommand
+
+Storage <-- Command : updates <
+Ui <-- Command : calls for printing <
+TaskList "1 " <-- Command : "reads and\n writes to" <
+abstract class "{abstract}\nTask" as Task
+Task "*" <--* "1" TaskList : contains <
+Calendar "1   " <-- Command : reads <
+"ArrayList<CalendarModule>" "*" <--* "1" Calendar : contains <
+
+
+@enduml

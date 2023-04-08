@@ -1,6 +1,5 @@
 package seedu.apollo;
 
-
 import org.junit.jupiter.api.Test;
 import seedu.apollo.command.Command;
 import seedu.apollo.exception.task.InvalidDeadline;
@@ -59,23 +58,23 @@ class ParserTest {
 
     @Test
     void parseEvent_normalEvent_expectDescriptionAndFromAndTo() throws InvalidEvent {
-        String param = "test -from 2023-10-29T23:59 -to 2023-10-30T23:59";
+        String param = "test -from 29-10-2023-23:59 -to 30-10-2023-23:59";
         String[] descriptionAndFromAndTo = Parser.parseEvent(param);
         assertEquals("test", descriptionAndFromAndTo[0]);
-        assertEquals("2023-10-29T23:59", descriptionAndFromAndTo[1]);
-        assertEquals("2023-10-30T23:59", descriptionAndFromAndTo[2]);
+        assertEquals("29-10-2023-23:59", descriptionAndFromAndTo[1]);
+        assertEquals("30-10-2023-23:59", descriptionAndFromAndTo[2]);
     }
 
     @Test
     void parseEvent_noDescription_expectException() {
-        String param = "  -from 2023-10-29T23:59 -to 2023-10-30T23:59";
+        String param = "  -from 29-10-2023-23:59 -to 30-10-2023-23:59";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
 
     @Test
     void parseEvent_emptyFrom_expectException() {
-        String param = "test -from -to 2023-10-30T23:59";
+        String param = "test -from -to 30-10-2023-23:59";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
 
@@ -83,7 +82,7 @@ class ParserTest {
 
     @Test
     void parseEvent_emptyTo_expectException() {
-        String param = "test -from 2023-10-29T23:59 today -to ";
+        String param = "test -from 29-10-2023-23:59 today -to ";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
@@ -105,7 +104,7 @@ class ParserTest {
 
     @Test
     void parseEvent_noFrom_expectException() {
-        String param = "test -to 2023-10-30T23:59";
+        String param = "test -to 30-10-2023-23:59";
         assertThrows(InvalidEvent.class,
                 () -> Parser.parseEvent(param));
     }
@@ -276,5 +275,15 @@ class ParserTest {
         assertDoesNotThrow(() -> Parser.getCommand(userCommand, ui, size, null));
     }
 
+    @Test
+    void parseHelpCommand_extraWord_expectNull() throws UnexpectedException {
+        String userCommand = "help event hi";
+        Ui ui = new Ui();
+        int size = 1;
+        Command newCommand = Parser.getCommand(userCommand, ui, size, null);
+        assertNull(newCommand);
+    }
 
+    
 }
+

@@ -8,6 +8,7 @@ participant ":Apollo" as Apollo
 participant ":Parser" as Parser
 participant ":WeekCommand" as week
 participant ":Ui" as Ui
+participant ":SemesterUtils" as SemUtils
 participant ":DayTypeUtil" as DayTypeUtil
 participant ":Calendar" as Calendar
 participant ":TaskList" as TaskList
@@ -22,12 +23,15 @@ return
 return
 
 Apollo -> week : execute()
-Apollo --
 activate week
 
 
 week -> Ui : printWeek()
 activate Ui
+Ui -> SemUtils++ : getWeekNumber()
+return
+destroy SemUtils
+Ui -> Ui++ : printEachDayInWeek()
 
 loop 7 times
     Ui -> DayTypeUtil : determineDay()
@@ -35,13 +39,12 @@ loop 7 times
     return
     destroy DayTypeUtil
 
-    Ui -> Calendar : get()
+    Ui -> Calendar : getModulesForDay()
     activate Calendar
     Calendar --> Ui : lessonsOnDay
     destroy Calendar
-    alt lessonsOnDay.size() > 0
-    Ui -> Ui : printLessonsOnDay()
-    activate Ui
+    opt lessonsOnDay.size() > 0
+    Ui -> Ui++ : printLessonsOnDay()
     deactivate Ui
     end
 
@@ -49,13 +52,15 @@ loop 7 times
     activate TaskList
     TaskList --> Ui : tasksOnDay
     destroy TaskList
-    alt tasksOnDay.size() > 0
-    Ui -> Ui : printTasksOnDay()
-    activate Ui
+    opt tasksOnDay.size() > 0
+    Ui -> Ui++ : printTasksOnDay()
     deactivate Ui
     end
 end
+Ui--
 destroy Ui
+week --> Apollo
 destroy week
+Apollo--
 
 @enduml

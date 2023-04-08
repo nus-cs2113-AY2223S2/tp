@@ -58,13 +58,13 @@ public class Calendar extends ArrayList<ArrayList<CalendarModule>> {
     }
 
     /**
-     * Returns a list of modules for the day based on the week of the semester.
+     * Returns a list of lessons for the day based on the week of the semester.
      *
      * @param week The current week of the semester.
      * @param day The day of the week.
      * @return An array list of modules for the day.
      */
-    public ArrayList<CalendarModule> getModulesForDay(int week, int day) {
+    public ArrayList<CalendarModule> getLessonsForDay(int week, int day) {
 
         ArrayList<CalendarModule> calendarModules = this.get(day);
         ArrayList<CalendarModule> modulesForDay = new ArrayList<>(calendarModules);

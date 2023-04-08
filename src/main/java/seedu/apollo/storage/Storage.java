@@ -31,10 +31,7 @@ import java.lang.reflect.Type;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 
@@ -64,37 +61,9 @@ public class Storage implements LoggerInterface {
      * @param filePath Location of the local save file.
      */
     public Storage(String filePath, String moduleDataFilePath) {
+        setUpLogger(logger);
         Storage.filePath = filePath;
         Storage.moduleDataFilePath = moduleDataFilePath;
-        setUpLogger();
-    }
-
-    /**
-     * Sets up logger for Storage class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-
     }
 
     /**
@@ -146,7 +115,7 @@ public class Storage implements LoggerInterface {
             newTaskList = readFileContents(save, ui);
             return newTaskList;
         } catch (FileNotFoundException e) {
-            save.createNewFile();
+            assert (save.createNewFile()) : "Save file creation failed.";
             logger.log(Level.INFO, "File not found, creating new file.");
             return newTaskList;
         }
@@ -172,9 +141,6 @@ public class Storage implements LoggerInterface {
 
     /**
      * Reads all lines in the moduleData file, initialises them as an ModuleList of Modules.
-     * @param overwrite
-     * @param module
-     * @throws IOException
      */
     private void writeModules(FileWriter overwrite, Module module) throws IOException {
         ArrayList<Timetable> timetableList = module.getModuleTimetable();
@@ -202,7 +168,7 @@ public class Storage implements LoggerInterface {
             return newModuleList;
         } catch (FileNotFoundException e) {
             logger.log(Level.INFO, "File for ModuleList not found, creating new file.");
-            save.createNewFile();
+            assert (save.createNewFile()) : "Save file creation failed.";
             return newModuleList;
         }
     }

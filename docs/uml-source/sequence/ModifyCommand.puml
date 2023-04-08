@@ -13,17 +13,19 @@ participant ":TaskList" as TaskList
 participant ":Ui" as Ui
 participant ":Storage" as Storage
 
-User -> Apollo : "Unmark 1"
+User -> Apollo : "unmark 1"
 activate Apollo
 Apollo -> Parser : getCommand()
 activate Parser
 Parser -> modify** : ModifyCommand()
-modify++
-return
-return
+activate modify
+modify --> Parser: new ModifyCommand
+deactivate modify
 
-Apollo -> modify : execute()
-Apollo--
+
+
+Parser -> modify : execute()
+
 activate modify
 modify -> modify++ : unmarkTask()
 TaskList --> modify
@@ -35,14 +37,33 @@ return
 modify <-- TaskList--
 destroy TaskList
 modify -> Ui : ui.printMarkNotDone()
-modify -> Storage ++: updateTask()
+activate Ui
+Ui --> modify
+deactivate Ui
+
+modify -> Storage: updateTask()
+activate Storage
+Storage --> modify
 destroy Storage
-return
+
+
+
+
+
 
 else Task marked as incomplete previously
-modify -> Ui : ui.printTaskHasBeenMarkedPreviously()
-end
-destroy modify
 
+modify -> Ui : ui.printTaskHasBeenMarkedPreviously()
+activate Ui
+Ui --> modify
+deactivate Ui
+destroy Ui
+end
+modify --> Parser
+destroy modify
+Parser --> Apollo
+destroy Parser
+
+deactivate Apollo
 
 @enduml

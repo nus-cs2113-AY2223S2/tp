@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam maxMessageSize 150
+
+title DeleteHelpCommand
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":DeleteHelpCommand" as DeleteHelp
+participant ":Ui" as Ui
+
+User -> Apollo : "help delete"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+Parser -> DeleteHelp ** : chooseHelpCommand("delete")
+
+activate DeleteHelp
+return
+
+
+
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+
+Apollo -> DeleteHelp: execute()
+DeleteHelp ++
+DeleteHelp -> Ui : printDeleteHelpMessage()
+activate Ui
+Ui --> DeleteHelp
+deactivate Ui
+destroy Ui
+DeleteHelp --> Apollo
+deactivate DeleteHelp
+destroy DeleteHelp
+
+
+deactivate Apollo
+
+@enduml
