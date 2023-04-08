@@ -29,7 +29,7 @@ public class EditConsultationCommand extends Command {
 
         @Override
         public void executeCommand(SniffTasks tasks) throws SniffException {
-            tasks.removeAppointment(uid);
+            //tasks.removeAppointment(uid);
             tasks.editConsultation(uid,animal, owner, date, time);
         }
     }

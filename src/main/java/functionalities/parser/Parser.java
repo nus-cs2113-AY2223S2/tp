@@ -231,6 +231,7 @@ public class Parser {
         String type = task.substring(uidIndex + 5, uidIndex + 6);
         if (type == "C"){
             try {
+                command = new RemoveCommand(uid);
                 String animalType = splitInputBy(task, "at/");
                 String animalName = splitInputBy(task, "an/");
                 String ownerName = splitInputBy(task, "on/");

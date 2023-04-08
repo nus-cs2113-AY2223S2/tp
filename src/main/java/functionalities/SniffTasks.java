@@ -459,8 +459,7 @@ public class SniffTasks {
             assert Objects.equals(newAppointment.animal.name, animal.name) :
                     "consultation animal name should be " + animal.name;
             APPOINTMENTS.add(newAppointment);
-            Ui.printAppointmentAddedMessage(newAppointment);
-            Ui.showUserMessage(" Consultation added successfully!");
+            Ui.showUserMessage(" Consultation changed successfully!");
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" Invalid consultation description!");
         }
