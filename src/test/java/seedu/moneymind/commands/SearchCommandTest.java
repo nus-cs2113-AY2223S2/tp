@@ -16,14 +16,14 @@ public class SearchCommandTest extends CommandTest {
         String terminalOutput = executeInput("search hello").toString();
         String expected = "Matching Categories:" + System.lineSeparator() +
                 "No matching search results." + System.lineSeparator() +
-                "" + System.lineSeparator() +
+                System.lineSeparator() +
                 "Matching Events:" + System.lineSeparator() +
                 "No matching search results." + System.lineSeparator() +
-                "" + System.lineSeparator() +
+                System.lineSeparator() +
                 "Similar Categories:" + System.lineSeparator() +
                 "2.book" + System.lineSeparator() +
                 "1.food" + System.lineSeparator() +
-                "" + System.lineSeparator() +
+                System.lineSeparator() +
                 "Similar Events:" + System.lineSeparator() +
                 "Lord of the Rings (Category: book)" + System.lineSeparator() +
                 "Harry Potter (Category: book)" + System.lineSeparator() +
