@@ -32,12 +32,6 @@ public class ExpenseList {
         return ((count == 1) ? "expense" : "expenses");
     }
 
-    private static void showToUser(String... message) {
-        for (String i : message) {
-            System.out.println(i);
-        }
-    }
-
     // In order to clear the list for test
     public void clear() {
         expenseList.clear();
