@@ -353,29 +353,40 @@ public class Parser {
     }
     public static boolean isValidAddToRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
-        if (!(descLowerCase.contains("--s") && descLowerCase.contains("--i")) &&
-                matchCount(descLowerCase,"id/") == 1 &&
-                matchCount(descLowerCase,"desc/") == 1 &&
-                (matchCount(descLowerCase, "--i") == 1 ||
-                        matchCount(descLowerCase, "--s") == 1) &&
-                !(descLowerCase.contains("--is") ||
-                        descLowerCase.contains("--si"))) {
-            return true;
-        } else {
+        if ((descLowerCase.contains("--s") && descLowerCase.contains("--i"))){
             return false;
+        }
+        if (matchCount(descLowerCase,"id/") != 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase,"desc/") != 1){
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") != 1 || matchCount(descLowerCase, "--s") != 1) {
+            return false;
+        }
+        if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
+            return false;
+        } else {
+            return true;
         }
     }
     public static boolean isValidDeleteFromRecipe(String description) {
         String descLowerCase = description.toLowerCase().trim();
-        if (!(descLowerCase.contains("--s") && descLowerCase.contains("--i")) &&
-                matchCount(descLowerCase,"id/") == 1 &&
-                (matchCount(descLowerCase, "--i") == 1 ||
-                        matchCount(descLowerCase, "--s") == 1) &&
-                !(descLowerCase.contains("--is") ||
-                    descLowerCase.contains("--si"))) {
-            return true;
-        } else {
+        if ((descLowerCase.contains("--s") && descLowerCase.contains("--i"))){
             return false;
+        }
+        if (matchCount(descLowerCase,"id/") != 1) {
+            return false;
+        }
+        if (matchCount(descLowerCase, "--i") != 1 || matchCount(descLowerCase, "--s") != 1) {
+            return false;
+        }
+        if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
+            return false;
+        }
+        else {
+            return true;
         }
     }
     public static boolean isDuplicateIngredient(IngredientList ingredientList, String newIngredient) {
