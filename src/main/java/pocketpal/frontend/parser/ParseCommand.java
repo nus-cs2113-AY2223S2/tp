@@ -6,11 +6,13 @@ import pocketpal.frontend.constants.ParserConstants;
 import pocketpal.frontend.exceptions.InvalidArgumentsException;
 import pocketpal.frontend.exceptions.InvalidCategoryException;
 import pocketpal.frontend.exceptions.InvalidDateException;
+import pocketpal.frontend.exceptions.InvalidHelpCommandException;
 import pocketpal.frontend.exceptions.MissingArgumentsException;
 import pocketpal.frontend.exceptions.MissingDateException;
 import pocketpal.frontend.exceptions.UnknownArgumentException;
 import pocketpal.frontend.exceptions.UnknownOptionException;
 import pocketpal.frontend.util.CategoryUtil;
+import pocketpal.frontend.util.CommandUtil;
 import pocketpal.frontend.util.StringUtil;
 
 import java.util.logging.Logger;
@@ -21,7 +23,7 @@ public abstract class ParseCommand {
     private Logger logger = Logger.getLogger(ParseCommand.class.getName());
     public abstract Command parseArguments(String input) throws InvalidArgumentsException,
             InvalidCategoryException, MissingArgumentsException, MissingDateException, InvalidDateException,
-            UnknownOptionException, UnknownArgumentException;
+            UnknownOptionException, UnknownArgumentException, InvalidHelpCommandException;
 
     /**
      * Returns arguments matching the specified pattern.
@@ -190,4 +192,16 @@ public abstract class ParseCommand {
         }
     }
 
+    /**
+     * Checks if user specified help command is valid.
+     *
+     * @param helpCommand User specified help command.
+     * @throws InvalidHelpCommandException If category specified is not supported.
+     */
+    public void checkHelpCommandValidity(String helpCommand) throws InvalidHelpCommandException {
+        logger.entering(ParseCommand.class.getName(), "checkHelpCommandValidity()");
+        helpCommand = StringUtil.toTitleCase(helpCommand);
+        CommandUtil.convertStringToCommand(helpCommand);
+        logger.entering(ParseCommand.class.getName(), "checkHelpCommandValidity()");
+    }
 }

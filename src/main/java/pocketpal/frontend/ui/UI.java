@@ -174,11 +174,39 @@ public class UI {
     /**
      * Print the help message to the UI
      */
-    public void printHelp() {
-        print(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_ADD_COMMAND
-                + MessageConstants.MESSAGE_DELETE_COMMAND + MessageConstants.MESSAGE_EDIT_COMMAND
-                + MessageConstants.MESSAGE_VIEW_COMMAND + MessageConstants.MESSAGE_HELP_COMMAND
-                + MessageConstants.MESSAGE_BYE_COMMAND);
+    public void printHelpMenu() {
+        print(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_HELP_MENU);
+        printLine();
+    }
+
+    // @@author kaceycsn
+    public void printHelpAdd(){
+        print(MessageConstants.MESSAGE_ADD_COMMAND);
+        printLine();
+    }
+
+    public void printHelpDelete(){
+        print(MessageConstants.MESSAGE_DELETE_COMMAND);
+        printLine();
+    }
+
+    public void printHelpView(){
+        print(MessageConstants.MESSAGE_VIEW_COMMAND);
+        printLine();
+    }
+
+    public void printHelpEdit(){
+        print(MessageConstants.MESSAGE_EDIT_COMMAND);
+        printLine();
+    }
+
+    public void printHelpBye(){
+        print(MessageConstants.MESSAGE_BYE_COMMAND);
+        printLine();
+    }
+
+    public void printHelpHelp(){
+        print(MessageConstants.MESSAGE_HELP_COMMAND);
         printLine();
     }
 
