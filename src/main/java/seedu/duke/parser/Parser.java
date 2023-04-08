@@ -270,7 +270,7 @@ public class Parser {
     public static String[] parseAddToRecipeDescription(String description) {
         String[] subDescriptions = description.split("/", 3);
         String element0 = subDescriptions[0].toLowerCase().split("id")[0].trim();
-        element0 = element0.toLowerCase().split(" ")[0].trim();
+        element0 = element0.replaceAll(" ","");
         subDescriptions[0] = element0.replaceAll("-","");
         String element1 = subDescriptions[1].toLowerCase().split("desc")[0].trim();
         subDescriptions[1] = element1;
@@ -279,8 +279,9 @@ public class Parser {
     public static String[] parseDeleteFromRecipeDescription(String description) {
         String[] subDescriptions = description.split("/", 2);
         String element0 = subDescriptions[0].toLowerCase().split("id")[0].trim();
-        element0 = element0.toLowerCase().split(" ")[0].trim();
+        element0 = element0.replaceAll(" ","");
         subDescriptions[0] = element0.replaceAll("-","");
+        subDescriptions[1] = subDescriptions[1].replaceAll(" ", "");
         return subDescriptions;
     }
     public static boolean isValidAddToRecipe(String description) {
