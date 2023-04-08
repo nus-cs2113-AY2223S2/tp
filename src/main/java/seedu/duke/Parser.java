@@ -231,37 +231,37 @@ public class Parser {
             }
 
             // Create event for each day of module
-            for (Lesson lesson : lessons) {
-                String venue = lesson.getVenue();
-                for (Integer week : lesson.getWeeks()) {
+            try{
+                for (Lesson lesson : lessons) {
+                    String venue = lesson.getVenue();
+                    for (Integer week : lesson.getWeeks()) {
                     
-                    // Method to get date on the lesson's day in a given week number.
-                    if (week >= 7) {
-                        week++;
-                    }
+                        // Method to get date on the lesson's day in a given week number.
+                        if (week >= 7) {
+                            week++;
+                        }
 
-                    String startDate =
-                            findDateOfWeek(UserUtility.getUser().getSemester(), week, lesson.getDay());
+                        String startDate =
+                                findDateOfWeek(UserUtility.getUser().getSemester(), week, lesson.getDay());
 
-                    // Converting time to HH:mm format.
-                    StringBuilder sb = new StringBuilder(lesson.getStartTime());
-                    String startTime = sb.insert(2, ':').toString();
-                    sb = new StringBuilder(lesson.getEndTime());
-                    String endTime = sb.insert(2, ':').toString();
+                        // Converting time to HH:mm format.
+                        StringBuilder sb = new StringBuilder(lesson.getStartTime());
+                        String startTime = sb.insert(2, ':').toString();
+                        sb = new StringBuilder(lesson.getEndTime());
+                        String endTime = sb.insert(2, ':').toString();
 
-                    int size = eventList.getSize();
-                    try {
+                        int size = eventList.getSize();
                         eventList.addEvent(nusModule.getModuleCode(), startTime, startDate, endTime,
                                 startDate);
                         eventList.reviseLocation(size++, venue);
                         count++;
-                    } catch (NPExceptions e) {
-                        System.out.println(e.getMessage());
                     }
                 }
+                Duke.LOGGER.log(Level.INFO, "User added module to event list.");
+                Ui.addSuccessMsg("Added " + count + " classes of Module: " + moduleCode);
+            } catch (NPExceptions e) {
+                System.out.println(e.getMessage());
             }
-            Duke.LOGGER.log(Level.INFO, "User added module to event list.");
-            Ui.addSuccessMsg("Added " + count + " classes of Module: " + moduleCode);
 
         } else {
             String eventName = information[0];
@@ -348,8 +348,10 @@ public class Parser {
             }
         }
 
-        if (information[2].equals("")) { // Starting date field MUST NOT be empty.
-            throw new NPExceptions("Empty starting date detected! Please add starting date.");
+        addFormatChecker(information);
+
+        if (information[2].equals("") || information[1].equals("")) { // Starting date field MUST NOT be empty.
+            throw new NPExceptions("Empty starting date/time detected! Please add starting date.");
         }
 
         if (information[0].equals("")) {
@@ -407,6 +409,7 @@ public class Parser {
         if (!information[4].equals("")) {
             eventList.reviseTimeInfo(information[0], information[1], information[2], information[3],
                     information[4]);
+            
         } else {
             eventList.reviseTimeInfo(information[0], information[1], information[2]);
         }

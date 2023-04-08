@@ -95,17 +95,18 @@ public class EventList {
                         && eventA.getEndTime().compareTo(eventB.getEndTime()) <= 0));
     }
 
-    public boolean canAddNewEvent(Event newEvent) {
+    public boolean canAddNewEvent(Event newEvent, int index) {
         boolean isOverlap = true;
         for (int i = 0; i < listSize; i++) {
+            
             if (!taskList.get(i).isRecurring()) {
-                if ((checkSingleOverlap(newEvent, taskList.get(i))
+                if (taskList.get(i).hasEndInfo() && (checkSingleOverlap(newEvent, taskList.get(i))
                         || checkSingleOverlap(taskList.get(i), newEvent))) {
                     isOverlap = false;
                     Ui.printOverlapInfo(taskList.get(i).toString());
                     break;
                 }
-            } else {
+            } else if (taskList.get(i).hasEndInfo()) {
                 Event eventA = (taskList.get(i) instanceof Event) ? (Event) taskList.get(i) : null;
                 Event eventB = newEvent;
 
@@ -152,14 +153,14 @@ public class EventList {
                                 break;
                             }
                         }
-                        if(breakFlag) {
+                        if (breakFlag) {
                             break;
                         }
                     }
                 }
             }
         }
-        return !isOverlap;
+        return isOverlap;
     }
 
     public void addEvent(String description, String startTime, String startDay, String endTime, String endDay)
@@ -173,7 +174,7 @@ public class EventList {
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
             throw new NPExceptions("Starting time is after ending time!");
         }
-        if (canAddNewEvent(newEvent)) {
+        if (!canAddNewEvent(newEvent, -1)) {
             throw new NPExceptions("Events/classes conflition!");
         }
 
@@ -210,7 +211,7 @@ public class EventList {
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
             throw new NPExceptions("Starting time is after ending time!");
         }
-        if (canAddNewEvent(newEvent)) {
+        if (!canAddNewEvent(newEvent, -1)) {
             throw new NPExceptions("Events/classes conflition!");
         }
 
@@ -227,7 +228,15 @@ public class EventList {
         TimeAndFlag startInfo = convertToTimeInfo(startTime, startDay);
         TimeAndFlag endInfo = convertToTimeInfo(endTime, endDay);
 
+        Event eventToCheck = new Event(taskList.get(index).getDescription(), startInfo.time, endInfo.time,
+                startInfo.hasInfo, endInfo.hasInfo);
+        System.out.println("FFFFFF");
+        if (!canAddNewEvent(eventToCheck, index)){
+            throw new NPExceptions("Events/classes conflition!");
+        }
+
         taskList.get(index).changeTimeInfo(startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
+
     }
 
     public void reviseTimeInfo(int index, String startTime, String startDay) throws NPExceptions {
