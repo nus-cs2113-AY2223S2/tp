@@ -27,7 +27,7 @@ loop editFlagAndField.size()
     deactivate EditCommand
 
     else flag equals "-out"
-    EditCommand -> EditCommand : setFlowDirection(INFLOW : FlowDirection)
+    EditCommand -> EditCommand : setFlowDirection(OUTFLOW : FlowDirection)
     activate EditCommand
     EditCommand --> EditCommand
     deactivate EditCommand

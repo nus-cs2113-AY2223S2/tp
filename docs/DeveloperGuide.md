@@ -9,58 +9,60 @@ goals.
 <!-- TOC -->
 
 * [Developer Guide](#developer-guide)
-    * [Introduction](#introduction)
-        * [Acknowledgements](#acknowledgements)
-        * [Purpose and target reader](#purpose-and-target-reader)
-        * [How to use this guide](#how-to-use-this-guide)
-        * [Main functions](#main-functions)
-    * [Design](#design)
-        * [Architecture](#architecture)
-            * [Components of the architecture](#components-of-the-architecture)
-        * [Modules package](#modules-package)
-            * [Storage](#storage)
-            * [Ui](#ui)
-        * [Data package](#data-package)
-        * [Command package](#command-package)
-        * [Exceptions package](#exceptions-package)
-    * [Implementation](#implementation)
-        * [Maintaining of Financial Report](#maintaining-of-financial-report)
-        * [Adding an entry `add`](#adding-an-entry-add)
-        * [Deleting an entry `delete`](#deleting-an-entry-delete)
-        * [Implementation of regex and parser](#implementation-of-regex-and-parser)
-            * [Alternatives considered](#alternatives-considered)
-        * [Viewing your data `view`](#viewing-your-data-view)
-        * [Editing an entry `edit`](#editing-an-entry-edit)
-        * [Filtering your data `filter`](#filtering-your-data-filter)
-        * [Setting your monthly Budget Goal `setbudget`](#setting-your-monthly-budget-goal-setbudget)
-        * [Adding a shortcut `shortcut`](#adding-a-shortcut-shortcut)
-        * [Using a shortcut](#using-a-shortcut)
-        * [Viewing shortcuts `shortcut_view`](#viewing-shortcuts-shortcutview)
-        * [Deleting a shortcut `shortcut_delete`](#deleting-a-shortcut-shortcutdelete)
-        * [Saving Data](#saving-data)
-            * [Implementation of saving](#implementation-of-saving)
-            * [Type of file to save data into](#type-of-file-to-save-data-into)
-        * [Loading Data](#loading-data)
-        * [Exporting to .csv](#exporting-to-csv)
-            * [Implementation of export to .csv](#implementation-of-export-to-csv)
-    * [Product scope](#product-scope)
-        * [Target user profile](#target-user-profile)
-        * [Value proposition](#value-proposition)
-    * [User Stories](#user-stories)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-    * [Instructions for manual testing](#instructions-for-manual-testing)
-        * [Launch and shutdown](#launch-and-shutdown)
-        * [Adding a transaction](#adding-a-transaction)
-        * [Deleting a transaction](#deleting-a-transaction)
-        * [Viewing transactions](#viewing-transactions)
-        * [Adding a shortcut](#adding-a-shortcut)
-        * [Using a shortcut](#using-a-shortcut-1)
-        * [Viewing shortcuts](#viewing-shortcuts)
-        * [Deleting a shortcut](#deleting-a-shortcut)
-        * [Saving data](#saving-data-1)
-        * [Loading data](#loading-data-1)
-        * [Export to .csv](#export-to-csv)
+  * [Introduction](#introduction)
+    * [Acknowledgements](#acknowledgements)
+    * [Purpose and target reader](#purpose-and-target-reader)
+    * [How to use this guide](#how-to-use-this-guide)
+    * [Main functions](#main-functions)
+  * [Design](#design)
+    * [Architecture](#architecture)
+      * [Components of the architecture](#components-of-the-architecture)
+    * [Modules package](#modules-package)
+      * [Storage](#storage)
+      * [Ui](#ui)
+    * [Data package](#data-package)
+    * [Command package](#command-package)
+    * [Exceptions package](#exceptions-package)
+  * [Implementation](#implementation)
+    * [Maintaining of Financial Report](#maintaining-of-financial-report)
+    * [Adding an entry `add`](#adding-an-entry-add)
+    * [Deleting an entry `delete`](#deleting-an-entry-delete)
+    * [Implementation of regex and parser](#implementation-of-regex-and-parser)
+      * [Alternatives considered](#alternatives-considered)
+    * [Viewing your data `view`](#viewing-your-data-view)
+    * [Editing an entry `edit`](#editing-an-entry-edit)
+    * [Filtering your data `filter`](#filtering-your-data-filter)
+    * [Setting your monthly Budget Goal `setbudget`](#setting-your-monthly-budget-goal-setbudget)
+    * [Adding a shortcut `shortcut`](#adding-a-shortcut-shortcut)
+    * [Using a shortcut](#using-a-shortcut)
+    * [Viewing shortcuts `shortcut_view`](#viewing-shortcuts-shortcutview)
+    * [Deleting a shortcut `shortcut_delete`](#deleting-a-shortcut-shortcutdelete)
+    * [Saving Data](#saving-data)
+      * [Implementation of saving](#implementation-of-saving)
+      * [Type of file to save data into](#type-of-file-to-save-data-into)
+    * [Loading Data](#loading-data)
+    * [Exporting to .csv](#exporting-to-csv)
+      * [Implementation of export to .csv](#implementation-of-export-to-csv)
+  * [Product scope](#product-scope)
+    * [Target user profile](#target-user-profile)
+    * [Value proposition](#value-proposition)
+  * [User Stories](#user-stories)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+  * [Instructions for manual testing](#instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Adding a transaction](#adding-a-transaction)
+    * [Deleting a transaction](#deleting-a-transaction)
+    * [Viewing transactions](#viewing-transactions)
+    * [Editing a transaction](#editing-a-transaction)
+    * [Filtering transactions](#filtering-transactions)
+    * [Adding a shortcut](#adding-a-shortcut)
+    * [Using a shortcut](#using-a-shortcut-1)
+    * [Viewing shortcuts](#viewing-shortcuts)
+    * [Deleting a shortcut](#deleting-a-shortcut)
+    * [Saving data](#saving-data-1)
+    * [Loading data](#loading-data-1)
+    * [Export to .csv](#export-to-csv)
 
 <!-- TOC -->
 
@@ -650,7 +652,10 @@ Help people who are just starting out working and troubled by financial issues s
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+- Interface constraint: Command-line interface 
+- Compatability: Java 11 
+- Performance: System should respond within 2 seconds
+
 
 ## Glossary
 
@@ -725,6 +730,28 @@ Help people who are just starting out working and troubled by financial issues s
 
 5. Test case: `view 32d`<br>Expected: No transaction will be shown. Error message for "wrong view format" will be
    shown
+
+### Editing a transaction
+
+1. Prerequisites: There must be at least one entry to edit
+2. Test case: `edit 1 -d Chicken rice` <br> Expected: The description of transaction with index 1 shown in `view -all`
+   list will be changed to "Chicken Rice"
+3. Test case: `edit 1 -v $5 -c Food and Drinks -date 4/8/2023` <br> Expected: The value, category and date of transaction
+   with index 1 will be changed to "$5", "Food and Drinks" and "04/08/2023" respectively
+4. Test case: `edit 1 -date 4/8/23 -d Noodles` <br> Expected: No transaction edited. Error message for "wrong edit 
+   format" will be shown as flag is in incorrect order.
+
+### Filtering transactions
+
+1. Prerequisites: There are multiple transactions in rainyDay.
+2. Test case: `filter -d rice` <br> Expected: Transactions that contain "rice" in the description field will be listed 
+   out.
+3. Test case: `filter -c Shopping -date 2/4/2023` <br> Expected: Transactions that contain "Shopping" in the category
+   field and dated "02/04/2023" will be listed out. 
+4. Test case: `filter -c Shopping -date 2/4/2023 8/4/2023` <br> Expected: Transactions that contain "Shopping" in the category
+   field and dated between "02/04/2023" and "08/04/2023" will be listed out.
+5. Test case: `filter -c Food -d rice` <br> Expected: No transaction edited. Error message for "wrong filter
+   format" will be shown as flag is in incorrect order.
 
 ### Adding a shortcut
 
