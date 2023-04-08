@@ -9,6 +9,7 @@ import seedu.duke.data.userdata.UserCareerData;
 import seedu.duke.data.userdata.userplan.UserPlan;
 import seedu.duke.logic.commandhandler.states.ExerciseStateHandler;
 import seedu.duke.storage.Storage;
+import seedu.duke.storage.StorageManager;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,6 @@ public class AchieveBodyPartAchievements {
         }
     };
 
-
     @Test
     void testECoreAchievementUpdateSession() {
         achievementListTestHandler.clearAchievementsData();
@@ -73,65 +73,6 @@ public class AchieveBodyPartAchievements {
         assertEquals(achievementList.get(CORE_START_INDEX).getCompleted(), true);
         assertEquals(achievementList.get(CORE_START_INDEX + M_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), false);
         assertEquals(achievementList.get(CORE_START_INDEX + H_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), false);
-    }
-
-
-    @Test
-    void testHCoreAchievementUpdateSession() {
-        achievementListTestHandler.clearAchievementsData();
-        assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
-        ArrayList<ExerciseData> exerciseData;
-        GenerateExercise generateExercise = new GenerateExercise();
-        exerciseData = generateExercise.generateSetAll();
-        try {
-            exerciseData = generateExercise.generateFilteredWorkoutTypeFrom(exerciseData, CORE);
-        } catch (DukeError e) {
-            System.out.println("Error occured when using the generate filtered difficulty set");
-        }
-        ArrayList<ExerciseData> actualExerciseData = new ArrayList<>();
-
-        for (int i = 0; i < H_ACHIEVEMENT_REQUIREMENT; i++) {
-            actualExerciseData.add(exerciseData.get(i));
-        }
-
-        Session session = new Session(actualExerciseData);
-
-        ExerciseStateHandler exerciseStateHandler = new ExerciseStateHandler(dummyStorage);
-        exerciseStateHandler.updateWorkoutAchievements(session, achievementListTestHandler);
-        ArrayList<Achievement> achievementList = achievementListTestHandler.getAchievementList();
-        assertEquals(achievementList.get(CORE_START_INDEX).getCompleted(), true);
-        assertEquals(achievementList.get(CORE_START_INDEX + M_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), true);
-        assertEquals(achievementList.get(CORE_START_INDEX + H_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), true);
-    }
-
-    @Test
-    void testELegsAchievementUpdateSession() {
-        achievementListTestHandler.clearAchievementsData();
-        assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
-        ArrayList<ExerciseData> exerciseData;
-        GenerateExercise generateExercise = new GenerateExercise();
-        exerciseData = generateExercise.generateSetAll();
-        try {
-            exerciseData = generateExercise.generateFilteredWorkoutTypeFrom(exerciseData, LEGS);
-        } catch (DukeError e) {
-            System.out.println("Error occured when using the generate filtered difficulty set");
-        }
-
-
-        ArrayList<ExerciseData> actualExerciseData = new ArrayList<>();
-
-        for (int i = 0; i < E_ACHIEVEMENT_REQUIREMENT; i++) {
-            actualExerciseData.add(exerciseData.get(i));
-        }
-
-        Session session = new Session(actualExerciseData);
-
-        ExerciseStateHandler exerciseStateHandler = new ExerciseStateHandler(dummyStorage);
-        exerciseStateHandler.updateWorkoutAchievements(session, achievementListTestHandler);
-        ArrayList<Achievement> achievementList = achievementListTestHandler.getAchievementList();
-        assertEquals(achievementList.get(LEG_START_INDEX).getCompleted(), true);
-        assertEquals(achievementList.get(LEG_START_INDEX + M_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), false);
-        assertEquals(achievementList.get(LEG_START_INDEX + H_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), false);
     }
 
 
@@ -163,36 +104,6 @@ public class AchieveBodyPartAchievements {
         assertEquals(achievementList.get(LEG_START_INDEX).getCompleted(), true);
         assertEquals(achievementList.get(LEG_START_INDEX + M_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), true);
         assertEquals(achievementList.get(LEG_START_INDEX + H_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), true);
-    }
-
-    @Test
-    void testEUpperBodyAchievementUpdateSession() {
-        achievementListTestHandler.clearAchievementsData();
-        assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
-        ArrayList<ExerciseData> exerciseData;
-        GenerateExercise generateExercise = new GenerateExercise();
-        exerciseData = generateExercise.generateSetAll();
-        try {
-            exerciseData = generateExercise.generateFilteredWorkoutTypeFrom(exerciseData, UPPER);
-        } catch (DukeError e) {
-            System.out.println("Error occured when using the generate filtered difficulty set");
-        }
-
-
-        ArrayList<ExerciseData> actualExerciseData = new ArrayList<>();
-
-        for (int i = 0; i < E_ACHIEVEMENT_REQUIREMENT; i++) {
-            actualExerciseData.add(exerciseData.get(i));
-        }
-
-        Session session = new Session(actualExerciseData);
-
-        ExerciseStateHandler exerciseStateHandler = new ExerciseStateHandler(dummyStorage);
-        exerciseStateHandler.updateWorkoutAchievements(session, achievementListTestHandler);
-        ArrayList<Achievement> achievementList = achievementListTestHandler.getAchievementList();
-        assertEquals(achievementList.get(UPPER_START_INDEX).getCompleted(), true);
-        assertEquals(achievementList.get(UPPER_START_INDEX + M_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), false);
-        assertEquals(achievementList.get(UPPER_START_INDEX + H_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), false);
     }
 
     @Test

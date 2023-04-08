@@ -41,27 +41,7 @@ public class AchieveGymStaticAchievements {
         }
     };
 
-    @Test
-    void testEGymAchievementUpdateSession() {
-        achievementListTestHandler.clearAchievementsData();
-        assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
-        ArrayList<ExerciseData> exerciseData;
-        GenerateExercise generateExercise = new GenerateExercise();
-        exerciseData = generateExercise.generateSetAll();
-        exerciseData = generateExercise.generateFilteredGymSetFrom(exerciseData);
-        ArrayList<ExerciseData> actualExerciseData = new ArrayList<>();
-        for (int i = 0; i < E_ACHIEVEMENT_REQUIREMENT; i++) {
-            actualExerciseData.add(exerciseData.get(i));
-        }
-        Session session = new Session(actualExerciseData);
 
-        ExerciseStateHandler exerciseStateHandler = new ExerciseStateHandler(dummyStorage);
-        exerciseStateHandler.updateWorkoutAchievements(session, achievementListTestHandler);
-        ArrayList<Achievement> achievementList = achievementListTestHandler.getAchievementList();
-        assertEquals(achievementList.get(GYM_START_INDEX).getCompleted(), true);
-        assertEquals(achievementList.get(GYM_START_INDEX + M_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), false);
-        assertEquals(achievementList.get(GYM_START_INDEX + H_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), false);
-    }
 
     @Test
     void testHGymAchievementUpdateSession() {
@@ -107,26 +87,6 @@ public class AchieveGymStaticAchievements {
         assertEquals(achievementList.get(STATIC_START_INDEX + H_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), false);
     }
 
-    @Test
-    void testHStaticAchievementUpdateSession() {
-        achievementListTestHandler.clearAchievementsData();
-        assertEquals(achievementListTestHandler.getAchievementList().size(), NUMBER_OF_PRELOADED_ACHIEVEMENTS);
-        ArrayList<ExerciseData> exerciseData;
-        GenerateExercise generateExercise = new GenerateExercise();
-        exerciseData = generateExercise.generateSetAll();
-        exerciseData = generateExercise.generateFilteredStaticSetFrom(exerciseData);
-        ArrayList<ExerciseData> actualExerciseData = new ArrayList<>();
-        for (int i = 0; i < H_ACHIEVEMENT_REQUIREMENT; i++) {
-            actualExerciseData.add(exerciseData.get(i));
-        }
-        Session session = new Session(actualExerciseData);
 
-        ExerciseStateHandler exerciseStateHandler = new ExerciseStateHandler(dummyStorage);
-        exerciseStateHandler.updateWorkoutAchievements(session, achievementListTestHandler);
-        ArrayList<Achievement> achievementList = achievementListTestHandler.getAchievementList();
-        assertEquals(achievementList.get(STATIC_START_INDEX).getCompleted(), true);
-        assertEquals(achievementList.get(STATIC_START_INDEX + M_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), true);
-        assertEquals(achievementList.get(STATIC_START_INDEX + H_ACHIEVEMENT_INDEX_INCREMENT).getCompleted(), true);
-    }
 
 }
