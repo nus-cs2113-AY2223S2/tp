@@ -122,28 +122,28 @@ update QUERY
 
 - `QUERY` can be the card's date or be part of the card's question or answer.
 
-  - A list of cards that contain this query will be listed, with an index assigned
-    to each.
+    - A list of cards that contain this query will be listed, with an index assigned
+      to each.
 
-    - The user can then type the index of the card they wish to update with the
-      following syntax
+        - The user can then type the index of the card they wish to update with the
+          following syntax
 
+  ```
+  INDEX /q NEW_QUESTION
+  ```
+
+
+- This updates the question of the flashcard to `NEW_QUESTION`
+
+    - To update the answer of the flashcard, use `/a`
       ```
-      INDEX /q NEW_QUESTION
+      INDEX /a NEW_ANSWER
       ```
-  
-    - This updates the question of the flashcard to `NEW_QUESTION`
 
-      - To update the answer of the flashcard, use `/a` 
-          ```
-          INDEX /a NEW_ANSWER
-          ```
-    
-      - To update the due date of the flashcard, use `/d`
+    - To update the due date of the flashcard, use `/d`
 
-        ```
-        INDEX /d NEW_DUE_DATE
-        ```
+          INDEX /d NEW_DUE_DATE
+
         - `NEW_DUE_DATE` has to be in the format `yyyy-mm-dd`
         - The user can only update either one of the question, answer or due date at a time
         - Since a slash character (`/`) can be interpreted as a command option,
@@ -190,8 +190,9 @@ Found 2 cards with the query "fruit":
     A: Durian
 [2] Q: What is the Japanese word for "fruit"?
     A: 果物
-Which one do you want to delete? 2
-Understood. The card has been deleted.
+Which one do you want to delete?
+> 2
+Got it. Deleted the flashcard at index 2
 ```
 
 ### Delete all flashcards in the list
@@ -221,7 +222,7 @@ Your list of flashcards is empty.
 list all
 ```
 
-Display the questions and answers for all the flashcards in the list that have been added by the user, 
+Display the questions and answers for all the flashcards in the list that have been added by the user,
 regardless of the date.
 
 #### Example
@@ -247,6 +248,7 @@ list DUE_DATE
 ```
 
 Display the questions and answers for all the flashcards in the list that has the due date specified by the user
+
 - `DUE_DATE` has to be in the format `yyyy-mm-dd`
 
 ```
@@ -294,6 +296,7 @@ list:    lists out the questions and answers in the list of flashcards.
 clear:   Deletes all the flashcards in the list.
 bye:     Exit the program.
 ```
+
 ### Exit program
 
 ```

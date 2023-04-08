@@ -6,6 +6,10 @@ import com.clanki.ui.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * A command that removes an element from the ArrayList of
+ * flashcards.
+ */
 public class DeleteCommand extends Command {
 
     ArrayList<Flashcard> matchingFlashcards = new ArrayList<>();
@@ -41,13 +45,19 @@ public class DeleteCommand extends Command {
     public void execute(FlashcardList flashcardList, Ui display) {
         ArrayList<Flashcard> flashcards = flashcardList.getFlashCards();
         findFlashcard(flashcards, query);
-        System.out.println(
-                "Found " + matchingFlashcards.size() + " cards with query \"" + query + "\":");
-        printFlashCardList(matchingFlashcards);
-        System.out.println("Which one do you want to delete?");
+        if (matchingFlashcards.size() != 0) {
+            System.out.println(
+                    "Found " + matchingFlashcards.size() + " cards with query \"" + query + "\":");
+            printFlashCardList(matchingFlashcards);
+            System.out.println("Which one do you want to delete?");
 
-        int index = Integer.parseInt(display.getUserCommand());
-        flashcardList.deleteFlashcard(flashcards.indexOf(matchingFlashcards.get(index - 1)));
-        display.printSuccessfulDelete(index);
+            int index = Integer.parseInt(display.getUserCommand());
+            flashcardList.deleteFlashcard(flashcards.indexOf(matchingFlashcards.get(index - 1)));
+            display.printSuccessfulDelete(index);
+        } else {
+            System.out.println("Sorry! No flashcards matching " + '\"' + query + "\" was found. Please try again.");
+        }
+
+
     }
 }

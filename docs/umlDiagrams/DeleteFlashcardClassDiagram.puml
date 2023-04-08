@@ -1,0 +1,22 @@
+@startuml
+
+'https://plantuml.com/class-diagram
+abstract Command
+Command : execute(flashcardList: FlashcardList, display: Ui) : void
+class DeleteCommand
+DeleteCommand : execute(flashcardList: FlashcardList, display: Ui) : void
+class Ui
+Ui : printSuccessfulDeleteMessage() : void
+class FlashcardList
+FlashcardList : deleteFlashcard(index : int) : void
+class Flashcard
+class Parser
+Parser : parseCommands (userInput : String) : Command
+
+Command <|-- DeleteCommand
+DeleteCommand ..> Ui : calls >
+DeleteCommand ..> FlashcardList : calls >
+Parser ..> DeleteCommand : creates >
+FlashcardList --> "*" Flashcard
+
+@enduml

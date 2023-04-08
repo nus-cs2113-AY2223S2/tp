@@ -31,7 +31,7 @@ Given below are my contribution to the project.
     - Credits: the code is improved on the storage code from
       [addressbook-level2](https://github.com/se-edu/addressbook-level2).
 - **New feature:** Added a help menu
-    - What it does: provides the user some infomation about what are the commands they can use for this application.
+    - What it does: provides the user some information about what are the commands they can use for this application.
     - Justification: This feature improves the product, as the user is now able to use the product independently,
       without the need to look up any user guide of the product.
 
