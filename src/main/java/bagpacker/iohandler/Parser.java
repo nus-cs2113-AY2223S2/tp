@@ -17,6 +17,7 @@ import bagpacker.commands.HelpCommand;
 import bagpacker.commands.UnpackAllCommand;
 import bagpacker.exception.EmptyInputException;
 import bagpacker.exception.InvalidIndexException;
+import bagpacker.exception.InvalidQuantityException;
 import bagpacker.exception.InvalidVariablesException;
 import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
@@ -193,32 +194,6 @@ public class Parser {
     }
 
     /**
-     * Returns a string which represents the relevant variable depending on the command - "add" will return the item
-     * name - "delete", "pack", "unpack" will return item index
-     *
-     * @param command used to determine the type of variable to return
-     * @return itemVariable which is the index OR name of the item in packing list
-     * @throws InvalidIndexException when the item index is not valid
-     */
-    public static String getVariable(String command) throws InvalidVariablesException, InvalidIndexException {
-        String itemVariable;
-        try {
-            if (command.equals("add")) {
-                itemVariable = getItemName();
-            } else if (command.equals("find")) {
-                itemVariable = getKeyword();
-            } else {
-                itemVariable = getItemIndex();
-            }
-        } catch (InvalidVariablesException e) {
-            throw new InvalidVariablesException();
-        } catch (InvalidIndexException e) {
-            throw new InvalidIndexException();
-        }
-        return itemVariable;
-    }
-
-    /**
      * Gets the keyword required for {@link FindCommand} constructor
      *
      * @return keyword to search for in item name
@@ -361,38 +336,38 @@ public class Parser {
      *         else an IncorrectCommand objected is created to be executed
      */
     public static Command createEditQuantityObj() {
+        int index = 1;
         try {
             String[] quantityAndIndex = getEditQuantityVariables();
             int newTotalQuantity = Integer.parseInt(quantityAndIndex[0]);
             if (newTotalQuantity < 1 | newTotalQuantity > 1000000) {
-                throw new InvalidVariablesException();
+                throw new InvalidQuantityException();
             }
-            int index = Integer.parseInt(quantityAndIndex[1]);
-            if (index < 1 || index > PackingList.getItemList().size()) {
+            index = Integer.parseInt(quantityAndIndex[1]);
+            if (index < 1 | index > PackingList.getItemList().size()) {
                 throw new InvalidIndexException();
             }
             int packedQuantity = PackingList.get(index - 1).getPackedQuantity();
             if (newTotalQuantity < packedQuantity) {
-                throw new InvalidIndexException();
+                throw new InvalidQuantityException();
             }
             return new EditQuantityCommand(newTotalQuantity, index);
         } catch (NumberFormatException e) {
-            return new IncorrectCommand("Invalid Integer detected",
-                    "BagPacker only supports the use of positive integers of at most 1000000");
+            return new IncorrectCommand("Invalid Editquantity Command Input",
+                    "How to use editquantity command:\n" + EditQuantityCommand.HELP_MSG);
         } catch (InvalidIndexException e) {
-            return new IncorrectCommand("Invalid item quantity or index",
-                    "For QUANTITY, try to input a positive integer that is at least the quantity packed.\n"
-                            + "For INDEX, try to input a positive integer that is at most "
+            return new IncorrectCommand("Invalid Item Index",
+                    "Try to input a positive integer that is at most "
                             + PackingList.getItemList().size());
-        } catch (InvalidVariablesException e) {
-            return new IncorrectCommand("Invalid Quantity detected",
-                    "editquantity only supports the use of positive integers of at most 1000000");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return new IncorrectCommand("Missing or additional inputs",
-                    "A valid quantity and index are required.");
+        }catch (InvalidQuantityException e){
+            return new IncorrectCommand("Invalid Item Quantity",
+                    "Can only change the quantity to something greater than what is currently packed and " +
+                            "less than 1,000,000");
+        } catch (ArrayIndexOutOfBoundsException | InvalidVariablesException e) {
+            return new IncorrectCommand("Invalid Editquantity Command Input",
+                    "How to use editquantity command:\n" + EditQuantityCommand.HELP_MSG);
         }
     }
-
     /**
      * Parses the input variables to be used by {@link EditQuantityCommand} when constructed in createEditQuantityObj
      *
@@ -400,11 +375,11 @@ public class Parser {
      *         item index in the packing list
      * @throws InvalidIndexException invalid number of variables
      */
-    public static String[] getEditQuantityVariables() throws InvalidIndexException {
+    public static String[] getEditQuantityVariables() throws InvalidVariablesException {
         String[] inputStringList = fullInput.trim().split(" ", 2);
         String[] inputVariables = inputStringList[1].trim().split("\\s+/of\\s+");
         if (inputVariables.length != 2) {
-            throw new InvalidIndexException();
+            throw new InvalidVariablesException();
         }
         return inputVariables;
     }
