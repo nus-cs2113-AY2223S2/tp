@@ -12,6 +12,7 @@
     * [[Added] Add Pet Stat Feature](#added-add-pet-stat-feature)
       * [Implementation](#implementation)
     * [Remove Pet Stat Command](#remove-pet-stat-command)
+    * [Command Parser](#command-parser)
 * [Appendix: Requirements](#appendix-requirements)
   * [Product scope](#product-scope)
     * [Target user profile](#target-user-profile)
@@ -209,6 +210,25 @@ This feature was implemented like this in order to maximize use of the OOP parad
     <img src="images/RemoveStatCommand.png" alt="Sequence Diagram">
     <br />
     <i>Figure 8: Sequence Diagram for Remove Pet Stat Command</i>
+</p>
+
+### Command Parser
+
+The `CommandParser` class is responsible for parsing the user's input into a `Command` object. It does this by splitting
+the input into its keyword and arguments using Java's Regex Matcher, and then using a switch statement to identify the
+keyword and invoke the respective argument parser.
+
+How the Command Parser works:
+
+1. The user's input is passed into the `parseCommand()` method.
+2. The input is split into its keyword and arguments using Java's Regex Matcher.
+3. The keyword is used to identify the command, and the arguments are passed into the respective argument parser.
+4. The argument parser checks the validity of the arguments, and returns a `Command` object if the arguments are valid.
+
+<p style="text-align:center">
+    <img src="images/CommandParserSequence.png" alt="Sequence Diagram">
+    <br />
+    <i>Figure 9: Sequence Diagram for Add-Stat Command</i>
 </p>
 
 # Appendix: Requirements
