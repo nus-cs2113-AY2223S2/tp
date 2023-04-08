@@ -153,7 +153,13 @@ optimize their spending to achieve their financial goals.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+If you are a NUS Student who wants to prioritize spending and save for the future while enjoying a good campus life,
+MoneyMind is the perfect application for you. It is a simple, easy-to-use application that helps you manage your expenses
+and track your spending habits. You can easily categorize your expenses and view your spending history by category.
+
+As the application is CLI-based, you can easily navigate through the application and perform the necessary tasks if
+you are a fast-typer. You can also use the application on any mainstream OS as long as you have Java 11 or above installed.
+
 
 ## Appendix B: User Stories
 
@@ -170,9 +176,10 @@ optimize their spending to achieve their financial goals.
 1. MoneyMind should work on any mainstream OS as long as it has Java 11 or above installed.
 2. The user is expected to be a fast-typer. MoneyMind is not optimised for users that are not 
 used to CLI applications.
-3. The user is expected to have a good habit of constantly and systematically recording their
+3. This application is not built for mobile devices. It is recommended to use a laptop.
+4. The user is expected to have a good habit of constantly and systematically recording their
 expenses. MoneyMind is not optimised for users that only record their expense on ad-hoc basis.
-4. Other than the above, please enjoy using MoneyMind!
+5. Other than the above, please enjoy using MoneyMind!
 
 ## Appendix D: Glossary
 
