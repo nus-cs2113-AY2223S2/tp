@@ -1,7 +1,6 @@
 package functionalities.commands;
 import exception.SniffException;
 import functionalities.SniffTasks;
-import functionalities.ui.Ui;
 
 
 public class MarkCommand extends Command {
