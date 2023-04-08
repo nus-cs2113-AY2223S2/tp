@@ -10,7 +10,9 @@ cd text-ui-test
 
 java  -jar $(find ../build/libs/ -mindepth 1 -print -quit) < input.txt > ACTUAL.TXT
 
-diff EXPECTED-UNIX.TXT ACTUAL.TXT
+rm data.txt
+
+diff <(tr -d '\r' <ACTUAL.TXT) <(tr -d '\r' <EXPECTED.TXT)
 if [ $? -eq 0 ]
 then
     echo "Test passed!"

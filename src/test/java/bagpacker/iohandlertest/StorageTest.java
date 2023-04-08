@@ -19,7 +19,6 @@ import java.io.PrintStream;
  */
 public class StorageTest {
     //@@author sunilphua
-
     private static final String properSave = "./src/test/data/properSaveDirectory.txt";
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private Ui ui;
@@ -32,7 +31,6 @@ public class StorageTest {
         System.setOut(standardOut);
     }
     //@@author coregano
-
     @Test
     public void sampleTest() throws FileNotFoundException {
         Storage storage = new Storage(properSave);
@@ -56,5 +54,7 @@ public class StorageTest {
                 & outputStreamCaptor.toString().trim().contains(listLine3));
         tearDown();
         cleanList.execute(packingList1);
+        DeleteListCommand delList = new DeleteListCommand();
+        delList.execute(packingList1);
     }
 }
