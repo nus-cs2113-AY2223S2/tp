@@ -389,7 +389,7 @@ public class SniffTasks {
                 Ui.printAppointmentAlreadyUnMarkedMessage();
             }
             else{
-                APPOINTMENTS.get(index).setIsDone(true);
+                APPOINTMENTS.get(index).setIsDone(false);
                 Ui.printAppointmentUnMarkMessage();
             }
         } catch (IndexOutOfBoundsException e) {
