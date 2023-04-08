@@ -1,59 +1,63 @@
 package seedu.workout;
 
+import seedu.parser.DateFormatter;
+import seedu.ui.Ui;
+
 import java.util.ArrayList;
 import java.util.Date;
 
+//@@author calebcjl
+/**
+ * Represents a workout. It stores the date, name and list of exercises of the workout.
+ */
 public class Workout {
-    private static final int EMPTY = 0;
-    private static final String EMPTY_EXERCISE_LIST_MESSAGE = "No exercise in workout.";
-    private static final String LINE_SEPARATOR = "----------------------------------";
-    private static final String EXERCISE_LIST_HEADER =
-            "Here are the list of exercises in your workout:" + System.lineSeparator();
     private Date date;
     private String workoutName;
-    private ArrayList<Exercise> exercises;
-
-    private boolean hasExercises = false;
+    private final ArrayList<Exercise> exercises;
 
     public Workout() {
         exercises = new ArrayList<>();
     }
 
-    //@@ author ZIZI-czh
-    public Workout(String workoutName) {
+
+    public Workout(Date date, String workoutName) {
+        this.date = date;
         this.workoutName = workoutName;
         exercises = new ArrayList<>();
     }
 
-
-    //@@ author ZIZI-czh
     public String getWorkoutName() {
         return workoutName;
     }
 
-    //@@ author ZIZI-czh
-
-    //@@ author ZIZI-czh
-    public void addExercise(Exercise exercise) {
-        exercises.add(exercise);
-        // hasExercises = true;
+    public Date getDate() {
+        return date;
     }
 
-    //@@ author ZIZI-czh
     public ArrayList<Exercise> getExercises() {
         return exercises;
     }
 
+    public void addExercise(Exercise exercise) {
+        exercises.add(exercise);
+    }
 
-    //@@ author ZIZI-czh
+    /**
+     * Returns the list of exercises in the workout.
+     *
+     * @return List of exercises.
+     */
     @Override
     public String toString() {
-        StringBuilder exercisesList = new StringBuilder();
-        exercisesList.append("Workout: ").append(workoutName).append(System.lineSeparator());
+        String header = "Here are the list of exercises for " + getWorkoutName() + " on "
+                + DateFormatter.dateToString(date) + '.' + System.lineSeparator();
+        StringBuilder exercisesList = new StringBuilder(header);
+        int counter = 1;
         for (Exercise exercise : exercises) {
-            exercisesList.append(exercise.toString()).append(System.lineSeparator());
+            exercisesList.append(counter).append(". ").append(exercise.toString()).append(System.lineSeparator());
+            counter += 1;
         }
-        return exercisesList.toString();
+        return exercisesList.append(Ui.line()).toString();
     }
 }
 

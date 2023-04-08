@@ -1,63 +1,37 @@
 package seedu.commands;
 
-
-import seedu.calorietracker.CaloriesRecorder;
+import seedu.calorietracker.CalorieTracker;
 import seedu.calorietracker.FoodList;
-import seedu.workout.Day;
-import seedu.workout.Workout;
+import seedu.exceptions.InvalidArgumentException;
+
 import seedu.workout.WorkoutList;
 
-import java.util.Date;
-import java.util.HashMap;
-
+//@@author calebcjl
+/**
+ * Represents a command entered by user.
+ */
 public class Command {
-
-    protected static boolean isDayEntered;
-    //protected static Date date;
-    protected static boolean isWorkoutEntered;
-    protected WorkoutList workoutList = new WorkoutList();
-    //protected CalorieTracker calorieTracker;
-    protected CaloriesRecorder caloriesRecorder;
+    protected WorkoutList workoutList;
+    protected CalorieTracker calorieTracker;
     protected FoodList foodList;
-    protected HashMap<Date, Day> workouts;
-    protected Workout workoutForOneDay = new Workout();
-    protected Day day;
 
-
-    //@@ author ZIZI-czh
     public Command() {
-        workouts = new HashMap<>();
-        day = workoutList.getSingleWorkout();
     }
 
-    //@@ author ZIZI-czh
-    public static void setIsDayEntered(boolean isDayEnter) {
-        isDayEntered = isDayEnter;
-    }
-
-    //@@ author ZIZI-czh
-    public static void setIsWorkoutEntered(boolean isWorkoutEnter) {
-        isWorkoutEntered = isWorkoutEnter;
-    }
-
-    public WorkoutList getWorkoutList() {
-        return workoutList;
-    }
-
-    public void setData(WorkoutList workoutList, CaloriesRecorder caloriesRecorder, FoodList foodList)
-            throws IllegalArgumentException {
-        if (workoutList == null || caloriesRecorder == null) {
-            throw new IllegalArgumentException("WorkoutList cannot be null.");
-        }
+    /**
+     * Sets data for commands to execute on.
+     *
+     * @param workoutList Workout list.
+     * @param calorieTracker Calorie tracker.
+     * @param foodList Food list.
+     */
+    public void setData(WorkoutList workoutList, CalorieTracker calorieTracker, FoodList foodList) {
         this.workoutList = workoutList;
-        //  this.calorieTracker = calorieTracker;
-        this.caloriesRecorder = caloriesRecorder;
+        this.calorieTracker = calorieTracker;
         this.foodList = foodList;
-
     }
 
-
-    public String execute() {
+    public String execute() throws InvalidArgumentException {
         throw new UnsupportedOperationException("This method is to be implemented by child classes");
     }
 }

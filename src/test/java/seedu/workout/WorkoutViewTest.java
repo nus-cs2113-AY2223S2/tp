@@ -1,7 +1,5 @@
 package seedu.workout;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import seedu.commands.workoutcommands.ViewWorkoutCommand;
 import seedu.parser.DateFormatter;
 import seedu.ui.Ui;
@@ -50,7 +48,7 @@ public class WorkoutViewTest {
                 + System.lineSeparator()
                 + "2. Name: " + exercise2.getName() + ", weight: "
                 + exercise2.getWeight() + ", rps: " + exercise2.getRepsPerSet()
-                + System.lineSeparator() + Ui.showSeparator() + System.lineSeparator();
+                + System.lineSeparator() + Ui.lineSeparator() + System.lineSeparator();
         assertEquals(expectedOutput, result);
     }
     //@@ author ZIZI-czh

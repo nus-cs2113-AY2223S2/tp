@@ -1,26 +1,33 @@
 package seedu.commands.workoutcommands;
 
-
 import seedu.commands.Command;
 
+import static seedu.workout.WorkoutList.NO_CURRENT_WORKOUT;
+
+/**
+ * Represents command to end the current workout.
+ */
 public class EndWorkoutCommand extends Command {
-   /* private static final String WORKOUT_COMPLETE_MESSAGE = "Great job completing your workout!";
-    private boolean isEnd = false;
+    private static final String NO_CURRENT_WORKOUT_MESSAGE = "No ongoing workout to end!";
+    private static final String WORKOUT_COMPLETE_MESSAGE = "Great job completing your workout!";
 
     public EndWorkoutCommand() {
     }
 
-    public static boolean isEnd() {
-        return isEnd;
-    }
-
+    /**
+     * Ends the current workout.
+     * If there is no current workout ongoing, no workout will be ended.
+     *
+     * @return Returns workout completed message if current workout is ended. Returns no current workout
+     * message otherwise.
+     */
     @Override
     public String execute() {
-        workoutList.setCurrentWorkoutIndex(WorkoutList.NO_CURRENT_WORKOUT);
-        isEnd = true;
+        if (workoutList.getCurrentWorkoutIndex() == NO_CURRENT_WORKOUT) {
+            return NO_CURRENT_WORKOUT_MESSAGE;
+        }
+        workoutList.setCurrentWorkoutIndex(NO_CURRENT_WORKOUT);
         return WORKOUT_COMPLETE_MESSAGE;
-    }*/
-
-
+    }
 }
 

@@ -1,61 +1,42 @@
 package seedu.commands.workoutcommands;
 
-
 import seedu.commands.Command;
-import seedu.workout.Day;
-import seedu.workout.Workout;
+import seedu.exceptions.InvalidArgumentException;
+import seedu.parser.DateFormatter;
 
 import java.util.Date;
-import java.util.HashMap;
 
+import static seedu.workout.WorkoutList.NO_CURRENT_WORKOUT;
 
-//@@ author ZIZI-czh
+//@@author calebcjl
+/**
+ * Represents command to start a new workout.
+ */
 public class StartWorkoutCommand extends Command {
-    private static final String START_WORKOUT_MESSAGE = "Started new workout."
-            + System.lineSeparator()
-            + "Use add command to add exercises to your workout!";
+    private final String ONGOING_WORKOUT_MESSAGE = "There is already an ongoing workout!";
+    private final String workoutName;
+    private final Date date;
 
-    private static final String FAIL_TO_START_WORKOUT = "Please enter the day for your workout record first.";
-
-    private static final String WORKOUT_START_BEFORE_FIRST = "You had started workout with the same name before, ";
-    private static final String WORKOUT_START_BEFORE_SECOND = "Please use '/wadd' to add " +
-            "exercises to the existing workout.";
-
-    private static final String STARTED_WORKOUT = "Great! You have added a new workout for ";
-    private static final String SYMBOL = ".";
-    private static boolean isWorkoutEntered;
-    private String workoutName;
-
-
-    //@@ author ZIZI-czh
-    public StartWorkoutCommand(String workoutName) {
-        super();
+    public StartWorkoutCommand(Date date, String workoutName) {
+        this.date = date;
         this.workoutName = workoutName;
     }
 
-
-    //@@ author ZIZI-czh
+    /**
+     * Executes the command to start a new workout.
+     * Only start a new workout if there is no current workout ongoing.
+     * It will not start the workout if there already exists a workout with the same name and date.
+     *
+     * @return Workout start message if workout is started. Returns ongoing workout message.
+     * @throws InvalidArgumentException If name and date of workout to be added is the same as a workout that
+     * is already in the workout list.
+     */
     @Override
-    public String execute() {
-        StringBuilder stringBuilder = new StringBuilder();
-        HashMap<Date, Day> workouts = workoutList.getWorkouts();
-        //update the workout name
-        day.setWorkoutName(workoutName);
-        if (isDayEntered) {
-            Day singleWorkout = workoutList.getSingleWorkout();
-            if (!workouts.get(workoutList.getDate()).getWorkoutsByDate().containsKey(workoutName)) {
-                singleWorkout.addWorkout(workoutName, new Workout(workoutName));
-                stringBuilder.append(STARTED_WORKOUT)
-                        .append(workoutName)
-                        .append(SYMBOL);
-            } else {
-                stringBuilder.append(WORKOUT_START_BEFORE_FIRST)
-                        .append(WORKOUT_START_BEFORE_SECOND);
-            }
-            return stringBuilder.toString();
-        } else {
-            return FAIL_TO_START_WORKOUT;
+    public String execute() throws InvalidArgumentException {
+        if (workoutList.getCurrentWorkoutIndex() != NO_CURRENT_WORKOUT) {
+            return ONGOING_WORKOUT_MESSAGE;
         }
-
+        workoutList.startWorkout(date, workoutName);
+        return workoutName + " started on " + DateFormatter.dateToString(date) + '.';
     }
 }
