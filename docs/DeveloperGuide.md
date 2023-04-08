@@ -159,14 +159,15 @@ Given below is an example usage scenario and how the add task mechanism behaves 
 
 **Step 1.**
 
-The user enters the command `event concert /from 2023-06-06T20:00 /to 2023-06-06T22:00`.  
-This is to add a `Task` with the description "concert" on Jun 6 2023 from 8-10pm to their TaskList.
-The String containing the command is parsed in `Parser` and determined to be an `AddCommand`.
+The user enters the command `event concert -from 05-06-2023-20:00 -to 05-06-2023-22:00`.  
+This is to add a `Task` with the description "concert" on Jun 5 2023 from 8-10pm to their TaskList.
+`Apollo` calls `Parser#getCommand()`, where the user command String is parsed and determined to be an `AddCommand`.
 
 **Step 2.**
 
-Within `Parser`, an `AddCommand` is initialised with the String `command` "event".
-The remaining params of the command are further parsed into Strings: `desc` "concert" (description), `from`
+Within `Parser`, an `AddCommand` is initialised and a logger for the command is set up. 
+Variables within the `AddCommand` are then assigned. The String `command` is set to "event".
+The rest of the user's command are further parsed into Strings: `desc` "concert" (description), `from`
 "2023-06-06T20:00" (start date), and `to` "2023-06-06T22:00" (end date) based on the delimiters "/from" and "/to".
 - For `command` "deadline", remaining params are parsed into `desc` and `by` (due date) based on the delimiter "/by".
 - For `command` "todo", all remaining params are parsed into `desc`.
@@ -180,34 +181,40 @@ In the event of the following, an error message is printed and no more steps are
 
 **Step 4.**
 
-`Command#execute()` is called. This in turn calls `AddCommand#addTask()`.
-`addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into LocalDateTimes.
+`Apollo` calls `Command#execute()`, which is overwritten by `AddCommand#execute()`. 
+This in turn calls `AddCommand#addTask()`.
+
+**Step 5.**
+`addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into `LocalDateTime`s.
+- For `Deadline`, the String `by` will be parsed into a `LocalDateTime`.
+- For `Todo`, no dates need to be parsed.
 In the event of the following, an error message is printed and no more steps are executed.
 - String for date cannot be parsed into LocalDateTime (wrong format of input)
 - Task occurs entirely before the current date
 - (for `Event`) Start date occurs after end date
 
-**Step 5.**
-
-`addTask()` checks if the initialised `Event` clashes with any existing tasks. If so,
-`Ui#printClashingEventMessage()` is called to print a warning message.
-
 **Step 6.**
 
-Similarly, `addTask()` also checks if the initialised `Event` clashes with any existing lessons. If so,
-`Ui#printClashingEventModuleMessage()` is called to print a warning message.
+`addTask()` checks if the initialised `Task` clashes with any existing tasks. If so,
+`Ui#printClashingEventMessage()` is called to print a warning message.
 
 **Step 7.**
 
-The initialised `Event` is added to the `TaskList`. Return to `AddCommand#execute`.
+Similarly, `addTask()` also checks if the initialised `Task` clashes with any existing lessons. If so,
+`Ui#printClashingEventModuleMessage()` is called to print a warning message.
 
 **Step 8.**
 
-If the Task has been added successfully, `Ui#printAddMessage()` prints a success message.
+The initialised `Task` is added to the `TaskList`. Return to `execute()`.
 
 **Step 9.**
 
-`Storage#updateTask()` is called to update the local save file to reflect the changes.
+`execute()` ensures that the `Task` has been added successfully, 
+then calls `Ui#printAddMessage()` which prints a success message.
+
+**Step 10.**
+
+`execute()` calls `Storage#updateTask()` to update the local save file `save.txt` to reflect the changes.
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/AddCommand-AddCommand__for_Tasks_.png?raw=true)
 
