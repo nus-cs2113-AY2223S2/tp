@@ -76,7 +76,7 @@ public final class MessageConstants {
             + "Use /help for a list of supported commands!";
     public static final String MESSAGE_INVALID_COMMAND = "Please enter a valid command!" + NEWLINE + NEWLINE
             + "Possible commands are:" + NEWLINE
-            + "/add, /delete, /view, /edit, /help, /bye" + NEWLINE
+            + "'/add' '/delete' '/view' '/edit' '/help' '/bye'" + NEWLINE
             + "Use /help for more information.";
     public static final String MESSAGE_INVALID_CATEGORY = "Please specify a valid category!" + NEWLINE + NEWLINE
             + "The available categories are:" + NEWLINE
