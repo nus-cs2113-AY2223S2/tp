@@ -228,14 +228,16 @@ the step number in the list. It is further converted to the 0-based indexing in 
 ![Sequence Diagram for Recipe Edit Step](./PlantUML/EditRecipeSteps.png)
 
 ### Recipe Ingredients Edit Feature
-
-### Recipe View Feature
 #### Implementation
 
 #### Example Usage
 
 > The following sequence diagram shows how the recipe ingredients edit feature works:
 ![Sequence Diagram for Recipe Ingredients Step](./PlantUML/EditRecipeIngredients.png)
+
+
+### Recipe View Feature
+#### Implementation
 
 Viewing recipes is handled by the `command`, `recipe` and `ui` classes
 The following operations are implemented:
