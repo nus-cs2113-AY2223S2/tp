@@ -2,67 +2,80 @@
 'https://plantuml.com/sequence-diagram
 
 participant ":SellParser"
-activate ":SellParser"
+":SellParser" -> ":SellCommand"**:SellCommand()
+activate ":SellCommand"
+":SellCommand" --> ":SellParser"
+deactivate ":SellCommand"
 ":SellParser" -> ":SellCommand": run()
-activate ":SellCommand"
-":SellCommand"->":SellCommand": sellItem()
-activate ":SellCommand"
-ref over ":SellCommand": Retrieve Item from \n Hashmap and keep \n track of previous Quantity Value.
-":SellCommand" -> ":SellCommand": checkSellCommandLength()
-activate ":SellCommand"
 
-alt Command Length != 2
-ref over ":SellCommand": Handle MissingParameters \n Exception
-end
+group sd Deduct Quantity of the Item
+    activate ":SellCommand"
+    ":SellCommand"->":SellCommand": sellItem()
+    activate ":SellCommand" #Cyan
+    ref over ":SellCommand": Retrieve Item from \n Hashmap and keep \n track of previous Quantity Value.
+    ":SellCommand" -> ":SellCommand": checkSellCommandLength()
+    activate ":SellCommand" #Green
+
+    alt Command Length != 2
+    ref over ":SellCommand": Handle MissingParameters \n Exception
+    end
 
 
-activate ":SellCommand"
-":SellCommand" --> ":SellCommand"
-deactivate ":SellCommand"
-":SellCommand" -> ":SellCommand": updateItemQuantity()
-activate ":SellCommand"
-":SellCommand" -> ":SellCommand": handleUserSellCommands()
-activate ":SellCommand"
-alt Quantity Deducted > 0 && Quantity Deducted < Current Quantity
-ref over ":SellCommand"
-Update the Quantity of Item if user input is valid
-end
-else Quantity Deducted > Current Quantity || Quantity Deducted <= 0
-ref over ":SellCommand": Handle SellErrorException
-end
-":SellCommand" --> ":SellCommand"
-deactivate ":SellCommand"
-":SellCommand" --> ":SellCommand"
-deactivate ":SellCommand"
-":SellCommand" --> ":SellCommand"
-deactivate ":SellCommand"
+    activate ":SellCommand"
+    ":SellCommand" --> ":SellCommand"
+    deactivate ":SellCommand"
+    ":SellCommand" -> ":SellCommand": updateItemQuantity()
+    activate ":SellCommand" #Green
 
-ref over ":SellCommand": Update Item Hashmap and \n Tree
-alt Valid Inputs
-":SellCommand" -> UI: printSellDetails()
-activate UI
-UI-->":SellCommand"
-deactivate UI
-":SellCommand" --> ":SellParser"
-else Item Does Not Exist
-":SellCommand" -> UI: printItemNotFound()
-activate UI
-UI-->":SellCommand"
-deactivate UI
-":SellCommand" --> ":SellParser"
-else Missing Input Parameters
-":SellCommand" -> UI: printInvalidSellCommand()
-activate UI
-UI-->":SellCommand"
-deactivate UI
-":SellCommand" --> ":SellParser"
-else Invalid Input Parameters
-":SellCommand" -> UI: printInvalidDeductQuantityInput()
-activate UI
-UI-->":SellCommand"
-deactivate UI
-":SellCommand" --> ":SellParser"
+    alt Quantity Deducted > 0 && Quantity Deducted < Current Quantity
+    ref over ":SellCommand"
+    Update the Quantity of Item if user input is valid
+    end
+    else Quantity Deducted > Current Quantity || Quantity Deducted <= 0
+    ref over ":SellCommand": Handle SellErrorException
+    end
+    ":SellCommand" --> ":SellCommand"
+    deactivate ":SellCommand"
+    ":SellCommand" --> ":SellCommand"
+    deactivate ":SellCommand"
+
+    ":SellCommand"->":SellCommand": handleTrie()
+    activate ":SellCommand" #Cyan
+    ref over ":SellCommand": Update Inventory Data Structure
+    ":SellCommand"-->":SellCommand"
+    deactivate ":SellCommand"
+
+    alt Valid Inputs
+        ":SellCommand" -> "<<Class>>\nUI": printSellDetails()
+        activate "<<Class>>\nUI"
+        ref over "<<Class>>\nUI": Print Sell Message
+        "<<Class>>\nUI"-->":SellCommand"
+        deactivate "<<Class>>\nUI"
+    else Item Does Not Exist
+        ":SellCommand" -> "<<Class>>\nUI": printItemNotFound()
+        activate "<<Class>>\nUI"
+        ref over "<<Class>>\nUI": Print Error Message
+        "<<Class>>\nUI"-->":SellCommand"
+        deactivate "<<Class>>\nUI"
+    else Missing Input Parameters
+        ":SellCommand" -> "<<Class>>\nUI": printInvalidSellCommand()
+        activate "<<Class>>\nUI"
+        ref over "<<Class>>\nUI": Print Error Message
+        "<<Class>>\nUI"-->":SellCommand"
+        deactivate "<<Class>>\nUI"
+    else Invalid Input Parameters
+        ":SellCommand" -> "<<Class>>\nUI": printInvalidDeductQuantityInput()
+        activate "<<Class>>\nUI"
+        ref over "<<Class>>\nUI": Print Error Message
+        "<<Class>>\nUI"-->":SellCommand"
+        deactivate "<<Class>>\nUI"
+    end
+    ":SellCommand" -> "<<Class>>\nSessionManager": writeSession()
+    activate "<<Class>>\nSessionManager"
+    ref over "<<Class>>\nSessionManager": Update CSV File
+    "<<Class>>\nSessionManager" --> ":SellCommand"
+    deactivate "<<Class>>\nSessionManager"
 end
-destroy UI
+":SellCommand" --> ":SellParser"
 destroy ":SellCommand"
 @enduml

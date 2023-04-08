@@ -1,0 +1,48 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+":EditParser" -> ":EditCommand" **:EditCommand()
+activate ":EditCommand"
+":EditCommand" --> ":EditParser"
+deactivate ":EditCommand"
+":EditParser" -> ":EditCommand": run()
+activate ":EditCommand"
+":EditCommand" -> ":EditCommand": setEditInfo()
+activate ":EditCommand" #Cyan
+group sd [Process User Edit Input]
+    ":EditCommand"->":EditCommand": updateItemInfo()
+    activate ":EditCommand" #Green
+    ref over ":EditCommand": Update Item Attributes
+    ":EditCommand"-->":EditCommand"
+    deactivate ":EditCommand"
+    ":EditCommand" -> "<<Class>>\nCategoryCommand": updateItemCategory()
+    activate "<<Class>>\nCategoryCommand"
+    ref over "<<Class>>\nCategoryCommand": Update Category Data
+    "<<Class>>\nCategoryCommand" --> ":EditCommand"
+    deactivate "<<Class>>\nCategoryCommand"
+    ":EditCommand"->":EditCommand": handleTrie()
+    activate ":EditCommand" #Green
+    ref over ":EditCommand": Update Inventory Data Structure
+    ":EditCommand"-->":EditCommand"
+    deactivate ":EditCommand"
+    alt No Errors
+        ":EditCommand" -> "<<Class>>\nUI":printEditDetails()
+        activate "<<Class>>\nUI"
+        ref over "<<Class>>\nUI":Print Edit Details
+        "<<Class>>\nUI" --> ":EditCommand"
+        deactivate "<<Class>>\nUI"
+    else Caught Error Exceptions
+        ref over ":EditCommand","<<Class>>\nUI": Print Error Message
+    end
+    ":EditCommand" -> "<<Class>>\nSessionManager": writeSession()
+    activate "<<Class>>\nSessionManager"
+    ref over "<<Class>>\nSessionManager": Update CSV File
+    "<<Class>>\nSessionManager" --> ":EditCommand"
+    deactivate "<<Class>>\nSessionManager"
+
+end
+":EditCommand" --> ":EditCommand"
+deactivate ":EditCommand"
+":EditCommand" --> ":EditParser"
+destroy ":EditCommand"
+@enduml

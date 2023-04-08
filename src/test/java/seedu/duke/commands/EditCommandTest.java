@@ -11,22 +11,28 @@ public class EditCommandTest {
     Inventory inventory;
 
     /**
-     * Test for all scenarios of user inputs for the "edit" command.
+     * Used for creation of a two-item inventory
      */
-    @Test
-    public void editItemTest() {
+    private void addInventory() {
         inventory = new Inventory();
-
         AddParser addParser = new AddParser("n/orange upc/123 qty/5 p/5",inventory);
         addParser.run();
         addParser = new AddParser("n/Cat upc/1111 qty/5 p/5",inventory);
         addParser.run();
+    }
+
+    /**
+     * Test for all scenarios of user inputs for the "edit" command.
+     */
+    @Test
+    public void editItemTest() {
+        addInventory();
 
         //Test 1: Empty Name
         System.out.println("Test 1: Empty Name:");
         EditParser editParser = new EditParser("upc/123 n/", inventory);
         editParser.run();
-        assertEquals("", inventory.getItemInventory().get(0).getName());
+        assertEquals("orange", inventory.getItemInventory().get(0).getName());
 
         //Test 2: Same Quantity, Should have no output
         System.out.println("Test 2: Same Quantity, Should have no output");
@@ -72,10 +78,10 @@ public class EditCommandTest {
         assertEquals("fruit", inventory.getItemInventory().get(0).getCategory());
 
         //Test 9: Create category with multiple spaces. (Not allowed at the moment).
-        System.out.println("Test 9: Create category with multiple spaces. (Not allowed at the moment).");
+        System.out.println("Test 9: Create category with multiple spaces.");
         editParser = new EditParser("upc/123 c/fruit and vegetables", inventory);
         editParser.run();
-        assertEquals("fruit", inventory.getItemInventory().get(0).getCategory());
+        assertEquals("fruit and vegetables", inventory.getItemInventory().get(0).getCategory());
 
         //Test 10: String input as price edit.
         System.out.println("Test 10: String input as price edit.");
@@ -110,5 +116,42 @@ public class EditCommandTest {
         assertEquals(4, inventory.getItemInventory().get(0).getPrice());
         assertEquals(5, inventory.getItemInventory().get(1).getQuantity());
     }
+
+    @Test
+    public void capitalLetterTest() {
+        System.out.println("Test 15: Capital Letters for Category input.");
+        addInventory();
+        EditParser editParser = new EditParser("upc/123 c/Rubber", inventory);
+        editParser.run();
+        assertEquals("Rubber", inventory.getItemInventory().get(0).getCategory());
+    }
+
+    @Test
+    public void multiCategoryInputsTest() {
+        System.out.println("Test 16: Category input with spaces");
+        addInventory();
+        EditParser editParser = new EditParser("upc/123 c/Fruit and Vegetables", inventory);
+        editParser.run();
+        assertEquals("Fruit and Vegetables", inventory.getItemInventory().get(0).getCategory());
+    }
+
+    @Test
+    public void multiCategoryDeclarationTest() {
+        System.out.println("Test 17: Multiple Category edit entry");
+        addInventory();
+        EditParser editParser = new EditParser("upc/123 c/Fruit and Vegetables c/Test", inventory);
+        editParser.run();
+        assertEquals("uncategorized", inventory.getItemInventory().get(0).getCategory());
+    }
+
+    @Test
+    public void emptyCategoryTest() {
+        System.out.println("Test 17: Empty First Character Category Test");
+        addInventory();
+        EditParser editParser = new EditParser("upc/123 c/ Fruit and Vegetables", inventory);
+        editParser.run();
+        assertEquals("uncategorized", inventory.getItemInventory().get(0).getCategory());
+    }
+
 
 }

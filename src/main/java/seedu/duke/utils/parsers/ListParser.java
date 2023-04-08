@@ -9,6 +9,11 @@ public class ListParser extends Parser{
     public ListParser(String rawInput, Inventory inventory){
         super(rawInput, inventory);
     }
+
+
+    /**
+     * Parses the "list" command and prints an error message if the command format is invalid.
+     */
     @Override
     public void run(){
         if (rawInput.isEmpty()) {

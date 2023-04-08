@@ -2,14 +2,18 @@
 'https://plantuml.com/sequence-diagram
 
 participant ":RestockParser"
-activate ":RestockParser"
+":RestockParser" -> ":RestockCommand" **
+activate ":RestockCommand"
+":RestockCommand" --> ":RestockParser"
+deactivate ":RestockCommand"
 ":RestockParser" -> ":RestockCommand": run()
 activate ":RestockCommand"
 ":RestockCommand"->":RestockCommand": restockItem()
-activate ":RestockCommand"
+group sd Increase Quantity of the Item
+activate ":RestockCommand" #Cyan
 ref over ":RestockCommand": Retrieve Item from \n Hashmap and keep \n track of previous Quantity Value.
 ":RestockCommand" -> ":RestockCommand": checkRestockCommandLength()
-activate ":RestockCommand"
+activate ":RestockCommand" #Red
 
 alt Command Length != 2
 ref over ":RestockCommand": Handle Missing Parameters \n Exception
@@ -20,50 +24,58 @@ activate ":RestockCommand"
 ":RestockCommand" --> ":RestockCommand"
 deactivate ":RestockCommand"
 ":RestockCommand" -> ":RestockCommand": updateItemQuantity()
-activate ":RestockCommand"
-":RestockCommand" -> ":RestockCommand": handleUserRestockCommands()
-activate ":RestockCommand"
+activate ":RestockCommand" #Green
+
+
 ref over ":RestockCommand"
 Update the Quantity of Item if user input is valid
 end
-":RestockCommand" --> ":RestockCommand"
-deactivate ":RestockCommand"
-":RestockCommand" --> ":RestockCommand"
-deactivate ":RestockCommand"
+
+
 ":RestockCommand" --> ":RestockCommand"
 deactivate ":RestockCommand"
 
-ref over ":RestockCommand": Update Hashmap and \n Tree
+
+":RestockCommand"->":RestockCommand": handleTrie()
+activate ":RestockCommand" #Green
+ref over ":RestockCommand": Update Inventory Data Structure
+":RestockCommand"-->":RestockCommand"
+deactivate ":RestockCommand"
+
+
 alt Valid Inputs
-":RestockCommand" -> UI: printRestockDetails()
-activate UI
-UI-->":RestockCommand"
-deactivate UI
-":RestockCommand" --> ":RestockParser"
+":RestockCommand" -> "<<Class>>\nUI": printRestockDetails()
+activate "<<Class>>\nUI"
+ref over "<<Class>>\nUI": Print Restock Message
+"<<Class>>\nUI" -->":RestockCommand"
+deactivate "<<Class>>\nUI"
 else Item Does Not Exist
-":RestockCommand" -> UI: printItemNotFound()
-activate UI
-UI-->":RestockCommand"
-deactivate UI
-":RestockCommand" --> ":RestockParser"
+":RestockCommand" -> "<<Class>>\nUI": printItemNotFound()
+activate "<<Class>>\nUI"
+ref over "<<Class>>\nUI": Print Error Message
+"<<Class>>\nUI"-->":RestockCommand"
+deactivate "<<Class>>\nUI"
 else Missing Input Parameters
-":RestockCommand" -> UI: printInvalidRestockCommand()
-activate UI
-UI-->":RestockCommand"
-deactivate UI
-":RestockCommand" --> ":RestockParser"
+":RestockCommand" -> "<<Class>>\nUI": printInvalidRestockCommand()
+activate "<<Class>>\nUI"
+ref over "<<Class>>\nUI": Print Error Message
+"<<Class>>\nUI"-->":RestockCommand"
+deactivate "<<Class>>\nUI"
 else Invalid Input Parameters
-":RestockCommand" -> UI: printInvalidAddQuantityInput()
-activate UI
-UI-->":RestockCommand"
-deactivate UI
-":RestockCommand" --> ":RestockParser"
+":RestockCommand" -> "<<Class>>\nUI": printInvalidAddQuantityInput()
+activate "<<Class>>\nUI"
+ref over "<<Class>>\nUI": Print Error Message
+"<<Class>>\nUI"-->":RestockCommand"
+deactivate "<<Class>>\nUI"
 end
-destroy UI
+":RestockCommand" -> "<<Class>>\nSessionManager": writeSession()
+activate "<<Class>>\nSessionManager"
+ref over "<<Class>>\nSessionManager": Update CSV File
+"<<Class>>\nSessionManager" --> ":RestockCommand"
+deactivate "<<Class>>\nSessionManager"
+":RestockCommand" --> ":RestockCommand"
+deactivate ":RestockCommand"
+end
+":RestockCommand" --> ":RestockParser"
 destroy ":RestockCommand"
-
-
-
-
-
 @enduml
