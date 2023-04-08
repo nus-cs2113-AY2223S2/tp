@@ -65,17 +65,18 @@ Example of usage:
 * `surgery at/Dog an/Russ on/Sarah cn/92929292 sd/2023-10-15 st/09:00 ed/2023-12-15 et/20:00 p/M`
 
 ### Listing appointments: `list`
-Retrieves all the tasks from Sniff Appointments ArrayList and displays it to the user.
+Retrieves all unmarked tasks from Sniff Appointments ArrayList and displays it to the user.
+Unmarked tasks are reflected on the list immediately.
 
 Format: `list`
 
-Example of usage: Displays the Sniff Task List.
+Example of usage: Displays the unmarked appointments from Sniff Task List.
 
 ```
 ______________________________________________________________________
 list
 ______________________________________________________________________
-1.  UID: S67775112T [X] | Priority: HIGH
+1.  UID: S67775112T [ ] | Priority: HIGH
  Animal Name: lulu | Animal Type: cat
  Owner Name: jon | Contact Number: 91919191
  Start Date: 2023-12-12 | Start Time: 19:00
@@ -86,6 +87,31 @@ ______________________________________________________________________
  Owner Name: jon | Contact Number: 91919191
 ______________________________________________________________________
 ```
+
+### Listing archived appointments: `archive`
+Retrieves all marked tasks from Sniff Appointments ArrayList and displays it to the user.
+Marked tasks are reflected on the Archive list immediately.
+
+Format: `archive`
+
+Example of usage: Displays the marked appointments from Sniff Task List.
+
+```
+______________________________________________________________________
+archive
+______________________________________________________________________
+1.  UID: S67775112T [X] | Priority: HIGH
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+ Start Date: 2023-12-12 | Start Time: 19:00
+ End Date: 2023-12-12 | End Time: 20:00
+2.  UID: V34624451A [X] | vaccine: covid
+ Date: 2023-12-12 | Time: 19:00
+ Animal Name: lulu | Animal Type: cat
+ Owner Name: jon | Contact Number: 91919191
+______________________________________________________________________
+```
+
 ### Removing an appointment: `remove`
 Removes an appointment with a specific UID from the appointment manager.
 
