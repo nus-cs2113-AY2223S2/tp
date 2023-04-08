@@ -8,7 +8,7 @@
 * [Features](#span-stylecolor00a36c-features-span)
   * [Adding a new item](#span-stylecolor6495ed-adding-a-new-item--span-add)
   * [Deleting an item](#span-stylecolor6495ed-deleting-an-item--span-delete)
-  * [Packing an items](#span-stylecolor6495ed-packing-some-items--span-pack)
+  * [Packing an item](#span-stylecolor6495ed-packing-some-items--span-pack)
   * [Fully pack an item](#span-stylecolor6495ed-marking-total-quantity-of-item-as-packed--span-packall)
   * [Unpacking an item](#span-stylecolor6495ed-unpacking-some-items--span-unpack)
   * [Editing item quantity](#span-stylecolor6495ed-editing-item-quantity--span-editquantity)
@@ -133,7 +133,7 @@ Format: `packall /of INDEX`
 
 <h5> Expected outcome: </h5>
 
-BagPacker will mark all of the quantities of the third item in the packing list as 'packed'
+BagPacker will mark all the quantities of the third item in the packing list as 'packed'
 
 ```
 Item packed: [20/20] socks
@@ -153,6 +153,27 @@ Format: `unpack QUANTITY /of INDEX`
 
 Example of usage:
 * `unpack 2 /of 5`
+
+### <span style="color:#6495ED">Fully unpack an item:</span> `unpackall`
+Unpacks the total quantity of that item in the packing list.
+
+Format: `unpackall /of INDEX`
+
+* `INDEX` is the index of the item that is being packed.
+  * It must be a positive integer that is more than 0, but no more than the number of items in the list.
+  * An invalid `INDEX` will result in an error message.
+
+<h5> Example of usage: </h5>
+
+`unpackall /of 3`
+
+<h5> Expected outcome: </h5>
+
+BagPacker will mark all the quantities of the third item in the packing list as 'unpacked'
+
+```
+Item unpacked: [0/20] socks
+```
 
 ### <span style="color:#6495ED">Editing item quantity:</span> `editquantity`
 Edits the total quantity of an item to be packed.

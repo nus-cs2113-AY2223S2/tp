@@ -1,8 +1,6 @@
 package bagpacker.iohandlertest;
 import bagpacker.commands.*;
 import bagpacker.exception.EmptyInputException;
-import bagpacker.exception.InvalidIndexException;
-import bagpacker.exception.InvalidVariablesException;
 import bagpacker.iohandler.Parser;
 import bagpacker.packingfunc.PackingList;
 import org.junit.jupiter.api.Test;
@@ -44,6 +42,7 @@ public class ParserTest {
     }
 
     @Test
+
     public void addVariableTest() throws InvalidIndexException, InvalidVariablesException {
         String userInput = "  add this item 1 ";
         InputStream inStream = new ByteArrayInputStream(userInput.getBytes());

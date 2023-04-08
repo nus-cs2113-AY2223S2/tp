@@ -5,12 +5,19 @@ import bagpacker.packingfunc.Item;
 import bagpacker.packingfunc.PackingList;
 
 import java.util.ArrayList;
-
+/**
+ * ListUnpackedCommand class is used to print out all items from the packing list that have not been fully packed
+ *      (respective names, packed & total quantities)
+ */
 public class ListUnpackedCommand extends Command{
     public static final String HELP_MSG =
             "listunpacked: List all items and their total quantities if they are not fully packed yet.\n"
                     + "\tExample: listunpacked";
-
+    /**
+     * Prints all the unpacked items in the packing list
+     *
+     * @param packingList list containing all items
+     */
     @Override
     public void execute(PackingList packingList) {
         ArrayList<Item> unpackedList = getUnpackedList();
@@ -36,7 +43,7 @@ public class ListUnpackedCommand extends Command{
     }
 
     /**
-     * Returns ArrayList of Item {@link Item} that are not yet packed by using
+     * Returns ArrayList of {@link Item} that are not yet packed by using
      *      checkFullyPacked: {@link Item#checkFullyPacked()}
      * @return list of items that are unpacked
      */
