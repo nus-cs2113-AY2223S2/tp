@@ -9,7 +9,7 @@
    - [Contributions to UG](#contributions-to-ug)
    - [Contributions to DG](#contributions-to-dg)
    - [Contribution to team-based tasks](#contribution-to-team-based-tasks)
-   - [Contributions byond the team project](#contributions-beyond-the-team-project)
+   - [Contributions beyond the team project](#contributions-beyond-the-team-project)
 
 ## Overview
 
