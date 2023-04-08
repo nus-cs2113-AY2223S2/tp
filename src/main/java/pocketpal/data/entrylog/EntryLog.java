@@ -164,6 +164,13 @@ public class EntryLog implements Serialisable {
         }
     }
 
+
+    /**
+     * Get the raw List object containing entries entered by the user.
+     * There should not be a need to use this method apart from saving and testing data.
+     *
+     * @return List containing all entries in the EntryLog
+     */
     public List<Entry> getEntriesList() {
         return entries;
     }
