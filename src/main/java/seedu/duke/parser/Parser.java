@@ -362,7 +362,7 @@ public class Parser {
         if (matchCount(descLowerCase,"desc/") != 1){
             return false;
         }
-        if (matchCount(descLowerCase, "--i") != 1 || matchCount(descLowerCase, "--s") != 1) {
+        if (matchCount(descLowerCase, "--i") == 0 && matchCount(descLowerCase, "--s") == 0) {
             return false;
         }
         if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
@@ -379,7 +379,7 @@ public class Parser {
         if (matchCount(descLowerCase,"id/") != 1) {
             return false;
         }
-        if (matchCount(descLowerCase, "--i") != 1 || matchCount(descLowerCase, "--s") != 1) {
+        if (matchCount(descLowerCase, "--i") == 0 && matchCount(descLowerCase, "--s") == 0) {
             return false;
         }
         if (descLowerCase.contains("--is") || descLowerCase.contains("--si")) {
