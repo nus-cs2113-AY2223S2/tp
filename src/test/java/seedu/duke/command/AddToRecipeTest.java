@@ -7,6 +7,7 @@ import seedu.duke.recipe.IngredientList;
 import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.recipe.StepList;
+import seedu.duke.ui.StringLib;
 import seedu.duke.ui.UI;
 
 import java.io.ByteArrayOutputStream;
@@ -17,18 +18,6 @@ public class AddToRecipeTest {
     ByteArrayOutputStream output;
     PrintStream console;
     UI ui;
-    private static final String INGREDIENT_ADD_SUCCESS =
-            "The ingredient has been successfully added to the ingredient list!";
-    private static final String DUPLICATE_INGREDIENT_ERROR =
-            "The ingredient you wish to add is already on the ingredient list and hence cannot be added.";
-    private static final String EMPTY_INGREDIENT_DESCRIPTION_MESSAGE =
-            "Description of ingredient cannot be empty!";
-    private static final String EMPTY_STEP_DESCRIPTION_MESSAGE =
-            "Description of step cannot be empty!";
-    private static final String INVALID_ADD_TO_RECIPE_DESCRIPTION = "OOPS!!!\n" +
-            "Looks like the description of the command is invalid!\n" +
-            "To add elements to the recipe, please follow the following layout:\n" +
-            "\naddtorecipe --[s/i] id/[index] desc/[description of step/ingredient]";
     @BeforeEach
     public void setup() throws Exception {
         RecipeList.createRecipeList();
@@ -49,53 +38,53 @@ public class AddToRecipeTest {
     @Test
     public void testAddToRecipeIngredientNoDesc() throws Exception {
         new Command(CommandType.ADDTORECIPE, "--i id/1").execute(ui);
-        assertEquals(INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
+        assertEquals(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
     }
     @Test
     public void testAddToRecipeIngredientNoId() throws Exception {
         new Command(CommandType.ADDTORECIPE, "--i desc/Egg").execute(ui);
-        assertEquals(INVALID_ADD_TO_RECIPE_DESCRIPTION,output.toString().trim());
+        assertEquals(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION,output.toString().trim());
     }
     @Test
     public void testAddToRecipeIngredientNoIdDesc() throws Exception {
         new Command(CommandType.ADDTORECIPE, "--i").execute(ui);
-        assertEquals(INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
+        assertEquals(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
     }
     @Test
     public void testAddToRecipeNoType() throws Exception {
         new Command(CommandType.ADDTORECIPE, "id/1 desc/Flammenwerfer").execute(ui);
-        assertEquals(INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
+        assertEquals(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
     }
     @Test
     public void testAddToRecipeIngredientWithDupe() throws Exception {
         new Command(CommandType.ADDTORECIPE, "--i id/1 desc/Eggs").execute(ui);
-        assertEquals(INGREDIENT_ADD_SUCCESS,output.toString().trim());
+        assertEquals(StringLib.INGREDIENT_ADD_SUCCESS,output.toString().trim());
         new Command(CommandType.ADDTORECIPE, "--i id/1 desc/Eggs").execute(ui);
-        assertEquals(DUPLICATE_INGREDIENT_ERROR, output.toString().trim());
+        assertEquals(StringLib.DUPLICATE_INGREDIENT_ERROR, output.toString().trim());
     }
     @Test
     public void testAddToRecipeIngredientEmptyDesc() throws Exception {
         new Command(CommandType.ADDTORECIPE, "--i id/1 desc/").execute(ui);
-        assertEquals(EMPTY_INGREDIENT_DESCRIPTION_MESSAGE, output.toString().trim());
+        assertEquals(StringLib.EMPTY_INGREDIENT_DESCRIPTION_MESSAGE, output.toString().trim());
     }
     @Test
     public void testAddToRecipeStepEmptyDesc() throws Exception {
         new Command(CommandType.ADDTORECIPE, "--s id/1 desc/").execute(ui);
-        assertEquals(EMPTY_STEP_DESCRIPTION_MESSAGE, output.toString().trim());
+        assertEquals(StringLib.EMPTY_STEP_DESCRIPTION_MESSAGE, output.toString().trim());
     }
     @Test
     public void testAddToRecipeStepNoDesc() throws Exception {
         new Command(CommandType.ADDTORECIPE, "--s id/1").execute(ui);
-        assertEquals(INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
+        assertEquals(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
     }
     @Test
     public void testAddToRecipeStepNoId() throws Exception {
         new Command(CommandType.ADDTORECIPE, "--s desc/Beat egg").execute(ui);
-        assertEquals(INVALID_ADD_TO_RECIPE_DESCRIPTION,output.toString().trim());
+        assertEquals(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION,output.toString().trim());
     }
     @Test
     public void testAddToRecipeStepNoIdDesc() throws Exception {
         new Command(CommandType.ADDTORECIPE, "--s").execute(ui);
-        assertEquals(INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
+        assertEquals(StringLib.INVALID_ADD_TO_RECIPE_DESCRIPTION, output.toString().trim());
     }
 }
