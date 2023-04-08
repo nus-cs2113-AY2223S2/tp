@@ -21,9 +21,11 @@ public class Ui {
             "           |\n" +
             "         `='";
     private static final String NO_FILE_DETECTED = "No valid save file detected. Starting with empty financial data.";
-    public static final String EMPTY_USERNAME_ERROR_MESSAGE = "Very funny, you should not have an empty name!\nWhat is your name?\n";
-    public static final String WELCOME_NEW_USER_AFTER_USERNAME = "Get started by providing the command \"help\" to learn the functions offered by rainyDay!";
-    public static final String INPUT_CARET = "> ";
+    private static final String EMPTY_USERNAME_ERROR_MESSAGE =
+            "Very funny, you should not have an empty name!\nWhat is your name?\n";
+    private static final String WELCOME_NEW_USER_AFTER_USERNAME = "" +
+            "Get started by providing the command \"help\" to learn the functions offered by rainyDay!";
+    private static final String INPUT_CARET = "> ";
     private static Logger UILogger = Logger.getLogger("UILogger.log");
 
     private final Scanner in;
