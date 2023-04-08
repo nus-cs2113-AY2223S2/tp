@@ -225,6 +225,7 @@ The implementation of the `card tag` feature is as follows :
 - Similarly, `AddCardToTagCommand` will also call `Tag#getUUID()` and add the returned `tagUUID` into `cardToAdd` by
   calling `Card#addTag(tagUUID)`.
 
+The sequence diagram below shows how this feature works:
 ![Tag feature](img/TagListSequence.png)
 
 #### Untag a Card
@@ -260,6 +261,9 @@ The implementation of the `card untag` feature is as follows :
 
 - Finally, `RemoveTagFromCardCommand` will then call `UserInterface#printRemoveTagFromCard()` to print successful
   removal of `tagToRemove` from `cardAffected`.
+
+The sequence diagram below shows how this feature works:
+![Card Untag](img/CardUntagSequence.png)
 
 #### List Cards under Tag
 
