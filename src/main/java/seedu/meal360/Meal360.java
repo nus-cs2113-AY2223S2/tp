@@ -2,9 +2,13 @@ package seedu.meal360;
 
 import java.io.IOException;
 import java.util.Scanner;
+
 import seedu.meal360.exceptions.IngredientNotFoundException;
-import seedu.meal360.exceptions.InvalidValueException;
 import seedu.meal360.exceptions.InvalidRecipeNameException;
+import seedu.meal360.exceptions.InvalidValueException;
+import seedu.meal360.exceptions.NoRecipeException;
+import seedu.meal360.exceptions.RecipeNotFoundInTagException;
+import seedu.meal360.exceptions.TagNotFoundException;
 import seedu.meal360.storage.Database;
 
 public class Meal360 {
@@ -100,7 +104,8 @@ public class Meal360 {
                 ui.printSeparator();
                 RecipeList recipeListToPrint = parser.parseListRecipe(command, recipeList);
                 ui.listRecipe(recipeListToPrint);
-            } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException e) {
+            } catch (TagNotFoundException | NoRecipeException | IllegalArgumentException | IndexOutOfBoundsException
+                     | NullPointerException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
@@ -147,8 +152,8 @@ public class Meal360 {
                 ui.printSeparator();
                 String returnMessage = parser.parseTagRecipe(command, recipeList);
                 ui.printTagMessage(returnMessage);
-                //ui.printMessage("You have modified the recipe(s) in this \"" + tag + "\" tag.");
-            } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException e) {
+            } catch (IllegalArgumentException | IndexOutOfBoundsException | NullPointerException |
+                     RecipeNotFoundInTagException | TagNotFoundException | NoRecipeException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
@@ -156,8 +161,9 @@ public class Meal360 {
             ui.printSeparator();
             try {
                 Recipe randomRecipe = parser.parseRandomRecipe(recipeList);
+                ui.printRandomMessage();
                 ui.printRecipe(randomRecipe);
-            } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
+            } catch (NoRecipeException e) {
                 ui.printMessage(e.getMessage());
             }
             ui.printSeparator();
