@@ -228,6 +228,10 @@ Note:
 Note:
 
 - `start_date`, `end_date` must be in `dd/MM/yy` format.
+  - *warning*: users are advised to set start date and end date parameters with a maximum interval of 5 years. This is
+    because of the
+    [implementation of SimpleDateTime](https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html).
+
 - Both flags are **required** if user wishes to use this
   option.
 - `start_date` should not be after `end_date`.
