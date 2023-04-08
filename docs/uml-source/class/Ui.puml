@@ -28,12 +28,6 @@ note left of Ui::showLine
     have been omitted for brevity.
 end note
 
-note left of Ui::printModuleList
-    These are some printing
-    methods that accesses
-    TaskList and ModuleList.
-end note
-
 
 Ui -> ModuleList : access \nmoduleData >
 ModuleList "1" *--> "*" Module : contains >
