@@ -170,8 +170,8 @@ The implementation of `card add -q QN -a ANS` will be shown below :
 4. This `AddCardCommand` will call the `CardList#addCard()` function and add the created `Card` object to the `CardList`. 
 5. Lastly, `UserInterface` will print a success message and the current number of `Card` objects in the `CardList` with the corresponding functions.
 
-The sequence diagram below shows how this feature works:
-![Card Add feature]
+The sequence diagram below shows how this feature of card works:
+![Card Add feature](img/CardAddSequence.svg)
 
 
 #### Card Delete
@@ -191,15 +191,15 @@ A sample user input, like `card delete -i 3` would be broken down as:
 
 The implementation of `card delete -i 3` will be shown below :
 
-1. When the user enters `card delete -i 3`, the `Parser` class will parse the user input in the same way as shown in [step 1](#card-add) here .
+1. When the user enters `card delete -i 3`, the input is passed to `Parser` class which calls `Parser#parseCommand()`. The parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on the user inputs excluding the "card" keyword. 
 2. The `Parser#CardKeywordParser()` further extracts the action keyword "delete" from the user input and call `CardKeywordParser#handleDelete()` method.
-3. The method uses the Apache Commons CLI library to parse the remaining user input, and returns a `DeleteCardCommand` with a `CardSelector` argument. The `CardSelector` object has two optional fields, an int field or an uuid field, used in identifying the `Card` object, in this case to be deleted.
-5. This `DeleteCardCommand` will first find the `Card` object to delete, then find all the `Tag` and `Deck` objects it is associated to by their uuids stored in the `Card` object, and delete the `Card` object's uuid from them. 
-6. Then the `Card` object is deleted from the `CardList`.
-7. Lastly, `UserInterface` will print a success message and the current number of `Card` objects in the `CardList` with the corresponding functions.
+3. The method uses the Apache Commons CLI library to parse the remaining user input, and returns a `DeleteCardCommand` with a `CardSelector` argument. The `CardSelector` object has two optional fields, an int field or an uuid field, used in identifying the `Card` object, in this case to be deleted. The sequence diagram for the first 3 steps has been shown in the [parser sequence diagram](#parser-component).
+4. The `DeleteCardCommand` will first find the `Card` object to delete, then find all the `Tag` and `Deck` objects it is associated to by their uuids stored in the `Card` object, and delete the `Card` object's uuid from them. 
+5. Then the `Card` object is deleted from the `CardList`.
+6. Lastly, `UserInterface` will print a success message and the current number of `Card` objects in the `CardList` with the corresponding functions.
 
-The sequence diagram below shows how this feature works:
-![Card Add feature]
+The sequence diagram below shows how this feature of card works:
+![Card Delete feature](img/CardDeleteSequence.svg)
 
 
 #### Card List
@@ -217,13 +217,13 @@ A sample user input, like `card list` would be broken down as :
 
 The implementation of `card list` will be shown below :
 
-1. When the user enters `card list`, the `Parser` class will parse the user input in the same way as shown in step 1 here [above](#card-add).
+1. When the user enters `card list`, the input is passed to `Parser` class which calls `Parser#parseCommand()`. The parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on the user inputs excluding the "card" keyword. 
 2. The `Parser#CardKeywordParser()` further extracts the action keyword "list" from the user input and call `CardKeywordParser#handleList()` method.
-3. If there are no more user input after `card list`, a `ListCardCommand()` is returned.
+3. If there are no more user input after `card list`, a `ListCardCommand()` is returned. The sequence diagram for the first 3 steps has been shown in the [parser sequence diagram](#parser-component).
 4. The command will call `UserInterface#printCardList()` method to print all `Card` objects in the `CardList`.
 
-The sequence diagram below shows how this feature works:
-![Card Add feature]
+The sequence diagram below shows how this feature of card works:
+![Card List feature](img/CardListSequence.svg)
 
 #### Card View
 
@@ -303,7 +303,7 @@ The implementation of the `card tag` feature is as follows :
 - Similarly, `AddCardToTagCommand` will also call `Tag#getUUID()` and add the returned `tagUUID` into `cardToAdd` by
   calling `Card#addTag(tagUUID)`.
 
-The sequence diagram below shows how this feature works:
+The sequence diagram below shows how this feature of card works:
 ![Tag feature](img/TagListSequence.png)
 
 #### Untag a Card
