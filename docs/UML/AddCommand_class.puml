@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+hide circle
+skinparam classAttributeIconSize 0
+
+Command <|-- AddCommand
+
+class Command{
+-commandType: String
++command(commandType: String)
++getCommandType(): String
++execute(companyList: CompanyList): void
++execute(venueList: VenueList): void
++execute(event: Event, venueList: VenueList): void
++execute(event: Event): void
+}
+
+
+class AddCommand {
+-companyName: String
+-industry: String
+-contactNumber: int
+-contactEmail: String
++AddCommand(commandType: String, industry: String, companyName: String, contactNumber: int, contactEmail: String)
++execute(companyList: CompanyList)
+}
+
+
+@enduml
