@@ -6,8 +6,8 @@ I am a second year student studying Computer Engineering, with a minor in Intera
 If you have any enquiries, feel free to reach out to me at wilsonleejunwei@u.nus.edu 
 
 ## Product Overview - BadMaths
-BadMaths is a Mathematical Study Tool that helps users to efficiently and effectively perform Mathematical Operations 
-and contains various functionalities for note-taking.
+BadMaths is a Mathematical Study Tool that aims to help users to perform Mathematical Operations 
+effectively and efficiently and contains various functionalities for note-taking.
 
 ## Summary of Contributions
 ### 1) Code Contributed:
@@ -15,18 +15,19 @@ Click [here](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=gr
 to view my codes contributed for this project.
 
 ### 2) Enhancements Implemented:
-* Implemented Store Function for notes taking
-* Implemented List Function for displaying items stored in notes
-* Implemented Delete Function for removing items stored in notes
-* Implemented History Function for displaying a list of all commands input by users
-* Refactoring codes as classes (more OOP)
-* Implemented JUnit Tests for Store, List, Delete and CommandHistory
-* Improvements towards HelpManual.txt
+* Implemented `Store` Function for notes taking.
+* Implemented `List` Function for displaying items stored in notes.
+* Implemented `Delete` Function for removing items stored in notes.
+* Implemented `History` Function for displaying a list of all commands input by users
+* Refactoring codes as classes (more OOP).
+* Implemented JUnit Tests for `Store`, `List`, `Delete` and `CommandHistory`.
+* Made improvements towards `HelpManual.txt`.
 
 ### 3) UserGuide Contributions:
 * Contributed to overall formatting of UserGuide
 * Contributed to documentation for `Store`, `List`, `Delete`, `Clear`, `Mark`, `Unmark`,
-`FindMark`, `FindUnmark`, `FindInfo`, `FindPrior`, `History`, `Help`, `Bye`
+`FindMark`, `FindUnmark`, `FindInfo`, `FindPrior`, `History`, `Help`, `Bye`.
+* Contributed to Command Summary for `Notes` and `General`
 
 ### 4) DeveloperGuide Contributions:
 * Added Introduction
