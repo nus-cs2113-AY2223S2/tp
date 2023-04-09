@@ -21,7 +21,9 @@ public class Schedule {
     private String location;
     private boolean hasLocation;
 
-
+    private static final String RECUR_DAILY = "D";
+    private static final String RECUR_WEEKLY = "W";
+    private static final String RECUR_MONTHLY = "M";
 
     public Schedule(LocalDateTime start, boolean hasSt) {
         this.startTime = start;
@@ -133,13 +135,13 @@ public class Schedule {
             String[] details = timeInterval.split(" ");
             String interval = "";
             switch (details[1].trim()) {
-            case ("D"):
+            case RECUR_DAILY:
                 interval = "Day(s)";
                 break;
-            case ("W"):
+            case RECUR_WEEKLY:
                 interval = "Week(s)";
                 break;
-            case ("M"):
+            case RECUR_MONTHLY:
                 interval = "Month(s)";
                 break;
             default:
@@ -176,10 +178,10 @@ public class Schedule {
 
         int actualDays = 0;
         switch (details[1].trim()) {
-        case ("D"):
+        case RECUR_DAILY:
             actualDays = Integer.parseInt(details[0].trim());
             break;
-        case ("W"):
+        case RECUR_WEEKLY:
             actualDays = Integer.parseInt(details[0].trim()) * 7;
             break;
         default:

@@ -18,6 +18,12 @@ public class EventList {
     private static final String TIMEPLACEHOLDER = " 00:00";
     private static DateTimeFormatter dfWithTime = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
+    // exceptions information
+    private static final String WRONG_DATE_TIME_FORMAT_E = "Wrong date/time format! \nPlease use yyyy/MM/dd for date and HH:mm for time.";
+    private static final String START_TIME_AFTER_END_TIME_E = "Starting time is after ending time!";
+    private static final String TIME_CONFLICTION_E = "Events/classes confliction!";
+    private static final String EVENT_NOT_EXIST_E = "Event cannot be found!";
+
     protected ArrayList<Schedule> taskList;
     protected int listSize;
 
@@ -83,8 +89,7 @@ public class EventList {
             TimeAndFlag result = new TimeAndFlag(hasTime, combinedTime);
             return result;
         } catch (Exception e) {
-            throw new NPExceptions(
-                    "Wrong date/time format! \nPlease use yyyy/MM/dd for date and HH:mm for time.");
+            throw new NPExceptions(WRONG_DATE_TIME_FORMAT_E);
         }
     }
 
@@ -159,10 +164,10 @@ public class EventList {
                 new Event(description, startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
 
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
-            throw new NPExceptions("Starting time is after ending time!");
+            throw new NPExceptions(START_TIME_AFTER_END_TIME_E);
         }
         if (!canAddNewEvent(newEvent, -1)) {
-            throw new NPExceptions("Events/classes conflition!");
+            throw new NPExceptions(TIME_CONFLICTION_E);
         }
 
         taskList.add(newEvent);
@@ -196,10 +201,10 @@ public class EventList {
                 endInfo.hasInfo, recurTime);
 
         if (newEvent.getStartTime().isAfter(newEvent.getEndTime())) {
-            throw new NPExceptions("Starting time is after ending time!");
+            throw new NPExceptions(START_TIME_AFTER_END_TIME_E);
         }
         if (!canAddNewEvent(newEvent, -1)) {
-            throw new NPExceptions("Events/classes conflition!");
+            throw new NPExceptions(TIME_CONFLICTION_E);
         }
 
         taskList.add(newEvent);
@@ -218,7 +223,7 @@ public class EventList {
         Event eventToCheck = new Event(taskList.get(index).getDescription(), startInfo.time, endInfo.time,
                 startInfo.hasInfo, endInfo.hasInfo);
         if (!canAddNewEvent(eventToCheck, index)) {
-            throw new NPExceptions("Events/classes conflition!");
+            throw new NPExceptions(TIME_CONFLICTION_E);
         }
 
         taskList.get(index).changeTimeInfo(startInfo.time, endInfo.time, startInfo.hasInfo, endInfo.hasInfo);
@@ -236,7 +241,7 @@ public class EventList {
             String endDay) throws NPExceptions {
         int index = searchTaskIndex(description);
         if (index == -1) {
-            throw new NPExceptions("Event cannot be found!");
+            throw new NPExceptions(EVENT_NOT_EXIST_E);
         }
         reviseTimeInfo(index, startTime, startDay, endTime, endDay);
     }
@@ -245,7 +250,7 @@ public class EventList {
     public void reviseTimeInfo(String description, String startTime, String startDay) throws NPExceptions {
         int index = searchTaskIndex(description);
         if (index == -1) {
-            throw new NPExceptions("Event cannot be found!");
+            throw new NPExceptions(EVENT_NOT_EXIST_E);
         }
         reviseTimeInfo(index, startTime, startDay);
     }

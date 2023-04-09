@@ -23,6 +23,37 @@ public class Parser {
     private static final JsonNusModuleLoader converter = new JsonNusModuleLoader();
     private final Ui ui;
 
+    // command types
+    private static final String ADD_T = "add";
+    private static final String DELETE_T = "delete";
+    private static final String LIST_T = "list";
+    private static final String EDIT_T = "edit";
+
+    // flags
+    private static final String EVENT_NAME_F = "e";
+    private static final String MODULE_CODE_F = "m";
+    private static final String CLASS_NUMBER_F = "n";
+    private static final String LESSON_TYPE_F = "l";
+    private static final String START_TIME_F = "st";
+    private static final String START_DATE_F = "sd";
+    private static final String END_TIME_F = "et";
+    private static final String END_DATE_F = "ed";
+    private static final String VENUE_F = "v";
+    private static final String RECURRING_TIME_F = "r";
+    private static final String INDEX_OF_EVENT_F = "i";
+
+    // exceptions
+    private static final String DUPLICATE_FLAGS_E = "Cannot have duplicate flags a command!";
+    private static final String INVALID_FLAG_E = "please input a valid flag!";
+    private static final String NO_FLAG_E = "need a flag to specify your action!";
+    private static final String TOO_MANY_FLAGS_E = "Too many flags, or negative index entered";
+    private static final String NO_EVENT_DESC_AND_START_DAY_E = "Event description and start day of your event are strictly required!";
+    private static final String NO_START_DAY_E = "Empty starting date/time detected! Please add starting date.";
+    private static final String UNDEFINED_FLAG_E = "undefined flag!";
+    private static final String INCORRECT_CMD_FORMAT_E = "Please use correct command format!";
+    private static final String INVALID_EVENT_INDEX_E = "Event index is in valid!";
+    private static final String EVENT_INDEX_OUT_OF_BOUND_E = "Event index out of bound!";
+
     public Parser() {
         ui = new Ui();
     }
@@ -40,16 +71,16 @@ public class Parser {
             }
 
             switch (command.toLowerCase()) {
-            case "add":
+            case ADD_T:
                 parseAddCommand(remainder, eventList);
                 break;
-            case "delete":
+            case DELETE_T:
                 parseDeleteCommand(remainder, eventList);
                 break;
-            case "list":
+            case LIST_T:
                 parseListCommand(remainder, eventList);
                 break;
-            case "edit":
+            case EDIT_T:
                 parseEditCommand(remainder, eventList);
                 break;
             default:
@@ -79,10 +110,10 @@ public class Parser {
         String[] details = remainder.split("-");
 
         if (details.length <= 1) {
-            throw new NPExceptions("need a flag to specify your action!");
+            throw new NPExceptions(NO_FLAG_E);
         }
         if (details.length > 2){
-            throw new NPExceptions("Too many flags, or negative index entered");
+            throw new NPExceptions(TOO_MANY_FLAGS_E);
         }
 
         String information = details[1].substring(0, 1).trim();
@@ -94,12 +125,12 @@ public class Parser {
             Duke.LOGGER.log(Level.INFO, "User deleted event in event list.");
             Ui.deleteSuccessMsg(deletedTask);
         } else if (details[1].length()<3){
-            throw new NPExceptions("please input a valid flag");
+            throw new NPExceptions(INVALID_FLAG_E);
         }else if (details[1].substring(0, 3).trim().equals("all")) {
             eventList.deleteAll();
             Duke.LOGGER.log(Level.INFO, "User deleted all events in event list.");
         } else {
-            throw new NPExceptions("please input a valid flag!");
+            throw new NPExceptions(INVALID_FLAG_E);
         }
 
     }
@@ -111,71 +142,71 @@ public class Parser {
             String field = details[i].substring(0, 2).trim();
             String change = details[i].substring(2).trim();
             switch (field) {
-            case ("m"):
+            case MODULE_CODE_F:
                 isModuleFlag = true;
                 if (!duplicity[0]) {
                     information[0] = change;
                     duplicity[0] = true;
                 } else {
-                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                    throw new NPExceptions(DUPLICATE_FLAGS_E);
                 }
                 break;
-            case ("e"):
+            case EVENT_NAME_F:
                 if (!duplicity[0]) {
                     information[0] = change;
                     duplicity[0] = true;
                 } else {
-                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                    throw new NPExceptions(DUPLICATE_FLAGS_E);
                 }
                 break;
-            case ("n"):
-            case ("st"):
+            case CLASS_NUMBER_F:
+            case START_TIME_F:
                 if (!duplicity[1]) {
                     information[1] = change;
                     duplicity[1] = true;
                 } else {
-                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                    throw new NPExceptions(DUPLICATE_FLAGS_E);
                 }
                 break;
-            case ("sd"):
-            case ("l"):
+            case START_DATE_F:
+            case LESSON_TYPE_F:
                 if (!duplicity[2]) {
                     information[2] = change;
                     duplicity[2] = true;
                 } else {
-                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                    throw new NPExceptions(DUPLICATE_FLAGS_E);
                 }
                 break;
-            case ("et"):
+            case END_TIME_F:
                 if (!duplicity[3]) {
                     information[3] = change;
                     duplicity[3] = true;
                 } else {
-                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                    throw new NPExceptions(DUPLICATE_FLAGS_E);
                 }
                 break;
-            case ("ed"):
+            case END_DATE_F:
                 if (!duplicity[4]) {
                     information[4] = change;
                     duplicity[4] = true;
                 } else {
-                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                    throw new NPExceptions(DUPLICATE_FLAGS_E);
                 }
                 break;
-            case ("r"):
+            case RECURRING_TIME_F:
                 if (!duplicity[5]) {
                     information[5] = change;
                     duplicity[5] = true;
                 } else {
-                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                    throw new NPExceptions(DUPLICATE_FLAGS_E);
                 }
                 break;
-            case ("v"): // venue/location of the event
+            case VENUE_F: // venue/location of the event
                 if (!duplicity[6]) {
                     information[6] = change;
                     duplicity[6] = true;
                 } else {
-                    throw new NPExceptions("Cannot have duplicate flags a command!");
+                    throw new NPExceptions(DUPLICATE_FLAGS_E);
                 }
                 break;
             default:
@@ -194,7 +225,7 @@ public class Parser {
         boolean isModuleFlag = false;
 
         if (details.length <= 1) {
-            throw new NPExceptions("Event description and start day of your event are strictly required!");
+            throw new NPExceptions(NO_EVENT_DESC_AND_START_DAY_E);
         }
         boolean[] duplicity = new boolean[7]; // to detect duplicate flags in command
         Arrays.fill(duplicity, false);
@@ -320,9 +351,9 @@ public class Parser {
         String[] details = remainder.split("-");
         String[] information = new String[6];
 
-        if (!(details[1].substring(0, 2).trim().equalsIgnoreCase("i")
-                || details[1].substring(0, 2).trim().equalsIgnoreCase("e"))) {
-            throw new NPExceptions("undefined flag!");
+        if (!(details[1].substring(0, 2).trim().equalsIgnoreCase(INDEX_OF_EVENT_F)
+                || details[1].substring(0, 2).trim().equalsIgnoreCase(EVENT_NAME_F))) {
+            throw new NPExceptions(UNDEFINED_FLAG_E);
         }
 
         Arrays.fill(information, "");
@@ -330,22 +361,22 @@ public class Parser {
             String field = details[i].substring(0, 2).trim();
             String change = details[i].substring(2).trim();
             switch (field) {
-            case ("i"):
+            case INDEX_OF_EVENT_F:
                 information[0] = change;
                 break;
-            case ("st"):
+            case START_TIME_F:
                 information[1] = change;
                 break;
-            case ("sd"):
+            case START_DATE_F:
                 information[2] = change;
                 break;
-            case ("et"):
+            case END_TIME_F:
                 information[3] = change;
                 break;
-            case ("ed"):
+            case END_DATE_F:
                 information[4] = change;
                 break;
-            case ("v"):
+            case VENUE_F:
                 information[5] = change;
                 break;
             default:
@@ -356,7 +387,7 @@ public class Parser {
         addFormatChecker(information);
 
         if (information[2].equals("") || information[1].equals("")) { // Starting date field MUST NOT be empty.
-            throw new NPExceptions("Empty starting date/time detected! Please add starting date.");
+            throw new NPExceptions(NO_START_DAY_E);
         }
 
         if (information[0].equals("")) {
@@ -371,11 +402,8 @@ public class Parser {
         boolean isValidFormat = !information[0].equalsIgnoreCase("") && !information[2].equalsIgnoreCase("")
                 && !information[1].equalsIgnoreCase("");
 
-        // String recurFlag = information[5].split(" ")[2].trim();
-        // isValidFormat = isValidFormat && (recurFlag.equalsIgnoreCase("W") || recurFlag.equalsIgnoreCase("D"));
-
         if (!isValidFormat) {
-            throw new NPExceptions("Please use correct command format!");
+            throw new NPExceptions(INCORRECT_CMD_FORMAT_E);
         }
     }
 
@@ -386,11 +414,11 @@ public class Parser {
             eventIndex = Integer.parseInt(information[0]);
             eventIndex--;
         } catch (NumberFormatException e) {
-            throw new NPExceptions("Event index is invalid!");
+            throw new NPExceptions(INVALID_EVENT_INDEX_E);
         }
 
         if (eventIndex < 0 || eventIndex >= eventList.getSize()) {
-            throw new NPExceptions("Event index out of bound!");
+            throw new NPExceptions(EVENT_INDEX_OUT_OF_BOUND_E);
         }
 
         if (!information[4].equals("")) {
