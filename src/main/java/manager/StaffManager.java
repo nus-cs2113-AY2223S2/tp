@@ -78,17 +78,17 @@ public class StaffManager {
      * @param ui Ui object in if there is anything to be printed.
      */
     public static void findStaff(String name, TextUi ui) {
-        ArrayList<Staff> staffFound = new ArrayList<>();
+        ArrayList<Staff> staffsFound = new ArrayList<>();
         for(Staff m:staffs){
             if(m.getName().contains(name)){
-                staffFound.add(m);
+                staffsFound.add(m);
             }
         }
-        if(staffFound.isEmpty()){
+        if(staffsFound.isEmpty()){
             ui.printMessage(Messages.MESSAGE_STAFF_NOT_FOUND);
         } else {
             ui.printMessage(Messages.MESSAGE_STAFF_FOUND);
-            for(Staff n:staffFound){
+            for(Staff n:staffsFound){
                 ui.printMessage(n.toString());
             }
         }
