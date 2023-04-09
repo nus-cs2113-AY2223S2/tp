@@ -9,8 +9,9 @@
   * [Adding a new item](#span-stylecolor6495ed-adding-a-new-item--span-add)
   * [Deleting an item](#span-stylecolor6495ed-deleting-an-item--span-delete)
   * [Packing an item](#span-stylecolor6495ed-packing-some-items--span-pack)
-  * [Fully pack an item](#span-stylecolor6495ed-marking-total-quantity-of-item-as-packed--span-packall)
+  * [Packing all quantity of items](#span-stylecolor6495ed-fully-pack-an-item--span-packall)
   * [Unpacking an item](#span-stylecolor6495ed-unpacking-some-items--span-unpack)
+  * [Unpacking all quantity of items](#span-stylecolor6495ed-fully-unpack-an-item--span-unpackall)
   * [Editing item quantity](#span-stylecolor6495ed-editing-item-quantity--span-editquantity)
   * [Listing all items](#span-stylecolor6495ed-listing-all-items--span-list)
   * [Listing all unpacked items](#span-stylecolor6495ed-listing-all-unpacked-items--span-listunpacked)
@@ -290,16 +291,17 @@ Examples of usage:
 
 ## <span style="color:#00A36C">Command Summary</span>
 
-| Action description                       | Syntax                      | Remarks                                                                                                              |
-|:-----------------------------------------|:----------------------------|:---------------------------------------------------------------------------------------------------------------------|
-| Add an item                              | `add QUANTITY /of NAME`     | `QUANTITY` must be between 0 and 1,000,000, not inclusive of 0 and 1,000,000                                         |
-| Delete an item                           | `delete INDEX`              | `INDEX` must be a valid list index                                                                                   |
-| Pack some of an item                     | `pack QUANTITY /of INDEX`   | Adding `QUANTITY` should not cause the quantity to exceed the total quantity<br/> `INDEX` must be a valid list index |
-| Marking total quantity of item as packed | `packall /of INDEX`         | `INDEX` must be a valid list index                                                                                   |
-| Unpack some item                         | `unpack QUANTITY /of INDEX` | Subtracting `QUANTITY` should not cause the quantity to be less than 0<br/> `INDEX` must be a valid list index       |      
-| List all items                           | `list`                      | Additional parameters will be ignored                                                                                |
-| Delete the whole list                    | `deletelist`                | Additional parameters will be ignored                                                                                |
-| Help message                             | `help`                      | Additional parameters will be ignored                                                                                |
-| Exit                                     | `bye`                       | Additional parameters will be ignored                                                                                |
+| Action description                         | Syntax                      | Remarks                                                                                                              |
+|:-------------------------------------------|:----------------------------|:---------------------------------------------------------------------------------------------------------------------|
+| Add an item                                | `add QUANTITY /of NAME`     | `QUANTITY` must be between 0 and 1,000,000, not inclusive of 0 and 1,000,000                                         |
+| Delete an item                             | `delete INDEX`              | `INDEX` must be a valid list index                                                                                   |
+| Pack some of an item                       | `pack QUANTITY /of INDEX`   | Adding `QUANTITY` should not cause the quantity to exceed the total quantity<br/> `INDEX` must be a valid list index |
+| Marking total quantity of item as packed   | `packall /of INDEX`         | `INDEX` must be a valid list index                                                                                   |
+| Unpack some item                           | `unpack QUANTITY /of INDEX` | Subtracting `QUANTITY` should not cause the quantity to be less than 0<br/> `INDEX` must be a valid list index       |      
+| Marking total quantity of item as unpacked | `unpackall /of INDEX`       | `INDEX` must be a valid list index                                                                                   |
+| List all items                             | `list`                      | Additional parameters will be ignored                                                                                |
+| Delete the whole list                      | `deletelist`                | Additional parameters will be ignored                                                                                |
+| Help message                               | `help`                      | Additional parameters will be ignored                                                                                |
+| Exit                                       | `bye`                       | Additional parameters will be ignored                                                                                |
 
 [⏫ Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) | [⏫ Go to Features](#span-stylecolor00a36c-table-of-contents-span)
