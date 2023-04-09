@@ -15,7 +15,7 @@ public final class ParserConstants {
     public static final int OPTION_GROUP = 1;
 
     public static final int ARGUMENTS_GROUP = 1;
-    public static final String VALID_PRICE_REGEX = "[0-9.]*";
+    public static final String VALID_PRICE_REGEX = "^(\\d{0,9}\\.(\\d{1,2}0*))$|^(\\d{1,9}(\\.\\d{0,2}0*)?)$";
 
     public static final Pattern DATE_FORMATTER = Pattern.compile("\\d{2}/\\d{2}/\\d{2}$");
 
