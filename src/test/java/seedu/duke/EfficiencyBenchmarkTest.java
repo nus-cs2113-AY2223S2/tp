@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class EfficiencyBenchmark {
+class EfficiencyBenchmarkTest {
     private static final long timeToBeat = 1000;
     private static final int DATASET_SIZE = 4000;
     private static final String BENCHMARK_FILEPATH = "./data/test/BenchmarkData.txt";
@@ -32,7 +32,7 @@ public class EfficiencyBenchmark {
     Inventory inventory = Storage.readCSV(BENCHMARK_FILEPATH);
     @Test
     @Order(1)
-    public void loadInventoryTest() {
+    void loadInventoryTest() {
         Inventory loadInventory;
         long start = System.currentTimeMillis();
         loadInventory = Storage.readCSV(BENCHMARK_FILEPATH);
@@ -45,7 +45,7 @@ public class EfficiencyBenchmark {
     }
     @Test
     @Order(2)
-    public void searchInventoryTest() {
+    void searchInventoryTest() {
         long start = System.currentTimeMillis();
         SearchCommand searchCommand = new SearchCommand(inventory, "samsung", Types.SearchType.KEYWORD);
         ArrayList<Item> results = searchCommand.searchKeyword();
@@ -67,7 +67,7 @@ public class EfficiencyBenchmark {
 
     @Test
     @Order(3)
-    public void filterInventoryTest() {
+    void filterInventoryTest() {
         long start = System.currentTimeMillis();
         FilterCommand filterCommand = new FilterCommand(inventory, "uncategorized", "f/category");
         ArrayList<Item> results = filterCommand.getFilteredItems();
@@ -89,7 +89,7 @@ public class EfficiencyBenchmark {
 
     @Test
     @Order(4)
-    public void crudTest(){
+    void crudTest(){
         SessionManager.setAutoSave(false);
         long start = System.currentTimeMillis();
         Item item = new Item("test","10000",24,10.1);

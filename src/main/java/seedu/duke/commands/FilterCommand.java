@@ -16,7 +16,7 @@ public class FilterCommand extends Command {
     private static final String LESS_OR_EQUAL_THAN_FLAG = "p/let";
     private static final String GREATER_OR_EQUAL_THAN_FLAG = "p/get";
     private static final String TYPE_CATEGORY = "f/category";
-    private static ArrayList<Item> filteredCategory;
+    private static ArrayList<Item> filteredCategory = new ArrayList<>();
     private String filterType;
     private String filterValue;
     private Double filterPrice;
@@ -67,12 +67,9 @@ public class FilterCommand extends Command {
                 tempFilteredItems.add(item);
             }
         }
-        setFilteredCategory(tempFilteredItems);
+        filteredCategory = tempFilteredItems;
     }
 
-    public void setFilteredCategory(ArrayList<Item> filteredCategory) {
-        this.filteredCategory = filteredCategory;
-    }
 
     private static ArrayList<Item> getFilteredCategory() {
         if (filteredCategory.isEmpty()) {
@@ -95,35 +92,39 @@ public class FilterCommand extends Command {
     private ArrayList<Item> filterPrice(final double price, final String mode) {
         ArrayList<Item> filteredItems = new ArrayList<>();
         for (Item item : itemInventory) {
-            switch (mode) {
-            case LESS_THAN_FLAG:
-                if (item.getPrice() < price) {
-                    filteredItems.add(item);
-                }
-                break;
-            case GREATER_THAN_FLAG:
-                if (item.getPrice() > price) {
-                    filteredItems.add(item);
-                }
-                break;
-            case LESS_OR_EQUAL_THAN_FLAG:
-                if (item.getPrice() <= price) {
-                    filteredItems.add(item);
-                }
-                break;
-            case GREATER_OR_EQUAL_THAN_FLAG:
-                if (item.getPrice() >= price) {
-                    filteredItems.add(item);
-                }
-                break;
-            default:
-                break;
-            }
+            filterItem(price, mode, filteredItems, item);
         }
         if (filteredItems.isEmpty()) {
             return null;
         }
         return filteredItems;
+    }
+
+    private static void filterItem(double price, String mode, ArrayList<Item> filteredItems, Item item) {
+        switch (mode) {
+        case LESS_THAN_FLAG:
+            if (item.getPrice() < price) {
+                filteredItems.add(item);
+            }
+            break;
+        case GREATER_THAN_FLAG:
+            if (item.getPrice() > price) {
+                filteredItems.add(item);
+            }
+            break;
+        case LESS_OR_EQUAL_THAN_FLAG:
+            if (item.getPrice() <= price) {
+                filteredItems.add(item);
+            }
+            break;
+        case GREATER_OR_EQUAL_THAN_FLAG:
+            if (item.getPrice() >= price) {
+                filteredItems.add(item);
+            }
+            break;
+        default:
+            break;
+        }
     }
 
     /**

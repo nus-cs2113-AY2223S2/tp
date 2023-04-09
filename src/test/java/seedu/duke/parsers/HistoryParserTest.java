@@ -7,7 +7,7 @@ import seedu.duke.stubsmocks.HistoryParserMock;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HistoryParserTest {
+class HistoryParserTest {
     /**
      * Runs HistoryParserMock for a given input and returns whether the input was parsed successfully.
      * Trims input to simulate trimming in ParserHandler
@@ -23,13 +23,13 @@ public class HistoryParserTest {
         return historyParserMock.isValidParse();
     }
     @Test
-    public void historyParserPositiveTests(){
+    void historyParserPositiveTests(){
         assertTrue(getMockHistoryResult("123131"));
         assertTrue(getMockHistoryResult("123-131"));
         assertTrue(getMockHistoryResult("upcButWordsInAWeirdSystem"));
     }
     @Test
-    public void historyParserNegativeTests(){
+    void historyParserNegativeTests(){
         assertFalse(getMockHistoryResult(""));
         assertFalse(getMockHistoryResult(" "));
         assertFalse(getMockHistoryResult("     "));
