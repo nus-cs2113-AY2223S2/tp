@@ -170,7 +170,7 @@ The `Budget` component,
 
 Here is a UML diagram of the `Budget` component:
 
-![BudgetClassDiagram](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/docs/images/BudgetClassUML.png)
+![BudgetClassDiagram](./images/BudgetClassUML.png)
 
 ### Common class
 
