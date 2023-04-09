@@ -1,7 +1,6 @@
 package seedu.commands;
 
 import seedu.exceptions.ExceptionChecker;
-import seedu.exceptions.InvalidCharacterInAmount;
 import seedu.exceptions.WrongPrecisionException;
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.ExpenditureList;
