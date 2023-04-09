@@ -15,7 +15,7 @@ public class AddCalorieCommand extends Command {
     private final String foodName;
     private final int foodCalories;
 
-    //@@author ZIZI-czh
+
     /**
      * Constructs an instance of AddCalorieCommand with the specified date, food name, and calorie intake.
      *
@@ -29,7 +29,6 @@ public class AddCalorieCommand extends Command {
         this.foodCalories = foodCalories;
     }
 
-    //@@author ZIZI-czh
 
     /**
      * Constructs an instance of AddCalorieCommand with the specified date and food name, with the calorie intake

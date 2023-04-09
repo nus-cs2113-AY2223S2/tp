@@ -1,46 +1,64 @@
 package seedu.commands.workoutcommands;
 
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import seedu.exceptions.InvalidArgumentException;
 import seedu.parser.DateFormatter;
-import seedu.workout.Day;
+import seedu.workout.Exercise;
+import seedu.workout.Workout;
 import seedu.workout.WorkoutList;
-
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
+//@@author ZIZI-czh
 public class ListWorkoutCommandTest {
 
-    @Test
-    public void testExecute_withEmptyWorkoutList_returnsEmptyDayListMessage() {
+    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+    private final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HHmm");
+    private ListWorkoutCommand listWorkoutCommand;
+
+    @BeforeEach
+    public void setUp() {
+        System.setOut(new PrintStream(output));
         WorkoutList workoutList = new WorkoutList();
-        ListWorkoutCommand listWorkoutCommand = new ListWorkoutCommand(workoutList);
-        String expectedOutput = "No days have been found in the list";
-        String actualOutput = listWorkoutCommand.execute();
-        assertEquals(expectedOutput, actualOutput);
+        listWorkoutCommand = new ListWorkoutCommand(workoutList);
     }
 
     @Test
-    public void testExecute_withNonEmptyWorkoutList_returnsListOfDates() throws ParseException {
-        WorkoutList workoutList = new WorkoutList();
-        String stringDate1 = "01/11/22";
-        // String stringDate2 = "02/11/22";
-        Date date1 = DateFormatter.stringToDate(stringDate1);
-        // Date date2 = DateFormatter.stringToDate(stringDate2);
-        Day day1 = new Day(date1);
-        // Day day2 = new Day(date2);
-        workoutList.addWorkoutToList(date1, day1);
-        //workoutList.addWorkoutToList(date2, day2);
-        ListWorkoutCommand listWorkoutCommand = new ListWorkoutCommand(workoutList);
+    public void execute_emptyList() {
+        String expectedOutput = "Workout list is empty";
+        assertEquals(expectedOutput, listWorkoutCommand.execute());
+    }
+
+    @Test
+    public void execute_oneWorkoutInList_listOfOneWorkout() throws ParseException, InvalidArgumentException {
+        ArrayList<Workout> workouts = new ArrayList<>();
+        Date date = DateFormatter.stringToDate("01/01/2022");
+        Workout workout = new Workout(date, "Workout 1");
+        Exercise exercise1 = new Exercise("Push-ups", "20kg", "3 5 5");
+        Exercise exercise2 = new Exercise("Sit-ups", "5kg", "3 10");
+        workout.addExercise(exercise1);
+        workout.addExercise(exercise2);
+        workouts.add(workout);
+        WorkoutList workoutList = new WorkoutList(workouts);
+        listWorkoutCommand = new ListWorkoutCommand(workoutList);
+        assertFalse(workoutList.isEmptyList());
 
         String expectedOutput = "Here is the list of dates of your workouts:" + System.lineSeparator()
-                + DateFormatter.dateToString(date1) + System.lineSeparator()
-                //+ DateFormatter.dateToString(date2) + System.lineSeparator()
-                + "----------------------------------------";
-        String actualOutput = listWorkoutCommand.execute();
-        assertEquals(expectedOutput, actualOutput);
+                + "1. 01/01/22 Workout 1" + System.lineSeparator()
+                + "=======================================";
+        assertEquals(expectedOutput, listWorkoutCommand.execute());
     }
+
+
+
 }

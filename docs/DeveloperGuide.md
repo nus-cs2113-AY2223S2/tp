@@ -133,10 +133,6 @@ the `Commands` class and its subclasses. The following class diagram provides mo
 and it is evident that all subclasses inherit the `execute()` method from the Command class.
 
 
-<p align="center">
-<img src="images/CommandComponentClassDiagram.png" width="2828" />
-</p>
-
 These are the  further explanation for each class:
 * Under caloriescommands package:
   * `AddCaloriesCommand`: It is responsible for taking the food name, date and calories.
@@ -202,7 +198,7 @@ From the diagram, it is clear to see that the Workout consists of a list of exer
 and the WorkoutList consists of list of Workout.
 
 <p align="center">
-<img src="images/WorkoutComponentClassDiagram.png" width="2828" />
+<img src="images/WorkoutComponentClassDiagram.png" width="658" />
 </p>
 
 ###### [Back to table of contents](#table-of-contents)

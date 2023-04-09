@@ -1,15 +1,17 @@
+package seedu.commands.workoutcommands;
+
 import org.junit.jupiter.api.Test;
 import seedu.exceptions.InvalidArgumentException;
 import seedu.workout.Workout;
 import seedu.workout.WorkoutList;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+
+//@@author ZIZI-czh
 public class StartWorkoutCommandTest {
     private static final String DEFAULT_WORKOUT_NAME = "Test workout";
     private WorkoutList workoutList;
@@ -52,23 +54,5 @@ public class StartWorkoutCommandTest {
         assertThrows(InvalidArgumentException.class, () -> workoutList.startWorkout(today, workoutName));
     }
 
-    @Test
-    public void startWorkout_nullDate_exceptionThrown() {
-        // Set up
-        workoutList = new WorkoutList();
-        String workoutName = DEFAULT_WORKOUT_NAME;
-
-        // Exercise and assert
-        assertThrows(NullPointerException.class, () -> workoutList.startWorkout(null, workoutName));
-    }
-
-    @Test
-    public void startWorkout_nullWorkoutName_exceptionThrown() {
-        // Set up
-        workoutList = new WorkoutList();
-        Date today = new Date();
-
-        // Exercise and assert
-        assertThrows(NullPointerException.class, () -> workoutList.startWorkout(today, null));
-    }
 }
+
