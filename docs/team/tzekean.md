@@ -33,14 +33,17 @@ Additionally, the program, beyond borrowing and returning books allows the user 
     - Documentation for search and librarian feature [#55](https://github.com/AY2223S2-CS2113-F10-4/tp/pull/55)
     - Quality checking of UG (alignment, truncating long examples) [#142](https://github.com/AY2223S2-CS2113-F10-4/tp/pull/142)
 - Developer Guide:
-    - Architecture diagram of DukeOfBooks 
-    - Sequence diagram of log-in
-    - Class diagram of search, librarian, list, ...
+    - Architecture diagram of DukeOfBooks [#154](https://github.com/AY2223S2-CS2113-F10-4/tp/pull/154)
+    - Sequence diagram of log-in [#154](https://github.com/AY2223S2-CS2113-F10-4/tp/pull/154)
+    - Class diagram of various classes like search, librarian, list using PlantUML as recommended in the course guide [#154](https://github.com/AY2223S2-CS2113-F10-4/tp/pull/154)
 - Team
     - Release management: [v1.0](https://github.com/AY2223S2-CS2113-F10-4/tp/releases/tag/v1.0)
+    - PR review and approvals
 - Community contributions
     - Provided code comment feedbacks
         - [MoneyMoover #26](https://github.com/nus-cs2113-AY2223S2/tp/pull/26)
         - [rainyDay #14](https://github.com/nus-cs2113-AY2223S2/tp/pull/14)
         - [MagusStock #39](https://github.com/nus-cs2113-AY2223S2/tp/pull/39)
+    - Bug reporting through CATCher
+        - [EveNtUS](https://github.com/AY2223S2-CS2113-W12-2/tp)
     
