@@ -134,11 +134,9 @@ when the user inputs `list`.
 API: `Parser.java`
 
 The `Parser` component:
-![](./UML/Parser/ParserClassDiagram.png)
 
 - receives the user input from the `Meal360` component
 - checks and filters input string
-- executes the appropriate methods in Parser class; eg:parseAddRecipe, parseEditRecipe, etc.
 - catches `exceptions` and throws error messages via `UI` to
     1. prompts user to enter valid input
     2. prevent `Meal360` from crashing upon invalid input
@@ -376,8 +374,6 @@ It is implemented through the following steps:
    to `recipeList.addRecipe()`
    to store the new recipe data.
 
-![](./UML/Implementation/AddRecipe/addRecipe.png)
-
 ### Edit Recipes Feature
 
 The current implementation:
@@ -398,8 +394,6 @@ It is implemented through the following steps:
 4. After the new ingredients are accepted and processed, the input is sent
    to `recipeList.editRecipe()`
    to update the new recipe data.
-
-![](./UML/Implementation/EditRecipe/editRecipe.png)
 
 ### Random a Recipe Feature
 
