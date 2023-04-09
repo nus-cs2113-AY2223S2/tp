@@ -319,7 +319,8 @@ public class EditCommand extends Command {
             Item oldItem = new Item(updatedItem);
             Item oldItemForCat = new Item(updatedItem);
             updateItemInfo(updatedItem, oldItem, editInfo);
-            CategoryCommand.updateItemCategory(oldItemForCat, oldItemForCat.getCategory(), updatedItem.getCategory());
+            CategoryCommand.updateItemCategory(oldItemForCat, oldItemForCat.getCategory().toLowerCase(),
+                    updatedItem.getCategory().toLowerCase());
             Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
                     updatedItem.getPrice(), updatedItem.getCategory());
             handleTrie(updatedItem, oldItem);

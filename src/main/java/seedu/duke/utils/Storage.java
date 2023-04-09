@@ -46,7 +46,7 @@ public class Storage {
     public static synchronized Inventory readCSV(String filePath) {
         inventory = new Inventory();
         Types.FileHealth fileHealth = checkFileValid(filePath, true);
-        switch(fileHealth){
+        switch (fileHealth) {
         case EMPTY:
             //fallthrough
         case MISSING:
@@ -228,7 +228,7 @@ public class Storage {
             String line = reader.readLine();
             AlertList tempAlertList = new AlertList();
             Types.FileHealth fileHealth = checkFileValid(Types.ALERTFILEPATH, false);
-            switch(fileHealth){
+            switch (fileHealth) {
             case EMPTY:
                 //fallthrough
             case MISSING:
@@ -277,7 +277,7 @@ public class Storage {
      * @return FileHealth enum that indicates the state of the file (MISSING/CORRUPT/OK)
      */
     public static synchronized Types.FileHealth checkFileValid(final String path, boolean isInventoryData) {
-        if(isInventoryData){
+        if (isInventoryData) {
             return checkFileValidSession(path);
         }
         return checkFileValidAlert(path);
@@ -298,19 +298,19 @@ public class Storage {
                     return Types.FileHealth.CORRUPT;
                 }
                 String upc = fields[ALERT_UPC_INDEX];
-                if (!inventory.getUpcCodes().containsKey(upc)) {
+                if (!inventory.getUpcCodes().containsKey(upc) || !upc.matches("(\\d+)")) {
                     return Types.FileHealth.CORRUPT;
                 }
                 int qty;
                 try {
                     qty = Integer.parseInt(fields[ALERT_QTY_INDEX]);
-                } catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     return Types.FileHealth.CORRUPT;
                 }
                 if (qty > Types.MAX_QTY || qty < 1){
                     return Types.FileHealth.CORRUPT;
                 }
-                if(!fields[ALERT_MINMAX_INDEX].equals("min") && !fields[ALERT_MINMAX_INDEX].equals("max")){
+                if (!fields[ALERT_MINMAX_INDEX].equals("min") && !fields[ALERT_MINMAX_INDEX].equals("max")) {
                     return Types.FileHealth.CORRUPT;
                 }
                 line = reader.readLine();
@@ -344,6 +344,9 @@ public class Storage {
                 if (fields.length != MAX_NUMBER_OF_FIELDS) {
                     return Types.FileHealth.CORRUPT;
                 }
+                if(!fields[UPC_INDEX].matches("(\\d+)")){
+                    return Types.FileHealth.CORRUPT;
+                }
                 int qty;
                 double price;
                 try {
@@ -353,7 +356,7 @@ public class Storage {
                 } catch (DateTimeParseException | NumberFormatException e) {
                     return Types.FileHealth.CORRUPT;
                 }
-                if(qty <= 0 || price <= 0){
+                if (qty <= 0 || price <= 0) {
                     return Types.FileHealth.CORRUPT;
                 }
                 if(qty > Types.MAX_QTY || price > Types.MAX_QTY){
@@ -364,7 +367,7 @@ public class Storage {
             reader.close();
         } catch (IOException ioException) {
             return Types.FileHealth.EMPTY;
-        } catch (NumberFormatException numberFormatException){
+        } catch (NumberFormatException numberFormatException) {
             return Types.FileHealth.CORRUPT;
         }
 
