@@ -218,7 +218,8 @@ Note:
   be listed.
 - If only `min_price` is specified, all expenses greater than or equal to `min_price` will be listed.
 - If only `max_price` is specified, all expenses smaller than or equal to `max_price` will be listed.
-- `min_price` **must** be smaller than `max_price`.
+- `min_price` should not be greater than `max_price`.
+- If both specified prices are the same, the expenses with that exact price will be listed.
 
 **Filter by date range**
 

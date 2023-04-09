@@ -1,17 +1,23 @@
 @startuml
 !include ../../Style.puml
+scale 1.3
 hide members
+class Frontend #90C4EA
+class Backend #BDEA9E
+class UI #EF7DE5
 class Parser
-
-scale 1.2
 class ParseXYZCommand
 class "{abstract}\nParseCommand"
-class XYZCommand
+class XYZCommand #EFC1C1
 note left: XYZCommand = AddCommand,\nDeleteCommand,ViewCommand, etc.
 
+Frontend ..> Parser
+Frontend -left-> Backend
+Frontend -> UI
 Parser ..> ParseXYZCommand : creates >
-ParseXYZCommand .up.|> "{abstract}\nParseCommand"
+ParseXYZCommand .right.|> "{abstract}\nParseCommand"
 ParseXYZCommand ..> XYZCommand : returns >
+XYZCommand .up.> Backend : executed by >
 
 
 
