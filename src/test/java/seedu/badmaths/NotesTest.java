@@ -1,4 +1,5 @@
 //@@author WilsonLee2000
+
 package seedu.badmaths;
 
 import java.util.ArrayList;
@@ -6,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class NotesTest { // this class contains the various test methods
+class NotesTest {
     ArrayList<String> cache = new ArrayList<>();
     @Test
     public void handleCache() {

@@ -1,10 +1,9 @@
 //@@author WilsonLee2000
+
 package seedu.badmaths;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import seedu.badmaths.note.Note;
 import seedu.badmaths.note.NotesList;
@@ -38,7 +37,7 @@ public class StoreTest {
         NotesList notes = new NotesList(notesArray);
         Store storeTest = new Store(notes, toDo);
         storeTest.storeNotes();
-        assertEquals(1, notes.getSize()); // (expected, actual)
+        assertEquals(1, notes.getSize());
         Files.delete(temporaryFile);
     }
 }
