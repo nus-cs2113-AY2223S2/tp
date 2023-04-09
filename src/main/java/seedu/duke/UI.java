@@ -8,6 +8,8 @@ import seedu.duke.budget.Food;
 import seedu.duke.budget.GoodsAndServices;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 
 public class UI {
     public static final String INVALID_BUDGET_AMOUNT_MESSAGE = "Please input a valid amount which is positive whole " +
@@ -48,6 +50,7 @@ public class UI {
             + "this NUS module code: ";
     private static final String MODULE_ALREADY_EXIST_MESSAGE = "This module already exists in your list";
     private static final String PU_UNI_NAME_MAPS_TO_NUS_MESSAGE = " Module] maps to ----> [NUS Module]";
+    private static final String MAPPABLE_NUS_MOD_CODE_MESSAGE = "This is the list of mappable NUS module codes";
     private static ArrayList<Module> puModules = DataReader.getDataReaderOneInstance().getModules();
     private static ArrayList<University> universities = DataReader.getDataReaderOneInstance().getUniversities();
 
@@ -134,6 +137,38 @@ public class UI {
         System.out.println(WELCOME_MESSAGE);
         System.out.println(READ_COMMAND_INPUT);
         System.out.println(HELP_MESSAGE);
+        System.out.println(LINE);
+    }
+
+    public HashSet<String> removeDupeNusMods(ArrayList<Module> allModules) {
+        HashSet<String> nusModulesCodeList = new HashSet<>();
+        for (Module m : allModules) {
+            String nusModuleCode = m.getNusModuleCode();
+            nusModulesCodeList.add(nusModuleCode);
+        }
+        return nusModulesCodeList;
+    }
+
+    public void printNusMods(ArrayList<Module> allModules) {
+        HashSet<String> nusModuleCodeList = removeDupeNusMods(allModules);
+        Iterator<String> i = nusModuleCodeList.iterator();
+        System.out.println(LINE);
+        System.out.println(MAPPABLE_NUS_MOD_CODE_MESSAGE);
+        System.out.println(LINE);
+        int listIndex =  0;
+        for (String nusModCode : nusModuleCodeList) {
+            listIndex++;
+            for (Module m : allModules) {
+                String nusModuleCode = m.getNusModuleCode();
+                String nusModuleName = m.getNusModuleName();
+                int nusModuleMc = m.getNusModuleMCs();
+                if (nusModuleCode.equalsIgnoreCase(nusModCode)) {
+                    System.out.println(listIndex + ". [" + nusModuleCode + "] " + nusModuleName + " "
+                                        + nusModuleMc + " MCs");
+                    break;
+                }
+            }
+        }
         System.out.println(LINE);
     }
 
