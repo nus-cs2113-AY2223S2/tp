@@ -2,7 +2,7 @@
 
 ## Project: Meal Companion
 
-MealCompanion is a ...
+MealCompanion is a one-stop solution to a cookbook, ingredient tracker and meal prep handler. The user interacts with it using a CLI.
 
 Given below are my contributions to the project:
 
@@ -31,17 +31,29 @@ Given below are my contributions to the project:
 * Documentation:
   </br></br>
   * User Guide:
-    * Added documentation for the features `recipe need`, `recipe almost` ([#75](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/75), [#83](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/83))
+    * Added documentation for the features `recipe need`, `recipe almost` 
+    ([#75](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/75), 
+    [#83](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/83))
       </br></br>
   * Developer Guide:
-    * Added implementation details of storage ([#70](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/70))
-    * Added non-functional requirements, use cases and manual test instructions ([#143](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/143))
-      </br></br>
+    * Added implementation details of storage including sequence and activity diagrams 
+    ([#70](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/70))
+    * Added non-functional requirements, use cases and manual test instructions 
+    ([#143](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/143))
+    * Added architecture of program
+    ([#157](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/157))
+    </br></br>
 * Community:
   </br></br>
-  * (to be completed)
+  * PRs reviewed: 
+  [#82](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/82),
+  [#84](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/84),
+  [#144](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/144)
+  * Reported bugs and suggestions for other teams 
+  ([link](https://github.com/jingyaaa/ped/issues))
   </br></br>
 * Tools:
   </br></br>
-  * Integrated a third party library (Gson) to the project ([#31](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/31))
+  * Integrated a third party library (Gson) to the project 
+  ([#31](https://github.com/AY2223S2-CS2113T-T09-3/tp/pull/31))
   </br></br>
