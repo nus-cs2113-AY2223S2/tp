@@ -28,12 +28,17 @@ public class HelpCommandTest extends BackendTestUtil {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     private final String expectedOutput1 = MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_HELP_MENU
-            + UIConstants.LINE;
+            + MessageConstants.MESSAGE_VALID_CATEGORIES + MessageConstants.MESSAGE_VALID_PRICE
+            + MessageConstants.MESSAGE_HELP_MENU_EXMPLES + UIConstants.LINE;
 
-    private final String expectedOutput2 = MessageConstants.MESSAGE_ADD_COMMAND + UIConstants.LINE;
+    private final String expectedOutput2 = MessageConstants.MESSAGE_ADD_COMMAND
+            + MessageConstants.MESSAGE_VALID_CATEGORIES + MessageConstants.MESSAGE_VALID_PRICE
+            + MessageConstants.MESSAGE_ADD_COMMAND_EXMPLES+ UIConstants.LINE;
 
     private final String expectedOutput3 = MessageConstants.MESSAGE_DELETE_COMMAND + UIConstants.LINE;
-    private final String expectedOutput4 = MessageConstants.MESSAGE_EDIT_COMMAND + UIConstants.LINE;
+    private final String expectedOutput4 = MessageConstants.MESSAGE_EDIT_COMMAND
+            + MessageConstants.MESSAGE_VALID_CATEGORIES + MessageConstants.MESSAGE_VALID_PRICE
+            + MessageConstants.MESSAGE_EDIT_COMMAND_EXMPLE + UIConstants.LINE;
     private final String expectedOutput5 = MessageConstants.MESSAGE_VIEW_COMMAND + UIConstants.LINE;
     private final String expectedOutput6 = MessageConstants.MESSAGE_BYE_COMMAND + UIConstants.LINE;
     private final String expectedOutput7 = MessageConstants.MESSAGE_HELP_COMMAND + UIConstants.LINE;

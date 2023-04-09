@@ -32,7 +32,7 @@ public final class MessageConstants {
             + "CLOTHING, ENTERTAINMENT, FOOD," + NEWLINE
             + "TRANSPORTATION, MEDICAL, PERSONAL," + NEWLINE
             + "INCOME, UTILITIES, OTHERS" + NEWLINE + NEWLINE;
-    public static String MESSAGE_VALID_PRICE = "Valid input prices are:" + NEWLINE
+    public static final String MESSAGE_VALID_PRICE = "Valid input prices are:" + NEWLINE
             + "Positive numbers strictly ranging from 0.01 to 999999999.99" + NEWLINE + NEWLINE;
     public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified expense(s) from your expenditure."
             + NEWLINE
@@ -86,7 +86,8 @@ public final class MessageConstants {
             + "/view: display all entries in the entry log" + NEWLINE
             + "/help: display a guide for available commands" + NEWLINE
             + "/bye: terminates the application" + NEWLINE + NEWLINE;
-    public static final String MESSAGE_HELP_MENU_EXMPLES = "For more help on a specific command, type `/help COMMAND_TYPE`." + NEWLINE + NEWLINE
+    public static final String MESSAGE_HELP_MENU_EXMPLES = "For more help on a specific command,"
+            + "type `/help COMMAND_TYPE`." + NEWLINE + NEWLINE
             + "See below for examples:" + NEWLINE
             + "/help add" + NEWLINE
             + "/help edit" + NEWLINE;

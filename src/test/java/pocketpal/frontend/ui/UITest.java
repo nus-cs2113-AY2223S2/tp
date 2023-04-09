@@ -72,14 +72,18 @@ public class UITest {
         @Test
         void testPrintHelpMenu() {
             ui.printHelpMenu();
-            assertEquals(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_HELP_MENU + UIConstants.LINE,
+            assertEquals(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_HELP_MENU
+                    + MessageConstants.MESSAGE_VALID_CATEGORIES + MessageConstants.MESSAGE_VALID_PRICE
+                    + MessageConstants.MESSAGE_HELP_MENU_EXMPLES+ UIConstants.LINE,
                     outContent.toString());
         }
 
         @Test
         void testPrintHelpAdd() {
             ui.printHelpAdd();
-            assertEquals(MessageConstants.MESSAGE_ADD_COMMAND + UIConstants.LINE, outContent.toString());
+            assertEquals(MessageConstants.MESSAGE_ADD_COMMAND + MessageConstants.MESSAGE_VALID_CATEGORIES
+                    + MessageConstants.MESSAGE_VALID_PRICE + MessageConstants.MESSAGE_ADD_COMMAND_EXMPLES
+                    + UIConstants.LINE, outContent.toString());
         }
 
         @Test
@@ -97,7 +101,9 @@ public class UITest {
         @Test
         void testPrintHelpEdit(){
             ui.printHelpEdit();
-            assertEquals(MessageConstants.MESSAGE_EDIT_COMMAND + UIConstants.LINE, outContent.toString());
+            assertEquals(MessageConstants.MESSAGE_EDIT_COMMAND + MessageConstants.MESSAGE_VALID_CATEGORIES
+                    + MessageConstants.MESSAGE_VALID_PRICE + MessageConstants.MESSAGE_EDIT_COMMAND_EXMPLE
+                    + UIConstants.LINE, outContent.toString());
         }
 
         @Test
