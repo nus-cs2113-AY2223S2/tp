@@ -7,26 +7,28 @@
   * [Introduction 🧮](#introduction-)
   * [Quick Start](#quick-start)
   * [Features](#features)
-    * [1) Graph Analyser and Visualiser `Graph`](#1--graph-analyser-and-visualiser--graph)
-    * [2) Matrix Calculation `Matrix`](#2--matrix-calculation--matrix)
-    * [3) Store Notes `Store`](#3--store-notes--store)
-    * [4) Display All Notes `List`](#4--display-all-notes--list)
-    * [5) Display A Specific Note `List <index>`](#5--display-a-specific-note--list-index)
-    * [6) Delete Notes `Delete <index>`](#6--delete-notes--delete-index)
+    * [1) Graph Analyser and Visualiser: `Graph`](#1--graph-analyser-and-visualiser--graph)
+    * [2) Matrix Calculation: `Matrix`](#2--matrix-calculation--matrix)
+    * [3) Store Notes: `Store`](#3--store-notes--store)
+    * [4) Display All Notes: `List`](#4--display-all-notes--list)
+    * [5) Display A Specific Note: `List <index>`](#5--display-a-specific-note--list-index)
+    * [6) Delete Notes: `Delete <index>`](#6--delete-notes--delete-index)
     * [7) Clear All Notes Stored In Notes List `Clear`](#7--clear-all-notes-stored-in-notes-list-clear)
-    * [8) Mark Notes `Mark`](#8--mark-notes--mark)
-    * [9) Unmark Notes `Unmark`](#9--unmark-notes--unmark)
-    * [10) List All Items Marked As Completed `FindMark`](#10--list-all-items-marked-as-completed--findmark)
-    * [11) List All Notes That Are Not Marked As Completed `FindUnmark`](#11--list-all-notes-that-are-not-marked-as-completed--findunmark)
-    * [12) Find Notes Using Keyword `FindInfo`](#12--find-notes-using-keyword--findinfo)
+    * [8) Mark Notes: `Mark`](#8--mark-notes--mark)
+    * [9) Unmark Notes: `Unmark`](#9--unmark-notes--unmark)
+    * [10) List All Items Marked As Completed: `FindMark`](#10--list-all-items-marked-as-completed--findmark)
+    * [11) List All Notes That Are Not Marked As Completed: `FindUnmark`](#11--list-all-notes-that-are-not-marked-as-completed--findunmark)
+    * [12) Find Notes Using Keyword: `FindInfo`](#12--find-notes-using-keyword--findinfo)
     * [13) Prioritize A Note](#13--prioritize-a-note)
-    * [14) Display All Notes Based On All Priority Types](#14--display-all-notes-based-on-all-priority-types-)
-    * [15) Display All Notes Of A Certain Priority Type `FindPrior`](#15--display-all-notes-of-a-certain-priority-type--findprior)
-    * [16) Solving Quadratic Equations `Quadratic`](#16--solving-quadratic-equations--quadratic)
-    * [17) Help Manual `Help`](#17--help-manual-help)
-    * [18) Exit BadMaths `Bye`](#18--exit-badmaths-bye)
+    * [14) Display All Notes Based On All Priority Types:](#14--display-all-notes-based-on-all-priority-types-)
+    * [15) Display All Notes Of A Certain Priority Type: `FindPrior`](#15--display-all-notes-of-a-certain-priority-type--findprior)
+    * [16) Solving Quadratic Equations: `Quadratic`](#16--solving-quadratic-equations--quadratic)
+    * [17) Command History `History`](#17--command-history-history)
+    * [18) Help Manual `Help`](#18--help-manual-help)
+    * [19) Exit BadMaths `Bye`](#19--exit-badmaths-bye)
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
+
 <!-- TOC -->
 
 ## Introduction 🧮
@@ -426,18 +428,27 @@ Format: `Quadratic [quadratic equation]`
 
 Examples:
 
-- Input: `Quadratic 2x^2 + 2x + 1` 
+- Input: 
+````
+Quadratic 2x^2 + 2x + 1
+```` 
 - Output:
 ````
 x is imaginary.
 ````
-- Input: `Quadratic x^2 + 4x - 5`
+- Input: 
+````
+Quadratic x^2 + 4x - 5
+````
 - Output:
 ````
 x1 = 1.0 , x2 = -5.0
 There is a minimum point: (-2.0, -9.0)
 ````
-- Input: `Quadratic x^2 + 3`
+- Input: 
+````
+Quadratic x^2 + 3
+````
 - Output:
 ````
 Please use the format as shown below:
@@ -591,6 +602,7 @@ FindPrior LOW
  ```
  Graph 2*cos(1*x-6)-100
  ```
+### Quadratic
 ````
 Quadratic 2x^2 + x - 5
 ````
