@@ -37,6 +37,7 @@ Given below are my contributions to the project.
 #### Contributions to the DG:
 * Added `AddIncomeCommand` sequence diagram
 * Added `ListExpenseCommand` sequence diagram
+* Added architectural diagram
 * Added documentation for `AddIncomeCommand`
 * Added documentation for `ListExpenseCommand`
 
@@ -44,6 +45,7 @@ Given below are my contributions to the project.
 * v1.0 wrap-up
 * v1.0 release
 * v2.0 wrap-up
+* v2.1 wrap-up
 
 #### Review/monitoring contributions
 * PR and DG reviewed for the following team: [CS2113-T13-2](https://github.com/nus-cs2113-AY2223S2/tp/pull/79)
