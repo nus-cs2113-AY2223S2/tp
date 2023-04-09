@@ -43,6 +43,7 @@ public class MainInputParser {
     public static final int LIMIT = 2;
     public static final int INDEX_COMMAND = 0;
     public static final int INDEX_USERSTRING = 1;
+    public static final String CHECK_STRING = "c/";
 
     public static Command parseInputs(String userInput) {
         String[] splitValues = userInput.split(" ", LIMIT);
@@ -139,7 +140,7 @@ public class MainInputParser {
             return prepareBudget.setBudget();
         case CheckBudgetCommand.COMMAND_WORD:
             if (splitValues.length == 1 || splitValues[1].isEmpty() || splitValues[1].isBlank()) {
-                return new CheckBudgetCommand("c/");
+                return new CheckBudgetCommand(CHECK_STRING);
             }
             return new CheckBudgetCommand(splitValues[INDEX_USERSTRING]);
 

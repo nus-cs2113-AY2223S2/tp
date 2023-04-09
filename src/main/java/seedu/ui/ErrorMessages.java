@@ -29,6 +29,7 @@ public enum ErrorMessages {
                                            "Please re-enter a valid amount value"),
     ERROR_DATE_LIMIT_MESSAGE("Only dates from the year 2000 and onwards are accepted. Earlier dates are not supported"),
     ERROR_YEAR_LIMIT_MESSAGE("Only years 2000 and onwards are accepted. Earlier years are not supported");
+    ERROR_INVALID_AMOUNT_TOO_LARGE("The amount you have entered is too large please input a smaller value!");
 
     public final String message;
 
