@@ -142,6 +142,27 @@ public class MealCompanionUI {
         printRecipeDetailHelp();
         printRecipeNeedHelp();
         printRecipeAlmostHelp();
+        printRecipeFavouriteHelp();
+        printRecipeUnfavouriteHelp();
+        printRecipeFindHelp();
+    }
+
+    private static void printRecipeFindHelp() {
+        System.out.println("Command: recipe find <Keyword>");
+        System.out.println("Lists out all the recipes that contain the keyword in their name");
+        System.out.println(DIVIDER);
+    }
+
+    private static void printRecipeUnfavouriteHelp() {
+        System.out.println("Command: recipe unfavourite <recipe number>");
+        System.out.println("Unmarks the recipe from favourites");
+        System.out.println(DIVIDER);
+    }
+
+    private static void printRecipeFavouriteHelp() {
+        System.out.println("Command: recipe favourite <recipe number>");
+        System.out.println("Marks the recipe as favourite");
+        System.out.println(DIVIDER);
     }
 
     private static void printRecipeAlmostHelp() {
