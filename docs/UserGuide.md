@@ -331,11 +331,20 @@ viewing.
 
 ---
 
-### Editing a tag : `tag edit -o {tagNameOld} -n {tagNameNew}`
+### Editing a tag :
 
-Edit the name of an existing tag by specifying the old name and new name"
+`tag edit -o {OLD_TAG_NAME} -n {NEW_TAG_NAME}`
 
-The flags `-o` and `-n` can be listed in any order, but they must ***not*** contain any whitespaces.
+Edit the name of an existing tag by specifying the old name and new name. This change of tag name will also take effect
+in `tag list` and `card view`
+
+***Lists of flags (in any order)*** :
+
+- `-o` the old name of the tag.
+- `-n` the new name of the tag
+
+Users can refer to this [section](#usage-of-flags) to recap on how the flag works.
+
 and they cannot be empty.
 
 Example of usage :
