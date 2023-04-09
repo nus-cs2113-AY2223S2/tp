@@ -166,7 +166,7 @@ The implementation of `card add -q QN -a ANS` will be shown below :
 
 1. When the user enters `card add -q QN -a ANS`, the input is passed to `Parser` class which calls `Parser#parseCommand()`. The parser detects the keyword "card", then calls the `Parser#CardKeywordParser()` on the user inputs excluding the "card" keyword. 
 2. The `Parser#CardKeywordParser()` further extracts the action keyword "add" from the user input, and calls the `CardKeywordParser#handleAdd()` method.
-3. The method uses the Apache Commons CLI library to parse the remaining user input to create a `Card` object with the arguements of the flags "-q" and "-a" in the input as its question and answer, and returns an `AddCardCommand` with the created `Card` object.
+3. The method uses the Apache Commons CLI library to parse the remaining user input to create a `Card` object with the arguements of the flags "-q" and "-a" in the input as its question and answer, and returns an `AddCardCommand` with the created `Card` object. The sequence diagram for the first 3 steps has been shown in the [parser sequence diagram](#parser-component).
 4. This `AddCardCommand` will call the `CardList#addCard()` function and add the created `Card` object to the `CardList`. 
 5. Lastly, `UserInterface` will print a success message and the current number of `Card` objects in the `CardList` with the corresponding functions.
 
@@ -191,7 +191,7 @@ A sample user input, like `card delete -i 3` would be broken down as:
 
 The implementation of `card delete -i 3` will be shown below :
 
-1. When the user enters `card delete -i 3`, the `Parser` class will parse the user input in the same way as shown in step 1 here [above](#card-add).
+1. When the user enters `card delete -i 3`, the `Parser` class will parse the user input in the same way as shown in [step 1](#card-add) here .
 2. The `Parser#CardKeywordParser()` further extracts the action keyword "delete" from the user input and call `CardKeywordParser#handleDelete()` method.
 3. The method uses the Apache Commons CLI library to parse the remaining user input, and returns a `DeleteCardCommand` with a `CardSelector` argument. The `CardSelector` object has two optional fields, an int field or an uuid field, used in identifying the `Card` object, in this case to be deleted.
 5. This `DeleteCardCommand` will first find the `Card` object to delete, then find all the `Tag` and `Deck` objects it is associated to by their uuids stored in the `Card` object, and delete the `Card` object's uuid from them. 
