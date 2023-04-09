@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+skinparam sequence {
+    backgroundColor<<:Command>> #SeaGreen
+}
+activate ":BagPacker"
+":BagPacker" -> ":BagPacker": runBagPacker()
+activate ":BagPacker"
+loop [[ByeCommand.isBagPackerRunning]]
+create ":Parser"
+":BagPacker" -> ":Parser": Parser.parse()
+activate ":Parser" #yellow
+":Parser" -> ":Parser" : parse()
+activate ":Parser" #gold
+":Parser" -> ":Parser" : readline() & setFullInput() & getCommand()
+activate ":Parser" #grey
+":Parser" --> ":Parser"
+deactivate ":Parser"
+":Parser" -> ":Parser" : createCommandObj()
+activate ":Parser" #DeepSkyBlue
+
+create ":Command"
+note right #MediumSeaGreen
+All details in green activation
+bars omitted as it depends
+on the type of command input
+end note
+":Parser" -> ":Command" : constructs Command Object
+activate ":Command" #MediumSeaGreen
+note right
+In actuality the child
+class of Command class
+will be constructed
+end note
+":Parser" <-- ":Command" : relevant Command Object
+deactivate ":Command"
+":Parser" --> ":Parser" : Command Object
+deactivate ":Parser"
+":Parser" --> ":Parser"
+deactivate ":Parser"
+":BagPacker" <-- ":Parser" : currentCommand
+deactivate ":Parser"
+":BagPacker" -> ":Command": currentCommand.execute()
+activate ":Command" #MediumSeaGreen
+":Command" -> ":Command" : execute()
+activate ":Command" #MediumSpringGreen
+destroy ":Parser"
+":Command" --> ":Command"
+deactivate ":Command"
+":BagPacker" <-- ":Command": command is done executing
+deactivate ":Command"
+destroy ":Command"
+end
+":BagPacker" --> ":BagPacker":
+deactivate ":BagPacker"
+@enduml
