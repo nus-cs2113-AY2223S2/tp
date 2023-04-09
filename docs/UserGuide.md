@@ -272,7 +272,7 @@ Add a staff to the staffs list.
 
 Format: `add_staff n/<name> w/<working day> d/<date of birth> p/phone`
 
-Note that date format should be in YYYY-MM-DD.
+Note that date format should be in YYYY-MM-DD and phone number should only contain number. Date of birth should be before this present time as well. 
 
 Example: 
 ```

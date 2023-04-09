@@ -28,6 +28,7 @@ import manager.DishManager;
 import manager.StaffManager;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -198,7 +199,7 @@ public class Parser {
             String pattern = "n/(?<name>[\\w\\s]+)" +
                     "\\sw/(?<workingDay>[\\w\\s]+)" +
                     "\\sd/(?<dateOfBirth>(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))" +
-                    "\\sp/(?<phoneNumber>[\\d\\s]+)";
+                    "\\sp/(?<phoneNumber>\\d+)";
 
             Pattern regex = Pattern.compile(pattern);
             Matcher matcher = regex.matcher(userInputNoCommand);
@@ -216,6 +217,7 @@ public class Parser {
                 if (parsedStaffDateOfBirth.isAfter(today)) {
                     throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_FUTURE_DOB);
                 }
+
             }
 
             if (staffName.equals("") || staffWorkingDay.equals("") || staffPhoneNumber.equals("")
@@ -230,6 +232,9 @@ public class Parser {
 
             return new AddStaffCommand(staffName, staffWorkingDay, staffDateOfBirth, staffPhoneNumber);
         } catch (DinerDirectorException e) {
+            System.out.println(e.getMessage());
+            return new IncorrectCommand();
+        } catch (DateTimeParseException e) {
             System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
@@ -247,7 +252,7 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_STAFF_EXCESS_VIEW_PARAM);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         return new ViewStaffCommand();
