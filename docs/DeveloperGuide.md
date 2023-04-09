@@ -83,16 +83,14 @@ Here is the UML diagram of Ui class:
 
 ### Parser component
 
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/parser/Parser.java)
+
 How the `Parser` component works:
 1. When `Parser` is called to execute a command, it uses the `Parser` class to parse the user command. 
 2. The `Parser` class uses `UserInput` class to split the user input.
 2. This results in a `Command` object(more precisely, an object of one of its subclasses eg., `AddExpenseCommand`) which is executed by the `runCommandUntilExitCommand` method in BrokeMan class.
 3. The command can communicate with the `EntryList` component when it is executed(eg. to add an expense in the expense list)
 4. The result of the command execution is returned back from `Parser`.
-
-The Sequence Diagram below illustrates the interactions within the Logic component for the execute("deleteExpense 1") API call.
-
-{To be added}
 
 How the parsing works:
 
@@ -108,7 +106,18 @@ How the parsing works:
 [back to contents](#table-of-contents)
 
 ---
+
 ### Storage component
+
+
+### Save component
+
+The **API** of this component is specified in [`SaveBudget.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/save/SaveBudget.java), [`SaveExpense.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/save/SaveExpense.java), [`SaveIncome.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/save/SaveIncome.java)
+
+The `Save` component,
+
+- can save entrylist data and budget data in the hard disk as txt files, and read them back into corresponding objects.
+- depends on some classes in the EntryList component and Budget component(because the Save component’s job is to save/retrieve objects that belong to the EntryList and Budget)
 
 [back to contents](#table-of-contents)
 
@@ -116,21 +125,48 @@ How the parsing works:
 
 ### EntryList component
 
+The **API** of this component is specified in [`EntryList.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/entry/EntryList.java)
+
 The `EntryList` component,
 - stores the entry list data i.e., all `Entry` objects (which can inherit the behavior of `Expense` class or `Income` class)
 - stores the `EntryAmountComparator` and `EntryDateComparator` to filter the list. The UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - does not depend on any of the other three components (as the `EntryList` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 Here is the (partial) UML diagram of the `EntryList` component:
-{to be added}
+
+![EntryListClassDiagram](images/EntryListClassDiagram.png)
 
 [back to contents](#table-of-contents)
 
 ---
 
+### Budget component
+
+The **API** of this component is specified in [`Budget.java`](https://github.com/AY2223S2-CS2113-F13-2/tp/blob/master/src/main/java/seedu/brokeMan/budget/Budget.java)
+
+The `Budget` component,
+- stores the monthly budget data in a hashmap
+- does not depend on any of the other three components (as the `Budget` represents data entities of the domain, they should make sense on their own without depending on other components).
+
 ### Common class
 
 Messages used by multiple components are in the `seedu.brokeMan.commmon` package.
+
+[back to contents](#table-of-contents)
+
+---
+
+### Command classes
+
+The execution behaviors of possible commands are in the `seedu.brokeMan.command` package.
+
+[back to contents](#table-of-contents)
+
+---
+
+### Exception classes
+
+Possible exceptions in multiple components are defined in the `seedu.brokeMan.exception` package.
 
 [back to contents](#table-of-contents)
 
