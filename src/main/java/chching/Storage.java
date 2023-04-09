@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
@@ -39,9 +38,6 @@ public class Storage {
     
     static {
         LogManager.getLogManager().reset();
-        ConsoleHandler consoleHandler = new ConsoleHandler();
-        consoleHandler.setLevel(Level.SEVERE);
-        logger.addHandler(consoleHandler);
         logger.setLevel(Level.ALL);
         try {
             new File("data/StorageLog.log").createNewFile();
