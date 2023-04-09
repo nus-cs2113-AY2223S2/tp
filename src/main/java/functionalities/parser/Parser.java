@@ -229,8 +229,8 @@ public class Parser {
 
     private static void parseEditCommand(String task) throws SniffException{
         int uidIndex = task.indexOf("uID/");
-        String uid = task.substring(uidIndex + 4, uidIndex + 14);
         String type = task.substring(uidIndex + 4, uidIndex + 5);
+        String uid = task.substring(uidIndex + 4, uidIndex + 14);
         if (type.equals("C")){
             try {
                 String animalType = splitInputBy(task, "at/");
@@ -245,7 +245,7 @@ public class Parser {
                 LocalTime parsedTime = LocalTime.parse(time, timeFormatter);
                 command = new EditConsultationCommand(uid, animalType, animalName, ownerName, contactNumber, parsedDate,
                        parsedTime);
-            } catch (DateTimeParseException e) {
+            }  catch (DateTimeParseException e) {
                 throw new SniffException("The date/time description is invalid.");
             } catch (NullPointerException e) {
                 throw new SniffException("The consultation description is invalid!");
@@ -283,7 +283,7 @@ public class Parser {
                 throw new SniffException("The vaccination description is invalid!");
             }
         }
-        else if (type == "V"){
+        else if (type.equals("V")){
             try {
                 String animalType = splitInputBy(task, "at/");
                 String animalName = splitInputBy(task, "an/");
