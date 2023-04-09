@@ -6,7 +6,7 @@ import utils.exceptions.InvalidUUIDException;
 
 //to be made into an abstract class containing a few types of Cards later, for now just a single Card will do
 public class Card {
-    private CardUUID uuid; //to be made into a hash later
+    private CardUUID uuid;
     private String question;
     private String answer;
     private ArrayList<TagUUID> tags = new ArrayList<>();
@@ -107,13 +107,14 @@ public class Card {
         boolean isQnTooLong = this.question.length() > 50;
         boolean isAnsTooLong = this.answer.length() > 50;
 
+        String uuidStr = "\t\t[" + this.uuid + "]";
         String warningStr =
                 (isQnTooLong || isAnsTooLong) ? "\n\tNote:\tActual question or answer is too long, string truncated"
                         : "";
+
         String questionStr = isQnTooLong ? this.question.substring(0, 50) : this.question;
         String answerStr = isAnsTooLong ? this.answer.substring(0, 50) : this.answer;
 
-        return "\t\t[" + this.uuid + "]" +
-                "\n\tQn:\t\t" + questionStr + "\n\tAns:\t" + answerStr + warningStr + "\n";
+        return uuidStr + "\n\tQn:\t\t" + questionStr + "\n\tAns:\t" + answerStr + warningStr + "\n";
     }
 }

@@ -15,7 +15,7 @@ import utils.UserInterface;
 import utils.command.Command;
 import utils.command.DeleteTagCommand;
 import utils.command.EditTagNameCommand;
-import utils.command.ListCardsUnderTagCommand;
+import utils.command.ListCardsInTagCommand;
 import utils.command.ListTagsCommand;
 import utils.command.PrintHelpCommand;
 import utils.exceptions.InkaException;
@@ -62,13 +62,13 @@ public class TagParserTest {
     @Test
     public void parse_tag_listWithTag() throws InkaException {
         Command cmd = parser.parseCommand("tag list -t tagName");
-        assert cmd instanceof ListCardsUnderTagCommand;
+        assert cmd instanceof ListCardsInTagCommand;
     }
 
     @Test
     public void parse_tag_listWithTagLongFlag() throws InkaException {
         Command cmd = parser.parseCommand("tag list --tag tagName");
-        assert cmd instanceof ListCardsUnderTagCommand;
+        assert cmd instanceof ListCardsInTagCommand;
     }
 
     @Test

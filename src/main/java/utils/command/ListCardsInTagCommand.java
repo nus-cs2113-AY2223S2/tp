@@ -15,10 +15,10 @@ import utils.exceptions.LongTagNameException;
 import utils.exceptions.TagNotFoundException;
 import utils.storage.IDataStorage;
 
-public class ListCardsUnderTagCommand extends Command {
+public class ListCardsInTagCommand extends Command {
     private TagSelector tagSelector;
 
-    public ListCardsUnderTagCommand(TagSelector tagSelector) {
+    public ListCardsInTagCommand(TagSelector tagSelector) {
         this.tagSelector = tagSelector;
     }
 

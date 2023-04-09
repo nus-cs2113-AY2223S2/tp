@@ -197,7 +197,7 @@ public class UserInterface {
         System.out.println("Successfully removed deck " + deckName + " from the deck list.");
     }
 
-    public void printEditTagNameSuccess(String oldTagName, Tag tag) {
+    public void printEditTagName(String oldTagName, Tag tag) {
         System.out.println(
                 "Tag " + tag.getUUID() + "tag name has been changed from " + oldTagName + " to " + tag.getTagName());
     }

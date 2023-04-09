@@ -33,6 +33,6 @@ public class EditTagNameCommand extends Command {
         }
 
         tag.editTagName(newTagName);
-        ui.printEditTagNameSuccess(oldTagName, tag);
+        ui.printEditTagName(oldTagName, tag);
     }
 }

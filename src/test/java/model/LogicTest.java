@@ -16,7 +16,7 @@ import utils.command.DeleteDeckCommand;
 import utils.command.DeleteTagCommand;
 import utils.command.EditDeckNameCommand;
 import utils.command.EditTagNameCommand;
-import utils.command.ListCardsUnderTagCommand;
+import utils.command.ListCardsInTagCommand;
 import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromCardCommand;
 import utils.command.RemoveTagFromDeckCommand;
@@ -351,7 +351,7 @@ public class LogicTest {
                     "tag list -t "
                             +
                             "gsjhgskghsjkiughkghsighszghzsghzghsgiuhohzsdiughzoughidogjhzogizsjghzioghjzsdioggjsiokgj",
-                    ListCardsUnderTagCommand.class);
+                    ListCardsInTagCommand.class);
         } catch (LongTagNameException e) {
             assertEquals(e.getUiMessage(), longTagNameStr);
         }
