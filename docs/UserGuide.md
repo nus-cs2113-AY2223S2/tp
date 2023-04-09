@@ -2,9 +2,10 @@
 
 ## Introduction
 
-Sniff is an appointment manager that helps clinic deal with handling appointments of different types.
-Features such as appointment tracking via uid, date, and appointment type help improve efficiency in the workplace 
-and reduce human errors.
+Sniff is a `Command Line Interface (CLI) Appointment Tracker` designed specifically for veterinary clinics in Singapore.
+Its main functions are to track various appointments of types: Surgery, Vaccination, & 
+Consultation via uid, date, and appointment type to help clinics better manage their working staff.
+<br>
 
 
 ## Quick Start
@@ -21,7 +22,9 @@ ______________________________________________________________________
  What can I do for you?
 ______________________________________________________________________
 ```
+## Overview of Features
 
+1.
 ## Features
 
 ### Adding a consultation appointment: `consultation`
