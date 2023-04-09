@@ -32,6 +32,8 @@ Adds a new consultation appointment to the appointment manager.
 
 Format: `consultation at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER cd/DATE ct/TIME`
 
+* The `ANIMAL_TYPE`, `ANIMAL_NAME` and `OWNER_NAME` must be in alphabetical format.
+* The `CONTACT_NUMBER` must be an 8-digit number.
 * The `DATE` must be in *YYYY-MM-DD* format.
 * The `TIME` must be in *HH:MM* format.
 
@@ -40,11 +42,26 @@ Example of usage:
 * `consultation at/Cat an/Lulu on/Jon cn/91919191 cd/2023-12-12 ct/19:00`
 * `consultation at/Dog an/Russ on/Sarah cn/92929292 cd/2023-10-15 ct/09:00`
 
+```
+______________________________________________________________________
+ This appointment has been added to your appointment manager: 
+ Consultation   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: C74584428I
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+ Consultation added successfully!
+______________________________________________________________________
+```
+
 ### Adding a vaccination appointment: `vaccination`
 Adds a new vaccination appointment to the appointment manager.
 
 Format: `vaccination at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER v/VACCINE_TYPE vd/DATE vt/TIME`
 
+* The `ANIMAL_TYPE`, `ANIMAL_NAME`, `OWNER_NAME` must be in alphabetical format.
+* The `CONTACT_NUMBER` must be an 8-digit number.
 * The `DATE` must be in *YYYY-MM-DD* format.
 * The `TIME` must be in *HH:MM* format.
 
@@ -53,11 +70,27 @@ Example of usage:
 * `vaccination at/Cat an/Lulu on/Jon cn/91919191 v/Covid vd/2023-12-12 vt/19:00`
 * `vaccination at/Dog an/Russ on/Sarah cn/92929292 v/Rabies vd/2023-10-15 vt/09:00`
 
+```
+______________________________________________________________________
+ This appointment has been added to your appointment manager: 
+ Vaccination   [ ]
+ Date: 2023-12-12
+ Time: 19:00
+ UID: V47278232N
+ Vaccine: Covid
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+ Vaccination added successfully!
+______________________________________________________________________
+```
+
 ### Adding a surgery appointment: `surgery`
 Adds a new surgery appointment to the appointment manager.
 
 Format: `surgery at/ANIMAL_TYPE an/ANIMAL_NAME on/OWNER_NAME cn/CONTACT_NUMBER sd/START_DATE st/START_TIME ed/END_DATE et/END_TIME p/PRIORITY_LEVEL`
 
+* The `ANIMAL_TYPE`, `ANIMAL_NAME`, `OWNER_NAME` must be in alphabetical format.
+* The `CONTACT_NUMBER` must be an 8-digit number.
 * The `START_DATE` and `END_DATE` must be in *YYYY-MM-DD* format.
 * The `START_TIME` and `END_TIME` must be in *HH:MM* format.
 * The `PRIORITY_LEVEL` must be *H*, *M*, *L* format, representing HIGH, MEDIUM and LOW priorities respectively.
@@ -66,6 +99,21 @@ Example of usage:
 
 * `surgery at/Cat an/Lulu on/Jon cn/91919191 sd/2023-12-12 st/19:00 ed/2023-12-12 et/20:00 p/L`
 * `surgery at/Dog an/Russ on/Sarah cn/92929292 sd/2023-10-15 st/09:00 ed/2023-12-15 et/20:00 p/M`
+
+```
+______________________________________________________________________
+ This appointment has been added to your appointment manager: 
+ Surgery  [ ] | Priority: LOW
+ Start Date: 2023-12-12
+ End Date: 2023-12-12
+ Start Time: 19:00
+ End Time: 20:00
+ UID: S88228101H
+ Animal Name: Lulu | Animal Type: Cat
+ Owner Name: Jon | Contact Number: 91919191
+ Surgery added successfully!
+______________________________________________________________________
+```
 
 ### Listing appointments: `list`
 Retrieves all unmarked tasks from Sniff Appointments ArrayList and displays it to the user.
