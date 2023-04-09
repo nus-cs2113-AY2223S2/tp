@@ -6,6 +6,7 @@ import org.apache.commons.cli.Options;
 
 public class OptionsBuilder {
 
+<<<<<<< HEAD
     // Flags
     protected static final String FLAG_CARD = "c";
     protected static final String FLAG_LONG_CARD = "card";
@@ -24,6 +25,10 @@ public class OptionsBuilder {
 
     private String model;
     private String keyword;
+=======
+    private static String model = null;
+    private static String action = null;
+>>>>>>> 9f71a0d (Added in user input identifier to increase user friendliness of app)
 
     public OptionsBuilder(String model, String action) {
         this.model = model;
