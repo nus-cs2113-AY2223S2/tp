@@ -25,5 +25,5 @@ AddMeetingCommand->MeetingManager:addMeeting(m,ui)
 Activate MeetingManager
 MeetingManager-->AddMeetingCommand
 
-
+<--AddMeetingCommand
 @enduml
