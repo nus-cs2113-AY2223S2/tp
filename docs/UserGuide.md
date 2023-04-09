@@ -23,7 +23,7 @@ listed of a multi-user application by CS2113 definition.
 Example:
 
 ~~~
-java -jar "C:\Users\Albert\Desktop\[CS2113-W13-1][DrDuke].jar"
+java -jar "C:\Users\Albert\Desktop\DrDuke.jar"
 ~~~
 
 # Features Guide
