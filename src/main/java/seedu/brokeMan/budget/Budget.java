@@ -5,6 +5,7 @@ import seedu.brokeMan.entry.EntryList;
 import seedu.brokeMan.parser.StringToTime;
 import seedu.brokeMan.ui.Ui;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.HashMap;
@@ -30,14 +31,15 @@ public class Budget {
             double totalExpenses = EntryList.getEntryListSum(expensesInMonth);
             double budgetThisMonth = budgetEachMonth.get(yearOfInterest).get(monthOfInterest);
             double budgetLeft = budgetThisMonth - totalExpenses;
+            BigDecimal BigDecimalBudgetLeft = new BigDecimal(budgetThisMonth - totalExpenses);
             Ui.showToUser(String.format("You have set your budget as $%.2f for %s.",
                     budgetThisMonth, createDateString(yearOfInterest, monthOfInterest)));
             if (budgetLeft >= 0) {
                 Ui.showToUserWithLineBreak(
-                        String.format("The amount of budget left is $%.2f", budgetLeft), "");
+                        String.format("The amount of budget left is $%.2f", BigDecimalBudgetLeft), "");
             } else if (budgetLeft < 0){
                 Ui.showToUserWithLineBreak(String.format(
-                        "You have overspent your expenses by $%.2f", budgetLeft), "");
+                        "You have overspent your expenses by $%.2f", BigDecimalBudgetLeft), "");
             }
         } catch (NullPointerException npe) {
             Ui.showToUserWithLineBreak("Budget information for the given month does not exist!", "");
