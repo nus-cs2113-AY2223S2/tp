@@ -682,8 +682,13 @@ public class TestUi {
                     "\tFILTER stands for a specific requirement you want to include in your exercise\n" +
                     "[filters]\n" +
                     "\tView all available filters\n" +
-                    "[ippt] [AGE] [RUNTIME] [PUSHUPs] [SITUPs]\n" +
-                    "\tStarts an IPPT exercise session with input repetitions for the 3 sets of exercises.\n" +
+                    "ippt AGE RUNTIME PUSHUPS SITUPS\n" +
+                    "\tStarts an IPPT exercise session with input repetitions for the 3 sets of exercises,\n" +
+                    "\twhere AGE is a valid positive integer from 16-60;\n" +
+                    "\tRUNTIME is in the format of 'mm:ss' where mm is minute " +
+                    "(positive integer) and ss is seconds (positive integer);\n" +
+                    "\tPUSHUPS is a valid positive integer from 0 to 60;\n" +
+                    "\tand SITUPS is a valid positive integer from 0 to 60;\n"+
                     "[start]\n" +
                     "\tStart a workout session\n" +
                     "[history]\n" +
