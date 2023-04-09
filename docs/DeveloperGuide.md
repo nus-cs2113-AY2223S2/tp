@@ -5,6 +5,7 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up-getting-started)
 3. [Design](#design)
+   - [Architecture](#architecture)
    - [Command Parsing](#command-parsing)
    - [Ingredient Class](#ingredient-class)
    - [Recipe Class](#recipe-class)
@@ -63,12 +64,12 @@ Given below is a quick overview of main components.
 
 #### Main Components
 
-* `MealCompanion`:
-* `UI`:
-* `Logic`:
-* `Model`:
-* `Storage`:
-* `Command`:
+* `MealCompanion`: Main entry of the program, initialises and connects the components
+* `UI`: In charge of printing messages
+* `Logic`: Determines the command to execute
+* `Model`: Holds data from program in memory
+* `Storage`: Read and write data from hard disk
+* `Command`: Specific commands for execution
 
 ### Command Parsing
 
@@ -313,7 +314,7 @@ Our product targets students who would like to save money on buying or ordering 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should respond to a command within a second.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. A user should be able to predict what the commands do by their names.
+4. A user should be able to infer what the commands do from their names.
 
 ###### [Back to table of contents](#table-of-contents)
 
@@ -327,12 +328,16 @@ Our product targets students who would like to save money on buying or ordering 
 
 Given below are instructions to test the app manually.
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
 ### Launch and Shutdown
 
 1. Initial Launch
    * Download the jar file and copy into an empty folder.
+   * Run jar file in a terminal. <br>
+   Expected: Welcome message is shown in the terminal and `ingredients.txt` file is created in the folder containing the jar file.
+<br/><br/>
+2. Exit from Program
+   * Run the `bye` command. <br>
+   Expected: Program exits and updates are made accordingly to the `ingredients.txt` file based on the commands ran before exiting the program.
 
 ### Make a Recipe
 
@@ -351,8 +356,7 @@ Expected: Similar to previous.
 
 ### Saving Data
 1. Dealing with corrupted data file
-   * To simulate a corrupted data file, ...(to be completed) <br>
+   * To simulate a corrupted data file, <br>
    Expected: MealCompanion to throw error message notifying users of corrupted data file.
-2. 
 
 ###### [Back to the top](#developer-guide)
