@@ -188,4 +188,6 @@ public class Ui {
         System.out.println("Only one industry(i/), contact number(c/), and email address(e/) are allowed.");
     }
 
+
+
 }

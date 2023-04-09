@@ -213,7 +213,7 @@ updates a status icon to [Unconfirmed] that represents it being marked unconfirm
 
 ```
 ____________________________________________________________
-Company has been successfully uncomfirmed!
+Company has been successfully unconfirmed!
 ____________________________________________________________
 
 ```
