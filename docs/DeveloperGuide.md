@@ -33,66 +33,71 @@
 ## Design & Implementation
 <img src="images/architecture.png"/>
 
-**Access commands** (those related to accounts) will be fetched by the `getUserCommand()` method in the *TextUi* class.
-These commands will be parsed using `parseAccessCommand()` method in the *AccessCommandParser* class and parse to 
-the respective command classes. The command classes will be responsible for executing the relevant features.
+**Access commands** related to accounts are fetched by the `getUserCommand()` method in the *TextUi* class.
+These commands are parsed by the `parseAccessCommand()` method in the *AccessCommandParser* class, 
+which is then parsed to the respective command classes responsible for executing the relevant features.
 
-Access commands will return an AccessResponse object after executing, which contains a User object and a message. 
-The User object will be null if log in/sign up is not successful, and will return the signed-in
-User object if log in / sign up is successful. The accompanied message will display related message to the user.
+Upon execution, access commands return an AccessResponse object containing a User object and a message.
+If a log in or sign up is unsuccessful, the User object will be null. If successful, the AccessResponse will 
+contain the signed-in User object. The accompanying message will display a relevant message to the user.
 
-Null User will be returned regardless of the result of changing password, but the message will be different depends 
-on the result.
+Regardless of whether the password is successfully changed, the command will return a null User object. 
+However, the message will vary depending on the result.
 
-User data are stored in a hashmap mapping from unique usernames to *User* objects. *User* stores person information 
-as well as username and hash code of the password. Passwords are not explicit stored for security reasons.
+User data is stored in a HashMap mapping unique usernames to *User* objects, which store personal information 
+as well as the username and the hashed password. Passwords are not explicitly stored for security reasons.
 
-The user can only execute user commands such as history, borrow after successfully logged in to the system, and they 
-need to log out before exiting the application.
+Users can only execute user commands, such as checking their borrowing history or borrow books, 
+after successfully logging into the system. They must log out before exiting the application.
 
 ### Log in
 <img src="images/login_sequence.png"/>  
-Description: Log in to the account using saved username and password
+
+Description: Log in to the account using saved username and password.
 
 Format: `login -username USERNAME -password PASSWORD`  
 
 Example: 
 - `login -username me -password mypassword`  
 
-For successful logging in, the application will print a welcome message and allow the user to execute user commands 
-such as borrowing and returning books. Only exact match will be allowed.
+When a user successfully logs into their account using their saved username and password, the application 
+will display a welcome message and allow the user to execute user commands such as borrowing and 
+returning books. The application only allows for an exact match.
 
-If the logging in is unsuccessful, the application will wait for the next access command(login again or signup).
+If the user is unable to log in, the application will wait for the next access command (either login or signup).
 
 ### Sign up
-Description: For users who do not have an account in the system, they need to sign up their account with a unique 
-username, a password and a name. The username and password can only contain letters and numbers, but name can 
-contain spaces.
+Description: To use the system, users who do not have an account need to sign up with 
+a unique username, a password, and a name. The username and password can only contain 
+letters and numbers, but the name can contain spaces.
 
 Format: `signup -username USERNAME -password PASSWORD -NAME FULL_NAME`
 
 Example:
 - `signup -username me -password apassword -name my name`
 
-If the username is unique in the database and password is valid, the user has created account successfully. But if 
-the username is already in the database or the username/password contains invalid characters (e.g. '$', '^'), the 
-signing up will be unsuccessful.
+If the username entered by the user is unique in the database and the password is valid, the account creation process 
+will be successful. However, if the username is already present in the database or the username/password 
+contains invalid characters such as '$' or '^', the signing up process will be unsuccessful.
 
 ### Change Password
-Description: For existing users who want to change their passwords, they can change it with their username, old 
-password and new password.
+Description: Existing users can change their passwords by providing their username, 
+old password and new password.
 
 Format: `password -username USERNAME -old OLD_PASSWORD -new NEW_PASSWORD`
 
 Examples:
 - `password -username joe123 -old 123456 -new 654321`
 
-The password changing is successful only if the username exist in the database, the old password match with the 
-username, and new password is valid (does not contain invalid characters).
+The password changing is successful only if the username exist in the database, the old password matches with the 
+corresponding username, and new password is considered valid (i.e., it does not contain invalid characters).
 
 
 ## Design & Implementation for Users Commands
-All commands will be fetched by the getUserCommand() method in the TextUi class. The parseCommand() method in the Parser class will then parse the command and pass it to the respective command classes. The command classes will be responsible for executing the relevant features.
+All user commands will be fetched by the `getUserCommand()` method in the *TextUi* class. 
+The `parseCommand()` method in the *Parser* class will then parse the command and pass it 
+to the respective command classes. The command classes will be responsible for executing 
+the relevant features of the application.
 
 
 ### Search book by title
@@ -103,119 +108,155 @@ Format: `search -title TITLE`
 Example:  
 - `search -title Python Programming`  
 
-For successful searches, the program will output the relevant book along with the book details: ISBN, Title, Author, Topic. For unsuccessful searches, the program will output a string informing the user that there is no match with the input title from the inventory.  
-Note: Partial string matching will not be considered in this application. Exact match of title and topic will be done, and if match is found, the book object will be returned.
+Successful searches will result in the program outputting the relevant book details, including ISBN, 
+title, author, and topic. If the search is unsuccessful, the program will output a message indicating 
+that there is no match in the inventory for the input title. 
+
+Note: Partial string matching will not be considered in this application. 
+The search will only return exact matches for the book's title and topic. If a match is found, 
+the book object will be returned.
 
 
 ### Search book by topic
 <img src="images/search class diagram.png"/> 
-Description: Searches for a book by its topic  
+
+Description: Searches for a book by its topic.  
 Format: `search -topic TOPIC`  
 Example:
 - `search -topic Business`  
 
-For successful searches, the program will output the relevant books along with the book details: ISBN, Title, Author, Topic. For unsuccessful searches, the program will output a string informing the user that there is no match with the input topic from the inventory.
+Successful searches will result in the program outputting the relevant book details, including ISBN,
+title, author, and topic. If the search is unsuccessful, the program will output a message indicating
+that there is no match in the inventory for the input title.
 
 
 ### Check book availability
-Description: Check if a book is available for borrowing  
+Description: Check if a book is available for borrowing.  
 Format: `check -title TITLE`  
 Example:
 - `check -title Python Programming`  
 
-The program will indicate whether the book is available for borrowing. The program will also handle the case that there is no such book in the inventory.
+The program will check whether the book is available for borrowing and return the 
+borrowing status (borrowed or not borrowed). It will also handle the case where the book 
+does not exist in the inventory.
 
 
 ### Borrow book
-Description: Borrow a book from the library  
+Description: Borrow a book from the library.  
 Format: `borrow -title TITLE`  
 Example:
 - `borrow -title Python Programming`  
 
-For successful borrowing, the program will output a string showing that the action is successful and, at the same time, mark the book as borrowed in the system. For unsuccessful borrow requests, the program will either output that there is no such book in the inventory or a message showing that the book is already on loan at the time of the borrow request.
+For successful borrowing, the program will output a message indicating that the 
+action was successful and mark the book as borrowed in the system. For unsuccessful 
+borrow requests, the program will either output a message stating that there is no such 
+book in the inventory, or a message indicating that the book is already on loan at the 
+time of the borrow request.
 
 
 ### Renew borrow period of book
 <img src="images/renew class diagram.png"/>  
-Description: Renew borrowing of books for a fixed duration  
+
+Description: Renew borrowing of books for a fixed duration.  
 Format: `renew -title TITLE`  
 Example:
 - `renew -title C++Primer`  
 
-For successful renewal of books, the program will output a string showing that the action is successful and also change the due period of borrow in the system. The program will handle error cases such as incorrect titles provided or books not available for renewal.
+For successful renewal of books, the program will output a string showing that the action is successful
+and also change the due period of borrow in the system. The program will handle error cases such as incorrect 
+titles provided or books not available for renewal.
 
 
 ### Check borrowing status
 <img src="images/check class diagram.png"/> 
-Description: Check status of borrowed book  
+
+Description: Check status of borrowed book.  
 Format: `status -title TITLE`  
 Example:
 - `status -title C++Primer`  
 
-The program will output the details of the relevant book being borrowed and also show the due date of the loan. The program will handle cases where there is no such book in the borrow history.
+The program will output the details of the relevant book being borrowed and also show the due date of the loan. 
+The program will handle cases where there is no such book in the borrow history.
 
 
 ### Return book
-Description: Return a book to the library  
+Description: Return a book to the library.  
 Format: `return -title TITLE`  
 Example:
 - `return -title C++Primer`  
 
-For successful returns of books, the program will output a string showing that the action is successful and mark the book as available for borrowing by other users in the system. The program will handle cases of incorrect title input and unsuccessful returns.
+The program should output a success message upon successful book returns and mark the book as available 
+for borrowing by other users in the system. It also handles cases of incorrect title inputs or 
+unsuccessful returns.
 
 
 ### Add book  
 <img src="images/inventory class diagram.png"/>  
 
-Description: Add new books into the system  
+Description: Add new books into the system. 
 Format: `librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action add`  
 Example:
 - `librarian -title C++Primer -topic Programming -author James -isbn 12345 -action add`  
 
-This feature is only applicable for admin. For successful addition of new book, the program will output a message to inform the librarian. The new book will also be added into the inventory of the system so that users can now borrow the book from the library. Error inputs and missing inputs will be handled accordingly.
- 
+This feature is only applicable for the admin. Upon successful addition of a new book, the program will output 
+a message to inform the librarian. The new book will also be added to the inventory of the system, allowing users 
+to borrow the book from the library. Error inputs and missing inputs will be handled accordingly.
+
 
 ### Delete book
-Description: Remove books from the system  
+Description: Remove books from the system.  
 Format: `librarian -title TITLE -topic TOPIC -author AUTHOR -isbn ISBN -action delete`  
 Example:
 - `librarian -title C++Primer -topic Programming -author James -isbn 12345 -action delete`  
 
-This feature is only applicable for admin. For successful deletion of book, the program will output a message to inform the librarian. The book will also be deleted from the inventory of the system so that it will not be able to be borrowed by users anymore. Error inputs and missing inputs will be handled accordingly.
+This feature is only applicable for the admin. For successful deletion of a book, the program will output a 
+message to inform the librarian. The book will also be removed from the inventory of the system so that it will 
+not be borrowable by users anymore. Error inputs and missing inputs will be handled accordingly.
 
 
 ### List book
 <img src="images/list class diagram.png"/> 
-Description: List all the books in the library  
+
+Description: List all the books in the library.
 Format: `list`  
 Example:
 - `list`  
 
-The program will list out all the books in the library inventory. If the inventory is empty, the program will output a message indicating that there is currently no book in the library system.
+The program will list out all the books in the library inventory. If the inventory is empty, the program 
+will output a message indicating that there is currently no book in the library system.
 
 
 ### View history
-Description: Check the borrow history of the books (admin and user versions). The admin version will allow admin to access the whole borrow history, while users can only view their own borrow history.  
+Description: The program includes a feature to check the borrow history of books, which has two versions - 
+admin and user. The admin version permits the administrator to access the entire borrow history, while the user 
+version only permits the user to view their own borrow history.  
 Format: `history`  
 Example:
 - `history`  
 
-The program will output the borrow history of books according to the accessibility as mentioned in the description above. The output includes the book title and other book details, the status of the book (either it is available for borrowing or it has been borrowed at the moment), and also details of the loan, which include the date and time of borrowing and returning.
+The program will output the borrow history of books according to the accessibility mentioned in the 
+description above. The output will include the book title and other book details, the status of the book 
+(whether it is available for borrowing or has been borrowed), and details of the loan, which will include the 
+date and time of borrowing and returning.
 
 
 ### Make payment
 Description: Make payment for overdue loans.  
-When returning item(s) which is/are overdue, the user will be prompted to make payment. Failure to do so will result in returning action unsuccessful.
+When returning item(s) that are overdue, the user will be prompted to make a payment. 
+Failure to do so will result in the returning action being unsuccessful.
 
 
 ## Product Scope
 ### Target user profile
 
-NUS computer science (CS) students who wish to borrow and read CS related books.
+This program is designed for National University of Singapore (NUS) Computer Science (CS)
+students who wish to borrow and read CS related books.
 
 ### Value proposition
 
-CS students are incredibly busy and hence having a command line interface (CLI) program without GUI makes finding the books they want quick and efficient. This software will also help them track loans and return dates.
+CS students are often busy, so a command line interface (CLI) program without a GUI can make
+finding the books they need quick and efficient. This software can also help them keep track
+of loans and return dates.
 
 ## User Stories
 

@@ -12,7 +12,9 @@ Given below are my contributions to the project.
 * New feature: Added the ability to read and write book data.
   * What it does: Allows the program to read a .txt file containing information on books that are in the library and save them in the program.
   * Justification: This feature significantly improves the product because it allows the addition and deletion of books from the library, requiring a database to store book data.
-  * Highlights: This enhancement enables all changes to the book data to be saved, including the addition, removal, and modification of books, playing a crucial role.
+  * Highlights: 
+    * This enhancement enables all changes to the book data to be saved, including the addition, removal, and modification of books, playing a crucial role.
+    * Compiled and added 10 different popular books related to computer science of various topics into the book database.
 * New feature: Added the ability for users to list books in the library.
   * What it does: Allows the user to list all the books in the library. The program informs the user if there are no books in the library.
   * Justification: This feature enables the user to have a glimpse of the types of books available, such as the topics of books. This is important as a new user might be clueless about the various topics of books available.
@@ -28,9 +30,9 @@ Given below are my contributions to the project.
 * Contributed to making the User Guide a comprehensive and user-friendly resource for our users.
 
 #### Contributions to the Developer Guide:
-* Quality-checked the User Guide to ensure accuracy and clarity for users.
+* Quality-checked the Developer Guide to ensure accuracy and clarity for users.
 * Edited the English and logic in the guide to enhance its readability.
-* Contributed to making the User Guide a comprehensive and user-friendly resource for our users.
+* Contributed to making the Developer Guide a comprehensive and user-friendly resource for our users.
 
 #### Contributions to Team-Based tasks:
 * Ensuring GitHub's Java Continuous Integration (CI) checks set up by GitHub are passing. These checks help ensure that the code in the repository is up-to-date and meets the quality standards set by the team.
