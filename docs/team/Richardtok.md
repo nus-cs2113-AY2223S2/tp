@@ -16,3 +16,10 @@ Implemented Features: Viewing a specific day calorie consumption
 Implemented Features: Help function for both Workout Commands and Calorie Commands
 - What it does: It allows the user to view all the valid commands that can be used for "FITZ"
 - Justification: It summarizes the list of valid commands so that the user can easily use it.
+
+Contributions to the User Guide:
+- Completely reworked the User Guide with accordance to code changes
+- Added descriptions to every Command and Provided examples
+
+Contributions to the Developer Guide:
+- added description of view funciton and diagram

@@ -7,12 +7,12 @@ participant ":Duke" as Duke
 
 User -> Duke: Userinput
 activate Duke
-Duke -> Parser : processCommand(userInput)
+Duke -> Parser : parseViewWorkoutCommand(arguments)
 activate Parser
-Parser-> CheckInputs: processView(arguments)
-activate CheckInputs
-CheckInputs->ViewWorkoutCommand : ViewWorkoutCommand(date)
+Parser-> WorkoutParser: processView(arguments)
+activate WorkoutParser
+WorkoutParser->ViewWorkoutCommand : ViewWorkoutCommand(index)
 activate ViewWorkoutCommand
-return workout.toString
-return workout.toString
+return toView.toString()
+return toView.toString()
 @enduml
