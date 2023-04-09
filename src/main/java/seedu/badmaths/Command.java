@@ -79,8 +79,6 @@ public class Command {
         NotesFinder notesFinder = new NotesFinder(notes, filePath);
         NotesPriorityFinder notesPriorityFinder = new NotesPriorityFinder(notes, filePath);
         NotesRanker notesRanker = new NotesRanker(notes, filePath);
-
-
         try {
             //@@author WilsonLee2000
             assert (command.equals("Bye") || command.equals("Graph") || command.equals("Store") ||
@@ -108,7 +106,7 @@ public class Command {
                 break;
             //@@author WilsonLee2000
             case "List":
-                List lists = new List(notes,toDo);
+                List lists = new List(notes, toDo);
                 lists.listNotes();
                 break;
             //@@author WilsonLee2000
@@ -117,7 +115,6 @@ public class Command {
                 deletes.deleteNotes();
                 break;
             case "History":
-                // print out all commands typed in the list
                 commandHist.displayHistory();
                 break;
             //@@author ZiqiuZeng

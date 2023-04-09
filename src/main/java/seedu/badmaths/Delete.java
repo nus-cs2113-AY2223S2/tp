@@ -43,8 +43,8 @@ public class Delete {
             if (!isAnInt(toDo)) {
                 throw new IllegalTodoException();
             }
-            int deleteIndex = Integer.parseInt(toDo) - 1; // deleteIndex == 3
-            if (isInvalidIndex(deleteIndex, notes)) { // if true
+            int deleteIndex = Integer.parseInt(toDo) - 1;
+            if (isInvalidIndex(deleteIndex, notes)) {
                 throw new IllegalIndexException();
             }
             Ui.printDelete(notes.getText(deleteIndex), notes.getSize());

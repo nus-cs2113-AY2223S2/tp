@@ -288,32 +288,33 @@ Step 2. The `isInvalidTodo` static boolean method will check for the validity of
 Step 3. The `storeNotes` public method will then store the note item input by users into the notes list.
 
 ### List class:
-The `List` class takes in inputs from users and list either all the notes stored in notes list or specific notes
+The `List` class takes in inputs from users and list either all the notes stored in notes list or a specific note
 based on the index that users have input to BadMaths.
 It consists of a few public boolean method that detects invalid `todo` input entered by users,
 detects if `todo` provided is not an integer, and detects if `todo` provided is an invalid index.
 It also consists of a public method that list notes stored in notes list.
 
-Step 1. The `List` class takes in two variables `notes` and `todo`, and constructs a new `List` instance
+Step 1. The `List` class takes in two variables `notes` and `toDo`, and constructs a new `List` instance
 using the two variables.
 
 Step 2. The `isInvalidTodo`, `isInvalidIndex` and `isAnInt` boolean method will check for the validity of the `todo` string input.
 
-Step 3. The `listNotes` public method will then list either all the notes stored in notes list or specific notes
+Step 3. The `listNotes` public method will then list either all the notes stored in notes list or a specific note
 based on the index that users have input to BadMaths.
 
 
 ### Delete class:
-The `Delete` class takes in inputs from users and deletes the respective specific notes in the notes list
+The `Delete` class takes in inputs from users and deletes a specific note in the notes list
 based on the index that users have input to BadMaths.
 It consists of two static boolean methods that detects whether `todo` provided by users
 is not an integer, and detects whether `todo` provided is an invalid index.
 It also consists of a public method that deletes notes stored in notes list.
 
-Step 1. The `Delete` class takes in two variables `notes` and `todo`, and constructs a new `Delete`
+Step 1. The `Delete` class takes in two variables `notes` and `toDo`, and constructs a new `Delete`
 instance using the two variables.
 
-Step 2. The `isInvalidIndex` and `isAnInt` static boolean methods will check for the validity of the `todo` string input.
+Step 2. The `isInvalidIndex` and `isAnInt` static boolean methods will check for the 
+validity of the `todo` string input by users.
 
 Step 3. The `deleteNotes` public method will then delete the respective specific notes in the notes list
 based on the index that users have input to BadMaths.
