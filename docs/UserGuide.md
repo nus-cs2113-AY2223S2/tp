@@ -51,6 +51,17 @@ e.g. if the command specifies <code class="language-plaintext highlighter-rouge"
 <li>
 APP accept the <strong>same name for different recipes</strong>. For example, you can have two recipes named <code class="language-plaintext highlighter-rouge">Hotpot</code>.
 </li>
+<li>
+APP saves automatically when changes are made to the recipes on the recipe list or to the recipe list. There is no notification of the recipe list being saved.
+<br>The following commands will trigger the automatic saving after successful operation:<br>
+1. <code class="language-plaintext highlighter-rouge">add</code><br>
+2. <code class="language-plaintext highlighter-rouge">addtorecipe</code><br>
+3. <code class="language-plaintext highlighter-rouge">delete</code><br>
+4. <code class="language-plaintext highlighter-rouge">deletefromrecipe</code><br>
+5. <code class="language-plaintext highlighter-rouge">edit</code><br>
+6. <code class="language-plaintext highlighter-rouge">editstep</code><br>
+7. <code class="language-plaintext highlighter-rouge">editingredient</code><br>
+</li>
 </ol>
 
 <h2 id="viewing-help-help"> Viewing help:<code class="language-plaintext highlighter-rouge">help</code></h2>
