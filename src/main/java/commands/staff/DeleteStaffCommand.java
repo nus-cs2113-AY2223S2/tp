@@ -10,6 +10,7 @@ public class DeleteStaffCommand extends Command {
 
     /**
      * Constructor of Delete Staff Command
+     *
      * @param staffIndex The staff index to be deleted.
      */
     public DeleteStaffCommand(int staffIndex) {
@@ -18,6 +19,7 @@ public class DeleteStaffCommand extends Command {
 
     /**
      * Execute the command of deleting staff.
+     *
      * @param ui Ui object in if there is anything to be printed.
      */
     @Override
@@ -25,7 +27,8 @@ public class DeleteStaffCommand extends Command {
         StaffManager.deleteStaff(this.staffIndex, ui);
     }
     /**
-     * Indicates whether the program should exit or not
+     * Indicates whether the program should exit or not.
+     *
      * @return Boolean to indicate whether exist is true or not
      */
     @Override

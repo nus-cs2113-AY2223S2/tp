@@ -1,4 +1,4 @@
-# Duke project template
+# DinerDirector
 
 This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
 
@@ -6,25 +6,19 @@ This is a project template for a greenfield Java project. It's named after the J
 
 Prerequisites: JDK 11 (use the exact version), update Intellij to the most recent version.
 
-1. **Ensure Intellij JDK 11 is defined as an SDK**, as described [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk) -- this step is not needed if you have used JDK 11 in a previous Intellij project.
-1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
+1. **Fork** this repo, and **clone** the fork into your computer.
+2. Open the application `Intellij IDEA`.
+   1. On the top left of the navigation bar, select `File` > `Open...`.
+   2. Navigate to the folder, and select the folder containing the `DinerDirector` files that was cloned.
+   3. By default, if there is a `build.gradle` in the project root, Intellij treats it as a Gradle project by default. Just in case it didn't work follow the guide [Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
+3. Once the project is opened, **Configure the JDK**: Follow the guide [JetBrains Intellij IDEA: Configure JDK](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk) to ensure Intellij is configured to use **JDK 11**.
+4. Verify the setup
+   1. Once the above steps are completed, locate the file `src/main/java/dinerdirector/DinerDirector.java`, right-click and select `Run 'DinerDirector.main()'`
+   2. If setup is correctly done, this is what you should see:
    ```
-   > Task :compileJava
-   > Task :processResources NO-SOURCE
-   > Task :classes
-   
-   > Task :Duke.main()
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   
-   What is your name?
-   ```
-   Type some word and press enter to let the execution proceed to the end.
+    Welcome to DinerDirector! Please type "help" for a list of valid commands.
+    What can I do for you?
+    >
 
 ## Build automation using Gradle
 
@@ -39,7 +33,7 @@ Prerequisites: JDK 11 (use the exact version), update Intellij to the most recen
 
 ### JUnit tests
 
-* A skeleton JUnit test (`src/test/java/seedu/duke/DukeTest.java`) is provided with this project template. 
+* JUnit testing is used for this project. 
 * If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
 
 ## Checkstyle
@@ -53,7 +47,7 @@ The project uses [GitHub actions](https://github.com/features/actions) for CI. W
 
 ## Documentation
 
-`/docs` folder contains a skeleton version of the project documentation.
+`/docs` folder contains the project documentation.
 
 Steps for publishing documentation to the public: 
 1. If you are using this project template for an individual project, go your fork on GitHub.<br>

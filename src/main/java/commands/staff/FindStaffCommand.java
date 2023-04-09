@@ -10,6 +10,7 @@ public class FindStaffCommand extends Command {
 
     /**
      * Constructor of FindStaffCommand.
+     *
      * @param keyword Keyword that represents a substring of Staff's name to be searched.
      */
     public FindStaffCommand(String keyword){
@@ -18,6 +19,7 @@ public class FindStaffCommand extends Command {
 
     /**
      * Execute the command of finding staff.
+     *
      * @param ui Ui object in if there is anything to be printed.
      */
     @Override
@@ -25,7 +27,8 @@ public class FindStaffCommand extends Command {
         StaffManager.findStaff(keyword,ui);
     }
     /**
-     * Indicates whether the program should exit or not
+     * Indicates whether the program should exit or not.
+     *
      * @return Boolean to indicate whether exist is true or not
      */
     @Override
