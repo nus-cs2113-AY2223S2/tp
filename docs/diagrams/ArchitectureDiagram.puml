@@ -25,7 +25,7 @@ Duke -up-> Exception
 
 Parser --> Command
 
-Command --> Ui
+Command -left-> Ui
 Exception -up> Ui
 
 Storage -up-> Calories
