@@ -332,8 +332,9 @@ based on the index that users have input to BadMaths.
 The `CommandHistory` class stores a list of all inputs entered by users during the current programme run session.
 It consists of two public class methods, `storeCommand` and `displayHistory`. 
 
-Step 1. The `CommandHistory` class takes in only one variable `historyCommand`, 
-and constructs a new `CommandHistory` instance using that one variable.
+Step 1. An ArrayList `historyCommand` is created at the start.
+The `CommandHistory` class takes in an ArrayList `historyCommand`, 
+and constructs a new `CommandHistory` instance using that ArrayList.
 
 Step 2. The `storeCommand` public method adds the input command given by users into the 
 `historyCommand` ArrayList.
