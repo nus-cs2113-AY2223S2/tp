@@ -20,6 +20,7 @@ Below are the design and implementations of key features of the ChChing program.
 <br> We used various diagrams such as architectural diagram, UML class diagrams, sequence diagrams and activity diagrams
 to illustrate our methodology and approach.
 
+<div style="page-break-after: always;"></div>
 
 ## Design
 The architectural diagram of ChChing below provides an overview of the design of our program.
@@ -40,6 +41,7 @@ When the program is to exit, `Command` instructs `Storage` to write the entries 
 `Storage` will read from `Data` when the program is launched and write and update to `Data`
 when the program exits.
 
+<div style="page-break-after: always;"></div>
 
 ## Implementation
 
@@ -48,6 +50,8 @@ when the program exits.
 The main class in our program is the `Record` and `RecordList` abstract classes, in which `Income`, `Expense` will inherit from `Record` and `IncomeList` and `ExpenseList` will inherit from `RecordList`. Most commands will act on instances of the `Income`, `Expense`,`IncomeList` and `ExpenseList` classes.
 
 ![Record Class](images/Record_RecordList_UML_class.png)
+
+<div style="page-break-after: always;"></div>
 
 ### DeleteIncomeCommand
 
@@ -66,6 +70,8 @@ Afterwards, the `execute()` method will print `"Income deleted, here is the upda
 The `Target` and `TargetStorage` class allows users to set a target for their ideal balance.
 
 ![Target Class](images/Target_UML.png)
+
+<div style="page-break-after: always;"></div>
 
 ### EditIncomeCommand/EditExpenseCommand
 
@@ -89,6 +95,8 @@ The following activity diagram summarises what happens when a user executes edit
 <br> ![edit income activity diagram](images/EditIncomeCommand_activity_diagram.png)
 <br> Note: edit expense command produces the same activity diagram.
 
+<div style="page-break-after: always;"></div>
+
 **Design Considerations**
 <br>The following are the design alternatives we considered for edit income/expense command:
 
@@ -98,6 +106,8 @@ The following activity diagram summarises what happens when a user executes edit
 - **Alternative 2:** Edit to require user to rewrite all its fields.
   - Pros: Easier to implement.
   - Cons: Not any easier than having the user to just delete and add new expense/income.
+
+<div style="page-break-after: always;"></div>
 
 ### AddIncomeCommand
 
@@ -111,6 +121,8 @@ The AddIncomeCommand is facilitated by `Parser`, `AddIncomeCommand`, `IncomeList
 
 ![AddIncomeCommand](images/AddIncomeCommand_Sequence_Diagram.png)
 <br> Note: AddExpenseCommand works in a similar way.
+
+<div style="page-break-after: always;"></div>
 
 ### ListExpenseCommand
 
@@ -128,6 +140,8 @@ The listExpenseCommand is facilitated by `Parser`, `ListExpenseCommand` and `Exp
 <br> Note: ListIncomeCommand works in a similar way, but instead calls `printIncomeList`.
 <br> Note: ListCommand works in a similar way, but calls both `printIncomeList` and `printExpenseList`.
 
+<div style="page-break-after: always;"></div>
+
 ### SetTargetCommand
 
 The setTargetCommand is facilitated by `ChChing`, `Parser`, `TargetParser`, `TargetStorage`.
@@ -137,10 +151,14 @@ The `Parser` object then returns to `ChChing`. `ChChing` object then runs the `e
 
 ![SetTargetCommand UML](images/SetTargetCommand.png)
 
+<div style="page-break-after: always;"></div>
+
 ### LiveCurrencyApi
 
 `LiveCurrencyApi` class makes an API call to obtain the latest exchange rates from the [ExchangeRateApi](https://www.exchangerate-api.com/). The API call is made using the `HttpUrlConnection` class. The API key is used directly in the API call URL, and stored in the URL itself and not as a variable. The values response of the API call is then parse as a string, by formatting the string to obtain the exchange rates of the currencies and ignoring the other text. The currency name is then used as a key to see if it exist in the `selector` hashmap. If it does the exchange rate is added to the `converter` hashmap. The `converter` hashmap is then used to convert the currency of interest to SGD. If the API call somehow fails, there are hardcoded values in the `converter` hashmap that are outdated, but it allows the program to continue to run. The live currency rates are updated every time the user starts the program, however the API itself only updates the rates every 24 hours.
 ![LiveCurrencyApi_sequence_diagram.png](images/LiveCurrencyApi_Sequence_Diagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### SetCurrencyCommand
 
@@ -161,6 +179,8 @@ The unsetCurrencyCommand works in a similar way to the setCurrencyCommand.
 The diagram below shows the sequence diagram for the unsetCurrencyCommand.
 ![SetCurrencyCommand_sequence_diagram.png](images/UnsetCurrencyCommand_Sequence_Diagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Find
 
 The FindCommand is facilitated by `System`, `UI`,`Parser`, `ExpenseList` and `IncomeList`.
@@ -170,6 +190,8 @@ The `execute()` method in `FindCommand` will check if the user is searching for 
 By using a loop, the `execute()` method will then search through the `ExpenseList` or `IncomeList` and selected the expenses/incomes that matches the search fields.
 The `execute()` method will then print out the selected expenses/incomes that matches the search fields using `showMatchedExpense()` or `showMatchedIncome()` method from `UI` to `System`
 ![FindCommand_sequence_diagram.png](images/FindCommand_Sequence_Diagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Product scope
 
@@ -199,6 +221,8 @@ in a simple and convenient manner through a command line interface.
 | v2.0    | user      | see the target i have set               | remind myself of my target                                                              |
 | v2.0    | user      | reset my income/expense lists or both   | have a fresh list                                                                       |
 
+<div style="page-break-after: always;"></div>
+
 ## Non-Functional Requirements
 
 - Domain rules:
@@ -211,7 +235,7 @@ in a simple and convenient manner through a command line interface.
 
 - Constraints:
 
-  - Total Expense and Total Income should not exceed 2^31 - 1.
+  - Total number of entries for Expenses and Incomes should not exceed 10 000 each.
   - The '/' should not be used within any of the inputs, unless it is for specifying a category.
 
 - Technical Requirements:
@@ -229,6 +253,8 @@ in a simple and convenient manner through a command line interface.
     <br> e.g. `add income /de salary /c income /v 3.50 /da 12-12-2022` would successfully add an income entry.
     <br> e.g. `/c income /de salary /da 12-12-2022 /v 3.50 add income` would return an error since `add command` is not written first.
 
+<div style="page-break-after: always;"></div>
+
 ## Glossary
 
 | Terminology | Definition                   |
@@ -239,6 +265,8 @@ in a simple and convenient manner through a command line interface.
 | Target      | Desired Net Amount           |
 | Parser      | Class to take in inputs      |
 | UI          | Class to interact with users |
+
+<div style="page-break-after: always;"></div>
 
 ## Instructions for manual testing
 
@@ -269,6 +297,8 @@ Given below are instructions to test the app manually.
       <br> negative value/zero value/1000000000 and above value/non-float value/non 2 d.p. values - `add income /de salary /da 12-12-2022 /v -3.50` `add expense /c transport /de bus fare /da 10-10-2019 /v 0`.
       <br> Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Editing an income/expense
 
 1. Editing an income/expense
@@ -287,6 +317,8 @@ Given below are instructions to test the app manually.
       <br> incorrect date format/invalid date/future date - `edit income 1 /de ang pao /da 30-02-2022 /v 10` `edit expense 1 /c transport /de bus fare /da 31-04-2029 /v 5.30`.
       <br> negative value/zero value/1000000000 and above value/non-float value/non 2 d.p. values - `edit income 1 /de salary /da 12-12-2022 /v -3.50` `edit expense 1 /c transport /de bus fare /da 10-10-2019 /v 0`.
       <br> Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting an income/expense
 
@@ -319,6 +351,8 @@ Given below are instructions to test the app manually.
    2. Test case: `clear all`
       <br> Expected: All incomes and expenses should be deleted from both the income and expense list and the balance should be updated to 0.
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all income/expense & Viewing balance
 
 1. List all incomes and/or expenses
@@ -340,6 +374,8 @@ Given below are instructions to test the app manually.
    2. Test case: `balance`
       <br> Expected: The total expense, total income, current balance and current target will be shown. Should the current balance or equal to the current target, it will prompt a good job message, otherwise it will prompt a message that balance has not reached target.
 
+<div style="page-break-after: always;"></div>
+
 ### Finding income/expense
 
 1. Finding income/expense
@@ -353,6 +389,7 @@ Given below are instructions to test the app manually.
       <br> For expense: `find /t expense /c food /de sushi /da 03-03-2023 `
       <br> Expected: No income/expense will be listed. status message will indicate no matching record for these search terms.
 
+<div style="page-break-after: always;"></div>
 
 ### Setting target & Clearing target
 1. Setting Target
