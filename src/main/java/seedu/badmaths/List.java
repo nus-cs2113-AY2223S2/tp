@@ -1,5 +1,14 @@
 //@@author WilsonLee2000
 
+/**
+ * Takes in an index that is being input by users, for displaying of items from notes list.
+ * Prints out an item from the notes based on the index that is being provided by users.
+ * Alternatively, if index is not provided by users, prints out a list of all items from the notes.
+ *
+ * @param notes
+ * @param toDo
+ */
+
 package seedu.badmaths;
 import seedu.badmaths.note.NotesList;
 import seedu.badmaths.ui.Ui;
