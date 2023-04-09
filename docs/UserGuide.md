@@ -25,7 +25,7 @@
     * [4.14. Sorting the expenditure list](#414-sorting-the-expenditure-list)
     * [4.15. View the expenditure list by expenditure category or type](#415-view-the-expenditure-list-by-expenditure-category-or-type)
     * [4.16. View the expenditure list by date](#416-view-the-expenditure-list-by-date)
-    * [4.16. Currency rates](#417-currency-rates)
+    * [4.17. Currency rates](#417-currency-rates)
   * [FAQ](#faq)
   * [Command Summary](#command-summary)
 <!-- TOC -->

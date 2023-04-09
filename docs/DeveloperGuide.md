@@ -138,13 +138,26 @@ In the diagram, the aforementioned expenditure categories inherit from the `Expe
 
 #### 3.3.1 Repeat dates for Accommodation and Tuition Expenditures
 
-
-
 ### 3.4. Command Component
 
 The `Command` component is represented by the `command` package. The `command` package contains all the available user commands supported by the application. These commands are utilised by the user to interact with the expenditure types and the expenditure list. 
 
-The `AcademicExpenditureCommand`, `AccommodationExpenditureCommand`, `BorrowExpenditureCommand`, `EntertainmentExpenditureCommand`, `FoodExpenditureCommand`, `LendExpenditureCommand`, `OtherExpenditureCommand`, `TransportExpenditureCommand`, `TuitionExpenditureCommand` commands contain the operations pertaining to adding a new expenditure into the list of expenditures.
+| Command Class                                                                                                                                                                                                                                                                                       |                                                                                                                  Responsibilities                                                                                                                   |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| `AcademicExpenditureCommand` <br/> `AccommodationExpenditureCommand`<br/>`BorrowExpenditureCommand`<br/>`EntertainmentExpenditureCommand`<br/>`FoodExpenditureCommand`<br/>`LendExpenditureCommand`<br/>`OtherExpenditureCommand`<br/>`TransportExpenditureCommand`<br/>`TuitionExpenditureCommand` |                                                                            Contain the operations pertaining to adding a new expenditure into the list of expenditures.                                                                             |
+| `CheckBudgetCommand`                                                                                                                                                                                                                                                                                | Contains the operations pertaining to comparing the total expenditure amount with a budget set by the user. The budget is set with the `SetBudgetCommand`. User can also compare budget with respective optional filters such as date and category. |
+| `DeleteCommand`                                                                                                                                                                                                                                                                                     |                                                                        Contains the operations pertaining to deleting a specific expenditure from the list of expenditures.                                                                         |
+| `DuplicateCommand`                                                                                                                                                                                                                                                                                  |                                                                       Contains the operations pertaining to duplicating a specific expenditure from the list of expenditures.                                                                       |
+| `EditCommand`                                                                                                                                                                                                                                                                                       |                                                                          Class contains the operations pertaining to editing a expenditure from the list of expenditures.                                                                           |
+| `ExitCommand`                                                                                                                                                                                                                                                                                       |                                                                                          Class contains the operation that safely closes the application.                                                                                           |
+| `FindCommand`                                                                                                                                                                                                                                                                                       |                                                     Class contains the operations pertaining to searching the list of expenditures for expenditures that match the keyword entered by the user.                                                     |
+| `HelpCommand`                                                                                                                                                                                                                                                                                       |                                                          Class contains the operation pertaining to providing the user a user interface to the instructions on the use of the application.                                                          |
+| `InvalidCommand`                                                                                                                                                                                                                                                                                    |                                                                                     Class is instantiated when an unrecognised command is entered by the user.                                                                                      |
+| `ListExpenditureCommand`                                                                                                                                                                                                                                                                            |                                                                                      Contain the operations regarding list display in user preferred currency.                                                                                      |
+| `SetBudgetCommand`                                                                                                                                                                                                                                                                                  |                                                                               Class contains the operations in setting an amount of money users would like to budget.                                                                               |
+| `ShowRatesCommand`                                                                                                                                                                                                                                                                                  |                                                                                Contains the fixed conversion rates used when toggling between different currencies.                                                                                 |
+| `SortCommand`                                                                                                                                                                                                                                                                                       |                                                                         Class contains the operations pertaining to sorting the list of expenditures by amount or by date.                                                                          |
+| `ViewDateExpenditureCommand` <br/> `ViewTypeExpenditureCommand`   
 
 Below represents the UML class diagram representing all the command classes that instantiates an expenditure record:
 
@@ -155,19 +168,6 @@ Below represents the UML class diagram representing all the command classes that
 </p>
 
 Next follows the command classes that interact with pre-existing expenditure records stored in the expenditure list. The table below describes the commands.
-
-| Command     | Description                                                                                            |
-|---------------|--------------------------------------------------------------------------------------------------------|
-| `CheckBudgetCommand`       | The `CheckBudgetCommand` class class contains the operations pertaining to comparing the total expenditure amount with a budget set by the user over a period of time. The budget is set with the `SetBudgetCommand`.      |
-| `DeleteCommand`   | The `DeleteCommand` class contains the operations pertaining to deleting a specific expenditure from the list of expenditures.                  |
-| `DuplicateCommand`   | The `DuplicateCommand` class contains the operations pertaining to duplicating a specific expenditure from the list of expenditures.                    |
-| `EditCommand`   | The `EditCommand` class contains the operations pertaining to editing a expenditure from the list of expenditures.                    |
-| `FindCommand`   | The `FindCommand`class contains the operations pertaining to searching the list of expenditures for expenditures that match the keyword entered by the user.                    |
-| `HelpCommand`   | The `HelpCommand` class contains the operation pertaining to providing the user a user interface to the instructions on the use of the application.                    |
-| `InvalidCommand`   | The `InvalidCommand` class is instantiated when an unrecognised command is entered by the user.                    |
-| `SetBudgetCommand`   | The `SetBudgetCommand` class contains the operations in setting an amount of money users would like to budget. This command is used in hand with the `CheckBudgetCommand` to compare user spending over a period of time.                  |
-| `SortCommand`   | The `SortCommand` class contains the operations pertaining to sorting the list of expenditures by amount or by date.                   |
-| `ViewDateExpenditureCommand` and `ViewTypeExpenditureCommand`   | The `ViewDateExpenditureCommand` and `ViewTypeExpenditureCommand` classes contain the operations pertaining to displaying a filtered expenditure list by the expenditure date and type respectively.                    |
 
 A more detailed coverage is explored in [Command List](#4-command-list).
 
@@ -345,31 +345,33 @@ Manage finances more efficiently than a typical mouse/GUI driven app
 
 ## User Stories
 
-| Version | As a ...        | I want to ...                        | So that I can ...                                    |
-|---------|-----------------|--------------------------------------|------------------------------------------------------|
-| v1.0    | first time user | have access to a help page           | be familarized with the features available           |
-| v1.0    | user            | add a expenditure recorded in a day  |                                                      |
-| v1.0    | user            | delete an expenditure record         | get rid of expenditure that I no longer plan to use  |
-| v1.0    | user            | edit an expenditure record           | correct previous expenditure records                 |
-| v1.0    | user            | view all current expenses            | have a good overview of my spending to date          |
-| v1.0    | user            | add a record for borrowing money     | keep track of how much money I borrowed to someone   |
-| v1.0    | user            | add a record for lending money       | keep track of how much money I lent to someone       |
-| v2.0    | user            | sort expenditures based on date      | better manage my expenditures                        |
-| v2.0    | user            | sort expenditures based on amount    | better manage my expenditures                        |
-| v2.0    | user            | add income earned                    | keep track of my current budget                      |
-| v2.0    | user            | find expenditures using description  | better manage my spending                            |
-| v2.0    | user            | duplicate a current expenditure      | update repeated purchases easily                     |
-| v2.0    | user            | indicate a specific budget to follow | track my spending and make sure I stay within budget |
-| v2.0    | user            | be able to view expenses by day      | see which day and why I am overspending              |
-| v2.0    | user            | view my total expenses by categories | see which categories I am overspending on            |
+| Version | As a ...         | I want to ...                                                  | So that I can ...                                                  |
+|---------|------------------|----------------------------------------------------------------|--------------------------------------------------------------------|
+| v1.0    | first time user  | have access to a help page                                     | be familarized with the features available                         |
+| v1.0    | user             | add a expenditure recorded in a day                            |                                                                    |
+| v1.0    | user             | delete an expenditure record                                   | get rid of expenditure that I no longer plan to use                |
+| v1.0    | user             | edit an expenditure record                                     | correct previous expenditure records                               |
+| v1.0    | user             | view all current expenses                                      | have a good overview of my spending to date                        |
+| v1.0    | user             | add a record for borrowing money                               | keep track of how much money I borrowed to someone                 |
+| v1.0    | user             | add a record for lending money                                 | keep track of how much money I lent to someone                     |
+| v2.0    | user             | sort expenditures based on date                                | better manage my expenditures                                      |
+| v2.0    | user             | sort expenditures based on amount                              | better manage my expenditures                                      |
+| v2.0    | user             | add income earned                                              | keep track of my current budget                                    |
+| v2.0    | user             | find expenditures using description                            | better manage my spending                                          |
+| v2.0    | user             | duplicate a current expenditure                                | update repeated purchases easily                                   |
+| v2.0    | user             | indicate a specific budget to follow                           | track my spending and make sure I stay within budget               |
+| v2.0    | user             | be able to view expenses by day                                | see which day and why I am overspending                            |
+| v2.0    | user             | view my total expenses by categories                           | see which categories I am overspending on                          |
+| v2.0    | user             | compare my expenses with my budget                             | have a clearer insight on the health of my finances                |
+| v2.1    | exchange student | view my expenses in my native currency                         | better understand how much I am spending in Singapore              |
+| v2.1    | user             | compare my budget with expenses made in a specific time period | have a clearer insight on my spending during the time period       |
+| v2.1    | user             | compare my budget with expenses made under a category          | have a clearer insight on my spending in that expenditure category |
+| v2.1    | user             | have my repeated expenses auto-check on its own                | reduce the hassle of having to input repeated expenditures         |
+
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
-
-## Glossary
-
-* *glossary item* - Definition
+1. Program should run on any mainstream OS that runs Java 11.
 
 ## Instructions for manual testing
 
@@ -381,7 +383,7 @@ The following are instructions for testers to manual test:
 - Download the JAR file and copy into an empty folder
 - Open the command terminal on your device.
 - Navigate to the folder in command terminal and run the command `java -jar [filename].jar`
-- Alternatively, double click on the JAR file to run the app.
+- Alternatively, double-click on the JAR file to run the app.
 
 #### Adding a record
 1. Adding an expenditure
