@@ -33,8 +33,8 @@ public class EditSurgeryCommand extends Command{
         this.endDate = endDate;
         this.endTime = endTime;
     }
-    /** Executes EditSurgery Command method located in SniffTasks class
-     *
+    /**
+     * Executes EditSurgery Command method located in SniffTasks class
      * @param tasks The SniffTasks Class
      * @throws SniffException thrown when the input does not follow the format
      */

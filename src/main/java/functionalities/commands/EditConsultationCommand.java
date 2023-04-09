@@ -29,8 +29,8 @@ public class EditConsultationCommand extends Command {
         this.date = date;
         this.time = time;
     }
-    /** Executes EditConsultation Command method located in SniffTasks class
-     *
+    /**
+     * Executes EditConsultation Command method located in SniffTasks class
      * @param tasks The SniffTasks Class
      * @throws SniffException thrown when the input does not follow the format
      */
