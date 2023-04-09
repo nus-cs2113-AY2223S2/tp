@@ -143,7 +143,7 @@ The `XYZStorage` class performs the following functions:
 ### Parsing Feature
 <img src="uml/images/ParserSequenceDiagram.png" width="520"/>  
 
-How the parsing works:
+How the parsing works:  
 Step 1: The `Parser()` class will be called to create a new instance of `Parser`.  
 Step 2: Afterwards, when the `parseCommand()` method is called from `DinerDirector` class, the `parseCommand()` will split the given userInput first.  
 Step 3: With the `userInputSplit[]`, the `0` index will be extracted out. That will be used as identification for the command the user typed in.  
