@@ -8,3 +8,5 @@ MealCompanion is a one-stop solution to handling meal preparation, ingredient tr
 ### Code Contributed
 [Code](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=aaronxujiachen&breakdown=true
 )
+
+### Enhancements implemented
