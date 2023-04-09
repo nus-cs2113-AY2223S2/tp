@@ -106,7 +106,7 @@ public class CheckBudgetCommand extends Command {
             borrowedAmount += individualExpenditure.getValue();
         } else if (individualExpenditure.getExpenditureType().equals("L")) {
             lentAmount += individualExpenditure.getValue();
-        } else if (!individualExpenditure.getPaidIcon().equals("[X]")) {
+        } else if (individualExpenditure.getPaidIcon().equals("[X]")) {
             totalAmount += individualExpenditure.getValue();
         }
     }
@@ -182,7 +182,10 @@ public class CheckBudgetCommand extends Command {
     }
 
     public void fetchDayExpenditureAmounts(Expenditure expenditure, LocalDate dayVal) {
-        if (expenditure.getPaidIcon().equals("[X]") && (expenditure.getDate().equals(dayVal))) {
+        boolean isLendBorrowExpenditure = (expenditure instanceof BorrowExpenditure ||
+                expenditure instanceof LendExpenditure);
+        if (!isLendBorrowExpenditure && expenditure.getPaidIcon().equals("[X]") &&
+                (expenditure.getDate().equals(dayVal))) {
             totalAmount += expenditure.getValue();
         }
     }
@@ -204,7 +207,10 @@ public class CheckBudgetCommand extends Command {
     }
 
     public void fetchYearExpenditureAmounts(Expenditure expenditure, Year year) {
-        if (expenditure.getPaidIcon().equals("[X]") && (expenditure.getDate().getYear() == year
+        boolean isLendBorrowExpenditure = (expenditure instanceof BorrowExpenditure ||
+                expenditure instanceof LendExpenditure);
+        if (!isLendBorrowExpenditure && expenditure.getPaidIcon().equals("[X]") &&
+                (expenditure.getDate().getYear() == year
                 .getValue())) {
             totalAmount += expenditure.getValue();
         }
