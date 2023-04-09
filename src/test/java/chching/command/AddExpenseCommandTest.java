@@ -67,7 +67,7 @@ public class AddExpenseCommandTest {
             assertEquals(expensesSize + 1, expenses.size());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            fail(); // test should not reach this line
+            fail();
         }
     }
 
@@ -79,7 +79,7 @@ public class AddExpenseCommandTest {
         String expectedOutput = "No fields found";
         try {
             new AddExpenseCommand(null);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }
@@ -94,7 +94,7 @@ public class AddExpenseCommandTest {
         Expense input = new Expense(null, DESCRIPTION , DATE, EXPENSE_VALUE);
         try {
             new AddExpenseCommand(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }
@@ -109,7 +109,7 @@ public class AddExpenseCommandTest {
         Expense input = new Expense(CATEGORY, null, DATE, EXPENSE_VALUE);
         try {
             new AddExpenseCommand(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }
@@ -124,7 +124,7 @@ public class AddExpenseCommandTest {
         Expense input = new Expense(CATEGORY, DESCRIPTION, null, EXPENSE_VALUE);
         try {
             new AddExpenseCommand(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }
@@ -139,7 +139,7 @@ public class AddExpenseCommandTest {
         Expense input = new Expense(CATEGORY, DESCRIPTION, DATE, ZERO_EXPENSE_VALUE);
         try {
             new AddExpenseCommand(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }
@@ -154,7 +154,7 @@ public class AddExpenseCommandTest {
         Expense input = new Expense(CATEGORY, DESCRIPTION, DATE, NEGATIVE_EXPENSE_VALUE);
         try {
             new AddExpenseCommand(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage());
         }

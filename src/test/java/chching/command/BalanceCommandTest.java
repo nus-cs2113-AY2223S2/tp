@@ -81,7 +81,7 @@ class BalanceCommandTest {
             assertEquals(expectedOutput, ((BalanceCommand) command).showBalance(), "Balance calculation is right");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            fail(); // test should not reach this line
+            fail();
         }
     }
 }

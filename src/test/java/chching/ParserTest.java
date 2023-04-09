@@ -114,7 +114,7 @@ public class ParserTest {
 
         try {
             new Parser().sortArguments(input);
-            fail(); // the test should not reach this line
+            fail();
         } catch (ChChingException e) {
             assertEquals("Arguments not inputted correctly / Missing details", e.getMessage());
         }
@@ -132,7 +132,7 @@ public class ParserTest {
         
         try {
             new Parser().sortArguments(input);
-            fail(); // the test should not reach this line
+            fail();
         } catch (ChChingException e) {
             assertEquals("Duplicate fields detected", e.getMessage());
         }
@@ -149,7 +149,7 @@ public class ParserTest {
         
         try {
             new Parser().sortArguments(input);
-            fail(); // the test should not reach this line
+            fail();
         } catch (ChChingException e) {
             assertEquals("Empty detail detected or improper use of \" / \"", e.getMessage());
         }

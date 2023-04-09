@@ -75,7 +75,7 @@ class DeleteExpenseCommandTest {
             command.execute(emptyIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
             assertEquals(defaultExpenseListSize - OFFSET, defaultExpenseList.size(), "Delete expense working");
         } catch (Exception e) {
-            fail(); // test should not reach this line
+            fail();
         }
     }
 
@@ -88,7 +88,7 @@ class DeleteExpenseCommandTest {
         Command command = new DeleteExpenseCommand(TOO_LARGE_INDEX);
         try {
             command.execute(emptyIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete expense with integer outside size is not captured");
         }
@@ -103,7 +103,7 @@ class DeleteExpenseCommandTest {
         Command command = new DeleteExpenseCommand(NEGATIVE_INDEX);
         try {
             command.execute(emptyIncomeList, defaultExpenseList, ui, storage, selector, converter, targetStorage);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals(expectedOutput, e.getMessage(), "Delete expense with negative integer is not captured");
         }

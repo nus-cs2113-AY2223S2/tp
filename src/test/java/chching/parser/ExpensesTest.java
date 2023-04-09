@@ -35,7 +35,7 @@ public class ExpensesTest {
         try {
             assertEquals(DATE_VALUE, Expenses.parseDate(DATE_STRING));
         } catch (Exception e) {
-            fail(); // test should not reach this line
+            fail();
         }
     }
     
@@ -47,7 +47,7 @@ public class ExpensesTest {
     public void parseDate_invalidDate_exceptionThrown() {
         try {
             Expenses.parseDate("30-02-2023");
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Date must be valid and have format: \"DD-MM-YYYY\"", e.getMessage());
         }
@@ -61,7 +61,7 @@ public class ExpensesTest {
     public void parseDate_invalidDateFormat_exceptionThrown() {
         try {
             Expenses.parseDate("2023-02-30");
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Date must be valid and have format: \"DD-MM-YYYY\"", e.getMessage());
         }
@@ -75,7 +75,7 @@ public class ExpensesTest {
     public void parseDate_futureDate_exceptionThrown() {
         try {
             Expenses.parseDate("02-04-2030");
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Date cannot be in the future", e.getMessage());
         }
@@ -100,7 +100,7 @@ public class ExpensesTest {
             assertEquals(DATE_VALUE, output.getDate());
             assertEquals(VALUE_VALUE, output.getValue());
         } catch (Exception e) {
-            fail(); // test should not reach this line
+            fail();
         }
     }
     
@@ -117,7 +117,7 @@ public class ExpensesTest {
         
         try {
             Expenses.parseExpense(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Missing fields detected", e.getMessage());
         }
@@ -136,7 +136,7 @@ public class ExpensesTest {
         input.put(VALUE_FIELD, "1000000.00");
         try {
             Expenses.parseExpense(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             assertEquals("Expense value must be less than 1000000", e.getMessage());
@@ -157,7 +157,7 @@ public class ExpensesTest {
         
         try {
             Expenses.parseExpense(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Expense value must be greater than 0", e.getMessage());
         }
@@ -174,7 +174,7 @@ public class ExpensesTest {
         try {
             assertEquals(INDEX_VALUE, Expenses.getIndex(input));
         } catch (Exception e) {
-            fail(); // test should not reach this line
+            fail();
         }
     }
     
@@ -188,7 +188,7 @@ public class ExpensesTest {
         input.put(CATEGORY_FIELD, CATEGORY_VALUE);
         try {
             Expenses.getIndex(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Index field not found", e.getMessage());
         }
@@ -204,7 +204,7 @@ public class ExpensesTest {
         input.put(INDEX_FIELD, "2 a");
         try {
             Expenses.getIndex(input);
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Index field not found", e.getMessage());
         }

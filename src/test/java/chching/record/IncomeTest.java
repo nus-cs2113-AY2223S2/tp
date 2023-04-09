@@ -21,7 +21,6 @@ class IncomeTest {
      */
     @Test
     void getIncomeDescription_expected() {
-        String test = "salary";
         Income income0 = new Income(DESCRIPTION, DATE, INCOME_VALUE);
         assertEquals("salary", income0.getDescription());
     }
@@ -31,7 +30,6 @@ class IncomeTest {
      */
     @Test
     void getIncomeDate_expected() {
-        String test = "01-Apr-2023";
         Income income0 = new Income(DESCRIPTION, DATE, INCOME_VALUE);
         assertEquals("01-Apr-2023", income0.getDateString());
     }
@@ -41,7 +39,6 @@ class IncomeTest {
      */
     @Test
     void getIncomeValue_expected() {
-        float test = (float) 1000000;
         Income income0 = new Income(DESCRIPTION, DATE, INCOME_VALUE);
         assertEquals((float) 1000000, income0.getValue());
     }
