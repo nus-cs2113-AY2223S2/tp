@@ -199,7 +199,7 @@ public class JsonStorageTest {
         DeckUUID deck1Uuidobj = new DeckUUID(UUID.fromString(hashDeckUuid));
         Deck testDeck = deckList.findDeckFromUUID(deck1Uuidobj);
 
-        boolean testCases[] = {false, false};
+        boolean[] testCases  = {false, false};
 
         CardUUID card1Uuid = new CardUUID(UUID.fromString(hashSetCard1));
         testCases[0] = testDeck.cardIsInSet(card1Uuid);
@@ -216,30 +216,7 @@ public class JsonStorageTest {
 
     }
 
-//    @Test
-//    public void load_hashFile_deckcardsMap() throws InkaException {
-//        //check if it is loading cardsSet
-//        Storage storage = new JsonStorage(VALID_HASH.toString());
-//        Memory memory = storage.load();
-//        DeckList deckList = memory.getDeckList();
-//        DeckUUID deck1Uuidobj = new DeckUUID(UUID.fromString(hashDeckUuid));
-//        Deck testDeck = deckList.findDeckFromUUID(deck1Uuidobj);
-//
-//        boolean testCases[] = {false, false};
-//
-//        CardUUID card1Uuid = new CardUUID(UUID.fromString(hashSetCard1));
-//        testCases[0] = testDeck.cardIsInSet(card1Uuid);
-//        CardUUID card2Uuid = new CardUUID(UUID.fromString(hashSetCard2));
-//        testCases[1] = testDeck.cardIsInSet(card2Uuid);
-//
-//        int numTrueTestCases = 0;
-//        for (boolean testCase : testCases) {
-//            if (testCase) {
-//                numTrueTestCases++;
-//            }
-//        }
-//        assertEquals(2, numTrueTestCases);
-//    }
+
 
 
 }

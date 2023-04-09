@@ -1,16 +1,13 @@
 package utils.storage.json;
 
-import static utils.storage.json.JsonStorage.logger;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
-import java.util.logging.Level;
 import model.CardUUID;
 import model.DeckUUID;
 import model.TagList;
@@ -127,6 +124,7 @@ public class JsonToMemory {
         //obtain cardUUIDIntegerHashMap
         JsonObject cardUuidIntegerHashMapObject = deckObject.getAsJsonObject("cardUuidIntegerHashMap");
         HashMap<CardUUID, Integer> cardUuidIntegerHashMap = new HashMap<>();
+        boolean mapEmpty = false;
 
         try {
             for (HashMap.Entry<String, JsonElement> entry : cardUuidIntegerHashMapObject.entrySet()) {
@@ -135,6 +133,7 @@ public class JsonToMemory {
                 cardUuidIntegerHashMap.put(new CardUUID(UUID.fromString(cardUuidString)), value);
             }
         } catch (NullPointerException e){
+            mapEmpty = true;
         }
 
         deck.setcardUUIDIntegerHashMap(cardUuidIntegerHashMap);
