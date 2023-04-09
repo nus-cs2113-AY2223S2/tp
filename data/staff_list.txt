@@ -1,9 +1,0 @@
-name~|~thus~|~1007~|~1235
-titi~|~12~|~12~|~12
-kristian~|~test~|~12~|~12
-John Doe~|~Sunday~|~09 March 2001~|~82802123
-John Doe~|~sunday~|~09~|~23145
-John Doe~|~Sunday~|~09 March 2001~|~82802123
-John Doe~|~Monday~|~1990-04-15~|~123 4567
-John Does~|~sunday~|~2003-12-12~|~123113
-~|~~|~~|~
