@@ -106,6 +106,15 @@ public class Ui {
         }
     }
 
+    /**
+     * This method is designed to display all the commands used in the Recipe Manager
+     * to assist the user in entering the correct commands.
+     *
+     * It also displays the command format in which the input is required to be
+     * entered by the user.
+     *
+     * @author AbijithRam
+     */
     public void printHelp() {
         printMessage("These are the operations you can do. Please follow the proper input"
                 + " formats while typing.");

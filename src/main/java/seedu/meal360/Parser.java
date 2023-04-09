@@ -23,6 +23,17 @@ public class Parser {
     String recipeErrorMessage = "Wrong Format or Invalid Quantity. Please enter ingredients properly " +
             "[eg:chicken=100] and \"done\" when finished entering ingredients!";
 
+
+    /**
+     * This method is designed to combine multiples words together to
+     * form 1 single sentence or word. It is helpful in combining words
+     * as our application trims the user input in 1 line using white space
+     * characters.
+     *
+     * @author AbijithRam
+     * @param input, startIndex, length
+     * @return String
+     */
     public String combineWords(String[] input, int startIndex, int length) {
         StringBuilder word = new StringBuilder(input[startIndex].trim());
         for (int i = startIndex + 1; i < length; i++) {
@@ -94,6 +105,15 @@ public class Parser {
         return ingredients;
     }
 
+
+    /**
+     * This method is designed to take in input from the user and
+     * add the recipe to the user's recipe manager.
+     *
+     * @author AbijithRam
+     * @param input, recipeList
+     * @return Recipe
+     */
     public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
         int addedIngredient = 0;
         String recipeName = combineWords(input, 2, input.length);
@@ -144,6 +164,19 @@ public class Parser {
         return newRecipe;
     }
 
+    /**
+     * This method is designed to take in input from the user and
+     * edit the recipes accordingly.
+     *
+     * There are 3 types of edit to a recipe:
+     * 1. Edit the ingredient list fully.
+     * 2. Edit the ingredient list partially.(1 ingredient edit at one time)
+     * 3. Edit the ingredient list by adding new ingredients.
+     *
+     * @author AbijithRam
+     * @param input, recipeList
+     * @return Recipe
+     */
     public Recipe parseEditRecipe(String[] input, RecipeList recipeList) {
         int addedIngredient = 0;
         String recipeName = combineWords(input, 2, input.length);
@@ -599,6 +632,14 @@ public class Parser {
         return requestedRecipe;
     }
 
+    /**
+     * This method is designed to find the index of a recipe from
+     * the recipe list of the user.
+     *
+     * @author AbijithRam
+     * @param recipeName, recipeList
+     * @return Recipe
+     */
     public Recipe parseViewRecipe(String recipeName, RecipeList recipes) {
         int recipeIndex = 1;
         for (Recipe recipe : recipes) {
