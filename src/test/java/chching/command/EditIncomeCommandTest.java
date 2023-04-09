@@ -81,7 +81,7 @@ public class EditIncomeCommandTest {
             assertEquals(Float.parseFloat(VALUE_VALUE), incomes.get(0).getValue());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            fail(); // test should not reach this line
+            fail();
         }
     }
     
@@ -100,7 +100,7 @@ public class EditIncomeCommandTest {
             Command editIncomeCommand = new EditIncomeCommand(argumentsByField);
             editIncomeCommand.execute(incomes, expenseList, ui, storage, selector, converter, targetStorage);
             
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Index field not found", e.getMessage());
         }
@@ -122,7 +122,7 @@ public class EditIncomeCommandTest {
             Command editIncomeCommand = new EditIncomeCommand(argumentsByField);
             editIncomeCommand.execute(incomes, expenseList, ui, storage, selector, converter, targetStorage);
             
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Negative/Zero index", e.getMessage());
         }
@@ -144,7 +144,7 @@ public class EditIncomeCommandTest {
             Command editIncomeCommand = new EditIncomeCommand(argumentsByField);
             editIncomeCommand.execute(incomes, expenseList, ui, storage, selector, converter, targetStorage);
             
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("The index is too big", e.getMessage());
         }
@@ -163,7 +163,7 @@ public class EditIncomeCommandTest {
             Command editIncomeCommand = new EditIncomeCommand(argumentsByField);
             editIncomeCommand.execute(incomes, expenseList, ui, storage, selector, converter, targetStorage);
             
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("No fields to edit", e.getMessage());
         }

@@ -22,7 +22,6 @@ public class ExpenseTest {
      */
     @Test
     void getExpenseDescription_expected() {
-        String test = "public transport";
         Expense exp = new Expense(CATEGORY, DESCRIPTION, DATE, EXPENSE_VALUE);
         assertEquals("public transport", exp.getDescription());
     }
@@ -32,7 +31,6 @@ public class ExpenseTest {
      */
     @Test
     void getExpenseDate_expected() {
-        String test = "01-Apr-2023";
         Expense exp = new Expense(CATEGORY, DESCRIPTION, DATE, EXPENSE_VALUE);
         assertEquals("01-Apr-2023", exp.getDateString());
     }
@@ -43,7 +41,6 @@ public class ExpenseTest {
      */
     @Test
     void getExpenseValue_expected() {
-        float test = (float) 1.50;
         Expense exp = new Expense(CATEGORY, DESCRIPTION, DATE, EXPENSE_VALUE);
         assertEquals((float) 1.50, exp.getValue());
     }

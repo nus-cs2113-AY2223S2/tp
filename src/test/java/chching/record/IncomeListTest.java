@@ -81,7 +81,7 @@ class IncomeListTest {
             assertEquals(INCOME_VALUE, incomes.get(0).getValue());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            fail(); // test should not reach this line
+            fail();
         }
     }
     
@@ -93,7 +93,7 @@ class IncomeListTest {
     void editIncome_editFutureDate_exceptionThrown() {
         try {
             incomes.editIncome(1, DATE_FIELD, "05-04-2029");
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Date cannot be in the future", e.getMessage());
         }
@@ -107,7 +107,7 @@ class IncomeListTest {
     void editIncome_editInvalidDate_exceptionThrown() {
         try {
             incomes.editIncome(1, DATE_FIELD, "31-02-2022");
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Date must be valid and have format: \"DD-MM-YYYY\"", e.getMessage());
         }
@@ -127,7 +127,7 @@ class IncomeListTest {
             assertEquals(expectedOutputValue, incomes.get(0).getValue());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            fail(); // test should not reach this line
+            fail();
         }
     }
     
@@ -139,7 +139,7 @@ class IncomeListTest {
     void editIncome_editNegativeValue_exceptionThrown() {
         try {
             incomes.editIncome(1, VALUE_FIELD, "-200000");
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Income value must be a valid positive double that is 2 d.p. or less", e.getMessage());
         }
@@ -153,7 +153,7 @@ class IncomeListTest {
     void editIncome_editValueWithMoreThanTwoDecimalPlaces_exceptionThrown() {
         try {
             incomes.editIncome(1, VALUE_FIELD, "200000.1234");
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Income value must be a valid positive double that is 2 d.p. or less", e.getMessage());
         }
@@ -167,7 +167,7 @@ class IncomeListTest {
     void editIncome_editValueNotDouble_exceptionThrown() {
         try {
             incomes.editIncome(1, VALUE_FIELD, "200000.1a");
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Income value must be a valid positive double that is 2 d.p. or less", e.getMessage());
         }
@@ -181,7 +181,7 @@ class IncomeListTest {
     void editIncome_editValueMoreThan999999d99_exceptionThrown() {
         try {
             incomes.editIncome(1, VALUE_FIELD, "1000000.00");
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Income value must be less than 1000000", e.getMessage());
         }
@@ -195,7 +195,7 @@ class IncomeListTest {
     void editIncome_editValueLessThan0d01_exceptionThrown() {
         try {
             incomes.editIncome(1, VALUE_FIELD, "0.00");
-            fail(); // test should not reach this line
+            fail();
         } catch (Exception e) {
             assertEquals("Income value must be greater than 0", e.getMessage());
         }
