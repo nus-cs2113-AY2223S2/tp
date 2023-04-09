@@ -31,7 +31,7 @@ public class MonthFilter {
     }
 
     protected String getMonthFromExpenseTime(String expenseTime) {
-        String[] date = expenseTime.split("/");
+        String[] date = expenseTime.split("-");
         return date[1];
     }
 

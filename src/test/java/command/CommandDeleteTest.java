@@ -4,9 +4,13 @@ import data.Currency;
 import data.Expense;
 import data.ExpenseList;
 import data.Time;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import parser.Parser;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,11 +20,16 @@ import java.math.BigDecimal;
 
 public class CommandDeleteTest {
 
+    private static final String MESSAGE_INVALID_INDEX_ERROR = "Invalid expense index. Please try again.";
+
     public ArrayList<Expense> testExpenseList = new ArrayList<>();
     public ExpenseList expenseList = new ExpenseList();
     public Parser parser = new Parser();
     public Currency currency = new Currency();
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final PrintStream standardOut = System.out;
 
     /**
      * Tests the correctness of CommandDelete.
@@ -48,4 +57,20 @@ public class CommandDeleteTest {
         assert testExpenseList.isEmpty();
         assert expenseList.getExpenseList().isEmpty();
     }
+
+    @Test
+    public void deleteExpenses_unsuccessful() {
+        new CommandDelete(expenseList.getExpenseList(),1).execute();
+        assertEquals(MESSAGE_INVALID_INDEX_ERROR, outputStreamCaptor.toString().trim());
+    }
+
+    @BeforeEach
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
+    }
+
 }
