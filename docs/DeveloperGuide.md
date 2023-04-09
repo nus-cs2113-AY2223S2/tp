@@ -344,23 +344,29 @@ Manage finances more efficiently than a typical mouse/GUI driven app
 
 ## User Stories
 
-| Version | As a ...        | I want to ...                        | So that I can ...                                    |
-|---------|-----------------|--------------------------------------|------------------------------------------------------|
-| v1.0    | first time user | have access to a help page           | be familarized with the features available           |
-| v1.0    | user            | add a expenditure recorded in a day  |                                                      |
-| v1.0    | user            | delete an expenditure record         | get rid of expenditure that I no longer plan to use  |
-| v1.0    | user            | edit an expenditure record           | correct previous expenditure records                 |
-| v1.0    | user            | view all current expenses            | have a good overview of my spending to date          |
-| v1.0    | user            | add a record for borrowing money     | keep track of how much money I borrowed to someone   |
-| v1.0    | user            | add a record for lending money       | keep track of how much money I lent to someone       |
-| v2.0    | user            | sort expenditures based on date      | better manage my expenditures                        |
-| v2.0    | user            | sort expenditures based on amount    | better manage my expenditures                        |
-| v2.0    | user            | add income earned                    | keep track of my current budget                      |
-| v2.0    | user            | find expenditures using description  | better manage my spending                            |
-| v2.0    | user            | duplicate a current expenditure      | update repeated purchases easily                     |
-| v2.0    | user            | indicate a specific budget to follow | track my spending and make sure I stay within budget |
-| v2.0    | user            | be able to view expenses by day      | see which day and why I am overspending              |
-| v2.0    | user            | view my total expenses by categories | see which categories I am overspending on            |
+| Version | As a ...         | I want to ...                                                  | So that I can ...                                                  |
+|---------|------------------|----------------------------------------------------------------|--------------------------------------------------------------------|
+| v1.0    | first time user  | have access to a help page                                     | be familarized with the features available                         |
+| v1.0    | user             | add a expenditure recorded in a day                            |                                                                    |
+| v1.0    | user             | delete an expenditure record                                   | get rid of expenditure that I no longer plan to use                |
+| v1.0    | user             | edit an expenditure record                                     | correct previous expenditure records                               |
+| v1.0    | user             | view all current expenses                                      | have a good overview of my spending to date                        |
+| v1.0    | user             | add a record for borrowing money                               | keep track of how much money I borrowed to someone                 |
+| v1.0    | user             | add a record for lending money                                 | keep track of how much money I lent to someone                     |
+| v2.0    | user             | sort expenditures based on date                                | better manage my expenditures                                      |
+| v2.0    | user             | sort expenditures based on amount                              | better manage my expenditures                                      |
+| v2.0    | user             | add income earned                                              | keep track of my current budget                                    |
+| v2.0    | user             | find expenditures using description                            | better manage my spending                                          |
+| v2.0    | user             | duplicate a current expenditure                                | update repeated purchases easily                                   |
+| v2.0    | user             | indicate a specific budget to follow                           | track my spending and make sure I stay within budget               |
+| v2.0    | user             | be able to view expenses by day                                | see which day and why I am overspending                            |
+| v2.0    | user             | view my total expenses by categories                           | see which categories I am overspending on                          |
+| v2.0    | user             | compare my expenses with my budget                             | have a clearer insight on the health of my finances                |
+| v2.1    | exchange student | view my expenses in my native currency                         | better understand how much I am spending in Singapore              |
+| v2.1    | user             | compare my budget with expenses made in a specific time period | have a clearer insight on my spending during the time period       |
+| v2.1    | user             | compare my budget with expenses made under a category          | have a clearer insight on my spending in that expenditure category |
+| v2.1    | user             | have my repeated expenses auto-check on its own                | reduce the hassle of having to input repeated expenditures         |
+
 
 ## Non-Functional Requirements
 
