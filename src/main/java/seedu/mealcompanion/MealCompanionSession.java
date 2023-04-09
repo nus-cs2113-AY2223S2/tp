@@ -92,7 +92,7 @@ public class MealCompanionSession {
         this.controlFlow = new MealCompanionControlFlow();
         this.ingredients = new IngredientList();
         this.recipes = new RecipeList("/recipes.json");
-        this.ingredientStorage = new IngredientStorage();
+        this.ingredientStorage = new IngredientStorage(this.ui);
         this.allergens = new ArrayList<>();
     }
 
