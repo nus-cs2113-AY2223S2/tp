@@ -57,7 +57,7 @@ public class ExceptionChecker {
 
     public static void checkDateLimit(LocalDate currentDate)
             throws DateLimitException {
-                LocalDate firstdate = LocalDate.parse(START_DATE);
+        LocalDate firstdate = LocalDate.parse(START_DATE);
         if (currentDate.isBefore(firstdate)) {
             throw new DateLimitException();
         }
