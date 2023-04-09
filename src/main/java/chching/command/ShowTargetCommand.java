@@ -29,6 +29,6 @@ public class ShowTargetCommand extends Command{
 
         double target = targetStorage.getTarget().getValue();
         String convertedCurrencies = converter.printConverter(target, selector);
-        System.out.println("     Current target: " + target + " SGD" + convertedCurrencies);
+        System.out.println("     Current target: " + String.format("%.02f", target) + " SGD" + convertedCurrencies);
     }
 }
