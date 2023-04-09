@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -50,15 +52,24 @@ public class StaffStorage {
                 if (!dateOfBirth.matches("(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])")) {
                     throw new DinerDirectorException("Date of birth does not follow the format");
                 }
-                if (!phoneNumber.matches("[\\d\\s]+")) {
+                if (!phoneNumber.matches("[\\d\\s]+$")) {
                     throw new DinerDirectorException("Phone number does not follow the format");
                 }
-
+                if (phoneNumber.length() > 15) {
+                    throw new DinerDirectorException(Messages.ERROR_STAFF_ADD_EXCESS_PHONE_NUMBER);
+                }
                 staff = new Staff(name, workingDay, dateOfBirth, phoneNumber);
                 listOfStaffs.add(staff);
+                LocalDate today = LocalDate.now();
+                LocalDate parsedDateOfBirth = LocalDate.parse(dateOfBirth);
+                if (parsedDateOfBirth.isAfter(today)) {
+                    throw new DinerDirectorException(Messages.ERROR_STORAGE_INVALID_READ_LINE);
+                }
 
             } catch (DinerDirectorException e) {
                 System.out.println(String.format(Messages.ERROR_STORAGE_INVALID_READ_LINE, text));
+            } catch (DateTimeParseException e) {
+                System.out.println(String.format(Messages.ERROR_STORAGE_INVALID_READ_LINE, e.getMessage()));
             }
         }
 

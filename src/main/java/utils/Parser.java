@@ -199,7 +199,7 @@ public class Parser {
             String pattern = "n/(?<name>[\\w\\s]+)" +
                     "\\sw/(?<workingDay>[\\w\\s]+)" +
                     "\\sd/(?<dateOfBirth>(\\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]))" +
-                    "\\sp/(?<phoneNumber>\\d+)";
+                    "\\sp/(?<phoneNumber>\\d+)$";
 
             Pattern regex = Pattern.compile(pattern);
             Matcher matcher = regex.matcher(userInputNoCommand);
