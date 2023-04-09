@@ -2,8 +2,6 @@ package seedu.workout;
 
 import seedu.parser.DateFormatter;
 import seedu.ui.Ui;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 

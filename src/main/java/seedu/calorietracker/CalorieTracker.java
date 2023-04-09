@@ -51,8 +51,6 @@ public class CalorieTracker {
         return dailyFoodConsumption.get(date);
     }
 
-    //@@author ZIZI-czh
-
     public HashMap<Date, FoodList> getDailyFoodConsumption() {
         return dailyFoodConsumption;
     }
