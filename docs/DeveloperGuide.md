@@ -180,9 +180,10 @@ The `add` command calls `TaskList#addTask()`, which causes a new Task to be adde
 
 Step 3. The user then exits the program with the saved TaskList.
 
-Step 4. The user opens the program a week after the set deadline of the `survey` task. Upon program startup, it checks 
-if any tasks in the TaskList have a repeat count of > 0. Since the existing task fulfils the condition, a new task 
-with the same description `survey` will be created, with a deadline of 1 week from the original deadline appended to the 
+Step 4. The user opens the program a week after the set deadline of the `survey` task. Since the configuration file is
+still at default settings, it will check after every command is executed if any tasks in the TaskList have a repeat 
+count of > 0 and is due for repeat after 1 week. Since the existing task fulfils the condition, a new task with the same
+description `survey` will be created, with a deadline of 1 week from the original deadline appended to the 
 task. (i.e `27-03-2023 23:59`). The repeat count of the original `survey` task will be changed to 0, whilst the new `survey`
 task will have a repeat count of 2.
 
@@ -273,32 +274,6 @@ their tasks and a progress bar to help them visualize their progress.
 In the above diagram `printProgressBar(completedTasksThisWeek, tasksThisWeek, PROGRESS_BAR_SECTIONS, taskListString)`
 is abbreviated as `printProgressBar(...)`.
 
-### [Proposed] History feature
-
-The proposed history feature is facilitated by the `Storage`, `TaskList` and `Command` classes. Internally, there will
-be 2 task lists stored - `completedTasks` and `uncompletedTasks`. There will be a rework to how marking tasks as done
-works, a removal of the operation `TaskList#setDone()` and a new command for users to input to the CLI: `history`.
-
-There will be 2 new operations:
-* `TaskList#markTask(id i)` - Moves the task at id i of `uncompletedTasks` to `completedTasks`.
-* `TaskList#unmarkTask(id i)` - Moves the task at id i of `completedTasks` to `uncompletedTasks`.
-
-Given below is an example usage scenario and how the history mechanism works.
-
-Step 1. The user launches the application for the first time. Both `completedTasks` and `uncompletedTasks` are empty.
-
-Step 2. The user executes `add cg2023 assignment -due 18/12/2023` command to add a task that (s)he has to complete. The
-`add` command causes the task to be added to `uncompletedTasks`.
-
-Step 3. The user executes `mark` command to mark a task that (s)he has completed. The `mark` command causes the task to
-be added to `completedTasks` and removed from `uncompletedTasks`.
-
-Step 4. The user executes `list` command to see what tasks (s)he has still not completed. The `list` command causes the
-tasks in `uncompletedTasks` to be listed for the user to see.
-
-Step 5. The user executes `history` command to see what tasks (s)he has already completed. The `history` command causes
-the tasks in `completedTasks` to be listed for the user to see.
-
 ## Appendix: Requirements
 
 ### Product scope
@@ -332,6 +307,7 @@ bring an application to keep you aware of your deadlines and not miss them.
 | v2.0    | user     | set a task to repeat                                                                                             | create 1 task to represent repeating tasks every week                     |
 | v2.0    | user     | set priority level and can sort the tasks based on the priority level                                            | identify high priority tasks                                              |
 | v2.0    | user     | see a progress bar                                                                                               | track my progress of unfinished tasks                                     |
+| v2.1    | user     | customise some of the repeating settings                                                                         | reduce my system usage and repeat my tasks at a more suitable frequency   |
 
 ### Non-Functional Requirements
 
