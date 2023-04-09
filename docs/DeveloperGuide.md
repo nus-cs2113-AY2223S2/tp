@@ -1275,7 +1275,7 @@ Sorry, but I don't know what that means :(
 | 10  |    Negative     | `deadline return book -by 17-11-2023-11:23 blah blah`       | Exception thrown for extra parameters.                                |
 | 11  |    Negative     | `deadline return book 15-01-2022-11:23`                     | Exception thrown for date occurring before system DateTime.           |
 | 12  |    Negative     | `event wedding 16-01-2022-11:23 -to 20-01-2022-11:23`       | Exception thrown for date occuring before system DateTime.            |
-| 13  |    Negative     | `todo`                                                      | Exeption thrown for missing parameters.                               |
+| 13  |    Negative     | `todo`                                                      | Exception thrown for missing parameters.                              |
 | 14  |    Negative     | `event`                                                     | Exception thrown for missing parameters.                              |
 | 15  |    Negative     | `deadline`                                                  | Exception thrown for missing parameters.                              |
 
@@ -1346,7 +1346,7 @@ Note: moduleList *should not* contain CS2040C, i.e. `addmod cs2040c` should not 
 | No. | Type of Testing | Test Command     | Expected Outcome                                                                |
 |:---:|:---------------:|:-----------------|:--------------------------------------------------------------------------------|
 |  1  |    Positive     | `delmod 1`       | Module under index 1 is deleted from moduleList. Confirmation message is shown. |
-|  2  |    Negative     | `delmod cs1010`  | CS1010 is removed from moduleList. Confirmation message is printed              |
+|  2  |    Positive     | `delmod cs1010`  | CS1010 is removed from moduleList. Confirmation message is printed              |
 |  3  |    Negative     | `delmod cs2040c` | Exception that module is not in moduleList thrown.                              |
 
 
