@@ -73,10 +73,9 @@ public class LoanController {
         }
 
         double dueAmount = loan.calculateOverduePayment(LocalDateTime.now());
-        dueAmount = 2;
-        // if (dueAmount > 0.0) {
+        if (dueAmount > 0.0) {
             PaymentController.makePayment(toReturn, dueAmount);
-        //}
+        }
 
         loan.setReturned(true);
         toReturn.returnItem();

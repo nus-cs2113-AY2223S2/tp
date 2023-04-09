@@ -238,6 +238,19 @@ Description: Make payment for overdue loans.
 When returning item(s) that are overdue, the user will be prompted to make a payment. 
 Failure to do so will result in the returning action being unsuccessful.
 
+Example:
+```text
+|| Enter command: return -title Introduction to Algorithms
+|| Payment method:
+|| 1.PayNow
+|| 2.Debit/Credit card
+|| 3.NETS
+|| 4.Cash
+|| 5.Cancel Payment
+2
+|| Payment Successful! Transaction ID: 978-0262033848202304090809
+|| Item has been returned!
+```
 
 ## Product Scope
 ### Target user profile
