@@ -32,8 +32,12 @@ to view my codes contributed for this project.
 ### 4) DeveloperGuide Contributions:
 * Added Introduction
 * Added Table of Contents 
-* Added Sequence Diagrams
-* Added design & implementation details for `Notes` class
+* Added Sequence Diagram for `Store`
+* Added design & implementation details for `Store` class
+* Added design & implementation details for `Delete` class
+* Added design & implementation details for `Command` class
+* Added design & implementation details for `List` class
+* Added design & implementation details for `CommandHistory` class
 * Added design & implementation details for `Ui` class
 * Added design & implementation details for `notes.txt` file
 
