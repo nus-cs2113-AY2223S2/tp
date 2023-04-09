@@ -65,6 +65,7 @@ activate "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 end
 ":AddModuleCommand" <-- ":Storage" : true
+deactivate ":Storage"
 opt isAddSuccessful == false
 ":AddModuleCommand" --> ":Duke"
 end
@@ -73,6 +74,7 @@ activate "<<class>>\n:UI"
 ":AddModuleCommand" <-- "<<class>>\n:UI"
 deactivate "<<class>>\n:UI"
 ":Duke" <-- ":AddModuleCommand"
+deactivate ":AddModuleCommand"
 
 
 @enduml
