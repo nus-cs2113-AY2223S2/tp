@@ -270,6 +270,9 @@ Data for NUSPlanner is saved as a `.json` file. The path for the save file is `[
 
 🚧 **Warning**: If your changes to the data file makes its format invalid, NUSPlanner will discard all data and load an empty data file at the next run.
 
+### NUSMods Data
+NusPlanner runs an offline version of the NUSMods API. The NUSMods data stored in NUSPlanner is correct as of **March 17, 2023**. 
+
 ## FAQ
 
 **Q**: Why is a JAR file required?
