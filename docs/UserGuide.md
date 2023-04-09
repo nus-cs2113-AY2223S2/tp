@@ -53,10 +53,10 @@ delete_meeting and find_meeting.
 #### Add Meetings:
 Add a meeting to the meeting list.  The name of the meeting is written after `n/`, followed by the time of the meeting written after `t/`.  
 
-Note: `add_meeting` command will not handle extra parameters other than `n/` and `t/`.  
-Furthermore, please do not contain `t/` inside the meeting name because anything after `t/` will be considered as time.  
+**Note: `add_meeting` command will not handle extra parameters other than `n/` and `t/`.**  
+**Furthermore, please do not contain `t/` inside the meeting name because anything after `t/` will be considered as time.**  
 
-Note: User is allowed to input time parameter in any time format they prefer.
+**Note: User is allowed to input the name in any format, and the time parameter in any time format they prefer.**
 
 Format: `add_meeting n/<name> t/<time>`
 
@@ -93,7 +93,7 @@ find_meeting meeting with boss
 Outcome:
 ```
 Here's the matching meeting list:
-meeting with boss
+1. meeting with boss at Sunday, 3PM
 ```
 
 #### Delete meeting:
@@ -118,34 +118,42 @@ needs to be completed for the restaurant.
 #### Add a deadline to the deadline list:
 Format: `add_deadline n/<name> t/<time>`
 
-Note: User is allowed to input time parameter in any time format they prefer.
+**Note: User is allowed to input the name in any format, and the time parameter in any time format they prefer.**
 
 Example: 
 ```
->view_deadlines
-1. fix water pipes by: 10 Apr
->add_deadline n/need to buy more potatoes t/9 Apr 2PM
->view_deadlines
-1. fix water pipes by: 10 Apr
-2. need to buy more potatoes deal by: 9 Apr 2PM
+add_deadline n/need to buy more potatoes t/9 Apr 2PM
+```
+Outcome:
+```
+Got it! This deadline has been successfully added.
+need to buy more potatoes by: 9 Apr 2PM
+Now you have 1 deadlines in the deadline list.
 ```
 
 #### View all deadlines:
 
 Format: `view_deadlines`
 
+Outcome:
+```
+Here are the deadlines in your list:
+1. need to buy more potatoes by: 9 Apr 2PM
+```
 
 #### Delete a deadline:
 Format: `delete_deadline <deadline index>`
 
 Example:
 ```
->>view_deadlines
-1. fix water pipes by: 10 Apr
-2. need to buy more potatoes deal by: 9 Apr 2PM
->>delete_deadline 2
->>view_deadlines
-1. fix water pipes by: 10 Apr
+delete_deadline 1
+```  
+
+Outcome:
+```
+Noted. I've removed this deadline:
+need to buy more potatoes by: 9 Apr 2PM
+Now you have 0 deadlines in the deadline list.
 ```
 
 #### Find a deadline:
@@ -153,13 +161,13 @@ Format: `find_deadline <keyword>`
 
 Example: 
 ```
->>view_deadlines
-1. fix water pipes by: 10 Apr
-2. need to buy more potatoes deal by: 9 Apr 2PM
-3. fix fridge by: 15 Apr
->>find_deadline fix
-1. fix water pipes by: 10 Apr
-2. fix fridge by: 15 Apr
+find_deadline fix
+```
+
+Outcome:
+```
+Here are the matching deadlines in your list:
+1. fix water pipes by: 9 Apr 2PM
 ```
 
 ### Dish
@@ -185,17 +193,17 @@ add_dish n/Chicken Burger pc/1099 [tomatoes;chicken fillet;cheese;bread with ses
 ```
 Outcome 1: 
 ```
-<index_number>. Chicken Burger; $10.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
+Added dish: 1. Chicken Burger; $10.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
 ```
 You can also omit the ingredient list like such:
 
 Example 2:
 ```
-add_dish n/Chicken Burger pc/1099 []
+add_dish n/McSpicy Burger pc/1099 []
 ```
 Outcome 2:
 ```
-<index_number>. Chicken Burger; $10.99; []
+Added dish: 2. McSpicy Burger; $10.99; []
 ```
 
 #### View the list of dishes added:
@@ -272,7 +280,7 @@ Add a staff to the staffs list.
 
 Format: `add_staff n/<name> w/<working day> d/<date of birth> p/phone`
 
-Note that date format should be in YYYY-MM-DD and phone number should only contain number. Date of birth should be before this present time as well.
+**Note: The date format should be in YYYY-MM-DD and phone number should only contain number. Date of birth should be before this present time as well.**
 
 Example:
 ```
@@ -313,6 +321,7 @@ Outcome:
 Find a staff from staffs list
 
 Format: `find_staff <keyword>`
+
 Example:
 ```
 find_staff john
@@ -347,7 +356,7 @@ The contents in the file are stored in a custom format with `~|~` being the sepa
 #### Editing meeting_list.txt
 Format: `<meeting name>~|~<date>`
 
-Outcome:
+Example:
 ```
 Meeting with boss~|~Sunday, 3PM
 Meeting with supplier~|~Saturday, 9AM
@@ -356,7 +365,7 @@ Meeting with supplier~|~Saturday, 9AM
 #### Editing deadline_list.txt   
 Format: `<deadline name>~|~<date>`
 
-Outcome:
+Example:
 ```
 fix water pipes~|~10 Apr
 need to buy more potatoes deal~|~9 Apr 2PM
@@ -366,7 +375,7 @@ need to buy more potatoes deal~|~9 Apr 2PM
 Format: `<dish name>~|~<price>~|~<ingredient1>;<ingredient2>;<ingredient3>`
 - You can add more ingredients by separating it with a semicolon.
 
-Outcome:
+Example:
 ```
 Chicken Burger~|~1099~|~tomatoes;chicken fillet;cheese;bread with sesame seeds
 ```
@@ -374,7 +383,7 @@ Chicken Burger~|~1099~|~tomatoes;chicken fillet;cheese;bread with sesame seeds
 #### Editing staff_list.txt
 Format: `<staff name>~|~<working day>~|~<date of birth>~|~<phone>`
 
-Outcome:
+Example:
 ```
 John Doe~|~Sunday~|~2001-03-09~|~82802123
 ```

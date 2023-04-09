@@ -293,7 +293,7 @@ public class Parser {
                 throw new DinerDirectorException(Messages.ERROR_STAFF_FIND_MISSING_PARAM);
             }
         } catch (DinerDirectorException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
             return new IncorrectCommand();
         }
         return new FindStaffCommand(description.trim());
