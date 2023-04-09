@@ -144,12 +144,12 @@ The `XYZStorage` class performs the following functions:
 <img src="uml/images/ParserSequenceDiagram.png" width="520"/>  
 
 How the parsing works:
-1. The `Parser()` class will be called to create a new instance of `Parser`.
-2. Afterwards, when the `parseCommand()` method is called from `DinerDirector` class, the `parseCommand()` will split the given userInput first.
-2. With the `userInputSplit[]`, the `0` index will be extracted out. That will be used as identification for the command the user typed in.
-3. The `commandWord` will be used in the switch statement to select the appropriate command. returning `IncorrectCommand` class is the default behavior.
-4. If the `commandWord` is valid, it will run the appropriate `prepareXYZCommand()`.
-5. Each of the individual `prepareXYZCommand()` will take in the userInput without the command portion. The variable is named `userInputNoCommand`. The `prepareXYZCommand()` will check the userInput to see if all the appropriate values are added, and return `XYZCommand` class if the values are correct. `prepareXXXCommand()` will return `IncorrectCommand` class if there are some missing values or inappropriate values.
+Step 1: The `Parser()` class will be called to create a new instance of `Parser`.  
+Step 2: Afterwards, when the `parseCommand()` method is called from `DinerDirector` class, the `parseCommand()` will split the given userInput first.  
+Step 3: With the `userInputSplit[]`, the `0` index will be extracted out. That will be used as identification for the command the user typed in.  
+Step 4: The `commandWord` will be used in the switch statement to select the appropriate command. returning `IncorrectCommand` class is the default behavior.  
+Step 5: If the `commandWord` is valid, it will run the appropriate `prepareXYZCommand()`.  
+Step 6: Each of the individual `prepareXYZCommand()` will take in the userInput without the command portion. The variable is named `userInputNoCommand`. The `prepareXYZCommand()` will check the userInput to see if all the appropriate values are added, and return `XYZCommand` class if the values are correct. `prepareXXXCommand()` will return `IncorrectCommand` class if there are some missing values or inappropriate values.  
 
 ### Meeting Feature
 The 'Meeting' Feature allows users to add a meeting, delete a meeting, find a meeting and print all the meetings.
@@ -268,23 +268,23 @@ The Dish feature consists of three functions:
 #### Create directory, Read and load from XYZ file
 <img src="uml/images/CreateDirectorySequenceDiagram.png" width="400"/>  
 
-1. The `Storage()` class will be called to create a new instance of `Storage`.
-2. The `createDirectory()` method in the `Storage()` class will be called next. A directory called `data` will be created in the same folder as the application if the folder does not exist.
+Step 1: The `Storage()` class will be called to create a new instance of `Storage`.  
+Step 2: The `createDirectory()` method in the `Storage()` class will be called next. A directory called `data` will be created in the same folder as the application if the folder does not exist.  
 
 #### Read and load from XYZFile
 <img src="uml/images/ReadAndLoadFromXYZFileSequenceDiagram.png" width="400"/>
 
-1. The `XYZStorage()` class will be called to create a new instance of `XYZStorage`.
-2. The `readAndLoadFromXYZFile()` method in the `XYZStorage()` class is called to read and load data if any application related text files exists.
+Step 1: The `XYZStorage()` class will be called to create a new instance of `XYZStorage`.  
+Step 2: The `readAndLoadFromXYZFile()` method in the `XYZStorage()` class is called to read and load data if any application related text files exists.  
 
 #### Write to XYZ file
 <img src="uml/images/WriteToXYZFileSequenceDiagram.png" width="400"/>
 
-1. The `XYZStorage()` class will be called to create a new instance of `XYZStorage`.
-2. The `writeToXYZFile()` method in the `XYZStorage()` class is called to write the contents in the list into the respective file.
-3. The `writeToXYZFile()` method is called in `addXYZ()` method in the `XYZManager` class.
-4. The `addXYZ()` method is called from outside `XYZManager()` class.
-5. The above process is listed only for `addXYZ()`, but `deleteXYZ()` follows the same process as the above sequence diagram.
+Step 1: The `XYZStorage()` class will be called to create a new instance of `XYZStorage`.  
+Step 2: The `writeToXYZFile()` method in the `XYZStorage()` class is called to write the contents in the list into the respective file.  
+Step 3: The `writeToXYZFile()` method is called in `addXYZ()` method in the `XYZManager` class.  
+Step 4: The `addXYZ()` method is called from outside `XYZManager()` class.  
+Step 5: The above process is listed only for `addXYZ()`, but `deleteXYZ()` follows the same process as the above sequence diagram.  
 
 ## Glossary
 
