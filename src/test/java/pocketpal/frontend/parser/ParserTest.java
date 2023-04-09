@@ -173,6 +173,27 @@ public class ParserTest {
         String actualMessage = exception.getMessage();
         assertEquals(expectedMessage, actualMessage);
     }
+    @Test
+    public void parseAddCommand_amount6DP_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/add -p 10.009999 -d chicken rice -c food");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseAddCommand_billionAmount_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/add -p 1000000000 -d super cheap island -c entertainment");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
 
     @Test
     public void parseEditCommand_missingArgumentsAndId_exceptionThrown() {
@@ -211,6 +232,28 @@ public class ParserTest {
         Parser parser = new Parser();
         Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
             parser.parseUserInput("/edit 10 -p 10f");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseEditCommand_amount6DecimalPoints_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/edit 10 -p 10.009999");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseEditCommand_billionAmount_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/edit 10 -p 1000000000");
         });
         String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
         String actualMessage = exception.getMessage();
@@ -394,7 +437,7 @@ public class ParserTest {
 
     // @@author leonghuenweng
     @Test
-    public void isValidDate_invalidDateException() {
+    public void isValidDate_invalidDate_exceptionThrown() {
         Parser parser = new Parser();
         Exception exception = assertThrows(InvalidDateException.class, () -> {
             parser.parseUserInput("/view -sd 31/11/19 -ed 29/2/24");
@@ -406,24 +449,45 @@ public class ParserTest {
     }
 
     @Test
-    public void parseViewCommand_missingDateException_givenDatesOnly() {
-        Parser parser = new Parser();
-        Exception exception = assertThrows(MissingDateException.class, () -> {
-            parser.parseUserInput("/view -sd 30/11/19");
-        });
-        assertEquals(exception.getMessage(), MessageConstants.MESSAGE_MISSING_DATE);
-
-        assertDoesNotThrow(() -> parser.parseUserInput("/view -sd 30/11/19 -ed 30/11/20"));
-    }
-
-    @Test
-    public void parseViewCommand_missingDateException() {
+    public void parseViewCommand_missingDates_exceptionThrown() {
         Parser parser = new Parser();
         Exception exception = assertThrows(MissingDateException.class, () -> {
             parser.parseUserInput("/view -c food -sd 30/11/19");
         });
         assertEquals(exception.getMessage(), MessageConstants.MESSAGE_MISSING_DATE);
-        assertDoesNotThrow(() -> parser.parseUserInput("/view -sd 30/11/19 -ed 30/11/20"));
+    }
+
+    @Test
+    public void parseViewCommand_amount6DP_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/view 10 -sp 10.009999");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseViewCommand_billionAmount_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/view 10 -sp 1000000000");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    public void parseViewCommand_invalidAmount_exceptionThrown() {
+        Parser parser = new Parser();
+        Exception exception = assertThrows(InvalidArgumentsException.class, () -> {
+            parser.parseUserInput("/view 10 -sp 1000dd000");
+        });
+        String expectedMessage = MessageConstants.MESSAGE_INVALID_AMOUNT;
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
     }
     // @@author
 
