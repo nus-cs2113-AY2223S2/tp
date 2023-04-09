@@ -155,16 +155,17 @@ How the parsing works:
 The 'Meeting' Feature allows users to add a meeting, delete a meeting, find a meeting and print all the meetings.
 The 'Meeting' class in the entity package shows the attributes that a meeting object has: time and issue, both are of String type.
 An ArrayList of meetings is initialized in the MeetingManager. Three methods that implement the meetings are also inside.
-- addMeeting: Add a meeting to the meeting list.
+- add_meeting: Add a meeting to the meeting list.
   ![](uml/images/AddMeetingCommandSequenceDiagram-Add_Meeting_Sequence_Diagram.png)
-- deleteMeeting: Delete a meeting in the meeting list by its index. The sequence diagram follows the same pattern as above.
-- viewMeetings: Print all the meetings in the meeting list.The sequence diagram follows the same pattern as above.
-- findMeetings: Find and print all the meetings which contain the keyword that the user specified.
-  The sequence diagram follows the same pattern as above.
+
+- delete_meeting: Delete a meeting in the meeting list by its index. The sequence diagram follows the same pattern as above.
+- view_meetings: Print all the meetings in the meeting list.The sequence diagram follows the same pattern as above.
+- find_meeting: Find and print all the meetings in the meeting list that contain the keyword
+that the user specified. The sequence diagram follows the same pattern as above.
 
 Step 1: When the user input a meeting command, the Parser will determine which command it is and return a command object.
 
-Step 2: One of the meeting commands will be called from `AddMeetingCommand`, `DeleteMeetingCommand` and `ViewMeetingCommand`.
+Step 2: One of the meeting commands will be called from `AddMeetingCommand`, `DeleteMeetingCommand`, `FindMeetingCommand` and `ViewMeetingCommand`.
 
 Step 3: Inside the command, the execute function will call the corresponding methods inside the MeetingManager and implement on the meeting list.
 
@@ -175,10 +176,14 @@ The User will also be able to delete deadlines, view deadline list.
 
 ![](uml/images/XYZDeadlineDiagram.png)
 
-When the user input a deadline command, it will be parsed into Parser to determine which deadline command will be called.
-Then, the deadline command will be executed, and the respective method in the DeadlineManager class will be called, which are:
-
 (XYZ stands for the respective command name.)
+
+Step 1: After the parser returns a `XYZDeadlineCommand`, `DinerDirector` will call the `execute()` method of the command called.  
+
+Step 2: In `execute(ui)` method, the corresponding `XYZdeadline` method of `DeadlineManager` will be called.  
+
+Step 3: After the `XYZdeadline` method completed the task given, a message will be printed through the `TextUi` class with the `printMessage()` method. 
+
 
 #### Add deadline to deadline list
 
@@ -225,18 +230,27 @@ The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` o
 
 #### Adding staff to the list:
 
-It first checks whether the parameter needed to add `Staff` is already given in the correct format. If it passes the format checking, 
-the `Parser` object will return `AddStaffCommand` to be executed by `DinerDirector`. Internally, `AddStaffCommand` redirect the requests to 
-`StaffManager` to add the `Staff` object to the list of `Staff` 
+Step 1: It first checks whether the parameter needed to add `Staff` is already given in the correct format. 
+
+Step 2: If it passes the format checking, the `Parser` object will return `AddStaffCommand` to be executed by `DinerDirector`. 
+
+Step 3: `AddStaffCommand` redirect the task to `StaffManager` to add the `Staff` object to the list of `Staff` 
 
 #### Deleting staff on the list:
 
-It first finds the corresponding `Staff` object to be deleted using its name in the list in `StaffManager`. 
-If it is found, it will delete the correct corresponding `Staff`. 
+Step 1: It first finds the corresponding `Staff` object to be deleted using its index in the list in `StaffManager`. 
+
+Step 2: If it is a valid index, it will return `DeleteStaffCommand` to be executed by `DinerDirector`.
+
+Step 3: `DeleteStaffCommand` redirect the task to `StaffManager` to delete the `Staff` object at that index. 
 
 #### Viewing the list of staffs:
 
-It prints all of `Staff` objects in `StaffManager`'s staffs. 
+Step 1: It first checks whether there exists excessive parameter or not. 
+
+Step 2: If the command is valid, it will return `ViewStaffCommand` to be executed by `DinerDirector`. 
+
+Step 3: `ViewStaffCommand` redirect the task to `StaffManager` to print all the `Staff` objects. 
 
 ### Dish Feature
 
@@ -244,28 +258,28 @@ The Dish feature consists of three functions:
 
 #### Add dish to list:
 
-![AddDishCommandSequenceDiagram.png](uml%2Fimages%2FAddDishCommandSequenceDiagram.png)
-- When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.
-- When the ```execute()``` command in ```AddDishCommand``` is called, it calls the ```addDish()``` in ```DishManager``` class that adds the Dish into an arraylist of Dishes.
-- It then prints out the dish that was added to the console.
+![AddDishCommandSequenceDiagram.png](uml%2Fimages%2FAddDishCommandSequenceDiagram.png)  
+Step 1: When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.  
+Step 2: When the ```execute()``` command in ```AddDishCommand``` is called, it calls the ```addDish()``` in ```DishManager``` class that adds the Dish into an arraylist of Dishes.  
+Step 3: It then prints out the dish that was added to the console.  
  
 #### Delete dish on the list:
 
-![DeleteDishCommandSequenceDiagram.png](uml%2Fimages%2FDeleteDishCommandSequenceDiagram.png)
-- When the ```DeleteDishCommand()``` constructor is called, it stores the index of the Dish to be deleted from the arraylist of Dishes.
-- When the ```execute()``` command in ```DeleteDishCommand``` is called, it calls the ```deleteDish()``` in ```DishManager``` class that deletes the Dish at the specified index in the arraylist of Dishes
-- It then prints out the dish that was deleted to the console.
+![DeleteDishCommandSequenceDiagram.png](uml%2Fimages%2FDeleteDishCommandSequenceDiagram.png)  
+Step 1: When the ```DeleteDishCommand()``` constructor is called, it stores the index of the Dish to be deleted from the arraylist of Dishes.  
+Step 2: When the ```execute()``` command in ```DeleteDishCommand``` is called, it calls the ```deleteDish()``` in ```DishManager``` class that deletes the Dish at the specified index in the arraylist of Dishes.  
+Step 3: It then prints out the dish that was deleted to the console.  
 
 #### View the list of dishes:
-![ViewDishCommandSequenceDiagram.png](uml%2Fimages%2FViewDishCommandSequenceDiagram.png)
-- When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```viewDish()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist.
-- It then prints out the formatted string containing all the dishes to the console.
+![ViewDishCommandSequenceDiagram.png](uml%2Fimages%2FViewDishCommandSequenceDiagram.png)  
+Step 1: When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```viewDish()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist.  
+Step 2: It then prints out the formatted string containing all the dishes to the console.  
 
 #### Find a dish in the list of dishes
-![FindDishCommandSequenceDiagram.png](uml%2Fimages%2FFindDishCommandSequenceDiagram.png)
-- When the ```FindDishCommand()``` constructor is called, it stores the keyword that is going to be used to search for dishes.
-- When the ```execute()``` command in ```FindDishCommand``` is called, it calls the ```findDish()``` in ```DishManager``` class and searches through all the descriptions of dishes in the arraylist of dishes.
-- It then prints out the formatted string containing all the dishes with the keyword to the console.
+![FindDishCommandSequenceDiagram.png](uml%2Fimages%2FFindDishCommandSequenceDiagram.png)  
+Step 1: When the ```FindDishCommand()``` constructor is called, it stores the keyword that is going to be used to search for dishes.  
+Step 2: When the ```execute()``` command in ```FindDishCommand``` is called, it calls the ```findDish()``` in ```DishManager``` class and searches through all the descriptions of dishes in the arraylist of dishes.  
+Step 3: It then prints out the formatted string containing all the dishes with the keyword to the console.  
 
 ### Storage Feature 
 
