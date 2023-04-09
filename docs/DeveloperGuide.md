@@ -195,8 +195,8 @@ This is to add a `Task` with the description "concert" on Jun 5 2023 from 8-10pm
 Within `Parser`, an `AddCommand` is initialised and a logger for the command is set up. 
 Variables within the `AddCommand` are then assigned. The String `command` is set to "event".
 The rest of the user's command are further parsed into Strings: `desc` "concert" (description), `from`
-"2023-06-06T20:00" (start date), and `to` "2023-06-06T22:00" (end date) based on the delimiters "/from" and "/to".
-- For `command` "deadline", remaining params are parsed into `desc` and `by` (due date) based on the delimiter "/by".
+"05-06-2023-20:00" (start date), and `to` "05-06-2023-22:00" (end date) based on the delimiters "`-from`" and "`-to`".
+- For `command` "deadline", remaining params are parsed into `desc` and `by` (due date) based on the delimiter "`-by`".
 - For `command` "todo", all remaining params are parsed into `desc`.
 
 **Step 3.**
@@ -214,8 +214,9 @@ This in turn calls `AddCommand#addTask()`.
 **Step 5.**
 `addTask()` will try to initialise a new `Event` by parsing the Strings `from` and `to` into `LocalDateTime`s.
 - For `Deadline`, the String `by` will be parsed into a `LocalDateTime`.
-- For `Todo`, no dates need to be parsed.
-In the event of the following, an error message is printed and no more steps are executed.
+- For `Todo`, no dates need to be parsed.   
+
+In the event of the following, an error message is printed and no more steps are executed.   
 - String for date cannot be parsed into LocalDateTime (wrong format of input)
 - Task occurs entirely before the current date
 - (for `Event`) Start date occurs after end date
@@ -227,7 +228,7 @@ In the event of the following, an error message is printed and no more steps are
 
 **Step 7.**
 
-Similarly, `addTask()` also checks if the initialised `Task` clashes with any existing lessons. If so,
+Similarly, `addTask()` also checks if the initialised `Task` clashes with any existing lessons. If so, 
 `Ui#printClashingEventModuleMessage()` is called to print a warning message.
 
 **Step 8.**
@@ -964,7 +965,7 @@ which prints out the lessons and tasks occurring on each day of the current week
    If no tasks occur on that day, the next step is skipped.
 5. `tasksOnDay` is passed into the method `Ui#printTasksOnDay()`. Each task is printed out. 
 6. The current day is increased to the following day. 
-7. Go back to the first step, stop after all lessons and tasks on Sunday have been printed. 
+7. Go back to `1.`, stop after all lessons and tasks on Sunday have been printed. 
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Week-WeekCommand.png?raw=true)
 
@@ -1145,6 +1146,7 @@ Given below are instructions to test the app manually.
 * Open a terminal in the folder and run the command `java -jar apollo.jar`. The CLI should appear in a few seconds.
 * Expected: The CLI should appear with a welcome message and a prompt to enter a command. Resize the CLI window size
     for optimal text wrapping.
+
 ```
 ____________________________________________________________
 Hello from
@@ -1158,6 +1160,7 @@ Your personal task and timetable manager!
 Enter "help" to see a list of commands.
 ____________________________________________________________
 ```
+
 ### Sample test cases
 #### Invalid Commands
 1. Type `hello` and press enter.
