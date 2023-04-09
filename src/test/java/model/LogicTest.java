@@ -17,7 +17,6 @@ import utils.command.DeleteTagCommand;
 import utils.command.EditDeckNameCommand;
 import utils.command.EditTagNameCommand;
 import utils.command.ListCardsUnderTagCommand;
-import utils.command.ListTagsUnderDeckCommand;
 import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromCardCommand;
 import utils.command.RemoveTagFromDeckCommand;
@@ -269,7 +268,7 @@ public class LogicTest {
             parseAndExecute(
                     "card untag -t "
                             +
-                            "jghsjhgshdkhsdjkghsdjksghsjghsjzkghjsdghjdszjsdzhgjskdghghjsdhgsdjhgjsddsjkghsdjskdhgjdsghjkghdhgsdjkghjkhgdsjghjhgjkzshgjshzgjszhguisghsdghsizghzsjghgsezgsgsg -i 1",
+                            "jghsjhgshdkhsdjkghsdjksghsjghsjzkghjsdghjdszjsdzhgjskdghghjsdhgsdjhgjsddsjkghsdjs -i 1",
                     RemoveTagFromCardCommand.class);
         } catch (LongTagNameException e) {
             assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
@@ -286,7 +285,7 @@ public class LogicTest {
         // Create tag with long name
         try {
             parseAndExecute(
-                    "card tag -t jghsjhgshdkhsdjkghsdjksghsjghsjzkghjsdghjdszjsdzhgjskdghghjsdhgsdjhgjsddsjkghsdjskdhgjdsghjkghdhgsdjkghjkhgdsjghjhgjkzshgjshzgjszhguisghsdghsizghzsjghgsezgsgsg -i 1",
+                    "card tag -t jghsjhgshdkhsdjkghsdjksghsjghsjzkghjsdghjdszjsdzhgjskdghghjsdhgsdjhgjsd -i 1",
                     AddCardToTagCommand.class);
         } catch (LongTagNameException e) {
             assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
@@ -329,7 +328,7 @@ public class LogicTest {
             parseAndExecute(
                     "tag delete -t "
                             +
-                            "gsjhgskghsjkiughkghsighszghzsghzghsgiuhohzsdiughzoughidogjhzogizsjghzioghjzsdioggjsiokgjgiogz",
+                            "gsjhgskghsjkiughkghsighszghzsghzghsgiuhohzsdiughzoughidogjhzogizsjghzioghjzsdioggjsiokgj",
                     DeleteTagCommand.class);
         } catch (LongTagNameException e) {
             assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
@@ -351,7 +350,7 @@ public class LogicTest {
             parseAndExecute(
                     "tag list -t "
                             +
-                            "gsjhgskghsjkiughkghsighszghzsghzghsgiuhohzsdiughzoughidogjhzogizsjghzioghjzsdioggjsiokgjgiogz",
+                            "gsjhgskghsjkiughkghsighszghzsghzghsgiuhohzsdiughzoughidogjhzogizsjghzioghjzsdioggjsiokgj",
                     ListCardsUnderTagCommand.class);
         } catch (LongTagNameException e) {
             assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
@@ -359,7 +358,7 @@ public class LogicTest {
     }
 
     @Test
-    public void logic_AddDeckLongDeckName() throws InkaException {
+    public void logic_addDeckLongDeckName() throws InkaException {
         // Create card
         parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
 
@@ -368,7 +367,7 @@ public class LogicTest {
         // Create tag with long name
         try {
             // Create tag
-            parseAndExecute("card deck -d testDecksetsetsettsetststsststtstststststststststtstststshrhhsdrhdhsdhs -i 1",
+            parseAndExecute("card deck -d testDecksetsetsettsetststsststtstststststststststtstststshrhhs -i 1",
                     AddCardToDeckCommand.class);
         } catch (LongDeckNameException e) {
             assertEquals(e.getUiMessage(), LONG_DECK_NAME_EXCEPTION_STR);
@@ -376,7 +375,7 @@ public class LogicTest {
     }
 
     @Test
-    public void logic_DeleteDeckLongDeckName() throws InkaException {
+    public void logic_deleteDeckLongDeckName() throws InkaException {
         // Create card
         parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
 

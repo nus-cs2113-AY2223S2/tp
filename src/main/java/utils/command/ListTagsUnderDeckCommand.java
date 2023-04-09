@@ -10,7 +10,6 @@ import model.TagUUID;
 import utils.UserInterface;
 import utils.exceptions.DeckNotFoundException;
 import utils.exceptions.InkaException;
-import utils.exceptions.LongDeckNameException;
 import utils.storage.IDataStorage;
 
 public class ListTagsUnderDeckCommand extends Command {
