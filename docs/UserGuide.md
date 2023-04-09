@@ -364,14 +364,14 @@ Here are the notes you are searching for:
 ### 13) Prioritize A Note
 Change the priority of a certain note in the notes list.
 
-Format: `<Priority Type>. Index`
-Example of usage: `High .1`
+Format: `<Priority Type> Index`
+Example of usage: `High 1`
 
 * The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
 
 Example of usage:
 
-`High. 1`
+`High 1`
 
 Expected outcome:
 
@@ -381,7 +381,7 @@ You have changed its priority to HIGH
 ````
 Example of usage:
 
-`Medium. 3`
+`Medium 3`
 
 Expected outcome:
 
@@ -393,8 +393,8 @@ You have changed its priority to MEDIUM
 ### 14) Display All Notes Based On All Priority Types:
 Display all items stored in the Notes List based on the respective priority rankings.
 
-Format: `Rank. Priority`
-Example of usage: `Rank. Priority`
+Format: `Rank Priority`
+Example of usage: `Rank Priority`
 
 ### 15) Display All Notes Of A Certain Priority Type: `FindPrior`
 * Find all notes stored in the list based on the priority that users are searching for.
@@ -495,7 +495,6 @@ Example input:
 Bye
 ```
 Expected outcome:
-
 ````
 Goodbye!
 ````
@@ -520,6 +519,68 @@ Goodbye!
 
 ## Command Summary
 
+### General
+```
+History
+```
+```
+Help
+```
+```
+Bye
+```
+### Notes
+```
+Store isNote
+```
+```
+List
+```
+```
+List 2
+```
+```
+Delete 2
+```
+```
+Clear
+```
+```
+Mark 2
+```
+```
+Unmark 2
+```
+```
+FindMark
+```
+```
+FindUnmark
+```
+```
+FindInfo Add
+```
+```
+High 1
+```
+```
+Medium 1
+```
+```
+Low 1
+```
+```
+Rank Priority
+```
+```
+FindPrior HIGH
+```
+```
+FindPrior MEDIUM
+```
+```
+FindPrior LOW
+```
 ### Graph
  ```
  Graph 2*tan(2*pi*x+5)
