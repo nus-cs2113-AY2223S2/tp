@@ -1,22 +1,24 @@
 @startuml
+!include Style.puml
 hide footbox
 title Delete Dish Sequence Diagram
 
 box "DeleteDishCommand"
-participant ":DeleteDishCommand" as DeleteDishCommand
+participant ":DeleteDishCommand" as DeleteDishCommand COMMAND_COLOR
 endbox
 
 box "DishManager"
-participant ":DishManager" as DishManager
+participant ":DishManager" as DishManager MANAGER_COLOR
 endbox
 
-
--> DeleteDishCommand ++ : DeleteDishCommand(index)
 -> DeleteDishCommand: execute(index)
+activate DeleteDishCommand
 DeleteDishCommand -> DishManager ++ : deleteDish(index)
-
 DeleteDishCommand <-- DishManager
-<-- DeleteDishCommand: ui.printMessage()
+deactivate
+<-- DeleteDishCommand:
 
+destroy DeleteDishCommand
 |||
+
 @enduml
