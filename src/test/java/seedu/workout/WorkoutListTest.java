@@ -82,7 +82,7 @@ class WorkoutListTest {
 
         // create workout 2
         Workout workout2 = new Workout(date2, "Workout 2");
-        Exercise exercise3 = new Exercise("Bench press", "45kg", "2 2 2 2");
+        Exercise exercise3 = new Exercise("Bench Press", "45kg", "2 2 2 2");
         Exercise exercise4 = new Exercise("Dead lifts", "45kg", "5 5 5 5");
         workout2.addExercise(exercise3);
         workout2.addExercise(exercise4);
@@ -106,11 +106,13 @@ class WorkoutListTest {
         // expected output
         String expected = "Information of exercises for the week of 03/04/23" +
                 System.lineSeparator() +
-                "Name: BenchPress, sets: 8, rps: 28" +
-                System.lineSeparator() +
                 "Name: Squats, sets: 9, rps: 50" +
                 System.lineSeparator() +
-                "Name: Deadlifts, sets: 9, rps: 46" +
+                "Name: Bench Press, sets: 4, rps: 8" +
+                System.lineSeparator() +
+                "Name: Dead lifts, sets: 9, rps: 46" +
+                System.lineSeparator() +
+                "Name: BenchPress, sets: 4, rps: 20" +
                 System.lineSeparator() +
                 Ui.line();
 
