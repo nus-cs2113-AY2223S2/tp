@@ -273,7 +273,7 @@ Now you have <number> notes in the list.
 
 ### 7) Clear All Notes Stored In Notes List `Clear`
 * Delete all note items stored in Notes List.
-* Format: `Clear.`
+* Format: `Clear`
 
 Example input:
 ```
@@ -286,7 +286,7 @@ File content cleared successfully!
 ### 8) Mark Notes: `Mark`
 * Mark a particular item in Notes List as completed.
 * The mark bracket will change from `[N]` to `[Y]`.
-* Format: `Mark <number>`
+* Format: `Mark <index>`
 
 Example input:
 ```
@@ -301,7 +301,7 @@ You have marked this note as done:
 * Unmark a particular item in Notes List as incomplete.
 * The mark bracket will change from `[Y]` to `[N]`.
 
-* Format: `Unmark <number>`
+* Format: `Unmark <index>`
 
 Example input:
 ```
@@ -366,10 +366,10 @@ Here are the notes you are searching for:
 ### 13) Prioritize A Note
 Change the priority of a certain note in the notes list.
 
-Format: `<Priority Type> Index`
+Format: `<Priority Type> <Index>`
 Example of usage: `High 1`
 
-* The `<Priority Type>` must be one of the three: `High`, `MEDIUM`, `LOW`.
+* The `<Priority Type>` must be one of the three: `High`, `Medium`, `Low`.
 
 Example of usage:
 
@@ -392,23 +392,53 @@ You have changed its priority to MEDIUM
 3: [MEDIUM][N][0]Note 3
 ````
 
-### 14) Display All Notes Based On All Priority Types:
+### 14) Display All Notes Based On All Priority Types: `Rank Priority`
 Display all items stored in the Notes List based on the respective priority rankings.
 
 Format: `Rank Priority`
-Example of usage: `Rank Priority`
 
-### 15) Display All Notes Of A Certain Priority Type: `FindPrior`
+Example of usage: 
+
+`Rank Priority`
+
+Expected outcome:
+````
+High priority notes:
+[HIGH][N][0]note_item_1
+Medium priority notes:
+[MEDIUM][N][0]note_item_2
+Low priority notes:
+[LOW][N][0]note_item_3
+````
+
+### 15) Display All Notes Based On Review Count: `Rank Review Count`
+Display all items stored in the Notes List based on the respective review count rankings.
+
+Format: `Rank Review Count`
+
+Example of usage:
+
+`Rank Priority`
+
+Expected outcome:
+
+````
+Notes sorted by review count:
+note_item_1 (review count: 3)
+note_item_2 (review count: 2)
+note_item_3 (review count: 1)
+````
+
+### 16) Display All Notes Of A Certain Priority Type: `FindPrior`
 * Find all notes stored in the list based on the priority that users are searching for.
 * Format: `FindPrior <Priority Type>`
-* The `<Priority Type>` must be one of the three types: `High`, `MEDIUM`, `LOW`.
+* The `<Priority Type>` must be one of the three types: `High`, `Medium`, `Low`, case-insensitive.
 
 
 Example input:
 ```
 FindPrior LOW
 ```
-
 Expected outcome:
 ````
 Here are the notes you are searching for:
@@ -417,7 +447,18 @@ Here are the notes you are searching for:
 3. [LOW][N][0]note_item_3
 ````
 
-### 16) Solving Quadratic Equations: `Quadratic`
+Example input:
+```
+FindPrior mEdIuM
+```
+Expected outcome:
+````
+Here are the notes you are searching for:
+1. [MEDIUM][N][0]note_item_4
+2. [MEDIUM][N][0]note_item_5
+````
+
+### 17) Solving Quadratic Equations: `Quadratic`
 Solves for `x` in a quadratic equation.
 
 Format: `Quadratic [quadratic equation]`
@@ -455,7 +496,7 @@ Please use the format as shown below:
 ax^2 + bx + c
 ````
 
-### 17) Command History `History`
+### 18) Command History `History`
 * Display a list of Command History that users have
   entered during the current programme run session.
 * Format: History
@@ -473,7 +514,7 @@ Store index
 History
 ```
 
-### 18) Help Manual `Help`
+### 19) Help Manual `Help`
 * Display the content of Help Manual for BadMaths.
 * Format: `Help`
 
@@ -484,20 +525,38 @@ Help
 Expected output:
 ```
 ------------------------------------------------------------------
-Hello! What can I do for you?
+Hello! Welcome to the Help Manual for BadMaths!
 ------------------------------------------------------------------
-1. Type -> Graph equation <- to do graph calculation
-2. Type -> Matrix equation <- to do matrix calculation
-3. Type -> Store any_string <- to add notes
-4. Type -> List <- to list stored notes
-5. Type -> Bye <- to exit program
+1. Type -> Graph [equation] <- to perform graph calculations
+2. Type -> Matrix [equation] <- to perform matrix calculations
+3. Type -> Store [any_string] <- to add notes
+4. Type -> List <- to list all stored notes
+5. Type -> List [index] <- to display a particular note
+6. Type -> Delete [index] <- to delete a particular note
+7. Type -> Clear <- to delete all stored notes
+8. Type -> Mark [index] <- to mark a particular note as completed
+9. Type -> Unmark [index] <- to unmark a particular note as incomplete
+10. Type -> FindMark <- to display a list of all notes marked as completed
+11. Type -> FindUnmark <- to display a list of all notes marked as incomplete
+12. Type -> FindInfo <- to find items stored in Notes through searching for a keyword
+13. Type -> [Priority] [index] <- to change the priority of a note
+14. Type -> Rank Priority <- to display all notes of all priority rankings
+15. Type -> Rank Review Count <- to display all notes ranked by review count
+16. Type -> FindPrior [Priority] <- to display all notes of a certain priority
+17. Type -> Quadratic [equation] <- to perform quadratic calculations
+18. Type -> History <- to display a list of command history
+19. Type -> Help <- to display content of Help Manual
+20. Type -> Bye <- to exit program
+
 -------------------------------------------------------------------
+Thank you for using BadMaths. We hope that BadMaths will be a useful study tool
+in helping you to perform Mathematical Operations.
 For more details, please visit our GitHub website [https://github.com/AY2223S2-CS2113-F10-2/tp].
-If you have any queries, please contact [wilsonleejunwei@u.nus.edu].
+If you have any queries on BadMaths, please contact [wilsonleejunwei@u.nus.edu].
 -------------------------------------------------------------------
 ```
 
-### 19) Exit BadMaths `Bye`
+### 20) Exit BadMaths `Bye`
 * Exit and leave BadMaths:
 * Format: `Bye`
 
@@ -527,6 +586,22 @@ Goodbye!
 
 **A**: You can terminate the MathHelp programme by simply typing
 `Bye` in the command.
+
+**Q**: What should I do if the file is corrupted?
+
+**A**:
+
+- When BadMaths detects that the target file is corrupted, BadMaths will request whether you want to clear the file for 
+continual use by print the prompt message
+````
+Sorry, your notes file seems to be corrupted :(
+Do you want to reset the file? (y/n)
+````
+- You can inform BadMaths whether you want to clear the file by typing `y` or `n`.
+- By typing `n` not to empty the file, BadMaths will prompt you for your choice and automatically exit after 
+`10 seconds`. In such cases, please correct the file format manually before continuing to use BadMaths.
+- By typing `y` to empty the file, BadMaths will prompt you when the target file is successfully emptied, 
+and you will be able to continue using BadMaths by then.
 
 ## Command Summary
 
@@ -582,6 +657,9 @@ Low 1
 ```
 ```
 Rank Priority
+```
+```
+Rank Review Count
 ```
 ```
 FindPrior HIGH
