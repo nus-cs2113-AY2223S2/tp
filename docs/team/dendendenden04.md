@@ -12,9 +12,11 @@ Given below are my contributions to the project.
     * What it does: Lists out all the appointments available in the appointment handler by date and time.
     * Justification: This feature provides an overview of all the upcoming appointments by date and time. 
 
+
 * **Feature**: `remove`
     * What it does: Removes an appointment from the appointment handler.
     * Justification: This feature allow users to remove appointments that are cancelled or unwanted.
+
 
 * **Sub-Feature**: Check for duplicate appointments
     * What it does: It rejects creating appointments that have the same details as those currently in the appointment 
@@ -23,13 +25,16 @@ Given below are my contributions to the project.
                      the clinics to keep track. This ensures that a particular appointment only has one UID tagged to
                      it.
   
+
 * **Sub-Feature**: UID generator for the appointments
     * What it does: Generates a 10-character random string with the first character representing appointment type.
     * Justification: This feature helps to automatically generate UIDs for the appointments, which is vital in using
     the application. Various features such as `remove` and `mark` depends on it.
 
+
 * **Code contributed**: 
     [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=dendendenden04&breakdown=true)
+
 
 * **Project management**:
     * Set up the project milestones and issue tags.
