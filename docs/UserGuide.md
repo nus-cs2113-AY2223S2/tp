@@ -221,17 +221,18 @@ Format: `add [DIRECTION] [DESCRIPTION] [AMOUNT] {CATEGORY} {DATE}`
 Example of usage:
 
 You had dinner at Haidilao for $500. To add it to rainyDay, you can use the following command:
+
 ![add1Haidilao](images\UserGuide\add1Haidilao.png)
 
-You received an allowance of $20 on 01/03/2023. To add it to rainyDay, you can use the following command:
+You received an allowance of $20 on 01/04/2023. To add it to rainyDay, you can use the following command:
 
 ![add2allowance](images\UserGuide\add2Allowance.png)
 
-You had beef noodles for $12. To add it to rainyDay, you can use the following command:
+You had a bowl of beef noodles for $12. To add it to rainyDay, you can use the following command:
 
 ![add3beefnoodles](images\UserGuide\add3beefnoodles.png)
 
-You received your pay of $50000 on 26/03/2023. To add it to rainyDay, you can use the following command:
+You received your pay of $50000 on 26/04/2023. To add it to rainyDay, you can use the following command:
 
 ![add4pay](images\UserGuide\add4Pay.png)
 
@@ -244,7 +245,7 @@ This lists all the transactions added, and the summary of all your inflows and o
 
 Format: `view {TIMESPAN} {-sort}`
 
-* `TIMESPAN` is used to specifically denote how much history to show from the current day.
+* `TIMESPAN` is used to denote how much history to show from the current day.
     * `1d - 31d` is used to view 1 to 31 days of history
     * `1w - 4w`  is used to view 1 to 4 weeks of history
     * `1m - 12m` is used to view 1 to 12 months of history
@@ -270,7 +271,7 @@ You want to know what you spent the most on in the past 2 months. To do that, yo
 ### Deleting a transaction
 
 The transactions added into rainyDay are not fixed. For whatever reason that you require deleting any transactions,
-rainyDay's "delete" feature supports removing any previous transactions from your overview.
+rainyDay's "delete" feature supports removing any previous transactions from your [Financial Report](#glossary).
 
 Format: `delete [INDEX]`
 
@@ -278,14 +279,17 @@ Format: `delete [INDEX]`
     * The transaction number can be obtained by [viewing the transactions](#viewing-the-transactions)
 
 Example of usage:
+
 Your current financial report is in the same state as the previous example given in
 [viewing the transactions](#viewing-the-transactions).
 To delete the transaction with the description "beef noodles", you can use the following command:
 
-![delete](images\UserGuide\delete.png)
+![delete.png](images\UserGuide\delete.png)
 
 The transaction with the description "beef noodles" will be deleted, and the transactions shown to you
-subsequently after requesting to view the transactions will be as such: <br>
+subsequently after requesting to view them will be as such: <br>
+
+![deleteafter.png](images\UserGuide\deleteafter.png)
 
 [Jump back to features overview](#features-overview)
 
@@ -297,13 +301,15 @@ Format : `edit [INDEX] [FLAG] {NEWFIELD}`
 
 * `INDEX` is the transaction number given by rainyDay to identify a transaction
 * `FLAG` must be one of the following:
-    * `-in` to change direction to [inflows](#glossary) or `-out` to change direction to [outflows](#glossary)
-        * `NEWFIELD` is not required for changing direction
+    * `-in` to change direction to [inflow](#glossary) or `-out` to change direction to [outflow](#glossary)
     * `-d` to edit the description
     * `-c` to edit the category
     * `-v` to edit the value
-    * `-date` to edit the date in `DD/MM/YYYY` format
-
+    * `-date` to edit the date
+* `NEWFIELD` is the new information that you would like to change to.
+    * `NEWFIELD` is not required when changing direction with `-in` or `-out`
+    * `NEWFIELD` needs to be in `DD/MM/YYYY` format when changing date with `-date`
+    * `NEWFIELD` needs to be appended with a `$` before the number when changing the value with `-v`
 
 Example of usage:
 
@@ -312,7 +318,7 @@ Suppose you realised you forgot to add the "Category" for entry 1, and you would
 
 ![editCategory.png](images/UserGuide/editCategory.png)
 
-and use the "view" command to verify the edits are accurate:
+and use the "view" command afterwards to verify the edits are accurate:
 
 ![editCategoryView.png](images/UserGuide/editCategoryView.png)
 
@@ -320,6 +326,8 @@ Perhaps you realised you made a mistake in the "Amount" for entry 2 and your all
 You can use the following command:
 
 ![editValue.png](images/UserGuide/editValue.png)
+
+and use the "view" command afterwards to verify the edits are accurate:
 
 ![editValueView.png](images/UserGuide/editValueView.png)
 
@@ -333,6 +341,8 @@ So instead of deleting and adding an entirely new entry or editing the same entr
 you can use the following command to update the required fields:
 
 ![editMultipleEntries.png](images/UserGuide/editMultipleEntries.png)
+
+and use the "view" command afterwards to verify the edits are accurate:
 
 ![editMultipleEntriesView.png](images/UserGuide/editMultipleEntriesView.png)
 
@@ -353,7 +363,7 @@ Format : `filter [FLAG] {FIELD}`
     * `-date` to filter by a specific date or timespan
         * `FIELD` must be in the form DD/MM/YYYY
         * If only one `FIELD` is provided, only transactions with the specified date will be shown
-        * If two `FIELD` is provided, transactions between the 2 dates will be shown.
+        * If two `FIELD` is provided, transactions between the 2 dates (inclusive) will be shown.
 
 Example of usage:
 
@@ -393,7 +403,7 @@ Conversely, the "unignore" feature is used to include a transaction that was pre
 
 Format: `ignore [INDEX]` or `unignore [INDEX]`
 
-* `index` The index of the entry you want to ignore, obtained by using the `view` command
+* `index` The index of the entry you want to ignore, obtained by using the `view` command:
 
 Example of Usage:
 
@@ -406,6 +416,11 @@ To ignore the entry, you can use the following command:
 
 ![ignoreGST.png](images/UserGuide/ignoreGST.png)
 
+Now, the value of the transaction's value will be indicated as ignored, and it will not be used during calculations.
+You can see this change by using the `view` command:
+
+![ignoreGSTAfter.png](images/UserGuide/ignoreGSTAfter.png)
+
 [Jump back to features overview](#features-overview)
 
 ### Setting a Monthly Budget
@@ -416,7 +431,7 @@ rainyDay will remind you how much you have spent for the month with every new ex
 
 Format : `setbudget [AMOUNT]`
 
-* `AMOUNT` signifies the targeted goal for the user's monthly budget.
+* `AMOUNT` signifies the targeted goal for the user's monthly budget
 
 Example of Usage:
 
