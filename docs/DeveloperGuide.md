@@ -198,41 +198,14 @@ Tag Feature currently supports the following functionalities :
 - list all the cards under a tag
 - edit the tag name
 
-#### Tag a Card
-
-The implementation of the `card tag` feature is as follows :
-
-- When the user enters `card tag -c {cardUUID} -t {tagName}`, the input is passed to `Parser` class which
-  calls `Parser#parseCommand()`. The parser detects the keyword `card` and process the remaining input and pass them
-  to  `Parser#CardKeywordParser` class which calls `HandleTag()` method and returns a `AddCardToTagCommand`. The
-  sequence diagram for this section has been
-  shown [above](#parser-component).
-
-- This `AddCardToTagCommand` will first find the card to which the tag should be added to by calling
-  the `CardList#findCard()` which will in turn call the `CardSelector#getIndex()`
-  and `CardSelector#getUUID()`. `CardSelector` will then return the `cardToAdd` to `CardList` and
-  to `AddCardToTagCommand`.
-
-- After finding the card on which to add the tag, `AddCardToTagCommand` will check if the tag has already existed by
-  calling `TagList#findTagFromName` which will return a `tagToAdd`. If the `tagToAdd` currently does not
-  exist, `AddCardToTagCommand` will then create a new `Tag` and add it to `TagList` by
-  calling `TagList#addCard(tagToAdd)`. If it already exists, it will just use the
-  existing `tagToAdd`.
-
-- Once the `tagToAdd` and `cardToAdd` are ready, `AddCardToTagCommand` will then call `Card#getUUID()` and add the
-  returned `cardUUID` into `tagToAdd` by calling `Tag#addCard(cardUUID)`.
-
-- Similarly, `AddCardToTagCommand` will also call `Tag#getUUID()` and add the returned `tagUUID` into `cardToAdd` by
-  calling `Card#addTag(tagUUID)`.
-
-The sequence diagram below shows how this feature works:
-![Tag feature](img/TagListSequence.png)
+This guide will show two of the more complex implementation of the tag features, other tag-related features will be
+similar :
 
 #### Untag a Card
 
-The implementation of the `card untag` feature is as follows :
+The implementation of the `card untag` feature is as follows:
 
-- When the user enters `card untag {-c {cardUUID} | -i {cardIndex}} {-t {tagName} | -i {tagIndex}}`, the input is passed
+- When the user enters `card untag {-c CARD_UUID} | -i CARD_INDEX} {-t TAG_NAME | -x TAG_INDEX}`, the input is passed
   to `Parser` class which
   calls `Parser#parseCommand()`. The parser detects the keyword `card` and process the remaining input and pass them
   to  `Parser#CardKeywordParser` class which calls `HandleUntag()` method and returns a `RemoveTagFromCardCommand`. The
@@ -265,11 +238,11 @@ The implementation of the `card untag` feature is as follows :
 The sequence diagram below shows how this feature works:
 ![Card Untag](img/CardUntagSequence.png)
 
-#### List Cards under Tag
+#### List Cards under a Tag
 
-The implementation of the `tag list {-t {tagName} | -i {tagIndex}}`
+The implementation of the `tag list {-t TAG_NAME | -x TAG_INDEX}`
 
-- When the user enters `tag list {-t {tagName} | -i {tagIndex}}`, the input is passed
+- When the user enters `tag list {-t TAG_NAME | -x TAG_INDEX}`, the input is passed
   to `Parser` class which
   calls `Parser#parseCommand()`. The parser detects the keyword `tag` and process the remaining input and pass them
   to  `Parser#TagKeywordParser` class which calls `HandleList()` method and returns a `ListCardsUnderTagCommand`. The
