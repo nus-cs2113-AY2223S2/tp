@@ -1,0 +1,65 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+activate ":Duke"
+":Duke" -> ":AddDeadlineCommand" : command.execute()
+activate ":AddDeadlineCommand"
+":AddDeadlineCommand" -> ":DeadlineStorage" : addDeadlineToDeadlines(deadlineToAdd)
+activate ":DeadlineStorage"
+opt deadlineToAdd == null
+":DeadlineStorage" -> "<<class>>\n:UI" : UI.printAddDeadlineFailureMessage()
+activate "<<class>>\n:UI"
+"<<class>>\n:UI" -> "PrintStream" : Print Add Deadline Failure Message
+activate "PrintStream"
+"<<class>>\n:UI" <-- "PrintStream"
+deactivate "PrintStream"
+":DeadlineStorage" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":AddDeadlineCommand"<-- ":DeadlineStorage"
+end
+
+":DeadlineStorage" -> ":ArrayList<Deadline>" : deadline.add(deadlineToAdd)
+activate ":ArrayList<Deadline>"
+":DeadlineStorage" <-- ":ArrayList<Deadline>"
+deactivate ":ArrayList<Deadline>"
+
+":DeadlineStorage" -> ":Deadline" : deadlineToAdd.toString()
+activate ":Deadline"
+":DeadlineStorage" <-- ":Deadline" : tempString:String
+deactivate ":Deadline"
+":DeadlineStorage" -> ":DeadlineStorage" : saveDeadlineToDeadlineStorage(tempString)
+activate ":DeadlineStorage"
+create ":FileWriter"
+":DeadlineStorage" -> ":FileWriter" : FileWriter(SAVED_DEADLINES_FILE_PATH, true)
+activate ":FileWriter"
+":DeadlineStorage" <-- ":FileWriter"
+deactivate ":FileWriter"
+":DeadlineStorage" -> ":DatabaseInterface" : writeTaskPreparation(saveDeadlineString)
+activate ":DatabaseInterface"
+":DeadlineStorage" <-- ":DatabaseInterface" : tempString:String
+deactivate ":DatabaseInterface"
+":DeadlineStorage" -> ":FileWriter" : fw.write(tempString)
+activate ":FileWriter"
+":DeadlineStorage" <-- ":FileWriter"
+deactivate ":FileWriter"
+":DeadlineStorage" -> ":FileWriter" : fw.close()
+activate ":FileWriter"
+":DeadlineStorage" <-- ":FileWriter"
+deactivate ":FileWriter"
+deactivate ":DeadlineStorage"
+":AddDeadlineCommand" <-- ":DeadlineStorage"
+":AddDeadlineCommand" -> "<<class>>\n:UI" : UI.printAddDeadlineMessage()
+activate "<<class>>\n:UI"
+"<<class>>\n:UI" -> PrintStream :  println(ADD_DEADLINE_MESSAGE)
+activate PrintStream
+"<<class>>\n:UI" <-- PrintStream
+deactivate PrintStream
+"<<class>>\n:UI" -> PrintStream :  println(LINE)
+activate PrintStream
+"<<class>>\n:UI" <-- PrintStream
+deactivate PrintStream
+":AddDeadlineCommand" <-- "<<class>>\n:UI"
+deactivate "<<class>>\n:UI"
+":Duke" <-- ":AddDeadlineCommand"
+
+
+@enduml

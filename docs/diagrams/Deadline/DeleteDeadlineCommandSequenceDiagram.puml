@@ -21,8 +21,8 @@ activate "<<class>>\ndeadlineStorage:DeadlineStorage"
 ":DeleteDeadlineCommand" -> "<<class>>\nui:UI" : printDeleteDeadlineMessage()
 activate "<<class>>\nui:UI"
 
-"<<class>>\nui:UI" -> UserConsole : Print Delete Deadline Message
-"<<class>>\nui:UI" <-- UserConsole
+"<<class>>\nui:UI" -> PrintStream : Print Delete Deadline Message
+"<<class>>\nui:UI" <-- PrintStream
 @enduml
 
 
