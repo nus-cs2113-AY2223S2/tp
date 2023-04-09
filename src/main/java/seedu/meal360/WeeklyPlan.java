@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import seedu.meal360.exceptions.IngredientNotFoundException;
 
+//@@author jaredoong
 public class WeeklyPlan extends HashMap<String, Integer> {
 
     /**
@@ -57,10 +58,12 @@ public class WeeklyPlan extends HashMap<String, Integer> {
         });
     }
 
+    //@@author gurmankalkat
     public void clearPlan() {
         this.clear();
     }
 
+    //@@author jaredoong
     /**
      * Checks if the weekly plan contains any invalid recipes.
      *
