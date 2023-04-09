@@ -21,6 +21,8 @@ ___
    `tp.jar` file. This folder will contain all the data files that the app will use. Please do not
    touch these files to ensure smooth operation of the app.
 4. To allow for immediate testing of features, the app comes preloaded with 10 recipes.
+5. Take note that changes to the ingredient list, recipe list, and weekly meal plan would be saved 
+   only when exiting the program properly using `bye` command.
 
 ___
 
