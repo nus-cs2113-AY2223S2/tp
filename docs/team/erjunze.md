@@ -40,14 +40,14 @@ Given below are my contributions to the project.
 
 ### Contributions to the UG:
 
-- Contributed to the `Command format` section.
+- Wrote the `Command format` section.
 - Contributed to the `Add task`, `Edit description`, `Edit tags`, and `View all tags` components in the `Features` section.
 
 ### Contributions to the DG:
 
 - Added architecture diagram and described the overall project structure.
 - Added component class diagrams and described briefly how each component functions.
-- Formatted the colour scheme and other style attributes across all the diagrams.
+- Wrote the glossary and manual testing section.
 
 ### Contributions to team-based tasks:
 
