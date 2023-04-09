@@ -42,7 +42,7 @@ Unfortunately, expense list can't be found. I'll make a new one!
 ```
 
 7. Type in desired command to start using the program! List of commands are listed below.
-8. Do not edit any program-created saved files (.txt files, etc.), else the program may crash.
+8. Do not edit any program-created saved files (.json files, etc.), else the program may crash.
 
 ## Features
 
