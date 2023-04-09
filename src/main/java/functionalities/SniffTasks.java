@@ -66,7 +66,6 @@ public class SniffTasks {
         APPOINTMENTS.sort(new DateTimeComparator());
         int markedAppointmentsIndex = 1;
         if (APPOINTMENTS.isEmpty()) {
-            assert false : "There are no appointments in the task list";
             Ui.showUserMessage(" No entries found!");
         }
         for (Appointment appointment : APPOINTMENTS) {
@@ -75,10 +74,6 @@ public class SniffTasks {
                 Ui.formatPrintList(markedAppointmentsIndex, appointment.toString());
                 markedAppointmentsIndex++;
             }
-        }
-        if (markedAppointmentsIndex == 1) {
-            assert false : "There are no archived appointments in the task list";
-            Ui.showUserMessage(" No entries found!");
         }
     }
 
@@ -89,7 +84,6 @@ public class SniffTasks {
         APPOINTMENTS.sort(new DateTimeComparator());
         int notMarkedAppointmentsIndex = 1;
         if (APPOINTMENTS.isEmpty()) {
-            assert false : "There are no appointments in the task list";
             Ui.showUserMessage(" No entries found!");
         }
         for (Appointment appointment : APPOINTMENTS) {
@@ -98,10 +92,6 @@ public class SniffTasks {
                 Ui.formatPrintList(notMarkedAppointmentsIndex, appointment.toString());
                 notMarkedAppointmentsIndex++;
             }
-        }
-        if (notMarkedAppointmentsIndex == 1) {
-            assert false : "There are no unmarked appointments in the task list";
-            Ui.showUserMessage(" No entries found!");
         }
     }
 
@@ -443,6 +433,7 @@ public class SniffTasks {
             throw new SniffException(" The unMark command entry is invalid!");
         }
     }
+
     public void editConsultation(String uid,Animal animal, Owner owner,
                                 LocalDate date, LocalTime time) throws SniffException {
         try {
@@ -473,6 +464,7 @@ public class SniffTasks {
             System.out.println(" Appointment failed to be changed.");
         }
     }
+    
     public void editSurgery(String uid, Animal animal, Owner owner,
                             String priority, LocalDate startDate, LocalTime startTime,
                             LocalDate endDate, LocalTime endTime) throws SniffException{
