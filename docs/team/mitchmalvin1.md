@@ -112,21 +112,26 @@ Add documentations for the following features :
 - Add Class Diagrams for `CardList` and `TagList`
 
 The Class Diagram for `CardList` can be found below :
+
 ![CardList Class Diagram](../img/CardListClass.svg)
 
 The Class Diagram for `TagList` can be found below :
+
 ![TagList Class Diagram](../img/TagListClass.svg)
 
 - Add Sequence Diagram for `card view {-c CARDUUID | -i CARDINDEX}`, `card untag {-c CaRDUUID | -t TAGNAME}`
   and `tag list {-c CARDUUID | -i CARDINDEX}`
 
 The Sequence Diagram for `card view {-c CARDUUID | -i CARDINDEX}` can be found below :
+
 ![Card View Sequence Diagram](../img/CardViewSequence.png)
 
 The Sequence Diagram for `card untag {-c CaRDUUID | -t TAGNAME}` can be found below :
+
 ![Card Untag Sequence Diagram](../img/CardUntagSequence.png)
 
 The Sequence Diagram for `tag list {-c CARDUUID | -i CARDINDEX}` can be found below :
+
 ![List Card Under Tag Sequence Diagram](../img/ListCardsUnderTagSequence.png)
 
 
