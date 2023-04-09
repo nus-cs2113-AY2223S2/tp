@@ -13,7 +13,7 @@ hide footbox
             activate ":CompanyList"
             ":CompanyList" --> ":CompanyListEncoder"
             deactivate ":CompanyList"
-            alt numberOfCompanies == 0
+            opt numberOfCompanies == 0
                 ":CompanyList" <- ":CompanyListEncoder":
                 activate ":CompanyList"
                 deactivate ":CompanyList"
