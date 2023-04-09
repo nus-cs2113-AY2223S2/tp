@@ -463,6 +463,6 @@ public class ParserTest {
         Parser parser = new Parser();
         assertDoesNotThrow(() -> parser.parseUserInput("/help add"));
     }
-    
+
     // @@author
 }
