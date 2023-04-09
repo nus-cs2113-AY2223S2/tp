@@ -16,9 +16,12 @@ import seedu.dukeofbooks.parser.AccessCommandParser;
 import seedu.dukeofbooks.parser.UserCommandParser;
 import seedu.dukeofbooks.ui.TextUi;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import static seedu.dukeofbooks.common.DefaultBooks.DEFAULT_BOOK_DATABASE;
 
 /**
  * Main file to run
@@ -43,21 +46,45 @@ public class DukeOfBooks {
         runCommandLoopUntilSystemExit();
         exit();
     }
+    private void createDefaultBookFile() {
+        try {
+            File f = new File(ReadWriteData.DATABASE_PATH);
+            f.mkdirs();
+            f = new File(ReadWriteData.BOOK_FILEPATH);
+            f.createNewFile();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(ReadWriteData.BOOK_FILEPATH));
+            writer.write(DEFAULT_BOOK_DATABASE);
+            writer.close();
+        } catch (IOException e) {
+            // fall through
+        }
+    }
 
+    private void createDefaultUserFile() {
+        try {
+            File f = new File(ReadWriteData.USER_FILEPATH);
+            f.createNewFile();
+        } catch (IOException e) {
+            // fall through
+        }
+    }
     private void start() {
         this.allLoanRecords = new LoanRecords();
         this.userRecords = new UserRecords();
         this.ui = new TextUi();
         // Add book data into inventory
-        try {
-            ReadWriteData.readBookData((inventory));
-        } catch (FileNotFoundException e) {
-            File f = new File(ReadWriteData.BOOK_FILEPATH);
+        while (true){
+            try {
+                ReadWriteData.readBookData((inventory));
+                break;
+            } catch (FileNotFoundException e) {
+                createDefaultBookFile();
+            }
         }
         try {
             ReadWriteData.readUserData(userRecords);
         } catch (FileNotFoundException e) {
-            File f = new File(ReadWriteData.USER_FILEPATH);
+            createDefaultUserFile();
         }
         ui.showWelcomeMessage(VERSION);
     }

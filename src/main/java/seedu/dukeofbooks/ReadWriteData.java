@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ReadWriteData {
+    public static final String DATABASE_PATH = "database";
 
     public static final String BOOK_FILEPATH = "database/books.txt";
 
