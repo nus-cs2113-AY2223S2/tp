@@ -22,14 +22,6 @@ Ensure you have the following installed:
    1. Once the above steps are completed, locate the file `src/main/java/dinerdirector/DinerDirector.java`, right-click and select `Run 'DinerDirector.main()'`
    2. If setup is correctly done, this is what you should see:
    ```
-   Hello from
-      _____  _                 _____  _               _
-    |  __ \(_)               |  __ \(_)             | |
-    | |  | |_ _ __   ___ _ __| |  | |_ _ __ ___  ___| |_ ___  _ __
-    | |  | | | '_ \ / _ \ '__| |  | | | '__/ _ \/ __| __/ _ \| '__|
-    | |__| | | | | |  __/ |  | |__| | | | |  __/ (__| || (_) | |
-    |_____/|_|_| |_|\___|_|  |_____/|_|_|  \___|\___|\__\___/|_|
-    
     Welcome to DinerDirector! Please type "help" for a list of valid commands.
     What can I do for you?
     >
@@ -271,6 +263,31 @@ The Dish feature consists of three functions:
 
 ### Launch and shutdown
 1. Initial launch
-   1. Download the jar file and copy into an empty folder
-   2. 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+   1. Download the latest version of `DinerDirector` from [here](https://github.com/AY2223S2-CS2113-W15-4/tp/releases).
+   2. Copy the file to the folder you want to use as the home folder for your `DinerDirector`.
+   3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar dinerdirector.jar` command to run the application.
+   4. Once the welcome message is displayed, `DinerDirector` is ready for use.
+2. Shutdown
+   1. To exit `DinerDirector`, type the command `exit` and press enter.
+
+### Meeting Feature
+1. Users can `add_meeting`, `view_meetings`, `delete_meeting`, `find_meeting`.
+2. Test case: `add_meeting n/Meeting with boss t/3pm` 
+
+    Expected: Meeting will be added to the list.
+3. Test case: `view_meetings`
+
+    Expected: All meetings will be displayed.
+4. Test case: `delete_meeting 1`
+
+   Expected: The meeting at index 1 will be deleted.
+5. Test case: `find_meeting boss`
+
+   Expected: Meetings with `boss` in the name will be displayed.
+6. Incorrect commands to try: 
+   1. `add_meeting` (No meeting added)
+   2. `view_meetings abc` (No meetings shown)
+   3. `delete_meeting -1` (Invalid index for delete)
+
+### Deadline Feature
+1. User can 
