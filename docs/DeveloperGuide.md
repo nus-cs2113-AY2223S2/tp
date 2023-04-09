@@ -57,7 +57,7 @@ original source as well}
 
 ## Architecture
 
-![Architecture.png](diagrams%2FArchitecture.png)
+![Architecture Diagram.png](diagrams%2FArchitecture%20Diagram.png)
 
 The above _**Architecture**_ diagram gives a high-level overall of the program.
 
