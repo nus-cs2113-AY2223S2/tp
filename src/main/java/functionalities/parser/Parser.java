@@ -361,8 +361,8 @@ public class Parser {
                     LocalDate parsedDate = LocalDate.parse(date, dateFormatter);
                     String time = splitInputBy(task, "ct/");
                     LocalTime parsedTime = LocalTime.parse(time, timeFormatter);
-                    command = new EditConsultationCommand(uid, animalType, animalName, ownerName, contactNumber, parsedDate,
-                            parsedTime);
+                    command = new EditConsultationCommand(uid, animalType, animalName, ownerName, contactNumber,
+                            parsedDate, parsedTime);
                 } catch (DateTimeParseException e) {
                     throw new SniffException("The date/time description is invalid.");
                 } catch (NullPointerException e) {
