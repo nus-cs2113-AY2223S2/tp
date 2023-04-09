@@ -24,11 +24,8 @@ class Ui {
 +showCompanyNotFoundMessage()
 +showVenueSelectionMessage()
 +showEventNameSelectionMessage()
-+emptyInputErrorMessage()
 +invalidInputFormatErrorMessage()
 +invalidInputFormatErrorMessage()
-+multipleAdditionErrorMessage()
-+multipleInformationErrorMessage()
 }
 
 
