@@ -33,10 +33,10 @@ public class CommandParser {
             command = new ExitCommand();
             break;
         case "update":
-            command = new UpdateUserCommand();
+            command = new UpdateUserCommand(commandWord, userInput);
             break;
         case "view":
-            command = new ViewUserCommand();
+            command = new ViewUserCommand(commandWord, userInput);
             break;
         case "list":
             command = new ListCommand(commandWord, userInput);

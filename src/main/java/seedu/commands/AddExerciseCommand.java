@@ -3,6 +3,7 @@ package seedu.commands;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import seedu.constants.DateConstants;
 import seedu.entities.Exercise;
@@ -35,7 +36,7 @@ public class AddExerciseCommand extends Command {
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
                 ExerciseStorage exerciseStorage) throws LifeTrackerException {
-        dtf = DateConstants.PARSE_DTF;
+        this.dtf = DateConstants.PARSE_DTF;
         this.parseCommand();
         Exercise newExercise = new Exercise(exerciseName, exerciseDescription, calorieBurnt, date);
         exerciseStorage.saveExercise(newExercise);
@@ -84,9 +85,15 @@ public class AddExerciseCommand extends Command {
         } catch (NumberFormatException e) {
             throw new InvalidArgumentsException(commandWord, calorieBurntIdentifier);
         }
+
         dateString = userInput.substring(dateIndex+dateIdentifier.length()).trim();
         try {
-            date = LocalDate.parse(dateString, dtf);
+            if (dateString.matches("\\d{1,2}/")) {
+                throw new InvalidDateException(dateString);
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/uuuu")
+                    .withResolverStyle(ResolverStyle.STRICT);
+            date = LocalDate.parse(dateString, formatter);
         } catch (DateTimeParseException e) {
             throw new InvalidDateException(dateString);
         }

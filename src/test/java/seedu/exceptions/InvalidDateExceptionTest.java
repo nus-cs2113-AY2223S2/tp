@@ -11,8 +11,9 @@ public class InvalidDateExceptionTest {
     void createInvalidDateException_emptyInput_expectCorrectErrorMessage() {
         String dateString = "testDate";
         InvalidDateException error = new InvalidDateException(dateString);
-        String expectedErrorMessage = "Oops! " + dateString + " is not a valid date!" + 
-                " Please format the date as: " + DateConstants.PARSE_FORMAT;
+        String expectedErrorMessage = "Oops! " + dateString + " is not a valid date!" +
+                " Please format the date as: " + DateConstants.PARSE_FORMAT + "." +
+                    "\n" + "Also check whether the date you've entered exists!";
         assertEquals(expectedErrorMessage, error.getMessage());
     }
 }

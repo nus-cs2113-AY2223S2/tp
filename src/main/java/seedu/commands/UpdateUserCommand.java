@@ -2,6 +2,11 @@ package seedu.commands;
 
 import seedu.entities.User;
 import seedu.exceptions.LifeTrackerException;
+import seedu.exceptions.InvalidFieldNameException;
+import seedu.exceptions.InvalidFieldInfoFormatException;
+import seedu.exceptions.NegativeFieldInfoException;
+import seedu.exceptions.MissingArgumentsException;
+import seedu.exceptions.ExtraArgumentsException;
 import seedu.storage.ExerciseStorage;
 import seedu.storage.FoodStorage;
 import seedu.storage.MealStorage;
@@ -9,183 +14,176 @@ import seedu.storage.UserStorage;
 import seedu.ui.GeneralUi;
 
 public class UpdateUserCommand extends Command {
-    public String updateName(GeneralUi ui) {
-        String nameString = null;
-        while (true) {
-            boolean containsNum = false;
-            System.out.println("Enter new name: ");
-            nameString = ui.readLine();
-            for (int i = 0; i < nameString.length(); ++i) {
-                if (Character.isDigit(nameString.charAt(i))) {
-                    containsNum = true;
-                    break;
-                }
-            }
-            if (nameString.isBlank() || containsNum) {
-                System.out.println("Invalid name format!");
-            }else {
-                break;
-            }
-        }
-        return nameString;
+    private String fieldName;
+    private String command;
+    private String userInput;
+    private String updatedInfo;
+
+    public UpdateUserCommand(String command, String userInput){
+        this.command = command;
+        this.userInput = userInput;
     }
 
+    public boolean isValidFieldName(String fieldName){
+        switch(fieldName){
+        case "/name":
+            return true;
+        case "/weight":
+            return true;
+        case "/height":
+            return true;
+        case "/age":
+            return true;
+        case "/gender":
+            return true;
+        case "/targetWeight":
+            return true;
+        default:
+            return false;
+        }
+    }
+
+    public void parseCommand() throws LifeTrackerException{
+        String[] userInputSplit = userInput.split(" ");
+        if(command.length() == userInput.length() || userInputSplit.length < 3){
+            throw new MissingArgumentsException(command, "[user information field]/ [new information]");
+        } else if (userInputSplit.length > 3) {
+            throw new ExtraArgumentsException();
+        }
+        fieldName = userInputSplit[1];
+        updatedInfo = userInputSplit[2];
+        if(!isValidFieldName(fieldName)){
+            throw new InvalidFieldNameException(command, fieldName);
+        }
+    }
     @Override
     public void execute(GeneralUi ui, FoodStorage foodStorage, MealStorage mealStorage, UserStorage userStorage,
                         ExerciseStorage exerciseStorage)
             throws LifeTrackerException {
         User user = userStorage.getUser();
-        int choice;
-        boolean toContinue = true;
-        while (toContinue) {
-            System.out.println("Update user settings");
-            System.out.println("1. Update Name");
-            System.out.println("2. Update Weight");
-            System.out.println("3. Update Height");
-            System.out.println("4. Update Age");
-            System.out.println("5. Update Gender");
-            System.out.println("6. Update Target Weight");
-            System.out.println("7. Exit");
-            System.out.println();
-
-            choice = ui.readInt();
-
-            switch (choice) {
-            case 1:
-                user.setName(updateName(ui));
-                break;
-            case 2:
-                user.setWeight(updateWeight(ui));
-                user.setCaloricLimit(
-                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
-                );
-                User.displayNewWeightDifference(user.getWeight(), user.getTargetWeight());
-                break;
-            case 3:
-                user.setHeight(updateHeight(ui));
-                user.setCaloricLimit(
-                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
-                );
-                break;
-            case 4:
-                user.setAge(updateAge(ui));
-                user.setCaloricLimit(
-                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
-                );
-                break;
-            case 5:
-                user.setGender(updateGender(ui));
-                user.setCaloricLimit(
-                    User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
-                );
-                break;
-            case 6:
-                user.setTargetWeight(updateTargetWeight(ui));
-                User.displayNewTargetWeightDifference(user.getWeight(), user.getTargetWeight());
-                break;
-            case 7:
-                break;
-            default:
-                System.out.println("Invalid Choice!");
-            }
-
-            System.out.println( System.lineSeparator() + "Continue updating?");
-            System.out.println("1. Yes");
-            System.out.println("2. No");
-            System.out.println();
-
-            choice = ui.readInt();
-
-            switch (choice) {
-            case 1:
-                toContinue = true;
-                break;
-            case 2:
-                toContinue = false;
-                break;
-            default:
-                toContinue = false;
-                System.out.println("Invalid Choice! Exiting...");
-            }
+        this.parseCommand();
+        switch (fieldName){
+        case "/name":
+            user.setName(updateName());
+            break;
+        case "/weight":
+            user.setWeight(updateWeight());
+            user.setCaloricLimit(
+                User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+            );
+            User.displayNewWeightDifference(user.getWeight(), user.getTargetWeight());
+            break;
+        case "/height":
+            user.setHeight(updateHeight());
+            user.setCaloricLimit(
+                User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+            );
+            break;
+        case "/age":
+            user.setAge(updateAge());
+            user.setCaloricLimit(
+                User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+            );
+            break;
+        case "/gender":
+            user.setGender(updateGender());
+            user.setCaloricLimit(
+                User.calculateCaloricNeeds(user.getWeight(), user.getHeight(), user.getAge(), user.getGender())
+            );
+            break;
+        case "/targetWeight":
+            user.setTargetWeight(updateTargetWeight());
+            User.displayNewTargetWeightDifference(user.getWeight(), user.getTargetWeight());
+            break;
+        default:
+            break;
         }
-        
         userStorage.updateUser(user);
     }
 
-    public float updateWeight(GeneralUi ui) {
-        String weightString = "dummy";
-        while (true) {
-            System.out.println("Enter new weight: ");
-
-            weightString = ui.readLine();
-            if (weightString.matches("[+-]?([0-9]*[.])?[0-9]+")) {
+    public String updateName() throws LifeTrackerException{
+        String nameString = null;
+        boolean containsNum = false;
+        nameString = updatedInfo;
+        for (int i = 0; i < nameString.length(); ++i) {
+            if (Character.isDigit(nameString.charAt(i))) {
+                containsNum = true;
                 break;
             }
-            System.out.println("Invalid weight format!");
+        }
+        if (nameString.isBlank() || containsNum) {
+            throw new InvalidFieldInfoFormatException(fieldName, updatedInfo);
+        }else {
+            return nameString;
+        }
+    }
+    public float updateWeight() throws LifeTrackerException {
+        String weightString = "dummy";
+
+        weightString = updatedInfo;
+        if (!weightString.matches("[+-]?([0-9]*[.])?[0-9]+")) {
+            throw new InvalidFieldInfoFormatException(fieldName, updatedInfo);
         }
         float weight = Float.parseFloat(weightString);
-        assert weight >= 0: "Invalid weight";
+        if(weight < 0){
+            throw new NegativeFieldInfoException(command, fieldName);
+        }
         return weight;
     }
 
-    public float updateHeight(GeneralUi ui) {
+    public float updateHeight() throws LifeTrackerException {
         String heightString = "dummy";
-        while (true) {
-            System.out.println("Enter new height: ");
-            heightString = ui.readLine();
-            if (heightString.matches("[+-]?([0-9]*[.])?[0-9]+")) {
-                break;
-            }
-            System.out.println("Invalid height format!");
+        heightString = updatedInfo;
+        if (!heightString.matches("[+-]?([0-9]*[.])?[0-9]+")) {
+            throw new InvalidFieldInfoFormatException(fieldName, updatedInfo);
         }
+
         float height = Float.parseFloat(heightString);
-        assert height >= 0: "Invalid height";
+        if(height < 0){
+            throw new NegativeFieldInfoException(command, fieldName);
+        }
         return height;
     }
 
-    // bug in updating age
-    public int updateAge(GeneralUi ui){
+    public int updateAge() throws LifeTrackerException{
         String ageString = "dummy";
-        while(true){
-            System.out.println("Enter new age: ");
-            ageString = ui.readLine();
-            if(ageString.matches("[+-]?([0-9]*[.])?[0-9]+")){
-                break;
-            }
-            System.out.println("Invalid age format!");
+
+        ageString = updatedInfo;
+        if(!ageString.matches("[+-]?([0-9]*[.])?[0-9]+")){
+            throw new InvalidFieldInfoFormatException(fieldName, updatedInfo);
         }
+
         int age = Integer.parseInt(ageString);
-        assert age >= 0: "Invalid Age";
+        if(age < 0){
+            throw new NegativeFieldInfoException(command, fieldName);
+        }
         return age;
     }
 
-    public String updateGender(GeneralUi ui) {
+    public String updateGender() throws LifeTrackerException {
         String genderString = "dummy";
-        while (true) {
-            System.out.println("Enter new gender: ");
-            genderString = ui.readLine();
-            // bug in updating gender
 
-            if (!genderString.equalsIgnoreCase("male") | !genderString.equalsIgnoreCase("female") ) {
-                break;
-            }
-            System.out.println("Invalid gender format!");
+        genderString = updatedInfo;
+        if (genderString.equalsIgnoreCase("male") | genderString.equalsIgnoreCase("female") ) {
+            return genderString;
+        }else{
+            throw new InvalidFieldInfoFormatException(fieldName, updatedInfo);
         }
-        return genderString;
     }
 
-    public float updateTargetWeight(GeneralUi ui) {
+    public float updateTargetWeight() throws LifeTrackerException {
         String targetWeightString = "dummy";
-        while (true) {
-            System.out.println("Enter new target weight: ");
-            targetWeightString = ui.readLine();
-            if(targetWeightString.matches("[+-]?([0-9]*[.])?[0-9]+")) {
-                break;
-            }
-            System.out.println("Invalid target weight format");
+
+        targetWeightString = updatedInfo;
+        if(!targetWeightString.matches("[+-]?([0-9]*[.])?[0-9]+")) {
+            throw new InvalidFieldInfoFormatException(fieldName, updatedInfo);
         }
+
+
         float targetWeight = Float.parseFloat(targetWeightString);
-        assert targetWeight >= 0: "Invalid target weight";
+        if(targetWeight < 0){
+            throw new NegativeFieldInfoException(command, fieldName);
+        }
         return targetWeight;
     }
 }

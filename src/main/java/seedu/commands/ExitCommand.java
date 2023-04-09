@@ -24,6 +24,7 @@ public class ExitCommand extends Command{
         try {
             mealStorage.write();
             userStorage.write();
+            exerciseStorage.write();
         } catch (IOException e) {
             LogFileHandler.logInfo("Error saving databases!");
         }

@@ -9,9 +9,25 @@ The app also allows users to keep track of their daily exercises to compute thei
 
 Their net calorie gain/loss can then be viewed.
 
+- [Quick Start](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#quick-start)
+- [Features](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#features-v20)
+  - [Viewing User Profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#viewing-user-profile-view)
+  - [Updating User Profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#updating-user-profile-update)
+  - [Adding a meal](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#adding-a-meal-add)
+  - [Listing foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-foods-list)
+  - [Listing meals](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-meals-list)
+  - [Listing exercises](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-exercises-list)
+  - [Deleting meals](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#deleting-meals-delete)
+  - [Filtering foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#filtering-foods-filter)
+  - [Viewing nutrition content of foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#view-nutrition-content-of-food-nutrition)
+  - [Adding an exercise](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#adding-an-exercise-exercise)
+  - [Tracking net calorie intake](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#tracking-net-calorie-intake-track)
+  - [Displaying examples of meals and exercises](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#displaying-examples-of-meals-and-exercises-examples)
+ - [Exiting the application](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#exiting-the-application-bye)
+- [FAQ](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#faq)
+- [Command Summary](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#command-summary)
 
 ## Quick Start
-
 
 1. Ensure that you have Java 11 or above installed.
 2. Down the latest version of `LifeTracker` from [here](https://github.com/AY2223S2-CS2113-W15-1/tp).
@@ -20,7 +36,7 @@ Their net calorie gain/loss can then be viewed.
 5. Type the command in the command box and press Enter to execute it. 
 6. Refer to the features below for details of each command.
 
-## Features v2.0
+## Features
 
 * View and Update user profile
 * Add meal
@@ -35,62 +51,51 @@ Their net calorie gain/loss can then be viewed.
 ### Viewing User Profile: `view`
 
 To view user's profile. 
-User will come across a menu that shows them what information they can choose to view
-,and they will input the number in order to view the information they want to see.
+User can simply input a single line command to view the specific information in their user profile using the format
+below.
 
-User can also choose to back out of the menu in the event that they have entered the view 
-command by accident. They can do so by inputting the number 8.
+Format: `view /[fieldName]`
 
-Format: `view`
+Here is a table of the information that the user can choose to view alongside the field name of it:
 
-Menu Output:
-
-![view-menu](./UG-images/view-menu.PNG)
-
-User can input a value from **1 to 9** to view their current profile:
-
-1. Name
-2. Weight
-3. Height
-4. Age
-5. Gender
-6. Daily Caloric Limit
-7. Calories Remaining for today
-8. View Target Weight
-9. Exit
+| Information                  | /[fieldName]  |
+|------------------------------|---------------|
+| Name                         | /name         |
+| Weight                       | /weight       |
+| Height                       | /height       |
+| Age                          | /age          |
+| Gender                       | /gender       |
+| Daily caloric limit          | /caloricLimit | 
+| Calories remaining for today | /caloriesLeft |
+| Target weight                | /targetWeight | 
 
 Example:
 
 ![view-example](./UG-images/view-example.PNG)
 
-User then can input **1** to continue viewing their profile or **2** to exit
 
 ### Updating User Profile: `update`
 
 Allows the user to update any of their information.
-User will come across a menu that shows them what information they can choose to update, they will need
-to input the number in order to update the specific information they want to change.
+User can simply input a single line command to update the specific information in their user profile using the format
+below.
 
-Format: `update`
+Format: `update /[fieldName] [newInfo]`
 
-Menu Output:
+Here is a table of the information that the user can choose to update alongside the field name of it:
 
-![update-menu](./UG-images/update-menu.PNG)
-
-User can input a value from **1 to 6** to customise their profile:
-1. Name
-2. Weight
-3. Height
-4. Age
-5. Gender
-6. Target Weight
-7. Exit
+| Information   | /[fieldName]  |
+|---------------|---------------|
+| Name          | /name         |
+| Weight        | /weight       |
+| Height        | /height       |
+| Age           | /age          |
+| Gender        | /gender       |
+| Target weight | /targetWeight | 
 
 Example:
 
 ![update-example](./UG-images/update-example.PNG)
-
-User then can input **1** to continue updating their profile or **2** to exit
 
 ### Adding a meal: `add`
 
@@ -173,7 +178,7 @@ Format: `filter [lower_bound] [upper_bound]`
 Example:
 ![filter-example](./UG-images/filter-example.PNG)
 
-### View Nutrition Content of food: `nutrition`
+### View nutrition content of food: `nutrition`
 
 For users to view the nutrition content of the food. The user first needs to search for the food, then the nutrition content of the food will be printed.
 
@@ -186,7 +191,7 @@ Format: `nutrition`
 Example:
 ![nutrition-example](./UG-images/nutrition-example.PNG)
 
-### Add Exercise: `exercise`
+### Adding an exercise: `exercise`
 
 For user to input the exercise done previously
 
@@ -199,7 +204,7 @@ Format: `exercise /type [exercise name] /description [exercise description] /cal
 Example:
 ![exercise-example](./UG-images/exercise-example.PNG)
 
-### Track net calorie intake: `track`
+### Tracking net calorie intake: `track`
 
 For user to track their previous net calorie intake
 
@@ -213,7 +218,7 @@ Format: `track /start [start date] /end [end date]`
 Output:
 ![track-example](./UG-images/track-example.PNG)
 
-### Display examples for meals and exercises: `examples`
+### Displaying examples of meals and exercises: `examples`
 
 For the user to gain some inspiration on exercises to do, as well as some idea on the meals that they can eat.
 
@@ -222,8 +227,8 @@ Format: `examples [meal/exercise]`
 Example:
 ![examples-example](./UG-images/examples-example.PNG)
 
-### Exiting the program: `bye`
-Allows user to exit the program.
+### Exiting the application: `bye`
+Allows user to exit the application.
 
 Format: `bye`
 

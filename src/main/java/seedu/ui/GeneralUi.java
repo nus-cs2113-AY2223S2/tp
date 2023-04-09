@@ -242,6 +242,27 @@ public class GeneralUi {
         System.out.println("Gender: " + gender);
     }
 
+    public void printHelpMenu(){
+        System.out.println( "Here are the list of available commands: \n" + "[view]: Here's the list of information"
+            + " you can choose to view followed by it's respective /[fieldName].\n"
+            + "    1. Name: /name \n" + "    2. Weight: /weight\n" + "    3. Height: /height\n" + "    4. Age: /age\n"
+            + "    5. Gender: /gender\n" + "    6. Daily caloric limit: /caloricLimit\n"
+            + "    7. Calories left today: /caloriesLeft\n" + "    8. Target weight: /targetWeight\n"
+            + "Usage: view /[fieldName]\n"+"[update]: Here's the list of information "
+            + "you can choose to update followed by it's respective /[fieldName].\n" + "    1. Name: /name\n"
+            + "    2. Weight: /weight\n" + "    3. Height: /height\n" + "    4. Age: /age\n"
+            + "    5. Gender: /gender\n"+"    6. Target Weight: /targetWeight\n"
+            + "Usage: update /[fieldName] [newInfo]\n"
+            + "[add]: Add a meal.\n" + "Usage: add /on [date] /type [MealType] /foods [foods]\n"
+            + "[list]: List either all the foods in the database or all previous added meals.\n"
+            + "Usage: list foods / list meals\n" + "[delete]: Deletes a previously added meal.\n"
+            + "Usage: delete [index]\n" + "[filter]: Filters food by calorie content.\n"
+            +"[nutrition]: Find the nutrients of a specific kind of food.\n"+"[exercise]: Input a completed exercise.\n"
+            + "Usage: exercise /type [exercise name] /description [exercise description] "
+            + "/calories [calories burnt] /on [date]\n" + "[track]: Returns your caloric intake from previous days.\n"
+            + "[examples]: Displays examples for inputs\n" + "[bye]: Exits the program.");
+        System.out.println("For any other questions please visit out User Guide.\n");
+    }
 }
 
 
