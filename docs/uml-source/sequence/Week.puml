@@ -23,10 +23,10 @@ Parser -> week** : WeekCommand()
 week++
 return
 return
+destroy Parser
 
 Apollo -> week : execute()
 activate week
-
 
 week -> Ui : printWeek()
 activate Ui
@@ -41,7 +41,7 @@ loop 7 times
     activate Calendar
     Calendar --> Ui : lessonsOnDay
     destroy Calendar
-    opt lessonsOnDay.size() > 0
+    opt There are lessons on that day
     Ui -> Ui : printLessonsOnDay()
     end
 
@@ -49,11 +49,11 @@ loop 7 times
     activate TaskList
     TaskList --> Ui : tasksOnDay
     destroy TaskList
-    opt tasksOnDay.size() > 0
+    opt There are tasks on that day
     Ui -> Ui : printTasksOnDay()
     end
 end
-Ui--
+week <-- Ui--
 destroy Ui
 week --> Apollo
 destroy week

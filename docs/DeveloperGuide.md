@@ -82,7 +82,7 @@ subclass of `Command`.
 **API:** `Command.java`    
 Here's two class diagrams of the `Command` component, 
 one for Task and Util related Commands, and one for Module related Commands   
-![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command-for_Task__Util_Commands.png.png?raw=true)
+![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command-for_Task__Util_Commands.png?raw=true)
 > SpecificHelpCommand is a placeholder Class for all command-specific help commands (eg. `help addmod`)    
 
 ![](https://github.com/AY2223S2-CS2113-T13-4/tp/blob/master/docs/uml-diagrams/Command2-for_Module_Commands.png?raw=true)
@@ -112,6 +112,8 @@ How the `Storage` component works:
 3. If these text files exist, `Storage` will read from the text files and write into `Apollo` for the user to use.
 4. When a command is entered by the user, the `Command` class will communicate with `Storage` to update the local save
 files if there are changes.
+
+[*Return to TOC*](#table-of-contents)
 
 ## Implementation
 
@@ -299,7 +301,7 @@ It also includes the updated size of the `TaskList`, obtained with the `size()` 
 The storage is updated with the new TaskList without the deleted task.
 
 The below diagram shows the sequence diagram for the DeleteTask functionality.
-<insert latest seq diagram here>
+![](https://github.com/honglinshang/tp/blob/master/docs/uml-diagrams/DeleteCommand-ModifyCommand__Delete_Tasks_.png)
 
 [*Return to TOC*](#table-of-contents)
 
