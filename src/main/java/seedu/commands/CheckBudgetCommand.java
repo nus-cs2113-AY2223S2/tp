@@ -141,10 +141,7 @@ public class CheckBudgetCommand extends Command {
      * @author TzeLoong
      */
     private void checkYear(ExpenditureList expenditures) throws EmptyStringException {
-        DateTimeFormatter formatYear = DateTimeFormatter.ofPattern("uuuu");
-        String yearVal = ParseIndividualValue.parseIndividualValue(userInput, YSLASH,
-                BLANK);
-        Year year = Year.parse(yearVal, formatYear);
+        Year year = fetchYear();
         for (Expenditure individualExpenditure : expenditures.getExpenditures()) {
             if (individualExpenditure instanceof BorrowExpenditure) {
                 int startYear = ((BorrowExpenditure) individualExpenditure).getDate().getYear();
@@ -188,6 +185,15 @@ public class CheckBudgetCommand extends Command {
                 }
             }
         }
+    }
+
+    public Year fetchYear()
+            throws EmptyStringException, StringIndexOutOfBoundsException,
+            DateTimeParseException {
+                DateTimeFormatter formatYear = DateTimeFormatter.ofPattern("uuuu");
+        String yearVal = ParseIndividualValue.parseIndividualValue(userInput, YSLASH,
+                BLANK);
+        return Year.parse(yearVal, formatYear);
     }
 
 }

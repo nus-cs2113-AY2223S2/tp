@@ -40,7 +40,6 @@ public class AccommodationExpenditure extends Expenditure {
     }
 
     public void checkMark() {
-        LocalDate currentDate = LocalDate.now();
         checkNextRepeatDate();
         handleNextRepeat();
     }

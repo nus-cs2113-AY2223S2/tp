@@ -409,6 +409,7 @@ Sorts the expenditure list by ascending or descending amount, or from earliest t
 - The parameter must not be empty
 - The use of viewdate must follow with a valid date or the command would not be valid.
 - The date must be input in YYYY-MM-DD format.
+- If the date selected by the user falls between the time period of a borrow/lend record, those lend/borrow records will not be included in the amounts that are updated.
 
 ### 4.17. Currency rates
 

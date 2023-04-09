@@ -23,7 +23,6 @@ public class ViewDateExpenditureCommand extends Command {
 
     @Override
     public CommandResult execute(ExpenditureList expenditures) {
-        return new CommandResult("Here are the specified expenditures in " + currency + ": \n"
-                + ExpenditureList.specificDateString(date, currency));
+        return new CommandResult(ExpenditureList.specificDateString(date, currency));
     }
 }

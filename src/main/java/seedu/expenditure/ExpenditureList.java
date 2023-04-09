@@ -114,7 +114,11 @@ public class ExpenditureList {
                 counter += 1;
             }
         }
-        stringOfExpenditures.append("Total amount: " + String.format("%.2f", totalValue));
+        if(totalValue == 0) {
+            return stringOfExpenditures.append("There are no expenditures recorded for this date").toString();
+        }
+        stringOfExpenditures.append("Here are the specified expenditures in " + currency + ": \n"
+                + "Total amount: " + String.format("%.2f", totalValue));
         return stringOfExpenditures.toString().stripTrailing();
     }
 
