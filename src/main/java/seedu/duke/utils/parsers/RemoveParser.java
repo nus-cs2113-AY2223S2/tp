@@ -9,11 +9,14 @@ import seedu.duke.objects.Item;
 import seedu.duke.utils.Ui;
 
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class RemoveParser extends Parser {
-    private static Scanner in = new Scanner(System.in);
+    private static final String EMPTY_SPACE = " ";
+    private static final String BY_UPC = "f/upc";
+    private static final String BY_INDEX = "f/index";
+    private static final int INT_INDEX = 1;
     private static final int VALID_COMMAND_LENGTH = 2;
+    private static final int TYPE_INT = 0;
 
 
     public RemoveParser(String rawInput, Inventory inventory) {
@@ -25,14 +28,14 @@ public class RemoveParser extends Parser {
      *
      * @param commands  The user input split into an array of strings.
      * @param inventory The inventory to be modified.
-     * @throws MissingParametersException
+     * @throws MissingParametersException if input by user has missing parameters
      */
     private static void parseRemoveByIndex(final String[] commands, Inventory inventory)
             throws MissingParametersException {
         if (commands.length < VALID_COMMAND_LENGTH) {
             throw new MissingParametersException();
         }
-        int itemIndex = Integer.parseInt(commands[1]);
+        int itemIndex = Integer.parseInt(commands[INT_INDEX]);
         Command removeCommand = new RemoveCommand(inventory, itemIndex);
         removeCommand.run();
     }
@@ -42,15 +45,15 @@ public class RemoveParser extends Parser {
      *
      * @param commands  The user input split into an array of strings.
      * @param inventory The inventory to be modified.
-     * @throws MissingParametersException
-     * @throws RemoveErrorException
+     * @throws MissingParametersException if input by user has missing paramaters
+     * @throws RemoveErrorException if unable to remove item
      */
     private static void parseRemoveByUpc(final String[] commands, Inventory inventory)
             throws MissingParametersException, RemoveErrorException {
         if (commands.length < VALID_COMMAND_LENGTH) {
             throw new MissingParametersException();
         }
-        String upcCode = commands[1];
+        String upcCode = commands[INT_INDEX];
         HashMap<String, Item> upcCodes = inventory.getUpcCodes();
         if (!upcCode.matches("(\\d+)") || !upcCodes.containsKey(upcCode)) {
             throw new RemoveErrorException();
@@ -68,12 +71,12 @@ public class RemoveParser extends Parser {
             if (rawInput == null) {
                 throw new MissingParametersException();
             }
-            String[] commands = rawInput.split(" ");
-            switch (commands[0]) {
-            case "f/upc":
+            String[] commands = rawInput.split(EMPTY_SPACE);
+            switch (commands[TYPE_INT]) {
+            case BY_UPC:
                 parseRemoveByUpc(commands, inventory);
                 break;
-            case "f/index":
+            case BY_INDEX:
                 parseRemoveByIndex(commands, inventory);
                 break;
             default:
