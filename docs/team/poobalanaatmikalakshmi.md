@@ -35,4 +35,5 @@ It is written in Java, and has about 5kLoC.
 - Appendix E: Adding a ToDo/Event/Deadline,Deleting a Todo/Event/Deadline,Adding a Module,Adding a Lesson,Deleting a Module,Deleting a Lesson
 #### Contributions to team-based tasks
 - Helped maintain issue tracker 
+- Released v2.1 jar 
 - [PRs Reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+is%3Aopen+reviewed-by%3Apoobalanaatmikalakshmi+)
