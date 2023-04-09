@@ -63,7 +63,7 @@ diagram, AddCommand, which inherits from Command.
 
 We also have an example of a sequence diagram for the AddCommand as shown in the figure below.
 
-![img.png](img.png)!
+
 
 The following <code>Command</code> classes inherits from the main <code>Command</code> class and 
 executes different code.
