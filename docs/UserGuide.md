@@ -10,8 +10,9 @@
        * [3.2.1.1 List the Saved Modules](#3211-listing-modules-user-has-selected-list-current)
        * [3.2.1.2 List all the Partner Universities](#3212-listing-out-pu-module-list-list-pu-abbreviationpu-index)
        * [3.2.1.3 List the Modules from a Partner University](#3213-listing-out-all-partner-universities-list-pu)
-       * [3.2.1.4 List the Saved Modules from a Partner 
-University](#3214-listing-modules-user-has-selected-for-specific-partner-university-list-current-pu-abbreviation)
+       * [3.2.1.4 List the Modules from a Partner University with Filters](#3214-listing-out-pu-module-list-with-filters-list-pu-abbreviationpu-index-filter-filter)
+       * [3.2.1.5 List the Saved Modules from a Partner 
+University](#3215-listing-modules-user-has-selected-for-specific-partner-university-list-current-pu-abbreviation)
      * [3.2.2 Add](#322-add-user-selected-modules-to-list-add)
      * [3.2.3 Remove](#323-remove-user-selected-modules-from-list-remove)
      * [3.2.4 Search](#324-search-by-nus-module-code-search)
@@ -54,8 +55,8 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 * **Command words**:
   * Command words are not case-sensitive.
     * E.g. `eXIT` will be accepted as the `exit` command.
-    * 
-### 3.1 Help Command: `/help`
+  * Index is a positive integer number.
+### 3.1 Help Command
 Provides a list of all the commands and its format, along with the respective
 descriptions.
 
@@ -96,7 +97,7 @@ Here are the list of commands:
 ```
 ---
 ### 3.2 Modules
-#### 3.2.1 List: `list` command
+#### 3.2.1 List Commands
 
 All List commands start with `list`.
 1. List Current
@@ -105,11 +106,11 @@ All List commands start with `list`.
 4. List Current [PU Abbreviation/PU INDEX]
 
 ****
-##### 3.2.1.1 Listing modules user has selected: `List Current`
+##### 3.2.1.1 Listing Modules User Has Selected
 
-Format: `list current`
+Format: `/list current`
 
-Example of usage: `list current`
+Example of usage: `/list current`
 
 Expected outcome: Modules that user has previously selected will be listed sorted by Partner Universities.
 
@@ -145,11 +146,30 @@ ____________________________________________________________
 ```
 
 ****
-##### 3.2.1.2 Listing out PU Module List: `List [PU Abbreviation/PU INDEX]`
+##### 3.2.1.2 Listing Out all Partner Universities
+
+Format: `/list pu`
+
+Expected outcome:
+A list of all Partner Universities appears.
+
+Description of outcome:
+```
+This is the list of PUs:
+____________________________________________________________
+1. KOREA UNIVERSITY KU
+2. KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY KAIST
+3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY POSTECH
+4. SEOUL NATIONAL UNIVERSITY SNU
+5. YONSEI UNIVERSITY YU
+____________________________________________________________
+```
+***
+##### 3.2.1.3 Listing out PU Module List
 
 **PU Module List** - Get a list of all the modules provided by the specific PU
 
-Format: `list [PU Abbreviation Name]` or `list [PU Index]`
+Format: `/list [PU Abbreviation Name]` or `/list [PU Index]`
 
 * The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
 * The `PU Index` is the university index of the PU as shown in the universities list.
@@ -173,11 +193,13 @@ ____________________________________________________________
    maps to ----> [ME4661][Exchange Elective][4]
 ____________________________________________________________
 ```
-
 ****
-#### 3.2.1.2.a Listing out PU Module List with filters: `list [PU Abbreviation/PU INDEX] /filter [FILTER]`
+##### 3.2.1.4 Listing Out PU Module List With filters
 
-Example of usage: `list ku /filter mc == 3` 
+Format: `list [PU Abbreviation/PU INDEX] /filter [FILTER]`
+
+
+Example of usage: `/list ku /filter mc == 3` 
 
 Expected outcome:
 
@@ -206,30 +228,10 @@ ____________________________________________________________
    maps to ----> [ME4253][Biomaterials Engineering][4]
 ____________________________________________________________
 ```
-
 ****
-##### 3.2.1.3 Listing out all Partner Universities: `list pu`
+##### 3.2.1.5 Listing Modules User Has Selected for Specific Partner University
 
-Format: `list pu`
-
-Expected outcome:
-A list of all Partner Universities appears.
-
-Description of outcome:
-```
-This is the list of PUs:
-____________________________________________________________
-1. KOREA UNIVERSITY KU
-2. KOREA ADVANCED INSTITUTE OF SCIENCE & TECHNOLOGY KAIST
-3. POHANG UNIVERSITY OF SCIENCE & TECHNOLOGY POSTECH
-4. SEOUL NATIONAL UNIVERSITY SNU
-5. YONSEI UNIVERSITY YU
-____________________________________________________________
-```
-****
-##### 3.2.1.4 Listing modules user has selected for specific Partner University: `List Current [PU Abbreviation]`
-
-Format: `List Current [PU Abbreviation]`
+Format: `/list current [PU Abbreviation]`
 
 * The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
 
@@ -250,7 +252,7 @@ ____________________________________________________________
 
 ****
 
-#### 3.2.2 Add user selected modules to list: `add`
+#### 3.2.2 Add User Selected Modules to List
 
 Format: `/add [PU ABBREVIATION]/[INDEX]`
 
@@ -287,21 +289,21 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 ---
-#### 3.2.3 Remove user selected modules from list: `remove`
+#### 3.2.3 Remove User Selected Modules From List
 
-Format: `remove [PU ABBREVIATION]/[INDEX TO REMOVE]`
+Format: `/remove [PU ABBREVIATION]/[INDEX TO REMOVE]`
 
 * The `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
 * The  `INDEX TO REMOVE` is the numbering of the module provided by ` list current`
 or ` list current [PU Abbreviation]` command.
 
-Example of usage: `remove KU/2` 
+Example of usage: `/remove KU/2` 
 
 Expected outcome: Removes module indexed at 2 for Korea University from list of user selected modules.
 
 Description of outcome: 
 
-**Before Command** `remove KU/2`
+**Before Command** `/remove KU/2`
 ```
 List of Added Modules for: KOREA UNIVERSITY
 ____________________________________________________________
@@ -312,7 +314,7 @@ maps to ----> [ME3122][Heat Transfer][4]
 ____________________________________________________________
 ```
 
-**After Command** `remove KU/2`
+**After Command** `/remove KU/2`
 ```
 List of Added Modules for: KOREA UNIVERSITY
 ____________________________________________________________
@@ -321,18 +323,18 @@ maps to ----> [ME4231][Aerodynamics][4]
 ____________________________________________________________
 ```
 
-Tip: This command is best utilized by executing `list current [PU Abbreviation]` or `list current` beforehand.
+Tip: This command is best utilized by executing `/list current [PU Abbreviation]` or `/list current` beforehand.
 
 ****
 
 
-#### 3.2.4 Search by NUS module Code: `search`
+#### 3.2.4 Search by NUS Module Code
 Search for PU modules that can be mapped to the user's specific NUS module code.
 
-Format: `search [NUS MODULE CODE]`
+Format: `/search [NUS MODULE CODE]`
 * The `NUS MODULE CODE` is the module that the user wants to map overseas.
 
-Example of usage: `search ME4661`
+Example of usage: `/search ME4661`
 
 Expected outcome:
 * A list of PU's modules that can be mapped to the user's specific NUS module code will appear under its respective PU
@@ -371,11 +373,11 @@ ____________________________________________________________
 Deadlines are tasks added by the user. There will be a due date for the task.
 If the task is due in 7 days, there will be a reminder shown along with the 
 welcome message when the program first runs.
-#### 3.3.1 List All the Deadlines Saved: `/deadline/list`
+#### 3.3.1 List All the Deadlines Saved
 
 Provides the list of all the deadlines the user has added.
 
-Format: /deadline/list
+Format: `/deadline/list`
 
 Expected Outcome:
 ```
@@ -386,7 +388,7 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 ---
-#### 3.3.2 Add a New Deadline: `/deadline/add`
+#### 3.3.2 Add a New Deadline
 Adds a new deadline to the list of saved deadlines.
 
 Format: `/deadline/add  [TASK] /by [DUE DATE]`
@@ -404,7 +406,7 @@ This deadline has been added to the current deadlines
 ____________________________________________________________
 ```
 ---
-#### 3.3.3 Remove a Deadline from the List: `/deadline/remove`
+#### 3.3.3 Remove a Deadline From the List
 User deletes a deadline from the list of saved deadlines by index.
 
 Format: `/deadline/remove [INDEX]`

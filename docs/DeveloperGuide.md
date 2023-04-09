@@ -14,13 +14,19 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
     3. [Parser](#parser)
     4. [UserInterface](#userinterface--ui-) 
     5. [Help Command](#help-command)
-    6. [List Current Command](#list-current-command)
-    7. [List Current PU Command](#list-current-pu-command)
-    8. [List PU Command](#list-pu-command)
-    9. [List PU Modules Command](#list-pu-modules-command)
-   10. [Delete Module Command](#delete-module-command)
-   11. [Delete Deadline Command](#delete-deadline-command)
-   12. [Reference Block for Sorting Modules](#reference-block-for-sortmodulesaccording-to-printing-length-function)
+    6. [Module Commands](#module-commands)
+       - [List Current Command](#list-current-command)
+       - [List Current PU Command](#list-current-pu-command)
+       - [List PU Command](#list-pu-command)
+       - [List PU Modules Command](#list-pu-modules-command)
+       - [Add Module Command](#add-module-command)
+       - [Delete Module Command](#delete-module-command)
+    7. [Deadline Commands](#deadline-commands)
+       - [List Deadline Command](#list-deadline-command)
+       - [Add Deadline Command](#add-deadline-command)
+       - [Delete Deadline Command](#delete-deadline-command)
+    8. [Reference Block for Sorting Modules](#reference-block-for-sortmodulesaccording-to-printing-length-function)
+    9. [Budget Commands](#budget-commands) 
 3. [Product Scope](#product-scope)
     1. [Target User Profile](#target-user-profile)
     2. [Value Proposition](#value-proposition)
@@ -156,7 +162,9 @@ solely for the purpose of holding print functions, but has some logical componen
 
 Future Improvements: UI to handle ALL of the printing functions present in the program.
 
+---
 
+## Module Commands
 ### Help Command
 
 The help command provides a list of commands and the commands' respective input format for the user.
@@ -312,14 +320,57 @@ readable format.
 8. deleteModule function then returns true and DeleteModuleCommand calls UI class to print the successful deletion of
 module message in the User Console.
 
+---
+
+## Deadline Commands
+Class Diagram of Deadline Commands
+
+
+![DeadlineClassDiagram.png](diagrams%2FDeadline%2FDeadlineClassDiagram.png)
+
+
+### List Deadline Command
+The list deadline command provides the list of deadlines that was added by the user.
+> Syntax: /deadline/list
+
+The following sequence diagram shows the relationship between the classes involved when the list deadline command is
+called.
+
+![ListDeadlineCommandSequenceDiagram.png](diagrams%2FDeadline%2FListDeadlineCommandSequenceDiagram.png)
+
+**Explanation**
+1. ListDeadlineCommands calls the UI class to print all the deadlines.
+2. One by one, UI class calls Deadline class to get the deadline's task and its due date.
+3. The UI class will then print to the user's console the deadline task and due date in readable and in a list format.
+
+### Add Deadline Command
+The add deadline command allows the user to add a deadline into the user's list of deadlines.
+> Syntax: /deadline/add [_task_] /by [_due date_]
+> 
+> Take note that [_due date_] is in the format of [_dd-mm-yyyy_]
+
+The following sequence diagram shows the relationship between the classes involved when the add deadline command is 
+called.
+
+![AddDeadlineCommandSequenceDiagram.png](diagrams%2FDeadline%2FAddDeadlineCommandSequenceDiagram.png)
+
+**Explanation**
+1. AddDeadlineModule command calls addDeadlineToDeadlines(deadlineToAdd) of DeadlineStorage class.
+2. In the circumstance that the deadlineToAdd is null, DeadlineStorage will call printAddDeadlineFailureMessage to tell
+the user that the deadline adding has failed, and stop the operation of AddDeadlineCommand.
+3. DeadlineStorage class will then add the deadline to its ArrayList of saved deadlines.
+4. DeadlineStorage class will then initialise an instance of FileWriter to append the newly added deadline to the txt
+file.
+5. After saving successfully, AddDeadlineCommand will call UI to print an AddDeadlineMessage and returns to Duke.
 
 ### Delete Deadline Command
 The delete deadline command removes a deadline from the user's list of deadlines that is specified by the user.
 > Syntax: /deadline/remove [_index_]
 
-The following sequence diagram shows the relationship between the classes involved when the delete command is called.
+The following sequence diagram shows the relationship between the classes involved when the delete deadline command is 
+called.
 
-![DeleteDeadlineCommandSequenceDiagram.png](diagrams%2FCommands%2FDeleteDeadlineCommandSequenceDiagram.png)
+![DeleteDeadlineCommandSequenceDiagram.png](diagrams%2FDeadline%2FDeleteDeadlineCommandSequenceDiagram.png)
 
 **Explanation**
 1. DeleteDeadlineCommand calls deleteDeadline(indexToRemove, deadline, deadlineStorage) of Storage class.
@@ -353,6 +404,7 @@ according to the length of string before the "maps to ---->" key words.
 
 ![ExampleOfPrintFunctionsMoreReadable.jpg](diagrams%2FMiscellaneous%2FExampleOfPrintFunctionsMoreReadable.jpg)
 
+---
 
 ### Budget Commands
 Class Diagram of Budget Commands
