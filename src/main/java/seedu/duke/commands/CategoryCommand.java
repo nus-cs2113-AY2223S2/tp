@@ -8,6 +8,17 @@ import seedu.duke.utils.Ui;
 import java.util.ArrayList;
 
 public class CategoryCommand extends Command {
+    private static boolean isAnd;
+    private static boolean isOr;
+    private static boolean isAt;
+    private static boolean isA;
+    private static boolean isThe;
+    private static boolean isAn;
+    private static boolean isNotFirstWord;
+    private static boolean isFrom;
+    private static boolean isOn;
+    private static boolean isFor;
+    private static boolean isWith;
     private final String rawInput;
 
     /**
@@ -31,10 +42,8 @@ public class CategoryCommand extends Command {
             throws CategoryFormatException {
         try {
             if (oldCategory.toLowerCase().isBlank() || newCategory.toLowerCase().isBlank()) {
-                System.out.println("Exception thrown in updateItem");
                 throw new CategoryFormatException();
             }
-            System.out.println("Check existing cat");
             checkExistingCategory(item, oldCategory, newCategory);
         } catch (CategoryFormatException cfe) {
             throw new CategoryFormatException();
@@ -49,16 +58,12 @@ public class CategoryCommand extends Command {
      */
     private static void checkExistingCategory(Item item, String oldCategory, String newCategory) {
         try {
-            System.out.println("Try remove item");
             if (categoryHash.containsValue(item)) {
                 removeItemFromCategory(item, oldCategory);
             }
-            System.out.println("Set item cat");
             item.setCategory(newCategory);
-            System.out.println("add item to new cat");
             addItemToCategory(newCategory, item);
         } catch (NullPointerException e) {
-            System.out.println("NPE print new cat");
             Ui.printNewCategory();
         }
     }
@@ -74,9 +79,7 @@ public class CategoryCommand extends Command {
             return;
         }
         if (categoryHash.get(oldCategory).size() == 1) {
-            System.out.println("Whats up here");
             categoryHash.get(oldCategory).remove(item);
-            System.out.println("Anything can remove?");
             categoryHash.remove(oldCategory);
         } else {
             categoryHash.get(oldCategory).remove(item);
@@ -90,18 +93,10 @@ public class CategoryCommand extends Command {
      */
     private static void addItemToCategory(String categoryToAdd, Item item) {
         categoryToAdd = categoryToAdd.toLowerCase();
-        System.out.println("does category exist? " + categoryHash.containsKey(categoryToAdd));
         if (!categoryHash.containsKey(categoryToAdd)) {
-            System.out.println("contains key already? false");
-            System.out.println("category to b added is " + categoryToAdd);
             categoryHash.put(categoryToAdd, new ArrayList<>());
         }
-       // System.out.println("Item in this category so far: " + categoryHash.get(categoryToAdd.toLowerCase()).get(0));
-        System.out.println("Item to be added into list");
-//        Object[] arr = categoryHash.get(categoryToAdd.toLowerCase()).toArray();
-//        System.out.println(categoryToAdd.toLowerCase() + " category has " + Arrays.toString(arr));
         categoryHash.get(categoryToAdd).add(item);
-        System.out.println(categoryToAdd + "category has " + categoryHash.get(categoryToAdd).toString());
     }
 
     /**
@@ -125,12 +120,28 @@ public class CategoryCommand extends Command {
         }
     }
 
+    /**
+     * Capitalises important words in category name for printing (like book titles).
+     * @param category The category to have its words capitalised accordingly.
+     * @return
+     */
     public static String capitaliseCategory(String category) {
         String capsString = new String();
         String[] catWords = category.split(" ");
         for (String word : catWords) {
-            if (word.equals("and") || word.equals("at") ||
-                    ((word.equals("a") || word.equals("the") || word.equals("an")) && word != catWords[0])) {
+            isAnd = word.equals("and");
+            isAt = word.equals("at");
+            isA = word.equals("a");
+            isOr = word.equals("or");
+            isThe = word.equals("the");
+            isAn = word.equals("an");
+            isNotFirstWord = (word != catWords[0]);
+            isFrom = word.equals("from");
+            isOn = word.equals("on");
+            isFor = word.equals("for");
+            isWith = word.equals("with");
+            if (isAnd || isAt || isOr || isFrom || isWith || isFor || isOn ||
+                    ((isA || isThe || isAn) && isNotFirstWord)) {
                 capsString = capsString + word;
             } else {
                 capsString = capsString + word.substring(0,1).toUpperCase() + word.substring(1);
