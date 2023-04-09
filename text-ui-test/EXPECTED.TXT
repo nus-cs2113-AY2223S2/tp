@@ -7,50 +7,8 @@ Hello from
 | | | | |  __/  | |_| | | |___  | |___  | |_| |
 |_| |_| |_|     \_____/ |_____| |_____| \_____/
 
+Your personal task and timetable manager!
 Enter "help" to see a list of commands.
-____________________________________________________________
-____________________________________________________________
-Task Commands:
-- Enter "list" to see all tasks
-- Enter "todo [task]" to add a task
-- Enter "deadline [task] /by [date]" to add a deadline
-- Enter "event [task] /from [date] /to [date]" to add an event
-- Enter "mark [idx]" to mark task as done
-- Enter "unmark [idx]" to mark task as not done
-- Enter "delete [idx]" to remove task from list
-- Enter "find [keyword]" to see all tasks containing [keyword]
-- Enter "date [yyyy-MM-dd]" to see all tasks occurring on that date
-
-Module Commands:
-- Enter "listmod" to see your module list
-- Enter "addmod [MODULE_CODE]" to add a Module to the Module list
-- Enter "addmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a lesson
-- Enter "showmod [MODULE_CODE]" to see more information about the module
-- Enter "showmod [MODULE_CODE] -[FLAG]" to see schedule of specific lesson type for a module
-- Enter "delmod [MODULE_CODE]" to remove a Module you previously added
-- Enter "delmod [MODULE_CODE] -[FLAG] [LESSON NUMBER]" to add a task to a lesson
-
-Common Commands:
-- Enter "week" to see your schedule for the week
-- Enter "bye" to exit the program
-
-***NOTE***
-Please enter all [date]s in the format: "yyyy-MM-ddThh:mm"
-eg. "2023-10-30T23:59" represents Oct 20 2023, 11:59PM
-
-There are -FLAGS for the various lessons options per module:
--lec			LECTURE
--plec			PACKAGED LECTURE
--st 			SECTIONAL TEACHING
--dlec			DESIGN LECTURE
--tut			TUTORIAL
--ptut			PACKAGED TUTORIAL
--rcit			RECITATION
--lab			LABORATORY
--ws				WORKSHOP
--smc			SEMINAR STYLE MODULE CLASS
--mp				MINI PROJECT
--tt2			TUTORIAL TYPE 2
 ____________________________________________________________
 ____________________________________________________________
 There are no tasks in your list!
@@ -66,44 +24,48 @@ ____________________________________________________________
 Oops! The description of a task cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
-Please enter deadline as "deadline [task] /by [date]".
+Please enter deadline as "deadline [task] -by [date]".
 ____________________________________________________________
 ____________________________________________________________
-Please enter [date]s in the format of yyyy-MM-ddThh:mm.
-eg. "2023-10-30T23:59" for Oct 20 2023, 11:59PM
+Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
+eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM
 ____________________________________________________________
 ____________________________________________________________
-Oops, your deadline: submit tutorial (by: Mar 03 2023, 11:59PM) occurs before today!
+Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
+eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM
+____________________________________________________________
+____________________________________________________________
+Oops, your deadline: submit tutorial (by: 03 Feb 2023, 11:59PM) occurs before today!
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this deadline:
-  [D][ ] submit tutorial (by: May 03 2023, 11:59PM)
+  [D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
 ____________________________________________________________
 ____________________________________________________________
 Oops! The description of a task cannot be empty.
 ____________________________________________________________
 ____________________________________________________________
-Please enter event as "event [task] /from [date] /to [date]".
+Please enter event as "event [task] -from [date] -to [date]".
 ____________________________________________________________
 ____________________________________________________________
 Oops, the start date for your event occurs after the end date!
 ____________________________________________________________
 ____________________________________________________________
-Please enter [date]s in the format of yyyy-MM-ddThh:mm.
-eg. "2023-10-30T23:59" for Oct 20 2023, 11:59PM
+Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
+eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM
 ____________________________________________________________
 ____________________________________________________________
-Oops, your event: lecture (from: May 03 2022, 09:00AM to: May 03 2022, 11:00AM) occurs before today!
+Oops, your event: lecture (from: 03 Feb 2022, 09:00AM to: 03 Feb 2022, 11:00AM) occurs before today!
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this event:
-  [E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+  [E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
-1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
+2.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 3.[T][ ] eat lunch
 There are 3 unmarked tasks in your tasklist.
 ____________________________________________________________
@@ -115,19 +77,19 @@ Please enter [idx] in the form of an integer from 1 to 3
 ____________________________________________________________
 ____________________________________________________________
 Nice!, I've marked this task as done:
-  [E][X] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+  [E][X] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
-1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-2.[E][X] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
+2.[E][X] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 3.[T][ ] eat lunch
 There are 2 unmarked tasks in your tasklist.
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-  [E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+  [E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this todo:
@@ -136,8 +98,8 @@ ____________________________________________________________
 ____________________________________________________________
 You have a total of 4 tasks in your tasklist.
 Here are the tasks in your list:
-1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
+2.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 3.[T][ ] eat lunch
 4.[T][ ] sleep
 There are 4 unmarked tasks in your tasklist.
@@ -156,8 +118,8 @@ ____________________________________________________________
 ____________________________________________________________
 You have a total of 3 tasks in your tasklist.
 Here are the tasks in your list:
-1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
+2.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 3.[T][ ] eat lunch
 There are 3 unmarked tasks in your tasklist.
 ____________________________________________________________
@@ -169,19 +131,19 @@ There are no matching tasks!
 ____________________________________________________________
 ____________________________________________________________
 Here are the matching tasks in your list:
-1.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+1.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 2.[T][ ] eat lunch
 ____________________________________________________________
 ____________________________________________________________
-Please enter date in the format of yyyy-MM-dd.
+Please enter date in the format of dd-MM-yyyy.
 ____________________________________________________________
 ____________________________________________________________
-There are no tasks on Jan 01 2025!
+There are no tasks on 01 Jan 2025!
 ____________________________________________________________
 ____________________________________________________________
-Here are the tasks happening on May 03 2023:
-1.[D][ ] submit tutorial (by: May 03 2023, 11:59PM)
-2.[E][ ] lecture (from: May 03 2023, 09:00AM to: May 03 2023, 11:00AM)
+Here are the tasks happening on 03 May 2023:
+1.[D][ ] submit tutorial (by: 03 May 2023, 11:59PM)
+2.[E][ ] lecture (from: 03 May 2023, 09:00AM to: 03 May 2023, 11:00AM)
 ____________________________________________________________
 ____________________________________________________________
 CS1231
@@ -191,29 +153,39 @@ Sectional Teaching (-st)
 Tutorial (-tut)
 
 Sectional Teaching 1
-   Friday 1200 - 1300
+   Wednesday 0900 - 1000 [Weekly]
 Sectional Teaching 1
-   Wednesday 1200 - 1400
+   Thursday 1200 - 1400 [Weekly]
+Tutorial 01
+   Wednesday 1000 - 1200 [Weeks: 3-13]
 Tutorial 02
-   Monday 1000 - 1200
+   Monday 1000 - 1200 [Weeks: 3-13]
+Tutorial 03
+   Wednesday 1200 - 1400 [Weeks: 3-13]
 Tutorial 04
-   Monday 1400 - 1600
+   Tuesday 1200 - 1400 [Weeks: 3-13]
 Tutorial 05
-   Monday 1600 - 1800
+   Thursday 1000 - 1200 [Weeks: 3-13]
+Tutorial 06
+   Tuesday 1000 - 1200 [Weeks: 3-13]
 Tutorial 07
-   Tuesday 1000 - 1200
+   Thursday 1400 - 1600 [Weeks: 3-13]
 Tutorial 08
-   Tuesday 1200 - 1400
+   Wednesday 1400 - 1600 [Weeks: 3-13]
 Tutorial 09
-   Tuesday 1400 - 1600
+   Tuesday 1600 - 1800 [Weeks: 3-13]
 Tutorial 10
-   Tuesday 1600 - 1800
+   Monday 1200 - 1400 [Weeks: 3-13]
+Tutorial 11
+   Thursday 1600 - 1800 [Weeks: 3-13]
 Tutorial 12
-   Wednesday 1600 - 1800
-Tutorial 17
-   Friday 1400 - 1600
-Tutorial 18
-   Friday 1600 - 1800
+   Monday 1400 - 1600 [Weeks: 3-13]
+Tutorial 13
+   Tuesday 1400 - 1600 [Weeks: 3-13]
+Tutorial 14
+   Wednesday 1600 - 1800 [Weeks: 3-13]
+Tutorial 15
+   Monday 1600 - 1800 [Weeks: 3-13]
 ____________________________________________________________
 ____________________________________________________________
 CG2023
@@ -223,30 +195,30 @@ Laboratory (-lab)
 Lecture (-lec)
 
 Laboratory 01
-   Monday 1400 - 1700
+   Monday 1400 - 1700 [Weeks: 5, 7, 9, 11]
 Laboratory 02
-   Monday 1400 - 1700
+   Monday 1400 - 1700 [Weeks: 6, 8, 10, 12]
 Laboratory 03
-   Tuesday 0900 - 1200
+   Tuesday 0900 - 1200 [Weeks: 5, 7, 9, 11]
 Laboratory 04
-   Tuesday 0900 - 1200
+   Tuesday 0900 - 1200 [Weeks: 6, 8, 10, 12]
 Laboratory 05
-   Friday 0900 - 1200
+   Friday 0900 - 1200 [Weeks: 5, 7, 9, 11]
 Laboratory 06
-   Friday 0900 - 1200
+   Friday 0900 - 1200 [Weeks: 6, 8, 10, 12]
 Lecture 01
-   Thursday 1600 - 1800
+   Thursday 1600 - 1800 [Weekly]
 Lecture 01
-   Tuesday 1600 - 1800
+   Tuesday 1600 - 1800 [Weekly]
 Lecture 02
-   Thursday 1600 - 1800
+   Thursday 1600 - 1800 [Weekly]
 Lecture 02
-   Tuesday 1600 - 1800
+   Tuesday 1600 - 1800 [Weekly]
 ____________________________________________________________
 ____________________________________________________________
 Here are all available lessons of type: SECTIONAL_TEACHING for CS1010:
 Class Number: 1
-   Monday 1200 - 1400
+   Tuesday 1000 - 1200 [Weekly]
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(
@@ -270,7 +242,7 @@ Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
 Adding lesson type: TUTORIAL for Module: CS2113
-Class Number: 1
+Class Number: 01
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this module:
@@ -303,20 +275,22 @@ Adding lesson type: LECTURE for Module: ST2334
 Class Number: 1
 ____________________________________________________________
 ____________________________________________________________
+This event clashes with a lesson in your timetable!
 Got it. I've added this event:
-  [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
+  [E][ ] dummy (from: 01 Apr 2023, 12:00AM to: 01 Jun 2023, 12:00AM)
 ____________________________________________________________
 ____________________________________________________________
 Heads up, your deadline occurs on the same day as these!
-______________________
-Lessons:
-1. ST2334 Lecture: 0800-1000
-
+_____________________________
 Tasks:
-1. [E][ ] dummy (from: Apr 01 2023, 12:00AM to: Jun 01 2023, 12:00AM)
-______________________
+ - [E][ ] dummy (from: 01 Apr 2023, 12:00AM to: 01 Jun 2023, 12:00AM)
+_____________________________
 Got it. I've added this deadline:
-  [D][ ] dummy2 (by: May 02 2023, 12:00AM)
+  [D][ ] dummy2 (by: 02 May 2023, 12:00AM)
+____________________________________________________________
+____________________________________________________________
+Sorry, but the command "add mod" does not exist in Apollo!
+Input `help` to see all available commands.
 ____________________________________________________________
 ____________________________________________________________
 Sorry, but I don't know what that means :(

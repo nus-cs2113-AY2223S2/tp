@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam classAttributeIconSize 0
+
+Apollo --> Ui : reads \ncommands \nfor <
+Command --> Ui : prints success/error \nmessages for <
+
+class Ui {
+- in: Scanner
+- LONG_LINE_BREAK: String
++ readCommand(): String
++ showLine(): void
++ printHelpCommandHelpMessage(): void
++ printModuleList(moduleData: ModuleList): void
++ printList(taskList: TaskList): void
+- printAllModulesInList((moduleData: ModuleList): ModuleList): void
+- printTasksOnDay(taskList: TaskList): void
+}
+
+note left of Ui::LONG_LINE_BREAK
+    Other static variables for Ui
+    words have been omitted for brevity.
+end note
+
+note left of Ui::showLine
+    Other printing methods
+    have been omitted for brevity.
+end note
+
+
+Ui -> ModuleList : access \nmoduleData >
+ModuleList "1" *--> "*" Module : contains >
+
+abstract class "{abstract}\nTask" as Task
+Ui -> TaskList : access taskList >
+TaskList "1" *--> "*" Task : contains >
+
+@enduml

@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam maxMessageSize 150
+title ModifyCommand (Delete Tasks)
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":ModifyCommand" as modify
+
+participant ":TaskList" as TaskList
+participant ":Ui" as Ui
+participant ":Storage" as Storage
+
+User -> Apollo : "delete 1"
+activate Apollo
+Apollo -> Parser : getCommand()
+activate Parser
+Parser -> modify** : ModifyCommand()
+activate modify
+modify --> Parser: new ModifyCommand
+deactivate modify
+
+Parser -> modify : execute()
+
+activate modify
+
+
+modify -> TaskList: get()
+activate TaskList
+TaskList --> modify
+deactivate TaskList
+modify -> Ui:ui.printDeleted()
+activate Ui
+Ui --> modify
+deactivate Ui
+destroy Ui
+modify -> TaskList
+activate TaskList
+
+TaskList -> TaskList ++ :remove()
+return
+return
+destroy TaskList
+
+modify -> Storage: updateTask()
+activate Storage
+Storage --> modify
+destroy Storage
+
+modify --> Parser
+deactivate modify
+destroy modify
+
+Parser --> Apollo
+destroy Parser
+deactivate Apollo
+
+@enduml

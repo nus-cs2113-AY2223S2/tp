@@ -12,6 +12,10 @@ import seedu.apollo.ui.Ui;
  */
 public class ExitCommand extends Command {
 
+    public ExitCommand() {
+        super("ExitCommand");
+    }
+
     /**
      * Prints exit message.
      * Sets the exit status of the Command to be true.

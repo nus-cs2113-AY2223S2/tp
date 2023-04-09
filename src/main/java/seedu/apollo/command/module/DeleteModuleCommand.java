@@ -12,16 +12,9 @@ import seedu.apollo.module.Module;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.ui.Ui;
 import seedu.apollo.task.TaskList;
-import seedu.apollo.utils.LoggerInterface;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
 
@@ -29,40 +22,17 @@ import static seedu.apollo.utils.LessonTypeUtil.determineLessonType;
  * For {@code delmod} command.
  * Delete Module Command class that finds the module using moduleCode and removes it from the ModuleList
  */
-public class DeleteModuleCommand extends Command implements LoggerInterface {
-    private static Logger logger = Logger.getLogger("DeleteModuleCommand");
+public class DeleteModuleCommand extends Command {
     protected String[] args;
 
     public DeleteModuleCommand(String params) throws IllegalCommandException {
+        super("DeleteModuleCommand");
         String[] args = params.split("\\s+");
 
         if (args.length != 1 && args.length != 3) {
             throw new IllegalCommandException();
         }
         this.args = args;
-        this.setUpLogger();
-    }
-
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
     }
 
     @Override
@@ -72,26 +42,7 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
             if (args.length == 3) {
                 handleMultiCommand(moduleList, ui);
             } else {
-                // module code is the only argument
-                String listParam = args[0];
-                String moduleCode;
-                if (isInteger(listParam)) {
-                    int index = Integer.parseInt(listParam);
-                    if (index > moduleList.size() || index < 1) {
-                        throw new NumberFormatException();
-                    }
-                    moduleCode = moduleList.get(index - 1).getCode();
-                    moduleList.remove(index - 1);
-                } else {
-                    moduleCode = listParam;
-                    Module toDelete = moduleList.findModule(listParam);
-                    if (toDelete == null) {
-                        throw new ModuleNotFoundException();
-                    }
-                    moduleList.remove(toDelete);
-                }
-
-                ui.printModuleDeleteMessage(moduleCode, moduleList);
+                handleSingleCommand(moduleList, ui);
             }
 
             storage.updateModule(moduleList, calendar);
@@ -106,20 +57,36 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
         }
     }
 
+
     /**
-     * Checks if the string is an integer.
+     * Handles the deletion of a module from the module list.
      *
-     * @param param String to be checked.
-     * @return Boolean value of whether the string is an integer.
+     * @param moduleList ModuleList to be deleted from.
+     * @param ui Ui to print messages.
+     * @throws ModuleNotFoundException If the module is not found.
      */
-    private Boolean isInteger(String param) {
-        try {
-            Integer.parseInt(param);
-        } catch (NumberFormatException e) {
-            return false;
+    private void handleSingleCommand(ModuleList moduleList, Ui ui) throws ModuleNotFoundException,
+            NumberFormatException {
+        String listParam = args[0];
+        String moduleCode;
+        if (isInteger(listParam)) {
+            int index = Integer.parseInt(listParam);
+            if (index > moduleList.size() || index < 1) {
+                throw new NumberFormatException();
+            }
+            moduleCode = moduleList.get(index - 1).getCode();
+            moduleList.remove(index - 1);
+        } else {
+            moduleCode = listParam;
+            Module toDelete = moduleList.findModule(listParam);
+            if (toDelete == null) {
+                throw new ModuleNotFoundException();
+            }
+            moduleList.remove(toDelete);
         }
-        return true;
+        ui.printModuleDeleteMessage(moduleCode, moduleList);
     }
+
 
     /**
      * Handles the deletion of a lesson from a module.
@@ -161,12 +128,17 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
     private void deleteTimetable(Module module, LessonType lessonType, String lessonNumber)
             throws ClassNotFoundException {
 
-        Boolean isFound = false;
+        boolean isFound = false;
+
+        if (module.getModuleTimetable() == null) {
+            throw new ClassNotFoundException();
+        }
+
         ArrayList<Timetable> copyList = new ArrayList<>(module.getModuleTimetable());
 
         //searches for lesson of specified type and number
         for (Timetable timetable :copyList) {
-            String classNumber = timetable.getClassnumber();
+            String classNumber = timetable.getClassNumber();
             String type = timetable.getLessonType();
             LessonType lessonType1 = determineLessonType(type);
 
@@ -182,5 +154,20 @@ public class DeleteModuleCommand extends Command implements LoggerInterface {
         }
     }
 
+    //@@author irving11119
+    /**
+     * Checks if the string is an integer.
+     *
+     * @param param String to be checked.
+     * @return Boolean value of whether the string is an integer.
+     */
+    private boolean isInteger(String param) {
+        try {
+            Integer.parseInt(param);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
 
 }

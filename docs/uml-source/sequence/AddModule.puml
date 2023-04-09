@@ -1,0 +1,80 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam maxMessageSize 150
+
+title AddModuleCommand
+
+actor User
+participant ":Apollo" as Apollo
+participant ":Parser" as Parser
+participant ":AddModuleCommand" as AddModuleCommand
+participant ":ModuleList" as ModuleList
+participant ":Module" as Module
+participant ":Ui" as Ui
+
+User -> Apollo : "addmod CS2113"
+activate Apollo
+
+Apollo -> Parser : getCommand()
+activate Parser
+
+Parser -> AddModuleCommand** : AddModuleCommand()
+activate AddModuleCommand
+AddModuleCommand -> AddModuleCommand : setUpLogger()
+activate AddModuleCommand
+deactivate AddModuleCommand
+
+AddModuleCommand -> Module** : Module()
+activate Module
+Module --> AddModuleCommand : module
+deactivate Module
+destroy Module
+
+AddModuleCommand --> Parser: new AddModuleCommand
+deactivate AddModuleCommand
+deactivate Parser
+destroy Parser
+
+Apollo -> AddModuleCommand : execute()
+activate AddModuleCommand
+alt args.length == 3
+    AddModuleCommand -> AddModuleCommand : handleMultiCommand()
+    activate AddModuleCommand
+    AddModuleCommand -> Ui : printClassAddedMessage()
+    activate Ui
+    Ui --> AddModuleCommand
+    deactivate Ui
+    deactivate AddModuleCommand
+else
+    AddModuleCommand -> AddModuleCommand : handleSingleCommand()
+    activate AddModuleCommand
+    AddModuleCommand -> ModuleList: add(module)
+    activate ModuleList
+    ModuleList --> ModuleList: handleSingleCommand()
+    deactivate ModuleList
+
+    AddModuleCommand -> ModuleList : sortModuleList()
+    activate ModuleList
+    ModuleList --> AddModuleCommand
+    deactivate ModuleList
+    destroy ModuleList
+
+    AddModuleCommand -> Ui : printModuleAddedMessage()
+    activate Ui
+    Ui --> AddModuleCommand
+    deactivate AddModuleCommand
+    deactivate Ui
+
+end
+deactivate AddModuleCommand
+destroy Ui
+AddModuleCommand --> Parser : AddModuleCommand
+deactivate AddModuleCommand
+destroy AddModuleCommand
+Parser --> Apollo
+deactivate Parser
+destroy Parser
+deactivate Apollo
+
+@enduml

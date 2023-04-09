@@ -63,6 +63,10 @@ public class TaskList extends ArrayList<Task> {
      */
     private int deterministicSortForEvent(LocalDateTime startDay1, LocalDateTime endDay1, LocalDateTime startDay2,
                                           LocalDateTime endDay2) {
+        assert startDay1 != null : "Start day of first event should not be null";
+        assert endDay1 != null : "End day of first event should not be null";
+        assert startDay2 != null : "Start day of second event should not be null";
+        assert endDay2 != null : "End day of second event should not be null";
         //both events have same start time
         if (startDay1.equals(startDay2)) {
             //if event2 ends first
@@ -84,54 +88,15 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
-     * Sorts the TaskList by date.
-     *
-     * @param allTasks The TaskList containing different task types to be sorted.
-     */
-    public void sortTaskByDay(TaskList allTasks) {
-        allTasks.clusterByType();
-        //do nothing for todo type tasks
-        for (int i = 0; i < allTasks.size(); i++) {
-            if (allTasks.get(i).getType().equals("deadline")) {
-                allTasks.sort((Task task1, Task task2) -> {
-
-                    if (task1 instanceof Deadline && task2 instanceof Deadline) {
-
-                        LocalDateTime deadline1Date = ((Deadline) task1).getByDate();
-                        LocalDateTime deadline2Date = ((Deadline) task2).getByDate();
-                        return deterministicSortForDeadline(deadline1Date, deadline2Date);
-
-                    } else {
-                        return 0;
-                    }
-
-                });
-            } else if (allTasks.get(i).getType().equals("event")) {
-                allTasks.sort((Task task1, Task task2) -> {
-                    if (task1 instanceof Event && task2 instanceof Event) {
-
-                        LocalDateTime startDay1 = ((Event) task1).getFromDate();
-                        LocalDateTime endDay1 = ((Event) task1).getToDate();
-                        LocalDateTime startDay2 = ((Event) task2).getFromDate();
-                        LocalDateTime endDay2 = ((Event) task2).getToDate();
-                        return deterministicSortForEvent(startDay1, endDay1, startDay2, endDay2);
-
-                    } else {
-                        return 0;
-                    }
-                });
-            }
-        }
-    }
-
-    /**
-     * Determines the order of the deadlines based on their respective due dates. Sorts deadlines in natural time order.
+     * Determines the order of the deadlines based on their respective due dates.
      *
      * @param deadline1 The deadline of the first deadline task.
      * @param deadline2 The deadline of the second deadline task.
      * @return The order of the deadlines.
      */
     private int deterministicSortForDeadline(LocalDateTime deadline1, LocalDateTime deadline2) {
+        assert deadline1 != null : "Deadline should not be null";
+        assert deadline2 != null : "Deadline should not be null";
         if (deadline1.isAfter(deadline2)) {
             return 1;
         } else if (deadline1.isBefore(deadline2)) {
@@ -141,4 +106,58 @@ public class TaskList extends ArrayList<Task> {
         }
     }
 
+    /**
+     * Sorts the deadline tasks in the TaskList by their respective due dates.
+     */
+    private void sortDeadlineTasks(TaskList allTasks){
+        assert allTasks != null : "TaskList should not be null";
+        allTasks.sort((Task task1, Task task2) -> {
+
+            if (task1 instanceof Deadline && task2 instanceof Deadline) {
+
+                LocalDateTime deadline1Date = ((Deadline) task1).getByDate();
+                LocalDateTime deadline2Date = ((Deadline) task2).getByDate();
+                return deterministicSortForDeadline(deadline1Date, deadline2Date);
+
+            } else {
+                return 0;
+            }
+
+        });
+    }
+
+    /**
+     * Sorts the event tasks in the TaskList by their respective from and to dates.
+     */
+    private void sortEventTasks(TaskList allTasks){
+        assert allTasks != null : "TaskList should not be null";
+        allTasks.sort((Task task1, Task task2) -> {
+            if (task1 instanceof Event && task2 instanceof Event) {
+
+                LocalDateTime startDay1 = ((Event) task1).getFromDate();
+                LocalDateTime endDay1 = ((Event) task1).getToDate();
+                LocalDateTime startDay2 = ((Event) task2).getFromDate();
+                LocalDateTime endDay2 = ((Event) task2).getToDate();
+                return deterministicSortForEvent(startDay1, endDay1, startDay2, endDay2);
+
+            } else {
+                return 0;
+            }
+        });
+    }
+
+    /**
+     * Sorts the TaskList by date.
+     */
+    public void sortTaskByDay() {
+        this.clusterByType();
+        //do nothing for todo type tasks
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).getType().equals("deadline")) {
+                sortDeadlineTasks(this);
+            } else if (this.get(i).getType().equals("event")) {
+                sortEventTasks(this);
+            }
+        }
+    }
 }

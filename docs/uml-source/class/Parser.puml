@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+Apollo --> Parser : interprets \ncommands for <
+Storage --> Parser : interprets locally \nsaved data for <
+
+class Parser {
++ COMMAND_EXIT_WORD: String
++ getCommand(userCommand: String, ui: Ui, size: int, moduleData: ModuleList): Command
+- parseCommand(split: String[], size: int, moduleData: ModuleList): Command
+- getHelpCommand(param: String): HelpCommand
+- parseDeadline(param: String): String[]
+- parseEvent(param: String): String[]
+- isEmptyParam(split: String[]): boolean
+- isOneWord(split: String[]): boolean
+}
+note left of Parser::COMMAND_EXIT_WORD
+    Other static variables for Command
+    words have been omitted for brevity.
+end note
+
+Parser -> ModuleList : access moduleData >
+ModuleList "1" *--> "*" Module : contains >
+
+abstract class "{abstract}\nCommand" as Command
+Parser --> Ui : calls for printing >
+Parser --> Command: creates >
+Command <|-- HelpCommand
+
+
+@enduml

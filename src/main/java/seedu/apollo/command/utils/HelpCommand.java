@@ -8,9 +8,13 @@ import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
 
 /**
- * Help Command class that shows user a list of all available Commands.
+ * Parent class of all help commands
  */
 public class HelpCommand extends Command {
+
+    public HelpCommand() {
+        super("HelpCommand");
+    }
 
     /**
      * Prints list of all available Commands and their abilities.
@@ -21,6 +25,7 @@ public class HelpCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage, ModuleList moduleList, ModuleList allModules,
                         Calendar calendar) {
         ui.printHelpMessage();
+
     }
 
 }

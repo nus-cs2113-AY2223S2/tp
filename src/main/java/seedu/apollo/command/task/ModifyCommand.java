@@ -6,16 +6,9 @@ import seedu.apollo.command.Command;
 import seedu.apollo.module.ModuleList;
 import seedu.apollo.task.TaskList;
 import seedu.apollo.ui.Ui;
-import seedu.apollo.utils.LoggerInterface;
 
-import java.io.File;
 import java.io.IOException;
 import java.rmi.UnexpectedException;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import static seedu.apollo.ui.Parser.COMMAND_DELETE_WORD;
 import static seedu.apollo.ui.Parser.COMMAND_MARK_WORD;
@@ -25,8 +18,7 @@ import static seedu.apollo.ui.Parser.COMMAND_UNMARK_WORD;
  * Mark and Delete Command class that modifies an existing Task from the TaskList.
  * Handles {@code mark}, {@code unmark}, and {@code delete} commands.
  */
-public class ModifyCommand extends Command implements LoggerInterface {
-    private static Logger logger = Logger.getLogger("ModifyCommand");
+public class ModifyCommand extends Command {
 
     protected String command;
     protected int idx;
@@ -40,7 +32,7 @@ public class ModifyCommand extends Command implements LoggerInterface {
      * @throws NumberFormatException If idx cannot be parsed, or is outside the current range of tasks.
      */
     public ModifyCommand(String command, String param, int size) throws NumberFormatException {
-        setUpLogger();
+        super("ModifyCommand");
         assert (command.equals(COMMAND_MARK_WORD) | command.equals(COMMAND_UNMARK_WORD) |
                 command.equals(COMMAND_DELETE_WORD)) : "ModifyCommand: Invalid Modify Command";
         assert param != null : "ModifyCommand: param cannot be null!";
@@ -50,34 +42,6 @@ public class ModifyCommand extends Command implements LoggerInterface {
         }
         this.command = command;
         this.idx = idx;
-    }
-
-    /**
-     * Sets up logger for ModifyCommand class.
-     *
-     * @throws IOException If logger file cannot be created.
-     */
-    @Override
-    public void setUpLogger() {
-        LogManager.getLogManager().reset();
-        logger.setLevel(Level.ALL);
-        ConsoleHandler logConsole = new ConsoleHandler();
-        logConsole.setLevel(Level.SEVERE);
-        logger.addHandler(logConsole);
-        try {
-
-            if (!new File("apollo.log").exists()) {
-                new File("apollo.log").createNewFile();
-            }
-
-            FileHandler logFile = new FileHandler("apollo.log", true);
-            logFile.setLevel(Level.FINE);
-            logger.addHandler(logFile);
-
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "File logger not working.", e);
-        }
-
     }
 
     /**
@@ -94,12 +58,10 @@ public class ModifyCommand extends Command implements LoggerInterface {
             throws UnexpectedException, IndexOutOfBoundsException, NumberFormatException {
         switch(command) {
         case COMMAND_MARK_WORD:
-            taskList.get(idx).setDone(true);
-            ui.printMarkDone(taskList.get(idx));
+            markTask(taskList, ui);
             break;
         case COMMAND_UNMARK_WORD:
-            taskList.get(idx).setDone(false);
-            ui.printMarkNotDone(taskList.get(idx));
+            unmarkTask(taskList, ui);
             break;
         case COMMAND_DELETE_WORD:
             int initialCount = taskList.size();
@@ -115,6 +77,27 @@ public class ModifyCommand extends Command implements LoggerInterface {
             storage.updateTask(taskList);
         } catch (IOException e) {
             ui.printErrorForIO();
+        }
+    }
+
+    //@@author T-Wan-Lin
+    private void markTask(TaskList taskList, Ui ui) throws IndexOutOfBoundsException {
+        if (!taskList.get(idx).isDone()){
+            taskList.get(idx).setDone(true);
+            ui.printMarkDone(taskList.get(idx));
+        } else {
+            ui.printTaskHasBeenMarkedPreviously();
+        }
+    }
+
+
+    //@@author T-Wan-Lin
+    private void unmarkTask(TaskList taskList, Ui ui) throws IndexOutOfBoundsException {
+        if (taskList.get(idx).isDone()){
+            taskList.get(idx).setDone(false);
+            ui.printMarkNotDone(taskList.get(idx));
+        } else {
+            ui.printTaskHasBeenUnmarkedPreviously();
         }
     }
 
