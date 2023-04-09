@@ -14,6 +14,7 @@ import model.TagUUID;
 import utils.UserInterface;
 import utils.exceptions.InkaException;
 import utils.exceptions.LongTagNameException;
+import utils.exceptions.TagNotFoundException;
 import utils.exceptions.TagNotInCardException;
 import utils.exceptions.UUIDWrongFormatException;
 import utils.storage.IDataStorage;
@@ -38,13 +39,15 @@ public class RemoveTagFromCardCommand extends Command {
      * @param tagToDelete  The target tag that is to be deleted from the Card
      */
     private void removeTagFromCard(Card cardAffected, Tag tagToDelete)
-            throws TagNotInCardException, LongTagNameException {
+            throws TagNotInCardException, LongTagNameException, TagNotFoundException {
 
-        if (tagToDelete.getTagName().length() > 50) {
+        Optional<String> tagName = tagSelector.getTagName();
+
+        if (tagName.get().length() > 50) {
             throw new LongTagNameException();
-        }
-
-        if (!tagToDelete.cardIsInTag(cardAffected.getUuid())) {
+        } else if (tagToDelete == null) {
+            throw new TagNotFoundException();
+        } else if (!tagToDelete.cardIsInTag(cardAffected.getUuid())) {
             throw new TagNotInCardException();
         }
 

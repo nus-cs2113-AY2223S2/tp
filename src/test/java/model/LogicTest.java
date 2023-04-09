@@ -1,5 +1,6 @@
 package model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -18,8 +19,11 @@ import utils.command.EditTagNameCommand;
 import utils.command.RemoveCardFromDeckCommand;
 import utils.command.RemoveTagFromCardCommand;
 import utils.command.RemoveTagFromDeckCommand;
+import utils.exceptions.CardInTagException;
+import utils.exceptions.CardNotFoundException;
 import utils.exceptions.CardNotInDeck;
 import utils.exceptions.InkaException;
+import utils.exceptions.LongTagNameException;
 import utils.exceptions.TagNeverWasInDeck;
 import utils.parser.Parser;
 import utils.storage.FakeStorage;
@@ -193,9 +197,97 @@ public class LogicTest {
                 () -> parseAndExecute("deck delete -d testDeck -t testTag", RemoveTagFromDeckCommand.class),
                 "Tag not added to deck");
 
-
         // Card should remain in Deck
         assert deckList.get(0).getCardsSet().size() == 1;
+    }
+
+    @Test
+    public void logic_tagExistingTag() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+        // Create tag
+        parseAndExecute("card tag -t testTag -i 1", AddCardToTagCommand.class);
+
+        final String TAG_IN_CARD_STR = "Card is already a part of the Tag";
+
+        // Create tag with long name
+        try {
+            parseAndExecute(
+                    "card tag -t testTag -i 1",
+                    AddCardToTagCommand.class);
+        } catch (CardInTagException e) {
+            assertEquals(e.getUiMessage(), TAG_IN_CARD_STR);
+        }
+    }
+
+    @Test
+    public void logic_tagMissingCard() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        final String MISSING_CARD_STR = "Card cannot be found";
+
+        //tag non-existent card
+        try {
+            parseAndExecute(
+                    "card tag -t testTag -i 100",
+                    AddCardToTagCommand.class);
+        } catch (CardNotFoundException e) {
+            assertEquals(e.getUiMessage(), MISSING_CARD_STR);
+        }
+    }
+
+    @Test
+    public void logic_untagMissingCard() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        final String MISSING_CARD_STR = "Card cannot be found";
+
+        //Untag a non-existent card
+        try {
+            parseAndExecute(
+                    "card untag -t testTag -i 100",
+                    RemoveTagFromCardCommand.class);
+        } catch (CardNotFoundException e) {
+            assertEquals(e.getUiMessage(), MISSING_CARD_STR);
+        }
+    }
+
+    @Test
+    public void logic_untagLongName() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        final String LONG_TAGNAME_EXCEPTION_STR = "Tag name specified is too long.";
+
+        // Create tag with long name
+        try {
+            parseAndExecute(
+                    "card untag -t "
+                            +
+                            "jghsjhgshdkhsdjkghsdjksghsjghsjzkghjsdghjdszjsdzhgjskdghghjsdhgsdjhgjsddsjkghsdjskdhgjdsghjkghdhgsdjkghjkhgdsjghjhgjkzshgjshzgjszhguisghsdghsizghzsjghgsezgsgsg -i 1",
+                    RemoveTagFromCardCommand.class);
+        } catch (LongTagNameException e) {
+            assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+        }
+    }
+
+    @Test
+    public void logic_tagLongName() throws InkaException {
+        // Create card
+        parseAndExecute("card add -q test1 -a test1", AddCardCommand.class);
+
+        final String LONG_TAGNAME_EXCEPTION_STR = "Tag name specified is too long.";
+
+        // Create tag with long name
+        try {
+            parseAndExecute(
+                    "card tag -t jghsjhgshdkhsdjkghsdjksghsjghsjzkghjsdghjdszjsdzhgjskdghghjsdhgsdjhgjsddsjkghsdjskdhgjdsghjkghdhgsdjkghjkhgdsjghjhgjkzshgjshzgjszhguisghsdghsizghzsjghgsezgsgsg -i 1",
+                    AddCardToTagCommand.class);
+        } catch (LongTagNameException e) {
+            assertEquals(e.getUiMessage(), LONG_TAGNAME_EXCEPTION_STR);
+        }
     }
 
     @Test
