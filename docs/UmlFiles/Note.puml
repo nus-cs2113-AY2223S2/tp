@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+@startuml
+title Sequence Diagram for Store
+
+actor User
+
+User -> Store **: Store(notes, toDo)
+activate Store
+deactivate Store
+
+User -> Store:storeNotes()
+
+alt isInvalidTodo(toDo) is "Invalid todo"
+    Store -> Ui : Ui.printIncorrectFormatEntered()
+    activate Ui
+    deactivate Ui
+    else
+    Store -> notes: notes.add(toDo)
+    activate notes
+    deactivate notes
+    Store -> Ui: Ui.printAddNote(toDo, notes.getSize());
+    activate Ui
+    deactivate Ui
+    Store -> NotesFileWriter: NotesFileWriter.saveFile(filePath, notes.getAll())
+    activate NotesFileWriter
+    deactivate NotesFileWriter
+    end
+@enduml
