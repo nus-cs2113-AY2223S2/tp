@@ -88,9 +88,9 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 How the `Parser` component works:
 1. When `Parser` is called to execute a command, it uses the `Parser` class to parse the user command. 
 2. The `Parser` class uses `UserInput` class to split the user input.
-2. This results in a `Command` object(more precisely, an object of one of its subclasses eg., `AddExpenseCommand`) which is executed by the `runCommandUntilExitCommand` method in BrokeMan class.
-3. The command can communicate with the `EntryList` component when it is executed(eg. to add an expense in the expense list)
-4. The result of the command execution is returned back from `Parser`.
+3. This results in a `Command` object(more precisely, an object of one of its subclasses eg., `AddExpenseCommand`) which is executed by the `runCommandUntilExitCommand` method in BrokeMan class.
+4. The command can communicate with the `EntryList` component when it is executed(eg. to add an expense in the expense list)
+5. The result of the command execution is returned back from `Parser`.
 
 How the parsing works:
 
@@ -116,7 +116,7 @@ The **API** of this component is specified in [`SaveBudget.java`](https://github
 
 The `Save` component,
 
-- can save entrylist data and budget data in the hard disk as txt files, and read them back into corresponding objects.
+- can save entryList data and budget data in the hard disk as .txt files, and read them back into corresponding objects.
 - depends on some classes in the EntryList component and Budget component(because the Save component’s job is to save/retrieve objects that belong to the EntryList and Budget)
 
 [back to contents](#table-of-contents)
