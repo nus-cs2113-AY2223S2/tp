@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+actor User
+participant ":Duke" as Duke
+
+Duke -> Ui: getUserInput()
+activate Duke
+activate Ui
+User -> Ui: User input
+return User input
+Duke -> Parser : processCommand(userInput)
+activate Parser
+Parser-> CalorieParser: CalorieParser(arguments)
+activate CalorieParser
+CalorieParser-> parseViewCalorieCommand : parseViewCalorieCommand(arguments)
+activate parseViewCalorieCommand
+parseViewCalorieCommand -> ViewCalorieCommand:ViewCalorieCommand(date)
+activate ViewCalorieCommand
+return StringBuilder
+return StringBuilder
+return StringBuilder
+return StringBuilder
+@enduml
