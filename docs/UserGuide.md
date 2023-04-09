@@ -199,7 +199,7 @@ Example of Valid Command :
 unmark uID/C26135173W
 ______________________________________________________________________
 The appointment has been unmarked successfully
-Task marked successfully!
+Task unmarked successfully!
 ______________________________________________________________________
 ```
 Example of InValid Command :
