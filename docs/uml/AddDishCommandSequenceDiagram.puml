@@ -21,8 +21,11 @@ AddDishCommand -> DishManager ++ : addDish("dish name", price, ["ingredient 1", 
 create Dish
 Dish <- DishManager ++ : create new Dish("dish name", price, ["ingredient 1", "ingredient 2", ...])
 Dish --> DishManager
+deactivate
 AddDishCommand <-- DishManager
+deactivate
 <-- AddDishCommand: ui.printMessage()
 
+destroy AddDishCommand
 |||
 @enduml

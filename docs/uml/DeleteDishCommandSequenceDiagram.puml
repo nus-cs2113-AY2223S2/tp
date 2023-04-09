@@ -14,9 +14,11 @@ endbox
 -> DeleteDishCommand ++ : DeleteDishCommand(index)
 -> DeleteDishCommand: execute(index)
 DeleteDishCommand -> DishManager ++ : deleteDish(index)
-
 DeleteDishCommand <-- DishManager
+deactivate
 <-- DeleteDishCommand: ui.printMessage()
 
+destroy DeleteDishCommand
 |||
+
 @enduml

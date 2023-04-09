@@ -13,9 +13,10 @@ endbox
 -> ViewDishCommand ++ : ViewDishCommand()
 -> ViewDishCommand: execute()
 ViewDishCommand -> DishManager ++ : viewDish()
-
 ViewDishCommand <-- DishManager
+deactivate
 <-- ViewDishCommand: ui.printMessage()
 
 |||
+destroy ViewDishCommand
 @enduml

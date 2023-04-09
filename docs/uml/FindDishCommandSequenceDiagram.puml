@@ -13,9 +13,10 @@ endbox
 -> FindDishCommand ++ : FindDishCommand(stringToFind)
 -> FindDishCommand: execute(stringToFind)
 FindDishCommand -> DishManager ++ : findDish(stringToFind)
-
 FindDishCommand <-- DishManager
+deactivate
 <-- FindDishCommand: ui.printMessage()
 
+destroy FindDishCommand
 |||
 @enduml
