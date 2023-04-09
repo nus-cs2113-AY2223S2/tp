@@ -101,8 +101,6 @@ the relevant features of the application.
 
 
 ### Search book by title
-<img src="images/Search%20class%20diagram.png" width="50%" height="50%" />  
-
 Description: Searches for a book using its title.  
 Format: `search -title TITLE`  
 Example:  
