@@ -117,8 +117,12 @@ public class GeneralCommandHandler implements CommandList {
                 }
                 break;
             case IPPT_COMMAND:
-                IPPTCmd generateIPPT = new IPPTCmd(Arrays.copyOfRange(userCommands, 1, 5));
-                generateIPPT.addIPPTSession(exerciseGenerator, userCareerData, storage);
+                if (additionalDescription.length() == 0) {
+                    ui.unknownCommand();
+                } else {
+                    IPPTCmd generateIPPT = new IPPTCmd(Arrays.copyOfRange(userCommands, 1, 5));
+                    generateIPPT.addIPPTSession(exerciseGenerator, userCareerData, storage);
+                }
                 break;
             case QUICK_START_COMMAND:
                 if (additionalDescription.length() == 0) {

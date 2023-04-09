@@ -15,7 +15,12 @@ import java.util.ArrayList;
 //@@author ghzr0
 public class IPPTCmd {
     private IPPTCalc ipptCalculator;
-
+    /**
+     * Reads in the user's input of the 3 exercises
+     * @param userCommands User's inputs for the arguments in the sequence:
+     *                     age , runtime score, pushup score and situp score
+     * @throws DukeError   If user keys in an invalid argument or invalid input format
+     **/
     // pass in input : IPPT [age] [runtime] [pushup score] [situp score]
     public IPPTCmd (String[] userCommands) throws DukeError {
         String userInputAge = userCommands[0];
@@ -31,12 +36,20 @@ public class IPPTCmd {
             int situpReps = Integer.parseInt(userInputSitups);
             ipptCalculator = new IPPTCalc(ageGroup, userInputRunTime, pushupReps, situpReps);
         } catch (NullPointerException | NumberFormatException numberFormatError) {
-            throw new DukeError("Invalid IPPT input (ensure that you have a reasonable input)");
+            throw new DukeError(ErrorMessages.ERROR_IPPT_INVALID_FORMAT.toString());
         } catch (Exception e) {
             throw new DukeError(e.getMessage());
         }
     }
-
+    /**
+     * Adds a valid IPPT exercise session to the user's list of completed exercise sessions
+     * @param storage           This handles the storage of data
+     * @param exerciseGenerator This takes in filter parameters and outputs a
+     *      *                   curated exercise list
+     * @param userCareerData    This keeps track and allows logging of all user
+     *      *                   data
+     * @throws DukeError
+     **/
     public void addIPPTSession (GenerateExercise exerciseGenerator, UserCareerData userCareerData,
                                 Storage storage) throws DukeError {
         UserScore userScore = new UserScore();
@@ -57,6 +70,5 @@ public class IPPTCmd {
             throw new DukeError(e.getMessage());
         }
     }
-
 }
 

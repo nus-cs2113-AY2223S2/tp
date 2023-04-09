@@ -17,6 +17,14 @@ public class IPPTCalc {
     private int situpReps;
     private Scores scores;
 
+    /**
+     * Abstract the corresponding points according to the user's input based on the scores.json file
+     * @param age          User's input of age
+     * @param pushupReps   User's input of pushup repetitions in 1 minute
+     * @param runTimeInput User's input of runtime for the 2.4km run
+     * @param situpReps    User's input of situp repetitions in 1 minute
+     * @throws Exception
+     **/
     public IPPTCalc (int age, String runTimeInput, int pushupReps, int situpReps) throws Exception {
         loadScoringData();
         setAgeGroup(age);
@@ -24,7 +32,10 @@ public class IPPTCalc {
         this.pushupReps = pushupReps;
         this.situpReps = situpReps;
     }
-
+    /**
+     * Loads the scores.json file
+     * @throws DukeError if scores.json file is not able to load
+     **/
     public void loadScoringData () throws DukeError {
         try (Reader reader = new InputStreamReader(Objects.requireNonNull(this.getClass()
                                                                               .getResourceAsStream("/scores.json")))) {
@@ -33,7 +44,10 @@ public class IPPTCalc {
             throw new DukeError(ErrorMessages.ERROR_LOAD_SCORES_FILE.toString());
         }
     }
-
+    /**
+     * Reads the user's age input
+     * @throws DukeError if user keys in an invalid age input(under or over the valid age range)
+     **/
     public void setAgeGroup (int age) throws DukeError {
         if (age < 22 && age >= 16) {
             this.ageGroup = 1;
@@ -43,7 +57,9 @@ public class IPPTCalc {
             this.ageGroup = ((age - 22) / 3) + 2;
         }
     }
-
+    /**
+     * Reads and calculates the run score based on the user's run score input
+     **/
     public int calculateRun () {
         int runScore;
         if (runReps < 60 && runReps >= 0) {
@@ -53,7 +69,10 @@ public class IPPTCalc {
         }
         return runScore;
     }
-
+    /**
+     * Reads and calculates the pushup score based on the user's pushup score input
+     * @throws DukeError if user keys in an invalid pushup input(negative number)
+     **/
     public int calculatePushup () throws DukeError {
         int pushScore;
         if (pushupReps < 0) {
@@ -68,7 +87,10 @@ public class IPPTCalc {
         }
         return pushScore;
     }
-
+    /**
+     * Reads and calculates the situp score based on the user's situp score input
+     * @throws DukeError if user keys in an invalid situp input(negative number)
+     **/
     public int calculateSitup () throws DukeError {
         int sitScore;
         if (situpReps < 0) {
@@ -83,7 +105,11 @@ public class IPPTCalc {
         }
         return sitScore;
     }
-
+    /**
+     * Converts the run score to integer form based on the user's run score input in string form
+     * @param userRunTimeInput User's input of the runtime for the 2.4km run exercise
+     * @throws Exception       (if user keys in an invalid runtime input)
+     **/
     public void parseRunTime (String userRunTimeInput) throws Exception {
         try {
             String[] runTime = userRunTimeInput.split(":");

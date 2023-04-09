@@ -2,6 +2,9 @@ package seedu.duke.data.ipptcalculator;
 
 //@@author ghzr0
 public class UserScore {
+    /**
+     * The following are the constructor classes for the functions involved in obtaining the scores for the 3 exercises
+     **/
 
     private int situpScore;
     private int pushupScore;
