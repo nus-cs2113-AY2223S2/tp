@@ -263,12 +263,13 @@ expenditures for the month.
 
 ### Exceptions package
 
-{TODO}
+The exceptions component consists of classes `RainyDayException` and `ErrorMessage`.
 
-The exceptions component consists of classes `ErrorMessage` and `RainyDayException`.
+#### RainyDayException
+- Extends the built-in "Exception" class and takes a string parameter "errorMessage".
 
-- `ErrorMessages`:
-- `RainyDayException`:
+#### ErrorMessages
+- An enum class consisting of all the error messages thrown by `RainyDayException`
 
 ## Implementation
 

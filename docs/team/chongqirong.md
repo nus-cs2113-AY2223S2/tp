@@ -10,16 +10,19 @@ My contributions can be found in the [RepoSense](https://nus-cs2113-ay2223s2.git
 link
 
 ### Enhancements implemented
+
 - Filter feature: Allows user to filter transactions based on a set of criteria
 - Edit feature: Allows users to edit fields in a transaction
 
 ### Contributions to the User Guide
+
 - Features: Filtering transactions
 - Features: Edit a transaction
 - Preamble for sections such as Transactions and Data Management
 - Assisted with screenshots for various sections of the user guide
 
 ### Contributions to the Developer Guide
+
 - Implementation of editing an entry
 - Implementation of filtering data
 
