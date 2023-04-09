@@ -30,6 +30,10 @@ public class Clanki {
         new Clanki().run();
     }
 
+    /**
+     * Function that loop the process of getting an user input, processing the
+     * input and execute the command, until a ByeCommand is inputted.
+     */
     public void run() {
         while (true) {
             String inputText = ui.getUserCommand();

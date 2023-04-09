@@ -22,7 +22,7 @@ public class FlashcardListEncoder {
      * Encodes all the {@code Flashcards} in the {@code toSave} into a list of decodable and readable
      * string presentation for storage.
      */
-    public static List<String> encodeAddressBook(FlashcardList toSave) {
+    public static List<String> encodeFlashcardList(FlashcardList toSave) {
         final List<String> encodedFlashcards = new ArrayList<>();
         toSave.getFlashCards().forEach(flashcard -> encodedFlashcards.add(encodeFlashcardToString(flashcard)));
         return encodedFlashcards;

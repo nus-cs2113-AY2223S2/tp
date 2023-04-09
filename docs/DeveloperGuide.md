@@ -21,12 +21,10 @@
 
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the
-original source as well}
+- [addressbook-level2](https://github.com/se-edu/addressbook-level2)
+- [Song Zijin 's IP](https://github.com/SongZijin/ip)
 
 ## Design & implementation
-
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
 ### Add Flashcard Feature
 
@@ -46,7 +44,8 @@ Step 2:
 The input string will be converted into a `Command` object by being passed through
 `parseCommand(String userInput)` inside `Parser`.
 
-In this case, an `AddCommand` will be created and returned.
+In this case, an `AddCommand` will be created and returned, as shown in the object diagram below:
+![AddFlashcardObjectDiagram.png](umlDiagrams%2FAddFlashcardObjectDiagram.png)
 
 Step 3:
 The `execute()` function of `AddCommand` will run, calling `addNewFlashcard(questionText, answerText)`
@@ -59,7 +58,7 @@ At this point, the adding process is completed and the program is ready to take 
 command.
 
 The following sequence diagram show how the add operation works:
-![AddFlashcard-0.png](umlDiagrams%2FAddFlashcard-0.png)
+![AddFlashcardSequence.png](umlDiagrams%2FAddFlashcardSequence.png)
 
 #### Reason for current implementation
 
@@ -288,6 +287,37 @@ handle. That's why the two classes are here.
 
 No.
 
+### Storage Feature
+
+#### Current implementation
+
+The current storage feature triggers after every execution of command, updating the flashcardList.txt file
+to be the came as what is stored in the `FlashcardList` object.
+
+The entire feature consist of 3 parts, as shown in the class diagram below:
+![StorageClassDiagm.png](umlDiagrams%2FStorageClassDiagm.png)
+
+1. `FlashcardListEncoder`: takes the list of flashcards from `FlashcardList` and convert them to a list of strings, with
+   heading to indicate the start of the question, answer and deadline portion of a flashcard.
+2. `FlashcardListDecoder`: takes a list of string in specific format (as defined by `FLASHCARD_ARGS_FORMAT`) and decodes
+   the string into an arrayList of flashcards, discarding any string of incorrect format.
+3. `StorageFile`: uses the encoder or decoder to save or load the current state into or from a text file.
+
+The following sequence diagram show how the add operation works:
+![StorageSequenceDiagram.png](umlDiagrams%2FStorageSequenceDiagram.png)
+
+#### Reason for current implementation
+
+By separating the decoder and encoder as separate classes, it allows the code for the storage system to be more readable
+by others, allowing them to identify and find the chunk of code for each function more easily, and possibly reuse the
+functions if they deem necessary in future versions.
+
+#### Alternative implementation
+
+- Alternative 1: Have all functions in one `Storage` class
+    - Pros: Exceptions can be handled in the same place
+    - Cons: Will cause the code be less organised and readable
+
 ## Product scope
 
 ### Target user profile
@@ -296,14 +326,21 @@ No.
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+This application help users to better remember key points in their upcomming tests by providing them a platform to
+read through and practice answering those key learning points.
 
 ## User Stories
 
-| Version | As a ... | I want to ...             | So that I can ...                                           |
-|---------|----------|---------------------------|-------------------------------------------------------------|
-| v1.0    | new user | see usage instructions    | refer to them when I forget how to use the application      |
-| v2.0    | user     | find a to-do item by name | locate a to-do without having to go through the entire list |
+| Version | As a ...                | I want to ...                                                                   | So that I can ...                                                                                   |
+|---------|-------------------------|---------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| v1.0    | user                    | add a card to my flashcard collection                                           | study it later on                                                                                   |
+| v1.0    | user                    | delete any of my cards                                                          | prevent getting asked to review that card later when I am confident I have truly memorised the card |
+| v1.0    | user                    | review the cards that are due today                                             | remember them better                                                                                |
+| v1.0    | user                    | make changes to the q/a any cards I want                                        | keep the info there always updated with what I want myself to memorise                              |
+| v1.0    | user seeking efficiency | review the cards at an appropriate pace that is most efficient for memorisation | not waste time reviewing when I still remember the cards well                                       |
+| v2.0    | new user                | see usage instructions                                                          | refer to them when I forget how to use the application                                              |
+| v2.0    | busy user               | store the cards somewhere                                                       | revisit them next time I open the app                                                               |
+| v2.0    | organised user          | view a list of all currently stored flashcards                                  | know what are the things I need to remember                                                         |
 
 ## Non-Functional Requirements
 

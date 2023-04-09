@@ -61,8 +61,8 @@ public class StorageFile {
      */
     public void save(FlashcardList flashcardList) throws StorageOperationException {
         try {
-            List<String> encodedAddressBook = FlashcardListEncoder.encodeAddressBook(flashcardList);
-            Files.write(path, encodedAddressBook);
+            List<String> encodedFlashcardList = FlashcardListEncoder.encodeFlashcardList(flashcardList);
+            Files.write(path, encodedFlashcardList);
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         }
@@ -86,10 +86,6 @@ public class StorageFile {
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);
         }
-    }
-
-    public String getPath() {
-        return path.toString();
     }
 
 

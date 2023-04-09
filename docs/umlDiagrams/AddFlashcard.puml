@@ -21,7 +21,7 @@ create AddCommand
 Parser -> AddCommand : AddCommand(question, answer)
 activate AddCommand
 
-AddCommand -> Parser
+AddCommand --> Parser
 deactivate AddCommand
 
 Parser -> Main : command : AddCommand
@@ -33,18 +33,19 @@ activate AddCommand
 AddCommand -> FlashcardList : addNewFlashcard(question, answer)
 activate FlashcardList
 
-FlashcardList -> AddCommand
+FlashcardList --> AddCommand
 deactivate FlashcardList
 
 AddCommand -> Ui : printSuccessfulAddMessage(question, answer)
 activate Ui
 
-Main <- Ui : Display message
-Ui -> AddCommand
+
+Ui --> AddCommand
 deactivate Ui
 
-AddCommand -> Main
+AddCommand --> Main
 deactivate AddCommand
+destroy AddCommand
 
 
 

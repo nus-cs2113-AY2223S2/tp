@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.clanki.storage.FlashcardListDecoder.decodeFlashcardList;
-import static com.clanki.storage.FlashcardListEncoder.encodeAddressBook;
+import static com.clanki.storage.FlashcardListEncoder.encodeFlashcardList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -39,7 +39,7 @@ class FlashcardListDecoderTest {
         FlashcardList flashcardList = new FlashcardList();
         flashcardList.addNewFlashcard("q1", "a1");
         flashcardList.addNewFlashcard("q2", "a2");
-        List<String> encodedResult = encodeAddressBook(flashcardList);
+        List<String> encodedResult = encodeFlashcardList(flashcardList);
         ArrayList<Flashcard> decodedFlashcardList = decodeFlashcardList(encodedResult);
         Flashcard testCard1 = decodedFlashcardList.get(0);
         assertEquals("q1", testCard1.getQuestion());

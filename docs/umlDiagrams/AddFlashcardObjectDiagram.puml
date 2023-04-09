@@ -1,0 +1,9 @@
+@startuml
+object ":Parser" as Parser
+object "command :AddCommand" as AddCommand {
+    questionText :String
+    answerText :String
+}
+
+Parser -> AddCommand : creates >
+@enduml
