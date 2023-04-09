@@ -304,10 +304,44 @@ The Dish feature consists of three functions:
 
    Expected: Deadline with `Fix` in the name will be displayed.
 6. Incorrect commands to try:
-    1. `add_deadline` (No meeting added)
-    2. `view_deadlines abc` (No meetings shown)
-    3. `delete_deadline -1` (Invalid index for delete)
+    1. `add_deadline` (No deadline added)
+    2. `view_deadlines abc` (No deadlines shown)
+    3. `delete_deadline -1` (Invalid index for deadline)
 
 ### Dish Feature
 1. Users can `add_dish`, `view_dish`, `delete_dish`, `find_dish`
-2. 
+2. Test case: `add_dish n/Chicken Burger pc/1099 [tomatoes;chicken fillet;cheese;bread with sesame seeds;]`
+
+   Expected: Dish will be added to the list.
+3. Test case: `view_dish`
+
+   Expected: All dishes will be displayed.
+4. Test case: `delete_dish 1`
+
+   Expected: The dish at index 1 will be deleted.
+5. Test case: `find_dish Burger`
+
+   Expected: Dish with `Burger` in the name will be displayed.
+6. Incorrect commands to try:
+   1. `add_dish` (No dish added)
+   2. `view_dish abc` (No dish shown)
+   3. `delete_dish -1` (Invalid index for dish)
+
+### Staff Feature
+1. Users can `add_staff`, `view_staff`, `delete_staff`, `find_staff`
+2. Test case: `add_staff n/John Doe w/Tuesday d/1990-08-28 p/88193213`
+
+   Expected: Staff will be added to the list.
+3. Test case: `view_staff`
+
+   Expected: All staffs will be displayed.
+4. Test case: `delete_staff 1`
+
+   Expected: The staff at index 1 will be deleted.
+5. Test case: `find_staff John`
+
+   Expected: Staff with `John` in the name will be displayed.
+6. Incorrect commands to try:
+   1. `add_staff` (No staff added)
+   2. `view_staff abc` (No staff shown)
+   3. `delete_staff -1` (Invalid index for staff)

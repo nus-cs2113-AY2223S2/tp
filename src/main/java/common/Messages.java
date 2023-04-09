@@ -49,7 +49,7 @@ public class Messages {
      * Errors for programs to print.
      */
     public static final String ERROR_COMMAND_INVALID = "Please give a valid command! " +
-            "Type \"help\" for list of valid commands";
+            "Type \"help\" for list of valid commands\n";
     public static final String ERROR_HELP_EXCESS_PARAM = "help command should not have excess parameter!";
     public static final String ERROR_EXIT_EXCESS_PARAM = "exit command should not have excess parameter!";
     public static final String ERROR_DEADLINE_INVALID_INDEX = "Invalid deadline index number!\n" +
