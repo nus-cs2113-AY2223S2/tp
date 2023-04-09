@@ -23,7 +23,8 @@ public class ExceptionChecker {
 
     public static void checkValidDoubleInput(String amountVal) throws InvalidCharacterInAmount {
         String lowerCaseAmountVal = amountVal.toLowerCase();
-        boolean containsSpecialCharacter = (lowerCaseAmountVal.contains("f") || lowerCaseAmountVal.contains("d"));
+        boolean containsSpecialCharacter = (lowerCaseAmountVal.contains("f") || lowerCaseAmountVal.contains("d") ||
+                lowerCaseAmountVal.contains("e"));
         if (containsSpecialCharacter) {
             throw new InvalidCharacterInAmount();
         }

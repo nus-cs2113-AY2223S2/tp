@@ -1,5 +1,6 @@
 package seedu.txtdata;
 
+import seedu.exceptions.TxtFileException;
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.AcademicExpenditure;
 import seedu.expenditure.AccommodationExpenditure;
@@ -17,6 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -80,45 +82,95 @@ public abstract class TxtFileStatus {
     public static void initializeExpenditureList(ExpenditureList expenditures) throws FileNotFoundException {
         File f = new File(filePath); // create a File for the given file path
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        parseTxtFile(s, expenditures);
+    }
+
+    /**
+     * @author Chick3nBoy
+     */
+    public static void parseTxtFile(Scanner s, ExpenditureList expenditures) {
         while (s.hasNext()) {
-            String saveString = s.nextLine();
-            String[] saveData = saveString.split("d/|v/|t/|p/|n/|o/|r/");
-            if (Double.parseDouble(saveData[INDEX_VALUE]) <= 0) {
-                throw new NumberFormatException();
-            }
-            switch (saveData[INDEX_TYPE]) {
-            case "Acad":
-                initializeAcademicExpenditure(saveData, expenditures);
-                break;
-            case "Accom":
-                initializeAccommodationExpenditure(saveData, expenditures);
-                break;
-            case "B":
-                initializeBorrowExpenditure(saveData, expenditures);
-                break;
-            case "En":
-                initializeEntertainmentExpenditure(saveData, expenditures);
-                break;
-            case "F":
-                initializeFoodExpenditure(saveData, expenditures);
-                break;
-            case "L":
-                initializeLendExpenditure(saveData, expenditures);
-                break;
-            case "O":
-                initializeOtherExpenditure(saveData, expenditures);
-                break;
-            case "Tr":
-                initializeTransportExpenditure(saveData, expenditures);
-                break;
-            case "Tu":
-                initializeTuitionExpenditure(saveData, expenditures);
-                break;
-            default:
-                throw new ArrayIndexOutOfBoundsException();
+            try {
+                String saveString = s.nextLine();
+                String[] saveData = saveString.split("d/|v/|t/|p/|n/|o/|r/");
+                checkNegative(saveData[INDEX_VALUE]);
+                switch (saveData[INDEX_TYPE]) {
+                case "Acad":
+                    initializeAcademicExpenditure(saveData, expenditures);
+                    break;
+                case "Accom":
+                    initializeAccommodationExpenditure(saveData, expenditures);
+                    break;
+                case "B":
+                    initializeBorrowExpenditure(saveData, expenditures);
+                    break;
+                case "En":
+                    initializeEntertainmentExpenditure(saveData, expenditures);
+                    break;
+                case "F":
+                    initializeFoodExpenditure(saveData, expenditures);
+                    break;
+                case "L":
+                    initializeLendExpenditure(saveData, expenditures);
+                    break;
+                case "O":
+                    initializeOtherExpenditure(saveData, expenditures);
+                    break;
+                case "Tr":
+                    initializeTransportExpenditure(saveData, expenditures);
+                    break;
+                case "Tu":
+                    initializeTuitionExpenditure(saveData, expenditures);
+                    break;
+                default:
+                    throw new TxtFileException();
+                }
+            } catch (TxtFileException t) {
+                System.out.println(t.getMessage());
+            } catch (DateTimeParseException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                System.out.println(
+                        "TxtFile has been corrupted, the corrupted entry has been deleted");
             }
         }
         s.close();
+    }
+
+    /**
+     * @author Chick3nBoy
+     */
+    public static void checkNegative(String stringDouble) throws TxtFileException {
+        if (Double.parseDouble(stringDouble) <= 0.01) {
+            throw new TxtFileException();
+        }
+    }
+
+    /**
+     *
+     * @author Leo Zheng Rui Darren
+     */
+    public static void checkRepeatDate(String stringRepeatDate, String stringFirstDate) throws TxtFileException {
+        LocalDate repeatDate = LocalDate.parse(stringRepeatDate);
+        LocalDate firstDate = LocalDate.parse(stringFirstDate);
+        compareMonth(repeatDate, firstDate);
+        compareDay(repeatDate, firstDate);
+    }
+
+    public static void compareMonth(LocalDate repeatDate, LocalDate firstDate) throws TxtFileException {
+        int repeatMonth = repeatDate.getMonthValue();
+        int firstMonth = firstDate.getMonthValue();
+        boolean isSameMonth = (repeatMonth == firstMonth);
+        if (!isSameMonth) {
+            throw new TxtFileException();
+        }
+    }
+
+    public static void compareDay(LocalDate repeatDate, LocalDate firstDate) throws TxtFileException {
+        int repeatDay = repeatDate.getDayOfMonth();
+        int firstDay = firstDate.getDayOfMonth();
+        boolean isSameDay = (repeatDay == firstDay);
+        if (!isSameDay) {
+            throw new TxtFileException();
+        }
     }
 
     public static void initializeAcademicExpenditure(String[] saveData, ExpenditureList expenditures) {
@@ -129,7 +181,9 @@ public abstract class TxtFileStatus {
         expenditures.addExpenditure(academicExpenditure);
     }
 
-    public static void initializeAccommodationExpenditure(String[] saveData, ExpenditureList expenditures) {
+    public static void initializeAccommodationExpenditure(String[] saveData, ExpenditureList expenditures)
+            throws TxtFileException {
+        checkRepeatDate(saveData[INDEX_REPEAT_DATE], saveData[INDEX_DATE]);
         AccommodationExpenditure accommodationExpenditure = new AccommodationExpenditure(
                 saveData[INDEX_DESCRIPTION],
                 Double.parseDouble(saveData[INDEX_VALUE]),
@@ -137,6 +191,10 @@ public abstract class TxtFileStatus {
                 LocalDate.parse(saveData[INDEX_REPEAT_DATE]));
         if (saveData[INDEX_IS_PAID].equals(AccommodationExpenditure.iconPaid)) {
             accommodationExpenditure.setPaid();
+        } else if (saveData[INDEX_IS_PAID].equals(AccommodationExpenditure.iconUnpaid)) {
+            accommodationExpenditure.resetPaid();
+        } else {
+            throw new TxtFileException();
         }
         expenditures.addExpenditure(accommodationExpenditure);
     }
@@ -193,7 +251,9 @@ public abstract class TxtFileStatus {
         expenditures.addExpenditure(transportExpenditure);
     }
 
-    public static void initializeTuitionExpenditure(String[] saveData, ExpenditureList expenditures) {
+    public static void initializeTuitionExpenditure(String[] saveData, ExpenditureList expenditures)
+            throws TxtFileException {
+        checkRepeatDate(saveData[INDEX_REPEAT_DATE], saveData[INDEX_DATE]);
         TuitionExpenditure tuitionExpenditure = new TuitionExpenditure(
                 saveData[INDEX_DESCRIPTION],
                 Double.parseDouble(saveData[INDEX_VALUE]),
@@ -201,6 +261,10 @@ public abstract class TxtFileStatus {
                 LocalDate.parse(saveData[INDEX_REPEAT_DATE]));
         if (saveData[INDEX_IS_PAID].equals(TuitionExpenditure.iconPaid)) {
             tuitionExpenditure.setPaid();
+        } else if (saveData[INDEX_IS_PAID].equals(TuitionExpenditure.iconUnpaid)) {
+            tuitionExpenditure.resetPaid();
+        } else {
+            throw new TxtFileException();
         }
         expenditures.addExpenditure(tuitionExpenditure);
     }

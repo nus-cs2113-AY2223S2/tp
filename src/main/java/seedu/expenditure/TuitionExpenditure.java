@@ -47,6 +47,7 @@ public class TuitionExpenditure extends Expenditure {
         while (repeatDate.isBefore(currentDate) || repeatDate.equals(firstDate)) {
             repeatDate = setNextRepeatDate();
         }
+        System.out.println(repeatDate);
     }
 
     public void handleNextRepeat() {
