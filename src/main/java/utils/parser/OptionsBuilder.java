@@ -5,21 +5,6 @@ import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 
 public class OptionsBuilder {
-    // Keywords
-    public static final String CARD_KEYWORD = "card";
-    public static final String TAG_KEYWORD = "tag";
-    public static final String DECK_KEYWORD = "deck";
-
-    // Actions
-    public static final String ADD_ACTION = "add";
-    public static final String DELETE_ACTION = "delete";
-    public static final String TAG_ACTION = "tag";
-
-    public static final String UNTAG_ACTION = "untag";
-    public static final String VIEW_ACTION = "view";
-    public static final String DECK_ACTION = "deck";
-    public static final String EDIT_ACTION = "edit";
-    public static final String LIST_ACTION = "list";
 
     // Flags
     protected static final String FLAG_CARD = "c";
@@ -47,48 +32,58 @@ public class OptionsBuilder {
 
     public Options buildOptions() {
         switch (model) {
-        case CARD_KEYWORD:
+        case Parser.CARD_KEYWORD:
             switch (keyword) {
-            case ADD_ACTION:
+            case CardKeywordParser.ADD_ACTION:
                 return buildAddOptions();
-            case TAG_ACTION:
+            case CardKeywordParser.TAG_ACTION:
                 return buildTagOptions();
-            case UNTAG_ACTION:
+            case CardKeywordParser.UNTAG_ACTION:
                 return buildUntagOptions();
-            case VIEW_ACTION:
+            case CardKeywordParser.VIEW_ACTION:
                 return buildViewOptions();
-            case DELETE_ACTION:
-                return buildDeleteOptions(CARD_KEYWORD);
-            case DECK_ACTION:
-                return buildDeckOptions(CARD_KEYWORD);
+            case CardKeywordParser.DELETE_ACTION:
+                return buildDeleteOptions(Parser.CARD_KEYWORD);
+            case CardKeywordParser.DECK_ACTION:
+                return buildDeckOptions(Parser.CARD_KEYWORD);
             default:
+                // Should be exhaustive
+                assert false;
                 return null;
             }
-        case TAG_KEYWORD:
+        case Parser.TAG_KEYWORD:
             switch (keyword) {
-            case DELETE_ACTION:
-                return buildDeleteOptions(TAG_KEYWORD);
-            case DECK_ACTION:
-                return buildDeckOptions(TAG_KEYWORD);
-            case EDIT_ACTION:
-                return buildEditOptions(TAG_KEYWORD);
-            case LIST_ACTION:
-                return buildListOptions(TAG_KEYWORD);
+            case TagKeywordParser.DELETE_ACTION:
+                return buildDeleteOptions(Parser.TAG_KEYWORD);
+            case TagKeywordParser.DECK_ACTION:
+                return buildDeckOptions(Parser.TAG_KEYWORD);
+            case TagKeywordParser.EDIT_ACTION:
+                return buildEditOptions(Parser.TAG_KEYWORD);
+            case TagKeywordParser.LIST_ACTION:
+                return buildListOptions(Parser.TAG_KEYWORD);
             default:
+                // Should be exhaustive
+                assert false;
                 return null;
             }
-        case DECK_KEYWORD:
+        case Parser.DECK_KEYWORD:
             switch (keyword) {
-            case DELETE_ACTION:
-                return buildDeleteOptions(DECK_KEYWORD);
-            case EDIT_ACTION:
-                return buildEditOptions(DECK_KEYWORD);
-            case LIST_ACTION:
-                return buildListOptions(DECK_KEYWORD);
+            case DeckKeywordParser.DELETE_ACTION:
+                return buildDeleteOptions(Parser.DECK_KEYWORD);
+            case DeckKeywordParser.EDIT_ACTION:
+                return buildEditOptions(Parser.DECK_KEYWORD);
+            case DeckKeywordParser.LIST_ACTION:
+                return buildListOptions(Parser.DECK_KEYWORD);
+            case DeckKeywordParser.RUN_ACTION:
+                return buildRunOptions();
             default:
+                // Should be exhaustive
+                assert false;
                 return null;
             }
         default:
+            // Should be exhaustive
+            assert false;
             return null;
         }
     }
@@ -130,13 +125,13 @@ public class OptionsBuilder {
     public static Options buildDeleteOptions(String model) {
         Options options = new Options();
         switch (model) {
-        case CARD_KEYWORD:
+        case Parser.CARD_KEYWORD:
             options.addOptionGroup(buildCardSelectOption());
             break;
-        case TAG_KEYWORD:
+        case Parser.TAG_KEYWORD:
             options.addOptionGroup(buildTagSelectOption());
             break;
-        case DECK_KEYWORD:
+        case Parser.DECK_KEYWORD:
             options.addRequiredOption(FLAG_DECK, FLAG_LONG_DECK, true, "deck name");
             options.addOption(FLAG_CARD, FLAG_LONG_CARD, true, "card name (optional)");
             options.addOption(FLAG_TAG, FLAG_LONG_TAG, true, "tag name (optional)");
@@ -149,10 +144,10 @@ public class OptionsBuilder {
     public static Options buildDeckOptions(String model) {
         Options options = new Options();
         switch (model) {
-        case CARD_KEYWORD:
+        case Parser.CARD_KEYWORD:
             options.addOptionGroup(buildCardSelectOption());
             break;
-        case TAG_KEYWORD:
+        case Parser.TAG_KEYWORD:
             options.addOptionGroup(buildTagSelectOption());
             break;
         default:
@@ -165,12 +160,12 @@ public class OptionsBuilder {
 
         Options options = new Options();
         switch (model) {
-        case TAG_KEYWORD:
+        case Parser.TAG_KEYWORD:
             options.addRequiredOption("o", "old", true, "Old tag name");
             Option newTag = buildMultipleTokenOption("n", "new", true, "New tag name", true);
             options.addOption(newTag);
             break;
-        case DECK_KEYWORD:
+        case Parser.DECK_KEYWORD:
             options.addRequiredOption("o", "old", true, "Old deck name");
             options.addRequiredOption("n", "new", true, "New deck name");
             break;
@@ -183,17 +178,23 @@ public class OptionsBuilder {
     private static Options buildListOptions(String model) {
         Options options = new Options();
         switch (model) {
-        case TAG_KEYWORD:
+        case Parser.TAG_KEYWORD:
             options.addOption(FLAG_TAG, FLAG_LONG_TAG, true, "tag UUID or name (optional)");
             options.addOption(FLAG_TAG_INDEX, FLAG_LONG_TAG_INDEX, true, "tag index (optional)");
             break;
-        case DECK_KEYWORD:
+        case Parser.DECK_KEYWORD:
             options.addOption(FLAG_CARD, FLAG_LONG_CARD, true, "deck name to list cards from (optional)");
             options.addOption(FLAG_TAG, FLAG_LONG_TAG, true, "deck name to list tags from (optional)");
             break;
         default:
             return null;
         }
+        return options;
+    }
+
+    private static Options buildRunOptions() {
+        Options options = new Options();
+        options.addRequiredOption(FLAG_DECK, FLAG_LONG_DECK,true, "deck to review");
         return options;
     }
 

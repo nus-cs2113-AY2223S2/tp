@@ -10,6 +10,7 @@ import model.CardUUID;
 import model.Deck;
 import model.DeckList;
 import model.TagList;
+import model.TagUUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.UserInterface;
@@ -219,7 +220,10 @@ public class CardParserTest {
         Command cmd = parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 -t tagName");
         assert cmd instanceof AddCardToTagCommand;
         cmd.execute(cardList, tagList, deckList, ui, storage);
+
         assert tagList.findTagFromName("tagName") != null;
+        TagUUID tagUUID = cardList.getCards().get(0).getTagsUUID().get(0);
+        assert tagList.get(0).getUUID().equals(tagUUID);
     }
 
     @Test
@@ -228,7 +232,10 @@ public class CardParserTest {
         Command cmd = parser.parseCommand("card tag -c 00000000-0000-0000-0000-000000000000 --tag tagName");
         assert cmd instanceof AddCardToTagCommand;
         cmd.execute(cardList, tagList, deckList, ui, storage);
+
         assert tagList.findTagFromName("tagName") != null;
+        TagUUID tagUUID = cardList.getCards().get(0).getTagsUUID().get(0);
+        assert tagList.get(0).getUUID().equals(tagUUID);
     }
 
     @Test
