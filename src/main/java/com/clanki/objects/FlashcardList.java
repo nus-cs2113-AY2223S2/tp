@@ -14,6 +14,12 @@ public class FlashcardList {
         this.flashcards = flashcards;
     }
 
+    /**
+     * Adds a new flashcard into the list.
+     *
+     * @param questionText Question text of the new flashcard.
+     * @param answerText   Answer text of the new flashcard.
+     */
     public void addNewFlashcard(String questionText, String answerText) {
         Flashcard newFlashcard = new Flashcard(questionText, answerText);
         flashcards.add(newFlashcard);

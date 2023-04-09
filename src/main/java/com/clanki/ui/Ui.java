@@ -32,6 +32,12 @@ public class Ui {
         return in.nextLine();
     }
 
+    /**
+     * Display messages to inform user that a flashcard have been successfully added.
+     *
+     * @param questionText The question of the new flashcard.
+     * @param answerText   The answer of the new flashcard.
+     */
     public void printSuccessfulAddMessage(String questionText, String answerText) {
         System.out.println("You have added the following card:");
         System.out.println("Q: " + questionText);
@@ -46,6 +52,9 @@ public class Ui {
         System.out.println("Welcome to Clanki! Time to start studying!");
     }
 
+    /**
+     * Display message to inform user that their input is of a wrong format.
+     */
     public void printInvalidInput() {
         System.out.println("The input is in an incorrect format.\n" +
                 "You can view our user guide or type help to see the correct formats for commands.\n");
@@ -71,6 +80,9 @@ public class Ui {
         }
     }
 
+    /**
+     * Display all the current valid commands the user can key in.
+     */
     public void printHelpMessage() {
         System.out.println(
                 "The following are the commands you can use:\n" +
@@ -142,5 +154,13 @@ public class Ui {
         if (countFlashcardsPrinted == 0) {
             System.out.println("Your list of flashcards with the specified due date is empty.");
         }
+    }
+
+    /**
+     * Display that the contents of list have been successfully cleared.
+     */
+    public void printClearMessage() {
+        System.out.println("All flashcards have been deleted.");
+        System.out.println("Your list of flashcards is now empty.");
     }
 }
