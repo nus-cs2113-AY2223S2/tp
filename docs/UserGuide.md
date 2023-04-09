@@ -8,24 +8,23 @@ their calorie intake history.
 The app also allows users to keep track of their daily exercises to compute their calorie loss.
 
 Their net calorie gain/loss can then be viewed.
-
-- [Quick Start](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#quick-start)
-- [Features](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#features-v20)
-  - [Viewing User Profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#viewing-user-profile-view)
-  - [Updating User Profile](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#updating-user-profile-update)
-  - [Adding a meal](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#adding-a-meal-add)
-  - [Listing foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-foods-list)
-  - [Listing meals](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-meals-list)
-  - [Listing exercises](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#listing-exercises-list)
-  - [Deleting meals](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#deleting-meals-delete)
-  - [Filtering foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#filtering-foods-filter)
-  - [Viewing nutrition content of foods](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#view-nutrition-content-of-food-nutrition)
-  - [Adding an exercise](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#adding-an-exercise-exercise)
-  - [Tracking net calorie intake](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#tracking-net-calorie-intake-track)
-  - [Displaying examples of meals and exercises](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#displaying-examples-of-meals-and-exercises-examples)
- - [Exiting the application](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#exiting-the-application-bye)
-- [FAQ](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#faq)
-- [Command Summary](https://github.com/AY2223S2-CS2113-W15-1/tp/blob/master/docs/UserGuide.md#command-summary)
+- [Quick Start](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#quick-start)
+- [Features](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#features)
+  - [Viewing User Profile](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#viewing-user-profile-view)
+  - [Updating User Profile](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#updating-user-profile-update)
+  - [Adding a meal](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#adding-a-meal-add)
+  - [Listing foods](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#listing-foods-list)
+  - [Listing meals](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#listing-meals-list)
+  - [Listing exercises](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#listing-exercises-list)
+  - [Deleting meals](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#deleting-meals-delete)
+  - [Filtering foods](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#filtering-foods-filter)
+  - [Viewing nutrition content of foods](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#view-nutrition-content-of-food-nutrition)
+  - [Adding an exercise](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#adding-an-exercise-exercise)
+  - [Tracking net calorie intake](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#tracking-net-calorie-intake-track)
+  - [Displaying examples of meals and exercises](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#displaying-examples-of-meals-and-exercises-examples)
+ - [Exiting the application](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#exiting-the-application-bye)
+- [FAQ](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#faq)
+- [Command Summary](https://ay2223s2-cs2113-w15-1.github.io/tp/UserGuide.html#command-summary)
 
 ## Quick Start
 

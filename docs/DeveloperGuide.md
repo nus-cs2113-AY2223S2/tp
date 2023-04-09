@@ -8,32 +8,35 @@
   - [Storage Component](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#storage-component)
   - [Interfaces](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#interfaces)
 - [Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation)
-  - [Add meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#add-meal-feature)
+  - [ Add meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#add-meal-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-1)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-1)
-  - [List feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#list-feature)
+  - [List meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#list-meal-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-2)
-    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-2)
-  - [Delete meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#delete-meal-feature)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-1)
+  - [ Delete meal feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#delete-meal-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-3)
-    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-3)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-2)
   - [View feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#view-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-4)
-    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-4)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-3)
   - [Update feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#update-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-5)
-    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-5)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-4)
   - [Nutrition feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#nutrition-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-6)
-    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-6)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-5)
   - [Filter feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#filter-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-7)
-    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-7)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-6)
   - [Exercise feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#exercise-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-8)
-    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-8)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-7)
   - [Track feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#track-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-9)
+    - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-8)
+  - [Examples feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#examples-feature)
+    - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-10)
     - [Design considerations:](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#design-considerations-9)
   - [Examples feature](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#examples-feature)
     - [ Implementation](https://ay2223s2-cs2113-w15-1.github.io/tp/DeveloperGuide.html#implementation-10)
@@ -74,7 +77,7 @@
 ---
 ### Architecture
 
-![](./uml/architecture.PNG)
+<img src="uml/architecture.PNG" alt="Sequence Diagram" width="1000">
 
 **Main Components of LifeTracker**
 
@@ -108,14 +111,19 @@ The `UI` component,
 
 API: commands.java
 
-<img src="uml/Command-class-diagram.png" alt="Sequence Diagram" width="1000">
+<img src="uml/commands-class-diagram.png" alt="Sequence Diagram" width="1000">
 
 How the `Command` component works:
-1. When `Command` is called upon to execute a command, it first uses the `CommandParser` subclass from the `Parser` class to parse the user command. 
-2. This results in a Command object (more precisely, an object of one its subclasses e.g. AddMealCommand), which would then be excuted by LifeTracker.
-3. The command can also communicate with the Storage Component when it is executed, such as saving and loading of User Data.
-4. In addition, the command also communicates with the UI Component to display the results of the execution of the command back to the user. 
-5. In the case of command execution failures, an Exception Object (more precisely, an object of one of its subclasses, e.g. LifeTrackerException is thrown.
+1. When a user first enters something into the CLI, the `CommandParser` subclass from the `Parser` class is used to parse the user command. 
+2. Based on the results of the parsing, a specific command object is created (e.g. `AddMealCommand`) which inherits from the abstract `Command` and its `execute` method.
+3. Every command uses the `execute` method differently according to its needs. (For example, `AddMealCommand` would require saving of meals to a single database, while 
+   `TrackCalorieCommand` would require reading from various databases for the desired result)
+4. The command can also communicate with the various storage components when it is executed, such as saving and loading of user, meals, foods, exercise data.
+5. In addition, the command also communicates with the UI Component to display the results of the execution of the command back to the user. 
+6. In the case of command execution failures, an Exception Object (more precisely, an object of one of its subclasses, e.g. LifeTrackerException) is thrown.
+
+<img src="uml/Command-class-diagram.png" alt="Sequence Diagram" width="1000">
+
 
 ### Storage Component
 
