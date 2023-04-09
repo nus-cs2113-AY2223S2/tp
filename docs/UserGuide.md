@@ -64,7 +64,7 @@ Use case:
 - VALUE will not accept doubles with more than 2 decimal places.
 - VALUE will be recorded as SGD, regardless of the currency set.
 - Format for DATE will be DD-MM-YYYY.
-- DATE needs to be a valid date, and it cannot be a date in the future.
+- DATE needs to be an existing date, and it cannot be a date in the future.
 
 Example of usage:
 <br>`add expense /c meal /de breakfast @Technoedge /da 22-03-2023 /v 3.50`
@@ -85,9 +85,9 @@ Format:
 Edit an existing expense/income that is currently in the list.
 
 Format:
-<br> `edit expense /in INDEX [c/ CATEGORY] [de/ DESCRIPTION] [da/ DATE] [v/ VALUE]`
-<br> `edit income /in INDEX [de/DESCRIPTION] [da/DATE] [v/VALUE]`
-<br> where [] indicates optional fields.
+<br> `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`
+<br> `edit income /in INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`
+<br> where [ ] indicates optional fields.
 
 Use case:
 
@@ -144,11 +144,13 @@ Find an existing expense/income that is currently in the list.
 
 Format:
 <br> `find /t TYPE [/c CATEGORY] [/de DESCRIPTION] [/da DATE]`
-<br> fields with [] are optional fields, but at least 1 must be not empty for search to work
+<br> fields with [ ] are optional fields.
 
 Use case:
 
 - Shows user the entry that they are looking for.
+- At least one of the optional fields must be provided.
+- `CATEGORY` field would only be read if `TYPE` specified is `expense`.
 
 Example of usage:
 <br> `find /t expense /c food /de beef `
@@ -283,7 +285,7 @@ The data file is not to be edited manually.
 | Edit Expense       | `edit expense /in INDEX [/c CATEGORY] [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit expense /in 1 /de Lunch @Technoedge /v 5.20`  |
 | Edit Income        | `edit income /in INDEX [/de DESCRIPTION] [/da DATE] [/v VALUE]`<br>e.g. `edit income /in 2 /da 12-12-2022 /v 100`                          |
 | Exit               | `exit`                                                                                                                                     |
-| Find               | `find /c CATEGORY /k KEYWORD`<br>e.g. `find /c expense /k beef`<br>e.g. `find /c income /k salary`                                         |
+| Find               | `find /t TYPE [/c CATEGORY] [/k KEYWORD]`<br>e.g. `find /t expense /c food /de beef`<br>e.g. `find /t income /de salary /da 03-03-2023`    |
 | Help               | `help`                                                                                                                                     |
 | List All Lists     | `list`                                                                                                                                     |
 | List Expense List  | `list expense`                                                                                                                             |
