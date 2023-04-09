@@ -92,7 +92,9 @@ public class EditCommand extends Command {
     }
 
     public double fetchAmount(boolean isLendOrBorrowExpenditure)
-            throws StringIndexOutOfBoundsException, EmptyStringException, WrongPrecisionException, InvalidCharacterInAmount, NumberFormatException, NotPositiveValueException, SmallAmountException {
+            throws StringIndexOutOfBoundsException, EmptyStringException, 
+            WrongPrecisionException, InvalidCharacterInAmount, NumberFormatException, NotPositiveValueException, 
+            SmallAmountException {
         String amountVal = ParseIndividualValue.parseIndividualValue(userInput, ASLASH,
                 isLendOrBorrowExpenditure ? BSLASH : PSLASH);
         ExceptionChecker.checkIfMoreThanTwoDecimalPlaces(amountVal, DOT, BLANK);
