@@ -190,7 +190,6 @@ public class Parser {
         }
     }
 
-    //@@author Briantjs00
     private Command prepareListPuModulesCommand(ArrayList<String> userInputWords, String univAbbNameOrIndex,
                                                 ArrayList<University> universities) {
         String filter = "";
@@ -215,6 +214,7 @@ public class Parser {
         }
     }
 
+    //@@author Briantjs00
     private String prepareFilterString(ArrayList<String> userInputWords, String filter) throws InvalidCommandException {
         if (userInputWords.size() == 3) {
             String lowerCaseUserCommandThirdKeyword = userInputWords.get(2).toLowerCase();
@@ -236,17 +236,17 @@ public class Parser {
         return filter;
     }
 
+    //@@author
     private void checkIsValidModuleCredit(String credits) throws InvalidCommandException {
         if (credits.startsWith("-")) {
-            throw new InvalidCommandException(ui.NotIntegerError());
+            throw new InvalidCommandException(ui.notIntegerError());
         }
         try {
             Integer.parseInt(credits);
         } catch (NumberFormatException e) {
-            throw new InvalidCommandException(ui.NotIntegerError());
+            throw new InvalidCommandException(ui.notIntegerError());
         }
     }
-    //@@author
 
     private Command handleListPuModulesCommand(ArrayList<University> universities, String universityAbbName,
                                                int univIndex, boolean isUnivAbbr, String filter)

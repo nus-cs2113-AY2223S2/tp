@@ -340,8 +340,9 @@ public class UI {
                 + "in the specified Partner University\n"
                 + "                                    by index of LIST PU\n"
                 + "/LIST [PU ABBRV] /filter [FILTER] : Provides the list of modules in the specified filters\n"
-                + "                                    [FILTER] Format 1: mc == [num of MCs]\n"
-                + "                                    [FILTER] Format 2: [description] in name\n"
+                + "                                    Replace the [FILTER] with either of the format below\n"
+                + "                                    [FILTER] Format 1:/mc [num of Partner University MCs]\n"
+                + "                                    [FILTER] Format 2:/name [Partner University description]\n"
                 + "/LIST CURRENT                     : Provides the list of modules that the user has added to his/her "
                 + "list of interest\n"
                 + "/LIST CURRENT [PU ABBRV]          : Provides the list of modules that user has added to his list\n"
@@ -425,7 +426,7 @@ public class UI {
         System.out.println("Deadline Storage is corrupted, deleting corrupted deadlines");
     }
 
-    public String NotIntegerError() {
+    public String notIntegerError() {
         return NOT_INTEGER_MESSAGE;
     }
 
