@@ -162,11 +162,6 @@ public class Ui {
         showLine();
     }
 
-    public void emptyInputErrorMessage(String emptyPart) {
-        showLine();
-        System.out.println("Empty " + emptyPart + " is not allowed. Please check " + emptyPart + " again!");
-    }
-
     public void invalidInputFormatErrorMessage(String invalidPart) {
         showLine();
         System.out.println("Invalid " + invalidPart + ". Please check the " + invalidPart + " again!");
@@ -176,10 +171,4 @@ public class Ui {
         showLine();
         System.out.println("Invalid " + invalidPart + ".\n" + expectedInput);
     }
-
-    public void multipleAdditionErrorMessage() {
-        showLine();
-        System.out.println("Multiple companies cannot be added at once. Please add companies separately!");
-    }
-
 }
