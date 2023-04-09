@@ -145,10 +145,15 @@ The `XYZStorage` class performs the following functions:
 
 How the parsing works:  
 Step 1: The `Parser()` class will be called to create a new instance of `Parser`.  
+
 Step 2: Afterwards, when the `parseCommand()` method is called from `DinerDirector` class, the `parseCommand()` will split the given userInput first.  
+
 Step 3: With the `userInputSplit[]`, the `0` index will be extracted out. That will be used as identification for the command the user typed in.  
-Step 4: The `commandWord` will be used in the switch statement to select the appropriate command. returning `IncorrectCommand` class is the default behavior.  
+
+Step 4: The `commandWord` will be used in the switch statement to select the appropriate command. returning `IncorrectCommand` class is the default behavior. 
+
 Step 5: If the `commandWord` is valid, it will run the appropriate `prepareXYZCommand()`.  
+
 Step 6: Each of the individual `prepareXYZCommand()` will take in the userInput without the command portion. The variable is named `userInputNoCommand`. The `prepareXYZCommand()` will check the userInput to see if all the appropriate values are added, and return `XYZCommand` class if the values are correct. `prepareXXXCommand()` will return `IncorrectCommand` class if there are some missing values or inappropriate values.  
 
 ### Meeting Feature
@@ -251,25 +256,32 @@ The Dish feature consists of three functions:
 
 ![AddDishCommandSequenceDiagram.png](uml%2Fimages%2FAddDishCommandSequenceDiagram.png)  
 Step 1: When the ```AddDishCommand()``` constructor is called, it stores the dish name, price and the list of ingredients in an entity called Dish.  
+
 Step 2: When the ```execute()``` command in ```AddDishCommand``` is called, it calls the ```addDish()``` in ```DishManager``` class that adds the Dish into an arraylist of Dishes.  
+
 Step 3: It then prints out the dish that was added to the console.  
  
 #### Delete dish on the list:
 
 ![DeleteDishCommandSequenceDiagram.png](uml%2Fimages%2FDeleteDishCommandSequenceDiagram.png)  
 Step 1: When the ```DeleteDishCommand()``` constructor is called, it stores the index of the Dish to be deleted from the arraylist of Dishes.  
+
 Step 2: When the ```execute()``` command in ```DeleteDishCommand``` is called, it calls the ```deleteDish()``` in ```DishManager``` class that deletes the Dish at the specified index in the arraylist of Dishes.  
+
 Step 3: It then prints out the dish that was deleted to the console.  
 
 #### View the list of dishes:
 ![ViewDishCommandSequenceDiagram.png](uml%2Fimages%2FViewDishCommandSequenceDiagram.png)  
 Step 1: When the ```execute()``` command in ```ViewDishCommand``` is called, it calls the ```viewDish()``` in ```DishManager``` class that returns the formatted string of all the dishes in the arraylist.  
+
 Step 2: It then prints out the formatted string containing all the dishes to the console.  
 
 #### Find a dish in the list of dishes
 ![FindDishCommandSequenceDiagram.png](uml%2Fimages%2FFindDishCommandSequenceDiagram.png)  
 Step 1: When the ```FindDishCommand()``` constructor is called, it stores the keyword that is going to be used to search for dishes.  
+
 Step 2: When the ```execute()``` command in ```FindDishCommand``` is called, it calls the ```findDish()``` in ```DishManager``` class and searches through all the descriptions of dishes in the arraylist of dishes.  
+
 Step 3: It then prints out the formatted string containing all the dishes with the keyword to the console.  
 
 ### Storage Feature 
@@ -278,21 +290,27 @@ Step 3: It then prints out the formatted string containing all the dishes with t
 <img src="uml/images/CreateDirectorySequenceDiagram.png" width="400"/>  
 
 Step 1: The `Storage()` class will be called to create a new instance of `Storage`.  
+
 Step 2: The `createDirectory()` method in the `Storage()` class will be called next. A directory called `data` will be created in the same folder as the application if the folder does not exist.  
 
 #### Read and load from XYZFile
 <img src="uml/images/ReadAndLoadFromXYZFileSequenceDiagram.png" width="400"/>
 
 Step 1: The `XYZStorage()` class will be called to create a new instance of `XYZStorage`.  
+
 Step 2: The `readAndLoadFromXYZFile()` method in the `XYZStorage()` class is called to read and load data if any application related text files exists.  
 
 #### Write to XYZ file
 <img src="uml/images/WriteToXYZFileSequenceDiagram.png" width="400"/>
 
 Step 1: The `XYZStorage()` class will be called to create a new instance of `XYZStorage`.  
+
 Step 2: The `writeToXYZFile()` method in the `XYZStorage()` class is called to write the contents in the list into the respective file.  
-Step 3: The `writeToXYZFile()` method is called in `addXYZ()` method in the `XYZManager` class.  
+
+Step 3: The `writeToXYZFile()` method is called in `addXYZ()` method in the `XYZManager` class. 
+
 Step 4: The `addXYZ()` method is called from outside `XYZManager()` class.  
+
 Step 5: The above process is listed only for `addXYZ()`, but `deleteXYZ()` follows the same process as the above sequence diagram.  
 
 ## Glossary
