@@ -4,30 +4,37 @@
   - [Setup \& Prerequisites](#setup--prerequisites)
   - [Design \& implementation](#design--implementation)
     - [Architecture](#architecture)
-      - [UI component](#ui-component)
-      - [Parser component](#parser-component)
-      - [Command component](#command-component)
-      - [RecipeList component](#recipelist-component)
-      - [Storage component](#storage-component)
+    - [UI Component](#ui-component)
+    - [Parser Component](#parser-component)
+    - [Command Component](#command-component)
+    - [RecipeList Component](#recipelist-component)
+    - [Storage Component](#storage-component)
     - [Recipe Manage Feature](#recipe-manage-feature)
       - [Implementation](#implementation)
       - [Example Usage](#example-usage)
     - [Recipe Find Feature](#recipe-find-feature)
       - [Implementation](#implementation-1)
       - [Example Usage](#example-usage-1)
-    - [Recipe View Feature](#recipe-view-feature)
+    - [Recipe Steps Edit Feature](#recipe-steps-edit-feature)
       - [Implementation](#implementation-2)
       - [Example Usage](#example-usage-2)
-    - [Help Feature](#help-feature)
+    - [Recipe Ingredients Edit Feature](#recipe-ingredients-edit-feature)
       - [Implementation](#implementation-3)
       - [Example Usage](#example-usage-3)
-  - [Appendix A - Product scope](#appendix-a---product-scope)
-    - [Target user profile](#target-user-profile)
-    - [Value proposition](#value-proposition)
+    - [Recipe View Feature](#recipe-view-feature)
+      - [Implementation](#implementation-4)
+      - [Example Usage](#example-usage-4)
+    - [Help Feature](#help-feature)
+      - [Implementation](#implementation-5)
+      - [Example Usage](#example-usage-5)
+  - [Appendix A - Product Scope](#appendix-a---product-scope)
+    - [Target User Profile](#target-user-profile)
+    - [Value Proposition](#value-proposition)
   - [Appendix B - User Stories](#appendix-b---user-stories)
   - [Appendix C - Non-Functional Requirements](#appendix-c---non-functional-requirements)
   - [Appendix D - Glossary](#appendix-d---glossary)
-  - [Appendix E - Instructions for manual testing](#appendix-e---instructions-for-manual-testing)
+  - [Appendix E - Instructions for Manual Testing](#appendix-e---instructions-for-manual-testing)
+    - [Initialization](#initialization)
     - [Appendix E.1 - Adding a recipe](#appendix-e1---adding-a-recipe)
     - [Appendix E.2 - Deleting a recipe](#appendix-e2---deleting-a-recipe)
 
@@ -433,9 +440,8 @@ Deleting a person by using the `delete` command and the index of the recipe to b
     
     Expected: No recipe is deleted. Error details shown in the result display.
     ```
-    Error in finding index!
-    Exception occurred: Your list is either EMPTY or does not contain recipes up to the index you inputted yet,
-    so you cannot use the DELETE command yet! Try filling up the list first!
+    Please enter a valid index!
+    Valid range: 1 to 1
     ```
 3. Other incorrect delete commands to try: 
    1. `delete`, 

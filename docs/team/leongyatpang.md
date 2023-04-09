@@ -47,7 +47,7 @@ Added user documentation to explain how to use the following commands:
 
 ### Contributions to DG
 * Added UML diagram and technical documentation to illustrate how recipe data is stored and loaded.
-![image](./picture/StorageComponent.png)
+![image](../PlantUML/StorageComponent.png)
 
 ### Issues Resolved
 1. [Issue #66](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/66)
