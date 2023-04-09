@@ -101,6 +101,7 @@ Meeting meeting with boss deleted!
 ```
 
 ### Deadlines
+#### Purpose
 Deadline objects helps our user, the restaurant manager, to better keep track of and manage the many task that
 needs to be completed for the restaurant.
 
