@@ -80,6 +80,7 @@ section of the DG to explain how the classes of our program interacts with each 
 9. Contributed to User Stories under `Appendix: Requirements` of DG.
 10. Contributed to User Stories under `Appendix: Requirements` of DG.
 11. Contributed to Glossary under `Appendix: Requirements` of DG.
+12. Added the entire [Appendix: Instructions for manual testing](../DeveloperGuide.md#appendix--instructions-for-manual-testing) of DG.
 
 [back to contents](#table-of-contents)
 
