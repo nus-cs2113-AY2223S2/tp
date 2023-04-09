@@ -162,6 +162,7 @@ The 'Meeting' class in the entity package shows the attributes that a meeting ob
 An ArrayList of meetings is initialized in the MeetingManager. Three methods that implement the meetings are also inside.
 - add_meeting: Add a meeting to the meeting list.
   ![](uml/images/AddMeetingCommandSequenceDiagram-Add_Meeting_Sequence_Diagram.png)
+
 - delete_meeting: Delete a meeting in the meeting list by its index. The sequence diagram follows the same pattern as above.
 - view_meetings: Print all the meetings in the meeting list.The sequence diagram follows the same pattern as above.
 - find_meeting: Find and print all the meetings in the meeting list that contain the keyword

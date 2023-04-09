@@ -40,6 +40,9 @@ public class MeetingManager {
      * @return a String of all the meetings
      */
     public static String viewMeetings() {
+        if(meetings.isEmpty()){
+            return "The meeting list is empty!";
+        }
         String meetingList = "";
         int index=1;
         for (Meeting meeting : meetings) {
@@ -84,7 +87,7 @@ public class MeetingManager {
     public static void findMeeting(String keyword, TextUi ui){
         ArrayList<Meeting> meetingsFound=new ArrayList<>();
         for(Meeting m:meetings){
-            if( m.getIssue().contains(keyword)){
+            if((m.getIssue().toLowerCase()).contains(keyword.toLowerCase())){
                 meetingsFound.add(m);
             }
         }
