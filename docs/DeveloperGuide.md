@@ -270,10 +270,16 @@ of loans and return dates.
 
 |Version| As a ... | I want to ... | So that I can ...|
 |--------|----------|---------------|------------------|
-|v1.0|user|be able to search for a book|borrow a book to read|
+|v1.0|user|search by title|borrow a book to read|
+|v1.0|user|search by topic|borrow a book to read|
 |v1.0|libriarian|add or remove book|change the books in the inventory|
 |v1.0|user|return book i borrowed|remove the borrow status taged to my account|
 |v2.0|libriarian|pay my fine|continue to borrow more books and see my exam results|
+|v2.0|user|create an account|use the system|
+|v2.0|user|change password|log in with a new secure password|
+|v2.0|user|renew book|continue reading the book for a longer period|
+|v2.0|user|list books|know what are the books in the library|
+|v2.0|user|search by topic and title|filter the results further|
 
 ## Non-Functional Requirements
 
