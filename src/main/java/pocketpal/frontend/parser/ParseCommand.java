@@ -199,6 +199,10 @@ public abstract class ParseCommand {
      * @throws InvalidHelpCommandException If help command specified is not supported.
      */
     public void checkHelpCommandValidity(String helpCommand) throws InvalidHelpCommandException {
+        String[] helpCommandArray = helpCommand.split(" ", 2);
+        if (helpCommandArray.length > 1){
+            throw new InvalidHelpCommandException(MessageConstants.MESSAGE_INVALID_HELP_COMMAND);
+        }
         logger.entering(ParseCommand.class.getName(), "checkHelpCommandValidity()");
         helpCommand = StringUtil.toTitleCase(helpCommand);
         CommandUtil.convertStringToCommand(helpCommand);
