@@ -1,40 +1,152 @@
 @startuml
 !include Style.puml
 
-interface "<<interface>>\nCommandInterface" {
- +boolean executeCommand()
+Package "commands"<<Rectangle>>{
+
+    class Command {
+    # workoutList: WorkoutList
+    # calorieTracker: CalorieTracker
+    # foodDictionary: FoodDictionary
+    + setDate(WorkoutList, CalorieTracker, FoodDictionary): void
+    + execute(): String
+    }
+
+    class ExitCommand {
+    {static} - EXIT_MESSAGE : String
+    {static} + isExit(Command): boolean
+    + execute(): String
 }
-abstract class "{abstract}\nCommand"
-class UserCommand {
- - userList: UserList
- - itemList: ItemList
- - transactionList: TransactionList
- + executeCommand(): boolean
+Package "workoutcommands"<<Rectangle>>{
+
+    class AddExerciseCommand{
+    {static} - EXERCISE_ADDED_MESSAGE: String
+    {static} - NO_CURRENT_WORKOUT_MESSAGE: String
+    - exerciseToAdd: Exercise
+    + AddExerciseCommand(Exercise)
+    + execute(): String
+    }
+
+    class CountSetsRepsCommand{
+    - dayInSpecificWeekDate: Date
+    + CountSetsRepsCommand(Date)
+    + execute(): String
+    }
+
+    class DeleteWorkoutCommand{
+    - workoutToDeleteIndex: int
+    + DeleteWorkoutCommand(int)
+    + execute(): String
+    }
+
+    class EndWorkoutCommand{
+    {static} - NO_CURRENT_WORKOUT_MESSAGE: String
+    {static} - WORKOUT_COMPLETE_MESSAGE: String
+    + EndWorkoutCommand()
+    + execute(): String
+    }
+
+    class HelpWorkoutCommand{
+    + HelpWorkoutCommand()
+    + execute(): String
+    }
+
+    class ListWorkoutCommand{
+    {static} - EMPTY_LIST_MESSAGE: String
+    {static} - WORKOUT_LIST_HEADER: String
+    + ListWorkoutCommand()
+    + execute(): String
+    }
+
+    class StartWorkoutCommand{
+    {static} - ONGOING_WORKOUT_MESSAGE: String
+    - workoutName: String
+    - date: Date
+    + StartWorkoutCommand(Date)
+    + execute(): String
+    }
+
+    class ViewWorkoutCommand{
+    - workoutToViewIndex: int
+    + ViewWorkoutCommand(int)
+    + execute(): String
+    }
+
 }
-class TransactionCommand {
- - userList: UserList
- - itemList: ItemList
- - transactionList: TransactionList
- + executeCommand(): boolean
-}
-class ItemCommand {
- - userList: UserList
- - itemList: ItemList
- - transactionList: TransactionList
- + executeCommand(): boolean
-}
-class HelpCommand {
- + executeCommand(): boolean
-}
-class ExitCommand {
- + executeCommand(): boolean
+Package "caloriescommands"<<Rectangle>>{
+
+    class AddCaloriesCommand{
+    {static} - CALORIES_NOT_GIVEN: int
+    - date: Date
+    - foodName: String
+    - foodCalories: int
+    + AddCalorieCommand(Date, String, int)
+    + AddCalorieCommand(Date, String)
+    + execute(): String
+    }
+
+    class DeleteCaloriesCommand{
+    {static} + NO_INDEX: int
+    - date: Date
+    - index: int
+    + DeleteCalorieCommand(Date)
+    + DeleteCalorieCommand(Date, int)
+    + execute(): String
+    }
+
+    class HelpCaloriesCommand{
+    + execute(): String
 }
 
-"<<interface>>\nCommandInterface" <|.. "{abstract}\nCommand"
-"{abstract}\nCommand" <|-- UserCommand
-"{abstract}\nCommand" <|-- TransactionCommand
-"{abstract}\nCommand" <|-- ItemCommand
-"{abstract}\nCommand" <|-- HelpCommand
-"{abstract}\nCommand" <|-- ExitCommand
+    class ListCaloriesCommand{
+    {static} - EMPTY_LIST_MESSAGE: String
+    {static} - HEADER: String
+    + ListCaloriesCommand()
+    + execute(): String
+    }
 
-@enduml
+    class ViewCaloriesCommand{
+    {static} - HEADER: String
+    {static} - FAIL_TO_FIND_DATE: String
+    - caloriesToViewDate: Date
+    + ViewCaloriesCommand(Date)
+    + execute(): String
+    }
+
+}
+Package "errorcommands"<<Rectangle>>{
+    class IncorrectSyntaxCommand{
+    {static} - ERROR_MESSAGE: String
+    - syntaxError: String
+    + IncorrectSyntaxCommand(String)
+    + execute(): String
+    }
+
+    class InvalidCommand{
+    {static} - INVALID_COMMAND_MESSAGE: String
+    - command: String
+    + InvalidCommand(String)
+    + execute(): String
+    }
+}
+
+
+}
+
+Command <|-- "AddExerciseCommand": inherits from
+Command <|-- "CountSetsRepsCommand": inherits from
+Command <|-- "DeleteWorkoutCommand": inherits from
+Command <|-- "EndWorkoutCommand": inherits from
+Command <|-up- "HelpWorkoutCommand": inherits from
+Command <|-- "ListWorkoutCommand": inherits from
+Command <|-- "StartWorkoutCommand": inherits from
+Command <|-- "ViewWorkoutCommand": inherits from
+Command <|-up- "AddCaloriesCommand": inherits from
+Command <|-up- "DeleteCaloriesCommand": inherits from
+Command <|-up- "HelpCaloriesCommand": inherits from
+Command <|-up- "ListCaloriesCommand": inherits from
+Command <|-up- "ViewCaloriesCommand": inherits from
+Command <|-right- "IncorrectSyntaxCommand": inherits from
+Command <|-right- "InvalidCommand": inherits from
+Command <|-left- "ExitCommand": inherits from
+
+@endumlml
