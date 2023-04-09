@@ -98,14 +98,8 @@
       "deckUUID": {
         "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
       },
-      "cardsSet": [
-        {
-          "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
-        }
-      ],
-      "cardUUIDIntegerHashMap": {
-        "924119c1-a807-4df2-b311-080be9ee8522": 1
-      },
+      "cardsSet": [],
+      "cardUUIDIntegerHashMap": {},
       "cards": [],
       "tags": [
         {
@@ -226,11 +220,7 @@
           "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
         }
       ],
-      "decks": [
-        {
-          "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
-        }
-      ]
+      "decks": []
     },
     {
       "uuid": {
@@ -242,11 +232,19 @@
           "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
         }
       ],
-      "decks": [
+      "decks": []
+    },
+    {
+      "uuid": {
+        "uuid": "e58cb988-30bf-48a8-b95e-abcd3b3bc5b6"
+      },
+      "tagName": "chemmmm",
+      "cards": [
         {
-          "uuid": "cee2b589-1f83-4d85-8cb1-d42130741547"
+          "uuid": "1ddd9a67-f56c-4914-99c0-2f90c580f0e9"
         }
-      ]
+      ],
+      "decks": []
     }
   ],
   "cards": [
@@ -274,6 +272,9 @@
         },
         {
           "uuid": "6e5dc558-43e4-4039-bb0f-8eca965052f0"
+        },
+        {
+          "uuid": "e58cb988-30bf-48a8-b95e-abcd3b3bc5b6"
         }
       ],
       "decks": [
