@@ -12,6 +12,7 @@ public class MeetingManager {
     private static ArrayList<Meeting> meetings = new ArrayList<>();
     /**
      * Creates MeetingList with input list.
+     *
      * @param meetings is the list of meetings.
      */
     public MeetingManager(ArrayList<Meeting> meetings) {
@@ -19,6 +20,7 @@ public class MeetingManager {
     }
     /**
      * Adds a meeting item to the meeting list.
+     *
      * @param meeting is the meeting item to be added.
      * @param ui       manages user output.
      */
@@ -34,6 +36,7 @@ public class MeetingManager {
     }
     /**
      * Print the meeting list.
+     *
      * @return a String of all the meetings
      */
     public static String viewMeetings() {
@@ -47,6 +50,7 @@ public class MeetingManager {
     }
     /**
      * Deletes a meeting from the meeting list.
+     *
      * @param index is the index of meeting to be deleted.
      * @param ui    manages user output.
      */
@@ -73,6 +77,7 @@ public class MeetingManager {
     }
     /**
      * Prints all the meetings that contain the keyword.
+     *
      * @param keyword is the keyword to be searched.
      * @param ui manages user output.
      */
