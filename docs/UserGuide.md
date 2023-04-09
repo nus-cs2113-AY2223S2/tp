@@ -69,9 +69,9 @@ ____________________________________________________________
 **IMPORTANT:** 
 - It is recommended that users **not** mutate the logger files. If the logger file is corrupted, severe errors will be logged
 on the console by design. However, the application will still run normally and error messages thrown by the logger is not considered a bug.
-- Users may edit the save.txt and the moduleData.txt files directly on a plaintext file editor but it is recommended 
+- Users may edit the save.txt and the moduleData.txt files directly on a plaintext file editor, but it is recommended 
   that users edit it with the application. This is to ensure that save data in the correct format so that the data can be
-  correctly loaded upon relaunch.
+  correctly loaded upon relaunch. (TLDR: Edit them at your own risk.)
 - Currently, Apollo is only optimised to store data for NUS Students reading modules in the Academic Year 22/23 Semester 2. 
 Due to a lack of a DBMS and data size constraints for the project, we are unable to store data for more than one semester.
 Hence, users utilising Apollo should input their modules for the current semester only, which as of 06/04/23 is AY22/23 S2.
@@ -689,13 +689,13 @@ for Apollo will be needed to be updated manually by the developers for each seme
 **Q**: Does Apollo have data for all modules available in NUS?
 
 **A**: No. Apollo only has data for modules that are available in the current semester. Additionally, modules which have 
-timetables which fall outside of the official NUS Semester 2 timetable will not be available in Apollo. These include
+timetables which fall outside the official NUS Semester 2 timetable will not be available in Apollo. These include
 certain modules such as Special Term Modules and iBloc Modules (CS1010x).
 
 **Q**: Should I edit the save file manually?
 
 **A**: No. Apollo is not designed to be edited manually. If you edit the save file manually, you may corrupt the data 
-and cause weird behaviours in Apollo. If you want to edit the save file, you can do so at your own risk. Editing the file
+and cause unpredictable behaviours in Apollo. If you want to edit the save file, you can do so at your own risk. Editing the file
 while Apollo is running will not affect the data in Apollo.
 
 

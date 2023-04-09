@@ -59,7 +59,7 @@ public class TaskList extends ArrayList<Task> {
      * @param endDay1   The end day of the first event.
      * @param startDay2 The start day of the second event.
      * @param endDay2   The end day of the second event.
-     * @return The order of the events.
+     * @return {@code 1} If event2 first, {@code -1} If event1 first, {@code 0} otherwise.
      */
     private int deterministicSortForEvent(LocalDateTime startDay1, LocalDateTime endDay1, LocalDateTime startDay2,
                                           LocalDateTime endDay2) {
@@ -67,22 +67,24 @@ public class TaskList extends ArrayList<Task> {
         assert endDay1 != null : "End day of first event should not be null";
         assert startDay2 != null : "Start day of second event should not be null";
         assert endDay2 != null : "End day of second event should not be null";
-        //both events have same start time
         if (startDay1.equals(startDay2)) {
-            //if event2 ends first
-            if (endDay2.isAfter(endDay1)) {
-                return 1;
-                //event1 ends first
-            } else if (endDay1.isBefore(endDay2)) {
+            //both events have same start time
+            if (endDay1.isBefore(endDay2)) {
+                // event1 ends first
                 return -1;
-                //both events end at the same time
+            } else if (endDay2.isBefore(endDay1)) {
+                // event2 ends first
+                return 1;
             } else {
+                // both events end at the same time
                 return 0;
             }
 
-        } else if (startDay1.isAfter(startDay2)) {
+        } else if (startDay2.isBefore(startDay1)) {
+            // event2 starts first
             return 1;
         } else {
+            // event1 starts first
             return -1;
         }
     }
@@ -92,7 +94,7 @@ public class TaskList extends ArrayList<Task> {
      *
      * @param deadline1 The deadline of the first deadline task.
      * @param deadline2 The deadline of the second deadline task.
-     * @return The order of the deadlines.
+     * @return {@code 1} If deadline2 first, {@code -1} If deadline1 first, {@code 0} otherwise.
      */
     private int deterministicSortForDeadline(LocalDateTime deadline1, LocalDateTime deadline2) {
         assert deadline1 != null : "Deadline should not be null";
@@ -108,6 +110,7 @@ public class TaskList extends ArrayList<Task> {
 
     /**
      * Sorts the deadline tasks in the TaskList by their respective due dates.
+     * @param allTasks The TaskList to be sorted.
      */
     private void sortDeadlineTasks(TaskList allTasks){
         assert allTasks != null : "TaskList should not be null";
@@ -128,6 +131,7 @@ public class TaskList extends ArrayList<Task> {
 
     /**
      * Sorts the event tasks in the TaskList by their respective from and to dates.
+     * @param allTasks The TaskList to be sorted.
      */
     private void sortEventTasks(TaskList allTasks){
         assert allTasks != null : "TaskList should not be null";
@@ -151,12 +155,19 @@ public class TaskList extends ArrayList<Task> {
      */
     public void sortTaskByDay() {
         this.clusterByType();
+        boolean isSortDeadlines = false;
+        boolean isSortEvents = false;
         //do nothing for todo type tasks
         for (int i = 0; i < this.size(); i++) {
-            if (this.get(i).getType().equals("deadline")) {
+            if (!isSortDeadlines & this.get(i).getType().equals("deadline")) {
                 sortDeadlineTasks(this);
-            } else if (this.get(i).getType().equals("event")) {
+                isSortDeadlines = true;
+            } else if (!isSortEvents & this.get(i).getType().equals("event")) {
                 sortEventTasks(this);
+                isSortEvents = true;
+            }
+            if (isSortDeadlines & isSortEvents) {
+                break;
             }
         }
     }

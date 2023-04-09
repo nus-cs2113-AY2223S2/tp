@@ -15,7 +15,7 @@ My code contributions: [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp
 - Add clash warning for deadlines with other tasks and lessons [#158](https://github.com/AY2223S2-CS2113-T13-4/tp/pull/158)
 - Refactor out logger for all Command classes [#258](https://github.com/AY2223S2-CS2113-T13-4/tp/pull/258)
 - Restrict format for dates in Deadlines and Events [#84](https://github.com/AY2223S2-CS2113-T13-4/tp/pull/84)
-- JUnit tests with full branch coverage for ToDo, Deadline, Event
+- JUnit tests with full branch coverage for ToDo, Deadline, Event, TaskList
 - JUnit tests for Add, Help, Exit Commands, Parser
 - Patches, bug fixes
 - [My pull requests](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+author%3Ahonglinshang+)
