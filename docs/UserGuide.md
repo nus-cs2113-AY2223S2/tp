@@ -40,11 +40,15 @@ ___
 
 * Please follow the below-mentioned format.
 
-Format: `ingredient1_name=ingredient1_quantity ingredient2_name=ingredient2_quantity ...`
+Format: `ingredient1_name=ingredient1_quantity and ingredient2_name=ingredient2_quantity ...`
 
-* Examples: `chicken=100 oil and sauce=200 vegetables=300`
-  `meat=200 salt and spices=400`
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
+* Type done when finished inputting all ingredients for the recipe.
+* Example:
+```
+chicken=100 and oil and sauce=200 and vegetables=300 
+done
+```
 
 <br>
 
