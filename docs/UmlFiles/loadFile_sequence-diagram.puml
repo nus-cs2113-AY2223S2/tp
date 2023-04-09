@@ -28,6 +28,9 @@ loop for each line
             deactivate NotePriority
         else priorityStr is invalid
             NoteParser -> InvalidFormatException: throw exception
+            activate InvalidFormatException
+            InvalidFormatException --> NoteParser
+            deactivate InvalidFormatException
         end
         alt isDoneStr is valid
             NoteParser -> String: equals()
@@ -36,6 +39,9 @@ loop for each line
             deactivate String
         else isDoneStr is invalid
             NoteParser -> InvalidFormatException: throw exception
+            activate InvalidFormatException
+            InvalidFormatException --> NoteParser
+            deactivate InvalidFormatException
         end
         alt reviewCountStr is valid
             NoteParser -> Integer: parseInt(reviewCountStr)
@@ -44,6 +50,9 @@ loop for each line
             deactivate Integer
         else reviewCountStr is invalid
             NoteParser -> InvalidFormatException: throw exception
+            activate InvalidFormatException
+            InvalidFormatException --> NoteParser
+            deactivate InvalidFormatException
         end
         NoteParser -> Note: Note(noteStr, priority)
         activate Note
@@ -62,6 +71,9 @@ loop for each line
         deactivate ArrayList
     else noteInfo.length != 4
             NoteParser -> InvalidFormatException: throw exception
+            activate InvalidFormatException
+            InvalidFormatException --> NoteParser
+            deactivate InvalidFormatException
     end
 end
 deactivate NoteParser
