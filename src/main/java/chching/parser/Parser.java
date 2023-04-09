@@ -83,87 +83,87 @@ public class Parser {
         int index;
         try {
             switch (instructionLowerCase) {
-                case "add income":
-                    Income income = Incomes.parseIncome(argumentsByField);
-                    command = new AddIncomeCommand(income);
-                    break;
-                case "add expense":
-                    Expense expense = Expenses.parseExpense(argumentsByField);
-                    command = new AddExpenseCommand(expense);
-                    break;
-                case "list income":
-                    command = new ListIncomeCommand();
-                    break;
-                case "list expense":
-                    command = new ListExpenseCommand();
-                    break;
-                case "list":
-                    command = new ListCommand();
-                    break;
-                case "edit income":
-                    command = new EditIncomeCommand(argumentsByField);
-                    break;
-                case "edit expense":
-                    command = new EditExpenseCommand(argumentsByField);
-                    break;
-                case "delete income":
-                    index = Incomes.getIndex(argumentsByField);
-                    command = new DeleteIncomeCommand(index);
-                    break;
-                case "delete expense":
-                    index = Expenses.getIndex(argumentsByField);
-                    command = new DeleteExpenseCommand(index);
-                    break;
-                case "set currency":
-                    String currency = Currency.getCurrency(argumentsByField);
-                    command = new SetCurrencyCommand(currency);
-                    break;
-                case "unset currency":
-                    currency = Currency.getCurrency(argumentsByField);
-                    command = new UnsetCurrencyCommand(currency);
-                    break;
-                case "find":
-                    String type = getType(argumentsByField);
-                    String category = getCategory(argumentsByField);
-                    String keyword = getDescription(argumentsByField);
-                    LocalDate date = getDate(argumentsByField);
-                    command = new FindCommand(type, category, keyword, date);
-                    break;
-                case "balance":
-                    command = new BalanceCommand();
-                    break;
-                case "exit":
-                    command = new ExitCommand();
-                    break;
-                case "help":
-                    command = new HelpCommand();
-                    break;
-                case "clear income":
-                    command = new ClearIncomeCommand();
-                    ui.showListCleared();
-                    break;
-                case "clear expense":
-                    command = new ClearExpenseCommand();
-                    ui.showListCleared();
-                    break;
-                case "clear all":
-                    command = new ClearAllCommand();
-                    ui.showListCleared();
-                    break;
-                case "set target":
-                    Target target = TargetParser.parseTarget(argumentsByField);
-                    command = new AddTargetCommand(target);
-                    ui.showTargetAdded();
-                    break;
-                case "show target":
-                    command = new ShowTargetCommand();
-                    break;
-                case "clear target":
-                    command = new ClearTargetCommand();
-                    ui.clearTarget();
-                    break;
-                default:
-                    command = new InvalidCommand();
+            case "add income":
+                Income income = Incomes.parseIncome(argumentsByField);
+                command = new AddIncomeCommand(income);
+                break;
+            case "add expense":
+                Expense expense = Expenses.parseExpense(argumentsByField);
+                command = new AddExpenseCommand(expense);
+                break;
+            case "list income":
+                command = new ListIncomeCommand();
+                break;
+            case "list expense":
+                command = new ListExpenseCommand();
+                break;
+            case "list":
+                command = new ListCommand();
+                break;
+            case "edit income":
+                command = new EditIncomeCommand(argumentsByField);
+                break;
+            case "edit expense":
+                command = new EditExpenseCommand(argumentsByField);
+                break;
+            case "delete income":
+                index = Incomes.getIndex(argumentsByField);
+                command = new DeleteIncomeCommand(index);
+                break;
+            case "delete expense":
+                index = Expenses.getIndex(argumentsByField);
+                command = new DeleteExpenseCommand(index);
+                break;
+            case "set currency":
+                String currency = Currency.getCurrency(argumentsByField);
+                command = new SetCurrencyCommand(currency);
+                break;
+            case "unset currency":
+                currency = Currency.getCurrency(argumentsByField);
+                command = new UnsetCurrencyCommand(currency);
+                break;
+            case "find":
+                String type = getType(argumentsByField);
+                String category = getCategory(argumentsByField);
+                String keyword = getDescription(argumentsByField);
+                LocalDate date = getDate(argumentsByField);
+                command = new FindCommand(type, category, keyword, date);
+                break;
+            case "balance":
+                command = new BalanceCommand();
+                break;
+            case "exit":
+                command = new ExitCommand();
+                break;
+            case "help":
+                command = new HelpCommand();
+                break;
+            case "clear income":
+                command = new ClearIncomeCommand();
+                ui.showListCleared();
+                break;
+            case "clear expense":
+                command = new ClearExpenseCommand();
+                ui.showListCleared();
+                break;
+            case "clear all":
+                command = new ClearAllCommand();
+                ui.showListCleared();
+                break;
+            case "set target":
+                Target target = TargetParser.parseTarget(argumentsByField);
+                command = new AddTargetCommand(target);
+                ui.showTargetAdded();
+                break;
+            case "show target":
+                command = new ShowTargetCommand();
+                break;
+            case "clear target":
+                command = new ClearTargetCommand();
+                ui.clearTarget();
+                break;
+            default:
+                command = new InvalidCommand();
             }
         } catch (ChChingException e) {
             ui.showError(e.getMessage());
@@ -211,9 +211,9 @@ public class Parser {
                 }
             }
 
-            // checks if it is an existing field
+            
             boolean isDuplicateField = argumentsByField.containsKey(field);
-            // check if field/value is empty or just spaces
+            
             boolean isEmptyFieldOrValue = field.isBlank() || value.isBlank();
             if (isDuplicateField) {
                 throw new ChChingException("Duplicate fields detected");
