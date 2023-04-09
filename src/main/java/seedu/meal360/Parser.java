@@ -31,7 +31,10 @@ public class Parser {
      * characters.
      *
      * @author AbijithRam
-     * @param input, startIndex, length
+     * @param input user input
+     * @param startIndex index of string to start with
+     * @param length length of string
+     *
      * @return String
      */
     public String combineWords(String[] input, int startIndex, int length) {
@@ -111,7 +114,8 @@ public class Parser {
      * add the recipe to the user's recipe manager.
      *
      * @author AbijithRam
-     * @param input, recipeList
+     * @param input user input
+     * @param recipeList recipeList of user
      * @return Recipe
      */
     public Recipe parseAddRecipe(String[] input, RecipeList recipeList) {
@@ -174,7 +178,8 @@ public class Parser {
      * 3. Edit the ingredient list by adding new ingredients.
      *
      * @author AbijithRam
-     * @param input, recipeList
+     * @param input user input
+     * @param recipeList recipeList of user
      * @return Recipe
      */
     public Recipe parseEditRecipe(String[] input, RecipeList recipeList) {
@@ -637,7 +642,8 @@ public class Parser {
      * the recipe list of the user.
      *
      * @author AbijithRam
-     * @param recipeName, recipeList
+     * @param recipeName name of recipe
+     * @param recipes recipe list of user
      * @return Recipe
      */
     public Recipe parseViewRecipe(String recipeName, RecipeList recipes) {

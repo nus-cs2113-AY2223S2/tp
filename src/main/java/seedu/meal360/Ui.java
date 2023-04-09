@@ -31,6 +31,13 @@ public class Ui {
         System.out.println(outputMessage);
     }
 
+    /**
+     * This method is designed to print the contents of a recipe
+     * such as the name of the recipe and the ingredients of
+     * the recipe
+     *
+     * @param recipe the recipe that needs to be printed
+     */
     public void printRecipe(Recipe recipe) {
         System.out.println(formatMessage("Name of recipe: " + recipe.getName()));
         int index = 1;
@@ -114,6 +121,7 @@ public class Ui {
      * entered by the user.
      *
      * @author AbijithRam
+     * @author Jaredoong
      */
     public void printHelp() {
         printMessage("These are the operations you can do. Please follow the proper input"

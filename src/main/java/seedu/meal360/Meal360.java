@@ -26,6 +26,13 @@ public class Meal360 {
 
     private static IngredientList userIngredients = new IngredientList();
 
+    /**
+     * This method is designed to execute once the program is started.
+     *
+     * It loads the saved data from the database from the previous time
+     * if it exists.
+     */
+
     public static void startApp() {
         ui.printSeparator();
         ui.printWelcomeMessage();
@@ -66,6 +73,12 @@ public class Meal360 {
         ui.printSeparator();
     }
 
+    /**
+     * This method is designed to receive the user input and execute
+     * the respective methods.
+     *
+     * @param input user input
+     */
     public static void receiveInput(String input) {
         String[] command = parser.cleanUserInput(input);
 
@@ -253,6 +266,12 @@ public class Meal360 {
         }
     }
 
+    /**
+     * This method is designed to exit the program once the user keys-in
+     * the input `bye`.
+     *
+     * It saves the user data into the database.
+     */
     public static void exitApp() {
         ui.printSeparator();
 
