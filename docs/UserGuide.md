@@ -9,22 +9,22 @@ is unpacked and travel with an ease of mind.
 
 ## <span style="color:#00A36C">Table of contents</span>
 * [Quick Start](#quick-start)
-* [Features](https://ay2223s2-cs2113-t14-2.github.io/tp/UserGuide.html#features)
-  * [Help message](#span-stylecolor6495ed-help-message--span-help)
-  * [Adding a new item](#span-stylecolor6495ed-adding-a-new-item--span-add)
-  * [Deleting an item](#span-stylecolor6495ed-deleting-an-item--span-delete)
-  * [Packing an item](#span-stylecolor6495ed-packing-an-item--span-pack)
-  * [Packing all of an item](#span-stylecolor6495ed-packing-all-of-an-item--span-packall)
-  * [Unpacking an item](#span-stylecolor6495ed-unpacking-an-item--span-unpack)
-  * [Unpacking all of an item](#span-stylecolor6495ed-unpacking-all-of-an-item--span-unpackall)
-  * [Editing item quantity](#span-stylecolor6495ed-editing-item-quantity--span-editquantity)
-  * [Listing all items](#span-stylecolor6495ed-listing-all-items--span-list)
-  * [Listing all unpacked items](#span-stylecolor6495ed-listing-all-unpacked-items--span-listunpacked)
-  * [Deleting the entire list](#span-stylecolor6495ed-deleting-the-entire-list--span-deletelist)
-  * [Finding an item](#span-stylecolor6495ed-finding-an-item--span-find)
-  * [Exiting the application](#span-stylecolor6495ed-exiting-the-application--span-bye)
-* [Frequently Asked Questions (FAQ)](#span-stylecolor00a36c-frequently-asked-questions--faq--span)
-* [Command Summary](#span-stylecolor00a36c-command-summary-span)
+* [Features](#features)
+  * [Help message](#help-message-help)
+  * [Adding a new item](#adding-a-new-item-add)
+  * [Deleting an item](#deleting-an-item-delete)
+  * [Packing an item](#packing-an-item-pack)
+  * [Packing all of an item](#packing-all-of-an-item-packall)
+  * [Unpacking an item](#unpacking-an-item-unpack)
+  * [Unpacking all of an item](#unpacking-all-of-an-item-unpackall)
+  * [Editing item quantity](#editing-item-quantity-editquantity)
+  * [Listing all items](#listing-all-items-list)
+  * [Listing all unpacked items](#listing-all-unpacked-items-listunpacked)
+  * [Deleting the entire list](#deleting-the-entire-list-deletelist)
+  * [Finding an item](#finding-an-item-find)
+  * [Exiting the application](#exiting-the-application-bye)
+* [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
+* [Command Summary](#command-summary)
 
 ---
 
@@ -60,7 +60,7 @@ is unpacked and travel with an ease of mind.
 6. Type a command, and press Enter to execute it. 
 To start off, typing `help` and pressing Enter will display a help message.
 
-7. Refer to the [Features section](#span-stylecolor00a36c-features-span) below for details of each command.
+7. Refer to the [Features section](#features) below for details of each command.
 
 ---
 
@@ -395,7 +395,7 @@ Example:
                |___/
   ```
 
-[⏫ Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) | [⏫ Go to Features](#span-stylecolor00a36c-table-of-contents-span)
+[⏫ Go to Table of Contents](#table-of-contents) | [⏫ Go to Features](#features)
 
 ---
 
@@ -405,7 +405,7 @@ Example:
 
 **A**: Please check that there are no typos in the command. To check the correct spelling of the commands, please type `help` and hit enter.
 
-[⏫ Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) |
+[⏫ Go to Table of Contents](#table-of-contents) |
 
 ---
 
@@ -427,4 +427,4 @@ Example:
 | Finding an item            | `help`                            | Additional parameters will be ignored                                                                                |
 | Exiting the application    | `bye`                             | Additional parameters will be ignored                                                                                |
 
-[⏫ Go to Table of Contents](#span-stylecolor00a36c-table-of-contents-span) | [⏫ Go to Features](#span-stylecolor00a36c-table-of-contents-span)
+[⏫ Go to Table of Contents](#table-of-contents) | [⏫ Go to Features](#features)
