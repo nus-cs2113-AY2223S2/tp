@@ -112,11 +112,6 @@ Successful searches will result in the program outputting the relevant book deta
 title, author, and topic. If the search is unsuccessful, the program will output a message indicating 
 that there is no match in the inventory for the input title. 
 
-Note: Partial string matching will not be considered in this application. 
-The search will only return exact matches for the book's title and topic. If a match is found, 
-the book object will be returned.
-
-
 ### Search book by topic
 <img src="images/search class diagram.png"/> 
 
