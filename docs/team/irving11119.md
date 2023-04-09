@@ -54,8 +54,8 @@ It is written in Java, and has about 5kLoC.
 - Assisted in release management (v2.0)
 - Incorporated external library (GSON) into project
 - Scraped NUSMods API for module information using self written Python script
-- Most instances of helping team members were done offline during our weekly meetings.
-  - [NUSMods Scraper](https://github.com/irving11119/NUSMods-Scraper) 
+  - [NUSMods Scraper](https://github.com/irving11119/NUSMods-Scraper)
+- Most instances of helping team members were done offline during our weekly meetings. 
 - [PRs reviewed](https://github.com/AY2223S2-CS2113-T13-4/tp/pulls?q=is%3Apr+reviewed-by%3Airving11119+)
 
 
