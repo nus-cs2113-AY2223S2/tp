@@ -17,6 +17,7 @@ public class StaffManager {
 
     /**
      * Add a staff to the staffs array list inside of staff manager.
+     *
      * @param staff Staff to be added.
      * @param ui Ui object in if there is anything to be printed.
      */
@@ -39,7 +40,8 @@ public class StaffManager {
     }
 
     /**
-     * Format all staff into readable list of staffs and display it
+     * Format all staff into readable list of staffs and display it.
+     *
      * @param ui Ui object in if there is anything to be printed.
      */
     public static void viewStaff(TextUi ui) {
@@ -53,6 +55,7 @@ public class StaffManager {
 
     /**
      * Delete a staff of a certain index.
+     *
      * @param staffIndex Staff index to be deleted.
      * @param ui Ui object in if there is anything to be printed.
      */
@@ -70,6 +73,7 @@ public class StaffManager {
 
     /**
      * Find a staff based on its name.
+     *
      * @param name The name of the staff to be found.
      * @param ui Ui object in if there is anything to be printed.
      */
@@ -92,6 +96,7 @@ public class StaffManager {
 
     /**
      * Get all staffs.
+     *
      * @return An Array List of Staffs object.
      */
     public static ArrayList<Staff> getStaffs() {

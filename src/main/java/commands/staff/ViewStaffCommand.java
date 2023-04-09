@@ -9,12 +9,14 @@ public class ViewStaffCommand extends Command {
 
     /**
      * Constructor of ViewStaffCommand
+     *
      */
     public ViewStaffCommand() {
     }
 
     /**
      * Execute the command of viewing all staffs.
+     *
      * @param ui Ui object in if there is anything to be printed.
      */
     @Override
@@ -24,6 +26,7 @@ public class ViewStaffCommand extends Command {
 
     /**
      * Indicates whether the program should exit or not
+     *
      * @return Boolean to indicate whether exist is true or not
      */
     @Override
