@@ -36,6 +36,8 @@ minimum or maximum point of the quadratic graph.
 
 ### Contributions to the DG
 
+- Created the Architecture Diagram.
+- Contributed to the section detailing the handling of User Input.
 - Contributed to the section detailing the functionality of the Quadratic solver.
 - Created a sequence diagram to further explain how Quadratic Solver works.
 - Added User Stories.
