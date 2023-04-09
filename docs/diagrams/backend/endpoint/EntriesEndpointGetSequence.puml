@@ -32,6 +32,10 @@ else Get entries
         EntriesEndpoint -> EntryLog : filterByAmount()
         EntriesEndpoint <-- EntryLog : EntryLog
     end
+    group opt [Filter by date]
+            EntriesEndpoint -> EntryLog : filterBetweenDates()
+            EntriesEndpoint <-- EntryLog : EntryLog
+    end
     return
 end
 
