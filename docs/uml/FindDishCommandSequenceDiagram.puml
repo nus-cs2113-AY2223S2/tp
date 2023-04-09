@@ -15,7 +15,7 @@ activate FindDishCommand
 FindDishCommand -> DishManager ++ : findDish(stringToFind)
 FindDishCommand <-- DishManager
 deactivate
-<-- FindDishCommand: ui.printMessage()
+<-- FindDishCommand:
 
 destroy FindDishCommand
 |||

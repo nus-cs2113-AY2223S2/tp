@@ -15,7 +15,7 @@ activate DeleteDishCommand
 DeleteDishCommand -> DishManager ++ : deleteDish(index)
 DeleteDishCommand <-- DishManager
 deactivate
-<-- DeleteDishCommand: ui.printMessage()
+<-- DeleteDishCommand:
 
 destroy DeleteDishCommand
 |||

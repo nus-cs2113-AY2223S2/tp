@@ -15,7 +15,7 @@ activate ViewDishCommand
 ViewDishCommand -> DishManager ++ : viewDish()
 ViewDishCommand <-- DishManager
 deactivate
-<-- ViewDishCommand: ui.printMessage()
+<-- ViewDishCommand:
 
 |||
 destroy ViewDishCommand

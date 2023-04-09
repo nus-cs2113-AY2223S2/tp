@@ -24,7 +24,7 @@ Dish --> DishManager
 deactivate
 AddDishCommand <-- DishManager
 deactivate
-<-- AddDishCommand: ui.printMessage()
+<-- AddDishCommand:
 
 destroy AddDishCommand
 |||
