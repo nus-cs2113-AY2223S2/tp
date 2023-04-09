@@ -95,7 +95,7 @@ public class UserInterface {
 
     public void printCardList(CardList cardList) {
         if (cardList.isEmpty()) {
-            System.out.println("Your current list is empty.");
+            System.out.println("Your current list of cards is empty.");
         } else {
             System.out.println("Here is a list of your cards :\n");
             for (int i = 0; i < cardList.size(); ++i) {
