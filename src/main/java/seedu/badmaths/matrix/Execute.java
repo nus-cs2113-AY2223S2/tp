@@ -34,6 +34,10 @@ public class Execute {
         Tensor2D t1 = executeTranspose(operator[0]);
         Tensor2D t2 = executeTranspose(operator[1]);
 
+        if(t1 == null || t2 == null){
+            return null;
+        }
+
         result = c.mul(t1, t2);
         assert result != null;
 
@@ -48,6 +52,10 @@ public class Execute {
         Tensor2D result;
         Tensor2D t1 = executeTranspose(operator[0]);
         Tensor2D t2 = executeTranspose(operator[1]);
+
+        if(t1 == null || t2 == null){
+            return null;
+        }
 
         result = c.dot(t1, t2);
         assert result != null;
@@ -64,6 +72,10 @@ public class Execute {
         Tensor2D t1 = executeTranspose(operator[0]);
         Tensor2D t2 = executeTranspose(operator[1]);
 
+        if(t1 == null || t2 == null){
+            return null;
+        }
+
         result = c.add(t1, t2);
         assert result != null;
 
@@ -79,6 +91,10 @@ public class Execute {
         Tensor2D t1 = executeTranspose(operator[0]);
         Tensor2D t2 = executeTranspose(operator[1]);
 
+        if(t1 == null || t2 == null){
+            return null;
+        }
+
         result = c.sub(t1, t2);
         assert result != null;
 
@@ -87,9 +103,13 @@ public class Execute {
 
     public Tensor2D executeTranspose(String command) {
         String operator;
+        Tensor2D output;
+
         if(command.contains(".T")) {
             operator = command.replace(".T", "");
-            return Parser.parseMatrix(operator).t();
+            output = Parser.parseMatrix(operator);
+
+            return output != null ? output.t() : output;
         } else {
             return Parser.parseMatrix(command);
         }

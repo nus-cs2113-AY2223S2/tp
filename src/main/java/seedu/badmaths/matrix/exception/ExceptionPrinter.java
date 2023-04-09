@@ -23,4 +23,31 @@ public class ExceptionPrinter {
 
         logger.log(Level.WARNING, "Unknown operator.");
     }
+
+    public void printMatrixShapeExceptionLog(){
+        String ExceptionMessage = "";
+        ExceptionMessage += "<Exception occurs>\n";
+        ExceptionMessage += "Length of every rows should be the same with each other.";
+        System.out.println(ExceptionMessage);
+
+        logger.log(Level.WARNING, "shape of matrix is not correct.");
+    }
+
+    public void printMatrixFormatExceptionLog(){
+        String ExceptionMessage = "";
+        ExceptionMessage += "<Exception occurs>\n";
+        ExceptionMessage += "Format of matrix is not correct.";
+        System.out.println(ExceptionMessage);
+
+        logger.log(Level.WARNING, "Format of matrix is not correct.");
+    }
+
+    public void printMatrixNumericExceptionLog(){
+        String ExceptionMessage = "";
+        ExceptionMessage += "<Exception occurs>\n";
+        ExceptionMessage += "Every entities of matrix should be integer.";
+        System.out.println(ExceptionMessage);
+
+        logger.log(Level.WARNING, "Format of matrix is not correct.");
+    }
 }

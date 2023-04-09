@@ -1,12 +1,10 @@
 package seedu.badmaths.matrix;
 
-import seedu.badmaths.matrix.exception.ExceptionPrinter;
-import seedu.badmaths.matrix.exception.UnknownOperatorException;
-import seedu.badmaths.matrix.exception.ExceptionChecker;
+import seedu.badmaths.matrix.exception.*;
 
 public class Parser {
-    ExceptionChecker check = new ExceptionChecker();
-    ExceptionPrinter ep = new ExceptionPrinter();
+    static ExceptionChecker check = new ExceptionChecker();
+    static ExceptionPrinter ep = new ExceptionPrinter();
 
     public Tensor2D parse(String command) {
         CalType type;
@@ -29,13 +27,13 @@ public class Parser {
     }
 
     protected CalType parseOp(String command){
-        if(command.contains("+")) {
+        if(command.contains("]+[")) {
             return CalType.ADDITION;
-        } else if(command.contains("-")) {
+        } else if(command.contains("]-[")) {
             return CalType.SUBTRACTION;
-        } else if(command.contains(".*")) {
+        } else if(command.contains("].*[")) {
             return CalType.MULTIPLICATION;
-        } else if(command.contains("*")) {
+        } else if(command.contains("]*[")) {
             return CalType.ELEMENT_WISE_DOT_PRODUCT;
         } else {
             return CalType.UNKNOWN;
@@ -47,24 +45,39 @@ public class Parser {
         int rowNum;
         int colNum;
 
-        command = command.replace("[", "");
-        command = command.replace("]", "");
+        try {
+            check.checkMatrixFormat(command);
 
-        String[] rows;
-        String[] column;
+            command = command.replace("[", "");
+            command = command.replace("]", "");
 
-        rows = command.split(";");
-        rowNum = rows.length;
-        colNum = rows[0].split(",").length;
+            String[] rows;
+            String[] column;
 
-        assert rowNum == 1 || colNum == rows[1].split(",").length;
+            rows = command.split(";");
+            rowNum = rows.length;
+            colNum = rows[0].split(",").length;
 
-        tensor = new int[rowNum][colNum];
-        for(int i = 0; i < rowNum; i++) {
-            for(int j = 0; j < colNum; j++) {
+            assert rowNum == 1 || colNum == rows[1].split(",").length;
+
+            tensor = new int[rowNum][colNum];
+            for (int i = 0; i < rowNum; i++) {
                 column = rows[i].split(",");
-                tensor[i][j] = Integer.parseInt(column[j]);
+                for (int j = 0; j < colNum; j++) {
+                    try {
+                        tensor[i][j] = Integer.parseInt(column[j]);
+                    } catch (NumberFormatException e) {
+                        ep.printMatrixNumericExceptionLog();
+                        return null;
+                    }
+                }
             }
+        } catch (MatrixFormatException fe) {
+            ep.printMatrixFormatExceptionLog();
+            return null;
+        } catch (MatrixShapeException se) {
+            ep.printMatrixShapeExceptionLog();
+            return null;
         }
 
         return new Tensor2D(tensor);
