@@ -25,20 +25,41 @@ Given below are my contributions to the project:
       ([#51](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/51))
   
 
-* __Contributions to User Guide__ ([#69](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/69)):
-    * Added documentation for the following:
-      * HOW TO ADD INGREDIENTS TO A RECIPE?
-      * `add`
-      * `edit`
-      * `help`
+* __Contributions to User Guide__ ([#69](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/69),
+                                   [#139](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/139)):
+  * Added anchor links for quick jump to respective tabs. 
+  * Added documentation for the following:
+    * HOW TO ADD INGREDIENTS TO A RECIPE?
+    * `add`
+    * `edit`
+    * `help`
   
 
-* __Contribtions to Developer Guide__ ([#54](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/54)):
-    * Added documentation for the following:
+* __Contributions to Developer Guide__ ([#54](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/54),  
+                                       [#139](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/139)):
+  * Added anchor links for quick jump to respective tabs.
+  * Added documentation for the following classes:
+    * `Parser`
+  * Added documentation for the following:
       * `Add Recipes` feature
       * `Edit Recipes` feature
       * `edit`
       * `help`
+
+
+* __Pull Requests reviewed for Team Project:__
+  * Gave comments on code quality and code suggestions.
+    * ([#15](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/15)), 
+      ([#20](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/20)),
+      ([#23](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/23)),
+      ([#29](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/29)),
+      ([#30](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/30)),
+      ([#31](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/31)),
+      ([#48](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/48)),
+      ([#47](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/47)),
+      ([#56](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/56)),
+      ([#127](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/127),
+      ([#129](https://github.com/AY2223S2-CS2113-F10-3/tp/pull/129))
 
 
 * __Community__:

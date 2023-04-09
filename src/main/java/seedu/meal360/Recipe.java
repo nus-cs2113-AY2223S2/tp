@@ -8,8 +8,6 @@ public class Recipe {
     private static IngredientList ingredientList = new IngredientList();
     public HashMap<String, Integer> ingredients;
     private String name;
-    private Boolean available;
-
 
     public Recipe(String name, HashMap<String, Integer> ingredients) {
         this.name = name;
