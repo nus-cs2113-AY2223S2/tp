@@ -564,7 +564,7 @@ Your file will be loaded the next time you run Inka!
 
 | **Command**                   | **Format**                                                                          |
 |-------------------------------|-------------------------------------------------------------------------------------|
-| Create a `Card`               | `card add -q QUESTION -a ANSWER`                                                    |
+| Create a `Card`               | `card add -q {question} -a {answer}`                                                |
 | Create a `Tag`                | `card tag -c {cardUUID} -t {tag_name}`                                              |
 | Create a `Deck`               | `card deck -c {cardUUID} -d {deck_name}` OR `card deck -t {tagUUID} -d {deckName}`  |
 | Add a `Card` to a `Deck`      | `card deck -c {cardUUID} -d {deckName}` OR `card deck -i {cardIndex} -d {deckName}` |
