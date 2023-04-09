@@ -74,6 +74,9 @@ public interface Parser {
             if (input.indexOf("n/") != input.lastIndexOf("n/")) {
                 ui.multipleAdditionErrorMessage();
                 throw new WrongFormatException();
+            } else if(isMultipleInfo(input)){
+                ui.multipleInformationErrorMessage();
+                throw new WrongFormatException();
             }
             //Empty company name is not allowed.
             if (companyName.equals("")) {
@@ -84,14 +87,14 @@ public interface Parser {
             if (industry.equals(" ")) {
                 ui.emptyInputErrorMessage("industry");
                 throw new WrongFormatException();
-            } else if (!checkIndustryValidity(industry)) {
+            } else if (!isIndustryValid(industry)){
                 ui.invalidInputFormatErrorMessage("industry",
                         "Industry cannot be a word without alphabet.");
                 throw new WrongFormatException();
             }
             //Only valid Singaporean number is allowed.
             int contactNumber = Integer.parseInt(contactNumberString);
-            if (contactNumberString.length() > 8 || !checkContactNumberValidity(contactNumber)) {
+            if (contactNumberString.length() > 8 || !isContactNumberValid(contactNumber)) {
                 ui.invalidInputFormatErrorMessage("contact number",
                         "8-digit number starting with 3, 6, 8, 9 is expected.");
                 throw new WrongFormatException();
@@ -165,9 +168,9 @@ public interface Parser {
                     throw new WrongFormatException();
                 }
                 return new FindIndustryCommand("find industry", targetIndustry.toUpperCase());
-            } else if (inputWords[1].equals("company")) {
+            } else if(inputWords[1].equals("companies")){
                 String targetCompany = input.replace("find", "").trim();
-                targetCompany = targetCompany.replace("company", "").trim();
+                targetCompany = targetCompany.replace("companies", "").trim();
                 if (targetCompany.equals("")) {
                     ui.emptyInputErrorMessage("target company name");
                     throw new WrongFormatException();
@@ -208,8 +211,8 @@ public interface Parser {
         }
     }
 
-    private static boolean checkContactNumberValidity(int contactNumber) {
-        if (contactNumber < 30000000 || contactNumber > 100000000) {
+    private static boolean isContactNumberValid(int contactNumber){
+        if(contactNumber < 30000000 || contactNumber > 100000000){
             return false;
         } else if (contactNumber >= 40000000 && contactNumber < 60000000) {
             return false;
@@ -219,16 +222,27 @@ public interface Parser {
         return true;
     }
 
-    private static boolean checkIndustryValidity(String industry) {
-        if (industry.contains("a") || industry.contains("b") || industry.contains("c") || industry.contains("d") ||
-                industry.contains("e") || industry.contains("f") || industry.contains("g") || industry.contains("h") ||
-                industry.contains("i") || industry.contains("j") || industry.contains("k") || industry.contains("l") ||
-                industry.contains("m") || industry.contains("n") || industry.contains("o") || industry.contains("p") ||
-                industry.contains("q") || industry.contains("r") || industry.contains("s") || industry.contains("t") ||
-                industry.contains("u") || industry.contains("v") || industry.contains("w") || industry.contains("x") ||
-                industry.contains("y") || industry.contains("z")) {
+
+    private static boolean isIndustryValid(String industry){
+        if(industry.contains("a")||industry.contains("b")||industry.contains("c")||industry.contains("d")||
+                industry.contains("e")||industry.contains("f")||industry.contains("g")||industry.contains("h")||
+                industry.contains("i")||industry.contains("j")||industry.contains("k")||industry.contains("l")||
+                industry.contains("m")||industry.contains("n")||industry.contains("o")||industry.contains("p")||
+                industry.contains("q")||industry.contains("r")||industry.contains("s")||industry.contains("t")||
+                industry.contains("u")||industry.contains("v")||industry.contains("w")||industry.contains("x")||
+                industry.contains("y")||industry.contains("z")){
             return true;
         }
         return false;
     }
+
+    private static boolean isMultipleInfo(String input){
+        if(input.indexOf("i/") != input.lastIndexOf("i/") || input.indexOf("c/") != input.lastIndexOf("c/")
+                || input.indexOf("e/") != input.lastIndexOf("e/")){
+            return true;
+        }
+        return false;
+    }
+
+
 }
