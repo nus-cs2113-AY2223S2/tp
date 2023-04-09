@@ -14,14 +14,14 @@
   * [3.5. Storage Component](#35-storage)
   * [3.6. UI Component](#36-ui)
 - [4. Command List](#4-command-list)
-  * [4.1. Add a transaction](#adding-a-todo-todo)
-  * [4.2. Edit a transaction](#adding-a-todo-todo)
-  * [4.3. Delete a transaction](#adding-a-todo-todo)
-  * [4.4. Find transactions](#adding-a-todo-todo)
-  * [4.5. Duplicate a transaction](#adding-a-todo-todo)
-  * [4.6. Sort transactions](#adding-a-todo-todo)
-  * [4.7. View transactions](#adding-a-todo-todo)
-  * [4.8. Set a budget](#adding-a-todo-todo)
+  * [4.1. Add a transaction](#41-Add-Expenditure-Command)
+  * [4.2. Edit a transaction](#42-Edit-Command)
+  * [4.3. Delete a transaction](#43-Delete-Command)
+  * [4.4. Find transactions](#44-Find-Command)
+  * [4.5. Duplicate a transaction](#45-Duplicate-Command)
+  * [4.6. Sort transactions](#46-Sort-Command)
+  * [4.7. View Command](#47-View-Command)
+  * [4.8. Set a budget](#48-Set-Budget-Command)
 
 
 ## 1. Preface
@@ -316,10 +316,19 @@ The sequence diagram below shows the details of the process for viewdate.
     <i>Figure 8: Sequence Diagram of the process for viewdate</i>
 </p>
 
+With the addition of a currency feature, the specificDateString method in ExpenditureList also gets a value converted to the 
+specified currency using `getConvertValue()` found in Expenditure and appends it to the string, instead of the `getValue()`
+also in Expenditure used previously.
+
 The process for viewtype is similar as viewdate with an additional step within ViewTypeExpenditureCommand
 that converts the input string into a string recognisable for comparison in the opt block. 
 
 ### 4.8. Set Budget Command
+
+### 4.9. Show Rates Command
+
+`showrates` is a command that prints a list of currencies available in MyLedger with their value tied to SGD.
+`showrates` is a simple command that calls on the 
 
 ## Product scope
 ### Target user profile
