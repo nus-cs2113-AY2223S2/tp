@@ -7,16 +7,16 @@ hide footbox
 activate Duke
 activate Storage
 Duke -> Storage: loadData()
-Storage -> Duke: data
+Storage --> Duke: data
 deactivate Storage
 loop hash = 0
     Duke -> Menu: showWelcomeMenu()
     activate Menu
     Menu -> Parser: parseWelcome()
     activate Parser
-    Parser -> Menu: command
+    Parser --> Menu: command
     deactivate Parser
-    Menu -> Duke: command
+    Menu --> Duke: command
     deactivate Menu
 end
 loop true
@@ -24,9 +24,9 @@ loop true
     activate Menu
     Menu -> Parser: parseAccountCommand()
     activate Parser
-    Parser -> Menu: command
+    Parser --> Menu: command
     deactivate Parser
-    Menu -> Duke: command
+    Menu --> Duke: command
     deactivate Menu
 end
 
