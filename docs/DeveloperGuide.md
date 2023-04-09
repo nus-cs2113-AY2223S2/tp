@@ -104,6 +104,18 @@ The following is the sequence diagram for parsing `card add -q QN -a ANS`:
 
 API: Storage.java
 
+
+Inka's storage functions operate in the `JsonStorage` class that extends the `Storage` class, that implements the `IDataStorage` interface.
+The methods `load()` and `save()` read and write to the filesystem respectively.
+This also serves to implement the [export feature](#export-feature) .
+It uses a `Memory` object as an intermediary to contain app data during serialization and deserialization.
+It uses methods contained within the classes `JsonToMemory` and `MemoryToJson` to deserialize and serialize app save data respectively.
+
+![Storage Class Diagram](img/StorageClass.svg)
+
+
+
+
 ### CardList Component
 
 API: CardList.java
@@ -297,6 +309,34 @@ The implementation of the `tag list {-t {tagName} | -i {tagIndex}}`
 
 The sequence diagram below shows how this feature works:
 ![List Cards under Tag](img/ListCardsUnderTagSequence.png)
+
+### Export Feature
+The implementation of the Export feature is split into [saving](#save) and [loading](#load)
+
+
+### Save
+Saving is implemented with `save()`
+
+If the user the command `export` or exiting the app with `bye`, the app will save their data to both a file, `savedata.json` and a backup file, `backup.json`. It does so by calling save() on both the file and the backup file. 
+1. All data is compiled into a `Memory` object.
+2. Memory is serialized into a Json Format using the method `convert()` in `MemoryToJson` that returns a `JsonObject`.
+3. The Json is written into the filesystem.
+
+The sequence diagram below illustrates this feature:
+![export feature](img/SaveSequence.png)
+
+
+### Load
+Loading is implemented with `load()`
+
+`load()` is called by inka on app startup to read a file `savedata.json` in the directory of the jar file. If the file is corrupted, `load()` is called to read a file `backup.json` instead.
+1. The file is read and parsed as a Json using `Gsonbuilder`, being converted into a `JsonObject`.
+2. The `JsonObject` is deserialized into a `Memory` object using the `convert()` method in `JsonToMemory`.
+3. The memory object is returned to be read from by Inka.
+
+The sequence diagram below illustrates this feature:
+![export feature](img/LoadSequence.png)
+
 
 ### Deck Feature
 

@@ -1,0 +1,74 @@
+@startuml
+
+
+participant "JsonStorage" as JsonStorage
+participant ":load" as load
+
+participant "JsonObject:saveDataObject" as saveDataObject
+participant GsonBuilder
+participant JsonElement
+participant "JsonToMemory" as jtm
+
+
+create load
+JsonStorage -> load : load()
+activate load
+
+
+load -> GsonBuilder : create().fromJson()
+activate GsonBuilder
+create JsonElement
+
+GsonBuilder -> JsonElement
+activate JsonElement
+create saveDataObject
+deactivate GsonBuilder
+JsonElement -> saveDataObject : getAsJsonObject()
+deactivate JsonElement
+activate saveDataObject
+saveDataObject --> load
+deactivate saveDataObject
+
+alt valid save file
+
+load -> jtm :JsonToMemory.convert(saveDataObject)
+activate jtm
+
+
+
+jtm -> jtm++ :getJsonCardList()
+return
+jtm -> jtm++ :getJsonTagList()
+return
+jtm -> jtm++ :getJsonDeckList()
+return
+
+create memory
+jtm -> memory
+deactivate jtm
+activate memory
+ memory -> load
+deactivate memory
+
+else benis
+
+
+
+load --> JsonStorage
+
+deactivate load
+
+
+
+
+
+
+participant "Memory:memory" as memory
+<-- JsonStorage
+
+note right : memory object returned
+
+
+
+
+@enduml
