@@ -20,7 +20,7 @@ public class Store {
         return todo.equals("Invalid todo");
     }
 
-    public void storeNotes() { // this is a method
+    public void storeNotes() {
         try {
             if (isInvalidTodo(toDo)) {
                 throw new IllegalTodoException();

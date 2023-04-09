@@ -9,11 +9,10 @@ title Sequence Diagram for Store
 actor User
 
 User -> Store **: Store(notes, toDo)
-activate Store
-deactivate Store
+
 
 User -> Store:storeNotes()
-
+activate Store
 alt isInvalidTodo(toDo) is "Invalid todo"
     Store -> Ui : Ui.printIncorrectFormatEntered()
     activate Ui
@@ -29,4 +28,5 @@ alt isInvalidTodo(toDo) is "Invalid todo"
     activate NotesFileWriter
     deactivate NotesFileWriter
     end
+deactivate Store
 @enduml
