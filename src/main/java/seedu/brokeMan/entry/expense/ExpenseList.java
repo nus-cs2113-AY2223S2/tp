@@ -40,7 +40,7 @@ public class ExpenseList extends EntryList {
         listEntry(expenseOfDate);
         double totalDoubleExpenses = getEntryListSum(expenseOfDate);
         BigDecimal totalExpenses = new BigDecimal(totalDoubleExpenses);
-        Ui.showToUser(String.format("Total expenses: $%.2D", totalExpenses));
+        Ui.showToUser(String.format("Total expenses: $%.2f", totalExpenses));
         Ui.showToUserWithLineBreak("");
     }
 
