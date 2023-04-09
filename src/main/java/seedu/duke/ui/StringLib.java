@@ -195,4 +195,6 @@ public interface StringLib {
     String STEP_DELETE_SUCCESS = "The step has been successfully deleted from the step list!";
     String EMPTY_STEP_ID_MESSAGE = "Index of step cannot be empty!";
     String EMPTY_INGREDIENT_ID_MESSAGE = "Index of ingredient cannot be empty!";
+    String DEFAULT_CASE_WARNING = "Warning! Unhandled default of case statement reached";
+    String DEFAULT_ELSE_CONDITION_WARNING = "Warning! Unhandled default \"else\" condition was reached";
 }

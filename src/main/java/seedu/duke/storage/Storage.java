@@ -7,6 +7,7 @@ import seedu.duke.recipe.Recipe;
 import seedu.duke.recipe.RecipeList;
 import seedu.duke.recipe.Step;
 import seedu.duke.recipe.StepList;
+import seedu.duke.ui.StringLib;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

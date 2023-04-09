@@ -289,4 +289,10 @@ public class UI {
     public void showEmptyIngredientList() {
         System.out.println(StringLib.EMPTY_INGREDIENT_LIST);
     }
+    public void showDefaultCaseError() {
+        System.out.println(StringLib.DEFAULT_CASE_WARNING);
+    }
+    public void showDefaultElseConditionError() {
+        System.out.println(StringLib.DEFAULT_ELSE_CONDITION_WARNING);
+    }
 }

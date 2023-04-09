@@ -246,6 +246,7 @@ public class Command {
                     Storage.writeSavedFile();
                     break;
                 default:
+                    ui.showDefaultCaseError();
                 }
             } catch (Exception e) {
                 ui.showDeletingRecipeElementErrorMessage(e);
@@ -377,6 +378,8 @@ public class Command {
                     Parser.parseEditIngredient(recipeIndex, editDescription);
                 } else if (isEditStep) {
                     Parser.parseEditStep(recipeIndex, editDescription);
+                } else {
+                    ui.showDefaultElseConditionError();
                 }
             } catch (Exception e) {
                 ui.showErrorMessage(e);
