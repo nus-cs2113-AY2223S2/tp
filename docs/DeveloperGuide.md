@@ -809,12 +809,22 @@ __________________________________________________________________________
 #### Filter Testing
 !> Note: Ensure that the **Positive** test case input for `Add` testing has been successfully executed before
 attempting to test this feature.
-  * **Positive** Test Case Input:
-    * Expected Output:
-    * Output Example:
+  * **Positive** Test Case Input: `filter f/price p/lt 999`
+    * Expected Output: Generates a table containing a list of items that are less than the price of `999`. If there is
+      no such item, print a string to inform the user that no results can be found.
+    * Output Example (Assuming there are items with prices below $999):
 
 ````
+__________________________________________________________________________
++-------+-----------------+--------------+----------+----------+-----------------+
+| Index | Name            | UPC          | Quantity | Price    | Category        |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 0     | orange          | 1            | 1        | $1.00    | Uncategorized   |
++-------+-----------------+--------------+----------+----------+-----------------+
+| 1     | Oreo            | 1234         | 5        | $2.00    | Snacks          |
++-------+-----------------+--------------+----------+----------+-----------------+
 
+__________________________________________________________________________
 ````
 
   * **Negative** Test Case Input: `filter f/price p/lt one` (String as a price input)
