@@ -28,6 +28,7 @@ Additionally, the program, beyond borrowing and returning books allows the user 
     - Search and Librarian feature [#63](https://github.com/AY2223S2-CS2113-F10-4/tp/pull/63), [#128](https://github.com/AY2223S2-CS2113-F10-4/tp/pull/128):
         - Fixed buggy add action in Librarian feature
         - Added capability to search through use of Title and Topic together through ArrayList operations where the intersection of 2 list is returned
+    - Creation of default feature [#164](https://github.com/AY2223S2-CS2113-F10-4/tp/pull/164)
     - Class and sequence diagrams for documentation 
 - User Guide:
     - Documentation for search and librarian feature [#55](https://github.com/AY2223S2-CS2113-F10-4/tp/pull/55)
@@ -38,6 +39,7 @@ Additionally, the program, beyond borrowing and returning books allows the user 
     - Class diagram of various classes like search, librarian, list using PlantUML as recommended in the course guide [#154](https://github.com/AY2223S2-CS2113-F10-4/tp/pull/154)
 - Team
     - Release management: [v1.0](https://github.com/AY2223S2-CS2113-F10-4/tp/releases/tag/v1.0)
+    - Release management: [v2.1](https://github.com/AY2223S2-CS2113-F10-4/tp/releases/tag/v2.1)
     - PR review and approvals
 - Community contributions
     - Provided code comment feedbacks
