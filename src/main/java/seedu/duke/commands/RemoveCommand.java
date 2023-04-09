@@ -12,13 +12,14 @@ import seedu.duke.utils.Ui;
  */
 public class RemoveCommand extends Command {
 
+    private static final String EMPTY_SPACE = " ";
+    private static final int MIN_SIZE = 1;
     private String upcCode;
 
     private int itemIndex;
 
     /**
      * Constructor for RemoveCommand where item is removed from the inventory by its index
-     *
      * @param inventory the inventory which item is to be removed from
      * @param itemIndex the index of the item to be removed
      */
@@ -28,8 +29,7 @@ public class RemoveCommand extends Command {
     }
 
     /**
-     * Constructor for RemoveCommand where item is removed from the inventory by its UPC Code
-     *
+     * Constructor for RemoveCommand where item is removed from the inventory by its UPC Code.
      * @param inventory        the inventory which item is to be removed from
      * @param upcCode          the upc code of the item to be removed
      */
@@ -53,11 +53,11 @@ public class RemoveCommand extends Command {
         }
         Item itemToRemove = new Item(upcCodes.get(upcCode));
         int indexOfItem = itemInventory.indexOf(itemToRemove);
-        String category = itemToRemove.getCategory();
+        String category = itemToRemove.getCategory().toLowerCase();
         inventory.getUpcCodesHistory().remove(upcCode);
         itemInventory.remove(indexOfItem);
         upcCodes.remove(upcCode);
-        String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
+        String[] itemNames = itemToRemove.getName().toLowerCase().split(EMPTY_SPACE);
         for (String itemName : itemNames) {
             removeItemFromHashTrie(itemToRemove, itemName);
         }
@@ -79,12 +79,12 @@ public class RemoveCommand extends Command {
             return;
         }
         String upcCode = itemToRemove.getUpc();
-        String category = itemToRemove.getCategory();
+        String category = itemToRemove.getCategory().toLowerCase();
         int i = itemInventory.indexOf(itemToRemove);
         upcCodes.remove(upcCode);
         inventory.getUpcCodesHistory().remove(upcCode);
         itemInventory.remove(i);
-        String[] itemNames = itemToRemove.getName().toLowerCase().split(" ");
+        String[] itemNames = itemToRemove.getName().toLowerCase().split(EMPTY_SPACE);
         for (String name : itemNames) {
             removeItemFromHashTrie(itemToRemove, name);
         }
@@ -93,8 +93,13 @@ public class RemoveCommand extends Command {
         Ui.printSuccessRemove(itemToRemove);
     }
 
+    /**
+     * Removes item from the hashmap of item names and the trie of items.
+     * @param itemToRemove the item to be removed from the inventory.
+     * @param itemName the name of the item to be removed.
+     */
     private void removeItemFromHashTrie(Item itemToRemove, String itemName) {
-        if (itemNameHash.get(itemName).size() == 1) {
+        if (itemNameHash.get(itemName).size() == MIN_SIZE) {
             itemNameHash.remove(itemName);
             itemsTrie.remove(itemName);
         } else {
@@ -102,9 +107,14 @@ public class RemoveCommand extends Command {
         }
     }
 
+    /**
+     * Removes specified item from its stored category.
+     * @param itemToRemove the item to be removed from the inventory.
+     * @param category the category that the item belongs to.
+     */
     private void removeItemFromCategoryHash(Item itemToRemove, String category) {
         category = category.toLowerCase();
-        if (categoryHash.get(category).size() == 1) {
+        if (categoryHash.get(category).size() == MIN_SIZE) {
             categoryHash.get(category).remove(itemToRemove);
             categoryHash.remove(category);
         } else {

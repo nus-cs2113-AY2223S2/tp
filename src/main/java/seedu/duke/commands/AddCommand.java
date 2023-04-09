@@ -13,11 +13,14 @@ import java.util.ArrayList;
  */
 
 public class AddCommand extends Command {
+    private static final String EMPTY_SPACE = " ";
+    private static final String UNCATEGORIZED = "Uncategorized";
+    private static final String CATEGORY_LABEL = "c/";
+    private static final String EMPTY_STRING = "";
     private final Item item;
 
     /**
      * Constructor for the AddCommand class.
-     *
      * @param inventory The inventory to be initialised in the Command class.
      * @param item      The item to be added to the inventory.
      */
@@ -26,19 +29,21 @@ public class AddCommand extends Command {
         this.item = item;
     }
 
+    /**
+     * Adds item into category specified. If unspecified, category is default to be "Uncategorized"
+     */
     private void addCategory() {
         try {
             if (!item.getCategory().isEmpty()) {
-                String category = item.getCategory().replaceFirst("c/", "");
+                String category = item.getCategory().replaceFirst(CATEGORY_LABEL, EMPTY_STRING);
                 item.setCategory(category);
             }
         } catch (NullPointerException e) {
-            item.setCategory("Uncategorized");
+            item.setCategory(UNCATEGORIZED);
         }
         try {
             CategoryCommand.updateItemCategory(item, item.getCategory(), item.getCategory());
         } catch (CategoryFormatException e) {
-            System.out.println("Exception thrown here");
             Ui.printNewCategory();
         }
     }
@@ -53,7 +58,7 @@ public class AddCommand extends Command {
             itemInventory.add(item);
             addCategory();
             Ui.printSuccessAdd();
-            String[] itemNames = item.getName().toLowerCase().split(" ");
+            String[] itemNames = item.getName().toLowerCase().split(EMPTY_SPACE);
             for (String itemName : itemNames) {
                 if (!itemNameHash.containsKey(itemName)) {
                     itemNameHash.put(itemName, new ArrayList<>());

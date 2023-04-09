@@ -8,6 +8,11 @@ import seedu.duke.utils.Ui;
 import java.util.ArrayList;
 
 public class CategoryCommand extends Command {
+    private static final String EMPTY_SPACE = " ";
+    private static final String LIST = "list";
+    private static final String TABLE = "table";
+    private static final int BEGIN_INDEX = 0;
+    private static final int NEXT_INDEX = 1;
     private static boolean isAnd;
     private static boolean isOr;
     private static boolean isAt;
@@ -78,7 +83,7 @@ public class CategoryCommand extends Command {
         if (!categoryHash.containsKey(oldCategory)) {
             return;
         }
-        if (categoryHash.get(oldCategory).size() == 1) {
+        if (categoryHash.get(oldCategory).size() == NEXT_INDEX) {
             categoryHash.get(oldCategory).remove(item);
             categoryHash.remove(oldCategory);
         } else {
@@ -123,11 +128,11 @@ public class CategoryCommand extends Command {
     /**
      * Capitalises important words in category name for printing (like book titles).
      * @param category The category to have its words capitalised accordingly.
-     * @return
+     * @return Capitalised string of category name.
      */
     public static String capitaliseCategory(String category) {
         String capsString = new String();
-        String[] catWords = category.split(" ");
+        String[] catWords = category.split(EMPTY_SPACE);
         for (String word : catWords) {
             isAnd = word.equals("and");
             isAt = word.equals("at");
@@ -135,7 +140,7 @@ public class CategoryCommand extends Command {
             isOr = word.equals("or");
             isThe = word.equals("the");
             isAn = word.equals("an");
-            isNotFirstWord = (word != catWords[0]);
+            isNotFirstWord = (word != catWords[BEGIN_INDEX]);
             isFrom = word.equals("from");
             isOn = word.equals("on");
             isFor = word.equals("for");
@@ -144,9 +149,9 @@ public class CategoryCommand extends Command {
                     ((isA || isThe || isAn) && isNotFirstWord)) {
                 capsString = capsString + word;
             } else {
-                capsString = capsString + word.substring(0,1).toUpperCase() + word.substring(1);
+                capsString = capsString + word.substring(BEGIN_INDEX, NEXT_INDEX).toUpperCase() + word.substring(NEXT_INDEX);
             }
-            capsString = capsString + " ";
+            capsString = capsString + EMPTY_SPACE;
         }
         capsString = capsString.trim();
         return capsString;
@@ -158,9 +163,9 @@ public class CategoryCommand extends Command {
     @Override
     public void run() {
         try {
-            if (rawInput.equals("list")) {
+            if (rawInput.equals(LIST)) {
                 listAllCategories();
-            } else if (rawInput.equals("table")) {
+            } else if (rawInput.equals(TABLE)) {
                 listCategoryAndItems();
             }
         } catch (NullPointerException npe) {
