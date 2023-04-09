@@ -1,5 +1,14 @@
 //@@author WilsonLee2000
 
+/**
+ * Takes in an ArrayList containing previous history commands that the user have entered so far
+ * during the current programme run session.
+ * Prints out a list of history commands from the ArrayList if function is called.
+ *
+ * @param historyCommand
+ */
+
+
 package seedu.badmaths;
 import java.util.ArrayList;
 

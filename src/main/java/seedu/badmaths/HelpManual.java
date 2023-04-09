@@ -1,3 +1,8 @@
+/**
+ * Provides the HelpManual to guide users who are operating BadMaths.
+ *
+ */
+
 package seedu.badmaths;
 
 import java.io.File;
