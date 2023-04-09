@@ -397,6 +397,7 @@ public class Parser {
      *
      * @return itemIndex of the item to set as fully packed
      * @throws InvalidIndexException if item index is not valid
+     * @throws InvalidVariablesException invalid number of variables
      */
     public static int getPackAllIndex() throws InvalidIndexException, InvalidVariablesException {
         try {
