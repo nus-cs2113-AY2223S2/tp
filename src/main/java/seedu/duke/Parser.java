@@ -31,7 +31,6 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
 public class Parser {
     private static UI ui = UI.getUiOneInstance();
     private static Parser instance = null;
