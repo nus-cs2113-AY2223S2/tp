@@ -34,6 +34,7 @@ Ensure you have the following installed:
     What can I do for you?
     >
    ```
+   
 ## Design 
 ### Architecture
 
