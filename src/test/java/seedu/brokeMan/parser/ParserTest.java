@@ -19,8 +19,6 @@ import seedu.brokeMan.command.ViewBudgetCommand;
 import seedu.brokeMan.command.SetBudgetCommand;
 import seedu.brokeMan.command.AddExpenseCommand;
 
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {

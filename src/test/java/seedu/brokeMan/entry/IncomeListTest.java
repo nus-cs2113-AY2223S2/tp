@@ -2,7 +2,6 @@ package seedu.brokeMan.entry;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.brokeMan.entry.expense.ExpenseList;
 import seedu.brokeMan.entry.income.Income;
 import seedu.brokeMan.entry.income.IncomeList;
 import java.time.LocalDateTime;
