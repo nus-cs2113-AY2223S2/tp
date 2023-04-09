@@ -53,13 +53,15 @@ public class RecipeNeedCommand extends RecipeCommand {
         ArrayList<Ingredient> ingredientsInRecipe = ingredients.getIngredients();
         boolean isMissing = false;
         int index = 1;
-        mealCompanionSession.getUi().printMessage("These are the ingredient(s) you are missing:");
         for (Ingredient ingredient : ingredientsInRecipe) {
             int quantityNeeded = additionalQuantityNeeded(ingredient, ingredientsInFridge);
+            if (quantityNeeded > 0 && index == 1) {
+                mealCompanionSession.getUi().printMessage("These are the ingredient(s) you are missing:");
+            }
             if (quantityNeeded > 0) {
-                mealCompanionSession.getUi().printMessage(Integer.toString(index) +
+                mealCompanionSession.getUi().printMessage(index +
                         ". " + ingredient.getMetadata().getName() + " (quantity: " +
-                        Integer.toString(quantityNeeded) + ")");
+                        quantityNeeded + ")");
                 isMissing = true;
                 index++;
             }

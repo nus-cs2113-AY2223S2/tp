@@ -1,7 +1,10 @@
 # Jia Chen - Project Portfolio Page
 
 ## Overview
-I have changed my language setting
+MealCompanion is a one-stop solution to handling meal preparation, ingredient tracking and cookbook!
 
 ### Summary of Contributions
-I love u Ethan
+
+### Code Contributed
+[Code](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=aaronxujiachen&breakdown=true
+)

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import seedu.mealcompanion.ingredient.Ingredient;
 import seedu.mealcompanion.ingredient.IngredientList;
+import seedu.mealcompanion.ui.MealCompanionUI;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,6 +29,12 @@ public class IngredientStorage {
     private BufferedWriter bufferedWriter = null;
     private boolean fileHasBeenEdited = false;
 
+    private MealCompanionUI ui;
+
+    public IngredientStorage(MealCompanionUI ui) {
+        this.ui = ui;
+    }
+
     /**
      * Checks for existing file containing ingredients and initialises buffered writer accordingly
      *
@@ -40,7 +47,7 @@ public class IngredientStorage {
             try {
                 this.bufferedWriter = new BufferedWriter(new FileWriter(filename));
             } catch (IOException e) {
-                System.out.println("Oops, unable to create or write to file");
+                ui.printMessage("Oops, unable to create or write to file");
             }
             return;
         }
@@ -49,7 +56,7 @@ public class IngredientStorage {
         try {
             this.bufferedWriter = new BufferedWriter(new FileWriter(filename, true));
         } catch (IOException e) {
-            System.out.println("Oops, unable to create or write to file");
+            ui.printMessage("Oops, unable to create or write to file");
         }
     }
 
@@ -69,15 +76,15 @@ public class IngredientStorage {
                 ingredientString = bufferedReader.readLine();
             }
             if (fileHasBeenEdited) {
-                System.out.println("Please refrain from editing the 'ingredients.txt' file, " +
+                ui.printMessage("Please refrain from editing the 'ingredients.txt' file, " +
                         "some ingredients in your list has been affected and is now invalid.");
             }
         } catch (FileNotFoundException e) {
-            System.out.println("Oops, an error occurred while loading file");
+            ui.printMessage("Oops, an error occurred while loading file");
         } catch (IOException e) {
-            System.out.println("Oops, an error occurred while reading file");
+            ui.printMessage("Oops, an error occurred while reading file");
         } catch (JsonSyntaxException e) {
-            System.out.println("Please refrain from editing the 'ingredients.txt' file, stored data cannot be loaded");
+            ui.printMessage("Please refrain from editing the 'ingredients.txt' file, stored data cannot be loaded");
         }
     }
 
@@ -92,7 +99,7 @@ public class IngredientStorage {
         if (ingredient.getMetadata() == null ||
                 ingredient.getMetadata().getName() == null ||
                 (ingredient.getMetadata().getUnits() == null && ingredient.getMetadata().getUnitLabel() == null) ||
-                ingredient.getQuantity() <= 0) {
+                ingredient.getQuantity() <= 0 || ingredient.getQuantity() > 10000) {
             fileHasBeenEdited = true;
             return;
         }
@@ -109,7 +116,7 @@ public class IngredientStorage {
         try {
             this.bufferedWriter = new BufferedWriter(new FileWriter(filename));
         } catch (IOException e) {
-            System.out.println("Oops, unable to create or write to file");
+            ui.printMessage("Oops, unable to create or write to file");
         }
         for (Ingredient ingredient : ingredients.getIngredients()) {
             writeIngredientToFile(ingredient);
@@ -128,7 +135,7 @@ public class IngredientStorage {
             this.bufferedWriter.write(ingredientString + System.lineSeparator());
             this.bufferedWriter.flush();
         } catch (Exception e) {
-            System.out.println("Oops, an error occurred while saving file");
+            ui.printMessage("Oops, an error occurred while saving file");
         }
     }
 

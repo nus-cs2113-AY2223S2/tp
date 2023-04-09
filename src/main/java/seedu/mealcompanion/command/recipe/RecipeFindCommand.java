@@ -15,6 +15,7 @@ public class RecipeFindCommand extends ExecutableCommand {
 
     String findTerm;
 
+
     public RecipeFindCommand(String findTerm) {
         this.findTerm = findTerm;
     }
@@ -25,28 +26,30 @@ public class RecipeFindCommand extends ExecutableCommand {
      * @param mealCompanionSession the MealCompanionSession containing the recipe list
      * @return true if there are recipe names that contain search term, else false
      */
-    private boolean haveRecipes(MealCompanionSession mealCompanionSession) {
+    private int haveRecipes(MealCompanionSession mealCompanionSession) {
         RecipeList recipeList = mealCompanionSession.getRecipes();
         String matchTerm = findTerm.toLowerCase();
         int index = 1;
-        boolean foundRecipe = false;
+        int numOfRecipe = 0;
         for (Recipe recipe : recipeList.getRecipes()) {
             String recipeName = recipe.getName().toLowerCase();
+            if (recipeName.contains(matchTerm) && numOfRecipe == 0) {
+                mealCompanionSession.getUi().printMessage("These are the recipes found:");
+            }
             if (recipeName.contains(matchTerm)) {
-                foundRecipe = true;
                 mealCompanionSession.getUi().printMessage(index + ". " + recipe.getName());
+                numOfRecipe++;
             }
             index++;
         }
-        return foundRecipe;
+        return numOfRecipe;
     }
 
     @Override
     public void execute(MealCompanionSession mealCompanionSession) {
         try {
-            boolean foundRecipe = haveRecipes(mealCompanionSession);
-            mealCompanionSession.getUi().printMessage("These are the recipes found:");
-            if (!foundRecipe) {
+            int numOfRecipes = haveRecipes(mealCompanionSession);
+            if (numOfRecipes <= 0) {
                 mealCompanionSession.getUi().printMessage("There are no recipes found!");
             }
         } catch (NullPointerException e) {

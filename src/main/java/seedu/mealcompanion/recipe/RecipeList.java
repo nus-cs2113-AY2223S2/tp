@@ -95,16 +95,17 @@ public class RecipeList {
     //@@author ngyida
 
     /**
-     * Find the index (0-based) of a recipe by its specified name.
-     *
+     * Find the index (0-based) of a recipe by its specified name. Name search is non-case sensitive.
      * @param name the name of the recipe to look for
      * @return index of recipe if recipe is found, else return -1
      * @throws MealCompanionException if recipe name does not exist in the recipe list
      */
     public int findIndex(String name) throws MealCompanionException {
+        String nameInLowerCase = name.toLowerCase();
         int index = 0;
         for (Recipe recipe : this.recipes) {
-            if (recipe.getName().equals(name)) {
+            String recipeNameInLowerCase = recipe.getName().toLowerCase();
+            if (recipeNameInLowerCase.equals(nameInLowerCase)) {
                 return index;
             }
             index++;
