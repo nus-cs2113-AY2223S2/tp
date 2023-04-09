@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class ModueStorage implements DatabaseInterface {
+public class ModuleStorage implements DatabaseInterface {
 
-    private static ModueStorage instance = null;
+    private static ModuleStorage instance = null;
     private static final String SAVED_MODULES_FILE_PATH = "data/saved_modules.txt";
     private ArrayList<Module> modules;
 
@@ -18,7 +18,7 @@ public class ModueStorage implements DatabaseInterface {
      * Constructor of the Storage class that initialises the Storage database.
      * Prints a failure message when there is an IOException when trying to initialise.
      */
-    private ModueStorage() {
+    private ModuleStorage() {
         this.modules = new ArrayList<>();
         try {
             initialiseDatabase();
@@ -27,9 +27,9 @@ public class ModueStorage implements DatabaseInterface {
         }
     }
 
-    public static ModueStorage getInstance() {
+    public static ModuleStorage getInstance() {
         if (instance == null) {
-            instance = new ModueStorage();
+            instance = new ModuleStorage();
         }
         return instance;
     }
@@ -211,7 +211,7 @@ public class ModueStorage implements DatabaseInterface {
      * @return True if successfully deleted the module, false if unsuccessful.
      */
     public static boolean deleteModule(int indexToDeletePuSpecificList, ArrayList<Module> modules,
-                                       ModueStorage database, int uniID) {
+                                       ModuleStorage database, int uniID) {
         int indexToDeletePuSpecificListToZeroBased = indexToDeletePuSpecificList - 1;
         int counterUpToIndexToDelete = 0;
         int indexToDelete = -1;

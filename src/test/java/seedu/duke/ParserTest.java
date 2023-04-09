@@ -21,7 +21,7 @@ public class ParserTest {
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
         DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();;
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof ListPuCommand);
@@ -36,7 +36,7 @@ public class ParserTest {
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
         DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();;
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof ListCurrentCommand);
@@ -51,7 +51,7 @@ public class ParserTest {
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
         DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();;
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof ExitCommand);
@@ -66,7 +66,7 @@ public class ParserTest {
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
         DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof HelpCommand);
@@ -81,7 +81,7 @@ public class ParserTest {
         ArrayList<Module> puModules = new ArrayList<>();
         ArrayList<Deadline> deadlines = new ArrayList<>();
         DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();;
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof ListMappableNusModsCommand);

@@ -1,14 +1,14 @@
 package seedu.duke.command;
 
 import seedu.duke.Module;
-import seedu.duke.ModueStorage;
+import seedu.duke.ModuleStorage;
 
 public class AddModuleCommand extends Command {
 
     private Module moduleToAdd;
-    private ModueStorage storage;
+    private ModuleStorage storage;
 
-    public AddModuleCommand(Module module, ModueStorage storage) {
+    public AddModuleCommand(Module module, ModuleStorage storage) {
         moduleToAdd = module;
         this.storage = storage;
     }
@@ -17,7 +17,7 @@ public class AddModuleCommand extends Command {
         return moduleToAdd;
     }
 
-    public ModueStorage getStorage() {
+    public ModuleStorage getStorage() {
         return storage;
     }
 

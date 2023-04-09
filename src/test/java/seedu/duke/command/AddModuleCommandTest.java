@@ -2,13 +2,13 @@ package seedu.duke.command;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.Module;
-import seedu.duke.ModueStorage;
+import seedu.duke.ModuleStorage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddModuleCommandTest {
 
-    ModueStorage storage = ModueStorage.getInstance();
+    ModuleStorage storage = ModuleStorage.getInstance();
     Module module = new Module(1, "AE320", "Aerodynamics II", 3,
             "ME4231", "Aerodynamics", 4);
 

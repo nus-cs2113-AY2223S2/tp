@@ -26,7 +26,7 @@ public class StorageTest {
     @Test
     @Order(2)
     public void addModule_correctFormat_success() {
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         Module module = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
         storage.addModuleToModuleList(module);
@@ -38,21 +38,21 @@ public class StorageTest {
     @Test
     @Order(1)
     public void initialiseStorage_noModuleSaved_success() {
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         assertEquals(0, storage.getModules().size());
     }
 
     @Test
     @Order(3)
     public void initialiseStorage_oneModuleSaved_success() {
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         assertEquals(1, storage.getModules().size());
     }
 
     @Test
     @Order(4)
     public void initialiseStorage_nonCorruptFiles_success() {
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         try {
             storage.initialiseDatabase();
         } catch (IOException e) {
@@ -66,7 +66,7 @@ public class StorageTest {
     @Test
     @Order(5)
     public void initialiseStorage_corruptFiles_success() {
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         int initialSize = storage.getModules().size();
         try {
             FileWriter fw = new FileWriter(SAVED_MODULES_FILE_PATH, true);

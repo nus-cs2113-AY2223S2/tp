@@ -10,7 +10,7 @@ National University of Singapore (NUS), intending to go to Korea for a Student E
 1. [Acknowledgements](#acknowledgements)
 2. [Design & Implementation](#design--implementation)
     1. [Architecture](#architecture)
-    2. [Storage](#storage)
+    2. [Module Storage](#module-storage)
     3. [Parser](#parser)
     4. [UserInterface](#userinterface--ui-) 
     5. [Help Command](#help-command)
@@ -66,7 +66,7 @@ The above _**Architecture**_ diagram gives a high-level overall of the program.
 1. Duke : Taking user inputs
 2. Parser : Processes and Executes User Commands
 3. UI : Prints out messages to user
-4. Storage : Processes and stores
+4. ModuleStorage : Processes and stores module mappings
 5. DataReader
 
 **1. Duke**
@@ -88,9 +88,9 @@ It is instantiated once in both Parser and Duke classes, where it's print functi
 to print outputs to the User.
 
 
-**4. Storage**
+**4. ModuleStorage**
 
-Storage class holds an ArrayList of modules that the user has selected.
+ModuleStorage class holds an ArrayList of modules that the user has selected.
 It saves the user's modules to an external .txt file every time the module list is altered,
 and reads from the same .txt file when the program is first booted up.
 
@@ -101,34 +101,34 @@ of Modules available in the PUs, and provides this information to other componen
 
 {Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
 
-### Storage
+### ModuleStorage
 
-The Storage class handles the loading and storing of information into a single text file in the User's computer.
-During the initialisation of the Storage class, which is at the start of the program, loading of data occurs.
-From here on, querying of the Storage class is allowed, where modules saved by the user can be accessed through
+The ModuleStorage class handles the loading and storing of information into a single text file in the User's computer.
+During the initialisation of the ModuleStorage class, which is at the start of the program, loading of data occurs.
+From here on, querying of the ModuleStorage class is allowed, where modules saved by the user can be accessed through
 the ListCurrentCommand. There are only two commands that will cause changes to the text file. They are the AddCommand
-and DeleteCommand. This involves adding of new modules and deleting of old modules to the Storage. The text file will
-be continuously updated every time an Add or Delete command is called.
+and DeleteCommand. This involves adding of new modules and deleting of old modules to the ModuleStorage. The text file 
+will be continuously updated every time an Add or Delete command is called.
 
-Class Diagram of Storage:
+Class Diagram of ModuleStorage:
 
 ![StorageClassDiagram.png](diagrams%2FStorage%2FStorageClassDiagram.png)
 
-The Storage class follows the Singleton pattern, where there is only one instance of Storage class. During the
-first initialisation of the Storage class, Storage also tries to handle the case where the txt have been tampered.
-How the Storage handles this is through the checkDatabaseCorrupted function which the Storage class implements from
+The ModuleStorage class follows the Singleton pattern, where there is only one instance of ModuleStorage class. During the
+first initialisation of the ModuleStorage class, ModuleStorage also tries to handle the case where the txt have been tampered.
+How the ModuleStorage handles this is through the checkDatabaseCorrupted function which the ModuleStorage class implements from
 the Database Interface. 
 
 **Checking for tampering:**
 
-- The Storage class would save module mappings in a string format that contains all the information. 
+- The ModuleStorage class would save module mappings in a string format that contains all the information. 
 - Checking for duplication would then occur.
 - To double-check that such module mappings are not corrupted, it is cross-referenced with the main Module database from the
 DataReader class.
 - Tampered data will be removed or the module database would reset if
 too many modules are affected.
 
-Sequence Diagram of Storage initialisation:
+Sequence Diagram of ModuleStorage initialisation:
 
 ![Storage.png](diagrams%2FStorage%2FStorage.png)
 
@@ -141,8 +141,8 @@ Reference readModData Diagram:
 
 ![readModData.png](diagrams%2FStorage%2FreadModData.png)
 
-The Storage class also handles the adding of new modules and the deleting of past modules. When any of this occurs, the
-txt file will be updated immediately after the successful adding/deletion of saved modules in the Storage.
+The ModuleStorage class also handles the adding of new modules and the deleting of past modules. When any of this occurs, the
+txt file will be updated immediately after the successful adding/deletion of saved modules in the ModuleStorage.
 
 - For adding of newly saved modules, they are added through appending to the saved_modules.txt file
 - For deleting of past saved modules, they are deleted, and the txt file is updated by rewriting every module from the
@@ -154,8 +154,8 @@ txt file will be updated immediately after the successful adding/deletion of sav
 The parser class is responsible for parsing the user's input commands and returning the appropriate command object.
 The commands that the parser class will initialise are ListPuCommand(), ListCurrentCommand(modules),
 prepareListPuModulesCommand(userCommandSecondKeyword, universities), ExitCommand(),
-prepareAddModuleCommand(storage, userCommandSecondKeyword, puModules, universities),
-DeleteModuleCommand(storage, indexToRemove, modules), and HelpCommand(). The parser class will handle error checking by
+prepareAddModuleCommand(moduleStorage, userCommandSecondKeyword, puModules, universities),
+DeleteModuleCommand(moduleStorage, indexToRemove, modules), and HelpCommand(). The parser class will handle error checking by
 throwing InvalidCommandException if the user's input command does not match the specified format.
 
 The following class diagrams illustrates the relationship between the Parser class and the Command classes.
@@ -292,15 +292,15 @@ Sequence Diagram of Add Module Command.
 
 **Explanation**
 
-1. AddModuleCommand calls addModuleToModuleList(moduleToAdd) of Storage class. moduleToAdd refers to the Module that
+1. AddModuleCommand calls addModuleToModuleList(moduleToAdd) of ModuleStorage class. moduleToAdd refers to the Module that
    the user has picked to add.
-2. In the circumstance that the moduleToAdd is null, Storage would call the printAddModuleFailureMessage to tell the
+2. In the circumstance that the moduleToAdd is null, ModuleStorage would call the printAddModuleFailureMessage to tell the
    user that module adding has failed, and stop the operation of AddModuleCommand.
-3. Storage class would then add the module to its ArrayList of saved modules.
-4. Storage class would then call sortModulesAccordingToPrintingLength(modules), to ensure modules are sorted 
+3. ModuleStorage class would then add the module to its ArrayList of saved modules.
+4. ModuleStorage class would then call sortModulesAccordingToPrintingLength(modules), to ensure modules are sorted 
 according to the correct printing length. _Refer to Reference Block for SortModulesAccording for more info._
 [SortModulesAccordingToPrintingLength](#reference-block-for-sortmodulesaccording-to-printing-length-function)
-5. Storage class would then initialise an instance of FileWriter to append the newly added module to the txt file.
+5. ModuleStorage class would then initialise an instance of FileWriter to append the newly added module to the txt file.
 6. After saving successfully, AddModuleCommand would call UI to print an AddModMessage and returns to Duke
    
 
@@ -321,7 +321,7 @@ The following sequence diagram shows the relationship between the classes involv
 
 **Explanation**
 
-1. DeleteModuleCommand calls deleteModule(indexToRemove, modules, storage, uniID) of Storage class.
+1. DeleteModuleCommand calls deleteModule(indexToRemove, modules, moduleStorage, uniID) of ModuleStorage class.
 2. indexToDelete and counterUpToIndexToDelete variables of type Int are initialised.
 3. In the circumstance where indexToRemove is -1, deleteModule function will return false.
 4. It will then loop through the list of modules and counterUpToIndexToDelete will keep incrementing until it is equal
@@ -387,7 +387,7 @@ called.
 ![DeleteDeadlineCommandSequenceDiagram.png](diagrams%2FDeadline%2FDeleteDeadlineCommandSequenceDiagram.png)
 
 **Explanation**
-1. DeleteDeadlineCommand calls deleteDeadline(indexToRemove, deadline, deadlineStorage) of Storage class.
+1. DeleteDeadlineCommand calls deleteDeadline(indexToRemove, deadline, deadlineStorage) of DeadlineStorage class.
 2. It then removes the deadline respective to the index via .remove(index) function.
 3. The list is saved in the deadlines txt file by overwriting it via writeDeadlinesToFile(deadline) function.
 4. deleteDeadline function then returns true and DeleteDeadlineCommand calls UI class to print the successful deletion 
@@ -399,10 +399,10 @@ of deadline message in the User Console.
 ![SortModulesAccordingToPrintingLengthFunction.png](diagrams%2FMiscellaneous%2FSortModulesAccordingToPrintingLengthFunction.png)
 
 **Explanation** 
-1. Storage calls Module's getPrintingLength() function.
+1. ModuleStorage calls Module's getPrintingLength() function.
 2. Module retrieves its own module code, name and MCs and calculate their total length known as "printing length"
-and returns it to Storage
-3. Storage calls ArrayList modules sort function passing the "printing length" into a comparator. 
+and returns it to ModuleStorage
+3. ModuleStorage calls ArrayList modules sort function passing the "printing length" into a comparator. 
 4. ArrayList Modules sorts the modules according to this "printing length"
 
 **Goal of this sorting function**

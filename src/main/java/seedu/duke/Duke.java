@@ -13,7 +13,7 @@ public class Duke {
      */
     private static DataReader dataReader = DataReader.getDataReaderOneInstance();
     private static DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
-    private static ModueStorage storage = ModueStorage.getInstance();
+    private static ModuleStorage moduleStorage = ModuleStorage.getInstance();
 
     private static BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
     private static UI ui = UI.getUiOneInstance();
@@ -25,14 +25,14 @@ public class Duke {
         boolean isContinue = true;
         ArrayList<University> universities = dataReader.getUniversities();
         ArrayList<Module> allModules = dataReader.getModules();
-        ArrayList<Module> modules = storage.getModules();
+        ArrayList<Module> modules = moduleStorage.getModules();
         ArrayList<Deadline> deadlines = deadlineStorage.getDeadlines();
         ui.printGreetingMessage();
         deadlineStorage.compareDeadlines(deadlines);
         parser = Parser.getInstance();
         while (isContinue) {
             userInput = in.nextLine();
-            Command command = parser.parseUserCommand(userInput, universities, modules, allModules, storage,
+            Command command = parser.parseUserCommand(userInput, universities, modules, allModules, moduleStorage,
                     deadlineStorage, budgetPlanner, deadlines);
             command.execute();
             isContinue = !command.getIsExit();

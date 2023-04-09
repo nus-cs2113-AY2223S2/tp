@@ -6,7 +6,7 @@ import seedu.duke.Deadline;
 import seedu.duke.DeadlineStorage;
 import seedu.duke.Module;
 import seedu.duke.Parser;
-import seedu.duke.ModueStorage;
+import seedu.duke.ModuleStorage;
 import seedu.duke.University;
 import seedu.duke.budget.BudgetPlanner;
 
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DeleteModuleCommandTest {
     DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();
-    ModueStorage storage = ModueStorage.getInstance();
+    ModuleStorage storage = ModuleStorage.getInstance();
     DataReader dataReader = DataReader.getDataReaderOneInstance();
 
     @Test
@@ -42,7 +42,7 @@ public class DeleteModuleCommandTest {
         Module module = new Module(1, "AE320", "Aerodynamics II", 3,
                 "ME4231", "Aerodynamics", 4);
         uniList1.add(module);
-        ModueStorage.deleteModule(1, uniList1, storage, 1);
+        ModuleStorage.deleteModule(1, uniList1, storage, 1);
         assertEquals(0, uniList1.size());
     }
 }

@@ -8,7 +8,7 @@ import seedu.duke.Deadline;
 import seedu.duke.DeadlineStorage;
 import seedu.duke.Module;
 import seedu.duke.Parser;
-import seedu.duke.ModueStorage;
+import seedu.duke.ModuleStorage;
 import seedu.duke.University;
 import seedu.duke.budget.BudgetPlanner;
 
@@ -40,7 +40,7 @@ public class HelpCommandTest {
         ArrayList<Deadline> deadlines = new ArrayList<>();
         Parser parser = Parser.getInstance();
         DeadlineStorage deadlineStorage = DeadlineStorage.getInstance();;
-        ModueStorage storage = ModueStorage.getInstance();
+        ModuleStorage storage = ModuleStorage.getInstance();
         BudgetPlanner budgetPlanner = BudgetPlanner.getInstance();
         assertTrue(parser.parseUserCommand(userInput, universities, modules, puModules, storage, deadlineStorage,
                 budgetPlanner, deadlines) instanceof HelpCommand);
