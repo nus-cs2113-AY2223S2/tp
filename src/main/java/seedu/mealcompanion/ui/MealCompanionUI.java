@@ -56,11 +56,6 @@ public class MealCompanionUI {
     public void printIntroduction() { System.out.println("Welcome to Meal Companion!"); }
 
     /**
-     * Prints the provided message.
-     * @param message the message to print.
-     */
-
-    /**
      * Prints the farewell image to user
      *
      * @author aaronxujiachen
@@ -80,6 +75,10 @@ public class MealCompanionUI {
         }
     }
 
+    /**
+     * Prints the provided message.
+     * @param message the message to print.
+     */
     public void printMessage(String message) {
         System.out.println(message);
     }
