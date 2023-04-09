@@ -1,6 +1,6 @@
 package seedu.txtdata;
 
-import seedu.exceptions.TxtFileException;
+import seedu.exceptions.*;
 import seedu.expenditure.Expenditure;
 import seedu.expenditure.AcademicExpenditure;
 import seedu.expenditure.AccommodationExpenditure;
@@ -93,7 +93,7 @@ public abstract class TxtFileStatus {
             try {
                 String saveString = s.nextLine();
                 String[] saveData = saveString.split("d/|v/|t/|p/|n/|o/|r/");
-                checkNegative(saveData[INDEX_VALUE]);
+                checkAmount(saveData[INDEX_VALUE]);
                 switch (saveData[INDEX_TYPE]) {
                 case "Acad":
                     initializeAcademicExpenditure(saveData, expenditures);
@@ -127,7 +127,9 @@ public abstract class TxtFileStatus {
                 }
             } catch (TxtFileException t) {
                 System.out.println(t.getMessage());
-            } catch (DateTimeParseException | NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            } catch (DateTimeParseException | NumberFormatException | ArrayIndexOutOfBoundsException |
+                     InvalidCharacterInAmount | LargeValueException | InvalidDeadlineException |
+                     InvalidDateException e) {
                 System.out.println(
                         "TxtFile has been corrupted, the corrupted entry has been deleted");
             }
@@ -136,12 +138,36 @@ public abstract class TxtFileStatus {
     }
 
     /**
+     * @author Leo Zheng Rui Darren
+     */
+    public static void checkAmount(String stringDouble) throws TxtFileException, InvalidCharacterInAmount,
+            LargeValueException {
+        double amount = Double.parseDouble(stringDouble);
+        checkInvalidCharacter(stringDouble);
+        checkNegative(amount);
+        checkLargeValue(amount);
+    }
+
+    /**
      * @author Chick3nBoy
      */
-    public static void checkNegative(String stringDouble) throws TxtFileException {
-        if (Double.parseDouble(stringDouble) <= 0.01) {
+    public static void checkNegative(double amount) throws TxtFileException {
+        if (amount <= 0.01) {
             throw new TxtFileException();
         }
+    }
+
+    public static void checkInvalidCharacter(String stringDouble) throws InvalidCharacterInAmount {
+        ExceptionChecker.checkValidDoubleInput(stringDouble);
+    }
+
+    public static void checkLargeValue(double amount) throws LargeValueException {
+        ExceptionChecker.checkLargeValue(amount);
+    }
+
+    public static void checkLendBorrowDate(LocalDate startDate, LocalDate endDate) throws InvalidDeadlineException,
+            InvalidDateException {
+        ExceptionChecker.checkDate(startDate, endDate);
     }
 
     /**
@@ -150,11 +176,11 @@ public abstract class TxtFileStatus {
     public static void checkRepeatDate(String stringRepeatDate, String stringFirstDate) throws TxtFileException {
         LocalDate repeatDate = LocalDate.parse(stringRepeatDate);
         LocalDate firstDate = LocalDate.parse(stringFirstDate);
-        compareMonth(repeatDate, firstDate);
-        compareDay(repeatDate, firstDate);
+        compareRepeatMonth(repeatDate, firstDate);
+        compareRepeatDay(repeatDate, firstDate);
     }
 
-    public static void compareMonth(LocalDate repeatDate, LocalDate firstDate) throws TxtFileException {
+    public static void compareRepeatMonth(LocalDate repeatDate, LocalDate firstDate) throws TxtFileException {
         int repeatMonth = repeatDate.getMonthValue();
         int firstMonth = firstDate.getMonthValue();
         boolean isSameMonth = (repeatMonth == firstMonth);
@@ -163,7 +189,7 @@ public abstract class TxtFileStatus {
         }
     }
 
-    public static void compareDay(LocalDate repeatDate, LocalDate firstDate) throws TxtFileException {
+    public static void compareRepeatDay(LocalDate repeatDate, LocalDate firstDate) throws TxtFileException {
         int repeatDay = repeatDate.getDayOfMonth();
         int firstDay = firstDate.getDayOfMonth();
         boolean isSameDay = (repeatDay == firstDay);
@@ -198,7 +224,11 @@ public abstract class TxtFileStatus {
         expenditures.addExpenditure(accommodationExpenditure);
     }
 
-    public static void initializeBorrowExpenditure(String[] saveData, ExpenditureList expenditures) {
+    public static void initializeBorrowExpenditure(String[] saveData, ExpenditureList expenditures) throws
+            InvalidDeadlineException, InvalidDateException {
+        LocalDate startDate = LocalDate.parse(saveData[INDEX_DATE]);
+        LocalDate endDate = LocalDate.parse(saveData[INDEX_DEADLINE]);
+        checkLendBorrowDate(startDate, endDate);
         BorrowExpenditure borrowExpenditure = new BorrowExpenditure(
                 saveData[INDEX_DESCRIPTION],
                 saveData[INDEX_NAME],
@@ -224,7 +254,11 @@ public abstract class TxtFileStatus {
         expenditures.addExpenditure(foodExpenditure);
     }
 
-    public static void initializeLendExpenditure(String[] saveData, ExpenditureList expenditures) {
+    public static void initializeLendExpenditure(String[] saveData, ExpenditureList expenditures) throws
+            InvalidDeadlineException, InvalidDateException {
+        LocalDate startDate = LocalDate.parse(saveData[INDEX_DATE]);
+        LocalDate endDate = LocalDate.parse(saveData[INDEX_DEADLINE]);
+        checkLendBorrowDate(startDate, endDate);
         LendExpenditure lendExpenditure = new LendExpenditure(
                 saveData[INDEX_DESCRIPTION],
                 saveData[INDEX_NAME],
