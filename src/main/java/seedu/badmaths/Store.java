@@ -1,5 +1,12 @@
 //@@author WilsonLee2000
 
+/**
+ * Takes in a String toDo and stores the toDo String provided by users into the notes list.
+ *
+ * @param notes
+ * @param toDo
+ */
+
 package seedu.badmaths;
 import seedu.badmaths.note.NotesList;
 import seedu.badmaths.storage.NotesFileWriter;
