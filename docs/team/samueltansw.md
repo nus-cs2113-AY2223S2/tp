@@ -76,6 +76,7 @@ and added link back to the TOC at the end of every section.
 section of the DG to explain how the classes of our program interacts with each other.
 5. Added the entire [Ui](../DeveloperGuide.md#ui-component) section of the DG.
 6. Added most of the content in [Parser](../DeveloperGuide.md#parser-component) section of the DG, including the image.
+7. Added the entire [Command](../DeveloperGuide.md#command-component) section of the DG.
 7. Added the [Common class](../DeveloperGuide.md#common-class) section of the DG.
 8. Contributed to Target user profile  under `Appendix: Requirements` of DG.
 9. Contributed to Value proposition  under `Appendix: Requirements` of DG.
