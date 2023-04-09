@@ -18,8 +18,11 @@ My contributions of the projects are given below.
 
 V1.0: [PR](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/22)
 1. Create initial add command feature [#3](https://github.com/AY2223S2-CS2113-T14-2/tp/issues/3)
+
 2. Create initial delete command feature [#4](https://github.com/AY2223S2-CS2113-T14-2/tp/issues/4)
+
 3. Create initial pack command feature [#5](https://github.com/AY2223S2-CS2113-T14-2/tp/issues/5)
+
 4. Create initial unpack command feature [#6](https://github.com/AY2223S2-CS2113-T14-2/tp/issues/6)
 
 V2.1
