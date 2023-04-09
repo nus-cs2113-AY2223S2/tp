@@ -1,0 +1,45 @@
+@startuml
+!include Style.puml
+
+actor User
+
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
+
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":ParserUtil" as ParserUtil COLOR_LOGIC
+participant ":EditPriorityCommand" as EditPriorityCommand COLOR_LOGIC
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
+participant ":Task" as Task COLOR_TASK_LIST
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+User -> ToDoListManager: input("prio IDs -edit <priority>")
+ToDoListManager -> Parser: parseCommand(inputCommand)
+create EditPriorityCommand
+Parser -> EditPriorityCommand: EditPriorityCommand(getArguments(splitInput, EditPriorityCommand.FLAGS))
+EditPriorityCommand -> ParserUtil : parseId(args.get(Flags.COMMAND_EDIT_PRIORITY));
+EditPriorityCommand -> ParserUtil : parseFilter(args);
+ToDoListManager -> EditPriorityCommand: execute(taskList, config, ui)
+EditPriorityCommand -> TaskList: setPriority(idHashSet, priority)
+TaskList -> TaskList: getTask(IDs)
+TaskList -> Task: setPriority(priority)
+Task --> TaskList: taskString
+
+alt taskString.isEmpty()
+TaskList -> Ui: printFilteredNoTasksFoundMessage();
+else priority == Priority.NONE
+TaskList -> Ui: printEditDeleteTaskMessage("priority level", taskString)
+else
+TaskList -> Ui: printEditTaskMessage("priority level", priority.toString(), taskString);
+end
+
+@enduml

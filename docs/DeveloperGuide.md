@@ -124,6 +124,10 @@ The following sequence diagram shows how the delete task operation works:
 ![DeleteTaskCommandSequence](images/DeleteTaskCommandSequence.png)
 
 ### Mark/unmark task feature
+The Mark/UnmarkTaskCommand extends NUS To-Do List with a mark/unmark feature for the marking of tasks of the task list
+as complete or incomplete.
+It is facilitated by ToDoListManager, Parser, exception, TaskList and Storage classes.
+It implements the `TaskList#deleteTask()` operation.
 
 Step 1: The user launches the program for the first time. The ToDoListManager will be initialised. This in turn will
 then initialise the Parser, TaskList and Storage. Take it as there are no existing tasks read/stored by the program.
@@ -162,6 +166,55 @@ which updates the value of deadline for the Task item saved at id 1 to the new u
 The following sequence diagram shows how the edit operations works:
 
 ![EditDeadlineCommandSequence](images/EditDeadlineCommandSequence.png)
+
+### Edit task email feature
+The edit email function extends NUS To-Do List with an edit feature to add/edit/delete emails to tasks.
+It is facilitated by the TaskList and Command classes. It implements the `TaskList#editEmail()` operation,
+which adds/edits/deletes the email of task at assigned id.
+
+
+Given below is an example usage scenario and how the edit email mechanism will behave at each step.
+
+Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
+
+Step 2. The user executes `add survey -due 20/03/2023 23:59` command to add a task to the To-Do List.
+The `add` command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
+
+Step 3. The user has the email of a teaching staff for the task, and decides to add
+the email to the task by executing the `email 1 -edit username@gmail.com` command. The command will call
+`TaskList#setEmail()`, which adds the email address for the Task item saved at id 1.
+
+Step 4. If the user decides to remove the email address for the task, the user can choose to execute `email 1 -del`
+command. The command will call
+`TaskList#setEmail()`, which removes the email address for the Task item saved at id 1.
+
+The following sequence diagram shows how the edit operations works:
+
+![EditEmailCommandSequence](images/EditEmailCommandSequence.png)
+
+### Edit task priority feature
+The edit priority function extends NUS To-Do List with an edit feature to add/edit/delete priority levels to tasks.
+It is facilitated by the TaskList and Command classes. It implements the `TaskList#editPriority()` operation,
+which adds/edits/deletes the priority level of task at assigned id.
+
+
+Given below is an example usage scenario and how the edit email mechanism will behave at each step.
+
+Step 1. The user launches the application for the first time. There are no existing tasks read by the program.
+
+Step 2. The user executes `add survey -due 20/03/2023 23:59` command to add a task to the To-Do List.
+The `add` command calls `TaskList#addTask()`, which causes a new Task to be added to the existing TaskList.
+
+Step 3. The user has realised that the tasks has great urgency, and decides to add priority level to the task by
+executing the `prio 1 -edit 3` command. The command will call `TaskList#setPriority()`, which sets the priority level
+for the Task item saved at id 1 to be high.
+
+Step 4. If the user decides to remove the priority for the task, the user can choose to execute `email 1 -del`
+command. The command will call `TaskList#setEmail()`, which removes the priority level for the Task item saved at id 1.
+
+The following sequence diagram shows how the edit operations works:
+
+![EditPrioritySequence](images/EditPriorityCommandSequence.png)
 
 ### Repeating tasks feature
 
@@ -273,6 +326,34 @@ their tasks and a progress bar to help them visualize their progress.
 
 In the above diagram `printProgressBar(completedTasksThisWeek, tasksThisWeek, PROGRESS_BAR_SECTIONS, taskListString)`
 is abbreviated as `printProgressBar(...)`.
+
+### Reset feature
+The ResetCommand extends NUS To-Do List with a reset feature to allow users to start a new To-Do list if needed.
+It is facilitated by ToDoListManager, Parser, TaskList and Ui classes.
+
+
+Given below is an example usage scenario and how the reset mechanism will behave at each step.
+
+Step 1. The user launches the program, assuming the To-Do list is filled with tasks. However, the user realise all the
+tasks in the tasks list have expired and wants to remove all of them in a quick way.
+
+Step 2. The user executes `reset` to remove all the tasks and start a new To-Do list.
+
+Step 3.The user would be shown a confirmation message. If the user inputs `YES`, the command calls `TaskList#reset()` to
+reset the task list and a reset message will be printed to inform the user that the To-Do list has reset. However, if
+the user inputs anything else, a cancellation message will be printed to notify the users.
+
+The following sequence diagram shows how the ResetCommand operation works:
+![ResetCommandSequence](images/ResetCommandSequence.png)
+
+### Help List feature
+The HelpCommand extends NUS To-Do List with a help list feature to allow users to keep track of all the possible
+commands of the program. It is facilitated by ToDoListManager, Parser, Ui classes. It implements the
+`Ui#printHelpList(helpMessage)` operation, which displays a help list for the users. Different help lists would be
+displayed based on the different `HELP_TYPE` such as `filter` or `sort` or none.
+
+The following sequence diagram shows how the ResetCommand operation works:
+![HelpCommandSequence](images/HelpCommandSequence.png)
 
 ## Appendix: Requirements
 

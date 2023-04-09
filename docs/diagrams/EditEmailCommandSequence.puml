@@ -1,0 +1,44 @@
+@startuml
+!include Style.puml
+
+actor User
+
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
+
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":ParserUtil" as ParserUtil COLOR_LOGIC
+participant ":EditEmailCommand" as EditEmailCommand COLOR_LOGIC
+end box
+
+box TaskList COLOR_TASK_LIST_LIGHT
+participant ":TaskList" as TaskList COLOR_TASK_LIST
+participant ":Task" as Task COLOR_TASK_LIST
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+User -> ToDoListManager: input("email IDs -edit <email>")
+ToDoListManager -> Parser: parseCommand(inputCommand)
+create EditEmailCommand
+Parser -> EditEmailCommand: EditEmailCommand(getArguments(splitInput, EditEmailCommand.FLAGS))
+EditEmailCommand -> ParserUtil : parseId(args.get(Flags.COMMAND_EDIT_EMAIL));
+EditEmailCommand -> ParserUtil : parseFilter(args);
+ToDoListManager -> EditEmailCommand: execute(taskList, ui)
+EditEmailCommand -> TaskList: setEmail(idHashSet, email)
+TaskList -> TaskList: getTask(IDs)
+TaskList -> Task: setEmail(email)
+Task --> TaskList: taskString
+
+alt taskString.isEmpty()
+TaskList -> Ui: printFilteredNoTasksFoundMessage();
+else email == null
+TaskList -> Ui: printEditDeleteTaskMessage("email", taskString);
+else
+TaskList -> Ui: printEditTaskMessage("email", email, taskString);
+end
+@enduml

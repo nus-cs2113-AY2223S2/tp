@@ -1,0 +1,28 @@
+@startuml
+
+!include Style.puml
+
+actor User
+
+box Manager COLOR_MAIN_LIGHT
+participant ":ToDoListManager" as ToDoListManager COLOR_MAIN
+end box
+
+box Logic COLOR_LOGIC_LIGHT
+participant ":Parser" as Parser COLOR_LOGIC
+participant ":HelpCommand" as HelpCommand COLOR_LOGIC
+end box
+
+box Ui COLOR_UI_LIGHT
+participant ":Ui" as Ui COLOR_UI
+end box
+
+User -> ToDoListManager: input("help")
+ToDoListManager -> Parser : parseCommand(input command)
+create HelpCommand
+Parser -> HelpCommand :  HelpCommand(getArguments(splitInput, HelpCommand.EXPECTED_FLAGS))
+Parser --> ToDoListManager : command
+ToDoListManager -> HelpCommand : execute(taskList, config, ui)
+HelpCommand -> Ui : printHelpList(helpMessage)
+
+@enduml
