@@ -70,6 +70,9 @@ public class Ui {
         System.out.println("To choose a venue, type:");
         System.out.println("                    choose venue <INDEX>");
         System.out.println(" ");
+        System.out.println("To update the event name, type:");
+        System.out.println("                    update event name <EVENT_NAME>");
+        System.out.println(" ");
         System.out.println("To exit the program, type:");
         System.out.println("                    exit");
         System.out.println(" ");
