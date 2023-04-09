@@ -6,7 +6,7 @@ public class FindIndustryCommand extends Command{
 
     protected String targetIndustry;
 
-    public FindIndustryCommand(String commandType, String targetIndustry){
+    public FindIndustryCommand(String commandType, String targetIndustry) {
         super(commandType);
         this.targetIndustry = targetIndustry;
     }
@@ -17,7 +17,7 @@ public class FindIndustryCommand extends Command{
      * @param companyList which contains a list of all the companies
      */
     @Override
-    public void execute(CompanyList companyList){
+    public void execute(CompanyList companyList) {
         companyList.findIndustry(targetIndustry);
     }
 }

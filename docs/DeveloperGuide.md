@@ -55,11 +55,84 @@ Parser involves dealing with parsing user input to understand what the user want
 <code>Command</code> class that it executed during the run-time.
 
 ### Command
+Command classes are executed after the parser class has processed the user input. The figure below shows a typical class 
+diagram, AddCommand, which inherits from Command.
+
+![CommandClassDiagram.png](UML%2FCommandClassDiagram.png)
 
 
-<code>List of commands</code>
+We also have an example of a sequence diagram for the AddCommand as shown in the figure below.
 
-<code> Seq of 1 command</code>
+![img.png](img.png)!
+
+The following <code>Command</code> classes inherits from the main <code>Command</code> class and 
+executes different code.
+
+
+#### Add Command
+Every implementation of the `add` command is created with 4 instances of user input, the strings 
+<code>companyName</code>, <code>contactEmail</code>, <code>industry</code> and integer <code>contactNumber</code>.
+AddCommand will add the Company class to CompanyList through the <code>CompanyList.add(Company)</code> and
+the CompanyList will be updated through CompanyListEncoder through <code>CompanyListEncoder.write(CompanyList)</code>.
+
+#### Choose Venue Command
+Every implementation of `ChooseVenueCommand` creates and stores an integer <code>venueNum</code>. It will then
+run `execute` where venue chosen will be updated via <code>event.updateVenue(venueList, venueNum)</code> and
+updates the chosen venue in the storage files through <code>EventDetailsStorage.updateFile(event, venueNum)</code>.
+
+#### Confirm Command
+Every implementation of `ConfirmCommand` creates and store an integer <code>companyNum</code> which is the
+specific company to be marked confirmed in the CompanyList. It will then run `execute` which will mark a company as
+confirmed through <code>companyList.markConfirm(companyNum)</code> and <code>CompanyListEncoder.write(companyList)</code>.
+
+#### Unconfirm Command
+Every implementation of `UnconfirmCommand` creates and store an integer <code>companyNum</code> which is the
+specific company to be marked unconfirmed in the CompanyList. It will then run `execute` which will mark a company as
+unconfirmed through <code>companyList.markUnconfirm(companyNum)</code> and <code>CompanyListEncoder.write(companyList)</code>.
+
+#### Delete Command
+Every implementation of `DeleteCommand` creates and store an integer <code>taaskNum</code> which is the
+specific company to be deleted in the CompanyList. It will then run `execute` which will delete a company from the companyList
+through <code>companyList.deleteCompanyInformation(taskNum)</code> and <code>CompanyListEncoder.write(companyList)</code>.
+
+#### Find Company Command
+Every implementation of `FindCompanyCommand` creates and store a String <code>targetCompany</code> which is the
+specific company to be found in the CompanyList. It will then run `execute` which will find a company from the companyList
+through <code>companyList.findCompany(targetCompany)</code>.
+
+#### Find Industry Command
+Every implementation of `FindIndustryCommand` creates and store a String <code>targetIndustry</code> which is the
+specific company to be found in the CompanyList. It will then run `execute` which will find companies from a specific 
+industry from the companyList through <code>companyList.findIndustry(targetIndustry)</code>.
+
+#### List Company Command
+Every implementation of `ListCompanyCommand` shows all the companies currently stored in the CompanyList. It will then run 
+`execute` which will print out each company through <code>companyList.printCompanyInformation()</code>.
+
+#### List Company Command
+Every implementation of `ListUnconfirmedCommand` shows all the unconfirmed companies currently stored in the CompanyList.
+It will then run `execute` which will print out each unconfirmed company through <code>companyList.printUnconfirmed()</code>.
+
+#### List Venue Command
+Every implementation of `ListVenueCommand` shows all the venues currently stored in the venueList.
+It will then run `execute` which will print out each venue through <code>venueList.printVenueInformation()</code>.
+
+#### Load Sample Company Command
+Every implementation of `LoadSampleCompanyCommand` loads all the sample company list for user testing and updates it into
+the file. It will then run `execute` which will load the samples into companyList and the save file through
+<code>companyList.loadSampleCompanyInformation()</code> and <code>CompanyListEncoder.write(companyList)</code>.
+
+#### Purge Command
+Every implementation of `PurgeCompanyCommand` deletes the information of companies already stored in the companyList. 
+It will then run `execute` which will delete each company in the companyList through <code>companyList.purgeData()</code>
+and <code>CompanyListEncoder.write(companyList)</code>.
+
+#### Update Event Name Command
+Every implementation of `UpdateEventNameCommand` creates a new string <code>newEventName</code> which stores the new name
+for the Event. It will then run `execute` which will update the Event name through <code>event.updateEventName(newEventName)</code>.
+A new integer, <code>venueIndex</code>, is created and stored with the return value of <code>event.getVenue().getVenueIndex()</code>.
+Lastly, the file within storage is updated through <code>EventDetailsStorage.updateFile(event, venueIndex)</code>.
+
 
 ### Features
 
