@@ -19,6 +19,7 @@ Given below are my contributions to the project:
 * **New Feature**: Added the ability to clear all entries in the recipe manager.
   * What it does: Delete all the recipes in the recipe manager.
 * **Skeleton Code**: Added the skeleton code of UI class.
+* **Skeleton Code**: Added the skeleton code of VIEW feature.
 * **Code testing**: Wrote the test code for the following features:
   * UI
   * Parser for adding a recipe
@@ -42,7 +43,16 @@ Added user documentation to explain how to use the following commands:
 * Saving the data
 * Editing the data file
 ### Contributions to DG
-####
+#### Section
+* Table of Contents
+* Setup & Prerequisites
+* Appendix E.1 & E.2 (Instructions for manual testing)
+In the architecture section:
+* main architecture
+* UI component
+In the feature section:
+* Recipe Manage Feature
+* Recipe Find Feature
 #### UML diagrams
 * Added the architecture diagram
 ![image](../PlantUML/MainArchitecture.png)
@@ -54,10 +64,11 @@ Added user documentation to explain how to use the following commands:
 * Added the sequence diagram for finding the recipe
 ![image](../PlantUML/FindRecipe.png)
 ### Contribution to team based task
-* Managed releases `v1.0` on GitHub
-* Set milestones `v1.0`-`v2.0` on GitHub
-* Managed issue tracker on GitHub (e.g. adding labels, assigning issues to team members, closing issues, etc)
-* Solving issues on GitHub 
+* Came up with the user stories.
+* Managed releases `v1.0` on GitHub.
+* Set milestones `v1.0`-`v2.0` on GitHub.
+* Managed issue tracker on GitHub. (e.g. adding labels, assigning issues to team members, closing issues, etc)
+* Solving issues on GitHub: 
   * [#4](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/4)
   * [#5](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/5)
   * [#7](https://github.com/AY2223S2-CS2113-F13-1/tp/issues/7)
