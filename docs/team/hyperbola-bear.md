@@ -17,19 +17,19 @@ Given below are my contributions to the project.
 
 #### Project management:
 
-- Creating issues for team members to work on
+* Creating issues for team members to work on
 
 #### Enhancements Implemented:
 
-- Created a `DeleteIncomeCommand` to allow users to delete an income from the income list.
-- Created a `DeleteExpenseCommand` to allow users to delete an expense from the expense list.
-- Created a `BalanceCommand` to allow users to view the balance of the user derived from their expenses and income.
-- Refactored and upgraded `FindCommand` to allow users to find income and expenses based on their type. For incomes, user can search based on date and dexcription. For expenses, user can search based on date, description and category. Each of the search parameters are optional, however, at least one search parameter must be provided for `FindCommand` to work.
-- Created a currency conversion feature which allows the user to set and unset currencies to display the conversion from SGD to currencies of interest. When the user sets a currency, the currency will be displayed in the income, expense list and balance. When the user unsets a currency, the currency will no longer be displayed in the income, expense list and balance.
-- Created a Selector to allow users to select the currency of interest.
-- Created a Converter class to allow users to convert the currency of interest.
-- Created a LiveCurrencyApi to get live currency rates from the internet and put it into the convertor hashmap.
-- Contributed to tests for `SetCurrencyCommand`, `UnsetCurrencyCommand`, `DeleteIncomeCommand`, `DeleteExpenseCommand`, `ShowTargetCommand`, `IncomeList`, `ExpenseList`,
+* Created a `DeleteIncomeCommand` to allow users to delete an income from the income list.
+* Created a `DeleteExpenseCommand` to allow users to delete an expense from the expense list.
+* Created a `BalanceCommand` to allow users to view the balance of the user derived from their expenses and income.
+* Refactored and upgraded `FindCommand` to allow users to find income and expenses based on their type. For incomes, user can search based on date and dexcription. For expenses, user can search based on date, description and category. Each of the search parameters are optional, however, at least one search parameter must be provided for `FindCommand` to work.
+* Created a currency conversion feature which allows the user to set and unset currencies to display the conversion from SGD to currencies of interest. When the user sets a currency, the currency will be displayed in the income, expense list and balance. When the user unsets a currency, the currency will no longer be displayed in the income, expense list and balance.
+* Created a Selector to allow users to select the currency of interest.
+* Created a Converter class to allow users to convert the currency of interest.
+* Created a LiveCurrencyApi to get live currency rates from the internet and put it into the convertor hashmap.
+* Contributed to tests for `SetCurrencyCommand`, `UnsetCurrencyCommand`, `DeleteIncomeCommand`, `DeleteExpenseCommand`, `ShowTargetCommand`, `IncomeList`, `ExpenseList`,
 
 #### Contributions to the UG:
 
@@ -37,17 +37,19 @@ Added documentation for the feature `Set Currency`, `Unset Currency` and `FindCo
 
 #### Contributions to the DG:
 
-- Added `SetCurrencyCommand` sequence diagram
-- Added implementation details for `SetCurrencyCommand`
-- Added `UnsetCurrencyCommand` sequence diagram
-- Added implementation details for `FindCommand`
-- Added `FindCommand` sequence diagram
+* Added `SetCurrencyCommand` sequence diagram
+* Added implementation details for `SetCurrencyCommand`
+* Added `UnsetCurrencyCommand` sequence diagram
+* Added implementation details for `FindCommand`
+* Added `FindCommand` sequence diagram
 
 #### Contributions to team-based tasks:
 
-- Ensuring Github's Java CI checks are passing
+* Ensuring Github's Java CI checks are passing
+* v2.1 wrap-up
+* v2.1 release
 
 #### Review/monitoring contributions
 
-- PRs reviewed: [CS2113-T13-1](https://github.com/nus-cs2113-AY2223S2/tp/pulls?q=is%3Aopen+is%3Apr+CS2113-T13-1+), [CS2113-W12-4](https://github.com/nus-cs2113-AY2223S2/tp/pulls?q=is%3Aopen+is%3Apr+CS2113-W12-4+)
-- Bugs reported and suggestions: [CS2113-F10-1](https://github.com/hyperbola-bear/ped/issues)
+* PRs reviewed: [CS2113-T13-1](https://github.com/nus-cs2113-AY2223S2/tp/pulls?q=is%3Aopen+is%3Apr+CS2113-T13-1+), [CS2113-W12-4](https://github.com/nus-cs2113-AY2223S2/tp/pulls?q=is%3Aopen+is%3Apr+CS2113-W12-4+)
+* Bugs reported and suggestions: [CS2113-F10-1](https://github.com/hyperbola-bear/ped/issues)
