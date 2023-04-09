@@ -52,7 +52,7 @@ public class ViewCommand implements Command {
         int categoryIndex = CategoryCommand.categoryMap.get(categoryName);
         Category category = CategoryList.categories.get(categoryIndex);
         category.viewEventList();
-        if (category.getTotalExpense() > category.getBudget()) {
+        if (category.getTotalOneTimeExpense() > category.getBudget()) {
             System.out.println(EXCEEDED_BUDGET_WARNING_MESSAGE);
         }
     }
@@ -66,18 +66,18 @@ public class ViewCommand implements Command {
             return;
         }
         System.out.println(SHOW_CATEGORY_MESSAGE);
-        int cat_count = 1;
+        int category_count = 1;
         for (Category category : CategoryList.categories) {
-            System.out.println(cat_count + ") Category: " + category.getName() +
+            System.out.println(category_count + ") Category: " + category.getName() +
                     " (budget: " + category.getBudget() + ")");
-            cat_count++;
+            category_count++;
             int count = 1;
             // print all the events in the category with index
             for (Event event : category.getEvents()) {
                 System.out.println(BIG_WHITE_SPACE + count + DOT + event.toString());
                 count++;
             }
-            if (category.getTotalExpense() > category.getBudget()) {
+            if (category.getTotalOneTimeExpense() > category.getBudget()) {
                 System.out.println(BIG_WHITE_SPACE + EXCEEDED_BUDGET_WARNING_MESSAGE);
             }
         }
