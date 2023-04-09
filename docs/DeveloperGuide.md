@@ -10,6 +10,8 @@ Welcome to the Meal Companion Developer Guide! Thank you for taking an interest 
    - [Recipe Class](#recipe-class)
 4. [Implementation](#implementation)
    - [Add and Remove Command](#add-and-remove-command)
+   - [Clear Command](#clear-command)
+   - [Make Command](#make-command)
    - [Recipe Detail Command](#recipe-detail-command)
    - [Recipe Possible Command](#recipe-possible-command)
    - [Recipe All Command](#recipe-all-command)
@@ -103,7 +105,9 @@ The current `MealCompanionSession` would keep track of the `RecipeList` which is
 
 ### Add and Remove Command
 
-The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient`. Given below is an example usage scenario and how the add and remove command behaves.
+The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient` of `MealCompanionSession`.
+
+Given below is an example usage scenario and how the add and remove command behaves:
 
 Step 1. The user inputs his command e.g. `add egg /qty 5`, `IngredientList` would be called to check if egg is already stored inside the list
 
@@ -123,11 +127,43 @@ Step 5. Since egg is in the list, its corresponding index in the list would be g
 
 Step 6. The current quantity of egg in the list would be obtained by calling `getQuantity()` and checked to see if it is greater or equals to '2' the quantity input by the user
 
-Step 7. Since the quantity input by the user is smaller than the current quantity of egg, which is 3, in the `IngredientList`, the new quantity would be calculated to be 3 and updated by calling `setQuantity(3)` 
+Step 7. Since the quantity input by the user is smaller than the current quantity of egg, which is 5, in the `IngredientList`, the new quantity would be calculated to be 3 and updated by calling `setQuantity(3)` 
 
 Below shows the sequence diagram for the above RemoveCommand:
 
 ![RemoveIngredientSequenceUML.png](images/RemoveIngredientSequenceUML.png)
+
+###### [Back to table of contents](#table-of-contents)
+
+### Clear Command
+
+The clear command is facilitated by "ClearCommand"
+
+It requires `IngredientList` of `MealCompanionSession`.
+
+The clear commands clears all ingredients currently in inventory
+
+The following sequence diagram shows how the Clear Command works:
+
+![ClearSequenceUML.png](images/ClearSequenceUML.png)
+
+###### [Back to table of contents](#table-of-contents)
+
+### Make Command
+
+The make command is facilitated by `MakeCommand`.
+
+It requires `RecipeList`, `IngredientList` and `Recipe` of `MealCompanionSession`. 
+
+It is also implemented through methods in `RecipeCommand`.  
+
+The make command takes in a recipe number as parameter.
+
+The ingredients needed to make the recipe specified by the recipe number would be removed from inventory
+
+The following sequence diagram shows how the Make Command works:
+
+![MakeSequenceUML.png](images/MakeSequenceUML.png)
 
 ###### [Back to table of contents](#table-of-contents)
 
