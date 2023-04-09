@@ -127,7 +127,7 @@ The following sequence diagram shows how the delete task operation works:
 The Mark/UnmarkTaskCommand extends NUS To-Do List with a mark/unmark feature for the marking of tasks of the task list
 as complete or incomplete.
 It is facilitated by ToDoListManager, Parser, exception, TaskList and Storage classes.
-It implements the `TaskList#deleteTask()` operation.
+It implements the `TaskList#setDone()` operation.
 
 Step 1: The user launches the program for the first time. The ToDoListManager will be initialised. This in turn will
 then initialise the Parser, TaskList and Storage. Take it as there are no existing tasks read/stored by the program.
