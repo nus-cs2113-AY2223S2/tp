@@ -313,13 +313,6 @@
     },
     {
       "uuid": {
-<<<<<<< HEAD
-        "uuid": "29bea83e-d864-48c4-bb9a-7fa817114fe1"
-      },
-      "question": "how do i use this command?",
-      "answer": "by referring to this user guide",
-      "tags": [],
-=======
         "uuid": "2022d218-ef0d-417e-aa7d-75667dc1ef94"
       },
       "question": "testing",
@@ -355,18 +348,10 @@
           "uuid": "22c0769d-f046-4ae1-b0aa-e9910e92a3d2"
         }
       ],
->>>>>>> master
       "decks": []
     },
     {
       "uuid": {
-<<<<<<< HEAD
-        "uuid": "19d859b1-cede-467e-b384-7d6e690cdae6"
-      },
-      "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-      "answer": "ans",
-      "tags": [],
-=======
         "uuid": "924119c1-a807-4df2-b311-080be9ee8522"
       },
       "question": "this might work",
@@ -379,7 +364,6 @@
           "uuid": "cd47288b-dcdd-4654-9901-a42a433751d5"
         }
       ],
->>>>>>> master
       "decks": []
     }
   ]
