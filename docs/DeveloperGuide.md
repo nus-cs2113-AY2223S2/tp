@@ -1096,7 +1096,7 @@ is then added to the logger using the `addHandler()` method.
 If the file cannot be created, a `SecurityException` is thrown. The `IOException` is caught and logged using the ConsoleHandler.
 Subsequently, the only logging will be through the ConsoleHandler.
 
-
+[*Return to TOC*](#table-of-contents)
 
 # Appendix
 <!--@@T-Wan-Lin -->
@@ -1222,68 +1222,82 @@ Sorry, but I don't know what that means :(
 ```
 #### Help Command
 1. Make sure you are in the main interface.
-2. Test case 1: Type `help` and press enter.
-3. Test case 2: You may also type `help [COMMAND]` to get more information about a specific command. Example: `help addmod`
+
+Test case 1: Type `help` and press enter.
+
+Test case 2: You may also type `help [COMMAND]` to get more information about a specific command. Example: `help addmod`
 
 Expected of Test case 1: The help menu should appear with the list of all commands available on Apollo with `help`.
+
 Expected of Test case 2: The help menu for that command should appear.
 
 <!--@@author PoobalanAatmikaLakshmi -->
-#### Adding a ToDo/Event/Deadline
+### Adding a ToDo/Event/Deadline
 Prerequisite: Make sure you are in the main interface.
 #### Invalid Commands
-1. Test case for empty task description: `todo ` or `deadline` or `event`
+1.Test case for empty task description: `todo ` or `deadline` or `event`
+
 Expected: Exception thrown. Error details shown in status message
-2. Test case for invalid formats
+
+2.Test cases for invalid formats
    - Out of calendar range: `deadline return book -by 40-11-2023-23:23` or `event wedding -from 40-11-2023-22:23 -to 41-11-2023-11:23`
    - Invalid dateTime format `deadline return book -by 2023-10-11-11:23` or `event wedding -from 2023-10-11-11:23 -to 2023-10-12-11:23`
    - Missing parameters `deadline return book 15-11-2023-11:23` or `event wedding 16-11-2023-11:23 -to 20-11-2023-11:23`
    - Extra parameters `deadline return book -by 17-11-2023-11:23 blah blah`
    - Occurs before system dateTime `deadline return book 15-01-2023-11:23` or `event wedding 16-01-2023-11:23 -to 20-01-2023-11:23`
    
-   For all these cases Expected: Exception thrown. Error details shown in status message. 
+   For all these cases expected: Exception thrown. Error details shown in status message. 
+   
    For instance invalid dateTime format prints `Please enter [date]s in the format of dd-MM-yyyy-HH:mm.
    eg. "30-10-2023-23:59" for Oct 30 2023, 11:59PM`
+
 ### Adding a ToDo
-1. Test case : `todo Feed the fish`
+
+1.Test case : `todo Feed the fish`
 
 Expected: ToDo is added into TasksList. Details shown in status message.
-2. Test case : `todo`
+
+2.Test case : `todo`
 
 Expected: Empty task description exception thrown. Error details shown in status message 
+
 ### Adding a Deadline
-1. Test case : `deadline return book -by 17-11-2023-11:23`
+1.Test case : `deadline return book -by 17-11-2023-11:23`
 
 Expected: Deadline is added into TasksList. Details shown in status message.
+
 ### Adding a Event
-1. Test case : `event wedding -from 16-11-2023-11:23 -to 20-11-2023-11:23`
+1.Test case : `event wedding -from 16-11-2023-11:23 -to 20-11-2023-11:23`
 
 Expected: Event is added into TasksList. Details shown in status message.
 
 ### Deleting a Todo/Event/Deadline
 Prerequisites: Use command `list` to obtains task's index `[IDX]`
-1. Test case : `del [IDX]`
 
-Expected: Task is deleted from tasksList. Deletion confirmation message is shown. 
-2. Test case : `del [IDX not inside list]`
+1.Test case : `del [IDX]`
+
+Expected: Task is deleted from tasksList. Deletion confirmation message is shown.
+
+2.Test case : `del [IDX not inside list]`
 
 Expected: Exception thrown. Error details shown in status message
 
-#### Adding a Module
-1. Test case : `addmod cs2113`
+### Adding a Module
+1.Test case : `addmod cs2113`
 
 Expected: Module added into moduleList.Details shown in status message
-2. Test case : `addmod cs1111`
+
+2.Test case : `addmod cs1111`
 
 Expected: Exception thrown as module does not exist currently. Error details shown in status message
 
-3. Test case : `addmod`
+3.Test case : `addmod`
 
 Expected: Exception thrown due to empty description. Error details shown in status message
 
-#### Adding a Lesson
+### Adding a Lesson
 Prerequisites: Obtain lessons timings and numbers using `showmod CS1010 -st` which shows all available lessons of type `st` of `CS1010`
-or `showmod CS1010` which shows all the lesson types available for CS1010 
+or `showmod CS1010` which shows all the lesson types available for CS1010
 
 1.Test case : `addmod CS1010 -st 1`
 
@@ -1293,23 +1307,28 @@ but you will still be able to add it.
 2.Test case `addmod CS1010 -st 99` or `addmod CS1010 -oo 1`
 
 Expected: Exception thrown as due to invalid arguments. Error details shown in status message
-#### Deleting a Module
+
+### Deleting a Module
 Prerequisites: Use command `listmod` to obtains module's index `[IDX]` for 1.
-1. Test case: `delmod 1`
+
+1.Test case: `delmod 1`
 
 Expected: Module under index 1 is deleted from moduleList. Confirmation message is shown
-2. Test case: `delmod cs1010` assuming cs1010 is inside moduleList
+
+2.Test case: `delmod cs1010` assuming cs1010 is inside moduleList
 
 Expected: CS1010 is removed from moduleList. Confirmation message is printed 
-3. Test case: `delmod cs2040c` assuming cs2040c is not in your moduleList 
+
+3.Test case: `delmod cs2040c` assuming cs2040c is not in your moduleList 
 
 Expected: Exception thrown, `Sorry, the module cs2040c does not exist in your Module list!
 Total modular credits you have in this semester:`[Number of MCs in your moduleList]
 
-#### Deleting a Lesson
-1. Test case: `delmod CS1010 -st 1` assuming cs1010 -st 1 is inside moduleList
+### Deleting a Lesson
+1.Test case: `delmod CS1010 -st 1` assuming cs1010 -st 1 is inside moduleList
 
 Expected: Deletes SECTIONAL TEACHING - 1 of CS1010.
+
 2.Test case: `delmod CS1010 -st 5` assuming cs1010 -st 5 not inside moduleList
 
 Expected: Exception thrown, error message printed 
