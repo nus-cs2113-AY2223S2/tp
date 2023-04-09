@@ -1,7 +1,5 @@
 package storage;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import data.Currency;
 import data.Expense;
 import data.ExpenseList;
@@ -9,7 +7,6 @@ import data.Time;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.GsonLocalDateAdaptor;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -26,21 +23,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class StorageTest {
 
-    private static final String WRITING_TO_FILE_ERROR = "Error writing to account file";
-    private static final String INITIAL_WELCOME_MESSAGE = "Welcome to ET!";
-    private static final String SUBSEQUENT_WELCOME_MESSAGE = "Welcome back!";
-    private static final String DATA_CORRUPTED_ERROR = "Data file corrupted. " +
-            "Save the remaining data to another location before deleting the current data file. " +
-            "Restart the programme after deleting the corrupted data file to proceed.";
-    private static final String CREATE_FILE_ERROR = "Error creating file.";
-    private static final String MORE_DP_ERROR = "More than 2 decimal places detected for Expense ";
-    private static final String LESS_DP_ERROR = "Less than 2 decimal places detected for Expense ";
     private static final String ROUND_UP_WARNING = "Expense amount is rounded back to 2 decimal points by default.";
-
-    private static final Gson GSON = new GsonBuilder()
-            .setPrettyPrinting()
-            .registerTypeAdapter(LocalDate.class, new GsonLocalDateAdaptor())
-            .create();
+    private static final String logo =
+            "*******     **********" + System.lineSeparator() +
+            "        *******     **********" + System.lineSeparator() +
+            "        ***            ***" + System.lineSeparator() +
+            "        ******         ***" + System.lineSeparator() +
+            "        ******         ***" + System.lineSeparator() +
+            "        ******         ***" + System.lineSeparator() +
+            "        ***            ***" + System.lineSeparator() +
+            "        ***            ***" + System.lineSeparator() +
+            "        *******        ***" + System.lineSeparator() +
+            "        *******        ***" + System.lineSeparator() +
+            System.lineSeparator();
 
     public ExpenseList expenseList = new ExpenseList();
     public Storage storage = new Storage(expenseList);
@@ -65,7 +60,7 @@ class StorageTest {
     @Test
     public void moreDPWarning() throws IOException {
         ArrayList<Expense> testExpenses = storage.loadExpenses("src/test/moreDPRoundingWarning.json");
-        String expectedOutput = "Welcome back!" + System.lineSeparator() +
+        String expectedOutput = logo + "Welcome back!" + System.lineSeparator() +
                 "More than 2 decimal places detected for Expense 1. " + ROUND_UP_WARNING;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
         String jsonString =
@@ -88,7 +83,7 @@ class StorageTest {
     @Test
     public void lessDPWarning() throws IOException {
         ArrayList<Expense> testExpenses = storage.loadExpenses("src/test/lessDPRoundingWarning.json");
-        String expectedOutput = "Welcome back!" + System.lineSeparator() +
+        String expectedOutput = logo + "Welcome back!" + System.lineSeparator() +
                 "Less than 2 decimal places detected for Expense 1. " + ROUND_UP_WARNING;
         assertEquals(expectedOutput, outputStreamCaptor.toString().trim());
         String jsonString =
