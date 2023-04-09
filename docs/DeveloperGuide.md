@@ -90,7 +90,7 @@ The rest of the Application consists of three components:
 
 API: ui.java
 
-INSERT UI UML HERE
+<img src="uml/UI-class-diagram.png" alt="Sequence Diagram" width="1000">
 
 The UI is made up of five classes, `GeneralUi`, `CalorieUi`, `ExampleUi`,  `ExerciseUi` and `WeightUi`, and together,
 they improve on the accessibility of the application.
@@ -104,7 +104,7 @@ The `UI` component,
 
 API: commands.java
 
-INSERT COMMAND UML HERE
+<img src="uml/Command-class-diagram.png" alt="Sequence Diagram" width="1000">
 
 How the `Command` component works:
 1. When `Command` is called upon to execute a command, it first uses the `CommandParser` subclass from the `Parser` class to parse the user command. 
