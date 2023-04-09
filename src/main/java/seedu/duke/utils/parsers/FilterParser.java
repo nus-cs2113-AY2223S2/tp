@@ -6,6 +6,7 @@ import seedu.duke.exceptions.SearchFilterErrorException;
 import seedu.duke.objects.Inventory;
 import seedu.duke.utils.Ui;
 
+
 public class FilterParser extends Parser{
 
     protected static final int PRICE_INDEX = 2;
@@ -57,12 +58,12 @@ public class FilterParser extends Parser{
      * @param inventory inventory to filter items from
      */
     protected void parseFilterCategory(String[] commands, String mode, Inventory inventory) {
-        String keyword = "";
+        StringBuilder sb = new StringBuilder();
         for (int i = KEYWORD_START_INDEX; i < commands.length; i++) {
-            keyword += commands[i];
-            keyword += ' ';
+            sb.append(commands[i]);
+            sb.append(' ');
         }
-        keyword = keyword.trim();
+        String keyword = sb.toString().trim();
         Command filterCommand = new FilterCommand(inventory, keyword, mode);
         filterCommand.run();
     }

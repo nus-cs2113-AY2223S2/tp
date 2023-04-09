@@ -30,12 +30,7 @@ public class Storage {
     private static final Integer ALERT_UPC_INDEX = 0;
     private static final Integer ALERT_QTY_INDEX = 1;
     private static final Integer ALERT_MINMAX_INDEX = 2;
-
-    private static final String VALID_DATAROW_REGEX =
-            "^\\d+,[^,]+,\\d+,\\d+,\\d+(?:\\.\\d+)?,[^,]+,\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{9}$";
-    private static final String VALID_ALERT_REGEX = "(.+),\\d+,(min|max)$";
     private static boolean isStorageWriteDone = true;
-    private static boolean isRaceConditionDetected;
 
     /**
      * Reads the CSV file from Types.SESSIONFILEPATH and
@@ -323,13 +318,11 @@ public class Storage {
     }
 
     private static Types.FileHealth checkFileValidSession(String path) {
-        isRaceConditionDetected = false;
         while (!isStorageWriteDone) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ie) {
                 Thread.currentThread().interrupt();
-                isRaceConditionDetected = true;
                 return Types.FileHealth.CORRUPT;
             }
         }

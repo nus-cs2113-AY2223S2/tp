@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class SearchCommandTest {
+class SearchCommandTest {
     Inventory inventory;
 
     /**
      * Search integration tests with add and edit functions.
      */
     @Test
-    public void searchByKeywordAddEditTest(){
+    void searchByKeywordAddEditTest(){
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();
@@ -42,7 +42,7 @@ public class SearchCommandTest {
      * Integration tests with remove function.
      */
     @Test
-    public void searchByKeywordRemoveTest(){
+    void searchByKeywordRemoveTest(){
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();
@@ -70,7 +70,7 @@ public class SearchCommandTest {
      * Edge case test that happens when add, edit and remove are called.
      */
     @Test
-    public void searchByKeywordsEdgeCasesTest(){
+    void searchByKeywordsEdgeCasesTest(){
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();
@@ -99,7 +99,7 @@ public class SearchCommandTest {
      */
 
     @Test
-    public void searchByKeywordSellRestockTest(){
+    void searchByKeywordSellRestockTest(){
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/123 qty/5 p/5",inventory);
         addParser.run();
@@ -135,7 +135,7 @@ public class SearchCommandTest {
      */
 
     @Test
-    public void searchByUPCTest(){
+    void searchByUPCTest(){
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/orange upc/1 qty/5 p/5",inventory);
         addParser.run();
@@ -163,7 +163,7 @@ public class SearchCommandTest {
      *
      */
     @Test
-    public void searchDuplicationTest(){
+    void searchDuplicationTest(){
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/iphone 20 pro max max max upc/0123241 qty/10 p/2000",inventory);
         addParser.run();
@@ -176,7 +176,7 @@ public class SearchCommandTest {
      *
      */
     @Test
-    public void searchMultipleKeywordTest(){
+    void searchMultipleKeywordTest(){
         inventory = new Inventory();
         AddParser addParser = new AddParser("n/laptop sleeves upc/111 qty/10 p/15",inventory);
         addParser.run();
