@@ -105,7 +105,9 @@ The current `MealCompanionSession` would keep track of the `RecipeList` which is
 
 ### Add and Remove Command
 
-The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient`. Given below is an example usage scenario and how the add and remove command behaves.
+The add and remove command is facilitated by the methods in `IngredientList` and `Ingredient` of `MealCompanionSession`.
+
+Given below is an example usage scenario and how the add and remove command behaves:
 
 Step 1. The user inputs his command e.g. `add egg /qty 5`, `IngredientList` would be called to check if egg is already stored inside the list
 
