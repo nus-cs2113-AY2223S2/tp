@@ -194,41 +194,70 @@ ____________________________________________________________
 ____________________________________________________________
 ```
 ****
-##### 3.2.1.4 Listing Out PU Module List With filters
+#### 3.2.1.4 Listing Out PU Module List With filters
 
-Format: `list [PU Abbreviation/PU INDEX] /filter [FILTER]`
+Format: `/list [PU Abbreviation/PU INDEX] /filter [FILTER]`
+
+***
+
+**Filter by Module Credits**
+
+Format: `/list [PU Abbreviation/PU INDEX] /filter /mc [MC]`
+
+- `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
+- `PU Index` is the university index of the PU as shown in the universities list.
+- `[MC]` refers to the number of Modular Credits of the Partner University.
 
 
-Example of usage: `/list ku /filter mc == 3` 
+Filters all modules from the Partner University that modular credits are equivalent to `[MC]`
+and displays to the user.
 
-Expected outcome:
-
-```
-KOREA UNIVERSITY Modules
-____________________________________________________________
-1. [AMSE216][Introduction to biomaterials][3]
-   maps to ----> [ME4253][Biomaterials Engineering][4]
-2. [IWC311][Heat Transfer][3]
-   maps to ----> [ME3122][Heat Transfer][4]
-3. [AE320][Aerodynamics II][3]
-   maps to ----> [ME4231][Aerodynamics][4]
-4. [IWC109][Engineering Design][3]
-   maps to ----> [ME4661][Exchange Elective][4]
-____________________________________________________________
-```
-
-Example of usage: `list ku /filter bio in name`
+Example of usage: `/list ku /filter /mc 3` 
 
 Expected outcome:
 
 ```
 KOREA UNIVERSITY Modules
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
-1. [AMSE216][Introduction to biomaterials][3]
-   maps to ----> [ME4253][Biomaterials Engineering][4]
+1. [IWC311][Heat Transfer][3]   maps to ----> [ME3122][Heat Transfer][4]
+2. [AE320][Aerodynamics II][3]   maps to ----> [ME4231][Aerodynamics][4]
+3. [IWC109][Engineering Design][3]   maps to ----> [ME4661][Exchange Elective][4]
+4. [AMSE216][Introduction to biomaterials][3]   maps to ----> [ME4253][Biomaterials Engineering][4]
+____________________________________________________________
+KOREA UNIVERSITY Modules
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
+____________________________________________________________
+```
+***
+
+**Filter by Name**
+
+Format: `/list [PU Abbreviation/PU INDEX] /filter /name [Name]`
+
+- `PU Abbreviation Name` is the abbreviation name of the PU as shown in the universities list.
+- `PU Index` is the university index of the PU as shown in the universities list.
+- `[Name]` refers to the Partner University's module name to filter by.
+
+Filters all modules from the Partner University that module name contains the String `[Name]` and displays 
+to the user.
+
+Example of usage: `/list ku /filter /name bio`
+
+Expected outcome:
+
+```
+KOREA UNIVERSITY Modules
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
+____________________________________________________________
+1. [AMSE216][Introduction to biomaterials][3]   maps to ----> [ME4253][Biomaterials Engineering][4]
+____________________________________________________________
+KOREA UNIVERSITY Modules
+[KOREA UNIVERSITY Module] maps to ----> [NUS Module]
 ____________________________________________________________
 ```
 ****
+
 ##### 3.2.1.5 Listing Modules User Has Selected for Specific Partner University
 
 Format: `/list current [PU Abbreviation]`
