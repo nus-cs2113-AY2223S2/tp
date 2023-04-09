@@ -196,7 +196,7 @@ public abstract class ParseCommand {
      * Checks if user specified help command is valid.
      *
      * @param helpCommand User specified help command.
-     * @throws InvalidHelpCommandException If category specified is not supported.
+     * @throws InvalidHelpCommandException If help command specified is not supported.
      */
     public void checkHelpCommandValidity(String helpCommand) throws InvalidHelpCommandException {
         logger.entering(ParseCommand.class.getName(), "checkHelpCommandValidity()");

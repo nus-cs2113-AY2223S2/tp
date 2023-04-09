@@ -174,14 +174,18 @@ public class UI {
     /**
      * Print the help message to the UI
      */
+
+    // @@author kaceycsn
     public void printHelpMenu() {
-        print(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_HELP_MENU);
+        print(MessageConstants.MESSAGE_HELP + MessageConstants.MESSAGE_HELP_MENU
+                + MessageConstants.MESSAGE_VALID_CATEGORIES + MessageConstants.MESSAGE_VALID_PRICE
+                + MessageConstants.MESSAGE_HELP_MENU_EXMPLES);
         printLine();
     }
 
-    // @@author kaceycsn
     public void printHelpAdd(){
-        print(MessageConstants.MESSAGE_ADD_COMMAND);
+        print(MessageConstants.MESSAGE_ADD_COMMAND + MessageConstants.MESSAGE_VALID_CATEGORIES
+                + MessageConstants.MESSAGE_VALID_PRICE + MessageConstants.MESSAGE_ADD_COMMAND_EXMPLES);
         printLine();
     }
 
@@ -196,7 +200,8 @@ public class UI {
     }
 
     public void printHelpEdit(){
-        print(MessageConstants.MESSAGE_EDIT_COMMAND);
+        print(MessageConstants.MESSAGE_EDIT_COMMAND + MessageConstants.MESSAGE_VALID_CATEGORIES
+                + MessageConstants.MESSAGE_VALID_PRICE + MessageConstants.MESSAGE_EDIT_COMMAND_EXMPLE);
         printLine();
     }
 

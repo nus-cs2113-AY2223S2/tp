@@ -24,14 +24,16 @@ public final class MessageConstants {
             + "-d <description>" + NEWLINE
             + "-c <category>" + NEWLINE
             + "-p <price>" + NEWLINE
-            + "*All three options must be specified" + NEWLINE + NEWLINE
-            + "Available categories are:" + NEWLINE
-            + "CLOTHING, ENTERTAINMENT, FOOD," + NEWLINE
-            + "TRANSPORTATION, MEDICAL, PERSONAL," + NEWLINE
-            + "INCOME, UTILITIES, OTHERS" + NEWLINE + NEWLINE
-            + "See below for examples" + NEWLINE
+            + "*All three options must be specified" + NEWLINE + NEWLINE;
+    public static final String MESSAGE_ADD_COMMAND_EXMPLES = "See below for examples" + NEWLINE
             + "/add -d Apple Macbook Air -p 1300 -c Personal" + NEWLINE
             + "/add -p 1300 -c Personal -d Apple Macbook Air" + NEWLINE;
+    public static final String MESSAGE_VALID_CATEGORIES = "Valid input categories are:" + NEWLINE
+            + "CLOTHING, ENTERTAINMENT, FOOD," + NEWLINE
+            + "TRANSPORTATION, MEDICAL, PERSONAL," + NEWLINE
+            + "INCOME, UTILITIES, OTHERS" + NEWLINE + NEWLINE;
+    public static String MESSAGE_VALID_PRICE = "Valid input prices are:" + NEWLINE
+            + "Positive numbers strictly ranging from 0.01 to 999999999.99" + NEWLINE + NEWLINE;
     public static final String MESSAGE_DELETE_COMMAND = "Delete - Deletes specified expense(s) from your expenditure."
             + NEWLINE
             + "Usage: /delete <index> [additional_index...]" + NEWLINE + NEWLINE
@@ -44,10 +46,9 @@ public final class MessageConstants {
             + "Options:" + NEWLINE
             + "-d <description>" + NEWLINE
             + "-c <category>" + NEWLINE
-            + "-p <price>" + NEWLINE + NEWLINE
-            + "See below for examples" + NEWLINE
+            + "-p <price>" + NEWLINE + NEWLINE;
+    public static final String MESSAGE_EDIT_COMMAND_EXMPLE = "See below for examples" + NEWLINE
             + "/edit 5 -d Grab to school -c Transportation -p 20.00" + NEWLINE;
-
     public static final String MESSAGE_VIEW_COMMAND = "View - Displays a list of your current expenditure."
             + NEWLINE
             + "Usage: /view [count] [filter_options]" + NEWLINE
@@ -65,7 +66,7 @@ public final class MessageConstants {
             + "Usage: /help" + NEWLINE + NEWLINE
             + "For more help on a specific command, type `/help COMMAND_TYPE`" + NEWLINE
             + "The supported COMMAND_TYPE(s) are:" + NEWLINE
-            + "add, delete, view, edit, bye" + NEWLINE + NEWLINE
+            + "add, delete, view, edit, bye, help" + NEWLINE + NEWLINE
             + "See below for examples" + NEWLINE
             + "/help add" + NEWLINE
             + "/help edit" + NEWLINE;
@@ -78,15 +79,14 @@ public final class MessageConstants {
             + "optimised for use via a Command Line Interface. " + NEWLINE
             + "Users can take advantage of the input flags for entering entries quickly." + NEWLINE
             + "Listed below are the various commands that are currently supported." + NEWLINE + NEWLINE;
-
     public static final String MESSAGE_HELP_MENU = "The available COMMAND_TYPE(s) are:" + NEWLINE
-            + NEWLINE + "/add: add an entry into entry log" + NEWLINE
+            + "/add: add an entry into entry log" + NEWLINE
             + "/delete: remove an entry from the entry log" + NEWLINE
             + "/edit: revise an existing entry" + NEWLINE
             + "/view: display all entries in the entry log" + NEWLINE
             + "/help: display a guide for available commands" + NEWLINE
-            + "/bye: terminates the application" + NEWLINE + NEWLINE
-            + "For more help on a specific command, type `/help COMMAND_TYPE`." + NEWLINE + NEWLINE
+            + "/bye: terminates the application" + NEWLINE + NEWLINE;
+    public static final String MESSAGE_HELP_MENU_EXMPLES = "For more help on a specific command, type `/help COMMAND_TYPE`." + NEWLINE + NEWLINE
             + "See below for examples:" + NEWLINE
             + "/help add" + NEWLINE
             + "/help edit" + NEWLINE;
@@ -129,7 +129,7 @@ public final class MessageConstants {
     public static final String MESSAGE_INVALID_HELP_COMMAND = "Please specify a valid command to view guide!"
             + NEWLINE + NEWLINE
             + "The valid commands are:" + NEWLINE
-            + "add, delete, edit, view" + NEWLINE
+            + "add, delete, edit, view, help, bye" + NEWLINE
             + "See below for examples:" + NEWLINE
             + "/help add" + NEWLINE
             + "/help delete";
