@@ -189,11 +189,11 @@ Format: `add_dish n/<name of dish> pc/<price of dish in cents> [<ingredient 1>;<
 
 Example 1: 
 ```
-add_dish n/Chicken Burger pc/1099 [tomatoes;chicken fillet;cheese;bread with sesame seeds]
+add_dish n/Chicken Burger pc/1099 [tomatoes;chicken fillet;cheese;bread]
 ```
 Outcome 1: 
 ```
-Added dish: 1. Chicken Burger; $10.99; [tomatoes, chicken fillet, cheese, bread with sesame seeds]
+Added dish: 1. Chicken Burger; $10.99; [tomatoes, chicken fillet, cheese, bread]
 ```
 You can also omit the ingredient list like such:
 
