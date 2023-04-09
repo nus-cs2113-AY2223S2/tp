@@ -1,7 +1,7 @@
 @startuml
 autoactivate on
 
-participant ":ListCardsUnderTagCommand" as ListCardsUnderTagCommand
+participant ":ListCardsInTagCommand" as ListCardsInTagCommand
 participant ":TagList" as TagList
 participant ":CardList" as CardList
 participant ":CardSelector" as CardSelector
@@ -11,38 +11,43 @@ participant ":DeckList" as DeckList
 participant ":Tag" as Tag
 
 participant ":UserInterface" as UserInterface
+participant ":TagKeywordParser" as TagKeywordParser
 
 
-Create ListCardsUnderTagCommand
-TagKeywordParser -> ListCardsUnderTagCommand : ListCardsUnderTagCommand()
-activate ListCardsUnderTagCommand
+Create ListCardsInTagCommand
+TagKeywordParser -> ListCardsInTagCommand : ListCardsInTagCommand()
+activate ListCardsInTagCommand
 
 Create TagSelector
-ListCardsUnderTagCommand -> TagSelector : TagSelector()
+ListCardsInTagCommand -> TagSelector : TagSelector()
 return
 
 
-ListCardsUnderTagCommand -> ListCardsUnderTagCommand: execute()
-ListCardsUnderTagCommand -> TagList : findTag(TagSelector)
+ListCardsInTagCommand -> ListCardsInTagCommand: execute()
+ListCardsInTagCommand -> TagList : findTag(TagSelector)
 return foundTag
 
-ListCardsUnderTagCommand -> ListCardsUnderTagCommand : findCardsUnderTag(foundTag)
-ListCardsUnderTagCommand -> Tag : getCardsUUID()
+ListCardsInTagCommand -> ListCardsInTagCommand : findCardsUnderTag(foundTag)
+ListCardsInTagCommand -> Tag : getCardsUUID()
 return cardsUUID
 
-loop curr UUID of all Cards != null
-    loop curr UUID of cardsUUID != null
-      alt curr UUID of all Cards == curr UUID of cardsUUID
-        ListCardsUnderTagCommand -> CardList : addCard()
-         return
-       end
-      end loop
 
-end loop
+ref over ListCardsInTagCommand, CardList
+Add all Card with cardsUUID to foundCardList
+end ref
+
+'loop curr UUID of all Cards != null
+'    loop curr UUID of cardsUUID != null
+'      alt curr UUID of all Cards == curr UUID of cardsUUID
+'        ListCardsInTagCommand -> CardList : addCard()
+'         return
+'       end
+'      end loop
+'end loop
 
 return foundCardList
 
-ListCardsUnderTagCommand -> UserInterface : printCardList(foundCardList)
+ListCardsInTagCommand -> UserInterface : printCardList(foundCardList)
 return
 
 @enduml

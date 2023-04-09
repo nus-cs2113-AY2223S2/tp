@@ -1,0 +1,30 @@
+@startuml
+autoactivate on
+
+mainframe sd Remove Tag from Card and vice versa
+
+participant ":RemoveTagFromCardCommand" as RemoveTagFromCardCommand
+participant ":TagList" as TagList
+participant ":CardList" as CardList
+participant ":CardSelector" as CardSelector
+participant ":TagSelector" as TagSelector
+participant ":TagList" as TagList
+participant ":DeckList" as DeckList
+participant ":Tag" as Tag
+participant ":Card" as Card
+participant ":Deck" as Deck
+participant ":UserInterface" as UserInterface
+participant ":CardKeywordParser" as CardKeywordParser
+
+opt cardAffected.getUUID() != null
+RemoveTagFromCardCommand -> Card : getUUID()
+return cardUUID
+RemoveTagFromCardCommand -> Tag : removeCard(cardUUID)
+return
+RemoveTagFromCardCommand -> Tag : getUUID()
+return tagUUID
+RemoveTagFromCardCommand -> Card : removeTag(tagUUID)
+return
+
+end
+@enduml

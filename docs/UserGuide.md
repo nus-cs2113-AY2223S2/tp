@@ -500,8 +500,8 @@ Example of usage: `deck delete -d my-deck`
 Sample output:
 
 ```
-Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from card c2c61475-df53-4656-94c4-c2e36933d359
-Successfully removed deck 9dc5ab5f-75af-4b0d-b554-341f59ac829b from the deck list.
+Successfully removed deck my-deck from card c2c61475-df53-4656-94c4-c2e36933d359
+Successfully removed deck my-deck from the deck list.
 ```
 
 ### List all decks: `deck list`
@@ -562,16 +562,15 @@ Your file will be loaded the next time you run Inka!
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
 | **Command**                   | **Format**                                                                          |
 |-------------------------------|-------------------------------------------------------------------------------------|
-| Create a `Card`               | `card add -q {question_here} -a {answer_here}`                                      |
+| Create a `Card`               | `card add -q {question} -a {answer}`                                                |
 | Create a `Tag`                | `card tag -c {cardUUID} -t {tag_name}`                                              |
 | Create a `Deck`               | `card deck -c {cardUUID} -d {deck_name}` OR `card deck -t {tagUUID} -d {deckName}`  |
 | Add a `Card` to a `Deck`      | `card deck -c {cardUUID} -d {deckName}` OR `card deck -i {cardIndex} -d {deckName}` |
 | Add a `Tag` to a `Deck`       | `tag deck -t {tagUUID} -d {deckName}`                                               |
 | Add a `Card` to a `Tag`       | `card tag -c {cardUUID} -t {tagName}`                                               |
+| Delete a `Tag` from a `Card`  | `card untag -c {cardUUIID} -t {tagName}`                                            |
 | Delete a `Card`               | `card delete -i {cardUUID}`                                                         |
 | Delete a `Tag`                | `tag delete -t {tagName}`                                                           |
 | Delete a `Deck`               | `deck delete -d {deckName}`                                                         |
