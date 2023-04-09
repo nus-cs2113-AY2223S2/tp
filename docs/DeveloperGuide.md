@@ -85,13 +85,20 @@ An `isExit` method will return a boolean value that decides whether the program 
 
 
 ### Manager Component
-The manager component consists of four different managers, 
-in which the list of entity is initialized and the methods implementing the entity are written inside.
-- DeadlineManager: This class contains an ArrayList of deadlines and methods implementing the deadlines like addDeadline, printDeadline and deleteDeadline.
-- DishManager: This class contains an ArrayList of dishes and methods like addDish, deleteDish, viewDish and 
-stringOfDish which returns the dish information.
-- MeetingManager: This class contains an ArrayList of meetings and methods like addMeeting, printMeetings and deleteMeeting.
-- StaffManager: This class contains an ArrayList of staffs and methods like addStaff, deleteStaffByName, findStaffByName and getStaffString which print all the staffs' information.
+![](uml/images/Manager.png)
+
+The manager component consists of four different managers, in which the list 
+of entity is initialized and the methods implementing the entity are written inside.
+XYZ represents Meeting, Deadline, Staff and Dish.
+The Manager class diagram above omits methods that are unique to the individual manager classes
+for simplification.
+- DeadlineManager: This class contains an ArrayList of deadlines and methods implementing the deadlines shown in the class diagram.
+- DishManager: This class contains an ArrayList of dishes and methods like isInsideDishes for judging whether a dish is inside the dish list,
+stringOfDish which returns the dish information,isInsideDishesWithIndex which returns the dish information
+with index and getDishesSize which returns the size of the dishes, apart from methods in the diagram.
+- MeetingManager: This class contains an ArrayList of meetings and methods implementing the meetings shown in the class diagram.
+- StaffManager: This class contains an ArrayList of staffs and methods like getStaffs with returns the staff list,
+apart from the methods in the diagram.
 
 ### Ui Component
 
@@ -144,8 +151,8 @@ The 'Meeting' class in the entity package shows the attributes that a meeting ob
 An ArrayList of meetings is initialized in the MeetingManager. Three methods that implement the meetings are also inside.
 - addMeeting: Add a meeting to the meeting list.
   ![](uml/images/AddMeetingCommandSequenceDiagram-Add_Meeting_Sequence_Diagram.png)
-- deleteMeeting: Delete a meeting in the meeting list by its index.
-- printMeetings: Print all the meetings in the meeting list.
+- deleteMeeting: Delete a meeting in the meeting list by its index. The sequence diagram follows the same pattern as above.
+- printMeetings: Print all the meetings in the meeting list.The sequence diagram follows the same pattern as above.
 
 When the user input a meeting command, the Parser will determine which command it is and return a command object.
 One of the meeting commands will be called from `AddMeetingCommand`, `DeleteMeetingCommand` and `ViewMeetingCommand`.
@@ -160,6 +167,7 @@ The User will also be able to delete deadlines, view deadline list.
 
 When the user input a deadline command, it will be parsed into Parser to determine which deadline command will be called.
 Then, the deadline command will be executed, and the respective method in the DeadlineManager class will be called, which are:
+
 (XYZ stands for the respective command name.)
 
 #### Add deadline to deadline list
@@ -240,6 +248,7 @@ The Dish feature consists of three functions:
 - It then prints out the formatted string to the console.
 
 ### Storage Feature 
+
 #### Create directory, Read and load from XYZ file
 <img src="uml/images/CreateDirectorySequenceDiagram.png" width="400"/>  
 

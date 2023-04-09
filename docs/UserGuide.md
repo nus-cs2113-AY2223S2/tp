@@ -45,9 +45,16 @@ Allows the restaurant manager using the application to see the list of commands 
 Format: `help`
 
 ### Meetings
+Meeting is a feature for the restaurant manager to manage meetings with 
+boss or workers. MeetingManager supports add_meeting, view_meetings,
+delete_meeting and find_meeting. 
 
 #### Add Meetings:
-Add a meeting to the meeting list.
+Add a meeting to the meeting list. The name of the meeting is written after
+'n/', followed by the time of the meeting written after 't/'. Note that add_meeting
+command will not handle extra parameters other than 'n/' and 't/', which will be considered
+part of meeting name or meeting time. Besides, please do not contain 't/' inside your meeting
+name because the MeetingManager will consider what after 't/' as time.
 
 Format: `add_meeting n/<name> t/<time>`
 
