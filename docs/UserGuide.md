@@ -28,15 +28,26 @@ ___
 
 ## Features
 
+* [Add Recipes](#adding-recipes--add)
+* [Edit Recipes](#editing-recipes--edit)
+* [Delete Recipes](#deleting-recipes--delete)
 * [View recipes](#viewing-recipes--view)
-* [List relevant recipes](#listing-recipes--list)
-* [Tag/Categorise recipes](#taggingcategorising-recipes--tag)
-* [Add single recipe to weekly plan](#adding-to-this-weeks-plan--weekly-add)
-* [Add multiple recipe to weekly plan](#adding-to-this-weeks-plan--weekly-add)
-* [Remove single recipe from weekly plan](#deleting-from-this-weeks-plan--weekly-delete)
-* [Remove multiple recipe from weekly plan](#deleting-from-this-weeks-plan--weekly-delete)
-* [View weekly plan](#view-this-weeks-plan--weeklyplan)
-* [Random a recipe](#random-a-recipe--random)
+* [List Relevant Recipes](#listing-recipes--list)
+* [Tag/Categorise Recipes](#taggingcategorising-recipes--tag)
+* [Add Single Recipe To Weekly Plan](#add-single-recipe-to-weekly-plan--weekly-add)
+* [Add Multiple Recipe To Weekly Plan](#add-multiple-recipes-to-weekly-plan--weekly-multiadd)
+* [Remove Single Recipe From Weekly Plan](#delete-single-recipe-from-weekly-plan--weekly-delete)
+* [Remove Multiple Recipe From Weekly Plan](#delete-multiple-recipes-from-weekly-plan--weekly-multidelete)
+* [Clear Weekly Plan](#clear-weekly-plan--weekly-clear)
+* [Mark Recipe In Weekly Plan As Done](#mark-recipe-in-weekly-plan-as-done--weekly-done)
+* [View Weekly Plan Ingredients](#view-weekly-plan-ingredients--weeklyingredients)
+* [View User Ingredients](#view-user-ingredients--viewingredients)
+* [View Weekly Plan](#view-weekly-plan--weeklyplan)
+* [Random A Recipe](#random-a-recipe--random)
+* [Exit Program](#exit-the-program--bye)
+* [Add User Ingredient](#add-user-ingredient--addi)
+* [Delete User Ingredient](#delete-user-ingredient--deli)
+
 
 ### HOW TO ADD INGREDIENTS TO A RECIPE:
 
@@ -45,12 +56,9 @@ ___
 Format: `ingredient1_name=ingredient1_quantity and ingredient2_name=ingredient2_quantity ...`
 
 * Type the ingredient name followed by equal sign and quantity in positive integer values.
-* Type done when finished inputting all ingredients for the recipe.
-* Example:
-```
-chicken=100 and oil and sauce=200 and vegetables=300 
-done
-```
+* After the ingredients are key-in in, please type `done` in the next line to finish the process.
+  *  **exception:** for editing ingredients partially, you just have to key in the 1 new ingredient and the recipe 
+    manager knows that you have entered 1 ingredient. No need to type `done`.
 
 <br>
 
@@ -188,7 +196,7 @@ Example of usage:
 
 <br>
 
-### Adding single recipe this week's plan: `weekly /add`
+### Add single recipe to weekly plan: `weekly /add`
 
 Adds an existing recipe to this week's plan.
 
@@ -207,7 +215,7 @@ Example of usage:
 
 <br>
 
-### Adding multiple recipes to this week's plan: `weekly /multiadd`
+### Add multiple recipes to weekly plan: `weekly /multiadd`
 
 Adds multiple existing recipe to this week's plan.
 
@@ -229,7 +237,7 @@ Example of usage:
 
 <br>
 
-### Deleting from this week's plan: `weekly /delete`
+### Delete single recipe from weekly plan: `weekly /delete`
 
 Deletes an existing recipe from this week's plan.
 
@@ -248,7 +256,7 @@ Example of usage:
 
 <br>
 
-### Deleting multiple recipes from this week's plan: `weekly /multidelete`
+### Delete multiple recipes from weekly plan: `weekly /multidelete`
 
 Deletes multiple existing recipe from this week's plan.
 
@@ -273,7 +281,7 @@ Example of usage:
 
 <br>
 
-### Clearing this week's plan: `weekly /clear`
+### Clear weekly plan: `weekly /clear`
 
 Clears this week's plan by removing all recipes listed in weekly plan.
 
@@ -281,7 +289,7 @@ Format: `weekly /clear`
 
 <br>
 
-### Mark recipe in this week's plan as done: `weekly /done`
+### Mark recipe in weekly plan as done: `weekly /done`
 
 Mark a recipe in the weekly plan as completed. A single count of the recipe and its corresponding
 ingredients will be removed from the weekly plan and the list of ingredients.
@@ -299,7 +307,7 @@ Example of usage:
 
 <br>
 
-### View this week's plan: `weeklyplan`
+### View weekly plan: `weeklyplan`
 
 View this week's plan.
 
@@ -307,7 +315,7 @@ Format: `weeklyplan`
 
 <br>
 
-### View this week's ingredients: `weeklyingredients`
+### View weekly plan ingredients: `weeklyingredients`
 
 View this week's ingredients.
 

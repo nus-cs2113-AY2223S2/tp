@@ -31,6 +31,12 @@ public class Ui {
         System.out.println(outputMessage);
     }
 
+    /**
+     * This method is designed to print the contents of a recipe.
+     *
+     * @param recipe recipe whose contents are to be printed.
+     *
+     **/
     public void printRecipe(Recipe recipe) {
         System.out.println(formatMessage("Name of recipe: " + recipe.getName()));
         int index = 1;
@@ -106,6 +112,13 @@ public class Ui {
         }
     }
 
+    /**
+     * This method is designed to display all the commands used by the
+     * recipe manager to assist the user in executing the required
+     * operations.
+     *
+     * @author AbijithRam
+     */
     public void printHelp() {
         printMessage("These are the operations you can do. Please follow the proper input"
                 + " formats while typing.");

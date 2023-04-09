@@ -26,6 +26,13 @@ public class Meal360 {
 
     private static IngredientList userIngredients = new IngredientList();
 
+
+
+    /**
+     * This method is designed to execute when the application is started.
+     * It loads in the recipes, weekly plan and ingredients if they exist.
+     *
+     **/
     public static void startApp() {
         ui.printSeparator();
         ui.printWelcomeMessage();
@@ -66,6 +73,11 @@ public class Meal360 {
         ui.printSeparator();
     }
 
+    /**
+     * This method is designed to receive the user input and perform the
+     * required tasks.
+     *
+     **/
     public static void receiveInput(String input) {
         String[] command = parser.cleanUserInput(input);
 
@@ -253,6 +265,12 @@ public class Meal360 {
         }
     }
 
+    /**
+     * This method is designed to exit the application.
+     *
+     * It saves the recipes, weekly plan and ingredients if any entered by the user.
+     *
+     **/
     public static void exitApp() {
         ui.printSeparator();
 
