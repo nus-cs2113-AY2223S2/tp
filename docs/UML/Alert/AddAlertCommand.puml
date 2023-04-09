@@ -1,0 +1,56 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":AlertParser"
+participant ":AddAlertCommand"
+participant ":AlertList"
+participant "<<class>>\n Ui"
+participant "<<class>>\nSessionManager"
+participant "<<class>>\nStorage"
+":AlertParser" -> ":AddAlertCommand": run()
+
+
+activate ":AddAlertCommand"
+
+":AddAlertCommand" -> ":AddAlertCommand": checkAddAlertUpc()
+activate ":AddAlertCommand" #cyan
+alt UPC does not exist
+    ":AddAlertCommand" -> "<<class>>\n Ui": printItemNotFound()
+    activate "<<class>>\n Ui"
+    "<<class>>\n Ui" -->":AddAlertCommand":
+    deactivate "<<class>>\n Ui"
+end
+
+alt UPC exists
+    alt alert is a minimum alert && no existing minimum alert of the same UPC
+     ref over ":AddAlertCommand", ":AlertList": Store minimum alert in ":AlertList"
+     end
+
+    alt alert is a maximum alert && no existing maximum alert of the same UPC
+    ref over ":AddAlertCommand", ":AlertList": Store maximum alert in ":AlertList"
+    end
+
+    alt invalid alert type
+      ":AddAlertCommand" -> "<<class>>\n Ui": printInvalidAlertType()
+        activate "<<class>>\n Ui"
+        "<<class>>\n Ui" -->":AddAlertCommand":
+        deactivate "<<class>>\n Ui"
+    end
+
+    opt "<<class>>\nSessionManager".getAutoSave()
+    ":AddAlertCommand" ->"<<class>>\nSessionManager":writeSession(alertList)
+    activate "<<class>>\nSessionManager"
+    "<<class>>\nSessionManager"->"<<class>>\nStorage":writeCSV(alertList)
+    activate "<<class>>\nStorage"
+    "<<class>>\nStorage" -->"<<class>>\nSessionManager":
+    deactivate "<<class>>\nStorage"
+    "<<class>>\nSessionManager" -->":AddAlertCommand":
+    deactivate "<<class>>\nSessionManager"
+    end
+end
+return
+":AddAlertCommand" --> ":AlertParser"
+destroy ":AddAlertCommand"
+
+
+@enduml

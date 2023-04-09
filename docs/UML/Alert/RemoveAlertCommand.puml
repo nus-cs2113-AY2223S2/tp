@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant ":AlertParser"
+participant ":RemoveAlertCommand"
+participant ":AlertList"
+
+participant "<<class>>\n Ui"
+participant "<<class>>\nSessionManager"
+participant "<<class>>\nStorage"
+":AlertParser" -> ":RemoveAlertCommand": run()
+
+activate ":RemoveAlertCommand"
+
+":RemoveAlertCommand" -> ":RemoveAlertCommand": checkRemoveAlertUpc()
+activate ":RemoveAlertCommand" #cyan
+alt UPC does not exist
+    ":RemoveAlertCommand" -> "<<class>>\n Ui": printItemNotFound()
+    activate "<<class>>\n Ui"
+    "<<class>>\n Ui" -->":RemoveAlertCommand":
+    deactivate "<<class>>\n Ui"
+end
+
+
+alt UPC exists
+    alt alert is a minimum alert
+     ref over ":RemoveAlertCommand", ":AlertList": Delete minimum alert in ":AlertList"
+     end
+
+    alt alert is a maximum alert
+    ref over ":RemoveAlertCommand", ":AlertList": Delete maximum alert in ":AlertList"
+    end
+
+    alt alert does not exist
+      ":RemoveAlertCommand" -> "<<class>>\n Ui": printNonExistentRemoveAlert()
+        activate "<<class>>\n Ui"
+        "<<class>>\n Ui" -->":RemoveAlertCommand":
+        deactivate "<<class>>\n Ui"
+    end
+
+     opt "<<class>>\nSessionManager".getAutoSave()
+        ":RemoveAlertCommand" ->"<<class>>\nSessionManager":writeSession(alertList)
+        activate "<<class>>\nSessionManager"
+        "<<class>>\nSessionManager"->"<<class>>\nStorage":writeCSV(alertList)
+        activate "<<class>>\nStorage"
+        "<<class>>\nStorage" -->"<<class>>\nSessionManager":
+        deactivate "<<class>>\nStorage"
+        "<<class>>\nSessionManager" -->":RemoveAlertCommand":
+        deactivate "<<class>>\nSessionManager"
+        end
+return
+":RemoveAlertCommand" --> ":AlertParser"
+destroy ":RemoveAlertCommand"
+
+@enduml
