@@ -446,18 +446,86 @@ public class SniffTasks {
     public void editConsultation(String uid,Animal animal, Owner owner,
                                 LocalDate date, LocalTime time) throws SniffException {
         try {
-            //checkConsultationDuplicate(animal, owner, date, time);
-            UIDS.add(uid);
-            Appointment newAppointment = new Consultation(uid, animal, owner, date, time);
-            assert Objects.equals(newAppointment.uid, uid) : "consultation uid should be " + uid;
-            assert Objects.equals(newAppointment.animal.type, animal.type) :
+            checkConsultationDuplicate(animal, owner, date, time);
+            int index = 0;
+            for (int i = 0; i < APPOINTMENTS.size(); i++) {
+                if (uid.equals(APPOINTMENTS.get(i).uid)) {
+                    index = i;
+                    break;
+                }
+            }
+            Appointment temp = APPOINTMENTS.get(index);
+            APPOINTMENTS.remove(temp);
+            Appointment changeAppointment = new Consultation(uid, animal, owner, date, time);
+            assert Objects.equals(changeAppointment.uid, uid) : "consultation uid should be " + uid;
+            assert Objects.equals(changeAppointment.animal.type, animal.type) :
                     "consultation animal type should be " + animal.type;
-            assert Objects.equals(newAppointment.animal.name, animal.name) :
+            assert Objects.equals(changeAppointment.animal.name, animal.name) :
                     "consultation animal name should be " + animal.name;
-            APPOINTMENTS.add(newAppointment);
+            APPOINTMENTS.add(changeAppointment);
             Ui.showUserMessage(" Consultation changed successfully!");
         } catch (StringIndexOutOfBoundsException e) {
             throw new SniffException(" Invalid consultation description!");
+        } catch (DuplicateAppointmentException e) {
+            System.out.println(" Appointment failed to be changed.");
+        }
+    }
+    public void editSurgery(String uid, Animal animal, Owner owner,
+                            String priority, LocalDate startDate, LocalTime startTime,
+                            LocalDate endDate, LocalTime endTime) throws SniffException{
+        try {
+            checkSurgeryDuplicate(animal, owner, startDate, startTime, endDate, endTime);
+            int index = 0;
+            for (int i = 0; i < APPOINTMENTS.size(); i++) {
+                if (uid.equals(APPOINTMENTS.get(i).uid)) {
+                    index = i;
+                    break;
+                }
+            }
+            Appointment temp = APPOINTMENTS.get(index);
+            APPOINTMENTS.remove(temp);
+            Appointment changeAppointment = new Surgery(uid, animal, owner, priority, startDate, startTime, endDate,
+                    endTime);
+            assert Objects.equals(changeAppointment.uid, uid) : "surgery uid should be " + uid;
+            assert Objects.equals(changeAppointment.animal.type, animal.type) :
+                    "surgery animal type should be " + animal.type;
+            assert Objects.equals(changeAppointment.animal.name, animal.name) :
+                    "surgery animal name should be " + animal.name;
+            APPOINTMENTS.add(changeAppointment);
+            Ui.showUserMessage(" Surgery changed successfully!");
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new SniffException(" Invalid surgery description!");
+        } catch (DuplicateAppointmentException e) {
+            System.out.println(" Appointment failed to be changed.");
+        }
+    }
+
+    public void editVaccination(String uid,Animal animal, Owner owner,
+                               LocalDate date, LocalTime time, String vaccine) throws SniffException {
+        try {
+            checkVaccinationDuplicate(animal, owner, date, time, vaccine);
+            int index = 0;
+            for (int i = 0; i < APPOINTMENTS.size(); i++) {
+                if (uid.equals(APPOINTMENTS.get(i).uid)) {
+                    index = i;
+                    break;
+                }
+            }
+            Appointment temp = APPOINTMENTS.get(index);
+            APPOINTMENTS.remove(temp);
+            Appointment changeAppointment = new Vaccination(uid, animal, owner, date, time, vaccine);
+            assert Objects.equals(changeAppointment.uid, uid) : "vaccination uid should be " + uid;
+            assert Objects.equals(changeAppointment.animal.type, animal.type) :
+                    "vaccination animal type should be " + animal.type;
+            assert Objects.equals(changeAppointment.animal.name, animal.name) :
+                    "vaccination animal name should be " + animal.name;
+            APPOINTMENTS.add(changeAppointment);
+            Ui.printAppointmentAddedMessage(changeAppointment);
+            Ui.showUserMessage(" Vaccination added successfully!");
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new SniffException(" Invalid vaccination description!");
+        } catch (DuplicateAppointmentException e) {
+            System.out.println(" Appointment failed to be added.");
         }
     }
 }
