@@ -201,7 +201,9 @@ If any of the list is empty, a separate message notifying the user that the list
 
 ### Staff Feature 
 The `Staff` Feature allows user to create, read, update, delete (CRUD) `Staff` objects in the list of staffs. 
-`Staff` list is managed by `StaffManager` Class similar to other entity objects. Here are hot it works for each functionality: 
+`Staff` list is managed by `StaffManager` Class similar to other entity objects. Here are how it works for each functionality: 
+
+![](uml/images/XYZStaffDiagram.png)
 
 #### Adding staff to the list:
 
