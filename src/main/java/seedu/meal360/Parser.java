@@ -369,13 +369,17 @@ public class Parser {
      * @throws RecipeNotFoundInTagException If users entered a recipe index or range that is out of bounds.
      */
     public String parseDeleteRecipe(String[] input, RecipeList recipeList) {
-        // user inputted recipe name
         try {
+            // make sure user inputted recipe name or number
             if (!input[1].equals("/r") && !input[1].contains("-")) {
                 Integer.parseInt(input[1]);
             }
         } catch (NumberFormatException e) {
-            throw new IndexOutOfBoundsException();
+            throw new ArrayIndexOutOfBoundsException("Please enter a valid recipe number, name, or range in the " +
+                    "correct format.");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ArrayIndexOutOfBoundsException("Please enter a valid recipe number, name, or range in " +
+                    "the correct format.");
         }
         if (input[1].contains("/r")) {
             // skip over /r in recipe name
@@ -394,26 +398,36 @@ public class Parser {
                 return allRecipes;
             } else {
                 int recipeIndex = 0;
+                boolean recipeFound = false;
                 for (Recipe recipe : recipeList) {
                     // find index of recipe we want to delete
                     if (recipe.getName().equals(recipeToDelete)) {
+                        recipeFound = true;
                         break;
                     }
                     recipeIndex++;
                 }
+                if (!recipeFound) {
+                    throw new ArrayIndexOutOfBoundsException("Please enter a valid recipe number, name, or range in " +
+                            "the correct format.");
+                }
                 return recipeList.deleteRecipe(recipeIndex).getName();
             }
-            // user inputted index of recipe in list
+        // user inputted index of recipe in list
         } else {
             // deleting a range of recipes
-            if (input[1].length() >= 3) {
+            if (input[1].length() >= 3 && input[1].contains("-")) {
                 String[] range = input[1].trim().split("-");
+                if (range.length != 2) {
+                    throw new ArrayIndexOutOfBoundsException("Please enter a valid recipe number, name, or range in " +
+                            "the correct format.");
+                }
                 int startIndex = Integer.parseInt(range[0]);
                 int endIndex = Integer.parseInt(range[1]);
                 startIndex -= 1;
                 endIndex -= 1;
                 if (startIndex < 0 || endIndex >= recipeList.size() || endIndex < startIndex) {
-                    throw new IndexOutOfBoundsException();
+                    throw new IndexOutOfBoundsException("Please enter a valid recipe number, name, or range.");
                 }
                 int newSize = recipeList.size() - ((endIndex - startIndex) + 1);
                 String rangeRecipes = "";
@@ -423,9 +437,12 @@ public class Parser {
                 rangeRecipes = String.valueOf(
                         new StringBuilder(rangeRecipes.substring(0, rangeRecipes.length() - 2)));
                 return rangeRecipes;
+            // deleting a single recipe
             } else {
                 int recipeIndex = Integer.parseInt(input[1]);
-                ;
+                if (recipeIndex <= 0 || recipeIndex > recipeList.size()) {
+                    throw new IndexOutOfBoundsException("Please enter a valid recipe number, name, or range.");
+                }
                 recipeIndex = Integer.parseInt(input[1]);
                 // need to subtract 1 since list is 1-based
                 return recipeList.deleteRecipe(recipeIndex - 1).getName();
@@ -678,7 +695,7 @@ public class Parser {
         return recipes.get(recipeIndex - 1);
     }
 
-    // @@author junenita
+    //@@author junenita
     /**
      * Returns a Recipe object that contain a recipe's name and ingredients.
      *
@@ -694,7 +711,7 @@ public class Parser {
         return recipes.randomRecipe();
     }
 
-    // @@author jaredoong
+    //@@author jaredoong
     /**
      * Checks whether the user wants to edit single, multiple, or clear all the recipes in the weekly plan.
      * Then, return a WeeklyPlan object that contains the recipes that the user wants to add or delete.
