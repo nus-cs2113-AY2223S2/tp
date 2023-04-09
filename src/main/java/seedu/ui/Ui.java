@@ -63,11 +63,15 @@ public class Ui {
             + "Format: set AMOUNT\n"
             + "Example: set 150\n" +
             HORIZONTAL_LINE +
-            "\n9. Check expenditure with respect to a allocated budget by date(yyyy-mm-dd) or by year(yyyy)\n"
-            + "Format: check d/DATE\n"
-            + "Format: check y/YEAR\n"
-            + "Example of checking budget by date: viewdate d/2023-03-29\n" 
-            + "Example of checking budget by year: viewdate y/2023\n" +
+            "\n9. Check expenditure with respect to a allocated budget, which accepts an optional filters\n"
+            + "Format: check\n \n" +
+            "List of optional filters: \n \n" +
+            "By date(yyyy-mm-dd)\n" + "Format: check d/DATE\n" +
+            "Example of checking budget by date: check d/2023-03-29\n \n" +
+            "By year(yyyy)\n" + "Format: check y/YEAR\n"
+            + "Example of checking budget by year: check y/2023\n \n" +
+            "By expenditure category \n" + "Format: check t/CATEGORY\n" +
+            "Example of checking budget by category: check t/academic\n" +
             HORIZONTAL_LINE;
 
         
