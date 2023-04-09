@@ -1,28 +1,30 @@
 
 @startuml
-title AddParser Class
+title AddParser Sequence Diagram
 
-participant ParserHandler
-participant AddParser
+participant ":ParserHandler" as ParserHandler
+participant ":AddParser" as AddParser
 ParserHandler -> AddParser: run()
 
 activate AddParser
-participant Ui
+participant "<<class>>\nUi"
 opt rawInput == null
 AddParser -> MissingParametersException:throw missingAddItemParameters
-    
+activate MissingParametersException
+MissingParametersException --> ParserHandler:
+deactivate MissingParametersException
+destroy MissingParametersException
 end
 
 opt !matcher.matches
-AddParser -> Ui:printInvalidAddCommand()
-Ui --> User:
+AddParser -> "<<class>>\nUi":printInvalidAddCommand()
+activate "<<class>>\nUi"
+"<<class>>\nUi" --> ParserHandler:
+deactivate "<<class>>\nUi"
 end
-AddParser -> Item: Item()
-activate Item
-Item -->AddParser:
-deactivate Item
-
-AddParser -> AddCommand: AddCommand(inventory, newItem)
+participant ":AddCommand" as AddCommand
+participant ":Command" as Command
+AddParser -> AddCommand**: AddCommand(inventory, newItem)
 activate AddCommand
 AddCommand -->AddParser:
 deactivate AddCommand
@@ -30,18 +32,14 @@ deactivate AddCommand
 AddParser -> AddCommand: run()
 activate AddCommand
 
-AddCommand -> Command:Command(inventory)
+AddCommand -> Command**:Command(inventory)
 activate Command
 Command -->AddCommand:
 deactivate Command
-
+destroy Command
 AddCommand -->AddParser:
 deactivate AddCommand
-
-AddParser -> Command: run()
-activate Command
-Command -->AddParser:
-deactivate Command
+destroy AddCommand
 
 AddParser --> ParserHandler:
 destroy AddParser

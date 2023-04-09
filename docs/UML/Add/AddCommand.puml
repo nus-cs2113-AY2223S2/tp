@@ -4,50 +4,44 @@ title AddCommand Sequence Diagram
 
 participant ":AddParser"
 participant ":AddCommand"
-":AddParser" -> ":AddCommand": run()
+":AddParser" -> ":AddCommand"**: run()
 
 activate ":AddCommand"
-":AddCommand" -> ":Command":Command(inventory)
+":AddCommand" -> ":Command"**:Command(inventory)
 activate ":Command"
-":Command" -->":AddCommand":
-deactivate ":Command"
 participant ":Inventory"
-participant ":Ui"
+participant "<<class>>\nUi"
 ":AddCommand" -> ":AddCommand": addItem()
+
 alt upcCodes.containsKey(item.getUpc())
-":AddCommand" -> ":Ui": printDuplicateAdd()
-activate ":Ui"
-":Ui" -->":AddCommand":
-deactivate ":Ui"
+":AddCommand" -> "<<class>>\nUi": printDuplicateAdd()
+activate "<<class>>\nUi"
+"<<class>>\nUi" -->":AddCommand":
+deactivate "<<class>>\nUi"
 else
 ref over ":AddCommand",":Inventory":Store Item's UPC code into upcCodes
 ref over ":AddCommand",":Inventory":Store Item into itemInventory
-":AddCommand" -> ":Ui": printSuccessAdd()
-activate ":Ui"
-":Ui" -->":AddCommand":
-deactivate ":Ui"
-participant ":Trie"
-loop iterate all item name in itemNames
-":AddCommand" -> Trie:add(itemName)
-activate Trie
-Trie --> ":AddCommand":
-deactivate Trie
-end
-participant ":SessionManager"
-participant ":Storage"
-opt ":SessionManager".getAutoSave()
-":AddCommand" ->":SessionManager":writeSession(inventory)
-activate ":SessionManager"
-":SessionManager"->":Storage":writeCSV(inventory)
-activate ":Storage"
-":Storage" -->":SessionManager":
-deactivate ":Storage"
-":SessionManager" -->":AddCommand":
-deactivate ":SessionManager"
+":Command" -->":AddCommand":
+deactivate ":Command"
+destroy ":Command"
+":AddCommand" -> "<<class>>\nUi": printSuccessAdd()
+activate "<<class>>\nUi"
+"<<class>>\nUi" -->":AddCommand":
+deactivate "<<class>>\nUi"
+participant "<<class>>\nSessionManager"
+participant "<<class>>\nStorage"
+opt "<<class>>\nSessionManager".getAutoSave()
+":AddCommand" ->"<<class>>\nSessionManager":writeSession(inventory)
+activate "<<class>>\nSessionManager"
+"<<class>>\nSessionManager"->"<<class>>\nStorage":writeCSV(inventory)
+activate "<<class>>\nStorage"
+"<<class>>\nStorage" -->"<<class>>\nSessionManager":
+deactivate "<<class>>\nStorage"
+"<<class>>\nSessionManager" -->":AddCommand":
+deactivate "<<class>>\nSessionManager"
 end
 end
-":AddCommand" --> ":":AddParser"":
+":AddCommand" --> ":AddParser"
 destroy ":AddCommand"
-
 
 @enduml

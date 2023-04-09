@@ -47,6 +47,7 @@ public class AddCommand extends Command {
             Ui.printNewCategory();
         }
     }
+
     /**
      * Adds an item to the inventory.
      */

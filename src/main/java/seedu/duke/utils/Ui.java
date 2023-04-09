@@ -389,8 +389,8 @@ public class Ui {
      * @return String containing the table of inventory items and their associated details.
      */
     public static String printTable(ArrayList<Item> items) {
-        int[] columnWidths = {INDEX_COL_WIDTH, NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH, PRICE_COL_WIDTH,
-                              CATEGORY_COL_WIDTH};
+        int[] columnWidths = {INDEX_COL_WIDTH, NAME_COL_WIDTH, UPC_COL_WIDTH, QTY_COL_WIDTH,
+            PRICE_COL_WIDTH, CATEGORY_COL_WIDTH};
 
         StringBuilder table = new StringBuilder();
 
