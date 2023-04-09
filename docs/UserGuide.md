@@ -1,5 +1,6 @@
 # User Guide
 ![img_11.png](img_11.png)
+
 ## Contents
 - [Introduction](#introduction)
 - [Quick Start](#quick-start)
@@ -68,9 +69,7 @@ ____________________________________________________________
 ### Editing an item: `edit` <a name = "edit"></a>
 Edit an item's details in the inventory.
 
-
 Format: `edit upc/[UPC] n/[item_name] qty/[quantity] p/[price] c/[category]`
-
 
 **REQUIRED** parameters:
 * The `upc/` parameter where `[UPC]` must be a **non-negative numerical value** and exists in the inventory.
@@ -213,7 +212,6 @@ Search for item(s) in the inventory list by keywords or UPC.
 | `search [Keywords]` | `[Keywords]` can be an alphanumerical value. |
 | `searchupc [UPC]` | `[UPC]` can only be a **non-negative numerical** value. |
 
-
 !> Note: `search` will find items with all keywords. Hence, the search term `sleeves` will find both `Laptop Sleeves`
 and `Clothes Sleeves`, but the search term `laptop slee` will only return the item `Laptop Sleeves`
 
@@ -222,7 +220,6 @@ and `Clothes Sleeves`, but the search term `laptop slee` will only return the it
 `search laptop slee` or `searchupc 0123241`
 
 #### Sample output
-
 
 **Case I:** Search by keywords
 ```
@@ -252,8 +249,6 @@ __________________________________________________________________________
 ```
 ---
 ### Filtering items: `filter` <a name = "filter"></a>
-
-
 Filters items from the inventory list by price OR category.
 
 
@@ -267,9 +262,7 @@ Filters items from the inventory list by price OR category.
 * For `filter f/price`, the `[price]` parameter must be a **non-negative numerical value** within a valid range
 * For `filter f/category`, the `[Category keywords]` parameter must be an **alphanumerical value**.
 
-
 !> **Enforced** valid range for numerical parameters is **0** to **999999999**.
-
 
 | Price Comparator | Required parameter                     |
 |------------------|----------------------------------------|
@@ -277,8 +270,6 @@ Filters items from the inventory list by price OR category.
 | `p/get`          | Items price greater/equals to`[price]` |
 | `p/lt`           | Items price less than `[price]`        |
 | `p/let`          | Items price lesser/equals to `[price]` |
-
-
 
 #### Example of usage
 
@@ -558,6 +549,9 @@ Format: <br />
 !> Note: There should **NOT** be any additional user inputs after typing `cat list` or `cat table`. `list` and `table`
 should **NOT** be used concurrently.
 
+!> Categories are **CASE-INSENSITIVE**. (i.e. An item of category `Fruit` and an item of category `fRuIt` will be
+interpreted as being in the same `fruit` category.)
+
 #### Example of Usage 
 
 `cat list`
@@ -570,25 +564,29 @@ should **NOT** be used concurrently.
 cat list
 __________________________________________________________________________
 Here is the list of categories you have: 
-uncategorized
-fruits
+Uncategorized
+Fruits
+Electronics and Supplies
 __________________________________________________________________________
 ```
 **CASE II:** Show all the categories in the inventory as well as their respective items
 ```
 cat table
 __________________________________________________________________________
-+-----------------+--------------------------------+
-| Category        | Name: UPC                      |
-+-----------------+--------------------------------+
-| fruit           | apples:1235678910,             |
-|                 | watermelon:1034373783742       |
-+-----------------+--------------------------------+
-| uncategorized   | oranges:1029348576             |
-+-----------------+--------------------------------+
++-----------------+-----------------------------------------------+
+| Category        | Name: UPC                                     |
++-----------------+-----------------------------------------------+
+| Fruit           | apples: 12345678910,                          |
+|                 | watermelon: 1034373783742                     |
++-----------------+-----------------------------------------------+
+| Uncategorized   | oranges: 1029348576                           |
++-----------------+-----------------------------------------------+
+| Electronics and | cpu: 20391928234                              |
+| Supplies        |                                               |
++-----------------+-----------------------------------------------+
 __________________________________________________________________________
 ```
-
+---
 ### Alert for an item: `alert` <a name = "alert"></a>
 Add alerts that will display messages when the quantity of an item falls below a set minimum or exceeds a maximum level.
 
@@ -598,7 +596,6 @@ __________________________________________________________________________
 ALERT: The quantity of apples is below the minimum level of 2.
 __________________________________________________________________________
 ```
-
 
 Add Alert Format:  
 `alert add upc/[UPC] min/[Quantity] ` to set an alert when quantity falls below a minimum  
@@ -616,7 +613,6 @@ Remove Alert Format:
 
 `alert remove upc/[UPC] level/min` to remove an alert for the minimum quantity of an item  
 `alert remove upc/[UPC] level/max` to remove an alert for the maximum quantity of an item  
-
 
 **REQUIRED** parameters:
 
@@ -644,11 +640,8 @@ alert remove upc/1234 level/min
 __________________________________________________________________________
 Successfully removed the alert.
 __________________________________________________________________________
-``` 
+```
 
-
-
-Example of
 ---
 ### Change Auto save Mode: `autosave` <a name = "autosave"></a>
 
@@ -713,22 +706,36 @@ __________________________________________________________________________
 <a name = "faq"></a>
 <a name = "command_summary"></a>
 ## Command Summary
-| Action                          |
-|---------------------------------|
-| Add item (`add`)                |
-| Remove item (`remove`)          |
-| Edit item (`edit`)              |
-| List all items (`list`)         |
-| Search items (`search`)         |
-| Filter items (`filter`)         |
-| Sell items (`sell`)             |
-| Restock items (`restock`)       |
-| Add and remove alerts (`alert`) |
-| View item categories (`cat`)    |
-| View history (`history`)        |
-| View dashboard (`db`) |
-| View all commands (`help`) |
-| Set autosave mode (`autosave`) |
-| Exit the program (`exit`) |
+| Action                                                     | Format                                                                     |
+|------------------------------------------------------------|----------------------------------------------------------------------------|
+| Add item                                                   | `add n/[item_name] upc/[UPC] qty/[quantity] p/[price] c/[category]`        | 
+| Remove item using UPC                                      | `remove f/upc [UPC]`                                                       |
+| Remove item using index in list                            | `remove f/index [index]`                                                   |
+| Edit item                                                  | `edit upc/[UPC] {n/[item_name]} {qty/[quantity]} {p/[price]} {c/[category]}` |
+| Sell a quantity of an item                                 | `sell upc/[UPC] qty/[quantity]`                                            |
+| Restock a quantity of an item                              | `restock upc/[UPC] qty/[quantity]`                                         |
+| List all items                                             | `list`                                                                     |
+| Search items by keyword                                    | `search [keyword]`                                                         |
+| Search items by UPC                                        | `search [UPC]`                                                             |
+| Filter items with price greater than `[price]`             | `filter f/price p/gt [price]`                                              |
+| Filter items with price greater than or equal to `[price]` | `filter f/price p/get [price]`                                             |
+| Filter items with price less than `[price]`                | `filter f/price p/lt [price]`                                              |
+| Filter items with price less than or equal to `[price]`    | `filter f/price p/let [price]`                                             |
+| View list of all item categories                           | `cat list`                                                                 |
+| View all items sorted by category                          | `cat table`                                                                |
+| Add a minimum alert warning for an item                    | `alert add upc/[UPC] min/[quantity]`                                       |
+| Add a maximum alert warning for an item                    | `alert add upc/[UPC] max/[quantity]`                                       |
+| Remove the minimum alert for an item                       | `alert remove upc/[UPC] level/min`                                         |
+| Remove the maximum alert for an item                       | `alert remove upc/[UPC] level/max`                                         |
+| View historical changes of an item                         | `history [UPC]`                                                            |
+| View dashboard                                             | `db`                                                                       |
+| View all commands                                          | `help`                                                                     |
+| Switch on autosave                                         | `autosave on`                                                              |
+| Switch off autosave                                        | `autosave off`                                                             |
+| Exit the program                                            | `bye` or `exit`                                                            |
+
+
+* Words in square brackets `[ ]` are parameters to be supplied by the user
+* Words in curly brackets `{ }` are optional parameters to be supplied by the user
 
 

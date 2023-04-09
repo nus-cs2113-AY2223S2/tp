@@ -298,7 +298,7 @@ public class Storage {
                     return Types.FileHealth.CORRUPT;
                 }
                 String upc = fields[ALERT_UPC_INDEX];
-                if (!inventory.getUpcCodes().containsKey(upc)) {
+                if (!inventory.getUpcCodes().containsKey(upc) || !upc.matches("(\\d+)")) {
                     return Types.FileHealth.CORRUPT;
                 }
                 int qty;
@@ -342,6 +342,9 @@ public class Storage {
             while (line != null) {
                 String[] fields = line.trim().split(",");
                 if (fields.length != MAX_NUMBER_OF_FIELDS) {
+                    return Types.FileHealth.CORRUPT;
+                }
+                if(!fields[UPC_INDEX].matches("(\\d+)")){
                     return Types.FileHealth.CORRUPT;
                 }
                 int qty;

@@ -423,17 +423,19 @@ the details of the last and most current instant of the item.
 The alert command is mainly handled by the `AddAlertCommand` class and `RemoveAlertCommand` class, both of which extend the `Command` class. It is parsed by the `AlertParser` class, which extends the `Parser` class.
 
 ![AlertParser.png](UML%2FAlert%2FAlertParser.png)
-
-
+![AddAlertCommand.png](UML%2FAlert%2FAddAlertCommand.png)
+![AddAlertCommand.png](UML%2FAlert%2FRemoveAlertCommand.png)
 
 **Step 1**. When the user executes a command that begins with the word `alert`, the ParserHandler will create a new `AlertParser` object and pass in the appropriate `input`, as well as the corresponding `inventory` where the list of alerts for inventory items are stored.
 
 ![AlertStep1.png](UML%2FAlert%2FAlertStep1.png)
 
 
-**Step 2**. The `run` method in `AlertParser` is called, which overrides the `run` method in `Parser`. The `AlertParser`checks if 
-This leads the `AlertParser` to call either the `parseAddAlert` or `parseRemoveAlert`, depending on whether the `input` begins with the word `add` or `remove`.
-If the `input` does not begin with either `add` or `remove`, an error is shown and the method will halt execution.
+**Step 2**. The `run` method in `AlertParser` is called, which overrides the `run` method in `Parser`. The `AlertParser`checks if the `rawInput`
+begins with the word `add` or `remove`.
+This leads the `AlertParser` to call either the `parseAddAlert` if `rawInput` begins with the word `add`,
+or `parseRemoveAlert` if `rawInput` begins with the word `remove`.
+If the `rawInput` does not begin with either `add` or `remove`, an error is shown and the method will halt execution.
 
 **Step 3**. 
 If the input begins with `add`, the `AlertParser` creates a new `AddAlertCommand` object 
@@ -488,18 +490,20 @@ the category that user input is found. Otherwise, the method will inform user th
 * Has a need to manage a wide variety of items, and track various information related to the item.
 * Is able to type fast which leads to usage of CLI applications being a more efficient method of managing inventories
 as compared to tradition inventory management systems.
-* Prefers a desktop application for inventory management and tracking rather than traditional pen and paper or
+* Prefers a desktop application for inventory management and tracking rather than using traditional pen and paper, or
 smartphones.
-* Requires only a simplistic solution to the management of inventories, rather than a complex but costly one.
+* Requires a simplistic yet effective solution to the problem of inventory management, rather than a complex but 
+costly one.
 
 ### Value proposition
 * For users who can type fast, usage of MagusStock over conventional GUI applications for inventory management will be
 significantly faster.
-* MagusStock offers a wide variety of features that improves the user's experience in inventory management.
-* A low-cost solution for small companies whom do not require a costly and complex inventory management system for
-tracking of their stocks.
+* MagusStock offers a wide variety of features that are critical in enhancing the user's experience in inventory
+management.
+* A low-cost solution for small companies and individuals, who likely do not require a costly and complex inventory 
+management system for tracking of their stocks.
 * Simple command formats that are easy to learn and get used to, without complex functions and terms that may be 
-unsuitable for the less seasoned users of the application.
+unsuitable for less seasoned users of the application.
 
 ## User Stories
 
@@ -512,23 +516,25 @@ unsuitable for the less seasoned users of the application.
 | v1.0    | IT team member           | search for items in the inventory by name SKU or category       | quickly find what I need                                      |
 
 
-| Version | As a ...                | I want to ...                                                            | So that I can ...                                                                                           |
-|---------|-------------------------|--------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| v2.0    | small business owner    | analyze past sales from the historical records of the stocks             | make better decisions                                                                                       |
-| v2.0    | small business owner    | see a report of items that are due to be reordered                       | make sure we have enough stock to meet customer demand                                                      |
-| v2.0    | small business owner    | set different prices for items in the inventory                          | charge different prices for different items                                                                 |
-| v2.0    | small business owner    | categorize items in the inventory                                        | quickly find items that belong to a specific category                                                       |
-| v2.0    | small business owner    | directly top up and deduct the quantity of an item in the inventory list | keep track of the item quantities with ease without the inconvenience of editing the item quantity manually |
-| v2.0    | small business owner    | see the list of commands that can be executed                            | quickly identify the function I can use and their command formats.                                          |
-| v2.0    | small business owner    | set minimum and maximum stock levels for items in the inventory          | be alerted if our stock levels fall outside of these limits                                                 |
-| v2.0    | IT team member          | assign unique SKUs to items in the inventory                             | easily track and manage the items                                                                           |
-| v2.0    | convenience store owner | store information on the large variety of products                       | find them easily                                                                                            |
+| Version | As a ...                | I want to ...                                                           | So that I can ...                                                                                            |
+|---------|-------------------------|-------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| v2.0    | small business owner    | analyze past sales from the historical records of the stocks            | make better decisions                                                                                        |
+| v2.0    | small business owner    | see a report of items that are due to be reordered                      | make sure we have enough stock to meet customer demand                                                       |
+| v2.0    | small business owner    | set different prices for items in the inventory                         | charge different prices for different items                                                                  |
+| v2.0    | small business owner    | categorize items in the inventory                                       | quickly find items that belong to a specific category                                                        |
+| v2.0    | small business owner    | directly top up and deduct the quantity of an item in the inventory list | keep track of the item quantities with ease without the inconvenience of editing the item quantity manually  |
+| v2.0    | small business owner    | see the list of commands that can be executed                           | quickly identify the function I can use and their command formats.                                           |
+| v2.0    | small business owner    | set minimum and maximum stock levels for items in the inventory         | be alerted if our stock levels fall outside of these limits                                                  |
+| v2.0    | IT team member          | assign unique identifying numbers to items in the inventory             | easily track and manage the items                                                                            |
+| v2.0    | convenience store owner | store information on the large variety of products                      | find them easily                                                                                             |
 
 
 ## Non-Functional Requirements
 
 1. MagusStock should be able to hold up to 10,000 unique items, without a noticeable drop in its speed or performance.
 2. MagusStock should be able to work on both Windows and macOS with Java `11` installed.
+3. No prior setup of the application or downloading of external software is required, users are able to launch and 
+use the application once it is downloaded and transferred to an empty folder.
 
 ## Glossary
 

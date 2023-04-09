@@ -28,6 +28,7 @@ public class EditCommand extends Command {
     private static final Long MAX_VALUE_RANGE = 99999999L;
     private static final int ZERO = 0;
     private static final int MIN_VALUE_RANGE = 0;
+    private static final String NULL = "null";
     private final String[] editInfo;
 
     public EditCommand(Inventory inventory, String[] editInfo) {
@@ -87,7 +88,7 @@ public class EditCommand extends Command {
      */
     private void handleUserEditCommands(Item item, Item oldItem, String[] data) throws
             MissingParametersException, NumberFormatException, OutOfRangeException {
-        String currentLabel = "null";
+        String currentLabel = NULL;
         try {
             validateUserEditCommands(data);
             for (int dataSequence = 1; dataSequence < data.length; dataSequence += 1) {
@@ -172,7 +173,7 @@ public class EditCommand extends Command {
         int quantityEditCount = ZERO;
         int priceEditCount = ZERO;
         int categoryEditCount = ZERO;
-        String currentLabel = "null";
+        String currentLabel = NULL;
         for (int dataSequence = 1; dataSequence < data.length; dataSequence += 1) {
             if (data[dataSequence].startsWith(NAME_LABEL)) {
                 nameEditCount += 1;
@@ -301,6 +302,7 @@ public class EditCommand extends Command {
      */
     private static void setItemCategory(Item item, String updatedCategory) throws MissingParametersException {
         if (!updatedCategory.isBlank()) {
+            CategoryCommand.removeItemFromCategory(item, item.getCategory());
             item.setCategory(updatedCategory);
         } else {
             throw new MissingParametersException();
@@ -317,7 +319,8 @@ public class EditCommand extends Command {
             Item oldItem = new Item(updatedItem);
             Item oldItemForCat = new Item(updatedItem);
             updateItemInfo(updatedItem, oldItem, editInfo);
-            CategoryCommand.updateItemCategory(oldItemForCat, oldItemForCat.getCategory(), updatedItem.getCategory());
+            CategoryCommand.updateItemCategory(oldItemForCat, oldItemForCat.getCategory().toLowerCase(),
+                    updatedItem.getCategory().toLowerCase());
             Item itemForHistory = new Item(updatedItem.getName(), updatedItem.getUpc(), updatedItem.getQuantity(),
                     updatedItem.getPrice(), updatedItem.getCategory());
             handleTrie(updatedItem, oldItem);

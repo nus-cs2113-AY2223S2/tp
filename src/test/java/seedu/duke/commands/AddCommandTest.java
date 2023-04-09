@@ -27,7 +27,7 @@ class AddCommandTest {
         Item newItem = new Item("Item 1", "7252727320", 2, 123.0);
         Command command = new AddCommand(inventory, newItem);
         command.run();
-        assertEquals("uncategorized", inventory.getItemInventory().get(0).getCategory());
+        assertEquals("Uncategorized", inventory.getItemInventory().get(0).getCategory());
         assertEquals(1, inventory.getItemInventory().size());
         assertEquals(newItem, inventory.getItemInventory().get(0));
         assertTrue(inventory.getUpcCodes().containsKey(newItem.getUpc()));
