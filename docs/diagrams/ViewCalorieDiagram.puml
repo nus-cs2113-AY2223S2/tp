@@ -1,26 +1,25 @@
 @startuml
-'https://plantuml.com/sequence-diagram
-
-autonumber
-
 actor User
-participant ":Duke" as Duke
+participant "ViewCaloriesCommand" as VCC
+participant "calorieTracker" as CT
+database "Daily Food Consumption" as DFC
+participant "Food" as F
+participant "DateFormatter" as DF
+participant "Ui" as UI
 
-Duke -> Ui: getUserInput()
-activate Duke
-activate Ui
-User -> Ui: User input
-return User input
-Duke -> Parser : processCommand(userInput)
-activate Parser
-Parser-> CalorieParser: CalorieParser(arguments)
-activate CalorieParser
-CalorieParser-> parseViewCalorieCommand : parseViewCalorieCommand(arguments)
-activate parseViewCalorieCommand
-parseViewCalorieCommand -> ViewCalorieCommand:ViewCalorieCommand(date)
-activate ViewCalorieCommand
-return StringBuilder
-return StringBuilder
-return StringBuilder
-return StringBuilder
+User -> VCC : Requests to view calories for a specific date
+VCC -> CT : Checks if date exists in daily food consumption
+CT -> DFC : Retrieves daily food consumption for the date
+DFC -> VCC : Returns daily food consumption
+alt Date exists in daily food consumption
+    VCC -> DF : Formats the date
+    VCC -> F : Retrieves food list from daily food consumption
+    loop for each food in the list
+        VCC -> F : Retrieves food name and calories
+        VCC -> UI : Formats and displays the food name and calories
+    end
+else Date does not exist in daily food consumption
+    VCC -> DF : Formats the date
+    VCC -> UI : Returns a message that the date does not exist in the list
+end
 @enduml

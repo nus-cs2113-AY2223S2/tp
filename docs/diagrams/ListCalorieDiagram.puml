@@ -1,25 +1,36 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+title ListCaloriesCommand Sequence Diagram
 
-autonumber
 actor User
-participant ":Duke" as Duke
 
-Duke -> Ui: getUserInput()
-activate Duke
-activate Ui
-User -> Ui: User input
-return User input
-Duke -> Parser : processCommand(userInput)
-activate Parser
-Parser-> CalorieParser: CalorieParser(arguments)
-activate CalorieParser
-CalorieParser-> parseListCalorieCommand : parseListCalorieCommand(arguments)
-activate parseListCalorieCommand
-parseListCalorieCommand -> ListCalorieCommand : ListCalorieCommand()
-activate ListCalorieCommand
-return StringBuilder
-return StringBuilder
-return StringBuilder
-return StringBuilder
+User -> ListCaloriesCommand: execute()
+activate ListCaloriesCommand
+
+ListCaloriesCommand -> calorieTracker: getDailyFoodConsumption()
+activate calorieTracker
+calorieTracker -> TreeMap: TreeMap()
+activate TreeMap
+calorieTracker <-- TreeMap: sortedMap
+deactivate TreeMap
+deactivate calorieTracker
+
+alt list is empty
+    ListCaloriesCommand --> User: "Calorie consumption list is empty!"
+end
+    ListCaloriesCommand -> TreeMap: keySet()
+    activate TreeMap
+
+    loop through daily food consumption
+        TreeMap -> FoodList: getTotalCalories()
+        activate FoodList
+        TreeMap <-- FoodList: totalCalories
+        FoodList <-- TreeMap
+        TreeMap --> ListCaloriesCommand: display data
+        deactivate FoodList
+    end
+
+
+    ListCaloriesCommand --> User: display data
+
+deactivate ListCaloriesCommand
 @enduml

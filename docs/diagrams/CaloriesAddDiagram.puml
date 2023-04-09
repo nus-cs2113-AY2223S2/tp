@@ -1,21 +1,13 @@
 @startuml
-'https://plantuml.com/sequence-diagram
-
-autonumber
-
 actor User
-participant ":Duke" as Duke
+participant AddCalorieCommand
+participant CalorieTracker
+participant FoodList
 
-Duke -> Ui: getUserInput()
-activate Duke
-activate Ui
-User -> Ui: User input
-return User input
-Duke -> Parser : processCommand(userInput)
-Parser-> CalorieParser: CalorieParser(arguments)
-activate CalorieParser
-CalorieParser-> parseAddCalorieCommand : parseAddCalorieCommand(arguments)
-activate parseAddCalorieCommand
-parseAddCalorieCommand -> AddCalorieCommand:AddCalorieCommand(arguments)
-activate AddCalorieCommand
+User -> AddCalorieCommand: execute(date, foodName, foodCalories)
+AddCalorieCommand -> CalorieTracker: addCalories(date, foodName, foodCalories)
+CalorieTracker -> FoodList: addFood(foodName, foodCalories)
+FoodList -> CalorieTracker: updateTotalCalories(date)
+CalorieTracker -> AddCalorieCommand: return result
+AddCalorieCommand -> User: return result
 @enduml
