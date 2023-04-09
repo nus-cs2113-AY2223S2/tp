@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 #### Project management:
 * Managed release of v1.0 on GitHub.
-* Maintaining the issue tracker with the necessary tags and labels.
+* Maintained the issue tracker with the necessary tags and labels.
 
 #### Enhancements Implemented:
 * Created parser to parse user input into commands and arguments.
@@ -38,8 +38,9 @@ Given below are my contributions to the project.
 * Added Non-Functional Requirements section.
 
 #### Contributions to team-based tasks:
-* Ensuring GitHub's Java CI checks are passing.
-* Ensure JUnit test code is well written and has consistent format.
+* Ensured GitHub's Java CI checks are passing.
+* Ensured JUnit test code is well written and has consistent format.
+* Reviewed other teammates PRs before merging into the team's master branch.
 
 #### Review/monitoring contributions
 * PRs reviewed for the following team: [CS2113-F10-1](https://github.com/AY2223S2-CS2113-F10-1/tp/pull/55), [CS2113-T14-3](https://github.com/nus-cs2113-AY2223S2/tp/pull/31/files/12c169b4ab991a2d549761120feb1c63c7c3ae72#diff-1a95edf069a4136e9cb71bee758b0dc86996f6051f0d438ec2c424557de7160b).

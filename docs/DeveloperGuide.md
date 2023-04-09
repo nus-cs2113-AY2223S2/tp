@@ -7,7 +7,7 @@
 
 We first give acknowledgement to Module Coordinator, Dr Akshay Narayan, and Teaching Assistant, Aditi Chadha for guidance and supervision over the ChChing project. <br>
 We utilized the [tp project](https://github.com/nus-cs2113-AY2223S2/tp) of the nus-cs2113-AY2223S2 organisation as our template for ChChing.
-<br>The [addressbook-level2](https://github.com/se-edu/addressbook-level2) & [addressbook-level3](https://github.com/se-edu/addressbook-level3) project largely inspired the format and coding style of ChChing.
+<br>The [addressbook-level2](https://github.com/se-edu/addressbook-level2) & [addressbook-level3](https://github.com/se-edu/addressbook-level3) project by SE-EDU largely inspired the format and coding style of ChChing.
 
 ### ExchangeRateApi
 
@@ -140,7 +140,7 @@ The `Parser` object then returns to `ChChing`. `ChChing` object then runs the `e
 ### LiveCurrencyApi
 
 `LiveCurrencyApi` class makes an API call to obtain the latest exchange rates from the [ExchangeRateApi](https://www.exchangerate-api.com/). The API call is made using the `HttpUrlConnection` class. The API key is used directly in the API call URL, and stored in the URL itself and not as a variable. The values response of the API call is then parse as a string, by formatting the string to obtain the exchange rates of the currencies and ignoring the other text. The currency name is then used as a key to see if it exist in the `selector` hashmap. If it does the exchange rate is added to the `converter` hashmap. The `converter` hashmap is then used to convert the currency of interest to SGD. If the API call somehow fails, there are hardcoded values in the `converter` hashmap that are outdated, but it allows the program to continue to run. The live currency rates are updated every time the user starts the program, however the API itself only updates the rates every 24 hours.
-![LiveCurrencyApi_sequence_diagram.png](images%2FLiveCurrencyApi_sequence_diagram.png)
+![LiveCurrencyApi_sequence_diagram.png](images/LiveCurrencyApi_Sequence_Diagram.png)
 
 ### SetCurrencyCommand
 
@@ -153,13 +153,13 @@ If the method returns true, the command will continue to set the currency in the
 Afterwards, the `execute()` method will call the `printSelector()` method from `Selector`.
 The `printSelector()` method will print all the available currencies in the selector hashmap.
 The selected currencies will be marked with a `[X]` and the unselected currencies will be marked with a `[ ]`.
-![SetCurrencyCommand_sequence_diagram.png](images%2FSetCurrencyCommand_sequence_diagram.png)
+![SetCurrencyCommand_sequence_diagram.png](images/SetCurrencyCommand_sequence_diagram.png)
 
 ### UnsetCurrencyCommand
 
 The unsetCurrencyCommand works in a similar way to the setCurrencyCommand.
 The diagram below shows the sequence diagram for the unsetCurrencyCommand.
-![SetCurrencyCommand_sequence_diagram.png](images%2FUnsetCurrencyCommand_sequence_diagram.png)
+![SetCurrencyCommand_sequence_diagram.png](images/UnsetCurrencyCommand_Sequence_Diagram.png)
 
 ### Find
 
@@ -169,7 +169,7 @@ The user can choose to search through incomes on description or date. The user c
 The `execute()` method in `FindCommand` will check if the user is searching for income or expense, and ensure that at least one of the search fields are not empty.
 By using a loop, the `execute()` method will then search through the `ExpenseList` or `IncomeList` and selected the expenses/incomes that matches the search fields.
 The `execute()` method will then print out the selected expenses/incomes that matches the search fields using `showMatchedExpense()` or `showMatchedIncome()` method from `UI` to `System`
-![FindCommand_sequence_diagram.png](images%2FFindCommand_sequence_diagram.png)
+![FindCommand_sequence_diagram.png](images/FindCommand_Sequence_Diagram.png)
 
 ## Product scope
 
@@ -242,8 +242,6 @@ in a simple and convenient manner through a command line interface.
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-
 Given below are instructions to test the app manually.
 
 ### Launch and Shutdown
@@ -264,7 +262,8 @@ Given below are instructions to test the app manually.
    2. Test case:
       <br> For income: `add income /da 12-12-2022 /v 3.50`
       <br> For expense: `add expense /de food /v 3.50`
-      <br>Expected: No income is added. Error details shown in the status message. 3. Other incorrect add income commands to try:
+      <br>Expected: No income is added. Error details shown in the status message. 
+   3. Other incorrect add income commands to try:
       <br> no fields/missing fields - `add income` `add expense`.
       <br> incorrect date format/invalid date/future date - `add income /de ang pao /da 30-02-2022 /v 10` `add expense /c transport /de bus fare /da 31-04-2029 /v 5.30`.
       <br> negative value/zero value/1000000000 and above value/non-float value/non 2 d.p. values - `add income /de salary /da 12-12-2022 /v -3.50` `add expense /c transport /de bus fare /da 10-10-2019 /v 0`.
