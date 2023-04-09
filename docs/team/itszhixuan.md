@@ -30,7 +30,7 @@ MyLedger is a desktop app for managing finances, designed for university student
 
 2. Developer Guide
    - Added documentation and sequence diagram for `Parser` 
-   - Added all possible instructions for instructors to manual test for v2.0
+   - Added all possible instructions for instructors to manual test
 
 #### Team-based Tasks
 1. Attended and contributed to weekly discussions
