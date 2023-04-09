@@ -47,7 +47,6 @@ public class Expenses {
      * @param argumentsByField Input from users
      */
     public static Expense parseExpense(HashMap<String, String> argumentsByField) throws ChChingException {
-        // check if all the fields are present
         boolean isCategoryPresent = argumentsByField.containsKey(CATEGORY_FIELD);
         boolean isDescriptionPresent = argumentsByField.containsKey(DESCRIPTION_FIELD);
         boolean isDatePresent = argumentsByField.containsKey(DATE_FIELD);
