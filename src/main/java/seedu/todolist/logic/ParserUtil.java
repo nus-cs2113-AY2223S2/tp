@@ -145,7 +145,10 @@ public class ParserUtil {
             return null;
         }
 
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        String mandatoryUsername = "^[a-zA-Z0-9_+&*-]+(?:\\.";
+        String mandatoryAddressSign = "[a-zA-Z0-9_+&*-]+)*@";
+        String mandatoryDomain = "(?:[a-zA-Z0-9-]+\\.)+[a-z A-Z]{2,7}$";
+        String emailRegex = mandatoryUsername + mandatoryAddressSign + mandatoryDomain;
         if (!Pattern.compile(emailRegex).matcher(email).matches()) {
             throw new InvalidEmailFormatException(email);
         }
