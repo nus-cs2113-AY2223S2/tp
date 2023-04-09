@@ -227,7 +227,7 @@ Example:
 ![examples-example](./UG-images/examples-example.PNG)
 
 ### Exiting the application: `bye`
-Allows user to exit the application.
+Allows user to exit the appliction.
 
 Format: `bye`
 
@@ -248,15 +248,17 @@ Output:
 
 | Action    | Format, Examples                                                                                         |
 |-----------|----------------------------------------------------------------------------------------------------------|
-| View      | view                                                                                                     |
-| Update    | update                                                                                                   |
+| View      | view /[fieldName]                                                                                        |
+| Update    | update /[fieldName]                                                                                      |
 | Add       | add /on [date] /type [MealType] /foods [foods]                                                           |
-| List      | list foods or list meals                                                                                 |
+| List      | list foods or list meals or list exercises                                                               |
 | Delete    | delete INDEX e.g delete 3                                                                                |
 | Filter    | filter [lower_bound] [upper_bound]                                                                       |
 | Nutrition | nutrition                                                                                                |
 | Exercise  | exercise /type [exercise name] /description [exercise description] /calories [calories burnt] /on [date] |
 | Track     | track                                                                                                    |
 | Examples  | examples [meal/exercise]                                                                                 |
+| Help      | help
 | Bye       | bye                                                                                                      |
+
 
