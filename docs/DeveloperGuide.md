@@ -173,8 +173,10 @@ The User will also be able to delete deadlines, view deadline list.
 
 (XYZ stands for the respective command name.)
 
-Step 1: After the parser returns a `XYZDeadlineCommand`, `DinerDirector` will call the `execute()` method of the command called.
-Step 2: In `execute(ui)` method, the corresponding `XYZdeadline` method of `DeadlineManager` will be called.
+Step 1: After the parser returns a `XYZDeadlineCommand`, `DinerDirector` will call the `execute()` method of the command called.  
+
+Step 2: In `execute(ui)` method, the corresponding `XYZdeadline` method of `DeadlineManager` will be called.  
+
 Step 3: After the `XYZdeadline` method completed the task given, a message will be printed through the `TextUi` class with the `printMessage()` method. 
 
 
