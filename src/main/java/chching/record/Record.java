@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import chching.ChChingException;
 
-// Abstract class that will not be initialized as an object
 /**
  * Models an abstract class that act as a template for Expense and Income
  */
