@@ -179,17 +179,6 @@ Entry class is the underlying superclass for Expense and Income classes. It esta
 methods that are necessary to represent Expenses and Incomes. Abstract class is used to represent their common features
 to maximize code reusability and increase maintainability.
 
-Private attributes
-
-- Info: String that stores the description of the entry
-
-- Amount: Double that stores the monetary value of entry 
-
-- Time: LocalDateTime that stores the date and time of entry
-
-- Category: Category that stores the type tag of entry
-
-
 **Methods**
 
 Getters can be used to provide the private attributes to other classes
