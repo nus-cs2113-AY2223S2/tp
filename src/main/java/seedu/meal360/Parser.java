@@ -639,7 +639,7 @@ public class Parser {
 
     /**
      * This method is designed to find the index of a recipe from
-     * the recipe list of the user.
+     * the recipe list of the user and return the recipe.git
      *
      * @author AbijithRam
      * @param recipeName name of recipe

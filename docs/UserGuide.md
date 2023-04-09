@@ -58,9 +58,7 @@ Format: `ingredient1_name=ingredient1_quantity and ingredient2_name=ingredient2_
 * After the ingredients are key-in in, please type `done` in the next line to finish the process.
   *  **exception:** for editing ingredients partially, you just have to key in the 1 new ingredient and the recipe 
     manager knows that you have entered 1 ingredient. No need to type `done`.
-
-
-
+     
 <br>
 
 ### Adding recipes: `add`
