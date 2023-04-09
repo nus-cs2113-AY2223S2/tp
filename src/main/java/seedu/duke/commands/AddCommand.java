@@ -38,9 +38,10 @@ public class AddCommand extends Command {
         try {
             CategoryCommand.updateItemCategory(item, item.getCategory(), item.getCategory());
         } catch (CategoryFormatException e) {
-            //Ui.printNewCategory();
+            e.missingCategory();
         }
     }
+
     /**
      * Adds an item to the inventory.
      */

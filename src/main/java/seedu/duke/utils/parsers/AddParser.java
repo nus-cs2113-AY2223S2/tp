@@ -38,7 +38,7 @@ public class AddParser extends Parser {
             String upc = matcher.group(UPC_INDEX);
             BigInteger quantity = new BigInteger(matcher.group(QTY_INDEX));
             BigDecimal price = new BigDecimal(matcher.group(PRICE_INDEX));
-            String category = matcher.group(CAT_INDEX);
+            String category = matcher.group(CAT_INDEX).toLowerCase();
 
             if (quantity.compareTo(new BigInteger("99999999")) > 0 ||
                     price.compareTo(BigDecimal.valueOf(99999999)) > 0) {

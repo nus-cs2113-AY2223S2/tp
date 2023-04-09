@@ -147,7 +147,6 @@ public class EditCommand extends Command {
                 currentLabel = PRICE_LABEL;
             } else if (data[dataSequence].startsWith(CATEGORY_LABEL)) {
                 String updatedCategory = data[dataSequence].replaceFirst(CATEGORY_LABEL, EMPTY_STRING);
-                //updatedCategory = updatedCategory.toLowerCase();
                 setItemCategory(item, updatedCategory);
                 currentLabel = CATEGORY_LABEL;
             } else {
