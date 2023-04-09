@@ -116,7 +116,7 @@ ____________________________________________________________
 ### Removing an item: `remove` <a name = "remove"></a>
 Removes an item from the inventory list using either its UPC or index in list.
 
-Format: `remove f/upc [UPC]` or `remove f/index [Index]`
+Format: `remove f/upc [UPC]` or `remove f/index [index]`
 
 **REQUIRED** parameters:
 
@@ -207,10 +207,10 @@ __________________________________________________________________________
 ### Search for an item: `search` / `searchupc` <a name = "search"></a>
 Search for item(s) in the inventory list by keywords or UPC.
 
-| Format | Required parameter |
-| --- | --- |
-| `search [Keywords]` | `[Keywords]` can be an alphanumerical value. |
-| `searchupc [UPC]` | `[UPC]` can only be a **non-negative numerical** value. |
+| Format              | Required parameter                                      |
+|---------------------|---------------------------------------------------------|
+| `search [keywords]` | `[keywords]` can be an alphanumerical value.            |
+| `searchupc [UPC]`   | `[UPC]` can only be a **non-negative numerical** value. |
 
 !> Note: `search` will find items with all keywords. Hence, the search term `sleeves` will find both `Laptop Sleeves`
 and `Clothes Sleeves`, but the search term `laptop slee` will only return the item `Laptop Sleeves`
@@ -255,12 +255,12 @@ Filters items from the inventory list by price OR category.
 | Filter By | Format              | Required parameter                                  |
 |-----------|---------------------|-----------------------------------------------------|
 | Price     | `filter f/price`    | `p/gt`/`p/get`/`p/lt`/`p/let` followed by `[price]` |
-| Category  | `filter f/category` | `[Category keywords]`                               |
+| Category  | `filter f/category` | `[category keywords]`                               |
 
 
 **REQUIRED** parameters:
 * For `filter f/price`, the `[price]` parameter must be a **non-negative numerical value** within a valid range
-* For `filter f/category`, the `[Category keywords]` parameter must be an **alphanumerical value**.
+* For `filter f/category`, the `[category keywords]` parameter must be an **alphanumerical value**.
 
 !> **Enforced** valid range for numerical parameters is **0** to **999999999**.
 
@@ -394,22 +394,22 @@ __________________________________________________________________________
 ### Sell quantity of item: `sell` <a name = "sell"></a>
 Reduces the quantity of an item in the inventory list.
 
-Format: `sell upc/[UPC] qty/[Quantity]`
+Format: `sell upc/[UPC] qty/[quantity]`
 
 **REQUIRED** Parameters:
 
 * The `upc/` parameter, whereby `[UPC]` refers to the identification number assigned to the item at the point 
 of **initial addition** of the item.
-* The `qty/` parameter, whereby `[Quantity]` refers to the amount of stock to be **DEDUCTED** from the current 
+* The `qty/` parameter, whereby `[quantity]` refers to the amount of stock to be **DEDUCTED** from the current 
 stock levels recorded.
 
 !> `[UPC]` has to be **VALID**, that is, it EXISTS in the database, and has to be a POSITIVE NUMBER and NOT EMPTY.
 
-!> **Enforced** valid `[Quantity]` input range to be from **1** up to the **Current Quantity Level** of the item,
+!> **Enforced** valid `[quantity]` input range to be from **1** up to the **Current Quantity Level** of the item,
 provided that the **Current Quantity Level** is **NOT ZERO**. Strings, Zero(0), Negative Integers and Empty inputs for
-`[Quantity]` are not allowed.
+`[quantity]` are not allowed.
 
-!> For both `[UPC]` and `[Quantity]`, the `[` and `]` symbols are **NOT NEEDED** for the input. Refer to the
+!> For both `[UPC]` and `[quantity]`, the `[` and `]` symbols are **NOT NEEDED** for the input. Refer to the
 examples below for reference.
 
 #### Example of Usage
@@ -445,21 +445,21 @@ __________________________________________________________________________
 ### Restock an item: `restock` <a name = "restock"></a>
 Restock quantities of an item in the inventory list.
 
-Format: `restock upc/[UPC] qty/[Quantity]`
+Format: `restock upc/[UPC] qty/[quantity]`
 
 **REQUIRED** Parameters:
 
 * The `upc/` parameter  whereby `[UPC]` refers to the identification number assigned to the item at the point 
 of **initial addition** of the item.
-* The `qty/` parameter whereby `[Quantity]` refers to the amount of stock to be **ADDED** from the current stock 
+* The `qty/` parameter whereby `[quantity]` refers to the amount of stock to be **ADDED** from the current stock 
 levels recorded.
 
 !> `[UPC]` has to be **VALID**, that is, it EXISTS in the database, and has to be a POSITIVE NUMBER and NOT EMPTY.
 
-!> **Enforced** valid `[Quantity]` input range to be from **1** to **99,999,999**. Zero(0), negative integers, string
+!> **Enforced** valid `[quantity]` input range to be from **1** to **99,999,999**. Zero(0), negative integers, string
 and empty inputs are **NOT** allowed. Ensure that the post-restock quantity does not add up to above 99,999,999. 
 
-!> For both `[UPC]` and `[Quantity]`, the `[` and `]` symbols are **NOT NEEDED** for the input. Refer to the
+!> For both `[UPC]` and `[quantity]`, the `[` and `]` symbols are **NOT NEEDED** for the input. Refer to the
 examples below for reference.
 
 #### Example of Usage
@@ -595,15 +595,15 @@ __________________________________________________________________________
 ```
 
 Add Alert Format:  
-`alert add upc/[UPC] min/[Quantity] ` to set an alert when quantity falls below a minimum  
-`alert add upc/[UPC] max/[Quantity]` to set an alert when quantity exceeds a maximum  
+`alert add upc/[UPC] min/[quantity] ` to set an alert when quantity falls below a minimum  
+`alert add upc/[UPC] max/[quantity]` to set an alert when quantity exceeds a maximum  
 
 **REQUIRED** parameters:
 
 * The `[UPC]` must be a **non-negative numerical value**
-* For **MIN alert**: The `[Quantity]` must be a **non-negative whole number** and is **less than** current item's 
+* For **MIN alert**: The `[quantity]` must be a **non-negative whole number** and is **less than** current item's 
 quantity
-* For **MAX alert**: The `[Quantity]` must be a **non-negative whole number** and is **greater than** current item's
+* For **MAX alert**: The `[quantity]` must be a **non-negative whole number** and is **greater than** current item's
 quantity
 
 Remove Alert Format:
