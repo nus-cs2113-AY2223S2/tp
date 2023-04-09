@@ -15,6 +15,7 @@ public class FilterCommand extends Command {
     private static final String GREATER_THAN_FLAG = "p/gt";
     private static final String LESS_OR_EQUAL_THAN_FLAG = "p/let";
     private static final String GREATER_OR_EQUAL_THAN_FLAG = "p/get";
+    private static final String TYPE_CATEGORY = "f/category";
     private static ArrayList<Item> filteredCategory;
     private String filterType;
     private String filterValue;
@@ -134,7 +135,7 @@ public class FilterCommand extends Command {
     public ArrayList<Item> getFilteredItems() {
         ArrayList<Item> filteredItems = new ArrayList<>();
         switch (filterType) {
-        case "f/category":
+        case TYPE_CATEGORY:
             try {
                 filterCategory(filterValue);
                 filteredItems = getFilteredCategory();
@@ -146,10 +147,13 @@ public class FilterCommand extends Command {
                 return null;
             }
             break;
-        case "p/lt":
-        case "p/gt":
-        case "p/let":
-        case "p/get":
+        case LESS_THAN_FLAG:
+            //fallthrough
+        case GREATER_THAN_FLAG:
+            //fallthrough
+        case LESS_OR_EQUAL_THAN_FLAG:
+            //fallthrough
+        case GREATER_OR_EQUAL_THAN_FLAG:
             filteredItems = filterPrice(filterPrice, filterType);
             break;
         default:
@@ -164,7 +168,7 @@ public class FilterCommand extends Command {
     @Override
     public void run() {
         ArrayList<Item> filteredItems = getFilteredItems();
-        if (filterType.startsWith("f/category")) {
+        if (filterType.startsWith(TYPE_CATEGORY)) {
             if (filteredItems != null) {
                 Ui.printCategory(filteredItems);
             }

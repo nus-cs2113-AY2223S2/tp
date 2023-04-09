@@ -8,6 +8,22 @@ import seedu.duke.utils.Ui;
 import java.util.ArrayList;
 
 public class CategoryCommand extends Command {
+    private static final String EMPTY_SPACE = " ";
+    private static final String LIST = "list";
+    private static final String TABLE = "table";
+    private static final int BEGIN_INDEX = 0;
+    private static final int NEXT_INDEX = 1;
+    private static boolean isAnd;
+    private static boolean isOr;
+    private static boolean isAt;
+    private static boolean isA;
+    private static boolean isThe;
+    private static boolean isAn;
+    private static boolean isNotFirstWord;
+    private static boolean isFrom;
+    private static boolean isOn;
+    private static boolean isFor;
+    private static boolean isWith;
     private final String rawInput;
 
     /**
@@ -30,7 +46,7 @@ public class CategoryCommand extends Command {
     public static void updateItemCategory(Item item, String oldCategory, String newCategory)
             throws CategoryFormatException {
         try {
-            if (oldCategory.isBlank() || newCategory.isBlank()) {
+            if (oldCategory.toLowerCase().isBlank() || newCategory.toLowerCase().isBlank()) {
                 throw new CategoryFormatException();
             }
             checkExistingCategory(item, oldCategory, newCategory);
@@ -47,7 +63,9 @@ public class CategoryCommand extends Command {
      */
     private static void checkExistingCategory(Item item, String oldCategory, String newCategory) {
         try {
-            removeItemFromCategory(item, oldCategory);
+            if (categoryHash.containsValue(item)) {
+                removeItemFromCategory(item, oldCategory);
+            }
             item.setCategory(newCategory);
             addItemToCategory(newCategory, item);
         } catch (NullPointerException e) {
@@ -60,11 +78,12 @@ public class CategoryCommand extends Command {
      * @param item the item to be removed from the category hashmap.
      * @param oldCategory the category that the item currently belongs to.
      */
-    private static void removeItemFromCategory(Item item, String oldCategory) {
+    public static void removeItemFromCategory(Item item, String oldCategory) {
+        oldCategory = oldCategory.toLowerCase();
         if (!categoryHash.containsKey(oldCategory)) {
             return;
         }
-        if (categoryHash.get(oldCategory).size() == 1) {
+        if (categoryHash.get(oldCategory).size() == NEXT_INDEX) {
             categoryHash.get(oldCategory).remove(item);
             categoryHash.remove(oldCategory);
         } else {
@@ -78,7 +97,8 @@ public class CategoryCommand extends Command {
      * @param item the item to be added to a category.
      */
     private static void addItemToCategory(String categoryToAdd, Item item) {
-        if (!categoryHash.containsKey(categoryToAdd.toLowerCase())) {
+        categoryToAdd = categoryToAdd.toLowerCase();
+        if (!categoryHash.containsKey(categoryToAdd)) {
             categoryHash.put(categoryToAdd, new ArrayList<>());
         }
         categoryHash.get(categoryToAdd).add(item);
@@ -106,14 +126,47 @@ public class CategoryCommand extends Command {
     }
 
     /**
+     * Capitalises important words in category name for printing (like book titles).
+     * @param category The category to have its words capitalised accordingly.
+     * @return Capitalised string of category name.
+     */
+    public static String capitaliseCategory(String category) {
+        String capsString = new String();
+        String[] catWords = category.split(EMPTY_SPACE);
+        for (String word : catWords) {
+            isAnd = word.equals("and");
+            isAt = word.equals("at");
+            isA = word.equals("a");
+            isOr = word.equals("or");
+            isThe = word.equals("the");
+            isAn = word.equals("an");
+            isNotFirstWord = (word != catWords[BEGIN_INDEX]);
+            isFrom = word.equals("from");
+            isOn = word.equals("on");
+            isFor = word.equals("for");
+            isWith = word.equals("with");
+            if (isAnd || isAt || isOr || isFrom || isWith || isFor || isOn ||
+                    ((isA || isThe || isAn) && isNotFirstWord)) {
+                capsString = capsString + word;
+            } else {
+                capsString = capsString + word.substring(BEGIN_INDEX, NEXT_INDEX).toUpperCase() +
+                        word.substring(NEXT_INDEX);
+            }
+            capsString = capsString + EMPTY_SPACE;
+        }
+        capsString = capsString.trim();
+        return capsString;
+    }
+
+    /**
      * Executes the category command.
      */
     @Override
     public void run() {
         try {
-            if (rawInput.equals("list")) {
+            if (rawInput.equals(LIST)) {
                 listAllCategories();
-            } else if (rawInput.equals("table")) {
+            } else if (rawInput.equals(TABLE)) {
                 listCategoryAndItems();
             }
         } catch (NullPointerException npe) {
