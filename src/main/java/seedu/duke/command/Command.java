@@ -332,6 +332,7 @@ public class Command {
                     throw new IncompleteInputException("The index of " + type + " cannot be empty.\n");
                 }
                 int recipeListNum = Integer.parseInt(fullDescription);
+
                 if (recipeCount == 0) {
                     System.out.println(StringLib.EMPTY_LIST_MESSAGE);
                     break;
