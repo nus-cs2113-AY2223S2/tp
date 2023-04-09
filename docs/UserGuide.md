@@ -123,7 +123,7 @@ Format: `remove f/upc [UPC]` or `remove f/index [index]`
 * The `[UPC]` must be a **non-negative numerical value**
 * The `[index]` can only be a **non-negative whole number**.
 
-!> **index** follows 0-indexing. (i.e. The first item in the list is at index 0.)
+!> **index** follows 0-indexing. (i.e. the first item in the list is at index 0.)
 
 #### Example of usage
 
@@ -412,7 +412,7 @@ provided that the **Current Quantity Level** is **NOT ZERO**. Strings, Zero(0), 
 !> For both `[UPC]` and `[quantity]`, the `[` and `]` symbols are **NOT NEEDED** for the input. Refer to the
 examples below for reference.
 
-#### Example of Usage
+#### Example of usage
 `sell upc/123 qty/5`: Searches for the item of `UPC` code `123`, and if it exists, **DEDUCT** a `quantity` of `5`
 items from its current stock levels, provided that the total quantity after selling does not go below 0.
 
@@ -462,7 +462,7 @@ and empty inputs are **NOT** allowed. Ensure that the post-restock quantity does
 !> For both `[UPC]` and `[quantity]`, the `[` and `]` symbols are **NOT NEEDED** for the input. Refer to the
 examples below for reference.
 
-#### Example of Usage
+#### Example of usage
 `restock upc/12345 qty/5`: Searches for the item of `UPC` code `12345`, and if it exists, **ADD** a `quantity` of `5`
 items to its current stock levels, provided that the total quantity after restocking does **not** exceed 99,999,999.
 
@@ -549,7 +549,7 @@ Format: <br />
 !> Note: There should **NOT** be any additional user inputs after typing `cat list` or `cat table`. `list` and `table`
 should **NOT** be used concurrently.
 
-#### Example of Usage 
+#### Example of usage 
 
 `cat list`
 
