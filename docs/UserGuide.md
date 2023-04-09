@@ -16,6 +16,10 @@
     * [Generating overview: `overview`](#generating-overview--overview)
     * [Exiting the program: `exit`](#exiting-the-program--exit)
   * [FAQ](#faq)
+    * [Do I require an internet connection to use ET?](#do-i-require-an-internet-connection-to-use-et)
+    * [Why is my primary currency not available for use?](#why-is-my-primary-currency-not-available-for-use)
+    * [Am I allowed to add my own currency and exchange rate to ET?](#am-i-allowed-to-add-my-own-currency-and-exchange-rate-to-et)
+    * [I want to add a date beyond 1981, how do I do that?](#i-want-to-add-a-date-beyond-1981-how-do-i-do-that)
   * [Command Summary](#command-summary)
 <!-- TOC -->
 
@@ -335,6 +339,9 @@ exchange rates. However, a lack of internet connection will not hinder the use o
 
 - Our selection of currencies is based on the currencies available in our exchange rate API, we apologise if
 your currency is not available for use.
+### Am I allowed to add my own currency and exchange rate to ET?
+- The current version of ET does not support adding of arbitrary currency. We apologise if this caused any 
+  inconvenience.
 
 ### I want to add a date beyond 1981, how do I do that?
 
