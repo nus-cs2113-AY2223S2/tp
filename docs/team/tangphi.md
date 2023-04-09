@@ -20,28 +20,46 @@ V1.0: [PR](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/22)
 4. Create initial unpack command feature [#6](https://github.com/AY2223S2-CS2113-T14-2/tp/issues/6)
 
 V2.1
-5. Create packall command feature
-6. Create unpackall command feature
+5. Create packall command feature [#132](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/132)
+6. Create unpackall command feature [#153](https://github.com/AY2223S2-CS2113-T14-2/tp/pull/153)
 
 ---
 ##### Enhancements implemented
+- Wrote JUnit test for the add command
+- Wrote JUnit test for the packall command
+- Wrote JUnit test for the unpackall command
 
 
 ##### Contributions to the [UG](../UserGuide.md)
 
+- Contributed to the Table of Contents section
+- Contributed to the Quick Start section
+- Contributed to the Add feature component
+- Contributed to the Delete feature component
+- Contributed to the Packall feature component
+- Contributed to the Unpackall feature component
+- Contributed to the Command Summary section
+
 ---
 ##### Contribution to the [DG](../DeveloperGuide.md)
+- Contributed to the Add command mechanisms component
+- Contributed to the Delete command mechanisms component
+- Contributed to the Target User Profile section
+- Contributed to the Value Proposition section
+
 
 ---
 ##### Contributions to team-based tasks
-
-
+- Contributed to the planning of BagPacker by brainstorming features to implement
+- Labelled, assigned and set milestones for issues on Github [issues](https://github.com/AY2223S2-CS2113-T14-2/tp/issues?q=is%3Aissue+author%3Atangphi+is%3Aclosed)
+- Helped resolve bugs from the PE-Dry run
 ---
 ##### Review/mentoring contributions
 
 ---
 ##### Contributions beyond the project team
-
+- Reported bugs in other teams' program and provided suggestions to improve: [CS2113-F10-2](https://github.com/tangphi/ped/issues)
+- Reviewed DG of other teams and provided suggestions to improve: [CS2113-W12-2](https://github.com/nus-cs2113-AY2223S2/tp/pull/5/files#r1152849879)
 ---
 
 ##### Contributions to the Developer Guide (Extracts):
