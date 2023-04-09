@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title EditCommand Sequence Diagram
 
+skinparam style strictuml
 ":EditParser" -> ":EditCommand" **:EditCommand()
 activate ":EditCommand"
 ":EditCommand" --> ":EditParser"

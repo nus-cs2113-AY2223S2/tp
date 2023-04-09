@@ -1,10 +1,11 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title FilterCommand (Category) Sequence Diagram
 
 skinparam style strictuml
 participant ":FilterParser"
 group sd [filter category]
-    ":FilterParser" -> ":FilterCommand" ** : run() with parameters set for category or tag
+    ":FilterParser" -> ":FilterCommand" ** : run() with parameters set for category
     activate ":FilterCommand"
     ":FilterCommand" -> ":FilterCommand": getFilteredItems()
     activate ":FilterCommand" #lightgreen

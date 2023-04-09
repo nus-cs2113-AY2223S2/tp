@@ -1,13 +1,14 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title CategoryParser Sequence Diagram
 
-
-actor User
 skinparam style strictuml
+actor User
 User -> ":CategoryParser"**: run()
 activate ":CategoryParser"
 alt categoryCommandType is 'list' or 'table
-    ":CategoryParser" -> ":CategoryCommand"**: run()
+    ":CategoryParser" -> ":CategoryCommand"**:
+    ":CategoryParser" -> ":CategoryCommand": run()
     activate ":CategoryCommand"
     ref over ":CategoryCommand"
         execute command by categoryCommandType

@@ -1,5 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title RemoveCommand Sequence Diagram
 
 skinparam style strictuml
 participant ":RemoveParser"

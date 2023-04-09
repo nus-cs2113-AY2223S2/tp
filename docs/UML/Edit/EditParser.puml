@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title EditParser Sequence Diagram
 
+skinparam style strictuml
 actor User
 User -> ":EditParser" **:EditParser()
 activate ":EditParser"

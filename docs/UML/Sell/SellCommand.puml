@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title SellCommand Sequence Diagram
 
+skinparam style strictuml
 participant ":SellParser"
 ":SellParser" -> ":SellCommand"**:SellCommand()
 activate ":SellCommand"
@@ -46,35 +48,35 @@ group sd Deduct Quantity of the Item
     deactivate ":SellCommand"
 
     alt Valid Inputs
-        ":SellCommand" -> "<<Class>>\nUI": printSellDetails()
-        activate "<<Class>>\nUI"
-        ref over "<<Class>>\nUI": Print Sell Message
-        "<<Class>>\nUI"-->":SellCommand"
-        deactivate "<<Class>>\nUI"
+        ":SellCommand" -> "<<class>>\nUI": printSellDetails()
+        activate "<<class>>\nUI"
+        ref over "<<class>>\nUI": Print Sell Message
+        "<<class>>\nUI"-->":SellCommand"
+        deactivate "<<class>>\nUI"
     else Item Does Not Exist
-        ":SellCommand" -> "<<Class>>\nUI": printItemNotFound()
-        activate "<<Class>>\nUI"
-        ref over "<<Class>>\nUI": Print Error Message
-        "<<Class>>\nUI"-->":SellCommand"
-        deactivate "<<Class>>\nUI"
+        ":SellCommand" -> "<<class>>\nUI": printItemNotFound()
+        activate "<<class>>\nUI"
+        ref over "<<class>>\nUI": Print Error Message
+        "<<class>>\nUI"-->":SellCommand"
+        deactivate "<<class>>\nUI"
     else Missing Input Parameters
-        ":SellCommand" -> "<<Class>>\nUI": printInvalidSellCommand()
-        activate "<<Class>>\nUI"
-        ref over "<<Class>>\nUI": Print Error Message
-        "<<Class>>\nUI"-->":SellCommand"
-        deactivate "<<Class>>\nUI"
+        ":SellCommand" -> "<<class>>\nUI": printInvalidSellCommand()
+        activate "<<class>>\nUI"
+        ref over "<<class>>\nUI": Print Error Message
+        "<<class>>\nUI"-->":SellCommand"
+        deactivate "<<class>>\nUI"
     else Invalid Input Parameters
-        ":SellCommand" -> "<<Class>>\nUI": printInvalidDeductQuantityInput()
-        activate "<<Class>>\nUI"
-        ref over "<<Class>>\nUI": Print Error Message
-        "<<Class>>\nUI"-->":SellCommand"
-        deactivate "<<Class>>\nUI"
+        ":SellCommand" -> "<<class>>\nUI": printInvalidDeductQuantityInput()
+        activate "<<class>>\nUI"
+        ref over "<<class>>\nUI": Print Error Message
+        "<<class>>\nUI"-->":SellCommand"
+        deactivate "<<class>>\nUI"
     end
-    ":SellCommand" -> "<<Class>>\nSessionManager": writeSession()
-    activate "<<Class>>\nSessionManager"
-    ref over "<<Class>>\nSessionManager": Update CSV File
-    "<<Class>>\nSessionManager" --> ":SellCommand"
-    deactivate "<<Class>>\nSessionManager"
+    ":SellCommand" -> "<<class>>\nSessionManager": writeSession()
+    activate "<<class>>\nSessionManager"
+    ref over "<<class>>\nSessionManager": Update CSV File
+    "<<class>>\nSessionManager" --> ":SellCommand"
+    deactivate "<<class>>\nSessionManager"
 end
 ":SellCommand" --> ":SellParser"
 destroy ":SellCommand"

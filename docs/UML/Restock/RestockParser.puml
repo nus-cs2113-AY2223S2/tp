@@ -1,5 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+title RestockParser Sequence Diagram
+
+skinparam style strictuml
 actor User
 participant ":RestockParser"
 User -> ":RestockParser" **:RestockParser()
@@ -17,7 +20,7 @@ deactivate ":RestockCommand"
 alt Contains "upc/" and input length > 1
     ":RestockParser"->":RestockCommand": run()
     activate ":RestockCommand"
-    ref over ":RestockCommand","<<Class>>\nUI": Increases quantity of the Item
+    ref over ":RestockCommand","<<class>>\nUI": Increases quantity of the Item
     ":RestockCommand"-->":RestockParser":
     deactivate ":RestockCommand"
     ":RestockParser"-->User:
@@ -27,10 +30,10 @@ alt Contains "upc/" and input length > 1
 else No "upc/" or input length <= 1
     ":RestockParser"->":RestockParser": EditErrorException()
     activate ":RestockParser" #Cyan
-    ":RestockParser"->"<<Class>>\nUI":printInvalidSellCommand()
-    activate "<<Class>>\nUI"
-    "<<Class>>\nUI"-->":RestockParser":
-    deactivate "<<Class>>\nUI"
+    ":RestockParser"->"<<class>>\nUI":printInvalidSellCommand()
+    activate "<<class>>\nUI"
+    "<<class>>\nUI"-->":RestockParser":
+    deactivate "<<class>>\nUI"
     ":RestockParser"-->":RestockParser":
     deactivate ":RestockParser"
     ":RestockParser"-->User:
